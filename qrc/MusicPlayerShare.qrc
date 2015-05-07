@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/share">
+        <file alias="searchclosed">../resource/music_close1.png</file>
+        <file alias="defaultArt">../resource/default_art.jpg</file>
+        <file alias="selected">../resource/contextMenu/context_selected.png</file>
+    </qresource>
+</RCC>

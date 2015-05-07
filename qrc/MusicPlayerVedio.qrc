@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/video">
+        <file alias="play">../resource/video/video_play.png</file>
+        <file alias="pause">../resource/video/video_pause.png</file>
+        <file alias="next">../resource/video/video_play_next.png</file>
+        <file alias="privious">../resource/video/video_play_privious.png</file>
+        <file alias="volumn">../resource/video/video_volumn.png</file>
+        <file alias="menu">../resource/video/video_menu.png</file>
+    </qresource>
+</RCC>
