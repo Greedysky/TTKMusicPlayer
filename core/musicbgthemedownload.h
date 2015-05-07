@@ -18,7 +18,7 @@ public slots:
     void downLoadFinished(const QString &);
 
 protected:
-    QString artName;
+    QString m_artName;
 
 };
 
