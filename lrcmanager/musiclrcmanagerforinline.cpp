@@ -8,8 +8,8 @@ MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent) :
     m_speedLeve = 40;
     m_geometry.setX(m_lrcPerWidth = 400);
     m_geometry.setY(35);
-    gradientFontSize = 0;
-    gradientTransparent = 0;
+    m_gradientFontSize = 0;
+    m_gradientTransparent = 0;
 }
 
 MusicLRCManagerForInline::~MusicLRCManagerForInline()
@@ -21,7 +21,7 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     QFont font(m_font);
-    int ttplus = font.pointSize() - gradientFontSize;
+    int ttplus = font.pointSize() - m_gradientFontSize;
     (ttplus < 0) ? ttplus = 0 : ttplus = ttplus;
     font.setPointSize(ttplus);
     painter.setFont(font);
@@ -33,7 +33,7 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     }
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture
-    ttplus = 2*(m_transparent - gradientTransparent);
+    ttplus = 2*(m_transparent - m_gradientTransparent);
     (ttplus < 0) ? ttplus = 0 : ttplus = ttplus;
     painter.setPen(QColor(0, 0, 0, ttplus));
 

@@ -10,7 +10,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
 {
     m_vBoxLayout = new QVBoxLayout(this);
     this->setLayout(m_vBoxLayout);
-    containerType = "INLINE";
+    m_containerType = "INLINE";
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
        MusicLRCManager *w = new MusicLRCManagerForInline(this);

@@ -18,7 +18,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    containerType = "DESKTOP";
+    m_containerType = "DESKTOP";
     creatToolBarWidget();
     m_desktopWidget = new QWidget(this);
     m_desktopWidget->setObjectName("desktopWidget");

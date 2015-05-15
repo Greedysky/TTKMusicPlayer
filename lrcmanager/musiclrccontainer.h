@@ -43,7 +43,7 @@ protected:
     void setSettingParameter(const QString& t);
 
     QList<MusicLRCManager*> m_musicLrcContainer;
-    QString containerType;
+    QString m_containerType;
 
 };
 

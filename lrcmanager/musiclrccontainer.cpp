@@ -80,7 +80,7 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorTable::LrcColorType lrcCo
           default:break;
         }
     }
-    if(containerType == "DESKTOP")
+    if(m_containerType == "DESKTOP")
         QSettings().setValue("DLRCCOLORCHOICED",lrcColorType);
     else
         QSettings().setValue("LRCCOLORCHOICED",lrcColorType);
@@ -88,7 +88,7 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorTable::LrcColorType lrcCo
 
 void MusicLrcContainer::setSettingParameter()
 {
-    if(containerType == "DESKTOP")
+    if(m_containerType == "DESKTOP")
         setSettingParameter("D");
     else
         setSettingParameter("");

@@ -11,14 +11,14 @@ public:
     ~MusicLRCManagerForInline();
 
     inline void setFontSize(int size)
-            { gradientFontSize = size;}
+            { m_gradientFontSize = size;}
     inline void setTransparent(int transparent)
-            { gradientTransparent = transparent;}
+            { m_gradientTransparent = transparent;}
 
 protected:
     virtual void paintEvent(QPaintEvent *);
-    int gradientFontSize;
-    int gradientTransparent;
+    int m_gradientFontSize;
+    int m_gradientTransparent;
 
 };
 

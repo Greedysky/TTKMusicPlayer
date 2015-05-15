@@ -45,7 +45,7 @@ public:
     void setLrcFontSize(LrcSizeTable);
     void setFontFamily(int);
     void setFontType(int);
-    void setFontTransparent(int t) { m_transparent = t;}
+    inline void setFontTransparent(int t) { m_transparent = t;}
 
 signals:
 
