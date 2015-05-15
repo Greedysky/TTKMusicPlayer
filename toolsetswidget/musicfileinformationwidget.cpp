@@ -3,6 +3,7 @@
 #include "../core/musicobject.h"
 #include "../core/musicfileinformation.h"
 #include <QDesktopServices>
+#include <QMessageBox>
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
     MusicMoveDialogAbstract(parent),
@@ -36,7 +37,9 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
 
 void MusicFileInformationWidget::musicOpenFileDir()
 {
-    QDesktopServices::openUrl(QUrl(QFileInfo(m_path).absolutePath(), QUrl::TolerantMode));
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_path).absolutePath(), QUrl::TolerantMode)))
+    QMessageBox::about(0,tr("QMusicPlayer"),
+                         tr("The origin one does not exsit?"));
 }
 
 void MusicFileInformationWidget::setFileInformation(const QString& name)

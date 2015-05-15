@@ -244,8 +244,10 @@ void MusicSongsSummarizied::musicPlay(int index)
 
 void MusicSongsSummarizied::musicOpenFileDir(int index)
 {
-    QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentIndex()][index]).absolutePath()
-                              , QUrl::TolerantMode));
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentIndex()][index]).absolutePath()
+                              , QUrl::TolerantMode)))
+    QMessageBox::about(0,tr("QMusicPlayer"),
+                         tr("The origin one does not exsit?"));
 }
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode)

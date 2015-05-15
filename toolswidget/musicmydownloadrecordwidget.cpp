@@ -192,8 +192,11 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
 {
     if(rowCount() == 0 || currentRow() <0)
         return;
-    QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentRow()]).absolutePath()
-                              , QUrl::TolerantMode));
+
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentRow()]).absolutePath()
+                              , QUrl::TolerantMode)))
+    QMessageBox::about(0,tr("QMusicPlayer"),
+                         tr("The origin one does not exsit?"));
 }
 
 void MusicMyDownloadRecordWidget::musicPlay()
