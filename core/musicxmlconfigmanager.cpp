@@ -65,6 +65,9 @@ void MusicXMLConfigManager::readMusicSongsConfig(QList<QStringList>& fileNamesLi
 void MusicXMLConfigManager::writeMusicSongsConfig(const QList<QStringList>& fileNamesList,
                                                   const QList<QStringList>& fileUrlsList)
 {
+    if( fileNamesList.isEmpty() || fileUrlsList.isEmpty() )
+        return;
+
     //Open wirte file
     delete m_file;
     delete m_ddom;
