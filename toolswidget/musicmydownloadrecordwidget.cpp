@@ -174,7 +174,7 @@ void MusicMyDownloadRecordWidget::listCellEntered(int row, int column)
 
     item = this->item(row, column);
     if(item != 0 && !item->isSelected() && !item->text().isEmpty())
-       this->setRowColor(row, QColor(193,210,240));
+       this->setRowColor(row, QColor(20,20,20,40));
 
     m_previousColorRow = row;
 }

@@ -130,7 +130,7 @@ void MusicSongSearchOnlineWidget::listCellEntered(int row, int column)
 
     item = this->item(row, column);
     if(item != 0 && !item->isSelected() && !item->text().isEmpty())
-       setRowColor(row, QColor(193,210,240));
+       setRowColor(row, QColor(20,20,20,40));
 
     m_previousColorRow = row;
 }
