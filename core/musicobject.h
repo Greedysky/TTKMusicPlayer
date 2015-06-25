@@ -206,16 +206,6 @@ namespace MusicObject
            QToolBox::tab:selected {font: italic; font-weight:bold; color: white;}\
            QToolBox::tab{ font-weight:bold; background-color:rgba(255,255,255,100);}";
 
-    const QString MusicPlayTimeSliderBar = " \
-           QSlider::handle:horizontal {background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, \
-           fx:0.5, fy:0.5,stop:0.6 #45ADED, stop:0.778409 rgba(255, 255, 255, 255)); \
-           width: 11px;margin-top: -3px;margin-bottom: -3px;border-radius: 5px;}\
-           QSlider::handle:horizontal:hover{background: qradialgradient(spread:pad, cx:0.5, cy:0.5, \
-           radius:0.5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA,stop:0.778409 rgba(255, 255, 255, 255)); \
-           width: 11px;margin-top: -3px;margin-bottom: -3px;border-radius: 5px;} \
-           QSlider::sub-page{background-color:#6495ED;} \
-           QSlider::add-page {background-color:white;} ";
-
     const QString MusicSettingMainButton = " \
            QPushButton{background-color:rgb(173,216,230);border:none;}\
            QPushButton::hover{\
