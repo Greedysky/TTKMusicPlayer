@@ -532,9 +532,7 @@ void MusicApplication::createSystemTrayIcon()
 
 void MusicApplication::createToolPopupMenu()
 {
-    m_toolPopupLrcMenu.setTitle(tr("lrcMenu"));
-    m_toolPopupLrcMenu.setStyleSheet(MusicObject::MusicToolPopupMenu);
-    m_toolPopupMenu.setStyleSheet(MusicObject::MusicToolPopupMenu);
+    m_toolPopupMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     m_toolPopupMenu.addAction(ui->action_ImportSongs);
     m_toolPopupMenu.addAction(ui->action_Setting);
 

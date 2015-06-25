@@ -177,7 +177,6 @@ private:
     MusicPlaylist* m_musicList;
     QSystemTrayIcon* m_systemTray;
     QMenu m_toolPopupMenu;
-    QMenu m_toolPopupLrcMenu;
     MusicSystemTrayMenu *m_systemTrayMenu;
 
     QSettings m_musicSettingParameter;

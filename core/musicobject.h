@@ -263,14 +263,6 @@ namespace MusicObject
            stop: 0.5 rgba(255,255,255,100),stop: 1.0 rgba(255,255,255,100));\
            border:none;}";
 
-    const QString MusicToolPopupMenu = " \
-           QMenu { background-color: #526598; border: 1px solid gray;padding: 5px; }\
-           QMenu::item {padding: 2px 25px 2px 30px;border: 1px solid transparent; }\
-           QMenu::item:disabled {color: #666666;}\
-           QMenu::item:selected {color: white; background: #222222;}\
-           QMenu::separator {height: 1px;background: #222222;margin-left: 10px;\
-                  margin-right: 10px;margin-top: 1px; margin-bottom: 1px;}";
-
     const QString MusicSystemTrayMenu = " \
            QMenu { background-color: white; border: 1px solid gray;padding: 5px; }\
            QMenu::item {padding: 5px 25px 5px 30px;border: 1px solid transparent; }\
