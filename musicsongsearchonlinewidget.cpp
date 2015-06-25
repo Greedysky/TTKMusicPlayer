@@ -1,37 +1,21 @@
 #include "musicsongsearchonlinewidget.h"
 #include "core/musiclrcdownloadthread.h"
 #include "core/musicsongdownloadthread.h"
-#include "core/musicobject.h"
 #include "toolswidget/musicmydownloadrecordobject.h"
 
 MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
-    QTableWidget(parent)
+    MusicTableWidgetAbstract(parent)
 {
-    this->setFont(QFont("Helvetica"));
-    this->setColumnCount(4);
-    this->setRowCount(0);
-    this->setShowGrid(false);//Does not display the grid
-    QHeaderView *headerview = this->horizontalHeader();
-    headerview->setVisible(false);
+    setColumnCount(4);
+    QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0,310);
     headerview->resizeSection(1,46);
     headerview->resizeSection(2,26);
     headerview->resizeSection(3,26);
-    this->verticalHeader()->setVisible(false);
-    this->setMouseTracking(true);  //Open the capture mouse function
-    this->setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
-                         MusicObject::MusicScrollBarStyle);
-    //Set the color of selected row
-    this->setFrameShape(QFrame::NoFrame);//Set No Border
-    this->setEditTriggers(QTableWidget::NoEditTriggers);//No edit
-    this->setSelectionBehavior(QTableWidget::SelectRows);
-    //Multi-line election
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
-    this->setFocusPolicy(Qt::NoFocus);
-
+    setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
+                   MusicObject::MusicScrollBarStyle);
+    setTransparent(255);
     m_songItemIndex = 0;
-    m_previousColorRow = -1;
-    m_defaultBkColor = QColor(255,255,255,0);
 
     m_downLoadManager = new MusicDownLoadManagerThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
@@ -42,8 +26,8 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,double)),
             this,SLOT(creatSearchedItems(QString,QString,double)));
 
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(itemCellOnClick(int,int)));
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
+    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
 }
 
@@ -55,13 +39,6 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 void MusicSongSearchOnlineWidget::contextMenuEvent(QContextMenuEvent *)
 {
 //    QTableWidget::contextMenuEvent(event);
-}
-
-void MusicSongSearchOnlineWidget::setTransparent(int angle)
-{
-    QPalette pal = this->palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
-    this->setPalette(pal);
 }
 
 void MusicSongSearchOnlineWidget::startSearchSong(const QString &text)
@@ -110,7 +87,7 @@ void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
     ++m_songItemIndex;
 }
 
-void MusicSongSearchOnlineWidget::itemCellOnClick(int row,int col)
+void MusicSongSearchOnlineWidget::listCellClicked(int row,int col)
 {
     switch(col)
     {
@@ -119,28 +96,6 @@ void MusicSongSearchOnlineWidget::itemCellOnClick(int row,int col)
       case 3:
         musicDownloadLocal(row);break;
       default:break;
-    }
-}
-
-void MusicSongSearchOnlineWidget::listCellEntered(int row, int column)
-{
-    QTableWidgetItem *item = this->item(m_previousColorRow, 0);
-    if(item != 0)
-       setRowColor(m_previousColorRow, m_defaultBkColor);
-
-    item = this->item(row, column);
-    if(item != 0 && !item->isSelected() && !item->text().isEmpty())
-       setRowColor(row, QColor(20,20,20,40));
-
-    m_previousColorRow = row;
-}
-
-void MusicSongSearchOnlineWidget::setRowColor(int row,const QColor& color)
-{
-    for(int col=0; col<columnCount(); col++)
-    {
-        QTableWidgetItem *item = this->item(row, col);
-        item->setBackgroundColor(color);
     }
 }
 

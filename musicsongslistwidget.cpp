@@ -9,41 +9,14 @@
 #include <QMessageBox>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
-    QTableWidget(parent),m_musicSongsListItem(NULL),
+    MusicTableWidgetAbstract(parent),m_musicSongsListItem(NULL),
     m_musicSongsPlayWidget(NULL)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    this->setFont(QFont("Helvetica"));
-    this->setColumnCount(3);
-    this->setRowCount(0);
-    this->setShowGrid(false);//Does not display the grid
-    QHeaderView *headerview = this->horizontalHeader();
-    headerview->setVisible(false);
-    headerview->resizeSection(0,40);
-    headerview->resizeSection(1,252);
-    headerview->resizeSection(2,26);
-    this->verticalHeader()->setVisible(false);
-    this->setMouseTracking(true);  //Open the capture mouse function
-    this->setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
-                         MusicObject::MusicScrollBarStyle + \
-                         MusicObject::MusicListEditStyle );
-    //Set the color of selected row
-    this->setFrameShape(QFrame::NoFrame);//Set No Border
-    this->setEditTriggers(QTableWidget::NoEditTriggers);//No edit
-    this->setSelectionBehavior(QTableWidget::SelectRows);
-    //Multi-line election
-    this->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //Only select one row
-    this->setTransparent(80);
-    this->setFocusPolicy(Qt::NoFocus);
-
     m_deleteItemWithFile = false;
     m_renameActived = false;
     m_renameItem = NULL;
-    m_previousColorRow = -1;
     m_playRowIndex = 0;
     m_dragStartIndex = -1;
-    m_defaultBkColor = QColor(255,255,255,0);
 
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
@@ -65,14 +38,6 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_timerStay;
     delete m_musicSongsListItem;
     delete m_musicSongsPlayWidget;
-}
-
-void MusicSongsListWidget::setTransparent(int angle)
-{
-    QPalette pal = this->palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
-    setPalette(pal);
-    repaint();
 }
 
 void MusicSongsListWidget::musicSongsFileName(const QStringList& filenamelists)
@@ -298,15 +263,6 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     m_timerShow->start(1000);
     m_timerStay->stop();
     m_timerStay->start(3000);
-}
-
-void MusicSongsListWidget::setRowColor(int row,const QColor& color)
-{
-    for(int col=0; col<this->columnCount(); col++)
-    {
-        QTableWidgetItem *item = this->item(row, col);
-        item->setBackgroundColor(color);
-    }
 }
 
 void MusicSongsListWidget::showTimeOut()

@@ -7,24 +7,23 @@
 #include <QContextMenuEvent>
 #include "core/musicsonginformation.h"
 #include "core/musiclibexportglobal.h"
-#include "core/musicobject.h"
+#include "core/musictablewidgetabstract.h"
 
 class QAction;
 class QTimer;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInformation;
 
-class MUSIC_EXPORT MusicSongsListWidget : public QTableWidget
+class MUSIC_EXPORT MusicSongsListWidget :
+        public MusicTableWidgetAbstract
 {
     Q_OBJECT
 public:
     explicit MusicSongsListWidget(QWidget *parent = 0);
     virtual ~MusicSongsListWidget();
 
-    void setTransparent(int angle);
     void musicSongsFileName(const QStringList& filenamelists);
     void clearAllItems();
-    void setRowColor(int row, const QColor& color);
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type)
         { m_songplaymode = type;}
@@ -78,8 +77,7 @@ protected:
 
     QTimer* m_timerShow;
     QTimer* m_timerStay;
-    QColor m_defaultBkColor;
-    int m_previousColorRow;
+
     int m_playRowIndex;
     int m_dragStartIndex;
     bool m_mouseMoved;

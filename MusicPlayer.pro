@@ -85,6 +85,7 @@ SOURCES += \
     core/musicfileinformation.cpp \
     core/musicbgthemedownload.cpp \
     core/musicdesktopwallpaperthread.cpp \
+    core/musictablewidgetabstract.cpp
 
 
 HEADERS  += \
@@ -150,6 +151,7 @@ HEADERS  += \
     core/musicfileinformation.h \
     core/musicbgthemedownload.h \
     core/musicdesktopwallpaperthread.h \
+    core/musictablewidgetabstract.h \
     usermanager/musicusermanager.h \
     usermanager/musicusermodel.h \
     usermanager/musicuserdialog.h \
@@ -158,7 +160,7 @@ HEADERS  += \
     usermanager/musicuserconfigmanager.h \
     videokits/musicvideoplayer.h \
     videokits/musicvideocontrol.h \
-    videokits/musicvideoplaylistwidget.h \
+    videokits/musicvideoplaylistwidget.h
 
 
 FORMS    += \

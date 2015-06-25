@@ -4,35 +4,9 @@
 #include <QMessageBox>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
-    QTableWidget(parent)
+    MusicTableWidgetAbstract(parent)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    this->setFont(QFont("Helvetica"));
-    this->setColumnCount(3);
-    this->setRowCount(0);
-    this->setShowGrid(false);//Does not display the grid
-    QHeaderView *headerview = this->horizontalHeader();
-    headerview->setVisible(false);
-    headerview->resizeSection(0,40);
-    headerview->resizeSection(1,252);
-    headerview->resizeSection(2,26);
-    this->verticalHeader()->setVisible(false);
-    this->setMouseTracking(true);  //Open the capture mouse function
-    this->setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
-                         MusicObject::MusicScrollBarStyle + \
-                         MusicObject::MusicListEditStyle );
-    //Set the color of selected row
-    this->setFrameShape(QFrame::NoFrame);//Set No Border
-    this->setEditTriggers(QTableWidget::NoEditTriggers);//No edit
-    this->setSelectionBehavior(QTableWidget::SelectRows);
-    //Multi-line election
-    this->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //Only select one row
-    this->setTransparent(80);
-    this->setFocusPolicy(Qt::NoFocus);
 
-    m_previousColorRow = -1;
-    m_defaultBkColor = QColor(255,255,255,0);
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(listCellDoubleClicked(int,int)));
@@ -44,14 +18,6 @@ MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
     clearAllItems();
     MusicMyDownloadRecordObject xml;
     xml.writeDownloadConfig(m_musicFileNameList,m_musicFilePathList);
-}
-
-void MusicMyDownloadRecordWidget::setTransparent(int angle)
-{
-    QPalette pal = this->palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
-    this->setPalette(pal);
-    this->repaint();
 }
 
 void MusicMyDownloadRecordWidget::musicSongsFileName()
@@ -164,28 +130,6 @@ void MusicMyDownloadRecordWidget::listCellClicked(int , int column)
 void MusicMyDownloadRecordWidget::listCellDoubleClicked(int, int)
 {
     musicPlay();
-}
-
-void MusicMyDownloadRecordWidget::listCellEntered(int row, int column)
-{
-    QTableWidgetItem *item = this->item(m_previousColorRow, 0);
-    if(item != 0)
-       this->setRowColor(m_previousColorRow, m_defaultBkColor);
-
-    item = this->item(row, column);
-    if(item != 0 && !item->isSelected() && !item->text().isEmpty())
-       this->setRowColor(row, QColor(20,20,20,40));
-
-    m_previousColorRow = row;
-}
-
-void MusicMyDownloadRecordWidget::setRowColor(int row,const QColor& color)
-{
-    for(int col=0; col<this->columnCount(); col++)
-    {
-        QTableWidgetItem *item = this->item(row, col);
-        item->setBackgroundColor(color);
-    }
 }
 
 void MusicMyDownloadRecordWidget::musicOpenFileDir()
