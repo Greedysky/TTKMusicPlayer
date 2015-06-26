@@ -184,9 +184,9 @@ MusicApplication::~MusicApplication()
     delete m_musicRemoteWidget;
     delete m_msuicUserWindow;
     delete m_downloadStatusLabel;
+    delete m_musicbgskin;
     delete m_musicPlayer;
     delete m_musicList;
-    delete m_musicbgskin;
     delete m_musicSongTree;
     delete m_systemTray;
     delete m_systemTrayMenu;
