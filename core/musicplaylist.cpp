@@ -54,6 +54,12 @@ bool MusicPlaylist::clear()
     return isEmpty() ? true : false;
 }
 
+void MusicPlaylist::updateMediaLists(const QStringList &list, int index)
+{
+    addMedia(list);
+    m_currentIndex = index;
+}
+
 void MusicPlaylist::addMedia(const QString &content)
 {
     m_mediaList = QStringList(content);
@@ -72,14 +78,6 @@ void MusicPlaylist::appendMedia(const QString &content)
 void MusicPlaylist::appendMedia(const QStringList &items)
 {
     m_mediaList.append(items);
-}
-
-void MusicPlaylist::swapMediaIndex(int before, int after)
-{
-    m_mediaList.swap(before, after);
-    ///change the current play index due to the swaping index
-    if( m_currentIndex == before) m_currentIndex = after;
-    else if( m_currentIndex == after) m_currentIndex = before;
 }
 
 bool MusicPlaylist::insertMedia(int index, const QString &content)

@@ -39,7 +39,7 @@ signals:
     void deleteItemAt(QList<int>);
     void updatePlayLists(const QString&);
     void showCurrentSong(int);
-    void swapMediaIndex(int,int);
+    void updateMediaLists(const QStringList&,int);
 
 public slots:
     void setCurrentIndex();
@@ -56,7 +56,7 @@ public slots:
     void musicPlay(int);
     void setMusicSongInformation(int, QMusicSong&);
     void setMusicSongFileInformation(int, QString&, QString&, bool = true);
-    void setMusicIndexSwaped(int,int,QString&, QString&);
+    void setMusicIndexSwaped(int,int,int,QStringList&);
 
 protected:
     void changeItemIcon();

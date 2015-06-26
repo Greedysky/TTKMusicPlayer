@@ -89,7 +89,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
 
     connect(m_musicSongTree,SIGNAL(deleteItemAt(QList<int>)),SLOT(setDeleteItemAt(QList<int>)));
     connect(m_musicSongTree,SIGNAL(updatePlayLists(QString)),m_musicList,SLOT(appendMedia(QString)));
-    connect(m_musicSongTree,SIGNAL(swapMediaIndex(int,int)),m_musicList,SLOT(swapMediaIndex(int,int)));
+    connect(m_musicSongTree,SIGNAL(updateMediaLists(QStringList,int)),m_musicList,SLOT(updateMediaLists(QStringList,int)));
 
     connect(ui->songSearchWidget,SIGNAL(MuiscSongToPlayListChanged(QString)),
                                  m_musicSongTree, SLOT(addNetMusicSongToList(QString)));

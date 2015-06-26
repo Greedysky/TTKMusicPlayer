@@ -44,8 +44,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
                                      SLOT(setMusicSongInformation(int,QMusicSong&)));
         connect(m_mainSongLists[i],SIGNAL(getMusicSongFileInformation(int,QString&,QString&,bool)),
                                      SLOT(setMusicSongFileInformation(int,QString&,QString&,bool)));
-        connect(m_mainSongLists[i],SIGNAL(getMusicIndexSwaped(int,int,QString&,QString&)),
-                                     SLOT(setMusicIndexSwaped(int,int,QString&,QString&)));
+        connect(m_mainSongLists[i],SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
+                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
         connect(this,SIGNAL(showCurrentSong(int)),parent,SLOT(showCurrentSong(int)));
     }
     connect(m_mainSongLists[0],SIGNAL(MusicSongToLovestListAt(int)),this,SLOT(addMusicSongToLovestListAt(int)));
@@ -279,15 +279,31 @@ void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString& name, 
     l.isEmpty() ? path = "" : path = l[row];
 }
 
-void MusicSongsSummarizied::setMusicIndexSwaped(int before,int after, QString& fir, QString& sec)
+void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList& list)
 {
     QStringList *names = &m_musicFileNameList[currentIndex()];
-    m_musicFilePathList[currentIndex()].swap(before,after);
-    names->swap(before,after);
-    fir = names->at(before);
-    sec = names->at(after);
+    QStringList *paths = &m_musicFilePathList[currentIndex()];
+
+    if(before > after)
+    {
+        for(int i=before; i>after; --i)
+        {
+            names->swap(i, i-1);
+            paths->swap(i, i-1);
+        }
+    }
+    else
+    {
+        for(int i=before; i<after; ++i)
+        {
+            names->swap(i, i+1);
+            paths->swap(i, i+1);
+        }
+    }
+
+    list = *names;
     if(currentIndex() == m_currentIndexs)
-        emit swapMediaIndex(before,after);
+        emit updateMediaLists(*paths, play);
 }
 
 void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)

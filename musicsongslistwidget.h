@@ -48,7 +48,7 @@ signals:
 
     void getMusicSongInformation(int,QMusicSong&);
     void getMusicSongFileInformation(int, QString&, QString&, bool = true);
-    void getMusicIndexSwaped(int,int,QString&, QString&);
+    void getMusicIndexSwaped(int,int,int,QStringList&);
 
 public slots:
     void musicPlay();

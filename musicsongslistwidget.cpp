@@ -163,12 +163,27 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
     QTableWidget::mouseReleaseEvent(event);
     if(m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
-        QString before,after;
-        emit getMusicIndexSwaped(m_dragStartIndex, currentRow(), before, after);
-        item(m_dragStartIndex, 1)->setText(before);
-        item(currentRow(), 1)->setText(after);
-        if(m_playRowIndex == m_dragStartIndex) selectRow(currentRow());
-        else if(m_playRowIndex == currentRow()) selectRow(m_dragStartIndex);
+        QStringList list;
+        int start = m_dragStartIndex;
+        int end = currentRow();
+        int index = m_playRowIndex;
+
+        if(m_playRowIndex == start)
+            index = end;
+        else if(m_playRowIndex == end)
+            index = (start > end) ? index = ++end : index = --end;
+        else
+        {
+            if(start > m_playRowIndex && end < m_playRowIndex) ++index;
+            else if(start < m_playRowIndex && end > m_playRowIndex) --index;
+        }
+
+        emit getMusicIndexSwaped(start, end, index, list);
+
+        for(int i=qMin(start, end); i<=qMax(start, end); ++i)
+            item(i, 1)->setText(list[i]);
+
+        selectRow(index);
     }
     m_leftButtonPressed = false;
     m_mouseMoved = false;

@@ -40,7 +40,7 @@ public slots:
     void setCurrentIndex();
     void appendMedia(const QString &content);
     void appendMedia(const QStringList &items);
-    void swapMediaIndex(int,int);
+    void updateMediaLists(const QStringList &, int);
 
 protected:
     MusicObject::SongPlayType m_playbackMode;
