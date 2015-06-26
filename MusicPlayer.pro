@@ -26,6 +26,8 @@ TRANSLATIONS += language/cn.ts \
                 language/cn_c.ts \
                 language/en.ts
 
+QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+
 SOURCES += \
     musicapplicationmain.cpp\
     core/musicmovedialogabstract.cpp \
