@@ -57,7 +57,7 @@ bool MusicPlaylist::clear()
 void MusicPlaylist::updateMediaLists(const QStringList &list, int index)
 {
     addMedia(list);
-    m_currentIndex = index;
+    setCurrentIndex(index);
 }
 
 void MusicPlaylist::addMedia(const QString &content)
