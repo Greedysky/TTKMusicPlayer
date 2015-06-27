@@ -6,7 +6,7 @@
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     MusicTableWidgetAbstract(parent)
 {
-
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(listCellDoubleClicked(int,int)));
@@ -53,13 +53,6 @@ void MusicMyDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
     clearContents();
-//    for(int j=0; j<3; j++)
-//      for(int i=0; i<rowCount(); i++)
-//      {
-//          QTableWidgetItem *item = this->item(i,j);
-//          delete item;
-//          item = NULL;
-//      }
     setColumnCount(3);
     setRowCount(0);
 }
