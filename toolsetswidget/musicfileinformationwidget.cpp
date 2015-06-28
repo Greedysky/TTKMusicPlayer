@@ -50,7 +50,7 @@ void MusicFileInformationWidget::setFileInformation(const QString& name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = QString("%1 Byte").arg(fin.size()) )
+    ui->fileSizeEdit->setText( (check = transSizeByte(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = info.getAlbum()).isEmpty() ? "-" : check) : "-" );
@@ -69,4 +69,16 @@ void MusicFileInformationWidget::setFileInformation(const QString& name)
     ui->TrackNumEdit->setText( state ? ((check = info.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(info.getDescription())
                                    .arg(info.getVBRString())).isEmpty() ? "-" : check) : "-" );
+}
+
+QString MusicFileInformationWidget::transSizeByte(int size)
+{
+    if( size < 1024)
+        return QString("%1 Byte").arg(size);
+    else if( size < 1024*1024)
+        return QString("%1 KByte").arg((int)(size*1.0/1024*100)/100.0);
+    else if( size < 1024*1024*1024)
+        return QString("%1 MByte").arg((int)(size*1.0/1024/1024*100)/100.0);
+    else
+        return QString();
 }
