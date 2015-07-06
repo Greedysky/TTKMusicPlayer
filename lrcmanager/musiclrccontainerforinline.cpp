@@ -37,6 +37,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
 {
+    static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(false);
     m_lrcContainer.clear();///Clear the original map
     m_currentShowLrcContainer.clear();///Clear the original lrc
     QFile file(lrcFileName); ///Open the lyrics file
@@ -167,6 +168,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
             m_musicLrcContainer[i]->setText(m_currentShowLrcContainer[m_currentLrcIndex + i]);
         }
         ++m_currentLrcIndex;
+        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(true);
         m_musicLrcContainer[CURRENT_LRC_PAINT]->startLrcMask(time);
 
         for(int i=1; i<=5; ++i)

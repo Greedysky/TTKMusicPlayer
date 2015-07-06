@@ -14,11 +14,14 @@ public:
             { m_gradientFontSize = size;}
     inline void setTransparent(int transparent)
             { m_gradientTransparent = transparent;}
+    inline void setUpdateLrc(bool status)
+            { m_UpdateLrc = status;}
 
 protected:
     virtual void paintEvent(QPaintEvent *);
     int m_gradientFontSize;
     int m_gradientTransparent;
+    bool m_UpdateLrc;
 
 };
 
