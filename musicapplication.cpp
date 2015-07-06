@@ -1240,6 +1240,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
 
        QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
                   m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
+       ui->musiclrccontainerforinline->stopLrcMask();
        ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
        m_musiclrcfordesktop->initCurrentLrc();
     }
