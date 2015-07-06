@@ -249,6 +249,24 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
+{
+    MusicLrcContainer::wheelEvent(event);
+    int level = m_currentLrcIndex;
+    event->delta() < 0 ? --m_currentLrcIndex : ++m_currentLrcIndex;
+    if(m_currentLrcIndex < 0) m_currentLrcIndex = 0;
+    if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
+    {
+        QMapIterator<qint64,QString> it(m_lrcContainer);
+        for(int i=0; i<m_currentLrcIndex + 1; ++i)
+            if(it.hasNext()) it.next();
+        emit updateCurrentTime(it.key());
+    }
+    else
+        m_currentLrcIndex = level;
+    update();
+}
+
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
