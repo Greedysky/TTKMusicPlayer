@@ -4,8 +4,9 @@
 #include <QFileInfo>
 #include "musicobject.h"
 
-#ifdef Q_OS_WIN32
+#if defined Q_OS_WIN32 && defined _MSC_VER
     #include <Windows.h>
+    #pragma comment(lib,"user32.lib")
 #endif
 #include <QDebug>
 
