@@ -50,7 +50,7 @@ void MusicLRCManagerForDesktop::paintEvent(QPaintEvent *)
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture
     painter.setPen(QColor(0, 0, 0, 2*m_transparent));
-    painter.drawText(m_intervalCount+1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
+    painter.drawText(m_intervalCount + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
     //Then draw a gradient in the above
     painter.setPen(QPen(m_linearGradient, 0));
