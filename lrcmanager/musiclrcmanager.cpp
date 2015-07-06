@@ -46,6 +46,8 @@ void MusicLRCManager::setLrcFontSize(LrcSizeTable size)
 
 void MusicLRCManager::setFontFamily(int index)
 {
+    if(index < 0) return;
+
     QStringList family = QFontDatabase().families(QFontDatabase::Any);
     if(index >= family.count()) index = 0;
     m_font.setFamily(family[index]);
