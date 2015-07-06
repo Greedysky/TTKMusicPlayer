@@ -4,7 +4,7 @@
 #include <QProcess>
 #include <QMovie>
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN32 && defined _MSC_VER
     #include <windows.h>
     #include <mmsystem.h>
     #pragma comment(lib,"winmm.lib")
