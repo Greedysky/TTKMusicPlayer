@@ -1,8 +1,6 @@
 #ifndef MUSICMYDOWNLOADRECORDWIDGET_H
 #define MUSICMYDOWNLOADRECORDWIDGET_H
 
-#include <QTableWidget>
-#include <QHeaderView>
 #include <QMenu>
 #include <QContextMenuEvent>
 #include "../core/musiclibexportglobal.h"

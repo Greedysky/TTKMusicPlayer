@@ -97,10 +97,8 @@ MusicApplication::MusicApplication(QWidget *parent) :
                                  m_downloadStatusLabel,SLOT(showDownLoadInfoFor(DownLoadType)));
     connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFinished(QString)),
                                  m_downloadStatusLabel,SLOT(showDownLoadInfoFinished(QString)));
-    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()),
-            this,SLOT(musicCurrentLrcUpdated()));
-    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()),
-            this,SLOT(musicCurrentLrcUpdated()));
+    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
+    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
     connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
     connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()),SLOT(desktopLrcClosed()));
@@ -1241,6 +1239,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
        QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
                   m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
        ui->musiclrccontainerforinline->stopLrcMask();
+       ui->musiclrccontainerforinline->setCurrentSongName(getCurrentFileName());
        ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
        m_musiclrcfordesktop->initCurrentLrc();
     }

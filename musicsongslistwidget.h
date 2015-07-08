@@ -1,12 +1,9 @@
 #ifndef MUSICSONGSLISTWIDGET_H
 #define MUSICSONGSLISTWIDGET_H
 
-#include <QTableWidget>
-#include <QHeaderView>
 #include <QMenu>
 #include <QContextMenuEvent>
 #include "core/musicsonginformation.h"
-#include "core/musiclibexportglobal.h"
 #include "core/musictablewidgetabstract.h"
 
 class QAction;

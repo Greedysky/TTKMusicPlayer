@@ -1,14 +1,15 @@
 #include "musiclrccontainer.h"
+#include "musiclrcsearchwidget.h"
 
 MusicLrcContainer::MusicLrcContainer(QWidget *parent) :
     QWidget(parent)
 {
-
+    m_musicLrcSearchWidget = NULL;
 }
 
 MusicLrcContainer::~MusicLrcContainer()
 {
-
+    delete m_musicLrcSearchWidget;
 }
 
 void MusicLrcContainer::clearAllMusicLRCManager()
@@ -23,6 +24,14 @@ void MusicLrcContainer::currentLrcCustom()
 {
     emit changeCurrentLrcColorCustom();
     emit changeCurrentLrcColorSetting();
+}
+
+void MusicLrcContainer::searchMusicLrcs()
+{
+    if(m_musicLrcSearchWidget == NULL)
+        m_musicLrcSearchWidget = new MusicLrcSearchWidget;
+    m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
+    m_musicLrcSearchWidget->show();
 }
 
 void MusicLrcContainer::createColorMenu(QMenu& menu)

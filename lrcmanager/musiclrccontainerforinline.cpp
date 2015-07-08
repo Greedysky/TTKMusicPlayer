@@ -232,18 +232,7 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
     {
         setCursor(Qt::ArrowCursor);
         m_mouseLeftPressed = false;
-        int level = m_currentLrcIndex;
-        m_currentLrcIndex += (m_mousePressedAt.y() - m_mouseMovedAt.y()) / 35;
-        if(m_currentLrcIndex < 0) m_currentLrcIndex = 0;
-        if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
-        {
-            QMapIterator<qint64,QString> it(m_lrcContainer);
-            for(int i=0; i<m_currentLrcIndex + 1; ++i)
-                if(it.hasNext()) it.next();
-            emit updateCurrentTime(it.key());
-        }
-        else
-            m_currentLrcIndex = level;
+        changeLrcPostion("mouse");
         m_mouseMovedAt = m_mousePressedAt = QPoint(-1,-1);
         update();
     }
@@ -252,8 +241,18 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
 void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
 {
     MusicLrcContainer::wheelEvent(event);
+    changeLrcPostion(QString::number(event->delta()));
+}
+
+void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
+{
     int level = m_currentLrcIndex;
-    event->delta() < 0 ? --m_currentLrcIndex : ++m_currentLrcIndex;
+
+    if(type == "mouse")
+        m_currentLrcIndex += (m_mousePressedAt.y() - m_mouseMovedAt.y()) / 35;
+    else
+        type.toInt() < 0 ? --m_currentLrcIndex : ++m_currentLrcIndex;
+
     if(m_currentLrcIndex < 0) m_currentLrcIndex = 0;
     if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
     {
@@ -264,7 +263,6 @@ void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
     }
     else
         m_currentLrcIndex = level;
-    update();
 }
 
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
@@ -275,6 +273,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     changColorMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     changeLrcSize.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));

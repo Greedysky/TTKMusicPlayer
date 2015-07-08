@@ -1,7 +1,5 @@
 #include "musictablewidgetabstract.h"
 
-#include <QHeaderView>
-
 MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     : QTableWidget(parent)
 {

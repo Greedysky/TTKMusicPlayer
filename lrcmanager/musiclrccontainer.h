@@ -6,6 +6,8 @@
 #include "musiclrcmanager.h"
 #include "../core/musicobject.h"
 
+class MusicLrcSearchWidget;
+
 class MUSIC_EXPORT MusicLrcContainer : public QWidget
 {
     Q_OBJECT
@@ -18,6 +20,7 @@ public:
     virtual void setMaskLinearGradientColor(QColor = LrcColorTable::CL_Mask) = 0;
     virtual void setSettingParameter();
     void setLinearGradientColor(LrcColorTable::LrcColorType);
+    inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
 
 signals:
     void theCurrentLrcUpdated();
@@ -36,14 +39,17 @@ public slots:
     void changeCurrentLrcColorPurple(){setLinearGradientColor(LrcColorTable::Purple);}
     void changeCurrentLrcColorWhite(){setLinearGradientColor(LrcColorTable::White);}
     void changeCurrentLrcColorBlack(){setLinearGradientColor(LrcColorTable::Black);}
+    void searchMusicLrcs();
 
 protected:
     void createColorMenu(QMenu&);
     void clearAllMusicLRCManager();
     void setSettingParameter(const QString& t);
 
+    QString m_currentSongName;
     QList<MusicLRCManager*> m_musicLrcContainer;
     QString m_containerType;
+    MusicLrcSearchWidget *m_musicLrcSearchWidget;
 
 };
 

@@ -2,6 +2,7 @@
 #define MUSICTABLEWIDGETABSTRACT_H
 
 #include <QTableWidget>
+#include <QHeaderView>
 #include "musiclibexportglobal.h"
 #include "musicobject.h"
 
