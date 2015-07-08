@@ -90,10 +90,8 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 {
     QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    QString musicSong = item(row, 2)->text() + " - " + item(row, 1)->text();
-
     MusicLrcDownLoadThread* lrcDownload = new MusicLrcDownLoadThread(musicSongInfo[row][1],
-                            LRC_DOWNLOAD + musicSong + LRC_FILE,this);
+                            LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
     connect(lrcDownload,SIGNAL(musicDownLoadFinished(QString)),
                         SIGNAL(lrcDownloadStateChanged(QString)));
 }

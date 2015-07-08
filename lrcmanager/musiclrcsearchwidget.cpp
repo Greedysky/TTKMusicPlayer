@@ -47,6 +47,7 @@ MusicLrcSearchWidget::~MusicLrcSearchWidget()
 void MusicLrcSearchWidget::setCurrentSongName(const QString &name)
 {
     ui->songSearchEdit->setText(name);
+    ui->tableWidget->setCurrentSongName(name);
     lrcSearchButtonClicked();
 }
 

@@ -1241,6 +1241,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
        ui->musiclrccontainerforinline->stopLrcMask();
        ui->musiclrccontainerforinline->setCurrentSongName(getCurrentFileName());
        ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
+       m_musiclrcfordesktop->setCurrentSongName(getCurrentFileName());
        m_musiclrcfordesktop->initCurrentLrc();
     }
     //display current ArtTheme pic

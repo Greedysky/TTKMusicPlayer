@@ -15,6 +15,7 @@ public:
 
     void startSearchLrc(const QString&);
     void musicDownloadLocal(int);
+    inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
 
 signals:
     void lrcDownloadStateChanged(const QString&);
@@ -29,6 +30,7 @@ protected:
 
     MusicDownLoadManagerThread* m_downLoadManager;
     int m_songItemIndex;
+    QString m_currentSongName;
 
 };
 
