@@ -67,6 +67,8 @@ void MusicLrcDownLoadThread::deleteAll()
 
 void MusicLrcDownLoadThread::downLoadFinished()
 {
+    if(m_reply == NULL) return;
+
     QString s(m_reply->readAll()) ;
     m_file->write(s.toUtf8());
     m_file->flush();
