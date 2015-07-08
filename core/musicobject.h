@@ -1,12 +1,17 @@
 #ifndef MUSICOBJECT_H
 #define MUSICOBJECT_H
 
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 
 #include <QDir>
 #include <QObject>
 #include <QDebug>
-
-#define QMUSICPLAYER_VERSION "Version 2.1.2.2"
 
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"

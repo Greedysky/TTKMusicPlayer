@@ -142,6 +142,7 @@ HEADERS  += \
     toolsetswidget/musicfileinformationwidget.h \
     toolsetswidget/musicspectrumwidget.h \
     toolsetswidget/musicdesktopwallpaperwidget.h \
+    core/musicversion.h \
     core/musicsonginformation.h \
     core/musicxmlconfigmanager.h \
     core/musicdownloadmanagerthread.h \

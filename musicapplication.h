@@ -10,6 +10,7 @@
 #include "core/musicsonginformation.h"
 #include "core/musicmovewidgetabstract.h"
 #include "core/musicobject.h"
+#include "core/musicversion.h"
 
 class MusicPlayer;
 class MusicPlaylist;
