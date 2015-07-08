@@ -55,8 +55,8 @@ SOURCES += \
     lrcmanager/musiclrccontainerfordesktop.cpp \
     lrcmanager/musiclrccontainerforinline.cpp \
     lrcmanager/musiclrcsearchwidget.cpp \
-    remotewidget/musicremotewidget.cpp \
     lrcmanager/musiclrcsearchtablewidget.cpp \
+    remotewidget/musicremotewidget.cpp \
     remotewidget/musicremotewidgetforsquare.cpp \
     remotewidget/musicremotewidgetforrectangle.cpp \
     remotewidget/musicremotewidgetfordiamond.cpp \
