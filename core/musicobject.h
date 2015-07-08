@@ -6,7 +6,7 @@
 #include <QObject>
 #include <QDebug>
 
-#define QMUSICPLAYER_VERSION "Version 2.1.2.0"
+#define QMUSICPLAYER_VERSION "Version 2.1.2.2"
 
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
