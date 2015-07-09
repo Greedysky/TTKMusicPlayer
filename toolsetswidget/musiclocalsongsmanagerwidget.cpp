@@ -30,7 +30,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->songlistsTable->setShowGrid(false);//Does not display the grid
     ui->songlistsTable->setMouseTracking(true);  //Open the capture mouse function
     ui->songlistsTable->setStyleSheet("QTableWidget{ background:rgba(0,0,0,10);  \
-                         selection-background-color:pink;}" + \
+                         selection-background-color: rgba(20,20,20,100);}" + \
                          MusicObject::MusicScrollBarStyle + \
                          MusicObject::MusicListEditStyle );
     //Set the color of selected row

@@ -51,7 +51,7 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
             const QString &artistname, double time)
 {
     setRowCount(m_downLoadManager->getSongIdIndex());
-    setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
+    setStyleSheet("QTableWidget{selection-background-color: rgba(20,20,20,100);}" + \
                    MusicObject::MusicScrollBarStyle);
     QTableWidgetItem *item0 = new QTableWidgetItem(QString::number(m_songItemIndex + 1));
     item0->setTextColor(QColor(50,50,50));
