@@ -102,8 +102,9 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
 
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
-    m_currentShowLrcContainer<<"........."<<".........";
 
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+        m_currentShowLrcContainer<<".........";
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
        m_lrcContainer.insert(0,".........");
 
@@ -113,7 +114,8 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
         it.next();
         m_currentShowLrcContainer.append(it.value());
     }
-    m_currentShowLrcContainer<<" "<<" ";
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+        m_currentShowLrcContainer<<" ";
 
     return true;
 }
@@ -171,15 +173,20 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
         static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(true);
         m_musicLrcContainer[CURRENT_LRC_PAINT]->startLrcMask(time);
 
-        for(int i=1; i<=5; ++i)
+        for(int i=1; i<= MIN_LRCCONTAIN_COUNT; ++i)
         {
             MusicLRCManagerForInline *w = static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i-1]);
-            if(i == 1 || i == 5)
+            if(i == 1 || i == 7)
+            {
+                w->setFontSize(3);
+                w->setTransparent(185);
+            }
+            if(i == 2 || i == 6)
             {
                 w->setFontSize(2);
-                w->setTransparent(85);
+                w->setTransparent(105);
             }
-            if(i == 2 || i == 4)
+            if(i == 3 || i == 5)
             {
                 w->setFontSize(1);
                 w->setTransparent(45);
