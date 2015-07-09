@@ -192,7 +192,7 @@
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>550</y>
+     <y>560</y>
      <width>521</width>
      <height>31</height>
     </rect>
@@ -376,11 +376,11 @@
      <x>390</x>
      <y>100</y>
      <width>521</width>
-     <height>451</height>
+     <height>461</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QLabel" name="showPicture">
     <property name="styleSheet">
@@ -458,7 +458,7 @@
    <property name="geometry">
     <rect>
      <x>910</x>
-     <y>480</y>
+     <y>490</y>
      <width>41</width>
      <height>101</height>
     </rect>

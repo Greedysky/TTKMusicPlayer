@@ -41,6 +41,11 @@
 #define USERNAME       20
 #define LOGINTIME      20
 
+#define kOptTopMusicURL "http://www.kugou.com/"
+#define kOptTopRadioURL "http://www.kugou.com/fmweb/html/index.html"
+#define kOptTopMvURL    "http://www.kugou.com/mvweb/html/"
+#define kOptTopLiveURL  "http://fanxing.kugou.com/index.php?countId=15738&countRnd=_fx_countRnd_1406085000"
+
 namespace MusicObject
 {
     typedef signed char m_int8;           /* 8 bit signed */
