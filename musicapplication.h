@@ -63,6 +63,7 @@ protected:
     void createRemoteWidget();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
+    void drawWindowRoundedRect();
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -130,6 +131,7 @@ public slots:
     void musicTimerWidget();
     void musicSpectrumWidget();
     void musicSetPlay3DMusic();
+    void musicWindowConciseChanged();
     /////////////////////////////////////////////
     //This is a slot by MusicBackgroundSkin's signal emit
     void musicBgTransparentChanged(int);

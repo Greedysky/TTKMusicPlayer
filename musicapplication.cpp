@@ -51,13 +51,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     /////////////////////////////////////////////////
     setAttribute(Qt::WA_TranslucentBackground, true);
     //Set the window transparent for background
-    QBitmap bmp(this->size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(),4,4);
-    setMask(bmp);
+    drawWindowRoundedRect();
     //set window radius
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(this);
     m_musicPlayer = new MusicPlayer(this);
@@ -337,6 +331,7 @@ void MusicApplication::initWindowSurface()
     connect(ui->musicDesktopLrc,SIGNAL(clicked()),m_systemTrayMenu,SLOT(showDesktopLrc()));
     connect(ui->music3DPlayButton,SIGNAL(clicked()),SLOT(musicSetPlay3DMusic()));
     connect(ui->musicWindowRemote,SIGNAL(clicked()),SLOT(musicSquareRemote()));
+    connect(ui->musicWindowConcise,SIGNAL(clicked()),SLOT(musicWindowConciseChanged()));
 
     connect(ui->musicButton_playlist,SIGNAL(clicked()),SLOT(musicStackedSongListWidgetChanged()));
     connect(ui->musicButton_tools,SIGNAL(clicked()),SLOT(musicStackedToolsWidgetChanged()));
@@ -1570,8 +1565,28 @@ void MusicApplication::musicSetPlay3DMusic()
 {
     bool flag;
     m_musicPlayer->setPlay3DMusicFlag(flag);
-    if(flag)
-        ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(":/equalizer/3doff")));
-    else
-        ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(":/equalizer/3don")));
+    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(flag ? ":/equalizer/3doff" : ":/equalizer/3don")));
+}
+
+void MusicApplication::drawWindowRoundedRect()
+{
+    QBitmap bmp( size() );
+    bmp.fill();
+    QPainter p(&bmp);
+    p.setPen(Qt::NoPen);
+    p.setBrush(Qt::black);
+    p.drawRoundedRect(bmp.rect(),4,4);
+    setMask(bmp);
+}
+
+void MusicApplication::musicWindowConciseChanged()
+{
+    bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+    resize( con ? 380 : 950, height());
+    ui->musicWindowConcise->setGeometry(con ? 295 : 828, 7, 25, 25);
+    ui->minimization->setGeometry(con ? 325 : 889, 7, 25, 25);
+    ui->windowClose->setGeometry(con ? 350 : 917, 7, 25, 25);
+    m_musicWindowExtras->disableBlurBehindWindow( !con );
+    ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
+    drawWindowRoundedRect();
 }

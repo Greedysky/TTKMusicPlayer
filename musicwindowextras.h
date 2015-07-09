@@ -20,6 +20,9 @@ public:
     void showPlayStatus(bool);
     void setValue(int);
     void setRange(int,int);
+    void disableBlurBehindWindow(bool);
+    inline bool isDisableBlurBehindWindow() const
+                { return m_disableBlurBehindWindow; }
 
 signals:
 
@@ -28,6 +31,7 @@ protected:
     void createTaskbar();
     void createThumbnailToolBar();
 
+    bool m_disableBlurBehindWindow;
     MusicApplication* m_superClass;
     QWinTaskbarButton* m_taskbarButton;
     QWinTaskbarProgress* m_taskbarProgress;

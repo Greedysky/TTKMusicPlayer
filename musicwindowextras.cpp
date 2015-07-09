@@ -8,14 +8,7 @@ MusicWindowExtras::MusicWindowExtras(MusicApplication *parent) :
     m_forwardToolButton(NULL), m_backwardToolButton(NULL), m_taskbarProgress(NULL),
     m_taskbarButton(NULL), m_thumbnailToolBar(NULL)
 {
-    if(QtWin::isCompositionEnabled())
-    {
-        QtWin::enableBlurBehindWindow(m_superClass);
-    }
-    else
-    {
-        QtWin::disableBlurBehindWindow(m_superClass);
-    }
+    disableBlurBehindWindow( QtWin::isCompositionEnabled() );
 #ifdef MUSIC_DEBUG
     createJumpList();
     createTaskbar();
@@ -68,6 +61,19 @@ void MusicWindowExtras::setValue(int value)
 void MusicWindowExtras::setRange(int start, int end)
 {
     m_taskbarProgress->setRange(start, end);
+}
+
+void MusicWindowExtras::disableBlurBehindWindow(bool enable)
+{
+    m_disableBlurBehindWindow = enable;
+    if( enable )
+    {
+        QtWin::enableBlurBehindWindow(m_superClass);
+    }
+    else
+    {
+        QtWin::disableBlurBehindWindow(m_superClass);
+    }
 }
 
 void MusicWindowExtras::createTaskbar()
