@@ -61,6 +61,8 @@ protected:
     void createToolPopupMenu();
     void createMenuActions();
     void createRemoteWidget();
+    void createPlayModeMenu(QMenu&);
+    void createPlayModeMenuIcon(QMenu&);
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -178,6 +180,7 @@ private:
     MusicPlaylist* m_musicList;
     QSystemTrayIcon* m_systemTray;
     QMenu m_toolPopupMenu;
+    QMenu m_playModeMenu;
     MusicSystemTrayMenu *m_systemTrayMenu;
 
     QSettings m_musicSettingParameter;

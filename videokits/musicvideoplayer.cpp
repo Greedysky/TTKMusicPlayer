@@ -67,7 +67,7 @@ void MusicVideoPlayer::addMedia(const QStringList& names)
 {
     foreach(QString name, names)
         m_mediaLists->addMedia(QUrl::fromLocalFile(name));
-    m_videoItem->setSize(QSizeF(418, 269));
+    m_videoItem->setSize(QSizeF(500, 430));
 }
 
 void MusicVideoPlayer::play()

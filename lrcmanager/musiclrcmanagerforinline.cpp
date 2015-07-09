@@ -6,7 +6,7 @@ MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent) :
     setAlignment(Qt::AlignCenter);
     m_font.setPointSize(15);
     m_speedLeve = 40;
-    m_geometry.setX(m_lrcPerWidth = 400);
+    m_geometry.setX(m_lrcPerWidth = 500);
     m_geometry.setY(35);
     m_gradientFontSize = 0;
     m_gradientTransparent = 0;

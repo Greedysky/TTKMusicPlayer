@@ -200,6 +200,9 @@ namespace MusicObject
            QToolButton{background-color:transparent;}\
            QToolButton::hover{background-color:rgba(255,255,255,20)}";
 
+    const QString QToolButtonMenuPopStyle = QToolButtonStyle + " \
+           QToolButton::menu-indicator{image:None;}";
+
     const QString QToolButtonStyleDesktopTool = " \
            QToolButton{border:none;background-color:transparent;}\
            QToolButton::hover{ \

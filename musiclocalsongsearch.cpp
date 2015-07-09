@@ -4,13 +4,13 @@
 MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
     QDialog(parent)
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setGeometry(50,406,333,35);
+    setWindowFlags(Qt::FramelessWindowHint);
+    setGeometry(40,546,330,35);
 
     QPalette Pal(palette());
     Pal.setColor(QPalette::Background,QColor(176,196,222));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
+    setAutoFillBackground(true);
+    setPalette(Pal);
 
     m_showIcon = new QLabel(this);
     m_searchLine = new MusicLocalSongSearchEdit(this);
@@ -18,7 +18,7 @@ MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
 
     m_showIcon->setGeometry(5,5,25,25);
     m_showIcon->setStyleSheet("background-color:transparent;border-image: url(:/image/searchlineleft);");
-    m_searchLine->setGeometry(30,5,298,25);
+    m_searchLine->setGeometry(30,5,295,25);
 
     m_closeButton->setGeometry(303,5,25,25);
     m_closeButton->setStyleSheet("border-image: url(:/share/searchclosed);");

@@ -60,11 +60,11 @@ MusicApplication::MusicApplication(QWidget *parent) :
     setMask(bmp);
     //set window radius
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(this);
-    //This is the function to display the desktop lrc
-    this->initWindowSurface();
-
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);
+    //This is the function to display the desktop lrc
+    initWindowSurface();
+
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
     //The default is the order of play
     m_musicPlayer->setPlaylist(m_musicList);
@@ -260,17 +260,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicPlaybackMode(tr("playbackMode"),&rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
-    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"),this,SLOT(musicPlayOrder()));
-    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"),this,SLOT(musicPlayRandom()));
-    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"),this,SLOT(musicPlayListLoop()));
-    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"),this,SLOT(musicPlayOneLoop()));
-    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"),this,SLOT(musicPlayItemOnce()));
-    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
-    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(QPixmap(":/share/selected"))) : order->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(QPixmap(":/share/selected"))) : random->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(QPixmap(":/share/selected"))) : lCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(QPixmap(":/share/selected"))) : sCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(QPixmap(":/share/selected"))) : once->setIcon(QIcon());
+    createPlayModeMenu(musicPlaybackMode);
 
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"),&rightClickMenu);
@@ -328,11 +318,6 @@ void MusicApplication::initWindowSurface()
     connect(ui->musicKey,SIGNAL(clicked()),this,SLOT(musicKey()));
     connect(ui->musicPrivious,SIGNAL(clicked()),this,SLOT(musicPlayPrivious()));
     connect(ui->musicNext,SIGNAL(clicked()),this,SLOT(musicPlayNext()));
-    connect(ui->musicListLoop,SIGNAL(clicked()),this,SLOT(musicPlayListLoop()));
-    connect(ui->musicOneLoop,SIGNAL(clicked()),this,SLOT(musicPlayOneLoop()));
-    connect(ui->musicOrderPlay,SIGNAL(clicked()),this,SLOT(musicPlayOrder()));
-    connect(ui->musicRandomPlay,SIGNAL(clicked()),this,SLOT(musicPlayRandom()));
-    connect(ui->musicPlayOnce,SIGNAL(clicked()),this,SLOT(musicPlayItemOnce()));
     connect(ui->musicSound,SIGNAL(clicked()),this,SLOT(musicVolumeNULL()));
     connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),this,SLOT(musicVolumeChanged(int)));
     connect(ui->musicImport,SIGNAL(clicked()),this,SLOT(musicImportSongs()));
@@ -357,7 +342,6 @@ void MusicApplication::initWindowSurface()
     connect(ui->musicButton_tools,SIGNAL(clicked()),SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio,SIGNAL(clicked()),SLOT(musicStackedRadioWidgetChanged()));
     connect(ui->musicButton_mydownl,SIGNAL(clicked()),SLOT(musicStackedMyDownWidgetChanged()));
-
 }
 
 void MusicApplication::setMenuBarButton()
@@ -373,14 +357,10 @@ void MusicApplication::setMenuBarButton()
     ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->menuSetting->setIcon(QIcon(QString::fromUtf8(":/image/menu")));
-    ui->musicListLoop->setIcon(QIcon(QString::fromUtf8(":/image/listloop")));
-    ui->musicOneLoop->setIcon(QIcon(QString::fromUtf8(":/image/oneloop")));
-    ui->musicOrderPlay->setIcon(QIcon(QString::fromUtf8(":/image/orderplay")));
-    ui->musicRandomPlay->setIcon(QIcon(QString::fromUtf8(":/image/randomplay")));
-    ui->musicPlayOnce->setIcon(QIcon(QString::fromUtf8(":/image/playonce")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicWindowChangeSkin->setIcon(QIcon(QString::fromUtf8(":/image/windowskin")));
     ui->musicWindowRemote->setIcon(QIcon(QString::fromUtf8(":/image/windowremote")));
+    ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(":/image/concisein")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
     ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(":/equalizer/3doff")));
     ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/image/buttoncloud")));
@@ -398,11 +378,6 @@ void MusicApplication::setMenuBarButton()
     ui->musicPrivious->setIconSize(QSize(45,45));
     ui->musicNext->setIconSize(QSize(45,45));
     ui->menuSetting->setIconSize(QSize(50,50));
-    ui->musicListLoop->setIconSize(QSize(45,45));
-    ui->musicOneLoop->setIconSize(QSize(45,45));
-    ui->musicOrderPlay->setIconSize(QSize(45,45));
-    ui->musicRandomPlay->setIconSize(QSize(45,45));
-    ui->musicPlayOnce->setIconSize(QSize(45,45));
     ui->musicKey->setIconSize(QSize(45,45));
     ui->musicBestLove->setIconSize(QSize(25,25));
     ui->music3DPlayButton->setIconSize(QSize(40,20));
@@ -412,6 +387,7 @@ void MusicApplication::setMenuBarButton()
     ui->musicButton_radio->setIconSize(QSize(35,35));
     ui->musicButton_tools->setIconSize(QSize(35,35));
     ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
+    ui->musicPlayMode->setIconSize(QSize(25,25));
 
     ui->musicSoundSlider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
     ui->minimization->setStyleSheet(MusicObject::QToolButtonStyle);
@@ -422,14 +398,10 @@ void MusicApplication::setMenuBarButton()
     ui->musicCurrentLocation->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicPrivious->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicNext->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->menuSetting->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicListLoop->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicOneLoop->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicOrderPlay->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicRandomPlay->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicPlayOnce->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->menuSetting->setStyleSheet(MusicObject::QToolButtonMenuPopStyle);
     ui->musicKey->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicWindowChangeSkin->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->musicWindowConcise->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicIndexWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
     ui->musicSearchWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
     ui->musicLrcWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
@@ -444,6 +416,7 @@ void MusicApplication::setMenuBarButton()
     ui->musicButton_playlist->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicButton_radio->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->musicButton_tools->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->musicPlayMode->setStyleSheet(MusicObject::QToolButtonMenuPopStyle);
 }
 
 void MusicApplication::setButtonCursor()
@@ -454,11 +427,6 @@ void MusicApplication::setButtonCursor()
     ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicNext->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicListLoop->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicOneLoop->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicOrderPlay->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicRandomPlay->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicPlayOnce->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicImport->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSetting->setCursor(QCursor(Qt::PointingHandCursor));
@@ -469,14 +437,13 @@ void MusicApplication::setButtonCursor()
     ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-
     ui->musicSoundSlider->setCursor(QCursor(Qt::PointingHandCursor));
-
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
-
+    ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 void MusicApplication::setButtonTips()
@@ -487,16 +454,12 @@ void MusicApplication::setButtonTips()
     ui->musicKey->setToolTip(tr("Play"));
     ui->musicPrivious->setToolTip(tr("Privious"));
     ui->musicNext->setToolTip(tr("Next"));
-    ui->musicListLoop->setToolTip(tr("ListCycle"));
-    ui->musicOneLoop->setToolTip(tr("SingleCycle"));
-    ui->musicOrderPlay->setToolTip(tr("OrderPlay"));
-    ui->musicRandomPlay->setToolTip(tr("RandomPlay"));
-    ui->musicPlayOnce->setToolTip(tr("PlayOnce"));
     ui->musicImport->setToolTip(tr("Import"));
     ui->musicSetting->setToolTip(tr("Setting"));
     ui->musicSearch->setToolTip(tr("musicSearch"));
     ui->musicCurrentLocation->setToolTip(tr("musicLocation"));
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
+    ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
     ui->musicButton_cloud->setToolTip(tr("musicCloud"));
@@ -522,6 +485,9 @@ void MusicApplication::createSystemTrayIcon()
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
     ui->menuSetting->setMenu(&m_toolPopupMenu);
+
+    ui->musicPlayMode->setMenu(&m_playModeMenu);
+    ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
 
     m_systemTray->show();
     connect(m_systemTray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,
@@ -549,7 +515,28 @@ void MusicApplication::createToolPopupMenu()
     m_toolPopupMenu.addSeparator();
     m_toolPopupMenu.addAction(ui->action_About);
     m_toolPopupMenu.addAction(ui->action_Quit);
+}
 
+void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
+{
+    QList<QAction*> as = menu.actions();
+    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
+    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[0]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[1]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[2]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[3]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[4]->setIcon(QIcon());
+}
+
+void MusicApplication::createPlayModeMenu(QMenu& menu)
+{
+    menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    menu.addAction(tr("OrderPlay"),this,SLOT(musicPlayOrder()));
+    menu.addAction(tr("RandomPlay"),this,SLOT(musicPlayRandom()));
+    menu.addAction(tr("ListCycle"),this,SLOT(musicPlayListLoop()));
+    menu.addAction(tr("SingleCycle"),this,SLOT(musicPlayOneLoop()));
+    menu.addAction(tr("PlayOnce"),this,SLOT(musicPlayItemOnce()));
+    createPlayModeMenuIcon(menu);
 }
 
 void MusicApplication::createMenuActions()
@@ -587,25 +574,25 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig())//open file
         return;
-
     //Configure playback mode
     if(xml.read3DMusicPlayConfig())
     {
         musicSetPlay3DMusic();
     }
+    createPlayModeMenu(m_playModeMenu);
     switch( xml.readMusicPlayModeConfig() )
     {
-      case MusicObject::MC_PlayOrder:
-        musicPlayOrder();break;
-      case MusicObject::MC_PlayRandom:
-        musicPlayRandom();break;
-      case MusicObject::MC_PlayListLoop:
-        musicPlayListLoop();break;
-      case MusicObject::MC_PlayOneLoop:
-        musicPlayOneLoop();break;
-      case MusicObject::MC_PlayOnce:
-        musicPlayItemOnce();break;
-      default:break;
+        case MusicObject::MC_PlayOrder:
+            musicPlayOrder();break;
+        case MusicObject::MC_PlayRandom:
+            musicPlayRandom();break;
+        case MusicObject::MC_PlayListLoop:
+            musicPlayListLoop();break;
+        case MusicObject::MC_PlayOneLoop:
+            musicPlayOneLoop();break;
+        case MusicObject::MC_PlayOnce:
+            musicPlayItemOnce();break;
+        default:break;
     }
     //////////////////////////////////////////////////////////////
     //The size of the volume of the allocation of songs
@@ -888,36 +875,41 @@ void MusicApplication::musicPlayNext()
 void MusicApplication::musicPlayOrder()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
-    ui->playMode->setText(tr("OrderPlay"));
+    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/orderplay")));
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOrder);
+    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayRandom()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayRandom);
-    ui->playMode->setText(tr("RandomPlay"));
+    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/randomplay")));
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayRandom);
+    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayListLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    ui->playMode->setText(tr("ListCycle"));
+    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/listloop")));
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayListLoop);
+    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayOneLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    ui->playMode->setText(tr("SingleCycle"));
+    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/oneloop")));
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOneLoop);
+    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayItemOnce()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOnce);
-    ui->playMode->setText(tr("PlayOnce"));
+    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/playonce")));
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOnce);
+    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicVolumeNULL()
@@ -1205,7 +1197,6 @@ void MusicApplication::musicBgTransparentChanged(int index)
 
     m_musicSongTree->setStyleSheet(MusicObject::QToolBoxItemStyle);
     ui->background->setPixmap(afterDeal);
-    ui->background2->setPixmap(afterDeal);
 }
 
 void MusicApplication::musicBackgroundSkinChanged(const QString &filename)

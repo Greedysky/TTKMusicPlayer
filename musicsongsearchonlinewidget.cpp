@@ -6,14 +6,14 @@
 MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     MusicTableWidgetAbstract(parent)
 {
-    setColumnCount(4);
+    setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,310);
-    headerview->resizeSection(1,46);
-    headerview->resizeSection(2,26);
-    headerview->resizeSection(3,26);
-    setStyleSheet("QTableWidget{selection-background-color:pink;}" + \
-                   MusicObject::MusicScrollBarStyle);
+    headerview->resizeSection(0,20);
+    headerview->resizeSection(1,220);
+    headerview->resizeSection(2,168);
+    headerview->resizeSection(3,50);
+    headerview->resizeSection(4,26);
+    headerview->resizeSection(5,26);
     setTransparent(255);
     m_songItemIndex = 0;
 
@@ -51,7 +51,7 @@ void MusicSongSearchOnlineWidget::clearAllItems()
     m_songItemIndex = 0;
     //Remove all the original item
     clearContents();
-    setColumnCount(4);
+    setColumnCount(6);
     setRowCount(0);
 }
 
@@ -60,29 +60,39 @@ void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
 {
     setRowCount(m_downLoadManager->getSongIdIndex());
 
-    QTableWidgetItem *item0 = new QTableWidgetItem(songname + " - " + artistname);
+    QTableWidgetItem *item0 = new QTableWidgetItem(QString::number(m_songItemIndex + 1));
     item0->setTextColor(QColor(50,50,50));
-    item0->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    this->setItem(m_songItemIndex,0,item0);
+    item0->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 0, item0);
+
+    QTableWidgetItem *item1 = new QTableWidgetItem(songname);
+    item1->setTextColor(QColor(50,50,50));
+    item1->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 1, item1);
+
+    QTableWidgetItem *item2 = new QTableWidgetItem(artistname);
+    item2->setTextColor(QColor(50,50,50));
+    item2->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 2, item2);
 
     int minute = static_cast<int>(time)/60;
     int second = static_cast<int>(time)%60;
 
-    QTableWidgetItem *item1 = new QTableWidgetItem(QString("%1:%2")
+    QTableWidgetItem *item3 = new QTableWidgetItem(QString("%1:%2")
                               .arg(QString::number(minute).rightJustified(2,'0'))
                               .arg(QString::number(second).rightJustified(2,'0')));
 
-    item1->setTextColor(QColor(50,50,50));
-    item1->setTextAlignment(Qt::AlignCenter);
-    this->setItem(m_songItemIndex,1,item1);
+    item3->setTextColor(QColor(50,50,50));
+    item3->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 3, item3);
 
-    QTableWidgetItem *item2 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/addtoplaylist")),"");
-    item1->setTextAlignment(Qt::AlignCenter);
-    this->setItem(m_songItemIndex,2,item2);
+    QTableWidgetItem *item4 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/addtoplaylist")),"");
+    item4->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 4, item4);
 
-    QTableWidgetItem *item3 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/musicdownload")),"");
-    item1->setTextAlignment(Qt::AlignCenter);
-    this->setItem(m_songItemIndex,3,item3);
+    QTableWidgetItem *item5 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/musicdownload")),"");
+    item5->setTextAlignment(Qt::AlignCenter);
+    setItem(m_songItemIndex, 5, item5);
 
     ++m_songItemIndex;
 }
@@ -91,9 +101,9 @@ void MusicSongSearchOnlineWidget::listCellClicked(int row,int col)
 {
     switch(col)
     {
-      case 2:
+      case 4:
         addSearchMusicToPlayList(row);break;
-      case 3:
+      case 5:
         musicDownloadLocal(row);break;
       default:break;
     }
@@ -103,14 +113,14 @@ void MusicSongSearchOnlineWidget::addSearchMusicToPlayList(int row)
 {
     emit showDownLoadInfoFor(Buffing);
     musicDownloadLocal(row);
-    emit MuiscSongToPlayListChanged(this->item(row,0)->text());
+    emit MuiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
 }
 
 void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 {
     emit showDownLoadInfoFor(DownLoading);
     QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
-    QString musicSong = this->item(row,0)->text();
+    QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
     QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
 
     ////////////////////////////////////////////////

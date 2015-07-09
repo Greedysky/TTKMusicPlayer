@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>860</width>
-    <height>530</height>
+    <width>950</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
   <widget class="QToolButton" name="windowClose">
    <property name="geometry">
     <rect>
-     <x>827</x>
+     <x>917</x>
      <y>7</y>
      <width>25</width>
      <height>25</height>
@@ -33,7 +33,7 @@
   <widget class="QToolButton" name="minimization">
    <property name="geometry">
     <rect>
-     <x>799</x>
+     <x>889</x>
      <y>7</y>
      <width>25</width>
      <height>25</height>
@@ -48,8 +48,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>860</width>
-     <height>530</height>
+     <width>950</width>
+     <height>620</height>
     </rect>
    </property>
    <property name="toolTipDuration">
@@ -68,27 +68,11 @@
   <widget class="QToolButton" name="musicPrivious">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>480</y>
-     <width>45</width>
-     <height>45</height>
+     <x>94</x>
+     <y>70</y>
+     <width>55</width>
+     <height>55</height>
     </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="background2">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>50</y>
-     <width>761</width>
-     <height>381</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -97,10 +81,10 @@
   <widget class="QToolButton" name="musicNext">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>480</y>
-     <width>45</width>
-     <height>45</height>
+     <x>220</x>
+     <y>70</y>
+     <width>55</width>
+     <height>55</height>
     </rect>
    </property>
    <property name="text">
@@ -110,9 +94,9 @@
   <widget class="MusicTimerSliderWidget" name="musicTimeWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>53</x>
-     <y>440</y>
-     <width>350</width>
+     <x>10</x>
+     <y>40</y>
+     <width>355</width>
      <height>40</height>
     </rect>
    </property>
@@ -124,9 +108,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>480</y>
-     <width>50</width>
-     <height>50</height>
+     <y>580</y>
+     <width>40</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="text">
@@ -139,62 +123,10 @@
   <widget class="QToolButton" name="musicKey">
    <property name="geometry">
     <rect>
-     <x>205</x>
-     <y>480</y>
-     <width>45</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="musicListLoop">
-   <property name="geometry">
-    <rect>
-     <x>475</x>
-     <y>440</y>
-     <width>45</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="musicOneLoop">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>440</y>
-     <width>45</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="musicOrderPlay">
-   <property name="geometry">
-    <rect>
-     <x>605</x>
-     <y>440</y>
-     <width>45</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QToolButton" name="musicRandomPlay">
-   <property name="geometry">
-    <rect>
-     <x>670</x>
-     <y>440</y>
-     <width>45</width>
-     <height>45</height>
+     <x>157</x>
+     <y>70</y>
+     <width>55</width>
+     <height>55</height>
     </rect>
    </property>
    <property name="text">
@@ -204,10 +136,10 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>465</x>
-     <y>495</y>
-     <width>26</width>
-     <height>26</height>
+     <x>208</x>
+     <y>128</y>
+     <width>18</width>
+     <height>18</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -220,53 +152,21 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>500</y>
-     <width>161</width>
-     <height>19</height>
+     <x>230</x>
+     <y>130</y>
+     <width>89</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="playCurrentTime">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>470</y>
-     <width>30</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;</string>
-   </property>
-   <property name="text">
-    <string>00:00</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="playTotalTime">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>470</y>
-     <width>30</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;</string>
-   </property>
-   <property name="text">
-    <string>00:00</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="volumeValue">
    <property name="geometry">
     <rect>
-     <x>675</x>
-     <y>500</y>
+     <x>325</x>
+     <y>130</y>
      <width>30</width>
      <height>15</height>
     </rect>
@@ -281,60 +181,19 @@
   <widget class="QStackedWidget" name="songsContainer">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>50</y>
-     <width>332</width>
-     <height>391</height>
+     <x>40</x>
+     <y>160</y>
+     <width>330</width>
+     <height>421</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="playMode">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>330</y>
-     <width>21</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;font-size:15px;font-weight:bold</string>
-   </property>
-   <property name="text">
-    <string>顺序播放</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="playModeTitle">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>310</y>
-     <width>41</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;font-size:15px;font-weight:bold</string>
-   </property>
-   <property name="text">
-    <string>当前</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="MusicMarquee" name="showCurrentSong" native="true">
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>400</y>
-     <width>421</width>
+     <y>550</y>
+     <width>521</width>
      <height>31</height>
     </rect>
    </property>
@@ -348,8 +207,8 @@
   <widget class="QToolButton" name="musicSetting">
    <property name="geometry">
     <rect>
-     <x>5</x>
-     <y>115</y>
+     <x>145</x>
+     <y>580</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -364,8 +223,8 @@
   <widget class="QToolButton" name="musicImport">
    <property name="geometry">
     <rect>
-     <x>5</x>
-     <y>55</y>
+     <x>80</x>
+     <y>580</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -380,8 +239,8 @@
   <widget class="QToolButton" name="musicSearch">
    <property name="geometry">
     <rect>
-     <x>5</x>
-     <y>175</y>
+     <x>210</x>
+     <y>580</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -396,8 +255,8 @@
   <widget class="QToolButton" name="musicCurrentLocation">
    <property name="geometry">
     <rect>
-     <x>5</x>
-     <y>230</y>
+     <x>275</x>
+     <y>580</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -431,9 +290,9 @@
   <widget class="MusicLocalSongSearchEdit" name="musicSongSearchLine" native="true">
    <property name="geometry">
     <rect>
-     <x>459</x>
+     <x>484</x>
      <y>7</y>
-     <width>251</width>
+     <width>261</width>
      <height>25</height>
     </rect>
    </property>
@@ -482,7 +341,7 @@
   <widget class="QPushButton" name="musicSearchButton">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>745</x>
      <y>7</y>
      <width>25</width>
      <height>25</height>
@@ -498,7 +357,7 @@
   <widget class="QToolButton" name="musicWindowChangeSkin">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>780</x>
      <y>7</y>
      <width>25</width>
      <height>25</height>
@@ -516,8 +375,8 @@
     <rect>
      <x>390</x>
      <y>100</y>
-     <width>421</width>
-     <height>291</height>
+     <width>521</width>
+     <height>451</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -534,7 +393,7 @@
   <widget class="QPushButton" name="musicSearchWidgetButton">
    <property name="geometry">
     <rect>
-     <x>545</x>
+     <x>565</x>
      <y>60</y>
      <width>80</width>
      <height>40</height>
@@ -550,7 +409,7 @@
   <widget class="QPushButton" name="musicLrcWidgetButton">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>660</x>
      <y>60</y>
      <width>80</width>
      <height>40</height>
@@ -582,7 +441,7 @@
   <widget class="QPushButton" name="musicIndexWidgetButton">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>470</x>
      <y>60</y>
      <width>80</width>
      <height>40</height>
@@ -598,8 +457,8 @@
   <widget class="QLabel" name="showDownloadGif">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>400</y>
+     <x>910</x>
+     <y>480</y>
      <width>41</width>
      <height>101</height>
     </rect>
@@ -611,8 +470,8 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>500</y>
+     <x>22</x>
+     <y>130</y>
      <width>71</width>
      <height>19</height>
     </rect>
@@ -633,10 +492,10 @@
   <widget class="QToolButton" name="musicBestLove">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>490</y>
-     <width>30</width>
-     <height>30</height>
+     <x>20</x>
+     <y>100</y>
+     <width>21</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -646,7 +505,7 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>380</x>
      <y>10</y>
      <width>101</width>
      <height>31</height>
@@ -661,24 +520,11 @@
     </property>
    </layout>
   </widget>
-  <widget class="QToolButton" name="musicPlayOnce">
-   <property name="geometry">
-    <rect>
-     <x>735</x>
-     <y>440</y>
-     <width>45</width>
-     <height>45</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QToolButton" name="musicButton_tools">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>320</y>
+     <x>0</x>
+     <y>410</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -693,8 +539,8 @@
   <widget class="QToolButton" name="music3DPlayButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>455</y>
+     <x>318</x>
+     <y>100</y>
      <width>40</width>
      <height>20</height>
     </rect>
@@ -706,7 +552,7 @@
   <widget class="QToolButton" name="musicWindowRemote">
    <property name="geometry">
     <rect>
-     <x>768</x>
+     <x>858</x>
      <y>7</y>
      <width>25</width>
      <height>25</height>
@@ -722,8 +568,8 @@
   <widget class="QToolButton" name="musicButton_playlist">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>80</y>
+     <x>0</x>
+     <y>170</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -738,8 +584,8 @@
   <widget class="QToolButton" name="musicButton_radio">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>140</y>
+     <x>0</x>
+     <y>230</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -754,8 +600,8 @@
   <widget class="QToolButton" name="musicButton_mydownl">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>200</y>
+     <x>0</x>
+     <y>290</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -770,8 +616,8 @@
   <widget class="QToolButton" name="musicButton_cloud">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>260</y>
+     <x>0</x>
+     <y>350</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -799,7 +645,7 @@
   <widget class="QPushButton" name="vedioWidgetButton">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>755</x>
      <y>60</y>
      <width>80</width>
      <height>40</height>
@@ -810,6 +656,80 @@
    </property>
    <property name="text">
     <string>视频</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="playCurrentTime">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>75</y>
+     <width>30</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#FFFFFF;</string>
+   </property>
+   <property name="text">
+    <string>00:00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="playTotalTime">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>75</y>
+     <width>30</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#FFFFFF;</string>
+   </property>
+   <property name="text">
+    <string>00:00</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="musicPlayMode">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>127</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>810</x>
+     <y>10</y>
+     <width>16</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="musicWindowConcise">
+   <property name="geometry">
+    <rect>
+     <x>828</x>
+     <y>7</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <action name="action_About">
@@ -1004,25 +924,16 @@
    </property>
   </action>
   <zorder>background</zorder>
-  <zorder>background2</zorder>
   <zorder>windowClose</zorder>
   <zorder>minimization</zorder>
   <zorder>musicPrivious</zorder>
   <zorder>musicNext</zorder>
   <zorder>menuSetting</zorder>
   <zorder>musicKey</zorder>
-  <zorder>musicListLoop</zorder>
-  <zorder>musicOneLoop</zorder>
-  <zorder>musicOrderPlay</zorder>
-  <zorder>musicRandomPlay</zorder>
   <zorder>musicSound</zorder>
   <zorder>musicSoundSlider</zorder>
-  <zorder>playCurrentTime</zorder>
-  <zorder>playTotalTime</zorder>
   <zorder>volumeValue</zorder>
   <zorder>songsContainer</zorder>
-  <zorder>playMode</zorder>
-  <zorder>playModeTitle</zorder>
   <zorder>showCurrentSong</zorder>
   <zorder>musicSetting</zorder>
   <zorder>musicImport</zorder>
@@ -1043,7 +954,6 @@
   <zorder>musicDesktopLrc</zorder>
   <zorder>musicBestLove</zorder>
   <zorder>horizontalLayoutWidget</zorder>
-  <zorder>musicPlayOnce</zorder>
   <zorder>musicButton_tools</zorder>
   <zorder>music3DPlayButton</zorder>
   <zorder>musicWindowRemote</zorder>
@@ -1054,6 +964,11 @@
   <zorder>label</zorder>
   <zorder>musicTimeWidget</zorder>
   <zorder>vedioWidgetButton</zorder>
+  <zorder>playCurrentTime</zorder>
+  <zorder>playTotalTime</zorder>
+  <zorder>musicPlayMode</zorder>
+  <zorder>line</zorder>
+  <zorder>musicWindowConcise</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

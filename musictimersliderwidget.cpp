@@ -12,7 +12,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent) : QWidget(parent
     m_label->hide();
 
     m_slider = new QSlider(Qt::Horizontal,this);
-    m_slider->setGeometry(17,17,321,5);
+    m_slider->setGeometry(17,17,325,5);
     m_slider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 

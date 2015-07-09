@@ -42,6 +42,8 @@
         <file alias="loading">../resource/loading.gif</file>
         <file alias="mobile">../resource/mobile_devices.png</file>
         <file alias="flash">../resource/music_flash.png</file>
+        <file alias="concisein">../resource/music_concise_in.png</file>
+        <file alias="conciseout">../resource/music_concise_out.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../resource/color/Black.png</file>
