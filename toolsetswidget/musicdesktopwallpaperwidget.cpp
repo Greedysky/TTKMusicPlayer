@@ -172,8 +172,9 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
             m_path << "./tmp.jpg";
             MusicSongDownloadThread *song = new MusicSongDownloadThread(ui->urlLineEdit->text().trimmed(),
                                                                         m_path[0], this);
-            connect(song, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));break;
+            connect(song, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
             song->startToDownload();
+            break;
          }
         case 1:
             parameterFinished();break;

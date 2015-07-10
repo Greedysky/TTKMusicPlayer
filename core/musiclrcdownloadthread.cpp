@@ -1,6 +1,4 @@
 #include "musiclrcdownloadthread.h"
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
 
 MusicLrcDownLoadThread::MusicLrcDownLoadThread(const QString &url, const QString &save,
                                                      QObject *parent)
