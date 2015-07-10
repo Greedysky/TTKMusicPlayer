@@ -1,20 +1,23 @@
 #ifndef MUSICSONGDOWNLOADTHREAD_H
 #define MUSICSONGDOWNLOADTHREAD_H
 
-#include "musiclrcdownloadthread.h"
-#include "musiclibexportglobal.h"
+#include "musicdownloadthreadabstract.h"
 
-class MUSIC_EXPORT MusicSongDownloadThread : public MusicLrcDownLoadThread
+class MUSIC_EXPORT MusicSongDownloadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicSongDownloadThread(const QString& url, QString savePathName,
+    explicit MusicSongDownloadThread(const QString& url, const QString& save,
                                      QObject *parent = 0);
-    virtual void startRequest(const QUrl&);
+
+    virtual void startToDownload();
 
 public slots:
     virtual void downLoadFinished();
     void downLoadReadyRead();
+
+protected:
+    void startRequest(const QUrl&);
 
 };
 

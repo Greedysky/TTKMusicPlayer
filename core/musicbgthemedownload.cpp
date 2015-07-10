@@ -16,6 +16,7 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name,
     ///Set search image API
     connect(download,SIGNAL(musicDownLoadFinished(QString)),
                      SLOT(downLoadFinished(QString)));
+    download->startToDownload();
 }
 
 void MusicBgThemeDownload::downLoadFinished(const QString&)
@@ -39,8 +40,8 @@ void MusicBgThemeDownload::downLoadFinished(const QString&)
             {
                 ++counter;
                 qDebug()<<"objURL"<<buffer;
-                new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).
-                                                    arg(m_artName).arg(counter).arg(JPG_FILE),this);
+                (new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).arg(m_artName).
+                                             arg(counter).arg(JPG_FILE),this))->startToDownload();
                 ///To start the download the corresponding background picture
             }
         }
@@ -51,8 +52,8 @@ void MusicBgThemeDownload::downLoadFinished(const QString&)
             {
                 ++counter;
                 qDebug()<<"hoverURL"<<buffer;
-                new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).
-                                                    arg(m_artName).arg(counter).arg(JPG_FILE),this);
+                (new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).arg(m_artName).
+                                            arg(counter).arg(JPG_FILE),this))->startToDownload();
 
             }
         }

@@ -94,6 +94,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
                             LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
     connect(lrcDownload,SIGNAL(musicDownLoadFinished(QString)),
                         SIGNAL(lrcDownloadStateChanged(QString)));
+    lrcDownload->startToDownload();
 }
 
 void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int)

@@ -137,11 +137,13 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     MusicSongDownloadThread *downSong = new MusicSongDownloadThread(
                                             musicSongInfo[row][0], downloadName,this);
     connect(downSong,SIGNAL(musicDownLoadFinished(QString)),this,
-                SIGNAL(showDownLoadInfoFinished(QString)));
-    new MusicLrcDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
-                               musicSong + LRC_FILE,this);
-    new MusicSongDownloadThread(musicSongInfo[row][2],
-          ART_DOWNLOAD + musicSongInfo[row][3] + JPG_FILE,this);
+                     SIGNAL(showDownLoadInfoFinished(QString)));
+    downSong->startToDownload();
+
+    (new MusicLrcDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
+                               musicSong + LRC_FILE,this))->startToDownload();
+    (new MusicSongDownloadThread(musicSongInfo[row][2],
+          ART_DOWNLOAD + musicSongInfo[row][3] + JPG_FILE,this))->startToDownload();
 
 }
 
