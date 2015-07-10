@@ -1,39 +1,11 @@
 #include "musicxmlconfigmanager.h"
-#include <QtXml/QDomDocument>
-#include <QFile>
-#include <QTextStream>
 #include <QPixmap>
 #include <QSettings>
 
 MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
-    QObject(parent)
+    MusicXmlAbstract(parent)
 {
-    m_file = NULL;
-    m_ddom = NULL;
-}
 
-MusicXMLConfigManager::~MusicXMLConfigManager()
-{
-    delete m_file;
-    delete m_ddom;
-}
-
-bool MusicXMLConfigManager::readConfig(const QString& type)
-{
-    delete m_file;
-    delete m_ddom;
-    m_file = new QFile( type );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text) )
-        return false;
-    if( !m_ddom->setContent(m_file) )
-    {
-        m_file->close();
-        delete m_file;
-        m_file = NULL;
-        return false;
-    }
-    return true;
 }
 
 void MusicXMLConfigManager::readMusicSongsConfig(QList<QStringList>& fileNamesList,
@@ -69,13 +41,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const QList<QStringList>& file
         return;
 
     //Open wirte file
-    delete m_file;
-    delete m_ddom;
-    m_file = new QFile( MUSICPATH );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QFile::WriteOnly | QFile::Text) )
-      return;
-
+    if( !writeConfig(MUSICPATH) ) return;
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
@@ -185,10 +151,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
-    m_file =new QFile( COFIGPATH );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QFile::WriteOnly | QFile::Text) )
-      return;
+    if( !writeConfig(COFIGPATH) ) return;
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
@@ -393,12 +356,6 @@ void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList& key)
     key<<element.attribute("value")<<element.text().split(',');
     Q_ASSERT(key.count() == 3);
     if(key.count() != 3) key.insert(0,"0");
-}
-
-QString MusicXMLConfigManager::readXmlByTagNameAndAttribute(const QString& tagName)
-{
-    QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
-    return nodelist.at(0).toElement().attribute("value");
 }
 
 QColor MusicXMLConfigManager::readColorConfig(const QString& value)

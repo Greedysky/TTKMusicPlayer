@@ -1,46 +1,14 @@
 #include "musicuserconfigmanager.h"
-#include <QtXml/QDomDocument>
-#include <QFile>
-#include <QTextStream>
 
 MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
-    QObject(parent)
+    MusicXmlAbstract(parent)
 {
-    m_file = NULL;
-    m_ddom = NULL;
-}
 
-MusicUserConfigManager::~MusicUserConfigManager()
-{
-    delete m_file;
-    delete m_ddom;
-}
-
-bool MusicUserConfigManager::readConfig(const QString& type)
-{
-    delete m_file;
-    delete m_ddom;
-    m_file = new QFile( type );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text) )
-        return false;
-    if( !m_ddom->setContent(m_file) )
-    {
-        m_file->close();
-        delete m_file;
-        m_file = NULL;
-        return false;
-    }
-    return true;
 }
 
 void MusicUserConfigManager::writeUserXMLConfig(const QMap<QString,QStringList>& par)
 {
-    m_file = new QFile( USERPATH );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QFile::WriteOnly | QFile::Text) )
-      return;
-
+    if( !writeConfig( USERPATH ) ) return;
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );

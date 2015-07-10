@@ -1,28 +1,17 @@
 #ifndef MUSICXMLCONFIGMANAGER_H
 #define MUSICXMLCONFIGMANAGER_H
 
-#include <QObject>
-#include "../core/musiclibexportglobal.h"
-#include "../core/musicobject.h"
+#include "../core/musicxmlabstract.h"
 
-class QFile;
-class QDomDocument;
-
-class MUSIC_EXPORT MusicUserConfigManager : public QObject
+class MUSIC_EXPORT MusicUserConfigManager : public MusicXmlAbstract
 {
 public:
     explicit MusicUserConfigManager(QObject *parent = 0);
-    ~MusicUserConfigManager();
 
     //UserXMLConfig
     inline bool readUserXMLConfig(){ return readConfig(USERPATH); }
     void writeUserXMLConfig(const QMap<QString, QStringList> &par);
     void readUserConfig(QMap<QString, QStringList> &);
-
-protected:
-    bool readConfig(const QString& type);
-    QFile* m_file;
-    QDomDocument* m_ddom;
 
 };
 

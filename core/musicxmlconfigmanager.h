@@ -1,20 +1,14 @@
 #ifndef MUSICXMLCONFIGMANAGER_H
 #define MUSICXMLCONFIGMANAGER_H
 
-#include <QObject>
 #include <QPair>
 #include <QColor>
-#include "musiclibexportglobal.h"
-#include "musicobject.h"
+#include "musicxmlabstract.h"
 
-class QFile;
-class QDomDocument;
-
-class MUSIC_EXPORT MusicXMLConfigManager : public QObject
+class MUSIC_EXPORT MusicXMLConfigManager : public MusicXmlAbstract
 {
 public:
     explicit MusicXMLConfigManager(QObject *parent = 0);
-    ~MusicXMLConfigManager();
 
     inline bool readXMLConfig() { return readConfig(COFIGPATH); }
     inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH); }
@@ -82,12 +76,8 @@ public:
     void readTimeAutoConfig();
 
 protected:
-    bool readConfig(const QString& type);
-    QString readXmlByTagNameAndAttribute(const QString&);
     QPair<QStringList,QStringList> readMusicFilePath(const QString&);
     QColor readColorConfig(const QString& value);
-    QFile* m_file;
-    QDomDocument* m_ddom;
 
 };
 

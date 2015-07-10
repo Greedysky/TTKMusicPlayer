@@ -1,48 +1,15 @@
 #include "musicmydownloadrecordobject.h"
-#include <QtXml/QDomDocument>
-#include <QFile>
-#include <QTextStream>
 
 MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
-    QObject(parent)
+    MusicXmlAbstract(parent)
 {
-    m_file = NULL;
-    m_ddom = NULL;
-}
 
-MusicMyDownloadRecordObject::~MusicMyDownloadRecordObject()
-{
-    delete m_file;
-    delete m_ddom;
-}
-
-bool MusicMyDownloadRecordObject::readConfig(const QString& type)
-{
-    delete m_file;
-    delete m_ddom;
-    m_file = new QFile( type );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text) )
-        return false;
-    if( !m_ddom->setContent(m_file) )
-    {
-        m_file->close();
-        delete m_file;
-        m_file = NULL;
-        return false;
-    }
-    return true;
 }
 
 void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList& names,
                                                      const QStringList& paths)
 {
-    delete m_file;
-    delete m_ddom;
-    m_file = new QFile( DOWNLOADINFO );
-    m_ddom = new QDomDocument;
-    if( !m_file->open(QFile::WriteOnly | QFile::Text) )
-      return;
+    if( !writeConfig( DOWNLOADINFO ) ) return;
 
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(

@@ -79,6 +79,7 @@ SOURCES += \
     core/musicplayer.cpp \
     core/musicplaylist.cpp \
     core/musicequalizer.cpp \
+    core/musicxmlabstract.cpp \
     core/musictimerautoobject.cpp \
     core/musicdownloadmanagerthread.cpp \
     core/musicdownloadstatuslabel.cpp \
@@ -152,6 +153,7 @@ HEADERS  += \
     core/musicplayer.h \
     core/musicplaylist.h \
     core/musicequalizer.h \
+    core/musicxmlabstract.h \
     core/musictimerautoobject.h \
     core/musiclocalsongsmanagerthread.h \
     core/musiclibzplay.h \
