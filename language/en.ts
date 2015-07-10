@@ -4,500 +4,481 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../musicapplication.cpp" line="203"/>
+        <location filename="../musicapplication.cpp" line="197"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="203"/>
+        <location filename="../musicapplication.cpp" line="197"/>
         <source>QMusicPlayer will run in the background</source>
         <translation>MusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="261"/>
+        <location filename="../musicapplication.cpp" line="255"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="253"/>
+        <location filename="../musicapplication.cpp" line="247"/>
         <source>logout</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="243"/>
+        <location filename="../musicapplication.cpp" line="237"/>
         <source>not supported</source>
         <translation>Audio Formats Does&apos;t support</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="256"/>
+        <location filename="../musicapplication.cpp" line="250"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="276"/>
+        <location filename="../musicapplication.cpp" line="260"/>
         <source>RemoteControl</source>
         <translation>Remote Control</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="280"/>
+        <location filename="../musicapplication.cpp" line="264"/>
         <source>DiamondRemote</source>
         <translation>Diamond Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="281"/>
+        <location filename="../musicapplication.cpp" line="265"/>
         <source>CircleRemote</source>
         <translation>Circle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="284"/>
+        <location filename="../musicapplication.cpp" line="268"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="286"/>
+        <location filename="../musicapplication.cpp" line="270"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="287"/>
+        <location filename="../musicapplication.cpp" line="271"/>
         <source>ShowingSpectrum</source>
         <translation>Spectrum</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="290"/>
+        <location filename="../musicapplication.cpp" line="274"/>
         <source>WindowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="296"/>
-        <location filename="../musicapplication.cpp" line="298"/>
+        <location filename="../musicapplication.cpp" line="280"/>
+        <location filename="../musicapplication.cpp" line="282"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="302"/>
+        <location filename="../musicapplication.cpp" line="286"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="484"/>
+        <location filename="../musicapplication.cpp" line="446"/>
         <source>Minimization</source>
         <translation>Minimization</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="485"/>
+        <location filename="../musicapplication.cpp" line="447"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="486"/>
+        <location filename="../musicapplication.cpp" line="448"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="487"/>
+        <location filename="../musicapplication.cpp" line="449"/>
         <source>Play</source>
         <translation>Play/Stop</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="488"/>
+        <location filename="../musicapplication.cpp" line="450"/>
         <source>Privious</source>
         <translation>Privious</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="489"/>
+        <location filename="../musicapplication.cpp" line="451"/>
         <source>Next</source>
         <translation>Next</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="265"/>
-        <location filename="../musicapplication.cpp" line="490"/>
-        <location filename="../musicapplication.cpp" line="905"/>
+        <location filename="../musicapplication.cpp" line="457"/>
+        <source>concisein/out</source>
+        <translation>Concise in/out</translation>
+    </message>
+    <message>
+        <location filename="../musicapplication.cpp" line="531"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="266"/>
-        <location filename="../musicapplication.cpp" line="491"/>
-        <location filename="../musicapplication.cpp" line="912"/>
+        <location filename="../musicapplication.cpp" line="532"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="263"/>
-        <location filename="../musicapplication.cpp" line="492"/>
-        <location filename="../musicapplication.cpp" line="891"/>
+        <location filename="../musicapplication.cpp" line="529"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="264"/>
-        <location filename="../musicapplication.cpp" line="493"/>
-        <location filename="../musicapplication.cpp" line="898"/>
+        <location filename="../musicapplication.cpp" line="530"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="267"/>
-        <location filename="../musicapplication.cpp" line="494"/>
-        <location filename="../musicapplication.cpp" line="919"/>
+        <location filename="../musicapplication.cpp" line="533"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="495"/>
+        <location filename="../musicapplication.cpp" line="452"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="293"/>
-        <location filename="../musicapplication.cpp" line="496"/>
+        <location filename="../musicapplication.cpp" line="277"/>
+        <location filename="../musicapplication.cpp" line="453"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="497"/>
+        <location filename="../musicapplication.cpp" line="454"/>
         <source>musicSearch</source>
         <translation>Music Search</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="294"/>
-        <location filename="../musicapplication.cpp" line="498"/>
+        <location filename="../musicapplication.cpp" line="278"/>
+        <location filename="../musicapplication.cpp" line="455"/>
         <source>musicLocation</source>
         <translation>Music Locate</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="499"/>
+        <location filename="../musicapplication.cpp" line="456"/>
         <source>changeskin</source>
         <translation>Skin Change</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="501"/>
+        <location filename="../musicapplication.cpp" line="459"/>
         <source>bestlove</source>
         <translation>Add to Lovest</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="242"/>
-        <location filename="../musicapplication.cpp" line="513"/>
-        <location filename="../musicapplication.cpp" line="1090"/>
+        <location filename="../musicapplication.cpp" line="236"/>
+        <location filename="../musicapplication.cpp" line="471"/>
+        <location filename="../musicapplication.cpp" line="1077"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="502"/>
+        <location filename="../musicapplication.cpp" line="460"/>
         <source>musicCloud</source>
         <translation>Cloud</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="503"/>
+        <location filename="../musicapplication.cpp" line="461"/>
         <source>musicMydownl</source>
         <translation>MyDownload</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="504"/>
+        <location filename="../musicapplication.cpp" line="462"/>
         <source>musicPlaylist</source>
         <translation>Playlist</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="505"/>
+        <location filename="../musicapplication.cpp" line="463"/>
         <source>musicRadio</source>
         <translation>Radio</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="506"/>
+        <location filename="../musicapplication.cpp" line="464"/>
         <source>musicTools</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <source>lrcMenu</source>
-        <translation type="vanished">Lrc</translation>
-    </message>
-    <message>
-        <location filename="../musicapplication.cpp" line="784"/>
+        <location filename="../musicapplication.cpp" line="766"/>
         <source>Playing</source>
         <translation>Playing</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="258"/>
-        <location filename="../musicapplication.cpp" line="1022"/>
+        <location filename="../musicapplication.cpp" line="252"/>
+        <location filename="../musicapplication.cpp" line="1009"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="259"/>
-        <location filename="../musicapplication.cpp" line="1023"/>
+        <location filename="../musicapplication.cpp" line="253"/>
+        <location filename="../musicapplication.cpp" line="1010"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="278"/>
+        <location filename="../musicapplication.cpp" line="262"/>
         <source>SquareRemote</source>
         <translation>Square Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="279"/>
+        <location filename="../musicapplication.cpp" line="263"/>
         <source>RectangleRemote</source>
         <translation>Rectangle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="282"/>
+        <location filename="../musicapplication.cpp" line="266"/>
         <source>DeleteRemote</source>
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="285"/>
+        <location filename="../musicapplication.cpp" line="269"/>
         <source>AudioRecorder</source>
         <translation>Audio Recorder</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="500"/>
+        <location filename="../musicapplication.cpp" line="458"/>
         <source>remoteWindow</source>
         <translation>Open Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1025"/>
+        <location filename="../musicapplication.cpp" line="1012"/>
         <source>dragAnddrop</source>
         <translation>Files Drag Drop Supported</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1089"/>
+        <location filename="../musicapplication.cpp" line="1076"/>
         <source>About QMusicPlayer</source>
         <translation>About QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1091"/>
+        <location filename="../musicapplication.cpp" line="1078"/>
         <source>Directed By Greedysky</source>
         <translation>Directed By Greedysky</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="246"/>
-        <location filename="../ui/application/musicapplication.ui" line="262"/>
+        <location filename="../ui/application/musicapplication.ui" line="674"/>
+        <location filename="../ui/application/musicapplication.ui" line="690"/>
         <source>00:00</source>
         <translation>00:00</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="278"/>
+        <location filename="../ui/application/musicapplication.ui" line="178"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="304"/>
-        <location filename="../ui/application/musicapplication.ui" line="937"/>
-        <location filename="../ui/application/musicapplication.ui" line="940"/>
+        <location filename="../ui/application/musicapplication.ui" line="857"/>
+        <location filename="../ui/application/musicapplication.ui" line="860"/>
         <source>顺序播放</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="326"/>
-        <source>当前</source>
-        <translation>Cur.</translation>
-    </message>
-    <message>
-        <location filename="../ui/application/musicapplication.ui" line="345"/>
+        <location filename="../ui/application/musicapplication.ui" line="204"/>
         <source>当前无正在播放的歌曲</source>
         <translation>No Song Is Playing Now</translation>
     </message>
     <message>
         <location filename="../ui/application/musicapplication.ui" line="14"/>
-        <location filename="../ui/application/musicapplication.ui" line="425"/>
+        <location filename="../ui/application/musicapplication.ui" line="284"/>
         <source>天天酷音</source>
         <translation>QMPlayer</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="547"/>
+        <location filename="../ui/application/musicapplication.ui" line="406"/>
         <source>音乐</source>
         <translation>Music</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="563"/>
+        <location filename="../ui/application/musicapplication.ui" line="422"/>
         <source>歌词</source>
         <translation>Lyrics</translation>
     </message>
     <message>
-        <source>刷新</source>
-        <translation type="vanished">Fresh</translation>
-    </message>
-    <message>
-        <location filename="../ui/application/musicapplication.ui" line="595"/>
+        <location filename="../ui/application/musicapplication.ui" line="454"/>
         <source>首页</source>
         <translation>Homepage</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="624"/>
+        <location filename="../ui/application/musicapplication.ui" line="483"/>
         <source>桌面歌词</source>
         <translation>Desk-Lrc</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="812"/>
+        <location filename="../ui/application/musicapplication.ui" line="658"/>
         <source>视频</source>
         <translation>Video</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="817"/>
+        <location filename="../ui/application/musicapplication.ui" line="737"/>
         <source>关于天天酷音(&amp;A)</source>
         <translation>About QMusicPlayer(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="820"/>
+        <location filename="../ui/application/musicapplication.ui" line="740"/>
         <source>关于天天酷音</source>
         <translation>About QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="823"/>
+        <location filename="../ui/application/musicapplication.ui" line="743"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="832"/>
+        <location filename="../ui/application/musicapplication.ui" line="752"/>
         <source>退出(&amp;Q)</source>
         <translation>Quit(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="835"/>
+        <location filename="../ui/application/musicapplication.ui" line="755"/>
         <source>退出</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="838"/>
+        <location filename="../ui/application/musicapplication.ui" line="758"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="847"/>
+        <location filename="../ui/application/musicapplication.ui" line="767"/>
         <source>导入本地歌曲(&amp;I)</source>
         <translation>Import Songs(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="850"/>
+        <location filename="../ui/application/musicapplication.ui" line="770"/>
         <source>添加歌曲</source>
         <translation>Add Songs</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="853"/>
+        <location filename="../ui/application/musicapplication.ui" line="773"/>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="862"/>
+        <location filename="../ui/application/musicapplication.ui" line="782"/>
         <source>上一曲(&amp;P)</source>
         <translation>Privious(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="865"/>
+        <location filename="../ui/application/musicapplication.ui" line="785"/>
         <source>上一曲</source>
         <translation>Privious</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="868"/>
+        <location filename="../ui/application/musicapplication.ui" line="788"/>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="877"/>
+        <location filename="../ui/application/musicapplication.ui" line="797"/>
         <source>下一曲(&amp;N)</source>
         <translation>Next(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="880"/>
+        <location filename="../ui/application/musicapplication.ui" line="800"/>
         <source>下一曲</source>
         <translation>Next</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="883"/>
+        <location filename="../ui/application/musicapplication.ui" line="803"/>
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="892"/>
-        <location filename="../ui/application/musicapplication.ui" line="895"/>
+        <location filename="../ui/application/musicapplication.ui" line="812"/>
+        <location filename="../ui/application/musicapplication.ui" line="815"/>
         <source>播放/暂停</source>
         <translation>Play/Stop</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="898"/>
+        <location filename="../ui/application/musicapplication.ui" line="818"/>
         <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="907"/>
+        <location filename="../ui/application/musicapplication.ui" line="827"/>
         <source>音量(&amp;+)</source>
         <translation>Volume(&amp;+)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="910"/>
+        <location filename="../ui/application/musicapplication.ui" line="830"/>
         <source>增加音量</source>
         <translation>Increase Volume</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="913"/>
+        <location filename="../ui/application/musicapplication.ui" line="833"/>
         <source>Ctrl+Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="922"/>
+        <location filename="../ui/application/musicapplication.ui" line="842"/>
         <source>音量(&amp;-)</source>
         <translation>Volume(&amp;-)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="925"/>
+        <location filename="../ui/application/musicapplication.ui" line="845"/>
         <source>降低音量</source>
         <translation>Decrease Volume</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="928"/>
+        <location filename="../ui/application/musicapplication.ui" line="848"/>
         <source>Ctrl+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="943"/>
+        <location filename="../ui/application/musicapplication.ui" line="863"/>
         <source>Alt+1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="952"/>
-        <location filename="../ui/application/musicapplication.ui" line="955"/>
+        <location filename="../ui/application/musicapplication.ui" line="872"/>
+        <location filename="../ui/application/musicapplication.ui" line="875"/>
         <source>随机播放</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="958"/>
+        <location filename="../ui/application/musicapplication.ui" line="878"/>
         <source>Alt+2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="967"/>
-        <location filename="../ui/application/musicapplication.ui" line="970"/>
+        <location filename="../ui/application/musicapplication.ui" line="887"/>
+        <location filename="../ui/application/musicapplication.ui" line="890"/>
         <source>单曲循环</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="973"/>
+        <location filename="../ui/application/musicapplication.ui" line="893"/>
         <source>Alt+3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="982"/>
-        <location filename="../ui/application/musicapplication.ui" line="985"/>
+        <location filename="../ui/application/musicapplication.ui" line="902"/>
+        <location filename="../ui/application/musicapplication.ui" line="905"/>
         <source>列表循环</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="988"/>
+        <location filename="../ui/application/musicapplication.ui" line="908"/>
         <source>Alt+4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="997"/>
+        <location filename="../ui/application/musicapplication.ui" line="917"/>
         <source>设置(&amp;S)</source>
         <translation>Settings(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="1000"/>
+        <location filename="../ui/application/musicapplication.ui" line="920"/>
         <source>设置</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="1003"/>
+        <location filename="../ui/application/musicapplication.ui" line="923"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1552,52 +1533,52 @@
         <translation> --- Lrc File Error! </translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="271"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="278"/>
         <source>changColorMenu</source>
         <translation>Color</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="272"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="279"/>
         <source>changeLrcSize</source>
         <translation>Size</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="276"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="283"/>
         <source>searchLrcs</source>
-        <translation >Search</translation>
+        <translation>Search</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="279"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="286"/>
         <source>updateLrc</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="281"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="288"/>
         <source>smaller</source>
         <translation>Smaller</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="282"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="289"/>
         <source>small</source>
         <translation>Small</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="283"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="290"/>
         <source>middle</source>
         <translation>Middle</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="284"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="291"/>
         <source>big</source>
         <translation>Big</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="285"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="292"/>
         <source>bigger</source>
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="288"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="295"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>
@@ -1642,22 +1623,22 @@
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="23"/>
         <source>Close</source>
-        <translation >Close</translation>
+        <translation>Close</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="55"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="56"/>
         <source>lrc is searching now!</source>
-        <translation >Searching Lrc Now!</translation>
+        <translation>Searching Lrc Now!</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="61"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="62"/>
         <source>lrc is downloading now!</source>
-        <translation >Downloading Lrc Now!</translation>
+        <translation>Downloading Lrc Now!</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="70"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="71"/>
         <source>lrc download finished!</source>
-        <translation >Lrc Download Finished!</translation>
+        <translation>Lrc Download Finished!</translation>
     </message>
 </context>
 <context>
@@ -2400,10 +2381,6 @@
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
-        <source>The origin one can&apos;t delete.</source>
-        <translation type="vanished">The Origin One Can&apos;t Delete.</translation>
-    </message>
-    <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="174"/>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="187"/>
         <source>Yes</source>
@@ -2414,10 +2391,6 @@
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="187"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
-    </message>
-    <message>
-        <source>The origin one can&apos;t rename.</source>
-        <translation type="vanished">The Origin One Can&apos;t Rename.</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="220"/>
@@ -3190,17 +3163,17 @@
 <context>
     <name>MusicWindowExtras</name>
     <message>
-        <location filename="../musicwindowextras.cpp" line="86"/>
+        <location filename="../musicwindowextras.cpp" line="92"/>
         <source>Play</source>
         <translation>Play/Stop</translation>
     </message>
     <message>
-        <location filename="../musicwindowextras.cpp" line="91"/>
+        <location filename="../musicwindowextras.cpp" line="97"/>
         <source>Privious</source>
         <translation>Privious</translation>
     </message>
     <message>
-        <location filename="../musicwindowextras.cpp" line="96"/>
+        <location filename="../musicwindowextras.cpp" line="102"/>
         <source>Next</source>
         <translation>Next</translation>
     </message>
