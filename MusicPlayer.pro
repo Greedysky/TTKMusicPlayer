@@ -35,8 +35,6 @@ SOURCES += \
     musicapplication.cpp \
     musicsongslistwidget.cpp \
     musicmarquee.cpp \
-    musiclocalsongsearch.cpp \
-    musiclocalsongsearchedit.cpp \
     musicsongslistiteminformation.cpp \
     musicsettingwidget.cpp \
     musicbackgroundskindialog.cpp \
@@ -48,6 +46,8 @@ SOURCES += \
     musicsongslistplaywidget.cpp \
     musictimersliderwidget.cpp \
     musicwindowextras.cpp \
+    localsearch/musiclocalsongsearch.cpp \
+    localsearch/musiclocalsongsearchedit.cpp \
     lrcmanager/musiclrcmanager.cpp \
     lrcmanager/musiclrcmanagerfordesktop.cpp \
     lrcmanager/musiclrcmanagerforinline.cpp \
@@ -91,7 +91,8 @@ SOURCES += \
     core/musicfileinformation.cpp \
     core/musicbgthemedownload.cpp \
     core/musicdesktopwallpaperthread.cpp \
-    core/musictablewidgetabstract.cpp
+    core/musictablewidgetabstract.cpp \
+    localsearch/musiclocalsongsearchinlineedit.cpp
 
 
 HEADERS  += \
@@ -102,9 +103,7 @@ HEADERS  += \
     core/musicmovewidgetabstract.h \
     musicapplication.h \
     musicsongslistwidget.h \
-    musiclocalsongsearchedit.h \
     musicmarquee.h \
-    musiclocalsongsearch.h \
     musicsongslistiteminformation.h \
     musicsettingwidget.h \
     musicbackgroundskindialog.h \
@@ -116,6 +115,8 @@ HEADERS  += \
     musicsongslistplaywidget.h \
     musictimersliderwidget.h \
     musicwindowextras.h \
+    localsearch/musiclocalsongsearch.h \
+    localsearch/musiclocalsongsearchedit.h \
     lrcmanager/musiclrcmanager.h \
     lrcmanager/musiclrcmanagerfordesktop.h \
     lrcmanager/musiclrcmanagerforinline.h \
@@ -171,7 +172,8 @@ HEADERS  += \
     usermanager/musicuserconfigmanager.h \
     videokits/musicvideoplayer.h \
     videokits/musicvideocontrol.h \
-    videokits/musicvideoplaylistwidget.h
+    videokits/musicvideoplaylistwidget.h \
+    localsearch/musiclocalsongsearchinlineedit.h
 
 
 FORMS    += \

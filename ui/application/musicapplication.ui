@@ -287,7 +287,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="MusicLocalSongSearchEdit" name="musicSongSearchLine" native="true">
+  <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
    <property name="geometry">
     <rect>
      <x>484</x>
@@ -997,9 +997,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicLocalSongSearchEdit</class>
+   <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
-   <header>musiclocalsongsearchedit.h</header>
+   <header>localsearch/musiclocalsongsearchinlineedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -37,7 +37,7 @@ bool MusicUserWindow::disConnectDatabase()
 {
     QString connectionName;
     {
-        QSqlDatabase data = QSqlDatabase::database("radio-data");
+        QSqlDatabase data = QSqlDatabase::database("user-data");
         connectionName = data.connectionName();
         if( data.isValid() )
             data.close();
