@@ -48,6 +48,8 @@ SOURCES += \
     musicwindowextras.cpp \
     localsearch/musiclocalsongsearch.cpp \
     localsearch/musiclocalsongsearchedit.cpp \
+    localsearch/musiclocalsongsearchpopwidget.cpp \
+    localsearch/musiclocalsongsearchrecordobject.cpp \
     lrcmanager/musiclrcmanager.cpp \
     lrcmanager/musiclrcmanagerfordesktop.cpp \
     lrcmanager/musiclrcmanagerforinline.cpp \
@@ -91,8 +93,7 @@ SOURCES += \
     core/musicfileinformation.cpp \
     core/musicbgthemedownload.cpp \
     core/musicdesktopwallpaperthread.cpp \
-    core/musictablewidgetabstract.cpp \
-    localsearch/musiclocalsongsearchinlineedit.cpp
+    core/musictablewidgetabstract.cpp
 
 
 HEADERS  += \
@@ -117,6 +118,8 @@ HEADERS  += \
     musicwindowextras.h \
     localsearch/musiclocalsongsearch.h \
     localsearch/musiclocalsongsearchedit.h \
+    localsearch/musiclocalsongsearchpopwidget.h \
+    localsearch/musiclocalsongsearchrecordobject.h \
     lrcmanager/musiclrcmanager.h \
     lrcmanager/musiclrcmanagerfordesktop.h \
     lrcmanager/musiclrcmanagerforinline.h \
@@ -172,8 +175,7 @@ HEADERS  += \
     usermanager/musicuserconfigmanager.h \
     videokits/musicvideoplayer.h \
     videokits/musicvideocontrol.h \
-    videokits/musicvideoplaylistwidget.h \
-    localsearch/musiclocalsongsearchinlineedit.h
+    videokits/musicvideoplaylistwidget.h
 
 
 FORMS    += \

@@ -28,12 +28,13 @@
 #define MAKE_RADIO     "MPlugins/avradio.dll"
 
 #define COFIGPATH      "musicconfig.xml"
-#define MUSICPATH      "music.dll"
-#define USERPATH       "musiclogin.dll"
 #define DATABASETYPE   "QSQLITE"
-#define DARABASEPATH   "musicuser-1.dll"
 #define NETDADIOPATH   "musicradio.dll"
-#define DOWNLOADINFO   "musiclan-1.dll"
+#define MUSICPATH      "music.dll"
+#define DOWNLOADINFO   "music_1.dll"
+#define MUSICSEARCH    "music_2.dll"
+#define DARABASEPATH   "musicuser_1.dll"
+#define USERPATH       "musicuser_2.dll"
 
 #define USERID         20
 #define PASSWD         100
@@ -134,59 +135,38 @@ namespace MusicObject
                      EQ_PitchUpEffect, EQ_PitchDownEffect, EQ_TempoUpEffect, EQ_TempoDownEffect,
                      EQ_FadeOutEffect, EQ_FadeInEffect };
 
+    static void dirIsExist(const QString& name)
+    {
+        QDir dir;
+        if(!dir.exists(name)) dir.mkdir(name);
+    }
+
+    static void fileIsExist(const QString& name)
+    {
+        QFile file(name);
+        if(!file.exists())
+        {
+            file.open( QIODevice::WriteOnly );
+            file.close();
+        }
+    }
+
     static void checkTheDirectoryExist()
     {
-        QDir lrc_dir, music_dir, theme_dir;
-        QDir art_dir, plu_dir, bg_dir, lan_dir;
+        dirIsExist(LRC_DOWNLOAD);
+        dirIsExist(MUSIC_DOWNLOAD);
+        dirIsExist(THEME_DOWNLOAD);
+        dirIsExist(ART_DOWNLOAD);
+        dirIsExist(TRANS_PLUGINS);
+        dirIsExist(ART_BG);
+        dirIsExist(TR_LANGUAGE);
 
-        if(!lrc_dir.exists(LRC_DOWNLOAD))
-            lrc_dir.mkdir(LRC_DOWNLOAD);
-        if(!music_dir.exists(MUSIC_DOWNLOAD))
-            music_dir.mkdir(MUSIC_DOWNLOAD);
-        if(!theme_dir.exists(THEME_DOWNLOAD))
-            theme_dir.mkdir(THEME_DOWNLOAD);
-        if(!art_dir.exists(ART_DOWNLOAD))
-            art_dir.mkdir(ART_DOWNLOAD);
-        if(!plu_dir.exists(TRANS_PLUGINS))
-            plu_dir.mkdir(TRANS_PLUGINS);
-        if(!bg_dir.exists(ART_BG))
-            bg_dir.mkdir(ART_BG);
-        if(!lan_dir.exists(TR_LANGUAGE))
-            lan_dir.mkdir(TR_LANGUAGE);
-
-        QFile download_file(DOWNLOADINFO);
-        if(!download_file.exists())
-        {
-            download_file.open( QIODevice::WriteOnly );
-            download_file.close();
-        }
-        QFile db_file(DARABASEPATH);
-        if(!db_file.exists())
-        {
-            db_file.open( QIODevice::WriteOnly );
-            db_file.close();
-        }
-        QFile user_config(USERPATH);
-        if(!user_config.exists())
-        {
-            user_config.open( QIODevice::WriteOnly );
-            user_config.close();
-        }
-        QFile config(COFIGPATH);
-        if(!config.exists())
-        {
-            config.open( QIODevice::WriteOnly );
-            config.close();
-        }
-        QFile music(MUSICPATH);
-        if(!music.exists())
-        {
-            music.open( QIODevice::WriteOnly );
-            music.write("<?xml version='1.0' encoding='UTF-8'?> \
-                         <QMusicPlayer><fileNormalPath/><fileLovestPath/> \
-                         <netFilePath/></QMusicPlayer>");
-            music.close();
-        }
+        fileIsExist(DOWNLOADINFO);
+        fileIsExist(DARABASEPATH);
+        fileIsExist(USERPATH);
+        fileIsExist(COFIGPATH);
+        fileIsExist(MUSICPATH);
+        fileIsExist(MUSICSEARCH);
     }
 
     static QString getLanguageName(int index)

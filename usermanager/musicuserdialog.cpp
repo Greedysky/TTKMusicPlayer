@@ -213,18 +213,18 @@ void MusicUserDialog::checkUserLogin()
     if(!ui->rememberPwd->isChecked() ||
        pwd != m_userModel->getUserPWDMD5(m_userComboIndex) )
     {
-        if( user.trimmed() == "" || pwd.trimmed() == "" )
-        {
-            QMessageBox::warning(this,tr("QMusicPlayer"),
-                                 tr("You entered is incorrect"));
-            return;
-        }
         if( !m_userModel->checkUser(user,pwd) )
         {
             QMessageBox::warning(this,tr("QMusicPlayer"),
                          tr("You passwd is incorrect or user is not exist"));
             return;
         }
+    }
+    if( user.trimmed() == "" || pwd.trimmed() == "" )
+    {
+        QMessageBox::warning(this,tr("QMusicPlayer"),
+                             tr("You entered is incorrect"));
+        return;
     }
     emit userLoginSuccess(user);
     close();

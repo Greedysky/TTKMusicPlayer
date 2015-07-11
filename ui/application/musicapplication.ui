@@ -999,7 +999,7 @@
   <customwidget>
    <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
-   <header>localsearch/musiclocalsongsearchinlineedit.h</header>
+   <header>localsearch/musiclocalsongsearchedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

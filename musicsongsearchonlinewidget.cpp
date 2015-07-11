@@ -2,6 +2,9 @@
 #include "core/musiclrcdownloadthread.h"
 #include "core/musicsongdownloadthread.h"
 #include "toolswidget/musicmydownloadrecordobject.h"
+#include "localsearch/musiclocalsongsearchrecordobject.h"
+
+#include <QDateTime>
 
 MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     MusicTableWidgetAbstract(parent)
@@ -43,6 +46,15 @@ void MusicSongSearchOnlineWidget::contextMenuEvent(QContextMenuEvent *)
 
 void MusicSongSearchOnlineWidget::startSearchSong(const QString &text)
 {
+    ////////////////////////////////////////////////
+    QStringList names, times;
+    MusicLocalSongSearchRecordObject search(this);
+    if(!search.readSearchXMLConfig()) return;
+    search.readSearchConfig(names, times);
+    names.insert(0, text);
+    times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
+    search.writeSearchConfig(names, times);
+    ////////////////////////////////////////////////
     m_downLoadManager->startSearchSong(text);
 }
 

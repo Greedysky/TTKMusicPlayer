@@ -19,4 +19,24 @@ protected:
 
 };
 
+
+class MusicLocalSongSearchPopWidget;
+
+class MUSIC_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSongSearchEdit
+{
+    Q_OBJECT
+public:
+    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
+    ~MusicLocalSongSearchInlineEdit();
+
+signals:
+public slots:
+
+protected:
+    virtual void focusInEvent(QFocusEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event);
+    MusicLocalSongSearchPopWidget *m_popWidget;
+
+};
+
 #endif // MUSICLOCALSONGSEARCHEDIT_H

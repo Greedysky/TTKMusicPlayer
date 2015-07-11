@@ -1268,35 +1268,63 @@
 <context>
     <name>MusicLocalSongSearchEdit</name>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="10"/>
-        <location filename="../musiclocalsongsearchedit.cpp" line="17"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="13"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="20"/>
         <source>please input search text</source>
         <translation>請輸入搜索內容</translation>
     </message>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="27"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="30"/>
         <source>Shear</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="28"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="31"/>
         <source>Copy</source>
         <translation>復制</translation>
     </message>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="29"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="32"/>
         <source>Paste</source>
         <translation>粘貼</translation>
     </message>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="30"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="33"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../musiclocalsongsearchedit.cpp" line="32"/>
+        <location filename="../localsearch/musiclocalsongsearchedit.cpp" line="35"/>
         <source>SelectAll</source>
         <translation>全選</translation>
+    </message>
+</context>
+<context>
+    <name>MusicLocalSongSearchPopWidget</name>
+    <message>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="55"/>
+        <source>clear</source>
+        <translation >清空曆史記錄</translation>
+    </message>
+    <message>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="93"/>
+        <source>ss</source>
+        <translation >秒前</translation>
+    </message>
+    <message>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="95"/>
+        <source>mm</source>
+        <translation >分鍾前</translation>
+    </message>
+    <message>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="97"/>
+        <source>hh</source>
+        <translation>小時前</translation>
+    </message>
+    <message>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="99"/>
+        <source>day</source>
+        <translation >天前</translation>
     </message>
 </context>
 <context>
@@ -2865,7 +2893,7 @@
     </message>
     <message>
         <location filename="../usermanager/musicuserdialog.cpp" line="218"/>
-        <location filename="../usermanager/musicuserdialog.cpp" line="224"/>
+        <location filename="../usermanager/musicuserdialog.cpp" line="225"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="243"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="249"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="257"/>
@@ -2880,14 +2908,14 @@
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicuserdialog.cpp" line="219"/>
+        <location filename="../usermanager/musicuserdialog.cpp" line="226"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="267"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="277"/>
         <source>You entered is incorrect</source>
         <translation>請按要求填寫！</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicuserdialog.cpp" line="225"/>
+        <location filename="../usermanager/musicuserdialog.cpp" line="219"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>用戶名不存在或密碼不正確！</translation>
     </message>
