@@ -38,6 +38,7 @@ public slots:
     void cellDoubleClicked(int,int);
 
 protected:
+    virtual void leaveEvent(QEvent *event);
     MusicLocalSongSearchPopTableWidget* m_popTableWidget;
     QPushButton *m_clearButton;
 

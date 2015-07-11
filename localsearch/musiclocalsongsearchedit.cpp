@@ -1,7 +1,6 @@
 #include "musiclocalsongsearchedit.h"
 #include "musiclocalsongsearchpopwidget.h"
 #include "core/musicobject.h"
-#include <QListWidget>
 #include <QMenu>
 #include <QDebug>
 
@@ -56,14 +55,6 @@ MusicLocalSongSearchInlineEdit::~MusicLocalSongSearchInlineEdit()
 
 }
 
-void MusicLocalSongSearchInlineEdit::focusInEvent(QFocusEvent *event)
-{
-    MusicLocalSongSearchEdit::focusInEvent(event);
-    m_popWidget->createItems();
-    m_popWidget->raise();
-    m_popWidget->show();
-}
-
 void MusicLocalSongSearchInlineEdit::focusOutEvent(QFocusEvent *event)
 {
     MusicLocalSongSearchEdit::focusOutEvent(event);
@@ -71,5 +62,16 @@ void MusicLocalSongSearchInlineEdit::focusOutEvent(QFocusEvent *event)
     {
         m_popWidget->lower();
         m_popWidget->hide();
+    }
+}
+
+void MusicLocalSongSearchInlineEdit::enterEvent(QEvent *event)
+{
+    QWidget::enterEvent(event);
+    if(text().trimmed().isEmpty())
+    {
+        m_popWidget->createItems();
+        m_popWidget->raise();
+        m_popWidget->show();
     }
 }

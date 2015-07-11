@@ -114,3 +114,10 @@ void MusicLocalSongSearchPopWidget::cellDoubleClicked(int row,int)
     lower();
     hide();
 }
+
+void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)
+{
+    QWidget::leaveEvent(event);
+    lower();
+    hide();
+}
