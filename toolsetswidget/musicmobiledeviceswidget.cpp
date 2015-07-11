@@ -27,7 +27,7 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     setPixmap(QPixmap(":/image/mobile"));
 
     m_closeButton = new QToolButton(this);
-    m_closeButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    m_closeButton->setIcon(QIcon(":/share/searchclosed"));
     m_closeButton->setStyleSheet(MusicObject::QToolButtonStyle);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_closeButton->setToolTip(tr("Close"));

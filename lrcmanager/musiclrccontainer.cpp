@@ -36,25 +36,25 @@ void MusicLrcContainer::searchMusicLrcs()
 
 void MusicLrcContainer::createColorMenu(QMenu& menu)
 {
-    menu.addAction(QIcon(QPixmap(":/color/origin")),
+    menu.addAction(QIcon(":/color/origin"),
                              tr("origin"),this,SLOT(changeCurrentLrcColorOrigin()));
-    menu.addAction(QIcon(QPixmap(":/color/red")),
+    menu.addAction(QIcon(":/color/red"),
                              tr("red"),this,SLOT(changeCurrentLrcColorRed()));
-    menu.addAction(QIcon(QPixmap(":/color/orange")),
+    menu.addAction(QIcon(":/color/orange"),
                              tr("orange"),this,SLOT(changeCurrentLrcColorOrange()));
-    menu.addAction(QIcon(QPixmap(":/color/yellow")),
+    menu.addAction(QIcon(":/color/yellow"),
                              tr("yellow"),this,SLOT(changeCurrentLrcColorYellow()));
-    menu.addAction(QIcon(QPixmap(":/color/green")),
+    menu.addAction(QIcon(":/color/green"),
                              tr("green"),this,SLOT(changeCurrentLrcColorGreen()));
-    menu.addAction(QIcon(QPixmap(":/color/blue")),
+    menu.addAction(QIcon(":/color/blue"),
                              tr("blue"),this,SLOT(changeCurrentLrcColorBlue()));
-    menu.addAction(QIcon(QPixmap(":/color/indigo")),
+    menu.addAction(QIcon(":/color/indigo"),
                              tr("indigo"),this,SLOT(changeCurrentLrcColorIndigo()));
-    menu.addAction(QIcon(QPixmap(":/color/purple")),
+    menu.addAction(QIcon(":/color/purple"),
                              tr("purple"),this,SLOT(changeCurrentLrcColorPurple()));
-    menu.addAction(QIcon(QPixmap(":/color/white")),
+    menu.addAction(QIcon(":/color/white"),
                              tr("white"),this,SLOT(changeCurrentLrcColorWhite()));
-    menu.addAction(QIcon(QPixmap(":/color/black")),
+    menu.addAction(QIcon(":/color/black"),
                              tr("black"),this,SLOT(changeCurrentLrcColorBlack()));
     menu.addSeparator();
     menu.addAction(tr("custom"),this,SLOT(currentLrcCustom()));

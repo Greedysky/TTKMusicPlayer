@@ -25,7 +25,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     //set window radius
 
     m_process = new QProcess(this);
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));

@@ -47,6 +47,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString& n
 MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
 {
+    setGeometry(484, 35, 0, 0);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -79,7 +80,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     QStringList names, times;
     search.readSearchConfig(names, times);
     int count = names.count();
-    setGeometry(484, 35, 285, count < 5 ? (20 + count*20) : 120 );
+    resize(285, count == 0 ? 40 : (count < 5 ? (20 + count*20) : 120) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)

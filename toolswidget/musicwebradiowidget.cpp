@@ -16,7 +16,7 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     setMask(bmp);
     //set window radius
 
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -25,10 +25,10 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     m_database = new MusicWebRadioDatabase;
     m_database->connectDatabase();
 
-    ui->playButton->setIcon(QIcon(QPixmap(":/image/play")));
-    ui->stopButton->setIcon(QIcon(QPixmap(":/image/stop")));
-    ui->colletButton->setIcon(QIcon(QPixmap(":/radio/collect")));
-    ui->discolletButton->setIcon(QIcon(QPixmap(":/radio/discollect")));
+    ui->playButton->setIcon(QIcon(":/image/play"));
+    ui->stopButton->setIcon(QIcon(":/image/stop"));
+    ui->colletButton->setIcon(QIcon(":/radio/collect"));
+    ui->discolletButton->setIcon(QIcon(":/radio/discollect"));
     ui->playButton->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->stopButton->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->colletButton->setStyleSheet(MusicObject::MusicSettingMainButton);

@@ -20,7 +20,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     setMask(bmp);
     //set window radius
 
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -62,7 +62,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox,SIGNAL(clicked(bool)),SLOT(selectedAllItems(bool)));
 
-    ui->scanButton->setIcon(QIcon(QPixmap(":/image/searchlocalfile")));
+    ui->scanButton->setIcon(QIcon(":/image/searchlocalfile"));
     ui->scanButton->setStyleSheet("QPushButton{ background:transparent;}"
                                   "QPushButton::hover{ border:1px solid #000000;}");
 

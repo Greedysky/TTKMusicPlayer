@@ -12,20 +12,20 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     setStyleSheet(MusicObject::MusicSystemTrayMenu);
     createWidgetActions();
     addAction(m_widgetAction);
-    m_showLrcAction = new QAction(QIcon(QPixmap(":/contextMenu/lrc")),tr("showDeskLrc"),this);
+    m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"),this);
     connect(m_showLrcAction,SIGNAL(triggered()),SLOT(showDesktopLrc()));
-    m_lockLrcAction = new QAction(QIcon(QPixmap(":/contextMenu/lock")),tr("lockLrc"),this);
+    m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"),tr("lockLrc"),this);
     connect(m_lockLrcAction,SIGNAL(triggered()),SIGNAL(setWindowLockedChanged()));
 
     addSeparator();
-    addAction(QIcon(QPixmap(":/contextMenu/window")),tr("showMainWindow"),parent,SLOT(showNormal()));
+    addAction(QIcon(":/contextMenu/window"),tr("showMainWindow"),parent,SLOT(showNormal()));
     addSeparator();
-    addAction(QIcon(QPixmap(":/contextMenu/setting")),tr("showSetting"),parent,SLOT(musicSetting()));
+    addAction(QIcon(":/contextMenu/setting"),tr("showSetting"),parent,SLOT(musicSetting()));
     addAction(m_showLrcAction);
     addSeparator();
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(QPixmap(":/contextMenu/quit")),tr("appClose"),parent,SLOT(quitWindowClose()));
+    addAction(QIcon(":/contextMenu/quit"),tr("appClose"),parent,SLOT(quitWindowClose()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
@@ -109,8 +109,8 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status)
 {
-    m_PlayOrStop->setIcon(!status ? QIcon(QPixmap(QString::fromUtf8(":/image/stop")))
-                                  : QIcon(QPixmap(QString::fromUtf8(":/image/play"))) );
+    m_PlayOrStop->setIcon(!status ? QIcon(QString::fromUtf8(":/image/stop"))
+                                  : QIcon(QString::fromUtf8(":/image/play")) );
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()

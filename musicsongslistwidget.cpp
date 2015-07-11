@@ -86,7 +86,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu musicPlaybackMode(tr("playbackMode"),&rightClickMenu);
     rightClickMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     rightClickMenu.addAction(tr("changSongName"),this,SLOT(setChangSongName()));
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/play")),tr("musicPlay"),this,SLOT(musicPlay()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/play"),tr("musicPlay"),this,SLOT(musicPlay()));
 
     rightClickMenu.addMenu(&musicPlaybackMode);
     QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"),this,SIGNAL(musicPlayOrder()));
@@ -94,17 +94,17 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"),this,SIGNAL(musicPlayListLoop()));
     QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"),this,SIGNAL(musicPlayOneLoop()));
     QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"),this,SIGNAL(musicPlayItemOnce()));
-    (m_songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(QPixmap(":/share/selected"))) : order->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(QPixmap(":/share/selected"))) : random->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(QPixmap(":/share/selected"))) : lCycle->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(QPixmap(":/share/selected"))) : sCycle->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(QPixmap(":/share/selected"))) : once->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/share/selected")) : order->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/share/selected")) : random->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/share/selected")) : lCycle->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/share/selected")) : sCycle->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/share/selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/love")),tr("addToLove"),this,SLOT(addMusicSongToLovestListAt()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/love"),tr("addToLove"),this,SLOT(addMusicSongToLovestListAt()));
 
     QMenu musicAddNewFiles(tr("addNewFiles"),&rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(QPixmap(":/contextMenu/add")));
+    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
     musicAddNewFiles.addAction(tr("openOnlyFiles"),this,SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"),this,SIGNAL(musicAddNewDir()));
 
@@ -116,7 +116,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
 
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/delete")),tr("delete"),this,SLOT(setDeleteItemAt()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/delete"),tr("delete"),this,SLOT(setDeleteItemAt()));
     rightClickMenu.addAction(tr("deleteWithFile"),this,SLOT(setDeleteItemWithFile()));
     rightClickMenu.addAction(tr("deleteAll"),this,SLOT(setDeleteItemAll()));
     rightClickMenu.exec(QCursor::pos());

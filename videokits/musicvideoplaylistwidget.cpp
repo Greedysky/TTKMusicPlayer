@@ -19,7 +19,7 @@ MusicVideoPlayListWidget::MusicVideoPlayListWidget(QWidget *parent) : QWidget(pa
     m_barWidget->setStyleSheet("background:rgba(120,20,255,120)");
     m_closeButton = new QPushButton(this);
     m_closeButton->setGeometry(310,0,20,20);
-    m_closeButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    m_closeButton->setIcon(QIcon(":/share/searchclosed"));
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_closeButton->setToolTip(tr("close"));
     m_closeButton->setStyleSheet("background:transparent");

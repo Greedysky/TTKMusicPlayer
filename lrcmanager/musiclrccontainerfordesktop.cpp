@@ -120,11 +120,11 @@ void MusicLrcContainerForDesktop::setButtonIcon()
     m_toolLrcBigerButton->setIcon(QIcon(QPixmap(":/desktopTool/lrcsizeUp").scaled(30,30)));
     m_toolLrcSmallerButton->setIcon(QIcon(QPixmap(":/desktopTool/lrcsizeDown").scaled(30,30)));
     m_toolUpdateLrcButton->setIcon(QIcon(QPixmap(":/desktopTool/updateLrc").scaled(30,30)));
-    m_toolPreSongButton->setIcon(QIcon(QPixmap(":/desktopTool/previous")));
-    m_toolNextSongButton->setIcon(QIcon(QPixmap(":/desktopTool/next")));
-    m_toolPlayButton->setIcon(QIcon(QPixmap(":/desktopTool/play")));
-    m_toolSettingButton->setIcon(QIcon(QPixmap(":/desktopTool/setting")));
-    m_showMainWindow->setIcon(QIcon(QPixmap(":/image/windowicon")));
+    m_toolPreSongButton->setIcon(QIcon(":/desktopTool/previous"));
+    m_toolNextSongButton->setIcon(QIcon(":/desktopTool/next"));
+    m_toolPlayButton->setIcon(QIcon(":/desktopTool/play"));
+    m_toolSettingButton->setIcon(QIcon(":/desktopTool/setting"));
+    m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
 }
 
 void MusicLrcContainerForDesktop::setButtonCursor()
@@ -301,7 +301,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("hide"), this, SLOT(close()));
-    menu.addAction(QIcon(QPixmap(":/contextMenu/lock")),tr("lockLrc"),this,SLOT(setWindowLockedChanged()));
+    menu.addAction(QIcon(":/contextMenu/lock"),tr("lockLrc"),this,SLOT(setWindowLockedChanged()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addMenu(&changColorMenu);
 
@@ -328,6 +328,6 @@ void MusicLrcContainerForDesktop::setSettingParameter()
 
 void MusicLrcContainerForDesktop::showPlayStatus(bool status)
 {
-    m_toolPlayButton->setIcon(!status ? QIcon(QPixmap(QString::fromUtf8(":/desktopTool/stop")))
-                                      : QIcon(QPixmap(QString::fromUtf8(":/desktopTool/play"))) );
+    m_toolPlayButton->setIcon(!status ? QIcon(QString::fromUtf8(":/desktopTool/stop"))
+                                      : QIcon(QString::fromUtf8(":/desktopTool/play")) );
 }

@@ -16,7 +16,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     setMask(bmp);
     //set window radius
 
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -26,9 +26,9 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     connect(ui->timerToStop,SIGNAL(clicked()),SLOT(changeSecondWidget()));
     connect(ui->timerToShutdown,SIGNAL(clicked()),SLOT(changeThreeWidget()));
 
-    ui->timerToPlay->setIcon(QIcon(QPixmap(":/control/timerPlay")));
-    ui->timerToStop->setIcon(QIcon(QPixmap(":/control/timerStop")));
-    ui->timerToShutdown->setIcon(QIcon(QPixmap(":/control/timerDown")));
+    ui->timerToPlay->setIcon(QIcon(":/control/timerPlay"));
+    ui->timerToStop->setIcon(QIcon(":/control/timerStop"));
+    ui->timerToShutdown->setIcon(QIcon(":/control/timerDown"));
     ui->timerToPlay->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->timerToStop->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->timerToShutdown->setStyleSheet(MusicObject::MusicSettingMainButton);

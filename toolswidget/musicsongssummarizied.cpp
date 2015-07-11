@@ -217,8 +217,8 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
     menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    menu.addAction(QIcon(QPixmap(":/contextMenu/delete")),tr("deleteItem"), this, SLOT(deleteItem()));
-    menu.addAction(QIcon(QPixmap(":/contextMenu/add")),tr("addNewItem"), this, SLOT(addNewItem()));
+    menu.addAction(QIcon(":/contextMenu/delete"),tr("deleteItem"), this, SLOT(deleteItem()));
+    menu.addAction(QIcon(":/contextMenu/add"),tr("addNewItem"), this, SLOT(addNewItem()));
     menu.addAction(tr("changItemName"), this, SLOT(changItemName()));
     menu.exec(event->globalPos());
 }
@@ -227,9 +227,9 @@ void MusicSongsSummarizied::changeItemIcon()
 {
     for(int i=0; i<count(); ++i)
     {
-        setItemIcon(i,QIcon(QPixmap(":/image/arrowup")));
+        setItemIcon(i,QIcon(":/image/arrowup"));
     }
-    setItemIcon(currentIndex(),QIcon(QPixmap(":/image/arrowdown")));
+    setItemIcon(currentIndex(),QIcon(":/image/arrowdown"));
 }
 
 void MusicSongsSummarizied::currentTextChanged(int index,const QString& text)

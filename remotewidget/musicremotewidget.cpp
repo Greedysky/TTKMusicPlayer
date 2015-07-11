@@ -17,11 +17,11 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
 
     m_showMainWindow->setStyleSheet("QPushButton{background:transparent;border-none;}\
                                      QPushButton::hover{image:url(:/image/shadow);}");
-    m_showMainWindow->setIcon(QIcon(QPixmap(":/image/windowicon")));
-    m_PreSongButton->setIcon(QIcon(QPixmap(":/desktopTool/previousP")));
-    m_NextSongButton->setIcon(QIcon(QPixmap(":/desktopTool/nextP")));
-    m_PlayButton->setIcon(QIcon(QPixmap(":/desktopTool/play")));
-    m_SettingButton->setIcon(QIcon(QPixmap(":/desktopTool/setting")));
+    m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
+    m_PreSongButton->setIcon(QIcon(":/desktopTool/previousP"));
+    m_NextSongButton->setIcon(QIcon(":/desktopTool/nextP"));
+    m_PlayButton->setIcon(QIcon(":/desktopTool/play"));
+    m_SettingButton->setIcon(QIcon(":/desktopTool/setting"));
     m_showMainWindow->setToolTip(tr("showMainWindow"));
     m_PreSongButton->setToolTip(tr("Privious"));
     m_NextSongButton->setToolTip(tr("Next"));
@@ -73,7 +73,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicObject::MusicRemoteControlMenu);
-    menu.addAction(QIcon(QPixmap(":/share/selected")),tr("WindowTop"))->setEnabled(false);
+    menu.addAction(QIcon(":/share/selected"),tr("WindowTop"))->setEnabled(false);
     menu.addSeparator();
     menu.addAction(tr("showMainWindow"),this,SIGNAL(musicWindowSignal()));
     menu.addAction(tr("quit"),this,SLOT(close()));
@@ -89,8 +89,8 @@ void MusicRemoteWidget::paintEvent(QPaintEvent* event)
 
 void MusicRemoteWidget::showPlayStatus(bool status)
 {
-    m_PlayButton->setIcon(!status ? QIcon(QPixmap(QString::fromUtf8(":/desktopTool/stop")))
-                                  : QIcon(QPixmap(QString::fromUtf8(":/desktopTool/play"))) );
+    m_PlayButton->setIcon(!status ? QIcon(QString::fromUtf8(":/desktopTool/stop"))
+                                  : QIcon(QString::fromUtf8(":/desktopTool/play")) );
 }
 
 

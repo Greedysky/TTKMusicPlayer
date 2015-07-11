@@ -19,7 +19,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
     setMask(bmp);
     //set window radius
 
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));

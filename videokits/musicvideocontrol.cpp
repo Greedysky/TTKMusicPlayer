@@ -23,11 +23,11 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_volumnSlider->setRange(0,100);
     m_volumnSlider->setValue(100);
 
-    m_playButton->setIcon(QIcon(QPixmap(":/video/play")));
-    m_playNext->setIcon(QIcon(QPixmap(":/video/next")));
-    m_playPrivious->setIcon(QIcon(QPixmap(":/video/privious")));
-    m_volumnButton->setIcon(QIcon(QPixmap(":/video/volumn")));
-    m_menuButton->setIcon(QIcon(QPixmap(":/video/menu")));
+    m_playButton->setIcon(QIcon(":/video/play"));
+    m_playNext->setIcon(QIcon(":/video/next"));
+    m_playPrivious->setIcon(QIcon(":/video/privious"));
+    m_volumnButton->setIcon(QIcon(":/video/volumn"));
+    m_menuButton->setIcon(QIcon(":/video/menu"));
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_playNext->setCursor(QCursor(Qt::PointingHandCursor));
@@ -103,9 +103,9 @@ void MusicVideoControl::durationChanged(qint64 duration)
 void MusicVideoControl::setButtonStyle(bool style)
 {
     if(style)
-        m_playButton->setIcon(QIcon(QPixmap(":/video/play")));
+        m_playButton->setIcon(QIcon(":/video/play"));
     else
-        m_playButton->setIcon(QIcon(QPixmap(":/video/pause")));
+        m_playButton->setIcon(QIcon(":/video/pause"));
 }
 
 void MusicVideoControl::openFile()

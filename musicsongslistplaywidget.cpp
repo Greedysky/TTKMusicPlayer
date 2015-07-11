@@ -3,9 +3,8 @@
 #include "musicsongstoolitemrenamedwidget.h"
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
-            : QWidget(parent),m_renameLine(NULL)
+    : QWidget(parent),m_renameLine(NULL)
 {
-//    setStyleSheet("background-color:rgba(0,0,0,100)");
     QPalette pal = palette();
     pal.setBrush(QPalette::Base,QBrush(QColor(0,0,0,100)));
     setPalette(pal);
@@ -35,17 +34,19 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_columnThree = new QWidget(this);
     m_columnThree->setStyleSheet("background:rgba(0,0,0,100)");
 
+    const QString pushButtonStyle = "QPushButton{background-color:transparent;}\
+                             QPushButton::hover{image:url(:/image/shadow);border:none;}";
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(170,35,23,23);
-    m_loveButton->setStyleSheet("background:transparent;");
-    m_loveButton->setIcon(QIcon(QPixmap(":/image/bestlove")));
+    m_loveButton->setGeometry(161,35,23,23);
+    m_loveButton->setStyleSheet( pushButtonStyle );
+    m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
 
     m_addButton = new QToolButton(this);
-    m_addButton->setGeometry(198,35,23,23);
-    m_addButton->setStyleSheet("background:transparent;");
-    m_addButton->setIcon(QIcon(QPixmap(":/image/addtoplaylist")));
+    m_addButton->setGeometry(184,35,23,23);
+    m_addButton->setStyleSheet( MusicObject::MusicBestLoveToolButtonStyle );
+    m_addButton->setIcon(QIcon(":/image/addtoplaylist"));
     m_addButton->setIconSize(QSize(23,23));
     m_addButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_addButton->setToolTip(tr("addToPlayList"));
@@ -56,11 +57,25 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_listMenu.addAction(tr("myNetSongItem")/*,parent,SLOT(addMusicSongToLovestListAt())*/);
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(225,35,23,23);
-    m_deleteButton->setStyleSheet("background:transparent;");
-    m_deleteButton->setIcon(QIcon(QPixmap(":/image/musicdelete")));
+    m_deleteButton->setGeometry(207,35,23,23);
+    m_deleteButton->setStyleSheet( pushButtonStyle );
+    m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
+
+    m_showMVButton = new QPushButton(this);
+    m_showMVButton->setGeometry(230,35,23,23);
+    m_showMVButton->setStyleSheet( pushButtonStyle );
+    m_showMVButton->setIcon(QIcon(":/image/showMV"));
+    m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_showMVButton->setToolTip(tr("showMV"));
+
+    m_songShareButton = new QPushButton(this);
+    m_songShareButton->setGeometry(230,7,23,23);
+    m_songShareButton->setStyleSheet( pushButtonStyle );
+    m_songShareButton->setIcon(QIcon(":/image/songShare"));
+    m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_songShareButton->setToolTip(tr("songShare"));
 
     connect(m_loveButton,SIGNAL(clicked()),parent,SLOT(addMusicSongToLovestListAt()));
     connect(m_deleteButton,SIGNAL(clicked()),parent,SLOT(setDeleteItemAt()));
@@ -78,6 +93,8 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_loveButton;
     delete m_deleteButton;
     delete m_addButton;
+    delete m_showMVButton;
+    delete m_songShareButton;
 }
 
 void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two)
@@ -108,7 +125,7 @@ void MusicSongsListPlayWidget::setParameter(const QString& name,const QString& p
     {
         m_totalTime = "/" + info.getLengthString();
     }
-    m_songName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 185));
+    m_songName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 160));
     m_timeLabel->setText("00:00" + m_totalTime);
 
     if(!showArtPicture(name.split('-').front().trimmed()) &&

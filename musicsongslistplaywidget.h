@@ -39,6 +39,8 @@ protected:
     QWidget *m_columnThree;
     QPushButton *m_loveButton;
     QPushButton *m_deleteButton;
+    QPushButton *m_showMVButton;
+    QPushButton *m_songShareButton;
     QToolButton *m_addButton;
     QMenu m_listMenu;
     MusicSongsToolItemRenamedWidget *m_renameLine;

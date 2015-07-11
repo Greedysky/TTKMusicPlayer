@@ -44,6 +44,8 @@
         <file alias="flash">../resource/music_flash.png</file>
         <file alias="concisein">../resource/music_concise_in.png</file>
         <file alias="conciseout">../resource/music_concise_out.png</file>
+        <file alias="showMV">../resource/music_showMV.png</file>
+        <file alias="songShare">../resource/music_songShare.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../resource/color/Black.png</file>

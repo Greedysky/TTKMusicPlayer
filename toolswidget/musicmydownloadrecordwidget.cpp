@@ -62,10 +62,10 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     QTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/play")),tr("musicPlay"),this,SLOT(musicPlay()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/play"),tr("musicPlay"),this,SLOT(musicPlay()));
     rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/delete")),tr("delete"),this,SLOT(setDeleteItemAt()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/delete"),tr("delete"),this,SLOT(setDeleteItemAt()));
     rightClickMenu.addAction(tr("deleteAll"),this,SLOT(setDeleteItemAll()));
     rightClickMenu.exec(QCursor::pos());
 //    //Menu location for the current mouse position

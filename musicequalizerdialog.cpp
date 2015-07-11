@@ -16,7 +16,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     setMask(bmp);
     //set window radius
 
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -102,7 +102,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
                   <<tr("Electronics"));
     connect(ui->eqChoice,SIGNAL(currentIndexChanged(int)),SLOT(eqChoiceIndexChanged(int)));
 
-    ui->showEqButton->setIcon(QIcon(QPixmap(":/equalizer/off")));
+    ui->showEqButton->setIcon(QIcon(":/equalizer/off"));
 
     initEqualizeValue();
     readEqInformation();
@@ -250,9 +250,9 @@ void MusicEqualizerDialog::setEqEnable()
     ui->eqLabel->clear();
 
     if(!m_eable)
-        ui->showEqButton->setIcon(QIcon(QPixmap(":/equalizer/off")));
+        ui->showEqButton->setIcon(QIcon(":/equalizer/off"));
     else
-        ui->showEqButton->setIcon(QIcon(QPixmap(":/equalizer/on")));
+        ui->showEqButton->setIcon(QIcon(":/equalizer/on"));
 
     setControlEnable(!m_eable);
     emitParameter();

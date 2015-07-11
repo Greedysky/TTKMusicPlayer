@@ -183,7 +183,7 @@
     <rect>
      <x>40</x>
      <y>160</y>
-     <width>330</width>
+     <width>331</width>
      <height>421</height>
     </rect>
    </property>
@@ -192,7 +192,7 @@
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>560</y>
+     <y>554</y>
      <width>521</width>
      <height>31</height>
     </rect>
@@ -376,7 +376,7 @@
      <x>390</x>
      <y>100</y>
      <width>521</width>
-     <height>461</height>
+     <height>455</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -732,6 +732,22 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="musicWindowSpace_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>581</y>
+     <width>951</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(0,0,0,30)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <action name="action_About">
    <property name="text">
     <string>关于天天酷音(&amp;A)</string>
@@ -928,17 +944,12 @@
   <zorder>minimization</zorder>
   <zorder>musicPrivious</zorder>
   <zorder>musicNext</zorder>
-  <zorder>menuSetting</zorder>
   <zorder>musicKey</zorder>
   <zorder>musicSound</zorder>
   <zorder>musicSoundSlider</zorder>
   <zorder>volumeValue</zorder>
   <zorder>songsContainer</zorder>
   <zorder>showCurrentSong</zorder>
-  <zorder>musicSetting</zorder>
-  <zorder>musicImport</zorder>
-  <zorder>musicSearch</zorder>
-  <zorder>musicCurrentLocation</zorder>
   <zorder>musicWindowTitle</zorder>
   <zorder>musicWindowIcon</zorder>
   <zorder>musicWindowSpace</zorder>
@@ -969,6 +980,12 @@
   <zorder>musicPlayMode</zorder>
   <zorder>line</zorder>
   <zorder>musicWindowConcise</zorder>
+  <zorder>musicWindowSpace_2</zorder>
+  <zorder>musicSetting</zorder>
+  <zorder>menuSetting</zorder>
+  <zorder>musicCurrentLocation</zorder>
+  <zorder>musicImport</zorder>
+  <zorder>musicSearch</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

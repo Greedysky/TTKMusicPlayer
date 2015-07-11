@@ -21,7 +21,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
 
     ////////////////////////////////////////////////
     m_leftButtonPress = false;
-    ui->topTitleCloseButton->setIcon(QIcon(QPixmap(":/share/searchclosed")));
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -84,10 +84,10 @@ void MusicSettingWidget::initInlineLrcWidget()
     connect(ui->fontDefalutColorComboBox,SIGNAL(currentIndexChanged(int)),SLOT(defaultLrcColorChanged(int)));
 
     ui->transparentSlider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
-    ui->noPlayedPushButton->setIcon(QIcon(QPixmap(":/color/purple")));
+    ui->noPlayedPushButton->setIcon(QIcon(":/color/purple"));
     ui->noPlayedPushButton->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->noPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->playedPushButton->setIcon(QIcon(QPixmap(":/color/purple")));
+    ui->playedPushButton->setIcon(QIcon(":/color/purple"));
     ui->playedPushButton->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->playedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButton,SIGNAL(clicked()),SLOT(inlineLrcBgChanged()));
@@ -120,10 +120,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(ui->fontDefalutColorComboBoxD,SIGNAL(currentIndexChanged(int)),SLOT(defaultDesktopLrcColorChanged(int)));
 
     ui->transparentSliderD->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
-    ui->noPlayedPushButtonD->setIcon(QIcon(QPixmap(":/color/purple")));
+    ui->noPlayedPushButtonD->setIcon(QIcon(":/color/purple"));
     ui->noPlayedPushButtonD->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->noPlayedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->playedPushButtonD->setIcon(QIcon(QPixmap(":/color/purple")));
+    ui->playedPushButtonD->setIcon(QIcon(":/color/purple"));
     ui->playedPushButtonD->setStyleSheet(MusicObject::MusicSettingMainButton);
     ui->playedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButtonD,SIGNAL(clicked()),SLOT(desktopBgChanged()));

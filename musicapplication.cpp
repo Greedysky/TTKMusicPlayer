@@ -244,11 +244,11 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/login")),tr("logout"),m_msuicUserWindow,SLOT(musicUserContextLogin()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/login"),tr("logout"),m_msuicUserWindow,SLOT(musicUserContextLogin()));
     rightClickMenu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"),&rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(QPixmap(":/contextMenu/add")));
+    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
     musicAddNewFiles.addAction(tr("openOnlyFiles"),this,SLOT(musicImportSongsOnlyFile()));
     musicAddNewFiles.addAction(tr("openOnlyDir"),this,SLOT(musicImportSongsOnlyDir()));
 
@@ -258,32 +258,32 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"),&rightClickMenu);
-    rightClickMenu.addMenu(&musicRemoteControl)->setIcon(QIcon(QPixmap(":/contextMenu/remote")));
+    rightClickMenu.addMenu(&musicRemoteControl)->setIcon(QIcon(":/contextMenu/remote"));
     musicRemoteControl.addAction(tr("SquareRemote"),this,SLOT(musicSquareRemote()));
     musicRemoteControl.addAction(tr("RectangleRemote"),this,SLOT(musicRectangleRemote()));
     musicRemoteControl.addAction(tr("DiamondRemote"),this,SLOT(musicDiamondRemote()));
     musicRemoteControl.addAction(tr("CircleRemote"),this,SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"),this,SLOT(musicDeleteRemote()));
 
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/equalizer")),tr("Equalizer"),this,SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"),tr("Equalizer"),this,SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"),this,SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"),this,SLOT(musicTimerWidget()));
     rightClickMenu.addAction(tr("ShowingSpectrum"),this,SLOT(musicSpectrumWidget()));
     rightClickMenu.addSeparator();
 
     QAction *window = rightClickMenu.addAction(tr("WindowTop"),this,SLOT(musicSetWindowToTop()));
-    m_setWindowToTop ? window->setIcon(QIcon(QPixmap(":/share/selected"))) : window->setIcon(QIcon());
+    m_setWindowToTop ? window->setIcon(QIcon(":/share/selected")) : window->setIcon(QIcon());
 
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/setting")),tr("Setting"),this,SLOT(musicSetting()));
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/location")),tr("musicLocation"),this,SLOT(musicCurrentPlayLocation()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/setting"),tr("Setting"),this,SLOT(musicSetting()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/location"),tr("musicLocation"),this,SLOT(musicCurrentPlayLocation()));
 
     QMenu musicInfo(tr("musicAbout"),&rightClickMenu);
-    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(QPixmap(":/contextMenu/about")));
-    musicInfo.addAction(QIcon(QPixmap(":/contextMenu/about")),tr("musicAbout"),this,SLOT(musicAboutUs()));
-    musicInfo.addAction(QIcon(QPixmap(":/contextMenu/edition")), QMUSICPLAYER_VERSION);
+    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
+    musicInfo.addAction(QIcon(":/contextMenu/about"),tr("musicAbout"),this,SLOT(musicAboutUs()));
+    musicInfo.addAction(QIcon(":/contextMenu/edition"), QMUSICPLAYER_VERSION);
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(QPixmap(":/contextMenu/quit")),tr("quit"),this,SLOT(quitWindowClose()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/quit"),tr("quit"),this,SLOT(quitWindowClose()));
     rightClickMenu.exec(QCursor::pos());
 }
 
@@ -516,11 +516,11 @@ void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
 {
     QList<QAction*> as = menu.actions();
     MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
-    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[0]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[1]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[2]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[3]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(QPixmap(":/share/selected"))) : as[4]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(":/share/selected")) : as[0]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(":/share/selected")) : as[1]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(":/share/selected")) : as[2]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(":/share/selected")) : as[3]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(":/share/selected")) : as[4]->setIcon(QIcon());
 }
 
 void MusicApplication::createPlayModeMenu(QMenu& menu)
@@ -776,7 +776,7 @@ void MusicApplication::showCurrentSong(int index)
     }
     else
     {
-        ui->musicKey->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/play"))));
+        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
         m_playControl = true;
         m_musicPlayer->stop();
         if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
@@ -795,7 +795,7 @@ void MusicApplication::showCurrentSong(int index)
 void MusicApplication::stateChanged()
 {
     m_playControl = true;
-    ui->musicKey->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/play"))));
+    ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
 }
 
 void MusicApplication::musicKey()
@@ -804,7 +804,7 @@ void MusicApplication::musicKey()
       return;//The playlist is not performing space-time
     if(m_playControl)
     {
-      ui->musicKey->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/stop"))));
+      ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
       m_playControl = false;
       m_musicPlayer->play();
       if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
@@ -816,7 +816,7 @@ void MusicApplication::musicKey()
     }
     else
     {
-      ui->musicKey->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/play"))));
+      ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
       m_playControl = true;
       m_musicPlayer->pause();
       if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||

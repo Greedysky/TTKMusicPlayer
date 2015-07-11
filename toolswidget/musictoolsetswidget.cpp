@@ -54,31 +54,31 @@ void MusicToolSetsWidget::clearAllItems()
 
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(QPixmap(":/tools/localmanager"))
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/localmanager")
                                                 ,tr("localmanager"),this);
     item->setSizeHint(QSize(80,90));
     addItem(item);
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon(QPixmap(":/tools/recorder"))
+    QListWidgetItem *item1 = new QListWidgetItem(QIcon(":/tools/recorder")
                                                 ,tr("recorder"),this);
     item1->setSizeHint(QSize(80,90));
     addItem(item1);
-    QListWidgetItem *item2 = new QListWidgetItem(QIcon(QPixmap(":/tools/bell"))
+    QListWidgetItem *item2 = new QListWidgetItem(QIcon(":/tools/bell")
                                                 ,tr("bell"),this);
     item2->setSizeHint(QSize(80,90));
     addItem(item2);
-    QListWidgetItem *item3 = new QListWidgetItem(QIcon(QPixmap(":/tools/timer"))
+    QListWidgetItem *item3 = new QListWidgetItem(QIcon(":/tools/timer")
                                                 ,tr("timer"),this);
     item3->setSizeHint(QSize(80,90));
     addItem(item3);
-    QListWidgetItem *item4 = new QListWidgetItem(QIcon(QPixmap(":/tools/transform"))
+    QListWidgetItem *item4 = new QListWidgetItem(QIcon(":/tools/transform")
                                                 ,tr("transform"),this);
     item4->setSizeHint(QSize(80,90));
     addItem(item4);
-    QListWidgetItem *item5 = new QListWidgetItem(QIcon(QPixmap(":/tools/spectrum"))
+    QListWidgetItem *item5 = new QListWidgetItem(QIcon(":/tools/spectrum")
                                                 ,tr("spectrum"),this);
     item5->setSizeHint(QSize(80,90));
     addItem(item5);
-    QListWidgetItem *item6 = new QListWidgetItem(QIcon(QPixmap(":/tools/wallpaper"))
+    QListWidgetItem *item6 = new QListWidgetItem(QIcon(":/tools/wallpaper")
                                                 ,tr("wallpaper"),this);
     item6->setSizeHint(QSize(80,90));
     addItem(item6);
