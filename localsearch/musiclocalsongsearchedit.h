@@ -33,7 +33,6 @@ signals:
 public slots:
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event);
     virtual void focusOutEvent(QFocusEvent *event);
     virtual void enterEvent(QEvent *event);
     MusicLocalSongSearchPopWidget *m_popWidget;
