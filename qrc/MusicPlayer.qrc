@@ -101,6 +101,14 @@
         <file alias="transform">../resource/tools/transform.png</file>
         <file alias="spectrum">../resource/tools/spectrum.png</file>
         <file alias="wallpaper">../resource/tools/wallpaper.png</file>
+        <file alias="phone">../resource/tools/phone.png</file>
+        <file alias="vip">../resource/tools/vip.png</file>
+        <file alias="live">../resource/tools/live.png</file>
+        <file alias="ktv">../resource/tools/ktv.png</file>
+        <file alias="speed">../resource/tools/speed.png</file>
+        <file alias="game">../resource/tools/game.png</file>
+        <file alias="lottery">../resource/tools/lottery.png</file>
+        <file alias="radio">../resource/tools/radio.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="about">../resource/contextMenu/context_about.png</file>

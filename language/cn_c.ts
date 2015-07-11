@@ -2248,7 +2248,7 @@
     <message>
         <location filename="../musicsongslistplaywidget.cpp" line="78"/>
         <source>songShare</source>
-        <translation >分享</translation>
+        <translation>分享</translation>
     </message>
 </context>
 <context>
@@ -2693,6 +2693,46 @@
         <location filename="../toolswidget/musictoolsetswidget.cpp" line="82"/>
         <source>wallpaper</source>
         <translation>桌面壁紙</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="86"/>
+        <source>ktv</source>
+        <translation>KTV</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="90"/>
+        <source>live</source>
+        <translation>直播</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="94"/>
+        <source>game</source>
+        <translation>遊戲</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="98"/>
+        <source>lottery</source>
+        <translation>股票</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="102"/>
+        <source>phone</source>
+        <translation >傳歌到手機</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="106"/>
+        <source>radio</source>
+        <translation>收音機</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="110"/>
+        <source>speed</source>
+        <translation >測量網速</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="114"/>
+        <source>vip</source>
+        <translation>會員</translation>
     </message>
 </context>
 <context>

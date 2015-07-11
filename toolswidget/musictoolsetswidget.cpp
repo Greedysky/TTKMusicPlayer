@@ -8,9 +8,9 @@
 #include "../toolsetswidget/musicdesktopwallpaperwidget.h"
 #include <QProcess>
 
-MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent) :
-        QListWidget(parent),m_parentWidget(parent),m_process(NULL),
-        m_musicSpectrumWidget(NULL),m_wallpaper(NULL)
+MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent)
+    : QListWidget(parent),m_parentWidget(parent),m_process(NULL),
+      m_musicSpectrumWidget(NULL),m_wallpaper(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -58,30 +58,63 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("localmanager"),this);
     item->setSizeHint(QSize(80,90));
     addItem(item);
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon(":/tools/recorder")
+                     item = new QListWidgetItem(QIcon(":/tools/recorder")
                                                 ,tr("recorder"),this);
-    item1->setSizeHint(QSize(80,90));
-    addItem(item1);
-    QListWidgetItem *item2 = new QListWidgetItem(QIcon(":/tools/bell")
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/bell")
                                                 ,tr("bell"),this);
-    item2->setSizeHint(QSize(80,90));
-    addItem(item2);
-    QListWidgetItem *item3 = new QListWidgetItem(QIcon(":/tools/timer")
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/timer")
                                                 ,tr("timer"),this);
-    item3->setSizeHint(QSize(80,90));
-    addItem(item3);
-    QListWidgetItem *item4 = new QListWidgetItem(QIcon(":/tools/transform")
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/transform")
                                                 ,tr("transform"),this);
-    item4->setSizeHint(QSize(80,90));
-    addItem(item4);
-    QListWidgetItem *item5 = new QListWidgetItem(QIcon(":/tools/spectrum")
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/spectrum")
                                                 ,tr("spectrum"),this);
-    item5->setSizeHint(QSize(80,90));
-    addItem(item5);
-    QListWidgetItem *item6 = new QListWidgetItem(QIcon(":/tools/wallpaper")
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/wallpaper")
                                                 ,tr("wallpaper"),this);
-    item6->setSizeHint(QSize(80,90));
-    addItem(item6);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/ktv")
+                                                    ,tr("ktv"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/live")
+                                                ,tr("live"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/game")
+                                                ,tr("game"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lottery")
+                                                ,tr("lottery"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/phone")
+                                                ,tr("phone"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/radio")
+                                                ,tr("radio"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/speed")
+                                                ,tr("speed"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/vip")
+                                                ,tr("vip"),this);
+    item->setSizeHint(QSize(80,90));
+    addItem(item);
+
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)

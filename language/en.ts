@@ -2694,6 +2694,46 @@
         <source>wallpaper</source>
         <translation>Wallpaper</translation>
     </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="86"/>
+        <source>ktv</source>
+        <translation>KTV</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="90"/>
+        <source>live</source>
+        <translation>Live</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="94"/>
+        <source>game</source>
+        <translation>Game</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="98"/>
+        <source>lottery</source>
+        <translation>Lottery</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="102"/>
+        <source>phone</source>
+        <translation>Phone</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="106"/>
+        <source>radio</source>
+        <translation>Radio</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="110"/>
+        <source>speed</source>
+        <translation>Speed</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musictoolsetswidget.cpp" line="114"/>
+        <source>vip</source>
+        <translation>Vip</translation>
+    </message>
 </context>
 <context>
     <name>MusicTransformWidget</name>
