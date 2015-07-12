@@ -13,6 +13,7 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
     headerview->resizeSection(0,210);
     headerview->resizeSection(1,62);
     setTransparent(255);
+    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
 }
 
 MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
@@ -39,7 +40,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString& n
 
     QTableWidgetItem *item1 = new QTableWidgetItem(time);
     item1->setTextColor(QColor(50,50,50));
-    item1->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item1->setTextAlignment(Qt::AlignCenter);
     setItem(index, 1, item1);
 }
 

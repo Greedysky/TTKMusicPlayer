@@ -26,21 +26,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->songlistsTable->setFont(QFont("Helvetica"));
-    ui->songlistsTable->setShowGrid(false);//Does not display the grid
-    ui->songlistsTable->setMouseTracking(true);  //Open the capture mouse function
-    ui->songlistsTable->setStyleSheet("QTableWidget{ background:rgba(0,0,0,10);  \
-                         selection-background-color: rgba(20,20,20,100);}" + \
-                         MusicObject::MusicScrollBarStyle + \
-                         MusicObject::MusicListEditStyle );
-    //Set the color of selected row
-    ui->songlistsTable->setFrameShape(QFrame::NoFrame);//Set No Border
-    ui->songlistsTable->setEditTriggers(QTableWidget::NoEditTriggers);//No edit
-    ui->songlistsTable->setSelectionBehavior(QTableWidget::SelectRows);
-    //Multi-line election
-    ui->songlistsTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //Only select one row
-    ui->songlistsTable->setFocusPolicy(Qt::NoFocus);
     ui->toolWidget->setStyleSheet("#toolWidget{background:rgba(0,0,0,35)}");
 
     ui->allSelectedcheckBox->setStyleSheet("\
@@ -79,6 +64,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(ui->addButton,SIGNAL(clicked()),SLOT(addButtonClick()));
     connect(ui->songlistsTable,SIGNAL(cellClicked(int,int)),SLOT(itemCellOnClick(int,int)));
     connect(ui->songlistsTable,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
+    connect(ui->songlistsTable,SIGNAL(cellEntered(int,int)),ui->songlistsTable,SLOT(listCellEntered(int,int)));
     connect(ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)),SLOT(musicSearchIndexChanged(int,int)));
     connect(ui->showlistButton,SIGNAL(clicked()),SLOT(setShowlistButton()));
     connect(ui->showPathButton,SIGNAL(clicked()),SLOT(setShowPathButton()));
@@ -386,13 +372,11 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     ui->songlistsTable->setColumnCount(5);
     ui->songlistsTable->setRowCount(0);
     QHeaderView *headerview = ui->songlistsTable->horizontalHeader();
-    headerview->setVisible(false);
-    headerview->resizeSection(0,280);
+    headerview->resizeSection(0,285);
     headerview->resizeSection(1,55);
     headerview->resizeSection(2,105);
     headerview->resizeSection(3,26);
     headerview->resizeSection(4,26);
-    ui->songlistsTable->verticalHeader()->setVisible(false);
     m_currentIndex = 0;
     addLoaclSongList();
 }
@@ -405,9 +389,7 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
     ui->songlistsTable->setColumnCount(1);
     ui->songlistsTable->setRowCount(0);
     QHeaderView *headerview = ui->songlistsTable->horizontalHeader();
-    headerview->setVisible(false);
     headerview->resizeSection(0,492);
-    ui->songlistsTable->verticalHeader()->setVisible(false);
     m_currentIndex = 1;
     addLoaclSongList();
 }

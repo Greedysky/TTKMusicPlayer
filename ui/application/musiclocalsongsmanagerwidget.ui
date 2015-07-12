@@ -132,7 +132,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QTableWidget" name="songlistsTable">
+  <widget class="MusicTableWidgetAbstract" name="songlistsTable">
    <property name="geometry">
     <rect>
      <x>125</x>
@@ -245,6 +245,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicTableWidgetAbstract</class>
+   <extends>QTableWidget</extends>
+   <header>../core/musictablewidgetabstract.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
