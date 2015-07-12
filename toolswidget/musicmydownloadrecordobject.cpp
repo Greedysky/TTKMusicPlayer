@@ -9,9 +9,6 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList& names,
                                                       const QStringList& paths)
 {
-    if( names.isEmpty() || paths.isEmpty() )
-        return;
-
     if( !writeConfig( DOWNLOADINFO ) ) return;
 
     ///////////////////////////////////////////////////////
