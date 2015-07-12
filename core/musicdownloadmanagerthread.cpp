@@ -10,10 +10,9 @@
 
 MusicDownLoadManagerThread::MusicDownLoadManagerThread(
     QObject *parent) : QObject(parent),
-    m_reply(NULL),m_songIdReply(NULL)
+    m_reply(NULL)
 {
     m_manager = new QNetworkAccessManager(this);
-    m_songIdManager = new QNetworkAccessManager(this);
 }
 
 MusicDownLoadManagerThread::~MusicDownLoadManagerThread()
@@ -23,11 +22,6 @@ MusicDownLoadManagerThread::~MusicDownLoadManagerThread()
 
 void MusicDownLoadManagerThread::deleteAll()
 {
-    if(m_songIdReply)
-    {
-      m_songIdReply->deleteLater();
-      m_songIdReply = NULL;
-    }
     if(m_reply)
     {
       m_reply->deleteLater();
@@ -37,11 +31,6 @@ void MusicDownLoadManagerThread::deleteAll()
     {
       m_manager->deleteLater();
       m_manager = NULL;
-    }
-    if(m_songIdManager)
-    {
-      m_songIdManager->deleteLater();
-      m_songIdManager = NULL;
     }
     this->deleteLater();
 }
@@ -56,10 +45,9 @@ void MusicDownLoadManagerThread::startSearchSong(const QString& text)
 //    }
 
     m_searchText = text.trimmed();
-//    QUrl musicUrl = "http://mp3.baidu.com/dev/api/?tn=getinfo&ct=o&ie=utf-8&word="
-//                    + text + "&format=json";
-    QUrl musicUrl = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=webapp_music&" \
-                    "method=baidu.ting.search.catalogSug&format=json&query=" + text;
+//    QUrl musicUrl = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=webapp_music&" \
+//                    "method=baidu.ting.search.catalogSug&format=json&query=" + text;
+    QUrl musicUrl = "http://so.ard.iyyin.com/s/song_with_out?q=" + text + "&page=1&size=10000000";
     ///This is a baidu music API
     if(m_reply)
     {
@@ -87,40 +75,47 @@ void MusicDownLoadManagerThread::searchFinshed()
             return ;
 
         emit clearAllItems();     ///Clear origin items
-
         m_songIdIndex = 0;
-        m_songIdList.clear();     ///Empty the last search to songsID
         m_musicSongInfo.clear();  ///Empty the last search to songsInfo
-
         QJsonObject jsonObject = parseDoucment.object();
 
-        if(jsonObject.contains("song"))
+        if(jsonObject.contains("data"))
         {
-            QJsonArray array = jsonObject.take("song").toArray();
+            QJsonArray array = jsonObject.take("data").toArray();
             for(int i=0; i < array.count(); i++ )
             {
                 QJsonValue value = array.at(i);
                 if(!value.isObject())
                    continue ;
                 QJsonObject object = value.toObject();
-                if(!object.contains("songid"))
-                   continue ;
-                QJsonValue songidValue = object.take("songid");
-                if(!songidValue.isString())
-                   continue ;
-                QString songId = songidValue.toString();
-                if(!songId.isEmpty())
-                   m_songIdList<<songId;
+
+                QStringList musicInfo;
+                QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
+                QString songName = object.take("song_name").toString();
+                QString singerName = object.take("singer_name").toString();
+                QJsonArray urls = object.take("audition_list").toArray();
+                for(int j=0; j<urls.count(); ++j)
+                {
+                    object = urls[j].toObject();
+                    if( object.value("type_description").toString() == "标准品质")
+                    {
+                        ++m_songIdIndex;
+                        emit creatSearchedItems(songName, singerName,
+                                                object.value("duration").toString());
+                        musicInfo << object.value("url").toString();
+                        musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
+                                             "song_id=%3").arg(singerName).arg(songName).arg(songId);
+                        musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
+                        musicInfo << singerName;
+                        m_musicSongInfo << musicInfo;
+                        break;
+                    }
+                }
             }
             ///If there is no search to song_id, is repeated several times in the search
             ///If more than 5 times or no results give up
             static int counter = 5;
-            if(!m_songIdList.isEmpty())
-            {
-                counter = 5;
-                startSearchSongId();
-            }
-            else if( counter-- > 0 )
+            if(m_musicSongInfo.isEmpty() && counter-- > 0)
             {
                 startSearchSong(m_searchText);
             }
@@ -133,163 +128,10 @@ void MusicDownLoadManagerThread::searchFinshed()
     }
 }
 
-void MusicDownLoadManagerThread::startSearchSongId()
-{
-    if( m_songIdIndex < m_songIdList.size() )
-    {
-        QUrl url = "http://ting.baidu.com/data/music/links?songIds=" +
-                    m_songIdList.at(m_songIdIndex++);
-        if(m_songIdReply)
-        {
-            delete m_songIdReply;
-            m_songIdReply = NULL;
-        }
-        m_songIdReply = m_songIdManager->get(QNetworkRequest(url));
-        connect(m_songIdReply, SIGNAL(finished()), this, SLOT(songIdSearchFinshed()) );
-        connect(m_songIdReply, SIGNAL(error(QNetworkReply::NetworkError)),this,
-                             SLOT(songIdReplyError(QNetworkReply::NetworkError)) );
-    }
-}
-
-void MusicDownLoadManagerThread::songIdSearchFinshed()
-{
-    m_songIdReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if(m_songIdReply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = m_songIdReply->readAll();
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError );
-        if(jsonError.error == QJsonParseError::NoError )
-        {
-          if(parseDoucment.isObject())
-          {
-            QJsonObject object = parseDoucment.object();
-            if(object.contains("data"))
-            {
-              QJsonValue dataValue = object.take("data");
-              if(dataValue.isObject())
-              {
-                QJsonObject dataObject = dataValue.toObject();
-                if(dataObject.contains("songList") )
-                {
-                  QJsonValue songListValue = dataObject.take("songList");
-                  if(songListValue.isArray())
-                  {
-                    /// songList:[{....}] is an array
-                    QJsonArray array = songListValue.toArray();
-                    for(int i=0; i < array.size(); i++ )
-                    {
-                       QJsonValue value = array.at(i);
-                       if(!value.isObject())
-                          continue ;         ///If the data error ,then continue
-                       QJsonObject songListObject = value.toObject();
-                       ///Gets the name of the song
-                       QString songname ="";
-                       if(songListObject.contains("songName"))
-                       {
-                         QJsonValue songnameValue = songListObject.take("songName");
-                         if(songnameValue.isString())
-                            songname = songnameValue.toString();
-                       }
-                       ///Gets the name of the artist
-                       QString artistname ="";
-                       if(songListObject.contains("artistName"))
-                       {
-                         QJsonValue artistnameValue = songListObject.take("artistName");
-                         if(artistnameValue.isString())
-                            artistname = artistnameValue.toString();
-                       }
-                       ///Gets the name of the album
-//                       QString albumname = "";
-//                       if(songListObject.contains("albumName"))
-//                       {
-//                         QJsonValue albumnameValue = songListObject.take("albumName");
-//                         if(albumnameValue.isString())
-//                            albumname = albumnameValue.toString();
-//                       }
-                       ///Gets the song duration
-                       double time = 0;
-                       if(songListObject.contains("time"))
-                       {
-                         QJsonValue timeValue = songListObject.take("time");
-                         if(timeValue.isDouble())
-                            time = timeValue.toDouble();
-                       }
-                       ///Gets the song format
-//                       QString format = "";
-//                       if(songListObject.contains("format"))
-//                       {
-//                         QJsonValue formatValue = songListObject.take("format");
-//                         if(formatValue.isString())
-//                            format = formatValue.toString();
-//                       }
-                       ///Gets the song format
-                       QString songPicSmall = "";
-                       if(songListObject.contains("songPicSmall"))
-                       {
-                         QJsonValue songPicSmallValue = songListObject.take("songPicSmall");
-                         if(songPicSmallValue.isString())
-                            songPicSmall = songPicSmallValue.toString();
-                       }
-                       ///Gets the song bit rate
-//                       double rate = 0;
-//                       if(songListObject.contains("rate"))
-//                       {
-//                         QJsonValue rateValue = songListObject.take("rate");
-//                         if(rateValue.isDouble())
-//                            rate = rateValue.toDouble();
-//                       }
-                       ///Gets the size of the song
-//                       double size = 0;
-//                       if(songListObject.contains("size"))
-//                       {
-//                         QJsonValue sizeValue = songListObject.take("size");
-//                         if(sizeValue.isDouble())
-//                            size = sizeValue.toDouble();
-//                       }
-                       ///Gets the song connection
-                       QString songlink = "";
-                       if(songListObject.contains("songLink"))
-                       {
-                         QJsonValue songlinkValue = songListObject.take("songLink");
-                         if(songlinkValue.isString())
-                            songlink = songlinkValue.toString();
-                       }
-                       //Gets the song lrc connection
-                       QString lrclink = "";
-                       if(songListObject.contains("lrcLink"))
-                       {
-                         QJsonValue lrclinkValue = songListObject.take("lrcLink");
-                         if(lrclinkValue.isString())
-                            lrclink = "http://ting.baidu.com" + lrclinkValue.toString();
-                       }
-                       ///Create the search results of the project
-                       emit creatSearchedItems(songname,artistname,time);
-                       m_musicSongInfo.append(QStringList()<<songlink<<
-                                          lrclink<<songPicSmall<<artistname);
-                       ///Get feedback from data
-                   }
-                 }
-               }
-             }
-           }
-         }
-       }
-    }
-    ///The one song searching completed, the next will be continue
-    startSearchSongId();
-}
 
 void MusicDownLoadManagerThread::replyError(QNetworkReply::NetworkError)
 {
     qDebug() <<"Abnormal network connection";
     emit showDownLoadInfoFor(DisConnection);
     emit showDownLoadInfoFinished("Abnormal network connection");
-}
-
-void MusicDownLoadManagerThread::songIdReplyError(QNetworkReply::NetworkError)
-{
-    qDebug()<<"Find a error in song_id";
-    emit showDownLoadInfoFinished("Find a error in song_id");
-    startSearchSongId();
 }

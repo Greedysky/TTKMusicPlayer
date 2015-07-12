@@ -2,6 +2,7 @@
 #include "../musicapplication.h"
 #include "musiclrcdownloadthread.h"
 #include "musicsongdownloadthread.h"
+#include "musicdatadownloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musicobject.h"
 #include <QTimer>
@@ -104,7 +105,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     {
         QString filename = m_parentWidget->getCurrentFileName();
         ///download art picture
-        (new MusicSongDownloadThread(musicSongInfo[0][2],
+        (new MusicDataDownloadThread(musicSongInfo[0][2],
              ART_DOWNLOAD + musicSongInfo[0][3] + JPG_FILE,this))->startToDownload();
 
         ///download big picture

@@ -32,12 +32,16 @@ void MusicLrcDownLoadThread::downLoadFinished()
 {
     if(m_reply == NULL) return;
 
-    QString s(m_reply->readAll()) ;
+    QString s(m_reply->readAll());
+
+    if(s.contains("\"lrc\":")) s.replace("\\n","\n"); //ttop api
+
     m_file->write(s.toUtf8());
     m_file->flush();
     m_file->close();
 
     qDebug()<<"lrc download has finished!";
     emit musicDownLoadFinished("Lrc");
+
     deleteAll();
 }

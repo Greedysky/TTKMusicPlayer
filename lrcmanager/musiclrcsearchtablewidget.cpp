@@ -6,9 +6,9 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,20);
-    headerview->resizeSection(1,180);
-    headerview->resizeSection(2,150);
+    headerview->resizeSection(0,30);
+    headerview->resizeSection(1,175);
+    headerview->resizeSection(2,145);
     headerview->resizeSection(3,50);
     headerview->resizeSection(4,24);
     setTransparent(255);
@@ -16,8 +16,8 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
 
     m_downLoadManager = new MusicDownLoadManagerThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
-    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,double)),
-            this,SLOT(creatSearchedItems(QString,QString,double)));
+    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
+            this,SLOT(creatSearchedItems(QString,QString,QString)));
 
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
@@ -48,7 +48,7 @@ void MusicLrcSearchTableWidget::clearAllItems()
 }
 
 void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
-            const QString &artistname, double time)
+                        const QString &artistname, const QString &time)
 {
     setRowCount(m_downLoadManager->getSongIdIndex());
     setStyleSheet("QTableWidget{selection-background-color: rgba(20,20,20,100);}" + \
@@ -68,13 +68,7 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
     item2->setTextAlignment(Qt::AlignCenter);
     setItem(m_songItemIndex, 2, item2);
 
-    int minute = static_cast<int>(time)/60;
-    int second = static_cast<int>(time)%60;
-
-    QTableWidgetItem *item3 = new QTableWidgetItem(QString("%1:%2")
-                              .arg(QString::number(minute).rightJustified(2,'0'))
-                              .arg(QString::number(second).rightJustified(2,'0')));
-
+    QTableWidgetItem *item3 = new QTableWidgetItem(time);
     item3->setTextColor(QColor(50,50,50));
     item3->setTextAlignment(Qt::AlignCenter);
     setItem(m_songItemIndex, 3, item3);

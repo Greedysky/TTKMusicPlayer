@@ -86,6 +86,7 @@ SOURCES += \
     core/musicdownloadmanagerthread.cpp \
     core/musicdownloadthreadabstract.cpp \
     core/musicdownloadstatuslabel.cpp \
+    core/musicdatadownloadthread.cpp \
     core/musicsongdownloadthread.cpp \
     core/musiclrcdownloadthread.cpp \
     core/musicxmlconfigmanager.cpp \
@@ -153,6 +154,7 @@ HEADERS  += \
     core/musicxmlconfigmanager.h \
     core/musicdownloadmanagerthread.h \
     core/musicdownloadthreadabstract.h \
+    core/musicdatadownloadthread.h \
     core/musicsongdownloadthread.h \
     core/musiclrcdownloadthread.h \
     core/musicdownloadstatuslabel.h \

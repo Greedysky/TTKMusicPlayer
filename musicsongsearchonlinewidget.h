@@ -27,7 +27,7 @@ signals:
 public slots:
     void listCellClicked(int,int);
     void clearAllItems();
-    void creatSearchedItems(const QString&, const QString&, double);
+    void creatSearchedItems(const QString&, const QString&, const QString&);
     void itemDoubleClicked(int row, int column);
 
 protected:

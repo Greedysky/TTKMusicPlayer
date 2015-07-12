@@ -1,6 +1,7 @@
 #include "musicsongsearchonlinewidget.h"
 #include "core/musiclrcdownloadthread.h"
 #include "core/musicsongdownloadthread.h"
+#include "core/musicdatadownloadthread.h"
 #include "toolswidget/musicmydownloadrecordobject.h"
 #include "localsearch/musiclocalsongsearchrecordobject.h"
 
@@ -11,9 +12,9 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,20);
-    headerview->resizeSection(1,220);
-    headerview->resizeSection(2,168);
+    headerview->resizeSection(0,30);
+    headerview->resizeSection(1,215);
+    headerview->resizeSection(2,163);
     headerview->resizeSection(3,50);
     headerview->resizeSection(4,26);
     headerview->resizeSection(5,26);
@@ -26,8 +27,8 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
             this,SIGNAL(showDownLoadInfoFor(DownLoadType)));
     connect(m_downLoadManager,SIGNAL(showDownLoadInfoFinished(QString)),
             this,SIGNAL(showDownLoadInfoFinished(QString)));
-    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,double)),
-            this,SLOT(creatSearchedItems(QString,QString,double)));
+    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
+            this,SLOT(creatSearchedItems(QString,QString,QString)));
 
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
@@ -68,7 +69,7 @@ void MusicSongSearchOnlineWidget::clearAllItems()
 }
 
 void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
-            const QString &artistname, double time)
+                          const QString &artistname, const QString &time)
 {
     setRowCount(m_downLoadManager->getSongIdIndex());
 
@@ -87,13 +88,7 @@ void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
     item2->setTextAlignment(Qt::AlignCenter);
     setItem(m_songItemIndex, 2, item2);
 
-    int minute = static_cast<int>(time)/60;
-    int second = static_cast<int>(time)%60;
-
-    QTableWidgetItem *item3 = new QTableWidgetItem(QString("%1:%2")
-                              .arg(QString::number(minute).rightJustified(2,'0'))
-                              .arg(QString::number(second).rightJustified(2,'0')));
-
+    QTableWidgetItem *item3 = new QTableWidgetItem(time);
     item3->setTextColor(QColor(50,50,50));
     item3->setTextAlignment(Qt::AlignCenter);
     setItem(m_songItemIndex, 3, item3);
@@ -154,7 +149,7 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 
     (new MusicLrcDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
                                musicSong + LRC_FILE,this))->startToDownload();
-    (new MusicSongDownloadThread(musicSongInfo[row][2],
+    (new MusicDataDownloadThread(musicSongInfo[row][2],
           ART_DOWNLOAD + musicSongInfo[row][3] + JPG_FILE,this))->startToDownload();
 
 }

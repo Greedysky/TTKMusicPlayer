@@ -22,7 +22,7 @@ signals:
 
 public slots:
     void clearAllItems();
-    void creatSearchedItems(const QString&, const QString&, double);
+    void creatSearchedItems(const QString&, const QString&, const QString&);
     void itemDoubleClicked(int row, int column);
 
 protected:
