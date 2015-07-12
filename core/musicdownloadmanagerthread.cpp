@@ -5,7 +5,6 @@
 #include <QJsonParseError>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
-#include <QHostInfo>
 #include <QFile>
 
 MusicDownLoadManagerThread::MusicDownLoadManagerThread(
@@ -35,20 +34,13 @@ void MusicDownLoadManagerThread::deleteAll()
     this->deleteLater();
 }
 
-void MusicDownLoadManagerThread::startSearchSong(const QString& text)
+void MusicDownLoadManagerThread::startSearchSong(QueryType type, const QString& text)
 {
-    ///Check the net is online
-//    if(QHostInfo::fromName("www.baidu.com").addresses().isEmpty())
-//    {
-//       emit showDownLoadInfoFor(DisConnection);
-//       return;
-//    }
-
     m_searchText = text.trimmed();
-//    QUrl musicUrl = "http://tingapi.ting.baidu.com/v1/restserver/ting?from=webapp_music&" \
-//                    "method=baidu.ting.search.catalogSug&format=json&query=" + text;
+    m_currentType = type;
+
     QUrl musicUrl = "http://so.ard.iyyin.com/s/song_with_out?q=" + text + "&page=1&size=10000000";
-    ///This is a baidu music API
+    ///This is a ttop music API
     if(m_reply)
     {
         m_reply->deleteLater();
@@ -75,7 +67,6 @@ void MusicDownLoadManagerThread::searchFinshed()
             return ;
 
         emit clearAllItems();     ///Clear origin items
-        m_songIdIndex = 0;
         m_musicSongInfo.clear();  ///Empty the last search to songsInfo
         QJsonObject jsonObject = parseDoucment.object();
 
@@ -93,22 +84,45 @@ void MusicDownLoadManagerThread::searchFinshed()
                 QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                 QString songName = object.take("song_name").toString();
                 QString singerName = object.take("singer_name").toString();
-                QJsonArray urls = object.take("audition_list").toArray();
-                for(int j=0; j<urls.count(); ++j)
+
+                if(m_currentType == Music)
                 {
-                    object = urls[j].toObject();
-                    if( object.value("type_description").toString() == "标准品质")
+                    QJsonArray urls = object.take("audition_list").toArray();
+                    for(int j=0; j<urls.count(); ++j)
                     {
-                        ++m_songIdIndex;
-                        emit creatSearchedItems(songName, singerName,
-                                                object.value("duration").toString());
-                        musicInfo << object.value("url").toString();
-                        musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
-                                             "song_id=%3").arg(singerName).arg(songName).arg(songId);
-                        musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
-                        musicInfo << singerName;
-                        m_musicSongInfo << musicInfo;
-                        break;
+                        object = urls[j].toObject();
+                        if( object.value("type_description").toString() == "标准品质")
+                        {
+                            emit creatSearchedItems(songName, singerName,
+                                                    object.value("duration").toString());
+                            musicInfo << object.value("url").toString();
+                            musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
+                                                 "song_id=%3").arg(singerName).arg(songName).arg(songId);
+                            musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
+                            musicInfo << singerName;
+                            m_musicSongInfo << musicInfo;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    QJsonArray urls = object.take("audition_list").toArray();
+                    for(int j=0; j<urls.count(); ++j)
+                    {
+                        object = urls[j].toObject();
+                        if( object.value("type_description").toString() == "标准品质")
+                        {
+                            emit creatSearchedItems(songName, singerName,
+                                                    object.value("duration").toString());
+                            musicInfo << object.value("url").toString();
+                            musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
+                                                 "song_id=%3").arg(singerName).arg(songName).arg(songId);
+                            musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
+                            musicInfo << singerName;
+                            m_musicSongInfo << musicInfo;
+                            break;
+                        }
                     }
                 }
             }
@@ -117,7 +131,7 @@ void MusicDownLoadManagerThread::searchFinshed()
             static int counter = 5;
             if(m_musicSongInfo.isEmpty() && counter-- > 0)
             {
-                startSearchSong(m_searchText);
+                startSearchSong(m_currentType, m_searchText);
             }
             else
             {
@@ -127,7 +141,6 @@ void MusicDownLoadManagerThread::searchFinshed()
         }
     }
 }
-
 
 void MusicDownLoadManagerThread::replyError(QNetworkReply::NetworkError)
 {

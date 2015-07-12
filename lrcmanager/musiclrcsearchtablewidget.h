@@ -27,9 +27,7 @@ public slots:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
-
     MusicDownLoadManagerThread* m_downLoadManager;
-    int m_songItemIndex;
     QString m_currentSongName;
 
 };

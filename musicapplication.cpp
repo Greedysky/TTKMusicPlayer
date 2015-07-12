@@ -1320,8 +1320,6 @@ void MusicApplication::musicVedioWidgetButtonSearched()
     if(ui->SurfaceStackedWidget->count() <= 3)
     {
         m_videoPlayer = new MusicVideoPlayer;
-        connect(m_videoPlayer,SIGNAL(movieDoubleClicked()),
-                SLOT(musicVedioWidgetButtonDoubleClicked()));
         ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
     }
     if(!m_playControl) musicKey();

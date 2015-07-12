@@ -32,9 +32,7 @@ public slots:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
-
     MusicDownLoadManagerThread* m_downLoadManager;
-    int m_songItemIndex; //The index of the true QTableWiget item count
 
 };
 

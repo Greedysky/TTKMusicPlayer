@@ -79,7 +79,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        ///Start the request query
        m_downloadLrcThread = new MusicDownLoadManagerThread(this);
-       m_downloadLrcThread->startSearchSong(filename);
+       m_downloadLrcThread->startSearchSong(Music, filename);
 
        showDownLoadInfoFor(Buffing);
        connect(m_downloadLrcThread,SIGNAL(showDownLoadInfoFor(DownLoadType)),

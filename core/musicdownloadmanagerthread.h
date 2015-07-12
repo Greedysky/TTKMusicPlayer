@@ -8,6 +8,7 @@
 class QNetworkAccessManager;
 
 enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };
+enum QueryType{ Music, MV };
 
 class MUSIC_EXPORT MusicDownLoadManagerThread : public QObject
 {
@@ -17,8 +18,8 @@ public:
     virtual ~MusicDownLoadManagerThread();
 
     void deleteAll();
-    void startSearchSong(const QString&);
-    inline int getSongIdIndex() const { return m_songIdIndex;}
+    void startSearchSong(QueryType, const QString&);
+    inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
     inline QList< QStringList >& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
@@ -36,7 +37,7 @@ protected:
     QNetworkReply *m_reply;
     QList< QStringList > m_musicSongInfo;
     QString m_searchText;
-    int m_songIdIndex;   ///The index of the corresponding songIdList length
+    QueryType m_currentType;
 
 };
 

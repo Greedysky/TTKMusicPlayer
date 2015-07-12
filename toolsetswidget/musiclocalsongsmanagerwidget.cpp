@@ -33,7 +33,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
                             QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
                             QCheckBox::checked { color: rgb(0,169,236); } \
                             QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }");
-    ui->auditionButton->setStyleSheet("QToolButton{background:transparent;image: url(:/image/autionplay);}"
+    ui->auditionButton->setStyleSheet("QToolButton{background:transparent;image: url(:/share/autionplay);}"
                                       "QToolButton::hover{ border:1px solid #000000;}");
     ui->addButton->setStyleSheet("QToolButton{background:transparent;image: url(:/image/addtoplaylist);}"
                                  "QToolButton::hover{ border:1px solid #000000;}");
@@ -139,7 +139,7 @@ void MusicLocalSongsManagerWidget::addAllItems(const QStringList& filename,
             item3->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i,2,item3);
 
-            QTableWidgetItem *item4 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/autionplay")),"");
+            QTableWidgetItem *item4 = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/autionplay")),"");
             item4->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i,3,item4);
 
