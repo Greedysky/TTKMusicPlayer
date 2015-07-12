@@ -26,7 +26,6 @@
         <file alias="search">../resource/music_searching.png</file>
         <file alias="screentop">../resource/music_screen_top.png</file>
         <file alias="searchline">../resource/music_search_line.png</file>
-        <file alias="searchlineleft">../resource/music_search_line_left.png</file>
         <file alias="windowskin">../resource/music_window_skin.png</file>
         <file alias="windowremote">../resource/music_window_remote.png</file>
         <file alias="arrowup">../resource/arrow_1.png</file>

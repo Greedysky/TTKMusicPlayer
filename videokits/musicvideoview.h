@@ -15,8 +15,7 @@ public:
     MusicVideoView(QWidget *parent = 0);
     ~MusicVideoView();
 
-signals:
-    void movieDoubleClicked();
+    void setMedia(const QString&);
 
 public slots:
     void play();
@@ -30,7 +29,7 @@ private slots:
 protected:
     virtual void enterEvent(QEvent *event);
     virtual void leaveEvent(QEvent *event);
-    virtual void mouseDoubleClickEvent(QMouseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     QMediaPlayer m_mediaPlayer;

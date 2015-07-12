@@ -19,11 +19,16 @@ public:
     ~MusicVideoPlayer();
 
 public slots:
+    void backButtonClicked();
+    void afterButtonClicked();
     void searchButtonClicked();
+    void mvURLChanged(const QString&);
 
 protected:
     QWidget *m_topWidget;
     QLabel *m_textLabel;
+    QPushButton *m_backButton;
+    QPushButton *m_afterButton;
     QPushButton *m_searchButton;
     QStackedWidget *m_stackedWidget;
     MusicVideoView *m_videoView;

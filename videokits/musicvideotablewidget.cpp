@@ -1,4 +1,7 @@
 #include "musicvideotablewidget.h"
+#include "../core/musicsongdownloadthread.h"
+
+#include <time.h>
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicTableWidgetAbstract(parent)
@@ -14,12 +17,14 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     headerview->resizeSection(6,24);
     headerview->resizeSection(7,24);
     setTransparent(255);
+    qsrand(time(NULL));
 
     m_downLoadManager = new MusicDownLoadManagerThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
     connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
             this,SLOT(creatSearchedItems(QString,QString,QString)));
 
+    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
 }
@@ -46,6 +51,19 @@ void MusicVideoTableWidget::clearAllItems()
     setRowCount(0);
 }
 
+QString MusicVideoTableWidget::randToGetStrength()
+{
+    switch(qrand()%5)
+    {
+        case 0: return QString::fromUtf8(":/video/video_1");
+        case 1: return QString::fromUtf8(":/video/video_2");
+        case 2: return QString::fromUtf8(":/video/video_3");
+        case 3: return QString::fromUtf8(":/video/video_4");
+        case 4: return QString::fromUtf8(":/video/video_5");
+    }
+    return QString::fromUtf8(":/video/video_5");
+}
+
 void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
                         const QString &artistname, const QString &time)
 {
@@ -68,7 +86,7 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 2, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/video/video_5")),"");
+                      item = new QTableWidgetItem(QIcon( randToGetStrength() ),"");
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
@@ -92,18 +110,30 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     setItem(count - 1, 7, item);
 }
 
+void MusicVideoTableWidget::listCellClicked(int row,int col)
+{
+    switch(col)
+    {
+      case 5:
+      case 6:
+            itemDoubleClicked(row, -1);break;
+      case 7:
+            musicDownloadLocal(row);break;
+      default:break;
+    }
+}
+
 void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
-//    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-//    MusicLrcDownLoadThread* lrcDownload = new MusicLrcDownLoadThread(musicSongInfo[row][1],
-//                            LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
-//    connect(lrcDownload,SIGNAL(musicDownLoadFinished(QString)),
-//                        SIGNAL(lrcDownloadStateChanged(QString)));
-//    lrcDownload->startToDownload();
+    MusicSongDownloadThread* download = new MusicSongDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
+                       .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), this);
+    download->startToDownload();
 }
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int)
 {
-    musicDownloadLocal(row);
+    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    emit mvURLChanged(musicSongInfo[row][2]);
 }

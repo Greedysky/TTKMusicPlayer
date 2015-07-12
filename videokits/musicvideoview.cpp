@@ -44,15 +44,20 @@ void MusicVideoView::leaveEvent(QEvent *event)
     m_videoControl->hide();
 }
 
-void MusicVideoView::mouseDoubleClickEvent(QMouseEvent *event)
+void MusicVideoView::mousePressEvent(QMouseEvent *event)
 {
-    QGraphicsView::mouseDoubleClickEvent(event);
-    emit movieDoubleClicked();
+    QGraphicsView::mousePressEvent(event);
+    play();
 }
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
+}
+
+void MusicVideoView::setMedia(const QString& data)
+{
+    m_mediaPlayer.setMedia(QUrl(data));
 }
 
 void MusicVideoView::play()
@@ -64,7 +69,6 @@ void MusicVideoView::play()
             m_videoControl->setButtonStyle(true);
             break;
         default:
-            m_mediaPlayer.setMedia(QUrl("http://mv.hotmusique.com/mv_1_1/32/b4/321a90e41db6877fe4951e6bf09be8b4.mp4?k=e7a99b333cd3c20f&t=1437081673"));
             m_mediaPlayer.play();
             m_videoControl->setButtonStyle(false);
             break;
