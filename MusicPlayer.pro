@@ -176,7 +176,9 @@ HEADERS  += \
     usermanager/musicuserwindow.h \
     usermanager/musicuserconfigmanager.h \
     videokits/musicvideoplayer.h \
-    videokits/musicvideocontrol.h
+    videokits/musicvideocontrol.h \
+    videokits/musicvideoview.h \
+    videokits/musicvideotablewidget.h
 
 
 FORMS    += \

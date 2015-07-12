@@ -17,7 +17,7 @@ MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
     m_closeButton = new QToolButton(this);
 
     m_showIcon->setGeometry(5,5,25,25);
-    m_showIcon->setStyleSheet("background-color:transparent;border-image: url(:/image/searchlineleft);");
+    m_showIcon->setStyleSheet("background-color:transparent;border-image: url(:/share/searchlineleft);");
     m_searchLine->setGeometry(30,5,295,25);
 
     m_closeButton->setGeometry(303,5,25,25);

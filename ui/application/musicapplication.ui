@@ -348,7 +348,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/image/searchlineleft);</string>
+    <string notr="true">border-image: url(:/share/searchlineleft);</string>
    </property>
    <property name="text">
     <string/>

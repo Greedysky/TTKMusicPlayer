@@ -107,22 +107,16 @@ void MusicDownLoadManagerThread::searchFinshed()
                 }
                 else
                 {
-                    QJsonArray urls = object.take("audition_list").toArray();
-                    for(int j=0; j<urls.count(); ++j)
+                    QJsonArray urls = object.take("mv_list").toArray();
+                    if( urls.count() > 0)
                     {
-                        object = urls[j].toObject();
-                        if( object.value("type_description").toString() == "标准品质")
-                        {
-                            emit creatSearchedItems(songName, singerName,
-                                                    object.value("duration").toString());
-                            musicInfo << object.value("url").toString();
-                            musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
-                                                 "song_id=%3").arg(singerName).arg(songName).arg(songId);
-                            musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
-                            musicInfo << singerName;
-                            m_musicSongInfo << musicInfo;
-                            break;
-                        }
+                        object = urls[0].toObject();
+                        emit creatSearchedItems(songName, singerName,
+                                                object.value("duration").toString());
+                        musicInfo << singerName << songName;
+                        musicInfo << object.value("url").toString();
+                        musicInfo << object.value("format").toString();
+                        m_musicSongInfo << musicInfo;
                     }
                 }
             }
