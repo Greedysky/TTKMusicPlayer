@@ -1,7 +1,92 @@
 #include "musicvideoview.h"
+#include "musicvideocontrol.h"
+#include <QVideoSurfaceFormat>
+#include <QGraphicsVideoItem>
 
-MusicVideoView::MusicVideoView(QWidget *parent) : QWidget(parent)
+MusicVideoView::MusicVideoView(QWidget *parent)
+    : QGraphicsView(parent)
+    , m_mediaPlayer(0, QMediaPlayer::VideoSurface)
+    , m_videoItem(0) , m_videoControl(0)
 {
+    setObjectName("VideoPlayer");
+    setStyleSheet("background-color:black");
+    m_videoItem = new QGraphicsVideoItem;
+
+    QGraphicsScene *scene = new QGraphicsScene(this);
+    scene->addItem(m_videoItem);
+    setScene(scene);
+    fitInView(m_videoItem, Qt::KeepAspectRatio);
+
+    m_videoControl = new MusicVideoControl(this);
+    m_videoControl->hide();
+    m_mediaPlayer.setVideoOutput(m_videoItem);
+
+    connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(&m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 
 }
 
+MusicVideoView::~MusicVideoView()
+{
+    delete m_videoControl;
+    delete m_videoItem;
+}
+
+void MusicVideoView::enterEvent(QEvent *event)
+{
+    QGraphicsView::enterEvent(event);
+    m_videoControl->show();
+}
+
+void MusicVideoView::leaveEvent(QEvent *event)
+{
+    QGraphicsView::leaveEvent(event);
+    m_videoControl->hide();
+}
+
+void MusicVideoView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseDoubleClickEvent(event);
+    emit movieDoubleClicked();
+}
+
+void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicVideoView::play()
+{
+    switch(m_mediaPlayer.state())
+    {
+        case QMediaPlayer::PlayingState:
+            m_mediaPlayer.pause();
+            m_videoControl->setButtonStyle(true);
+            break;
+        default:
+            m_mediaPlayer.setMedia(QUrl("http://mv.hotmusique.com/mv_1_1/32/b4/321a90e41db6877fe4951e6bf09be8b4.mp4?k=e7a99b333cd3c20f&t=1437081673"));
+            m_mediaPlayer.play();
+            m_videoControl->setButtonStyle(false);
+            break;
+    }
+}
+
+void MusicVideoView::positionChanged(qint64 position)
+{
+    m_videoControl->setValue(position);
+}
+
+void MusicVideoView::durationChanged(qint64 duration)
+{
+    m_videoControl->durationChanged(duration);
+}
+
+void MusicVideoView::setPosition(int position)
+{
+    m_mediaPlayer.setPosition(position);
+}
+
+void MusicVideoView::volumnChanged(int volumn)
+{
+    m_mediaPlayer.setVolume(volumn);
+}

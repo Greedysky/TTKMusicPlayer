@@ -7,13 +7,16 @@
 SOURCES += \
     videokits/musicvideoplayer.cpp \
     videokits/musicvideocontrol.cpp \
-    videokits/musicvideoplaylistwidget.cpp
+    videokits/musicvideoview.cpp \
+    videokits/musicvideotablewidget.cpp
 
 
 HEADERS  += \
     videokits/musicvideoplayer.h \
     videokits/musicvideocontrol.h \
-    videokits/musicvideoplaylistwidget.h
+    videokits/musicvideoview.h \
+    videokits/musicvideotablewidget.h
+
 
 RESOURCES += \
     qrc/MusicPlayerVedio.qrc

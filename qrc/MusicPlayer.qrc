@@ -29,14 +29,11 @@
         <file alias="searchlineleft">../resource/music_search_line_left.png</file>
         <file alias="windowskin">../resource/music_window_skin.png</file>
         <file alias="windowremote">../resource/music_window_remote.png</file>
-        <file alias="addtoplaylist">../resource/music_addToPlayList.png</file>
-        <file alias="musicdownload">../resource/music_download.png</file>
         <file alias="arrowup">../resource/arrow_1.png</file>
         <file alias="arrowdown">../resource/arrow_2.png</file>
         <file alias="bestlove">../resource/music_best_love.png</file>
         <file alias="shadow">../resource/music_shadow.png</file>
         <file alias="musicdelete">../resource/music_delete.png</file>
-        <file alias="autionplay">../resource/music_autionPlay.png</file>
         <file alias="searchlocalfile">../resource/music_searchLocalFile.png</file>
         <file alias="rate">../resource/rate.gif</file>
         <file alias="loading">../resource/loading.gif</file>
@@ -44,8 +41,8 @@
         <file alias="flash">../resource/music_flash.png</file>
         <file alias="concisein">../resource/music_concise_in.png</file>
         <file alias="conciseout">../resource/music_concise_out.png</file>
-        <file alias="showMV">../resource/music_showMV.png</file>
         <file alias="songShare">../resource/music_songShare.png</file>
+        <file alias="addtoplaylist">../resource/music_addToPlayList.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../resource/color/Black.png</file>

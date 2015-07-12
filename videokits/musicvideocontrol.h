@@ -22,24 +22,13 @@ public:
     void durationChanged(qint64 duration);
     void setButtonStyle(bool);
 
-signals:
-    void addMedia(const QStringList&);
-    void playNext();
-    void playPrivious();
-
-public slots:
-    void openFile();
-
 protected:
-    QMenu m_popupMenu;
     QMenu m_popupVolumn;
     QWidgetAction *m_widgetAction;
     QSlider *m_timeSlider;
     QSlider *m_volumnSlider;
     QToolButton *m_menuButton;
     QPushButton *m_playButton;
-    QPushButton *m_playNext;
-    QPushButton *m_playPrivious;
     QToolButton *m_volumnButton;
 
 };
