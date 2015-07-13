@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QMenu>
+#include <QTimer>
 #include <QSettings>
 #include <QSystemTrayIcon>
 #include "musicsongsearchonlinewidget.h"
@@ -64,6 +65,7 @@ protected:
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
     void drawWindowRoundedRect();
+    void drawWindowBackgroundRect(const QString&);
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -132,6 +134,7 @@ public slots:
     void musicSpectrumWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
+    void musicBackgroundChanged();
     /////////////////////////////////////////////
     //This is a slot by MusicBackgroundSkin's signal emit
     void musicBgTransparentChanged(int);
@@ -209,6 +212,8 @@ private:
     int m_alpha;
     int m_listWidgetAlpha;
     int m_currentMusicSongTreeIndex;
+    QTimer m_pictureCarouselTimer;
+    int m_pictureCarouselIndex;
 
 };
 

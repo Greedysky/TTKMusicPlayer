@@ -11,14 +11,18 @@ class MUSIC_EXPORT MusicBgThemeDownload : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicBgThemeDownload(const QString &name,
+    explicit MusicBgThemeDownload(const QString &name, const QString &save,
                                   QObject *parent = 0);
+signals:
+    void musicBgDownloadFinished();
 
 public slots:
     void downLoadFinished(const QString &);
+    void bgDownLoadFinished(const QString&);
 
 protected:
-    QString m_artName;
+    QString m_savePath;
+    int m_index;
 
 };
 

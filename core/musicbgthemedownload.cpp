@@ -3,19 +3,18 @@
 #include <QDebug>
 #include <QHostInfo>
 
-MusicBgThemeDownload::MusicBgThemeDownload(const QString &name,
+MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &save,
                                            QObject *parent)
-    : QObject(parent), m_artName(name)
+    : QObject(parent), m_savePath(save), m_index(0)
 {
     MusicSongDownloadThread *download = new MusicSongDownloadThread(
-                 "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&"\
-                 "lm=-1&st=-1&fm=index&fr=&sf=1&fmq=&pv=&ic=0&nc=1&z=&se=1&showtab=0&"\
-                 "fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=" + name + "+%E5%A3%81%E7%BA%B8" +
-                 "#z=0&pn=&ic=0&st=-1&face=0&s=0&lm=-1"
+                 "http://www.kuwo.cn/mingxing/" + name + "/pic.htm"
                   ,TMP_DOWNLOAD,this);
     ///Set search image API
     connect(download,SIGNAL(musicDownLoadFinished(QString)),
                      SLOT(downLoadFinished(QString)));
+    connect(this,SIGNAL(musicBgDownloadFinished()),parent,
+                 SIGNAL(musicBgDownloadFinished()));
     download->startToDownload();
 }
 
@@ -28,38 +27,35 @@ void MusicBgThemeDownload::downLoadFinished(const QString&)
 
     QTextStream in(&file);
     QString line = in.readLine();
-    QString buffer;
     int counter = 0;
-    while(!line.isNull() && counter <= 3)
-    {   ///On line reading, and reading effectively 4 times
-        if(line.contains("\"objURL\":\""))
-        {
-            buffer = line.split("\"objURL\":\"").back().remove("\",");
-            ///Get to download the URL
-            if(buffer.startsWith("http://") && !buffer.contains(',') )
-            {
-                ++counter;
-                qDebug()<<"objURL"<<buffer;
-                (new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).arg(m_artName).
-                                             arg(counter).arg(JPG_FILE),this))->startToDownload();
-                ///To start the download the corresponding background picture
-            }
-        }
-        else if(line.contains("\"hoverURL\":\""))
-        {
-            buffer = line.split("\"hoverURL\":\"").back().remove("\",");
-            if(buffer.startsWith("http://") && !buffer.contains(',') )
-            {
-                ++counter;
-                qDebug()<<"hoverURL"<<buffer;
-                (new MusicSongDownloadThread(buffer, QString("%1%2%3%4").arg(ART_BG).arg(m_artName).
-                                            arg(counter).arg(JPG_FILE),this))->startToDownload();
 
-            }
+    while(!line.isNull())
+    {
+        ///On line reading, and reading effectively 5 times
+        if(line.contains("<dd>") && counter < 5)
+        {
+            line = line.split("lazy_src=").back().split(" ").front();
+            line.remove(0, 1);
+            line.remove(line.length() - 1, 1);
+            line = line.remove("sp");
+            qDebug()<<line;
+            MusicSongDownloadThread *down = new MusicSongDownloadThread(line, QString("%1%2%3%4")
+                                  .arg(ART_BG).arg(m_savePath).arg(counter++).arg(JPG_FILE),this);
+            connect(down, SIGNAL(musicDownLoadFinished(QString)),SLOT(bgDownLoadFinished(QString)));
+            down->startToDownload();
         }
         line = in.readLine();
     }
     file.close();
-    file.remove();///The file is closed and remove the temporary files
-//    QFile::remove(TMP_DOWNLOAD);
+//    file.remove();///The file is closed and remove the temporary files
+    QFile::remove(TMP_DOWNLOAD);
+}
+
+void MusicBgThemeDownload::bgDownLoadFinished(const QString&)
+{
+    if( ++m_index >= 4)
+    {
+        emit musicBgDownloadFinished();
+        deleteLater();
+    }
 }

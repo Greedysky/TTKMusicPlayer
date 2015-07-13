@@ -104,19 +104,22 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     if(!musicSongInfo.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
-        ///download art picture
-        (new MusicDataDownloadThread(musicSongInfo[0][2],
-             ART_DOWNLOAD + musicSongInfo[0][3] + JPG_FILE,this))->startToDownload();
-
-        ///download big picture
-        new MusicBgThemeDownload(musicSongInfo[0][3],this);
-
         ///download lrc
         MusicLrcDownLoadThread* lrc = new MusicLrcDownLoadThread(musicSongInfo[0][1],
                                      LRC_DOWNLOAD + filename + LRC_FILE,this);
         connect(lrc,SIGNAL(musicDownLoadFinished(QString)),
                 this,SLOT(showDownLoadInfoFinished(QString)));
         lrc->startToDownload();
+
+        int count = filename.split('-').count();
+        filename = filename.split('-').front().trimmed();
+
+        ///download art picture
+        (new MusicDataDownloadThread(musicSongInfo[0][2],
+             ART_DOWNLOAD + filename + JPG_FILE,this))->startToDownload();
+
+        ///download big picture
+        new MusicBgThemeDownload( count == 1 ? musicSongInfo[0][3] : filename, filename, this);
 
         m_downloadLrcThreadTimer->stop();
         counter = 5;

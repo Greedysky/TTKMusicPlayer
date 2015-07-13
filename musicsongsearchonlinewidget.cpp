@@ -2,6 +2,7 @@
 #include "core/musiclrcdownloadthread.h"
 #include "core/musicsongdownloadthread.h"
 #include "core/musicdatadownloadthread.h"
+#include "core/musicbgthemedownload.h"
 #include "toolswidget/musicmydownloadrecordobject.h"
 #include "localsearch/musiclocalsongsearchrecordobject.h"
 
@@ -148,6 +149,8 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     (new MusicDataDownloadThread(musicSongInfo[row][2],
           ART_DOWNLOAD + musicSongInfo[row][3] + JPG_FILE,this))->startToDownload();
 
+    ///download big picture
+    new MusicBgThemeDownload(musicSongInfo[row][3], musicSongInfo[row][3], this);
 }
 
 void MusicSongSearchOnlineWidget::itemDoubleClicked(int row, int)

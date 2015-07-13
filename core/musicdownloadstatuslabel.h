@@ -17,6 +17,9 @@ public:
 
     void musicCheckHasLrcAlready();
 
+signals:
+    void musicBgDownloadFinished();
+
 public slots:
     void musicHaveNoLrcAlready();
     /////////////////////////////////////////////

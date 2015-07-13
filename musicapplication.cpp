@@ -71,6 +71,8 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_systemCloseConfig = false;//Control the mode to exit
     m_setWindowToTop = false;
     m_currentMusicSongTreeIndex = 0;
+    m_pictureCarouselIndex = 0;
+    connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
 
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
@@ -91,6 +93,9 @@ MusicApplication::MusicApplication(QWidget *parent) :
                                  m_downloadStatusLabel,SLOT(showDownLoadInfoFor(DownLoadType)));
     connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFinished(QString)),
                                  m_downloadStatusLabel,SLOT(showDownLoadInfoFinished(QString)));
+    connect(ui->songSearchWidget,SIGNAL(musicBgDownloadFinished()),SLOT(musicBgThemeDownloadFinished()));
+    connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()),SLOT(musicBgThemeDownloadFinished()));
+
     connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
     connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
@@ -1167,27 +1172,37 @@ void MusicApplication::musicShowSkinChangedWindow()
 void MusicApplication::musicBgThemeDownloadFinished()
 {
     if(ui->SurfaceStackedWidget->currentIndex() == 2)
-        musicBgTransparentChanged(m_alpha);
+    {
+        musicBackgroundChanged();
+        m_pictureCarouselTimer.start(5000);
+    }
 }
 
 void MusicApplication::musicBgTransparentChanged(int index)
 {
+    m_pictureCarouselTimer.stop();
     m_alpha = index;//save the alpha
     //Here set the picture transparency
-    QString path = THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE;
-    if(ui->SurfaceStackedWidget->currentIndex() == 2)
-    {
-        QString art_path = ART_BG + getCurrentFileName().split('-').front().trimmed()
-                                  + QString::number(2) + JPG_FILE;
-        if(QFile::exists(art_path)) path = art_path;
-    }
+    drawWindowBackgroundRect(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
+}
+
+void MusicApplication::musicBackgroundChanged()
+{
+    QString art_path = ART_BG + getCurrentFileName().split('-').front().trimmed()+ QString::number(
+                       m_pictureCarouselIndex < 5 ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0) + JPG_FILE;
+    if(QFile::exists(art_path))
+        drawWindowBackgroundRect(art_path);
+}
+
+void MusicApplication::drawWindowBackgroundRect(const QString& path)
+{
     QPixmap origin(path);
     QPixmap afterDeal(size());
     afterDeal.fill(Qt::transparent);
     QPainter paint(&afterDeal);
-    paint.fillRect(0,0,afterDeal.width(),afterDeal.height(),QColor(255,255,255,2.55*index));
+    paint.fillRect(0,0,afterDeal.width(),afterDeal.height(),QColor(255,255,255,2.55*m_alpha));
     paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size()).toImage()));
+    paint.drawPixmap(0,0,QPixmap::fromImage(origin.toImage()));
     paint.end();
 
     m_musicSongTree->setStyleSheet(MusicObject::QToolBoxItemStyle);
@@ -1306,7 +1321,7 @@ void MusicApplication::musicLrcWidgetButtonSearched()
 {
     //Show lrc display widget
     ui->SurfaceStackedWidget->setCurrentIndex(2);
-    musicBgTransparentChanged(m_alpha);
+    musicBgThemeDownloadFinished();
 }
 
 void MusicApplication::musicSearchRefreshButtonRefreshed()

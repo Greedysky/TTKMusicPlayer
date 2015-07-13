@@ -20,6 +20,7 @@ public:
     void musicDownloadLocal(int);
 
 signals:
+    void musicBgDownloadFinished();
     void showDownLoadInfoFinished(const QString&);
     void MuiscSongToPlayListChanged(const QString& name);
     void showDownLoadInfoFor(DownLoadType);
