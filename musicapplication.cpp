@@ -1627,4 +1627,5 @@ void MusicApplication::musicWindowConciseChanged()
     m_musicWindowExtras->disableBlurBehindWindow( !con );
     ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
     drawWindowRoundedRect();
+    musicBgThemeDownloadFinished();
 }
