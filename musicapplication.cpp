@@ -1202,7 +1202,7 @@ void MusicApplication::drawWindowBackgroundRect(const QString& path)
     QPainter paint(&afterDeal);
     paint.fillRect(0,0,afterDeal.width(),afterDeal.height(),QColor(255,255,255,2.55*m_alpha));
     paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    paint.drawPixmap(0,0,QPixmap::fromImage(origin.toImage()));
+    paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size(), Qt::KeepAspectRatioByExpanding).toImage()));
     paint.end();
 
     m_musicSongTree->setStyleSheet(MusicObject::QToolBoxItemStyle);
