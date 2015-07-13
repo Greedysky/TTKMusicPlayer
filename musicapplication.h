@@ -64,6 +64,7 @@ protected:
     void createRemoteWidget();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
+    void createVedioWidget(bool);
     void drawWindowRoundedRect();
     void drawWindowBackgroundRect(const QString&);
     virtual void closeEvent(QCloseEvent *event);

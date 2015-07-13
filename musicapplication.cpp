@@ -809,27 +809,29 @@ void MusicApplication::musicKey()
       return;//The playlist is not performing space-time
     if(m_playControl)
     {
-      ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
-      m_playControl = false;
-      m_musicPlayer->play();
-      if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
+        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
+        m_playControl = false;
+        m_musicPlayer->play();
+        m_pictureCarouselTimer.start(5000);
+        if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
           m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
-      {
-         ui->musiclrccontainerforinline->startTimerClock();
-         m_musiclrcfordesktop->startTimerClock();
-      }
+        {
+            ui->musiclrccontainerforinline->startTimerClock();
+            m_musiclrcfordesktop->startTimerClock();
+        }
     }
     else
     {
-      ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
-      m_playControl = true;
-      m_musicPlayer->pause();
-      if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
+        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
+        m_playControl = true;
+        m_musicPlayer->pause();
+        m_pictureCarouselTimer.stop();
+        if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
           m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
-      {
-         ui->musiclrccontainerforinline->stopLrcMask();
-         m_musiclrcfordesktop->stopLrcMask();
-      }
+        {
+            ui->musiclrccontainerforinline->stopLrcMask();
+            m_musiclrcfordesktop->stopLrcMask();
+        }
     }
     m_systemTrayMenu->showPlayStatus(m_playControl);
     m_musiclrcfordesktop->showPlayStatus(m_playControl);
@@ -1188,10 +1190,13 @@ void MusicApplication::musicBgTransparentChanged(int index)
 
 void MusicApplication::musicBackgroundChanged()
 {
-    QString art_path = ART_BG + getCurrentFileName().split('-').front().trimmed()+ QString::number(
-                       m_pictureCarouselIndex < 5 ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0) + JPG_FILE;
-    if(QFile::exists(art_path))
-        drawWindowBackgroundRect(art_path);
+    int count = 0;
+    QString filter = ART_BG + getCurrentFileName().split('-').front().trimmed()+ "%1" + JPG_FILE;
+    for(int i=0; i<5; ++i)
+        if(QFile::exists(filter.arg(i))) ++count;
+    /////////////////////////////////////////////////////////////////////
+    QString art_path = filter.arg(m_pictureCarouselIndex < count ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0);
+    QFile::exists(art_path) ? drawWindowBackgroundRect(art_path) : musicBgTransparentChanged(m_alpha);
 }
 
 void MusicApplication::drawWindowBackgroundRect(const QString& path)
@@ -1297,14 +1302,16 @@ void MusicApplication::musicSearchButtonSearched()
     //The string searched wouldn't allow to be none
     if( !searchedQString.isEmpty())
     {
-       ui->SurfaceStackedWidget->setCurrentIndex(1);
-       musicBgTransparentChanged(m_alpha);
-       ui->songSearchWidget->startSearchSong(searchedQString);
+        createVedioWidget(false);
+        ui->SurfaceStackedWidget->setCurrentIndex(1);
+        musicBgTransparentChanged(m_alpha);
+        ui->songSearchWidget->startSearchSong(searchedQString);
     }
 }
 
 void MusicApplication::musicIndexWidgetButtonSearched()
 {
+    createVedioWidget(false);
     //Show the first index of widget
     ui->SurfaceStackedWidget->setCurrentIndex(0);
     musicBgTransparentChanged(m_alpha);
@@ -1312,6 +1319,7 @@ void MusicApplication::musicIndexWidgetButtonSearched()
 
 void MusicApplication::musicSearchWidgetButtonSearched()
 {
+    createVedioWidget(false);
     //Show searched song lists
     ui->SurfaceStackedWidget->setCurrentIndex(1);
     musicBgTransparentChanged(m_alpha);
@@ -1319,6 +1327,7 @@ void MusicApplication::musicSearchWidgetButtonSearched()
 
 void MusicApplication::musicLrcWidgetButtonSearched()
 {
+    createVedioWidget(false);
     //Show lrc display widget
     ui->SurfaceStackedWidget->setCurrentIndex(2);
     musicBgThemeDownloadFinished();
@@ -1326,18 +1335,34 @@ void MusicApplication::musicLrcWidgetButtonSearched()
 
 void MusicApplication::musicSearchRefreshButtonRefreshed()
 {
+    createVedioWidget(false);
     //Refresh the search music song
     musicSearchButtonSearched();
 }
 
-void MusicApplication::musicVedioWidgetButtonSearched()
+void MusicApplication::createVedioWidget(bool create)
 {
-    if(ui->SurfaceStackedWidget->count() <= 3)
+    if(create)
     {
+        delete m_videoPlayer;
         m_videoPlayer = new MusicVideoPlayer;
         ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
+        if(!m_playControl) musicKey();
     }
-    if(!m_playControl) musicKey();
+    else
+    {
+        if(m_videoPlayer)
+        {
+            ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
+            delete m_videoPlayer;
+            m_videoPlayer = NULL;
+        }
+    }
+}
+
+void MusicApplication::musicVedioWidgetButtonSearched()
+{
+    createVedioWidget(true);
     ui->SurfaceStackedWidget->setCurrentIndex(3);
     musicBgTransparentChanged(m_alpha);
 }
