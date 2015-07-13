@@ -812,7 +812,7 @@ void MusicApplication::musicKey()
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
         m_playControl = false;
         m_musicPlayer->play();
-        m_pictureCarouselTimer.start(5000);
+        musicBgThemeDownloadFinished();
         if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
           m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
         {
