@@ -1016,7 +1016,7 @@
   <customwidget>
    <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
-   <header>localsearch/musiclocalsongsearchedit.h</header>
+   <header>localsearch/musiclocalsongsearchinlineedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

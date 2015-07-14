@@ -48,6 +48,7 @@ SOURCES += \
     musicwindowextras.cpp \
     localsearch/musiclocalsongsearch.cpp \
     localsearch/musiclocalsongsearchedit.cpp \
+    localsearch/musiclocalsongsearchinlineedit.cpp \
     localsearch/musiclocalsongsearchpopwidget.cpp \
     localsearch/musiclocalsongsearchrecordobject.cpp \
     lrcmanager/musiclrcmanager.cpp \
@@ -119,6 +120,7 @@ HEADERS  += \
     musicwindowextras.h \
     localsearch/musiclocalsongsearch.h \
     localsearch/musiclocalsongsearchedit.h \
+    localsearch/musiclocalsongsearchinlineedit.h \
     localsearch/musiclocalsongsearchpopwidget.h \
     localsearch/musiclocalsongsearchrecordobject.h \
     lrcmanager/musiclrcmanager.h \
