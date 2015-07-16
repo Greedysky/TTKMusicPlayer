@@ -1182,6 +1182,7 @@ void MusicApplication::musicBgThemeDownloadFinished()
 
 void MusicApplication::musicBgTransparentChanged(int index)
 {
+    if(ui->SurfaceStackedWidget->currentIndex() == 2) return;
     m_pictureCarouselTimer.stop();
     m_alpha = index;//save the alpha
     //Here set the picture transparency
