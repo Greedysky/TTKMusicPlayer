@@ -51,7 +51,7 @@ void MusicUserManager::musicUserLogoff()
     MusicUserConfigManager xml;
     if(!xml.readUserXMLConfig())
         return;
-    QMap<QString, QStringList> parameter;
+    MStringsListMap parameter;
     xml.readUserConfig(parameter);
     QStringList values = parameter.value(m_currentUser);
     values[0] = "0";//auto login flag

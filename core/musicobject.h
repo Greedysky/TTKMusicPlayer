@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QDir>
-#include <QObject>
+#include <QMap>
 #include <QDebug>
 
 #define LRC_DOWNLOAD   "MLrc/"
@@ -60,9 +60,20 @@ typedef float MFloat;                /* float */
 typedef bool MBool;                  /* bool */
 
 typedef QList<QStringList> MStringLists;    /* stringlists */
+typedef QList<int> MIntList;                /* intlist */
+typedef QList<MIntList> MIntLists;          /* intlists */
+typedef QSet<int> MIntSet;                  /* intset */
+typedef QSet<MIntSet> MIntSets;             /* intsets */
 typedef QPair<QStringList,QStringList> MStringListsPair; /* stringlistsPair */
-typedef QList<int> MIntList;                /* intlists */
-typedef QSet<int> MIntSet;                  /* intlists */
+typedef QMap<QString,QVariant> MStriantMap;    /* stringVariantMap */
+typedef QMap<QString,QStringList> MStringsListMap; /* stringStrlistsMap */
+typedef QMap<int,MIntList> MIntsListMap;        /* intIntlistMap */
+typedef QMap<qint64,QString> MIntStringMap;      /* intStrMap */
+typedef QMapIterator<QString,QVariant> MStriantMapIt;    /* stringVariantMapIt */
+typedef QMapIterator<QString,QStringList> MStringsListMapIt; /* stringStrlistsMapIt */
+typedef QMapIterator<int,MIntList> MIntsListMapIt;        /* intIntlistMapIt */
+typedef QMapIterator<qint64,QString> MIntStringMapIt;      /* intStrMapIt */
+
 
 
 namespace MusicObject

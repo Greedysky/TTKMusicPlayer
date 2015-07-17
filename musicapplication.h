@@ -190,7 +190,7 @@ private:
     MusicSystemTrayMenu *m_systemTrayMenu;
 
     QSettings m_musicSettingParameter;
-    QMap<int,MIntList > m_searchfileListCache;
+    MIntsListMap m_searchfileListCache;
 
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;

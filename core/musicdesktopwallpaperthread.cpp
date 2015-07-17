@@ -72,7 +72,7 @@ void MusicDesktopWallpaperThread::run()
     }
 }
 
-void MusicDesktopWallpaperThread::setParamters(const QMap<QString,QVariant>& p)
+void MusicDesktopWallpaperThread::setParamters(const MStriantMap& p)
 {
     m_paramter = p;
 }

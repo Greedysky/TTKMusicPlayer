@@ -6,7 +6,7 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
 
 }
 
-void MusicUserConfigManager::writeUserXMLConfig(const QMap<QString,QStringList>& par)
+void MusicUserConfigManager::writeUserXMLConfig(const MStringsListMap& par)
 {
     if( !writeConfig( USERPATH ) ) return;
     ///////////////////////////////////////////////////////
@@ -15,7 +15,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const QMap<QString,QStringList>&
     QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
     m_ddom->appendChild(QMusicPlayer);
 
-    QMapIterator<QString, QStringList> p(par);
+    MStringsListMapIt p(par);
     while(p.hasNext())
     {
         p.next();
@@ -39,7 +39,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const QMap<QString,QStringList>&
     m_ddom->save(out,4);
 }
 
-void MusicUserConfigManager::readUserConfig(QMap<QString, QStringList> &name)
+void MusicUserConfigManager::readUserConfig(MStringsListMap &name)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("username");
     QDomNodeList childlist;

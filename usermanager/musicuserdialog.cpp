@@ -304,7 +304,7 @@ void MusicUserDialog::checkUserForgotPasswd()
 
 void MusicUserDialog::readFromUserSettings()
 {
-    QMapIterator<QString, QStringList> p(m_parameter);
+    MStringsListMapIt p(m_parameter);
     bool flag;
     while(p.hasNext())
     {

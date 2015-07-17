@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QTabWidget>
-#include <QMap>
 #include "core/musicmovedialogabstract.h"
 #include "core/musicobject.h"
 #include <QMouseEvent>

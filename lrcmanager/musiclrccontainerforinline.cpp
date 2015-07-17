@@ -108,7 +108,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
        m_lrcContainer.insert(0,".........");
 
-    QMapIterator<qint64,QString> it(m_lrcContainer);
+    MIntStringMapIt it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -263,7 +263,7 @@ void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
     if(m_currentLrcIndex < 0) m_currentLrcIndex = 0;
     if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
     {
-        QMapIterator<qint64,QString> it(m_lrcContainer);
+        MIntStringMapIt it(m_lrcContainer);
         for(int i=0; i<m_currentLrcIndex + 1; ++i)
             if(it.hasNext()) it.next();
         emit updateCurrentTime(it.key());

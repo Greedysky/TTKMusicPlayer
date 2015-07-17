@@ -2,8 +2,7 @@
 #define MUSICDESKTOPWALLPAPERTHREAD_H
 
 #include <QThread>
-#include <QMap>
-#include <QVariant>
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicDesktopWallpaperThread : public QThread
@@ -13,7 +12,7 @@ public:
     explicit MusicDesktopWallpaperThread(QObject *parent = 0);
     ~MusicDesktopWallpaperThread();
 
-    void setParamters(const QMap<QString,QVariant>&);
+    void setParamters(const MStriantMap &);
     void stopAndQuitThread();
 
 signals:
@@ -30,7 +29,7 @@ protected:
     bool m_returnToOrigin;
     int m_currentImageIndex;
     int m_originType;
-    QMap<QString,QVariant> m_paramter;
+    MStriantMap m_paramter;
     QString m_originPath;
 
 };

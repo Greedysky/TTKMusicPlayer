@@ -186,7 +186,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
 
 void MusicDesktopWallpaperWidget::parameterFinished()
 {
-    QMap<QString,QVariant> para;
+    MStriantMap para;
     para.insert("Mode", m_currentMode);
     para.insert("Path", m_path);
     para.insert("Effect",ui->pictureEffect->currentIndex());

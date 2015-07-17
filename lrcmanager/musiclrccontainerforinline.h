@@ -23,7 +23,7 @@ public:
 
     bool transLrcFileToTime(const QString& lrcFileName);
     QString text() const;
-    inline QMap<qint64,QString>& getLrcContainer() {return m_lrcContainer;}
+    inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
     void changeLrcSize(LrcSizeTable = Middle);
     void setSongSpeedAndSlow(qint64 time);
 
@@ -52,7 +52,7 @@ protected:
     int m_currentLrcIndex;
     QVBoxLayout *m_vBoxLayout;
     QStringList m_currentShowLrcContainer;
-    QMap<qint64,QString> m_lrcContainer;
+    MIntStringMap m_lrcContainer;
 
 };
 

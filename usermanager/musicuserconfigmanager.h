@@ -10,8 +10,8 @@ public:
 
     //UserXMLConfig
     inline bool readUserXMLConfig(){ return readConfig(USERPATH); }
-    void writeUserXMLConfig(const QMap<QString, QStringList> &par);
-    void readUserConfig(QMap<QString, QStringList> &);
+    void writeUserXMLConfig(const MStringsListMap &par);
+    void readUserConfig(MStringsListMap &);
 
 };
 
