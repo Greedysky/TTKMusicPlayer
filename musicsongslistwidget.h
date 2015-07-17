@@ -25,6 +25,7 @@ public:
     inline void setPlaybackMode(MusicObject::SongPlayType type)
         { m_songplaymode = type;}
     void setTimerLabel(const QString& t);
+    void updateArtPicture();
     void replacePlayWidgetRow();
 
 signals:

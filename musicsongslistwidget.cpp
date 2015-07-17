@@ -378,6 +378,12 @@ void MusicSongsListWidget::setTimerLabel(const QString &t)
         m_musicSongsPlayWidget->insertTimerLabel(t);
 }
 
+void MusicSongsListWidget::updateArtPicture()
+{
+    if(m_musicSongsPlayWidget)
+        m_musicSongsPlayWidget->updateArtPicture();
+}
+
 void MusicSongsListWidget::replacePlayWidgetRow()
 {
     QString name,path;

@@ -31,6 +31,7 @@ public:
     void currentMusicSongTreeIndexChanged(int index);
     void selectRow(int);
     void setTimerLabel(const QString&);
+    void updateArtPicture();
     QString itemText(int,int) const;
     void setPlaybackMode(MusicObject::SongPlayType);
 

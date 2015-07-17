@@ -108,6 +108,11 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString& t)
     m_timeLabel->setText(t + m_totalTime);
 }
 
+void MusicSongsListPlayWidget::updateArtPicture()
+{
+    showArtPicture(m_songName->text().split('-').front().trimmed());
+}
+
 bool MusicSongsListPlayWidget::showArtPicture(const QString& name)
 {
     QPixmap originPath(QString(ART_DOWNLOAD + name + JPG_FILE));

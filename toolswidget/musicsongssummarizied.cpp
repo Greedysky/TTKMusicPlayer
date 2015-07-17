@@ -98,6 +98,11 @@ void MusicSongsSummarizied::setTimerLabel(const QString& time)
     m_mainSongLists[m_currentIndexs]->setTimerLabel(time);
 }
 
+void MusicSongsSummarizied::updateArtPicture()
+{
+    m_mainSongLists[m_currentIndexs]->updateArtPicture();
+}
+
 QString MusicSongsSummarizied::itemText(int row,int col) const
 {
     return m_mainSongLists[m_currentIndexs]->item(row,col)->text();

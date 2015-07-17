@@ -1176,6 +1176,7 @@ void MusicApplication::musicBgThemeDownloadFinished()
     if(ui->SurfaceStackedWidget->currentIndex() == 2)
     {
         musicBackgroundChanged();
+        m_musicSongTree->updateArtPicture();
         m_pictureCarouselTimer.start(5000);
     }
 }
@@ -1197,7 +1198,7 @@ void MusicApplication::musicBackgroundChanged()
         if(QFile::exists(filter.arg(i))) ++count;
     /////////////////////////////////////////////////////////////////////
     QString art_path = filter.arg(m_pictureCarouselIndex < count ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0);
-    QFile::exists(art_path) ? drawWindowBackgroundRect(art_path) : musicBgTransparentChanged(m_alpha);
+    QFile::exists(art_path) ? drawWindowBackgroundRect(art_path) : drawWindowBackgroundRect(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
 }
 
 void MusicApplication::drawWindowBackgroundRect(const QString& path)

@@ -19,6 +19,7 @@ public:
 
     void getWidget(QWidget *&one, QWidget *&two);
     void insertTimerLabel(const QString& t);
+    void updateArtPicture();
     void setParameter(const QString& name,const QString& path);
     void setItemRename();
 
