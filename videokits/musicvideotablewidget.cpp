@@ -125,7 +125,7 @@ void MusicVideoTableWidget::listCellClicked(int row,int col)
 
 void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
-    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
     MusicSongDownloadThread* download = new MusicSongDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
                        .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), this);
@@ -134,6 +134,6 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int)
 {
-    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     emit mvURLChanged(musicSongInfo[row][2]);
 }

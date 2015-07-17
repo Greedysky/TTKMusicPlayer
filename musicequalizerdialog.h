@@ -18,7 +18,7 @@ public:
     ~MusicEqualizerDialog();
 
 signals:
-    void setEqEffect(const QList<int>&);
+    void setEqEffect(const MIntList&);
     void setEnaleEffect(bool);
     void setSpEqEffect(MusicObject::SpecialEQ);
     void resetEqEffect();
@@ -62,7 +62,7 @@ protected:
     Ui::MusicEqualizerDialog *ui;
     bool m_eable;
     bool m_eqChoiceSelected;
-    QList<int> m_equalizeValue;
+    MIntList m_equalizeValue;
 
 };
 

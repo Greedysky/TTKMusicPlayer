@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkReply>
 #include "musiclibexportglobal.h"
+#include "musicobject.h"
 
 class QNetworkAccessManager;
 
@@ -20,7 +21,7 @@ public:
     void deleteAll();
     void startSearchSong(QueryType, const QString&);
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
-    inline QList< QStringList >& getMusicSongInfo(){ return m_musicSongInfo;}
+    inline MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
     void showDownLoadInfoFor(DownLoadType);
@@ -35,7 +36,7 @@ public slots:
 protected:
     QNetworkAccessManager *m_manager;
     QNetworkReply *m_reply;
-    QList< QStringList > m_musicSongInfo;
+    MStringLists m_musicSongInfo;
     QString m_searchText;
     QueryType m_currentType;
 

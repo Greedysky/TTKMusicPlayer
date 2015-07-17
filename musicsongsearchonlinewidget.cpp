@@ -123,7 +123,7 @@ void MusicSongSearchOnlineWidget::addSearchMusicToPlayList(int row)
 void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 {
     emit showDownLoadInfoFor(DownLoading);
-    QList< QStringList > musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
     QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
 

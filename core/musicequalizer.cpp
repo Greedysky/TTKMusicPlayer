@@ -35,7 +35,7 @@ void MusicEqualizer::readEqInformation()
         QStringList eqValue = setting.value("EQUALIZERVALUECHOICED").toString().split(',');
         if(eqValue.count() == 11)
         {
-            QList<int> hz;
+            MIntList hz;
             hz<<eqValue[1].toInt()<<eqValue[2].toInt()<<eqValue[3].toInt()
               <<eqValue[4].toInt()<<eqValue[5].toInt()<<eqValue[6].toInt()
               <<eqValue[7].toInt()<<eqValue[8].toInt()<<eqValue[9].toInt()
@@ -45,7 +45,7 @@ void MusicEqualizer::readEqInformation()
     }
 }
 
-void MusicEqualizer::setEqEffect(const QList<int> &hz)
+void MusicEqualizer::setEqEffect(const MIntList &hz)
 {
     qDebug()<<"setEqEffect-----";
     ///set equalizer

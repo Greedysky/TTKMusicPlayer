@@ -37,7 +37,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
         connect(m_mainSongLists[i],SIGNAL(musicPlayItemOnce()),parent,SLOT(musicPlayItemOnce()));
         connect(m_mainSongLists[i],SIGNAL(musicAddNewFiles()),parent,SLOT(musicImportSongsOnlyFile()));
         connect(m_mainSongLists[i],SIGNAL(musicAddNewDir()),parent,SLOT(musicImportSongsOnlyDir()));
-        connect(m_mainSongLists[i],SIGNAL(deleteItemAt(QList<int>,bool)),SLOT(setDeleteItemAt(QList<int>,bool)));
+        connect(m_mainSongLists[i],SIGNAL(deleteItemAt(MIntList,bool)),SLOT(setDeleteItemAt(MIntList,bool)));
         connect(m_mainSongLists[i],SIGNAL(currentTextChanged(int,QString)),SLOT(currentTextChanged(int,QString)));
         connect(m_mainSongLists[i],SIGNAL(musicOpenFileDir(int)),SLOT(musicOpenFileDir(int)));
         connect(m_mainSongLists[i],SIGNAL(getMusicSongInformation(int,QMusicSong&)),
@@ -56,8 +56,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
 
 }
 
-void MusicSongsSummarizied::musicSongsFileNameAndPath(const QList<QStringList> &names,
-                                                      const QList<QStringList> &urls)
+void MusicSongsSummarizied::musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls)
 {
     m_musicFileNameList = names;
     m_musicFilePathList = urls;
@@ -65,7 +64,7 @@ void MusicSongsSummarizied::musicSongsFileNameAndPath(const QList<QStringList> &
         m_mainSongLists[i]->musicSongsFileName(m_musicFileNameList[i]);
 }
 
-void MusicSongsSummarizied::setMusicSongsSearchedFileName(const QList<int>& fileIndexs)
+void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList& fileIndexs)
 {
     QStringList t;
     for(int i=0; i<fileIndexs.count(); ++i)
@@ -123,7 +122,7 @@ void MusicSongsSummarizied::clearAllLists()
     }
 }
 
-void MusicSongsSummarizied::setDeleteItemAt(const QList<int> &index, bool fileRemove)
+void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemove)
 {
     if(index.count() == 0)
         return;

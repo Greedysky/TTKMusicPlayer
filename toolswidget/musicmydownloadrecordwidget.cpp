@@ -85,10 +85,10 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
                                  tr("Yes"),
                                  tr("Cancel")) != 0 )
        return;
-    QSet<int> deletedRow; //if selected multi rows
+    MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
         deletedRow.insert(selectedItems()[i]->row());
-    QList<int> deleteList = deletedRow.toList();
+    MIntList deleteList = deletedRow.toList();
     qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)
     {

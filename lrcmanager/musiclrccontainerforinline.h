@@ -3,8 +3,8 @@
 
 #include "musiclrccontainer.h"
 
-#define MIN_LRCCONTAIN_COUNT 7
-#define CURRENT_LRC_PAINT 3
+#define MIN_LRCCONTAIN_COUNT 9
+#define CURRENT_LRC_PAINT 4
 
 class QVBoxLayout;
 class MusicLRCManagerForInline;

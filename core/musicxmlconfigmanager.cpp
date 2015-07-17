@@ -8,10 +8,10 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
 
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(QList<QStringList>& fileNamesList,
-                                                 QList<QStringList>& fileUrlsList)
+void MusicXMLConfigManager::readMusicSongsConfig(MStringLists& fileNamesList,
+                                                 MStringLists& fileUrlsList)
 {
-    QPair<QStringList,QStringList> onePara;
+    MStringListsPair onePara;
     onePara = readMusicFilePath("fileNormalPath");
     fileNamesList<<onePara.first;
     fileUrlsList<<onePara.second;
@@ -34,8 +34,8 @@ void MusicXMLConfigManager::readMusicSongsConfig(QList<QStringList>& fileNamesLi
 //    }
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const QList<QStringList>& fileNamesList,
-                                                  const QList<QStringList>& fileUrlsList)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists& fileNamesList,
+                                                  const MStringLists& fileUrlsList)
 {
     if( fileNamesList.isEmpty() || fileUrlsList.isEmpty() )
         return;
@@ -336,7 +336,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out,4);
 }
 
-QPair<QStringList,QStringList> MusicXMLConfigManager::readMusicFilePath(const QString& value)
+MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString& value)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
     QStringList name;
@@ -346,7 +346,7 @@ QPair<QStringList,QStringList> MusicXMLConfigManager::readMusicFilePath(const QS
        name.append(nodelist.at(i).toElement().attribute("name"));
        url.append(nodelist.at(i).toElement().text());
     }
-    return QPair<QStringList,QStringList>(name,url);
+    return MStringListsPair(name,url);
 }
 
 void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList& key)

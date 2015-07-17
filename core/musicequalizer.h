@@ -15,7 +15,7 @@ public:
     explicit MusicEqualizer(ZPlay *parent);
     ~MusicEqualizer();
 
-    void setEqEffect(const QList<int>& hz);
+    void setEqEffect(const MIntList& hz);
     void setEnaleEffect(bool b);
     void setEchoEffect();
     void setMixChannelEffect();

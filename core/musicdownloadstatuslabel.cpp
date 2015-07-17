@@ -99,7 +99,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 
 void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 {
-    QList< QStringList > musicSongInfo(m_downloadLrcThread->getMusicSongInfo());
+    MStringLists musicSongInfo(m_downloadLrcThread->getMusicSongInfo());
     static int counter = 5;
     if(!musicSongInfo.isEmpty())
     {

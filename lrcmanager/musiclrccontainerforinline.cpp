@@ -176,17 +176,17 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
         for(int i=1; i<= MIN_LRCCONTAIN_COUNT; ++i)
         {
             MusicLRCManagerForInline *w = static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i-1]);
-            if(i == 1 || i == 7)
+            if(i == 1 || i == 9)
             {
                 w->setFontSize(3);
-                w->setTransparent(185);
+                w->setTransparent(220);
             }
-            if(i == 2 || i == 6)
+            if(i == 2 || i == 8)
             {
                 w->setFontSize(2);
                 w->setTransparent(105);
             }
-            if(i == 3 || i == 5)
+            if(i == 3 || i == 4 || i == 6 || i == 7)
             {
                 w->setFontSize(1);
                 w->setTransparent(45);

@@ -47,7 +47,7 @@ protected:
     QStringList m_filename;
     QStringList m_fileDir;
     MusicLocalSongsManagerThread* m_thread;
-    QMap<int,QList<int> > m_searchfileListCache;
+    QMap<int,MIntList > m_searchfileListCache;
     int m_currentIndex;
     QMovie* m_movie;
 

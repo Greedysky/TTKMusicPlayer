@@ -19,13 +19,13 @@ public:
     explicit MusicSongsSummarizied(QWidget *parent = 0);
     virtual ~MusicSongsSummarizied();
 
-    void musicSongsFileNameAndPath(const QList<QStringList>&,const QList<QStringList>&);
-    void setMusicSongsSearchedFileName(const QList<int>&);
+    void musicSongsFileNameAndPath(const MStringLists &, const MStringLists &);
+    void setMusicSongsSearchedFileName(const MIntList&);
     void importOtherMusicSongs(const QStringList&);
     inline QStringList& getMusicSongsFileName(int index) { return m_musicFileNameList[index];}
     inline QStringList& getMusicSongsFilePath(int index) { return m_musicFilePathList[index];}
-    inline QList<QStringList>& getMusicAllSongsFileName() { return m_musicFileNameList;}
-    inline QList<QStringList>& getMusicAllSongsFilePath() { return m_musicFilePathList;}
+    inline MStringLists& getMusicAllSongsFileName() { return m_musicFileNameList;}
+    inline MStringLists& getMusicAllSongsFilePath() { return m_musicFilePathList;}
     inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
     void clearAllLists();
     void currentMusicSongTreeIndexChanged(int index);
@@ -37,7 +37,7 @@ public:
 
 signals:
     void musicPlay(int,int);
-    void deleteItemAt(QList<int>);
+    void deleteItemAt(MIntList);
     void updatePlayLists(const QString&);
     void showCurrentSong(int);
     void updateMediaLists(const QStringList&,int);
@@ -46,7 +46,7 @@ public slots:
     void setCurrentIndex();
     void addMusicSongToLovestListAt(int);
     void addNetMusicSongToList(const QString&);
-    void setDeleteItemAt(const QList<int>&,bool);
+    void setDeleteItemAt(const MIntList&,bool);
     void addNewItem();
     void deleteItem();
     void changItemName();
@@ -64,8 +64,8 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     QList<MusicSongsListWidget*> m_mainSongLists;
-    QList<QStringList> m_musicFileNameList;
-    QList<QStringList> m_musicFilePathList;
+    MStringLists m_musicFileNameList;
+    MStringLists m_musicFilePathList;
     int m_currentIndexs;
     int m_renameIndex;
     MusicSongsToolItemRenamedWidget* m_renameLine;

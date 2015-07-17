@@ -83,7 +83,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(m_musicPlayer,SIGNAL(stateChanged()),SLOT(stateChanged()));
     connect(m_musicList,SIGNAL(currentIndexChanged(int)),this,SLOT(showCurrentSong(int)));
 
-    connect(m_musicSongTree,SIGNAL(deleteItemAt(QList<int>)),SLOT(setDeleteItemAt(QList<int>)));
+    connect(m_musicSongTree,SIGNAL(deleteItemAt(MIntList)),SLOT(setDeleteItemAt(MIntList)));
     connect(m_musicSongTree,SIGNAL(updatePlayLists(QString)),m_musicList,SLOT(appendMedia(QString)));
     connect(m_musicSongTree,SIGNAL(updateMediaLists(QStringList,int)),m_musicList,SLOT(updateMediaLists(QStringList,int)));
 
@@ -567,7 +567,7 @@ void MusicApplication::readXMLConfigFromText()
     musicToolSetsParameter();
     //////////////////////////////////////////////////////////////
     //Path configuration song
-    QList<QStringList> names,songs;
+    MStringLists names,songs;
     xml.readMusicSongsConfig(names, songs);
     m_musicSongTree->musicSongsFileNameAndPath(names, songs);
 
@@ -1127,7 +1127,7 @@ void MusicApplication::musicCurrentPlayLocation()
     m_musicSongTree->selectRow(m_musicList->currentIndex());
 }
 
-void MusicApplication::setDeleteItemAt(const QList<int> &index)
+void MusicApplication::setDeleteItemAt(const MIntList &index)
 {
     for(int i=index.count() - 1; i>=0; --i)
     {
@@ -1224,7 +1224,7 @@ void MusicApplication::musicBackgroundSkinChanged(const QString &filename)
 
 void MusicApplication::musicSearchIndexChanged(int,int index)
 {
-    QList<int> searchResult;
+    MIntList searchResult;
     QStringList searchedSongs(m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex()));
     for(int j=0; j<searchedSongs.count(); ++j)
       if(searchedSongs[j].contains(m_musicLocalSongSearch->getSearchedText(),Qt::CaseInsensitive))
@@ -1436,7 +1436,7 @@ void MusicApplication::musicSetWindowToTop()
 void MusicApplication::musicSetEqualizer()
 {
     MusicEqualizerDialog eq(this);
-    connect(&eq,SIGNAL(setEqEffect(QList<int>)),m_musicPlayer,SLOT(setEqEffect(QList<int>)));
+    connect(&eq,SIGNAL(setEqEffect(MIntList)),m_musicPlayer,SLOT(setEqEffect(MIntList)));
     connect(&eq,SIGNAL(setEnaleEffect(bool)),m_musicPlayer,SLOT(setEnaleEffect(bool)));
     connect(&eq,SIGNAL(setSpEqEffect(MusicObject::SpecialEQ)),m_musicPlayer,
                 SLOT(setSpEqEffect(MusicObject::SpecialEQ)));

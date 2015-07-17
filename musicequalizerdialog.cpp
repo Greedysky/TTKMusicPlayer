@@ -235,7 +235,7 @@ void MusicEqualizerDialog::verticalSlider10(int)
 
 void MusicEqualizerDialog::emitParameter()
 {
-    emit setEqEffect(QList<int>()<<ui->verticalSlider1->value()
+    emit setEqEffect(MIntList()<<ui->verticalSlider1->value()
                      <<ui->verticalSlider2->value()<<ui->verticalSlider3->value()
                      <<ui->verticalSlider4->value()<<ui->verticalSlider5->value()
                      <<ui->verticalSlider6->value()<<ui->verticalSlider7->value()

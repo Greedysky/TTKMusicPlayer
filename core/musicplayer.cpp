@@ -228,7 +228,7 @@ void MusicPlayer::removeCurrentMedia()
     }
 }
 
-void MusicPlayer::setEqEffect(const QList<int>& hz)
+void MusicPlayer::setEqEffect(const MIntList& hz)
 {
     m_equalizer->setEqEffect(hz);
 }

@@ -219,10 +219,10 @@ void MusicSongsListWidget::setDeleteItemAt()
                                  tr("Cancel")) != 0 || currentRow() < 0)
        return;
 
-    QSet<int> deletedRow; //if selected multi rows
+    MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
         deletedRow.insert(selectedItems()[i]->row());
-    QList<int> deleteList = deletedRow.toList();
+    MIntList deleteList = deletedRow.toList();
 
     if(deleteList.contains(m_playRowIndex))
         replacePlayWidgetRow();
@@ -240,7 +240,7 @@ void MusicSongsListWidget::setDeleteItemAt()
         delete this->takeItem(i,0);//Remove the original object delete
         this->setItem(i,0,item); //insert
     }
-    emit deleteItemAt(deleteList,m_deleteItemWithFile);
+    emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
 void MusicSongsListWidget::listCellClicked(int row, int column)

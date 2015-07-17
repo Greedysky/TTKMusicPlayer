@@ -13,8 +13,8 @@ public:
     inline bool readXMLConfig() { return readConfig(COFIGPATH); }
     inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH); }
     void writeXMLConfig();
-    void writeMusicSongsConfig(const QList<QStringList>&,const QList<QStringList>&);
-    void readMusicSongsConfig(QList<QStringList> &, QList<QStringList> &);
+    void writeMusicSongsConfig(const MStringLists &, const MStringLists &);
+    void readMusicSongsConfig(MStringLists &, MStringLists &);
     inline int readMusicPlayModeConfig()
     { return readXmlByTagNameAndAttribute("playMode").toInt(); }
     inline int readMusicPlayVolumeConfig()
@@ -76,7 +76,7 @@ public:
     void readTimeAutoConfig();
 
 protected:
-    QPair<QStringList,QStringList> readMusicFilePath(const QString&);
+    MStringListsPair readMusicFilePath(const QString&);
     QColor readColorConfig(const QString& value);
 
 };

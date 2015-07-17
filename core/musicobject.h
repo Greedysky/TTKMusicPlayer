@@ -45,23 +45,28 @@
 #define kOptTopMusicURL "http://www.kugou.com/"
 #define kOptTopRadioURL "http://www.kugou.com/fmweb/html/index.html"
 #define kOptTopMvURL    "http://www.kugou.com/mvweb/html/"
-#define kOptTopLiveURL  "http://fanxing.kugou.com/index.php?countId=15738&countRnd=_fx_countRnd_1406085000"
+
+typedef signed char MInt8;           /* 8 bit signed */
+typedef unsigned char MUint8;        /* 8 bit unsigned */
+typedef short MInt16;                /* 16 bit signed */
+typedef unsigned short MUint16;      /* 16 bit unsigned */
+typedef int MInt32;                  /* 32 bit signed */
+typedef unsigned int MUint32;        /* 32 bit unsigned */
+typedef long long MInt64;            /* 64 bit signed */
+typedef unsigned long long MUint64;  /* 64 bit unsigned */
+
+typedef double MDouble;              /* double */
+typedef float MFloat;                /* float */
+typedef bool MBool;                  /* bool */
+
+typedef QList<QStringList> MStringLists;    /* stringlists */
+typedef QPair<QStringList,QStringList> MStringListsPair; /* stringlistsPair */
+typedef QList<int> MIntList;                /* intlists */
+typedef QSet<int> MIntSet;                  /* intlists */
+
 
 namespace MusicObject
 {
-    typedef signed char m_int8;           /* 8 bit signed */
-    typedef unsigned char m_uint8;        /* 8 bit unsigned */
-    typedef short m_int16;                /* 16 bit signed */
-    typedef unsigned short m_uint16;      /* 16 bit unsigned */
-    typedef int m_int32;                  /* 32 bit signed */
-    typedef unsigned int m_uint32;        /* 32 bit unsigned */
-    typedef long long m_int64;            /* 64 bit signed */
-    typedef unsigned long long m_uint64;  /* 64 bit unsigned */
-
-    typedef double m_double;              /* double */
-    typedef float m_float;                /* float */
-    typedef bool m_bool;                  /* bool */
-
     enum XMLConfigType {
     //    FILENAMESLIST,
     //    FILEURLSLIST,

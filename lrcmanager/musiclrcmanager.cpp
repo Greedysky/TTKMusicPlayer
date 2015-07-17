@@ -88,7 +88,7 @@ void MusicLRCManager::setLinearGradientColor(QColor color)
     //calculated in accordance with the proportion of
     color.setAlpha(m_transparent*2.55);
     m_linearGradient.setColorAt(0.1, color);
-    m_linearGradient.setColorAt(0.5, QColor(114, 232, 255,m_transparent*2.55));
+    m_linearGradient.setColorAt(0.5, QColor(114, 232, 255, m_transparent*2.55));
     m_linearGradient.setColorAt(0.9, color);
     update();
 }

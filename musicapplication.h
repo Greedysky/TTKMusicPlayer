@@ -148,7 +148,7 @@ public slots:
     void getParameterSetting();
     /////////////////////////////////////////////
     //This is a slot by MusicSongsSummarizied's signal emit
-    void setDeleteItemAt(const QList<int> &index);
+    void setDeleteItemAt(const MIntList &index);
     /////////////////////////////////////////////
     //This is a slot by MusicInlineLrcContainer's signal emit
     void musicCurrentLrcUpdated();
@@ -190,7 +190,7 @@ private:
     MusicSystemTrayMenu *m_systemTrayMenu;
 
     QSettings m_musicSettingParameter;
-    QMap<int,QList<int> > m_searchfileListCache;
+    QMap<int,MIntList > m_searchfileListCache;
 
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;

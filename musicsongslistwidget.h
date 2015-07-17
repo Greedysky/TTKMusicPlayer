@@ -29,7 +29,7 @@ public:
     void replacePlayWidgetRow();
 
 signals:
-    void deleteItemAt(const QList<int>&,bool fileRemove);
+    void deleteItemAt(const MIntList&,bool fileRemove);
     void MusicSongToLovestListAt(int);
     void currentTextChanged(int,const QString&);
     void mucellDoubleClicked(int,int);
