@@ -9,6 +9,8 @@
 #include <QPainter>
 #include "../core/musiclibexportglobal.h"
 
+#define LRC_PER_TIME 30
+
 namespace LrcColorTable
 {   //Color table
     const QColor CL_Origin = QColor(14,179,255);

@@ -35,7 +35,7 @@ MusicLRCManager::~MusicLRCManager()
 
 void MusicLRCManager::startTimerClock()
 {
-    m_timer->start(30);
+    m_timer->start(LRC_PER_TIME);
 }
 
 void MusicLRCManager::setLrcFontSize(LrcSizeTable size)
@@ -49,8 +49,11 @@ void MusicLRCManager::setFontFamily(int index)
     if(index < 0) return;
 
     QStringList family = QFontDatabase().families(QFontDatabase::Any);
-    if(index >= family.count()) index = 0;
-    m_font.setFamily(family[index]);
+    if(!family.isEmpty())
+    {
+        if(index >= family.count()) index = 0;
+        m_font.setFamily(family[index]);
+    }
 }
 
 void MusicLRCManager::setFontType(int type)
@@ -73,7 +76,7 @@ void MusicLRCManager::startLrcMask(qint64 intervaltime)
     qreal count = intervaltime / m_speedLeve;
     m_lrcMaskWidthInterval = m_geometry.x() / count;
     m_lrcMaskWidth = 0;
-    m_timer->start(30);
+    m_timer->start(LRC_PER_TIME);
 }
 
 void MusicLRCManager::stopLrcMask()
