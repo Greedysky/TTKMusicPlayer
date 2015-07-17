@@ -12,8 +12,12 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent) : QWidget(parent
     m_label->hide();
 
     m_slider = new QSlider(Qt::Horizontal,this);
-    m_slider->setGeometry(17,17,325,5);
-    m_slider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
+    m_slider->setGeometry(17,17,325,10);
+    m_slider->setStyleSheet("QSlider::add-page:Horizontal{background-color: rgb(87, 97, 106);height:4px;}\
+              QSlider::sub-page:Horizontal{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1,\
+              y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255));height:4px;}\
+              QSlider::groove:Horizontal{background:transparent;height:4px;}QSlider::handle:Horizontal{\
+              border-image:url(':/image/musicslider');width:8px;height: 6px;margin: -2px -3px -2px 0px;}");
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_picIndex = -1;
@@ -63,7 +67,7 @@ void MusicTimerSliderWidget::setRange(int min, int max)
 
 void MusicTimerSliderWidget::sliderMovedAt(int pos)
 {
-    m_label->setGeometry(pos * 321.0 / m_duration, 2,35,35);
+    m_label->setGeometry(5 + ceil(pos * 318 / m_duration), 5,35,35);
 }
 
 void MusicTimerSliderWidget::timeout()
