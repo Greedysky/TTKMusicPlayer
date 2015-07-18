@@ -66,7 +66,8 @@ protected:
     void createPlayModeMenuIcon(QMenu&);
     void createVedioWidget(bool);
     void drawWindowRoundedRect();
-    void drawWindowBackgroundRect(const QString&);
+    void drawWindowBackgroundRect();
+    void drawWindowBackgroundRectString(const QString&);
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);

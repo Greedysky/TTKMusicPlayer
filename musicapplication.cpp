@@ -97,6 +97,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()),SLOT(musicBgThemeDownloadFinished()));
 
     connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
+    connect(ui->musiclrccontainerforinline,SIGNAL(theArtBgHasChanged()),SLOT(musicBgThemeDownloadFinished()));
     connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
     connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
@@ -1173,21 +1174,23 @@ void MusicApplication::musicShowSkinChangedWindow()
 
 void MusicApplication::musicBgThemeDownloadFinished()
 {
-    if(ui->SurfaceStackedWidget->currentIndex() == 2)
+    if(ui->SurfaceStackedWidget->currentIndex() == 2  &&
+       ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
         m_musicSongTree->updateArtPicture();
         m_pictureCarouselTimer.start(5000);
     }
+    else
+        drawWindowBackgroundRect();
 }
 
 void MusicApplication::musicBgTransparentChanged(int index)
 {
     if(ui->SurfaceStackedWidget->currentIndex() == 2) return;
-    m_pictureCarouselTimer.stop();
     m_alpha = index;//save the alpha
     //Here set the picture transparency
-    drawWindowBackgroundRect(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
+    drawWindowBackgroundRect();
 }
 
 void MusicApplication::musicBackgroundChanged()
@@ -1198,10 +1201,16 @@ void MusicApplication::musicBackgroundChanged()
         if(QFile::exists(filter.arg(i))) ++count;
     /////////////////////////////////////////////////////////////////////
     QString art_path = filter.arg(m_pictureCarouselIndex < count ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0);
-    QFile::exists(art_path) ? drawWindowBackgroundRect(art_path) : drawWindowBackgroundRect(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
+    QFile::exists(art_path) ? drawWindowBackgroundRectString(art_path) :drawWindowBackgroundRect();
 }
 
-void MusicApplication::drawWindowBackgroundRect(const QString& path)
+void MusicApplication::drawWindowBackgroundRect()
+{
+    m_pictureCarouselTimer.stop();
+    drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
+}
+
+void MusicApplication::drawWindowBackgroundRectString(const QString& path)
 {
     QPixmap origin(path);
     QPixmap afterDeal(size());

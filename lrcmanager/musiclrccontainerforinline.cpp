@@ -23,6 +23,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     m_mouseMovedAt = QPoint(-1,-1);
     m_mousePressedAt = QPoint(-1,-1);
     m_mouseLeftPressed = false;
+    m_showArtBackground = true;
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
         m_musicLrcContainer[i]->setText(".........");
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
@@ -285,6 +286,9 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addMenu(&changeLrcSize);
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
 
+    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
+    m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
+
     changeLrcSize.addAction(tr("smaller"),this,SLOT(changeLrcSizeSmaller()));
     changeLrcSize.addAction(tr("small"),this,SLOT(changeLrcSizeSmall()));
     changeLrcSize.addAction(tr("middle"),this,SLOT(changeLrcSizeMiddle()));
@@ -295,4 +299,10 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("customSetting"),this,SLOT(currentLrcCustom()));
 
     menu.exec(QCursor::pos());
+}
+
+void MusicLrcContainerForInline::theArtBgChanged()
+{
+    m_showArtBackground = !m_showArtBackground;
+    emit theArtBgHasChanged();
 }

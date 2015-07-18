@@ -23,12 +23,14 @@ public:
 
     bool transLrcFileToTime(const QString& lrcFileName);
     QString text() const;
-    inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
     void changeLrcSize(LrcSizeTable = Middle);
     void setSongSpeedAndSlow(qint64 time);
+    inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
+    inline bool artBackgroundIsShow() const {return m_showArtBackground;}
 
 signals:
     void updateCurrentTime(qint64 time);
+    void theArtBgHasChanged();
 
 public slots:
     void changeLrcSizeSmaller(){changeLrcSize(LrcSizeTable::Smaller);}
@@ -36,6 +38,7 @@ public slots:
     void changeLrcSizeMiddle(){changeLrcSize(LrcSizeTable::Middle);}
     void changeLrcSizeBig(){changeLrcSize(LrcSizeTable::Big);}
     void changeLrcSizeBigger(){changeLrcSize(LrcSizeTable::Bigger);}
+    void theArtBgChanged();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
@@ -49,6 +52,7 @@ protected:
     QPoint m_mousePressedAt;
     QPoint m_mouseMovedAt;
     bool m_mouseLeftPressed;
+    bool m_showArtBackground;
     int m_currentLrcIndex;
     QVBoxLayout *m_vBoxLayout;
     QStringList m_currentShowLrcContainer;
