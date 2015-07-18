@@ -3,7 +3,7 @@
 #include <QTranslator>
 #include "core/musicobject.h"
 #include "core/musicxmlconfigmanager.h"
-//#include "core/musiclogger.h"
+#include "core/musiclogger.h"
 //#include <vld.h>
 
 int main(int argc, char *argv[])
@@ -22,11 +22,9 @@ int main(int argc, char *argv[])
     delete xml;
 
     MusicObject::checkTheDirectoryExist();
-
 //    mlogger("MusicApplication Begin");
     MusicApplication w;
     w.show();
-//    mlogger("MusicApplication Stop");
 
     return a.exec();
 }

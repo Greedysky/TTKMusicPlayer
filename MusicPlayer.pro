@@ -99,7 +99,7 @@ SOURCES += \
 
 
 HEADERS  += \
-#    core\musiclogger.h \
+#    core/musiclogger.h \
     core/musiclibexportglobal.h \
     core/musicobject.h \
     core/musicmovedialogabstract.h \

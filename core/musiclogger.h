@@ -24,7 +24,7 @@ public:
     {
         file.close();
     }
-    static MusicLogger* createInstance()
+    static MusicLogger& createInstance()
     {
         static MusicLogger obj;
         return obj;
@@ -48,7 +48,5 @@ protected:
     QFile file;
 
 };
-
-MusicLogger* MusicLogger::obj = NULL;
 
 #endif // MUSICLOGGER_H
