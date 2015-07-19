@@ -1201,7 +1201,7 @@ void MusicApplication::musicBackgroundChanged()
         if(QFile::exists(filter.arg(i))) ++count;
     /////////////////////////////////////////////////////////////////////
     QString art_path = filter.arg(m_pictureCarouselIndex < count ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0);
-    QFile::exists(art_path) ? drawWindowBackgroundRectString(art_path) :drawWindowBackgroundRect();
+    QFile::exists(art_path) ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
 }
 
 void MusicApplication::drawWindowBackgroundRect()

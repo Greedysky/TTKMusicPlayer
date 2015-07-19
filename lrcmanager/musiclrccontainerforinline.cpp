@@ -4,6 +4,9 @@
 #include <QSettings>
 #include <QDebug>
 #include <QPainter>
+#include <QDesktopServices>
+#include <QClipboard>
+#include <QApplication>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     MusicLrcContainer(parent)
@@ -24,6 +27,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     m_mousePressedAt = QPoint(-1,-1);
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
+    m_showInlineLrc = true;
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
         m_musicLrcContainer[i]->setText(".........");
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
@@ -41,7 +45,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
     static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(false);
     m_lrcContainer.clear();///Clear the original map
     m_currentShowLrcContainer.clear();///Clear the original lrc
-    QFile file(lrcFileName); ///Open the lyrics file
+    QFile file(m_currentLrcFileName = lrcFileName); ///Open the lyrics file
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
         m_musicLrcContainer[i]->setText(".........");
@@ -282,20 +286,31 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     changeLrcSize.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
+    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
+    menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
-    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
-
-    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
-    m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
+    menu.addSeparator();
 
     changeLrcSize.addAction(tr("smaller"),this,SLOT(changeLrcSizeSmaller()));
     changeLrcSize.addAction(tr("small"),this,SLOT(changeLrcSizeSmall()));
     changeLrcSize.addAction(tr("middle"),this,SLOT(changeLrcSizeMiddle()));
     changeLrcSize.addAction(tr("big"),this,SLOT(changeLrcSizeBig()));
     changeLrcSize.addAction(tr("bigger"),this,SLOT(changeLrcSizeBigger()));
-
     createColorMenu(changColorMenu);
+
+    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
+    m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
+    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theShowLrcChanged()));
+    m_showInlineLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
+    menu.addSeparator();
+    bool fileCheck = !m_currentLrcFileName.isEmpty() && QFile::exists(m_currentLrcFileName);
+    QAction *copyToClipAc = menu.addAction(tr("copyToClip"),this,SLOT(lrcCopyClipboard()));
+    copyToClipAc->setEnabled( fileCheck );
+    QAction *showLrcFileAc = menu.addAction(tr("showLrcFile"),this,SLOT(lrcOpenFileDir()));
+    showLrcFileAc->setEnabled( fileCheck );
+
+    menu.addSeparator();
     menu.addAction(tr("customSetting"),this,SLOT(currentLrcCustom()));
 
     menu.exec(QCursor::pos());
@@ -305,4 +320,29 @@ void MusicLrcContainerForInline::theArtBgChanged()
 {
     m_showArtBackground = !m_showArtBackground;
     emit theArtBgHasChanged();
+}
+
+void MusicLrcContainerForInline::theShowLrcChanged()
+{
+    m_showInlineLrc = !m_showInlineLrc;
+    foreach(MusicLRCManager *w, m_musicLrcContainer)
+    {
+        w->setVisible( m_showInlineLrc );
+    }
+}
+
+void MusicLrcContainerForInline::lrcOpenFileDir()
+{
+    QDesktopServices::openUrl(QUrl(QFileInfo(m_currentLrcFileName).absolutePath(), QUrl::TolerantMode));
+}
+
+void MusicLrcContainerForInline::lrcCopyClipboard()
+{
+    QClipboard *clipBoard = QApplication::clipboard();
+    QString clipString;
+    foreach(QString s, m_lrcContainer.values())
+    {
+        clipString.append(s);
+    }
+    clipBoard->setText(clipString);
 }

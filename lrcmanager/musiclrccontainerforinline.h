@@ -39,6 +39,9 @@ public slots:
     void changeLrcSizeBig(){changeLrcSize(LrcSizeTable::Big);}
     void changeLrcSizeBigger(){changeLrcSize(LrcSizeTable::Bigger);}
     void theArtBgChanged();
+    void theShowLrcChanged();
+    void lrcOpenFileDir();
+    void lrcCopyClipboard();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
@@ -53,9 +56,11 @@ protected:
     QPoint m_mouseMovedAt;
     bool m_mouseLeftPressed;
     bool m_showArtBackground;
+    bool m_showInlineLrc;
     int m_currentLrcIndex;
     QVBoxLayout *m_vBoxLayout;
     QStringList m_currentShowLrcContainer;
+    QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
 
 };
