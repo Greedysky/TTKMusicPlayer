@@ -43,6 +43,7 @@
         <file alias="songShare">../resource/music_songShare.png</file>
         <file alias="addtoplaylist">../resource/music_addToPlayList.png</file>
         <file alias="musicslider">../resource/music_slider.png</file>
+        <file alias="imagetrans">../resource/image_transparent.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../resource/color/Black.png</file>

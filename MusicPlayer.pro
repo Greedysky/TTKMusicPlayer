@@ -59,6 +59,8 @@ SOURCES += \
     lrcmanager/musiclrccontainerforinline.cpp \
     lrcmanager/musiclrcsearchwidget.cpp \
     lrcmanager/musiclrcsearchtablewidget.cpp \
+    lrcmanager/musiclrcartphotoupload.cpp \
+    lrcmanager/musiclrcartphotolabel.cpp \
     remotewidget/musicremotewidget.cpp \
     remotewidget/musicremotewidgetforsquare.cpp \
     remotewidget/musicremotewidgetforrectangle.cpp \
@@ -131,6 +133,8 @@ HEADERS  += \
     lrcmanager/musiclrccontainerforinline.h \
     lrcmanager/musiclrcsearchwidget.h \
     lrcmanager/musiclrcsearchtablewidget.h \
+    lrcmanager/musiclrcartphotoupload.h \
+    lrcmanager/musiclrcartphotolabel.h \
     remotewidget/musicremotewidget.h \
     remotewidget/musicremotewidgetforsquare.h \
     remotewidget/musicremotewidgetforrectangle.h \
@@ -196,8 +200,8 @@ FORMS    += \
     ui/application/musicwebradiowidget.ui \
     ui/application/musicfileinformationwidget.ui \
     ui/application/musicdesktopwallpaperwidget.ui \
-    ui/application/musiclrcsearchwidget.ui
-
+    ui/application/musiclrcsearchwidget.ui \
+    ui/application/musiclrcartphotoupload.ui
 
 RESOURCES += \
     qrc/MusicPlayerShare.qrc \

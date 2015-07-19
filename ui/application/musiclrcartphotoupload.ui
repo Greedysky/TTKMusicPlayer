@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicLrcSearchWidget</class>
- <widget class="QWidget" name="MusicLrcSearchWidget">
+ <class>MusicLrcArtPhotoUpload</class>
+ <widget class="QWidget" name="MusicLrcArtPhotoUpload">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>335</height>
+    <width>415</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#MusicLrcSearchWidget{border:1px solid gray}</string>
+   <string notr="true">#MusicLrcArtPhotoUpload{border:1px solid gray}</string>
   </property>
   <widget class="QLabel" name="topTitleBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>475</width>
+     <width>415</width>
      <height>25</height>
     </rect>
    </property>
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>453</x>
+     <x>395</x>
      <y>2</y>
      <width>20</width>
      <height>20</height>
@@ -61,96 +61,66 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>320</y>
-     <width>455</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="songNameLabel">
+  <widget class="QLabel" name="artNameLabel">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>42</y>
-     <width>54</width>
+     <width>31</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>歌曲名：</string>
+    <string>歌手：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="lrcSearchButton">
+  <widget class="QLineEdit" name="artSearchEdit">
    <property name="geometry">
     <rect>
-     <x>404</x>
+     <x>60</x>
      <y>42</y>
-     <width>51</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>搜索</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="songSearchEdit">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>42</y>
-     <width>311</width>
+     <width>150</width>
      <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="MusicLrcSearchTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>435</width>
-     <height>191</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="stateLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>2</x>
      <y>285</y>
-     <width>221</width>
-     <height>21</height>
+     <width>411</width>
+     <height>30</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="text">
-    <string/>
+    <string>选择的图片尺寸过小，请重新选择</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="lrcSearchDownload">
+  <widget class="QPushButton" name="uploadButton">
    <property name="geometry">
     <rect>
-     <x>275</x>
-     <y>285</y>
+     <x>110</x>
+     <y>280</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>下载</string>
+    <string>确定</string>
    </property>
   </widget>
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>285</y>
+     <x>250</x>
+     <y>280</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -159,12 +129,52 @@
     <string>关闭</string>
    </property>
   </widget>
+  <widget class="MusicLrcArtPhotoLabel" name="imageLabel" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>341</width>
+     <height>191</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="selectButton">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>140</y>
+     <width>121</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>点击选择图片</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="introduceLabel">
+   <property name="geometry">
+    <rect>
+     <x>117</x>
+     <y>170</y>
+     <width>191</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请上传尺寸1001*669以上的图片</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicLrcSearchTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>musiclrcsearchtablewidget.h</header>
+   <class>MusicLrcArtPhotoLabel</class>
+   <extends>QWidget</extends>
+   <header location="global">lrcmanager/musiclrcartphotolabel.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

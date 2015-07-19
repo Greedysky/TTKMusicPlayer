@@ -8,6 +8,7 @@
 
 class QVBoxLayout;
 class MusicLRCManagerForInline;
+class MusicLrcArtPhotoUpload;
 
 class MUSIC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
@@ -39,6 +40,7 @@ public slots:
     void changeLrcSizeBig(){changeLrcSize(LrcSizeTable::Big);}
     void changeLrcSizeBigger(){changeLrcSize(LrcSizeTable::Bigger);}
     void theArtBgChanged();
+    void theArtBgUploaded();
     void theShowLrcChanged();
     void lrcOpenFileDir();
     void lrcCopyClipboard();
@@ -62,6 +64,7 @@ protected:
     QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
+    MusicLrcArtPhotoUpload* m_artUpload;
 
 };
 

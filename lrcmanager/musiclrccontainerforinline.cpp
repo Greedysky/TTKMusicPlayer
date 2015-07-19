@@ -1,15 +1,16 @@
 #include "musiclrccontainerforinline.h"
 #include "musiclrcmanagerforinline.h"
+#include "musiclrcartphotoupload.h"
+
 #include <QVBoxLayout>
 #include <QSettings>
-#include <QDebug>
 #include <QPainter>
 #include <QDesktopServices>
 #include <QClipboard>
 #include <QApplication>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
-    MusicLrcContainer(parent)
+    MusicLrcContainer(parent), m_artUpload(NULL)
 {
     m_vBoxLayout = new QVBoxLayout(this);
     this->setLayout(m_vBoxLayout);
@@ -38,6 +39,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
+    delete m_artUpload;
 }
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
@@ -303,6 +305,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theShowLrcChanged()));
     m_showInlineLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
+    menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
     menu.addSeparator();
     bool fileCheck = !m_currentLrcFileName.isEmpty() && QFile::exists(m_currentLrcFileName);
     QAction *copyToClipAc = menu.addAction(tr("copyToClip"),this,SLOT(lrcCopyClipboard()));
@@ -320,6 +323,13 @@ void MusicLrcContainerForInline::theArtBgChanged()
 {
     m_showArtBackground = !m_showArtBackground;
     emit theArtBgHasChanged();
+}
+
+void MusicLrcContainerForInline::theArtBgUploaded()
+{
+    delete m_artUpload;
+    m_artUpload = new MusicLrcArtPhotoUpload(this);
+    m_artUpload->show();
 }
 
 void MusicLrcContainerForInline::theShowLrcChanged()
