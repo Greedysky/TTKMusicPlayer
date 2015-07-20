@@ -299,6 +299,8 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     changeLrcSize.addAction(tr("middle"),this,SLOT(changeLrcSizeMiddle()));
     changeLrcSize.addAction(tr("big"),this,SLOT(changeLrcSizeBig()));
     changeLrcSize.addAction(tr("bigger"),this,SLOT(changeLrcSizeBigger()));
+    changeLrcSize.addSeparator();
+    changeLrcSize.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
     QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));

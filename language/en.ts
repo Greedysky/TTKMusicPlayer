@@ -1456,9 +1456,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="23"/>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="24"/>
         <source>Close</source>
-        <translation type="unfinished">Close</translation>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="80"/>
+        <source>QMusicPlayer</source>
+        <translation>QMusicPlayer</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="80"/>
+        <source>the art is empty!</source>
+        <translation>The Art Is Empty!</translation>
     </message>
 </context>
 <context>
@@ -1634,13 +1644,13 @@
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>artbgon</source>
         <translation>Art ON</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="304"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>artbgoff</source>
         <translation>Art Off</translation>
     </message>
@@ -1670,33 +1680,38 @@
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="303"/>
+        <source>custom</source>
+        <translation>Custom</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="309"/>
         <source>lrcoff</source>
         <translation>Lrc Off</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="309"/>
         <source>lrcon</source>
         <translation>Lrc On</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="310"/>
         <source>artbgupload</source>
         <translation>Art Bg Upload</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="311"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
         <source>copyToClip</source>
         <translation>Copy To Clip</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="315"/>
         <source>showLrcFile</source>
         <translation>Show Lrc File</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="317"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="319"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>

@@ -3,6 +3,7 @@
 #include "../core/musicobject.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     : MusicMoveDialogAbstract(parent),
@@ -50,6 +51,7 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
                       this, "", "./", "Images (*.png *.bmp *.jpg)");
     if(picPath.isEmpty())
         return;
+
     QPixmap pix(picPath);
     if(pix.width() < 1001 || pix.height() < 669)
     {
@@ -73,6 +75,12 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
     QDir bgDir(ART_BG);
     int count = 0;
     QString name = ui->artSearchEdit->text().trimmed();
+    if(name.isEmpty())
+    {
+        QMessageBox::warning(this, tr("QMusicPlayer"), tr("the art is empty!"));
+        return;
+    }
+
     foreach(QFileInfo f, bgDir.entryInfoList())
     {
         if(f.fileName().contains( name ))

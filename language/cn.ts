@@ -1456,9 +1456,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="23"/>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="24"/>
         <source>Close</source>
-        <translation type="unfinished">关闭</translation>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="80"/>
+        <source>QMusicPlayer</source>
+        <translation>天天酷音</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="80"/>
+        <source>the art is empty!</source>
+        <translation>输入的歌手为空!</translation>
     </message>
 </context>
 <context>
@@ -1634,13 +1644,13 @@
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>artbgon</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="304"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>artbgoff</source>
         <translation>关闭写真</translation>
     </message>
@@ -1670,33 +1680,38 @@
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="303"/>
+        <source>custom</source>
+        <translation>自定义</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="309"/>
         <source>lrcoff</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="309"/>
         <source>lrcon</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="310"/>
         <source>artbgupload</source>
         <translation>上传歌手写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="311"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
         <source>copyToClip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="315"/>
         <source>showLrcFile</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="317"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="319"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>
