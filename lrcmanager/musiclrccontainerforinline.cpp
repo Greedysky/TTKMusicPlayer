@@ -13,7 +13,9 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     MusicLrcContainer(parent)
 {
     m_vBoxLayout = new QVBoxLayout(this);
-    this->setLayout(m_vBoxLayout);
+    m_vBoxLayout->setMargin(0);
+
+    setLayout(m_vBoxLayout);
     m_containerType = "INLINE";
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
@@ -216,7 +218,7 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
     QFont font;
     painter.setFont(font);
     painter.setPen(QColor(Qt::white));
-    painter.drawLine(10, m_mouseMovedAt.y(), width() - 10, m_mouseMovedAt.y());
+    painter.drawLine(0, m_mouseMovedAt.y(), width(), m_mouseMovedAt.y());
 }
 
 void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
