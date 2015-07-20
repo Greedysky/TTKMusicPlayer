@@ -4,7 +4,8 @@
 #include <QProcess>
 
 MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent),m_radio(NULL),ui(new Ui::MusicWebRadioWidget)
+    MusicMoveWidgetAbstract(parent),m_radio(NULL),
+    ui(new Ui::MusicWebRadioWidget)
 {
     ui->setupUi(this);
     QBitmap bmp(this->size());

@@ -10,7 +10,7 @@
 #include <QApplication>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
-    MusicLrcContainer(parent), m_artUpload(NULL)
+    MusicLrcContainer(parent)
 {
     m_vBoxLayout = new QVBoxLayout(this);
     this->setLayout(m_vBoxLayout);
@@ -39,7 +39,6 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
-    delete m_artUpload;
 }
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
@@ -329,9 +328,10 @@ void MusicLrcContainerForInline::theArtBgChanged()
 
 void MusicLrcContainerForInline::theArtBgUploaded()
 {
-    delete m_artUpload;
-    m_artUpload = new MusicLrcArtPhotoUpload(this);
-    m_artUpload->show();
+    MusicLrcArtPhotoUpload artDialog(this);
+    artDialog.exec();
+    m_showArtBackground = true;
+    emit theArtBgHasChanged();
 }
 
 void MusicLrcContainerForInline::theShowLrcChanged()

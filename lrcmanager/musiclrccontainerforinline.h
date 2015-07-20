@@ -8,7 +8,6 @@
 
 class QVBoxLayout;
 class MusicLRCManagerForInline;
-class MusicLrcArtPhotoUpload;
 
 class MUSIC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
@@ -64,7 +63,6 @@ protected:
     QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
-    MusicLrcArtPhotoUpload* m_artUpload;
 
 };
 
