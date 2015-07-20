@@ -1196,7 +1196,7 @@ void MusicApplication::musicBgTransparentChanged(int index)
 void MusicApplication::musicBackgroundChanged()
 {
     int count = 0;
-    QString filter = ART_BG + getCurrentFileName().split('-').front().trimmed()+ "%1" + JPG_FILE;
+    QString filter = ART_BG + getCurrentFileName().split('-').front().trimmed()+ "%1" + SKN_FILE;
     for(int i=0; i<5; ++i)
         if(QFile::exists(filter.arg(i))) ++count;
     /////////////////////////////////////////////////////////////////////
@@ -1207,7 +1207,7 @@ void MusicApplication::musicBackgroundChanged()
 void MusicApplication::drawWindowBackgroundRect()
 {
     m_pictureCarouselTimer.stop();
-    drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + JPG_FILE);
+    drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE);
 }
 
 void MusicApplication::drawWindowBackgroundRectString(const QString& path)

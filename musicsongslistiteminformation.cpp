@@ -19,7 +19,7 @@ MusicSongsListItemInformation::~MusicSongsListItemInformation()
 
 bool MusicSongsListItemInformation::showArtPicture(const QString& name)
 {
-    QPixmap originPath(QString(ART_DOWNLOAD + name + JPG_FILE));
+    QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
         ui->artPicture->setPixmap(originPath.scaled(60,60));
     else

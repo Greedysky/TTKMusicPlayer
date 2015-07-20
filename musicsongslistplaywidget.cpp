@@ -115,7 +115,7 @@ void MusicSongsListPlayWidget::updateArtPicture()
 
 bool MusicSongsListPlayWidget::showArtPicture(const QString& name)
 {
-    QPixmap originPath(QString(ART_DOWNLOAD + name + JPG_FILE));
+    QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
         m_artPicture->setPixmap(originPath.scaled(60,60));
     else

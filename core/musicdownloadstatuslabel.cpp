@@ -116,7 +116,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 
         ///download art picture
         (new MusicDataDownloadThread(musicSongInfo[0][2],
-             ART_DOWNLOAD + filename + JPG_FILE,this))->startToDownload();
+             ART_DOWNLOAD + filename + SKN_FILE,this))->startToDownload();
 
         ///download big picture
         new MusicBgThemeDownload( count == 1 ? musicSongInfo[0][3] : filename, filename, this);

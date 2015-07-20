@@ -56,7 +56,7 @@ void MusicDesktopWallpaperThread::run()
             emit getCurrentFileName(name);
 
             name =  QFileInfo(ART_BG + name.split('-').front().trimmed()
-                              + QString::number(2) + JPG_FILE).absoluteFilePath();
+                              + QString::number(2) + SKN_FILE).absoluteFilePath();
             QFile::exists(name) ? path << name : path << m_originPath;
         }
         if( func == 1) ///random mode

@@ -1409,6 +1409,59 @@
     </message>
 </context>
 <context>
+    <name>MusicLrcArtPhotoUpload</name>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="48"/>
+        <source>上传歌手写真</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="61"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="74"/>
+        <source>歌手：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="100"/>
+        <source>选择的图片尺寸过小，请重新选择</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="116"/>
+        <source>确定</source>
+        <translation type="unfinished">確定</translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="129"/>
+        <source>关闭</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="152"/>
+        <source>点击选择图片</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcartphotoupload.ui" line="165"/>
+        <source>请上传尺寸1001*669以上的图片</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="23"/>
+        <source>Close</source>
+        <translation type="unfinished">關閉</translation>
+    </message>
+</context>
+<context>
     <name>MusicLrcContainer</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainer.cpp" line="40"/>
@@ -1545,100 +1598,105 @@
 <context>
     <name>MusicLrcContainerForInline</name>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="33"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="58"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="34"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="60"/>
         <source>noCurrentSongPlay</source>
         <translation> --- 當前沒有正在播放的歌曲</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="54"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="56"/>
         <source>unFoundLrc</source>
         <translation> --- 未找到歌詞文件！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="104"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="106"/>
         <source>lrcFileError</source>
         <translation> --- 歌詞文件內容錯誤！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="283"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="285"/>
         <source>changColorMenu</source>
         <translation>歌詞顏色</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="284"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="286"/>
         <source>changeLrcSize</source>
         <translation>歌詞大小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="288"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="290"/>
         <source>searchLrcs</source>
         <translation>搜索歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="289"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="291"/>
         <source>updateLrc</source>
         <translation>更新歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="303"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
         <source>artbgon</source>
         <translation>打開寫真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="302"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="303"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="304"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
         <source>artbgoff</source>
         <translation>關閉寫真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="295"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="297"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="296"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="298"/>
         <source>small</source>
         <translation>小號</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="297"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="299"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="298"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="300"/>
         <source>big</source>
         <translation>大號</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="299"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="301"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="304"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>lrcoff</source>
         <translation>關閉歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="307"/>
         <source>lrcon</source>
-        <translation >打開歌詞</translation>
+        <translation>打開歌詞</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <source>artbgupload</source>
+        <translation>上傳歌手寫真</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="311"/>
         <source>copyToClip</source>
         <translation>復制到剪切板</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="310"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
         <source>showLrcFile</source>
         <translation>遊覽歌詞文件</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="314"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="317"/>
         <source>customSetting</source>
         <translation>設置</translation>
     </message>

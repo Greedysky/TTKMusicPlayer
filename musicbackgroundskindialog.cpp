@@ -122,7 +122,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
         QFile file(palettePath);
         file.open(QIODevice::ReadOnly);
         file.rename(QString("./MTheme/theme%1%2")
-                    .arg(ui->themeListWidget->count()).arg(JPG_FILE));
+                    .arg(ui->themeListWidget->count()).arg(SKN_FILE));
         file.close();
     }
 
@@ -136,7 +136,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     if(customSkinPath.isEmpty())
         return;
     QFile::copy(customSkinPath, QString("./MTheme/theme%1%2")
-              .arg(ui->themeListWidget->count()+1).arg(JPG_FILE));
+              .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
     //add item to listwidget
     QListWidgetItem *item = new QListWidgetItem(QIcon(QPixmap(customSkinPath).scaled(90,70)),
                 "theme" + QString::number(ui->themeListWidget->count()+1),ui->themeListWidget);

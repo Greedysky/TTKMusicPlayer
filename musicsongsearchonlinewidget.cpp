@@ -147,7 +147,7 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     (new MusicLrcDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
                                musicSong + LRC_FILE,this))->startToDownload();
     (new MusicDataDownloadThread(musicSongInfo[row][2],
-          ART_DOWNLOAD + musicSongInfo[row][3] + JPG_FILE,this))->startToDownload();
+          ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE,this))->startToDownload();
 
     ///download big picture
     new MusicBgThemeDownload(musicSongInfo[row][3], musicSongInfo[row][3], this);

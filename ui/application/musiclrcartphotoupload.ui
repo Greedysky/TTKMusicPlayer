@@ -37,7 +37,7 @@
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>71</width>
+     <width>91</width>
      <height>25</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>歌词搜索</string>
+    <string>上传歌手写真</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">

@@ -17,6 +17,7 @@ public:
 signals:
 public slots:
     void selectButtonClicked();
+    void uploadButtonClicked();
 
 protected:
     Ui::MusicLrcArtPhotoUpload *ui;

@@ -41,7 +41,7 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
     connect(ui->selectButton,SIGNAL(clicked()),SLOT(selectButtonClicked()));
     connect(ui->closeButton,SIGNAL(clicked()),SLOT(close()));
-
+    connect(ui->uploadButton,SIGNAL(clicked()),SLOT(uploadButtonClicked()));
 }
 
 void MusicLrcArtPhotoUpload::selectButtonClicked()
@@ -64,6 +64,26 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
         ui->closeButton->show();
         ui->introduceLabel->hide();
         ui->selectButton->hide();
+        ui->imageLabel->setImagePath(picPath);
+    }
+}
+
+void  MusicLrcArtPhotoUpload::uploadButtonClicked()
+{
+    QDir bgDir(ART_BG);
+    int count = 0;
+    QString name = ui->artSearchEdit->text().trimmed();
+    foreach(QFileInfo f, bgDir.entryInfoList())
+    {
+        if(f.fileName().contains( name ))
+        {
+            ++count;
+            qDebug()<<f.fileName();
+        }
     }
 
+    QString fileName = QString("%1%2%3").arg(ART_BG).arg(name).arg(count);
+    ui->imageLabel->saveImagePath(fileName + JPG_FILE);
+    QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
+    close();
 }

@@ -11,9 +11,19 @@ class MusicLrcArtPhotoLabel : public QWidget
 public:
     explicit MusicLrcArtPhotoLabel(QWidget *parent = 0);
 
+    void setImagePath(const QString& path);
+    void saveImagePath(const QString& path);
+
 signals:
 public slots:
+
+protected:
     virtual void paintEvent(QPaintEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
+
+    QString m_path;
+    QPixmap m_showPix;
+    int m_width, m_height;
 
 };
 
