@@ -8,6 +8,7 @@
 
 class QVBoxLayout;
 class MusicLRCManagerForInline;
+class MusicLrcFloatWidget;
 
 class MUSIC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
@@ -63,6 +64,7 @@ protected:
     QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
+    MusicLrcFloatWidget *m_lrcFloatWidget;
 
 };
 

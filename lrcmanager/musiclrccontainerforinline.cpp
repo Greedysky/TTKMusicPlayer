@@ -1,6 +1,7 @@
 #include "musiclrccontainerforinline.h"
 #include "musiclrcmanagerforinline.h"
 #include "musiclrcartphotoupload.h"
+#include "musiclrcfloatwidget.h"
 
 #include <QVBoxLayout>
 #include <QSettings>
@@ -35,12 +36,14 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
         m_musicLrcContainer[i]->setText(".........");
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
 
+    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
+    delete m_lrcFloatWidget;
 }
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)

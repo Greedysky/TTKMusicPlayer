@@ -61,6 +61,7 @@ SOURCES += \
     lrcmanager/musiclrcsearchtablewidget.cpp \
     lrcmanager/musiclrcartphotoupload.cpp \
     lrcmanager/musiclrcartphotolabel.cpp \
+    lrcmanager/musiclrcfloatwidget.cpp \
     remotewidget/musicremotewidget.cpp \
     remotewidget/musicremotewidgetforsquare.cpp \
     remotewidget/musicremotewidgetforrectangle.cpp \
@@ -135,6 +136,7 @@ HEADERS  += \
     lrcmanager/musiclrcsearchtablewidget.h \
     lrcmanager/musiclrcartphotoupload.h \
     lrcmanager/musiclrcartphotolabel.h \
+    lrcmanager/musiclrcfloatwidget.h \
     remotewidget/musicremotewidget.h \
     remotewidget/musicremotewidgetforsquare.h \
     remotewidget/musicremotewidgetforrectangle.h \
