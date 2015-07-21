@@ -1,25 +1,23 @@
 #ifndef MUSICDATADOWNLOADTHREAD_H
 #define MUSICDATADOWNLOADTHREAD_H
 
-#include "musicsongdownloadthread.h"
+#include "musicdownloadthreadabstract.h"
 
-class MUSIC_EXPORT MusicDataDownloadThread : public MusicSongDownloadThread
+class MUSIC_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
     explicit MusicDataDownloadThread(const QString& url, const QString& save,
                                      QObject *parent = 0);
 
-    void deleteAll();
     virtual void startToDownload();
 
 public slots:
-    void dataGetFinished();
-    void dataReplyError(QNetworkReply::NetworkError);
+    virtual void downLoadFinished();
+    void downLoadReadyRead();
 
 protected:
-    QNetworkAccessManager* m_dataManager;
-    QNetworkReply* m_dataReply;
+    void startRequest(const QUrl&);
 
 };
 

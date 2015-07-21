@@ -1,5 +1,5 @@
 #include "musicvideotablewidget.h"
-#include "../core/musicsongdownloadthread.h"
+#include "../core/musicdatadownloadthread.h"
 
 #include <time.h>
 
@@ -19,7 +19,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     setTransparent(255);
     qsrand(time(NULL));
 
-    m_downLoadManager = new MusicDownLoadManagerThread(this);
+    m_downLoadManager = new MusicDownLoadQueryThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
     connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
             this,SLOT(creatSearchedItems(QString,QString,QString)));
@@ -127,7 +127,7 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicSongDownloadThread* download = new MusicSongDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
+    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
                        .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), this);
     download->startToDownload();
 }

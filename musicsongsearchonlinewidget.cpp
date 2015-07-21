@@ -1,7 +1,7 @@
 #include "musicsongsearchonlinewidget.h"
-#include "core/musiclrcdownloadthread.h"
-#include "core/musicsongdownloadthread.h"
+#include "core/musictextdownloadthread.h"
 #include "core/musicdatadownloadthread.h"
+#include "core/musicdata2downloadthread.h"
 #include "core/musicbgthemedownload.h"
 #include "toolswidget/musicmydownloadrecordobject.h"
 #include "localsearch/musiclocalsongsearchrecordobject.h"
@@ -21,7 +21,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     headerview->resizeSection(5,26);
     setTransparent(255);
 
-    m_downLoadManager = new MusicDownLoadManagerThread(this);
+    m_downLoadManager = new MusicDownLoadQueryThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
     connect(m_downLoadManager,SIGNAL(showDownLoadInfoFor(DownLoadType)),
             this,SIGNAL(showDownLoadInfoFor(DownLoadType)));
@@ -138,15 +138,15 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     down.writeDownloadConfig(name,path);
     ////////////////////////////////////////////////
 
-    MusicSongDownloadThread *downSong = new MusicSongDownloadThread(
+    MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
                                             musicSongInfo[row][0], downloadName,this);
     connect(downSong,SIGNAL(musicDownLoadFinished(QString)),this,
                      SIGNAL(showDownLoadInfoFinished(QString)));
     downSong->startToDownload();
 
-    (new MusicLrcDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
-                               musicSong + LRC_FILE,this))->startToDownload();
-    (new MusicDataDownloadThread(musicSongInfo[row][2],
+    (new MusicTextDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
+                                 musicSong + LRC_FILE,this))->startToDownload();
+    (new MusicData2DownloadThread(musicSongInfo[row][2],
           ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE,this))->startToDownload();
 
     ///download big picture

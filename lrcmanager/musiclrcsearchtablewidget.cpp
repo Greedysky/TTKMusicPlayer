@@ -1,5 +1,5 @@
 #include "musiclrcsearchtablewidget.h"
-#include "core/musiclrcdownloadthread.h"
+#include "core/musictextdownloadthread.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicTableWidgetAbstract(parent)
@@ -13,7 +13,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(4,24);
     setTransparent(255);
 
-    m_downLoadManager = new MusicDownLoadManagerThread(this);
+    m_downLoadManager = new MusicDownLoadQueryThread(this);
     connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
     connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
             this,SLOT(creatSearchedItems(QString,QString,QString)));
@@ -81,8 +81,8 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 {
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicLrcDownLoadThread* lrcDownload = new MusicLrcDownLoadThread(musicSongInfo[row][1],
-                            LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
+    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfo[row][1],
+                             LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
     connect(lrcDownload,SIGNAL(musicDownLoadFinished(QString)),
                         SIGNAL(lrcDownloadStateChanged(QString)));
     lrcDownload->startToDownload();

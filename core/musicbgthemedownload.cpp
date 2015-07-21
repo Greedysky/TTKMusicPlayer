@@ -1,13 +1,12 @@
 #include "musicbgthemedownload.h"
-#include "musicsongdownloadthread.h"
+#include "musicdatadownloadthread.h"
 #include <QDebug>
-#include <QHostInfo>
 
 MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &save,
                                            QObject *parent)
     : QObject(parent), m_savePath(save), m_index(0)
 {
-    MusicSongDownloadThread *download = new MusicSongDownloadThread(
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(
                  "http://www.kuwo.cn/mingxing/" + name + "/pic.htm"
                   ,TMP_DOWNLOAD,this);
     ///Set search image API
@@ -39,7 +38,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString&)
             line.remove(line.length() - 1, 1);
             line = line.remove("sp");
             qDebug()<<line;
-            MusicSongDownloadThread *down = new MusicSongDownloadThread(line, QString("%1%2%3%4")
+            MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4")
                                   .arg(ART_BG).arg(m_savePath).arg(counter++).arg(SKN_FILE),this);
             connect(down, SIGNAL(musicDownLoadFinished(QString)),SLOT(bgDownLoadFinished(QString)));
             down->startToDownload();

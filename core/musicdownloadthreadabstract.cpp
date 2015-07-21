@@ -1,7 +1,6 @@
 #include "musicdownloadthreadabstract.h"
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
-#include <QHostInfo>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                                           const QString& save, QObject *parent)

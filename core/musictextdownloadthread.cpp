@@ -1,13 +1,13 @@
-#include "musiclrcdownloadthread.h"
+#include "musictextdownloadthread.h"
 
-MusicLrcDownLoadThread::MusicLrcDownLoadThread(const QString &url, const QString &save,
-                                                     QObject *parent)
+MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
+                                                 QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, parent)
 {
 
 }
 
-void MusicLrcDownLoadThread::startToDownload()
+void MusicTextDownLoadThread::startToDownload()
 {
     if( !m_file->exists() || m_file->size() < 4 )
     {
@@ -28,7 +28,7 @@ void MusicLrcDownLoadThread::startToDownload()
     }
 }
 
-void MusicLrcDownLoadThread::downLoadFinished()
+void MusicTextDownLoadThread::downLoadFinished()
 {
     if(m_reply == NULL) return;
 

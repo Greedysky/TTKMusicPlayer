@@ -1,10 +1,8 @@
 #ifndef MUSICLRCSEARCHTABLEWIDGET_H
 #define MUSICLRCSEARCHTABLEWIDGET_H
 
-#include "core/musicdownloadmanagerthread.h"
+#include "core/musicdownloadquerythread.h"
 #include "core/musictablewidgetabstract.h"
-
-class MusicLrcDownLoadThread;
 
 class MUSIC_EXPORT MusicLrcSearchTableWidget : public MusicTableWidgetAbstract
 {
@@ -27,7 +25,7 @@ public slots:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
-    MusicDownLoadManagerThread* m_downLoadManager;
+    MusicDownLoadQueryThread* m_downLoadManager;
     QString m_currentSongName;
 
 };

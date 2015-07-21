@@ -1,4 +1,4 @@
-#include "musicdownloadmanagerthread.h"
+#include "musicdownloadquerythread.h"
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
@@ -7,19 +7,18 @@
 #include <QNetworkAccessManager>
 #include <QFile>
 
-MusicDownLoadManagerThread::MusicDownLoadManagerThread(
-    QObject *parent) : QObject(parent),
-    m_reply(NULL)
+MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
+    : QObject(parent),m_reply(NULL)
 {
     m_manager = new QNetworkAccessManager(this);
 }
 
-MusicDownLoadManagerThread::~MusicDownLoadManagerThread()
+MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
 {
     deleteAll();///The release of all the objects
 }
 
-void MusicDownLoadManagerThread::deleteAll()
+void MusicDownLoadQueryThread::deleteAll()
 {
     if(m_reply)
     {
@@ -34,7 +33,7 @@ void MusicDownLoadManagerThread::deleteAll()
     this->deleteLater();
 }
 
-void MusicDownLoadManagerThread::startSearchSong(QueryType type, const QString& text)
+void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString& text)
 {
     m_searchText = text.trimmed();
     m_currentType = type;
@@ -52,7 +51,7 @@ void MusicDownLoadManagerThread::startSearchSong(QueryType type, const QString& 
                    SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadManagerThread::searchFinshed()
+void MusicDownLoadQueryThread::searchFinshed()
 {
     m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(m_reply->error() == QNetworkReply::NoError)
@@ -136,7 +135,7 @@ void MusicDownLoadManagerThread::searchFinshed()
     }
 }
 
-void MusicDownLoadManagerThread::replyError(QNetworkReply::NetworkError)
+void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)
 {
     qDebug() <<"Abnormal network connection";
     emit showDownLoadInfoFor(DisConnection);

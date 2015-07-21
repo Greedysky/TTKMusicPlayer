@@ -2,7 +2,7 @@
 #include "ui_musicdesktopwallpaperwidget.h"
 #include "../core/musicdesktopwallpaperthread.h"
 #include "../core/musicobject.h"
-#include "../core/musicsongdownloadthread.h"
+#include "../core/musicdatadownloadthread.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -170,7 +170,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         case 0:
          {
             m_path << QString("./tmp%1").arg(JPG_FILE);
-            MusicSongDownloadThread *song = new MusicSongDownloadThread(ui->urlLineEdit->text().trimmed(),
+            MusicDataDownloadThread *song = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
                                                                         m_path[0], this);
             connect(song, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
             song->startToDownload();

@@ -1,8 +1,8 @@
 #include "musicdownloadstatuslabel.h"
 #include "../musicapplication.h"
-#include "musiclrcdownloadthread.h"
-#include "musicsongdownloadthread.h"
+#include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
+#include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musicobject.h"
 #include <QTimer>
@@ -78,7 +78,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
            m_downloadLrcThread = NULL;
        }
        ///Start the request query
-       m_downloadLrcThread = new MusicDownLoadManagerThread(this);
+       m_downloadLrcThread = new MusicDownLoadQueryThread(this);
        m_downloadLrcThread->startSearchSong(Music, filename);
 
        showDownLoadInfoFor(Buffing);
@@ -105,8 +105,8 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     {
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
-        MusicLrcDownLoadThread* lrc = new MusicLrcDownLoadThread(musicSongInfo[0][1],
-                                     LRC_DOWNLOAD + filename + LRC_FILE,this);
+        MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo[0][1],
+                                               LRC_DOWNLOAD + filename + LRC_FILE,this);
         connect(lrc,SIGNAL(musicDownLoadFinished(QString)),
                 this,SLOT(showDownLoadInfoFinished(QString)));
         lrc->startToDownload();
@@ -115,7 +115,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         filename = filename.split('-').front().trimmed();
 
         ///download art picture
-        (new MusicDataDownloadThread(musicSongInfo[0][2],
+        (new MusicData2DownloadThread(musicSongInfo[0][2],
              ART_DOWNLOAD + filename + SKN_FILE,this))->startToDownload();
 
         ///download big picture

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADMANAGERTHREAD_H
-#define MUSICDOWNLOADMANAGERTHREAD_H
+#ifndef MUSICDOWNLOADQUERYTHREAD_H
+#define MUSICDOWNLOADQUERYTHREAD_H
 
 #include <QObject>
 #include <QNetworkReply>
@@ -11,12 +11,12 @@ class QNetworkAccessManager;
 enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };
 enum QueryType{ Music, MV };
 
-class MUSIC_EXPORT MusicDownLoadManagerThread : public QObject
+class MUSIC_EXPORT MusicDownLoadQueryThread : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadManagerThread(QObject *parent = 0);
-    virtual ~MusicDownLoadManagerThread();
+    explicit MusicDownLoadQueryThread(QObject *parent = 0);
+    virtual ~MusicDownLoadQueryThread();
 
     void deleteAll();
     void startSearchSong(QueryType, const QString&);
@@ -42,4 +42,4 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADMANAGERTHREAD_H
+#endif // MUSICDOWNLOADQUERYTHREAD_H

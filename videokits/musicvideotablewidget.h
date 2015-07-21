@@ -1,10 +1,8 @@
 #ifndef MUSICVIDEOTABLEWIDGET_H
 #define MUSICVIDEOTABLEWIDGET_H
 
-#include "../core/musicdownloadmanagerthread.h"
+#include "../core/musicdownloadquerythread.h"
 #include "../core/musictablewidgetabstract.h"
-
-class MusicLrcDownLoadThread;
 
 class MUSIC_EXPORT MusicVideoTableWidget : public MusicTableWidgetAbstract
 {
@@ -28,7 +26,7 @@ protected:
     QString randToGetStrength();
     void musicDownloadLocal(int);
 
-    MusicDownLoadManagerThread* m_downLoadManager;
+    MusicDownLoadQueryThread* m_downLoadManager;
     QString m_currentSongName;
 
 };

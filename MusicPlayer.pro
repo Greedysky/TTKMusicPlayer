@@ -87,12 +87,12 @@ SOURCES += \
     core/musicequalizer.cpp \
     core/musicxmlabstract.cpp \
     core/musictimerautoobject.cpp \
-    core/musicdownloadmanagerthread.cpp \
+    core/musicdownloadquerythread.cpp \
     core/musicdownloadthreadabstract.cpp \
     core/musicdownloadstatuslabel.cpp \
+    core/musicdata2downloadthread.cpp \
     core/musicdatadownloadthread.cpp \
-    core/musicsongdownloadthread.cpp \
-    core/musiclrcdownloadthread.cpp \
+    core/musictextdownloadthread.cpp \
     core/musicxmlconfigmanager.cpp \
     core/musiclocalsongsmanagerthread.cpp \
     core/musicfileinformation.cpp \
@@ -160,11 +160,11 @@ HEADERS  += \
     core/musicversion.h \
     core/musicsonginformation.h \
     core/musicxmlconfigmanager.h \
-    core/musicdownloadmanagerthread.h \
+    core/musicdownloadquerythread.h \
     core/musicdownloadthreadabstract.h \
+    core/musicdata2downloadthread.h \
     core/musicdatadownloadthread.h \
-    core/musicsongdownloadthread.h \
-    core/musiclrcdownloadthread.h \
+    core/musictextdownloadthread.h \
     core/musicdownloadstatuslabel.h \
     core/musicplayer.h \
     core/musicplaylist.h \

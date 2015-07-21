@@ -1,7 +1,7 @@
 #ifndef MUSICDOWNLOADSTATUSLABEL_H
 #define MUSICDOWNLOADSTATUSLABEL_H
 
-#include "musicdownloadmanagerthread.h"
+#include "musicdownloadquerythread.h"
 #include "musiclibexportglobal.h"
 
 class QMovie;
@@ -29,7 +29,7 @@ public slots:
 
 protected:
     MusicApplication *m_parentWidget;
-    MusicDownLoadManagerThread *m_downloadLrcThread;
+    MusicDownLoadQueryThread *m_downloadLrcThread;
     QTimer* m_downloadLrcThreadTimer;
     QMovie* m_movie;
 

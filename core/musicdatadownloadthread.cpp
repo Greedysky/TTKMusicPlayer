@@ -1,66 +1,69 @@
 #include "musicdatadownloadthread.h"
-#include <QJsonParseError>
-#include <QJsonObject>
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
                                                        QObject *parent)
-    : MusicSongDownloadThread(url, save, parent)
+    : MusicDownLoadThreadAbstract(url, save, parent)
 {
-    m_dataReply = NULL;
-    m_dataManager = new QNetworkAccessManager(this);
+
 }
 
 void MusicDataDownloadThread::startToDownload()
 {
-    m_dataReply = m_dataManager->get( QNetworkRequest(m_url));
-    connect(m_dataReply, SIGNAL(finished()), this, SLOT(dataGetFinished()));
-    connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
-                         SLOT(dataReplyError(QNetworkReply::NetworkError)) );
-}
-
-void MusicDataDownloadThread::deleteAll()
-{
-    if(m_dataManager)
+    if( !m_file->exists() || m_file->size() < 4 )
     {
-        m_dataManager->deleteLater();;
-        m_dataManager = NULL;
-    }
-    if(m_dataReply)
-    {
-        m_dataReply->deleteLater();
-        m_dataReply = NULL;
-    }
-    MusicSongDownloadThread::deleteAll();
-}
-
-void MusicDataDownloadThread::dataGetFinished()
-{
-    if(!m_dataReply) return;
-
-    m_dataReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
-    if(m_dataReply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = m_dataReply->readAll();
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())
-            return ;
-
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.value("code").toInt() == 1)
+        if( m_file->open(QIODevice::WriteOnly) )
         {
-            m_url = jsonObject.value("data").toObject().value("singerPic").toString();
-            MusicSongDownloadThread::startToDownload();
+            m_manager = new QNetworkAccessManager(this);
+            startRequest(m_url);
         }
         else
         {
+            qDebug() <<"The Music or pic file create failed";
+            emit musicDownLoadFinished("The Music or pic file create failed");
             deleteAll();
         }
     }
 }
 
-void MusicDataDownloadThread::dataReplyError(QNetworkReply::NetworkError)
+void MusicDataDownloadThread::startRequest(const QUrl& url)
 {
-    emit musicDownLoadFinished("The data create failed");
-    deleteAll();
+    m_reply = m_manager->get( QNetworkRequest(url));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
+                this, SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
+}
+
+void MusicDataDownloadThread::downLoadFinished()
+{
+    if(!m_file) return;
+
+    m_file->flush();
+    m_file->close();
+    QVariant redirectionTarget = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(m_reply->error())
+    {
+        m_file->remove();
+    }
+    else if(!redirectionTarget.isNull())
+    {
+//       QUrl newUrl = reply->url().resolved(redirectionTarget.toUrl());
+        m_reply->deleteLater();
+        m_file->open(QIODevice::WriteOnly);
+        m_file->resize(0);
+        startRequest(m_reply->url().resolved(redirectionTarget.toUrl()));
+        return;
+    }
+    else
+    {
+        emit musicDownLoadFinished("Music");
+        qDebug()<<"Music or pic download has finished!";
+        deleteAll();
+    }
+}
+
+void MusicDataDownloadThread::downLoadReadyRead()
+{
+    if(m_file)
+      m_file->write(m_reply->readAll());
 }
