@@ -2,7 +2,7 @@
 #include "core/musictextdownloadthread.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
-    : MusicTableWidgetAbstract(parent)
+    : MusicTableQueryWidget(parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -12,14 +12,6 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(3,50);
     headerview->resizeSection(4,24);
     setTransparent(255);
-
-    m_downLoadManager = new MusicDownLoadQueryThread(this);
-    connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
-    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
-            this,SLOT(creatSearchedItems(QString,QString,QString)));
-
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
@@ -27,21 +19,15 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
     clearAllItems();
 }
 
-void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *)
-{
-//    QTableWidget::contextMenuEvent(event);
-}
-
-void MusicLrcSearchTableWidget::startSearchLrc(const QString &text)
+void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
     m_downLoadManager->startSearchSong(Music, text);
 }
 
 void MusicLrcSearchTableWidget::clearAllItems()
 {
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(5);
-    setRowCount(0);
 }
 
 void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,

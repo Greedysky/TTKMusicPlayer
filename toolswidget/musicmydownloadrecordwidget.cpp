@@ -8,7 +8,6 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
     connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 }
@@ -52,9 +51,8 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
 void MusicMyDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(3);
-    setRowCount(0);
 }
 
 void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)

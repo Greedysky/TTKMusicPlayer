@@ -88,7 +88,7 @@ void MusicVideoPlayer::afterButtonClicked()
 void MusicVideoPlayer::searchButtonClicked()
 {
     m_stackedWidget->setCurrentIndex(1);
-    m_videoTable->startSearchMV(m_searchEdit->text().trimmed());
+    m_videoTable->startSearchQuery(m_searchEdit->text().trimmed());
 }
 
 void MusicVideoPlayer::mvURLChanged(const QString& data)

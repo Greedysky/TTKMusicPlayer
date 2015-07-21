@@ -23,9 +23,8 @@ MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
 
 void MusicLocalSongSearchPopTableWidget::clearAllItems()
 {
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(2);
-    setRowCount(0);
 }
 
 void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString& name,

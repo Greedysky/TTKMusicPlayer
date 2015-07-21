@@ -19,7 +19,6 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     m_dragStartIndex = -1;
 
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
 
     m_timerShow = new QTimer(this);
     m_timerStay = new QTimer(this);
@@ -74,9 +73,8 @@ void MusicSongsListWidget::clearAllItems()
     m_musicSongsPlayWidget = NULL;
     m_playRowIndex = 0;
     //Remove all the original item
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(3);
-    setRowCount(0);
 }
 
 void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -260,16 +258,7 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 
 void MusicSongsListWidget::listCellEntered(int row, int column)
 {
-    QTableWidgetItem *item = this->item(m_previousColorRow, 0);
-    if(item != 0)
-       setRowColor(m_previousColorRow, m_defaultBkColor);
-
-    item = this->item(row, column);
-    if(item != 0 && !item->isSelected() && !item->text().isEmpty())
-       setRowColor(row, QColor(20,20,20,40));
-
-    m_previousColorRow = row;
-
+    MusicTableWidgetAbstract::listCellEntered(row, column);
     //To show music Songs Item information
     if(m_musicSongsListItem == NULL)
         m_musicSongsListItem = new MusicSongsListItemInformation;

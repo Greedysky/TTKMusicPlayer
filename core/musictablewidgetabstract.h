@@ -13,6 +13,7 @@ public:
     explicit MusicTableWidgetAbstract(QWidget *parent = 0);
     ~MusicTableWidgetAbstract();
 
+    virtual void clearAllItems();
     void setTransparent(int angle);
     void setRowColor(int row, const QColor& color);
 
@@ -20,7 +21,7 @@ signals:
 
 public slots:
     virtual void listCellEntered(int row, int column);
-    virtual void listCellClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) = 0;
 
 protected:
     QColor m_defaultBkColor;

@@ -95,15 +95,11 @@ void MusicLocalSongsManagerWidget::clearAllItems()
     //Remove all the original item
     if(m_currentIndex == 0)
     {
-        ui->songlistsTable->clearContents();
-        ui->songlistsTable->setColumnCount(5);
-        ui->songlistsTable->setRowCount(0);
+        ui->songlistsTable->clearShowlist();
     }
     else
     {
-        ui->songlistsTable->clearContents();
-        ui->songlistsTable->setColumnCount(1);
-        ui->songlistsTable->setRowCount(0);
+        ui->songlistsTable->clearShowPath();
     }
 }
 
@@ -369,14 +365,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     clearAllItems();
     ui->searchLineEdit->clear();
     m_searchfileListCache.clear();
-    ui->songlistsTable->setColumnCount(5);
-    ui->songlistsTable->setRowCount(0);
-    QHeaderView *headerview = ui->songlistsTable->horizontalHeader();
-    headerview->resizeSection(0,285);
-    headerview->resizeSection(1,55);
-    headerview->resizeSection(2,105);
-    headerview->resizeSection(3,26);
-    headerview->resizeSection(4,26);
+    ui->songlistsTable->createShowlist();
     m_currentIndex = 0;
     addLoaclSongList();
 }
@@ -386,10 +375,7 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
     clearAllItems();
     ui->searchLineEdit->clear();
     m_searchfileListCache.clear();
-    ui->songlistsTable->setColumnCount(1);
-    ui->songlistsTable->setRowCount(0);
-    QHeaderView *headerview = ui->songlistsTable->horizontalHeader();
-    headerview->resizeSection(0,492);
+    ui->songlistsTable->createShowPath();
     m_currentIndex = 1;
     addLoaclSongList();
 }

@@ -30,11 +30,20 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
 
     m_previousColorRow = -1;
     m_defaultBkColor = QColor(255,255,255,0);
+
+
+    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
 }
 
 MusicTableWidgetAbstract::~MusicTableWidgetAbstract()
 {
 
+}
+
+void MusicTableWidgetAbstract::clearAllItems()
+{
+    clearContents();
+    setRowCount(0);
 }
 
 void MusicTableWidgetAbstract::setTransparent(int angle)
@@ -55,11 +64,6 @@ void MusicTableWidgetAbstract::listCellEntered(int row, int column)
        setRowColor(row, QColor(20,20,20,40));
 
     m_previousColorRow = row;
-}
-
-void MusicTableWidgetAbstract::listCellClicked(int , int)
-{
-
 }
 
 void MusicTableWidgetAbstract::setRowColor(int row,const QColor& color)

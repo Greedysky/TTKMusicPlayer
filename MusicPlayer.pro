@@ -98,7 +98,9 @@ SOURCES += \
     core/musicfileinformation.cpp \
     core/musicbgthemedownload.cpp \
     core/musicdesktopwallpaperthread.cpp \
-    core/musictablewidgetabstract.cpp
+    core/musictablewidgetabstract.cpp \
+    core/musictablequerywidget.cpp \
+    core/musiclocalsongstablewidget.cpp
 
 
 HEADERS  += \
@@ -177,6 +179,8 @@ HEADERS  += \
     core/musicbgthemedownload.h \
     core/musicdesktopwallpaperthread.h \
     core/musictablewidgetabstract.h \
+    core/musictablequerywidget.h \
+    core/musiclocalsongstablewidget.h \
     usermanager/musicusermanager.h \
     usermanager/musicusermodel.h \
     usermanager/musicuserdialog.h \

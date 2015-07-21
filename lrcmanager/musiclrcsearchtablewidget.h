@@ -2,16 +2,16 @@
 #define MUSICLRCSEARCHTABLEWIDGET_H
 
 #include "core/musicdownloadquerythread.h"
-#include "core/musictablewidgetabstract.h"
+#include "core/musictablequerywidget.h"
 
-class MUSIC_EXPORT MusicLrcSearchTableWidget : public MusicTableWidgetAbstract
+class MUSIC_EXPORT MusicLrcSearchTableWidget : public MusicTableQueryWidget
 {
     Q_OBJECT
 public:
     explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
     virtual ~MusicLrcSearchTableWidget();
 
-    void startSearchLrc(const QString&);
+    void startSearchQuery(const QString&);
     void musicDownloadLocal(int);
     inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
 
@@ -22,10 +22,9 @@ public slots:
     void clearAllItems();
     void creatSearchedItems(const QString&, const QString&, const QString&);
     void itemDoubleClicked(int row, int column);
+    virtual void listCellClicked(int, int){}
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    MusicDownLoadQueryThread* m_downLoadManager;
     QString m_currentSongName;
 
 };

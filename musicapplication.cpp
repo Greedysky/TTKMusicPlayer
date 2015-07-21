@@ -1316,7 +1316,7 @@ void MusicApplication::musicSearchButtonSearched()
         createVedioWidget(false);
         ui->SurfaceStackedWidget->setCurrentIndex(1);
         musicBgTransparentChanged(m_alpha);
-        ui->songSearchWidget->startSearchSong(searchedQString);
+        ui->songSearchWidget->startSearchQuery(searchedQString);
     }
 }
 

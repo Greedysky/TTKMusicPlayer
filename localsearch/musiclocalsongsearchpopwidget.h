@@ -17,6 +17,9 @@ public:
     void clearAllItems();
     void createItems(int , const QString& , const QString& );
 
+public slots:
+    virtual void listCellClicked(int, int){}
+
 };
 
 

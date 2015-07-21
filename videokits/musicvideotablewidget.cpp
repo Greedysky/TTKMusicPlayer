@@ -4,7 +4,7 @@
 #include <time.h>
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
-    : MusicTableWidgetAbstract(parent)
+    : MusicTableQueryWidget(parent)
 {
     setColumnCount(8);
     QHeaderView *headerview = horizontalHeader();
@@ -18,15 +18,6 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     headerview->resizeSection(7,24);
     setTransparent(255);
     qsrand(time(NULL));
-
-    m_downLoadManager = new MusicDownLoadQueryThread(this);
-    connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
-    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
-            this,SLOT(creatSearchedItems(QString,QString,QString)));
-
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
@@ -34,21 +25,15 @@ MusicVideoTableWidget::~MusicVideoTableWidget()
     clearAllItems();
 }
 
-void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *)
-{
-//    QTableWidget::contextMenuEvent(event);
-}
-
-void MusicVideoTableWidget::startSearchMV(const QString &text)
+void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
     m_downLoadManager->startSearchSong(MV, text);
 }
 
 void MusicVideoTableWidget::clearAllItems()
 {
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(8);
-    setRowCount(0);
 }
 
 QString MusicVideoTableWidget::randToGetStrength()

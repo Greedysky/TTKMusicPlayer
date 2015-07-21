@@ -9,7 +9,7 @@
 #include <QDateTime>
 
 MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
-    MusicTableWidgetAbstract(parent)
+    MusicTableQueryWidget(parent)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -20,19 +20,6 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     headerview->resizeSection(4,26);
     headerview->resizeSection(5,26);
     setTransparent(255);
-
-    m_downLoadManager = new MusicDownLoadQueryThread(this);
-    connect(m_downLoadManager,SIGNAL(clearAllItems()),this,SLOT(clearAllItems()));
-    connect(m_downLoadManager,SIGNAL(showDownLoadInfoFor(DownLoadType)),
-            this,SIGNAL(showDownLoadInfoFor(DownLoadType)));
-    connect(m_downLoadManager,SIGNAL(showDownLoadInfoFinished(QString)),
-            this,SIGNAL(showDownLoadInfoFinished(QString)));
-    connect(m_downLoadManager,SIGNAL(creatSearchedItems(QString,QString,QString)),
-            this,SLOT(creatSearchedItems(QString,QString,QString)));
-
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
-    connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
@@ -40,12 +27,7 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     clearAllItems();
 }
 
-void MusicSongSearchOnlineWidget::contextMenuEvent(QContextMenuEvent *)
-{
-//    QTableWidget::contextMenuEvent(event);
-}
-
-void MusicSongSearchOnlineWidget::startSearchSong(const QString &text)
+void MusicSongSearchOnlineWidget::startSearchQuery(const QString &text)
 {
     ////////////////////////////////////////////////
     QStringList names, times;
@@ -61,9 +43,8 @@ void MusicSongSearchOnlineWidget::startSearchSong(const QString &text)
 
 void MusicSongSearchOnlineWidget::clearAllItems()
 {
-    clearContents();
+    MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(6);
-    setRowCount(0);
 }
 
 void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
@@ -122,6 +103,7 @@ void MusicSongSearchOnlineWidget::addSearchMusicToPlayList(int row)
 
 void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 {
+    qDebug()<<"down";
     emit showDownLoadInfoFor(DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;

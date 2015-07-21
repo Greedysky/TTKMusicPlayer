@@ -2,16 +2,17 @@
 #define MUSICVIDEOTABLEWIDGET_H
 
 #include "../core/musicdownloadquerythread.h"
-#include "../core/musictablewidgetabstract.h"
+#include "../core/musictablequerywidget.h"
 
-class MUSIC_EXPORT MusicVideoTableWidget : public MusicTableWidgetAbstract
+class MUSIC_EXPORT MusicVideoTableWidget : public MusicTableQueryWidget
 {
     Q_OBJECT
 public:
     explicit MusicVideoTableWidget(QWidget *parent = 0);
     virtual ~MusicVideoTableWidget();
 
-    void startSearchMV(const QString&);
+    void startSearchQuery(const QString&);
+
 signals:
     void mvURLChanged(const QString&);
 
@@ -22,11 +23,8 @@ public slots:
     void itemDoubleClicked(int row, int column);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
     QString randToGetStrength();
     void musicDownloadLocal(int);
-
-    MusicDownLoadQueryThread* m_downLoadManager;
     QString m_currentSongName;
 
 };

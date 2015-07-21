@@ -54,7 +54,7 @@ void MusicLrcSearchWidget::setCurrentSongName(const QString &name)
 void MusicLrcSearchWidget::lrcSearchButtonClicked()
 {
     ui->stateLabel->setText(tr("lrc is searching now!"));
-    ui->tableWidget->startSearchLrc(ui->songSearchEdit->text().trimmed());
+    ui->tableWidget->startSearchQuery(ui->songSearchEdit->text().trimmed());
 }
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
