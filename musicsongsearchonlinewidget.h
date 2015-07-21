@@ -15,8 +15,6 @@ public:
     virtual ~MusicSongSearchOnlineWidget();
 
     void startSearchQuery(const QString&);
-    void addSearchMusicToPlayList(int);
-    void musicDownloadLocal(int);
 
 signals:
     void musicBgDownloadFinished();
@@ -26,6 +24,10 @@ public slots:
     void clearAllItems();
     void creatSearchedItems(const QString&, const QString&, const QString&);
     void itemDoubleClicked(int row, int column);
+
+protected:
+    void addSearchMusicToPlayList(int);
+    void musicDownloadLocal(int);
 
 };
 

@@ -103,7 +103,6 @@ void MusicSongSearchOnlineWidget::addSearchMusicToPlayList(int row)
 
 void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 {
-    qDebug()<<"down";
     emit showDownLoadInfoFor(DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
