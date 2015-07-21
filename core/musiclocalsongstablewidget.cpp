@@ -3,7 +3,8 @@
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     : MusicTableWidgetAbstract(parent)
 {
-
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
 }
 
 void MusicLocalSongsTableWidget::clearShowlist()
@@ -33,5 +34,5 @@ void MusicLocalSongsTableWidget::createShowPath()
 {
     clearShowPath();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,492);
+    headerview->resizeSection(0,498);
 }

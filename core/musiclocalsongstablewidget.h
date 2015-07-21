@@ -15,7 +15,7 @@ public:
     void createShowPath();
 
 public slots:
-    virtual void listCellClicked(int row, int column){}
+    virtual void listCellClicked(int, int){}
 
 };
 

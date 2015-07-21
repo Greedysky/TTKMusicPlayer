@@ -12,6 +12,7 @@ public:
     virtual ~MusicLrcSearchTableWidget();
 
     void startSearchQuery(const QString&);
+    void musicDownloadLocal(int);
     inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
 
 signals:
@@ -24,7 +25,6 @@ public slots:
     virtual void listCellClicked(int, int){}
 
 protected:
-    void musicDownloadLocal(int);
     QString m_currentSongName;
 
 };

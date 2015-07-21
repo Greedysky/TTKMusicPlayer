@@ -1,14 +1,16 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "ui_musiclocalsongsmanagerwidget.h"
 #include "../core/musiclocalsongsmanagerthread.h"
+#include "../core/musiclocalsongstablewidget.h"
+
 #include <QDateTime>
 #include <QMessageBox>
 #include <QMovie>
 #include <QFileDialog>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
-        : MusicMoveDialogAbstract(parent),m_movie(NULL),
-        ui(new Ui::MusicLocalSongsManagerWidget)
+    : MusicMoveDialogAbstract(parent),m_movie(NULL),
+      ui(new Ui::MusicLocalSongsManagerWidget)
 {
     ui->setupUi(this);
     QBitmap bmp(this->size());
@@ -64,7 +66,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(ui->addButton,SIGNAL(clicked()),SLOT(addButtonClick()));
     connect(ui->songlistsTable,SIGNAL(cellClicked(int,int)),SLOT(itemCellOnClick(int,int)));
     connect(ui->songlistsTable,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
-    connect(ui->songlistsTable,SIGNAL(cellEntered(int,int)),ui->songlistsTable,SLOT(listCellEntered(int,int)));
     connect(ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)),SLOT(musicSearchIndexChanged(int,int)));
     connect(ui->showlistButton,SIGNAL(clicked()),SLOT(setShowlistButton()));
     connect(ui->showPathButton,SIGNAL(clicked()),SLOT(setShowPathButton()));
@@ -77,7 +78,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     m_thread = new MusicLocalSongsManagerThread(this);
     connect(m_thread,SIGNAL(setSongNamePath(QStringList,QStringList)),
-            SLOT(setSongNamePath(QStringList,QStringList)));
+                     SLOT(setSongNamePath(QStringList,QStringList)));
 
 }
 
@@ -315,14 +316,14 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row,int col)
     {
       case 3:
       case 4:
-        if(!m_searchfileListCache.isEmpty())
-        {
-            int count = ui->searchLineEdit->text().trimmed().count();
-            row = m_searchfileListCache.value(count)[row];
-            ui->searchLineEdit->clear();
-            m_searchfileListCache.clear();
-        }
-        emit addSongToPlay(QStringList(m_fileDir[row]));break;
+            if(!m_searchfileListCache.isEmpty())
+            {
+                int count = ui->searchLineEdit->text().trimmed().count();
+                row = m_searchfileListCache.value(count)[row];
+                ui->searchLineEdit->clear();
+                m_searchfileListCache.clear();
+            }
+            emit addSongToPlay(QStringList(m_fileDir[row]));break;
       default:break;
     }
 }
