@@ -153,4 +153,12 @@
         <file alias="5">../resource/sliderGif/5.png</file>
         <file alias="6">../resource/sliderGif/6.png</file>
     </qresource>
+    <qresource prefix="/lrc">
+        <file alias="more">../resource/lrc/more.png</file>
+        <file alias="photo">../resource/lrc/photo.png</file>
+        <file alias="search">../resource/lrc/search.png</file>
+        <file alias="update">../resource/lrc/update.png</file>
+        <file alias="wallpaper">../resource/lrc/wallpaper.png</file>
+        <file alias="shadow">../resource/lrc/shadow.png</file>
+    </qresource>
 </RCC>

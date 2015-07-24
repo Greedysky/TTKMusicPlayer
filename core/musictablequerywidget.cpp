@@ -18,5 +18,5 @@ MusicTableQueryWidget::MusicTableQueryWidget(QWidget *parent)
 
 void MusicTableQueryWidget::contextMenuEvent(QContextMenuEvent *)
 {
-//    QTableWidget::contextMenuEvent(event);
+
 }
