@@ -6,6 +6,27 @@
 
 class QPropertyAnimation;
 class QPushButton;
+class QCheckBox;
+
+class MusicLrcFloatPhotoWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
+    ~MusicLrcFloatPhotoWidget();
+
+public slots:
+    void show();
+
+protected:
+    QPropertyAnimation *m_animation;
+    QWidget* m_filmBGWidget;
+    QCheckBox* m_checkBox;
+    QPushButton* m_previous,*m_next;
+    QPushButton* m_confirmButton,*m_cancelButton;
+
+};
+
 
 class MUSIC_EXPORT MusicLrcFloatWidget : public QLabel
 {
@@ -29,6 +50,7 @@ protected:
     QPropertyAnimation *m_animation;
     QPushButton *m_more,*m_update,*m_search;
     QPushButton *m_wallp,*m_photo;
+    MusicLrcFloatPhotoWidget* m_floatPhotoWidget;
 
 };
 

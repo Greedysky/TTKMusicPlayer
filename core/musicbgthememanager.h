@@ -15,6 +15,8 @@ public:
     QString getArtPhotoPath();
     QString getArtPhotoPathByIndex(int index = -1);
     QStringList getArtPhotoPaths();
+    void setArtPhotoPaths(const QStringList&);
+
 
 protected:
     MusicBgThemeManager();

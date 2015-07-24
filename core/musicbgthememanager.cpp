@@ -42,3 +42,8 @@ QStringList MusicBgThemeManager::getArtPhotoPaths()
 {
     return m_photos;
 }
+
+void MusicBgThemeManager::setArtPhotoPaths(const QStringList& list)
+{
+    m_photos = list;
+}
