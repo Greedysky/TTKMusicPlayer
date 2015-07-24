@@ -1,5 +1,5 @@
 #include "musicusermanager.h"
-#include "../core/musicobject.h"
+#include "musicobject.h"
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"

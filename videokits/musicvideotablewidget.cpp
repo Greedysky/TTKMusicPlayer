@@ -1,5 +1,5 @@
 #include "musicvideotablewidget.h"
-#include "../core/musicdatadownloadthread.h"
+#include "musicdatadownloadthread.h"
 
 #include <time.h>
 

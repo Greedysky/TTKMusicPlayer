@@ -2,7 +2,7 @@
 #define MUSICLOCALSONGSEARCHEDIT_H
 
 #include <QLineEdit>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {

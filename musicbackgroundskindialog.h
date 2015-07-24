@@ -1,7 +1,7 @@
 #ifndef MUSICBACKGROUNDSKINDIALOG_H
 #define MUSICBACKGROUNDSKINDIALOG_H
 
-#include "core/musicmovedialogabstract.h"
+#include "musicmovedialogabstract.h"
 
 namespace Ui {
 class MusicBackgroundSkinDialog;

@@ -3,7 +3,7 @@
 
 #include <QGraphicsView>
 #include <QMediaPlayer>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MusicVideoControl;
 class QGraphicsVideoItem;

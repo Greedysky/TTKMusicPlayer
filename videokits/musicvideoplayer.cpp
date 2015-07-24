@@ -2,7 +2,7 @@
 #include "musicvideoview.h"
 #include "musicvideotablewidget.h"
 #include "localsearch/musiclocalsongsearchedit.h"
-#include "../core/musicobject.h"
+#include "musicobject.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>

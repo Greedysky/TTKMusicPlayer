@@ -3,8 +3,8 @@
 
 #include <QMenu>
 #include <QContextMenuEvent>
-#include "core/musicsonginformation.h"
-#include "core/musictablewidgetabstract.h"
+#include "musicsonginformation.h"
+#include "musictablewidgetabstract.h"
 
 class QAction;
 class QTimer;

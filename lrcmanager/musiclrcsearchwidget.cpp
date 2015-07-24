@@ -1,6 +1,6 @@
 #include "musiclrcsearchwidget.h"
 #include "ui_musiclrcsearchwidget.h"
-#include "core/musicobject.h"
+#include "musicobject.h"
 #include "musiclrcsearchtablewidget.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)

@@ -1,5 +1,5 @@
 #include "musiclrcsearchtablewidget.h"
-#include "core/musictextdownloadthread.h"
+#include "musictextdownloadthread.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicTableQueryWidget(parent)

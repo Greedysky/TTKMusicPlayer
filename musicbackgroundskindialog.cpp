@@ -1,5 +1,5 @@
 #include "musicbackgroundskindialog.h"
-#include "core/musicobject.h"
+#include "musicobject.h"
 #include "ui_musicbackgroundskindialog.h"
 #include <QFileDialog>
 #include <QColorDialog>

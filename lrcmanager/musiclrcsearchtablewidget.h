@@ -1,8 +1,8 @@
 #ifndef MUSICLRCSEARCHTABLEWIDGET_H
 #define MUSICLRCSEARCHTABLEWIDGET_H
 
-#include "core/musicdownloadquerythread.h"
-#include "core/musictablequerywidget.h"
+#include "musicdownloadquerythread.h"
+#include "musictablequerywidget.h"
 
 class MUSIC_EXPORT MusicLrcSearchTableWidget : public MusicTableQueryWidget
 {

@@ -2,7 +2,7 @@
 #define MUSICVIDEOPLAYER_H
 
 #include <QWidget>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class QLabel;
 class QPushButton;

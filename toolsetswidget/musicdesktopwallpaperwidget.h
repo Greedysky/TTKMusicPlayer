@@ -1,7 +1,7 @@
 #ifndef MUSICDESKTOPWALLPAPERWIDGET_H
 #define MUSICDESKTOPWALLPAPERWIDGET_H
 
-#include "../core/musicmovewidgetabstract.h"
+#include "musicmovewidgetabstract.h"
 
 class MusicDesktopWallpaperThread;
 

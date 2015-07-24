@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QTimer>
 #include <QMouseEvent>
-#include "core/musicobject.h"
-#include "core/musiclibexportglobal.h"
+#include "musicobject.h"
+#include "musiclibexportglobal.h"
 
 class QSlider;
 class QLabel;

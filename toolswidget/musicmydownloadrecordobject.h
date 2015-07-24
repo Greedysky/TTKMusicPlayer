@@ -1,7 +1,7 @@
 #ifndef MUSICMYDOWNLOADRECORDOBJECT_H
 #define MUSICMYDOWNLOADRECORDOBJECT_H
 
-#include "../core/musicxmlabstract.h"
+#include "musicxmlabstract.h"
 
 class MUSIC_EXPORT MusicMyDownloadRecordObject : public MusicXmlAbstract
 {

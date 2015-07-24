@@ -2,7 +2,7 @@
 #define QMUSICSONG_H
 
 #include <QStringList>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT QMusicSong
 {

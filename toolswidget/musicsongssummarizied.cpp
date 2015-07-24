@@ -1,6 +1,6 @@
 #include "musicsongssummarizied.h"
-#include "../musicsongsListwidget.h"
-#include "../musicsongstoolitemrenamedwidget.h"
+#include "musicsongsListwidget.h"
+#include "musicsongstoolitemrenamedwidget.h"
 #include <QTableWidgetItem>
 #include <QDebug>
 #include <QFileInfo>

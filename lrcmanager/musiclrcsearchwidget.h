@@ -1,7 +1,7 @@
 #ifndef MUSICLRCSEARCHWIDGET_H
 #define MUSICLRCSEARCHWIDGET_H
 
-#include "core/musicmovedialogabstract.h"
+#include "musicmovedialogabstract.h"
 
 namespace Ui {
 class MusicLrcSearchWidget;

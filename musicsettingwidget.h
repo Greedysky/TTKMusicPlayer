@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QTabWidget>
-#include "core/musicmovedialogabstract.h"
-#include "core/musicobject.h"
+#include "musicmovedialogabstract.h"
+#include "musicobject.h"
 #include <QMouseEvent>
 #include <QSettings>
 

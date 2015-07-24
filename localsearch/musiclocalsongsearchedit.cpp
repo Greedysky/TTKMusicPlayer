@@ -1,5 +1,5 @@
 #include "musiclocalsongsearchedit.h"
-#include "core/musicobject.h"
+#include "musicobject.h"
 #include <QMenu>
 
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)

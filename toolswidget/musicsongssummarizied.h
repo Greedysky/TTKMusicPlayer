@@ -4,9 +4,9 @@
 #include <QToolBox>
 #include <QScrollBar>
 #include <QContextMenuEvent>
-#include "../core/musicsonginformation.h"
-#include "../core/musiclibexportglobal.h"
-#include "../core/musicobject.h"
+#include "musicsonginformation.h"
+#include "musiclibexportglobal.h"
+#include "musicobject.h"
 
 class MusicSongsListWidget;
 class QTableWidgetItem;

@@ -1,7 +1,7 @@
 #ifndef MUSICLRCARTPHOTOLABEL_H
 #define MUSICLRCARTPHOTOLABEL_H
 
-#include <QLabel>
+#include <QWidget>
 #define PIX_HEIGHT 16
 #define PIX_WIDTH  16
 

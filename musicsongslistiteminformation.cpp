@@ -1,6 +1,6 @@
 #include "musicsongslistiteminformation.h"
 #include "ui_musicsongslistiteminformation.h"
-#include "core/musicobject.h"
+#include "musicobject.h"
 #include <QTime>
 
 MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :

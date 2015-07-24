@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QTimer>
-#include "../core/musicobject.h"
-#include "../core/musicmovewidgetabstract.h"
+#include "musicobject.h"
+#include "musicmovewidgetabstract.h"
 
 class QProcess;
 class QListWidgetItem;

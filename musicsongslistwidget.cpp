@@ -1,8 +1,8 @@
 #include "musicsongslistwidget.h"
 #include "musicsongslistiteminformation.h"
 #include "musicsongslistplaywidget.h"
-#include "toolsetswidget/musictransformwidget.h"
-#include "toolsetswidget/musicfileinformationwidget.h"
+#include "musictransformwidget.h"
+#include "musicfileinformationwidget.h"
 #include <QAction>
 #include <QTimer>
 #include <QProcess>

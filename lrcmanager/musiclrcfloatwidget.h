@@ -2,7 +2,7 @@
 #define MUSICLRCFLOATWIDGET_H
 
 #include <QLabel>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class QPropertyAnimation;
 class QPushButton;
@@ -13,6 +13,9 @@ class MUSIC_EXPORT MusicLrcFloatWidget : public QLabel
 public:
     explicit MusicLrcFloatWidget(QWidget *parent = 0);
     ~MusicLrcFloatWidget();
+
+signals:
+public slots:
 
 protected:
     virtual void enterEvent(QEvent *event);

@@ -1,5 +1,5 @@
 #include "musicsongslistplaywidget.h"
-#include "core/musicfileinformation.h"
+#include "musicfileinformation.h"
 #include "musicsongstoolitemrenamedwidget.h"
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)

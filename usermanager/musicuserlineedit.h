@@ -4,7 +4,7 @@
 #include <QLineEdit>
 #include <QLabel>
 
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 enum LabelType{ User, Passwd, PasswdC, Mail};
 

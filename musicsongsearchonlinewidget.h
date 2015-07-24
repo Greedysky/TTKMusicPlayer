@@ -1,8 +1,8 @@
 #ifndef MUSICSONGSEARCHONLINEWIDGET_H
 #define MUSICSONGSEARCHONLINEWIDGET_H
 
-#include "core/musicdownloadquerythread.h"
-#include "core/musictablequerywidget.h"
+#include "musicdownloadquerythread.h"
+#include "musictablequerywidget.h"
 
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;

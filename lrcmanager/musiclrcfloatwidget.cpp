@@ -46,6 +46,9 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_more->setCursor(QCursor(Qt::PointingHandCursor));
     m_wallp->setCursor(QCursor(Qt::PointingHandCursor));
     m_photo->setCursor(QCursor(Qt::PointingHandCursor));
+
+    connect(m_update, SIGNAL(clicked()),parent, SIGNAL(theCurrentLrcUpdated()));
+
 }
 
 MusicLrcFloatWidget::~MusicLrcFloatWidget()

@@ -2,7 +2,7 @@
 #define MUSICSONGSTOOLITEMRENAMEDWIDGET_H
 
 #include <QLineEdit>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {

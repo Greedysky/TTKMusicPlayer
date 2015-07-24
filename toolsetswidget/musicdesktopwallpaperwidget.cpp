@@ -1,8 +1,8 @@
 #include "musicdesktopwallpaperwidget.h"
 #include "ui_musicdesktopwallpaperwidget.h"
-#include "../core/musicdesktopwallpaperthread.h"
-#include "../core/musicobject.h"
-#include "../core/musicdatadownloadthread.h"
+#include "musicdesktopwallpaperthread.h"
+#include "musicobject.h"
+#include "musicdatadownloadthread.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>

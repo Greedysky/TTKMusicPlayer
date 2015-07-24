@@ -2,7 +2,7 @@
 #define MUSICLOCALSONGSEARCHPOPTABLEWIDGET_H
 
 #include <QWidget>
-#include "../core/musictablewidgetabstract.h"
+#include "musictablewidgetabstract.h"
 
 class QPushButton;
 

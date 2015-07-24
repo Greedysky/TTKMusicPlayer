@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "../core/musicobject.h"
-#include "../core/musicmovedialogabstract.h"
+#include "musicobject.h"
+#include "musicmovedialogabstract.h"
 
 class MusicUserModel;
 

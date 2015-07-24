@@ -1,7 +1,7 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
-#include "../core/musicobject.h"
-#include "../core/musicfileinformation.h"
+#include "musicobject.h"
+#include "musicfileinformation.h"
 #include <QDesktopServices>
 #include <QMessageBox>
 

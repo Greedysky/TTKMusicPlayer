@@ -3,8 +3,8 @@
 
 #include <QMenu>
 #include <QContextMenuEvent>
-#include "../core/musiclibexportglobal.h"
-#include "../core/musictablewidgetabstract.h"
+#include "musiclibexportglobal.h"
+#include "musictablewidgetabstract.h"
 
 class MUSIC_EXPORT MusicMyDownloadRecordWidget :
         public MusicTableWidgetAbstract

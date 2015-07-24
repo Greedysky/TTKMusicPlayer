@@ -1,7 +1,7 @@
 #ifndef MUSICLOCALSONGSEARCHRECORDOBJECT_H
 #define MUSICLOCALSONGSEARCHRECORDOBJECT_H
 
-#include "../core/musicxmlabstract.h"
+#include "musicxmlabstract.h"
 
 class MUSIC_EXPORT MusicLocalSongSearchRecordObject : public MusicXmlAbstract
 {

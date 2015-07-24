@@ -8,10 +8,10 @@
 #include <QSettings>
 #include <QSystemTrayIcon>
 #include "musicsongsearchonlinewidget.h"
-#include "core/musicsonginformation.h"
-#include "core/musicmovewidgetabstract.h"
-#include "core/musicobject.h"
-#include "core/musicversion.h"
+#include "musicsonginformation.h"
+#include "musicmovewidgetabstract.h"
+#include "musicobject.h"
+#include "musicversion.h"
 
 class MusicPlayer;
 class MusicPlaylist;

@@ -3,7 +3,7 @@
 
 #include <QtSql/QSqlTableModel>
 #include <QtSql/QSqlQuery>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicUserModel : public QSqlTableModel
 {

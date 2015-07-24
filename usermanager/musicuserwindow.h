@@ -2,7 +2,7 @@
 #define MUSICUSERWINDOW_H
 
 #include <QStackedWidget>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MusicUserDialog;
 class MusicUserManager;

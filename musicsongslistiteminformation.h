@@ -2,8 +2,8 @@
 #define MUSICSONGSLISTITEM_H
 
 #include <QWidget>
-#include "core/musicsonginformation.h"
-#include "core/musiclibexportglobal.h"
+#include "musicsonginformation.h"
+#include "musiclibexportglobal.h"
 
 namespace Ui {
 class MusicSongsListItemInformation;

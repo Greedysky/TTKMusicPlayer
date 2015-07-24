@@ -1,11 +1,11 @@
 #include "musictoolsetswidget.h"
-#include "../musicapplication.h"
-#include "../toolsetswidget/musicaudiorecorderwidget.h"
-#include "../toolsetswidget/musictimerwidget.h"
-#include "../toolsetswidget/musiclocalsongsmanagerwidget.h"
-#include "../toolsetswidget/musictransformwidget.h"
-#include "../toolsetswidget/musicspectrumwidget.h"
-#include "../toolsetswidget/musicdesktopwallpaperwidget.h"
+#include "musicapplication.h"
+#include "musicaudiorecorderwidget.h"
+#include "musictimerwidget.h"
+#include "musiclocalsongsmanagerwidget.h"
+#include "musictransformwidget.h"
+#include "musicspectrumwidget.h"
+#include "musicdesktopwallpaperwidget.h"
 #include <QProcess>
 
 MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent)

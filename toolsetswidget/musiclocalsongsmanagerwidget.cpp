@@ -1,7 +1,7 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "ui_musiclocalsongsmanagerwidget.h"
-#include "../core/musiclocalsongsmanagerthread.h"
-#include "../core/musiclocalsongstablewidget.h"
+#include "musiclocalsongsmanagerthread.h"
+#include "musiclocalsongstablewidget.h"
 
 #include <QDateTime>
 #include <QMessageBox>

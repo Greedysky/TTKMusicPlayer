@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "../core/musicmovedialogabstract.h"
+#include "musicmovedialogabstract.h"
 
 namespace Ui {
 class MusicFileInformationWidget;

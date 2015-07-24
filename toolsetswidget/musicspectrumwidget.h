@@ -4,7 +4,7 @@
 #define PADDING 10
 
 #include <QTimer>
-#include "../core/musicmovewidgetabstract.h"
+#include "musicmovewidgetabstract.h"
 
 class MUSIC_EXPORT  MusicSpectrumWidget : public MusicMoveWidgetAbstract
 {

@@ -1,7 +1,7 @@
 #ifndef MUSICLRCARTPHOTOUPLOAD_H
 #define MUSICLRCARTPHOTOUPLOAD_H
 
-#include "../core/musicmovedialogabstract.h"
+#include "musicmovedialogabstract.h"
 
 
 namespace Ui {

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QSettings>
 #include "musiclrcmanager.h"
-#include "../core/musicobject.h"
+#include "musicobject.h"
 
 class MusicLrcSearchWidget;
 

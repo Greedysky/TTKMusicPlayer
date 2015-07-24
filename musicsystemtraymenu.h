@@ -2,7 +2,7 @@
 #define MUSICSYSTEMTRAYMENU_H
 
 #include <QMenu>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class QLabel;
 class QWidgetAction;

@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QTime>
-#include "../core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MusicUserModel;
 

@@ -1,8 +1,8 @@
 #ifndef MUSICWEBRADDATEBASE_H
 #define MUSICWEBRADDATEBASE_H
 
-#include "../core/musicobject.h"
-#include "../core/musiclibexportglobal.h"
+#include "musicobject.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicWebRadioDatabase
 {

@@ -2,7 +2,7 @@
 #define MUSICPREVIEWLABEL_H
 
 #include <QLabel>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicPreviewLabel : public QLabel
 {

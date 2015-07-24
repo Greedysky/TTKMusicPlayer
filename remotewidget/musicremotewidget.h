@@ -2,8 +2,8 @@
 #define MUSICREMOTEWIDGET_H
 
 #include <QtWidgets>
-#include "../core/musicobject.h"
-#include "../core/musicmovewidgetabstract.h"
+#include "musicobject.h"
+#include "musicmovewidgetabstract.h"
 
 class MUSIC_EXPORT MusicRemoteWidget : public MusicMoveWidgetAbstract
 {

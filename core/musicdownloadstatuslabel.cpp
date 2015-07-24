@@ -1,5 +1,5 @@
 #include "musicdownloadstatuslabel.h"
-#include "../musicapplication.h"
+#include "musicapplication.h"
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"

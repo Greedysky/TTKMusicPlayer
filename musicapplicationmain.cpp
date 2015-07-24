@@ -1,9 +1,9 @@
 #include "musicapplication.h"
 #include <QApplication>
 #include <QTranslator>
-#include "core/musicobject.h"
-#include "core/musicxmlconfigmanager.h"
-#include "core/musiclogger.h"
+#include "musicobject.h"
+#include "musicxmlconfigmanager.h"
+#include "musiclogger.h"
 //#include <vld.h>
 
 int main(int argc, char *argv[])

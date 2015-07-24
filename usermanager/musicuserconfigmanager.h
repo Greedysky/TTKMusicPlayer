@@ -1,7 +1,7 @@
 #ifndef MUSICXMLCONFIGMANAGER_H
 #define MUSICXMLCONFIGMANAGER_H
 
-#include "../core/musicxmlabstract.h"
+#include "musicxmlabstract.h"
 
 class MUSIC_EXPORT MusicUserConfigManager : public MusicXmlAbstract
 {

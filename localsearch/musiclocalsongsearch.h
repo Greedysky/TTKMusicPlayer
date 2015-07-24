@@ -2,7 +2,7 @@
 #define MUSICLOCALSONGSEARCH_H
 
 #include <QtWidgets>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MusicLocalSongSearchEdit;
 

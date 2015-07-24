@@ -2,7 +2,7 @@
 #define MUSICWINDOWEXTRAS_H
 
 #include <QObject>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MusicApplication;
 class QWinTaskbarButton;

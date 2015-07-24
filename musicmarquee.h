@@ -2,7 +2,7 @@
 #define MUSICMARQUEE_H
 
 #include <QWidget>
-#include "core/musiclibexportglobal.h"
+#include "musiclibexportglobal.h"
 
 class MUSIC_EXPORT MusicMarquee : public QWidget
 {

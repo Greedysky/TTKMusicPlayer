@@ -1,5 +1,5 @@
 #include "musicuserdialog.h"
-#include "../core/musicobject.h"
+#include "musicobject.h"
 #include "ui_musicuserdialog.h"
 #include "musicuserlineedit.h"
 #include "musicuserModel.h"

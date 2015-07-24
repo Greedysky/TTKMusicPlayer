@@ -5,8 +5,8 @@
 #include <QMouseEvent>
 #include <QTimer>
 
-#include "../core/musicobject.h"
-#include "../core/musicmovedialogabstract.h"
+#include "musicobject.h"
+#include "musicmovedialogabstract.h"
 
 class QMovie;
 class QProcess;

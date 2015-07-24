@@ -1,10 +1,10 @@
 #include "musicsongsearchonlinewidget.h"
-#include "core/musictextdownloadthread.h"
-#include "core/musicdatadownloadthread.h"
-#include "core/musicdata2downloadthread.h"
-#include "core/musicbgthemedownload.h"
-#include "toolswidget/musicmydownloadrecordobject.h"
-#include "localsearch/musiclocalsongsearchrecordobject.h"
+#include "musictextdownloadthread.h"
+#include "musicdatadownloadthread.h"
+#include "musicdata2downloadthread.h"
+#include "musicbgthemedownload.h"
+#include "musicmydownloadrecordobject.h"
+#include "musiclocalsongsearchrecordobject.h"
 
 #include <QDateTime>
 

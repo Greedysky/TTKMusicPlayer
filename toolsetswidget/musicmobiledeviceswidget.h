@@ -2,8 +2,8 @@
 #define MUSICMOBILEDEVICESWIDGET_H
 
 #include <QLabel>
-#include "../core/musicobject.h"
-#include "../core/musiclibexportglobal.h"
+#include "musicobject.h"
+#include "musiclibexportglobal.h"
 
 class QToolButton;
 

@@ -1,6 +1,6 @@
 #include "musiclrcartphotoupload.h"
 #include "ui_musiclrcartphotoupload.h"
-#include "../core/musicobject.h"
+#include "musicobject.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
