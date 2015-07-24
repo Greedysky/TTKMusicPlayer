@@ -171,8 +171,3 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)
            }
     }
 }
-
-void MusicToolSetsWidget::setCurrentFileName(QString& name)
-{
-    name = m_parentWidget->getCurrentFileName();
-}

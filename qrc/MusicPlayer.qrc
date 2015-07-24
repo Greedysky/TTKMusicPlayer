@@ -160,5 +160,6 @@
         <file alias="update">../resource/lrc/update.png</file>
         <file alias="wallpaper">../resource/lrc/wallpaper.png</file>
         <file alias="shadow">../resource/lrc/shadow.png</file>
+        <file alias="film">../resource/lrc/filmBg.png</file>
     </qresource>
 </RCC>

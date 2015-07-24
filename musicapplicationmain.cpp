@@ -3,7 +3,7 @@
 #include <QTranslator>
 #include "musicobject.h"
 #include "musicxmlconfigmanager.h"
-#include "musiclogger.h"
+//#include "musiclogger.h"
 //#include <vld.h>
 
 int main(int argc, char *argv[])

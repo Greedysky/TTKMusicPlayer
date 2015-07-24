@@ -15,9 +15,6 @@ public:
     void setParamters(const MStriantMap &);
     void stopAndQuitThread();
 
-signals:
-    void getCurrentFileName(QString&);
-
 public slots:
     void start();
     void run();

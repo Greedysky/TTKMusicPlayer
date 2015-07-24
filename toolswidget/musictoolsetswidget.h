@@ -24,7 +24,6 @@ signals:
 
 public slots:
     void itemHasClicked(QListWidgetItem*);
-    void setCurrentFileName(QString&);
 
 protected:
     void setTransparent(int angle);

@@ -32,6 +32,7 @@
 #include "musictimerautoobject.h"
 #include "musicuserwindow.h"
 #include "musicvideoplayer.h"
+#include "musicbgthememanager.h"
 #include <Dbt.h>
 
 MusicApplication::MusicApplication(QWidget *parent) :
@@ -1174,6 +1175,7 @@ void MusicApplication::musicShowSkinChangedWindow()
 
 void MusicApplication::musicBgThemeDownloadFinished()
 {
+    mArtBg.setArtName(getCurrentFileName());
     if(ui->SurfaceStackedWidget->currentIndex() == 2  &&
        ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
@@ -1195,13 +1197,8 @@ void MusicApplication::musicBgTransparentChanged(int index)
 
 void MusicApplication::musicBackgroundChanged()
 {
-    int count = 0;
-    QString filter = ART_BG + getCurrentFileName().split('-').front().trimmed()+ "%1" + SKN_FILE;
-    for(int i=0; i<5; ++i)
-        if(QFile::exists(filter.arg(i))) ++count;
-    /////////////////////////////////////////////////////////////////////
-    QString art_path = filter.arg(m_pictureCarouselIndex < count ? m_pictureCarouselIndex++ : m_pictureCarouselIndex = 0);
-    QFile::exists(art_path) ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
+    QString art_path = mArtBg.getArtPhotoPath();
+    !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
 }
 
 void MusicApplication::drawWindowBackgroundRect()

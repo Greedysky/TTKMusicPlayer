@@ -43,9 +43,6 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
     localRadioButtonPressed();
 
     m_wallThread = new MusicDesktopWallpaperThread(this);
-    connect(m_wallThread,SIGNAL(getCurrentFileName(QString&)),parent,
-                         SLOT(setCurrentFileName(QString&)),Qt::DirectConnection);
-
 }
 
 MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()

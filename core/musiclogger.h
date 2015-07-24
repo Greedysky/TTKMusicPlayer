@@ -1,8 +1,8 @@
 #ifndef MUSICLOGGER_H
 #define MUSICLOGGER_H
 
-#include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicsingletone.h"
+
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
@@ -11,23 +11,18 @@
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
 
 #ifdef MUSIC_DEBUG
-    #define mlogger(str) (MusicLogger::createInstance())<<str
+    #define mlogger(str) (MusicSingleton<MusicLogger>::createInstance())<<str
 #else
     #define mlogger(str)
 #endif
 
-class MusicLogger
+class MUSIC_EXPORT MusicLogger
 {
 
 public:
     ~MusicLogger()
     {
         file.close();
-    }
-    static MusicLogger& createInstance()
-    {
-        static MusicLogger obj;
-        return obj;
     }
     inline MusicLogger &operator<<(const QString &str)
     {
@@ -47,6 +42,7 @@ protected:
     }
     QFile file;
 
+    DECLARE_SINGLETON_CLASS(MusicLogger)
 };
 
 #endif // MUSICLOGGER_H

@@ -3,6 +3,7 @@
 #include <QSettings>
 #include <QFileInfo>
 #include "musicobject.h"
+#include "musicbgthememanager.h"
 
 #if defined Q_OS_WIN32 && defined _MSC_VER
     #include <Windows.h>
@@ -52,12 +53,8 @@ void MusicDesktopWallpaperThread::run()
         if(m_paramter["Mode"].toInt() == 2)
         {
             path.clear();
-            QString name;
-            emit getCurrentFileName(name);
-
-            name =  QFileInfo(ART_BG + name.split('-').front().trimmed()
-                              + QString::number(2) + SKN_FILE).absoluteFilePath();
-            QFile::exists(name) ? path << name : path << m_originPath;
+            QString name = mArtBg.getArtPhotoPathByIndex();
+            !name.isEmpty() ? path << name : path << m_originPath;
         }
         if( func == 1) ///random mode
         {

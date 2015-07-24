@@ -29,7 +29,7 @@ void MusicLrcContainer::currentLrcCustom()
 void MusicLrcContainer::searchMusicLrcs()
 {
     if(m_musicLrcSearchWidget == NULL)
-        m_musicLrcSearchWidget = new MusicLrcSearchWidget;
+        m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
     m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
     m_musicLrcSearchWidget->show();
 }

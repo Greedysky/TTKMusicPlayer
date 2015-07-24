@@ -109,6 +109,7 @@ SOURCES += \
     core/musiclocalsongsmanagerthread.cpp \
     core/musicfileinformation.cpp \
     core/musicbgthemedownload.cpp \
+    core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
     core/musictablewidgetabstract.cpp \
     core/musictablequerywidget.cpp \
@@ -116,11 +117,12 @@ SOURCES += \
 
 
 HEADERS  += \
-#    core/musiclogger.h \
+    core/musiclogger.h \
     core/musiclibexportglobal.h \
     core/musicobject.h \
     core/musicmovedialogabstract.h \
     core/musicmovewidgetabstract.h \
+    core/musicsingletone.h \
     musicapplication.h \
     musicsongslistwidget.h \
     musicmarquee.h \
@@ -189,6 +191,7 @@ HEADERS  += \
     core/musiclibzplay.h \
     core/musicfileinformation.h \
     core/musicbgthemedownload.h \
+    core/musicbgthememanager.h \
     core/musicdesktopwallpaperthread.h \
     core/musictablewidgetabstract.h \
     core/musictablequerywidget.h \

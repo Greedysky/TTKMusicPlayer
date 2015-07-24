@@ -1,7 +1,34 @@
 #include "musiclrcfloatwidget.h"
+#include "musicbgthememanager.h"
 
 #include <QPropertyAnimation>
 #include <QPushButton>
+#include <QCheckBox>
+
+class MusicLrcFloatPhotoWidget : public QWidget
+{
+public:
+    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0)
+        : QWidget(parent)
+    {
+        setGeometry(0, parent->height() - 180, parent->width(), 180);
+        setObjectName("MusicLrcFloatPhotoWidget");
+        setStyleSheet("#MusicLrcFloatPhotoWidget{background:rgba(0, 0, 0, 100);}");
+        QWidget *w = new QWidget(this);
+        w->setGeometry(0, 0, parent->width(), 125);
+        w->setStyleSheet("background-image:url(':/lrc/film');");
+        QCheckBox *c = new QCheckBox(this);
+        c->setGeometry(0, 125, 20, 20);
+//        w->setStyleSheet("background-image:url(':/lrc/film');");
+        QPushButton *p = new QPushButton(this);
+        p->setGeometry(100, 125, 125, 20);
+//        p->setStyleSheet("background-image:url(':/lrc/film');");
+    }
+    ~MusicLrcFloatPhotoWidget(){}
+protected:
+//    QWidget
+
+};
 
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : QLabel(parent)
@@ -10,6 +37,8 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_posY = parent->height()/4;
     setStyleSheet("background:rgba(0, 0, 0, 100)");
     setGeometry( m_posX + 110, m_posY + 51, 115, 105);
+
+    new MusicLrcFloatPhotoWidget(parent);
 
     m_animation = new QPropertyAnimation(this, "geometry");
     m_animation->setDuration(500);
@@ -47,8 +76,8 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setCursor(QCursor(Qt::PointingHandCursor));
     m_photo->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_update, SIGNAL(clicked()),parent, SIGNAL(theCurrentLrcUpdated()));
-
+    connect(m_update, SIGNAL(clicked()), parent, SIGNAL(theCurrentLrcUpdated()));
+    connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
 }
 
 MusicLrcFloatWidget::~MusicLrcFloatWidget()
