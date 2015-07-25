@@ -222,6 +222,7 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
     painter.setFont(font);
     painter.setPen(QColor(Qt::white));
     painter.drawLine(0, m_mouseMovedAt.y(), width(), m_mouseMovedAt.y());
+    painter.end();
 }
 
 void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)

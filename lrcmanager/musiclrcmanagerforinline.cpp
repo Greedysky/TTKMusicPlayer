@@ -56,4 +56,5 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     else
         painter.drawText( m_UpdateLrc ? ttplus / 2 - 3 : ttplus / 2,
                           0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    painter.end();
 }

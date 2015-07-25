@@ -40,6 +40,7 @@ void MusicLrcArtPhotoLabel::paintEvent(QPaintEvent *event)
         }
 
     painter.drawPixmap(0, 0, m_width, m_height, m_showPix);
+    painter.end();
 }
 
 void MusicLrcArtPhotoLabel::wheelEvent(QWheelEvent *event)

@@ -45,4 +45,5 @@ void MusicPreviewLabel::paintEvent(QPaintEvent *)
 
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(1,1,60,rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is QMusicPlayer");
+    painter.end();
 }

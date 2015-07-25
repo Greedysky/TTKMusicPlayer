@@ -59,4 +59,5 @@ void MusicLRCManagerForDesktop::paintEvent(QPaintEvent *)
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    painter.end();
 }

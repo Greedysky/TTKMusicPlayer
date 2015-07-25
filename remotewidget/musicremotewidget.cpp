@@ -85,6 +85,7 @@ void MusicRemoteWidget::paintEvent(QPaintEvent* event)
     QWidget::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.end();
 }
 
 void MusicRemoteWidget::showPlayStatus(bool status)

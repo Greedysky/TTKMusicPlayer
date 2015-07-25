@@ -34,6 +34,7 @@ void MusicMarquee::paintEvent(QPaintEvent *)
                          Qt::AlignLeft | Qt::AlignVCenter, text());
         x += textWidth;
     }
+    painter.end();
 }
 
 void MusicMarquee::showEvent(QShowEvent *)

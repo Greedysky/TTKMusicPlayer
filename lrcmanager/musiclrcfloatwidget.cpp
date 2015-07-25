@@ -5,10 +5,10 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QCheckBox>
-
+#include <QPainter>
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
-    : QWidget(parent)
+    : QLabel(parent)
 {
     setGeometry(0, parent->height() - 180, parent->width(), 180);
     setObjectName("MusicLrcFloatPhotoWidget");
@@ -20,6 +20,18 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);
     m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/film');");
+
+    m_plane1 = new QLabel(this);
+    m_plane1->setGeometry(65, 30, 110, 65);
+    m_plane1->setPixmap(QPixmap( ":/lrc/film" ));
+
+    m_plane2 = new QLabel(this);
+    m_plane2->setGeometry(210, 30, 110, 65);
+    m_plane2->setPixmap(QPixmap( ":/lrc/film" ));
+
+    m_plane3 = new QLabel(this);
+    m_plane3->setGeometry(355, 30, 110, 65);
+    m_plane3->setPixmap(QPixmap( ":/lrc/film" ));
 
     m_checkBox = new QCheckBox("cccc",this);
     m_checkBox->setGeometry(5, 130, 100, 20);
@@ -51,6 +63,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 {
+    delete m_plane1, m_plane2, m_plane3;
     delete m_animation;
     delete m_filmBGWidget;
     delete m_previous, m_next;
@@ -64,7 +77,11 @@ void MusicLrcFloatPhotoWidget::show()
     m_animation->setStartValue(QRect(0, 500, 115, 105));
     m_animation->setEndValue( geometry() );
     m_animation->start();
+    m_artPath = mArtBg.getArtPhotoPaths();
+qDebug()<<m_artPath;
 }
+
+
 
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : QLabel(parent)

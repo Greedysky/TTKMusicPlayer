@@ -8,7 +8,7 @@ class QPropertyAnimation;
 class QPushButton;
 class QCheckBox;
 
-class MusicLrcFloatPhotoWidget : public QWidget
+class MUSIC_EXPORT MusicLrcFloatPhotoWidget : public QLabel
 {
     Q_OBJECT
 public:
@@ -19,11 +19,14 @@ public slots:
     void show();
 
 protected:
-    QPropertyAnimation *m_animation;
     QWidget* m_filmBGWidget;
+    QPropertyAnimation *m_animation;
     QCheckBox* m_checkBox;
     QPushButton* m_previous,*m_next;
     QPushButton* m_confirmButton,*m_cancelButton;
+
+    QLabel* m_plane1,* m_plane2,* m_plane3;
+    QStringList m_artPath;
 
 };
 
