@@ -5,7 +5,24 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QCheckBox>
-#include <QPainter>
+#include <QMouseEvent>
+
+MusicLrcFloatPhotoPlaneWidget::MusicLrcFloatPhotoPlaneWidget(QWidget *parent)
+    : QLabel(parent)
+{
+
+}
+
+void MusicLrcFloatPhotoPlaneWidget::mousePressEvent(QMouseEvent *event)
+{
+    QLabel::mousePressEvent(event);
+    if(event->button() == Qt::LeftButton)
+    {
+       emit clicked();
+    }
+}
+
+
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : QLabel(parent)
@@ -21,20 +38,26 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);
     m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/film');");
 
-    m_plane1 = new QLabel(this);
-    m_plane1->setGeometry(65, 30, 110, 65);
-    m_plane1->setPixmap(QPixmap( ":/lrc/film" ));
+    m_plane1 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane1->setGeometry(65, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane2 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane2->setGeometry(210, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane3 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane3->setGeometry(355, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
 
-    m_plane2 = new QLabel(this);
-    m_plane2->setGeometry(210, 30, 110, 65);
-    m_plane2->setPixmap(QPixmap( ":/lrc/film" ));
+    m_radio1 = new QCheckBox(this);
+    m_radio1->setGeometry(155, 75, 20, 20);
+    m_radio1->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_radio2 = new QCheckBox(this);
+    m_radio2->setGeometry(300, 75, 20, 20);
+    m_radio2->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_radio3 = new QCheckBox(this);
+    m_radio3->setGeometry(445, 75, 20, 20);
+    m_radio3->setStyleSheet(MusicObject::MusicSettingCheckButton);
 
-    m_plane3 = new QLabel(this);
-    m_plane3->setGeometry(355, 30, 110, 65);
-    m_plane3->setPixmap(QPixmap( ":/lrc/film" ));
-
-    m_checkBox = new QCheckBox("cccc",this);
+    m_checkBox = new QCheckBox(tr("All"),this);
     m_checkBox->setGeometry(5, 130, 100, 20);
+    m_checkBox->setChecked(true);
     m_checkBox->setStyleSheet(MusicObject::MusicSettingCheckButton);
 
     m_confirmButton = new QPushButton(tr("Confirm"),this);
@@ -57,12 +80,21 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setStyleSheet( style );
     m_next->setStyleSheet( style );
 
+    m_currentIndex = 0;
+
     connect(m_cancelButton, SIGNAL(clicked()), SLOT(close()));
-//    connect(m_confirmButton, SIGNAL(clicked()), SLOT(searchMusicLrcs()));
+    connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
+    connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
+    connect(m_cancelButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_plane1, SIGNAL(clicked()), SLOT(sendUserSelectArtBg1()));
+    connect(m_plane2, SIGNAL(clicked()), SLOT(sendUserSelectArtBg2()));
+    connect(m_plane3, SIGNAL(clicked()), SLOT(sendUserSelectArtBg3()));
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 {
+    delete m_radio1, m_radio2, m_radio3;
     delete m_plane1, m_plane2, m_plane3;
     delete m_animation;
     delete m_filmBGWidget;
@@ -78,7 +110,70 @@ void MusicLrcFloatPhotoWidget::show()
     m_animation->setEndValue( geometry() );
     m_animation->start();
     m_artPath = mArtBg.getArtPhotoPaths();
-qDebug()<<m_artPath;
+    showPhoto();
+}
+
+void MusicLrcFloatPhotoWidget::confirmButtonClicked()
+{
+
+}
+
+void MusicLrcFloatPhotoWidget::showPhoto()
+{
+    m_previous->setEnabled(m_currentIndex != 0);
+    m_next->setEnabled(m_currentIndex != (ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1));
+
+    QPixmap nullPix;
+    nullPix.fill(Qt::black);
+    //check show pixmap
+    int indexCheck = m_currentIndex * PHOTO_PERLINE;
+    m_plane1->setPixmap( (indexCheck + 0) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 0] )
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+    m_plane2->setPixmap( (indexCheck + 1) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 1] )
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+    m_plane3->setPixmap( (indexCheck + 2) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 2] )
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+    //check show radio button
+    m_radio1->setChecked( (indexCheck + 0) < m_artPath.count() );
+    m_radio2->setChecked( (indexCheck + 1) < m_artPath.count() );
+    m_radio3->setChecked( (indexCheck + 2) < m_artPath.count() );
+    m_radio1->setVisible( (indexCheck + 0) < m_artPath.count() );
+    m_radio2->setVisible( (indexCheck + 1) < m_artPath.count() );
+    m_radio3->setVisible( (indexCheck + 2) < m_artPath.count() );
+}
+
+void MusicLrcFloatPhotoWidget::photoPrevious()
+{
+    if(--m_currentIndex < 0)
+    {
+        m_currentIndex = 0;
+    }
+    showPhoto();
+}
+
+void MusicLrcFloatPhotoWidget::photoNext()
+{
+    int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
+    if(++m_currentIndex > page )
+    {
+        m_currentIndex = page;
+    }
+    showPhoto();
+}
+
+void MusicLrcFloatPhotoWidget::sendUserSelectArtBg1()
+{
+    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
+}
+
+void MusicLrcFloatPhotoWidget::sendUserSelectArtBg2()
+{
+    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
+}
+
+void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
+{
+    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
 }
 
 

@@ -4,9 +4,29 @@
 #include <QLabel>
 #include "musiclibexportglobal.h"
 
+#define PHOTO_WIDTH     110
+#define PHOTO_HEIGHT    65
+#define PHOTO_PERLINE   3
+
 class QPropertyAnimation;
 class QPushButton;
 class QCheckBox;
+
+class MUSIC_EXPORT MusicLrcFloatPhotoPlaneWidget : public QLabel
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcFloatPhotoPlaneWidget(QWidget *parent = 0);
+
+signals:
+    void clicked();
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *);
+
+};
+
+
 
 class MUSIC_EXPORT MusicLrcFloatPhotoWidget : public QLabel
 {
@@ -17,18 +37,32 @@ public:
 
 public slots:
     void show();
+    void confirmButtonClicked();
+    void photoPrevious();
+    void photoNext();
+    void sendUserSelectArtBg1();
+    void sendUserSelectArtBg2();
+    void sendUserSelectArtBg3();
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *){}
+    virtual void mouseMoveEvent(QMouseEvent *){}
+    virtual void mousePressEvent(QMouseEvent *){}
+    virtual void mouseReleaseEvent(QMouseEvent *){}
+    void showPhoto();
+
     QWidget* m_filmBGWidget;
     QPropertyAnimation *m_animation;
     QCheckBox* m_checkBox;
     QPushButton* m_previous,*m_next;
     QPushButton* m_confirmButton,*m_cancelButton;
-
-    QLabel* m_plane1,* m_plane2,* m_plane3;
+    MusicLrcFloatPhotoPlaneWidget* m_plane1,*m_plane2,*m_plane3;
+    QCheckBox* m_radio1,* m_radio2,* m_radio3;
     QStringList m_artPath;
+    int m_currentIndex;
 
 };
+
 
 
 class MUSIC_EXPORT MusicLrcFloatWidget : public QLabel

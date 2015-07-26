@@ -47,3 +47,8 @@ void MusicBgThemeManager::setArtPhotoPaths(const QStringList& list)
 {
     m_photos = list;
 }
+
+void MusicBgThemeManager::sendUserSelectArtBg(int index)
+{
+    m_currentIndex = index;
+}

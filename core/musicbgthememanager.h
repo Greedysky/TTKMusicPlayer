@@ -14,8 +14,11 @@ public:
     inline int getArtPhotoCount() { return m_photos.count(); }
     QString getArtPhotoPath();
     QString getArtPhotoPathByIndex(int index = -1);
+
     QStringList getArtPhotoPaths();
     void setArtPhotoPaths(const QStringList&);
+
+    void sendUserSelectArtBg(int);
 
 protected:
     MusicBgThemeManager();
