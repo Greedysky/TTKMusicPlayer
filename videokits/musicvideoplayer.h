@@ -11,7 +11,7 @@ class MusicVideoView;
 class MusicVideoTableWidget;
 class MusicLocalSongSearchEdit;
 
-class MUSIC_EXPORT MusicVideoPlayer : public QWidget
+class MUSIC_WIDGET_EXPORT MusicVideoPlayer : public QWidget
 {
     Q_OBJECT
 public:

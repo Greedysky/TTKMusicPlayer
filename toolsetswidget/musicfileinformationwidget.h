@@ -9,7 +9,7 @@ namespace Ui {
 class MusicFileInformationWidget;
 }
 
-class MUSIC_EXPORT MusicFileInformationWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicFileInformationWidget : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

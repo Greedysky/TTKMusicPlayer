@@ -7,7 +7,7 @@ namespace Ui {
 class MusicBackgroundSkinDialog;
 }
 
-class MUSIC_EXPORT MusicBackgroundSkinDialog : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

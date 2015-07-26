@@ -3,7 +3,7 @@
 
 #include "musicxmlabstract.h"
 
-class MUSIC_EXPORT MusicMyDownloadRecordObject : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicMyDownloadRecordObject : public MusicXmlAbstract
 {
 public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);

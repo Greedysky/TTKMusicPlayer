@@ -7,7 +7,7 @@ namespace Ui {
 class MusicLrcArtPhotoUpload;
 }
 
-class MUSIC_EXPORT MusicLrcArtPhotoUpload : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoUpload : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

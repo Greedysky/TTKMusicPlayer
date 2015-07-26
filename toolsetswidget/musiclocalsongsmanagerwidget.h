@@ -13,7 +13,7 @@ namespace Ui {
 class MusicLocalSongsManagerWidget;
 }
 
-class MUSIC_EXPORT MusicLocalSongsManagerWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicLocalSongsManagerWidget : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

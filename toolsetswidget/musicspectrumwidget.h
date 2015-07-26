@@ -6,7 +6,7 @@
 #include <QTimer>
 #include "musicmovewidgetabstract.h"
 
-class MUSIC_EXPORT  MusicSpectrumWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT  MusicSpectrumWidget : public MusicMoveWidgetAbstract
 {
     Q_OBJECT
     enum Direction{

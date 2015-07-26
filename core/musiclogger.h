@@ -16,7 +16,7 @@
     #define mlogger(str)
 #endif
 
-class MUSIC_EXPORT MusicLogger
+class MUSIC_CORE_EXPORT MusicLogger
 {
 
 public:

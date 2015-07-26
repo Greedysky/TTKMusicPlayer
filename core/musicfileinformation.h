@@ -4,7 +4,7 @@
 #include <QObject>
 #include "musicplayer.h"
 
-class MUSIC_EXPORT MusicFileInformation
+class MUSIC_CORE_EXPORT MusicFileInformation
 {
 public:
     MusicFileInformation();

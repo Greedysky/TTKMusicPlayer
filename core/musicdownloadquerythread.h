@@ -11,7 +11,7 @@ class QNetworkAccessManager;
 enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };
 enum QueryType{ Music, MV };
 
-class MUSIC_EXPORT MusicDownLoadQueryThread : public QObject
+class MUSIC_CORE_EXPORT MusicDownLoadQueryThread : public QObject
 {
     Q_OBJECT
 public:

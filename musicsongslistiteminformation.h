@@ -9,7 +9,7 @@ namespace Ui {
 class MusicSongsListItemInformation;
 }
 
-class MUSIC_EXPORT MusicSongsListItemInformation : public QWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListItemInformation : public QWidget
 {
     Q_OBJECT
 public:

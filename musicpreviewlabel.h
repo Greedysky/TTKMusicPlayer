@@ -4,7 +4,7 @@
 #include <QLabel>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicPreviewLabel : public QLabel
+class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
 {
 
 public:

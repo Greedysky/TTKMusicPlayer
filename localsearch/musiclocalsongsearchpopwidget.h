@@ -6,7 +6,7 @@
 
 class QPushButton;
 
-class MUSIC_EXPORT MusicLocalSongSearchPopTableWidget :
+class MUSIC_WIDGET_EXPORT MusicLocalSongSearchPopTableWidget :
             public MusicTableWidgetAbstract
 {
     Q_OBJECT
@@ -23,7 +23,7 @@ public slots:
 };
 
 
-class MUSIC_EXPORT MusicLocalSongSearchPopWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicLocalSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
 public:

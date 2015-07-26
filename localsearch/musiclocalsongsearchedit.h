@@ -4,7 +4,7 @@
 #include <QLineEdit>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicLocalSongSearchEdit : public QLineEdit
+class MUSIC_WIDGET_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
 public:

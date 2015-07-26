@@ -5,7 +5,7 @@
 #include <QStringList>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicLocalSongsManagerThread : public QThread
+class MUSIC_CORE_EXPORT MusicLocalSongsManagerThread : public QThread
 {
     Q_OBJECT
 public:

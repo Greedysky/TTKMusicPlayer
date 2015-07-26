@@ -5,7 +5,7 @@
 #include <QtSql/QSqlQuery>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicUserModel : public QSqlTableModel
+class MUSIC_CORE_EXPORT MusicUserModel : public QSqlTableModel
 {
     Q_OBJECT
 public:

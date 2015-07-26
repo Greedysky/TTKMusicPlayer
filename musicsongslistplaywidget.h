@@ -10,7 +10,7 @@
 
 class MusicSongsToolItemRenamedWidget;
 
-class MUSIC_EXPORT MusicSongsListPlayWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -2,10 +2,12 @@
 #define MUSICLRCARTPHOTOLABEL_H
 
 #include <QWidget>
+#include "musiclibexportglobal.h"
+
 #define PIX_HEIGHT 16
 #define PIX_WIDTH  16
 
-class MusicLrcArtPhotoLabel : public QWidget
+class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoLabel : public QWidget
 {
     Q_OBJECT
 public:

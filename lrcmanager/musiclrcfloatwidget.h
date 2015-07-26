@@ -13,7 +13,7 @@ class QPropertyAnimation;
 class QPushButton;
 class QCheckBox;
 
-class MUSIC_EXPORT MusicLrcFloatPhotoPlaneWidget : public QLabel
+class MUSIC_WIDGET_EXPORT MusicLrcFloatPhotoPlaneWidget : public QLabel
 {
     Q_OBJECT
 public:
@@ -29,7 +29,7 @@ protected:
 
 
 
-class MUSIC_EXPORT MusicLrcFloatPhotoWidget : public QLabel
+class MUSIC_WIDGET_EXPORT MusicLrcFloatPhotoWidget : public QLabel
 {
     Q_OBJECT
 public:
@@ -71,7 +71,7 @@ protected:
 
 
 
-class MUSIC_EXPORT MusicLrcFloatWidget : public QLabel
+class MUSIC_WIDGET_EXPORT MusicLrcFloatWidget : public QLabel
 {
     Q_OBJECT
 public:

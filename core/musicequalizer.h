@@ -9,7 +9,7 @@
 
 using namespace libZPlay;
 
-class MUSIC_EXPORT MusicEqualizer
+class MUSIC_CORE_EXPORT MusicEqualizer
 {
 public:
     explicit MusicEqualizer(ZPlay *parent);

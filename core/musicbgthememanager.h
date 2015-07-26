@@ -7,7 +7,7 @@
 #define M_ARTBG (MusicSingleton<MusicBgThemeManager>::createInstance())
 #define MAX_INDEX 5
 
-class MUSIC_EXPORT MusicBgThemeManager : public QObject
+class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
 {
     Q_OBJECT
 public:

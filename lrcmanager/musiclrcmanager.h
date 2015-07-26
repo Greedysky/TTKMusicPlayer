@@ -32,7 +32,7 @@ namespace LrcColorTable
 
 enum LrcSizeTable{ Smaller = 13, Small = 14, Middle = 15, Big = 16, Bigger = 17};
 
-class MUSIC_EXPORT MusicLRCManager : public QLabel
+class MUSIC_WIDGET_EXPORT MusicLRCManager : public QLabel
 {
     Q_OBJECT
 public:

@@ -3,7 +3,7 @@
 
 #include "musicxmlabstract.h"
 
-class MUSIC_EXPORT MusicLocalSongSearchRecordObject : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicLocalSongSearchRecordObject : public MusicXmlAbstract
 {
     Q_OBJECT
 public:

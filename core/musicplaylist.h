@@ -6,7 +6,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicPlaylist : public QObject
+class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
 {
     Q_OBJECT
 public:

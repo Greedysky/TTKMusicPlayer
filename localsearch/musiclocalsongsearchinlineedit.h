@@ -5,7 +5,7 @@
 
 class MusicLocalSongSearchPopWidget;
 
-class MUSIC_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSongSearchEdit
+class MUSIC_WIDGET_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSongSearchEdit
 {
     Q_OBJECT
 public:

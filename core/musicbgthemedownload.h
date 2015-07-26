@@ -7,7 +7,7 @@
 
 #define TMP_DOWNLOAD "tmp"
 
-class MUSIC_EXPORT MusicBgThemeDownload : public QObject
+class MUSIC_CORE_EXPORT MusicBgThemeDownload : public QObject
 {
     Q_OBJECT
 public:

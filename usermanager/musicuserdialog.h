@@ -12,7 +12,7 @@ namespace Ui {
 class MusicUserDialog;
 }
 
-class MUSIC_EXPORT MusicUserDialog : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicUserDialog : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

@@ -11,7 +11,7 @@ namespace Ui {
 class MusicUserManager;
 }
 
-class MUSIC_EXPORT MusicUserManager : public QDialog
+class MUSIC_WIDGET_EXPORT MusicUserManager : public QDialog
 {
     Q_OBJECT
 public:

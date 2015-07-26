@@ -9,7 +9,7 @@ namespace Ui {
 class MusicDesktopWallpaperWidget;
 }
 
-class MUSIC_EXPORT MusicDesktopWallpaperWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicDesktopWallpaperWidget : public MusicMoveWidgetAbstract
 {
     Q_OBJECT
 public:

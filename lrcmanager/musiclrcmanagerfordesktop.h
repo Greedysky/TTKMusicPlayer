@@ -3,7 +3,7 @@
 
 #include "musiclrcmanager.h"
 
-class MUSIC_EXPORT MusicLRCManagerForDesktop : public MusicLRCManager
+class MUSIC_WIDGET_EXPORT MusicLRCManagerForDesktop : public MusicLRCManager
 {
     Q_OBJECT
 public:

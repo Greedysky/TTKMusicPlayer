@@ -10,7 +10,7 @@ class QWinTaskbarProgress;
 class QWinThumbnailToolBar;
 class QWinThumbnailToolButton;
 
-class MUSIC_EXPORT MusicWindowExtras : public QObject
+class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
 public:

@@ -13,7 +13,7 @@
 
 class MusicPlaylist;
 
-class MUSIC_EXPORT MusicPlayer : public QObject
+class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 {
     Q_OBJECT
 public:

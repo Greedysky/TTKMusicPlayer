@@ -6,7 +6,7 @@
 #include "musiclibexportglobal.h"
 #include "musictablewidgetabstract.h"
 
-class MUSIC_EXPORT MusicMyDownloadRecordWidget :
+class MUSIC_WIDGET_EXPORT MusicMyDownloadRecordWidget :
         public MusicTableWidgetAbstract
 {
     Q_OBJECT

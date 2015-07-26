@@ -7,7 +7,7 @@
 #include <QPainter>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicMoveWidgetAbstract : public QWidget
+class MUSIC_WIDGET_EXPORT MusicMoveWidgetAbstract : public QWidget
 {
     Q_OBJECT
 public:

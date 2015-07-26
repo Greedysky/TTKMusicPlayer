@@ -7,7 +7,7 @@
 #include <QPainter>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicMoveDialogAbstract : public QDialog
+class MUSIC_WIDGET_EXPORT MusicMoveDialogAbstract : public QDialog
 {
     Q_OBJECT
 public:

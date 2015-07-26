@@ -10,7 +10,7 @@ namespace Ui {
 class MusicTimerWidget;
 }
 
-class MUSIC_EXPORT MusicTimerWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicTimerWidget : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

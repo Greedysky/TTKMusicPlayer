@@ -15,7 +15,7 @@ namespace Ui {
 class MusicWebRadioWidget;
 }
 
-class MUSIC_EXPORT MusicWebRadioWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicWebRadioWidget : public MusicMoveWidgetAbstract
 {
     Q_OBJECT
 public:

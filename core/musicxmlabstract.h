@@ -8,7 +8,7 @@
 #include "musiclibexportglobal.h"
 #include "musicobject.h"
 
-class MUSIC_EXPORT MusicXmlAbstract : public QObject
+class MUSIC_CORE_EXPORT MusicXmlAbstract : public QObject
 {
     Q_OBJECT
 public:

@@ -8,7 +8,7 @@ class QLabel;
 class QWidgetAction;
 class QToolButton;
 
-class MUSIC_EXPORT MusicSystemTrayMenu : public QMenu
+class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
 public:

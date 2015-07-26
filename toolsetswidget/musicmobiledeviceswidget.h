@@ -7,7 +7,7 @@
 
 class QToolButton;
 
-class MUSIC_EXPORT MusicMobileDevicesWidget : public QLabel
+class MUSIC_WIDGET_EXPORT MusicMobileDevicesWidget : public QLabel
 {
     Q_OBJECT
 public:

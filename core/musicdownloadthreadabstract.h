@@ -7,7 +7,7 @@
 
 class QNetworkAccessManager;
 
-class MUSIC_EXPORT MusicDownLoadThreadAbstract : public QObject
+class MUSIC_CORE_EXPORT MusicDownLoadThreadAbstract : public QObject
 {
     Q_OBJECT
 public:

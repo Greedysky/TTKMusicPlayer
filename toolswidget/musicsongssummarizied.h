@@ -12,7 +12,7 @@ class MusicSongsListWidget;
 class QTableWidgetItem;
 class MusicSongsToolItemRenamedWidget;
 
-class MUSIC_EXPORT MusicSongsSummarizied : public QToolBox
+class MUSIC_WIDGET_EXPORT MusicSongsSummarizied : public QToolBox
 {
     Q_OBJECT
 public:

@@ -5,7 +5,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicDesktopWallpaperThread : public QThread
+class MUSIC_CORE_EXPORT MusicDesktopWallpaperThread : public QThread
 {
     Q_OBJECT
 public:

@@ -7,7 +7,7 @@
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
-class MUSIC_EXPORT MusicSongSearchOnlineWidget : public MusicTableQueryWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public MusicTableQueryWidget
 {
     Q_OBJECT
 public:

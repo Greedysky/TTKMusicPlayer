@@ -3,7 +3,7 @@
 
 #include "musicremotewidget.h"
 
-class MUSIC_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
+class MUSIC_WIDGET_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
 public:

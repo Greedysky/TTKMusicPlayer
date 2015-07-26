@@ -10,7 +10,7 @@ namespace Ui {
 class MusicEqualizerDialog;
 }
 
-class MUSIC_EXPORT MusicEqualizerDialog : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

@@ -10,7 +10,7 @@
 class QSlider;
 class QLabel;
 
-class MUSIC_EXPORT MusicTimerSliderWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicTimerSliderWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -3,7 +3,7 @@
 
 #include "musicdownloadthreadabstract.h"
 
-class MUSIC_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
+class MUSIC_CORE_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:

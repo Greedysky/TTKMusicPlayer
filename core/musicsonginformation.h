@@ -4,7 +4,7 @@
 #include <QStringList>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT QMusicSong
+class MUSIC_CORE_EXPORT QMusicSong
 {
 public:
     QMusicSong():m_musicName(""),m_musicType(""),m_musicSize(0){}

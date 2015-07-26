@@ -5,7 +5,7 @@
 #include "musicobject.h"
 #include "musicmovewidgetabstract.h"
 
-class MUSIC_EXPORT MusicRemoteWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicRemoteWidget : public MusicMoveWidgetAbstract
 {
     Q_OBJECT
 public:

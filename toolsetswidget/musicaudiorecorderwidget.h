@@ -18,7 +18,7 @@ namespace Ui {
 class MusicAudioRecorderWidget;
 }
 
-class MUSIC_EXPORT MusicAudioRecorderWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicAudioRecorderWidget : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 struct HEADER

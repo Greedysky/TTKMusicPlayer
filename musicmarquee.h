@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicMarquee : public QWidget
+class MUSIC_WIDGET_EXPORT MusicMarquee : public QWidget
 {
     Q_OBJECT
 public:

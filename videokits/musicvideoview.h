@@ -8,7 +8,7 @@
 class MusicVideoControl;
 class QGraphicsVideoItem;
 
-class MUSIC_EXPORT MusicVideoView : public QGraphicsView
+class MUSIC_WIDGET_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:

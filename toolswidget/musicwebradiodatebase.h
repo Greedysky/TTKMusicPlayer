@@ -4,7 +4,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicWebRadioDatabase
+class MUSIC_CORE_EXPORT MusicWebRadioDatabase
 {
 
 public:

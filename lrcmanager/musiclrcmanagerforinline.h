@@ -3,7 +3,7 @@
 
 #include "musiclrcmanager.h"
 
-class MUSIC_EXPORT MusicLRCManagerForInline : public MusicLRCManager
+class MUSIC_WIDGET_EXPORT MusicLRCManagerForInline : public MusicLRCManager
 {
     Q_OBJECT
 public:

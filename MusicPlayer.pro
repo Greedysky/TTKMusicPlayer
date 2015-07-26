@@ -11,12 +11,12 @@ QT       += winextras
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MusicPlayer
-#TARGET = MusicUser
-#TARGET = MusicVideo
+#TARGET = MusicWidget
+#TARGET = MusicCore
 
 TEMPLATE = app
-#LIBS += -L"./" -lMusicPlayer -lMusicUser -lMusicVideo
-#LIBS += -L"./" -lMusicUser  -lMusicVideo
+#LIBS += -L"./" -lMusicCore -lMusicWidget
+#LIBS += -L"./" -lMusicCore
 #TEMPLATE = lib
 LIBS += -L"./MPlugins/" -llibzplay
 

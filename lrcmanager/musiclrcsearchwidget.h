@@ -7,7 +7,7 @@ namespace Ui {
 class MusicLrcSearchWidget;
 }
 
-class MUSIC_EXPORT MusicLrcSearchWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicLrcSearchWidget : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:

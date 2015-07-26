@@ -7,7 +7,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicTimerAutoObject : public QObject
+class MUSIC_CORE_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
 public:

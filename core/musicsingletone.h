@@ -5,7 +5,7 @@
 #include "musiclibexportglobal.h"
 
 template <class T>
-class MUSIC_EXPORT MusicSingleton
+class MUSIC_CORE_EXPORT MusicSingleton
 {
 public:
     static inline T& createInstance()

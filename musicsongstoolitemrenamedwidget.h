@@ -4,7 +4,7 @@
 #include <QLineEdit>
 #include "musiclibexportglobal.h"
 
-class MUSIC_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
+class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
 public:

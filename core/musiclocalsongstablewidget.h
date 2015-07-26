@@ -3,7 +3,7 @@
 
 #include "musictablewidgetabstract.h"
 
-class MusicLocalSongsTableWidget : public MusicTableWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicLocalSongsTableWidget : public MusicTableWidgetAbstract
 {
     Q_OBJECT
 public:

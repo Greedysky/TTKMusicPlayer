@@ -8,7 +8,7 @@ class QMovie;
 class QTimer;
 class MusicApplication;
 
-class MUSIC_EXPORT MusicDownloadStatusLabel : public QObject
+class MUSIC_CORE_EXPORT MusicDownloadStatusLabel : public QObject
 {
     Q_OBJECT
 public:

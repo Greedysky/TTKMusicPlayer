@@ -10,7 +10,7 @@ class MusicApplication;
 class MusicSpectrumWidget;
 class MusicDesktopWallpaperWidget;
 
-class MUSIC_EXPORT MusicToolSetsWidget : public QListWidget
+class MUSIC_WIDGET_EXPORT MusicToolSetsWidget : public QListWidget
 {
     Q_OBJECT
 public:

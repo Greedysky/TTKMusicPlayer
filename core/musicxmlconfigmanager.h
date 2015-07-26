@@ -5,7 +5,7 @@
 #include <QColor>
 #include "musicxmlabstract.h"
 
-class MUSIC_EXPORT MusicXMLConfigManager : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicXmlAbstract
 {
 public:
     explicit MusicXMLConfigManager(QObject *parent = 0);
