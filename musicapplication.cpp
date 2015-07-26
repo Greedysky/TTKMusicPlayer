@@ -1175,7 +1175,7 @@ void MusicApplication::musicShowSkinChangedWindow()
 
 void MusicApplication::musicBgThemeDownloadFinished()
 {
-    mArtBg.setArtName(getCurrentFileName());
+    M_ARTBG.setArtName(getCurrentFileName());
     if(ui->SurfaceStackedWidget->currentIndex() == 2  &&
        ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
@@ -1197,7 +1197,7 @@ void MusicApplication::musicBgTransparentChanged(int index)
 
 void MusicApplication::musicBackgroundChanged()
 {
-    QString art_path = mArtBg.getArtPhotoPath();
+    QString art_path = M_ARTBG.getArtPhotoPath();
     !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
 }
 

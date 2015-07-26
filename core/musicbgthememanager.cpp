@@ -8,7 +8,6 @@ MusicBgThemeManager::MusicBgThemeManager()
 void MusicBgThemeManager::setArtName(const QString& name)
 {
     m_photos.clear();
-
     QString filter = ART_BG + name.split('-').front().trimmed()+ "%1" + SKN_FILE;
     for(int i=0; i<MAX_INDEX; ++i)
     {
@@ -17,6 +16,7 @@ void MusicBgThemeManager::setArtName(const QString& name)
             m_photos << filter.arg(i);
         }
     }
+    emit artHasChanged();
 }
 
 QString MusicBgThemeManager::getArtPhotoPath()
@@ -51,4 +51,9 @@ void MusicBgThemeManager::setArtPhotoPaths(const QStringList& list)
 void MusicBgThemeManager::sendUserSelectArtBg(int index)
 {
     m_currentIndex = index;
+}
+
+void MusicBgThemeManager::setObject(QObject* obj)
+{
+    connect(this,SIGNAL(artHasChanged()), obj, SLOT(artHasChanged()));
 }

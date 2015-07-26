@@ -2,6 +2,7 @@
 #define MUSICLRCFLOATWIDGET_H
 
 #include <QLabel>
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
 #define PHOTO_WIDTH     110
@@ -40,9 +41,13 @@ public slots:
     void confirmButtonClicked();
     void photoPrevious();
     void photoNext();
+    void artHasChanged();
     void sendUserSelectArtBg1();
     void sendUserSelectArtBg2();
     void sendUserSelectArtBg3();
+    void userSelectCheckBoxChecked1(bool b);
+    void userSelectCheckBoxChecked2(bool b);
+    void userSelectCheckBoxChecked3(bool b);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *){}
@@ -59,6 +64,7 @@ protected:
     MusicLrcFloatPhotoPlaneWidget* m_plane1,*m_plane2,*m_plane3;
     QCheckBox* m_radio1,* m_radio2,* m_radio3;
     QStringList m_artPath;
+    MIntSet m_selectNum;
     int m_currentIndex;
 
 };

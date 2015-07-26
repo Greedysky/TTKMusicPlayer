@@ -4,11 +4,12 @@
 #include "musicobject.h"
 #include "musicsingletone.h"
 
-#define mArtBg (MusicSingleton<MusicBgThemeManager>::createInstance())
+#define M_ARTBG (MusicSingleton<MusicBgThemeManager>::createInstance())
 #define MAX_INDEX 5
 
-class MUSIC_EXPORT MusicBgThemeManager
+class MUSIC_EXPORT MusicBgThemeManager : public QObject
 {
+    Q_OBJECT
 public:
     void setArtName(const QString&);
     inline int getArtPhotoCount() { return m_photos.count(); }
@@ -19,6 +20,11 @@ public:
     void setArtPhotoPaths(const QStringList&);
 
     void sendUserSelectArtBg(int);
+
+    void setObject(QObject*);
+
+signals:
+    void artHasChanged();
 
 protected:
     MusicBgThemeManager();

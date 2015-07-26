@@ -1,6 +1,5 @@
 #include "musiclrcfloatwidget.h"
 #include "musicbgthememanager.h"
-#include "musicobject.h"
 
 #include <QPropertyAnimation>
 #include <QPushButton>
@@ -90,6 +89,10 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_plane1, SIGNAL(clicked()), SLOT(sendUserSelectArtBg1()));
     connect(m_plane2, SIGNAL(clicked()), SLOT(sendUserSelectArtBg2()));
     connect(m_plane3, SIGNAL(clicked()), SLOT(sendUserSelectArtBg3()));
+    connect(m_radio1, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked1(bool)));
+    connect(m_radio2, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked2(bool)));
+    connect(m_radio3, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked3(bool)));
+    M_ARTBG.setObject(this);
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
@@ -109,13 +112,18 @@ void MusicLrcFloatPhotoWidget::show()
     m_animation->setStartValue(QRect(0, 500, 115, 105));
     m_animation->setEndValue( geometry() );
     m_animation->start();
-    m_artPath = mArtBg.getArtPhotoPaths();
     showPhoto();
 }
 
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 {
-
+    QStringList list;
+    foreach(int i, m_selectNum)
+    {
+       list <<  m_artPath[i];
+    }
+    M_ARTBG.setArtPhotoPaths(list);
+    close();
 }
 
 void MusicLrcFloatPhotoWidget::showPhoto()
@@ -134,9 +142,9 @@ void MusicLrcFloatPhotoWidget::showPhoto()
     m_plane3->setPixmap( (indexCheck + 2) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 2] )
                                            .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
     //check show radio button
-    m_radio1->setChecked( (indexCheck + 0) < m_artPath.count() );
-    m_radio2->setChecked( (indexCheck + 1) < m_artPath.count() );
-    m_radio3->setChecked( (indexCheck + 2) < m_artPath.count() );
+    m_radio1->setChecked( m_selectNum.contains(indexCheck + 0) );
+    m_radio2->setChecked( m_selectNum.contains(indexCheck + 1) );
+    m_radio3->setChecked( m_selectNum.contains(indexCheck + 2) );
     m_radio1->setVisible( (indexCheck + 0) < m_artPath.count() );
     m_radio2->setVisible( (indexCheck + 1) < m_artPath.count() );
     m_radio3->setVisible( (indexCheck + 2) < m_artPath.count() );
@@ -151,6 +159,16 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
     showPhoto();
 }
 
+void MusicLrcFloatPhotoWidget::artHasChanged()
+{
+    m_selectNum.clear();
+    m_artPath = M_ARTBG.getArtPhotoPaths();
+    for(int i=0; i<m_artPath.count(); ++i)
+    {
+        m_selectNum << i;
+    }
+}
+
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
@@ -163,17 +181,56 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg1()
 {
-    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
+    M_ARTBG.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg2()
 {
-    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
+    M_ARTBG.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
 {
-    mArtBg.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
+    M_ARTBG.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
+}
+
+void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked1(bool b)
+{
+    int index = m_currentIndex * PHOTO_PERLINE + 0;
+    if(b)
+    {
+        m_selectNum << index;
+    }
+    else
+    {
+        if(m_selectNum.contains(index)) m_selectNum.remove(index);
+    }
+}
+
+void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked2(bool b)
+{
+    int index = m_currentIndex * PHOTO_PERLINE + 1;
+    if(b)
+    {
+        m_selectNum << index;
+    }
+    else
+    {
+        if(m_selectNum.contains(index)) m_selectNum.remove(index);
+    }
+}
+
+void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked3(bool b)
+{
+    int index = m_currentIndex * PHOTO_PERLINE + 2;
+    if(b)
+    {
+        m_selectNum << index;
+    }
+    else
+    {
+        if(m_selectNum.contains(index)) m_selectNum.remove(index);
+    }
 }
 
 
