@@ -3,12 +3,11 @@
 
 #include "musicmovedialogabstract.h"
 
-
 namespace Ui {
 class MusicLrcArtPhotoUpload;
 }
 
-class MusicLrcArtPhotoUpload : public MusicMoveDialogAbstract
+class MUSIC_EXPORT MusicLrcArtPhotoUpload : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:
