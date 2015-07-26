@@ -93,6 +93,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_radio2, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked2(bool)));
     connect(m_radio3, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked3(bool)));
     M_ARTBG.setObject(this);
+
+    m_checkBox->setEnabled(false);
+    m_cancelButton->setEnabled(false);
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
@@ -198,39 +201,27 @@ void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked1(bool b)
 {
     int index = m_currentIndex * PHOTO_PERLINE + 0;
     if(b)
-    {
         m_selectNum << index;
-    }
     else
-    {
-        if(m_selectNum.contains(index)) m_selectNum.remove(index);
-    }
+        m_selectNum.remove(index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked2(bool b)
 {
     int index = m_currentIndex * PHOTO_PERLINE + 1;
     if(b)
-    {
         m_selectNum << index;
-    }
     else
-    {
-        if(m_selectNum.contains(index)) m_selectNum.remove(index);
-    }
+        m_selectNum.remove(index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked3(bool b)
 {
     int index = m_currentIndex * PHOTO_PERLINE + 2;
     if(b)
-    {
         m_selectNum << index;
-    }
     else
-    {
-        if(m_selectNum.contains(index)) m_selectNum.remove(index);
-    }
+        m_selectNum.remove(index);
 }
 
 
