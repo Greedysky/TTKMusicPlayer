@@ -8,6 +8,12 @@
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65
 #define PHOTO_PERLINE   3
+#define RECT_IN QRect(0, 500, 115, 105)
+#define RECT_OUT QRect(0, 300, 640, 180)
+#define FLOW_RECT_IN QRect(405, 120, 115, 210)
+#define FLOW_RECT_OUT QRect(515, 171, 115, 105)
+#define FLOW_ITEM_WIDTH 80
+#define FLOW_ITEM_HEIGHT 30
 
 class QPropertyAnimation;
 class QPushButton;
@@ -38,6 +44,8 @@ public:
 
 public slots:
     void show();
+    void close();
+    void parentClose() { QLabel::close(); }
     void confirmButtonClicked();
     void photoPrevious();
     void photoNext();
@@ -89,7 +97,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *){}
     virtual void mouseReleaseEvent(QMouseEvent *){}
 
-    int m_posX, m_posY, m_valueX;
+    int m_valueX;
     QPropertyAnimation *m_animation;
     QPushButton *m_more,*m_update,*m_search;
     QPushButton *m_wallp,*m_photo;

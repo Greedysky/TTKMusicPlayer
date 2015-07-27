@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QMouseEvent>
+#include <QTimer>
 
 MusicLrcFloatPhotoPlaneWidget::MusicLrcFloatPhotoPlaneWidget(QWidget *parent)
     : QLabel(parent)
@@ -26,7 +27,7 @@ void MusicLrcFloatPhotoPlaneWidget::mousePressEvent(QMouseEvent *event)
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setGeometry(0, parent->height() - 180, parent->width(), 180);
+    setGeometry(RECT_OUT);
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet("#MusicLrcFloatPhotoWidget{background:rgba(0, 0, 0, 100);}");
 
@@ -112,10 +113,18 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 void MusicLrcFloatPhotoWidget::show()
 {
     QWidget::show();
-    m_animation->setStartValue(QRect(0, 500, 115, 105));
-    m_animation->setEndValue( geometry() );
+    m_animation->setStartValue(RECT_IN);
+    m_animation->setEndValue(RECT_OUT);
     m_animation->start();
     showPhoto();
+}
+
+void MusicLrcFloatPhotoWidget::close()
+{
+    m_animation->setStartValue(RECT_OUT);
+    m_animation->setEndValue(RECT_IN);
+    m_animation->start();
+    QTimer::singleShot(m_animation->duration(),this,SLOT(parentClose()));
 }
 
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
@@ -230,10 +239,8 @@ void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked3(bool b)
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : QLabel(parent)
 {
-    m_posX = parent->width() - 235;
-    m_posY = parent->height()/4;
     setStyleSheet("background:rgba(0, 0, 0, 100)");
-    setGeometry( m_posX + 110, m_posY + 51, 115, 105);
+    setGeometry(FLOW_RECT_OUT);
 
     m_floatPhotoWidget = new MusicLrcFloatPhotoWidget(parent);
     m_floatPhotoWidget->hide();
@@ -262,11 +269,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setStyleSheet( style );
     m_photo->setStyleSheet( style );
 
-    m_update->setGeometry(10, 10, 80, 30);
-    m_search->setGeometry(10, 50, 80, 30);
-    m_more->setGeometry(10, 90, 80, 30);
-    m_wallp->setGeometry(10, 130, 80, 30);
-    m_photo->setGeometry(10, 170, 80, 30);
+    m_update->setGeometry(10, 10, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
+    m_search->setGeometry(10, 50, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
+    m_more->setGeometry(10, 90, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
+    m_wallp->setGeometry(10, 130, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
+    m_photo->setGeometry(10, 170, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
 
     m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
@@ -290,15 +297,15 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
 void MusicLrcFloatWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
-    m_animation->setStartValue( geometry() );
-    m_animation->setEndValue(QRect(m_posX, m_posY, 115, 210));
+    m_animation->setStartValue(FLOW_RECT_OUT);
+    m_animation->setEndValue(FLOW_RECT_IN);
     m_animation->start();
 }
 
 void MusicLrcFloatWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
-    m_animation->setStartValue(QRect(m_posX, m_posY, 115, 210));
-    m_animation->setEndValue(QRect(m_posX + 110, m_posY + 51, 115, 105));
+    m_animation->setStartValue(FLOW_RECT_IN);
+    m_animation->setEndValue(FLOW_RECT_OUT);
     m_animation->start();
 }
