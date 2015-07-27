@@ -10,7 +10,7 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
 {
     setStyleSheet("background:transparent");
     setFixedSize(520,40);
-    setGeometry(0,365,520,40);
+    setGeometry(0,375,520,40);
 
     m_timeSlider = new QSlider(Qt::Horizontal,this);
     m_menuButton = new QToolButton(this);

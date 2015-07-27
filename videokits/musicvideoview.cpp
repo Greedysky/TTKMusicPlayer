@@ -1,7 +1,9 @@
 #include "musicvideoview.h"
 #include "musicvideocontrol.h"
+
 #include <QVideoSurfaceFormat>
 #include <QGraphicsVideoItem>
+#include <QMouseEvent>
 
 MusicVideoView::MusicVideoView(QWidget *parent)
     : QGraphicsView(parent)
@@ -11,15 +13,16 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     setObjectName("VideoPlayer");
     setStyleSheet("background-color:black");
     m_videoItem = new QGraphicsVideoItem;
+    m_mediaPlayer.setVideoOutput(m_videoItem);
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->addItem(m_videoItem);
     setScene(scene);
-    fitInView(m_videoItem, Qt::KeepAspectRatio);
+    m_videoItem->setSize(QSizeF(500,400));
+//    fitInView(m_videoItem, Qt::KeepAspectRatio);
 
     m_videoControl = new MusicVideoControl(this);
     m_videoControl->hide();
-    m_mediaPlayer.setVideoOutput(m_videoItem);
 
     connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(&m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
@@ -47,7 +50,10 @@ void MusicVideoView::leaveEvent(QEvent *event)
 void MusicVideoView::mousePressEvent(QMouseEvent *event)
 {
     QGraphicsView::mousePressEvent(event);
-    play();
+    if(event->button() == Qt::LeftButton)
+    {
+        play();
+    }
 }
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)

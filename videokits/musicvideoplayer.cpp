@@ -1,7 +1,7 @@
 #include "musicvideoplayer.h"
 #include "musicvideoview.h"
 #include "musicvideotablewidget.h"
-#include "localsearch/musiclocalsongsearchedit.h"
+#include "musiclocalsongsearchedit.h"
 #include "musicobject.h"
 
 #include <QVBoxLayout>
