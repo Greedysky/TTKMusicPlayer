@@ -132,7 +132,8 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 void MusicLrcFloatPhotoWidget::showPhoto()
 {
     m_previous->setEnabled(m_currentIndex != 0);
-    m_next->setEnabled(m_currentIndex != (ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1));
+    int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
+    m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
 
     QPixmap nullPix;
     nullPix.fill(Qt::black);
@@ -175,7 +176,7 @@ void MusicLrcFloatPhotoWidget::artHasChanged()
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    if(++m_currentIndex > page )
+    if( ++m_currentIndex > (page = page < 0 ? 0 : page) )
     {
         m_currentIndex = page;
     }

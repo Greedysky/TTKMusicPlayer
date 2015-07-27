@@ -779,6 +779,7 @@ void MusicApplication::showCurrentSong(int index)
         if(m_musicRemoteWidget)
             m_musicRemoteWidget->setLabelText(name);
         //display current ArtTheme pic
+        M_ARTBG.setArtName(getCurrentFileName());
         musicBgThemeDownloadFinished();
     }
     else
@@ -1175,7 +1176,6 @@ void MusicApplication::musicShowSkinChangedWindow()
 
 void MusicApplication::musicBgThemeDownloadFinished()
 {
-    M_ARTBG.setArtName(getCurrentFileName());
     if(ui->SurfaceStackedWidget->currentIndex() == 2  &&
        ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {

@@ -21,8 +21,10 @@ public slots:
     void bgDownLoadFinished(const QString&);
 
 protected:
+    QString m_artName;
     QString m_savePath;
     int m_index;
+    int m_counter;
 
 };
 
