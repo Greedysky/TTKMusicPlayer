@@ -16,6 +16,7 @@ public:
 
 public slots:
     void showFloatSettingWidget();
+    void closeFloatSettingWidget();
 
 protected:
     int m_valueX;

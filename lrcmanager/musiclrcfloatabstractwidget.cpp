@@ -5,6 +5,7 @@ MusicLrcFloatAbstractWidget::MusicLrcFloatAbstractWidget(QWidget *parent)
 {
     m_animation = new QPropertyAnimation(this, "geometry");
     m_animation->setDuration(500);
+    m_blockAnimation = false;
 }
 
 MusicLrcFloatAbstractWidget::~MusicLrcFloatAbstractWidget()
@@ -29,11 +30,11 @@ void MusicLrcFloatAbstractWidget::animationOut()
 void MusicLrcFloatAbstractWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
-    animationIn();
+    if(!m_blockAnimation) animationIn();
 }
 
 void MusicLrcFloatAbstractWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
-    animationOut();
+    if(!m_blockAnimation) animationOut();
 }

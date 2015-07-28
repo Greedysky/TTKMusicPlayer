@@ -174,7 +174,7 @@
     <message>
         <location filename="../musicapplication.cpp" line="243"/>
         <location filename="../musicapplication.cpp" line="478"/>
-        <location filename="../musicapplication.cpp" line="1086"/>
+        <location filename="../musicapplication.cpp" line="1087"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
@@ -210,13 +210,13 @@
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="259"/>
-        <location filename="../musicapplication.cpp" line="1018"/>
+        <location filename="../musicapplication.cpp" line="1019"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="260"/>
-        <location filename="../musicapplication.cpp" line="1019"/>
+        <location filename="../musicapplication.cpp" line="1020"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
@@ -246,17 +246,17 @@
         <translation>开启遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1021"/>
+        <location filename="../musicapplication.cpp" line="1022"/>
         <source>dragAnddrop</source>
         <translation>支持歌曲文件的拖拽</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1085"/>
+        <location filename="../musicapplication.cpp" line="1086"/>
         <source>About QMusicPlayer</source>
         <translation>关于天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="1087"/>
+        <location filename="../musicapplication.cpp" line="1088"/>
         <source>Directed By Greedysky</source>
         <translation>Greedysky 工作室出品</translation>
     </message>
@@ -1624,94 +1624,94 @@
         <translation> --- 歌词文件内容错误！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="290"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="300"/>
         <source>changColorMenu</source>
         <translation>歌词颜色</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="291"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="301"/>
         <source>changeLrcSize</source>
         <translation>歌词大小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="295"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="296"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="312"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="322"/>
         <source>artbgon</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="311"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="312"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="321"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="322"/>
         <source>artbgoff</source>
         <translation>关闭写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="302"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="312"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="303"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
         <source>small</source>
         <translation>小号</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="304"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="314"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="305"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="315"/>
         <source>big</source>
         <translation>大号</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="306"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="316"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="308"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="318"/>
         <source>custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="313"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="314"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="323"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="324"/>
         <source>lrcoff</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="314"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="324"/>
         <source>lrcon</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="315"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="325"/>
         <source>artbgupload</source>
         <translation>上传歌手写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="318"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="328"/>
         <source>copyToClip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="320"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="330"/>
         <source>showLrcFile</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="324"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="334"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>
@@ -1719,45 +1719,78 @@
 <context>
     <name>MusicLrcFloatPhotoWidget</name>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="57"/>
+        <location filename="../lrcmanager/musiclrcfloatphotowidget.cpp" line="55"/>
         <source>All</source>
-        <translation >全选</translation>
+        <translation>全选</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="62"/>
+        <location filename="../lrcmanager/musiclrcfloatphotowidget.cpp" line="60"/>
         <source>Confirm</source>
-        <translation >确定</translation>
+        <translation>确定</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="67"/>
+        <location filename="../lrcmanager/musiclrcfloatphotowidget.cpp" line="65"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
 </context>
 <context>
+    <name>MusicLrcFloatSettingWidget</name>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="19"/>
+        <source>Color</source>
+        <translation >颜色</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="20"/>
+        <source>Size</source>
+        <translation>字号</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="21"/>
+        <source>Background</source>
+        <translation >歌词背景</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="100"/>
+        <source>MusicBg</source>
+        <translation>默认皮肤</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="103"/>
+        <source>ArtBg</source>
+        <translation >歌手写真</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcfloatsettingwidget.cpp" line="109"/>
+        <source>More</source>
+        <translation >更多设置</translation>
+    </message>
+</context>
+<context>
     <name>MusicLrcFloatWidget</name>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="255"/>
+        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="23"/>
         <source> Update</source>
-        <translation >更新歌词</translation>
+        <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="256"/>
+        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="24"/>
         <source> Search</source>
-        <translation >搜索歌词</translation>
+        <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="257"/>
+        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="25"/>
         <source> More</source>
         <translation>更多选项</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="258"/>
+        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="26"/>
         <source> Wallp</source>
         <translation>投影壁纸</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="259"/>
+        <location filename="../lrcmanager/musiclrcfloatwidget.cpp" line="27"/>
         <source> Photo</source>
         <translation>选择写真</translation>
     </message>

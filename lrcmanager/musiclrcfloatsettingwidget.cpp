@@ -22,6 +22,9 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     colorLabel->setStyleSheet( labelStyle );
     sizeLabel->setStyleSheet( labelStyle );
     bgLabel->setStyleSheet( labelStyle );
+    colorLabel->setAlignment(Qt::AlignCenter);
+    sizeLabel->setAlignment(Qt::AlignCenter);
+    bgLabel->setAlignment(Qt::AlignCenter);
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
@@ -161,5 +164,5 @@ void MusicLrcFloatSettingWidget::show()
 void MusicLrcFloatSettingWidget::leaveEvent(QEvent *)
 {
     animationOut();
-    QTimer::singleShot(m_animation->duration(),this,SLOT(close()));
+    QTimer::singleShot(m_animation->duration(), this, SIGNAL(widgetClose()));
 }

@@ -13,6 +13,8 @@ public:
     explicit MusicLrcFloatAbstractWidget(QWidget *parent = 0);
     ~MusicLrcFloatAbstractWidget();
 
+    inline void setblockAnimation(bool b) { m_blockAnimation = b;}
+
 protected:
     virtual void enterEvent(QEvent *event);
     virtual void leaveEvent(QEvent *event);
@@ -25,6 +27,7 @@ protected:
 
     QPropertyAnimation *m_animation;
     QRect m_rectIn, m_rectOut;
+    bool m_blockAnimation;
 
 };
 
