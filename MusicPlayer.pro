@@ -74,6 +74,9 @@ SOURCES += \
     lrcmanager/musiclrcartphotoupload.cpp \
     lrcmanager/musiclrcartphotolabel.cpp \
     lrcmanager/musiclrcfloatwidget.cpp \
+    lrcmanager/musiclrcfloatabstractwidget.cpp \
+    lrcmanager/musiclrcfloatsettingwidget.cpp \
+    lrcmanager/musiclrcfloatphotowidget.cpp \
     remotewidget/musicremotewidget.cpp \
     remotewidget/musicremotewidgetforsquare.cpp \
     remotewidget/musicremotewidgetforrectangle.cpp \
@@ -153,6 +156,9 @@ HEADERS  += \
     lrcmanager/musiclrcartphotoupload.h \
     lrcmanager/musiclrcartphotolabel.h \
     lrcmanager/musiclrcfloatwidget.h \
+    lrcmanager/musiclrcfloatabstractwidget.h \
+    lrcmanager/musiclrcfloatsettingwidget.h \
+    lrcmanager/musiclrcfloatphotowidget.h \
     remotewidget/musicremotewidget.h \
     remotewidget/musicremotewidgetforsquare.h \
     remotewidget/musicremotewidgetforrectangle.h \
