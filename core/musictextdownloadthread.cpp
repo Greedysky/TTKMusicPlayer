@@ -21,8 +21,8 @@ void MusicTextDownLoadThread::startToDownload()
         }
         else
         {
-            emit musicDownLoadFinished("The lrc file create failed");
-            qDebug() <<"The lrc file create failed";
+            emit musicDownLoadFinished("The text file create failed");
+            qDebug() <<"The text file create failed";
             deleteAll();
         }
     }
@@ -34,14 +34,22 @@ void MusicTextDownLoadThread::downLoadFinished()
 
     QString s(m_reply->readAll());
 
-    if(s.contains("\"lrc\":")) s.replace("\\n","\n"); //ttop api
+    if(!s.contains("\"code\":2"))
+    {
+        if(s.contains("\"lrc\":")) s.replace("\\n","\n"); //ttop api
 
-    m_file->write(s.toUtf8());
-    m_file->flush();
-    m_file->close();
+        m_file->write(s.toUtf8());
+        m_file->flush();
+        m_file->close();
+        qDebug()<<"text download has finished!";
+    }
+    else
+    {
+        qDebug()<<"text download file error!";
+        m_file->remove();
+        m_file->close();
+    }
 
-    qDebug()<<"lrc download has finished!";
     emit musicDownLoadFinished("Lrc");
-
     deleteAll();
 }

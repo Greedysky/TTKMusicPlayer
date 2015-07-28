@@ -18,8 +18,8 @@ void MusicDataDownloadThread::startToDownload()
         }
         else
         {
-            qDebug() <<"The Music or pic file create failed";
-            emit musicDownLoadFinished("The Music or pic file create failed");
+            qDebug() <<"The data file create failed";
+            emit musicDownLoadFinished("The data file create failed");
             deleteAll();
         }
     }
@@ -57,7 +57,7 @@ void MusicDataDownloadThread::downLoadFinished()
     else
     {
         emit musicDownLoadFinished("Music");
-        qDebug()<<"Music or pic download has finished!";
+        qDebug()<<"data download has finished!";
         deleteAll();
     }
 }

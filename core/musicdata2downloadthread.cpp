@@ -61,6 +61,6 @@ void MusicData2DownloadThread::dataGetFinished()
 
 void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
 {
-    emit musicDownLoadFinished("The data create failed");
+    emit musicDownLoadFinished("The data2 create failed");
     deleteAll();
 }
