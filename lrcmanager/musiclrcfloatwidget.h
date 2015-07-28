@@ -3,9 +3,6 @@
 
 #include "musiclrcfloatabstractwidget.h"
 
-#define FLOW_ITEM_WIDTH 80
-#define FLOW_ITEM_HEIGHT 30
-
 class QPushButton;
 class MusicLrcFloatPhotoWidget;
 class MusicLrcFloatSettingWidget;

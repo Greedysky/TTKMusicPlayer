@@ -3,6 +3,7 @@
 #include "musiclrcfloatsettingwidget.h"
 
 #include <QPushButton>
+#include <QVBoxLayout>
 
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
@@ -37,11 +38,13 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setStyleSheet( style );
     m_photo->setStyleSheet( style );
 
-    m_update->setGeometry(10, 10, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
-    m_search->setGeometry(10, 50, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
-    m_more->setGeometry(10, 90, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
-    m_wallp->setGeometry(10, 130, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
-    m_photo->setGeometry(10, 170, FLOW_ITEM_WIDTH, FLOW_ITEM_HEIGHT);
+    QVBoxLayout *box = new QVBoxLayout(this);
+    box->addWidget(m_update);
+    box->addWidget(m_search);
+    box->addWidget(m_more);
+    box->addWidget(m_wallp);
+    box->addWidget(m_photo);
+    setLayout(box);
 
     m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));

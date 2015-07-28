@@ -24,7 +24,8 @@ public:
 
     bool transLrcFileToTime(const QString& lrcFileName);
     QString text() const;
-    void changeLrcSize(LrcSizeTable = Middle);
+    void setLrcSize(LrcSizeTable = Middle);
+    int getLrcSize();
     void setSongSpeedAndSlow(qint64 time);
     inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
@@ -34,11 +35,11 @@ signals:
     void theArtBgHasChanged();
 
 public slots:
-    void changeLrcSizeSmaller(){changeLrcSize(LrcSizeTable::Smaller);}
-    void changeLrcSizeSmall(){changeLrcSize(LrcSizeTable::Small);}
-    void changeLrcSizeMiddle(){changeLrcSize(LrcSizeTable::Middle);}
-    void changeLrcSizeBig(){changeLrcSize(LrcSizeTable::Big);}
-    void changeLrcSizeBigger(){changeLrcSize(LrcSizeTable::Bigger);}
+    void changeLrcSizeSmaller(){setLrcSize(LrcSizeTable::Smaller);}
+    void changeLrcSizeSmall(){setLrcSize(LrcSizeTable::Small);}
+    void changeLrcSizeMiddle(){setLrcSize(LrcSizeTable::Middle);}
+    void changeLrcSizeBig(){setLrcSize(LrcSizeTable::Big);}
+    void changeLrcSizeBigger(){setLrcSize(LrcSizeTable::Bigger);}
     void theArtBgChanged();
     void theArtBgUploaded();
     void theShowLrcChanged();

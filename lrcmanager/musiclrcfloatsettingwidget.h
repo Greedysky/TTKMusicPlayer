@@ -9,9 +9,12 @@ class MUSIC_WIDGET_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstr
 public:
     explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
 
-signals:
 public slots:
     void show();
+    void lrcSizeUpChanged();
+    void lrcSizeLowChanged();
+    void lrcMusicBackgroundChanged();
+    void lrcArtBackgroundChanged();
 
 protected:
     virtual void enterEvent(QEvent *){}

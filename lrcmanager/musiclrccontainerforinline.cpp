@@ -206,13 +206,23 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
     }
 }
 
-void MusicLrcContainerForInline::changeLrcSize(LrcSizeTable size)
+void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size)
 {
+    if(size < 13 || size > 17)
+    {
+        qDebug()<<"set lrc size error!";
+        return;
+    }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
         m_musicLrcContainer[i]->setLrcFontSize(size);
     }
     QSettings().setValue("LRCSIZECHOICED",size);
+}
+
+int MusicLrcContainerForInline::getLrcSize()
+{
+    return QSettings().value("LRCSIZECHOICED").toInt();
 }
 
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
