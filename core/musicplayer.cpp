@@ -1,6 +1,5 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include <QMessageBox>
 #include <QSettings>
 
 MusicPlayer::MusicPlayer(QObject *parent) :

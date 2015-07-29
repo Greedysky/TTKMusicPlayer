@@ -28,8 +28,6 @@ INCLUDEPATH += $$PWD/core \
                $$PWD/remotewidget \
                $$PWD/toolsetswidget \
                $$PWD/toolswidget \
-               $$PWD/localsearch \
-               $$PWD/lrcmanager \
                $$PWD/usermanager \
                $$PWD/videokits \
                $$PWD/

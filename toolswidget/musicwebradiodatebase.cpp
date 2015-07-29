@@ -1,7 +1,6 @@
 #include "musicwebradiodatebase.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
-#include <QMessageBox>
 #include <QDateTime>
 #include <QVariant>
 
@@ -56,7 +55,7 @@ bool MusicWebRadioDatabase::connectDatabase()
     }
     catch(QString exception)
     {
-        QMessageBox::warning(NULL, QObject::tr("Error Message"), exception );
+		qDebug()<<"Error Message :"<<exception;
         return false;
     }
     return true;

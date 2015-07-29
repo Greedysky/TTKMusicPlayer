@@ -2,11 +2,10 @@
 #define QMUSICEQUALIZER_H
 
 #include <QObject>
-
+#pragma comment(lib,"C:/Users/Greedysky/Desktop/CTK-master-build/core/Release/libzplay.lib")
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 #include "musiclibzplay.h"
-
 using namespace libZPlay;
 
 class MUSIC_CORE_EXPORT MusicEqualizer
