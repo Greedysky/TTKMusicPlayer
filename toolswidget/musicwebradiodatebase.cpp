@@ -55,7 +55,7 @@ bool MusicWebRadioDatabase::connectDatabase()
     }
     catch(QString exception)
     {
-		qDebug()<<"Error Message :"<<exception;
+        qDebug()<<"Error Message :"<<exception;
         return false;
     }
     return true;

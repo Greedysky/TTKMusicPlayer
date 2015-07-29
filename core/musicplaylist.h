@@ -1,7 +1,6 @@
 #ifndef QMUSICPLAYLIST_H
 #define QMUSICPLAYLIST_H
 
-#include <QObject>
 #include <QStringList>
 #include "musicobject.h"
 #include "musiclibexportglobal.h"

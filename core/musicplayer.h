@@ -1,10 +1,7 @@
 #ifndef QMUSICPLAYER_H
 #define QMUSICPLAYER_H
 
-#include <QObject>
 #include <QTimer>
-
-#include "musiclibexportglobal.h"
 #include "musicequalizer.h"
 
 #ifdef Q_OS_WIN32
