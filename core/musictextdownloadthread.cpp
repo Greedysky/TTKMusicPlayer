@@ -36,7 +36,11 @@ void MusicTextDownLoadThread::downLoadFinished()
 
     if(!s.contains("\"code\":2"))
     {
-        if(s.contains("\"lrc\":")) s.replace("\\n","\n"); //ttop api
+        if(s.contains("\"lrc\":"))
+        {
+            s.replace("\\r",""); //remove the return line
+            s.replace("\\n","\n"); //ttop api
+        }
 
         m_file->write(s.toUtf8());
         m_file->flush();
