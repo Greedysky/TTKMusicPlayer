@@ -221,12 +221,14 @@ void MusicSongsListWidget::setDeleteItemAt()
     for(int i=0; i<selectedItems().count(); ++i)
         deletedRow.insert(selectedItems()[i]->row());
     MIntList deleteList = deletedRow.toList();
+    if(deleteList.count() == 0)
+        return;
 
-    if(deleteList.contains(m_playRowIndex))
+    qSort(deleteList);
+    qDebug()<<deleteList<<m_playRowIndex;
+    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
         replacePlayWidgetRow();
 
-    if(deleteList.count() == 0) return;
-    qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)
         removeRow(deleteList[i]); //Delete the current row
 
