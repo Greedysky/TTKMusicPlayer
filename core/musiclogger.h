@@ -11,9 +11,9 @@
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
 
 #ifdef MUSIC_DEBUG
-    #define mlogger(str) (MusicSingleton<MusicLogger>::createInstance())<<str
+    #define M_LOOGER(str) (MusicSingleton<MusicLogger>::createInstance())<<str
 #else
-    #define mlogger(str)
+    #define M_LOOGER(str)
 #endif
 
 class MUSIC_CORE_EXPORT MusicLogger

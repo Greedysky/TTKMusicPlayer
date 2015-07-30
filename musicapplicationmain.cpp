@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     delete xml;
 
     MusicObject::checkTheDirectoryExist();
-//    mlogger("MusicApplication Begin");
+//    M_LOOGER("MusicApplication Begin");
     MusicApplication w;
     w.show();
 

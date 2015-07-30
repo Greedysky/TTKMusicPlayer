@@ -225,7 +225,6 @@ void MusicSongsListWidget::setDeleteItemAt()
         return;
 
     qSort(deleteList);
-    qDebug()<<deleteList<<m_playRowIndex;
     if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
         replacePlayWidgetRow();
 
