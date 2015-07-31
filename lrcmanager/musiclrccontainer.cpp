@@ -1,5 +1,6 @@
 #include "musiclrccontainer.h"
 #include "musiclrcsearchwidget.h"
+#include "musiclrcmakerwidget.h"
 
 MusicLrcContainer::MusicLrcContainer(QWidget *parent) :
     QWidget(parent)
@@ -66,27 +67,27 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorTable::LrcColorType lrcCo
     {
         switch(lrcColorType)
         {
-          case LrcColorTable::Origin:
+            case LrcColorTable::Origin:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Origin);break;
-          case LrcColorTable::Red:
+            case LrcColorTable::Red:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Red);break;
-          case LrcColorTable::Orange:
+            case LrcColorTable::Orange:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Orange);break;
-          case LrcColorTable::Yellow:
+            case LrcColorTable::Yellow:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Yellow);break;
-          case LrcColorTable::Green:
+            case LrcColorTable::Green:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Green);break;
-          case LrcColorTable::Blue:
+            case LrcColorTable::Blue:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Blue);break;
-          case LrcColorTable::Indigo:
+            case LrcColorTable::Indigo:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Indigo);break;
-          case LrcColorTable::Purple:
+            case LrcColorTable::Purple:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Purple);break;
-          case LrcColorTable::White:
+            case LrcColorTable::White:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_White);break;
-          case LrcColorTable::Black:
+            case LrcColorTable::Black:
             m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Black);break;
-          default:break;
+            default:break;
         }
     }
     if(m_containerType == "DESKTOP")
@@ -125,3 +126,11 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
         setMaskLinearGradientColor(para.value(t + "LRCFGCOLORCHOICED").value<QColor>());
     }
 }
+
+
+void MusicLrcContainer::theCurrentLrcMaked()
+{
+    MusicLrcMakerWidget w;
+    w.exec();
+}
+

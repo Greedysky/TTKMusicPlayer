@@ -40,6 +40,7 @@ public slots:
     void changeCurrentLrcColorWhite(){setLinearGradientColor(LrcColorTable::White);}
     void changeCurrentLrcColorBlack(){setLinearGradientColor(LrcColorTable::Black);}
     void searchMusicLrcs();
+    void theCurrentLrcMaked();
 
 protected:
     void createColorMenu(QMenu&);

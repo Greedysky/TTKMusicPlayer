@@ -300,10 +300,11 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     changColorMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
+    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
+    menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
     menu.addSeparator();
     menu.addAction(tr("hide"), this, SLOT(close()));
     menu.addAction(QIcon(":/contextMenu/lock"),tr("lockLrc"),this,SLOT(setWindowLockedChanged()));
-    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addMenu(&changColorMenu);
     menu.addSeparator();
 

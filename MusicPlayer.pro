@@ -75,6 +75,7 @@ SOURCES += \
     lrcmanager/musiclrcfloatabstractwidget.cpp \
     lrcmanager/musiclrcfloatsettingwidget.cpp \
     lrcmanager/musiclrcfloatphotowidget.cpp \
+    lrcmanager/musiclrcmakerwidget.cpp \
     remotewidget/musicremotewidget.cpp \
     remotewidget/musicremotewidgetforsquare.cpp \
     remotewidget/musicremotewidgetforrectangle.cpp \
@@ -117,6 +118,7 @@ SOURCES += \
     core/musiclocalsongstablewidget.cpp
 
 
+
 HEADERS  += \
     core/musiclogger.h \
     core/musiclibexportglobal.h \
@@ -157,6 +159,7 @@ HEADERS  += \
     lrcmanager/musiclrcfloatabstractwidget.h \
     lrcmanager/musiclrcfloatsettingwidget.h \
     lrcmanager/musiclrcfloatphotowidget.h \
+    lrcmanager/musiclrcmakerwidget.h \
     remotewidget/musicremotewidget.h \
     remotewidget/musicremotewidgetforsquare.h \
     remotewidget/musicremotewidgetforrectangle.h \
@@ -226,7 +229,9 @@ FORMS    += \
     ui/application/musicfileinformationwidget.ui \
     ui/application/musicdesktopwallpaperwidget.ui \
     ui/application/musiclrcsearchwidget.ui \
-    ui/application/musiclrcartphotoupload.ui
+    ui/application/musiclrcartphotoupload.ui \
+    ui/application/musiclrcmakerwidget.ui
+
 
 RESOURCES += \
     qrc/MusicPlayerShare.qrc \
