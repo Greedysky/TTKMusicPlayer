@@ -130,7 +130,7 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
 
 void MusicLrcContainer::theCurrentLrcMaked()
 {
-    MusicLrcMakerWidget w;
-    w.exec();
+    MusicLrcMakerWidget *w = new MusicLrcMakerWidget(this);
+    w->show();
 }
 

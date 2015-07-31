@@ -1247,16 +1247,15 @@ void MusicApplication::musicLoadCurrentSongLrc()
     if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
         m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
     {
-       if(m_musicList->currentIndex() == -1)
-          return;
+        if(m_musicList->currentIndex() == -1) return;
 
-       QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
+        QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
                   m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
-       ui->musiclrccontainerforinline->stopLrcMask();
-       ui->musiclrccontainerforinline->setCurrentSongName(getCurrentFileName());
-       ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
-       m_musiclrcfordesktop->setCurrentSongName(getCurrentFileName());
-       m_musiclrcfordesktop->initCurrentLrc();
+        ui->musiclrccontainerforinline->stopLrcMask();
+        ui->musiclrccontainerforinline->setCurrentSongName(getCurrentFileName());
+        ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
+        m_musiclrcfordesktop->setCurrentSongName(getCurrentFileName());
+        m_musiclrcfordesktop->initCurrentLrc();
     }
     //display current ArtTheme pic
     musicBgThemeDownloadFinished();
@@ -1270,37 +1269,34 @@ void MusicApplication::UpdateCurrentLrc(qint64 time)
     //The corresponding access to current time lyrics
     if(!lrcContainer.isEmpty())
     {
-      //After get the current time in the lyrics of the two time points
-      qint64 previous = 0;
-      qint64 later = 0;
-      //Keys () method returns a list of lrcContainer
-      foreach (qint64 value, lrcContainer.keys())
-      {
-        if(time >= value)
-           previous = value;
-        else
+        //After get the current time in the lyrics of the two time points
+        qint64 previous = 0;
+        qint64 later = 0;
+        //Keys () method returns a list of lrcContainer
+        foreach (qint64 value, lrcContainer.keys())
         {
-          later = value;
-          break;
+            if(time >= value)
+                previous = value;
+            else
+            {
+                later = value;
+                break;
+            }
         }
-      }
-      //To the last line, set the later to song total time value
-      if(later == 0)
-        later = totalTimeValue;
-      //The lyrics content corresponds to obtain the current time
-      QString currentLrc = lrcContainer.value(previous);
-      QString laterLrc = lrcContainer.value(later);
-      //No content
-//      if(currentLrc.length() < 2)
-//        currentLrc = tr("..............");
-      //If this is a new line of the lyrics, then restart lyrics display mask
-      if(currentLrc != ui->musiclrccontainerforinline->text())
-      {
-        qint64 intervalTime = later - previous;
-        if(!m_playControl)
-            ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
-        m_musiclrcfordesktop->updateCurrentLrc(currentLrc,laterLrc,intervalTime);
-      }
+        //To the last line, set the later to song total time value
+        if(later == 0) later = totalTimeValue;
+        //The lyrics content corresponds to obtain the current time
+        QString currentLrc = lrcContainer.value(previous);
+        QString laterLrc = lrcContainer.value(later);
+
+        //If this is a new line of the lyrics, then restart lyrics display mask
+        if(currentLrc != ui->musiclrccontainerforinline->text())
+        {
+            qint64 intervalTime = later - previous;
+            if(!m_playControl)
+                ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
+            m_musiclrcfordesktop->updateCurrentLrc(currentLrc,laterLrc,intervalTime);
+        }
     }
 }
 

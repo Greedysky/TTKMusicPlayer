@@ -74,6 +74,160 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="artNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌手名：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="artNameEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>98</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="songNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌曲名：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="songNameEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>58</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="authorNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>制作者：</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="authorNameEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>138</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="lrcTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>58</y>
+     <width>261</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="introductionTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>178</y>
+     <width>111</width>
+     <height>81</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="introductionLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>说　明：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="makeButton">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>280</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>开始制作</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveButton">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>280</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存本地</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="reviewButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>280</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>重置</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="llrcIntroductionLabel">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>38</y>
+     <width>251</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>请输入着正确的歌词文本，否则会制作失败！</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
