@@ -1,6 +1,6 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include <QSettings>
+#include "musicsettingmanager.h"
 
 MusicPlayer::MusicPlayer(QObject *parent) :
     QObject(parent)
@@ -118,7 +118,7 @@ void MusicPlayer::play()
 
     ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
-    int volumn = QSettings().value("VOLUMECHOICED").toInt();
+    int volumn = M_SETTING.value(MusicSettingManager::VolumeChoiced).toInt();
     if(volumn != -1)
         setVolume(volumn);
     ////////////////////////////////////////////////

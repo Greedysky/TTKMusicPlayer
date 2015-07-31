@@ -5,7 +5,6 @@
 #include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>
-#include <QSettings>
 #include <QSystemTrayIcon>
 #include "musicsongsearchonlinewidget.h"
 #include "musicsonginformation.h"
@@ -185,14 +184,12 @@ private:
     bool m_setWindowToTop;
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
+    MIntsListMap m_searchfileListCache;
+
     QSystemTrayIcon* m_systemTray;
     QMenu m_toolPopupMenu;
     QMenu m_playModeMenu;
     MusicSystemTrayMenu *m_systemTrayMenu;
-
-    QSettings m_musicSettingParameter;
-    MIntsListMap m_searchfileListCache;
-
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
     MusicBackgroundSkinDialog* m_musicbgskin;

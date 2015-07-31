@@ -1,6 +1,7 @@
 #include "musicxmlconfigmanager.h"
+#include "musicsettingmanager.h"
+
 #include <QPixmap>
-#include <QSettings>
 
 MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
     MusicXmlAbstract(parent)
@@ -99,55 +100,54 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists& fileNamesL
 
 void MusicXMLConfigManager::writeXMLConfig()
 {
-    QSettings setting;
-    int playModeChoiced = setting.value("PLAYMODECHOICED").toInt();
-    int volumeChoiced = setting.value("VOLUMECHOICED").toInt();
-    QString autoPlayChoiced = setting.value("AUTOPLAYCHOICED").toString();
-    int play3DMusicChoiced = setting.value("PLAY3DMUSICCHOICED").toInt();
-    int languageIndexChoiced = setting.value("CURRENTLANINDEXCHOICED").toInt();
-    QString closeEventChoiced = setting.value("CLOSEEVENTCHOICED").toString();
-    QStringList lastPlayIndexChoiced = setting.value("LASTPLAYINDEXCHOICED").toStringList();
-    QString bgThemeChoiced = setting.value("BGTHEMECHOICED").toString();
-    QString bgTransparentChoiced = setting.value("BGTRANSPARENTCHOICED").toString();
-    QString showInlineLrcChoiced = setting.value("SHOWINLINELRCCHOICED").toString();
-    QString showDesktopLrcChoiced = setting.value("SHOWDESKTOPLRCCHOICED").toString();
-    int lrcColorChoiced = setting.value("LRCCOLORCHOICED").toInt();
-    int lrcSizeChoiced = setting.value("LRCSIZECHOICED").toInt();
-    int lrcTypeChoiced = setting.value("LRCTYPECHOICED").toInt();
-    int lrcFamilyChoiced = setting.value("LRCFAMILYCHOICED").toInt();
-    QColor lrcFgColorChoiced = setting.value("LRCFGCOLORCHOICED").value<QColor>();
-    QColor lrcBgColorChoiced = setting.value("LRCBGCOLORCHOICED").value<QColor>();
-    int lrcTransparentChoiced = setting.value("LRCCOLORTRANSCHOICED").toInt();
-    int DLrcColorChoiced = setting.value("DLRCCOLORCHOICED").toInt();
-    int DLrcSizeChoiced = setting.value("DLRCSIZECHOICED").toInt();
-    int DLrcTypeChoiced = setting.value("DLRCTYPECHOICED").toInt();
-    int DLrcFamilyChoiced = setting.value("DLRCFAMILYCHOICED").toInt();
-    QColor DLrcFgColorChoiced = setting.value("DLRCFGCOLORCHOICED").value<QColor>();
-    QColor DLrcBgColorChoiced = setting.value("DLRCBGCOLORCHOICED").value<QColor>();
-    int DLrcTransparentChoiced = setting.value("DLRCCOLORTRANSCHOICED").toInt();
-    int DLrcLockedChoiced = setting.value("DLRCLOCKEDCHOICED").toInt();
-    QRect DLrcGeometry = setting.value("DLRCGEOMETRYCHOICED").toRect();
-    int equalizerEnableChoiced = setting.value("EQUALIZERENABLECHOICED").toInt();
-    QString equalizerValueChoiced = setting.value("EQUALIZERVALUECHOICED").toString();
-    int equalizerIndexChoiced = setting.value("EQUALIZERINDEXCHOICED").toInt();
-    int sEqualizerIndexChoiced = setting.value("SEQUALIZERINDEXCHOICED").toInt();
+    int playModeChoiced = M_SETTING.value(MusicSettingManager::PlayModeChoiced).toInt();
+    int volumeChoiced = M_SETTING.value(MusicSettingManager::VolumeChoiced).toInt();
+    QString autoPlayChoiced = M_SETTING.value(MusicSettingManager::AutoPlayChoiced).toString();
+    int play3DMusicChoiced = M_SETTING.value(MusicSettingManager::Play3DMusicChoiced).toInt();
+    int languageIndexChoiced = M_SETTING.value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
+    QString closeEventChoiced = M_SETTING.value(MusicSettingManager::CloseEventChoiced).toString();
+    QStringList lastPlayIndexChoiced = M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    QString bgThemeChoiced = M_SETTING.value(MusicSettingManager::BgThemeChoiced).toString();
+    QString bgTransparentChoiced = M_SETTING.value(MusicSettingManager::BgTransparentChoiced).toString();
+    QString showInlineLrcChoiced = M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toString();
+    QString showDesktopLrcChoiced = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toString();
+    int lrcColorChoiced = M_SETTING.value(MusicSettingManager::LrcColorChoiced).toInt();
+    int lrcSizeChoiced = M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt();
+    int lrcTypeChoiced = M_SETTING.value(MusicSettingManager::LrcTypeChoiced).toInt();
+    int lrcFamilyChoiced = M_SETTING.value(MusicSettingManager::LrcFamilyChoiced).toInt();
+    QColor lrcFgColorChoiced = M_SETTING.value(MusicSettingManager::LrcFgColorChoiced).value<QColor>();
+    QColor lrcBgColorChoiced = M_SETTING.value(MusicSettingManager::LrcBgColorChoiced).value<QColor>();
+    int lrcTransparentChoiced = M_SETTING.value(MusicSettingManager::LrcColorTransChoiced).toInt();
+    int DLrcColorChoiced = M_SETTING.value(MusicSettingManager::DLrcColorChoiced).toInt();
+    int DLrcSizeChoiced = M_SETTING.value(MusicSettingManager::DLrcSizeChoiced).toInt();
+    int DLrcTypeChoiced = M_SETTING.value(MusicSettingManager::DLrcTypeChoiced).toInt();
+    int DLrcFamilyChoiced = M_SETTING.value(MusicSettingManager::DLrcFamilyChoiced).toInt();
+    QColor DLrcFgColorChoiced = M_SETTING.value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>();
+    QColor DLrcBgColorChoiced = M_SETTING.value(MusicSettingManager::DLrcBgColorchoiced).value<QColor>();
+    int DLrcTransparentChoiced = M_SETTING.value(MusicSettingManager::DLrcColorTransChoiced).toInt();
+    int DLrcLockedChoiced = M_SETTING.value(MusicSettingManager::DLrcLockedChoiced).toInt();
+    QRect DLrcGeometry = M_SETTING.value(MusicSettingManager::DLrcGeometryChoiced).toRect();
+    int equalizerEnableChoiced = M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+    QString equalizerValueChoiced = M_SETTING.value(MusicSettingManager::EqualizerValueChoiced).toString();
+    int equalizerIndexChoiced = M_SETTING.value(MusicSettingManager::EqualizerIndexChoiced).toInt();
+    int sEqualizerIndexChoiced = M_SETTING.value(MusicSettingManager::SequalizerIndexChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
-    int timeAutoIndexChoiced = setting.value("TIMERAUTOINDEXCHOICED").toInt();
-    int timeAutoPlayChoiced = setting.value("TIMERAUTOPLAYCHOICED").toInt();
-    int timeAutoPlayHourChoiced = setting.value("TIMERAUTOPLAYHOURCHOICED").toInt();
-    int timeAutoPlaySecondChoiced = setting.value("TIMERAUTOPLAYSECONDCHOICED").toInt();
-    int timeAutoPlayRepeatChoiced = setting.value("TIMERAUTOPLAYREPEATCHOICED").toInt();
-    int timeAutoPlayItemIndexChoiced = setting.value("TIMERAUTOPLAYITEMINDEXCHOICED").toInt();
-    int timeAutoPlaySongIndexChoiced = setting.value("TIMERAUTOPLAYSONGINDEXCHOICED").toInt();
-    int timeAutoStopChoiced = setting.value("TIMERAUTOSTOPCHOICED").toInt();
-    int timeAutoStopHourChoiced = setting.value("TIMERAUTOSTOPHOURCHOICED").toInt();
-    int timeAutoStopSecondChoiced = setting.value("TIMERAUTOSTOPSECONDCHOICED").toInt();
-    int timeAutoStopRepeatChoiced = setting.value("TIMERAUTOSTOPREPEATCHOICED").toInt();
-    int timeAutoShutdownChoiced = setting.value("TIMERAUTOSHUTDOWNCHOICED").toInt();
-    int timeAutoShutdownHourChoiced = setting.value("TIMERAUTOSHUTDOWNHOURCHOICED").toInt();
-    int timeAutoShutdownSecondChoiced = setting.value("TIMERAUTOSHUTDOWNSECONDCHOICED").toInt();
-    int timeAutoShutdownRepeatChoiced = setting.value("TIMERAUTOSHUTDOWNREPEATCHOICED").toInt();
+    int timeAutoIndexChoiced = M_SETTING.value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
+    int timeAutoPlayChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlayChoiced).toInt();
+    int timeAutoPlayHourChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt();
+    int timeAutoPlaySecondChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt();
+    int timeAutoPlayRepeatChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt();
+    int timeAutoPlayItemIndexChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlayItemIndexChoiced).toInt();
+    int timeAutoPlaySongIndexChoiced = M_SETTING.value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt();
+    int timeAutoStopChoiced = M_SETTING.value(MusicSettingManager::TimerAutoStopChoiced).toInt();
+    int timeAutoStopHourChoiced = M_SETTING.value(MusicSettingManager::TimerAutoStopHourChoiced).toInt();
+    int timeAutoStopSecondChoiced = M_SETTING.value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt();
+    int timeAutoStopRepeatChoiced = M_SETTING.value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt();
+    int timeAutoShutdownChoiced = M_SETTING.value(MusicSettingManager::TimerAutoShutdownChoiced).toInt();
+    int timeAutoShutdownHourChoiced = M_SETTING.value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt();
+    int timeAutoShutdownSecondChoiced = M_SETTING.value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt();
+    int timeAutoShutdownRepeatChoiced = M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt();
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
@@ -377,35 +377,34 @@ QRect MusicXMLConfigManager::readShowDLrcGeometry()
 
 void MusicXMLConfigManager::readTimeAutoConfig()
 {
-    QSettings setting;
-    setting.setValue("TIMERAUTOINDEXCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoIndexChoiced,
                      readXmlByTagNameAndAttribute("timeAutoIndex").toInt());
-    setting.setValue("TIMERAUTOPLAYCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlay").toInt());
-    setting.setValue("TIMERAUTOPLAYHOURCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlayHour").toInt());
-    setting.setValue("TIMERAUTOPLAYSECONDCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlaySecond").toInt());
-    setting.setValue("TIMERAUTOPLAYREPEATCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlayRepeat").toInt());
-    setting.setValue("TIMERAUTOPLAYITEMINDEXCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlayItemIndex").toInt());
-    setting.setValue("TIMERAUTOPLAYSONGINDEXCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
                      readXmlByTagNameAndAttribute("timeAutoPlaySongIndex").toInt());
-    setting.setValue("TIMERAUTOSTOPCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoStopChoiced,
                      readXmlByTagNameAndAttribute("timeAutoStop").toInt());
-    setting.setValue("TIMERAUTOSTOPHOURCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoStopHourChoiced,
                      readXmlByTagNameAndAttribute("timeAutoStopHour").toInt());
-    setting.setValue("TIMERAUTOSTOPSECONDCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
                      readXmlByTagNameAndAttribute("timeAutoStopSecond").toInt());
-    setting.setValue("TIMERAUTOSTOPREPEATCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
                      readXmlByTagNameAndAttribute("timeAutoStopRepeat").toInt());
-    setting.setValue("TIMERAUTOSHUTDOWNCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownChoiced,
                      readXmlByTagNameAndAttribute("timeAutoShutdown").toInt());
-    setting.setValue("TIMERAUTOSHUTDOWNHOURCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
                      readXmlByTagNameAndAttribute("timeAutoShutdownHour").toInt());
-    setting.setValue("TIMERAUTOSHUTDOWNSECONDCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
                      readXmlByTagNameAndAttribute("timeAutoShutdownSecond").toInt());
-    setting.setValue("TIMERAUTOSHUTDOWNREPEATCHOICED",
+    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
                      readXmlByTagNameAndAttribute("timeAutoShutdownRepeat").toInt());
 }

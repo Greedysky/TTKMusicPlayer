@@ -2,9 +2,9 @@
 #define MUSICLRCCONTAINER_H
 
 #include <QWidget>
-#include <QSettings>
 #include "musiclrcmanager.h"
 #include "musicobject.h"
+#include "musicsettingmanager.h"
 
 class MusicLrcSearchWidget;
 

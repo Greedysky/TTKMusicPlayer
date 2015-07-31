@@ -1,5 +1,5 @@
 #include "musicequalizer.h"
-#include <QSettings>
+#include "musicsettingmanager.h"
 
 MusicEqualizer::MusicEqualizer(ZPlay *parent)
     : m_parentClass(parent)
@@ -28,11 +28,10 @@ void MusicEqualizer::init()
 void MusicEqualizer::readEqInformation()
 {
     ///Read the equalizer parameters from a configuration file
-    QSettings setting;
-    if(setting.value("EQUALIZERENABLECHOICED").toInt())
+    if(M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         setEnaleEffect(true);
-        QStringList eqValue = setting.value("EQUALIZERVALUECHOICED").toString().split(',');
+        QStringList eqValue = M_SETTING.value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
             MIntList hz;

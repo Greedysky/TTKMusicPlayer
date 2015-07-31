@@ -91,9 +91,9 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorTable::LrcColorType lrcCo
         }
     }
     if(m_containerType == "DESKTOP")
-        QSettings().setValue("DLRCCOLORCHOICED",lrcColorType);
+        M_SETTING.setValue(MusicSettingManager::DLrcColorChoiced, lrcColorType);
     else
-        QSettings().setValue("LRCCOLORCHOICED",lrcColorType);
+        M_SETTING.setValue(MusicSettingManager::LrcColorChoiced, lrcColorType);
 }
 
 void MusicLrcContainer::setSettingParameter()
@@ -106,24 +106,23 @@ void MusicLrcContainer::setSettingParameter()
 
 void MusicLrcContainer::setSettingParameter(const QString& t)
 {
-    QSettings para;
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
-        m_musicLrcContainer[i]->setFontFamily(para.value(t + "LRCFAMILYCHOICED").toInt());
-        m_musicLrcContainer[i]->setFontType(para.value(t + "LRCTYPECHOICED").toInt());
-        m_musicLrcContainer[i]->setFontTransparent(para.value(t + "LRCCOLORTRANSCHOICED").toInt());
-        m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(para.value(t + "LRCSIZECHOICED").toInt()));
+        m_musicLrcContainer[i]->setFontFamily(M_SETTING.value(t + "LrcFamilyChoiced").toInt());
+        m_musicLrcContainer[i]->setFontType(M_SETTING.value(t + "LrcTypeChoiced").toInt());
+        m_musicLrcContainer[i]->setFontTransparent(M_SETTING.value(t + "LrcColorTransChoiced").toInt());
+        m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(M_SETTING.value(t + "LrcSizeChoiced").toInt()));
     }
-    if(para.value(t + "LRCCOLORCHOICED").toInt() != -1)
+    if(M_SETTING.value(t + "LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((LrcColorTable::LrcColorType)para.value(t + "LRCCOLORCHOICED").toInt());
+        setLinearGradientColor((LrcColorTable::LrcColorType)M_SETTING.value(t + "LrcColorChoiced").toInt());
         setMaskLinearGradientColor();
     }
     else
     {
         for(int i=0; i<m_musicLrcContainer.count(); ++i)
-            m_musicLrcContainer[i]->setLinearGradientColor(para.value(t + "LRCBGCOLORCHOICED").value<QColor>());
-        setMaskLinearGradientColor(para.value(t + "LRCFGCOLORCHOICED").value<QColor>());
+            m_musicLrcContainer[i]->setLinearGradientColor(M_SETTING.value(t + "LrcBgColorChoiced").value<QColor>());
+        setMaskLinearGradientColor(M_SETTING.value(t + "LrcFgColorChoiced").value<QColor>());
     }
 }
 

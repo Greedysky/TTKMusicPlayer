@@ -3,10 +3,10 @@
 
 #include <QDialog>
 #include <QTabWidget>
+#include <QMouseEvent>
 #include "musicmovedialogabstract.h"
 #include "musicobject.h"
-#include <QMouseEvent>
-#include <QSettings>
+#include "musicsettingmanager.h"
 
 namespace Ui {
 class MusicSettingWidget;
@@ -53,7 +53,6 @@ protected:
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
     void lrcTransparentValue(Type key, int index);
-    QSettings m_musicSettingParameter;
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg;

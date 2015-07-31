@@ -5,7 +5,6 @@
 #include <QApplication>
 #include <QToolButton>
 #include <QPushButton>
-#include <QSettings>
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
         : MusicLrcContainer(0), m_parentClass(parent)
@@ -226,7 +225,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
        setCursor(Qt::CrossCursor);
        move(event->globalPos() - m_offset);
-       QSettings().setValue("DLRCGEOMETRYCHOICED",QWidget::geometry());
+       M_SETTING.setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
     }
 }
 
@@ -261,7 +260,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        setStyleSheet("background-color:transparent");
     }
     emit setWindowLockedChanged(m_windowLocked);
-    QSettings().setValue("DLRCLOCKEDCHOICED",m_windowLocked ? 1 : 0);
+    M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);
 }
 
 void MusicLrcContainerForDesktop::setSelfGeometry()
@@ -278,7 +277,7 @@ void MusicLrcContainerForDesktop::setLrcBigerChanged()
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(++m_currentLrcFontSize);
-    QSettings().setValue("DLRCSIZECHOICED",m_currentLrcFontSize);
+    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
@@ -289,7 +288,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(--m_currentLrcFontSize);
-    QSettings().setValue("DLRCSIZECHOICED",m_currentLrcFontSize);
+    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
@@ -317,14 +316,13 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 void MusicLrcContainerForDesktop::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
-    QSettings para;
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
         m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(
-                                                m_currentLrcFontSize = para.value("DLRCSIZECHOICED").toInt()));
+                                                m_currentLrcFontSize = M_SETTING.value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     }
-    para.value("DLRCLOCKEDCHOICED").toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
-    QRect rect = para.value("DLRCGEOMETRYCHOICED").toRect();
+    M_SETTING.value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
+    QRect rect = M_SETTING.value(MusicSettingManager::DLrcGeometryChoiced).toRect();
     if(!rect.isEmpty())
         setGeometry(rect);
 }

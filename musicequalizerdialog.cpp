@@ -1,6 +1,6 @@
 #include "musicequalizerdialog.h"
 #include "ui_musicequalizerdialog.h"
-#include <QSettings>
+#include "musicsettingmanager.h"
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     MusicMoveDialogAbstract(parent),
@@ -117,15 +117,14 @@ MusicEqualizerDialog::~MusicEqualizerDialog()
 
 void MusicEqualizerDialog::readEqInformation()
 {
-    QSettings setting;
-    if(setting.value("EQUALIZERENABLECHOICED").toInt())
+    if(M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         ui->showEqButton->click();
     }
-    QStringList eqValue = setting.value("EQUALIZERVALUECHOICED").toString().split(',');
+    QStringList eqValue = M_SETTING.value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
     if(eqValue.count() == 11)
     {
-        if(setting.value("EQUALIZERINDEXCHOICED").toInt() == 0)
+        if(M_SETTING.value(MusicSettingManager::EqualizerIndexChoiced).toInt() == 0)
         {
             ui->verticalSlider1->setValue(eqValue[1].toInt());
             ui->verticalSlider2->setValue(eqValue[2].toInt());
@@ -140,7 +139,7 @@ void MusicEqualizerDialog::readEqInformation()
             ui->bwVerticalSlider->setValue(eqValue[0].toInt());
         }
         else
-           ui->eqChoice->setCurrentIndex(setting.value("EQUALIZERINDEXCHOICED").toInt());
+           ui->eqChoice->setCurrentIndex(M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt());
     }
     else
         resetEq();
@@ -149,10 +148,9 @@ void MusicEqualizerDialog::readEqInformation()
 
 void MusicEqualizerDialog::writeEqInformation()
 {
-    QSettings setting;
-    setting.setValue("EQUALIZERENABLECHOICED", m_eable ? 1 : 0);
-    setting.setValue("EQUALIZERINDEXCHOICED", ui->eqChoice->currentIndex());
-    setting.setValue("EQUALIZERVALUECHOICED",
+    M_SETTING.setValue(MusicSettingManager::EqualizerEnableChoiced, m_eable ? 1 : 0);
+    M_SETTING.setValue(MusicSettingManager::EqualizerIndexChoiced, ui->eqChoice->currentIndex());
+    M_SETTING.setValue(MusicSettingManager::EqualizerValueChoiced,
           QString("%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11").arg(
           ui->bwVerticalSlider->value()).arg(ui->verticalSlider1->value()).arg(
           ui->verticalSlider2->value()).arg(ui->verticalSlider3->value()).arg(

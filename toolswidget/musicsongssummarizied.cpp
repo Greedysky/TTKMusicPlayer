@@ -1,12 +1,13 @@
 #include "musicsongssummarizied.h"
 #include "musicsongsListwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicsettingmanager.h"
+
 #include <QTableWidgetItem>
 #include <QDebug>
 #include <QFileInfo>
 #include <QLayout>
 #include <QDesktopServices>
-#include <QSettings>
 #include <QMessageBox>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
@@ -318,7 +319,7 @@ void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)
 
 void MusicSongsSummarizied::setCurrentIndex()
 {
-    QStringList keyList = QSettings().value("LASTPLAYINDEXCHOICED").toStringList();
+    QStringList keyList = M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     m_currentIndexs = keyList[1].toInt();
     QToolBox::setCurrentIndex(keyList[2].toInt());
     emit showCurrentSong(keyList[2].toInt());

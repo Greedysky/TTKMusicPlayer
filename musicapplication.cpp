@@ -33,6 +33,7 @@
 #include "musicuserwindow.h"
 #include "musicvideoplayer.h"
 #include "musicbgthememanager.h"
+#include "musicsettingmanager.h"
 #include <Dbt.h>
 
 MusicApplication::MusicApplication(QWidget *parent) :
@@ -604,7 +605,7 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown
     key = xml.readShowInlineLrc();
-    m_musicSettingParameter.setValue("SHOWINLINELRCCHOICED",key);
+    M_SETTING.setValue(MusicSettingManager::ShowInlineLrcChoiced, key);
     if(key == "true")
       ui->musiclrccontainerforinline->show();
     else
@@ -612,7 +613,7 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     //Set the desktop lrc should be shown
     key = xml.readShowDesktopLrc();
-    m_musicSettingParameter.setValue("SHOWDESKTOPLRCCHOICED",key);
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, key);
     m_systemTrayMenu->showDesktopLrc(key);
     if(key == "true")
     {
@@ -627,7 +628,7 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     //Configure automatic playback
     key = xml.readSystemAutoPlayConfig();
-    m_musicSettingParameter.setValue("AUTOPLAYCHOICED",key);
+    M_SETTING.setValue(MusicSettingManager::AutoPlayChoiced, key);
     m_systemTrayMenu->showPlayStatus(m_playControl);
     m_musiclrcfordesktop->showPlayStatus(m_playControl);
     m_musicWindowExtras->showPlayStatus(m_playControl);
@@ -639,7 +640,7 @@ void MusicApplication::readXMLConfigFromText()
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
     xml.readSystemLastPlayIndexConfig(keyList);
-    m_musicSettingParameter.setValue("LASTPLAYINDEXCHOICED", keyList);
+    M_SETTING.setValue(MusicSettingManager::LastPlayIndexChoiced, keyList);
     //add new music file to playlist
     m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(keyList[1].toInt()));
     if(keyList[0] == "1")
@@ -653,7 +654,7 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     //When the configuration is close to the direct exit
     key = xml.readSystemCloseConfig();
-    m_musicSettingParameter.setValue("CLOSEEVENTCHOICED",key);
+    M_SETTING.setValue(MusicSettingManager::CloseEventChoiced, key);
     if(key == "true")
     {
         m_systemCloseConfig = true;
@@ -668,34 +669,34 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     xml.readTimeAutoConfig();
     //Set the lrc color the user set
-    m_musicSettingParameter.setValue("LRCCOLORCHOICED",xml.readShowLrcColor());
-    m_musicSettingParameter.setValue("LRCFGCOLORCHOICED",xml.readShowLrcFgColor());
-    m_musicSettingParameter.setValue("LRCBGCOLORCHOICED",xml.readShowLrcBgColor());
-    m_musicSettingParameter.setValue("LRCFAMILYCHOICED",xml.readShowLrcFamily());
-    m_musicSettingParameter.setValue("LRCTYPECHOICED",xml.readShowLrcType());
-    m_musicSettingParameter.setValue("LRCCOLORTRANSCHOICED",xml.readShowLrcTransparent());
-    m_musicSettingParameter.setValue("LRCSIZECHOICED",xml.readShowLrcSize());
+    M_SETTING.setValue(MusicSettingManager::LrcColorChoiced,xml.readShowLrcColor());
+    M_SETTING.setValue(MusicSettingManager::LrcFgColorChoiced,xml.readShowLrcFgColor());
+    M_SETTING.setValue(MusicSettingManager::LrcBgColorChoiced,xml.readShowLrcBgColor());
+    M_SETTING.setValue(MusicSettingManager::LrcFamilyChoiced,xml.readShowLrcFamily());
+    M_SETTING.setValue(MusicSettingManager::LrcTypeChoiced,xml.readShowLrcType());
+    M_SETTING.setValue(MusicSettingManager::LrcColorTransChoiced,xml.readShowLrcTransparent());
+    M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced,xml.readShowLrcSize());
     ui->musiclrccontainerforinline->setSettingParameter();
     //////////////////////////////////////////////////////////////
     //Set the lrc size the user set
-    m_musicSettingParameter.setValue("DLRCCOLORCHOICED",xml.readShowDLrcColor());
-    m_musicSettingParameter.setValue("DLRCFGCOLORCHOICED",xml.readShowDLrcFgColor());
-    m_musicSettingParameter.setValue("DLRCBGCOLORCHOICED",xml.readShowDLrcBgColor());
-    m_musicSettingParameter.setValue("DLRCFAMILYCHOICED",xml.readShowDLrcFamily());
-    m_musicSettingParameter.setValue("DLRCTYPECHOICED",xml.readShowDLrcType());
-    m_musicSettingParameter.setValue("DLRCCOLORTRANSCHOICED",xml.readShowDLrcTransparent());
-    m_musicSettingParameter.setValue("DLRCSIZECHOICED",xml.readShowDLrcSize());
-    m_musicSettingParameter.setValue("DLRCLOCKEDCHOICED",xml.readShowDLrcLocked());
-    m_musicSettingParameter.setValue("DLRCGEOMETRYCHOICED",xml.readShowDLrcGeometry());
+    M_SETTING.setValue(MusicSettingManager::DLrcColorChoiced,xml.readShowDLrcColor());
+    M_SETTING.setValue(MusicSettingManager::DLrcFgColorChoiced,xml.readShowDLrcFgColor());
+    M_SETTING.setValue(MusicSettingManager::DLrcBgColorchoiced,xml.readShowDLrcBgColor());
+    M_SETTING.setValue(MusicSettingManager::DLrcFamilyChoiced,xml.readShowDLrcFamily());
+    M_SETTING.setValue(MusicSettingManager::DLrcTypeChoiced,xml.readShowDLrcType());
+    M_SETTING.setValue(MusicSettingManager::DLrcColorTransChoiced,xml.readShowDLrcTransparent());
+    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced,xml.readShowDLrcSize());
+    M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced,xml.readShowDLrcLocked());
+    M_SETTING.setValue(MusicSettingManager::DLrcGeometryChoiced,xml.readShowDLrcGeometry());
     m_systemTrayMenu->lockDesktopLrc(xml.readShowDLrcLocked());
     m_musiclrcfordesktop->setSettingParameter();
     //////////////////////////////////////////////////////////////
-    m_musicSettingParameter.setValue("EQUALIZERENABLECHOICED",xml.readEqualizerEnale());
-    m_musicSettingParameter.setValue("EQUALIZERVALUECHOICED",xml.readEqualizerValue());
-    m_musicSettingParameter.setValue("EQUALIZERINDEXCHOICED",xml.readEqualizerIndex());
+    M_SETTING.setValue(MusicSettingManager::EqualizerEnableChoiced,xml.readEqualizerEnale());
+    M_SETTING.setValue(MusicSettingManager::EqualizerValueChoiced,xml.readEqualizerValue());
+    M_SETTING.setValue(MusicSettingManager::EqualizerIndexChoiced,xml.readEqualizerIndex());
     m_musicPlayer->setEqInformation();
     //////////////////////////////////////////////////////////////
-    m_musicSettingParameter.setValue("CURRENTLANINDEXCHOICED",xml.readLanguageIndex());
+    M_SETTING.setValue(MusicSettingManager::CurrentLanIndexChoiced,xml.readLanguageIndex());
 
 }
 
@@ -706,16 +707,16 @@ void MusicApplication::writeXMLConfigToText()
 
     bool flag;
     m_musicPlayer->setPlay3DMusicFlag(flag);
-    m_musicSettingParameter.setValue("PLAY3DMUSICCHOICED",flag ? 1 : 0);
-    m_musicSettingParameter.setValue("PLAYMODECHOICED", m_musicList->playbackMode());
-    m_musicSettingParameter.setValue("VOLUMECHOICED",ui->musicSoundSlider->value());
-    lastPlayIndexChoiced = m_musicSettingParameter.value("LASTPLAYINDEXCHOICED").toStringList();
+    M_SETTING.setValue(MusicSettingManager::Play3DMusicChoiced, flag ? 1 : 0);
+    M_SETTING.setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
+    M_SETTING.setValue(MusicSettingManager::VolumeChoiced,ui->musicSoundSlider->value());
+    lastPlayIndexChoiced = M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     lastPlayIndexChoiced.replace(1,QString::number(m_musicSongTree->getCurrentPlayToolIndex()));
     lastPlayIndexChoiced.replace(2,QString::number(m_musicList->currentIndex()));
-    m_musicSettingParameter.setValue("LASTPLAYINDEXCHOICED",lastPlayIndexChoiced);
-    m_musicSettingParameter.setValue("BGTHEMECHOICED",m_currentBgSkin);
-    m_musicSettingParameter.setValue("BGTRANSPARENTCHOICED",m_alpha);
-    m_musicSettingParameter.setValue("SHOWDESKTOPLRCCHOICED",m_musiclrcfordesktop->isVisible());
+    M_SETTING.setValue(MusicSettingManager::LastPlayIndexChoiced,lastPlayIndexChoiced);
+    M_SETTING.setValue(MusicSettingManager::BgThemeChoiced,m_currentBgSkin);
+    M_SETTING.setValue(MusicSettingManager::BgTransparentChoiced,m_alpha);
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced,m_musiclrcfordesktop->isVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTree->getMusicAllSongsFileName(),
                                m_musicSongTree->getMusicAllSongsFilePath() );
@@ -787,8 +788,8 @@ void MusicApplication::showCurrentSong(int index)
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
         m_playControl = true;
         m_musicPlayer->stop();
-        if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
-            m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
+        if( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+            M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
         {
            ui->musiclrccontainerforinline->stopLrcMask();
            m_musiclrcfordesktop->stopLrcMask();
@@ -816,8 +817,7 @@ void MusicApplication::musicKey()
         m_playControl = false;
         m_musicPlayer->play();
         musicBgThemeDownloadFinished();
-        if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
-          m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
+        if( checkSettingParameterValue() )
         {
             ui->musiclrccontainerforinline->startTimerClock();
             m_musiclrcfordesktop->startTimerClock();
@@ -829,8 +829,7 @@ void MusicApplication::musicKey()
         m_playControl = true;
         m_musicPlayer->pause();
         m_pictureCarouselTimer.stop();
-        if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
-          m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
+        if( checkSettingParameterValue() )
         {
             ui->musiclrccontainerforinline->stopLrcMask();
             m_musiclrcfordesktop->stopLrcMask();
@@ -1151,12 +1150,12 @@ void MusicApplication::getParameterSetting()
 {
     ui->musiclrccontainerforinline->setSettingParameter();
     m_musiclrcfordesktop->setSettingParameter();
-    m_systemCloseConfig = m_musicSettingParameter.value("CLOSEEVENTCHOICED").toBool();
-    if(m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool())
+    m_systemCloseConfig = M_SETTING.value(MusicSettingManager::CloseEventChoiced).toBool();
+    if(M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool())
       ui->musiclrccontainerforinline->show();
     else
       ui->musiclrccontainerforinline->close();
-    bool showDeskLrc = m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool();
+    bool showDeskLrc = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     if(showDeskLrc)
       m_musiclrcfordesktop->show();
     else
@@ -1244,8 +1243,7 @@ void MusicApplication::musicSearchIndexChanged(int,int index)
 void MusicApplication::musicLoadCurrentSongLrc()
 {
     //Loading the current song lrc
-    if( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
-        m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() )
+    if( checkSettingParameterValue() )
     {
         if(m_musicList->currentIndex() == -1) return;
 
@@ -1386,8 +1384,8 @@ QString MusicApplication::getCurrentFileName() const
 
 bool MusicApplication::checkSettingParameterValue() const
 {
-    return ( m_musicSettingParameter.value("SHOWINLINELRCCHOICED").toBool() ||
-             m_musicSettingParameter.value("SHOWDESKTOPLRCCHOICED").toBool() ) ? true : false;
+    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() ) ? true : false;
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const
@@ -1450,14 +1448,14 @@ void MusicApplication::setShowDesktopLrc(bool show)
 {
     ui->musicDesktopLrc->setChecked(show);
     m_musiclrcfordesktop->setVisible(show);
-    m_musicSettingParameter.setValue("SHOWDESKTOPLRCCHOICED",show);
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, show);
 }
 
 void MusicApplication::desktopLrcClosed()
 {
     ui->musicDesktopLrc->setChecked(false);
     m_systemTrayMenu->showDesktopLrc("false");
-    m_musicSettingParameter.setValue("SHOWDESKTOPLRCCHOICED",false);
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
 }
 
 void MusicApplication::musicAudioRecorder()

@@ -1,5 +1,6 @@
 #include "musictimerautoobject.h"
-#include <QSettings>
+#include "musicsettingmanager.h"
+
 #include <QTime>
 #ifdef Q_OS_WIN
     #include <windows.h>
@@ -22,28 +23,27 @@ MusicTimerAutoObject::~MusicTimerAutoObject()
 void MusicTimerAutoObject::runTimerAutoConfig()
 {
     m_timer.start(1000);
-    QSettings setting;
-    switch(m_funcIndex = setting.value("TIMERAUTOINDEXCHOICED").toInt())
+    switch(m_funcIndex = M_SETTING.value(MusicSettingManager::TimerAutoIndexChoiced).toInt())
     {
         case 0:
-            if(setting.value("TIMERAUTOPLAYCHOICED").toInt() == 0)
+            if(M_SETTING.value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 0)
             {
-                m_hour = setting.value("TIMERAUTOPLAYHOURCHOICED").toInt();
-                m_second = setting.value("TIMERAUTOPLAYSECONDCHOICED").toInt();
+                m_hour = M_SETTING.value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt();
+                m_second = M_SETTING.value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt();
             }
             break;
         case 1:
-            if(setting.value("TIMERAUTOSTOPCHOICED").toInt() == 0)
+            if(M_SETTING.value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 0)
             {
-                m_hour = setting.value("TIMERAUTOSTOPHOURCHOICED").toInt();
-                m_second = setting.value("TIMERAUTOSTOPSECONDCHOICED").toInt();
+                m_hour = M_SETTING.value(MusicSettingManager::TimerAutoStopHourChoiced).toInt();
+                m_second = M_SETTING.value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt();
             }
             break;
         case 2:
-            if(setting.value("TIMERAUTOSHUTDOWNCHOICED").toInt() == 0)
+            if(M_SETTING.value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 0)
             {
-                m_hour = setting.value("TIMERAUTOSHUTDOWNHOURCHOICED").toInt();
-                m_second = setting.value("TIMERAUTOSHUTDOWNSECONDCHOICED").toInt();
+                m_hour = M_SETTING.value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt();
+                m_second = M_SETTING.value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt();
             }
             break;
     }
@@ -52,7 +52,6 @@ void MusicTimerAutoObject::runTimerAutoConfig()
 void MusicTimerAutoObject::timeout()
 {
     int hour = 0,second = 0;
-    QSettings setting;
     QStringList l = QTime::currentTime().toString(Qt::ISODate).split(':');
     if(l.count() !=3 )
         return;
@@ -64,22 +63,23 @@ void MusicTimerAutoObject::timeout()
         m_hour = m_second = -1;
         if(m_funcIndex == 0)
         {
-            if(setting.value("TIMERAUTOPLAYREPEATCHOICED").toInt() == 0)
-                setting.setValue("TIMERAUTOPLAYCHOICED",1);
+            if(M_SETTING.value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt() == 0)
+               M_SETTING.setValue(MusicSettingManager::TimerAutoPlayChoiced, 1);
 
-            emit setPlaySong(setting.value("TIMERAUTOPLAYSONGINDEXCHOICED").toInt());
+            emit setPlaySong(M_SETTING.value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
         }
         else if(m_funcIndex == 1)
         {
-            if(setting.value("TIMERAUTOSTOPREPEATCHOICED").toInt() == 0)
-                setting.setValue("TIMERAUTOSTOPCHOICED",1);
+            if(M_SETTING.value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt() == 0)
+               M_SETTING.setValue(MusicSettingManager::TimerAutoStopChoiced, 1);
 
             emit setStopSong();
         }
         else if(m_funcIndex == 2)
         {
-            if(setting.value("TIMERAUTOSHUTDOWNREPEATCHOICED").toInt() == 0)
-                setting.setValue("TIMERAUTOSHUTDOWNCHOICED",1);
+            if(M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt() == 0)
+               M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownChoiced, 1);
+
             setShutdown();
         }
     }

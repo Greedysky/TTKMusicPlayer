@@ -4,7 +4,6 @@
 #include "musiclrcfloatwidget.h"
 
 #include <QVBoxLayout>
-#include <QSettings>
 #include <QPainter>
 #include <QDesktopServices>
 #include <QClipboard>
@@ -217,12 +216,12 @@ void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size)
     {
         m_musicLrcContainer[i]->setLrcFontSize(size);
     }
-    QSettings().setValue("LRCSIZECHOICED",size);
+    M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced, size);
 }
 
 int MusicLrcContainerForInline::getLrcSize()
 {
-    return QSettings().value("LRCSIZECHOICED").toInt();
+    return M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
