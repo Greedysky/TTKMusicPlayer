@@ -203,6 +203,7 @@ HEADERS  += \
     core/musictablewidgetabstract.h \
     core/musictablequerywidget.h \
     core/musiclocalsongstablewidget.h \
+    core/musicsettingmanager.h \
     usermanager/musicusermanager.h \
     usermanager/musicusermodel.h \
     usermanager/musicuserdialog.h \
