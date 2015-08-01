@@ -189,7 +189,7 @@ void MusicSettingWidget::initControllerParameter()
         QPixmap pixmap(16,16);
         pixmap.fill(m_DlrcSelectedFg = M_SETTING.value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>());
         ui->playedPushButtonD->setIcon(QIcon(pixmap));
-        pixmap.fill(m_DlrcSelectedBg = M_SETTING.value(MusicSettingManager::DLrcBgColorchoiced).value<QColor>());
+        pixmap.fill(m_DlrcSelectedBg = M_SETTING.value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>());
         ui->noPlayedPushButtonD->setIcon(QIcon(pixmap));
         ui->showLabelD->setLinearGradient(m_DlrcSelectedFg,m_DlrcSelectedBg);
         ui->showLabelD->update();
@@ -243,7 +243,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING.setValue(MusicSettingManager::DLrcColorTransChoiced,ui->transparentSliderD->value());
 
     M_SETTING.setValue(MusicSettingManager::DLrcFgColorChoiced, m_DlrcSelectedFg);
-    M_SETTING.setValue(MusicSettingManager::DLrcBgColorchoiced, m_DlrcSelectedBg);
+    M_SETTING.setValue(MusicSettingManager::DLrcBgColorChoiced, m_DlrcSelectedBg);
     M_SETTING.setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
     M_SETTING.setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
 

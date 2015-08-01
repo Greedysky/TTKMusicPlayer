@@ -123,7 +123,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int DLrcTypeChoiced = M_SETTING.value(MusicSettingManager::DLrcTypeChoiced).toInt();
     int DLrcFamilyChoiced = M_SETTING.value(MusicSettingManager::DLrcFamilyChoiced).toInt();
     QColor DLrcFgColorChoiced = M_SETTING.value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>();
-    QColor DLrcBgColorChoiced = M_SETTING.value(MusicSettingManager::DLrcBgColorchoiced).value<QColor>();
+    QColor DLrcBgColorChoiced = M_SETTING.value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>();
     int DLrcTransparentChoiced = M_SETTING.value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     int DLrcLockedChoiced = M_SETTING.value(MusicSettingManager::DLrcLockedChoiced).toInt();
     QRect DLrcGeometry = M_SETTING.value(MusicSettingManager::DLrcGeometryChoiced).toRect();

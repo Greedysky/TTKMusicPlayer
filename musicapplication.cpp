@@ -681,7 +681,7 @@ void MusicApplication::readXMLConfigFromText()
     //Set the lrc size the user set
     M_SETTING.setValue(MusicSettingManager::DLrcColorChoiced,xml.readShowDLrcColor());
     M_SETTING.setValue(MusicSettingManager::DLrcFgColorChoiced,xml.readShowDLrcFgColor());
-    M_SETTING.setValue(MusicSettingManager::DLrcBgColorchoiced,xml.readShowDLrcBgColor());
+    M_SETTING.setValue(MusicSettingManager::DLrcBgColorChoiced,xml.readShowDLrcBgColor());
     M_SETTING.setValue(MusicSettingManager::DLrcFamilyChoiced,xml.readShowDLrcFamily());
     M_SETTING.setValue(MusicSettingManager::DLrcTypeChoiced,xml.readShowDLrcType());
     M_SETTING.setValue(MusicSettingManager::DLrcColorTransChoiced,xml.readShowDLrcTransparent());

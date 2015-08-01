@@ -9,6 +9,8 @@ class MUSIC_CORE_EXPORT MusicSettingManager
 {
 public:
     enum ConfigType {
+        Null = -1,
+
         PlayModeChoiced,
         VolumeChoiced,
         AutoPlayChoiced,
@@ -33,7 +35,7 @@ public:
         DLrcTypeChoiced,
         DLrcFamilyChoiced,
         DLrcFgColorChoiced,
-        DLrcBgColorchoiced,
+        DLrcBgColorChoiced,
         DLrcColorTransChoiced,
         DLrcLockedChoiced,
         DLrcGeometryChoiced,
@@ -101,7 +103,7 @@ protected:
     MusicSettingManager(){}
     ConfigType typeStringToEnum(const QString& stype)
     {
-        ConfigType type;
+        ConfigType type = Null;
         if(stype == "PlayModeChoiced") type = PlayModeChoiced;
         if(stype == "VolumeChoiced") type = VolumeChoiced;
         if(stype == "AutoPlayChoiced") type = AutoPlayChoiced;
@@ -121,11 +123,12 @@ protected:
         if(stype == "LrcFgColorChoiced") type = LrcFgColorChoiced;
         if(stype == "LrcBgColorChoiced") type = LrcBgColorChoiced;
         if(stype == "LrcColorTransChoiced") type = LrcColorTransChoiced;
+        if(stype == "DLrcTypeChoiced") type = DLrcTypeChoiced;
         if(stype == "DLrcColorChoiced") type = DLrcColorChoiced;
         if(stype == "DLrcSizeChoiced") type = DLrcSizeChoiced;
         if(stype == "DLrcFamilyChoiced") type = DLrcFamilyChoiced;
         if(stype == "DLrcFgColorChoiced") type = DLrcFgColorChoiced;
-        if(stype == "DLrcBgColorchoiced") type = DLrcBgColorchoiced;
+        if(stype == "DLrcBgColorChoiced") type = DLrcBgColorChoiced;
         if(stype == "DLrcColorTransChoiced") type = DLrcColorTransChoiced;
         if(stype == "DLrcLockedChoiced") type = DLrcLockedChoiced;
         if(stype == "DLrcGeometryChoiced") type = DLrcGeometryChoiced;
