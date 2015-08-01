@@ -788,8 +788,7 @@ void MusicApplication::showCurrentSong(int index)
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
         m_playControl = true;
         m_musicPlayer->stop();
-        if( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-            M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
+        if( checkSettingParameterValue() )
         {
            ui->musiclrccontainerforinline->stopLrcMask();
            m_musiclrcfordesktop->stopLrcMask();
@@ -932,7 +931,7 @@ void MusicApplication::musicVolumeNULL()
     ui->musicSoundSlider->setValue(m_musicPlayer->volume());
     ui->musicSoundSlider->blockSignals(false);
     ui->volumeValue->setText(QString("%1%").arg(m_musicPlayer->volume()));
-    QSettings().setValue("VOLUMECHOICED",m_musicPlayer->volume());
+    M_SETTING.setValue(MusicSettingManager::VolumeChoiced, m_musicPlayer->volume());
 }
 
 void MusicApplication::musicVolumeChanged(int volume)
@@ -943,7 +942,7 @@ void MusicApplication::musicVolumeChanged(int volume)
     ui->volumeValue->setText(QString("%1%").arg(volume));
     (volume > 0) ? ui->musicSound->setStyleSheet("border-image: url(:/image/soundmax);")
                  : ui->musicSound->setStyleSheet("border-image: url(:/image/soundmin);");
-    QSettings().setValue("VOLUMECHOICED", volume);
+    M_SETTING.setValue(MusicSettingManager::VolumeChoiced, volume);
 }
 
 void MusicApplication::musicActionVolumeSub()

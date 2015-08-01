@@ -9,11 +9,6 @@ class MUSIC_CORE_EXPORT MusicSettingManager
 {
 public:
     enum ConfigType {
-        AUTOLOGINCHOICED,
-        USERLOGINCHOICED,
-        USERNAMECHOICED,
-        USERPASSWDMD5,
-
         PlayModeChoiced,
         VolumeChoiced,
         AutoPlayChoiced,
