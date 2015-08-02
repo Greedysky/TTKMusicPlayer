@@ -12,6 +12,7 @@ class MUSIC_WIDGET_EXPORT MusicLrcMakerWidget : public MusicMoveWidgetAbstract
     Q_OBJECT
 public:
     explicit MusicLrcMakerWidget(QWidget *parent = 0);
+    void setCurrentSongName(const QString& name);
 
 signals:
 public slots:

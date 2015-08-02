@@ -46,6 +46,13 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 }
 
+void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
+{
+    QStringList ls = name.split('-');
+    ui->songNameEdit->setText(ls.back().trimmed());
+    ui->artNameEdit->setText(ls.front().trimmed());
+}
+
 void MusicLrcMakerWidget::makeButtonClicked()
 {
     bool errorFlag = false;

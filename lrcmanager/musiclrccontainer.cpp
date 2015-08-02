@@ -6,6 +6,7 @@ MusicLrcContainer::MusicLrcContainer(QWidget *parent) :
     QWidget(parent)
 {
     m_musicLrcSearchWidget = NULL;
+    m_makerWidget = NULL;
 }
 
 MusicLrcContainer::~MusicLrcContainer()
@@ -129,7 +130,9 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
 
 void MusicLrcContainer::theCurrentLrcMaked()
 {
-    MusicLrcMakerWidget *w = new MusicLrcMakerWidget(this);
-    w->show();
+    if(m_makerWidget == NULL)
+        m_makerWidget = new MusicLrcMakerWidget(this);
+    m_makerWidget->setCurrentSongName(m_currentSongName);
+    m_makerWidget->show();
 }
 

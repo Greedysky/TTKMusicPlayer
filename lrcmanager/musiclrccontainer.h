@@ -7,6 +7,7 @@
 #include "musicsettingmanager.h"
 
 class MusicLrcSearchWidget;
+class MusicLrcMakerWidget;
 
 class MUSIC_WIDGET_EXPORT MusicLrcContainer : public QWidget
 {
@@ -51,6 +52,7 @@ protected:
     QList<MusicLRCManager*> m_musicLrcContainer;
     QString m_containerType;
     MusicLrcSearchWidget *m_musicLrcSearchWidget;
+    MusicLrcMakerWidget *m_makerWidget;
 
 };
 
