@@ -136,3 +136,8 @@ void MusicLrcContainer::theCurrentLrcMaked()
     m_makerWidget->show();
 }
 
+void MusicLrcContainer::setCurrentPosition(qint64 pos)
+{
+    if(m_makerWidget)
+        m_makerWidget->setCurrentPosition(pos);
+}

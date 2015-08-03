@@ -22,6 +22,7 @@ public:
     virtual void setSettingParameter();
     void setLinearGradientColor(LrcColorTable::LrcColorType);
     inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
+    void setCurrentPosition(qint64 pos);
 
 signals:
     void theCurrentLrcUpdated();

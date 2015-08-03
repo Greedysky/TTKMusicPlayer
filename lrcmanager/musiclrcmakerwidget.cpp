@@ -3,6 +3,7 @@
 #include "musicobject.h"
 
 #include <QMessageBox>
+#include <QTime>
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicMoveWidgetAbstract(parent),
@@ -43,14 +44,21 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     connect(ui->reviewButton,SIGNAL(clicked()),SLOT(reviewButtonClicked()));
 
     ui->saveButton->setEnabled(false);
+    m_position = 0;
+    m_currentLine = 0;
 
 }
 
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
 {
+    m_plainText.clear();
+    m_file.setFileName(name);
     QStringList ls = name.split('-');
-    ui->songNameEdit->setText(ls.back().trimmed());
-    ui->artNameEdit->setText(ls.front().trimmed());
+    if(!ls.isEmpty())
+    {
+        ui->songNameEdit->setText(ls.back().trimmed());
+        ui->artNameEdit->setText(ls.front().trimmed());
+    }
 }
 
 void MusicLrcMakerWidget::makeButtonClicked()
@@ -80,6 +88,10 @@ void MusicLrcMakerWidget::makeButtonClicked()
 
     ui->makeButton->setEnabled(false);
     setControlEnable(false);
+//    m_plainText.append(QString("[ti:%1]\n[ar:%2]\n[by:%3]\n%4")
+//      .arg(ui->songNameEdit->text()).arg(ui->artNameEdit->text())
+//      .arg(ui->authorNameEdit->text()).arg(ui->lrcTextEdit->toPlainText()));
+    m_plainText = ui->lrcTextEdit->toPlainText().split("\n");
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -89,6 +101,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
 
 void MusicLrcMakerWidget::reviewButtonClicked()
 {
+    m_plainText.clear();
     ui->makeButton->setEnabled(true);
     setControlEnable(true);
     ui->artNameEdit->clear();
@@ -107,12 +120,18 @@ void MusicLrcMakerWidget::setControlEnable(bool b)
     ui->introductionTextEdit->setEnabled(b);
 }
 
+QString MusicLrcMakerWidget::translateTimeString(qint64 time)
+{
+    return QString("[%1]").arg(QTime::fromMSecsSinceStartOfDay(time).toString("mm:ss.z"));
+}
+
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 {
     MusicMoveWidgetAbstract::keyPressEvent(event);
-    if(!ui->makeButton->isEnabled())
+    if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A &&
+        m_plainText.count() > m_currentLine)
     {
-        qDebug()<<event->key();
+        m_plainText[++m_currentLine].insert(0, translateTimeString(m_position) );
     }
 }
 

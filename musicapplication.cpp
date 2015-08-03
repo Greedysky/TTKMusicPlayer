@@ -1261,6 +1261,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
 void MusicApplication::UpdateCurrentLrc(qint64 time)
 {
     qint64 totalTimeValue = m_musicPlayer->duration();
+    ui->musiclrccontainerforinline->setCurrentPosition(time);
     //Direct access to the audio file is the total time, in milliseconds
     MIntStringMap lrcContainer(ui->musiclrccontainerforinline->getLrcContainer());
     //The corresponding access to current time lyrics
