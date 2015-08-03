@@ -75,9 +75,9 @@ QString MusicFileInformationWidget::transSizeByte(int size)
 {
     if( size < 1024)
         return QString("%1 Byte").arg(size);
-    else if( size < 1024*1024)
+    else if( 1024 <= size && size < 1024*1024)
         return QString("%1 KByte").arg((int)(size*1.0/1024*100)/100.0);
-    else if( size < 1024*1024*1024)
+    else if( 1024*1024 <= size && size < 1024*1024*1024)
         return QString("%1 MByte").arg((int)(size*1.0/1024/1024*100)/100.0);
     else
         return QString();
