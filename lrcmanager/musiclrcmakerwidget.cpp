@@ -144,7 +144,10 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
         if(m_plainText.count() > m_currentLine)
             m_plainText[m_currentLine++].insert(0, translateTimeString(m_position) );
         else
+        {
             ui->saveButton->setEnabled(true);
+            QMessageBox::warning(this, tr("QMusicPlayer"), tr("lrc make finished"));
+        }
     }
 }
 
