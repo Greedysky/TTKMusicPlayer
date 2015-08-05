@@ -52,7 +52,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
 {
     m_plainText.clear();
-    m_file.setFileName(name);
+    m_file.setFileName(QString("%1%2%3").arg(LRC_DOWNLOAD).arg(name).arg(LRC_FILE));
     QStringList ls = name.split('-');
     if(!ls.isEmpty())
     {
@@ -88,15 +88,25 @@ void MusicLrcMakerWidget::makeButtonClicked()
 
     ui->makeButton->setEnabled(false);
     setControlEnable(false);
-//    m_plainText.append(QString("[ti:%1]\n[ar:%2]\n[by:%3]\n%4")
-//      .arg(ui->songNameEdit->text()).arg(ui->artNameEdit->text())
-//      .arg(ui->authorNameEdit->text()).arg(ui->lrcTextEdit->toPlainText()));
     m_plainText = ui->lrcTextEdit->toPlainText().split("\n");
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
 {
-
+    if( m_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) )
+    {
+        QByteArray array;
+        array.append(QString("[ti:%1]\n[ar:%2]\n[by:%3]\n")
+                .arg(ui->songNameEdit->text()).arg(ui->artNameEdit->text())
+                .arg(ui->authorNameEdit->text()));
+        foreach(QString var, m_plainText)
+        {
+            array.append(var);
+            array.append("\n");
+        }
+        m_file.write(array);
+        m_file.close();
+    }
 }
 
 void MusicLrcMakerWidget::reviewButtonClicked()
@@ -122,16 +132,19 @@ void MusicLrcMakerWidget::setControlEnable(bool b)
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    return QString("[%1]").arg(QTime::fromMSecsSinceStartOfDay(time).toString("mm:ss.z"));
+    return QString("[%1.%2]").arg(QTime::fromMSecsSinceStartOfDay(time).toString("mm:ss"))
+                             .arg( QString::number(time%1000).left(2) );
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 {
     MusicMoveWidgetAbstract::keyPressEvent(event);
-    if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A &&
-        m_plainText.count() > m_currentLine)
+    if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A)
     {
-        m_plainText[++m_currentLine].insert(0, translateTimeString(m_position) );
+        if(m_plainText.count() > m_currentLine)
+            m_plainText[m_currentLine++].insert(0, translateTimeString(m_position) );
+        else
+            ui->saveButton->setEnabled(true);
     }
 }
 
