@@ -23,6 +23,7 @@ LIBS += -L"./MPlugins/" -llibzplay
 DEFINES += MUSIC_LIBRARY
 
 INCLUDEPATH += $$PWD/core \
+               $$PWD/core-widget \
                $$PWD/localsearch \
                $$PWD/lrcmanager \
                $$PWD/remotewidget \
@@ -40,22 +41,12 @@ QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
 
 SOURCES += \
     musicapplicationmain.cpp\
-    core/musicmovedialogabstract.cpp \
-    core/musicmovewidgetabstract.cpp \
     musicapplication.cpp \
     musicsongslistwidget.cpp \
-    musicmarquee.cpp \
     musicsongslistiteminformation.cpp \
-    musicsettingwidget.cpp \
-    musicbackgroundskindialog.cpp \
     musicsongsearchonlinewidget.cpp \
     musicsongstoolitemrenamedwidget.cpp \
-    musicsystemtraymenu.cpp \
-    musicpreviewlabel.cpp \
-    musicequalizerdialog.cpp \
     musicsongslistplaywidget.cpp \
-    musictimersliderwidget.cpp \
-    musicwindowextras.cpp \
     localsearch/musiclocalsongsearch.cpp \
     localsearch/musiclocalsongsearchedit.cpp \
     localsearch/musiclocalsongsearchinlineedit.cpp \
@@ -103,7 +94,6 @@ SOURCES += \
     core/musictimerautoobject.cpp \
     core/musicdownloadquerythread.cpp \
     core/musicdownloadthreadabstract.cpp \
-    core/musicdownloadstatuslabel.cpp \
     core/musicdata2downloadthread.cpp \
     core/musicdatadownloadthread.cpp \
     core/musictextdownloadthread.cpp \
@@ -113,9 +103,20 @@ SOURCES += \
     core/musicbgthemedownload.cpp \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
-    core/musictablewidgetabstract.cpp \
-    core/musictablequerywidget.cpp \
-    core/musiclocalsongstablewidget.cpp
+    core-widget/musicdownloadstatuslabel.cpp \
+    core-widget/musictablewidgetabstract.cpp \
+    core-widget/musictablequerywidget.cpp \
+    core-widget/musiclocalsongstablewidget.cpp \
+    core-widget/musicmovedialogabstract.cpp \
+    core-widget/musicmovewidgetabstract.cpp \
+    core-widget/musicmarquee.cpp \
+    core-widget/musicsettingwidget.cpp \
+    core-widget/musicbackgroundskindialog.cpp \
+    core-widget/musicsystemtraymenu.cpp \
+    core-widget/musicpreviewlabel.cpp \
+    core-widget/musicequalizerdialog.cpp \
+    core-widget/musictimersliderwidget.cpp \
+    core-widget/musicwindowextras.cpp
 
 
 
@@ -123,23 +124,13 @@ HEADERS  += \
     core/musiclogger.h \
     core/musiclibexportglobal.h \
     core/musicobject.h \
-    core/musicmovedialogabstract.h \
-    core/musicmovewidgetabstract.h \
     core/musicsingletone.h \
     musicapplication.h \
     musicsongslistwidget.h \
-    musicmarquee.h \
     musicsongslistiteminformation.h \
-    musicsettingwidget.h \
-    musicbackgroundskindialog.h \
     musicsongsearchonlinewidget.h \
     musicsongstoolitemrenamedwidget.h \
-    musicsystemtraymenu.h \
-    musicpreviewlabel.h \
-    musicequalizerdialog.h \
     musicsongslistplaywidget.h \
-    musictimersliderwidget.h \
-    musicwindowextras.h \
     localsearch/musiclocalsongsearch.h \
     localsearch/musiclocalsongsearchedit.h \
     localsearch/musiclocalsongsearchinlineedit.h \
@@ -188,7 +179,6 @@ HEADERS  += \
     core/musicdata2downloadthread.h \
     core/musicdatadownloadthread.h \
     core/musictextdownloadthread.h \
-    core/musicdownloadstatuslabel.h \
     core/musicplayer.h \
     core/musicplaylist.h \
     core/musicequalizer.h \
@@ -199,21 +189,22 @@ HEADERS  += \
     core/musicfileinformation.h \
     core/musicbgthemedownload.h \
     core/musicbgthememanager.h \
-    core/musicdesktopwallpaperthread.h \
-    core/musictablewidgetabstract.h \
-    core/musictablequerywidget.h \
-    core/musiclocalsongstablewidget.h \
     core/musicsettingmanager.h \
-    usermanager/musicusermanager.h \
-    usermanager/musicusermodel.h \
-    usermanager/musicuserdialog.h \
-    usermanager/musicuserlineedit.h \
-    usermanager/musicuserwindow.h \
-    usermanager/musicuserconfigmanager.h \
-    videokits/musicvideoplayer.h \
-    videokits/musicvideocontrol.h \
-    videokits/musicvideoview.h \
-    videokits/musicvideotablewidget.h
+    core/musicdesktopwallpaperthread.h \
+    core-widget/musicdownloadstatuslabel.h \
+    core-widget/musictablewidgetabstract.h \
+    core-widget/musictablequerywidget.h \
+    core-widget/musiclocalsongstablewidget.h \
+    core-widget/musicmovedialogabstract.h \
+    core-widget/musicmovewidgetabstract.h \
+    core-widget/musicmarquee.h \
+    core-widget/musicsettingwidget.h \
+    core-widget/musicbackgroundskindialog.h \
+    core-widget/musicsystemtraymenu.h \
+    core-widget/musicpreviewlabel.h \
+    core-widget/musicequalizerdialog.h \
+    core-widget/musictimersliderwidget.h \
+    core-widget/musicwindowextras.h
 
 
 FORMS    += \

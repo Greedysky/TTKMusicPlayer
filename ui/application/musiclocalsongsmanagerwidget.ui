@@ -249,7 +249,7 @@
   <customwidget>
    <class>MusicLocalSongsTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>../core/musiclocalsongstablewidget.h</header>
+   <header>../core-widget/musiclocalsongstablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

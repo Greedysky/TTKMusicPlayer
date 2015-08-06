@@ -992,7 +992,7 @@
   <customwidget>
    <class>MusicMarquee</class>
    <extends>QWidget</extends>
-   <header>musicmarquee.h</header>
+   <header>core-widget/musicmarquee.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1010,7 +1010,7 @@
   <customwidget>
    <class>MusicTimerSliderWidget</class>
    <extends>QWidget</extends>
-   <header>musictimersliderwidget.h</header>
+   <header>core-widget/musictimersliderwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
