@@ -992,13 +992,13 @@
   <customwidget>
    <class>MusicMarquee</class>
    <extends>QWidget</extends>
-   <header>core-widget/musicmarquee.h</header>
+   <header>musicmarquee.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicLrcContainerForInline</class>
    <extends>QWidget</extends>
-   <header>lrcmanager/musiclrccontainerforinline.h</header>
+   <header>musiclrccontainerforinline.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -1010,13 +1010,13 @@
   <customwidget>
    <class>MusicTimerSliderWidget</class>
    <extends>QWidget</extends>
-   <header>core-widget/musictimersliderwidget.h</header>
+   <header>musictimersliderwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
-   <header>localsearch/musiclocalsongsearchinlineedit.h</header>
+   <header>musiclocalsongsearchinlineedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

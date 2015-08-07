@@ -42,11 +42,6 @@ QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
 SOURCES += \
     musicapplicationmain.cpp\
     musicapplication.cpp \
-    musicsongslistwidget.cpp \
-    musicsongslistiteminformation.cpp \
-    musicsongsearchonlinewidget.cpp \
-    musicsongstoolitemrenamedwidget.cpp \
-    musicsongslistplaywidget.cpp \
     localsearch/musiclocalsongsearch.cpp \
     localsearch/musiclocalsongsearchedit.cpp \
     localsearch/musiclocalsongsearchinlineedit.cpp \
@@ -116,8 +111,15 @@ SOURCES += \
     core-widget/musicpreviewlabel.cpp \
     core-widget/musicequalizerdialog.cpp \
     core-widget/musictimersliderwidget.cpp \
-    core-widget/musicwindowextras.cpp
-
+    core-widget/musicwindowextras.cpp \
+    core-widget/musicsongslistwidget.cpp \
+    core-widget/musicsongslistiteminformation.cpp \
+    core-widget/musicsongsearchonlinewidget.cpp \
+    core-widget/musicsongstoolitemrenamedwidget.cpp \
+    core-widget/musicsongslistplaywidget.cpp \ 
+    musicleftareawidget.cpp \
+    musicrightareawidget.cpp \
+    musicbottomareawidget.cpp
 
 
 HEADERS  += \
@@ -126,11 +128,6 @@ HEADERS  += \
     core/musicobject.h \
     core/musicsingletone.h \
     musicapplication.h \
-    musicsongslistwidget.h \
-    musicsongslistiteminformation.h \
-    musicsongsearchonlinewidget.h \
-    musicsongstoolitemrenamedwidget.h \
-    musicsongslistplaywidget.h \
     localsearch/musiclocalsongsearch.h \
     localsearch/musiclocalsongsearchedit.h \
     localsearch/musiclocalsongsearchinlineedit.h \
@@ -204,7 +201,16 @@ HEADERS  += \
     core-widget/musicpreviewlabel.h \
     core-widget/musicequalizerdialog.h \
     core-widget/musictimersliderwidget.h \
-    core-widget/musicwindowextras.h
+    core-widget/musicwindowextras.h \
+    core-widget/musicsongslistwidget.h \
+    core-widget/musicsongslistiteminformation.h \
+    core-widget/musicsongsearchonlinewidget.h \
+    core-widget/musicsongstoolitemrenamedwidget.h \
+    core-widget/musicsongslistplaywidget.h \
+    musicleftareawidget.h \
+    musictopareawidget.h \
+    musicrightareawidget.h \
+    musicbottomareawidget.h
 
 
 FORMS    += \
