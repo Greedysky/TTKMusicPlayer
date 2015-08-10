@@ -34,6 +34,7 @@ class MusicVideoPlayer;
 
 class QLabel;
 class QPropertyAnimation;
+class MusicBottomAreaWidget;
 
 namespace Ui {
 class MusicApplication;
@@ -58,7 +59,7 @@ protected:
     void setButtonCursor();
     void setButtonTips();
     void createSystemTrayIcon();
-    void createToolPopupMenu();
+//    void createToolPopupMenu();
     void createMenuActions();
     void createRemoteWidget();
     void createPlayModeMenu(QMenu&);
@@ -187,7 +188,7 @@ private:
     MIntsListMap m_searchfileListCache;
 
     QSystemTrayIcon* m_systemTray;
-    QMenu m_toolPopupMenu;
+//    QMenu m_toolPopupMenu;
     QMenu m_playModeMenu;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicSongsSummarizied* m_musicSongTree;
@@ -212,7 +213,8 @@ private:
     int m_listWidgetAlpha;
     int m_currentMusicSongTreeIndex;
     QTimer m_pictureCarouselTimer;
-    int m_pictureCarouselIndex;
+
+    MusicBottomAreaWidget* m_bottomAreaWidget;
 
 };
 

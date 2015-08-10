@@ -118,6 +118,7 @@ SOURCES += \
     core-widget/musicsongstoolitemrenamedwidget.cpp \
     core-widget/musicsongslistplaywidget.cpp \ 
     musicleftareawidget.cpp \
+    musictopareawidget.cpp \
     musicrightareawidget.cpp \
     musicbottomareawidget.cpp
 

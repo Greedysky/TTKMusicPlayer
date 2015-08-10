@@ -2,6 +2,11 @@
 #define MUSICBOTTOMAREAWIDGET_H
 
 #include <QWidget>
+#include <QMenu>
+
+namespace Ui {
+    class MusicApplication;
+}
 
 class MusicBottomAreaWidget : public QWidget
 {
@@ -9,9 +14,17 @@ class MusicBottomAreaWidget : public QWidget
 public:
     explicit MusicBottomAreaWidget(QWidget *parent = 0);
 
-signals:
+    void setupUi(Ui::MusicApplication* ui);
 
+signals:
 public slots:
+
+protected:
+    void createToolPopupMenu();
+    
+    Ui::MusicApplication *m_ui;
+    QMenu m_toolPopupMenu;
+
 };
 
 #endif // MUSICBOTTOMAREAWIDGET_H
