@@ -13,7 +13,7 @@ class MusicLeftAreaWidget : public QWidget
 public:
     explicit MusicLeftAreaWidget(QWidget *parent = 0);
 
-    void setupUi(Ui::MusicApplication* ui) { m_ui = ui;}
+    void setupUi(Ui::MusicApplication* ui);
 
 signals:
 public slots:

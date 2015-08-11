@@ -29,7 +29,6 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
 #include "musictimerautoobject.h"
-//#include "musicuserwindow.h"
 #include "musicvideoplayer.h"
 #include "musicbgthememanager.h"
 #include "musicsettingmanager.h"
@@ -38,6 +37,7 @@
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
+#include "musicleftareawidget.h"
 
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
@@ -70,6 +70,8 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_topAreaWidget->setupUi(ui);
     m_rightAreaWidget = new MusicRightAreaWidget(this);
     m_rightAreaWidget->setupUi(ui);
+    m_leftAreaWidget = new MusicLeftAreaWidget(this);
+    m_leftAreaWidget->setupUi(ui);
 
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
     //The default is the order of play
@@ -129,7 +131,6 @@ MusicApplication::MusicApplication(QWidget *parent) :
     ui->SurfaceStackedWidget->setCurrentIndex(0);
     this->readXMLConfigFromText();
 
-//    ui->userWindow->addWidget(m_msuicUserWindow = new MusicUserWindow(this));
     ui->musicTimeWidget->setObject(this);
 
 }
@@ -191,7 +192,6 @@ MusicApplication::~MusicApplication()
     delete m_animation;
     delete m_stackedWidget;
     delete m_musicRemoteWidget;
-//    delete m_msuicUserWindow;
     delete m_downloadStatusLabel;
     delete m_musicPlayer;
     delete m_musicList;
@@ -321,166 +321,8 @@ void MusicApplication::keyReleaseEvent(QKeyEvent *event)
 void MusicApplication::initWindowSurface()
 {
     createSystemTrayIcon();
-    setMenuBarButton();
-
-    setButtonTips();
-    setButtonCursor();
-
-//    connect(ui->minimization,SIGNAL(clicked()),this,SLOT(hide()));
-//    connect(ui->windowClose,SIGNAL(clicked()),this,SLOT(close()));
-    connect(ui->musicKey,SIGNAL(clicked()),this,SLOT(musicKey()));
-    connect(ui->musicPrivious,SIGNAL(clicked()),this,SLOT(musicPlayPrivious()));
-    connect(ui->musicNext,SIGNAL(clicked()),this,SLOT(musicPlayNext()));
-    connect(ui->musicSound,SIGNAL(clicked()),this,SLOT(musicVolumeNULL()));
-    connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),this,SLOT(musicVolumeChanged(int)));
-//    connect(ui->musicImport,SIGNAL(clicked()),this,SLOT(musicImportSongs()));
-//    connect(ui->musicSetting,SIGNAL(clicked()),this,SLOT(musicSetting()));
-//    connect(ui->musicSearch,SIGNAL(clicked()),this,SLOT(musicSearch()));
-//    connect(ui->musicCurrentLocation,SIGNAL(clicked()),this,SLOT(musicCurrentPlayLocation()));
-//    connect(ui->musicSearchButton,SIGNAL(clicked()),this,SLOT(musicSearchButtonSearched()));
-//    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()),this,SLOT(musicIndexWidgetButtonSearched()));
-//    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()),this,SLOT(musicSearchWidgetButtonSearched()));
-//    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()),this,SLOT(musicLrcWidgetButtonSearched()));
-//    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()),SLOT(musicSearchRefreshButtonRefreshed()));
-//    connect(ui->vedioWidgetButton,SIGNAL(clicked()),SLOT(musicVedioWidgetButtonSearched()));
-
-//    connect(ui->musicWindowChangeSkin,SIGNAL(clicked()),this,SLOT(musicShowSkinChangedWindow()));
-    connect(ui->musicBestLove,SIGNAL(clicked()),this,SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicDesktopLrc,SIGNAL(clicked(bool)),m_musiclrcfordesktop,SLOT(setVisible(bool)));
     connect(ui->musicDesktopLrc,SIGNAL(clicked()),m_systemTrayMenu,SLOT(showDesktopLrc()));
-    connect(ui->music3DPlayButton,SIGNAL(clicked()),SLOT(musicSetPlay3DMusic()));
-//    connect(ui->musicWindowRemote,SIGNAL(clicked()),SLOT(musicSquareRemote()));
-//    connect(ui->musicWindowConcise,SIGNAL(clicked()),SLOT(musicWindowConciseChanged()));
-
-    connect(ui->musicButton_playlist,SIGNAL(clicked()),SLOT(musicStackedSongListWidgetChanged()));
-    connect(ui->musicButton_tools,SIGNAL(clicked()),SLOT(musicStackedToolsWidgetChanged()));
-    connect(ui->musicButton_radio,SIGNAL(clicked()),SLOT(musicStackedRadioWidgetChanged()));
-    connect(ui->musicButton_mydownl,SIGNAL(clicked()),SLOT(musicStackedMyDownWidgetChanged()));
-}
-
-void MusicApplication::setMenuBarButton()
-{
-//    QPixmap minPix  = style()->standardPixmap(QStyle::SP_TitleBarMinButton);
-//    ui->minimization->setIcon(QIcon(minPix.scaled(25,25)));
-//    ui->windowClose->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/close")).scaled(25,25)));
-
-//    ui->musicSetting->setIcon(QIcon(QString::fromUtf8(":/image/setting")));
-//    ui->musicImport->setIcon(QIcon(QString::fromUtf8(":/image/import")));
-//    ui->musicSearch->setIcon(QIcon(QString::fromUtf8(":/image/search")));
-//    ui->musicCurrentLocation->setIcon(QIcon(QString::fromUtf8(":/image/location")));
-    ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
-    ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
-//    ui->menuSetting->setIcon(QIcon(QString::fromUtf8(":/image/menu")));
-    ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
-//    ui->musicWindowChangeSkin->setIcon(QIcon(QString::fromUtf8(":/image/windowskin")));
-//    ui->musicWindowRemote->setIcon(QIcon(QString::fromUtf8(":/image/windowremote")));
-//    ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(":/image/concisein")));
-    ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
-    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(":/equalizer/3doff")));
-    ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/image/buttoncloud")));
-    ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/image/buttonmydownl")));
-    ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/image/buttonplaylist")));
-    ui->musicButton_radio->setIcon(QIcon(QString::fromUtf8(":/image/buttonradio")));
-    ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/image/buttontools")));
-//    ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
-
-//    ui->musicWindowChangeSkin->setIconSize(QSize(22,22));
-//    ui->musicSetting->setIconSize(QSize(40,40));
-//    ui->musicImport->setIconSize(QSize(40,40));
-//    ui->musicSearch->setIconSize(QSize(40,40));
-//    ui->musicCurrentLocation->setIconSize(QSize(40,40));
-    ui->musicPrivious->setIconSize(QSize(45,45));
-    ui->musicNext->setIconSize(QSize(45,45));
-//    ui->menuSetting->setIconSize(QSize(50,50));
-    ui->musicKey->setIconSize(QSize(45,45));
-    ui->musicBestLove->setIconSize(QSize(25,25));
-    ui->music3DPlayButton->setIconSize(QSize(40,20));
-    ui->musicButton_cloud->setIconSize(QSize(35,35));
-    ui->musicButton_mydownl->setIconSize(QSize(35,35));
-    ui->musicButton_playlist->setIconSize(QSize(35,35));
-    ui->musicButton_radio->setIconSize(QSize(35,35));
-    ui->musicButton_tools->setIconSize(QSize(35,35));
-//    ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
-    ui->musicPlayMode->setIconSize(QSize(25,25));
-
-    ui->musicSoundSlider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
-//    ui->minimization->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->windowClose->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicSetting->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicImport->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicSearch->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicCurrentLocation->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicPrivious->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicNext->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->menuSetting->setStyleSheet(MusicObject::QToolButtonMenuPopStyle);
-    ui->musicKey->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicWindowChangeSkin->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicWindowConcise->setStyleSheet(MusicObject::QToolButtonStyle);
-//    ui->musicIndexWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-//    ui->musicSearchWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-//    ui->musicLrcWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-//    ui->musicSearchRefreshButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-//    ui->vedioWidgetButton->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-    ui->musicBestLove->setStyleSheet(MusicObject::MusicBestLoveToolButtonStyle);
-    ui->musicDesktopLrc->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->music3DPlayButton->setStyleSheet(MusicObject::MusicBestLoveToolButtonStyle);
-//    ui->musicWindowRemote->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicButton_cloud->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicButton_mydownl->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicButton_playlist->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicButton_radio->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicButton_tools->setStyleSheet(MusicObject::QToolButtonStyle);
-    ui->musicPlayMode->setStyleSheet(MusicObject::QToolButtonMenuPopStyle);
-}
-
-void MusicApplication::setButtonCursor()
-{
-//    ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->menuSetting->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicNext->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicImport->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicSetting->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicSearch->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicCurrentLocation->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicIndexWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicSearchWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSoundSlider->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
-//    ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
-}
-
-void MusicApplication::setButtonTips()
-{
-//    ui->minimization->setToolTip(tr("Minimization"));
-    ui->windowClose->setToolTip(tr("Close"));
-//    ui->menuSetting->setToolTip(tr("Menu"));
-    ui->musicKey->setToolTip(tr("Play"));
-    ui->musicPrivious->setToolTip(tr("Privious"));
-    ui->musicNext->setToolTip(tr("Next"));
-//    ui->musicImport->setToolTip(tr("Import"));
-//    ui->musicSetting->setToolTip(tr("Setting"));
-//    ui->musicSearch->setToolTip(tr("musicSearch"));
-//    ui->musicCurrentLocation->setToolTip(tr("musicLocation"));
-//    ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
-//    ui->musicWindowConcise->setToolTip(tr("concisein/out"));
-//    ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
-    ui->musicBestLove->setToolTip(tr("bestlove"));
-    ui->musicButton_cloud->setToolTip(tr("musicCloud"));
-    ui->musicButton_mydownl->setToolTip(tr("musicMydownl"));
-    ui->musicButton_playlist->setToolTip(tr("musicPlaylist"));
-    ui->musicButton_radio->setToolTip(tr("musicRadio"));
-    ui->musicButton_tools->setToolTip(tr("musicTools"));
 }
 
 void MusicApplication::createSystemTrayIcon()
@@ -506,29 +348,6 @@ void MusicApplication::createSystemTrayIcon()
     connect(m_systemTray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,
                        SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
-
-//void MusicApplication::createToolPopupMenu()
-//{
-//    m_toolPopupMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-//    m_toolPopupMenu.addAction(ui->action_ImportSongs);
-//    m_toolPopupMenu.addAction(ui->action_Setting);
-
-//    m_toolPopupMenu.addSeparator();
-//    m_toolPopupMenu.addAction(ui->action_Privious);
-//    m_toolPopupMenu.addAction(ui->action_Play);
-//    m_toolPopupMenu.addAction(ui->action_Next);
-//    m_toolPopupMenu.addSeparator();
-//    m_toolPopupMenu.addAction(ui->action_OrderPlay);
-//    m_toolPopupMenu.addAction(ui->action_RandomPlay);
-//    m_toolPopupMenu.addAction(ui->action_SingleCycle);
-//    m_toolPopupMenu.addAction(ui->action_ListCycle);
-//    m_toolPopupMenu.addSeparator();
-//    m_toolPopupMenu.addAction(ui->action_VolumeSub);
-//    m_toolPopupMenu.addAction(ui->action_VolumePlus);
-//    m_toolPopupMenu.addSeparator();
-//    m_toolPopupMenu.addAction(ui->action_About);
-//    m_toolPopupMenu.addAction(ui->action_Quit);
-//}
 
 void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
 {
@@ -1159,72 +978,18 @@ void MusicApplication::getParameterSetting()
     m_musiclrcfordesktop->setSettingParameter();
     m_systemCloseConfig = M_SETTING.value(MusicSettingManager::CloseEventChoiced).toBool();
     if(M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool())
-      ui->musiclrccontainerforinline->show();
+        ui->musiclrccontainerforinline->show();
     else
-      ui->musiclrccontainerforinline->close();
+        ui->musiclrccontainerforinline->close();
     bool showDeskLrc = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     if(showDeskLrc)
-      m_musiclrcfordesktop->show();
+        m_musiclrcfordesktop->show();
     else
-      m_musiclrcfordesktop->close();
+        m_musiclrcfordesktop->close();
     ui->musicDesktopLrc->setChecked(showDeskLrc);
     m_systemTrayMenu->showDesktopLrc(showDeskLrc ? "true" : "false" );
     //This attribute is effective immediately.
 }
-
-//void MusicApplication::musicBgThemeDownloadFinished()
-//{
-//    if(ui->SurfaceStackedWidget->currentIndex() == 2  &&
-//       ui->musiclrccontainerforinline->artBackgroundIsShow() )
-//    {
-//        musicBackgroundChanged();
-//        m_musicSongTree->updateArtPicture();
-//        m_pictureCarouselTimer.start(5000);
-//    }
-//    else
-//        drawWindowBackgroundRect();
-//}
-
-//void MusicApplication::musicBgTransparentChanged(int index)
-//{
-//    if(ui->SurfaceStackedWidget->currentIndex() == 2) return;
-//    m_alpha = index;//save the alpha
-//    //Here set the picture transparency
-//    drawWindowBackgroundRect();
-//}
-
-//void MusicApplication::musicBackgroundChanged()
-//{
-//    QString art_path = M_ARTBG.getArtPhotoPath();
-//    !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
-//}
-
-//void MusicApplication::drawWindowBackgroundRect()
-//{
-//    m_pictureCarouselTimer.stop();
-//    drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE);
-//}
-
-//void MusicApplication::drawWindowBackgroundRectString(const QString& path)
-//{
-//    QPixmap origin(path);
-//    QPixmap afterDeal(size());
-//    afterDeal.fill(Qt::transparent);
-//    QPainter paint(&afterDeal);
-//    paint.fillRect(0,0,afterDeal.width(),afterDeal.height(),QColor(255,255,255,2.55*m_alpha));
-//    paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-//    paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size(), Qt::KeepAspectRatioByExpanding).toImage()));
-//    paint.end();
-
-//    m_musicSongTree->setStyleSheet(MusicObject::QToolBoxItemStyle);
-//    ui->background->setPixmap(afterDeal);
-//}
-
-//void MusicApplication::musicBackgroundSkinChanged(const QString &filename)
-//{
-//    m_currentBgSkin = filename;
-//    musicBgTransparentChanged(m_alpha);
-//}
 
 void MusicApplication::musicSearchIndexChanged(int,int index)
 {
@@ -1415,7 +1180,6 @@ void MusicApplication::updateCurrentTime(qint64 pos)
 
 void MusicApplication::musicAddSongToLovestListAt()
 {
-//    int index = m_musicList->currentIndex();
     int index = static_cast<MusicSongsListWidget*>(m_musicSongTree->currentWidget())->currentRow();
     if(m_musicList->isEmpty() || index < 0 || m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex() )
         return;

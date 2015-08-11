@@ -21,7 +21,6 @@ class MusicSongsSummarizied;
 class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
-//class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
@@ -37,6 +36,7 @@ class QPropertyAnimation;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
+class MusicLeftAreaWidget;
 
 namespace Ui {
 class MusicApplication;
@@ -57,19 +57,13 @@ public:
 
 protected:
     void initWindowSurface();
-    void setMenuBarButton();
-    void setButtonCursor();
-    void setButtonTips();
     void createSystemTrayIcon();
-//    void createToolPopupMenu();
     void createMenuActions();
     void createRemoteWidget();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
     void createVedioWidget(bool);
     void drawWindowRoundedRect();
-//    void drawWindowBackgroundRect();
-//    void drawWindowBackgroundRectString(const QString&);
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -137,11 +131,6 @@ public slots:
     void musicSpectrumWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
-//    void musicBackgroundChanged();
-    /////////////////////////////////////////////
-    //This is a slot by MusicBackgroundSkin's signal emit
-//    void musicBgTransparentChanged(int);
-//    void musicBackgroundSkinChanged(const QString&);
     /////////////////////////////////////////////
     //This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int,int);
@@ -189,7 +178,7 @@ private:
     MIntsListMap m_searchfileListCache;
 
     QSystemTrayIcon* m_systemTray;
-//    QMenu m_toolPopupMenu;
+
     QMenu m_playModeMenu;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicSongsSummarizied* m_musicSongTree;
@@ -197,7 +186,7 @@ private:
     MusicLocalSongSearch* m_musicLocalSongSearch;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
-//    MusicUserWindow* m_msuicUserWindow;
+
     MusicRemoteWidget* m_musicRemoteWidget;
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;
@@ -208,14 +197,13 @@ private:
     //////////////////////////////////
     QPropertyAnimation* m_animation;
     QWidget* m_stackedWidget;
-//    QString m_currentBgSkin;
-//    int m_alpha;
     int m_currentMusicSongTreeIndex;
     QTimer m_pictureCarouselTimer;
 
     MusicBottomAreaWidget* m_bottomAreaWidget;
     MusicTopAreaWidget* m_topAreaWidget;
     MusicRightAreaWidget* m_rightAreaWidget;
+    MusicLeftAreaWidget* m_leftAreaWidget;
 
 };
 
