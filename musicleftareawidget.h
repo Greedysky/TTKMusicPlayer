@@ -2,12 +2,13 @@
 #define MUSICLEFTAREAWIDGET_H
 
 #include <QWidget>
+#include "musiclibexportglobal.h"
 
 namespace Ui {
     class MusicApplication;
 }
 
-class MusicLeftAreaWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicLeftAreaWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -103,6 +103,11 @@ void MusicSongsSummarizied::updateArtPicture()
     m_mainSongLists[m_currentIndexs]->updateArtPicture();
 }
 
+void MusicSongsSummarizied::updateToolStyle()
+{
+    setStyleSheet(MusicObject::QToolBoxItemStyle);
+}
+
 QString MusicSongsSummarizied::itemText(int row,int col) const
 {
     return m_mainSongLists[m_currentIndexs]->item(row,col)->text();

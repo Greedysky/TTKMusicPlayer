@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include "musiclibexportglobal.h"
 
 class MusicUserWindow;
 class MusicBackgroundSkinDialog;
@@ -11,7 +12,7 @@ namespace Ui {
     class MusicApplication;
 }
 
-class MusicTopAreaWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicTopAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -24,6 +25,9 @@ public:
     int getBgSkinAlpha();
 
 signals:
+    void updateToolStyle();
+    void updateArtPicture();
+
 public slots:
     void musicShowSkinChangedWindow();
     void musicUserContextLogin();

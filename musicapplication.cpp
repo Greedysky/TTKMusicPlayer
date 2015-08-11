@@ -64,15 +64,6 @@ MusicApplication::MusicApplication(QWidget *parent) :
     //This is the function to display the desktop lrc
     initWindowSurface();
 
-    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
-    m_bottomAreaWidget->setupUi(ui);
-    m_topAreaWidget = new MusicTopAreaWidget(this);
-    m_topAreaWidget->setupUi(ui);
-    m_rightAreaWidget = new MusicRightAreaWidget(this);
-    m_rightAreaWidget->setupUi(ui);
-    m_leftAreaWidget = new MusicLeftAreaWidget(this);
-    m_leftAreaWidget->setupUi(ui);
-
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
     //The default is the order of play
     m_musicPlayer->setPlaylist(m_musicList);
@@ -85,10 +76,20 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_systemCloseConfig = false;//Control the mode to exit
     m_setWindowToTop = false;
     m_currentMusicSongTreeIndex = 0;
-//    connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
 
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
+
+    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
+    m_bottomAreaWidget->setupUi(ui);
+    m_topAreaWidget = new MusicTopAreaWidget(this);
+    m_topAreaWidget->setupUi(ui);
+    m_rightAreaWidget = new MusicRightAreaWidget(this);
+    m_rightAreaWidget->setupUi(ui);
+    m_leftAreaWidget = new MusicLeftAreaWidget(this);
+    m_leftAreaWidget->setupUi(ui);
+    connect(m_topAreaWidget,SIGNAL(updateToolStyle()),m_musicSongTree,SLOT(updateToolStyle()));
+    connect(m_topAreaWidget,SIGNAL(updateArtPicture()),m_musicSongTree,SLOT(updateArtPicture()));
 
     m_downloadStatusLabel = new MusicDownloadStatusLabel(this);
     connect(m_musicPlayer,SIGNAL(positionChanged(qint64)),SLOT(positionChanged(qint64)));

@@ -3,12 +3,13 @@
 
 #include <QWidget>
 #include <QMenu>
+#include "musiclibexportglobal.h"
 
 namespace Ui {
     class MusicApplication;
 }
 
-class MusicBottomAreaWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
 public:

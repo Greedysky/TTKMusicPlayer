@@ -136,7 +136,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString& path)
     paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding).toImage()));
     paint.end();
 
-//    m_musicSongTree->setStyleSheet(MusicObject::QToolBoxItemStyle);
+    emit updateToolStyle();
     m_ui->background->setPixmap(afterDeal);
 }
 
@@ -146,7 +146,7 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
-//        m_musicSongTree->updateArtPicture();
+        emit updateArtPicture();
         m_pictureCarouselTimer.start(5000);
     }
     else
