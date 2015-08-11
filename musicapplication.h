@@ -36,6 +36,7 @@ class QPropertyAnimation;
 
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
+class MusicRightAreaWidget;
 
 namespace Ui {
 class MusicApplication;
@@ -214,6 +215,7 @@ private:
 
     MusicBottomAreaWidget* m_bottomAreaWidget;
     MusicTopAreaWidget* m_topAreaWidget;
+    MusicRightAreaWidget* m_rightAreaWidget;
 
 };
 
