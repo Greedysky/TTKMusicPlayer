@@ -15,14 +15,13 @@
 class MusicPlayer;
 class MusicPlaylist;
 class MusicSettingWidget;
-class MusicBackgroundSkinDialog;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
 class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
-class MusicUserWindow;
+//class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
@@ -34,7 +33,9 @@ class MusicVideoPlayer;
 
 class QLabel;
 class QPropertyAnimation;
+
 class MusicBottomAreaWidget;
+class MusicTopAreaWidget;
 
 namespace Ui {
 class MusicApplication;
@@ -66,8 +67,8 @@ protected:
     void createPlayModeMenuIcon(QMenu&);
     void createVedioWidget(bool);
     void drawWindowRoundedRect();
-    void drawWindowBackgroundRect();
-    void drawWindowBackgroundRectString(const QString&);
+//    void drawWindowBackgroundRect();
+//    void drawWindowBackgroundRectString(const QString&);
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);
@@ -111,7 +112,6 @@ public slots:
     void musicSetting();
     void musicSearch();
     void musicCurrentPlayLocation();
-    void musicShowSkinChangedWindow();
     void musicSearchButtonSearched();
     void musicIndexWidgetButtonSearched();
     void musicSearchWidgetButtonSearched();
@@ -136,11 +136,11 @@ public slots:
     void musicSpectrumWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
-    void musicBackgroundChanged();
+//    void musicBackgroundChanged();
     /////////////////////////////////////////////
     //This is a slot by MusicBackgroundSkin's signal emit
-    void musicBgTransparentChanged(int);
-    void musicBackgroundSkinChanged(const QString&);
+//    void musicBgTransparentChanged(int);
+//    void musicBackgroundSkinChanged(const QString&);
     /////////////////////////////////////////////
     //This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int,int);
@@ -175,7 +175,7 @@ public slots:
     //This is a slot by MusicMyDownloadRecordWidget's signal emit
     void addSongToPlayList(const QStringList &);
     /////////////////////////////////////////////
-    void musicBgThemeDownloadFinished();
+//    void musicBgThemeDownloadFinished();
 
 
 private:
@@ -193,11 +193,10 @@ private:
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
-    MusicBackgroundSkinDialog* m_musicbgskin;
     MusicLocalSongSearch* m_musicLocalSongSearch;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
-    MusicUserWindow* m_msuicUserWindow;
+//    MusicUserWindow* m_msuicUserWindow;
     MusicRemoteWidget* m_musicRemoteWidget;
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;
@@ -208,13 +207,13 @@ private:
     //////////////////////////////////
     QPropertyAnimation* m_animation;
     QWidget* m_stackedWidget;
-    QString m_currentBgSkin;
-    int m_alpha;
-    int m_listWidgetAlpha;
+//    QString m_currentBgSkin;
+//    int m_alpha;
     int m_currentMusicSongTreeIndex;
     QTimer m_pictureCarouselTimer;
 
     MusicBottomAreaWidget* m_bottomAreaWidget;
+    MusicTopAreaWidget* m_topAreaWidget;
 
 };
 
