@@ -431,6 +431,7 @@ void MusicApplication::readXMLConfigFromText()
     //The size of the volume of the allocation of songs
     value = xml.readMusicPlayVolumeConfig();
     ui->musicSoundSlider->setValue(value);
+    M_SETTING.setValue(MusicSettingManager::VolumeChoiced, value);
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown
