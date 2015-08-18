@@ -19,6 +19,10 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     setMask(bmp);
     //set window radius
 
+    ui->lrcTextEdit->setFontPointSize(15);
+    ui->lrcTextEdit->setFontWeight(QFont::Bold);
+    ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -89,6 +93,9 @@ void MusicLrcMakerWidget::makeButtonClicked()
     ui->makeButton->setEnabled(false);
     setControlEnable(false);
     m_plainText = ui->lrcTextEdit->toPlainText().split("\n");
+    QTextCursor cursor = ui->lrcTextEdit->textCursor();
+    cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor, 1);
+    ui->lrcTextEdit->setTextCursor(cursor);
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -111,6 +118,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
 
 void MusicLrcMakerWidget::reviewButtonClicked()
 {
+    m_currentLine = 0;
     m_plainText.clear();
     ui->makeButton->setEnabled(true);
     setControlEnable(true);
@@ -119,6 +127,9 @@ void MusicLrcMakerWidget::reviewButtonClicked()
     ui->authorNameEdit->clear();
     ui->lrcTextEdit->clear();
     ui->introductionTextEdit->clear();
+    ui->lrcTextEdit->setFontPointSize(15);
+    ui->lrcTextEdit->setFontWeight(QFont::Bold);
+    ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
 }
 
 void MusicLrcMakerWidget::setControlEnable(bool b)
@@ -142,7 +153,27 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
     if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A)
     {
         if(m_plainText.count() > m_currentLine)
+        {
             m_plainText[m_currentLine++].insert(0, translateTimeString(m_position) );
+
+            QList<QTextEdit::ExtraSelection> extraSelections;
+
+            QTextEdit::ExtraSelection selection;
+            selection.format.setBackground(QColor(Qt::yellow));
+            selection.format.setProperty(QTextFormat::FullWidthSelection, true);
+            selection.cursor = ui->lrcTextEdit->textCursor();
+            selection.cursor.clearSelection();
+            extraSelections.append(selection);
+            ui->lrcTextEdit->setExtraSelections(extraSelections);
+
+            QTextCursor cursor = ui->lrcTextEdit->textCursor();
+            if(!cursor.atEnd())
+            {
+                cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
+                ui->lrcTextEdit->setTextCursor(cursor);
+            }
+
+        }
         else
         {
             ui->saveButton->setEnabled(true);
