@@ -44,27 +44,27 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_radio1 = new QCheckBox(this);
     m_radio1->setGeometry(155, 75, 20, 20);
-    m_radio1->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_radio1->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
     m_radio2 = new QCheckBox(this);
     m_radio2->setGeometry(300, 75, 20, 20);
-    m_radio2->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_radio2->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
     m_radio3 = new QCheckBox(this);
     m_radio3->setGeometry(445, 75, 20, 20);
-    m_radio3->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_radio3->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
 
     m_checkBox = new QCheckBox(tr("All"),this);
     m_checkBox->setGeometry(5, 130, 100, 20);
     m_checkBox->setChecked(true);
-    m_checkBox->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    m_checkBox->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
 
     m_confirmButton = new QPushButton(tr("Confirm"),this);
     m_confirmButton->setGeometry(340, 130, 70, 20);
-    m_confirmButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    m_confirmButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_cancelButton = new QPushButton(tr("Close"), this);
     m_cancelButton->setGeometry(420, 130, 70, 20);
-    m_cancelButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    m_cancelButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     m_cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);

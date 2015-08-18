@@ -5,7 +5,7 @@
 #include <QTabWidget>
 #include <QMouseEvent>
 #include "musicmovedialogabstract.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicsettingmanager.h"
 
 namespace Ui {

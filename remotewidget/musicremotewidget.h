@@ -3,6 +3,7 @@
 
 #include <QtWidgets>
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicmovewidgetabstract.h"
 
 class MUSIC_WIDGET_EXPORT MusicRemoteWidget : public MusicMoveWidgetAbstract

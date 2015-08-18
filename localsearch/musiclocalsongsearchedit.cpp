@@ -1,5 +1,5 @@
 #include "musiclocalsongsearchedit.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include <QMenu>
 
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
@@ -22,7 +22,7 @@ void MusicLocalSongSearchEdit::focusInEvent(QFocusEvent *event)
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    rightClickMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
 
     QAction *shearM = rightClickMenu.addAction(tr("Shear"),this,SLOT(cut()));
     QAction *copyM = rightClickMenu.addAction(tr("Copy"),this,SLOT(copy()));

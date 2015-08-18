@@ -1,6 +1,7 @@
 #include "musictimerwidget.h"
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
+#include "musicuiobject.h"
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
         : MusicMoveDialogAbstract(parent),
@@ -17,7 +18,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -29,11 +30,11 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     ui->timerToPlay->setIcon(QIcon(":/control/timerPlay"));
     ui->timerToStop->setIcon(QIcon(":/control/timerStop"));
     ui->timerToShutdown->setIcon(QIcon(":/control/timerDown"));
-    ui->timerToPlay->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->timerToStop->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->timerToShutdown->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->confirm->setStyleSheet(MusicObject::MusicSettingSubmitButton);
-    ui->cancel->setStyleSheet(MusicObject::MusicSettingSubmitButton);
+    ui->timerToPlay->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->timerToStop->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->timerToShutdown->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->confirm->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
+    ui->cancel->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
     ui->timerToPlay->setCursor(QCursor(Qt::PointingHandCursor));
     ui->timerToStop->setCursor(QCursor(Qt::PointingHandCursor));
     ui->timerToShutdown->setCursor(QCursor(Qt::PointingHandCursor));
@@ -165,13 +166,13 @@ void MusicTimerWidget::initFirstWidget()
     ui->secComboBox1->addItems(m_second);
     ui->repeatComboBox1->addItems(m_repeat);
     ui->plistComboBox->addItem(tr("defualt"));
-    ui->noSetRadioButton1->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->setRadioButton1->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->hourComboBox1->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->secComboBox1->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->repeatComboBox1->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->plistComboBox->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->psongComboBox->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->noSetRadioButton1->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->setRadioButton1->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->hourComboBox1->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->secComboBox1->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->repeatComboBox1->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->plistComboBox->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->psongComboBox->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
     connect(ui->noSetRadioButton1,SIGNAL(clicked()),SLOT(setEnabledControlFalse1()));
     connect(ui->setRadioButton1,SIGNAL(clicked()),SLOT(setEnabledControlTrue1()));
 }
@@ -182,11 +183,11 @@ void MusicTimerWidget::initSecondWidget()
     ui->hourComboBox2->addItems(m_hour);
     ui->secComboBox2->addItems(m_second);
     ui->repeatComboBox2->addItems(m_repeat);
-    ui->noSetRadioButton2->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->setRadioButton2->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->hourComboBox2->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->secComboBox2->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->repeatComboBox2->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->noSetRadioButton2->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->setRadioButton2->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->hourComboBox2->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->secComboBox2->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->repeatComboBox2->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
     connect(ui->noSetRadioButton2,SIGNAL(clicked()),SLOT(setEnabledControlFalse2()));
     connect(ui->setRadioButton2,SIGNAL(clicked()),SLOT(setEnabledControlTrue2()));
 }
@@ -197,11 +198,11 @@ void MusicTimerWidget::initThreeWidget()
     ui->hourComboBox3->addItems(m_hour);
     ui->secComboBox3->addItems(m_second);
     ui->repeatComboBox3->addItems(m_repeat);
-    ui->noSetRadioButton3->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->setRadioButton3->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->hourComboBox3->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->secComboBox3->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->repeatComboBox3->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->noSetRadioButton3->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->setRadioButton3->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->hourComboBox3->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->secComboBox3->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->repeatComboBox3->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
     connect(ui->noSetRadioButton3,SIGNAL(clicked()),SLOT(setEnabledControlFalse3()));
     connect(ui->setRadioButton3,SIGNAL(clicked()),SLOT(setEnabledControlTrue3()));
 }

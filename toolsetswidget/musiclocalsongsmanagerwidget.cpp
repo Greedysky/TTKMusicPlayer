@@ -23,7 +23,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -54,11 +54,11 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
                                   "QPushButton::hover{ border:1px solid #000000;}");
 
 
-    ui->showlistButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->showlistButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->filterComboBox->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->filterComboBox->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
 
-    ui->showPathButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->showPathButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     connect(ui->scanButton,SIGNAL(clicked()),SLOT(filterIndexChanged()));

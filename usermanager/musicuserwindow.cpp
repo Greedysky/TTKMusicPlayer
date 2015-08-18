@@ -1,5 +1,5 @@
 #include "musicuserwindow.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "ui_musicuserwindow.h"
 #include "musicuserdialog.h"
 #include "musicusermodel.h"
@@ -12,8 +12,8 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent),ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
-    ui->userLogin->setStyleSheet(MusicObject::MusicMainFunctionButtonForStackWidget);
-    ui->userName->setStyleSheet(MusicObject::MusicUserWindowButtonStyle);
+    ui->userLogin->setStyleSheet(MusicUIObject::MusicMainFunctionButtonForStackWidget);
+    ui->userName->setStyleSheet(MusicUIObject::MusicUserWindowButtonStyle);
     ui->userLogin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->userName->setCursor(QCursor(Qt::PointingHandCursor));
 

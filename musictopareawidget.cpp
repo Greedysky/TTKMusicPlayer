@@ -3,6 +3,7 @@
 #include "musicuserwindow.h"
 #include "musicbackgroundskindialog.h"
 #include "musicbgthememanager.h"
+#include "musicuiobject.h"
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicbgskin(NULL)
@@ -31,26 +32,26 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowChangeSkin->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->musicWindowChangeSkin->setIconSize(QSize(22,22));
     ui->musicWindowChangeSkin->setIcon(QIcon(QString::fromUtf8(":/image/windowskin")));
     connect(ui->musicWindowChangeSkin,SIGNAL(clicked()) ,SLOT(musicShowSkinChangedWindow()));
 
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowConcise->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->musicWindowConcise->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(":/image/concisein")));
     connect(ui->musicWindowConcise,SIGNAL(clicked()), parent(), SLOT(musicWindowConciseChanged()));
 
     ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowRemote->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->musicWindowRemote->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->musicWindowRemote->setIcon(QIcon(QString::fromUtf8(":/image/windowremote")));
     connect(ui->musicWindowRemote,SIGNAL(clicked()), parent(), SLOT(musicSquareRemote()));
 
     QPixmap minPix  = style()->standardPixmap(QStyle::SP_TitleBarMinButton);
     ui->minimization->setIcon(QIcon(minPix.scaled(25,25)));
-    ui->minimization->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->minimization->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
     connect(ui->minimization,SIGNAL(clicked()), parent(), SLOT(hide()));
@@ -58,7 +59,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->windowClose->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->windowClose->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->windowClose->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/close")).scaled(25,25)));
     connect(ui->windowClose,SIGNAL(clicked()), parent(), SLOT(close()));
 }

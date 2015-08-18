@@ -2,7 +2,7 @@
 #include "musicsongsListwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsettingmanager.h"
-
+#include "musicuiobject.h"
 #include <QTableWidgetItem>
 #include <QDebug>
 #include <QFileInfo>
@@ -14,7 +14,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
     QToolBox(parent),m_renameLine(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setStyleSheet(MusicObject::QToolBoxItemStyle);
+    setStyleSheet(MusicUIObject::QToolBoxItemStyle);
     for(int i=0; i<3; ++i)
     {
       MusicSongsListWidget* w = new MusicSongsListWidget(this);
@@ -105,7 +105,7 @@ void MusicSongsSummarizied::updateArtPicture()
 
 void MusicSongsSummarizied::updateToolStyle()
 {
-    setStyleSheet(MusicObject::QToolBoxItemStyle);
+    setStyleSheet(MusicUIObject::QToolBoxItemStyle);
 }
 
 QString MusicSongsSummarizied::itemText(int row,int col) const
@@ -226,7 +226,7 @@ void MusicSongsSummarizied::currentIndexChanged(int)
 void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
     menu.addAction(QIcon(":/contextMenu/delete"),tr("deleteItem"), this, SLOT(deleteItem()));
     menu.addAction(QIcon(":/contextMenu/add"),tr("addNewItem"), this, SLOT(addNewItem()));
     menu.addAction(tr("changItemName"), this, SLOT(changItemName()));

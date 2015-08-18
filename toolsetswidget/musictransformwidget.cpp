@@ -26,20 +26,20 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     m_process = new QProcess(this);
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->inputButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->outputButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->formatCombo->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->kbpsCombo->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->hzCombo->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->msCombo->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->transformButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->inputLineEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->outputLineEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
+    ui->inputButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->outputButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->formatCombo->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->kbpsCombo->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->hzCombo->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->msCombo->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->transformButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->inputLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->outputLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
 
     ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -50,7 +50,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     connect(ui->transformButton,SIGNAL(clicked()),SLOT(startTransform()));
     connect(m_process,SIGNAL(finished(int)),SLOT(transformFinish(int)));
 
-    ui->folderBox->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    ui->folderBox->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
     connect(ui->folderBox,SIGNAL(clicked(bool)),SLOT(folderBoxChecked(bool)));
     initControlParameter();
 

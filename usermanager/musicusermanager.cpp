@@ -1,5 +1,5 @@
 #include "musicusermanager.h"
-#include "musicobject.h"
+#include "MusicUIObject.h"
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
@@ -13,9 +13,9 @@ MusicUserManager::MusicUserManager(QWidget *parent)
 
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet("image:url(:/share/defaultArt)");
-    ui->cancelButton->setStyleSheet(MusicObject::MusicLoginPushButtonStyle);
-    ui->logoffButton->setStyleSheet(MusicObject::MusicLoginPushButtonStyle);
-    ui->modifiedName->setStyleSheet(MusicObject::MusicLoginPushButtonStyle);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
+    ui->logoffButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
+    ui->modifiedName->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
     connect(ui->cancelButton,SIGNAL(clicked()),SLOT(musicUserCancel()));
     connect(ui->logoffButton,SIGNAL(clicked()),SLOT(musicUserLogoff()));
     connect(ui->modifiedName,SIGNAL(clicked()),SLOT(modifiedUserName()));

@@ -9,10 +9,10 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     QRect deskRect = QApplication::desktop()->availableGeometry();
     move( deskRect.width() - width() - 150, height() + 70);
 
-    m_PreSongButton->setStyleSheet(MusicObject::MusicRemoteControlButton);
-    m_NextSongButton->setStyleSheet(MusicObject::MusicRemoteControlButton);
-    m_PlayButton->setStyleSheet(MusicObject::MusicRemoteControlButton);
-    m_SettingButton->setStyleSheet(MusicObject::MusicRemoteControlButton);
+    m_PreSongButton->setStyleSheet(MusicUIObject::MusicRemoteControlButton);
+    m_NextSongButton->setStyleSheet(MusicUIObject::MusicRemoteControlButton);
+    m_PlayButton->setStyleSheet(MusicUIObject::MusicRemoteControlButton);
+    m_SettingButton->setStyleSheet(MusicUIObject::MusicRemoteControlButton);
     m_showMainWindow->setIconSize(QSize(40,40));
     m_PreSongButton->setIconSize(QSize(30,30));
     m_NextSongButton->setIconSize(QSize(30,30));

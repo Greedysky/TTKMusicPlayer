@@ -1,7 +1,7 @@
 #include "musiclrcartphotoupload.h"
 #include "ui_musiclrcartphotoupload.h"
+#include "musicuiobject.h"
 #include "musicobject.h"
-
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -19,14 +19,14 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     setMask(bmp);
     //set window radius
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->artSearchEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->uploadButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->closeButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->selectButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->artSearchEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->uploadButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->closeButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->selectButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
 
     ui->uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));

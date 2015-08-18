@@ -1,5 +1,6 @@
 #include "musiclrccontainerfordesktop.h"
 #include "musiclrcmanagerfordesktop.h"
+#include "musicuiobject.h"
 #include <QVBoxLayout>
 #include <QDesktopWidget>
 #include <QApplication>
@@ -141,15 +142,15 @@ void MusicLrcContainerForDesktop::setButtonCursor()
 
     m_showMainWindow->setStyleSheet("QPushButton{background:transparent;border-none;}\
                                      QPushButton::hover{image:url(:/image/shadow);}");
-    m_toolCloseButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolWindowLockedButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolLrcSmallerButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolUpdateLrcButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolLrcBigerButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolPreSongButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolNextSongButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolPlayButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
-    m_toolSettingButton->setStyleSheet(MusicObject::QToolButtonStyleDesktopTool);
+    m_toolCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolWindowLockedButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolUpdateLrcButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolLrcBigerButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolPreSongButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolNextSongButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolPlayButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolSettingButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
 }
 
 void MusicLrcContainerForDesktop::setButtonTips()
@@ -296,8 +297,8 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     QMenu changColorMenu(tr("changColorMenu"),this);
-    changColorMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    changColorMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));

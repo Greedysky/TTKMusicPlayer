@@ -127,6 +127,7 @@ HEADERS  += \
     core/musiclogger.h \
     core/musiclibexportglobal.h \
     core/musicobject.h \
+    core/musicuiobject.h \
     core/musicsingletone.h \
     musicapplication.h \
     localsearch/musiclocalsongsearch.h \

@@ -1,6 +1,7 @@
 #include "musicequalizerdialog.h"
 #include "ui_musicequalizerdialog.h"
 #include "musicsettingmanager.h"
+#include "musicuiobject.h"
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     MusicMoveDialogAbstract(parent),
@@ -17,7 +18,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -36,17 +37,17 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     ui->verticalSlider8->setRange(-15,15);
     ui->verticalSlider9->setRange(-15,15);
     ui->verticalSlider10->setRange(-15,15);
-    ui->bwVerticalSlider->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider1->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider2->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider3->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider4->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider5->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider6->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider7->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider8->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider9->setStyleSheet(MusicObject::MusicEQStyleVertical);
-    ui->verticalSlider10->setStyleSheet(MusicObject::MusicEQStyleVertical);
+    ui->bwVerticalSlider->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider1->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider2->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider3->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider4->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider5->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider6->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider7->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider8->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider9->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
+    ui->verticalSlider10->setStyleSheet(MusicUIObject::MusicEQStyleVertical);
 
     connect(ui->verticalSlider1,SIGNAL(valueChanged(int)),SLOT(verticalSlider1(int)));
     connect(ui->verticalSlider2,SIGNAL(valueChanged(int)),SLOT(verticalSlider2(int)));
@@ -61,21 +62,21 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
 
     connect(ui->showEqButton,SIGNAL(clicked()),SLOT(setEqEnable()));
     connect(ui->resetButton,SIGNAL(clicked()),SLOT(resetEq()));
-    ui->resetButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_3->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_4->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_5->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_6->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_7->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_8->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_9->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_10->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_11->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->funcButton_12->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->resetButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_3->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_4->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_5->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_6->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_7->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_8->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_9->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_10->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_11->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->funcButton_12->setStyleSheet(MusicUIObject::MusicSettingMainButton);
 
-    ui->checkBox_2->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->checkBox->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->checkBox_3->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    ui->checkBox_2->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->checkBox->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->checkBox_3->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
     ui->checkBox_2->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));
@@ -94,7 +95,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     connect(ui->funcButton_11,SIGNAL(clicked()),SLOT(setPitchDownEffect()));
     connect(ui->funcButton_12,SIGNAL(clicked()),SLOT(setPitchUpEffect()));
 
-    ui->eqChoice->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->eqChoice->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
     ui->eqChoice->addItems(QStringList()<<tr("Custom")<<tr("Default")<<tr("Classical")
                   <<tr("Club")<<tr("Dance")<<tr("Bass")<<tr("Soprano")<<tr("BassSoprano")
                   <<tr("Headset")<<tr("Hall")<<tr("Scene")<<tr("Pop")<<tr("Repaglinide")

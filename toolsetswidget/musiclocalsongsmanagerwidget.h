@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QMouseEvent>
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicmovedialogabstract.h"
 
 class QMovie;

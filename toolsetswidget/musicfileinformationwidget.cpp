@@ -1,6 +1,6 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicfileinformation.h"
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -20,12 +20,12 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->viewButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->viewButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->viewButton,SIGNAL(clicked()),SLOT(musicOpenFileDir()));
 }

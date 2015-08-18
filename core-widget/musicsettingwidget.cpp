@@ -22,18 +22,18 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ////////////////////////////////////////////////
     m_leftButtonPress = false;
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->normalSet->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->hotKeySet->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->inlineLrc->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->desktopLrc->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->confirm->setStyleSheet(MusicObject::MusicSettingSubmitButton);
-    ui->cancel->setStyleSheet(MusicObject::MusicSettingSubmitButton);
+    ui->normalSet->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->hotKeySet->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->inlineLrc->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->desktopLrc->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->confirm->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
+    ui->cancel->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
     ui->normalSet->setCursor(QCursor(Qt::PointingHandCursor));
     ui->hotKeySet->setCursor(QCursor(Qt::PointingHandCursor));
     ui->desktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
@@ -48,16 +48,16 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     connect(ui->cancel,SIGNAL(clicked()),this,SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->autoPlayShowInfoWidget->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->backPlayShowInfoWidget->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->minimumShowInfoWidget->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->quitShowInfoWidget->setStyleSheet(MusicObject::MusicSettingRadioButton);
+    ui->autoPlayShowInfoWidget->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->backPlayShowInfoWidget->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->minimumShowInfoWidget->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->quitShowInfoWidget->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
 
-    ui->languageComboBox->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
+    ui->languageComboBox->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
     ui->languageComboBox->addItems(QStringList()<<tr("0")<<tr("1")<<tr("2"));
     ////////////////////////////////////////////////
-    ui->showInlineSongWordWidget->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->showDesktopSongWordWidget->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    ui->showInlineSongWordWidget->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->showDesktopSongWordWidget->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
 
     ////////////////////////////////////////////////
     initInlineLrcWidget();
@@ -68,10 +68,10 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
 
 void MusicSettingWidget::initInlineLrcWidget()
 {
-    ui->fontComboBox->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontSizeComboBox->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontTypeComboBox->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontDefalutColorComboBox->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
+    ui->fontComboBox->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontDefalutColorComboBox->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
     ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->fontSizeComboBox->addItems(QStringList()<<tr("smaller")<<tr("small")
                                    <<tr("middle")<<tr("big")<<tr("bigger"));
@@ -83,18 +83,18 @@ void MusicSettingWidget::initInlineLrcWidget()
     connect(ui->fontTypeComboBox,SIGNAL(currentIndexChanged(int)),SLOT(showInlineLrcDemo(int)));
     connect(ui->fontDefalutColorComboBox,SIGNAL(currentIndexChanged(int)),SLOT(defaultLrcColorChanged(int)));
 
-    ui->transparentSlider->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
+    ui->transparentSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleHorizontal);
     ui->noPlayedPushButton->setIcon(QIcon(":/color/purple"));
-    ui->noPlayedPushButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->noPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playedPushButton->setIcon(QIcon(":/color/purple"));
-    ui->playedPushButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->playedPushButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->playedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButton,SIGNAL(clicked()),SLOT(inlineLrcBgChanged()));
     connect(ui->playedPushButton,SIGNAL(clicked()),SLOT(inlineLrcFgChanged()));
     connect(ui->transparentSlider,SIGNAL(valueChanged(int)),SLOT(inlineLrcTransChanged(int)));
 
-    ui->resetPushButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->resetPushButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->resetPushButton,SIGNAL(clicked()),SLOT(resetInlineParameter()));
 
@@ -103,10 +103,10 @@ void MusicSettingWidget::initInlineLrcWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
-    ui->fontComboBoxD->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontSizeComboBoxD->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontTypeComboBoxD->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
-    ui->fontDefalutColorComboBoxD->setStyleSheet(MusicObject::MusicLrcComboboxEditStyle);
+    ui->fontComboBoxD->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontSizeComboBoxD->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontTypeComboBoxD->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
+    ui->fontDefalutColorComboBoxD->setStyleSheet(MusicUIObject::MusicLrcComboboxEditStyle);
     ui->fontComboBoxD->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->fontSizeComboBoxD->addItems(QStringList()<<tr("smaller3")<<tr("smaller2")<<tr("smaller")<<tr("small3")
                                    <<tr("small2")<<tr("small")<<tr("middle")<<tr("big")<<tr("big2")<<tr("big3")
@@ -119,18 +119,18 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(ui->fontTypeComboBoxD,SIGNAL(currentIndexChanged(int)),SLOT(showDesktopLrcDemo(int)));
     connect(ui->fontDefalutColorComboBoxD,SIGNAL(currentIndexChanged(int)),SLOT(defaultDesktopLrcColorChanged(int)));
 
-    ui->transparentSliderD->setStyleSheet(MusicObject::MusicVolumeStyleHorizontal);
+    ui->transparentSliderD->setStyleSheet(MusicUIObject::MusicVolumeStyleHorizontal);
     ui->noPlayedPushButtonD->setIcon(QIcon(":/color/purple"));
-    ui->noPlayedPushButtonD->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->noPlayedPushButtonD->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->noPlayedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playedPushButtonD->setIcon(QIcon(":/color/purple"));
-    ui->playedPushButtonD->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->playedPushButtonD->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->playedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButtonD,SIGNAL(clicked()),SLOT(desktopBgChanged()));
     connect(ui->playedPushButtonD,SIGNAL(clicked()),SLOT(desktopFgChanged()));
     connect(ui->transparentSliderD,SIGNAL(valueChanged(int)),SLOT(desktopLrcTransChanged(int)));
 
-    ui->resetPushButtonD->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->resetPushButtonD->setStyleSheet(MusicUIObject::MusicSettingMainButton);
     ui->resetPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->resetPushButtonD,SIGNAL(clicked()),SLOT(resetDesktopParameter()));
 

@@ -7,7 +7,7 @@
 #include <QAudioInput>
 #include <QAudioOutput>
 #include <QAudioDeviceInfo>
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicmovedialogabstract.h"
 
 #define BufferSize 14096

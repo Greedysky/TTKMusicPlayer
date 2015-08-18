@@ -1,6 +1,6 @@
 #include "musiclrcsearchwidget.h"
 #include "ui_musiclrcsearchwidget.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
@@ -18,14 +18,14 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->songSearchEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->lrcSearchButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->lrcSearchDownload->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->closeButton->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->songSearchEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->lrcSearchButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->closeButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
 
     ui->lrcSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));

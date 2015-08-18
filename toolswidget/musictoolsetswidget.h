@@ -2,7 +2,7 @@
 #define MUSICTOOLSETSWIDGET_H
 
 #include <QListWidget>
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musiclibexportglobal.h"
 
 class QProcess;

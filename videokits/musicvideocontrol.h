@@ -3,7 +3,7 @@
 
 #include <QMenu>
 #include <QWidget>
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musiclibexportglobal.h"
 
 class QSlider;

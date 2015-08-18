@@ -1,7 +1,7 @@
 #include "musicdesktopwallpaperwidget.h"
 #include "ui_musicdesktopwallpaperwidget.h"
 #include "musicdesktopwallpaperthread.h"
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicdatadownloadthread.h"
 #include <QFileDialog>
 #include <QMessageBox>
@@ -22,7 +22,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -54,22 +54,22 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 
 void MusicDesktopWallpaperWidget::initWidgetStyle()
 {
-    ui->urlLineEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->netRadioButton->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->localRadioButton->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->playRadioButton->setStyleSheet(MusicObject::MusicSettingRadioButton);
-    ui->viewButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->cancelButton->setStyleSheet(MusicObject::MusicSettingSubmitButton);
-    ui->confirmButton->setStyleSheet(MusicObject::MusicSettingSubmitButton);
-    ui->stopButton->setStyleSheet(MusicObject::MusicSettingSubmitButton);
-    ui->pictureEffect->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->pictureFunc->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->pictureType->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->timeH->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->timeM->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->timeS->setStyleSheet(MusicObject::MusicEqComboboxEditStyle);
-    ui->openWithstart->setStyleSheet(MusicObject::MusicSettingCheckButton);
-    ui->recoveryWallpaper->setStyleSheet(MusicObject::MusicSettingCheckButton);
+    ui->urlLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->netRadioButton->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->localRadioButton->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->playRadioButton->setStyleSheet(MusicUIObject::MusicSettingRadioButton);
+    ui->viewButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
+    ui->stopButton->setStyleSheet(MusicUIObject::MusicSettingSubmitButton);
+    ui->pictureEffect->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->pictureFunc->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->pictureType->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->timeH->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->timeM->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->timeS->setStyleSheet(MusicUIObject::MusicEqComboboxEditStyle);
+    ui->openWithstart->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->recoveryWallpaper->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
 
     ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));

@@ -1,6 +1,7 @@
 #include "musiclrcmakerwidget.h"
 #include "ui_musiclrcmakerwidget.h"
 #include "musicobject.h"
+#include "musicuiobject.h"
 
 #include <QMessageBox>
 #include <QTime>
@@ -24,22 +25,22 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
     const QString textStyle = "QTextEdit{ border: 1px solid gray;} \
                                QTextEdit::hover{ border: 1px solid #AAAAFF;}";
-    ui->artNameEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->songNameEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
-    ui->authorNameEdit->setStyleSheet(MusicObject::MusicLoginEditStyle);
+    ui->artNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->songNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->authorNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
     ui->introductionTextEdit->setStyleSheet( textStyle );
     ui->lrcTextEdit->setStyleSheet( textStyle );
 
-    ui->makeButton->setStyleSheet( MusicObject::MusicSettingMainButton);
-    ui->saveButton->setStyleSheet( MusicObject::MusicSettingMainButton);
-    ui->reviewButton->setStyleSheet( MusicObject::MusicSettingMainButton);
+    ui->makeButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
+    ui->saveButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
+    ui->reviewButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
     ui->makeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->reviewButton->setCursor(QCursor(Qt::PointingHandCursor));

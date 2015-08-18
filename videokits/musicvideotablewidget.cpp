@@ -55,7 +55,7 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
     setStyleSheet("QTableWidget{selection-background-color: rgba(20,20,20,100);}" + \
-                   MusicObject::MusicScrollBarStyle);
+                   MusicUIObject::MusicScrollBarStyle);
     QTableWidgetItem *item = new QTableWidgetItem(QString::number( count ));
     item->setTextColor(QColor(50,50,50));
     item->setTextAlignment(Qt::AlignCenter);

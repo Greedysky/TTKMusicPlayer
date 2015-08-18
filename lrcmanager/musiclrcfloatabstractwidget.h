@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QPropertyAnimation>
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include "musiclibexportglobal.h"
 
 class MUSIC_WIDGET_EXPORT MusicLrcFloatAbstractWidget : public QLabel

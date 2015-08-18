@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QTimer>
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicmovewidgetabstract.h"
 
 class QProcess;

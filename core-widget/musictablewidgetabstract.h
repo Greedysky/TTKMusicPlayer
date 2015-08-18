@@ -5,6 +5,7 @@
 #include <QHeaderView>
 #include "musiclibexportglobal.h"
 #include "musicobject.h"
+#include "musicuiobject.h"
 
 class MUSIC_WIDGET_EXPORT MusicTableWidgetAbstract : public QTableWidget
 {

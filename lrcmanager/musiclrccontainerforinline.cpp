@@ -2,6 +2,7 @@
 #include "musiclrcmanagerforinline.h"
 #include "musiclrcartphotoupload.h"
 #include "musiclrcfloatwidget.h"
+#include "musicuiobject.h"
 
 #include <QVBoxLayout>
 #include <QPainter>
@@ -298,9 +299,9 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
     QMenu changColorMenu(tr("changColorMenu"),this);
     QMenu changeLrcSize(tr("changeLrcSize"),this);
-    changColorMenu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    changeLrcSize.setStyleSheet(MusicObject::MusicSystemTrayMenu);
-    menu.setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    changColorMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    changeLrcSize.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));

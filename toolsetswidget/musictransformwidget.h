@@ -6,6 +6,7 @@
 #include <QTimer>
 
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicmovedialogabstract.h"
 
 class QMovie;

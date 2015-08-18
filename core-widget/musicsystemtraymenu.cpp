@@ -1,5 +1,5 @@
 #include "musicsystemtraymenu.h"
-#include "core\musicobject.h"
+#include "musicuiobject.h"
 #include <QWidgetAction>
 #include <QToolButton>
 #include <QVBoxLayout>
@@ -9,7 +9,7 @@
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
-    setStyleSheet(MusicObject::MusicSystemTrayMenu);
+    setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
     createWidgetActions();
     addAction(m_widgetAction);
     m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"),this);
@@ -56,9 +56,9 @@ void MusicSystemTrayMenu::createWidgetActions()
     m_nextPlay->setIconSize(QSize(40,40));
     m_PlayOrStop->setIconSize(QSize(45,45));
 
-    m_previousPlay->setStyleSheet(MusicObject::MusicSystemTrayToolButtonStyle);
-    m_nextPlay->setStyleSheet(MusicObject::MusicSystemTrayToolButtonStyle);
-    m_PlayOrStop->setStyleSheet(MusicObject::MusicSystemTrayToolButtonStyle);
+    m_previousPlay->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
+    m_nextPlay->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
+    m_PlayOrStop->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
 
     m_previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     m_nextPlay->setCursor(QCursor(Qt::PointingHandCursor));

@@ -1,5 +1,6 @@
 #include "musicbackgroundskindialog.h"
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include "ui_musicbackgroundskindialog.h"
 #include <QFileDialog>
 #include <QColorDialog>
@@ -19,24 +20,24 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     //set window radius
 
     ui->themeListWidget->setFrameShape(QFrame::NoFrame);//Set No Border
-    ui->themeListWidget->setStyleSheet(MusicObject::MusicScrollBarStyle);
+    ui->themeListWidget->setStyleSheet(MusicUIObject::MusicScrollBarStyle);
     ui->themeListWidget->setIconSize(QSize(100,80));
     ui->themeListWidget->setViewMode(QListView::IconMode);
     ui->themeListWidget->setMovement(QListView::Static);
 
     ui->showPerArea->setWordWrap(true);
-    ui->bgTransparentSlider->setStyleSheet(MusicObject::MusicVolumeStyleVertical);
-    ui->bgTransparentSliderR->setStyleSheet(MusicObject::MusicVolumeStyleVertical);
+    ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleVertical);
+    ui->bgTransparentSliderR->setStyleSheet(MusicUIObject::MusicVolumeStyleVertical);
     ui->bgTransparentSliderR->setValue(100);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->netSkin->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->paletteButton->setStyleSheet(MusicObject::MusicSettingMainButton);
-    ui->customSkin->setStyleSheet(MusicObject::MusicSettingMainButton);
+    ui->mySkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->netSkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->customSkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
 
     this->addThemeListWidgetItem();
 
