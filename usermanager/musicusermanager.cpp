@@ -13,9 +13,9 @@ MusicUserManager::MusicUserManager(QWidget *parent)
 
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet("image:url(:/share/defaultArt)");
-    ui->cancelButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->logoffButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->modifiedName->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->logoffButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->modifiedName->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     connect(ui->cancelButton,SIGNAL(clicked()),SLOT(musicUserCancel()));
     connect(ui->logoffButton,SIGNAL(clicked()),SLOT(musicUserLogoff()));
     connect(ui->modifiedName,SIGNAL(clicked()),SLOT(modifiedUserName()));

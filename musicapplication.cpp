@@ -264,7 +264,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
     rightClickMenu.addAction(QIcon(":/contextMenu/login"),tr("logout"),m_topAreaWidget,SLOT(musicUserContextLogin()));
     rightClickMenu.addSeparator();
 
@@ -335,7 +335,7 @@ void MusicApplication::createSystemTrayIcon()
 
     createMenuActions();
 
-    m_systemTrayMenu = new MusicSystemTrayMenu(this);
+    m_systemTrayMenu = new MMenuStyle01(this);
     connect(m_systemTrayMenu,SIGNAL(setShowDesktopLrc(bool)),SLOT(setShowDesktopLrc(bool)));
     connect(m_systemTrayMenu,SIGNAL(setWindowLockedChanged()),m_musiclrcfordesktop,SLOT(setWindowLockedChanged()));
     connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
@@ -364,7 +364,7 @@ void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
 
 void MusicApplication::createPlayModeMenu(QMenu& menu)
 {
-    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(tr("OrderPlay"),this,SLOT(musicPlayOrder()));
     menu.addAction(tr("RandomPlay"),this,SLOT(musicPlayRandom()));
     menu.addAction(tr("ListCycle"),this,SLOT(musicPlayListLoop()));
@@ -843,7 +843,7 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList & path)
 void MusicApplication::musicImportSongs()
 {
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(tr("openOnlyFiles"),this,SLOT(musicImportSongsOnlyFile()));
     menu.addAction(tr("openOnlyDir"),this,SLOT(musicImportSongsOnlyDir()));
     menu.addSeparator();

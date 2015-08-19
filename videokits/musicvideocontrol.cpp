@@ -30,9 +30,9 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_timeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumnSlider->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_popupVolumn.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
-    m_timeSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleHorizontal);
-    m_volumnSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleVertical);
+    m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
 
     QHBoxLayout *controlLayout = new QHBoxLayout(this);
     controlLayout->addWidget(m_menuButton);

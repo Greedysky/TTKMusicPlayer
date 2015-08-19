@@ -25,13 +25,13 @@ void MusicSpectrumWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
-    const QString MusicSystemTrayMenu = " \
+    const QString MMenuStyle01 = " \
            QMenu { background-color: white; border: 1px solid gray;padding: 5px; }\
            QMenu::item {padding: 5px 25px 5px 30px;border: 1px solid transparent; }\
            QMenu::item:disabled {color: #666666;}\
            QMenu::item:selected { color: white; background: #BBBBBB;}\
            QMenu::separator {height: 1px;background: #BBBBBB;margin-top: 5px; margin-bottom: 5px;}";
-    rightClickMenu.setStyleSheet(MusicSystemTrayMenu);
+    rightClickMenu.setStyleSheet(MMenuStyle01);
     rightClickMenu.addAction(tr("close"),this,SLOT(close()));
     rightClickMenu.exec(QCursor::pos());
 }

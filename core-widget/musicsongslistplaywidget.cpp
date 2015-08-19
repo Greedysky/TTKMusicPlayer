@@ -46,14 +46,14 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
 
     m_addButton = new QToolButton(this);
     m_addButton->setGeometry(184,35,23,23);
-    m_addButton->setStyleSheet( MusicUIObject::MusicBestLoveToolButtonStyle );
+    m_addButton->setStyleSheet( MusicUIObject::MToolButtonStyle05 );
     m_addButton->setIcon(QIcon(":/image/addtoplaylist"));
     m_addButton->setIconSize(QSize(23,23));
     m_addButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_addButton->setToolTip(tr("addToPlayList"));
     m_addButton->setMenu(&m_listMenu);
     m_addButton->setPopupMode(QToolButton::InstantPopup);
-    m_listMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    m_listMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_listMenu.addAction(tr("myLoveSongItem"),parent,SLOT(addPlaySongToLovestListAt()));
     m_listMenu.addAction(tr("myNetSongItem")/*,parent,SLOT(addMusicSongToLovestListAt())*/);
 

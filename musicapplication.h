@@ -20,7 +20,7 @@ class MusicSongsListWidget;
 class MusicSongsSummarizied;
 class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
-class MusicSystemTrayMenu;
+class MMenuStyle01;
 class MusicRemoteWidget;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
@@ -180,7 +180,7 @@ private:
     QSystemTrayIcon* m_systemTray;
 
     QMenu m_playModeMenu;
-    MusicSystemTrayMenu *m_systemTrayMenu;
+    MMenuStyle01 *m_systemTrayMenu;
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
     MusicLocalSongSearch* m_musicLocalSongSearch;

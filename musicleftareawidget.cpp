@@ -45,19 +45,19 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_tools->setIconSize(QSize(35,35));
     ui->musicPlayMode->setIconSize(QSize(25,25));
 
-    ui->musicSoundSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleHorizontal);
-    ui->musicPrivious->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicNext->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicKey->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicBestLove->setStyleSheet(MusicUIObject::MusicBestLoveToolButtonStyle);
-    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
-    ui->music3DPlayButton->setStyleSheet(MusicUIObject::MusicBestLoveToolButtonStyle);
-    ui->musicButton_cloud->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicButton_mydownl->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicButton_playlist->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicButton_radio->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicButton_tools->setStyleSheet(MusicUIObject::QToolButtonStyle);
-    ui->musicPlayMode->setStyleSheet(MusicUIObject::QToolButtonMenuPopStyle);
+    ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    ui->musicPrivious->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->music3DPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle02);
 
     ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));

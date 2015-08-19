@@ -47,7 +47,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
     m_volumnLabel->setFixedSize(QSize(20,20));
     m_volumnSlider = new QSlider(Qt::Horizontal, m_volumnWidget);
     m_volumnSlider->setRange(0,100);
-    m_volumnSlider->setStyleSheet(MusicUIObject::MusicRemoteControlSlider);
+    m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
     m_volumnSlider->setFixedWidth(45);
     volumnLayout->addWidget(m_volumnLabel);
     volumnLayout->addWidget(m_volumnSlider);
@@ -72,7 +72,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MusicRemoteControlMenu);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(QIcon(":/share/selected"),tr("WindowTop"))->setEnabled(false);
     menu.addSeparator();
     menu.addAction(tr("showMainWindow"),this,SIGNAL(musicWindowSignal()));

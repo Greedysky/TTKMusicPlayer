@@ -8,12 +8,12 @@ class QLabel;
 class QWidgetAction;
 class QToolButton;
 
-class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
+class MUSIC_WIDGET_EXPORT MMenuStyle01 : public QMenu
 {
     Q_OBJECT
 public:
-    MusicSystemTrayMenu(QWidget *parent = 0);
-    ~MusicSystemTrayMenu();
+    MMenuStyle01(QWidget *parent = 0);
+    ~MMenuStyle01();
 
     void setLabelText(const QString&);
     void showDesktopLrc(const QString&);

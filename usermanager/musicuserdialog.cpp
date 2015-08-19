@@ -19,7 +19,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     changeVerificationCode();
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -62,11 +62,11 @@ void MusicUserDialog::writeToUserConfig()
 
 void MusicUserDialog::firstStatckWidget()
 {
-    ui->userComboBox->setStyleSheet(MusicUIObject::MusicLoginComboboxEditStyle);
-    ui->passwLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->loginButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->forgotPwdButton->setStyleSheet(MusicUIObject::MusicPushButtonTextStyle);
-    ui->registerButton->setStyleSheet(MusicUIObject::MusicPushButtonTextStyle);
+    ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
     ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -78,13 +78,13 @@ void MusicUserDialog::firstStatckWidget()
 
 void MusicUserDialog::secondStatckWidget()
 {
-    ui->registerUserLine->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->registerMailLine->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->registerPwdLine->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->registerPwdCLine->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->agreementButton->setStyleSheet(MusicUIObject::MusicPushButtonTextStyle);
+    ui->registerUserLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->registerMailLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->registerPwdLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->registerPwdCLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -106,12 +106,12 @@ void MusicUserDialog::secondStatckWidget()
 
 void MusicUserDialog::thirdStatckWidget()
 {
-    ui->userLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->pwdLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->mailLineEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->confirmButton_2->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
-    ui->cancelButton_2->setStyleSheet(MusicUIObject::MusicLoginPushButtonStyle);
+    ui->userLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->pwdLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->mailLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     ui->confirmButton_2->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton_2->setCursor(QCursor(Qt::PointingHandCursor));
@@ -125,7 +125,7 @@ void MusicUserDialog::thirdStatckWidget()
     ui->mailLineEdit->setValidator(valid);
 
     ui->pwdLineEdit->setLabel(Passwd,ui->pwdLineEditR,ui->labelRigh_5);
-    ui->verificationCode->setStyleSheet(MusicUIObject::MusicVCodePushButtonStyle);
+    ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     connect(ui->verificationCode,SIGNAL(clicked()),
                                  SLOT(changeVerificationCode()));
 }

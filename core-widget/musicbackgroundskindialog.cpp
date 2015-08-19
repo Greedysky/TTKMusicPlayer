@@ -20,24 +20,24 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     //set window radius
 
     ui->themeListWidget->setFrameShape(QFrame::NoFrame);//Set No Border
-    ui->themeListWidget->setStyleSheet(MusicUIObject::MusicScrollBarStyle);
+    ui->themeListWidget->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->themeListWidget->setIconSize(QSize(100,80));
     ui->themeListWidget->setViewMode(QListView::IconMode);
     ui->themeListWidget->setMovement(QListView::Static);
 
     ui->showPerArea->setWordWrap(true);
-    ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleVertical);
-    ui->bgTransparentSliderR->setStyleSheet(MusicUIObject::MusicVolumeStyleVertical);
+    ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
+    ui->bgTransparentSliderR->setStyleSheet(MusicUIObject::MSliderStyle02);
     ui->bgTransparentSliderR->setValue(100);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->netSkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->paletteButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->customSkin->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle01);
 
     this->addThemeListWidgetItem();
 

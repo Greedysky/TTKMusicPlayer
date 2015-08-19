@@ -142,15 +142,15 @@ void MusicLrcContainerForDesktop::setButtonCursor()
 
     m_showMainWindow->setStyleSheet("QPushButton{background:transparent;border-none;}\
                                      QPushButton::hover{image:url(:/image/shadow);}");
-    m_toolCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolWindowLockedButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolUpdateLrcButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolLrcBigerButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolPreSongButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolNextSongButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolPlayButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
-    m_toolSettingButton->setStyleSheet(MusicUIObject::QToolButtonStyleDesktopTool);
+    m_toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolUpdateLrcButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolLrcBigerButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolPreSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolNextSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolSettingButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
 }
 
 void MusicLrcContainerForDesktop::setButtonTips()
@@ -297,8 +297,8 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     QMenu changColorMenu(tr("changColorMenu"),this);
-    changColorMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
-    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));

@@ -19,14 +19,14 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     setMask(bmp);
     //set window radius
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->artSearchEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->uploadButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->closeButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->selectButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
 
     ui->uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));

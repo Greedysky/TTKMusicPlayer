@@ -18,7 +18,7 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -30,10 +30,10 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     ui->stopButton->setIcon(QIcon(":/image/stop"));
     ui->colletButton->setIcon(QIcon(":/radio/collect"));
     ui->discolletButton->setIcon(QIcon(":/radio/discollect"));
-    ui->playButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->stopButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->colletButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
-    ui->discolletButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->colletButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->discolletButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->playButton->setIconSize(QSize(31,31));
     ui->stopButton->setIconSize(QSize(31,31));
     ui->colletButton->setIconSize(QSize(31,31));
@@ -46,7 +46,7 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     ui->stopButton->setToolTip(tr("Stop"));
     ui->colletButton->setToolTip(tr("Colletion"));
     ui->discolletButton->setToolTip(tr("Discolletion"));
-    ui->volumnSlider->setStyleSheet(MusicUIObject::MusicVolumeStyleHorizontal);
+    ui->volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->volumnSlider->setRange(0,100);
     ui->volumnSlider->setValue(100);
 

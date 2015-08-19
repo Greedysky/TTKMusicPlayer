@@ -82,7 +82,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"),&rightClickMenu);
-    rightClickMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
     rightClickMenu.addAction(tr("changSongName"),this,SLOT(setChangSongName()));
     rightClickMenu.addAction(QIcon(":/contextMenu/play"),tr("musicPlay"),this,SLOT(musicPlay()));
 

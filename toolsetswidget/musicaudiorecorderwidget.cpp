@@ -19,21 +19,21 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     //set window radius
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
-    ui->startButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->startButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->startButton->setToolTip(tr("startAudio"));
-    ui->stopButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->stopButton->setToolTip(tr("stopAudio"));
-    ui->playButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playButton->setToolTip(tr("playAudio"));
-    ui->saveButton->setStyleSheet(MusicUIObject::MusicSettingMainButton);
+    ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setToolTip(tr("saveButton"));
 
@@ -42,11 +42,11 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     connect(ui->playButton,SIGNAL(clicked()),SLOT(onRecordPlay()));
     connect(ui->saveButton,SIGNAL(clicked()),SLOT(onRecordSave()));
 
-    ui->checkBox->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
-    ui->checkBox_2->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
-    ui->checkBox_3->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
-    ui->checkBox_4->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
-    ui->checkBox_5->setStyleSheet(MusicUIObject::MusicSettingCheckButton);
+    ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->checkBox_3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->checkBox_4->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->checkBox_5->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->checkBox->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox_2->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));

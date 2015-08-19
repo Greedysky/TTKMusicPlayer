@@ -14,7 +14,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
-    setStyleSheet(MusicUIObject::MusicScrollBarStyle);
+    setStyleSheet(MusicUIObject::MScrollBarStyle01);
     setIconSize(QSize(60,60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);

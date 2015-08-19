@@ -14,7 +14,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
     QToolBox(parent),m_renameLine(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setStyleSheet(MusicUIObject::QToolBoxItemStyle);
+    setStyleSheet(MusicUIObject::MToolBoxStyle01);
     for(int i=0; i<3; ++i)
     {
       MusicSongsListWidget* w = new MusicSongsListWidget(this);
@@ -105,7 +105,7 @@ void MusicSongsSummarizied::updateArtPicture()
 
 void MusicSongsSummarizied::updateToolStyle()
 {
-    setStyleSheet(MusicUIObject::QToolBoxItemStyle);
+    setStyleSheet(MusicUIObject::MToolBoxStyle01);
 }
 
 QString MusicSongsSummarizied::itemText(int row,int col) const
@@ -226,7 +226,7 @@ void MusicSongsSummarizied::currentIndexChanged(int)
 void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(QIcon(":/contextMenu/delete"),tr("deleteItem"), this, SLOT(deleteItem()));
     menu.addAction(QIcon(":/contextMenu/add"),tr("addNewItem"), this, SLOT(addNewItem()));
     menu.addAction(tr("changItemName"), this, SLOT(changItemName()));

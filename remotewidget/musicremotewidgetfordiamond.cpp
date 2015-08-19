@@ -8,13 +8,13 @@ MusicRemoteWidgetForDiamond::MusicRemoteWidgetForDiamond(QWidget *parent)
     QRect deskRect = QApplication::desktop()->availableGeometry();
     move( deskRect.width() - width() - 150, height() + 70);
 
-    const QString MusicRemoteControlButton = "\
+    const QString MPushButtonStyle08 = "\
            QPushButton{background:transparent;border-none;}\
            QPushButton::hover{image:url(:/image/shadow);}";
-    m_PreSongButton->setStyleSheet(MusicRemoteControlButton);
-    m_NextSongButton->setStyleSheet(MusicRemoteControlButton);
-    m_PlayButton->setStyleSheet(MusicRemoteControlButton);
-    m_SettingButton->setStyleSheet(MusicRemoteControlButton);
+    m_PreSongButton->setStyleSheet(MPushButtonStyle08);
+    m_NextSongButton->setStyleSheet(MPushButtonStyle08);
+    m_PlayButton->setStyleSheet(MPushButtonStyle08);
+    m_SettingButton->setStyleSheet(MPushButtonStyle08);
     m_showMainWindow->setIconSize(QSize(40,40));
     m_mainWidget->setStyleSheet("#mainWidget{background:transparent}");
 

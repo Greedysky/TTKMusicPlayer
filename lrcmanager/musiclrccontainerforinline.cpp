@@ -299,9 +299,9 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     QMenu menu(this);
     QMenu changColorMenu(tr("changColorMenu"),this);
     QMenu changeLrcSize(tr("changeLrcSize"),this);
-    changColorMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
-    changeLrcSize.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
-    menu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    changeLrcSize.setStyleSheet(MusicUIObject::MMenuStyle01);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));

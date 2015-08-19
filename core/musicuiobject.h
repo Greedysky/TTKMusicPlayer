@@ -16,24 +16,24 @@ namespace MusicUIObject
 {
 ///ToolButton
 //////////////////////////////////////////////////////
-    const QString QToolButtonStyle = " \
+    const QString MToolButtonStyle01 = " \
            QToolButton{background-color:transparent;}\
            QToolButton::hover{background-color:rgba(255,255,255,20)}";
 
-    const QString QToolButtonMenuPopStyle = QToolButtonStyle + " \
+    const QString MToolButtonStyle02 = MToolButtonStyle01 + " \
            QToolButton::menu-indicator{image:None;}";
 
-    const QString QToolButtonStyleDesktopTool = " \
+    const QString MToolButtonStyle03 = " \
            QToolButton{border:none;background-color:transparent;}\
            QToolButton::hover{ \
            background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
            stop:0 #EEEEEE,stop: 0.5 #EEEEEE,stop: 1.0 #EEEEEE);\
            border:none;}";
 
-    const QString MusicSystemTrayToolButtonStyle = " \
+    const QString MToolButtonStyle04 = " \
            QToolButton{background-color:transparent;}";
 
-    const QString MusicBestLoveToolButtonStyle = " \
+    const QString MToolButtonStyle05 = " \
            QToolButton{background-color:transparent;}\
            QToolButton::hover{ \
            image:url(:/image/shadow);\
@@ -41,29 +41,27 @@ namespace MusicUIObject
 
 ///ToolBox
 //////////////////////////////////////////////////////
-    const QString QToolBoxItemStyle = " \
+    const QString MToolBoxStyle01 = " \
            QToolBox::tab:selected {font: italic; font-weight:bold; color: white;}\
            QToolBox::tab{ font-weight:bold; background-color:rgba(255,255,255,100);}";
 
-///ToolBox
+///PushButton
 //////////////////////////////////////////////////////
-    const QString MusicSettingMainButton = " \
+    const QString MPushButtonStyle01 = " \
            QPushButton{background-color:rgb(173,216,230);border:none;}\
            QPushButton::hover{\
            background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
            stop:0 #3BA1E6,stop: 0.5 #3BA1E6,stop: 1.0 #3BA1E6);\
            border:none;}";
 
-///PushButton
-//////////////////////////////////////////////////////
-    const QString MusicSettingSubmitButton = " \
+    const QString MPushButtonStyle02 = " \
            QPushButton{border-style: outset;  \
            border-width: 1px;  \
            border-radius: 2px;  \
            border-color: #3BA1E6;  \
            padding: 1px;}";
 
-    const QString MusicMainFunctionButtonForStackWidget = " \
+    const QString MPushButtonStyle03 = " \
            QPushButton{background-color:transparent;border:none; \
            font-size:17px;font-weight:bold;color:#FFFFFF}\
            QPushButton::hover{\
@@ -71,29 +69,29 @@ namespace MusicUIObject
            stop: 0.5 rgba(255,255,255,100),stop: 1.0 rgba(255,255,255,100));\
            border:none;}";
 
-    const QString MusicLoginPushButtonStyle = " \
+    const QString MPushButtonStyle04 = " \
            QPushButton{ border: 1px solid gray;background:#DDDDDD;}\
            QPushButton::hover{ border: 2px solid #AAAAFF;}";
 
-    const QString MusicPushButtonTextStyle = " \
+    const QString MPushButtonStyle05 = " \
            QPushButton{ border:none;color: #3333FF;} \
            QPushButton::hover{ color: #7777FF;}";
 
-    const QString MusicVCodePushButtonStyle = " \
+    const QString MPushButtonStyle06 = " \
            QPushButton{border-image:url(:/usermanager/vCode); \
            font-size:30px;font-weight:bold;color:gray}";
 
-    const QString MusicUserWindowButtonStyle = " \
+    const QString MPushButtonStyle07 = " \
            QPushButton{background-color:transparent; border:none; \
            font:italic;font-size:17px; font-weight:bold; color:orange}";
 
-    const QString MusicRemoteControlButton = "\
+    const QString MPushButtonStyle08 = "\
            QPushButton{background-color:rgba(0,0,0,125);border-none;}\
            QPushButton::hover{image:url(:/image/shadow);}";
 
 ///RadioButton
 //////////////////////////////////////////////////////
-    const QString MusicSettingRadioButton = " \
+    const QString MRadioButtonStyle01 = " \
            QRadioButton{ background-color:transparent; } \
            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); } \
            QRadioButton::checked { color: rgb(230,115,0); } \
@@ -101,15 +99,15 @@ namespace MusicUIObject
 
 ///CheckBox
 //////////////////////////////////////////////////////
-    const QString MusicSettingCheckButton = " \
+    const QString MCheckBoxStyle01 = " \
            QCheckBox{ background-color:transparent; } \
            QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
            QCheckBox::checked { color: rgb(230,115,0); } \
            QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }";
 
-///CheckBox
+///ScrollBar
 //////////////////////////////////////////////////////
-    const QString MusicScrollBarStyle = " \
+    const QString MScrollBarStyle01 = " \
            QScrollBar{ background: #494949;width: 13px;}\
            QScrollBar::handle{background: #DBDBDB; min-width: 20px;min-height: 20px;}\
            QScrollBar::handle:vertical::disabled{ background:#DBDBDB;}\
@@ -119,25 +117,25 @@ namespace MusicUIObject
 
 ///LineEdit
 //////////////////////////////////////////////////////
-    const QString MusicListEditStyle = " \
+    const QString MLineEditStyle01 = " \
            QLineEdit{border: 2px solid gray; font-size:17px; \
            font-weight:bold; color:AAAAFF } \
            QLineEdit::hover{ border: 2px solid #AAAAFF;}";
 
-    const QString MusicLoginEditStyle = " \
+    const QString MLineEditStyle02 = " \
            QLineEdit{ border: 1px solid gray;} \
            QLineEdit::hover{ border: 1px solid #AAAAFF;}";
 
 ///Menu
 //////////////////////////////////////////////////////
-    const QString MusicSystemTrayMenu = " \
+    const QString MMenuStyle01 = " \
            QMenu { background-color: white; border: 1px solid gray;padding: 5px; }\
            QMenu::item {padding: 5px 25px 5px 30px;border: 1px solid transparent; }\
            QMenu::item:disabled {color: #666666;}\
            QMenu::item:selected { color: white; background: #BBBBBB;}\
            QMenu::separator {height: 1px;background: #BBBBBB;margin-top: 5px; margin-bottom: 5px;}";
 
-    const QString MusicRemoteControlMenu = " \
+    const QString MMenuStyle02 = " \
            QMenu {color:white; background-color: rgba(0,0,0,50); border: 1px solid gray;padding: 5px; }\
            QMenu::item {padding: 5px 25px 5px 30px;border: 1px solid transparent; }\
            QMenu::item:disabled {color: #666666;}\
@@ -146,7 +144,7 @@ namespace MusicUIObject
 
 ///Slider
 //////////////////////////////////////////////////////
-    const QString MusicVolumeStyleHorizontal = " \
+    const QString MSliderStyle01 = " \
            QSlider::groove:horizontal{ border: 1px solid #4A708B;\
            background: #C0C0C0;height: 5px;border-radius: 1px;\
            padding-left:-1px;padding-right:-1px;}\
@@ -173,7 +171,7 @@ namespace MusicUIObject
            QSlider::handle:horizontal:disabled{\
            background: #eee;border: 1px solid #aaa;border-radius: 4px;}";
 
-    const QString MusicVolumeStyleVertical = " \
+    const QString MSliderStyle02 = " \
            QSlider::groove:vertical {border: 1px solid #4A708B; \
            background: #C0C0C0;  width: 5px;  border-radius: 1px;\
            padding-left:-1px;padding-right:-1px;  padding-top:-1px;  padding-bottom:-1px;}  \
@@ -190,7 +188,7 @@ namespace MusicUIObject
            height: 11px;margin-left: -3px;margin-right: -3px;border-radius: 5px;}\
            QSlider::handle:vertical:disabled {background: #eee;border: 1px solid #aaa;border-radius: 4px;}";
 
-    const QString MusicEQStyleVertical =  MusicVolumeStyleVertical + "\
+    const QString MSliderStyle03 =  MSliderStyle02 + "\
            QSlider::sub-page:vertical { \
            background: qlineargradient(x1:0, y1:0, x2:0, y2:1,  \
            stop:0 #c4c4c4, stop:1 #B1B1B1);  \
@@ -199,7 +197,7 @@ namespace MusicUIObject
            border: 0px solid #777;  width: 10px;border-radius: 2px;} \
            QSlider::handle:vertical:hover{ image:url(:/image/shadow);border:none;} ";
 
-    const QString MusicRemoteControlSlider = "\
+    const QString MSliderStyle04 = "\
            QSlider::groove:horizontal{ border: 1px solid #4A708B;\
            background: #C0C0C0;height: 5px;border-radius: 1px;\
            padding-left:-1px;padding-right:-1px;}\
@@ -216,7 +214,7 @@ namespace MusicUIObject
 
 ///ComboBox
 //////////////////////////////////////////////////////
-    const QString MusicLoginComboboxEditStyle = " \
+    const QString MComboBoxStyle01 = " \
            QComboBox{ border: 1px solid gray;} \
            QComboBox::hover{ border: 1px solid #AAAAFF;} \
            QComboBox::drop-down { subcontrol-origin: padding; \
@@ -224,12 +222,12 @@ namespace MusicUIObject
            border-left-color: darkgray; border-left-style: solid;}\
            QComboBox::down-arrow {image:url(:/usermanager/downarrow);}";
 
-    const QString MusicLrcComboboxEditStyle = MusicLoginComboboxEditStyle + "\
+    const QString MComboBoxStyle02 = MComboBoxStyle01 + "\
            QComboBox::drop-down { subcontrol-origin: padding; \
            subcontrol-position: top right;width: 14px;border-left-width: 1px;\
            border-left-color: darkgray; border-left-style: solid;}";
 
-    const QString MusicEqComboboxEditStyle = MusicLoginComboboxEditStyle + "\
+    const QString MComboBoxStyle03 = MComboBoxStyle01 + "\
            QComboBox::down-arrow {image:url(:/equalizer/arrow);}";
 
 }

@@ -25,22 +25,22 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::QToolButtonStyle);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
     const QString textStyle = "QTextEdit{ border: 1px solid gray;} \
                                QTextEdit::hover{ border: 1px solid #AAAAFF;}";
-    ui->artNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->songNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
-    ui->authorNameEdit->setStyleSheet(MusicUIObject::MusicLoginEditStyle);
+    ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->introductionTextEdit->setStyleSheet( textStyle );
     ui->lrcTextEdit->setStyleSheet( textStyle );
 
-    ui->makeButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
-    ui->saveButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
-    ui->reviewButton->setStyleSheet( MusicUIObject::MusicSettingMainButton);
+    ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle01);
+    ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle01);
+    ui->reviewButton->setStyleSheet( MusicUIObject::MPushButtonStyle01);
     ui->makeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->reviewButton->setCursor(QCursor(Qt::PointingHandCursor));

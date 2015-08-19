@@ -22,7 +22,7 @@ void MusicLocalSongSearchEdit::focusInEvent(QFocusEvent *event)
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
 
     QAction *shearM = rightClickMenu.addAction(tr("Shear"),this,SLOT(cut()));
     QAction *copyM = rightClickMenu.addAction(tr("Copy"),this,SLOT(copy()));

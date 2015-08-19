@@ -6,10 +6,10 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
+MMenuStyle01::MMenuStyle01(QWidget *parent)
     : QMenu(parent)
 {
-    setStyleSheet(MusicUIObject::MusicSystemTrayMenu);
+    setStyleSheet(MusicUIObject::MMenuStyle01);
     createWidgetActions();
     addAction(m_widgetAction);
     m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"),this);
@@ -28,14 +28,14 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(QIcon(":/contextMenu/quit"),tr("appClose"),parent,SLOT(quitWindowClose()));
 }
 
-MusicSystemTrayMenu::~MusicSystemTrayMenu()
+MMenuStyle01::~MMenuStyle01()
 {
     delete m_lockLrcAction;
     delete m_showLrcAction;
     delete m_widgetAction;
 }
 
-void MusicSystemTrayMenu::createWidgetActions()
+void MMenuStyle01::createWidgetActions()
 {
     m_widgetAction = new QWidgetAction(this);
     QWidget *widgetActionContainer = new QWidget(this);
@@ -56,9 +56,9 @@ void MusicSystemTrayMenu::createWidgetActions()
     m_nextPlay->setIconSize(QSize(40,40));
     m_PlayOrStop->setIconSize(QSize(45,45));
 
-    m_previousPlay->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
-    m_nextPlay->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
-    m_PlayOrStop->setStyleSheet(MusicUIObject::MusicSystemTrayToolButtonStyle);
+    m_previousPlay->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_nextPlay->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_PlayOrStop->setStyleSheet(MusicUIObject::MToolButtonStyle04);
 
     m_previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     m_nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
@@ -86,14 +86,14 @@ void MusicSystemTrayMenu::createWidgetActions()
     connect(m_PlayOrStop,SIGNAL(clicked()),parent(),SLOT(musicKey()));
 }
 
-void MusicSystemTrayMenu::setLabelText(const QString& text)
+void MMenuStyle01::setLabelText(const QString& text)
 {
     QFontMetrics str(font());
     m_showText->setText(str.elidedText(text, Qt::ElideRight,160));
     m_showText->setToolTip(text);
 }
 
-void MusicSystemTrayMenu::showDesktopLrc(const QString &show)
+void MMenuStyle01::showDesktopLrc(const QString &show)
 {
     (show == "true") ? m_showLrcAction->setText(tr("hideDeskLrc"))
                      : m_showLrcAction->setText(tr("showDeskLrc"));
@@ -101,19 +101,19 @@ void MusicSystemTrayMenu::showDesktopLrc(const QString &show)
                      : m_lockLrcAction->setEnabled(false);
 }
 
-void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
+void MMenuStyle01::lockDesktopLrc(bool lock)
 {
     !lock ? m_lockLrcAction->setText(tr("lockLrc"))
           : m_lockLrcAction->setText(tr("unlockLrc"));
 }
 
-void MusicSystemTrayMenu::showPlayStatus(bool status)
+void MMenuStyle01::showPlayStatus(bool status)
 {
     m_PlayOrStop->setIcon(!status ? QIcon(QString::fromUtf8(":/image/stop"))
                                   : QIcon(QString::fromUtf8(":/image/play")) );
 }
 
-void MusicSystemTrayMenu::showDesktopLrc()
+void MMenuStyle01::showDesktopLrc()
 {
     bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
     show ? m_showLrcAction->setText(tr("hideDeskLrc"))
