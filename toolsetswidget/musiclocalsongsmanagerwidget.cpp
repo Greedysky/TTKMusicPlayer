@@ -28,17 +28,11 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->toolWidget->setStyleSheet("#toolWidget{background:rgba(0,0,0,35)}");
+    ui->toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle27 + "}");
 
-    ui->allSelectedcheckBox->setStyleSheet("\
-                            QCheckBox{ background-color:transparent; } \
-                            QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
-                            QCheckBox::checked { color: rgb(0,169,236); } \
-                            QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }");
-    ui->auditionButton->setStyleSheet("QToolButton{background:transparent;image: url(:/share/autionplay);}"
-                                      "QToolButton::hover{ border:1px solid #000000;}");
-    ui->addButton->setStyleSheet("QToolButton{background:transparent;image: url(:/image/addtoplaylist);}"
-                                 "QToolButton::hover{ border:1px solid #000000;}");
+    ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
+    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
+    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
 
     ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));

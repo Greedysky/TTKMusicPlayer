@@ -12,7 +12,7 @@ MusicUserManager::MusicUserManager(QWidget *parent)
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
 
     m_userModel = new MusicUserModel(this);
-    ui->userIcon->setStyleSheet("image:url(:/share/defaultArt)");
+    ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->logoffButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->modifiedName->setStyleSheet(MusicUIObject::MPushButtonStyle04);

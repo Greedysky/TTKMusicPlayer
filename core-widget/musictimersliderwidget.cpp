@@ -1,4 +1,5 @@
 #include "musictimersliderwidget.h"
+#include "musicuiobject.h"
 #include <QLabel>
 #include <QSlider>
 
@@ -13,11 +14,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent) : QWidget(parent
 
     m_slider = new QSlider(Qt::Horizontal,this);
     m_slider->setGeometry(17,17,325,10);
-    m_slider->setStyleSheet("QSlider::add-page:Horizontal{background-color: rgb(87, 97, 106);height:4px;}\
-              QSlider::sub-page:Horizontal{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1,\
-              y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255));height:4px;}\
-              QSlider::groove:Horizontal{background:transparent;height:4px;}QSlider::handle:Horizontal{\
-              border-image:url(':/image/musicslider');width:8px;height: 6px;margin: -2px -3px -2px 0px;}");
+    m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_picIndex = -1;

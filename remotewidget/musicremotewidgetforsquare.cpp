@@ -18,7 +18,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     m_NextSongButton->setIconSize(QSize(30,30));
     m_PlayButton->setIconSize(QSize(30,30));
     m_SettingButton->setIconSize(QSize(30,30));
-    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0,0,0,200)}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle08 + "}");
 
     QGridLayout* grid = new QGridLayout(this);
     for(int i=0; i<3; i++)

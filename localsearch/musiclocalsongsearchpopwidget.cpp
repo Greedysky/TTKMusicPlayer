@@ -57,9 +57,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     layout->addWidget(m_clearButton);
     setLayout(layout);
 
-    m_clearButton->setStyleSheet("text-align:left; font-weight:bold; font-size:15px;"
-                                 "color:red; height:20px; border:none;"
-                                 "background-color:white;");
+    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle06);
     connect(m_clearButton,SIGNAL(clicked()),SLOT(clearButtonClicked()));
     connect(m_popTableWidget,SIGNAL(cellDoubleClicked(int,int)),
                              SLOT(cellDoubleClicked(int,int)));

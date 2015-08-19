@@ -1,11 +1,12 @@
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicuiobject.h"
 
 MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
     int offset, const QString &originText, QWidget *parent) :QLineEdit(parent)
 {
     setGeometry(1,offset,265,20);
     setText(originText);
-    setStyleSheet("background:white;border:3px solid rgb(173,216,230)");
+    setStyleSheet(MusicUIObject::MCustomStyle03);
     setFocus(Qt::MouseFocusReason);
     connect(this,SIGNAL(editingFinished()),this,SLOT(renameFinished()));
 }

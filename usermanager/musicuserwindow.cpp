@@ -17,7 +17,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     ui->userLogin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->userName->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->userIcon->setStyleSheet("image:url(:/share/defaultArt)");
+    ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
     connectDatabase();
 
     m_userManager = new MusicUserManager(this);

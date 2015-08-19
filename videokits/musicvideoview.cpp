@@ -11,7 +11,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     , m_videoItem(0) , m_videoControl(0)
 {
     setObjectName("VideoPlayer");
-    setStyleSheet("background-color:black");
+    setStyleSheet(MusicUIObject::MCustomStyle18);
     m_videoItem = new QGraphicsVideoItem;
     m_mediaPlayer.setVideoOutput(m_videoItem);
 

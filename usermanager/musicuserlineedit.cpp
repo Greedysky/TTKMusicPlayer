@@ -1,4 +1,5 @@
 #include "musicuserlineedit.h"
+#include "musicuiobject.h"
 #include <QDebug>
 
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
@@ -12,7 +13,7 @@ void MusicUserLineEdit::focusInEvent(QFocusEvent *event)
 {
     QLineEdit::focusInEvent(event);
     m_tipsLabel->show();
-    m_tipsLabel->setStyleSheet("color:#AAAAAA");
+    m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle12);
 }
 
 void MusicUserLineEdit::focusOutEvent(QFocusEvent *event)
@@ -43,7 +44,7 @@ void MusicUserLineEdit::showLabel(int s, int e)
         m_strContains = false;
         m_tipsLabel->show();
         m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet("color:#FF0000");
+        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
     }
 }
 
@@ -60,7 +61,7 @@ void MusicUserLineEdit::showLabel()
     {
         m_tipsLabel->show();
         m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet("color:#FF0000");
+        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
     }
 }
 

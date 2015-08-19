@@ -65,7 +65,7 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
 void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);
-    m_toolBarWidget->setStyleSheet("background-color:rgba(0,0,0,155)");
+    m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle08);
 //    m_toolBarWidget->setFixedHeight(30);
     m_toolBarWidget->setFixedWidth(320);
     m_toolBarWidget->setGeometry(0,-10,320,20);
@@ -140,8 +140,7 @@ void MusicLrcContainerForDesktop::setButtonCursor()
     m_toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_showMainWindow->setStyleSheet("QPushButton{background:transparent;border-none;}\
-                                     QPushButton::hover{image:url(:/image/shadow);}");
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     m_toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -235,7 +234,7 @@ void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
     if(m_windowLocked) return;
     QWidget::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet("#desktopWidget{border: 1px solid #555555;background-color:rgba(0,0,0,40)}");
+    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle09 + "}");
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
@@ -243,7 +242,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
     if(m_windowLocked) return;
     QWidget::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet("background-color:transparent");
+    setStyleSheet(MusicUIObject::MCustomStyle20);
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
@@ -258,7 +257,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
     if(m_windowLocked)
     {
        m_toolBarWidget->hide();
-       setStyleSheet("background-color:transparent");
+       setStyleSheet(MusicUIObject::MCustomStyle20);
     }
     emit setWindowLockedChanged(m_windowLocked);
     M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);

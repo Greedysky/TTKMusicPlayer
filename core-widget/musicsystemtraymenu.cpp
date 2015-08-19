@@ -74,7 +74,7 @@ void MMenuStyle01::createWidgetActions()
 
     m_showText = new QLabel(widgetActionContainer);
     m_showText->setAlignment(Qt::AlignCenter);
-    m_showText->setStyleSheet("color:#888888");
+    m_showText->setStyleSheet(MusicUIObject::MCustomStyle11);
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);

@@ -30,13 +30,11 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    const QString textStyle = "QTextEdit{ border: 1px solid gray;} \
-                               QTextEdit::hover{ border: 1px solid #AAAAFF;}";
     ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->introductionTextEdit->setStyleSheet( textStyle );
-    ui->lrcTextEdit->setStyleSheet( textStyle );
+    ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
+    ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
 
     ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle01);
     ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle01);

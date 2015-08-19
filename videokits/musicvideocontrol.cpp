@@ -8,7 +8,7 @@
 MusicVideoControl::MusicVideoControl(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet("background:transparent");
+    setStyleSheet(MusicUIObject::MCustomStyle20);
     setFixedSize(520,40);
     setGeometry(0,375,520,40);
 

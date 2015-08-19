@@ -15,9 +15,9 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     headerview->resizeSection(2,26);
     verticalHeader()->setVisible(false);
     setMouseTracking(true);  //Open the capture mouse function
-    setStyleSheet("QTableWidget{selection-background-color: rgba(20,20,20,100);}" + \
-                             MusicUIObject::MScrollBarStyle01 + \
-                             MusicUIObject::MLineEditStyle01 );
+    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
+                  MusicUIObject::MScrollBarStyle01 + \
+                  MusicUIObject::MLineEditStyle01 );
     //Set the color of selected row
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit

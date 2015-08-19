@@ -13,10 +13,8 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
     m_SettingButton = new QPushButton(this);
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
-//    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0,0,0,200)}");
 
-    m_showMainWindow->setStyleSheet("QPushButton{background:transparent;border-none;}\
-                                     QPushButton::hover{image:url(:/image/shadow);}");
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
     m_PreSongButton->setIcon(QIcon(":/desktopTool/previousP"));
     m_NextSongButton->setIcon(QIcon(":/desktopTool/nextP"));
@@ -43,7 +41,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
     volumnLayout->setContentsMargins(0,0,0,0);
     volumnLayout->setSpacing(1);
     m_volumnLabel = new QLabel(m_volumnWidget);
-    m_volumnLabel->setStyleSheet("background-color:transparent;border-image: url(:/image/soundmax)");
+    m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle26);
     m_volumnLabel->setFixedSize(QSize(20,20));
     m_volumnSlider = new QSlider(Qt::Horizontal, m_volumnWidget);
     m_volumnSlider->setRange(0,100);
@@ -107,7 +105,7 @@ void MusicRemoteWidget::musicVolumeChanged(int index)
 {
     emit musicVolumeSignal(index);
     if(index > 0)
-        m_volumnLabel->setStyleSheet("border-image:url(:/image/soundmax);");
+        m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle24);
     else
-        m_volumnLabel->setStyleSheet("border-image:url(:/image/soundmin)");
+        m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle25);
 }

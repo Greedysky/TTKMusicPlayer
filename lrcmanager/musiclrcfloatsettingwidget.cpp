@@ -11,17 +11,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     m_rectOut = QRect(515, 171, 165, 105);
     setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatSettingWidget");
-    setStyleSheet("#MusicLrcFloatSettingWidget{background:rgba(0, 0, 0, 50);}"
-                  "QPushButton{background:transparent;border:none;color:white;font-size:15px;}"
-                  "QPushButton::hover{image:url(:/lrc/shadow);}");
+    setStyleSheet("#MusicLrcFloatSettingWidget{" + MusicUIObject::MCustomStyle02 + "}" +
+                  MusicUIObject::MPushButtonStyle11);
 
-    const QString labelStyle = "color:white;image:url(:/lrc/shadow);text-align:center;";
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *bgLabel = new QLabel(tr("Background"), this);
-    colorLabel->setStyleSheet( labelStyle );
-    sizeLabel->setStyleSheet( labelStyle );
-    bgLabel->setStyleSheet( labelStyle );
+    colorLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
+    sizeLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
+    bgLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
     colorLabel->setAlignment(Qt::AlignCenter);
     sizeLabel->setAlignment(Qt::AlignCenter);
     bgLabel->setAlignment(Qt::AlignCenter);

@@ -18,8 +18,8 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
     m_topWidget->setObjectName("#topWidget");
-    m_topWidget->setStyleSheet("background-color:black;border:none;");
-
+    m_topWidget->setStyleSheet(MusicUIObject::MCustomStyle18 +
+                               MusicUIObject::MCustomStyle19);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     m_backButton = new QPushButton(this);
     m_backButton->setIcon(QIcon(":/video/back"));
@@ -31,7 +31,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     m_afterButton->setIconSize(QSize(20, 20));
 
     m_textLabel = new QLabel("Music Video", m_topWidget);
-    m_textLabel->setStyleSheet("color:white;");
+    m_textLabel->setStyleSheet(MusicUIObject::MCustomStyle10);
     m_searchEdit = new MusicLocalSongSearchEdit(m_topWidget);
     m_searchButton = new QPushButton(m_topWidget);
     m_searchButton->setIcon(QIcon(":/share/searchlineleft"));
@@ -47,7 +47,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     m_topWidget->setLayout(topLayout);
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setStyleSheet("border:none;");
+    m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle19);
     layout->addWidget(m_topWidget);
     layout->addWidget(m_stackedWidget);
     setLayout(layout);

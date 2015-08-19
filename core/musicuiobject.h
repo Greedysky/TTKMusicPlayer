@@ -14,6 +14,81 @@
 
 namespace MusicUIObject
 {
+///Custom
+//////////////////////////////////////////////////////
+    const QString MCustomStyle01 = "\
+           background-color:rgba(255,255,255,125)";
+
+    const QString MCustomStyle02 = "\
+           background:rgba(0,0,0,100)";
+
+    const QString MCustomStyle03 = "\
+           background:white;border:3px solid rgb(173,216,230)";
+
+    const QString MCustomStyle04 = "\
+           background-color:transparent;border-image: url(:/share/searchlineleft);";
+
+    const QString MCustomStyle05 = "\
+           border-image: url(:/share/searchclosed);";
+
+    const QString MCustomStyle06 = "\
+           text-align:left; font-weight:bold; font-size:15px;\
+           color:red; height:20px; border:none; background-color:white;";
+
+    const QString MCustomStyle07 = "\
+           background:rgb(250,231,191);color:rgb(160,99,11)";
+
+    const QString MCustomStyle08 = "\
+           background-color:rgba(0,0,0,155)";
+
+    const QString MCustomStyle09 = "\
+           border: 1px solid #555555;background-color:rgba(0,0,0,40)";
+           
+    const QString MCustomStyle10 = "\
+           color:white;";
+
+    const QString MCustomStyle11 = "\
+           color:#888888;";
+
+    const QString MCustomStyle12 = "\
+           color:#AAAAAA;";
+
+    const QString MCustomStyle13 = "\
+           color:#FF0000;";
+           
+    const QString MCustomStyle18 = "\
+           background-color:black";
+           
+    const QString MCustomStyle19 = "\
+           border:none;";
+           
+    const QString MCustomStyle20 = " \
+           background-color:transparent";
+           
+    const QString MCustomStyle21 = " \
+           background-image:url(':/lrc/film');";
+           
+    const QString MCustomStyle22 = " \
+           background:rgba(255, 255, 255, 50);border:none";
+           
+    const QString MCustomStyle23 = " \
+           color:white;image:url(:/lrc/shadow);text-align:center";
+
+    const QString MCustomStyle24 = " \
+           border-image: url(:/image/soundmax);";
+
+    const QString MCustomStyle25 = " \
+           border-image: url(:/image/soundmin);";
+
+    const QString MCustomStyle26 = " \
+           background-color:transparent;border-image: url(:/image/soundmax)";
+
+    const QString MCustomStyle27 = " \
+          background:rgba(0,0,0,35)";
+
+    const QString MCustomStyle28 = " \
+          image:url(:/share/defaultArt)";
+          
 ///ToolButton
 //////////////////////////////////////////////////////
     const QString MToolButtonStyle01 = " \
@@ -39,6 +114,14 @@ namespace MusicUIObject
            image:url(:/image/shadow);\
            border:none;}";
 
+    const QString MToolButtonStyle06 = " \
+           QToolButton{background:transparent;image: url(:/share/autionplay);} \
+           QToolButton::hover{ border:1px solid #000000;}";
+
+    const QString MToolButtonStyle07 = " \
+           QToolButton{background:transparent;image: url(:/image/addtoplaylist);} \
+           QToolButton::hover{ border:1px solid #000000;}";
+           
 ///ToolBox
 //////////////////////////////////////////////////////
     const QString MToolBoxStyle01 = " \
@@ -89,6 +172,22 @@ namespace MusicUIObject
            QPushButton{background-color:rgba(0,0,0,125);border-none;}\
            QPushButton::hover{image:url(:/image/shadow);}";
 
+    const QString MPushButtonStyle09 = "\
+           QPushButton{background-color:transparent;}\
+           QPushButton::hover{image:url(:/image/shadow);border:none;}";
+
+    const QString MPushButtonStyle10 = "\
+           QPushButton{background:transparent;border-none;}\
+           QPushButton::hover{image:url(:/image/shadow);}";
+
+    const QString MPushButtonStyle11 = "\
+           QPushButton{background:transparent;border:none;color:white;font-size:15px;} \
+           QPushButton::hover{image:url(:/lrc/shadow);}";
+           
+    const QString MPushButtonStyle12 = "\
+           QPushButton{background:transparent;text-align:left;color:white;} \
+           QPushButton::hover{image:url(:/lrc/shadow);}";
+           
 ///RadioButton
 //////////////////////////////////////////////////////
     const QString MRadioButtonStyle01 = " \
@@ -104,7 +203,13 @@ namespace MusicUIObject
            QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
            QCheckBox::checked { color: rgb(230,115,0); } \
            QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }";
-
+           
+    const QString MCheckBoxStyle02 = " \
+           QCheckBox{ background-color:transparent; } \
+           QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
+           QCheckBox::checked { color: rgb(0,169,236); } \
+           QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }";
+           
 ///ScrollBar
 //////////////////////////////////////////////////////
     const QString MScrollBarStyle01 = " \
@@ -125,6 +230,10 @@ namespace MusicUIObject
     const QString MLineEditStyle02 = " \
            QLineEdit{ border: 1px solid gray;} \
            QLineEdit::hover{ border: 1px solid #AAAAFF;}";
+
+    const QString MLineEditStyle03 = " \
+           QLineEdit{border-image: url(:/image/searchline); \
+           font-size:15px; color:#6495ED;}";
 
 ///Menu
 //////////////////////////////////////////////////////
@@ -212,6 +321,13 @@ namespace MusicUIObject
            background-color:rgba(0,0,0,150);\
            width: 11px;margin-top: -3px;margin-bottom: -3px;border-radius: 5px;}";
 
+    const QString MSliderStyle05 = "\
+           QSlider::add-page:Horizontal{background-color: rgb(87, 97, 106);height:4px;}\
+           QSlider::sub-page:Horizontal{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1,\
+           y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255));height:4px;}\
+           QSlider::groove:Horizontal{background:transparent;height:4px;}QSlider::handle:Horizontal{\
+           border-image:url(':/image/musicslider');width:8px;height: 6px;margin: -2px -3px -2px 0px;}";
+
 ///ComboBox
 //////////////////////////////////////////////////////
     const QString MComboBoxStyle01 = " \
@@ -230,6 +346,21 @@ namespace MusicUIObject
     const QString MComboBoxStyle03 = MComboBoxStyle01 + "\
            QComboBox::down-arrow {image:url(:/equalizer/arrow);}";
 
+///TableWidget
+//////////////////////////////////////////////////////
+    const QString MTableWidgetStyle01 = " \
+           QTableWidget{selection-background-color: rgba(20,20,20,100);}";
+           
+///TextEdit
+//////////////////////////////////////////////////////
+    const QString MTextEditStyle01 = " \
+           QTextEdit{ border: 1px solid gray;} \
+           QTextEdit::hover{ border: 1px solid #AAAAFF;}";
+           
+///QLabel
+//////////////////////////////////////////////////////
+    const QString MLabelStyle01 = " \
+           QLabel{ background:rgba(255,255,255,50); color:white; font-weight:bold; }";
 }
 
 #endif // MUSICUIOBJECT_H

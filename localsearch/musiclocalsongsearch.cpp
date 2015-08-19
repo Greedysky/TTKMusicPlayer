@@ -1,5 +1,6 @@
 #include "musiclocalsongsearch.h"
 #include "musiclocalsongsearchedit.h"
+#include "musicuiobject.h"
 
 MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
     QDialog(parent)
@@ -17,11 +18,11 @@ MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
     m_closeButton = new QToolButton(this);
 
     m_showIcon->setGeometry(5,5,25,25);
-    m_showIcon->setStyleSheet("background-color:transparent;border-image: url(:/share/searchlineleft);");
+    m_showIcon->setStyleSheet(MusicUIObject::MCustomStyle04);
     m_searchLine->setGeometry(30,5,295,25);
 
     m_closeButton->setGeometry(303,5,25,25);
-    m_closeButton->setStyleSheet("border-image: url(:/share/searchclosed);");
+    m_closeButton->setStyleSheet(MusicUIObject::MCustomStyle05);
 
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_closeButton,SIGNAL(clicked()),this,SLOT(close()));

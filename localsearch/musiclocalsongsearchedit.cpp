@@ -5,8 +5,7 @@
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    setStyleSheet("QLineEdit{border-image: url(:/image/searchline);"
-                  "font-size:15px; color:#6495ED;}");
+    setStyleSheet(MusicUIObject::MLineEditStyle03);
     setText(tr("please input search text"));
 }
 

@@ -9,7 +9,6 @@ class MUSIC_CORE_EXPORT MusicData2DownloadThread : public MusicDataDownloadThrea
 public:
     explicit MusicData2DownloadThread(const QString& url, const QString& save,
                                       QObject *parent = 0);
-
     void deleteAll();
     virtual void startToDownload();
 

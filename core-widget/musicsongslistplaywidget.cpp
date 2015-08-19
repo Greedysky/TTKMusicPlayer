@@ -21,25 +21,23 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_songName = new QLabel(this);
     m_songName->setFixedSize(182,25);
     m_songName->setAttribute(Qt::WA_TranslucentBackground);
-    m_songName->setStyleSheet("color:white;");
+    m_songName->setStyleSheet(MusicUIObject::MCustomStyle10);
     m_songName->setGeometry(65,5,182,25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100,20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet("color:white;");
+    m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle10);
     m_timeLabel->setGeometry(65,37,100,20);
 
     m_columnOne = new QWidget(this);
-    m_columnOne->setStyleSheet("background:rgba(0,0,0,100)");
+    m_columnOne->setStyleSheet(MusicUIObject::MCustomStyle02);
     m_columnThree = new QWidget(this);
-    m_columnThree->setStyleSheet("background:rgba(0,0,0,100)");
+    m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle02);
 
-    const QString pushButtonStyle = "QPushButton{background-color:transparent;}\
-                             QPushButton::hover{image:url(:/image/shadow);border:none;}";
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(161,35,23,23);
-    m_loveButton->setStyleSheet( pushButtonStyle );
+    m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
     m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
@@ -59,21 +57,21 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(207,35,23,23);
-    m_deleteButton->setStyleSheet( pushButtonStyle );
+    m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
     m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
     m_showMVButton = new QPushButton(this);
     m_showMVButton->setGeometry(230,35,23,23);
-    m_showMVButton->setStyleSheet( pushButtonStyle );
+    m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
     m_showMVButton->setIcon(QIcon(":/share/showMV"));
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
     m_songShareButton = new QPushButton(this);
     m_songShareButton->setGeometry(230,7,23,23);
-    m_songShareButton->setStyleSheet( pushButtonStyle );
+    m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
     m_songShareButton->setIcon(QIcon(":/image/songShare"));
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_songShareButton->setToolTip(tr("songShare"));

@@ -1,6 +1,7 @@
 #include "musicsongslistiteminformation.h"
 #include "ui_musicsongslistiteminformation.h"
 #include "musicobject.h"
+#include "musicuiobject.h"
 #include <QTime>
 
 MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :
@@ -9,7 +10,7 @@ MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
-    setStyleSheet("background-color:rgba(255,255,255,125);");
+    setStyleSheet(MusicUIObject::MCustomStyle01);
 }
 
 MusicSongsListItemInformation::~MusicSongsListItemInformation()

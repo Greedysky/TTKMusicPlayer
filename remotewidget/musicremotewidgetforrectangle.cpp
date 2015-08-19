@@ -26,23 +26,18 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     vbox->setSpacing(0);
     vbox->addWidget(m_mainWidget);
 
-    QString styleButton = "\
-        QPushButton{background:transparent;border-none;}\
-        QPushButton::hover{image:url(:/image/shadow);}";
-    m_PreSongButton->setStyleSheet(styleButton);
-    m_NextSongButton->setStyleSheet(styleButton);
-    m_PlayButton->setStyleSheet(styleButton);
-    m_SettingButton->setStyleSheet(styleButton);
-    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0,0,0,200)}");
+    m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle08 + "}");
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(0,0,0,0);
     mhbox->setSpacing(0);
     m_songNameLabel = new QLabel(this);
     mhbox->addWidget(m_songNameLabel);
-    styleButton = "QLabel{ background:rgba(255,255,255,50); color:white; \
-                   font-weight:bold; }";
-    m_songNameLabel->setStyleSheet(styleButton);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
 
     m_toolWidget = new QWidget(this);
     vbox->addWidget(m_toolWidget);

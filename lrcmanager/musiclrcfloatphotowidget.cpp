@@ -29,11 +29,11 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet("#MusicLrcFloatPhotoWidget{background:rgba(0, 0, 0, 100);}");
+    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle02 + "}");
 
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);
-    m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/film');");
+    m_filmBGWidget->setStyleSheet(MusicUIObject::MCustomStyle21);
 
     m_plane1 = new MusicLrcFloatPhotoPlaneWidget(this);
     m_plane1->setGeometry(65, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
@@ -73,9 +73,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_next->setGeometry(500, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
-    const QString style = "background:rgba(255, 255, 255, 50);border:none";
-    m_previous->setStyleSheet( style );
-    m_next->setStyleSheet( style );
+
+    m_previous->setStyleSheet( MusicUIObject::MCustomStyle22 );
+    m_next->setStyleSheet( MusicUIObject::MCustomStyle22 );
 
     m_currentIndex = 0;
 

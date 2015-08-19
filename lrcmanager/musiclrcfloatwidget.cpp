@@ -8,7 +8,7 @@
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
 {
-    setStyleSheet("background:rgba(0, 0, 0, 100)");
+    setStyleSheet(MusicUIObject::MCustomStyle02);
     m_rectIn = QRect(405, 120, 115, 210);
     m_rectOut = QRect(515, 171, 115, 105);
     setGeometry( m_rectOut );
@@ -18,8 +18,6 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_floatSettingWidget = new MusicLrcFloatSettingWidget(parent);
     m_floatSettingWidget->hide();
 
-    const QString style = "QPushButton{background:transparent;text-align:left; \
-                           color:white;}QPushButton::hover{image:url(:/lrc/shadow);}";
     m_update = new QPushButton(tr(" Update"), this);
     m_search = new QPushButton(tr(" Search"), this);
     m_more = new QPushButton(tr(" More"), this);
@@ -32,11 +30,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setIcon(QIcon(":/lrc/wallpaper"));
     m_photo->setIcon(QIcon(":/lrc/photo"));
 
-    m_update->setStyleSheet( style );
-    m_search->setStyleSheet( style );
-    m_more->setStyleSheet( style );
-    m_wallp->setStyleSheet( style );
-    m_photo->setStyleSheet( style );
+    m_update->setStyleSheet( MusicUIObject::MPushButtonStyle12 );
+    m_search->setStyleSheet( MusicUIObject::MPushButtonStyle12 );
+    m_more->setStyleSheet( MusicUIObject::MPushButtonStyle12 );
+    m_wallp->setStyleSheet( MusicUIObject::MPushButtonStyle12 );
+    m_photo->setStyleSheet( MusicUIObject::MPushButtonStyle12 );
 
     QVBoxLayout *box = new QVBoxLayout(this);
     box->addWidget(m_update);

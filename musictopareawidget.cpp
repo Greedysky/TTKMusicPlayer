@@ -23,8 +23,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
     ui->userWindow->addWidget(m_msuicUserWindow);
-    ui->musicSongSearchLine->setStyleSheet("QLineEdit{border-image: url(:/image/searchline);"
-                                           "font-size:15px; color:#6495ED;}");
+    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
