@@ -19,7 +19,7 @@ public:
 
     virtual void startTimerClock();
     virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = LrcColorTable::CL_Mask);
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask);
     void updateCurrentLrc(qint64 time);
 
     bool transLrcFileToTime(const QString& lrcFileName);
@@ -35,11 +35,7 @@ signals:
     void theArtBgHasChanged();
 
 public slots:
-    void changeLrcSizeSmaller(){setLrcSize(LrcSizeTable::Smaller);}
-    void changeLrcSizeSmall(){setLrcSize(LrcSizeTable::Small);}
-    void changeLrcSizeMiddle(){setLrcSize(LrcSizeTable::Middle);}
-    void changeLrcSizeBig(){setLrcSize(LrcSizeTable::Big);}
-    void changeLrcSizeBigger(){setLrcSize(LrcSizeTable::Bigger);}
+    void lrcSizeChanged(QAction *action);
     void theArtBgChanged();
     void theArtBgUploaded();
     void theShowLrcChanged();

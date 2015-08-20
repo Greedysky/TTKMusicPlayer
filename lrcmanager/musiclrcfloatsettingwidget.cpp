@@ -3,6 +3,7 @@
 #include <QTimer>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QButtonGroup>
 
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
@@ -72,16 +73,19 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     purpleButton->setCursor(QCursor(Qt::PointingHandCursor));
     whiteButton->setCursor(QCursor(Qt::PointingHandCursor));
     blackButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(originButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorOrigin()));
-    connect(redButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorRed()));
-    connect(orangeButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorOrange()));
-    connect(yellowButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorYellow()));
-    connect(greenButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorGreen()));
-    connect(blueButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorBlue()));
-    connect(indigoButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorIndigo()));
-    connect(purpleButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorPurple()));
-    connect(whiteButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorWhite()));
-    connect(blackButton,SIGNAL(clicked()), parent ,SLOT(changeCurrentLrcColorBlack()));
+
+    QButtonGroup *group = new QButtonGroup(this);
+    group->addButton(originButton, 0);
+    group->addButton(redButton, 1);
+    group->addButton(orangeButton, 2);
+    group->addButton(yellowButton, 3);
+    group->addButton(greenButton, 4);
+    group->addButton(blueButton, 5);
+    group->addButton(indigoButton, 6);
+    group->addButton(purpleButton, 7);
+    group->addButton(whiteButton, 8);
+    group->addButton(blackButton, 9);
+    connect(group, SIGNAL(buttonClicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
 
     QWidget* sizeWidget = new QWidget(this);
     QHBoxLayout *sizeLayout = new QHBoxLayout(sizeWidget);

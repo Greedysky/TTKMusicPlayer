@@ -4,6 +4,7 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QTimer>
+#include <QButtonGroup>
 
 MusicLrcFloatPhotoPlaneWidget::MusicLrcFloatPhotoPlaneWidget(QWidget *parent)
     : QLabel(parent)
@@ -87,9 +88,13 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_plane1, SIGNAL(clicked()), SLOT(sendUserSelectArtBg1()));
     connect(m_plane2, SIGNAL(clicked()), SLOT(sendUserSelectArtBg2()));
     connect(m_plane3, SIGNAL(clicked()), SLOT(sendUserSelectArtBg3()));
-    connect(m_radio1, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked1(bool)));
-    connect(m_radio2, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked2(bool)));
-    connect(m_radio3, SIGNAL(clicked(bool)), SLOT(userSelectCheckBoxChecked3(bool)));
+
+    QButtonGroup *radioGroup = new QButtonGroup(this);
+    radioGroup->setExclusive(false);
+    radioGroup->addButton(m_radio1, 0);
+    radioGroup->addButton(m_radio2, 1);
+    radioGroup->addButton(m_radio3, 2);
+    connect(radioGroup, SIGNAL(buttonClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     M_ARTBG.setObject(this);
 
     m_checkBox->setEnabled(false);
@@ -199,28 +204,18 @@ void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
     M_ARTBG.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
 }
 
-void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked1(bool b)
+void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
 {
-    int index = m_currentIndex * PHOTO_PERLINE + 0;
-    if(b)
-        m_selectNum << index;
-    else
-        m_selectNum.remove(index);
-}
-
-void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked2(bool b)
-{
-    int index = m_currentIndex * PHOTO_PERLINE + 1;
-    if(b)
-        m_selectNum << index;
-    else
-        m_selectNum.remove(index);
-}
-
-void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked3(bool b)
-{
-    int index = m_currentIndex * PHOTO_PERLINE + 2;
-    if(b)
+    bool status = true;
+    switch(index)
+    {
+        case 0: status = m_radio1->isChecked();break;
+        case 1: status = m_radio2->isChecked();break;
+        case 2: status = m_radio3->isChecked();break;
+        default:break;
+    }
+    index = m_currentIndex * PHOTO_PERLINE + index;
+    if(status)
         m_selectNum << index;
     else
         m_selectNum.remove(index);

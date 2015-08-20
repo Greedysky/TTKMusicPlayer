@@ -11,26 +11,24 @@
 
 #define LRC_PER_TIME 30
 
-namespace LrcColorTable
-{   //Color table
-    const QColor CL_Origin = QColor(14,179,255);
-    const QColor CL_Red    = QColor(214,51,44);
-    const QColor CL_Orange = QColor(230,130,52);
-    const QColor CL_Yellow = QColor(243,209,0);
-    const QColor CL_Green  = QColor(62,164,140);
-    const QColor CL_Blue   = QColor(76,147,193);
-    const QColor CL_Indigo = QColor(29,237,235);
-    const QColor CL_Purple = QColor(156,115,155);
-    const QColor CL_White  = QColor(255,255,255);
-    const QColor CL_Black  = QColor(0,0,0);
-    const QColor CL_Mask   = QColor(222,54,4);
+const QColor CL_Origin = QColor(14,179,255);
+const QColor CL_Red    = QColor(214,51,44);
+const QColor CL_Orange = QColor(230,130,52);
+const QColor CL_Yellow = QColor(243,209,0);
+const QColor CL_Green  = QColor(62,164,140);
+const QColor CL_Blue   = QColor(76,147,193);
+const QColor CL_Indigo = QColor(29,237,235);
+const QColor CL_Purple = QColor(156,115,155);
+const QColor CL_White  = QColor(255,255,255);
+const QColor CL_Black  = QColor(0,0,0);
+const QColor CL_Mask   = QColor(222,54,4);
 
-    enum LrcColorType{ Origin, Red, Orange, Yellow, Green,
-                       Blue, Indigo, Purple, White, Black,
-                       Mask };
-}
+enum LrcColorType{ Origin, Red, Orange, Yellow, Green,
+                   Blue, Indigo, Purple, White, Black,
+                   Mask };
 
-enum LrcSizeTable{ Smaller = 13, Small = 14, Middle = 15, Big = 16, Bigger = 17};
+enum LrcSizeTable{ Smaller = 13, Small = 14, Middle = 15,
+                   Big = 16, Bigger = 17};
 
 class MUSIC_WIDGET_EXPORT MusicLRCManager : public QLabel
 {
@@ -42,8 +40,8 @@ public:
     void startTimerClock();
     void startLrcMask(qint64 intervaltime);
     void stopLrcMask();
-    void setLinearGradientColor(QColor = LrcColorTable::CL_Origin);
-    void setMaskLinearGradientColor(QColor = LrcColorTable::CL_Mask);
+    void setLinearGradientColor(QColor = CL_Origin);
+    void setMaskLinearGradientColor(QColor = CL_Mask);
     void setLrcFontSize(LrcSizeTable);
     void setFontFamily(int);
     void setFontType(int);

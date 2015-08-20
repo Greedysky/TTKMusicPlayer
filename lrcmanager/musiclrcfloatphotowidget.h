@@ -45,9 +45,7 @@ public slots:
     void sendUserSelectArtBg1();
     void sendUserSelectArtBg2();
     void sendUserSelectArtBg3();
-    void userSelectCheckBoxChecked1(bool b);
-    void userSelectCheckBoxChecked2(bool b);
-    void userSelectCheckBoxChecked3(bool b);
+    void userSelectCheckBoxChecked(int index);
 
 protected:
     virtual void enterEvent(QEvent *){}

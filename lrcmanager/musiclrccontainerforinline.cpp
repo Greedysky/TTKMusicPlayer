@@ -9,6 +9,7 @@
 #include <QDesktopServices>
 #include <QClipboard>
 #include <QApplication>
+#include <QActionGroup>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     MusicLrcContainer(parent)
@@ -25,17 +26,19 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
        m_musicLrcContainer.append(w);
     }
 
-    changeCurrentLrcColorOrigin();
+    setLinearGradientColor(Origin);
     m_currentLrcIndex = 0;
-    m_mouseMovedAt = QPoint(-1,-1);
-    m_mousePressedAt = QPoint(-1,-1);
+    m_mouseMovedAt = QPoint(-1, -1);
+    m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
     m_showInlineLrc = true;
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
-        m_musicLrcContainer[i]->setText(".........");
-    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
 
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
+    {
+        m_musicLrcContainer[i]->setText(".........");
+    }
+    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
@@ -310,11 +313,14 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addMenu(&changeLrcSize);
     menu.addSeparator();
 
-    changeLrcSize.addAction(tr("smaller"),this,SLOT(changeLrcSizeSmaller()));
-    changeLrcSize.addAction(tr("small"),this,SLOT(changeLrcSizeSmall()));
-    changeLrcSize.addAction(tr("middle"),this,SLOT(changeLrcSizeMiddle()));
-    changeLrcSize.addAction(tr("big"),this,SLOT(changeLrcSizeBig()));
-    changeLrcSize.addAction(tr("bigger"),this,SLOT(changeLrcSizeBigger()));
+    QActionGroup *group = new QActionGroup(this);
+    group->addAction(changeLrcSize.addAction(tr("smaller")));
+    group->addAction(changeLrcSize.addAction(tr("small")));
+    group->addAction(changeLrcSize.addAction(tr("middle")));
+    group->addAction(changeLrcSize.addAction(tr("big")));
+    group->addAction(changeLrcSize.addAction(tr("bigger")));
+    connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
+
     changeLrcSize.addSeparator();
     changeLrcSize.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
@@ -335,6 +341,16 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("customSetting"),this,SLOT(currentLrcCustom()));
 
     menu.exec(QCursor::pos());
+}
+
+void MusicLrcContainerForInline::lrcSizeChanged(QAction *action)
+{
+    QString text = action->text();
+    if(text == tr("smaller")) setLrcSize(Smaller);
+    else if (text == tr("small")) setLrcSize(Small);
+    else if (text == tr("middle")) setLrcSize(Middle);
+    else if (text == tr("big")) setLrcSize(Big);
+    else if (text == tr("bigger")) setLrcSize(Bigger);
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()

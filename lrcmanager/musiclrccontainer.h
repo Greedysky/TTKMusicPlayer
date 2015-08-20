@@ -19,9 +19,9 @@ public:
 
     virtual void startTimerClock() = 0;
     virtual void stopLrcMask() = 0;
-    virtual void setMaskLinearGradientColor(QColor = LrcColorTable::CL_Mask) = 0;
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) = 0;
     virtual void setSettingParameter();
-    void setLinearGradientColor(LrcColorTable::LrcColorType);
+    void setLinearGradientColor(LrcColorType);
     inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
     void setCurrentPosition(qint64 pos);
 
@@ -32,16 +32,8 @@ signals:
 
 public slots:
     void currentLrcCustom();
-    void changeCurrentLrcColorOrigin(){setLinearGradientColor(LrcColorTable::Origin);}
-    void changeCurrentLrcColorRed(){setLinearGradientColor(LrcColorTable::Red);}
-    void changeCurrentLrcColorOrange(){setLinearGradientColor(LrcColorTable::Orange);}
-    void changeCurrentLrcColorYellow(){setLinearGradientColor(LrcColorTable::Yellow);}
-    void changeCurrentLrcColorGreen(){setLinearGradientColor(LrcColorTable::Green);}
-    void changeCurrentLrcColorBlue(){setLinearGradientColor(LrcColorTable::Blue);}
-    void changeCurrentLrcColorIndigo(){setLinearGradientColor(LrcColorTable::Indigo);}
-    void changeCurrentLrcColorPurple(){setLinearGradientColor(LrcColorTable::Purple);}
-    void changeCurrentLrcColorWhite(){setLinearGradientColor(LrcColorTable::White);}
-    void changeCurrentLrcColorBlack(){setLinearGradientColor(LrcColorTable::Black);}
+    void changeCurrentLrcColor(QAction *action);
+    void changeCurrentLrcColor(int index);
     void searchMusicLrcs();
     void theCurrentLrcMaked();
 

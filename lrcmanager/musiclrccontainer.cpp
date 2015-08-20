@@ -1,6 +1,7 @@
 #include "musiclrccontainer.h"
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
+#include <QActionGroup>
 
 MusicLrcContainer::MusicLrcContainer(QWidget *parent) :
     QWidget(parent)
@@ -38,56 +39,68 @@ void MusicLrcContainer::searchMusicLrcs()
 
 void MusicLrcContainer::createColorMenu(QMenu& menu)
 {
-    menu.addAction(QIcon(":/color/origin"),
-                             tr("origin"),this,SLOT(changeCurrentLrcColorOrigin()));
-    menu.addAction(QIcon(":/color/red"),
-                             tr("red"),this,SLOT(changeCurrentLrcColorRed()));
-    menu.addAction(QIcon(":/color/orange"),
-                             tr("orange"),this,SLOT(changeCurrentLrcColorOrange()));
-    menu.addAction(QIcon(":/color/yellow"),
-                             tr("yellow"),this,SLOT(changeCurrentLrcColorYellow()));
-    menu.addAction(QIcon(":/color/green"),
-                             tr("green"),this,SLOT(changeCurrentLrcColorGreen()));
-    menu.addAction(QIcon(":/color/blue"),
-                             tr("blue"),this,SLOT(changeCurrentLrcColorBlue()));
-    menu.addAction(QIcon(":/color/indigo"),
-                             tr("indigo"),this,SLOT(changeCurrentLrcColorIndigo()));
-    menu.addAction(QIcon(":/color/purple"),
-                             tr("purple"),this,SLOT(changeCurrentLrcColorPurple()));
-    menu.addAction(QIcon(":/color/white"),
-                             tr("white"),this,SLOT(changeCurrentLrcColorWhite()));
-    menu.addAction(QIcon(":/color/black"),
-                             tr("black"),this,SLOT(changeCurrentLrcColorBlack()));
+    QActionGroup *group = new QActionGroup(this);
+    group->addAction(menu.addAction(QIcon(":/color/origin"), tr("origin")));
+    group->addAction(menu.addAction(QIcon(":/color/red"), tr("red")));
+    group->addAction(menu.addAction(QIcon(":/color/orange"), tr("orange")));
+    group->addAction(menu.addAction(QIcon(":/color/yellow"), tr("yellow")));
+    group->addAction(menu.addAction(QIcon(":/color/green"), tr("green")));
+    group->addAction(menu.addAction(QIcon(":/color/blue"), tr("blue")));
+    group->addAction(menu.addAction(QIcon(":/color/indigo"), tr("indigo")));
+    group->addAction(menu.addAction(QIcon(":/color/purple"), tr("purple")));
+    group->addAction(menu.addAction(QIcon(":/color/white"), tr("white")));
+    group->addAction(menu.addAction(QIcon(":/color/black"), tr("black")));
+    connect(group, SIGNAL(triggered(QAction*)),SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
     menu.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
 }
 
-void MusicLrcContainer::setLinearGradientColor(LrcColorTable::LrcColorType lrcColorType)
+void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
+{
+    QString text = action->text();
+    if(text == tr("origin")) setLinearGradientColor(Origin);
+    else if (text == tr("origin")) setLinearGradientColor(Red);
+    else if (text == tr("red")) setLinearGradientColor(Orange);
+    else if (text == tr("yellow")) setLinearGradientColor(Yellow);
+    else if (text == tr("green")) setLinearGradientColor(Green);
+    else if (text == tr("blue")) setLinearGradientColor(Blue);
+    else if (text == tr("indigo")) setLinearGradientColor(Indigo);
+    else if (text == tr("purple")) setLinearGradientColor(Purple);
+    else if (text == tr("white")) setLinearGradientColor(White);
+    else if (text == tr("black")) setLinearGradientColor(Black);
+}
+
+void MusicLrcContainer::changeCurrentLrcColor(int index)
+{
+    setLinearGradientColor(static_cast<LrcColorType>(index));
+}
+
+void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType)
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
         switch(lrcColorType)
         {
-            case LrcColorTable::Origin:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Origin);break;
-            case LrcColorTable::Red:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Red);break;
-            case LrcColorTable::Orange:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Orange);break;
-            case LrcColorTable::Yellow:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Yellow);break;
-            case LrcColorTable::Green:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Green);break;
-            case LrcColorTable::Blue:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Blue);break;
-            case LrcColorTable::Indigo:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Indigo);break;
-            case LrcColorTable::Purple:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Purple);break;
-            case LrcColorTable::White:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_White);break;
-            case LrcColorTable::Black:
-            m_musicLrcContainer[i]->setLinearGradientColor(LrcColorTable::CL_Black);break;
+            case Origin:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Origin);break;
+            case Red:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Red);break;
+            case Orange:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Orange);break;
+            case Yellow:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Yellow);break;
+            case Green:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Green);break;
+            case Blue:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Blue);break;
+            case Indigo:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Indigo);break;
+            case Purple:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Purple);break;
+            case White:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_White);break;
+            case Black:
+                m_musicLrcContainer[i]->setLinearGradientColor(CL_Black);break;
             default:break;
         }
     }
@@ -116,7 +129,7 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
     }
     if(M_SETTING.value(t + "LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((LrcColorTable::LrcColorType)M_SETTING.value(t + "LrcColorChoiced").toInt());
+        setLinearGradientColor((LrcColorType)M_SETTING.value(t + "LrcColorChoiced").toInt());
         setMaskLinearGradientColor();
     }
     else

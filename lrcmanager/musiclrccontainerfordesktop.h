@@ -16,7 +16,7 @@ public:
 
     virtual void startTimerClock();
     virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = LrcColorTable::CL_Mask);
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask);
     virtual void setSettingParameter();
     void showPlayStatus(bool);
     void initCurrentLrc();
