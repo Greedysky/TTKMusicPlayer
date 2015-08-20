@@ -18,7 +18,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
     m_topWidget->setObjectName("#topWidget");
-    m_topWidget->setStyleSheet(MusicUIObject::MCustomStyle18 +
+    m_topWidget->setStyleSheet(MusicUIObject::MCustomStyle18 + \
                                MusicUIObject::MCustomStyle19);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     m_backButton = new QPushButton(this);

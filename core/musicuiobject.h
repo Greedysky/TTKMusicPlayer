@@ -17,16 +17,16 @@ namespace MusicUIObject
 ///Custom
 //////////////////////////////////////////////////////
     const QString MCustomStyle20 = " \
-            background-color:transparent";
+            background-color:transparent;";
 
     const QString MCustomStyle01 = "\
-            background-color:rgba(255,255,255,125)";
+            background-color:rgba(255,255,255,125);";
 
     const QString MCustomStyle02 = "\
-            background:rgba(0,0,0,100)";
+            background:rgba(0,0,0,100);";
 
     const QString MCustomStyle03 = "\
-            background:white;border:3px solid rgb(173,216,230)";
+            background:white;border:3px solid rgb(173,216,230);";
 
     const QString MCustomStyle04 = MCustomStyle20 + "\
             border-image: url(:/share/searchlineleft);";
@@ -39,13 +39,13 @@ namespace MusicUIObject
             color:red; height:20px; border:none; background-color:white;";
 
     const QString MCustomStyle07 = "\
-            background:rgb(250,231,191);color:rgb(160,99,11)";
+            background:rgb(250,231,191);color:rgb(160,99,11);";
 
     const QString MCustomStyle08 = "\
-            background-color:rgba(0,0,0,155)";
+            background-color:rgba(0,0,0,155);";
 
     const QString MCustomStyle09 = "\
-            border: 1px solid #555555;background-color:rgba(0,0,0,40)";
+            border: 1px solid #555555;background-color:rgba(0,0,0,40);";
            
     const QString MCustomStyle10 = "\
             color:white;";
@@ -60,7 +60,7 @@ namespace MusicUIObject
             color:#FF0000;";
            
     const QString MCustomStyle18 = "\
-            background-color:black";
+            background-color:black;";
            
     const QString MCustomStyle19 = "\
             border:none;";
@@ -72,7 +72,7 @@ namespace MusicUIObject
             background:rgba(255, 255, 255, 50);" + MCustomStyle19;
            
     const QString MCustomStyle23 = " \
-            color:white;image:url(:/lrc/shadow);text-align:center";
+            color:white;image:url(:/lrc/shadow);text-align:center;";
 
     const QString MCustomStyle24 = " \
             border-image: url(:/image/soundmax);";
@@ -83,10 +83,10 @@ namespace MusicUIObject
     const QString MCustomStyle26 = MCustomStyle20 + MCustomStyle24;
 
     const QString MCustomStyle27 = " \
-            background:rgba(0,0,0,35)";
+            background:rgba(0,0,0,35);";
 
     const QString MCustomStyle28 = " \
-            image:url(:/share/defaultArt)";
+            image:url(:/share/defaultArt);";
           
 ///ToolButton
 //////////////////////////////////////////////////////
