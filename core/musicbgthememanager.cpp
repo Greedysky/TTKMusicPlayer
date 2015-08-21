@@ -22,9 +22,14 @@ void MusicBgThemeManager::setArtName(const QString& name)
 QString MusicBgThemeManager::getArtPhotoPath()
 {
     if(!m_photos.isEmpty())
-        return m_photos[m_currentIndex < m_photos.count() ? m_currentIndex++ : m_currentIndex = 0];
+    {
+        return m_photos[m_currentIndex < m_photos.count() ?
+                        m_currentIndex++ : m_currentIndex = 0];
+    }
     else
+    {
         return QString();
+    }
 }
 
 QString MusicBgThemeManager::getArtPhotoPathByIndex(int index)

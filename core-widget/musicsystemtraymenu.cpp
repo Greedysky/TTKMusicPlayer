@@ -6,7 +6,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-MMenuStyle01::MMenuStyle01(QWidget *parent)
+MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
     setStyleSheet(MusicUIObject::MMenuStyle01);
@@ -28,14 +28,14 @@ MMenuStyle01::MMenuStyle01(QWidget *parent)
     addAction(QIcon(":/contextMenu/quit"),tr("appClose"),parent,SLOT(quitWindowClose()));
 }
 
-MMenuStyle01::~MMenuStyle01()
+MusicSystemTrayMenu::~MusicSystemTrayMenu()
 {
     delete m_lockLrcAction;
     delete m_showLrcAction;
     delete m_widgetAction;
 }
 
-void MMenuStyle01::createWidgetActions()
+void MusicSystemTrayMenu::createWidgetActions()
 {
     m_widgetAction = new QWidgetAction(this);
     QWidget *widgetActionContainer = new QWidget(this);
@@ -86,14 +86,14 @@ void MMenuStyle01::createWidgetActions()
     connect(m_PlayOrStop,SIGNAL(clicked()),parent(),SLOT(musicKey()));
 }
 
-void MMenuStyle01::setLabelText(const QString& text)
+void MusicSystemTrayMenu::setLabelText(const QString& text)
 {
     QFontMetrics str(font());
     m_showText->setText(str.elidedText(text, Qt::ElideRight,160));
     m_showText->setToolTip(text);
 }
 
-void MMenuStyle01::showDesktopLrc(const QString &show)
+void MusicSystemTrayMenu::showDesktopLrc(const QString &show)
 {
     (show == "true") ? m_showLrcAction->setText(tr("hideDeskLrc"))
                      : m_showLrcAction->setText(tr("showDeskLrc"));
@@ -101,19 +101,19 @@ void MMenuStyle01::showDesktopLrc(const QString &show)
                      : m_lockLrcAction->setEnabled(false);
 }
 
-void MMenuStyle01::lockDesktopLrc(bool lock)
+void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 {
     !lock ? m_lockLrcAction->setText(tr("lockLrc"))
           : m_lockLrcAction->setText(tr("unlockLrc"));
 }
 
-void MMenuStyle01::showPlayStatus(bool status)
+void MusicSystemTrayMenu::showPlayStatus(bool status)
 {
     m_PlayOrStop->setIcon(!status ? QIcon(QString::fromUtf8(":/image/stop"))
                                   : QIcon(QString::fromUtf8(":/image/play")) );
 }
 
-void MMenuStyle01::showDesktopLrc()
+void MusicSystemTrayMenu::showDesktopLrc()
 {
     bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
     show ? m_showLrcAction->setText(tr("hideDeskLrc"))

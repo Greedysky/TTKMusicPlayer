@@ -88,9 +88,7 @@ void MusicDesktopWallpaperThread::setWallpaper(const QString& path, int type)
 {
     QSettings appSettings("HKEY_CURRENT_USER\\Control Panel\\Desktop",QSettings::NativeFormat);
     appSettings.setValue ("Wallpaper", path);
-    QString wallpaperStyle;
-    if(type == 0 || type == 1) wallpaperStyle = "00";
-    else wallpaperStyle = "10";
+    QString wallpaperStyle = (type == 0 || type == 1) ? "00" : "10";
     appSettings.setValue ("WallpaperStyle", wallpaperStyle);
     SystemParametersInfo(SPI_SETDESKWALLPAPER, 0,
                          (TCHAR*)path.toStdWString().c_str(),
