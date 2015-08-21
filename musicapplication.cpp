@@ -335,7 +335,7 @@ void MusicApplication::createSystemTrayIcon()
 
     createMenuActions();
 
-    m_systemTrayMenu = new MMenuStyle01(this);
+    m_systemTrayMenu = new MusicSystemTrayMenu(this);
     connect(m_systemTrayMenu,SIGNAL(setShowDesktopLrc(bool)),SLOT(setShowDesktopLrc(bool)));
     connect(m_systemTrayMenu,SIGNAL(setWindowLockedChanged()),m_musiclrcfordesktop,SLOT(setWindowLockedChanged()));
     connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
