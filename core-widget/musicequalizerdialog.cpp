@@ -140,7 +140,7 @@ void MusicEqualizerDialog::readEqInformation()
             ui->bwVerticalSlider->setValue(eqValue[0].toInt());
         }
         else
-           ui->eqChoice->setCurrentIndex(M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt());
+           ui->eqChoice->setCurrentIndex(M_SETTING.value(MusicSettingManager::EqualizerIndexChoiced).toInt());
     }
     else
         resetEq();

@@ -18,9 +18,7 @@ public:
 
     QStringList getArtPhotoPaths();
     void setArtPhotoPaths(const QStringList&);
-
     void sendUserSelectArtBg(int);
-
     void setObject(QObject*);
 
 signals:
