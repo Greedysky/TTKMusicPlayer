@@ -80,10 +80,17 @@ int MusicTopAreaWidget::getBgSkinAlpha()
     return m_alpha;
 }
 
+void MusicTopAreaWidget::setTimerStop()
+{
+    m_pictureCarouselTimer.stop();
+}
+
 void MusicTopAreaWidget::musicShowSkinChangedWindow()
 {
     if(m_musicbgskin == NULL)
+    {
         m_musicbgskin = new MusicBackgroundSkinDialog(this);
+    }
     m_musicbgskin->setCurrentBgTheme(m_currentBgSkin, m_alpha);
     m_musicbgskin->exec();
 }

@@ -1,5 +1,4 @@
 #include "musictoolsetswidget.h"
-#include "musicapplication.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musiclocalsongsmanagerwidget.h"
@@ -8,8 +7,8 @@
 #include "musicdesktopwallpaperwidget.h"
 #include <QProcess>
 
-MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent)
-    : QListWidget(parent),m_parentWidget(parent),m_process(NULL),
+MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
+    : QListWidget(parent),m_process(NULL),
       m_musicSpectrumWidget(NULL),m_wallpaper(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -20,8 +19,8 @@ MusicToolSetsWidget::MusicToolSetsWidget(MusicApplication *parent)
     setMovement(QListView::Static);
     setSpacing(15);
     setTransparent(50);
-    connect(this,SIGNAL(itemClicked(QListWidgetItem*)),
-            SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
+                  SLOT(itemHasClicked(QListWidgetItem*)));
 
     addListWidgetItem();
 }
@@ -32,11 +31,6 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     delete m_musicSpectrumWidget;
     delete m_process;
     clearAllItems();
-}
-
-void MusicToolSetsWidget::setSongStringList(const QStringList& l)
-{
-    m_songlist = l;
 }
 
 void MusicToolSetsWidget::setTransparent(int angle)
@@ -125,7 +119,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)
            {
                 MusicLocalSongsManagerWidget local(this);
                 connect(&local,SIGNAL(addSongToPlay(QStringList)),
-                        m_parentWidget,SLOT(addSongToPlayList(QStringList)));
+                               SIGNAL(addSongToPlay(QStringList)));
                 local.exec();
                 break;
            }
@@ -145,9 +139,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)
         case 3:
            {
                 MusicTimerWidget timer(this);
-                timer.setSongStringList(m_songlist);
+                QStringList songlist;
+                emit getCurrentPlayList(songlist);
+                timer.setSongStringList(songlist);
                 connect(&timer,SIGNAL(timerParameterChanged()),
-                        m_parentWidget,SLOT(musicToolSetsParameter()));
+                               SIGNAL(timerParameterChanged()));
                 timer.exec();
                 break;
             }
@@ -159,7 +155,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)
                 delete m_musicSpectrumWidget;
                 m_musicSpectrumWidget = new MusicSpectrumWidget;
                 connect(m_musicSpectrumWidget,SIGNAL(setSpectrum(HWND,int,int)),
-                        SIGNAL(setSpectrum(HWND,int,int)));
+                                              SIGNAL(setSpectrum(HWND,int,int)));
                 m_musicSpectrumWidget->show();
                 break;
            }

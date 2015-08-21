@@ -23,6 +23,7 @@ public:
     void setParameters(const QString&, int);
     QString getBgSkin();
     int getBgSkinAlpha();
+    void setTimerStop();
 
 signals:
     void updateToolStyle();

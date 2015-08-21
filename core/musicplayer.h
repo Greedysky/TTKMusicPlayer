@@ -35,6 +35,10 @@ public:
 
     void setPlay3DMusicFlag(bool&);
 
+#ifdef Q_OS_WIN32
+    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
+#endif
+
 signals:
     void stateChanged();
     void stateChanged(MusicPlayer::State newState);
@@ -57,9 +61,6 @@ public slots:
     void setMuted(bool muted);
 
     void setPlaylist(MusicPlaylist *playlist);
-#ifdef Q_OS_WIN32
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
-#endif
 
     void setTimeOut();
     void removeCurrentMedia();

@@ -12,6 +12,9 @@
 #include "musicobject.h"
 #include "musicversion.h"
 
+class QLabel;
+class QPropertyAnimation;
+
 class MusicPlayer;
 class MusicPlaylist;
 class MusicSettingWidget;
@@ -26,12 +29,7 @@ class MusicToolSetsWidget;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class MusicWindowExtras;
-class MusicSpectrumWidget;
-
 class MusicVideoPlayer;
-
-class QLabel;
-class QPropertyAnimation;
 
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
@@ -123,12 +121,7 @@ public slots:
     void musicSquareRemote();
     void musicRectangleRemote();
     void musicDeleteRemote();
-    void musicStackedSongListWidgetChanged();
-    void musicStackedToolsWidgetChanged();
-    void musicStackedRadioWidgetChanged();
-    void musicStackedMyDownWidgetChanged();
     void musicTimerWidget();
-    void musicSpectrumWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
     /////////////////////////////////////////////
@@ -165,8 +158,10 @@ public slots:
     //This is a slot by MusicMyDownloadRecordWidget's signal emit
     void addSongToPlayList(const QStringList &);
     /////////////////////////////////////////////
-//    void musicBgThemeDownloadFinished();
-
+    //left
+    void setSpectrum(HWND,int,int);
+    void getCurrentPlayList(QStringList&);
+    /////////////////////////////////////////////
 
 private:
     Ui::MusicApplication *ui;
@@ -176,7 +171,6 @@ private:
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
     MIntsListMap m_searchfileListCache;
-
     QSystemTrayIcon* m_systemTray;
 
     QMenu m_playModeMenu;
@@ -191,14 +185,11 @@ private:
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;
     MusicWindowExtras* m_musicWindowExtras;
-    MusicSpectrumWidget* m_musicSpectrumWidget;
     //////////////////////////////////
     MusicVideoPlayer* m_videoPlayer;
     //////////////////////////////////
     QPropertyAnimation* m_animation;
-    QWidget* m_stackedWidget;
     int m_currentMusicSongTreeIndex;
-    QTimer m_pictureCarouselTimer;
 
     MusicBottomAreaWidget* m_bottomAreaWidget;
     MusicTopAreaWidget* m_topAreaWidget;

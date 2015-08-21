@@ -16,11 +16,7 @@
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musicmobiledeviceswidget.h"
-#include "musicspectrumwidget.h"
-#include "musictoolsetswidget.h"
 #include "musicsongssummarizied.h"
-#include "musicwebradiolistview.h"
-#include "musicmydownloadrecordwidget.h"
 #include "musicdownloadquerythread.h"
 #include "musicdownloadstatuslabel.h"
 #include "musictextdownloadthread.h"
@@ -44,8 +40,8 @@ MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
     ui(new Ui::MusicApplication),
     m_setting(NULL),m_musicLocalSongSearch(NULL),
-    m_musicRemoteWidget(NULL),m_stackedWidget(NULL),m_mobileDevices(NULL),
-    m_videoPlayer(NULL),m_musicSpectrumWidget(NULL)
+    m_musicRemoteWidget(NULL),m_mobileDevices(NULL),
+    m_videoPlayer(NULL)
 {
     ui->setupUi(this);
     /////////////////////////////////////////////////
@@ -187,12 +183,15 @@ bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, l
 
 MusicApplication::~MusicApplication()
 {
-    delete m_musicSpectrumWidget;
+    delete m_bottomAreaWidget;
+    delete m_topAreaWidget;
+    delete m_rightAreaWidget;
+    delete m_leftAreaWidget;
+
     delete m_musicWindowExtras;
     delete m_videoPlayer;
     delete m_mobileDevices;
     delete m_animation;
-    delete m_stackedWidget;
     delete m_musicRemoteWidget;
     delete m_downloadStatusLabel;
     delete m_musicPlayer;
@@ -204,8 +203,6 @@ MusicApplication::~MusicApplication()
     delete m_musiclrcfordesktop;
     delete m_musicLocalSongSearch;
 
-    delete m_topAreaWidget;
-    delete m_bottomAreaWidget;
     delete ui;
 }
 
@@ -289,7 +286,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"),tr("Equalizer"),this,SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"),this,SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"),this,SLOT(musicTimerWidget()));
-    rightClickMenu.addAction(tr("ShowingSpectrum"),this,SLOT(musicSpectrumWidget()));
+    rightClickMenu.addAction(tr("ShowingSpectrum"), m_leftAreaWidget, SLOT(musicSpectrumWidget()));
     rightClickMenu.addSeparator();
 
     QAction *window = rightClickMenu.addAction(tr("WindowTop"),this,SLOT(musicSetWindowToTop()));
@@ -657,7 +654,7 @@ void MusicApplication::musicKey()
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
         m_playControl = true;
         m_musicPlayer->pause();
-        m_pictureCarouselTimer.stop();
+        m_topAreaWidget->setTimerStop();
         if( checkSettingParameterValue() )
         {
             ui->musiclrccontainerforinline->stopLrcMask();
@@ -888,7 +885,6 @@ void MusicApplication::musicPlayAnyTimeAt(int posValue)
     m_musicPlayer->setPosition( posValue);
     //Set lrc corrent to show
     ui->musiclrccontainerforinline->setSongSpeedAndSlow(posValue);
-
 }
 
 void MusicApplication::iconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -1291,58 +1287,12 @@ void MusicApplication::musicRectangleRemote()
     createRemoteWidget();
 }
 
-void MusicApplication::musicStackedSongListWidgetChanged()
-{
-    ui->songsContainer->setCurrentIndex(0);
-}
-
-void MusicApplication::musicStackedToolsWidgetChanged()
-{
-    delete m_stackedWidget;
-    m_stackedWidget = new MusicToolSetsWidget(this);
-
-    ui->songsContainer->addWidget(m_stackedWidget);
-    connect(m_stackedWidget,SIGNAL(setSpectrum(HWND,int,int)),
-            m_musicPlayer,SLOT(setSpectrum(HWND,int,int)));
-    static_cast<MusicToolSetsWidget*>(m_stackedWidget)->setSongStringList(
-                                      m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex()));
-    ui->songsContainer->setCurrentIndex(1);
-}
-
-void MusicApplication::musicStackedMyDownWidgetChanged()
-{
-    delete m_stackedWidget;
-    m_stackedWidget = new MusicMyDownloadRecordWidget(this);
-    connect(static_cast<MusicMyDownloadRecordWidget*>(m_stackedWidget),SIGNAL(musicPlay(QStringList)),
-            SLOT(addSongToPlayList(QStringList)));
-    ui->songsContainer->addWidget(m_stackedWidget);
-    ui->songsContainer->setCurrentIndex(1);
-}
-
-void MusicApplication::musicStackedRadioWidgetChanged()
-{
-    delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioListView(this);
-
-    ui->songsContainer->addWidget(m_stackedWidget);
-    ui->songsContainer->setCurrentIndex(1);
-}
-
 void MusicApplication::musicTimerWidget()
 {
     MusicTimerWidget timer(this);
     timer.setSongStringList(m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex()));
     connect(&timer,SIGNAL(timerParameterChanged()),SLOT(musicToolSetsParameter()));
     timer.exec();
-}
-
-void MusicApplication::musicSpectrumWidget()
-{
-    if(!m_musicSpectrumWidget)
-        m_musicSpectrumWidget = new MusicSpectrumWidget;
-    m_musicSpectrumWidget->show();
-    connect(m_musicSpectrumWidget,SIGNAL(setSpectrum(HWND,int,int)),
-            m_musicPlayer,SLOT(setSpectrum(HWND,int,int)));
 }
 
 void MusicApplication::setPlaySongChanged(int index)
@@ -1397,4 +1347,14 @@ void MusicApplication::musicWindowConciseChanged()
     ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
     drawWindowRoundedRect();
     m_topAreaWidget->musicBgThemeDownloadFinished();
+}
+
+void MusicApplication::setSpectrum(HWND wnd, int w, int h)
+{
+    m_musicPlayer->setSpectrum(wnd, w, h);
+}
+
+void MusicApplication::getCurrentPlayList(QStringList& list)
+{
+    list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
 }

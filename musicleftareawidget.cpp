@@ -1,11 +1,22 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
+#include "musictoolsetswidget.h"
+#include "musicmydownloadrecordwidget.h"
+#include "musicwebradiolistview.h"
+#include "musicspectrumwidget.h"
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_stackedWidget = NULL;
+    m_musicSpectrumWidget = NULL;
+}
 
+MusicLeftAreaWidget::~MusicLeftAreaWidget()
+{
+    delete m_stackedWidget;
+    delete m_musicSpectrumWidget;
 }
 
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -18,10 +29,10 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),parent(),SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove,SIGNAL(clicked()),parent(),SLOT(musicAddSongToLovestListAt()));
     connect(ui->music3DPlayButton,SIGNAL(clicked()),parent(),SLOT(musicSetPlay3DMusic()));
-    connect(ui->musicButton_playlist,SIGNAL(clicked()),parent(),SLOT(musicStackedSongListWidgetChanged()));
-    connect(ui->musicButton_tools,SIGNAL(clicked()),parent(),SLOT(musicStackedToolsWidgetChanged()));
-    connect(ui->musicButton_radio,SIGNAL(clicked()),parent(),SLOT(musicStackedRadioWidgetChanged()));
-    connect(ui->musicButton_mydownl,SIGNAL(clicked()),parent(),SLOT(musicStackedMyDownWidgetChanged()));
+    connect(ui->musicButton_playlist,SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
+    connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
+    connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
+    connect(ui->musicButton_mydownl,SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
 
     ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
@@ -77,4 +88,56 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setToolTip(tr("musicPlaylist"));
     ui->musicButton_radio->setToolTip(tr("musicRadio"));
     ui->musicButton_tools->setToolTip(tr("musicTools"));
+}
+
+void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
+{
+    m_ui->songsContainer->setCurrentIndex(0);
+}
+
+void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
+{
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicToolSetsWidget(this);
+
+    m_ui->songsContainer->addWidget(m_stackedWidget);
+    connect(m_stackedWidget, SIGNAL(setSpectrum(HWND,int,int)), parent(),
+                             SLOT(setSpectrum(HWND,int,int)));
+    connect(m_stackedWidget, SIGNAL(timerParameterChanged()), parent(),
+                             SLOT(musicToolSetsParameter()));
+    connect(m_stackedWidget, SIGNAL(addSongToPlay(QStringList)), parent(),
+                             SLOT(addSongToPlayList(QStringList)));
+    connect(m_stackedWidget, SIGNAL(getCurrentPlayList(QStringList&)), parent(),
+                             SLOT(getCurrentPlayList(QStringList&)));
+    m_ui->songsContainer->setCurrentIndex(1);
+}
+
+void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
+{
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicMyDownloadRecordWidget(this);
+    connect(static_cast<MusicMyDownloadRecordWidget*>(m_stackedWidget),SIGNAL(musicPlay(QStringList)), parent(), 
+                                                                       SLOT(addSongToPlayList(QStringList)));
+    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->setCurrentIndex(1);
+}
+
+void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+{
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicWebRadioListView(this);
+
+    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->setCurrentIndex(1);
+}
+
+void MusicLeftAreaWidget::musicSpectrumWidget()
+{
+    if(m_musicSpectrumWidget == NULL)
+    {
+        m_musicSpectrumWidget = new MusicSpectrumWidget;
+    }
+    m_musicSpectrumWidget->show();
+    connect(m_musicSpectrumWidget,SIGNAL(setSpectrum(HWND,int,int)),
+                        parent(), SLOT(setSpectrum(HWND,int,int)));
 }
