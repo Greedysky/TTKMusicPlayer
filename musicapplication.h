@@ -24,7 +24,6 @@ class MusicSongsSummarizied;
 class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
-class MusicRemoteWidget;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
@@ -57,7 +56,6 @@ protected:
     void initWindowSurface();
     void createSystemTrayIcon();
     void createMenuActions();
-    void createRemoteWidget();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
     void createVedioWidget(bool);
@@ -116,11 +114,6 @@ public slots:
     void musicSetWindowToTop();
     void musicSetEqualizer();
     void musicAudioRecorder();
-    void musicCircleRemote();
-    void musicDiamondRemote();
-    void musicSquareRemote();
-    void musicRectangleRemote();
-    void musicDeleteRemote();
     void musicTimerWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
@@ -144,9 +137,7 @@ public slots:
     //This is a slot by MusicLrcDesktopContainer's signal emit
     void desktopLrcClosed();
     /////////////////////////////////////////////
-    //This is a slot by MusicRemoteWidget's signal emit
-    void musicVolumeChangedFromRemote(int);
-    /////////////////////////////////////////////
+
     //This is a slot by MusicTimerAutoObject's signal emit
     void setPlaySongChanged(int);
     void setStopSongChanged();
@@ -154,14 +145,16 @@ public slots:
     //This is a slot by MusicToolSetsWidget's signal emit
     void musicToolSetsParameter();
     /////////////////////////////////////////////
+
+    //left
     //This is a slot by MusicLocalSongsManagerWidget's signal emit
     //This is a slot by MusicMyDownloadRecordWidget's signal emit
     void addSongToPlayList(const QStringList &);
     /////////////////////////////////////////////
-    //left
     void setSpectrum(HWND,int,int);
     void getCurrentPlayList(QStringList&);
     /////////////////////////////////////////////
+
 
 private:
     Ui::MusicApplication *ui;
@@ -181,7 +174,6 @@ private:
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
 
-    MusicRemoteWidget* m_musicRemoteWidget;
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;
     MusicWindowExtras* m_musicWindowExtras;

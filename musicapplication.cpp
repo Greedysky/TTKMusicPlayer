@@ -9,10 +9,6 @@
 #include "musicwindowextras.h"
 #include "musiclocalsongsearch.h"
 #include "musiclrccontainerfordesktop.h"
-#include "musicremotewidgetforsquare.h"
-#include "musicremotewidgetforrectangle.h"
-#include "musicremotewidgetfordiamond.h"
-#include "musicremotewidgetforcircle.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musicmobiledeviceswidget.h"
@@ -40,8 +36,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
     ui(new Ui::MusicApplication),
     m_setting(NULL),m_musicLocalSongSearch(NULL),
-    m_musicRemoteWidget(NULL),m_mobileDevices(NULL),
-    m_videoPlayer(NULL)
+    m_mobileDevices(NULL), m_videoPlayer(NULL)
 {
     ui->setupUi(this);
     /////////////////////////////////////////////////
@@ -192,7 +187,6 @@ MusicApplication::~MusicApplication()
     delete m_videoPlayer;
     delete m_mobileDevices;
     delete m_animation;
-    delete m_musicRemoteWidget;
     delete m_downloadStatusLabel;
     delete m_musicPlayer;
     delete m_musicList;
@@ -277,11 +271,11 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"),&rightClickMenu);
     rightClickMenu.addMenu(&musicRemoteControl)->setIcon(QIcon(":/contextMenu/remote"));
-    musicRemoteControl.addAction(tr("SquareRemote"),this,SLOT(musicSquareRemote()));
-    musicRemoteControl.addAction(tr("RectangleRemote"),this,SLOT(musicRectangleRemote()));
-    musicRemoteControl.addAction(tr("DiamondRemote"),this,SLOT(musicDiamondRemote()));
-    musicRemoteControl.addAction(tr("CircleRemote"),this,SLOT(musicCircleRemote()));
-    musicRemoteControl.addAction(tr("DeleteRemote"),this,SLOT(musicDeleteRemote()));
+    musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
+    musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
+    musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
+    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
+    musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"),tr("Equalizer"),this,SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"),this,SLOT(musicAudioRecorder()));
@@ -338,7 +332,6 @@ void MusicApplication::createSystemTrayIcon()
     connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
-//    ui->menuSetting->setMenu(&m_toolPopupMenu);
 
     ui->musicPlayMode->setMenu(&m_playModeMenu);
     ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
@@ -604,8 +597,7 @@ void MusicApplication::showCurrentSong(int index)
         //Show the current play song information
         m_downloadStatusLabel->musicCheckHasLrcAlready();
         m_systemTrayMenu->setLabelText(name);
-        if(m_musicRemoteWidget)
-            m_musicRemoteWidget->setLabelText(name);
+        m_topAreaWidget->setLabelText(name);
         //display current ArtTheme pic
         M_ARTBG.setArtName(getCurrentFileName());
         m_topAreaWidget->musicBgThemeDownloadFinished();
@@ -623,7 +615,7 @@ void MusicApplication::showCurrentSong(int index)
         m_systemTrayMenu->showPlayStatus(m_playControl);
         m_musiclrcfordesktop->showPlayStatus(m_playControl);
         m_musicWindowExtras->showPlayStatus(m_playControl);
-        if(m_musicRemoteWidget) m_musicRemoteWidget->showPlayStatus(m_playControl);
+        m_topAreaWidget->showPlayStatus(m_playControl);
     }
 }
 
@@ -664,7 +656,7 @@ void MusicApplication::musicKey()
     m_systemTrayMenu->showPlayStatus(m_playControl);
     m_musiclrcfordesktop->showPlayStatus(m_playControl);
     m_musicWindowExtras->showPlayStatus(m_playControl);
-    if(m_musicRemoteWidget) m_musicRemoteWidget->showPlayStatus(m_playControl);
+    m_topAreaWidget->showPlayStatus(m_playControl);
     ui->musicTimeWidget->setPlayState(m_playControl);
 }
 
@@ -763,8 +755,7 @@ void MusicApplication::musicVolumeNULL()
 
 void MusicApplication::musicVolumeChanged(int volume)
 {
-    if(m_musicRemoteWidget)
-        m_musicRemoteWidget->setVolumeValue(volume);
+    m_topAreaWidget->setVolumeValue(volume);
     m_musicPlayer->setVolume(volume);
     ui->volumeValue->setText(QString("%1%").arg(volume));
     (volume > 0) ? ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24)
@@ -1141,7 +1132,10 @@ void MusicApplication::musicVedioWidgetButtonDoubleClicked()
 
 QString MusicApplication::getCurrentFileName() const
 {
-    if(m_musicList->currentIndex() == -1) return QString();
+    if(m_musicList->currentIndex() == -1)
+    {
+        return QString();
+    }
     return m_musicSongTree->getMusicSongsFileName( \
             m_currentMusicSongTreeIndex)[m_musicList->currentIndex()];
 }
@@ -1225,66 +1219,6 @@ void MusicApplication::musicAudioRecorder()
 {
     MusicAudioRecorderWidget recorder(this);
     recorder.exec();
-}
-
-void MusicApplication::musicVolumeChangedFromRemote(int value)
-{
-    ui->musicSoundSlider->setValue(value);
-}
-
-void MusicApplication::createRemoteWidget()
-{
-    if(m_musicRemoteWidget == NULL) return;
-
-    hide();
-    m_musicRemoteWidget->showPlayStatus(m_playControl);
-    m_musicRemoteWidget->setVolumeValue(ui->musicSoundSlider->value());
-    connect(m_musicRemoteWidget,SIGNAL(musicWindowSignal()),SLOT(showNormal()));
-    connect(m_musicRemoteWidget,SIGNAL(musicPlayPriviousSignal()),SLOT(musicPlayPrivious()));
-    connect(m_musicRemoteWidget,SIGNAL(musicPlayNextSignal()),SLOT(musicPlayNext()));
-    connect(m_musicRemoteWidget,SIGNAL(musicKeySignal()),SLOT(musicKey()));
-    connect(m_musicRemoteWidget,SIGNAL(musicVolumeSignal(int)),SLOT(musicVolumeChangedFromRemote(int)));
-    connect(m_musicRemoteWidget,SIGNAL(musicSettingSignal()),SLOT(musicSetting()));
-    m_musicRemoteWidget->show();
-}
-
-void MusicApplication::musicDeleteRemote()
-{
-    delete m_musicRemoteWidget;
-    m_musicRemoteWidget = NULL;
-}
-
-void MusicApplication::musicSquareRemote()
-{
-    if(m_musicRemoteWidget)
-        delete m_musicRemoteWidget;
-    m_musicRemoteWidget = new MusicRemoteWidgetForSquare;
-    createRemoteWidget();
-}
-
-void MusicApplication::musicCircleRemote()
-{
-    if(m_musicRemoteWidget)
-        delete m_musicRemoteWidget;
-    m_musicRemoteWidget = new MusicRemoteWidgetForCircle;
-    createRemoteWidget();
-}
-
-void MusicApplication::musicDiamondRemote()
-{
-    if(m_musicRemoteWidget)
-        delete m_musicRemoteWidget;
-    m_musicRemoteWidget = new MusicRemoteWidgetForDiamond;
-    createRemoteWidget();
-}
-
-void MusicApplication::musicRectangleRemote()
-{
-    if(m_musicRemoteWidget)
-        delete m_musicRemoteWidget;
-    m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
-    m_musicRemoteWidget->setLabelText(ui->showCurrentSong->text().split('=').back().trimmed());
-    createRemoteWidget();
 }
 
 void MusicApplication::musicTimerWidget()

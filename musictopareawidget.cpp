@@ -3,14 +3,18 @@
 #include "musicuserwindow.h"
 #include "musicbackgroundskindialog.h"
 #include "musicbgthememanager.h"
+#include "musicremotewidgetforsquare.h"
+#include "musicremotewidgetforrectangle.h"
+#include "musicremotewidgetfordiamond.h"
+#include "musicremotewidgetforcircle.h"
 #include "musicuiobject.h"
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicbgskin(NULL)
+    : QWidget(parent), m_musicbgskin(NULL), m_musicRemoteWidget(NULL)
 {
     m_msuicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
-
+    m_currentPlayStatus = false;
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
@@ -46,7 +50,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowRemote->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicWindowRemote->setIcon(QIcon(QString::fromUtf8(":/image/windowremote")));
-    connect(ui->musicWindowRemote,SIGNAL(clicked()), parent(), SLOT(musicSquareRemote()));
+    connect(ui->musicWindowRemote,SIGNAL(clicked()), SLOT(musicSquareRemote()));
 
     QPixmap minPix  = style()->standardPixmap(QStyle::SP_TitleBarMinButton);
     ui->minimization->setIcon(QIcon(minPix.scaled(25,25)));
@@ -73,6 +77,7 @@ void MusicTopAreaWidget::setParameters(const QString& b, int a)
 QString MusicTopAreaWidget::getBgSkin()
 {
     return m_currentBgSkin;
+    delete m_musicRemoteWidget;
 }
 
 int MusicTopAreaWidget::getBgSkinAlpha()
@@ -158,4 +163,91 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
     }
     else
         drawWindowBackgroundRect();
+}
+
+void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
+{
+    m_ui->musicSoundSlider->setValue(value);
+}
+
+void MusicTopAreaWidget::showPlayStatus(bool status)
+{
+    m_currentPlayStatus = status;
+    if(m_musicRemoteWidget)
+    {
+        m_musicRemoteWidget->showPlayStatus(status);
+    }
+}
+
+void MusicTopAreaWidget::setLabelText(const QString &name)
+{
+    if(m_musicRemoteWidget)
+    {
+        m_musicRemoteWidget->setLabelText(name);
+    }
+}
+
+void MusicTopAreaWidget::setVolumeValue(int value)
+{
+    if(m_musicRemoteWidget)
+    {
+        m_musicRemoteWidget->setVolumeValue(value);
+    }
+}
+
+void MusicTopAreaWidget::createRemoteWidget()
+{
+    if(m_musicRemoteWidget == NULL)
+    {
+        return;
+    }
+
+    m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
+    m_musicRemoteWidget->setVolumeValue(m_ui->musicSoundSlider->value());
+    connect(m_musicRemoteWidget,SIGNAL(musicWindowSignal()), parent(), SLOT(showNormal()));
+    connect(m_musicRemoteWidget,SIGNAL(musicPlayPriviousSignal()), parent(), SLOT(musicPlayPrivious()));
+    connect(m_musicRemoteWidget,SIGNAL(musicPlayNextSignal()), parent(), SLOT(musicPlayNext()));
+    connect(m_musicRemoteWidget,SIGNAL(musicKeySignal()), parent(), SLOT(musicKey()));
+    connect(m_musicRemoteWidget,SIGNAL(musicVolumeSignal(int)), this, SLOT(musicVolumeChangedFromRemote(int)));
+    connect(m_musicRemoteWidget,SIGNAL(musicSettingSignal()), parent(), SLOT(musicSetting()));
+    m_musicRemoteWidget->show();
+}
+
+void MusicTopAreaWidget::musicDeleteRemote()
+{
+    delete m_musicRemoteWidget;
+    m_musicRemoteWidget = NULL;
+}
+
+void MusicTopAreaWidget::musicSquareRemote()
+{
+    if(m_musicRemoteWidget)
+        delete m_musicRemoteWidget;
+    m_musicRemoteWidget = new MusicRemoteWidgetForSquare;
+    createRemoteWidget();
+}
+
+void MusicTopAreaWidget::musicCircleRemote()
+{
+    if(m_musicRemoteWidget)
+        delete m_musicRemoteWidget;
+    m_musicRemoteWidget = new MusicRemoteWidgetForCircle;
+    createRemoteWidget();
+}
+
+void MusicTopAreaWidget::musicDiamondRemote()
+{
+    if(m_musicRemoteWidget)
+        delete m_musicRemoteWidget;
+    m_musicRemoteWidget = new MusicRemoteWidgetForDiamond;
+    createRemoteWidget();
+}
+
+void MusicTopAreaWidget::musicRectangleRemote()
+{
+    if(m_musicRemoteWidget)
+        delete m_musicRemoteWidget;
+    m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
+    createRemoteWidget();
 }

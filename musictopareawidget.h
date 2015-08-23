@@ -6,6 +6,7 @@
 #include "musiclibexportglobal.h"
 
 class MusicUserWindow;
+class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
 
 namespace Ui {
@@ -24,6 +25,9 @@ public:
     QString getBgSkin();
     int getBgSkinAlpha();
     void setTimerStop();
+    void showPlayStatus(bool status);
+    void setLabelText(const QString &name);
+    void setVolumeValue(int value);
 
 signals:
     void updateToolStyle();
@@ -37,18 +41,29 @@ public slots:
     void musicBackgroundSkinChanged(const QString&);
     void musicBackgroundChanged();
     void musicBgThemeDownloadFinished();
+    void musicCircleRemote();
+    void musicDiamondRemote();
+    void musicSquareRemote();
+    void musicRectangleRemote();
+    void musicDeleteRemote();
+    //This is a slot by MusicRemoteWidget's signal emit
+    void musicVolumeChangedFromRemote(int);
+    /////////////////////////////////////////////
 
 protected:
     void drawWindowBackgroundRect();
     void drawWindowBackgroundRectString(const QString&);
+    void createRemoteWidget();
 
     Ui::MusicApplication *m_ui;
     MusicUserWindow* m_msuicUserWindow;
     MusicBackgroundSkinDialog* m_musicbgskin;
+    MusicRemoteWidget* m_musicRemoteWidget;
+
     QString m_currentBgSkin;
     int m_alpha;
     QTimer m_pictureCarouselTimer;
-
+    bool m_currentPlayStatus;
 
 };
 
