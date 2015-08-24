@@ -8,7 +8,6 @@
 #include "musictimersliderwidget.h"
 #include "musicwindowextras.h"
 #include "musiclocalsongsearch.h"
-#include "musiclrccontainerfordesktop.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musicmobiledeviceswidget.h"
@@ -50,9 +49,25 @@ MusicApplication::MusicApplication(QWidget *parent) :
     //Set the window transparent for background
     drawWindowRoundedRect();
     //set window radius
-    m_musiclrcfordesktop = new MusicLrcContainerForDesktop(this);
+
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);
+
+    m_musicSongTree = new MusicSongsSummarizied(this);
+    ui->songsContainer->addWidget(m_musicSongTree);
+
+    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
+    m_bottomAreaWidget->setupUi(ui);
+    m_topAreaWidget = new MusicTopAreaWidget(this);
+    m_topAreaWidget->setupUi(ui);
+    m_rightAreaWidget = new MusicRightAreaWidget(this);
+    m_rightAreaWidget->setupUi(ui);
+    m_leftAreaWidget = new MusicLeftAreaWidget(this);
+    m_leftAreaWidget->setupUi(ui);
+    connect(m_topAreaWidget,SIGNAL(updateToolStyle()),m_musicSongTree,SLOT(updateToolStyle()));
+    connect(m_topAreaWidget,SIGNAL(updateArtPicture()),m_musicSongTree,SLOT(updateArtPicture()));
+    connect(m_rightAreaWidget,SIGNAL(theArtBgHasChanged()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
+
     //This is the function to display the desktop lrc
     initWindowSurface();
 
@@ -68,20 +83,6 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_systemCloseConfig = false;//Control the mode to exit
     m_setWindowToTop = false;
     m_currentMusicSongTreeIndex = 0;
-
-    m_musicSongTree = new MusicSongsSummarizied(this);
-    ui->songsContainer->addWidget(m_musicSongTree);
-
-    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
-    m_bottomAreaWidget->setupUi(ui);
-    m_topAreaWidget = new MusicTopAreaWidget(this);
-    m_topAreaWidget->setupUi(ui);
-    m_rightAreaWidget = new MusicRightAreaWidget(this);
-    m_rightAreaWidget->setupUi(ui);
-    m_leftAreaWidget = new MusicLeftAreaWidget(this);
-    m_leftAreaWidget->setupUi(ui);
-    connect(m_topAreaWidget,SIGNAL(updateToolStyle()),m_musicSongTree,SLOT(updateToolStyle()));
-    connect(m_topAreaWidget,SIGNAL(updateArtPicture()),m_musicSongTree,SLOT(updateArtPicture()));
 
     m_downloadStatusLabel = new MusicDownloadStatusLabel(this);
     connect(m_musicPlayer,SIGNAL(positionChanged(qint64)),SLOT(positionChanged(qint64)));
@@ -102,18 +103,8 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(ui->songSearchWidget,SIGNAL(musicBgDownloadFinished()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
     connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
 
-    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(theArtBgHasChanged()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
-    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()),SLOT(musicCurrentLrcUpdated()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()),SLOT(musicSetting()));
-    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()),SLOT(desktopLrcClosed()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)),SLOT(updateCurrentTime(qint64)));
-
     m_setting = new MusicSettingWidget(this);
     connect(m_setting,SIGNAL(parameterSettingChanged()),SLOT(getParameterSetting()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()),m_setting,SLOT(changeInlineLrcWidget()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()),m_setting,SLOT(changeDesktopLrcWidget()));
 
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
     connect(m_musicTimerAutoObj,SIGNAL(setPlaySong(int)),SLOT(setPlaySongChanged(int)));
@@ -194,7 +185,6 @@ MusicApplication::~MusicApplication()
     delete m_systemTray;
     delete m_systemTrayMenu;
     delete m_setting;
-    delete m_musiclrcfordesktop;
     delete m_musicLocalSongSearch;
 
     delete ui;
@@ -314,7 +304,7 @@ void MusicApplication::keyReleaseEvent(QKeyEvent *event)
 void MusicApplication::initWindowSurface()
 {
     createSystemTrayIcon();
-    connect(ui->musicDesktopLrc,SIGNAL(clicked(bool)),m_musiclrcfordesktop,SLOT(setVisible(bool)));
+    connect(ui->musicDesktopLrc,SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
     connect(ui->musicDesktopLrc,SIGNAL(clicked()),m_systemTrayMenu,SLOT(showDesktopLrc()));
 }
 
@@ -327,9 +317,9 @@ void MusicApplication::createSystemTrayIcon()
     createMenuActions();
 
     m_systemTrayMenu = new MusicSystemTrayMenu(this);
-    connect(m_systemTrayMenu,SIGNAL(setShowDesktopLrc(bool)),SLOT(setShowDesktopLrc(bool)));
-    connect(m_systemTrayMenu,SIGNAL(setWindowLockedChanged()),m_musiclrcfordesktop,SLOT(setWindowLockedChanged()));
-    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
+    connect(m_systemTrayMenu,SIGNAL(setShowDesktopLrc(bool)), SLOT(setShowDesktopLrc(bool)));
+    connect(m_systemTrayMenu,SIGNAL(setWindowLockedChanged()), m_rightAreaWidget, SLOT(setWindowLockedChanged()));
+//    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
 
@@ -428,31 +418,19 @@ void MusicApplication::readXMLConfigFromText()
     //Set the inline lrc should be shown
     key = xml.readShowInlineLrc();
     M_SETTING.setValue(MusicSettingManager::ShowInlineLrcChoiced, key);
-    if(key == "true")
-      ui->musiclrccontainerforinline->show();
-    else
-      ui->musiclrccontainerforinline->close();
+    m_rightAreaWidget->setInlineLrcVisible(key);
     //////////////////////////////////////////////////////////////
     //Set the desktop lrc should be shown
     key = xml.readShowDesktopLrc();
     M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, key);
     m_systemTrayMenu->showDesktopLrc(key);
-    if(key == "true")
-    {
-      ui->musicDesktopLrc->setChecked(true);
-      m_musiclrcfordesktop->show();
-    }
-    else
-    {
-      ui->musicDesktopLrc->setChecked(false);
-      m_musiclrcfordesktop->close();
-    }
+    m_rightAreaWidget->setDestopLrcVisible(key);
     //////////////////////////////////////////////////////////////
     //Configure automatic playback
     key = xml.readSystemAutoPlayConfig();
     M_SETTING.setValue(MusicSettingManager::AutoPlayChoiced, key);
     m_systemTrayMenu->showPlayStatus(m_playControl);
-    m_musiclrcfordesktop->showPlayStatus(m_playControl);
+    m_rightAreaWidget->showPlayStatus(m_playControl);
     m_musicWindowExtras->showPlayStatus(m_playControl);
     if(key == "true")
     {
@@ -496,7 +474,6 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING.setValue(MusicSettingManager::LrcTypeChoiced,xml.readShowLrcType());
     M_SETTING.setValue(MusicSettingManager::LrcColorTransChoiced,xml.readShowLrcTransparent());
     M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced,xml.readShowLrcSize());
-    ui->musiclrccontainerforinline->setSettingParameter();
     //////////////////////////////////////////////////////////////
     //Set the lrc size the user set
     M_SETTING.setValue(MusicSettingManager::DLrcColorChoiced,xml.readShowDLrcColor());
@@ -509,7 +486,7 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced,xml.readShowDLrcLocked());
     M_SETTING.setValue(MusicSettingManager::DLrcGeometryChoiced,xml.readShowDLrcGeometry());
     m_systemTrayMenu->lockDesktopLrc(xml.readShowDLrcLocked());
-    m_musiclrcfordesktop->setSettingParameter();
+    m_rightAreaWidget->setSettingParameter();
     //////////////////////////////////////////////////////////////
     M_SETTING.setValue(MusicSettingManager::EqualizerEnableChoiced,xml.readEqualizerEnale());
     M_SETTING.setValue(MusicSettingManager::EqualizerValueChoiced,xml.readEqualizerValue());
@@ -536,7 +513,7 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING.setValue(MusicSettingManager::LastPlayIndexChoiced,lastPlayIndexChoiced);
     M_SETTING.setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBgSkin());
     M_SETTING.setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
-    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced,m_musiclrcfordesktop->isVisible());
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTree->getMusicAllSongsFileName(),
                                m_musicSongTree->getMusicAllSongsFilePath() );
@@ -607,13 +584,10 @@ void MusicApplication::showCurrentSong(int index)
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
         m_playControl = true;
         m_musicPlayer->stop();
-        if( checkSettingParameterValue() )
-        {
-           ui->musiclrccontainerforinline->stopLrcMask();
-           m_musiclrcfordesktop->stopLrcMask();
-        }
+        m_rightAreaWidget->stopLrcMask();
+
         m_systemTrayMenu->showPlayStatus(m_playControl);
-        m_musiclrcfordesktop->showPlayStatus(m_playControl);
+        m_rightAreaWidget->showPlayStatus(m_playControl);
         m_musicWindowExtras->showPlayStatus(m_playControl);
         m_topAreaWidget->showPlayStatus(m_playControl);
     }
@@ -635,11 +609,7 @@ void MusicApplication::musicKey()
         m_playControl = false;
         m_musicPlayer->play();
         m_topAreaWidget->musicBgThemeDownloadFinished();
-        if( checkSettingParameterValue() )
-        {
-            ui->musiclrccontainerforinline->startTimerClock();
-            m_musiclrcfordesktop->startTimerClock();
-        }
+        m_rightAreaWidget->startTimerClock();
     }
     else
     {
@@ -647,14 +617,10 @@ void MusicApplication::musicKey()
         m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setTimerStop();
-        if( checkSettingParameterValue() )
-        {
-            ui->musiclrccontainerforinline->stopLrcMask();
-            m_musiclrcfordesktop->stopLrcMask();
-        }
+        m_rightAreaWidget->stopLrcMask();
     }
     m_systemTrayMenu->showPlayStatus(m_playControl);
-    m_musiclrcfordesktop->showPlayStatus(m_playControl);
+    m_rightAreaWidget->showPlayStatus(m_playControl);
     m_musicWindowExtras->showPlayStatus(m_playControl);
     m_topAreaWidget->showPlayStatus(m_playControl);
     ui->musicTimeWidget->setPlayState(m_playControl);
@@ -875,7 +841,7 @@ void MusicApplication::musicPlayAnyTimeAt(int posValue)
     //Drag the progress indicator to rewind or fast-forward through the current song
     m_musicPlayer->setPosition( posValue);
     //Set lrc corrent to show
-    ui->musiclrccontainerforinline->setSongSpeedAndSlow(posValue);
+    m_rightAreaWidget->setSongSpeedAndSlow(posValue);
 }
 
 void MusicApplication::iconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -964,19 +930,9 @@ void MusicApplication::setDeleteItemAt(const MIntList &index)
 
 void MusicApplication::getParameterSetting()
 {
-    ui->musiclrccontainerforinline->setSettingParameter();
-    m_musiclrcfordesktop->setSettingParameter();
+    m_rightAreaWidget->getParameterSetting();
     m_systemCloseConfig = M_SETTING.value(MusicSettingManager::CloseEventChoiced).toBool();
-    if(M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool())
-        ui->musiclrccontainerforinline->show();
-    else
-        ui->musiclrccontainerforinline->close();
     bool showDeskLrc = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
-    if(showDeskLrc)
-        m_musiclrcfordesktop->show();
-    else
-        m_musiclrcfordesktop->close();
-    ui->musicDesktopLrc->setChecked(showDeskLrc);
     m_systemTrayMenu->showDesktopLrc(showDeskLrc ? "true" : "false" );
     //This attribute is effective immediately.
 }
@@ -996,61 +952,21 @@ void MusicApplication::musicSearchIndexChanged(int,int index)
 
 void MusicApplication::musicLoadCurrentSongLrc()
 {
-    //Loading the current song lrc
-    if( checkSettingParameterValue() )
-    {
-        if(m_musicList->currentIndex() == -1) return;
-
-        QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
-                  m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
-        ui->musiclrccontainerforinline->stopLrcMask();
-        ui->musiclrccontainerforinline->setCurrentSongName(getCurrentFileName());
-        ui->musiclrccontainerforinline->transLrcFileToTime(filename.trimmed());
-        m_musiclrcfordesktop->setCurrentSongName(getCurrentFileName());
-        m_musiclrcfordesktop->initCurrentLrc();
-    }
     //display current ArtTheme pic
     m_topAreaWidget->musicBgThemeDownloadFinished();
+    //Loading the current song lrc
+    if(m_musicList->currentIndex() == -1)
+    {
+        return;
+    }
+    QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
+              m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
+    m_rightAreaWidget->loadCurrentSongLrc(getCurrentFileName(), filename);
 }
 
 void MusicApplication::UpdateCurrentLrc(qint64 time)
 {
-    qint64 totalTimeValue = m_musicPlayer->duration();
-    ui->musiclrccontainerforinline->setCurrentPosition(time);
-    //Direct access to the audio file is the total time, in milliseconds
-    MIntStringMap lrcContainer(ui->musiclrccontainerforinline->getLrcContainer());
-    //The corresponding access to current time lyrics
-    if(!lrcContainer.isEmpty())
-    {
-        //After get the current time in the lyrics of the two time points
-        qint64 previous = 0;
-        qint64 later = 0;
-        //Keys () method returns a list of lrcContainer
-        foreach (qint64 value, lrcContainer.keys())
-        {
-            if(time >= value)
-                previous = value;
-            else
-            {
-                later = value;
-                break;
-            }
-        }
-        //To the last line, set the later to song total time value
-        if(later == 0) later = totalTimeValue;
-        //The lyrics content corresponds to obtain the current time
-        QString currentLrc = lrcContainer.value(previous);
-        QString laterLrc = lrcContainer.value(later);
-
-        //If this is a new line of the lyrics, then restart lyrics display mask
-        if(currentLrc != ui->musiclrccontainerforinline->text())
-        {
-            qint64 intervalTime = later - previous;
-            if(!m_playControl)
-                ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
-            m_musiclrcfordesktop->updateCurrentLrc(currentLrc,laterLrc,intervalTime);
-        }
-    }
+    m_rightAreaWidget->updateCurrentLrc(time, m_musicPlayer->duration(), m_playControl);
 }
 
 void MusicApplication::musicSearchButtonSearched()
@@ -1137,14 +1053,14 @@ QString MusicApplication::getCurrentFileName() const
         return QString();
     }
     return m_musicSongTree->getMusicSongsFileName( \
-            m_currentMusicSongTreeIndex)[m_musicList->currentIndex()];
+           m_currentMusicSongTreeIndex)[m_musicList->currentIndex()];
 }
 
-bool MusicApplication::checkSettingParameterValue() const
-{
-    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() ) ? true : false;
-}
+//bool MusicApplication::checkSettingParameterValue() const
+//{
+//    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+//             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() ) ? true : false;
+//}
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
@@ -1168,7 +1084,9 @@ void MusicApplication::musicCurrentLrcUpdated()
 void MusicApplication::updateCurrentTime(qint64 pos)
 {
     if(!m_playControl) ///When pause just resume it
+    {
         m_musicPlayer->setPosition(pos);
+    }
 }
 
 void MusicApplication::musicAddSongToLovestListAt()
@@ -1203,8 +1121,7 @@ void MusicApplication::musicSetEqualizer()
 
 void MusicApplication::setShowDesktopLrc(bool show)
 {
-    ui->musicDesktopLrc->setChecked(show);
-    m_musiclrcfordesktop->setVisible(show);
+    m_rightAreaWidget->setDestopLrcVisible(show);
     M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, show);
 }
 
@@ -1291,4 +1208,19 @@ void MusicApplication::setSpectrum(HWND wnd, int w, int h)
 void MusicApplication::getCurrentPlayList(QStringList& list)
 {
     list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
+}
+
+void MusicApplication::changeDesktopLrcWidget()
+{
+    m_setting->changeDesktopLrcWidget();
+}
+
+void MusicApplication::changeInlineLrcWidget()
+{
+    m_setting->changeInlineLrcWidget();
+}
+
+void MusicApplication::lockDesktopLrc(bool lock)
+{
+    m_systemTrayMenu->lockDesktopLrc(lock);
 }

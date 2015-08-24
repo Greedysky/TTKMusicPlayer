@@ -21,6 +21,7 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
 {
     delete m_msuicUserWindow;
     delete m_musicbgskin;
+    delete m_musicRemoteWidget;
 }
 
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -77,7 +78,6 @@ void MusicTopAreaWidget::setParameters(const QString& b, int a)
 QString MusicTopAreaWidget::getBgSkin()
 {
     return m_currentBgSkin;
-    delete m_musicRemoteWidget;
 }
 
 int MusicTopAreaWidget::getBgSkinAlpha()
@@ -201,7 +201,6 @@ void MusicTopAreaWidget::createRemoteWidget()
     {
         return;
     }
-
     m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSoundSlider->value());
     connect(m_musicRemoteWidget,SIGNAL(musicWindowSignal()), parent(), SLOT(showNormal()));

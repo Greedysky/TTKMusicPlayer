@@ -5,6 +5,7 @@
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musicobject.h"
+#include "musicsettingmanager.h"
 #include <QTimer>
 #include <QMovie>
 #include <QLabel>
@@ -60,9 +61,16 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString& type)
     m_parentWidget->getshowDownloadLabel()->clear();
 }
 
+bool MusicDownloadStatusLabel::checkSettingParameterValue()
+{
+    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
+             ? true : false;
+}
+
 void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 {
-    if( m_parentWidget->checkSettingParameterValue() )
+    if( checkSettingParameterValue() )
     {///Check there is no opening lyrics display mode
        if( m_parentWidget->checkMusicListCurrentIndex() )
           return;

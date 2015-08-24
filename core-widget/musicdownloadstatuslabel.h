@@ -16,6 +16,7 @@ public:
     ~MusicDownloadStatusLabel();
 
     void musicCheckHasLrcAlready();
+    bool checkSettingParameterValue();
 
 signals:
     void musicBgDownloadFinished();

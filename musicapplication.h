@@ -21,7 +21,7 @@ class MusicSettingWidget;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
-class MusicLrcContainerForDesktop;
+//class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
 class MusicToolSetsWidget;
@@ -47,7 +47,7 @@ public:
     virtual ~MusicApplication();
 
     QString getCurrentFileName() const;
-    bool checkSettingParameterValue() const;
+//    bool checkSettingParameterValue() const;
     bool checkMusicListCurrentIndex() const;
     QLabel*& getshowDownloadLabel();
     void musicLoadCurrentSongLrc();
@@ -156,6 +156,11 @@ public slots:
     /////////////////////////////////////////////
 
 
+    //right
+    void changeDesktopLrcWidget();
+    void changeInlineLrcWidget();
+    void lockDesktopLrc(bool);
+
 private:
     Ui::MusicApplication *ui;
     bool m_playControl;
@@ -171,7 +176,7 @@ private:
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
     MusicLocalSongSearch* m_musicLocalSongSearch;
-    MusicLrcContainerForDesktop* m_musiclrcfordesktop;
+//    MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
 
     MusicTimerAutoObject* m_musicTimerAutoObj;

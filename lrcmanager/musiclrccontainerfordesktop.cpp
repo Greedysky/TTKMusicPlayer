@@ -8,7 +8,7 @@
 #include <QPushButton>
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
-        : MusicLrcContainer(0), m_parentClass(parent)
+        : MusicLrcContainer(0)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint |
                          Qt::WindowStaysOnTopHint );
@@ -102,10 +102,10 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolNextSongButton->setGeometry(110,0,30,30);
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
     m_toolPlayButton->setGeometry(80,0,30,30);
-    connect(m_toolPreSongButton,SIGNAL(clicked()), m_parentClass, SLOT(musicPlayPrivious()));
-    connect(m_toolNextSongButton,SIGNAL(clicked()), m_parentClass, SLOT(musicPlayNext()));
-    connect(m_toolPlayButton,SIGNAL(clicked()), m_parentClass, SLOT(musicKey()));
-    connect(m_showMainWindow,SIGNAL(clicked()), m_parentClass, SLOT(showNormal()));
+    connect(m_toolPreSongButton,SIGNAL(clicked()), SIGNAL(musicPlayPrivious()));
+    connect(m_toolNextSongButton,SIGNAL(clicked()), SIGNAL(musicPlayNext()));
+    connect(m_toolPlayButton,SIGNAL(clicked()), SIGNAL(musicKey()));
+    connect(m_showMainWindow,SIGNAL(clicked()), SIGNAL(musicShowNormal()));
 
     setButtonIcon();
     setButtonCursor();
