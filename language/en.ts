@@ -2,49 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>MMenuStyle01</name>
-    <message>
-        <source>showDeskLrc</source>
-        <translation type="vanished">Desktop Lrc</translation>
-    </message>
-    <message>
-        <source>lockLrc</source>
-        <translation type="vanished">Locked Lrc</translation>
-    </message>
-    <message>
-        <source>showMainWindow</source>
-        <translation type="vanished">Show MainWindow</translation>
-    </message>
-    <message>
-        <source>showSetting</source>
-        <translation type="vanished">Settings</translation>
-    </message>
-    <message>
-        <source>appClose</source>
-        <translation type="vanished">Quit</translation>
-    </message>
-    <message>
-        <source>Privious</source>
-        <translation type="vanished">Privious</translation>
-    </message>
-    <message>
-        <source>Next</source>
-        <translation type="vanished">Next</translation>
-    </message>
-    <message>
-        <source>Play</source>
-        <translation type="vanished">Play</translation>
-    </message>
-    <message>
-        <source>hideDeskLrc</source>
-        <translation type="vanished">Close Desktop Lrc</translation>
-    </message>
-    <message>
-        <source>unlockLrc</source>
-        <translation type="vanished">Unlocked Lrc</translation>
-    </message>
-</context>
-<context>
     <name>MusicApplication</name>
     <message>
         <location filename="../musicapplication.cpp" line="199"/>

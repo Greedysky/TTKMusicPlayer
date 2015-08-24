@@ -2,49 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>MMenuStyle01</name>
-    <message>
-        <source>showDeskLrc</source>
-        <translation type="vanished">顯示桌面歌詞</translation>
-    </message>
-    <message>
-        <source>lockLrc</source>
-        <translation type="vanished">鎖定桌面歌詞</translation>
-    </message>
-    <message>
-        <source>showMainWindow</source>
-        <translation type="vanished">打開主窗口</translation>
-    </message>
-    <message>
-        <source>showSetting</source>
-        <translation type="vanished">選項設置</translation>
-    </message>
-    <message>
-        <source>appClose</source>
-        <translation type="vanished">退出</translation>
-    </message>
-    <message>
-        <source>Privious</source>
-        <translation type="vanished">上壹曲</translation>
-    </message>
-    <message>
-        <source>Next</source>
-        <translation type="vanished">下壹曲</translation>
-    </message>
-    <message>
-        <source>Play</source>
-        <translation type="vanished">播放/暫停</translation>
-    </message>
-    <message>
-        <source>hideDeskLrc</source>
-        <translation type="vanished">關閉桌面歌詞</translation>
-    </message>
-    <message>
-        <source>unlockLrc</source>
-        <translation type="vanished">解鎖桌面歌詞</translation>
-    </message>
-</context>
-<context>
     <name>MusicApplication</name>
     <message>
         <location filename="../musicapplication.cpp" line="199"/>
@@ -2782,54 +2739,54 @@
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="118"/>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="120"/>
         <source>showDeskLrc</source>
-        <translation type="unfinished">顯示桌面歌詞</translation>
+        <translation >顯示桌面歌詞</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="17"/>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="106"/>
         <source>lockLrc</source>
-        <translation type="unfinished">鎖定桌面歌詞</translation>
+        <translation >鎖定桌面歌詞</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="21"/>
         <source>showMainWindow</source>
-        <translation type="unfinished">打開主窗口</translation>
+        <translation >打開主窗口</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="23"/>
         <source>showSetting</source>
-        <translation type="unfinished">選項設置</translation>
+        <translation >選項設置</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="28"/>
         <source>appClose</source>
-        <translation type="unfinished">退出</translation>
+        <translation >退出</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="67"/>
         <source>Privious</source>
-        <translation type="unfinished">上壹曲</translation>
+        <translation >上壹曲</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="68"/>
         <source>Next</source>
-        <translation type="unfinished">下壹曲</translation>
+        <translation >下壹曲</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="69"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="98"/>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="119"/>
         <source>hideDeskLrc</source>
-        <translation type="unfinished">關閉桌面歌詞</translation>
+        <translation >關閉桌面歌詞</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="107"/>
         <source>unlockLrc</source>
-        <translation type="unfinished">解鎖桌面歌詞</translation>
+        <translation >解鎖桌面歌詞</translation>
     </message>
 </context>
 <context>
