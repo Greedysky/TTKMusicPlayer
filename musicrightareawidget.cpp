@@ -2,9 +2,10 @@
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
 #include "musiclrccontainerfordesktop.h"
+#include "musicvideoplayer.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_videoPlayer(NULL)
 {
     m_supperClass = parent;
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
@@ -12,6 +13,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
+    delete m_videoPlayer;
     delete m_musiclrcfordesktop;
 }
 
@@ -23,24 +25,23 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
-    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), m_supperClass,
-            SLOT(musicSearchRefreshButtonRefreshed()));
+    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicIndexWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicIndexWidgetButtonSearched()));
+    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), SLOT(musicIndexWidgetButtonSearched()));
 
     ui->musicSearchWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()),m_supperClass, SLOT(musicSearchWidgetButtonSearched()));
+    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()), SLOT(musicSearchWidgetButtonSearched()));
 
     ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicLrcWidgetButtonSearched()));
+    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), SLOT(musicLrcWidgetButtonSearched()));
 
     ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->vedioWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicVedioWidgetButtonSearched()));
+    connect(ui->vedioWidgetButton,SIGNAL(clicked()), SLOT(musicVedioWidgetButtonSearched()));
     ///////////////////////////////////////////////////////
     connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
@@ -58,7 +59,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline, SIGNAL(theArtBgHasChanged()),
-                 SIGNAL(theArtBgHasChanged()));
+                 SIGNAL(updateBgThemeDownload()));
     connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
     connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), m_supperClass,
@@ -196,4 +197,75 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool v)
 void MusicRightAreaWidget::setWindowLockedChanged()
 {
     m_musiclrcfordesktop->setWindowLockedChanged();
+}
+
+void MusicRightAreaWidget::musicSearchButtonSearched()
+{
+    QString searchedQString = m_ui->musicSongSearchLine->text().trimmed();
+    //The string searched wouldn't allow to be none
+    if( !searchedQString.isEmpty())
+    {
+        m_ui->SurfaceStackedWidget->setCurrentIndex(1);
+        createVedioWidget(false);
+        m_ui->songSearchWidget->startSearchQuery(searchedQString);
+    }
+}
+
+void MusicRightAreaWidget::musicIndexWidgetButtonSearched()
+{
+    //Show the first index of widget
+    m_ui->SurfaceStackedWidget->setCurrentIndex(0);
+    createVedioWidget(false);
+}
+
+void MusicRightAreaWidget::musicSearchWidgetButtonSearched()
+{
+    //Show searched song lists
+    m_ui->SurfaceStackedWidget->setCurrentIndex(1);
+    createVedioWidget(false);
+}
+
+void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
+{
+    //Show lrc display widget
+    m_ui->SurfaceStackedWidget->setCurrentIndex(2);
+    createVedioWidget(false);
+    emit updateBgThemeDownload();
+}
+
+void MusicRightAreaWidget::musicSearchRefreshButtonRefreshed()
+{
+    createVedioWidget(false);
+    //Refresh the search music song
+    musicSearchButtonSearched();
+}
+
+void MusicRightAreaWidget::createVedioWidget(bool create)
+{
+    if(create)
+    {
+        delete m_videoPlayer;
+        m_videoPlayer = new MusicVideoPlayer;
+        m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
+//        if(!m_playControl) musicKey();
+    }
+    else if(m_videoPlayer)
+    {
+        m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
+        delete m_videoPlayer;
+        m_videoPlayer = NULL;
+    }
+    emit updateBackgroundTheme();
+}
+
+void MusicRightAreaWidget::musicVedioWidgetButtonSearched()
+{
+    createVedioWidget(true);
+    m_ui->SurfaceStackedWidget->setCurrentIndex(3);\
+}
+
+void MusicRightAreaWidget::musicVedioWidgetButtonDoubleClicked()
+{
+//    m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
+//    m_videoPlayer->showFullScreen();
 }

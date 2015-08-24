@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "musiclibexportglobal.h"
 
+class MusicVideoPlayer;
 class MusicLrcContainerForDesktop;
 
 namespace Ui {
@@ -34,16 +35,27 @@ public:
     void setSongSpeedAndSlow(qint64 time);
 
 signals:
-    void theArtBgHasChanged();
+    void updateBgThemeDownload();
+    void updateBackgroundTheme();
 
 public slots:
     void setDestopLrcVisible(bool);
     void setWindowLockedChanged();
+    void musicSearchButtonSearched();
+    void musicIndexWidgetButtonSearched();
+    void musicSearchWidgetButtonSearched();
+    void musicLrcWidgetButtonSearched();
+    void musicSearchRefreshButtonRefreshed();
+    void musicVedioWidgetButtonSearched();
+    void musicVedioWidgetButtonDoubleClicked();
 
 protected:
+    void createVedioWidget(bool);
+
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
+    MusicVideoPlayer* m_videoPlayer;
 
 };
 

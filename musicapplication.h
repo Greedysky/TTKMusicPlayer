@@ -21,14 +21,12 @@ class MusicSettingWidget;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
-//class MusicLrcContainerForDesktop;
 class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class MusicWindowExtras;
-class MusicVideoPlayer;
 
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
@@ -47,7 +45,6 @@ public:
     virtual ~MusicApplication();
 
     QString getCurrentFileName() const;
-//    bool checkSettingParameterValue() const;
     bool checkMusicListCurrentIndex() const;
     QLabel*& getshowDownloadLabel();
     void musicLoadCurrentSongLrc();
@@ -58,7 +55,6 @@ protected:
     void createMenuActions();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
-    void createVedioWidget(bool);
     void drawWindowRoundedRect();
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
@@ -103,13 +99,6 @@ public slots:
     void musicSetting();
     void musicSearch();
     void musicCurrentPlayLocation();
-    void musicSearchButtonSearched();
-    void musicIndexWidgetButtonSearched();
-    void musicSearchWidgetButtonSearched();
-    void musicLrcWidgetButtonSearched();
-    void musicSearchRefreshButtonRefreshed();
-    void musicVedioWidgetButtonSearched();
-    void musicVedioWidgetButtonDoubleClicked();
     void musicAddSongToLovestListAt();
     void musicSetWindowToTop();
     void musicSetEqualizer();
@@ -155,7 +144,6 @@ public slots:
     void getCurrentPlayList(QStringList&);
     /////////////////////////////////////////////
 
-
     //right
     void changeDesktopLrcWidget();
     void changeInlineLrcWidget();
@@ -176,14 +164,11 @@ private:
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
     MusicLocalSongSearch* m_musicLocalSongSearch;
-//    MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
 
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;
     MusicWindowExtras* m_musicWindowExtras;
-    //////////////////////////////////
-    MusicVideoPlayer* m_videoPlayer;
     //////////////////////////////////
     QPropertyAnimation* m_animation;
     int m_currentMusicSongTreeIndex;

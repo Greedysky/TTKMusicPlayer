@@ -5,7 +5,6 @@
 #include "musicsongsListwidget.h"
 #include "musicsettingwidget.h"
 #include "musicsystemtraymenu.h"
-#include "musictimersliderwidget.h"
 #include "musicwindowextras.h"
 #include "musiclocalsongsearch.h"
 #include "musicaudiorecorderwidget.h"
@@ -20,7 +19,6 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
 #include "musictimerautoobject.h"
-#include "musicvideoplayer.h"
 #include "musicbgthememanager.h"
 #include "musicsettingmanager.h"
 #include <Dbt.h>
@@ -35,7 +33,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
     ui(new Ui::MusicApplication),
     m_setting(NULL),m_musicLocalSongSearch(NULL),
-    m_mobileDevices(NULL), m_videoPlayer(NULL)
+    m_mobileDevices(NULL)
 {
     ui->setupUi(this);
     /////////////////////////////////////////////////
@@ -66,7 +64,9 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_leftAreaWidget->setupUi(ui);
     connect(m_topAreaWidget,SIGNAL(updateToolStyle()),m_musicSongTree,SLOT(updateToolStyle()));
     connect(m_topAreaWidget,SIGNAL(updateArtPicture()),m_musicSongTree,SLOT(updateArtPicture()));
-    connect(m_rightAreaWidget,SIGNAL(theArtBgHasChanged()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
+    connect(m_topAreaWidget,SIGNAL(musicSearchButtonClicked()),m_rightAreaWidget,SLOT(musicSearchButtonSearched()));
+    connect(m_rightAreaWidget,SIGNAL(updateBgThemeDownload()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
+    connect(m_rightAreaWidget,SIGNAL(updateBackgroundTheme()),m_topAreaWidget,SLOT(musicBgTransparentChanged()));
 
     //This is the function to display the desktop lrc
     initWindowSurface();
@@ -175,7 +175,6 @@ MusicApplication::~MusicApplication()
     delete m_leftAreaWidget;
 
     delete m_musicWindowExtras;
-    delete m_videoPlayer;
     delete m_mobileDevices;
     delete m_animation;
     delete m_downloadStatusLabel;
@@ -319,7 +318,6 @@ void MusicApplication::createSystemTrayIcon()
     m_systemTrayMenu = new MusicSystemTrayMenu(this);
     connect(m_systemTrayMenu,SIGNAL(setShowDesktopLrc(bool)), SLOT(setShowDesktopLrc(bool)));
     connect(m_systemTrayMenu,SIGNAL(setWindowLockedChanged()), m_rightAreaWidget, SLOT(setWindowLockedChanged()));
-//    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)),m_systemTrayMenu,SLOT(lockDesktopLrc(bool)));
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
 
@@ -904,7 +902,9 @@ void MusicApplication::musicSearch()
 void MusicApplication::musicCurrentPlayLocation()
 {
     if(m_musicList->isEmpty())
-      return;
+    {
+        return;
+    }
     /*Repair when already in the original row, paging,
      cannot return to the original row */
     m_musicSongTree->selectRow(0);
@@ -969,83 +969,6 @@ void MusicApplication::UpdateCurrentLrc(qint64 time)
     m_rightAreaWidget->updateCurrentLrc(time, m_musicPlayer->duration(), m_playControl);
 }
 
-void MusicApplication::musicSearchButtonSearched()
-{
-    QString searchedQString = ui->musicSongSearchLine->text().trimmed();
-    //The string searched wouldn't allow to be none
-    if( !searchedQString.isEmpty())
-    {
-        createVedioWidget(false);
-        ui->SurfaceStackedWidget->setCurrentIndex(1);
-        m_topAreaWidget->musicBgTransparentChanged();
-        ui->songSearchWidget->startSearchQuery(searchedQString);
-    }
-}
-
-void MusicApplication::musicIndexWidgetButtonSearched()
-{
-    createVedioWidget(false);
-    //Show the first index of widget
-    ui->SurfaceStackedWidget->setCurrentIndex(0);
-    m_topAreaWidget->musicBgTransparentChanged();
-}
-
-void MusicApplication::musicSearchWidgetButtonSearched()
-{
-    createVedioWidget(false);
-    //Show searched song lists
-    ui->SurfaceStackedWidget->setCurrentIndex(1);
-    m_topAreaWidget->musicBgTransparentChanged();
-}
-
-void MusicApplication::musicLrcWidgetButtonSearched()
-{
-    createVedioWidget(false);
-    //Show lrc display widget
-    ui->SurfaceStackedWidget->setCurrentIndex(2);
-    m_topAreaWidget->musicBgThemeDownloadFinished();
-}
-
-void MusicApplication::musicSearchRefreshButtonRefreshed()
-{
-    createVedioWidget(false);
-    //Refresh the search music song
-    musicSearchButtonSearched();
-}
-
-void MusicApplication::createVedioWidget(bool create)
-{
-    if(create)
-    {
-        delete m_videoPlayer;
-        m_videoPlayer = new MusicVideoPlayer;
-        ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
-        if(!m_playControl) musicKey();
-    }
-    else
-    {
-        if(m_videoPlayer)
-        {
-            ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
-            delete m_videoPlayer;
-            m_videoPlayer = NULL;
-        }
-    }
-}
-
-void MusicApplication::musicVedioWidgetButtonSearched()
-{
-    createVedioWidget(true);
-    ui->SurfaceStackedWidget->setCurrentIndex(3);
-    m_topAreaWidget->musicBgTransparentChanged();
-}
-
-void MusicApplication::musicVedioWidgetButtonDoubleClicked()
-{
-//    ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
-//    m_videoPlayer->showFullScreen();
-}
-
 QString MusicApplication::getCurrentFileName() const
 {
     if(m_musicList->currentIndex() == -1)
@@ -1055,12 +978,6 @@ QString MusicApplication::getCurrentFileName() const
     return m_musicSongTree->getMusicSongsFileName( \
            m_currentMusicSongTreeIndex)[m_musicList->currentIndex()];
 }
-
-//bool MusicApplication::checkSettingParameterValue() const
-//{
-//    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-//             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() ) ? true : false;
-//}
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {

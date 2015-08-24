@@ -32,6 +32,7 @@ public:
 signals:
     void updateToolStyle();
     void updateArtPicture();
+    void musicSearchButtonClicked();
 
 public slots:
     void musicShowSkinChangedWindow();

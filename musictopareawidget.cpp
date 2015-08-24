@@ -33,7 +33,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->musicSearchButton,SIGNAL(clicked()), m_supperClass, SLOT(musicSearchButtonSearched()));
+    connect(ui->musicSearchButton,SIGNAL(clicked()), SIGNAL(musicSearchButtonClicked()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
