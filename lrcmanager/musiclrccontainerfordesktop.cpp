@@ -10,6 +10,7 @@
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
         : MusicLrcContainer(0)
 {
+    m_supperClass = parent;
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint |
                          Qt::WindowStaysOnTopHint );
     setAttribute(Qt::WA_TranslucentBackground);
@@ -102,10 +103,10 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolNextSongButton->setGeometry(110,0,30,30);
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
     m_toolPlayButton->setGeometry(80,0,30,30);
-    connect(m_toolPreSongButton,SIGNAL(clicked()), SIGNAL(musicPlayPrivious()));
-    connect(m_toolNextSongButton,SIGNAL(clicked()), SIGNAL(musicPlayNext()));
-    connect(m_toolPlayButton,SIGNAL(clicked()), SIGNAL(musicKey()));
-    connect(m_showMainWindow,SIGNAL(clicked()), SIGNAL(musicShowNormal()));
+    connect(m_toolPreSongButton,SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_toolNextSongButton,SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
+    connect(m_toolPlayButton,SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
+    connect(m_showMainWindow,SIGNAL(clicked()), m_supperClass, SLOT(showNormal()));
 
     setButtonIcon();
     setButtonCursor();

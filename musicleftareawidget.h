@@ -29,6 +29,7 @@ public slots:
     void musicStackedMyDownWidgetChanged();
     
 protected:
+    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     QWidget* m_stackedWidget;
     MusicSpectrumWidget* m_musicSpectrumWidget;

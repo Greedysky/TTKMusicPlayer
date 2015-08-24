@@ -55,6 +55,7 @@ protected:
     void drawWindowBackgroundRectString(const QString&);
     void createRemoteWidget();
 
+    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicUserWindow* m_msuicUserWindow;
     MusicBackgroundSkinDialog* m_musicbgskin;

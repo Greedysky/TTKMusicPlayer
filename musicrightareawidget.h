@@ -41,6 +41,7 @@ public slots:
     void setWindowLockedChanged();
 
 protected:
+    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
 

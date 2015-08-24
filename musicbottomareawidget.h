@@ -22,7 +22,7 @@ public slots:
 
 protected:
     void createToolPopupMenu();
-    
+    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     QMenu m_toolPopupMenu;
 

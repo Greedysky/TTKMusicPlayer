@@ -5,7 +5,7 @@
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
-
+    m_supperClass = parent;
 }
 
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -23,28 +23,28 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicImport->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicImport->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicImport->setToolTip(tr("Import"));
-    connect(ui->musicImport,SIGNAL(clicked()), parent(), SLOT(musicImportSongs()));
+    connect(ui->musicImport,SIGNAL(clicked()), m_supperClass, SLOT(musicImportSongs()));
     
     ui->musicSetting->setIcon(QIcon(QString::fromUtf8(":/image/setting")));
     ui->musicSetting->setIconSize(QSize(40,40));
     ui->musicSetting->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSetting->setToolTip(tr("Setting"));
-    connect(ui->musicSetting,SIGNAL(clicked()), parent(), SLOT(musicSetting()));
+    connect(ui->musicSetting,SIGNAL(clicked()), m_supperClass, SLOT(musicSetting()));
     
     ui->musicSearch->setIcon(QIcon(QString::fromUtf8(":/image/search")));
     ui->musicSearch->setIconSize(QSize(40,40));
     ui->musicSearch->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicSearch->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearch->setToolTip(tr("musicSearch"));
-    connect(ui->musicSearch,SIGNAL(clicked()), parent(), SLOT(musicSearch()));
+    connect(ui->musicSearch,SIGNAL(clicked()), m_supperClass, SLOT(musicSearch()));
     
     ui->musicCurrentLocation->setIcon(QIcon(QString::fromUtf8(":/image/location")));
     ui->musicCurrentLocation->setIconSize(QSize(40,40));
     ui->musicCurrentLocation->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicCurrentLocation->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicCurrentLocation->setToolTip(tr("musicLocation"));
-    connect(ui->musicCurrentLocation,SIGNAL(clicked()), parent(), SLOT(musicCurrentPlayLocation()));
+    connect(ui->musicCurrentLocation,SIGNAL(clicked()), m_supperClass, SLOT(musicCurrentPlayLocation()));
 
     createToolPopupMenu();
 }

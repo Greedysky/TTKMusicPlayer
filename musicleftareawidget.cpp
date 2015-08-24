@@ -9,6 +9,7 @@
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_supperClass = parent;
     m_stackedWidget = NULL;
     m_musicSpectrumWidget = NULL;
 }
@@ -22,13 +23,13 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    connect(ui->musicKey,SIGNAL(clicked()),parent(),SLOT(musicKey()));
-    connect(ui->musicPrivious,SIGNAL(clicked()),parent(),SLOT(musicPlayPrivious()));
-    connect(ui->musicNext,SIGNAL(clicked()),parent(),SLOT(musicPlayNext()));
-    connect(ui->musicSound,SIGNAL(clicked()),parent(),SLOT(musicVolumeNULL()));
-    connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),parent(),SLOT(musicVolumeChanged(int)));
-    connect(ui->musicBestLove,SIGNAL(clicked()),parent(),SLOT(musicAddSongToLovestListAt()));
-    connect(ui->music3DPlayButton,SIGNAL(clicked()),parent(),SLOT(musicSetPlay3DMusic()));
+    connect(ui->musicKey,SIGNAL(clicked()),m_supperClass,SLOT(musicKey()));
+    connect(ui->musicPrivious,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayPrivious()));
+    connect(ui->musicNext,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayNext()));
+    connect(ui->musicSound,SIGNAL(clicked()),m_supperClass,SLOT(musicVolumeNULL()));
+    connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),m_supperClass,SLOT(musicVolumeChanged(int)));
+    connect(ui->musicBestLove,SIGNAL(clicked()),m_supperClass,SLOT(musicAddSongToLovestListAt()));
+    connect(ui->music3DPlayButton,SIGNAL(clicked()),m_supperClass,SLOT(musicSetPlay3DMusic()));
     connect(ui->musicButton_playlist,SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
     connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
@@ -101,13 +102,13 @@ void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
     m_stackedWidget = new MusicToolSetsWidget(this);
 
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    connect(m_stackedWidget, SIGNAL(setSpectrum(HWND,int,int)), parent(),
+    connect(m_stackedWidget, SIGNAL(setSpectrum(HWND,int,int)), m_supperClass,
                              SLOT(setSpectrum(HWND,int,int)));
-    connect(m_stackedWidget, SIGNAL(timerParameterChanged()), parent(),
+    connect(m_stackedWidget, SIGNAL(timerParameterChanged()), m_supperClass,
                              SLOT(musicToolSetsParameter()));
-    connect(m_stackedWidget, SIGNAL(addSongToPlay(QStringList)), parent(),
+    connect(m_stackedWidget, SIGNAL(addSongToPlay(QStringList)), m_supperClass,
                              SLOT(addSongToPlayList(QStringList)));
-    connect(m_stackedWidget, SIGNAL(getCurrentPlayList(QStringList&)), parent(),
+    connect(m_stackedWidget, SIGNAL(getCurrentPlayList(QStringList&)), m_supperClass,
                              SLOT(getCurrentPlayList(QStringList&)));
     m_ui->songsContainer->setCurrentIndex(1);
 }
@@ -116,7 +117,7 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 {
     delete m_stackedWidget;
     m_stackedWidget = new MusicMyDownloadRecordWidget(this);
-    connect(static_cast<MusicMyDownloadRecordWidget*>(m_stackedWidget),SIGNAL(musicPlay(QStringList)), parent(), 
+    connect(static_cast<MusicMyDownloadRecordWidget*>(m_stackedWidget),SIGNAL(musicPlay(QStringList)), m_supperClass,
                                                                        SLOT(addSongToPlayList(QStringList)));
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setCurrentIndex(1);
@@ -139,5 +140,5 @@ void MusicLeftAreaWidget::musicSpectrumWidget()
     }
     m_musicSpectrumWidget->show();
     connect(m_musicSpectrumWidget,SIGNAL(setSpectrum(HWND,int,int)),
-                        parent(), SLOT(setSpectrum(HWND,int,int)));
+                        m_supperClass, SLOT(setSpectrum(HWND,int,int)));
 }

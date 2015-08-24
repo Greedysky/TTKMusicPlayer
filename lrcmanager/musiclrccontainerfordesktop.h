@@ -25,10 +25,6 @@ public:
 signals:
     void desktopLrcClosed();
     void setWindowLockedChanged(bool);
-    void musicPlayPrivious();
-    void musicPlayNext();
-    void musicKey();
-    void musicShowNormal();
 
 public slots:
     void setWindowLockedChanged();
@@ -48,6 +44,7 @@ protected:
     virtual void leaveEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
 
+    QWidget *m_supperClass;
     QWidget* m_toolBarWidget;
     QWidget* m_desktopWidget;
     QPushButton* m_showMainWindow;

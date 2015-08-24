@@ -6,7 +6,8 @@
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_musiclrcfordesktop = new MusicLrcContainerForDesktop(this);
+    m_supperClass = parent;
+    m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -22,54 +23,45 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
-    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), parent(),
+    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), m_supperClass,
             SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicIndexWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), parent(),SLOT(musicIndexWidgetButtonSearched()));
+    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicIndexWidgetButtonSearched()));
 
     ui->musicSearchWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()), parent(),SLOT(musicSearchWidgetButtonSearched()));
+    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()),m_supperClass, SLOT(musicSearchWidgetButtonSearched()));
 
     ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), parent(),SLOT(musicLrcWidgetButtonSearched()));
+    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicLrcWidgetButtonSearched()));
 
     ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    connect(ui->vedioWidgetButton,SIGNAL(clicked()), parent(),SLOT(musicVedioWidgetButtonSearched()));
+    connect(ui->vedioWidgetButton,SIGNAL(clicked()), m_supperClass, SLOT(musicVedioWidgetButtonSearched()));
     ///////////////////////////////////////////////////////
-    connect(m_musiclrcfordesktop,SIGNAL(musicPlayPrivious()), parent(),
-                 SLOT(musicPlayPrivious()));
-    connect(m_musiclrcfordesktop,SIGNAL(musicPlayNext()), parent(),
-                 SLOT(musicPlayNext()));
-    connect(m_musiclrcfordesktop,SIGNAL(musicKey()), parent(),
-                 SLOT(musicKey()));
-    connect(m_musiclrcfordesktop,SIGNAL(musicShowNormal()), parent(),
-                 SLOT(showNormal()));
-    ///////////////////////////////////////////////////////
-    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()), parent(),
+    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()), parent(),
+    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
-    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()), parent(),
+    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()), m_supperClass,
                  SLOT(desktopLrcClosed()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()), parent(),
+    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()), m_supperClass,
                  SLOT(changeDesktopLrcWidget()));
-    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)), parent(),
+    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)), m_supperClass,
                  SLOT(lockDesktopLrc(bool)));
     ///////////////////////////////////////////////////////
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()), parent(),
+    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()), m_supperClass,
                  SLOT(changeInlineLrcWidget()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()), parent(),
+    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline, SIGNAL(theArtBgHasChanged()),
                  SIGNAL(theArtBgHasChanged()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()), parent(),
+    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), parent(),
+    connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
 }
 
