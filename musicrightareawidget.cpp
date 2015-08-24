@@ -3,17 +3,20 @@
 #include "musicuiobject.h"
 #include "musiclrccontainerfordesktop.h"
 #include "musicvideoplayer.h"
+#include "musicdownloadstatuslabel.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent), m_videoPlayer(NULL)
 {
     m_supperClass = parent;
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
+    m_downloadStatusLabel = new MusicDownloadStatusLabel(parent);
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_videoPlayer;
+    delete m_downloadStatusLabel;
     delete m_musiclrcfordesktop;
 }
 
@@ -64,6 +67,13 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(musicSetting()));
     connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
+    ///////////////////////////////////////////////////////
+    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFor(DownLoadType)),
+                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFor(DownLoadType)));
+    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFinished(QString)),
+                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFinished(QString)));
+    connect(ui->songSearchWidget,SIGNAL(musicBgDownloadFinished()), SIGNAL(updateBgThemeDownload()));
+    connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()), SIGNAL(updateBgThemeDownload()));
 }
 
 
@@ -174,6 +184,12 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString& name, const QString
 void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time)
 {
     m_ui->musiclrccontainerforinline->setSongSpeedAndSlow(time);
+}
+
+void MusicRightAreaWidget::musicCheckHasLrcAlready()
+{
+    m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
+    m_downloadStatusLabel->musicCheckHasLrcAlready();
 }
 
 void MusicRightAreaWidget::getParameterSetting()

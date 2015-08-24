@@ -10,9 +10,10 @@
 #include <QMovie>
 #include <QLabel>
 
-MusicDownloadStatusLabel::MusicDownloadStatusLabel(MusicApplication *w) :
-    m_parentWidget(w), QObject(w), m_movie(NULL)
+MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
+    QObject(w), m_movie(NULL)
 {
+    m_parentWidget = static_cast<MusicApplication*>(w);
     m_downloadLrcThreadTimer = NULL;
     m_downloadLrcThread = NULL;
 }
@@ -48,7 +49,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(DownLoadType type)
     ///Start up the information for show download - message;
     delete m_movie;
     m_movie = new QMovie(stringType, QByteArray(), this);
-    m_parentWidget->getshowDownloadLabel()->setMovie(m_movie);
+    m_movieLabel->setMovie(m_movie);
     m_movie->start();
     ///start movie
 }
@@ -57,8 +58,10 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString& type)
 {
     ///If the lyrics download finished immediately loaded to display
     if(type == "Lrc")
+    {
        m_parentWidget->musicLoadCurrentSongLrc();
-    m_parentWidget->getshowDownloadLabel()->clear();
+    }
+    m_movieLabel->clear();
 }
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue()
@@ -73,8 +76,9 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
     if( checkSettingParameterValue() )
     {///Check there is no opening lyrics display mode
        if( m_parentWidget->checkMusicListCurrentIndex() )
+       {
           return;
-
+       }
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
        QFile file(LRC_DOWNLOAD + filename + LRC_FILE);

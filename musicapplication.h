@@ -6,13 +6,9 @@
 #include <QMenu>
 #include <QTimer>
 #include <QSystemTrayIcon>
-#include "musicsongsearchonlinewidget.h"
-#include "musicsonginformation.h"
 #include "musicmovewidgetabstract.h"
 #include "musicobject.h"
-#include "musicversion.h"
 
-class QLabel;
 class QPropertyAnimation;
 
 class MusicPlayer;
@@ -21,7 +17,7 @@ class MusicSettingWidget;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
-class MusicDownloadStatusLabel;
+//class MusicDownloadStatusLabel;
 class MusicSystemTrayMenu;
 class MusicToolSetsWidget;
 class MusicTimerAutoObject;
@@ -46,7 +42,6 @@ public:
 
     QString getCurrentFileName() const;
     bool checkMusicListCurrentIndex() const;
-    QLabel*& getshowDownloadLabel();
     void musicLoadCurrentSongLrc();
 
 protected:
@@ -67,7 +62,6 @@ protected:
 
     void readXMLConfigFromText();
     void writeXMLConfigToText();
-    void UpdateCurrentLrc(qint64 time);
     void musicImportSongsSettingPath(const QStringList&);
     QString musicTimeTransToLabel(qint64 time);
 
@@ -164,7 +158,7 @@ private:
     MusicSongsSummarizied* m_musicSongTree;
     MusicSettingWidget* m_setting;
     MusicLocalSongSearch* m_musicLocalSongSearch;
-    MusicDownloadStatusLabel* m_downloadStatusLabel;
+//    MusicDownloadStatusLabel* m_downloadStatusLabel;
 
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;

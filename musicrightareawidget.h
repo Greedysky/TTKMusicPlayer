@@ -5,6 +5,7 @@
 #include "musiclibexportglobal.h"
 
 class MusicVideoPlayer;
+class MusicDownloadStatusLabel;
 class MusicLrcContainerForDesktop;
 
 namespace Ui {
@@ -33,6 +34,7 @@ public:
     void loadCurrentSongLrc(const QString& name,
                             const QString& path);
     void setSongSpeedAndSlow(qint64 time);
+    void musicCheckHasLrcAlready();
 
 signals:
     void updateBgThemeDownload();
@@ -55,6 +57,7 @@ protected:
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
+    MusicDownloadStatusLabel* m_downloadStatusLabel;
     MusicVideoPlayer* m_videoPlayer;
 
 };

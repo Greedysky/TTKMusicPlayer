@@ -11,10 +11,6 @@
 #include "musictimerwidget.h"
 #include "musicmobiledeviceswidget.h"
 #include "musicsongssummarizied.h"
-#include "musicdownloadquerythread.h"
-#include "musicdownloadstatuslabel.h"
-#include "musictextdownloadthread.h"
-#include "musicdatadownloadthread.h"
 #include "musicxmlconfigmanager.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
@@ -22,7 +18,7 @@
 #include "musicbgthememanager.h"
 #include "musicsettingmanager.h"
 #include <Dbt.h>
-
+#include "musicversion.h"
 #include "musicuiobject.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
@@ -84,7 +80,6 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_setWindowToTop = false;
     m_currentMusicSongTreeIndex = 0;
 
-    m_downloadStatusLabel = new MusicDownloadStatusLabel(this);
     connect(m_musicPlayer,SIGNAL(positionChanged(qint64)),SLOT(positionChanged(qint64)));
     connect(m_musicPlayer,SIGNAL(durationChanged(qint64)),SLOT(durationChanged(qint64)));
     connect(m_musicPlayer,SIGNAL(stateChanged()),SLOT(stateChanged()));
@@ -96,12 +91,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
 
     connect(ui->songSearchWidget,SIGNAL(MuiscSongToPlayListChanged(QString)),
                                  m_musicSongTree, SLOT(addNetMusicSongToList(QString)));
-    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFor(DownLoadType)),
-                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFor(DownLoadType)));
-    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFinished(QString)),
-                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFinished(QString)));
     connect(ui->songSearchWidget,SIGNAL(musicBgDownloadFinished()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
-    connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()),m_topAreaWidget,SLOT(musicBgThemeDownloadFinished()));
 
     m_setting = new MusicSettingWidget(this);
     connect(m_setting,SIGNAL(parameterSettingChanged()),SLOT(getParameterSetting()));
@@ -177,7 +167,6 @@ MusicApplication::~MusicApplication()
     delete m_musicWindowExtras;
     delete m_mobileDevices;
     delete m_animation;
-    delete m_downloadStatusLabel;
     delete m_musicPlayer;
     delete m_musicList;
     delete m_musicSongTree;
@@ -534,13 +523,16 @@ QString MusicApplication::musicTimeTransToLabel(qint64 time)
 
 void MusicApplication::positionChanged(qint64 position)
 {
-    UpdateCurrentLrc(position);
+    m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), m_playControl);
     ui->musicTimeWidget->setValue(position);
-
     if(m_musicList->isEmpty())
+    {
         ui->playCurrentTime->setText("00:00");
+    }
     else
+    {
         ui->playCurrentTime->setText(musicTimeTransToLabel(position));
+    }
     //Show the current play time
     m_musicSongTree->setTimerLabel(ui->playCurrentTime->text());
 #ifdef MUSIC_DEBUG
@@ -570,7 +562,7 @@ void MusicApplication::showCurrentSong(int index)
             .arg(index + 1)
             .arg(name));
         //Show the current play song information
-        m_downloadStatusLabel->musicCheckHasLrcAlready();
+        m_rightAreaWidget->musicCheckHasLrcAlready();
         m_systemTrayMenu->setLabelText(name);
         m_topAreaWidget->setLabelText(name);
         //display current ArtTheme pic
@@ -964,11 +956,6 @@ void MusicApplication::musicLoadCurrentSongLrc()
     m_rightAreaWidget->loadCurrentSongLrc(getCurrentFileName(), filename);
 }
 
-void MusicApplication::UpdateCurrentLrc(qint64 time)
-{
-    m_rightAreaWidget->updateCurrentLrc(time, m_musicPlayer->duration(), m_playControl);
-}
-
 QString MusicApplication::getCurrentFileName() const
 {
     if(m_musicList->currentIndex() == -1)
@@ -984,18 +971,15 @@ bool MusicApplication::checkMusicListCurrentIndex() const
     return (m_musicList->currentIndex() == -1) ? true : false;
 }
 
-QLabel *&MusicApplication::getshowDownloadLabel()
-{
-    return ui->showDownloadGif;
-}
-
 void MusicApplication::musicCurrentLrcUpdated()
 {
     QString filename = getCurrentFileName();
     QFile file(LRC_DOWNLOAD + filename + LRC_FILE);
-    if(file.exists()) file.remove();
-
-    m_downloadStatusLabel->musicCheckHasLrcAlready();
+    if(file.exists())
+    {
+        file.remove();
+    }
+    m_rightAreaWidget->musicCheckHasLrcAlready();
 }
 
 void MusicApplication::updateCurrentTime(qint64 pos)

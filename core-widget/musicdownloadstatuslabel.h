@@ -4,6 +4,7 @@
 #include "musicdownloadquerythread.h"
 #include "musiclibexportglobal.h"
 
+class QLabel;
 class QMovie;
 class QTimer;
 class MusicApplication;
@@ -12,9 +13,10 @@ class MUSIC_WIDGET_EXPORT MusicDownloadStatusLabel : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadStatusLabel(MusicApplication *w);
+    explicit MusicDownloadStatusLabel(QWidget *w);
     ~MusicDownloadStatusLabel();
 
+    void setMovieLabel(QLabel *label) { m_movieLabel = label;}
     void musicCheckHasLrcAlready();
     bool checkSettingParameterValue();
 
@@ -33,6 +35,7 @@ protected:
     MusicDownLoadQueryThread *m_downloadLrcThread;
     QTimer* m_downloadLrcThreadTimer;
     QMovie* m_movie;
+    QLabel* m_movieLabel;
 
 };
 
