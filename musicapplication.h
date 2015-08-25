@@ -5,7 +5,6 @@
 #include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>
-#include <QSystemTrayIcon>
 #include "musicmovewidgetabstract.h"
 #include "musicobject.h"
 
@@ -13,13 +12,9 @@ class QPropertyAnimation;
 
 class MusicPlayer;
 class MusicPlaylist;
-class MusicSettingWidget;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
-//class MusicDownloadStatusLabel;
-class MusicSystemTrayMenu;
-class MusicToolSetsWidget;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class MusicWindowExtras;
@@ -46,8 +41,6 @@ public:
 
 protected:
     void initWindowSurface();
-    void createSystemTrayIcon();
-    void createMenuActions();
     void createPlayModeMenu(QMenu&);
     void createPlayModeMenuIcon(QMenu&);
     void drawWindowRoundedRect();
@@ -86,7 +79,6 @@ public slots:
     void musicImportSongsOnlyDir();
     void musicPlayIndex(int,int);
     void musicPlayAnyTimeAt(int);
-    void iconActivated(QSystemTrayIcon::ActivationReason);
     void musicActionVolumeSub();
     void musicActionVolumePlus();
     void musicAboutUs();
@@ -113,14 +105,6 @@ public slots:
     //This is a slot by MusicInlineLrcContainer's signal emit
     void musicCurrentLrcUpdated();
     void updateCurrentTime(qint64);
-    /////////////////////////////////////////////
-    //This is a slot by systemTrayMenu's signal emit
-    void setShowDesktopLrc(bool);
-    /////////////////////////////////////////////
-    //This is a slot by MusicLrcDesktopContainer's signal emit
-    void desktopLrcClosed();
-    /////////////////////////////////////////////
-
     //This is a slot by MusicTimerAutoObject's signal emit
     void setPlaySongChanged(int);
     void setStopSongChanged();
@@ -128,37 +112,26 @@ public slots:
     //This is a slot by MusicToolSetsWidget's signal emit
     void musicToolSetsParameter();
     /////////////////////////////////////////////
-
-    //left
-    //This is a slot by MusicLocalSongsManagerWidget's signal emit
-    //This is a slot by MusicMyDownloadRecordWidget's signal emit
+    //This is a slot by MusicLeftAreaWidget's signal emit
     void addSongToPlayList(const QStringList &);
-    /////////////////////////////////////////////
     void setSpectrum(HWND,int,int);
     void getCurrentPlayList(QStringList&);
     /////////////////////////////////////////////
-
-    //right
-    void changeDesktopLrcWidget();
-    void changeInlineLrcWidget();
-    void lockDesktopLrc(bool);
+    //This is a slot by MusicRightAreaWidget's signal emit
+//    void changeDesktopLrcWidget();
+//    void changeInlineLrcWidget();
 
 private:
     Ui::MusicApplication *ui;
     bool m_playControl;
-    bool m_systemCloseConfig;
     bool m_setWindowToTop;
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
     MIntsListMap m_searchfileListCache;
-    QSystemTrayIcon* m_systemTray;
 
     QMenu m_playModeMenu;
-    MusicSystemTrayMenu *m_systemTrayMenu;
     MusicSongsSummarizied* m_musicSongTree;
-    MusicSettingWidget* m_setting;
     MusicLocalSongSearch* m_musicLocalSongSearch;
-//    MusicDownloadStatusLabel* m_downloadStatusLabel;
 
     MusicTimerAutoObject* m_musicTimerAutoObj;
     MusicMobileDevicesWidget* m_mobileDevices;

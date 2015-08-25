@@ -5,6 +5,7 @@
 #include "musiclibexportglobal.h"
 
 class MusicVideoPlayer;
+class MusicSettingWidget;
 class MusicDownloadStatusLabel;
 class MusicLrcContainerForDesktop;
 
@@ -35,10 +36,13 @@ public:
                             const QString& path);
     void setSongSpeedAndSlow(qint64 time);
     void musicCheckHasLrcAlready();
+    void showSettingWidget();
 
 signals:
     void updateBgThemeDownload();
     void updateBackgroundTheme();
+    void desktopLrcClosed();
+    void lockDesktopLrc(bool);
 
 public slots:
     void setDestopLrcVisible(bool);
@@ -56,6 +60,7 @@ protected:
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
+    MusicSettingWidget* m_setting;
     MusicLrcContainerForDesktop* m_musiclrcfordesktop;
     MusicDownloadStatusLabel* m_downloadStatusLabel;
     MusicVideoPlayer* m_videoPlayer;

@@ -4,6 +4,7 @@
 #include "musiclrccontainerfordesktop.h"
 #include "musicvideoplayer.h"
 #include "musicdownloadstatuslabel.h"
+#include "musicsettingwidget.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent), m_videoPlayer(NULL)
@@ -11,10 +12,15 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_supperClass = parent;
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
     m_downloadStatusLabel = new MusicDownloadStatusLabel(parent);
+    m_setting = new MusicSettingWidget(this);
+    connect(m_setting, SIGNAL(parameterSettingChanged()), parent,
+                       SLOT(getParameterSetting()));
+
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
+    delete m_setting;
     delete m_videoPlayer;
     delete m_downloadStatusLabel;
     delete m_musiclrcfordesktop;
@@ -50,14 +56,12 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(musicCurrentLrcUpdated()));
     connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
-    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()), m_supperClass,
-                 SLOT(desktopLrcClosed()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()), m_supperClass,
+    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeDesktopLrcWidget()));
-    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)), m_supperClass,
-                 SLOT(lockDesktopLrc(bool)));
+    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()), SIGNAL(desktopLrcClosed()));
+    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)), SIGNAL(lockDesktopLrc(bool)));
     ///////////////////////////////////////////////////////
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()), m_supperClass,
+    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeInlineLrcWidget()));
     connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
@@ -192,6 +196,12 @@ void MusicRightAreaWidget::musicCheckHasLrcAlready()
     m_downloadStatusLabel->musicCheckHasLrcAlready();
 }
 
+void MusicRightAreaWidget::showSettingWidget()
+{
+    m_setting->initControllerParameter();
+    m_setting->exec();
+}
+
 void MusicRightAreaWidget::getParameterSetting()
 {
     setSettingParameter();
@@ -208,6 +218,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool v)
 {
     m_ui->musicDesktopLrc->setChecked(v);
     m_musiclrcfordesktop->setVisible(v);
+    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, v);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()
