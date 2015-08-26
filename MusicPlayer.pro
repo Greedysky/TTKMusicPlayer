@@ -120,7 +120,8 @@ SOURCES += \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
-    musicbottomareawidget.cpp
+    musicbottomareawidget.cpp \
+    musicapplicationobject.cpp
 
 
 HEADERS  += \
@@ -212,7 +213,8 @@ HEADERS  += \
     musicleftareawidget.h \
     musictopareawidget.h \
     musicrightareawidget.h \
-    musicbottomareawidget.h
+    musicbottomareawidget.h \
+    musicapplicationobject.h
 
 
 FORMS    += \

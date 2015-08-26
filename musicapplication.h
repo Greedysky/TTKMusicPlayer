@@ -1,14 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>
 #include "musicmovewidgetabstract.h"
 #include "musicobject.h"
-
-class QPropertyAnimation;
 
 class MusicPlayer;
 class MusicPlaylist;
@@ -18,11 +15,11 @@ class MusicSongsSummarizied;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class MusicWindowExtras;
-
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
+class MusicApplicationObject;
 
 namespace Ui {
 class MusicApplication;
@@ -41,8 +38,8 @@ public:
 
 protected:
     void initWindowSurface();
-    void createPlayModeMenu(QMenu&);
-    void createPlayModeMenuIcon(QMenu&);
+    void createPlayModeMenu(QMenu &menu);
+    void createPlayModeMenuIcon(QMenu &menu);
     void drawWindowRoundedRect();
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
@@ -55,13 +52,13 @@ protected:
 
     void readXMLConfigFromText();
     void writeXMLConfigToText();
-    void musicImportSongsSettingPath(const QStringList&);
+    void musicImportSongsSettingPath(const QStringList &path);
     QString musicTimeTransToLabel(qint64 time);
 
 public slots:
     void quitWindowClose();
-    void positionChanged(qint64);
-    void durationChanged(qint64);
+    void positionChanged(qint64 position);
+    void durationChanged(qint64 duration);
     void stateChanged();
     void showCurrentSong(int);
     void musicKey();
@@ -73,12 +70,12 @@ public slots:
     void musicPlayOneLoop();
     void musicPlayItemOnce();
     void musicVolumeNULL();
-    void musicVolumeChanged(int);
+    void musicVolumeChanged(int volume);
     void musicImportSongs();
     void musicImportSongsOnlyFile();
     void musicImportSongsOnlyDir();
-    void musicPlayIndex(int,int);
-    void musicPlayAnyTimeAt(int);
+    void musicPlayIndex(int row, int col);
+    void musicPlayAnyTimeAt(int posValue);
     void musicActionVolumeSub();
     void musicActionVolumePlus();
     void musicAboutUs();
@@ -94,7 +91,7 @@ public slots:
     void musicWindowConciseChanged();
     /////////////////////////////////////////////
     //This is a slot by MusicLocalSongSearch's signal emit
-    void musicSearchIndexChanged(int,int);
+    void musicSearchIndexChanged(int row, int col);
     /////////////////////////////////////////////
     //This is a slot by MusicSettingWidget's signal emit
     void getParameterSetting();
@@ -104,7 +101,7 @@ public slots:
     /////////////////////////////////////////////
     //This is a slot by MusicInlineLrcContainer's signal emit
     void musicCurrentLrcUpdated();
-    void updateCurrentTime(qint64);
+    void updateCurrentTime(qint64 pos);
     //This is a slot by MusicTimerAutoObject's signal emit
     void setPlaySongChanged(int);
     void setStopSongChanged();
@@ -113,37 +110,30 @@ public slots:
     void musicToolSetsParameter();
     /////////////////////////////////////////////
     //This is a slot by MusicLeftAreaWidget's signal emit
-    void addSongToPlayList(const QStringList &);
-    void setSpectrum(HWND,int,int);
-    void getCurrentPlayList(QStringList&);
-    /////////////////////////////////////////////
-    //This is a slot by MusicRightAreaWidget's signal emit
-//    void changeDesktopLrcWidget();
-//    void changeInlineLrcWidget();
+    void addSongToPlayList(const QStringList &item);
+    void setSpectrum(HWND wnd, int w, int h);
+    void getCurrentPlayList(QStringList &list);
 
 private:
     Ui::MusicApplication *ui;
     bool m_playControl;
     bool m_setWindowToTop;
-    MusicPlayer* m_musicPlayer;
-    MusicPlaylist* m_musicList;
+    int m_currentMusicSongTreeIndex;
+    QMenu m_playModeMenu;
     MIntsListMap m_searchfileListCache;
 
-    QMenu m_playModeMenu;
-    MusicSongsSummarizied* m_musicSongTree;
-    MusicLocalSongSearch* m_musicLocalSongSearch;
-
-    MusicTimerAutoObject* m_musicTimerAutoObj;
-    MusicMobileDevicesWidget* m_mobileDevices;
-    MusicWindowExtras* m_musicWindowExtras;
-    //////////////////////////////////
-    QPropertyAnimation* m_animation;
-    int m_currentMusicSongTreeIndex;
-
-    MusicBottomAreaWidget* m_bottomAreaWidget;
-    MusicTopAreaWidget* m_topAreaWidget;
-    MusicRightAreaWidget* m_rightAreaWidget;
-    MusicLeftAreaWidget* m_leftAreaWidget;
+    MusicPlayer* m_musicPlayer;
+    MusicPlaylist* m_musicList;
+    MusicSongsSummarizied *m_musicSongTree;
+    MusicLocalSongSearch *m_musicLocalSongSearch;
+    MusicTimerAutoObject *m_musicTimerAutoObj;
+    MusicMobileDevicesWidget *m_mobileDevices;
+    MusicWindowExtras *m_musicWindowExtras;
+    MusicBottomAreaWidget *m_bottomAreaWidget;
+    MusicTopAreaWidget *m_topAreaWidget;
+    MusicRightAreaWidget *m_rightAreaWidget;
+    MusicLeftAreaWidget *m_leftAreaWidget;
+    MusicApplicationObject *m_object;
 
 };
 

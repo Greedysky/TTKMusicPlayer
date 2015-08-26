@@ -22,6 +22,7 @@
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
+#include "musicapplicationobject.h"
 
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
@@ -29,12 +30,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     m_mobileDevices(NULL)
 {
     ui->setupUi(this);
-    /////////////////////////////////////////////////
-    m_animation = new QPropertyAnimation(this, "windowOpacity");
-    m_animation->setDuration(1000);
-    m_animation->setStartValue(0);
-    m_animation->setEndValue(1);
-    m_animation->start();
+    m_object = new MusicApplicationObject(this);
     /////////////////////////////////////////////////
     setAttribute(Qt::WA_TranslucentBackground, true);
     //Set the window transparent for background
@@ -146,14 +142,13 @@ bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, l
                 break;
         }
     }
-    return QWidget::nativeEvent(eventType,msg, result);
+    return QWidget::nativeEvent(eventType, msg, result);
 }
 
 MusicApplication::~MusicApplication()
 {
     delete m_musicWindowExtras;
     delete m_mobileDevices;
-    delete m_animation;
     delete m_musicPlayer;
     delete m_musicList;
     delete m_musicSongTree;
@@ -163,6 +158,7 @@ MusicApplication::~MusicApplication()
     delete m_topAreaWidget;
     delete m_rightAreaWidget;
     delete m_leftAreaWidget;
+    delete m_object;
 
     delete ui;
 }
@@ -287,7 +283,7 @@ void MusicApplication::initWindowSurface()
     ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
 }
 
-void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
+void MusicApplication::createPlayModeMenuIcon(QMenu &menu)
 {
     QList<QAction*> as = menu.actions();
     MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
@@ -298,7 +294,7 @@ void MusicApplication::createPlayModeMenuIcon(QMenu& menu)
     (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(":/share/selected")) : as[4]->setIcon(QIcon());
 }
 
-void MusicApplication::createPlayModeMenu(QMenu& menu)
+void MusicApplication::createPlayModeMenu(QMenu &menu)
 {
     menu.setStyleSheet(MusicUIObject::MMenuStyle01);
     menu.addAction(tr("OrderPlay"),this,SLOT(musicPlayOrder()));
@@ -722,7 +718,7 @@ void MusicApplication::musicImportSongsOnlyDir()
     }
 }
 
-void MusicApplication::musicImportSongsSettingPath(const QStringList & path)
+void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
 {
     m_musicSongTree->importOtherMusicSongs(path);//append in songsList
     if(m_currentMusicSongTreeIndex == 0)
@@ -1028,7 +1024,7 @@ void MusicApplication::setSpectrum(HWND wnd, int w, int h)
     m_musicPlayer->setSpectrum(wnd, w, h);
 }
 
-void MusicApplication::getCurrentPlayList(QStringList& list)
+void MusicApplication::getCurrentPlayList(QStringList &list)
 {
     list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
 }
