@@ -13,7 +13,7 @@ public:
     explicit MusicRemoteWidget(QWidget *parent = 0);
     virtual ~MusicRemoteWidget();
 
-    void showPlayStatus(bool status);
+    void showPlayStatus(bool status) const;
     void setVolumeValue(int index);
     virtual void setLabelText(const QString&){}
 

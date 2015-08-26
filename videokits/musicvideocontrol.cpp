@@ -47,12 +47,12 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_volumnButton->setMenu(&m_popupVolumn);
     m_volumnButton->setPopupMode(QToolButton::InstantPopup);
 
-    connect(m_timeSlider, SIGNAL(sliderMoved(int)),
-            parent, SLOT(setPosition(int)));
-    connect(m_volumnSlider, SIGNAL(valueChanged(int)),
-            parent, SLOT(volumnChanged(int)));
-    connect(m_playButton, SIGNAL(clicked()),parent,
-            SLOT(play()));
+    connect(m_timeSlider, SIGNAL(sliderMoved(int)), parent,
+                          SLOT(setPosition(int)));
+    connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent,
+                            SLOT(volumnChanged(int)));
+    connect(m_playButton, SIGNAL(clicked()), parent,
+                          SLOT(play()));
 }
 
 MusicVideoControl::~MusicVideoControl()
@@ -65,20 +65,18 @@ MusicVideoControl::~MusicVideoControl()
     delete m_volumnButton;
 }
 
-void MusicVideoControl::setValue(qint64 position)
+void MusicVideoControl::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position);
 }
 
-void MusicVideoControl::durationChanged(qint64 duration)
+void MusicVideoControl::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration);
 }
 
-void MusicVideoControl::setButtonStyle(bool style)
+void MusicVideoControl::setButtonStyle(bool style) const
 {
-    if(style)
-        m_playButton->setIcon(QIcon(":/video/play"));
-    else
-        m_playButton->setIcon(QIcon(":/video/pause"));
+    m_playButton->setIcon(QIcon( style ? ":/video/play"
+                                       : ":/video/pause"));
 }

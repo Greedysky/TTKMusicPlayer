@@ -24,7 +24,7 @@ public slots:
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
-    void setControlEnable(bool enale);
+    void setControlEnable(bool enable) const;
     QString translateTimeString(qint64 time);
     Ui::MusicLrcMakerWidget *ui;
 

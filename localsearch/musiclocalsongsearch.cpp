@@ -42,7 +42,7 @@ QString MusicLocalSongSearch::getSearchedText() const
     return m_searchLine->text();
 }
 
-void MusicLocalSongSearch::clearSearchedText()
+void MusicLocalSongSearch::clearSearchedText() const
 {
     return m_searchLine->clear();
 }

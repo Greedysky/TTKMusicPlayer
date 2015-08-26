@@ -23,7 +23,7 @@ public slots:
     void musicOpenFileDir();
 
 protected:
-    QString transSizeByte(int size);
+    QString transSizeByte(int size) const;
     Ui::MusicFileInformationWidget *ui;
     QString m_path;
 

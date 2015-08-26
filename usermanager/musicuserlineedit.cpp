@@ -3,7 +3,7 @@
 #include <QDebug>
 
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
-                : QLineEdit(parent)
+    : QLineEdit(parent)
 {
     m_mailContains = false;
     m_strContains = false;

@@ -42,7 +42,7 @@ protected:
     void initThreeWidget();
     void initComboParameter();
     void initParemeter();
-    void writeParemeter();
+    void writeParemeter() const;
 
     QStringList m_hour;
     QStringList m_second;

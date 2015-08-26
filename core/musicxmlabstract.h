@@ -18,7 +18,8 @@ public:
 protected:
     bool readConfig(const QString &type);
     bool writeConfig(const QString &type);
-    QString readXmlByTagNameAndAttribute(const QString &tagName);
+    QString readXmlByTagNameAndAttribute(const QString &tagName) const;
+
     QFile *m_file;
     QDomDocument *m_ddom;
 

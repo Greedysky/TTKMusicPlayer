@@ -135,7 +135,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     close();
 }
 
-void MusicLrcFloatPhotoWidget::showPhoto()
+void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;

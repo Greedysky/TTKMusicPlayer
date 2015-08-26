@@ -29,8 +29,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     thirdStatckWidget();
     drawRoundedRect();
     ui->userComboBox->addItems(m_userModel->getAllUsers());
-    connect(ui->userComboBox,SIGNAL(currentIndexChanged(QString)),
-            SLOT(userComboBoxChanged(QString)));
+    connect(ui->userComboBox, SIGNAL(currentIndexChanged(QString)),
+                              SLOT(userComboBoxChanged(QString)));
     m_userComboIndex = ui->userComboBox->currentText();
     readFromUserConfig();
 
@@ -48,7 +48,9 @@ void MusicUserDialog::readFromUserConfig()
 {
     MusicUserConfigManager xml;
     if(!xml.readUserXMLConfig())
+    {
         return;
+    }
     xml.readUserConfig(m_parameter);
     readFromUserSettings();
 }
@@ -143,7 +145,6 @@ void MusicUserDialog::clearOriginData()
     ui->pwdLineEditR->hide();
     ui->labelRigh_5->hide();
 
-//    ui->userComboBox->clear();
     ui->passwLineEdit->clear();
     ui->registerUserLine->clear();
     ui->registerMailLine->clear();
@@ -169,7 +170,6 @@ void MusicUserDialog::drawRoundedRect()
     p.setBrush(Qt::black);
     p.drawRoundedRect(bmp.rect(),4,4);
     setMask(bmp);
-    //set window radius
 }
 
 void MusicUserDialog::userLogin()
@@ -237,8 +237,7 @@ void MusicUserDialog::checkRegisterUser()
         ui->registerPwdLine->getStrStatus() &&
         ui->registerPwdCLine->getStrStatus() )
     {
-        if( ui->registerPwdLine->text() !=
-            ui->registerPwdCLine->text() )
+        if( ui->registerPwdLine->text() != ui->registerPwdCLine->text() )
         {
             QMessageBox::warning(this,tr("QMusicPlayer"),
                                  tr("The two passwords do not match"));
@@ -263,8 +262,10 @@ void MusicUserDialog::checkRegisterUser()
         userLogin();
     }
     else
+    {
         QMessageBox::warning(this,tr("QMusicPlayer"),
                              tr("You entered is incorrect"));
+    }
 }
 
 void MusicUserDialog::checkUserForgotPasswd()
@@ -297,8 +298,10 @@ void MusicUserDialog::checkUserForgotPasswd()
          return;
      }
      if( m_userModel->updateUser(user,ui->pwdLineEdit->text(),mail,"","") )
+     {
          QMessageBox::warning(this,tr("QMusicPlayer"),
                                    tr("Change password successfully"));
+     }
      userLogin();
 }
 
@@ -330,7 +333,7 @@ void MusicUserDialog::writeToUserSettings()
                                     : QString() ));
 }
 
-void MusicUserDialog::userComboBoxChanged(QString index)
+void MusicUserDialog::userComboBoxChanged(const QString &index)
 {
     writeToUserSettings();
     m_userComboIndex = index;

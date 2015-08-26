@@ -81,7 +81,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 }
 
 
-void MusicRightAreaWidget::stopLrcMask()
+void MusicRightAreaWidget::stopLrcMask() const
 {
     if( checkSettingParameterValue() )
     {
@@ -90,7 +90,7 @@ void MusicRightAreaWidget::stopLrcMask()
     }
 }
 
-void MusicRightAreaWidget::startTimerClock()
+void MusicRightAreaWidget::startTimerClock() const
 {
     if( checkSettingParameterValue() )
     {
@@ -99,40 +99,40 @@ void MusicRightAreaWidget::startTimerClock()
     }
 }
 
-void MusicRightAreaWidget::showPlayStatus(bool status)
+void MusicRightAreaWidget::showPlayStatus(bool status) const
 {
     m_musiclrcfordesktop->showPlayStatus(status);
 }
 
-void MusicRightAreaWidget::setDestopLrcVisible(const QString &status)
+void MusicRightAreaWidget::setDestopLrcVisible(const QString &status) const
 {
     setDestopLrcVisible( status == "true" ? true : false);
 }
 
-bool MusicRightAreaWidget::getDestopLrcVisible()
+bool MusicRightAreaWidget::getDestopLrcVisible() const
 {
     return m_musiclrcfordesktop->isVisible();
 }
 
-void MusicRightAreaWidget::setInlineLrcVisible(const QString &status)
+void MusicRightAreaWidget::setInlineLrcVisible(const QString &status) const
 {
     m_ui->musiclrccontainerforinline->setVisible(status == "true" ? true : false);
 }
 
-void MusicRightAreaWidget::setSettingParameter()
+void MusicRightAreaWidget::setSettingParameter() const
 {
     m_musiclrcfordesktop->setSettingParameter();
     m_ui->musiclrccontainerforinline->setSettingParameter();
 }
 
-bool MusicRightAreaWidget::checkSettingParameterValue()
+bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
     return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
              M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
              ? true : false;
 }
 
-void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus)
+void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
 {
     m_ui->musiclrccontainerforinline->setCurrentPosition(current);
     //Direct access to the audio file is the total time, in milliseconds
@@ -177,7 +177,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
     }
 }
 
-void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString &path)
+void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString &path) const
 {
     if( checkSettingParameterValue() )
     {
@@ -189,24 +189,24 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     }
 }
 
-void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time)
+void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
 {
     m_ui->musiclrccontainerforinline->setSongSpeedAndSlow(time);
 }
 
-void MusicRightAreaWidget::musicCheckHasLrcAlready()
+void MusicRightAreaWidget::musicCheckHasLrcAlready() const
 {
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
     m_downloadStatusLabel->musicCheckHasLrcAlready();
 }
 
-void MusicRightAreaWidget::showSettingWidget()
+void MusicRightAreaWidget::showSettingWidget() const
 {
     m_setting->initControllerParameter();
     m_setting->exec();
 }
 
-void MusicRightAreaWidget::getParameterSetting()
+void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();
     bool config = M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
@@ -216,7 +216,7 @@ void MusicRightAreaWidget::getParameterSetting()
     m_ui->musicDesktopLrc->setChecked(config);
 }
 
-void MusicRightAreaWidget::setDestopLrcVisible(bool v)
+void MusicRightAreaWidget::setDestopLrcVisible(bool v) const
 {
     m_ui->musicDesktopLrc->setChecked(v);
     m_musiclrcfordesktop->setVisible(v);

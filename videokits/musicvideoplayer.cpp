@@ -91,7 +91,7 @@ void MusicVideoPlayer::searchButtonClicked()
     m_videoTable->startSearchQuery(m_searchEdit->text().trimmed());
 }
 
-void MusicVideoPlayer::mvURLChanged(const QString& data)
+void MusicVideoPlayer::mvURLChanged(const QString &data)
 {
     m_videoView->setMedia(data);
     m_videoView->play();

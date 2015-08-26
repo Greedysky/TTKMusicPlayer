@@ -24,8 +24,9 @@ public slots:
     void timeout();
 
 protected:
-    bool systemIs64bit();
+    bool systemIs64bit() const;
     void setShutdown();
+
     QTimer m_timer;
     int m_hour;
     int m_second;

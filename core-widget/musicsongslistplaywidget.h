@@ -17,9 +17,9 @@ public:
     explicit MusicSongsListPlayWidget(QWidget *parent = 0);
     ~MusicSongsListPlayWidget();
 
-    void getWidget(QWidget *&one, QWidget *&two);
-    void insertTimerLabel(const QString &t);
-    void updateArtPicture();
+    void getWidget(QWidget *&one, QWidget *&two) const;
+    void insertTimerLabel(const QString &t) const;
+    void updateArtPicture() const;
     void setParameter(const QString &name, const QString &path);
     void setItemRename();
 
@@ -30,7 +30,7 @@ public slots:
     void setChangItemName(const QString &name);
 
 protected:
-    bool showArtPicture(const QString &name);
+    bool showArtPicture(const QString &name) const;
 
     QLabel *m_artPicture;
     QLabel *m_songName;

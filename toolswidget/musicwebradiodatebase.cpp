@@ -8,7 +8,7 @@ MusicWebRadioDatabase::MusicWebRadioDatabase()
 {
 }
 
-bool MusicWebRadioDatabase::disConnectDatabase()
+bool MusicWebRadioDatabase::disConnectDatabase() const
 {
     QString connectionName;
     {
@@ -27,7 +27,7 @@ bool MusicWebRadioDatabase::disConnectDatabase()
     return true;
 }
 
-bool MusicWebRadioDatabase::connectDatabase()
+bool MusicWebRadioDatabase::connectDatabase() const
 {
     try
     {
@@ -71,7 +71,7 @@ bool MusicWebRadioDatabase::connectDatabase()
     return true;
 }
 
-QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName)
+QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName) const
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     query.exec("select * from channel");
@@ -85,7 +85,7 @@ QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName)
     return QString();
 }
 
-QStringList MusicWebRadioDatabase::getRadioNames(const QString &category)
+QStringList MusicWebRadioDatabase::getRadioNames(const QString &category) const
 {
     QStringList channelNames;
     QSqlQuery query(QString("select * from channel where category='%1'").arg(category),
@@ -97,7 +97,7 @@ QStringList MusicWebRadioDatabase::getRadioNames(const QString &category)
     return channelNames;
 }
 
-QStringList MusicWebRadioDatabase::getRecords(const QString& filter)
+QStringList MusicWebRadioDatabase::getRecords(const QString& filter) const
 {
     QStringList channelNames;
     QSqlQuery query(filter, QSqlDatabase::database("radio-data"));
@@ -113,17 +113,17 @@ QStringList MusicWebRadioDatabase::getRecords(const QString& filter)
     return channelNames;
 }
 
-QStringList MusicWebRadioDatabase::getRecentNames()
+QStringList MusicWebRadioDatabase::getRecentNames() const
 {
     return getRecords("select * from recently order by time DESC");
 }
 
-QStringList MusicWebRadioDatabase::getFavouriteNames()
+QStringList MusicWebRadioDatabase::getFavouriteNames() const
 {
     return getRecords("select * from collect");
 }
 
-void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName)
+void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName) const
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     QSqlQuery queryC(QSqlDatabase::database("radio-data"));
@@ -154,7 +154,7 @@ void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName)
     }
 }
 
-void MusicWebRadioDatabase::radioCollection(const QString &name)
+void MusicWebRadioDatabase::radioCollection(const QString &name) const
 {
     QSqlQuery query(QString("select * from channel where channel_name='%1'").arg(name),
                              QSqlDatabase::database("radio-data"));
@@ -174,7 +174,7 @@ void MusicWebRadioDatabase::radioCollection(const QString &name)
     }
 }
 
-void MusicWebRadioDatabase::radioDiscollection(const QString &name)
+void MusicWebRadioDatabase::radioDiscollection(const QString &name) const
 {
     QSqlQuery query(QString("select * from channel where channel_name='%1'").arg(name),
                              QSqlDatabase::database("radio-data"));

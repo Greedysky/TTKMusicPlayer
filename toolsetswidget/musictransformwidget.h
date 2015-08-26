@@ -36,9 +36,9 @@ protected:
     QString getTransformSongName() const;
     Ui::MusicTransformWidget *ui;
 
-    void initControlParameter();
-    bool processTransform(const QString &para);
-    void setCheckedControl(bool enable);
+    void initControlParameter() const;
+    bool processTransform(const QString &para) const;
+    void setCheckedControl(bool enable) const;
 
     QProcess *m_process;
     QMovie *m_movie;

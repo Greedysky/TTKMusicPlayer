@@ -75,12 +75,12 @@ void MusicTopAreaWidget::setParameters(const QString &skin, int alpha)
     musicBgTransparentChanged(m_alpha = alpha);
 }
 
-QString MusicTopAreaWidget::getBgSkin()
+QString MusicTopAreaWidget::getBgSkin() const
 {
     return m_currentBgSkin;
 }
 
-int MusicTopAreaWidget::getBgSkinAlpha()
+int MusicTopAreaWidget::getBgSkinAlpha() const
 {
     return m_alpha;
 }
@@ -183,7 +183,7 @@ void MusicTopAreaWidget::showPlayStatus(bool status)
     }
 }
 
-void MusicTopAreaWidget::setLabelText(const QString &name)
+void MusicTopAreaWidget::setLabelText(const QString &name) const
 {
     if(m_musicRemoteWidget)
     {
@@ -191,7 +191,7 @@ void MusicTopAreaWidget::setLabelText(const QString &name)
     }
 }
 
-void MusicTopAreaWidget::setVolumeValue(int value)
+void MusicTopAreaWidget::setVolumeValue(int value) const
 {
     if(m_musicRemoteWidget)
     {

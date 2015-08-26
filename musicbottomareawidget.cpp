@@ -102,7 +102,7 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
     }
 }
 
-void MusicBottomAreaWidget::createMenuActions()
+void MusicBottomAreaWidget::createMenuActions() const
 {
     connect(m_ui->action_ImportSongs,SIGNAL(triggered()),m_supperClass,SLOT(musicImportSongs()));
     connect(m_ui->action_Setting,SIGNAL(triggered()),m_supperClass,SLOT(musicSetting()));
@@ -135,17 +135,17 @@ void MusicBottomAreaWidget::createSystemTrayIcon()
                           SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
 
-void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status)
+void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status) const
 {
     m_systemTrayMenu->showDesktopLrc(status);
 }
 
-void MusicBottomAreaWidget::showPlayStatus(bool status)
+void MusicBottomAreaWidget::showPlayStatus(bool status) const
 {
     m_systemTrayMenu->showPlayStatus(status);
 }
 
-void MusicBottomAreaWidget::setLabelText(const QString &name)
+void MusicBottomAreaWidget::setLabelText(const QString &name) const
 {
     m_systemTrayMenu->setLabelText(name);
 }

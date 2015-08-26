@@ -9,7 +9,7 @@
 #include <QTimer>
 
 MusicUserWindow::MusicUserWindow(QWidget *parent)
-   : QStackedWidget(parent),ui(new Ui::MusicUserWindow)
+   : QStackedWidget(parent), ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
     ui->userLogin->setStyleSheet(MusicUIObject::MPushButtonStyle03);
@@ -40,9 +40,13 @@ bool MusicUserWindow::disConnectDatabase()
         QSqlDatabase data = QSqlDatabase::database("user-data");
         connectionName = data.connectionName();
         if( data.isValid() )
+        {
             data.close();
+        }
         else
+        {
             return false;
+        }
     }
     QSqlDatabase::removeDatabase( connectionName );
     return true;
@@ -54,18 +58,26 @@ bool MusicUserWindow::connectDatabase()
     {
         QSqlDatabase data;
         if(QSqlDatabase::contains("user-data"))
+        {
             data = QSqlDatabase::database("user-data");
+        }
         else
+        {
             data = QSqlDatabase::addDatabase(DATABASETYPE, "user-data");
-//        QSqlDatabase data = QSqlDatabase::addDatabase(DATABASETYPE);
+        }
         data.setDatabaseName(DARABASEPATH);
         if( !data.isDriverAvailable(DATABASETYPE) )
+        {
             throw QString("The driver name is not available!");
+        }
         if( !data.isValid() )
+        {
             throw QString("The database has not a vaild driver!");
+        }
         if (!data.isOpen() && !data.open() )
+        {
             throw QString("Can not open database connection!");
-
+        }
         if(!data.tables().contains("MusicUser"))
         {
             QSqlQuery query(data);
@@ -83,13 +95,15 @@ bool MusicUserWindow::connectDatabase()
     return true;
 }
 
-void MusicUserWindow::userStateChanged(const QString& name)
+void MusicUserWindow::userStateChanged(const QString &name)
 {
     ui->userName->setText(QFontMetrics(font())
                 .elidedText(name, Qt::ElideRight,44));
 
     if(currentIndex() == 1)
+    {
         setCurrentIndex(0);
+    }
     else
     {
         m_userManager->setUserName(name);
@@ -100,7 +114,7 @@ void MusicUserWindow::userStateChanged(const QString& name)
 void MusicUserWindow::musicUserLogin()
 {
     MusicUserDialog dialog;
-    connect(&dialog,SIGNAL(userLoginSuccess(QString)),SLOT(userStateChanged(QString)));
+    connect(&dialog, SIGNAL(userLoginSuccess(QString)), SLOT(userStateChanged(QString)));
     dialog.exec();
 }
 

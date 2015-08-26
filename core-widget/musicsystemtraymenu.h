@@ -15,9 +15,9 @@ public:
     MusicSystemTrayMenu(QWidget *parent = 0);
     ~MusicSystemTrayMenu();
 
-    void setLabelText(const QString &text);
-    void showDesktopLrc(const QString &show);
-    void showPlayStatus(bool status);
+    void setLabelText(const QString &text) const;
+    void showDesktopLrc(const QString &show) const;
+    void showPlayStatus(bool status) const;
 
 signals:
     void setShowDesktopLrc(bool status);
@@ -29,6 +29,7 @@ public slots:
 
 protected:
     void createWidgetActions();
+
     QWidgetAction *m_widgetAction;
     QLabel *m_showText;
     QToolButton *m_previousPlay;

@@ -30,9 +30,9 @@ public:
     void clearAllLists();
     void currentMusicSongTreeIndexChanged(int index);
     void selectRow(int index);
-    void setTimerLabel(const QString &time);
+    void setTimerLabel(const QString &time) const;
     QString itemText(int row, int col) const;
-    void setPlaybackMode(MusicObject::SongPlayType mode);
+    void setPlaybackMode(MusicObject::SongPlayType mode) const;
 
 signals:
     void musicPlay(int row, int col);
@@ -59,7 +59,6 @@ public slots:
                                      QString &path, bool st = true);
     void setMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
-
     void updateArtPicture();
     void updateToolStyle();
 

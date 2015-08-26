@@ -20,9 +20,9 @@ public:
     ~MusicBottomAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
-    void setDestopLrcVisible(const QString &status);
-    void showPlayStatus(bool status);
-    void setLabelText(const QString &name);
+    void setDestopLrcVisible(const QString &status) const;
+    void showPlayStatus(bool status) const;
+    void setLabelText(const QString &name) const;
     void setSystemCloseConfig(const QString &status);
     void setSystemCloseConfig(bool status)
             { m_systemCloseConfig = status;}
@@ -44,7 +44,7 @@ public slots:
 protected:
     void createToolPopupMenu();
     void createSystemTrayIcon();
-    void createMenuActions();
+    void createMenuActions() const;
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;

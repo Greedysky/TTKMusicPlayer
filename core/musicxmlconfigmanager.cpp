@@ -343,7 +343,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out,4);
 }
 
-MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString &value)
+MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString &value) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
     QStringList name;
@@ -356,7 +356,7 @@ MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString &value)
     return MStringListsPair(name,url);
 }
 
-void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key)
+void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
     QDomElement element = nodelist.at(0).toElement();
@@ -368,7 +368,7 @@ void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key)
     }
 }
 
-QColor MusicXMLConfigManager::readColorConfig(const QString &value)
+QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
 {
     QStringList rgb = readXmlByTagNameAndAttribute(value).split(',');
     if(rgb.count() != 3)
@@ -378,7 +378,7 @@ QColor MusicXMLConfigManager::readColorConfig(const QString &value)
     return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
 }
 
-QRect MusicXMLConfigManager::readShowDLrcGeometry()
+QRect MusicXMLConfigManager::readShowDLrcGeometry() const
 {
     QStringList geometry = readXmlByTagNameAndAttribute("lrcDGeometry").split(',');
     if(geometry.count() != 4)
@@ -389,7 +389,7 @@ QRect MusicXMLConfigManager::readShowDLrcGeometry()
                  geometry[2].toInt(),geometry[3].toInt() );
 }
 
-void MusicXMLConfigManager::readTimeAutoConfig()
+void MusicXMLConfigManager::readTimeAutoConfig() const
 {
     M_SETTING.setValue(MusicSettingManager::TimerAutoIndexChoiced,
                      readXmlByTagNameAndAttribute("timeAutoIndex").toInt());

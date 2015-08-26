@@ -77,7 +77,7 @@ void MusicLrcContainer::changeCurrentLrcColor(int index)
     setLinearGradientColor(static_cast<LrcColorType>(index));
 }
 
-void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType)
+void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType) const
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -117,7 +117,7 @@ void MusicLrcContainer::setSettingParameter()
     setSettingParameter(m_containerType == "DESKTOP" ? "D" : QString() );
 }
 
-void MusicLrcContainer::setSettingParameter(const QString &t)
+void MusicLrcContainer::setSettingParameter(const QString &t) const
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -152,7 +152,7 @@ void MusicLrcContainer::theCurrentLrcMaked()
     m_makerWidget->show();
 }
 
-void MusicLrcContainer::setCurrentPosition(qint64 pos)
+void MusicLrcContainer::setCurrentPosition(qint64 pos) const
 {
     if(m_makerWidget)
     {

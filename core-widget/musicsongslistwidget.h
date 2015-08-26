@@ -24,8 +24,8 @@ public:
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type)
         { m_songplaymode = type;}
-    void setTimerLabel(const QString &t);
-    void updateArtPicture();
+    void setTimerLabel(const QString &t) const;
+    void updateArtPicture() const;
     void replacePlayWidgetRow();
 
 signals:

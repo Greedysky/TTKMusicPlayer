@@ -26,7 +26,7 @@ MusicWindowExtras::~MusicWindowExtras()
     delete m_thumbnailToolBar;
 }
 
-void MusicWindowExtras::showPlayStatus(bool status)
+void MusicWindowExtras::showPlayStatus(bool status) const
 {
     if(!status)
     {
@@ -48,17 +48,17 @@ void MusicWindowExtras::showPlayStatus(bool status)
     }
 }
 
-void MusicWindowExtras::createJumpList()
+void MusicWindowExtras::createJumpList() const
 {
     QWinJumpList().recent()->setVisible(true);
 }
 
-void MusicWindowExtras::setValue(int value)
+void MusicWindowExtras::setValue(int value) const
 {
     m_taskbarProgress->setValue(value);
 }
 
-void MusicWindowExtras::setRange(int start, int end)
+void MusicWindowExtras::setRange(int start, int end) const
 {
     m_taskbarProgress->setRange(start, end);
 }

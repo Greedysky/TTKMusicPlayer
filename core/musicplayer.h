@@ -33,7 +33,7 @@ public:
     int volume() const;
     bool isMuted() const;
 
-    void setPlay3DMusicFlag(bool&);
+    void setPlay3DMusicFlag(bool &flag);
 
 #ifdef Q_OS_WIN32
     void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);

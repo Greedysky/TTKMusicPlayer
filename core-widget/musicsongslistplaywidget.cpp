@@ -96,23 +96,23 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_songShareButton;
 }
 
-void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two)
+void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const
 {
     one = m_columnOne;
     two = m_columnThree;
 }
 
-void MusicSongsListPlayWidget::insertTimerLabel(const QString &t)
+void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
 {
     m_timeLabel->setText(t + m_totalTime);
 }
 
-void MusicSongsListPlayWidget::updateArtPicture()
+void MusicSongsListPlayWidget::updateArtPicture() const
 {
     showArtPicture(m_songName->text().split('-').front().trimmed());
 }
 
-bool MusicSongsListPlayWidget::showArtPicture(const QString &name)
+bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 {
     QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())

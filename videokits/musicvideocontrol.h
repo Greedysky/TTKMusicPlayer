@@ -18,9 +18,9 @@ public:
     explicit MusicVideoControl(QWidget *parent = 0);
     ~MusicVideoControl();
 
-    void setValue(qint64 position);
-    void durationChanged(qint64 duration);
-    void setButtonStyle(bool);
+    void setValue(qint64 position) const;
+    void durationChanged(qint64 duration) const;
+    void setButtonStyle(bool style) const;
 
 protected:
     QMenu m_popupVolumn;

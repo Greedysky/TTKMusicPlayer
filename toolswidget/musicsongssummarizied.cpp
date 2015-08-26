@@ -95,7 +95,7 @@ void MusicSongsSummarizied::selectRow(int index)
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
-void MusicSongsSummarizied::setTimerLabel(const QString& time)
+void MusicSongsSummarizied::setTimerLabel(const QString& time) const
 {
     m_mainSongLists[m_currentIndexs]->setTimerLabel(time);
 }
@@ -280,7 +280,7 @@ void MusicSongsSummarizied::musicOpenFileDir(int index)
     }
 }
 
-void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode)
+void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
 {
     foreach(MusicSongsListWidget* m, m_mainSongLists)
     {

@@ -50,7 +50,7 @@ public slots:
 protected:
     virtual void enterEvent(QEvent *){}
     virtual void leaveEvent(QEvent *){}
-    void showPhoto();
+    void showPhoto() const;
 
     QWidget* m_filmBGWidget;
     QCheckBox* m_checkBox;

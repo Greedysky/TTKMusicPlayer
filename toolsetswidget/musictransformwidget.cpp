@@ -63,7 +63,7 @@ MusicTransformWidget::~MusicTransformWidget()
     delete ui;
 }
 
-void MusicTransformWidget::initControlParameter()
+void MusicTransformWidget::initControlParameter() const
 {
     ui->formatCombo->addItems(QStringList()<<"MP3"<<"WAV"<<"WMA"
                               <<"OGG"<<"FLAC"<<"AC3"<<"AAC");
@@ -171,7 +171,7 @@ void MusicTransformWidget::transformFinish(int)
     }
 }
 
-bool MusicTransformWidget::processTransform(const QString &para)
+bool MusicTransformWidget::processTransform(const QString &para) const
 {
     if(m_path.isEmpty())
     {
@@ -225,7 +225,7 @@ void MusicTransformWidget::folderBoxChecked(bool)
     m_path.clear();
 }
 
-void MusicTransformWidget::setCheckedControl(bool enable)
+void MusicTransformWidget::setCheckedControl(bool enable) const
 {
     ui->inputButton->setEnabled(enable);
     ui->inputLineEdit->setEnabled(enable);

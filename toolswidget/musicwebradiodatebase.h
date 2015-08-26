@@ -9,18 +9,18 @@ class MUSIC_CORE_EXPORT MusicWebRadioDatabase
 
 public:
     MusicWebRadioDatabase();
-    bool connectDatabase();
-    bool disConnectDatabase();
-    QString getRadioUrl(const QString &channelName);
-    QStringList getRadioNames(const QString &category);
-    QStringList getRecentNames();
-    QStringList getFavouriteNames();
-    void radioRecentPlay(const QString &channelName);
-    void radioCollection(const QString &name);
-    void radioDiscollection(const QString &name);
+    bool connectDatabase() const;
+    bool disConnectDatabase() const;
+    QString getRadioUrl(const QString &channelName) const;
+    QStringList getRadioNames(const QString &category) const;
+    QStringList getRecentNames() const;
+    QStringList getFavouriteNames() const;
+    void radioRecentPlay(const QString &channelName) const;
+    void radioCollection(const QString &name) const;
+    void radioDiscollection(const QString &name) const;
 
 protected:
-    QStringList getRecords(const QString &filter);
+    QStringList getRecords(const QString &filter) const;
 
 };
 

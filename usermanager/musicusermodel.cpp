@@ -4,15 +4,15 @@
 #include <QDebug>
 
 MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
-            : QSqlTableModel(parent,db)
+    : QSqlTableModel(parent,db)
 {
     setTable("MusicUser");
     setEditStrategy(QSqlTableModel::OnManualSubmit);
     select();
 }
 
-bool MusicUserModel::addUser(const QString& uid, const QString& pwd,
-             const QString& mail)
+bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
+                             const QString &mail)
 {
     insertRow(0);
     setData(index(0,fieldIndex("USERID")),uid);
@@ -35,7 +35,7 @@ bool MusicUserModel::addUser(const QString& uid, const QString& pwd,
     }
 }
 
-bool MusicUserModel::databaseSelectedFilter(const QString& uid)
+bool MusicUserModel::databaseSelectedFilter(const QString &uid)
 {
     setTable("MusicUser");
     setFilter(QString("USERID='%1'").arg(uid));
@@ -43,11 +43,14 @@ bool MusicUserModel::databaseSelectedFilter(const QString& uid)
     return (rowCount() == 0);
 }
 
-bool MusicUserModel::updateUser(const QString& uid, const QString& pwd,
-             const QString& mail, const QString &name, const QString &time)
+bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
+                                const QString &mail,const QString &name,
+                                const QString &time)
 {
     if(databaseSelectedFilter(uid))
+    {
         return false;
+    }
 
     if(!pwd.isEmpty()) setData(index(0,fieldIndex("PASSWD")),userPasswordEncryption(pwd));
     if(!mail.isEmpty()) setData(index(0,fieldIndex("EMAIL")),mail);
@@ -57,64 +60,78 @@ bool MusicUserModel::updateUser(const QString& uid, const QString& pwd,
     return true;
 }
 
-bool MusicUserModel::checkUser(const QString& uid, const QString& pwd)
+bool MusicUserModel::checkUser(const QString &uid, const QString &pwd)
 {
     if(databaseSelectedFilter(uid))
+    {
         return false;
+    }
 
     return record(0).value("PASSWD") == userPasswordEncryption(pwd);
 }
 
-bool MusicUserModel::deleteUser(const QString& uid)
+bool MusicUserModel::deleteUser(const QString &uid)
 {
     if(databaseSelectedFilter(uid))
+    {
         return false;
+    }
 
     removeRow(0);
     return submitAll();
 }
 
-bool MusicUserModel::mailCheck(const QString& uid, const QString& mail)
+bool MusicUserModel::mailCheck(const QString &uid, const QString &mail)
 {
     if(databaseSelectedFilter(uid))
+    {
         return false;
+    }
 
     return record(0).value("EMAIL") == mail;
 }
 
-QStringList MusicUserModel::getAllUsers()
+QStringList MusicUserModel::getAllUsers() const
 {
     QStringList users;
     for(int i=0; i<rowCount(); ++i)
+    {
         users<<record(i).value("USERID").toString();
+    }
     return users;
 }
 
-QString MusicUserModel::getUserLogTime(const QString& uid)
+QString MusicUserModel::getUserLogTime(const QString &uid)
 {
     if(databaseSelectedFilter(uid))
+    {
         return QString();
+    }
 
     return record(0).value("LOGINTIME").toString();
 }
 
-QString MusicUserModel::getUserName(const QString& uid)
+QString MusicUserModel::getUserName(const QString &uid)
 {
     if(databaseSelectedFilter(uid))
+    {
         return QString();
+    }
 
     return record(0).value("USERNAME").toString();
 }
 
-QString MusicUserModel::getUserPWDMD5(const QString& uid)
+QString MusicUserModel::getUserPWDMD5(const QString &uid)
 {
     if(databaseSelectedFilter(uid))
+    {
         return QString();
+    }
 
     return record(0).value("PASSWD").toString().left(10);
 }
 
-QString MusicUserModel::userPasswordEncryption(const QString& pwd)
+QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
 {
     return QCryptographicHash::hash( pwd.toLatin1(),
                                QCryptographicHash::Sha256).toHex();

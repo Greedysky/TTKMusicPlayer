@@ -27,12 +27,12 @@ MusicUserManager::~MusicUserManager()
     delete ui;
 }
 
-bool MusicUserManager::checkUser(const QString& uid)
+bool MusicUserManager::checkUser(const QString &uid) const
 {
     return m_userModel->databaseSelectedFilter(uid);
 }
 
-void MusicUserManager::setUserName(const QString& name)
+void MusicUserManager::setUserName(const QString &name)
 {
     m_currentUser = name;
     ui->username->setText(m_userModel->getUserName(m_currentUser));
@@ -50,7 +50,9 @@ void MusicUserManager::musicUserLogoff()
 
     MusicUserConfigManager xml;
     if(!xml.readUserXMLConfig())
+    {
         return;
+    }
     MStringsListMap parameter;
     xml.readUserConfig(parameter);
     QStringList values = parameter.value(m_currentUser);
@@ -74,14 +76,14 @@ void MusicUserManager::modifiedUserName()
     ui->username->setEnabled(!ui->username->isEnabled());
 }
 
-void MusicUserManager::createUserTime()
+void MusicUserManager::createUserTime() const
 {
     qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
     ui->totalTimeLabel->setText(QString(tr("%1day %2hour %3min"))
        .arg(time/86400).arg((time%86400)/3600).arg((time%86400%3600)/60));
 }
 
-void MusicUserManager::createUserLevel()
+void MusicUserManager::createUserLevel() const
 {
     qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
     QString level;

@@ -19,7 +19,7 @@ public:
     QStringList getArtPhotoPaths() const;
     void setArtPhotoPaths(const QStringList &list);
     void sendUserSelectArtBg(int index);
-    void setObject(QObject *object);
+    void setObject(QObject *object) const ;
 
 signals:
     void artHasChanged();

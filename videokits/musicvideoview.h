@@ -15,7 +15,7 @@ public:
     MusicVideoView(QWidget *parent = 0);
     ~MusicVideoView();
 
-    void setMedia(const QString&);
+    void setMedia(const QString &data);
 
 public slots:
     void play();

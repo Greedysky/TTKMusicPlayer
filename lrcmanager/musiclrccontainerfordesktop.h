@@ -16,10 +16,10 @@ public:
 
     virtual void startTimerClock();
     virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask);
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const;
     virtual void setSettingParameter();
-    void showPlayStatus(bool status);
-    void initCurrentLrc();
+    void showPlayStatus(bool status) const;
+    void initCurrentLrc() const;
     void updateCurrentLrc(const QString &first,
                           const QString &second, qint64 time);
 signals:
@@ -32,11 +32,11 @@ public slots:
     void setLrcSmallerChanged();
 
 protected:
-    void setSelfGeometry();
+    void setSelfGeometry() const;
     void creatToolBarWidget();
-    void setButtonIcon();
-    void setButtonCursor();
-    void setButtonTips();
+    void setButtonIcon() const;
+    void setButtonCursor() const;
+    void setButtonTips() const;
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);

@@ -44,14 +44,14 @@ MusicLrcSearchWidget::~MusicLrcSearchWidget()
     delete ui;
 }
 
-void MusicLrcSearchWidget::setCurrentSongName(const QString &name)
+void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
 {
     ui->songSearchEdit->setText(name);
     ui->tableWidget->setCurrentSongName(name);
     lrcSearchButtonClicked();
 }
 
-void MusicLrcSearchWidget::lrcSearchButtonClicked()
+void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 {
     ui->stateLabel->setText(tr("lrc is searching now!"));
     ui->tableWidget->startSearchQuery(ui->songSearchEdit->text().trimmed());

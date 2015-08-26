@@ -19,13 +19,13 @@ public:
 
     virtual void startTimerClock();
     virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask);
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const;
     void updateCurrentLrc(qint64 time);
 
     bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
-    void setLrcSize(LrcSizeTable = Middle);
-    int getLrcSize();
+    void setLrcSize(LrcSizeTable = Middle) const;
+    int getLrcSize() const;
     void setSongSpeedAndSlow(qint64 time);
     inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
@@ -35,12 +35,12 @@ signals:
     void theArtBgHasChanged();
 
 public slots:
-    void lrcSizeChanged(QAction *action);
+    void lrcSizeChanged(QAction *action) const;
     void theArtBgChanged();
     void theArtBgUploaded();
     void theShowLrcChanged();
-    void lrcOpenFileDir();
-    void lrcCopyClipboard();
+    void lrcOpenFileDir() const;
+    void lrcCopyClipboard() const;
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);

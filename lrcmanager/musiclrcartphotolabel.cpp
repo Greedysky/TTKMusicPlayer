@@ -19,7 +19,7 @@ void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
     m_height = m_showPix.height();
 }
 
-void MusicLrcArtPhotoLabel::saveImagePath(const QString &path)
+void MusicLrcArtPhotoLabel::saveImagePath(const QString &path) const
 {
     QPixmap px(m_width, m_height);
     QPainter paint(&px);

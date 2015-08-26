@@ -141,7 +141,6 @@ void MusicPlaylist::setCurrentIndex()
 {
     switch(m_playbackMode)
     {
-//        case MC_PlayOnce:break;
         case MusicObject::MC_PlayOneLoop:break;
         case MusicObject::MC_PlayOrder:
             if(++m_currentIndex >= m_mediaList.count())

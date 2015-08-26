@@ -344,7 +344,7 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     key == Inline ? showInlineLrcDemo(-1) : showDesktopLrcDemo(-1);
 }
 
-void MusicSettingWidget::lrcTransparentValue(Type key, int index)
+void MusicSettingWidget::lrcTransparentValue(Type key, int index) const
 {
     MusicPreviewLabel* label;
     QColor fcolor = key == Inline ? m_lrcSelectedFg : m_DlrcSelectedFg;

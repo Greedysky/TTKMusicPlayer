@@ -148,7 +148,7 @@ QString MusicLrcContainerForInline::text() const
     return m_musicLrcContainer[CURRENT_LRC_PAINT]->text();
 }
 
-void MusicLrcContainerForInline::setMaskLinearGradientColor(QColor color)
+void MusicLrcContainerForInline::setMaskLinearGradientColor(QColor color) const
 {
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setMaskLinearGradientColor(color);
 }
@@ -218,7 +218,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
     }
 }
 
-void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size)
+void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size) const
 {
     if(size < 13 || size > 17)
     {
@@ -232,7 +232,7 @@ void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size)
     M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced, size);
 }
 
-int MusicLrcContainerForInline::getLrcSize()
+int MusicLrcContainerForInline::getLrcSize() const
 {
     return M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
@@ -360,7 +360,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void MusicLrcContainerForInline::lrcSizeChanged(QAction *action)
+void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
 {
     QString text = action->text();
     if(text == tr("smaller")) setLrcSize(Smaller);
@@ -393,12 +393,12 @@ void MusicLrcContainerForInline::theShowLrcChanged()
     }
 }
 
-void MusicLrcContainerForInline::lrcOpenFileDir()
+void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
     QDesktopServices::openUrl(QUrl(QFileInfo(m_currentLrcFileName).absolutePath(), QUrl::TolerantMode));
 }
 
-void MusicLrcContainerForInline::lrcCopyClipboard()
+void MusicLrcContainerForInline::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
     QString clipString;

@@ -101,7 +101,7 @@ void MusicTimerWidget::initParemeter()
     ui->repeatComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt());
 }
 
-void MusicTimerWidget::writeParemeter()
+void MusicTimerWidget::writeParemeter() const
 {
     M_SETTING.setValue(MusicSettingManager::TimerAutoIndexChoiced,
                      ui->stackedWidget->currentIndex());

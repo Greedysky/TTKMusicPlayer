@@ -25,13 +25,13 @@ public slots:
     void confirmButtonPressed();
     void stopButtonPressed();
     void cancelButtonPressed();
-
     void parameterFinished();
+
 protected:
-    void initWidgetStyle();
-    void initParameters();
+    void initWidgetStyle() const;
+    void initParameters() const;
     void findFiles(const QString &path);
-    void setAutoStart(bool autoStart);
+    void setAutoStart(bool autoStart) const;
 
     Ui::MusicDesktopWallpaperWidget *ui;
     MusicDesktopWallpaperThread *m_wallThread;

@@ -18,11 +18,11 @@ public:
     explicit MusicUserManager(QWidget *parent = 0);
     ~MusicUserManager();
 
-    void setUserName(const QString& name);
-    bool checkUser(const QString& id);
+    void setUserName(const QString &name);
+    bool checkUser(const QString &id) const;
 
 signals:
-    void userStateChanged(QString);
+    void userStateChanged(const QString &index);
 
 public slots:
     void musicUserLogoff();
@@ -30,8 +30,9 @@ public slots:
     void musicUserCancel();
 
 protected:
-    void createUserTime();
-    void createUserLevel();
+    void createUserTime() const;
+    void createUserLevel() const;
+
     Ui::MusicUserManager *ui;
     MusicUserModel* m_userModel;
     QString m_currentUser;

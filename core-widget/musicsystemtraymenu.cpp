@@ -85,14 +85,14 @@ void MusicSystemTrayMenu::createWidgetActions()
     connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicKey()));
 }
 
-void MusicSystemTrayMenu::setLabelText(const QString &text)
+void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
     QFontMetrics str(font());
     m_showText->setText(str.elidedText(text, Qt::ElideRight,160));
     m_showText->setToolTip(text);
 }
 
-void MusicSystemTrayMenu::showDesktopLrc(const QString &show)
+void MusicSystemTrayMenu::showDesktopLrc(const QString &show) const
 {
     (show == "true") ? m_showLrcAction->setText(tr("hideDeskLrc"))
                      : m_showLrcAction->setText(tr("showDeskLrc"));
@@ -106,7 +106,7 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
           : m_lockLrcAction->setText(tr("unlockLrc"));
 }
 
-void MusicSystemTrayMenu::showPlayStatus(bool status)
+void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
     m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/image/stop"
                                                           : ":/image/play")) );

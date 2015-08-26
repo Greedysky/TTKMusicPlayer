@@ -14,23 +14,19 @@ class MUSIC_WIDGET_EXPORT MusicUserLineEdit : public QLineEdit
 public:
     explicit MusicUserLineEdit(QWidget *parent = 0);
 
-    void setLabel(LabelType ty,QLabel* &t, QLabel* &s);
-
+    void setLabel(LabelType ty, QLabel *&t, QLabel* &s);
     bool getMailStatus() const { return m_mailContains;}
     bool getStrStatus() const { return m_strContains;}
 
-signals:
-
-public slots:
-
 protected:
+    virtual void focusInEvent(QFocusEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event);
     void checkTheInput();
     void showLabel();
     void showLabel(int s, int e);
-    virtual void focusInEvent(QFocusEvent *);
-    virtual void focusOutEvent(QFocusEvent *);
-    QLabel* m_tipsLabel;
-    QLabel* m_statusLabel;
+
+    QLabel *m_tipsLabel;
+    QLabel *m_statusLabel;
     LabelType m_type;
     bool m_mailContains;
     bool m_strContains;

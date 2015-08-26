@@ -71,7 +71,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
                                    .arg(info.getVBRString())).isEmpty() ? "-" : check) : "-" );
 }
 
-QString MusicFileInformationWidget::transSizeByte(int size)
+QString MusicFileInformationWidget::transSizeByte(int size) const
 {
     if( size < 1024)
         return QString("%1 Byte").arg(size);

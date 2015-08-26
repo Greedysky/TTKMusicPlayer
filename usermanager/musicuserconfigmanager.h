@@ -11,7 +11,7 @@ public:
     //UserXMLConfig
     inline bool readUserXMLConfig(){ return readConfig(USERPATH); }
     void writeUserXMLConfig(const MStringsListMap &par);
-    void readUserConfig(MStringsListMap &);
+    void readUserConfig(MStringsListMap &name);
 
 };
 

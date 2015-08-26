@@ -113,7 +113,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarWidget->hide();
 }
 
-void MusicLrcContainerForDesktop::setButtonIcon()
+void MusicLrcContainerForDesktop::setButtonIcon() const
 {
     m_toolCloseButton->setIcon(QIcon(QPixmap(":/image/close").scaled(30,30)));
     m_toolWindowLockedButton->setIcon(QIcon(QPixmap(":/desktopTool/lockWindow").scaled(30,30)));
@@ -127,7 +127,7 @@ void MusicLrcContainerForDesktop::setButtonIcon()
     m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
 }
 
-void MusicLrcContainerForDesktop::setButtonCursor()
+void MusicLrcContainerForDesktop::setButtonCursor() const
 {
     m_toolCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_toolWindowLockedButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -152,7 +152,7 @@ void MusicLrcContainerForDesktop::setButtonCursor()
     m_toolSettingButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
 }
 
-void MusicLrcContainerForDesktop::setButtonTips()
+void MusicLrcContainerForDesktop::setButtonTips() const
 {
     m_toolCloseButton->setToolTip(tr("hide"));
     m_toolWindowLockedButton->setToolTip(tr("lockLrc"));
@@ -171,7 +171,7 @@ void MusicLrcContainerForDesktop::startTimerClock()
     m_musicLrcContainer[!m_reverse]->startTimerClock();
 }
 
-void MusicLrcContainerForDesktop::initCurrentLrc()
+void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
     m_musicLrcContainer[0]->setText(tr("unFoundLrc"));
     m_musicLrcContainer[0]->setGeometry(0, 20,
@@ -207,7 +207,7 @@ void MusicLrcContainerForDesktop::stopLrcMask()
     }
 }
 
-void MusicLrcContainerForDesktop::setMaskLinearGradientColor(QColor color)
+void MusicLrcContainerForDesktop::setMaskLinearGradientColor(QColor color) const
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -275,7 +275,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
     M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);
 }
 
-void MusicLrcContainerForDesktop::setSelfGeometry()
+void MusicLrcContainerForDesktop::setSelfGeometry() const
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -353,7 +353,7 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     }
 }
 
-void MusicLrcContainerForDesktop::showPlayStatus(bool status)
+void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
 {
     m_toolPlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
                                                               : ":/desktopTool/play")) );

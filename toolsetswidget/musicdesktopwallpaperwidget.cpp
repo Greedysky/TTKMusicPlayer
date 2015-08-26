@@ -52,7 +52,7 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
     delete ui;
 }
 
-void MusicDesktopWallpaperWidget::initWidgetStyle()
+void MusicDesktopWallpaperWidget::initWidgetStyle() const
 {
     ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
@@ -77,7 +77,7 @@ void MusicDesktopWallpaperWidget::initWidgetStyle()
     ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void MusicDesktopWallpaperWidget::initParameters()
+void MusicDesktopWallpaperWidget::initParameters() const
 {
     ui->pictureEffect->addItems(QStringList()<<tr("none"));
     ui->pictureType->addItems(QStringList()<<tr("center")<<tr("tile")<<tr("drawing"));
@@ -211,7 +211,7 @@ void MusicDesktopWallpaperWidget::cancelButtonPressed()
     close();
 }
 
-void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart)
+void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
 {
     const QString REG_RUN = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
     QString applicationName = QApplication::applicationName();

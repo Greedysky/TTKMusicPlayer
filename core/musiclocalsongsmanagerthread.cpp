@@ -47,12 +47,17 @@ void MusicLocalSongsManagerThread::findFile(const QString &path)
     ///Find the corresponding suffix name
     QDir dir(path);
     if(!m_run || !dir.exists())
+    {
         return;
+    }
     dir.setFilter(QDir::Dirs|QDir::Files);
     dir.setSorting(QDir::DirsFirst);
 
     QFileInfoList list = dir.entryInfoList();
-    if(list.count() == 0) return;
+    if(list.count() == 0)
+    {
+        return;
+    }
     int i=0;
     do{
         QFileInfo fileInfo = list.at(i);

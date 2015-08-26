@@ -23,7 +23,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
 
 }
 
-void MusicTimerSliderWidget::setObject(QObject *object)
+void MusicTimerSliderWidget::setObject(QObject *object) const
 {
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
@@ -51,7 +51,7 @@ void MusicTimerSliderWidget::setPlayState(bool state)
     }
 }
 
-void MusicTimerSliderWidget::setValue(qint64 value)
+void MusicTimerSliderWidget::setValue(qint64 value) const
 {
     sliderMovedAt(value);
     m_slider->setValue(value);
@@ -63,7 +63,7 @@ void MusicTimerSliderWidget::setRange(int min, int max)
     m_slider->setRange(min, max);
 }
 
-void MusicTimerSliderWidget::sliderMovedAt(int pos)
+void MusicTimerSliderWidget::sliderMovedAt(int pos) const
 {
     m_label->setGeometry(5 + ceil(pos * 318 / m_duration), 5,35,35);
 }

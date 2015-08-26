@@ -46,7 +46,7 @@ bool MusicXmlAbstract::writeConfig(const QString &type)
     return true;
 }
 
-QString MusicXmlAbstract::readXmlByTagNameAndAttribute(const QString &tagName)
+QString MusicXmlAbstract::readXmlByTagNameAndAttribute(const QString &tagName) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
     return nodelist.at(0).toElement().attribute("value");

@@ -36,7 +36,7 @@ void MusicVideoTableWidget::clearAllItems()
     setColumnCount(8);
 }
 
-QString MusicVideoTableWidget::randToGetStrength()
+QString MusicVideoTableWidget::randToGetStrength() const
 {
     switch(qrand()%5)
     {
@@ -50,7 +50,8 @@ QString MusicVideoTableWidget::randToGetStrength()
 }
 
 void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
-                        const QString &artistname, const QString &time)
+                                               const QString &artistname,
+                                               const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
@@ -99,12 +100,12 @@ void MusicVideoTableWidget::listCellClicked(int row,int col)
 {
     switch(col)
     {
-      case 5:
-      case 6:
+        case 5:
+        case 6:
             itemDoubleClicked(row, -1);break;
-      case 7:
+        case 7:
             musicDownloadLocal(row);break;
-      default:break;
+        default:break;
     }
 }
 

@@ -64,7 +64,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
     m_movieLabel->clear();
 }
 
-bool MusicDownloadStatusLabel::checkSettingParameterValue()
+bool MusicDownloadStatusLabel::checkSettingParameterValue() const
 {
     return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
              M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
@@ -77,7 +77,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
     {///Check there is no opening lyrics display mode
        if( m_parentWidget->checkMusicListCurrentIndex() )
        {
-          return;
+           return;
        }
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists

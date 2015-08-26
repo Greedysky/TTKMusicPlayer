@@ -18,7 +18,7 @@ public:
 
     void setMovieLabel(QLabel *label) { m_movieLabel = label;}
     void musicCheckHasLrcAlready();
-    bool checkSettingParameterValue();
+    bool checkSettingParameterValue() const;
 
 signals:
     void musicBgDownloadFinished();

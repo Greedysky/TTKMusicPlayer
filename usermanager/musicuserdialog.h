@@ -20,7 +20,7 @@ public:
     ~MusicUserDialog();
 
 signals:
-    void userLoginSuccess(const QString&);
+    void userLoginSuccess(const QString &name);
 
 public slots:
     void userLogin();
@@ -30,7 +30,7 @@ public slots:
     void userForgotPasswd();
     void checkUserForgotPasswd();
     void changeVerificationCode();
-    void userComboBoxChanged(QString);
+    void userComboBoxChanged(const QString &index);
     void checkToAutoLogin();
 
 protected:
@@ -45,7 +45,7 @@ protected:
     void writeToUserSettings();
 
     Ui::MusicUserDialog *ui;
-    MusicUserModel* m_userModel;
+    MusicUserModel *m_userModel;
     MStringsListMap m_parameter;
     QString m_userComboIndex;
 

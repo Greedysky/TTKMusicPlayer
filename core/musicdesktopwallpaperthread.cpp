@@ -86,7 +86,7 @@ void MusicDesktopWallpaperThread::stopAndQuitThread()
     quit();
 }
 
-void MusicDesktopWallpaperThread::setWallpaper(const QString &path, int type)
+void MusicDesktopWallpaperThread::setWallpaper(const QString &path, int type) const
 {
     QSettings appSettings("HKEY_CURRENT_USER\\Control Panel\\Desktop",QSettings::NativeFormat);
     appSettings.setValue ("Wallpaper", path);

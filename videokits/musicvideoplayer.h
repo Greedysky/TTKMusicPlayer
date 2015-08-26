@@ -22,7 +22,7 @@ public slots:
     void backButtonClicked();
     void afterButtonClicked();
     void searchButtonClicked();
-    void mvURLChanged(const QString&);
+    void mvURLChanged(const QString &data);
 
 protected:
     QWidget *m_topWidget;

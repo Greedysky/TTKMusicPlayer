@@ -147,7 +147,7 @@ void MusicEqualizerDialog::readEqInformation()
 
 }
 
-void MusicEqualizerDialog::writeEqInformation()
+void MusicEqualizerDialog::writeEqInformation() const
 {
     M_SETTING.setValue(MusicSettingManager::EqualizerEnableChoiced, m_eable ? 1 : 0);
     M_SETTING.setValue(MusicSettingManager::EqualizerIndexChoiced, ui->eqChoice->currentIndex());
@@ -273,7 +273,7 @@ void MusicEqualizerDialog::setEqEnable()
     emitParameter();
 }
 
-void MusicEqualizerDialog::setControlEnable(bool)
+void MusicEqualizerDialog::setControlEnable(bool) const
 {
     ui->bwVerticalSlider->setEnabled(m_eable);
     ui->verticalSlider1->setEnabled(m_eable);
@@ -310,6 +310,7 @@ void MusicEqualizerDialog::resetEq()
 
 void MusicEqualizerDialog::initEqualizeValue()
 {
+    m_equalizeValue.clear();
     m_equalizeValue<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0 //Default
                    << 0<< 0<< 0<< 0<< 0<< 0<<-4<<-4<<-4<<-6 //Classical
                    << 0<< 0<< 5<< 3<< 3<< 3<< 2<< 0<< 0<< 0 //Club

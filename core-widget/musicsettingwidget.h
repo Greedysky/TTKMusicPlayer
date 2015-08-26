@@ -52,7 +52,7 @@ protected:
     void initDesktopLrcWidget();
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
-    void lrcTransparentValue(Type key, int index);
+    void lrcTransparentValue(Type key, int index) const;
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg;

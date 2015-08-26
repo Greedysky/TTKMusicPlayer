@@ -61,7 +61,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
 }
 
-void MusicVideoView::setMedia(const QString& data)
+void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer.setMedia(QUrl(data));
 }

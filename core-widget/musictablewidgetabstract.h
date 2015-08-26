@@ -16,7 +16,7 @@ public:
 
     virtual void clearAllItems();
     void setTransparent(int angle);
-    void setRowColor(int row, const QColor &color);
+    void setRowColor(int row, const QColor &color) const;
 
 signals:
 

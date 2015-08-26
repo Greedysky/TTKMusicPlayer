@@ -22,12 +22,12 @@ public:
 
     void setupUi(Ui::MusicApplication* ui);
     void setParameters(const QString &skin, int alpha);
-    QString getBgSkin();
-    int getBgSkinAlpha();
+    QString getBgSkin() const;
+    int getBgSkinAlpha() const;
     void setTimerStop();
     void showPlayStatus(bool status);
-    void setLabelText(const QString &name);
-    void setVolumeValue(int value);
+    void setLabelText(const QString &name) const;
+    void setVolumeValue(int value) const;
 
 signals:
     void updateToolStyle();

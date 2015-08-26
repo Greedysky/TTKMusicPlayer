@@ -17,9 +17,9 @@ public:
     explicit MusicWindowExtras(MusicApplication *parent = 0);
     ~MusicWindowExtras();
 
-    void showPlayStatus(bool status);
-    void setValue(int value);
-    void setRange(int start, int end);
+    void showPlayStatus(bool status) const;
+    void setValue(int value) const;
+    void setRange(int start, int end) const;
     void disableBlurBehindWindow(bool enable);
     inline bool isDisableBlurBehindWindow() const
                 { return m_disableBlurBehindWindow; }
@@ -27,7 +27,7 @@ public:
 signals:
 
 protected:
-    void createJumpList();
+    void createJumpList() const;
     void createTaskbar();
     void createThumbnailToolBar();
 

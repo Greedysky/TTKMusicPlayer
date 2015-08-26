@@ -53,9 +53,9 @@ public slots:
     void setFadeInEffect();
 
 protected:
-    void setControlEnable(bool enable);
+    void setControlEnable(bool enable) const;
     void readEqInformation();
-    void writeEqInformation();
+    void writeEqInformation() const;
     void initEqualizeValue();
     void emitParameter();
 

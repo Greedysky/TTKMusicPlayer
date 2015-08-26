@@ -14,7 +14,7 @@ public:
     virtual ~MusicLocalSongSearch();
 
     QString getSearchedText() const;
-    void clearSearchedText();
+    void clearSearchedText() const;
 
 private:
     QLabel *m_showIcon;

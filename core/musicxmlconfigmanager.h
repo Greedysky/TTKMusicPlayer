@@ -17,69 +17,73 @@ public:
                                const MStringLists &fileUrlsList);
     void readMusicSongsConfig(MStringLists &fileNamesList,
                               MStringLists &fileUrlsList);
-    inline int readMusicPlayModeConfig()
+    inline int readMusicPlayModeConfig() const
     { return readXmlByTagNameAndAttribute("playMode").toInt(); }
-    inline int readMusicPlayVolumeConfig()
+    inline int readMusicPlayVolumeConfig() const
     { return readXmlByTagNameAndAttribute("playVolume").toInt(); }
-    inline QString readSystemCloseConfig()
+    inline QString readSystemCloseConfig() const
     { return readXmlByTagNameAndAttribute("closeEvent"); }
-    inline QString readSystemAutoPlayConfig()
+    inline QString readSystemAutoPlayConfig() const
     { return readXmlByTagNameAndAttribute("autoPlay"); }
-    inline int read3DMusicPlayConfig()
+    inline int read3DMusicPlayConfig() const
     { return readXmlByTagNameAndAttribute("play3DMusic").toInt(); }
-    inline QString readBackgroundTheme()
+    inline QString readBackgroundTheme() const
     { return readXmlByTagNameAndAttribute("bgTheme"); }
-    inline QString readBackgroundTransparent()
+    inline QString readBackgroundTransparent() const
     { return readXmlByTagNameAndAttribute("bgTransparent"); }
-    inline QString readShowInlineLrc()
+    inline QString readShowInlineLrc() const
     { return readXmlByTagNameAndAttribute("showInlineLrc"); }
-    inline QString readShowDesktopLrc()
+    inline QString readShowDesktopLrc() const
     { return readXmlByTagNameAndAttribute("showDesktopLrc"); }
-    inline int readShowLrcColor()
+    inline int readShowLrcColor() const
     { return readXmlByTagNameAndAttribute("lrcColor").toInt(); }
-    inline int readShowLrcSize()
+    inline int readShowLrcSize() const
     { return readXmlByTagNameAndAttribute("lrcSize").toInt(); }
-    inline int readShowLrcFamily()
+    inline int readShowLrcFamily() const
     { return readXmlByTagNameAndAttribute("lrcFamily").toInt(); }
-    inline int readShowLrcType()
+    inline int readShowLrcType() const
     { return readXmlByTagNameAndAttribute("lrcType").toInt(); }
-    inline int readShowLrcTransparent()
+    inline int readShowLrcTransparent() const
     { return readXmlByTagNameAndAttribute("lrcTransparent").toInt(); }
-    inline int readShowDLrcColor()
+    inline int readShowDLrcColor() const
     { return readXmlByTagNameAndAttribute("lrcDColor").toInt(); }
-    inline int readShowDLrcSize()
+    inline int readShowDLrcSize() const
     { return readXmlByTagNameAndAttribute("lrcDSize").toInt(); }
-    inline int readShowDLrcFamily()
+    inline int readShowDLrcFamily() const
     { return readXmlByTagNameAndAttribute("lrcDFamily").toInt(); }
-    inline int readShowDLrcType()
+    inline int readShowDLrcType() const
     { return readXmlByTagNameAndAttribute("lrcDType").toInt(); }
-    inline int readShowDLrcTransparent()
+    inline int readShowDLrcTransparent() const
     { return readXmlByTagNameAndAttribute("lrcDTransparent").toInt(); }
-    inline int readShowDLrcLocked()
+    inline int readShowDLrcLocked() const
     { return readXmlByTagNameAndAttribute("lrcDLocked").toInt(); }
-    inline int readEqualizerIndex()
+    inline int readEqualizerIndex() const
     { return readXmlByTagNameAndAttribute("equalizerIndex").toInt(); }
-    inline int readEqualizerEnale()
+    inline int readEqualizerEnale() const
     { return readXmlByTagNameAndAttribute("equalizerEnale").toInt(); }
-    inline QString readEqualizerValue()
+    inline QString readEqualizerValue() const
     { return readXmlByTagNameAndAttribute("equalizerValue"); }
-    inline int readSEqualizerIndex()
+    inline int readSEqualizerIndex() const
     { return readXmlByTagNameAndAttribute("sEqualizerIndex").toInt(); }
-    inline int readLanguageIndex()
+    inline int readLanguageIndex() const
     { return readXmlByTagNameAndAttribute("language").toInt(); }
 
-    inline QColor readShowLrcFgColor() { return readColorConfig("lrcFgColor");}
-    inline QColor readShowLrcBgColor() { return readColorConfig("lrcBgColor");}
-    inline QColor readShowDLrcFgColor() { return readColorConfig("lrcDFgColor");}
-    inline QColor readShowDLrcBgColor() { return readColorConfig("lrcDBgColor");}
+    inline QColor readShowLrcFgColor() const
+    { return readColorConfig("lrcFgColor");}
+    inline QColor readShowLrcBgColor() const
+    { return readColorConfig("lrcBgColor");}
+    inline QColor readShowDLrcFgColor() const
+    { return readColorConfig("lrcDFgColor");}
+    inline QColor readShowDLrcBgColor() const
+    { return readColorConfig("lrcDBgColor");}
 
-    void readSystemLastPlayIndexConfig(QStringList &key);
-    QRect readShowDLrcGeometry();
-    void readTimeAutoConfig();
+    void readSystemLastPlayIndexConfig(QStringList &key) const;
+    QRect readShowDLrcGeometry() const;
+    void readTimeAutoConfig() const;
 
 protected:
-    MStringListsPair readMusicFilePath(const QString &value);
-    QColor readColorConfig(const QString &value);
+    MStringListsPair readMusicFilePath(const QString &value) const;
+    QColor readColorConfig(const QString &value) const;
 
 };
 

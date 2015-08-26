@@ -79,7 +79,7 @@ public:
         return m_para[type];
     }
 
-    inline QVariant value(const QString &stype)
+    inline QVariant value(const QString &stype) const
     {
         return m_para[typeStringToEnum(stype)];
     }
@@ -101,7 +101,7 @@ public:
 
 protected:
     MusicSettingManager(){}
-    ConfigType typeStringToEnum(const QString &stype)
+    ConfigType typeStringToEnum(const QString &stype) const
     {
         ConfigType type = Null;
         if(stype == "PlayModeChoiced") type = PlayModeChoiced;

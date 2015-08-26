@@ -21,22 +21,22 @@ public:
     ~MusicRightAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
-    void stopLrcMask();
-    void startTimerClock();
-    void showPlayStatus(bool status);
-    void setDestopLrcVisible(const QString &status);
-    bool getDestopLrcVisible();
-    void setInlineLrcVisible(const QString &status);
-    void setSettingParameter();
-    void getParameterSetting();
-    bool checkSettingParameterValue();
+    void stopLrcMask() const;
+    void startTimerClock() const;
+    void showPlayStatus(bool status) const;
+    void setDestopLrcVisible(const QString &status) const;
+    bool getDestopLrcVisible() const;
+    void setInlineLrcVisible(const QString &status) const;
+    void setSettingParameter() const;
+    void getParameterSetting() const;
+    bool checkSettingParameterValue() const;
     void updateCurrentLrc(qint64 current, qint64 total,
-                          bool playStatus);
+                          bool playStatus) const;
     void loadCurrentSongLrc(const QString &name,
-                            const QString &path);
-    void setSongSpeedAndSlow(qint64 time);
-    void musicCheckHasLrcAlready();
-    void showSettingWidget();
+                            const QString &path) const;
+    void setSongSpeedAndSlow(qint64 time) const;
+    void musicCheckHasLrcAlready() const;
+    void showSettingWidget() const;
 
 signals:
     void updateBgThemeDownload();
@@ -45,7 +45,7 @@ signals:
     void lockDesktopLrc(bool lock);
 
 public slots:
-    void setDestopLrcVisible(bool v);
+    void setDestopLrcVisible(bool v) const;
     void setWindowLockedChanged();
     void musicSearchButtonSearched();
     void musicIndexWidgetButtonSearched();

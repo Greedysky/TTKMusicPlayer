@@ -20,7 +20,7 @@ public slots:
     void run();
 
 protected:
-    void setWallpaper(const QString &path, int type);
+    void setWallpaper(const QString &path, int type) const;
 
     bool m_run;
     bool m_returnToOrigin;

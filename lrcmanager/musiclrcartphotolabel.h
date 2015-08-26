@@ -14,7 +14,7 @@ public:
     explicit MusicLrcArtPhotoLabel(QWidget *parent = 0);
 
     void setImagePath(const QString &path);
-    void saveImagePath(const QString &path);
+    void saveImagePath(const QString &path) const;
 
 signals:
 public slots:

@@ -86,7 +86,7 @@ void MusicRemoteWidget::paintEvent(QPaintEvent* event)
     painter.end();
 }
 
-void MusicRemoteWidget::showPlayStatus(bool status)
+void MusicRemoteWidget::showPlayStatus(bool status) const
 {
     m_PlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
                                                           : ":/desktopTool/play")) );

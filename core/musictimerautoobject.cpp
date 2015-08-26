@@ -90,7 +90,7 @@ void MusicTimerAutoObject::timeout()
     }
 }
 
-bool MusicTimerAutoObject::systemIs64bit()
+bool MusicTimerAutoObject::systemIs64bit() const
 {
     bool isWin64 = false;
 #ifdef Q_OS_WIN

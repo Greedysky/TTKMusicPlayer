@@ -18,14 +18,14 @@ public:
     ~MusicTimerSliderWidget();
 
     void setPlayState(bool state);
-    void setValue(qint64 value);
+    void setValue(qint64 value) const;
     void setRange(int min, int max);
-    void setObject(QObject *object);
+    void setObject(QObject *object) const;
 
 signals:
 
 public slots:
-    void sliderMovedAt(int pos);
+    void sliderMovedAt(int pos) const;
     void timeout();
 
 protected:

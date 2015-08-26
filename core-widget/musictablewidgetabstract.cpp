@@ -70,7 +70,7 @@ void MusicTableWidgetAbstract::listCellEntered(int row, int column)
     m_previousColorRow = row;
 }
 
-void MusicTableWidgetAbstract::setRowColor(int row, const QColor &color)
+void MusicTableWidgetAbstract::setRowColor(int row, const QColor &color) const
 {
     for(int col=0; col<columnCount(); col++)
     {

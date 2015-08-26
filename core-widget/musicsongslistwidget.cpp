@@ -396,7 +396,7 @@ void MusicSongsListWidget::musicFileInformation()
     file.exec();
 }
 
-void MusicSongsListWidget::setTimerLabel(const QString &t)
+void MusicSongsListWidget::setTimerLabel(const QString &t) const
 {
     if(m_musicSongsPlayWidget)
     {
@@ -404,7 +404,7 @@ void MusicSongsListWidget::setTimerLabel(const QString &t)
     }
 }
 
-void MusicSongsListWidget::updateArtPicture()
+void MusicSongsListWidget::updateArtPicture() const
 {
     if(m_musicSongsPlayWidget)
     {

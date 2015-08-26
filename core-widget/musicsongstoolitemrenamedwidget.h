@@ -19,7 +19,10 @@ signals:
     void renameFinished(const QString &text);
 
 public slots:
-    void renameFinished(){ emit renameFinished(text()); }
+    void renameFinished()
+    {
+        emit renameFinished(text());
+    }
 
 };
 
