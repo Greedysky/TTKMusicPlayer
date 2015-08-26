@@ -27,7 +27,9 @@ MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()
 {
     stopAndQuitThread();
     if(m_returnToOrigin)
+    {
         setWallpaper(m_originPath, m_originType);
+    }
 }
 
 void MusicDesktopWallpaperThread::start()
@@ -69,7 +71,7 @@ void MusicDesktopWallpaperThread::run()
     }
 }
 
-void MusicDesktopWallpaperThread::setParamters(const MStriantMap& p)
+void MusicDesktopWallpaperThread::setParamters(const MStriantMap &p)
 {
     m_paramter = p;
 }
@@ -84,7 +86,7 @@ void MusicDesktopWallpaperThread::stopAndQuitThread()
     quit();
 }
 
-void MusicDesktopWallpaperThread::setWallpaper(const QString& path, int type)
+void MusicDesktopWallpaperThread::setWallpaper(const QString &path, int type)
 {
     QSettings appSettings("HKEY_CURRENT_USER\\Control Panel\\Desktop",QSettings::NativeFormat);
     appSettings.setValue ("Wallpaper", path);

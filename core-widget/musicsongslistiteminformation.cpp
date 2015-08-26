@@ -18,17 +18,18 @@ MusicSongsListItemInformation::~MusicSongsListItemInformation()
     delete ui;
 }
 
-bool MusicSongsListItemInformation::showArtPicture(const QString& name)
+bool MusicSongsListItemInformation::showArtPicture(const QString &name)
 {
     QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
+    {
         ui->artPicture->setPixmap(originPath.scaled(60,60));
-    else
-        return false;
-    return true;
+        return true;
+    }
+    return false;
 }
 
-void MusicSongsListItemInformation::setMusicSongInformation(QMusicSong& info)
+void MusicSongsListItemInformation::setMusicSongInformation(QMusicSong &info)
 {
     QString musicArt = info.getMusicArtistFront();
     QFontMetrics str(font());

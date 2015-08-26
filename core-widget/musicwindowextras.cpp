@@ -3,8 +3,8 @@
 #include <QtWinExtras>
 #include <QStyle>
 
-MusicWindowExtras::MusicWindowExtras(MusicApplication *parent) :
-        QObject(parent), m_superClass(parent), m_playToolButton(NULL),
+MusicWindowExtras::MusicWindowExtras(MusicApplication *parent)
+    : QObject(parent), m_superClass(parent), m_playToolButton(NULL),
     m_forwardToolButton(NULL), m_backwardToolButton(NULL), m_taskbarProgress(NULL),
     m_taskbarButton(NULL), m_thumbnailToolBar(NULL)
 {
@@ -65,8 +65,7 @@ void MusicWindowExtras::setRange(int start, int end)
 
 void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 {
-    m_disableBlurBehindWindow = enable;
-    if( enable )
+    if( m_disableBlurBehindWindow = enable )
     {
         QtWin::enableBlurBehindWindow(m_superClass);
     }

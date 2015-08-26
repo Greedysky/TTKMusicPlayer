@@ -2,7 +2,7 @@
 #include <QDesktopWidget>
 
 MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
-            : MusicRemoteWidget(parent)
+    : MusicRemoteWidget(parent)
 {
     setGeometry(200,200,230,70);
     QRect deskRect = QApplication::desktop()->availableGeometry();
@@ -57,7 +57,7 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
     delete m_songNameLabel;
 }
 
-void MusicRemoteWidgetForRectangle::setLabelText(const QString& value)
+void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(QFontMetrics(font()).elidedText(value,
                              Qt::ElideRight, 190));

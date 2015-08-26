@@ -45,6 +45,6 @@ void MusicRemoteWidgetForCircle::paintEvent(QPaintEvent* event)
     path.addEllipse(15, 15, 135, 135);
     path.addEllipse(32, 32, 100, 100);
     path.setFillRule(Qt::OddEvenFill);
-    painter.fillPath(path,QBrush(QColor(0,0,0,125)));
+    painter.fillPath(path, QBrush(QColor(0,0,0,125)));
     painter.end();
 }

@@ -7,7 +7,7 @@
 #include <QPainter>
 
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
-            : QLabel(parent)
+    : QLabel(parent)
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint |
                          Qt::WindowStaysOnTopHint );

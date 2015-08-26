@@ -11,7 +11,7 @@ MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
     m_height = 0;
 }
 
-void MusicLrcArtPhotoLabel::setImagePath(const QString& path)
+void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
 {
     m_path = path;
     m_showPix.load(path);
@@ -19,7 +19,7 @@ void MusicLrcArtPhotoLabel::setImagePath(const QString& path)
     m_height = m_showPix.height();
 }
 
-void MusicLrcArtPhotoLabel::saveImagePath(const QString& path)
+void MusicLrcArtPhotoLabel::saveImagePath(const QString &path)
 {
     QPixmap px(m_width, m_height);
     QPainter paint(&px);
@@ -34,10 +34,12 @@ void MusicLrcArtPhotoLabel::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     QPixmap bgPix(":/image/imagetrans");
     for(int i=0; i<ceil(width()/PIX_WIDTH); ++i)
+    {
         for(int j=0; j<ceil(height()/PIX_HEIGHT); ++j)
         {
             painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, bgPix);
         }
+    }
 
     painter.drawPixmap(0, 0, m_width, m_height, m_showPix);
     painter.end();

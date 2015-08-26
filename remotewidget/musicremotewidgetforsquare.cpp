@@ -2,7 +2,7 @@
 #include <QDesktopWidget>
 
 MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
-            : MusicRemoteWidget(parent)
+    : MusicRemoteWidget(parent)
 {
     setGeometry(200,200,100,100);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -57,8 +57,8 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
         m_effect[i]->setOpacity(m_interval);
     }
 
-    connect(&m_enterTimer,SIGNAL(timeout()),SLOT(enterTimeout()));
-    connect(&m_leaveTimer,SIGNAL(timeout()),SLOT(leaveTimeout()));
+    connect(&m_enterTimer, SIGNAL(timeout()), SLOT(enterTimeout()));
+    connect(&m_leaveTimer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 }
 
 MusicRemoteWidgetForSquare::~MusicRemoteWidgetForSquare()

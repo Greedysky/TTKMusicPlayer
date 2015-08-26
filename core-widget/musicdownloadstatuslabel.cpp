@@ -54,7 +54,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(DownLoadType type)
     ///start movie
 }
 
-void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString& type)
+void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display
     if(type == "Lrc")
@@ -82,7 +82,10 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
        QFile file(LRC_DOWNLOAD + filename + LRC_FILE);
-       if(file.exists()) return;
+       if(file.exists())
+       {
+           return;
+       }
 
        if(m_downloadLrcThread)
        {
@@ -94,8 +97,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        m_downloadLrcThread->startSearchSong(Music, filename);
 
        showDownLoadInfoFor(Buffing);
-       connect(m_downloadLrcThread,SIGNAL(showDownLoadInfoFor(DownLoadType)),
-               SLOT(showDownLoadInfoFor(DownLoadType)));
+       connect(m_downloadLrcThread, SIGNAL(showDownLoadInfoFor(DownLoadType)),
+                                    SLOT(showDownLoadInfoFor(DownLoadType)));
 
        if(m_downloadLrcThreadTimer)
        {
@@ -104,7 +107,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        ///This delay of two seconds so that request can be obtained correctly
        m_downloadLrcThreadTimer = new QTimer(this);
-       connect(m_downloadLrcThreadTimer,SIGNAL(timeout()),this,SLOT(musicHaveNoLrcAlready()));
+       connect(m_downloadLrcThreadTimer, SIGNAL(timeout()), SLOT(musicHaveNoLrcAlready()));
        m_downloadLrcThreadTimer->start(2000);
     }
 }

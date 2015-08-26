@@ -165,70 +165,90 @@ void MusicEqualizerDialog::writeEqInformation()
 void MusicEqualizerDialog::verticalSlider1(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider2(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider3(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider4(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider5(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider6(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider7(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider8(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider9(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
 void MusicEqualizerDialog::verticalSlider10(int)
 {
     if(!m_eqChoiceSelected)
+    {
         ui->eqChoice->setCurrentIndex(0);
+    }
     emitParameter();
 }
 
@@ -247,11 +267,7 @@ void MusicEqualizerDialog::setEqEnable()
     m_eable = !m_eable;
     emit setEnaleEffect(m_eable);
     ui->eqLabel->clear();
-
-    if(!m_eable)
-        ui->showEqButton->setIcon(QIcon(":/equalizer/off"));
-    else
-        ui->showEqButton->setIcon(QIcon(":/equalizer/on"));
+    ui->showEqButton->setIcon(QIcon(!m_eable ? ":/equalizer/off" : ":/equalizer/on"));
 
     setControlEnable(!m_eable);
     emitParameter();

@@ -54,10 +54,10 @@ void MusicEqualizer::setEqEffect(const MIntList &hz)
     }
 }
 
-void MusicEqualizer::setEnaleEffect(bool b)
+void MusicEqualizer::setEnaleEffect(bool enale)
 {
     ///set effect enale or disable
-    m_parentClass->EnableEqualizer(b);
+    m_parentClass->EnableEqualizer(enale);
 }
 
 void MusicEqualizer::resetEqEffect()

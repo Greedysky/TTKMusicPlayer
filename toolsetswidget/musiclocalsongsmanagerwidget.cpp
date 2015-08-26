@@ -71,8 +71,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     setShowlistButton();
 
     m_thread = new MusicLocalSongsManagerThread(this);
-    connect(m_thread,SIGNAL(setSongNamePath(QStringList,QStringList)),
-                     SLOT(setSongNamePath(QStringList,QStringList)));
+    connect(m_thread, SIGNAL(setSongNamePath(QStringList,QStringList)),
+                      SLOT(setSongNamePath(QStringList,QStringList)));
 
 }
 
@@ -88,14 +88,7 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 void MusicLocalSongsManagerWidget::clearAllItems()
 {
     //Remove all the original item
-    if(m_currentIndex == 0)
-    {
-        ui->songlistsTable->clearShowlist();
-    }
-    else
-    {
-        ui->songlistsTable->clearShowPath();
-    }
+    m_currentIndex == 0 ? ui->songlistsTable->clearShowlist() : ui->songlistsTable->clearShowPath();
 }
 
 void MusicLocalSongsManagerWidget::addAllItems(const QStringList &filename,
@@ -163,7 +156,9 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 void MusicLocalSongsManagerWidget::filterIndexChanged()
 {
     if(ui->filterComboBox->currentIndex() < 0)
+    {
         return;
+    }
 
     qDebug()<<"start fetch!";
     m_thread->stopAndQuitThread();
@@ -188,10 +183,14 @@ void MusicLocalSongsManagerWidget::filterIndexChanged()
             m_thread->setFindFilePath(dialog.directory().absolutePath());
         }
         else
+        {
             return;
+        }
     }
     else
+    {
         m_thread->setFindFilePath(ui->filterComboBox->currentText());
+    }
 
     ui->loadingLabel->show();
     ui->loadingLabel->setMovie(m_movie = new QMovie(":/image/loading",QByteArray(),this));
@@ -214,7 +213,7 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
     }
 }
 
-void MusicLocalSongsManagerWidget::setSongNamePath(const QStringList& name, const QStringList& dir)
+void MusicLocalSongsManagerWidget::setSongNamePath(const QStringList &name, const QStringList &dir)
 {
     qDebug()<<"stop fetch!";
     ui->loadingLabel->hide();
@@ -265,7 +264,9 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     qSort(auditionList);
     QStringList names;
     for(int i=0; i<auditionList.count(); ++i)
+    {
         names<<m_fileDir[auditionList[i]];
+    }
 
     emit addSongToPlay(names);
 }
@@ -338,11 +339,13 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int,int index)
 {
     MIntList searchResult;
     for(int j=0; j<m_filename.count(); ++j)
-      if(m_filename[j].contains(ui->searchLineEdit->text().trimmed(),Qt::CaseInsensitive))
-      {
-        searchResult<<j;
-      }
-    m_searchfileListCache.insert(index,searchResult);
+    {
+        if(m_filename[j].contains(ui->searchLineEdit->text().trimmed(),Qt::CaseInsensitive))
+        {
+            searchResult<<j;
+        }
+    }
+    m_searchfileListCache.insert(index, searchResult);
     clearAllItems();
 
     QStringList name;

@@ -23,7 +23,9 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
 {
     MusicMyDownloadRecordObject xml;
     if(!xml.readDownloadXMLConfig())
+    {
         return;
+    }
     xml.readDownloadConfig(m_musicFileNameList,m_musicFilePathList);
 
     setRowCount(m_musicFileNameList.count());//reset row count
@@ -82,10 +84,14 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
                                  tr("Are you sure to delete?"),
                                  tr("Yes"),
                                  tr("Cancel")) != 0 )
+    {
        return;
+    }
     MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
+    {
         deletedRow.insert(selectedItems()[i]->row());
+    }
     MIntList deleteList = deletedRow.toList();
     qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)
@@ -110,11 +116,11 @@ void MusicMyDownloadRecordWidget::listCellClicked(int , int column)
 {
     switch(column)
     {
-      case 2:
-        setDeleteItemAt();
-        break;
-      default:
-        break;
+        case 2:
+            setDeleteItemAt();
+            break;
+        default:
+            break;
     }
 }
 
@@ -125,18 +131,24 @@ void MusicMyDownloadRecordWidget::listCellDoubleClicked(int, int)
 
 void MusicMyDownloadRecordWidget::musicOpenFileDir()
 {
-    if(rowCount() == 0 || currentRow() <0)
+    if(rowCount() == 0 || currentRow() < 0)
+    {
         return;
+    }
 
     if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentRow()]).absolutePath()
                               , QUrl::TolerantMode)))
-    QMessageBox::about(0,tr("QMusicPlayer"),
-                         tr("The origin one does not exsit?"));
+    {
+        QMessageBox::about(0,tr("QMusicPlayer"),
+                             tr("The origin one does not exsit?"));
+    }
 }
 
 void MusicMyDownloadRecordWidget::musicPlay()
 {
     if(rowCount() == 0 || currentRow() <0)
+    {
         return;
+    }
     emit musicPlay(QStringList(m_musicFilePathList[currentRow()]));
 }

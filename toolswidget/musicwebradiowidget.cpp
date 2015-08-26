@@ -62,8 +62,8 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
     m_collecticon = new QIcon(":/radio/collect");
     m_discollecticon = new QIcon(":/radio/discollect");
 
-    connect(ui->listWidget,SIGNAL(itemDoubleClicked(QListWidgetItem*)),
-            SLOT(itemHasDoubleClicked(QListWidgetItem*)));
+    connect(ui->listWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+                            SLOT(itemHasDoubleClicked(QListWidgetItem*)));
 
 }
 
@@ -93,12 +93,17 @@ void MusicWebRadioWidget::timeout()
     ui->movieLabel->setPixmap(QPixmap(":/radio/radiopng" +
                               QString::number(m_timerCount)).scaled(455,60));
     if(m_timerCount >= 4)
+    {
         m_timerCount = 0;
+    }
 }
 
 void MusicWebRadioWidget::radioPlay()
 {
-    if(m_radioUrl.isEmpty()) return;
+    if(m_radioUrl.isEmpty())
+    {
+        return;
+    }
 
     delete m_radio;
     m_radio = new QProcess(this);
@@ -141,10 +146,16 @@ void MusicWebRadioWidget::updateRadioList(const QString& category)
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRadioNames(category);
     for(int i=0; i<rnames.count(); ++i)
+    {
         if(fnames.contains(rnames[i]))
+        {
             ui->listWidget->addItem(new QListWidgetItem(*m_collecticon,rnames[i]));
+        }
         else
+        {
             ui->listWidget->addItem(new QListWidgetItem(*m_discollecticon,rnames[i]));
+        }
+    }
 }
 
 void MusicWebRadioWidget::updateRecentList()
@@ -154,10 +165,16 @@ void MusicWebRadioWidget::updateRecentList()
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRecentNames();
     for(int i=0; i<rnames.count(); ++i)
+    {
         if(fnames.contains(rnames[i]))
+        {
             ui->listWidget->addItem(new QListWidgetItem(*m_collecticon,rnames[i]));
+        }
         else
+        {
             ui->listWidget->addItem(new QListWidgetItem(*m_discollecticon,rnames[i]));
+        }
+    }
 }
 
 void MusicWebRadioWidget::updateFavouriteList()
@@ -166,7 +183,9 @@ void MusicWebRadioWidget::updateFavouriteList()
     ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     for(int i=0; i<fnames.count(); ++i)
+    {
         ui->listWidget->addItem(new QListWidgetItem(*m_collecticon,fnames[i]));
+    }
 }
 
 void MusicWebRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
@@ -180,7 +199,6 @@ void MusicWebRadioWidget::radioStandardOutput()
     while(m_radio->canReadLine())
     {
         QString message(m_radio->readLine());
-//        qDebug()<<message;
         QStringList messagelist = message.split(" ");
         if(messagelist[0] == "Starting")
         {
@@ -193,7 +211,10 @@ void MusicWebRadioWidget::radioStandardOutput()
 void MusicWebRadioWidget::radioColletButton()
 {
     QListWidgetItem* lItem = ui->listWidget->currentItem();
-    if(!lItem) return;
+    if(!lItem)
+    {
+        return;
+    }
     lItem->setIcon(*m_collecticon);
     m_database->radioCollection(lItem->text());
 }
@@ -201,7 +222,10 @@ void MusicWebRadioWidget::radioColletButton()
 void MusicWebRadioWidget::radioDiscolletButton()
 {
     QListWidgetItem* lItem = ui->listWidget->currentItem();
-    if(!lItem) return;
+    if(!lItem)
+    {
+        return;
+    }
     lItem->setIcon(*m_discollecticon);
     m_database->radioDiscollection(lItem->text());
 }

@@ -3,8 +3,8 @@
 #include <QFontDatabase>
 #include <QDebug>
 
-MusicLRCManager::MusicLRCManager(QWidget *parent) :
-    QLabel(parent)
+MusicLRCManager::MusicLRCManager(QWidget *parent)
+    : QLabel(parent)
 {
     m_intervalCount = 0.0f;
 
@@ -46,22 +46,44 @@ void MusicLRCManager::setLrcFontSize(LrcSizeTable size)
 
 void MusicLRCManager::setFontFamily(int index)
 {
-    if(index < 0) return;
+    if(index < 0)
+    {
+        return;
+    }
 
     QStringList family = QFontDatabase().families(QFontDatabase::Any);
     if(!family.isEmpty())
     {
-        if(index >= family.count()) index = 0;
+        if(index >= family.count())
+        {
+            index = 0;
+        }
         m_font.setFamily(family[index]);
     }
 }
 
 void MusicLRCManager::setFontType(int type)
 {
-    if(type == 1) {m_font.setBold(true); m_font.setItalic(false);}
-    else if(type == 2) {m_font.setBold(false); m_font.setItalic(true);}
-    else if(type == 3) {m_font.setBold(true); m_font.setItalic(true);}
-    else {m_font.setBold(false);m_font.setItalic(false);}
+    if(type == 1)
+    {
+        m_font.setBold(true);
+        m_font.setItalic(false);
+    }
+    else if(type == 2)
+    {
+        m_font.setBold(false);
+        m_font.setItalic(true);
+    }
+    else if(type == 3)
+    {
+        m_font.setBold(true);
+        m_font.setItalic(true);
+    }
+    else
+    {
+        m_font.setBold(false);
+        m_font.setItalic(false);
+    }
 }
 
 void MusicLRCManager::startLrcMask(qint64 intervaltime)

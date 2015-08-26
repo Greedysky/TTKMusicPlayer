@@ -70,8 +70,8 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
     MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfo[row][1],
                              LRC_DOWNLOAD + m_currentSongName + LRC_FILE,this);
-    connect(lrcDownload,SIGNAL(musicDownLoadFinished(QString)),
-                        SIGNAL(lrcDownloadStateChanged(QString)));
+    connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)),
+                         SIGNAL(lrcDownloadStateChanged(QString)));
     lrcDownload->startToDownload();
 }
 

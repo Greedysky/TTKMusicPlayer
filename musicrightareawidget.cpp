@@ -104,7 +104,7 @@ void MusicRightAreaWidget::showPlayStatus(bool status)
     m_musiclrcfordesktop->showPlayStatus(status);
 }
 
-void MusicRightAreaWidget::setDestopLrcVisible(const QString& status)
+void MusicRightAreaWidget::setDestopLrcVisible(const QString &status)
 {
     setDestopLrcVisible( status == "true" ? true : false);
 }
@@ -114,7 +114,7 @@ bool MusicRightAreaWidget::getDestopLrcVisible()
     return m_musiclrcfordesktop->isVisible();
 }
 
-void MusicRightAreaWidget::setInlineLrcVisible(const QString& status)
+void MusicRightAreaWidget::setInlineLrcVisible(const QString &status)
 {
     m_ui->musiclrccontainerforinline->setVisible(status == "true" ? true : false);
 }
@@ -147,7 +147,9 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
         foreach (qint64 value, lrcContainer.keys())
         {
             if(current >= value)
+            {
                 previous = value;
+            }
             else
             {
                 later = value;
@@ -155,11 +157,13 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
             }
         }
         //To the last line, set the later to song total time value
-        if(later == 0) later = total;
+        if(later == 0)
+        {
+            later = total;
+        }
         //The lyrics content corresponds to obtain the current time
         QString currentLrc = lrcContainer.value(previous);
         QString laterLrc = lrcContainer.value(later);
-
         //If this is a new line of the lyrics, then restart lyrics display mask
         if(currentLrc != m_ui->musiclrccontainerforinline->text())
         {
@@ -173,7 +177,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
     }
 }
 
-void MusicRightAreaWidget::loadCurrentSongLrc(const QString& name, const QString &path)
+void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString &path)
 {
     if( checkSettingParameterValue() )
     {
@@ -205,13 +209,11 @@ void MusicRightAreaWidget::showSettingWidget()
 void MusicRightAreaWidget::getParameterSetting()
 {
     setSettingParameter();
-    if(M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool())
-        m_ui->musiclrccontainerforinline->show();
-    else
-        m_ui->musiclrccontainerforinline->close();
-    bool showDeskLrc = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
-    m_musiclrcfordesktop->setVisible(showDeskLrc);
-    m_ui->musicDesktopLrc->setChecked(showDeskLrc);
+    bool config = M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
+    m_ui->musiclrccontainerforinline->setVisible(config);
+         config = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+    m_musiclrcfordesktop->setVisible(config);
+    m_ui->musicDesktopLrc->setChecked(config);
 }
 
 void MusicRightAreaWidget::setDestopLrcVisible(bool v)

@@ -3,12 +3,12 @@
 #include <QDebug>
 
 MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
-            : QLabel(parent)
+    : QLabel(parent)
 {
     m_transparent = 255;
 }
 
-void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor&bg)
+void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor &bg)
 {
     fg.setAlpha(m_transparent);
     bg.setAlpha(m_transparent);
@@ -20,15 +20,31 @@ void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor&bg)
     m_maskLinearGradient.setColorAt(0.9, fg);
 }
 
-void MusicPreviewLabel::setParameter(const QStringList& para)
+void MusicPreviewLabel::setParameter(const QStringList &para)
 {
     m_font.setFamily(para[0]);
     m_font.setPointSize(para[1].toInt() + 13);
     int type = para[2].toInt();
-    if(type == 1) {m_font.setBold(true); m_font.setItalic(false);}
-    else if(type == 2) {m_font.setBold(false); m_font.setItalic(true);}
-    else if(type == 3) {m_font.setBold(true); m_font.setItalic(true);}
-    else {m_font.setBold(false);m_font.setItalic(false);}
+    if(type == 1)
+    {
+        m_font.setBold(true);
+        m_font.setItalic(false);
+    }
+    else if(type == 2)
+    {
+        m_font.setBold(false);
+        m_font.setItalic(true);
+    }
+    else if(type == 3)
+    {
+        m_font.setBold(true);
+        m_font.setItalic(true);
+    }
+    else
+    {
+        m_font.setBold(false);
+        m_font.setItalic(false);
+    }
 }
 
 void MusicPreviewLabel::paintEvent(QPaintEvent *)

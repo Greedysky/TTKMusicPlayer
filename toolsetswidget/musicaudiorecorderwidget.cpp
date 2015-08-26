@@ -82,18 +82,21 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     m_mFormatFile.setCodec("audio/pcm");
 
     QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
-    if (!info.isFormatSupported(m_mFormatFile)) {
+    if (!info.isFormatSupported(m_mFormatFile))
+    {
         qWarning("input default mFormatFile not supported try to use nearest");
         m_mFormatFile = info.nearestFormat(m_mFormatFile);
     }
     QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
-    if (!info1.isFormatSupported(m_mFormatFile)) {
+    if (!info1.isFormatSupported(m_mFormatFile))
+    {
         qWarning() << "output default mFormatFile not supported - trying to use nearest";
         //           mFormatFile = info.nearestFormat(mFormatSound);
         qWarning() << "output no support input mFormatFile.";
         return;
     }
-    if(m_mFormatFile.sampleSize() != 16) {
+    if(m_mFormatFile.sampleSize() != 16)
+    {
         qWarning("audio device doesn't support 16 bit support %d bit samples, example cannot run", m_mFormatFile.sampleSize());
         m_mpAudioInputFile = 0;
         return;
@@ -151,9 +154,7 @@ void MusicAudioRecorderWidget::initMonitor()
     m_mpOutputDevSound = m_mpAudioOutputSound->start();
     m_mpInputDevSound = m_mpAudioInputSound->start();
     connect(m_mpInputDevSound, SIGNAL(readyRead()), SLOT(onReadMore()));
-
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)),
-        this, SLOT(onSliderValueChanged(int)));
+    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), SLOT(onSliderValueChanged(int)));
 }
 
 void MusicAudioRecorderWidget::onRecordStart()
@@ -168,8 +169,11 @@ void MusicAudioRecorderWidget::onRecordStart()
     ui->playButton->setEnabled(false);
     ui->saveButton->setEnabled(false);
     m_timer.start(1000);
+
     if(m_movie == NULL)
+    {
         m_movie = new QMovie(":/image/rate",QByteArray(),this);
+    }
     ui->timer_2->setMovie(m_movie);
     m_movie->start();
 }
@@ -179,8 +183,7 @@ void MusicAudioRecorderWidget::onRecordPlay()
     m_mpOutputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
 
     m_mpAudioOutputFile = new QAudioOutput(m_mFormatFile, this);
-    connect(m_mpAudioOutputFile, SIGNAL(stateChanged(QAudio::State)),
-        this,SLOT(onStateChange(QAudio::State)));
+    connect(m_mpAudioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));
     m_mpAudioOutputFile->start(m_mpOutputFile);
 
     m_movie->start();
@@ -188,13 +191,15 @@ void MusicAudioRecorderWidget::onRecordPlay()
 
 void MusicAudioRecorderWidget::onRecordStop()
 {
-    if(m_mpAudioInputFile != NULL){
+    if(m_mpAudioInputFile != NULL)
+    {
         m_mpAudioInputFile->stop();
         delete m_mpAudioInputFile;
         m_mpAudioInputFile = NULL;
     }
 
-    if(m_mpAudioOutputFile != NULL){
+    if(m_mpAudioOutputFile != NULL)
+    {
         m_mpAudioOutputFile->stop();
         delete m_mpAudioOutputFile;
         m_mpAudioOutputFile = NULL;
@@ -213,11 +218,8 @@ void MusicAudioRecorderWidget::onRecordStop()
 
 void MusicAudioRecorderWidget::onRecordSave()
 {
-    QString filename = QFileDialog::getSaveFileName(
-        this,
-        tr("choose a filename to save under"),
-        QDir::currentPath(),
-        "Wav(*.wav)");
+    QString filename = QFileDialog::getSaveFileName( this,
+        tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
     if(!filename.isEmpty())
     {
         addWavHeader(filename.toLatin1().data());
@@ -257,8 +259,8 @@ int MusicAudioRecorderWidget::addWavHeader(char *filename)
     DestionFileHeader.DATANAME[2] = 't';
     DestionFileHeader.DATANAME[3] = 'a';
     DestionFileHeader.nBitsPerSample = 16;
-    DestionFileHeader.nBytesPerSample = 2;    //
-    DestionFileHeader.nSampleRate = 8000;    //
+    DestionFileHeader.nBytesPerSample = 2;
+    DestionFileHeader.nSampleRate = 8000;
     DestionFileHeader.nBytesPerSecond = 16000;
     DestionFileHeader.nChannleNumber = 1;
 
@@ -269,10 +271,14 @@ int MusicAudioRecorderWidget::addWavHeader(char *filename)
     FILE *fp_d = NULL;
     fp_s = fopen("record.raw", "rb");
     if (fp_s == NULL)
+    {
         return -1;
+    }
     fp_d = fopen(filename, "wb+");
     if (fp_d == NULL)
+    {
         return -2;
+    }
     int nWrite = fwrite(&DestionFileHeader, 1, nSize, fp_d);
     if (nWrite != nSize)
     {
@@ -308,7 +314,8 @@ int MusicAudioRecorderWidget::addWavHeader(char *filename)
 
 void MusicAudioRecorderWidget::createAudioInput()
 {
-    if (m_mpInputDevSound != 0) {
+    if (m_mpInputDevSound != 0)
+    {
         disconnect(m_mpInputDevSound, 0, this, 0);
         m_mpInputDevSound = 0;
     }
@@ -337,28 +344,36 @@ void MusicAudioRecorderWidget::onReadMore()
 {
     //Return if audio input is null
     if(!m_mpAudioInputSound)
+    {
         return;
+    }
     //Check the number of samples in input buffer
     qint64 len = m_mpAudioInputSound->bytesReady();
     //Limit sample size
     if(len > 4096)
+    {
         len = 4096;
+    }
     //Read sound samples from input device to buffer
     qint64 l = m_mpInputDevSound->read(m_mBuffer.data(), len);
-    if(l > 0) {
+    if(l > 0)
+    {
         //Assign sound samples to short array
         short* resultingData = (short*)m_mBuffer.data();
         short *outdata=resultingData;
         outdata[ 0 ] = resultingData [ 0 ];
         int iIndex;
-        if(false){
+        if(false)
+        {
             //Remove noise using Low Pass filter algortm[Simple algorithm used to remove noise]
-            for ( iIndex=1; iIndex < len; iIndex++ ) {
+            for ( iIndex=1; iIndex < len; iIndex++ )
+            {
                 outdata[ iIndex ] = 0.333 * resultingData[iIndex ] + ( 1.0 - 0.333 ) * outdata[ iIndex-1 ];
             }
         }
         m_miMaxValue = 0;
-        for ( iIndex=0; iIndex < len; iIndex++ ) {
+        for ( iIndex=0; iIndex < len; iIndex++ )
+        {
             //Cange volume to each integer data in a sample
             int value = applyVolumeToSample( outdata[ iIndex ]);
             outdata[ iIndex ] = value;

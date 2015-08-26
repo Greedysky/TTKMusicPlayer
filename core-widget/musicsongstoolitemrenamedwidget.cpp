@@ -8,7 +8,7 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
     setText(originText);
     setStyleSheet(MusicUIObject::MCustomStyle03);
     setFocus(Qt::MouseFocusReason);
-    connect(this,SIGNAL(editingFinished()),this,SLOT(renameFinished()));
+    connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
 }
 
 void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *)

@@ -80,13 +80,12 @@ void MusicSystemTrayMenu::createWidgetActions()
     widgetActionContainer->setLayout(vbox);
     m_widgetAction->setDefaultWidget(widgetActionContainer);
 
-    connect(m_previousPlay,SIGNAL(clicked()),parent(),SLOT(musicPlayPrivious()));
-    connect(m_nextPlay,SIGNAL(clicked()),parent(),SLOT(musicPlayNext()));
-//    connect(m_PlayOrStop,SIGNAL(clicked()),SLOT(musicKey()));
-    connect(m_PlayOrStop,SIGNAL(clicked()),parent(),SLOT(musicKey()));
+    connect(m_previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrivious()));
+    connect(m_nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
+    connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicKey()));
 }
 
-void MusicSystemTrayMenu::setLabelText(const QString& text)
+void MusicSystemTrayMenu::setLabelText(const QString &text)
 {
     QFontMetrics str(font());
     m_showText->setText(str.elidedText(text, Qt::ElideRight,160));
@@ -109,8 +108,8 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status)
 {
-    m_PlayOrStop->setIcon(!status ? QIcon(QString::fromUtf8(":/image/stop"))
-                                  : QIcon(QString::fromUtf8(":/image/play")) );
+    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/image/stop"
+                                                          : ":/image/play")) );
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()

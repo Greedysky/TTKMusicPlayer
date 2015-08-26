@@ -9,8 +9,10 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
                                                       const QStringList &paths)
 {
-    if( !writeConfig( DOWNLOADINFO ) ) return;
-
+    if( !writeConfig( DOWNLOADINFO ) )
+    {
+        return;
+    }
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );

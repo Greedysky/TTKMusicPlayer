@@ -49,7 +49,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_lrcFloatWidget;
 }
 
-bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
+bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 {
     static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(false);
     m_lrcContainer.clear();///Clear the original map
@@ -57,14 +57,18 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
     QFile file(m_currentLrcFileName = lrcFileName); ///Open the lyrics file
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
+    {
         m_musicLrcContainer[i]->setText(".........");
+    }
     if(!file.open(QIODevice::ReadOnly))
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("unFoundLrc"));
         return false;
     }
     else
+    {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
+    }
 
     QString getAllText = QString(file.readAll());
     file.close();
@@ -75,37 +79,37 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
     QRegExp reg("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
     foreach(QString oneLine, lines)
     {
-      QString temp = oneLine;
-      temp.replace(reg,"");
-      /*Replace the regular expression matching in place with the empty
+        QString temp = oneLine;
+        temp.replace(reg,"");
+        /*Replace the regular expression matching in place with the empty
         string, then we get the lyrics text,And then get all the time the
         label in the current row, and separately with lyrics text into QMap
         IndexIn () to return to the first matching position, if the return
         is -1, said no match,Under normal circumstances, POS should be
         followed is corresponding to the lyrics file
-      */
-      int pos = reg.indexIn(oneLine, 0);
-      while(pos != -1)
-      { //That match
-        QString cap = reg.cap(0);
-        //Return zeroth expression matching the content
-        //The time tag into the time value, in milliseconds
-        QRegExp regexp;
-        regexp.setPattern("\\d{2}(?=:)");
-        regexp.indexIn(cap);
-        int minute = regexp.cap(0).toInt();
-        regexp.setPattern("\\d{2}(?=\\.)");
-        regexp.indexIn(cap);
-        int second = regexp.cap(0).toInt();
-        regexp.setPattern("\\d{2}(?=\\])");
-        regexp.indexIn(cap);
-        int millisecond = regexp.cap(0).toInt();
-        qint64 totalTime = minute * 60000 + second * 1000 + millisecond * 10;
-        //Insert into lrcContainer
-        m_lrcContainer.insert(totalTime, temp);
-        pos += reg.matchedLength();
-        pos = reg.indexIn(oneLine, pos);//Matching all
-      }
+        */
+        int pos = reg.indexIn(oneLine, 0);
+        while(pos != -1)
+        { //That match
+            QString cap = reg.cap(0);
+            //Return zeroth expression matching the content
+            //The time tag into the time value, in milliseconds
+            QRegExp regexp;
+            regexp.setPattern("\\d{2}(?=:)");
+            regexp.indexIn(cap);
+            int minute = regexp.cap(0).toInt();
+            regexp.setPattern("\\d{2}(?=\\.)");
+            regexp.indexIn(cap);
+            int second = regexp.cap(0).toInt();
+            regexp.setPattern("\\d{2}(?=\\])");
+            regexp.indexIn(cap);
+            int millisecond = regexp.cap(0).toInt();
+            qint64 totalTime = minute * 60000 + second * 1000 + millisecond * 10;
+            //Insert into lrcContainer
+            m_lrcContainer.insert(totalTime, temp);
+            pos += reg.matchedLength();
+            pos = reg.indexIn(oneLine, pos);//Matching all
+        }
     }
     //If the lrcContainer is empty
     if (m_lrcContainer.isEmpty())
@@ -118,9 +122,13 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
     m_currentLrcIndex = 0;
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    {
         m_currentShowLrcContainer<<".........";
+    }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
+    {
        m_lrcContainer.insert(0,".........");
+    }
 
     MIntStringMapIt it(m_lrcContainer);
     while(it.hasNext())
@@ -129,8 +137,9 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString& lrcFileName)
         m_currentShowLrcContainer.append(it.value());
     }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    {
         m_currentShowLrcContainer<<" ";
-
+    }
     return true;
 }
 
@@ -279,13 +288,19 @@ void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
 void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
 {
     int level = m_currentLrcIndex;
-
     if(type == "mouse")
+    {
         m_currentLrcIndex += (m_mousePressedAt.y() - m_mouseMovedAt.y()) / 35;
+    }
     else
+    {
         type.toInt() < 0 ? --m_currentLrcIndex : ++m_currentLrcIndex;
+    }
 
-    if(m_currentLrcIndex < 0) m_currentLrcIndex = 0;
+    if(m_currentLrcIndex < 0)
+    {
+        m_currentLrcIndex = 0;
+    }
     if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
     {
         MIntStringMapIt it(m_lrcContainer);
@@ -294,7 +309,9 @@ void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
         emit updateCurrentTime(it.key());
     }
     else
+    {
         m_currentLrcIndex = level;
+    }
 }
 
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)

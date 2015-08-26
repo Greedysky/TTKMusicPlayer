@@ -58,17 +58,21 @@ void MusicSpectrumWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicSpectrumWidget::mousePressEvent(QMouseEvent *event)
 {
-    switch(event->button())
+    if(event->button() == Qt::LeftButton)
     {
-        case Qt::LeftButton:
-            m_leftButtonPress = true;
-            if(m_direction != NONE)
-                mouseGrabber();
-            else
-                m_dragPosition = event->globalPos() - frameGeometry().topLeft();
-            break;
-        default:
-            QWidget::mousePressEvent(event);
+        m_leftButtonPress = true;
+        if(m_direction != NONE)
+        {
+            mouseGrabber();
+        }
+        else
+        {
+            m_dragPosition = event->globalPos() - frameGeometry().topLeft();
+        }
+    }
+    else
+    {
+        QWidget::mousePressEvent(event);
     }
 }
 
@@ -79,7 +83,9 @@ void MusicSpectrumWidget::mouseMoveEvent(QMouseEvent *event)
     QPoint rb = mapToGlobal(rect().bottomRight());
 
     if(!m_leftButtonPress)
+    {
         region(gloPoint);
+    }
     else
     {
         if(m_direction != NONE)

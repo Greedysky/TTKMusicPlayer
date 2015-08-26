@@ -2,7 +2,7 @@
 #include "musicwebradiowidget.h"
 
 MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
-            : QListWidget(parent),m_radioDialog(NULL)
+    : QListWidget(parent),m_radioDialog(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -12,8 +12,8 @@ MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
     setMovement(QListView::Static);
     setSpacing(15);
     setTransparent(50);
-    connect(this,SIGNAL(itemClicked(QListWidgetItem*)),
-            SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
+                  SLOT(itemHasClicked(QListWidgetItem*)));
 
     addListWidgetItem();
 }
@@ -35,12 +35,6 @@ void MusicWebRadioListView::setTransparent(int angle)
 void MusicWebRadioListView::clearAllItems()
 {
     clear();
-//    int itemCount = count();
-//    for(int i=0; i<itemCount; i++)
-//    {
-//        QListWidgetItem *item = takeItem(i);
-//        delete item;
-//    }
 }
 
 void MusicWebRadioListView::addListWidgetItem()

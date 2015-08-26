@@ -49,7 +49,9 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
     QString picPath = QFileDialog::getOpenFileName(
                       this, "", "./", "Images (*.png *.bmp *.jpg)");
     if(picPath.isEmpty())
+    {
         return;
+    }
 
     QPixmap pix(picPath);
     if(pix.width() < 1001 || pix.height() < 669)

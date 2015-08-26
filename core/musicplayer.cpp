@@ -2,8 +2,8 @@
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
 
-MusicPlayer::MusicPlayer(QObject *parent) :
-    QObject(parent)
+MusicPlayer::MusicPlayer(QObject *parent)
+    : QObject(parent)
 {
     m_playlist = NULL;
     m_music = NULL;
@@ -11,7 +11,7 @@ MusicPlayer::MusicPlayer(QObject *parent) :
     m_music = CreateZPlay();
     Q_ASSERT(m_music);
     m_equalizer = new MusicEqualizer(m_music);
-    connect(&m_timer, SIGNAL(timeout()), this, SLOT(setTimeOut()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
     m_play3DMusic = false;
     m_posOnCircle = 0;
     m_currentVolumn = 100;
@@ -62,7 +62,7 @@ bool MusicPlayer::isMuted() const
     return (volume() == 0) ? true : false;
 }
 
-void MusicPlayer::setPlay3DMusicFlag(bool& flag)
+void MusicPlayer::setPlay3DMusicFlag(bool &flag)
 {
     flag = m_play3DMusic;
     m_play3DMusic = !m_play3DMusic;
@@ -70,9 +70,12 @@ void MusicPlayer::setPlay3DMusicFlag(bool& flag)
 }
 
 #ifdef Q_OS_WIN32
-void MusicPlayer::setSpectrum(HWND wnd, int w, int h, int x,int y)
+void MusicPlayer::setSpectrum(HWND wnd, int w, int h, int x, int y)
 {
-    if(!m_music) return;
+    if(!m_music)
+    {
+        return;
+    }
     /// set graph type to AREA, left channel on top
     m_music->SetFFTGraphParam(gpGraphType, gtAreaLeftOnTop);
     /// set linear scale
@@ -84,7 +87,9 @@ void MusicPlayer::setSpectrum(HWND wnd, int w, int h, int x,int y)
 void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
+    {
         return;
+    }
 
     TStreamStatus status;
     m_music->GetStatus(&status);///Get the current state of play
@@ -120,7 +125,9 @@ void MusicPlayer::play()
     ///Read the configuration settings for the sound
     int volumn = M_SETTING.value(MusicSettingManager::VolumeChoiced).toInt();
     if(volumn != -1)
+    {
         setVolume(volumn);
+    }
     ////////////////////////////////////////////////
 }
 
@@ -172,8 +179,8 @@ void MusicPlayer::setMuted(bool muted)
 void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
 {
     m_playlist = playlist;
-    connect(m_playlist,SIGNAL(removeCurrentMedia()),
-            SLOT(removeCurrentMedia()));
+    connect(m_playlist, SIGNAL(removeCurrentMedia()),
+                        SLOT(removeCurrentMedia()));
 }
 
 void MusicPlayer::setTimeOut()
@@ -227,7 +234,7 @@ void MusicPlayer::removeCurrentMedia()
     }
 }
 
-void MusicPlayer::setEqEffect(const MIntList& hz)
+void MusicPlayer::setEqEffect(const MIntList &hz)
 {
     m_equalizer->setEqEffect(hz);
 }

@@ -3,7 +3,7 @@
 #include <QDebug>
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
-            : QThread(parent)
+    : QThread(parent)
 {
     m_run = true;
 }
@@ -16,7 +16,9 @@ MusicLocalSongsManagerThread::~MusicLocalSongsManagerThread()
 void MusicLocalSongsManagerThread::run()
 {
     for(int i=0; i<m_path.count(); ++i)
+    {
         findFile(m_path[i]);
+    }
 
     ///The name and path search ended when sending the corresponding
     emit setSongNamePath(m_filename, m_fileDir);

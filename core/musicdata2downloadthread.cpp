@@ -13,7 +13,7 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 void MusicData2DownloadThread::startToDownload()
 {
     m_dataReply = m_dataManager->get( QNetworkRequest(m_url));
-    connect(m_dataReply, SIGNAL(finished()), this, SLOT(dataGetFinished()));
+    connect(m_dataReply, SIGNAL(finished()), SLOT(dataGetFinished()));
     connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
                          SLOT(dataReplyError(QNetworkReply::NetworkError)) );
 }
@@ -35,7 +35,10 @@ void MusicData2DownloadThread::deleteAll()
 
 void MusicData2DownloadThread::dataGetFinished()
 {
-    if(!m_dataReply) return;
+    if(!m_dataReply)
+    {
+        return;
+    }
 
     m_dataReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(m_dataReply->error() == QNetworkReply::NoError)
@@ -44,7 +47,9 @@ void MusicData2DownloadThread::dataGetFinished()
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())
+        {
             return ;
+        }
 
         QJsonObject jsonObject = parseDoucment.object();
         if(jsonObject.value("code").toInt() == 1)

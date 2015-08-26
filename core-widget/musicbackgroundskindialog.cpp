@@ -82,12 +82,12 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     //Set the current theme index
     for(int i=0; i<ui->themeListWidget->count(); ++i)
     {
-      QListWidgetItem *item = ui->themeListWidget->item(i);
-      if( item->text() == theme )
-      {
-        ui->themeListWidget->setCurrentItem(item);
-        break;
-      }
+        QListWidgetItem *item = ui->themeListWidget->item(i);
+        if( item->text() == theme )
+        {
+            ui->themeListWidget->setCurrentItem(item);
+            break;
+        }
     }
     //Set the the slider bar value as what the alpha is
     ui->bgTransparentSlider->setValue(alpha);
@@ -107,10 +107,12 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 {
     QColor paletteColor = QColorDialog::getColor(Qt::white, this);
     if(!paletteColor.isValid())
+    {
         return;
+    }
     QImage image(16,16,QImage::Format_ARGB32);
     QString palettePath = QString("./MTheme/theme%1%2")
-                          .arg(ui->themeListWidget->count()+1).arg(".jpg");
+                          .arg(ui->themeListWidget->count() + 1).arg(".jpg");
     image.fill(paletteColor);
     if(image.save(palettePath))
     {
@@ -135,7 +137,9 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
                       this,"","./",
                       "Images (*.png *.bmp *.jpg)");
     if(customSkinPath.isEmpty())
+    {
         return;
+    }
     QFile::copy(customSkinPath, QString("./MTheme/theme%1%2")
               .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
     //add item to listwidget

@@ -11,8 +11,8 @@
 #endif
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
-        : MusicMoveDialogAbstract(parent),m_movie(NULL),
-        ui(new Ui::MusicTransformWidget)
+    : MusicMoveDialogAbstract(parent),m_movie(NULL),
+    ui(new Ui::MusicTransformWidget)
 {
     ui->setupUi(this);
     QBitmap bmp(this->size());
@@ -82,11 +82,12 @@ void MusicTransformWidget::initInputPath()
     QString path;
     if(!ui->folderBox->isChecked())
     {
-        path =  QFileDialog::getOpenFileName(
-                this, "" , "./",
+        path =  QFileDialog::getOpenFileName( this, "" , "./",
                 "Files (*.mp3 *.wav *.wma *.ogg *.flac *.ac3 *.aac)");
         if(path.isEmpty())
+        {
             return;
+        }
         ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft,215));
         m_path<<path;
     }
@@ -105,28 +106,35 @@ void MusicTransformWidget::initInputPath()
                    m_path<<file[i].absoluteFilePath();
             }
 
-//            ui->listWidget->addItems(m_path);
             for(int i=0; i<m_path.count(); ++i)
+            {
                 ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
                                                                         Qt::ElideLeft,215));
+            }
         }
     }
 
     if(!path.isEmpty())
+    {
         ui->inputLineEdit->setText(path);
+    }
 }
 
 void MusicTransformWidget::initOutputPath()
 {
     QString path =  QFileDialog::getExistingDirectory(this, "" , "./");
     if(!path.isEmpty())
+    {
         ui->outputLineEdit->setText(path);
+    }
 }
 
 QString MusicTransformWidget::getTransformSongName() const
 {
     if(m_path.isEmpty())
+    {
         return QString();
+    }
     QString str = m_path[0];
     str.replace("\\","/");
     str = str.split('/').back().split('.').front();
@@ -145,10 +153,14 @@ void MusicTransformWidget::transformFinish(int)
     if(!m_path.isEmpty())
     {
         for(int i=0; i<m_path.count(); ++i)
+        {
             ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
                                                                     Qt::ElideLeft,215));
+        }
         if(!processTransform(MAKE_TRANSFORM))
+        {
             return;
+        }
     }
     else
     {
@@ -162,16 +174,22 @@ void MusicTransformWidget::transformFinish(int)
 bool MusicTransformWidget::processTransform(const QString &para)
 {
     if(m_path.isEmpty())
+    {
         return false;
+    }
 
     QString in = m_path[0].trimmed();
     QString out = ui->outputLineEdit->text().trimmed();
 
     if(in.isEmpty() || out.isEmpty() )
+    {
         return false;
+    }
 
     if(ui->formatCombo->currentText() == "OGG")
+    {
         ui->msCombo->setCurrentIndex(1);
+    }
 
     qDebug()<<ui->formatCombo->currentText()
             <<ui->kbpsCombo->currentText()
@@ -189,11 +207,10 @@ bool MusicTransformWidget::processTransform(const QString &para)
 
 void MusicTransformWidget::startTransform()
 {
-    if(!QFile(MAKE_TRANSFORM).exists())
+    if(!QFile(MAKE_TRANSFORM).exists() || !processTransform(MAKE_TRANSFORM))
+    {
         return;
-
-    if(!processTransform(MAKE_TRANSFORM))
-        return;
+    }
     ///////////////////////////////////////////////////////////
     ui->loadingLabel->show();
     ui->loadingLabel->setMovie(m_movie = new QMovie(":/image/loading",QByteArray(),this));

@@ -3,7 +3,7 @@
 #include <QNetworkRequest>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
-                                          const QString& save, QObject *parent)
+                                          const QString &save, QObject *parent)
     : QObject(parent),m_reply(NULL),m_manager(NULL)
 {
     m_url = url;

@@ -39,7 +39,7 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_musicSongsPlayWidget;
 }
 
-void MusicSongsListWidget::musicSongsFileName(const QStringList& filenamelists)
+void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
 {
     int count = rowCount();
     setRowCount(filenamelists.count());//reset row count
@@ -127,7 +127,9 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     QTableWidget::mousePressEvent(event);
     //just close the rename edittext;
     if(m_renameActived)
+    {
         closePersistentEditor(m_renameItem);
+    }
     //it may be a bug in closePersistentEditor,so we select
     //the two if function to deal with
     if(m_renameActived)
@@ -167,9 +169,13 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
         int index = m_playRowIndex;
 
         if(m_playRowIndex == start)
+        {
             index = end;
+        }
         else if(m_playRowIndex == end)
+        {
             index = (start > end) ? index = end + 1 : index = end - 1;
+        }
         else
         {
             if(start > m_playRowIndex && end < m_playRowIndex) ++index;
@@ -179,7 +185,9 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
         emit getMusicIndexSwaped(start, end, index, list);
 
         for(int i=qMin(start, end); i<=qMax(start, end); ++i)
+        {
             item(i, 1)->setText(list[i]);
+        }
 
         selectRow(index);
     }
@@ -219,17 +227,25 @@ void MusicSongsListWidget::setDeleteItemAt()
 
     MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
+    {
         deletedRow.insert(selectedItems()[i]->row());
+    }
     MIntList deleteList = deletedRow.toList();
     if(deleteList.count() == 0)
+    {
         return;
+    }
 
     qSort(deleteList);
     if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
+    {
         replacePlayWidgetRow();
+    }
 
     for(int i=deleteList.count() - 1; i>=0; --i)
+    {
         removeRow(deleteList[i]); //Delete the current row
+    }
 
     for(int i=0; i<this->rowCount(); i++)
     {   //Re insertion sort
@@ -246,14 +262,16 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 {
     //the playing widget allow deleting
     if(row == m_playRowIndex)
+    {
         return;
+    }
     switch(column)
     {
-      case 2:
-        setDeleteItemAt();
-        break;
-      default:
-        break;
+        case 2:
+            setDeleteItemAt();
+            break;
+        default:
+            break;
     }
 }
 
@@ -262,7 +280,9 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     MusicTableWidgetAbstract::listCellEntered(row, column);
     //To show music Songs Item information
     if(m_musicSongsListItem == NULL)
+    {
         m_musicSongsListItem = new MusicSongsListItemInformation;
+    }
     m_musicSongsListItem->hide();
     m_timerShow->stop();
     m_timerShow->start(1000);
@@ -291,22 +311,28 @@ void MusicSongsListWidget::stayTimeOut()
 void MusicSongsListWidget::addMusicSongToLovestListAt()
 {
     if(rowCount() == 0 || currentRow() < 0)
+    {
         return;
-    emit MusicSongToLovestListAt(currentRow());
+    }
+    emit musicSongToLovestListAt(currentRow());
 }
 
 void MusicSongsListWidget::addPlaySongToLovestListAt()
 {
     if(rowCount() == 0 || m_playRowIndex < 0)
+    {
         return;
-    emit MusicSongToLovestListAt(m_playRowIndex);
+    }
+    emit musicSongToLovestListAt(m_playRowIndex);
 }
 
 void MusicSongsListWidget::setChangSongName()
 {
     if(rowCount() == 0 || currentRow() < 0 ||
         currentItem()->column() != 1)
+    {
         return;
+    }
     if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
        //the playing widget allow renaming
     {
@@ -320,7 +346,7 @@ void MusicSongsListWidget::setChangSongName()
     editItem(m_renameItem);
 }
 
-void MusicSongsListWidget::setItemRenameFinished(const QString& name)
+void MusicSongsListWidget::setItemRenameFinished(const QString &name)
 {
     emit currentTextChanged(m_playRowIndex, name);
 }
@@ -328,21 +354,27 @@ void MusicSongsListWidget::setItemRenameFinished(const QString& name)
 void MusicSongsListWidget::musicOpenFileDir()
 {
     if(rowCount() == 0 || currentRow() < 0)
+    {
         return;
+    }
     emit musicOpenFileDir(currentRow());
 }
 
 void MusicSongsListWidget::musicPlay()
 {
     if(rowCount() == 0 || currentRow() < 0 )
+    {
         return;
+    }
     emit musicPlay(currentRow());
 }
 
 void MusicSongsListWidget::musicMakeRingWidget()
 {
     if(!QFile(MAKE_RING).exists())
+    {
         return;
+    }
     (new QProcess(this))->start(MAKE_RING);
 }
 
@@ -354,10 +386,12 @@ void MusicSongsListWidget::musicTransformWidget()
 void MusicSongsListWidget::musicFileInformation()
 {
     if(rowCount() == 0 || currentRow() < 0 )
+    {
         return;
+    }
     MusicFileInformationWidget file(this);
     QString name,path;
-    emit getMusicSongFileInformation(currentRow(),name,path,false);
+    emit getMusicSongFileInformation(currentRow(), name, path, false);
     file.setFileInformation(path);
     file.exec();
 }
@@ -365,20 +399,26 @@ void MusicSongsListWidget::musicFileInformation()
 void MusicSongsListWidget::setTimerLabel(const QString &t)
 {
     if(m_musicSongsPlayWidget)
+    {
         m_musicSongsPlayWidget->insertTimerLabel(t);
+    }
 }
 
 void MusicSongsListWidget::updateArtPicture()
 {
     if(m_musicSongsPlayWidget)
+    {
         m_musicSongsPlayWidget->updateArtPicture();
+    }
 }
 
 void MusicSongsListWidget::replacePlayWidgetRow()
 {
     QString name,path;
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
+    {
         m_playRowIndex = 0;
+    }
     emit getMusicSongFileInformation(m_playRowIndex, name, path);
 
     setRowHeight(m_playRowIndex, 30);
@@ -407,7 +447,10 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
 void MusicSongsListWidget::selectRow(int index)
 {
-    if(index < 0) return;
+    if(index < 0)
+    {
+        return;
+    }
 
     QTableWidget::selectRow(index);
     QString name,path;

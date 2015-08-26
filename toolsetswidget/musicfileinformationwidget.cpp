@@ -42,7 +42,7 @@ void MusicFileInformationWidget::musicOpenFileDir()
                          tr("The origin one does not exsit?"));
 }
 
-void MusicFileInformationWidget::setFileInformation(const QString& name)
+void MusicFileInformationWidget::setFileInformation(const QString &name)
 {
     MusicFileInformation info;
     bool state = info.readFile(m_path = name);

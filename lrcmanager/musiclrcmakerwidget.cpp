@@ -131,13 +131,13 @@ void MusicLrcMakerWidget::reviewButtonClicked()
     ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
 }
 
-void MusicLrcMakerWidget::setControlEnable(bool b)
+void MusicLrcMakerWidget::setControlEnable(bool enale)
 {
-    ui->artNameEdit->setEnabled(b);
-    ui->songNameEdit->setEnabled(b);
-    ui->authorNameEdit->setEnabled(b);
-    ui->lrcTextEdit->setEnabled(b);
-    ui->introductionTextEdit->setEnabled(b);
+    ui->artNameEdit->setEnabled(enale);
+    ui->songNameEdit->setEnabled(enale);
+    ui->authorNameEdit->setEnabled(enale);
+    ui->lrcTextEdit->setEnabled(enale);
+    ui->introductionTextEdit->setEnabled(enale);
 }
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)

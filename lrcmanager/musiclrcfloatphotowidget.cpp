@@ -121,7 +121,7 @@ void MusicLrcFloatPhotoWidget::show()
 void MusicLrcFloatPhotoWidget::close()
 {
     animationIn();
-    QTimer::singleShot(m_animation->duration(),this,SLOT(parentClose()));
+    QTimer::singleShot(m_animation->duration(), this, SLOT(parentClose()));
 }
 
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
@@ -209,14 +209,18 @@ void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
     bool status = true;
     switch(index)
     {
-        case 0: status = m_radio1->isChecked();break;
-        case 1: status = m_radio2->isChecked();break;
-        case 2: status = m_radio3->isChecked();break;
-        default:break;
+        case 0: status = m_radio1->isChecked(); break;
+        case 1: status = m_radio2->isChecked(); break;
+        case 2: status = m_radio3->isChecked(); break;
+        default: break;
     }
     index = m_currentIndex * PHOTO_PERLINE + index;
     if(status)
+    {
         m_selectNum << index;
+    }
     else
+    {
         m_selectNum.remove(index);
+    }
 }

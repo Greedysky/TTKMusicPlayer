@@ -73,8 +73,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(QIcon(":/share/selected"),tr("WindowTop"))->setEnabled(false);
     menu.addSeparator();
-    menu.addAction(tr("showMainWindow"),this,SIGNAL(musicWindowSignal()));
-    menu.addAction(tr("quit"),this,SLOT(close()));
+    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
+    menu.addAction(tr("quit"), this, SLOT(close()));
     menu.exec(QCursor::pos());
 }
 
@@ -88,8 +88,8 @@ void MusicRemoteWidget::paintEvent(QPaintEvent* event)
 
 void MusicRemoteWidget::showPlayStatus(bool status)
 {
-    m_PlayButton->setIcon(!status ? QIcon(QString::fromUtf8(":/desktopTool/stop"))
-                                  : QIcon(QString::fromUtf8(":/desktopTool/play")) );
+    m_PlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
+                                                          : ":/desktopTool/play")) );
 }
 
 
@@ -104,8 +104,6 @@ void MusicRemoteWidget::setVolumeValue(int index)
 void MusicRemoteWidget::musicVolumeChanged(int index)
 {
     emit musicVolumeSignal(index);
-    if(index > 0)
-        m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle24);
-    else
-        m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle25);
+    m_volumnLabel->setStyleSheet(index > 0 ? MusicUIObject::MCustomStyle24
+                                           : MusicUIObject::MCustomStyle25);
 }

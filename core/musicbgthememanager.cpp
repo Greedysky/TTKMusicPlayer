@@ -5,7 +5,7 @@ MusicBgThemeManager::MusicBgThemeManager()
     m_currentIndex = 0;
 }
 
-void MusicBgThemeManager::setArtName(const QString& name)
+void MusicBgThemeManager::setArtName(const QString &name)
 {
     m_photos.clear();
     QString filter = ART_BG + name.split('-').front().trimmed()+ "%1" + SKN_FILE;
@@ -32,7 +32,7 @@ QString MusicBgThemeManager::getArtPhotoPath()
     }
 }
 
-QString MusicBgThemeManager::getArtPhotoPathByIndex(int index)
+QString MusicBgThemeManager::getArtPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() )
     {
@@ -43,12 +43,12 @@ QString MusicBgThemeManager::getArtPhotoPathByIndex(int index)
                          : m_photos[index];
 }
 
-QStringList MusicBgThemeManager::getArtPhotoPaths()
+QStringList MusicBgThemeManager::getArtPhotoPaths() const
 {
     return m_photos;
 }
 
-void MusicBgThemeManager::setArtPhotoPaths(const QStringList& list)
+void MusicBgThemeManager::setArtPhotoPaths(const QStringList &list)
 {
     m_photos = list;
 }
@@ -58,7 +58,7 @@ void MusicBgThemeManager::sendUserSelectArtBg(int index)
     m_currentIndex = index;
 }
 
-void MusicBgThemeManager::setObject(QObject* obj)
+void MusicBgThemeManager::setObject(QObject *obj)
 {
     connect(this,SIGNAL(artHasChanged()), obj, SLOT(artHasChanged()));
 }

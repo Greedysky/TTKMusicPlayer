@@ -14,7 +14,9 @@ void MusicLocalSongSearchEdit::focusInEvent(QFocusEvent *event)
     QLineEdit::focusInEvent(event);
     blockSignals(true);
     if(text() == tr("please input search text"))
+    {
         setText(QString());
+    }
     blockSignals(false);
 }
 
@@ -23,12 +25,12 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *)
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
 
-    QAction *shearM = rightClickMenu.addAction(tr("Shear"),this,SLOT(cut()));
-    QAction *copyM = rightClickMenu.addAction(tr("Copy"),this,SLOT(copy()));
-    rightClickMenu.addAction(tr("Paste"),this,SLOT(paste()));
-    QAction *deleteM = rightClickMenu.addAction(tr("Delete"),this,SLOT(clear()));
+    QAction *shearM = rightClickMenu.addAction(tr("Shear"), this, SLOT(cut()));
+    QAction *copyM = rightClickMenu.addAction(tr("Copy"), this, SLOT(copy()));
+    rightClickMenu.addAction(tr("Paste"), this, SLOT(paste()));
+    QAction *deleteM = rightClickMenu.addAction(tr("Delete"), this, SLOT(clear()));
     rightClickMenu.addSeparator();
-    QAction *selectM = rightClickMenu.addAction(tr("SelectAll"),this,SLOT(selectAll()));
+    QAction *selectM = rightClickMenu.addAction(tr("SelectAll"), this, SLOT(selectAll()));
 
     bool state = hasSelectedText();
     shearM->setEnabled(state);

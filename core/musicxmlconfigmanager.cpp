@@ -9,8 +9,8 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
 
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MStringLists& fileNamesList,
-                                                 MStringLists& fileUrlsList)
+void MusicXMLConfigManager::readMusicSongsConfig(MStringLists &fileNamesList,
+                                                 MStringLists &fileUrlsList)
 {
     MStringListsPair onePara;
     onePara = readMusicFilePath("fileNormalPath");
@@ -35,14 +35,18 @@ void MusicXMLConfigManager::readMusicSongsConfig(MStringLists& fileNamesList,
 //    }
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists& fileNamesList,
-                                                  const MStringLists& fileUrlsList)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesList,
+                                                  const MStringLists &fileUrlsList)
 {
     if( fileNamesList.isEmpty() || fileUrlsList.isEmpty() )
+    {
         return;
-
+    }
     //Open wirte file
-    if( !writeConfig(MUSICPATH) ) return;
+    if( !writeConfig(MUSICPATH) )
+    {
+        return;
+    }
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
@@ -151,7 +155,10 @@ void MusicXMLConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
-    if( !writeConfig(COFIGPATH) ) return;
+    if( !writeConfig(COFIGPATH) )
+    {
+        return;
+    }
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
@@ -336,7 +343,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out,4);
 }
 
-MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString& value)
+MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString &value)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
     QStringList name;
@@ -349,20 +356,25 @@ MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString& value)
     return MStringListsPair(name,url);
 }
 
-void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList& key)
+void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
     QDomElement element = nodelist.at(0).toElement();
     key<<element.attribute("value")<<element.text().split(',');
     Q_ASSERT(key.count() == 3);
-    if(key.count() != 3) key.insert(0,"0");
+    if(key.count() != 3)
+    {
+        key.insert(0, "0");
+    }
 }
 
-QColor MusicXMLConfigManager::readColorConfig(const QString& value)
+QColor MusicXMLConfigManager::readColorConfig(const QString &value)
 {
     QStringList rgb = readXmlByTagNameAndAttribute(value).split(',');
     if(rgb.count() != 3)
+    {
         return QColor();
+    }
     return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
 }
 
@@ -370,7 +382,9 @@ QRect MusicXMLConfigManager::readShowDLrcGeometry()
 {
     QStringList geometry = readXmlByTagNameAndAttribute("lrcDGeometry").split(',');
     if(geometry.count() != 4)
+    {
         return QRect();
+    }
     return QRect(geometry[0].toInt(),geometry[1].toInt(),
                  geometry[2].toInt(),geometry[3].toInt() );
 }

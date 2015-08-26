@@ -102,7 +102,7 @@ void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two)
     two = m_columnThree;
 }
 
-void MusicSongsListPlayWidget::insertTimerLabel(const QString& t)
+void MusicSongsListPlayWidget::insertTimerLabel(const QString &t)
 {
     m_timeLabel->setText(t + m_totalTime);
 }
@@ -112,17 +112,18 @@ void MusicSongsListPlayWidget::updateArtPicture()
     showArtPicture(m_songName->text().split('-').front().trimmed());
 }
 
-bool MusicSongsListPlayWidget::showArtPicture(const QString& name)
+bool MusicSongsListPlayWidget::showArtPicture(const QString &name)
 {
     QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
+    {
         m_artPicture->setPixmap(originPath.scaled(60,60));
-    else
-        return false;
-    return true;
+        return true;
+    }
+    return false;
 }
 
-void MusicSongsListPlayWidget::setParameter(const QString& name,const QString& path)
+void MusicSongsListPlayWidget::setParameter(const QString &name,const QString &path)
 {
     MusicFileInformation info;
     if(info.readFile(path))
@@ -142,13 +143,13 @@ void MusicSongsListPlayWidget::setParameter(const QString& name,const QString& p
 void MusicSongsListPlayWidget::setItemRename()
 {
     m_renameLine = new MusicSongsToolItemRenamedWidget(0,m_songName->text(),this);
-    connect(m_renameLine,SIGNAL(renameFinished(QString)),SLOT(setChangItemName(QString)));
+    connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
     m_renameLine->setFixedSize(182,25);
     m_renameLine->setGeometry(65,5,182,25);
     m_renameLine->show();
 }
 
-void MusicSongsListPlayWidget::setChangItemName(const QString& name)
+void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
     m_songName->setText(name);
     emit renameFinished(name);

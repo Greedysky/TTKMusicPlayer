@@ -3,7 +3,8 @@
 #include <QLabel>
 #include <QSlider>
 
-MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent) : QWidget(parent)
+MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setGeometry(0,0,356,40);
 
@@ -22,11 +23,11 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent) : QWidget(parent
 
 }
 
-void MusicTimerSliderWidget::setObject(QObject* object)
+void MusicTimerSliderWidget::setObject(QObject *object)
 {
-    connect(&m_timer,SIGNAL(timeout()),SLOT(timeout()));
-    connect(m_slider,SIGNAL(sliderMoved(int)),SLOT(sliderMovedAt(int)));
-    connect(m_slider,SIGNAL(sliderMoved(int)),object,SLOT(musicPlayAnyTimeAt(int)));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
+    connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
+    connect(m_slider, SIGNAL(sliderMoved(int)), object, SLOT(musicPlayAnyTimeAt(int)));
 }
 
 MusicTimerSliderWidget::~MusicTimerSliderWidget()
@@ -72,12 +73,16 @@ void MusicTimerSliderWidget::timeout()
     if(!m_reverse)
     {
         if(++m_picIndex == 6)
+        {
             m_reverse = true;
+        }
     }
     else
     {
         if(--m_picIndex == 0)
+        {
             m_reverse = false;
+        }
     }
     m_label->setPixmap(QPixmap("://slidergif/" + QString::number(m_picIndex)));
 }

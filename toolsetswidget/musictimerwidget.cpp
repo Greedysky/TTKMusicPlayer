@@ -4,8 +4,8 @@
 #include "musicuiobject.h"
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
-        : MusicMoveDialogAbstract(parent),
-        ui(new Ui::MusicTimerWidget)
+    : MusicMoveDialogAbstract(parent),
+    ui(new Ui::MusicTimerWidget)
 {
     ui->setupUi(this);
     QBitmap bmp(this->size());
@@ -66,7 +66,9 @@ void MusicTimerWidget::initParemeter()
         setEnabledControlFalse1();
     }
     else
+    {
         ui->setRadioButton1->setChecked(true);
+    }
     ui->hourComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt());
     ui->secComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt());
     ui->repeatComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt());
@@ -78,7 +80,9 @@ void MusicTimerWidget::initParemeter()
         setEnabledControlFalse2();
     }
     else
+    {
         ui->setRadioButton2->setChecked(true);
+    }
     ui->hourComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopHourChoiced).toInt());
     ui->secComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt());
     ui->repeatComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt());
@@ -89,7 +93,9 @@ void MusicTimerWidget::initParemeter()
         setEnabledControlFalse3();
     }
     else
+    {
         ui->setRadioButton3->setChecked(true);
+    }
     ui->hourComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt());
     ui->secComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt());
     ui->repeatComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt());
@@ -138,9 +144,13 @@ void MusicTimerWidget::setSongStringList(const QStringList &list)
 void MusicTimerWidget::initComboParameter()
 {
     for(int i=0; i<24; ++i)
+    {
         m_hour<<tr("%1H").arg(i);
+    }
     for(int i=0; i<60; ++i)
+    {
         m_second<<tr("%1S").arg(i);
+    }
     m_repeat<<tr("once")<<tr("evMonth")<<tr("evWeek")<<tr("evDay");
 }
 
@@ -161,7 +171,6 @@ void MusicTimerWidget::changeThreeWidget()
 
 void MusicTimerWidget::initFirstWidget()
 {
-//    ui->noSetRadioButton1->setChecked(true);
     ui->hourComboBox1->addItems(m_hour);
     ui->secComboBox1->addItems(m_second);
     ui->repeatComboBox1->addItems(m_repeat);
@@ -179,7 +188,6 @@ void MusicTimerWidget::initFirstWidget()
 
 void MusicTimerWidget::initSecondWidget()
 {
-//    ui->noSetRadioButton2->setChecked(true);
     ui->hourComboBox2->addItems(m_hour);
     ui->secComboBox2->addItems(m_second);
     ui->repeatComboBox2->addItems(m_repeat);
@@ -194,7 +202,6 @@ void MusicTimerWidget::initSecondWidget()
 
 void MusicTimerWidget::initThreeWidget()
 {
-//    ui->noSetRadioButton3->setChecked(true);
     ui->hourComboBox3->addItems(m_hour);
     ui->secComboBox3->addItems(m_second);
     ui->repeatComboBox3->addItems(m_repeat);

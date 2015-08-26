@@ -2,8 +2,8 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicuiobject.h"
 
-MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
-    QDialog(parent)
+MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent)
+    : QDialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint);
     setGeometry(40,546,330,35);
@@ -25,8 +25,9 @@ MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent) :
     m_closeButton->setStyleSheet(MusicUIObject::MCustomStyle05);
 
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_closeButton,SIGNAL(clicked()),this,SLOT(close()));
-    connect(m_searchLine,SIGNAL(cursorPositionChanged(int,int)),parent,SLOT(musicSearchIndexChanged(int,int)));
+    connect(m_closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_searchLine, SIGNAL(cursorPositionChanged(int,int)),
+                  parent, SLOT(musicSearchIndexChanged(int,int)));
 }
 
 MusicLocalSongSearch::~MusicLocalSongSearch()

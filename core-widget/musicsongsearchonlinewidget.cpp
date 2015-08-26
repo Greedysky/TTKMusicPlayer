@@ -32,7 +32,10 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &text)
     ////////////////////////////////////////////////
     QStringList names, times;
     MusicLocalSongSearchRecordObject search(this);
-    if(!search.readSearchXMLConfig()) return;
+    if(!search.readSearchXMLConfig())
+    {
+        return;
+    }
     search.readSearchConfig(names, times);
     names.insert(0, text);
     times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
@@ -86,11 +89,14 @@ void MusicSongSearchOnlineWidget::listCellClicked(int row,int col)
 {
     switch(col)
     {
-      case 4:
-        addSearchMusicToPlayList(row);break;
-      case 5:
-        musicDownloadLocal(row);break;
-      default:break;
+        case 4:
+            addSearchMusicToPlayList(row);
+            break;
+        case 5:
+            musicDownloadLocal(row);
+            break;
+        default:
+            break;
     }
 }
 
@@ -112,7 +118,9 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     QStringList name, path;
     MusicMyDownloadRecordObject down(this);
     if(!down.readDownloadXMLConfig())
+    {
         return;
+    }
     down.readDownloadConfig(name,path);
     name<<musicSong;
     path<<QFileInfo(downloadName).absoluteFilePath();
@@ -121,8 +129,8 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
                                             musicSongInfo[row][0], downloadName,this);
-    connect(downSong,SIGNAL(musicDownLoadFinished(QString)),this,
-                     SIGNAL(showDownLoadInfoFinished(QString)));
+    connect(downSong, SIGNAL(musicDownLoadFinished(QString)),
+                      SIGNAL(showDownLoadInfoFinished(QString)));
     downSong->startToDownload();
 
     (new MusicTextDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +

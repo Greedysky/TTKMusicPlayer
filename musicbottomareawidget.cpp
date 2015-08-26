@@ -53,9 +53,9 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicCurrentLocation->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicCurrentLocation->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicCurrentLocation->setToolTip(tr("musicLocation"));
-    connect(ui->musicCurrentLocation,SIGNAL(clicked()), m_supperClass, SLOT(musicCurrentPlayLocation()));
+    connect(ui->musicCurrentLocation, SIGNAL(clicked()), m_supperClass, SLOT(musicCurrentPlayLocation()));
 
-    connect(ui->musicDesktopLrc,SIGNAL(clicked()),m_systemTrayMenu,SLOT(showDesktopLrc()));
+    connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 
     createToolPopupMenu();
 }
@@ -88,17 +88,17 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 {
     switch(reason)
     {
-      case QSystemTrayIcon::DoubleClick:
-          break;
-      case QSystemTrayIcon::Trigger:
-          if(!m_supperClass->isVisible())
-          {
-              m_supperClass->show();
-              m_supperClass->activateWindow();
-          }
-          break;
-      default:
-          break;
+        case QSystemTrayIcon::DoubleClick:
+            break;
+        case QSystemTrayIcon::Trigger:
+            if(!m_supperClass->isVisible())
+            {
+                m_supperClass->show();
+                m_supperClass->activateWindow();
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -131,8 +131,8 @@ void MusicBottomAreaWidget::createSystemTrayIcon()
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
     m_systemTray->show();
-    connect(m_systemTray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                         SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+    connect(m_systemTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                          SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
 
 void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status)

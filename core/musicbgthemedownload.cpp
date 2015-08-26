@@ -8,21 +8,23 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
 {
     MusicDataDownloadThread *download = new MusicDataDownloadThread(
                  "http://www.kuwo.cn/mingxing/" + name + "/pic.htm"
-                  ,TMP_DOWNLOAD,this);
+                  ,TMP_DOWNLOAD, this);
     ///Set search image API
-    connect(download,SIGNAL(musicDownLoadFinished(QString)),
-                     SLOT(downLoadFinished(QString)));
-    connect(this,SIGNAL(musicBgDownloadFinished()),parent,
-                 SIGNAL(musicBgDownloadFinished()));
+    connect(download, SIGNAL(musicDownLoadFinished(QString)),
+                      SLOT(downLoadFinished(QString)));
+    connect(this, SIGNAL(musicBgDownloadFinished()), parent,
+                  SIGNAL(musicBgDownloadFinished()));
     download->startToDownload();
 }
 
-void MusicBgThemeDownload::downLoadFinished(const QString&)
+void MusicBgThemeDownload::downLoadFinished(const QString &)
 {
     QFile file(TMP_DOWNLOAD);
     ///Check if the file exists and can be written
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         return;
+    }
 
     QTextStream in(&file);
     QString line = in.readLine();
@@ -49,7 +51,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString&)
     QFile::remove(TMP_DOWNLOAD);
 }
 
-void MusicBgThemeDownload::bgDownLoadFinished(const QString&)
+void MusicBgThemeDownload::bgDownLoadFinished(const QString &)
 {
     if( ++m_index >= m_counter)
     {

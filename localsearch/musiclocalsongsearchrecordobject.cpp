@@ -7,10 +7,13 @@ MusicLocalSongSearchRecordObject::MusicLocalSongSearchRecordObject(QObject *pare
 }
 
 
-void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList& names,
-                                                         const QStringList& times)
+void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &names,
+                                                         const QStringList &times)
 {
-    if( !writeConfig( MUSICSEARCH ) ) return;
+    if( !writeConfig( MUSICSEARCH ) )
+    {
+        return;
+    }
 
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(

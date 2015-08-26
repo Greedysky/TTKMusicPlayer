@@ -8,7 +8,7 @@ MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent) :
     m_speedLeve = 50;
 }
 
-void MusicLRCManagerForDesktop::setSelfGeometry(const QPoint& point)
+void MusicLRCManagerForDesktop::setSelfGeometry(const QPoint &point)
 {
     m_geometry = point;
 }

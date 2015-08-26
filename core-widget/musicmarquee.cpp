@@ -1,8 +1,8 @@
 #include "musicmarquee.h"
 #include <QtGui>
 
-MusicMarquee::MusicMarquee(QWidget *parent) :
-    QWidget(parent)
+MusicMarquee::MusicMarquee(QWidget *parent)
+    : QWidget(parent)
 {
     m_offset = 0;
     m_myTimerId = 0;
@@ -26,7 +26,9 @@ void MusicMarquee::paintEvent(QPaintEvent *)
 
     int textWidth = fontMetrics().width(text());
     if(textWidth < 1)
+    {
         return;
+    }
     int x = -m_offset;
     while(x < width())
     {
@@ -52,7 +54,9 @@ void MusicMarquee::timerEvent(QTimerEvent *event)
         scroll(-1, 0);
     }
     else
+    {
         QWidget::timerEvent(event);
+    }
 }
 
 void MusicMarquee::hideEvent(QHideEvent *)

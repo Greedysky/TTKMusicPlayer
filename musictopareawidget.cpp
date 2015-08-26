@@ -69,11 +69,10 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->windowClose,SIGNAL(clicked()), m_supperClass, SLOT(close()));
 }
 
-void MusicTopAreaWidget::setParameters(const QString& b, int a)
+void MusicTopAreaWidget::setParameters(const QString &skin, int alpha)
 {
-    m_currentBgSkin = b;
-    m_alpha = a;
-    musicBgTransparentChanged(a);
+    m_currentBgSkin = skin;
+    musicBgTransparentChanged(m_alpha = alpha);
 }
 
 QString MusicTopAreaWidget::getBgSkin()
@@ -108,9 +107,11 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 {
-    if(m_ui->SurfaceStackedWidget->currentIndex() == 2) return;
+    if(m_ui->SurfaceStackedWidget->currentIndex() == 2)
+    {
+        return;
+    }
     m_alpha = index;//save the alpha
-    //Here set the picture transparency
     drawWindowBackgroundRect();
 }
 
@@ -137,7 +138,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect()
     drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE);
 }
 
-void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString& path)
+void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 {
     QSize size(950, 620);
     QPixmap origin(path);
@@ -163,7 +164,9 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
         m_pictureCarouselTimer.start(5000);
     }
     else
+    {
         drawWindowBackgroundRect();
+    }
 }
 
 void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
@@ -222,7 +225,9 @@ void MusicTopAreaWidget::musicDeleteRemote()
 void MusicTopAreaWidget::musicSquareRemote()
 {
     if(m_musicRemoteWidget)
+    {
         delete m_musicRemoteWidget;
+    }
     m_musicRemoteWidget = new MusicRemoteWidgetForSquare;
     createRemoteWidget();
 }
@@ -230,7 +235,9 @@ void MusicTopAreaWidget::musicSquareRemote()
 void MusicTopAreaWidget::musicCircleRemote()
 {
     if(m_musicRemoteWidget)
+    {
         delete m_musicRemoteWidget;
+    }
     m_musicRemoteWidget = new MusicRemoteWidgetForCircle;
     createRemoteWidget();
 }
@@ -238,7 +245,9 @@ void MusicTopAreaWidget::musicCircleRemote()
 void MusicTopAreaWidget::musicDiamondRemote()
 {
     if(m_musicRemoteWidget)
+    {
         delete m_musicRemoteWidget;
+    }
     m_musicRemoteWidget = new MusicRemoteWidgetForDiamond;
     createRemoteWidget();
 }
@@ -246,7 +255,9 @@ void MusicTopAreaWidget::musicDiamondRemote()
 void MusicTopAreaWidget::musicRectangleRemote()
 {
     if(m_musicRemoteWidget)
+    {
         delete m_musicRemoteWidget;
+    }
     m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
     createRemoteWidget();

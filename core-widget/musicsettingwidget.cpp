@@ -149,9 +149,13 @@ void MusicSettingWidget::initControllerParameter()
     ui->backPlayShowInfoWidget->setChecked(M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced)
                .toStringList().at(0).toInt() );
     if(!M_SETTING.value(MusicSettingManager::CloseEventChoiced).toBool())
-      ui->minimumShowInfoWidget->setChecked(true);
+    {
+        ui->minimumShowInfoWidget->setChecked(true);
+    }
     else
-      ui->quitShowInfoWidget->setChecked(true);
+    {
+        ui->quitShowInfoWidget->setChecked(true);
+    }
 
     ui->languageComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
@@ -164,7 +168,9 @@ void MusicSettingWidget::initControllerParameter()
     ui->fontSizeComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
     ui->fontTypeComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcTypeChoiced).toInt());
     if(M_SETTING.value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
+    {
         ui->fontDefalutColorComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcColorChoiced).toInt());
+    }
     else
     {
         ui->fontDefalutColorComboBox->setCurrentIndex(-1);
@@ -182,7 +188,9 @@ void MusicSettingWidget::initControllerParameter()
     ui->fontSizeComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
     ui->fontTypeComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcTypeChoiced).toInt());
     if(M_SETTING.value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
+    {
         ui->fontDefalutColorComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcColorChoiced).toInt());
+    }
     else
     {
         ui->fontDefalutColorComboBoxD->setCurrentIndex(-1);
@@ -248,8 +256,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING.setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
 
     emit parameterSettingChanged();
-
-    this->close();
+    close();
 }
 
 void MusicSettingWidget::inlineLrcFgChanged()
@@ -305,7 +312,9 @@ void MusicSettingWidget::defaultLrcColorChanged(int index)
 void MusicSettingWidget::lrcColorByDefault(Type key, int index)
 {
     if(index == -1)
+    {
         return;
+    }
     QColor color(Qt::black);
     switch(index)
     {
@@ -321,6 +330,7 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
         case 9: color = QColor(0,0,0);break;
         default: break;
     }
+
     QPixmap pixmap(16,16);
     pixmap.fill(color);
     key == Inline ? ui->noPlayedPushButton->setIcon(QIcon(pixmap))

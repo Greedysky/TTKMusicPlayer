@@ -25,7 +25,7 @@ void MusicDataDownloadThread::startToDownload()
     }
 }
 
-void MusicDataDownloadThread::startRequest(const QUrl& url)
+void MusicDataDownloadThread::startRequest(const QUrl &url)
 {
     m_reply = m_manager->get( QNetworkRequest(url));
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
@@ -36,7 +36,10 @@ void MusicDataDownloadThread::startRequest(const QUrl& url)
 
 void MusicDataDownloadThread::downLoadFinished()
 {
-    if(!m_file) return;
+    if(!m_file)
+    {
+        return;
+    }
 
     m_file->flush();
     m_file->close();

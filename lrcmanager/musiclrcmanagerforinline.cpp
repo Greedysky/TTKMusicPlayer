@@ -38,23 +38,35 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QColor(0, 0, 0, ttplus));
 
     if((ttplus = m_lrcPerWidth - m_geometry.x()) < 0)
+    {
         painter.drawText(m_intervalCount + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
+    }
     else
+    {
         painter.drawText(ttplus / 2 + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignHCenter, text());
+    }
 
     //Then draw a gradient in the above
     painter.setPen(QPen(m_linearGradient, 0));
     if(ttplus < 0)
+    {
         painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
+    }
     else
+    {
         painter.drawText(ttplus / 2, 0, m_geometry.x(), m_geometry.y(), Qt::AlignHCenter, text());
+    }
 
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
     if(ttplus < 0)
+    {
         painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    }
     else
+    {
         painter.drawText( m_UpdateLrc ? ttplus / 2 - 3 : ttplus / 2,
                           0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    }
     painter.end();
 }

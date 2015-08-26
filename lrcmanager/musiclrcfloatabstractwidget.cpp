@@ -30,11 +30,17 @@ void MusicLrcFloatAbstractWidget::animationOut()
 void MusicLrcFloatAbstractWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
-    if(!m_blockAnimation) animationIn();
+    if(!m_blockAnimation)
+    {
+        animationIn();
+    }
 }
 
 void MusicLrcFloatAbstractWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
-    if(!m_blockAnimation) animationOut();
+    if(!m_blockAnimation)
+    {
+        animationOut();
+    }
 }

@@ -22,18 +22,18 @@ void MusicDownLoadQueryThread::deleteAll()
 {
     if(m_reply)
     {
-      m_reply->deleteLater();
-      m_reply = NULL;
+        m_reply->deleteLater();
+        m_reply = NULL;
     }
     if(m_manager)
     {
-      m_manager->deleteLater();
-      m_manager = NULL;
+        m_manager->deleteLater();
+        m_manager = NULL;
     }
     this->deleteLater();
 }
 
-void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString& text)
+void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &text)
 {
     m_searchText = text.trimmed();
     m_currentType = type;
@@ -46,7 +46,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString& te
         m_reply = NULL;
     }
     m_reply = m_manager->get(QNetworkRequest(musicUrl));
-    connect(m_reply, SIGNAL(finished()), this, SLOT(searchFinshed()) );
+    connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),this,
                    SLOT(replyError(QNetworkReply::NetworkError)) );
 }
@@ -61,9 +61,13 @@ void MusicDownLoadQueryThread::searchFinshed()
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json
         if(jsonError.error != QJsonParseError::NoError)
+        {
             return ;
+        }
         if(!parseDoucment.isObject())
+        {
             return ;
+        }
 
         emit clearAllItems();     ///Clear origin items
         m_musicSongInfo.clear();  ///Empty the last search to songsInfo
@@ -76,7 +80,9 @@ void MusicDownLoadQueryThread::searchFinshed()
             {
                 QJsonValue value = array.at(i);
                 if(!value.isObject())
+                {
                    continue ;
+                }
                 QJsonObject object = value.toObject();
 
                 QStringList musicInfo;

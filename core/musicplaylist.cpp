@@ -33,7 +33,9 @@ int MusicPlaylist::currentIndex() const
 QString MusicPlaylist::currentMediaString() const
 {
     if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
+    {
         return QString();
+    }
     return m_mediaList.isEmpty() ? QString()
                                  : m_mediaList[m_currentIndex];
 }
@@ -83,7 +85,9 @@ void MusicPlaylist::appendMedia(const QStringList &items)
 bool MusicPlaylist::insertMedia(int index, const QString &content)
 {
     if( index < 0 || index > m_mediaList.count())
+    {
         return false;
+    }
     m_mediaList.insert(index,content);
     return true;
 }
@@ -91,16 +95,22 @@ bool MusicPlaylist::insertMedia(int index, const QString &content)
 bool MusicPlaylist::insertMedia(int index, const QStringList &items)
 {
     if( index < 0 || index > m_mediaList.count())
+    {
         return false;
+    }
     for(int i = 0; i < items.count(); ++i)
+    {
         m_mediaList.insert(m_mediaList.count() + i, items[i]);
+    }
     return true;
 }
 
 bool MusicPlaylist::removeMedia(int pos)
 {
     if( pos < 0 || pos >= m_mediaList.count())
+    {
         return false;
+    }
     m_mediaList.removeAt(pos);
     emit removeCurrentMedia();
     return true;
@@ -109,9 +119,13 @@ bool MusicPlaylist::removeMedia(int pos)
 bool MusicPlaylist::removeMedia(int start, int end)
 {
     if( start > end || (start < 0 || end >= m_mediaList.count()) )
+    {
         return false;
+    }
     for(int i=0; i<end - start; ++i)
+    {
         m_mediaList.removeAt(start);
+    }
     return true;
 }
 

@@ -8,11 +8,11 @@
 #include <QProcess>
 
 MusicTimerAutoObject::MusicTimerAutoObject(QObject *parent)
-            : QObject(parent)
+    : QObject(parent)
 {
     m_hour = m_second = -1;
     m_funcIndex = -1;
-    connect(&m_timer,SIGNAL(timeout()),SLOT(timeout()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 MusicTimerAutoObject::~MusicTimerAutoObject()
@@ -53,8 +53,10 @@ void MusicTimerAutoObject::timeout()
 {
     int hour = 0,second = 0;
     QStringList l = QTime::currentTime().toString(Qt::ISODate).split(':');
-    if(l.count() !=3 )
+    if(l.count() != 3 )
+    {
         return;
+    }
 
     hour = l[0].toInt();
     second = l[1].toInt();
@@ -64,22 +66,25 @@ void MusicTimerAutoObject::timeout()
         if(m_funcIndex == 0)
         {
             if(M_SETTING.value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt() == 0)
+            {
                M_SETTING.setValue(MusicSettingManager::TimerAutoPlayChoiced, 1);
-
+            }
             emit setPlaySong(M_SETTING.value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
         }
         else if(m_funcIndex == 1)
         {
             if(M_SETTING.value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt() == 0)
+            {
                M_SETTING.setValue(MusicSettingManager::TimerAutoStopChoiced, 1);
-
+            }
             emit setStopSong();
         }
         else if(m_funcIndex == 2)
         {
             if(M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt() == 0)
+            {
                M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownChoiced, 1);
-
+            }
             setShutdown();
         }
     }

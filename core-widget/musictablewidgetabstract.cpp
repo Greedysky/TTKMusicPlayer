@@ -32,7 +32,7 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     m_defaultBkColor = QColor(255,255,255,0);
 
 
-    connect(this,SIGNAL(cellClicked(int,int)),SLOT(listCellClicked(int,int)));
+    connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
 }
 
 MusicTableWidgetAbstract::~MusicTableWidgetAbstract()
@@ -57,16 +57,20 @@ void MusicTableWidgetAbstract::listCellEntered(int row, int column)
 {
     QTableWidgetItem *item = this->item(m_previousColorRow, 0);
     if(item != 0)
+    {
        setRowColor(m_previousColorRow, m_defaultBkColor);
+    }
 
     item = this->item(row, column);
     if(item != 0 && !item->isSelected() && !item->text().isEmpty())
+    {
        setRowColor(row, QColor(20,20,20,40));
+    }
 
     m_previousColorRow = row;
 }
 
-void MusicTableWidgetAbstract::setRowColor(int row,const QColor& color)
+void MusicTableWidgetAbstract::setRowColor(int row, const QColor &color)
 {
     for(int col=0; col<columnCount(); col++)
     {

@@ -8,7 +8,7 @@
 #include <QPushButton>
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
-        : MusicLrcContainer(0)
+    : MusicLrcContainer(0)
 {
     m_supperClass = parent;
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint |
@@ -67,7 +67,6 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);
     m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle08);
-//    m_toolBarWidget->setFixedHeight(30);
     m_toolBarWidget->setFixedWidth(320);
     m_toolBarWidget->setGeometry(0,-10,320,20);
 
@@ -181,8 +180,8 @@ void MusicLrcContainerForDesktop::initCurrentLrc()
     m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20,0,0);
 }
 
-void MusicLrcContainerForDesktop::updateCurrentLrc(const QString& first,
-                                                   const QString& second, qint64 time)
+void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
+                                                   const QString &second, qint64 time)
 {
     m_reverse = !m_reverse;
     static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[ m_reverse])->resetOrigin();
@@ -203,20 +202,26 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString& first,
 void MusicLrcContainerForDesktop::stopLrcMask()
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
         m_musicLrcContainer[i]->stopLrcMask();
+    }
 }
 
 void MusicLrcContainerForDesktop::setMaskLinearGradientColor(QColor color)
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
         m_musicLrcContainer[i]->setMaskLinearGradientColor(color);
+    }
 }
 
 void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
     if(!m_windowLocked && event->button() == Qt::LeftButton )
+    {
         m_offset = event->globalPos() - frameGeometry().topLeft();
+    }
 }
 
 void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
@@ -232,7 +237,10 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
 
 void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
 {
-    if(m_windowLocked) return;
+    if(m_windowLocked)
+    {
+        return;
+    }
     QWidget::enterEvent(event);
     m_toolBarWidget->show();
     setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle09 + "}");
@@ -240,7 +248,10 @@ void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
 {
-    if(m_windowLocked) return;
+    if(m_windowLocked)
+    {
+        return;
+    }
     QWidget::leaveEvent(event);
     m_toolBarWidget->hide();
     setStyleSheet(MusicUIObject::MCustomStyle20);
@@ -267,28 +278,40 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
 void MusicLrcContainerForDesktop::setSelfGeometry()
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setSelfGeometry(m_geometry.x(), m_geometry.y());
+    }
 }
 
 void MusicLrcContainerForDesktop::setLrcBigerChanged()
 {
-    if(m_currentLrcFontSize > 35) return;
+    if(m_currentLrcFontSize > 35)
+    {
+        return;
+    }
     int y = m_geometry.y();
     m_geometry.setY(++y);
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(++m_currentLrcFontSize);
+    }
     M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
 {
-    if(m_currentLrcFontSize < 25) return;
+    if(m_currentLrcFontSize < 25)
+    {
+        return;
+    }
     int y = m_geometry.y();
     m_geometry.setY(--y);
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(--m_currentLrcFontSize);
+    }
     M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
@@ -325,11 +348,13 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     M_SETTING.value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
     QRect rect = M_SETTING.value(MusicSettingManager::DLrcGeometryChoiced).toRect();
     if(!rect.isEmpty())
+    {
         setGeometry(rect);
+    }
 }
 
 void MusicLrcContainerForDesktop::showPlayStatus(bool status)
 {
-    m_toolPlayButton->setIcon(!status ? QIcon(QString::fromUtf8(":/desktopTool/stop"))
-                                      : QIcon(QString::fromUtf8(":/desktopTool/play")) );
+    m_toolPlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
+                                                              : ":/desktopTool/play")) );
 }

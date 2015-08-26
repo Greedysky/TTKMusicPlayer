@@ -32,12 +32,14 @@ void MusicLrcContainer::currentLrcCustom()
 void MusicLrcContainer::searchMusicLrcs()
 {
     if(m_musicLrcSearchWidget == NULL)
+    {
         m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
+    }
     m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
     m_musicLrcSearchWidget->show();
 }
 
-void MusicLrcContainer::createColorMenu(QMenu& menu)
+void MusicLrcContainer::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
     group->addAction(menu.addAction(QIcon(":/color/origin"), tr("origin")));
@@ -50,9 +52,9 @@ void MusicLrcContainer::createColorMenu(QMenu& menu)
     group->addAction(menu.addAction(QIcon(":/color/purple"), tr("purple")));
     group->addAction(menu.addAction(QIcon(":/color/white"), tr("white")));
     group->addAction(menu.addAction(QIcon(":/color/black"), tr("black")));
-    connect(group, SIGNAL(triggered(QAction*)),SLOT(changeCurrentLrcColor(QAction*)));
+    connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
-    menu.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
+    menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
@@ -112,13 +114,10 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType)
 
 void MusicLrcContainer::setSettingParameter()
 {
-    if(m_containerType == "DESKTOP")
-        setSettingParameter("D");
-    else
-        setSettingParameter("");
+    setSettingParameter(m_containerType == "DESKTOP" ? "D" : QString() );
 }
 
-void MusicLrcContainer::setSettingParameter(const QString& t)
+void MusicLrcContainer::setSettingParameter(const QString &t)
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -135,7 +134,9 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
     else
     {
         for(int i=0; i<m_musicLrcContainer.count(); ++i)
+        {
             m_musicLrcContainer[i]->setLinearGradientColor(M_SETTING.value(t + "LrcBgColorChoiced").value<QColor>());
+        }
         setMaskLinearGradientColor(M_SETTING.value(t + "LrcFgColorChoiced").value<QColor>());
     }
 }
@@ -144,7 +145,9 @@ void MusicLrcContainer::setSettingParameter(const QString& t)
 void MusicLrcContainer::theCurrentLrcMaked()
 {
     if(m_makerWidget == NULL)
+    {
         m_makerWidget = new MusicLrcMakerWidget(this);
+    }
     m_makerWidget->setCurrentSongName(m_currentSongName);
     m_makerWidget->show();
 }
@@ -152,5 +155,7 @@ void MusicLrcContainer::theCurrentLrcMaked()
 void MusicLrcContainer::setCurrentPosition(qint64 pos)
 {
     if(m_makerWidget)
+    {
         m_makerWidget->setCurrentPosition(pos);
+    }
 }

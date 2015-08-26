@@ -15,9 +15,13 @@ bool MusicWebRadioDatabase::disConnectDatabase()
         QSqlDatabase data = QSqlDatabase::database("radio-data");
         connectionName = data.connectionName();
         if( data.isValid() )
+        {
             data.close();
+        }
         else
+        {
             return false;
+        }
     }
     QSqlDatabase::removeDatabase( connectionName );
     return true;
@@ -30,11 +34,17 @@ bool MusicWebRadioDatabase::connectDatabase()
         QSqlDatabase data = QSqlDatabase::addDatabase(DATABASETYPE,"radio-data");
         data.setDatabaseName(NETDADIOPATH);
         if( !data.isDriverAvailable(DATABASETYPE) )
+        {
             throw QString("The driver name is not available!");
+        }
         if( !data.isValid() )
+        {
             throw QString("The database has not a vaild driver!");
+        }
         if (!data.isOpen() && !data.open() )
+        {
             throw QString("Can not open database connection!");
+        }
 
         if(!data.tables().contains("channel"))
         {
@@ -61,19 +71,21 @@ bool MusicWebRadioDatabase::connectDatabase()
     return true;
 }
 
-QString MusicWebRadioDatabase::getRadioUrl(const QString& channelName)
+QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName)
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     query.exec("select * from channel");
     while(query.next())
     {
         if(query.value(1).toString() == channelName)
+        {
             return query.value(3).toString();
+        }
     }
     return QString();
 }
 
-QStringList MusicWebRadioDatabase::getRadioNames(const QString& category)
+QStringList MusicWebRadioDatabase::getRadioNames(const QString &category)
 {
     QStringList channelNames;
     QSqlQuery query(QString("select * from channel where category='%1'").arg(category),
@@ -111,7 +123,7 @@ QStringList MusicWebRadioDatabase::getFavouriteNames()
     return getRecords("select * from collect");
 }
 
-void MusicWebRadioDatabase::radioRecentPlay(const QString& channelName)
+void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName)
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     QSqlQuery queryC(QSqlDatabase::database("radio-data"));
@@ -148,7 +160,9 @@ void MusicWebRadioDatabase::radioCollection(const QString &name)
                              QSqlDatabase::database("radio-data"));
     int channelId = 0;
     if(query.next())
+    {
         channelId = query.value(0).toInt();
+    }
 
     QSqlQuery queryC(QString("select * from collect where channel_id='%1'").arg(channelId),
                              QSqlDatabase::database("radio-data"));
@@ -166,7 +180,9 @@ void MusicWebRadioDatabase::radioDiscollection(const QString &name)
                              QSqlDatabase::database("radio-data"));
     int channelId = 0;
     if(query.next())
+    {
         channelId = query.value(0).toInt();
+    }
 
     QSqlQuery queryC(QString("select * from collect where channel_id='%1'").arg(channelId),
                              QSqlDatabase::database("radio-data"));

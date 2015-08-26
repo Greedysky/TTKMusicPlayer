@@ -19,22 +19,21 @@ public:
     explicit MusicSongsListWidget(QWidget *parent = 0);
     virtual ~MusicSongsListWidget();
 
-    void musicSongsFileName(const QStringList& filenamelists);
+    void musicSongsFileName(const QStringList &filenamelists);
     void clearAllItems();
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type)
         { m_songplaymode = type;}
-    void setTimerLabel(const QString& t);
+    void setTimerLabel(const QString &t);
     void updateArtPicture();
     void replacePlayWidgetRow();
 
 signals:
-    void deleteItemAt(const MIntList&,bool fileRemove);
-    void MusicSongToLovestListAt(int);
-    void currentTextChanged(int,const QString&);
-    void mucellDoubleClicked(int,int);
+    void deleteItemAt(const MIntList &index, bool fileRemove);
+    void musicSongToLovestListAt(int row);
+    void currentTextChanged(int index, const QString &text);
 
-    void musicPlay(int);
+    void musicPlay(int index);
     void musicPlayOrder();
     void musicPlayRandom();
     void musicPlayListLoop();
@@ -42,11 +41,13 @@ signals:
     void musicPlayItemOnce();
     void musicAddNewFiles();
     void musicAddNewDir();
-    void musicOpenFileDir(int);
+    void musicOpenFileDir(int index);
 
-    void getMusicSongInformation(int,QMusicSong&);
-    void getMusicSongFileInformation(int, QString&, QString&, bool = true);
-    void getMusicIndexSwaped(int,int,int,QStringList&);
+    void getMusicSongInformation(int row, QMusicSong &song);
+    void getMusicSongFileInformation(int row, QString &name,
+                                     QString &path, bool st = true);
+    void getMusicIndexSwaped(int before, int after, int play,
+                             QStringList &list);
 
 public slots:
     void musicPlay();
@@ -64,7 +65,7 @@ public slots:
     void musicMakeRingWidget();
     void musicTransformWidget();
     void musicFileInformation();
-    void setItemRenameFinished(const QString&);
+    void setItemRenameFinished(const QString &name);
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
@@ -73,19 +74,19 @@ protected:
     virtual void leaveEvent(QEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
-    QTimer* m_timerShow;
-    QTimer* m_timerStay;
+    QTimer *m_timerShow;
+    QTimer *m_timerStay;
 
     int m_playRowIndex;
     int m_dragStartIndex;
     bool m_mouseMoved;
 
-    MusicSongsListItemInformation* m_musicSongsListItem;
-    MusicSongsListPlayWidget* m_musicSongsPlayWidget;
+    MusicSongsListItemInformation *m_musicSongsListItem;
+    MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
     bool m_leftButtonPressed;
     bool m_renameActived;
-    QTableWidgetItem* m_renameItem;
+    QTableWidgetItem *m_renameItem;
     bool m_deleteItemWithFile;
     MusicObject::SongPlayType m_songplaymode;
 

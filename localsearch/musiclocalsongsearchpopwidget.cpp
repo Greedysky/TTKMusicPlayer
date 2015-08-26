@@ -13,7 +13,7 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
     headerview->resizeSection(0,210);
     headerview->resizeSection(1,62);
     setTransparent(255);
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
+    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
 }
 
 MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
@@ -27,7 +27,7 @@ void MusicLocalSongSearchPopTableWidget::clearAllItems()
     setColumnCount(2);
 }
 
-void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString& name,
+void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &name,
                                                      const QString &time)
 {
     setRowHeight(index, 20);
@@ -58,9 +58,9 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     setLayout(layout);
 
     m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle06);
-    connect(m_clearButton,SIGNAL(clicked()),SLOT(clearButtonClicked()));
-    connect(m_popTableWidget,SIGNAL(cellDoubleClicked(int,int)),
-                             SLOT(cellDoubleClicked(int,int)));
+    connect(m_clearButton, SIGNAL(clicked()), SLOT(clearButtonClicked()));
+    connect(m_popTableWidget, SIGNAL(cellDoubleClicked(int,int)),
+                              SLOT(cellDoubleClicked(int,int)));
 }
 
 MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
@@ -73,7 +73,10 @@ void MusicLocalSongSearchPopWidget::createItems()
 {
     m_popTableWidget->clearAllItems();
     MusicLocalSongSearchRecordObject search(this);
-    if(!search.readSearchXMLConfig()) return;
+    if(!search.readSearchXMLConfig())
+    {
+        return;
+    }
 
     QStringList names, times;
     search.readSearchConfig(names, times);
@@ -87,7 +90,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     }
 }
 
-QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString& time)
+QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time)
 {
     qint64 t = (QDateTime::currentMSecsSinceEpoch() - time.toLongLong()) / 1000;
     if(t < 60)
@@ -103,11 +106,14 @@ QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString& time)
 void MusicLocalSongSearchPopWidget::clearButtonClicked()
 {
     MusicLocalSongSearchRecordObject search(this);
-    if(!search.readSearchXMLConfig()) return;
+    if(!search.readSearchXMLConfig())
+    {
+        return;
+    }
     search.writeSearchConfig(QStringList(), QStringList());
 }
 
-void MusicLocalSongSearchPopWidget::cellDoubleClicked(int row,int)
+void MusicLocalSongSearchPopWidget::cellDoubleClicked(int row, int)
 {
     emit setText( m_popTableWidget->item(row, 0)->text() );
     lower();

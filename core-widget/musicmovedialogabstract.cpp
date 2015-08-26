@@ -1,7 +1,7 @@
 #include "musicmovedialogabstract.h"
 
-MusicMoveDialogAbstract::MusicMoveDialogAbstract(QWidget *parent) :
-    QDialog(parent)
+MusicMoveDialogAbstract::MusicMoveDialogAbstract(QWidget *parent)
+    : QDialog(parent)
 {
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
@@ -17,7 +17,9 @@ void MusicMoveDialogAbstract::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
     if( event->button() == Qt::LeftButton )///Press the left key
-      m_leftButtonPress = true;
+    {
+        m_leftButtonPress = true;
+    }
     m_pressAt = event->globalPos();
 }
 
