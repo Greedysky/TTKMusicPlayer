@@ -7,9 +7,8 @@ class MUSIC_CORE_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbst
 {
     Q_OBJECT
 public:
-    explicit MusicDataDownloadThread(const QString& url, const QString& save,
+    explicit MusicDataDownloadThread(const QString &url, const QString &save,
                                      QObject *parent = 0);
-
     virtual void startToDownload();
 
 public slots:
@@ -17,7 +16,7 @@ public slots:
     void downLoadReadyRead();
 
 protected:
-    void startRequest(const QUrl&);
+    void startRequest(const QUrl &url);
 
 };
 

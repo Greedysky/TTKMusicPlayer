@@ -169,7 +169,7 @@ void MusicWebRadioWidget::updateFavouriteList()
         ui->listWidget->addItem(new QListWidgetItem(*m_collecticon,fnames[i]));
 }
 
-void MusicWebRadioWidget::itemHasDoubleClicked(QListWidgetItem* item)
+void MusicWebRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
 {
     m_radioUrl = m_database->getRadioUrl(m_currentRadioName = item->text().trimmed());
     radioPlay();

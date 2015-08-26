@@ -10,8 +10,9 @@ public:
     explicit MusicLocalSongSearchRecordObject(QObject *parent = 0);
 
     inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH); }
-    void writeSearchConfig(const QStringList &, const QStringList &);
-    void readSearchConfig(QStringList&, QStringList &);
+    void writeSearchConfig(const QStringList &names,
+                           const QStringList &times);
+    void readSearchConfig(QStringList &names, QStringList &times);
 
 };
 

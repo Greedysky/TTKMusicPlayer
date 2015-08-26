@@ -16,7 +16,7 @@ public:
 
     void clearAllItems();
     void addThemeListWidgetItem();
-    void setCurrentBgTheme(const QString& theme,int alpha);
+    void setCurrentBgTheme(const QString &theme,int alpha);
 
 public slots:
     void changeToMySkin();

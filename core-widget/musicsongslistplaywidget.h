@@ -18,19 +18,19 @@ public:
     ~MusicSongsListPlayWidget();
 
     void getWidget(QWidget *&one, QWidget *&two);
-    void insertTimerLabel(const QString& t);
+    void insertTimerLabel(const QString &t);
     void updateArtPicture();
-    void setParameter(const QString& name,const QString& path);
+    void setParameter(const QString &name, const QString &path);
     void setItemRename();
 
 signals:
-    void renameFinished(const QString &);
+    void renameFinished(const QString &text);
 
 public slots:
-    void setChangItemName(const QString &);
+    void setChangItemName(const QString &name);
 
 protected:
-    bool showArtPicture(const QString& name);
+    bool showArtPicture(const QString &name);
 
     QLabel *m_artPicture;
     QLabel *m_songName;

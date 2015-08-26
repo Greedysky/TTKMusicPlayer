@@ -21,7 +21,7 @@ public:
     ~MusicTopAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
-    void setParameters(const QString&, int);
+    void setParameters(const QString &skin, int alpha);
     QString getBgSkin();
     int getBgSkinAlpha();
     void setTimerStop();
@@ -38,8 +38,8 @@ public slots:
     void musicShowSkinChangedWindow();
     void musicUserContextLogin();
     void musicBgTransparentChanged();
-    void musicBgTransparentChanged(int);
-    void musicBackgroundSkinChanged(const QString&);
+    void musicBgTransparentChanged(int index);
+    void musicBackgroundSkinChanged(const QString &filename);
     void musicBackgroundChanged();
     void musicBgThemeDownloadFinished();
     void musicCircleRemote();
@@ -48,19 +48,19 @@ public slots:
     void musicRectangleRemote();
     void musicDeleteRemote();
     //This is a slot by MusicRemoteWidget's signal emit
-    void musicVolumeChangedFromRemote(int);
+    void musicVolumeChangedFromRemote(int value);
     /////////////////////////////////////////////
 
 protected:
     void drawWindowBackgroundRect();
-    void drawWindowBackgroundRectString(const QString&);
+    void drawWindowBackgroundRectString(const QString &path);
     void createRemoteWidget();
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
-    MusicUserWindow* m_msuicUserWindow;
-    MusicBackgroundSkinDialog* m_musicbgskin;
-    MusicRemoteWidget* m_musicRemoteWidget;
+    MusicUserWindow *m_msuicUserWindow;
+    MusicBackgroundSkinDialog *m_musicbgskin;
+    MusicRemoteWidget *m_musicRemoteWidget;
 
     QString m_currentBgSkin;
     int m_alpha;

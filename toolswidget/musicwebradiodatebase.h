@@ -11,16 +11,16 @@ public:
     MusicWebRadioDatabase();
     bool connectDatabase();
     bool disConnectDatabase();
-    QString getRadioUrl(const QString&);
-    QStringList getRadioNames(const QString&);
+    QString getRadioUrl(const QString &channelName);
+    QStringList getRadioNames(const QString &category);
     QStringList getRecentNames();
     QStringList getFavouriteNames();
-    void radioRecentPlay(const QString&);
-    void radioCollection(const QString&);
-    void radioDiscollection(const QString&);
+    void radioRecentPlay(const QString &channelName);
+    void radioCollection(const QString &name);
+    void radioDiscollection(const QString &name);
 
 protected:
-    QStringList getRecords(const QString& filter);
+    QStringList getRecords(const QString &filter);
 
 };
 

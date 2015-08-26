@@ -8,8 +8,8 @@ class MUSIC_CORE_EXPORT QMusicSong
 {
 public:
     QMusicSong():m_musicName(""),m_musicType(""),m_musicSize(0){}
-    explicit QMusicSong(const QString& musicName,
-                        const QString& musicType,
+    explicit QMusicSong(const QString &musicName,
+                        const QString &musicType,
                         const qint64 musicSize):
         m_musicName(musicName),m_musicType(musicType),
         m_musicSize(musicSize){}

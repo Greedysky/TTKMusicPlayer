@@ -17,8 +17,8 @@ signals:
     void musicBgDownloadFinished();
 
 public slots:
-    void downLoadFinished(const QString &);
-    void bgDownLoadFinished(const QString&);
+    void downLoadFinished(const QString &name);
+    void bgDownLoadFinished(const QString &name);
 
 protected:
     QString m_artName;

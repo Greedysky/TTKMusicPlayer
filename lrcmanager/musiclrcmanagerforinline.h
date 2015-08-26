@@ -18,7 +18,7 @@ public:
             { m_UpdateLrc = status;}
 
 protected:
-    virtual void paintEvent(QPaintEvent *);
+    virtual void paintEvent(QPaintEvent *event);
     int m_gradientFontSize;
     int m_gradientTransparent;
     bool m_UpdateLrc;

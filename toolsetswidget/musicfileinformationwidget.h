@@ -16,7 +16,7 @@ public:
     explicit MusicFileInformationWidget(QWidget *parent = 0);
     ~MusicFileInformationWidget();
 
-    void setFileInformation(const QString&);
+    void setFileInformation(const QString &name);
 
 signals:
 public slots:

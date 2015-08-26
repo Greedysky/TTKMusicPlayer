@@ -111,9 +111,9 @@ void MusicToolSetsWidget::addListWidgetItem()
 
 }
 
-void MusicToolSetsWidget::itemHasClicked(QListWidgetItem* it)
+void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 {
-    switch(row(it))
+    switch(row(item))
     {
         case 0:
            {

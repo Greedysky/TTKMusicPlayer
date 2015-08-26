@@ -6,8 +6,8 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 
 }
 
-void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList& names,
-                                                      const QStringList& paths)
+void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
+                                                      const QStringList &paths)
 {
     if( !writeConfig( DOWNLOADINFO ) ) return;
 

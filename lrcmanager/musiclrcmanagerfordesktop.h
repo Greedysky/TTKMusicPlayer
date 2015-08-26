@@ -16,7 +16,7 @@ public:
     inline int getFirstFontSize() const { return m_font.pointSize(); }
 
 protected:
-    virtual void paintEvent(QPaintEvent *);
+    virtual void paintEvent(QPaintEvent *event);
 
 };
 

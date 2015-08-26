@@ -27,15 +27,15 @@ public slots:
     void musicHaveNoLrcAlready();
     /////////////////////////////////////////////
     ///This is a slot by MusicSongSearchOnlineWidget's signal emit
-    void showDownLoadInfoFor(DownLoadType);
-    void showDownLoadInfoFinished(const QString&);
+    void showDownLoadInfoFor(DownLoadType type);
+    void showDownLoadInfoFinished(const QString &type);
 
 protected:
     MusicApplication *m_parentWidget;
     MusicDownLoadQueryThread *m_downloadLrcThread;
-    QTimer* m_downloadLrcThreadTimer;
-    QMovie* m_movie;
-    QLabel* m_movieLabel;
+    QTimer *m_downloadLrcThreadTimer;
+    QMovie *m_movie;
+    QLabel *m_movieLabel;
 
 };
 

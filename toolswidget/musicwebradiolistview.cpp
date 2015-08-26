@@ -91,11 +91,13 @@ void MusicWebRadioListView::addListWidgetItem()
     addItem(item10);
 }
 
-void MusicWebRadioListView::itemHasClicked(QListWidgetItem* it)
+void MusicWebRadioListView::itemHasClicked(QListWidgetItem *item)
 {
     if(m_radioDialog == NULL)
+    {
         m_radioDialog = new MusicWebRadioWidget(this);
-    switch(row(it))
+    }
+    switch(row(item))
     {
         case 0:m_radioDialog->updateRadioList("international");break;
         case 1:m_radioDialog->updateRadioList("traffic");break;

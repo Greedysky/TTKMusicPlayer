@@ -21,7 +21,7 @@ signals:
     void clicked();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *);
+    virtual void mousePressEvent(QMouseEvent *event);
 
 };
 

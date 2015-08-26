@@ -16,11 +16,11 @@ public:
     ~MusicXmlAbstract();
 
 protected:
-    bool readConfig(const QString& type);
-    bool writeConfig(const QString& type);
-    QString readXmlByTagNameAndAttribute(const QString&);
-    QFile* m_file;
-    QDomDocument* m_ddom;
+    bool readConfig(const QString &type);
+    bool writeConfig(const QString &type);
+    QString readXmlByTagNameAndAttribute(const QString &tagName);
+    QFile *m_file;
+    QDomDocument *m_ddom;
 
 };
 

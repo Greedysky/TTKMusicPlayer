@@ -17,15 +17,15 @@ public:
     explicit MusicTimerSliderWidget(QWidget *parent = 0);
     ~MusicTimerSliderWidget();
 
-    void setPlayState(bool);
-    void setValue(qint64);
-    void setRange(int , int);
-    void setObject(QObject*);
+    void setPlayState(bool state);
+    void setValue(qint64 value);
+    void setRange(int min, int max);
+    void setObject(QObject *object);
 
 signals:
 
 public slots:
-    void sliderMovedAt(int);
+    void sliderMovedAt(int pos);
     void timeout();
 
 protected:

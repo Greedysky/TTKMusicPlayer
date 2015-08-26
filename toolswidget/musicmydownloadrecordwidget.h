@@ -18,7 +18,7 @@ public:
     void clearAllItems();
 
 signals:
-    void musicPlay(const QStringList&);
+    void musicPlay(const QStringList &list);
 
 public slots:
     void musicPlay();

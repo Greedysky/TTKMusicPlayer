@@ -15,9 +15,9 @@ public:
     QSize sizeHint() const;
 
 protected:
-    void paintEvent(QPaintEvent *);
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
+    void paintEvent(QPaintEvent *event);
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
     void timerEvent(QTimerEvent *event);
 
 private:

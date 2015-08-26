@@ -64,12 +64,12 @@ public:
     };
 
     ~MusicSettingManager(){}
-    inline void setValue(ConfigType type, const QVariant& var)
+    inline void setValue(ConfigType type, const QVariant &var)
     {
         m_para[type] = var;
     }
 
-    inline void setValue(const QString& stype, const QVariant& var)
+    inline void setValue(const QString &stype, const QVariant &var)
     {
         m_para[typeStringToEnum(stype)] = var;
     }
@@ -79,7 +79,7 @@ public:
         return m_para[type];
     }
 
-    inline QVariant value(const QString& stype)
+    inline QVariant value(const QString &stype)
     {
         return m_para[typeStringToEnum(stype)];
     }
@@ -101,7 +101,7 @@ public:
 
 protected:
     MusicSettingManager(){}
-    ConfigType typeStringToEnum(const QString& stype)
+    ConfigType typeStringToEnum(const QString &stype)
     {
         ConfigType type = Null;
         if(stype == "PlayModeChoiced") type = PlayModeChoiced;

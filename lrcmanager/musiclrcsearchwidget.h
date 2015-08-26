@@ -14,14 +14,14 @@ public:
     explicit MusicLrcSearchWidget(QWidget *parent = 0);
     ~MusicLrcSearchWidget();
 
-    void setCurrentSongName(const QString&);
+    void setCurrentSongName(const QString &name);
 
 signals:
 
 public slots:
     void lrcSearchButtonClicked();
     void lrcSearchDownloadClicked();
-    void lrcDownloadStateChanged(const QString&);
+    void lrcDownloadStateChanged(const QString &string);
 
 protected:
     Ui::MusicLrcSearchWidget *ui;

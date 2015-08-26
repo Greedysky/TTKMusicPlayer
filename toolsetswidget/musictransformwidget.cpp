@@ -159,7 +159,7 @@ void MusicTransformWidget::transformFinish(int)
     }
 }
 
-bool MusicTransformWidget::processTransform(const QString& para)
+bool MusicTransformWidget::processTransform(const QString &para)
 {
     if(m_path.isEmpty())
         return false;

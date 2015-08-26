@@ -21,8 +21,9 @@ public:
     virtual void stopLrcMask() = 0;
     virtual void setMaskLinearGradientColor(QColor = CL_Mask) = 0;
     virtual void setSettingParameter();
-    void setLinearGradientColor(LrcColorType);
-    inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
+    void setLinearGradientColor(LrcColorType lrcColorType);
+    inline void setCurrentSongName(const QString &name)
+            { m_currentSongName = name;}
     void setCurrentPosition(qint64 pos);
 
 signals:
@@ -38,9 +39,9 @@ public slots:
     void theCurrentLrcMaked();
 
 protected:
-    void createColorMenu(QMenu&);
+    void createColorMenu(QMenu &menu);
     void clearAllMusicLRCManager();
-    void setSettingParameter(const QString& t);
+    void setSettingParameter(const QString &t);
 
     QString m_currentSongName;
     QList<MusicLRCManager*> m_musicLrcContainer;

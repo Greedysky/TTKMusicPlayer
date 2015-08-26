@@ -20,7 +20,7 @@ public:
     ~MusicBottomAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
-    void setDestopLrcVisible(const QString& status);
+    void setDestopLrcVisible(const QString &status);
     void showPlayStatus(bool status);
     void setLabelText(const QString &name);
     void setSystemCloseConfig(const QString &status);
@@ -33,11 +33,11 @@ public:
     void showMessage(const QString &title, const QString &text);
 
 signals:
-    void setShowDesktopLrc(bool);
+    void setShowDesktopLrc(bool show);
     void setWindowLockedChanged();
 
 public slots:
-    void lockDesktopLrc(bool);
+    void lockDesktopLrc(bool lock);
     void desktopLrcClosed();
     void iconActivated(QSystemTrayIcon::ActivationReason);
 

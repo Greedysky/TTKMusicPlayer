@@ -17,22 +17,23 @@ public:
     ~MusicToolSetsWidget();
 
 signals:
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
+    void setSpectrum(HWND wnd, int w, int h,
+                     int x = 0, int y = 0);
     void timerParameterChanged();
-    void addSongToPlay(const QStringList&);
-    void getCurrentPlayList(QStringList&);
+    void addSongToPlay(const QStringList &list);
+    void getCurrentPlayList(QStringList &list);
 
 public slots:
-    void itemHasClicked(QListWidgetItem*);
+    void itemHasClicked(QListWidgetItem *item);
 
 protected:
     void setTransparent(int angle);
     void clearAllItems();
     void addListWidgetItem();
 
-    MusicSpectrumWidget* m_musicSpectrumWidget;
-    MusicDesktopWallpaperWidget* m_wallpaper;
-    QProcess* m_process;
+    MusicSpectrumWidget *m_musicSpectrumWidget;
+    MusicDesktopWallpaperWidget *m_wallpaper;
+    QProcess *m_process;
 
 };
 

@@ -16,11 +16,11 @@ public:
     explicit MusicSongsListItemInformation(QWidget *parent = 0);
     ~MusicSongsListItemInformation();
 
-    void setMusicSongInformation(QMusicSong& );
+    void setMusicSongInformation(QMusicSong &info);
 
 protected:
     Ui::MusicSongsListItemInformation *ui;
-    bool showArtPicture(const QString& name);
+    bool showArtPicture(const QString &name);
 
 };
 

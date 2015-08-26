@@ -49,8 +49,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
                                      SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
         connect(this,SIGNAL(showCurrentSong(int)),parent,SLOT(showCurrentSong(int)));
     }
-    connect(m_mainSongLists[0],SIGNAL(MusicSongToLovestListAt(int)),this,SLOT(addMusicSongToLovestListAt(int)));
-    connect(m_mainSongLists[2],SIGNAL(MusicSongToLovestListAt(int)),this,SLOT(addMusicSongToLovestListAt(int)));
+    connect(m_mainSongLists[0],SIGNAL(musicSongToLovestListAt(int)),this,SLOT(addMusicSongToLovestListAt(int)));
+    connect(m_mainSongLists[2],SIGNAL(musicSongToLovestListAt(int)),this,SLOT(addMusicSongToLovestListAt(int)));
 
     connect(this,SIGNAL(currentChanged(int)),SLOT(currentIndexChanged(int)));
     connect(this,SIGNAL(musicPlay(int,int)),parent,SLOT(musicPlayIndex(int,int)));
@@ -65,7 +65,7 @@ void MusicSongsSummarizied::musicSongsFileNameAndPath(const MStringLists &names,
         m_mainSongLists[i]->musicSongsFileName(m_musicFileNameList[i]);
 }
 
-void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList& fileIndexs)
+void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIndexs)
 {
     QStringList t;
     for(int i=0; i<fileIndexs.count(); ++i)
@@ -108,7 +108,7 @@ void MusicSongsSummarizied::updateToolStyle()
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
 }
 
-QString MusicSongsSummarizied::itemText(int row,int col) const
+QString MusicSongsSummarizied::itemText(int row, int col) const
 {
     return m_mainSongLists[m_currentIndexs]->item(row,col)->text();
 }
@@ -266,7 +266,7 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode)
         m->setPlaybackMode(mode);
 }
 
-void MusicSongsSummarizied::setMusicSongInformation(int row, QMusicSong& song)
+void MusicSongsSummarizied::setMusicSongInformation(int row, QMusicSong &song)
 {
     QStringList l = m_musicFileNameList[currentIndex()];
     if(row >= l.count()) return;
@@ -277,7 +277,7 @@ void MusicSongsSummarizied::setMusicSongInformation(int row, QMusicSong& song)
     song.m_musicType = f.suffix();
 }
 
-void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString& name, QString& path, bool st)
+void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString &name, QString &path, bool st)
 {
     int index;
     st ? index = m_currentIndexs : index = currentIndex();
@@ -289,7 +289,7 @@ void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString& name, 
     l.isEmpty() ? path = "" : path = l[row];
 }
 
-void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList& list)
+void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
 {
     QStringList *names = &m_musicFileNameList[currentIndex()];
     QStringList *paths = &m_musicFilePathList[currentIndex()];

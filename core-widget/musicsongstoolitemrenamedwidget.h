@@ -9,14 +9,14 @@ class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
     Q_OBJECT
 public:
     explicit MusicSongsToolItemRenamedWidget(int offset,
-             const QString& originText,QWidget *parent = 0);
+             const QString &originText, QWidget *parent = 0);
 
 protected:
-    virtual void focusOutEvent(QFocusEvent *);
-    virtual void contextMenuEvent(QContextMenuEvent *);
+    virtual void focusOutEvent(QFocusEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event);
 
 signals:
-    void renameFinished(const QString&);
+    void renameFinished(const QString &text);
 
 public slots:
     void renameFinished(){ emit renameFinished(text()); }

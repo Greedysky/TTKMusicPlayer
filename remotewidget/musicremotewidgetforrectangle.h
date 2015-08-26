@@ -10,14 +10,11 @@ public:
     explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
     virtual ~MusicRemoteWidgetForRectangle();
 
-    virtual void setLabelText(const QString&);
-signals:
-
-public slots:
+    virtual void setLabelText(const QString &value);
 
 protected:
-    QLabel* m_songNameLabel;
-    QWidget* m_toolWidget;
+    QLabel *m_songNameLabel;
+    QWidget *m_toolWidget;
 
 };
 

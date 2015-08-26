@@ -15,7 +15,8 @@ public:
     ~MusicLocalSongSearchPopTableWidget();
 
     void clearAllItems();
-    void createItems(int , const QString& , const QString& );
+    void createItems(int index, const QString &name,
+                     const QString &time);
 
 public slots:
     virtual void listCellClicked(int, int){}
@@ -31,18 +32,18 @@ public:
     ~MusicLocalSongSearchPopWidget();
 
     void createItems();
-    QString utcTimeToLocal(const QString& time);
+    QString utcTimeToLocal(const QString &time);
 
 signals:
-    void setText(const QString&);
+    void setText(const QString &text);
 
 public slots:
     void clearButtonClicked();
-    void cellDoubleClicked(int,int);
+    void cellDoubleClicked(int row, int column);
 
 protected:
     virtual void leaveEvent(QEvent *event);
-    MusicLocalSongSearchPopTableWidget* m_popTableWidget;
+    MusicLocalSongSearchPopTableWidget *m_popTableWidget;
     QPushButton *m_clearButton;
 
 };

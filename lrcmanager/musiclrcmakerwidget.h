@@ -12,7 +12,7 @@ class MUSIC_WIDGET_EXPORT MusicLrcMakerWidget : public MusicMoveWidgetAbstract
     Q_OBJECT
 public:
     explicit MusicLrcMakerWidget(QWidget *parent = 0);
-    void setCurrentSongName(const QString& name);
+    void setCurrentSongName(const QString &name);
     inline void setCurrentPosition(qint64 pos) { m_position = pos;}
 
 signals:
@@ -22,10 +22,10 @@ public slots:
     void reviewButtonClicked();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent*);
-    virtual void keyReleaseEvent(QKeyEvent*);
-    void setControlEnable(bool);
-    QString translateTimeString(qint64);
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
+    void setControlEnable(bool enale);
+    QString translateTimeString(qint64 time);
     Ui::MusicLrcMakerWidget *ui;
 
     QFile m_file;

@@ -4,6 +4,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 #include "musiclibzplay.h"
+
 using namespace libZPlay;
 
 class MUSIC_CORE_EXPORT MusicEqualizer
@@ -12,8 +13,8 @@ public:
     explicit MusicEqualizer(ZPlay *parent);
     ~MusicEqualizer();
 
-    void setEqEffect(const MIntList& hz);
-    void setEnaleEffect(bool b);
+    void setEqEffect(const MIntList &hz);
+    void setEnaleEffect(bool enale);
     void setEchoEffect();
     void setMixChannelEffect();
     void setReverseEffect();
@@ -33,7 +34,7 @@ public:
 protected:
     void init();
 
-    ZPlay* m_parentClass;
+    ZPlay *m_parentClass;
     int m_Fcount;
     int m_fSideCut;
     int m_fCenterCut;

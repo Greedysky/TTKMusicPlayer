@@ -29,19 +29,19 @@ public slots:
     void initInputPath();
     void initOutputPath();
     void startTransform();
-    void transformFinish(int);
-    void folderBoxChecked(bool);
+    void transformFinish(int index);
+    void folderBoxChecked(bool check);
 
 protected:
     QString getTransformSongName() const;
     Ui::MusicTransformWidget *ui;
 
     void initControlParameter();
-    bool processTransform(const QString&);
-    void setCheckedControl(bool);
+    bool processTransform(const QString &para);
+    void setCheckedControl(bool enable);
 
     QProcess *m_process;
-    QMovie* m_movie;
+    QMovie *m_movie;
     QStringList m_path;
 
 };

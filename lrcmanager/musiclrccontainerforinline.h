@@ -22,7 +22,7 @@ public:
     virtual void setMaskLinearGradientColor(QColor = CL_Mask);
     void updateCurrentLrc(qint64 time);
 
-    bool transLrcFileToTime(const QString& lrcFileName);
+    bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
     void setLrcSize(LrcSizeTable = Middle);
     int getLrcSize();
@@ -49,7 +49,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void wheelEvent(QWheelEvent *);
     virtual void paintEvent(QPaintEvent *event);
-    void changeLrcPostion(const QString&);
+    void changeLrcPostion(const QString &type);
 
     QPoint m_mousePressedAt;
     QPoint m_mouseMovedAt;

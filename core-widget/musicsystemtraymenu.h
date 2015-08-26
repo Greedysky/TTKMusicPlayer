@@ -15,27 +15,27 @@ public:
     MusicSystemTrayMenu(QWidget *parent = 0);
     ~MusicSystemTrayMenu();
 
-    void setLabelText(const QString&);
-    void showDesktopLrc(const QString&);
-    void showPlayStatus(bool);
+    void setLabelText(const QString &text);
+    void showDesktopLrc(const QString &show);
+    void showPlayStatus(bool status);
 
 signals:
-    void setShowDesktopLrc(bool);
+    void setShowDesktopLrc(bool status);
     void setWindowLockedChanged();
 
 public slots:
     void showDesktopLrc();
-    void lockDesktopLrc(bool);
+    void lockDesktopLrc(bool lock);
 
 protected:
     void createWidgetActions();
-    QWidgetAction* m_widgetAction;
-    QLabel* m_showText;
-    QToolButton* m_previousPlay;
-    QToolButton* m_nextPlay;
-    QToolButton* m_PlayOrStop;
-    QAction* m_showLrcAction;
-    QAction* m_lockLrcAction;
+    QWidgetAction *m_widgetAction;
+    QLabel *m_showText;
+    QToolButton *m_previousPlay;
+    QToolButton *m_nextPlay;
+    QToolButton *m_PlayOrStop;
+    QAction *m_showLrcAction;
+    QAction *m_lockLrcAction;
 
 };
 

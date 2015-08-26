@@ -24,16 +24,16 @@ public:
     void stopLrcMask();
     void startTimerClock();
     void showPlayStatus(bool status);
-    void setDestopLrcVisible(const QString& status);
+    void setDestopLrcVisible(const QString &status);
     bool getDestopLrcVisible();
-    void setInlineLrcVisible(const QString& status);
+    void setInlineLrcVisible(const QString &status);
     void setSettingParameter();
     void getParameterSetting();
     bool checkSettingParameterValue();
     void updateCurrentLrc(qint64 current, qint64 total,
                           bool playStatus);
-    void loadCurrentSongLrc(const QString& name,
-                            const QString& path);
+    void loadCurrentSongLrc(const QString &name,
+                            const QString &path);
     void setSongSpeedAndSlow(qint64 time);
     void musicCheckHasLrcAlready();
     void showSettingWidget();
@@ -42,10 +42,10 @@ signals:
     void updateBgThemeDownload();
     void updateBackgroundTheme();
     void desktopLrcClosed();
-    void lockDesktopLrc(bool);
+    void lockDesktopLrc(bool lock);
 
 public slots:
-    void setDestopLrcVisible(bool);
+    void setDestopLrcVisible(bool v);
     void setWindowLockedChanged();
     void musicSearchButtonSearched();
     void musicIndexWidgetButtonSearched();
@@ -56,14 +56,14 @@ public slots:
     void musicVedioWidgetButtonDoubleClicked();
 
 protected:
-    void createVedioWidget(bool);
+    void createVedioWidget(bool create);
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
-    MusicSettingWidget* m_setting;
-    MusicLrcContainerForDesktop* m_musiclrcfordesktop;
-    MusicDownloadStatusLabel* m_downloadStatusLabel;
-    MusicVideoPlayer* m_videoPlayer;
+    MusicSettingWidget *m_setting;
+    MusicLrcContainerForDesktop *m_musiclrcfordesktop;
+    MusicDownloadStatusLabel *m_downloadStatusLabel;
+    MusicVideoPlayer *m_videoPlayer;
 
 };
 

@@ -19,9 +19,9 @@ public:
     explicit MusicSongsSummarizied(QWidget *parent = 0);
     virtual ~MusicSongsSummarizied();
 
-    void musicSongsFileNameAndPath(const MStringLists &, const MStringLists &);
-    void setMusicSongsSearchedFileName(const MIntList&);
-    void importOtherMusicSongs(const QStringList&);
+    void musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls);
+    void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
+    void importOtherMusicSongs(const QStringList &filelist);
     inline QStringList& getMusicSongsFileName(int index) { return m_musicFileNameList[index];}
     inline QStringList& getMusicSongsFilePath(int index) { return m_musicFilePathList[index];}
     inline MStringLists& getMusicAllSongsFileName() { return m_musicFileNameList;}
@@ -29,34 +29,36 @@ public:
     inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
     void clearAllLists();
     void currentMusicSongTreeIndexChanged(int index);
-    void selectRow(int);
-    void setTimerLabel(const QString&);
-    QString itemText(int,int) const;
-    void setPlaybackMode(MusicObject::SongPlayType);
+    void selectRow(int index);
+    void setTimerLabel(const QString &time);
+    QString itemText(int row, int col) const;
+    void setPlaybackMode(MusicObject::SongPlayType mode);
 
 signals:
-    void musicPlay(int,int);
-    void deleteItemAt(MIntList);
-    void updatePlayLists(const QString&);
-    void showCurrentSong(int);
-    void updateMediaLists(const QStringList&,int);
+    void musicPlay(int row, int col);
+    void deleteItemAt(MIntList list);
+    void updatePlayLists(const QString &list);
+    void showCurrentSong(int index);
+    void updateMediaLists(const QStringList &list, int index);
 
 public slots:
     void setCurrentIndex();
-    void addMusicSongToLovestListAt(int);
-    void addNetMusicSongToList(const QString&);
-    void setDeleteItemAt(const MIntList&,bool);
+    void addMusicSongToLovestListAt(int row);
+    void addNetMusicSongToList(const QString &name);
+    void setDeleteItemAt(const MIntList &index, bool fileRemove);
     void addNewItem();
     void deleteItem();
     void changItemName();
-    void setChangItemName(const QString&);
-    void currentIndexChanged(int);
-    void currentTextChanged(int,const QString&);
+    void setChangItemName(const QString &name);
+    void currentIndexChanged(int index);
+    void currentTextChanged(int index, const QString &text);
     void musicOpenFileDir(int index);
-    void musicPlay(int);
-    void setMusicSongInformation(int, QMusicSong&);
-    void setMusicSongFileInformation(int, QString&, QString&, bool = true);
-    void setMusicIndexSwaped(int,int,int,QStringList&);
+    void musicPlay(int index);
+    void setMusicSongInformation(int row, QMusicSong &song);
+    void setMusicSongFileInformation(int row, QString &name,
+                                     QString &path, bool st = true);
+    void setMusicIndexSwaped(int before, int after, int play,
+                             QStringList &list);
 
     void updateArtPicture();
     void updateToolStyle();
@@ -70,7 +72,7 @@ protected:
     MStringLists m_musicFilePathList;
     int m_currentIndexs;
     int m_renameIndex;
-    MusicSongsToolItemRenamedWidget* m_renameLine;
+    MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };
 

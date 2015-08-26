@@ -11,16 +11,17 @@ public:
     explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
     virtual ~MusicLrcSearchTableWidget();
 
-    void startSearchQuery(const QString&);
-    void musicDownloadLocal(int);
-    inline void setCurrentSongName(const QString& name){ m_currentSongName = name;}
+    void startSearchQuery(const QString &text);
+    void musicDownloadLocal(int row);
+    inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
 signals:
-    void lrcDownloadStateChanged(const QString&);
+    void lrcDownloadStateChanged(const QString &name);
 
 public slots:
     void clearAllItems();
-    void creatSearchedItems(const QString&, const QString&, const QString&);
+    void creatSearchedItems(const QString &songname,
+                            const QString &artistname, const QString &time);
     void itemDoubleClicked(int row, int column);
     virtual void listCellClicked(int, int){}
 

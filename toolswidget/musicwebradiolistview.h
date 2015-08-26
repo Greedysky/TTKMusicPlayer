@@ -17,7 +17,7 @@ public:
 signals:
 
 public slots:
-    void itemHasClicked(QListWidgetItem*);
+    void itemHasClicked(QListWidgetItem *item);
 
 protected:
     void setTransparent(int angle);

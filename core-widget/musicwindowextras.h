@@ -17,10 +17,10 @@ public:
     explicit MusicWindowExtras(MusicApplication *parent = 0);
     ~MusicWindowExtras();
 
-    void showPlayStatus(bool);
-    void setValue(int);
-    void setRange(int,int);
-    void disableBlurBehindWindow(bool);
+    void showPlayStatus(bool status);
+    void setValue(int value);
+    void setRange(int start, int end);
+    void disableBlurBehindWindow(bool enable);
     inline bool isDisableBlurBehindWindow() const
                 { return m_disableBlurBehindWindow; }
 
@@ -32,10 +32,10 @@ protected:
     void createThumbnailToolBar();
 
     bool m_disableBlurBehindWindow;
-    MusicApplication* m_superClass;
-    QWinTaskbarButton* m_taskbarButton;
-    QWinTaskbarProgress* m_taskbarProgress;
-    QWinThumbnailToolBar* m_thumbnailToolBar;
+    MusicApplication *m_superClass;
+    QWinTaskbarButton *m_taskbarButton;
+    QWinTaskbarProgress *m_taskbarProgress;
+    QWinThumbnailToolBar *m_thumbnailToolBar;
     QWinThumbnailToolButton *m_playToolButton;
     QWinThumbnailToolButton *m_forwardToolButton;
     QWinThumbnailToolButton *m_backwardToolButton;

@@ -18,25 +18,25 @@ public:
     ~MusicEqualizerDialog();
 
 signals:
-    void setEqEffect(const MIntList&);
-    void setEnaleEffect(bool);
-    void setSpEqEffect(MusicObject::SpecialEQ);
+    void setEqEffect(const MIntList &effect);
+    void setEnaleEffect(bool enable);
+    void setSpEqEffect(MusicObject::SpecialEQ eq);
     void resetEqEffect();
 
 public slots:
-    void verticalSlider1(int);
-    void verticalSlider2(int);
-    void verticalSlider3(int);
-    void verticalSlider4(int);
-    void verticalSlider5(int);
-    void verticalSlider6(int);
-    void verticalSlider7(int);
-    void verticalSlider8(int);
-    void verticalSlider9(int);
-    void verticalSlider10(int);
+    void verticalSlider1(int value);
+    void verticalSlider2(int value);
+    void verticalSlider3(int value);
+    void verticalSlider4(int value);
+    void verticalSlider5(int value);
+    void verticalSlider6(int value);
+    void verticalSlider7(int value);
+    void verticalSlider8(int value);
+    void verticalSlider9(int value);
+    void verticalSlider10(int value);
     void setEqEnable();
     void resetEq();
-    void eqChoiceIndexChanged(int);
+    void eqChoiceIndexChanged(int index);
 
     void setEchoEffect(bool echo);
     void setMixChannelEffect(bool mix);
@@ -53,7 +53,7 @@ public slots:
     void setFadeInEffect();
 
 protected:
-    void setControlEnable(bool);
+    void setControlEnable(bool enable);
     void readEqInformation();
     void writeEqInformation();
     void initEqualizeValue();

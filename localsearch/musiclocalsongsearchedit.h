@@ -10,9 +10,6 @@ class MUSIC_WIDGET_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 public:
     explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
 
-signals:
-public slots:
-
 protected:
     virtual void focusInEvent(QFocusEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);

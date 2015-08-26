@@ -42,22 +42,22 @@ public:
     void stopLrcMask();
     void setLinearGradientColor(QColor = CL_Origin);
     void setMaskLinearGradientColor(QColor = CL_Mask);
-    void setLrcFontSize(LrcSizeTable);
-    void setFontFamily(int);
-    void setFontType(int);
+    void setLrcFontSize(LrcSizeTable size);
+    void setFontFamily(int index);
+    void setFontType(int type);
     inline void setFontTransparent(int t) { m_transparent = t;}
 
 signals:
 
 public slots:
     void setTimeOut();
-    void setText(const QString &);
+    void setText(const QString &str);
 
 protected:
     QLinearGradient m_linearGradient;
     QLinearGradient m_maskLinearGradient;
     QFont m_font;
-    QTimer* m_timer;
+    QTimer *m_timer;
     qreal m_lrcMaskWidth;
     qreal m_lrcMaskWidthInterval;
     qreal m_intervalCount;

@@ -7,7 +7,7 @@ class MUSIC_CORE_EXPORT MusicTextDownLoadThread : public MusicDownLoadThreadAbst
 {
     Q_OBJECT
 public:
-    explicit MusicTextDownLoadThread(const QString& url, const QString& save,
+    explicit MusicTextDownLoadThread(const QString &url, const QString &save,
                                      QObject *parent = 0);
     virtual void startToDownload();
 

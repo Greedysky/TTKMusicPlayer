@@ -14,20 +14,22 @@ public:
     explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
     virtual ~MusicSongSearchOnlineWidget();
 
-    void startSearchQuery(const QString&);
+    void startSearchQuery(const QString &text);
 
 signals:
     void musicBgDownloadFinished();
 
 public slots:
-    void listCellClicked(int,int);
+    void listCellClicked(int row, int column);
     void clearAllItems();
-    void creatSearchedItems(const QString&, const QString&, const QString&);
+    void creatSearchedItems(const QString &songname,
+                            const QString &artistname,
+                            const QString &time);
     void itemDoubleClicked(int row, int column);
 
 protected:
-    void addSearchMusicToPlayList(int);
-    void musicDownloadLocal(int);
+    void addSearchMusicToPlayList(int row);
+    void musicDownloadLocal(int row);
 
 };
 

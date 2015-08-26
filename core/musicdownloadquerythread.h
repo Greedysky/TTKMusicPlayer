@@ -19,19 +19,20 @@ public:
     virtual ~MusicDownLoadQueryThread();
 
     void deleteAll();
-    void startSearchSong(QueryType, const QString&);
+    void startSearchSong(QueryType type, const QString &text);
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
     inline MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
-    void showDownLoadInfoFor(DownLoadType);
-    void showDownLoadInfoFinished(const QString&);
+    void showDownLoadInfoFor(DownLoadType type);
+    void showDownLoadInfoFinished(const QString &name);
     void clearAllItems();
-    void creatSearchedItems(const QString&, const QString&, const QString&);
+    void creatSearchedItems(const QString &songname,
+                            const QString &artistname, const QString &time);
 
 public slots:
     void searchFinshed();
-    void replyError(QNetworkReply::NetworkError);
+    void replyError(QNetworkReply::NetworkError error);
 
 protected:
     QNetworkAccessManager *m_manager;

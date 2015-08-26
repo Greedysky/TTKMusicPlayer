@@ -17,7 +17,7 @@ public:
     void runTimerAutoConfig();
 
 signals:
-    void setPlaySong(int);
+    void setPlaySong(int index);
     void setStopSong();
 
 public slots:

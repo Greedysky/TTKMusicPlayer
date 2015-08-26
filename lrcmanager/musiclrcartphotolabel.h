@@ -13,8 +13,8 @@ class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoLabel : public QWidget
 public:
     explicit MusicLrcArtPhotoLabel(QWidget *parent = 0);
 
-    void setImagePath(const QString& path);
-    void saveImagePath(const QString& path);
+    void setImagePath(const QString &path);
+    void saveImagePath(const QString &path);
 
 signals:
 public slots:

@@ -95,11 +95,13 @@ void MusicDesktopWallpaperWidget::initParameters()
     ui->timeS->addItems(s);
 }
 
-void MusicDesktopWallpaperWidget::findFiles(const QString & path)
+void MusicDesktopWallpaperWidget::findFiles(const QString &path)
 {
     QDir dir(path);
     if(!dir.exists())
+    {
         return;
+    }
     dir.setFilter(QDir::Files);
     QFileInfoList list = dir.entryInfoList();
     if(list.count() == 0) return;

@@ -22,8 +22,8 @@ protected:
     int m_valueX;
     QPushButton *m_more,*m_update,*m_search;
     QPushButton *m_wallp,*m_photo;
-    MusicLrcFloatPhotoWidget* m_floatPhotoWidget;
-    MusicLrcFloatSettingWidget* m_floatSettingWidget;
+    MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
+    MusicLrcFloatSettingWidget *m_floatSettingWidget;
 
 };
 

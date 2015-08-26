@@ -17,7 +17,7 @@ public:
     explicit MusicTimerWidget(QWidget *parent = 0);
     ~MusicTimerWidget();
 
-    void setSongStringList(const QStringList&);
+    void setSongStringList(const QStringList &list);
 
 signals:
     void timerParameterChanged();

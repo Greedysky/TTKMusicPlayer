@@ -227,7 +227,9 @@ void MusicAudioRecorderWidget::onRecordSave()
 void MusicAudioRecorderWidget::onStateChange(QAudio::State state)
 {
     if(state == QAudio::IdleState)
+    {
         onRecordStop();
+    }
 }
 
 int MusicAudioRecorderWidget::addWavHeader(char *filename)

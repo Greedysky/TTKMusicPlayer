@@ -65,17 +65,17 @@ public slots:
     void setTimeOut();
     void removeCurrentMedia();
 
-    void setEqEffect(const MIntList& hz);
-    void setEnaleEffect(bool b);
-    void setSpEqEffect(MusicObject::SpecialEQ);
+    void setEqEffect(const MIntList &hz);
+    void setEnaleEffect(bool enable);
+    void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
     void resetEqEffect();
 
 protected:
-    MusicEqualizer* m_equalizer;
-    MusicPlaylist* m_playlist;
+    MusicEqualizer *m_equalizer;
+    MusicPlaylist *m_playlist;
     State m_state;
-    ZPlay* m_music;
+    ZPlay *m_music;
     QTimer m_timer;
     QString m_currentMedia;
 

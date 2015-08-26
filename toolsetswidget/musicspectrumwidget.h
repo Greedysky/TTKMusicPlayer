@@ -25,7 +25,7 @@ public:
     ~MusicSpectrumWidget();
 
 signals:
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
+    void setSpectrum(HWND wnd, int w, int h, int x = 0, int y = 0);
 
 public slots:
     void show();

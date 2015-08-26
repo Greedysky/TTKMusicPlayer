@@ -12,7 +12,7 @@ public:
     explicit MusicDesktopWallpaperThread(QObject *parent = 0);
     ~MusicDesktopWallpaperThread();
 
-    void setParamters(const MStriantMap &);
+    void setParamters(const MStriantMap &p);
     void stopAndQuitThread();
 
 public slots:
@@ -20,7 +20,7 @@ public slots:
     void run();
 
 protected:
-    void setWallpaper(const QString&, int);
+    void setWallpaper(const QString &path, int type);
 
     bool m_run;
     bool m_returnToOrigin;

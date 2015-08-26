@@ -11,15 +11,15 @@ class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
 {
     Q_OBJECT
 public:
-    void setArtName(const QString&);
-    inline int getArtPhotoCount() { return m_photos.count(); }
+    void setArtName(const QString &name);
+    inline int getArtPhotoCount() const { return m_photos.count(); }
     QString getArtPhotoPath();
-    QString getArtPhotoPathByIndex(int index = -1);
+    QString getArtPhotoPathByIndex(int index = -1) const;
 
-    QStringList getArtPhotoPaths();
-    void setArtPhotoPaths(const QStringList&);
-    void sendUserSelectArtBg(int);
-    void setObject(QObject*);
+    QStringList getArtPhotoPaths() const;
+    void setArtPhotoPaths(const QStringList &list);
+    void sendUserSelectArtBg(int index);
+    void setObject(QObject *object);
 
 signals:
     void artHasChanged();

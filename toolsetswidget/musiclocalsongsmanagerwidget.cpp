@@ -98,8 +98,8 @@ void MusicLocalSongsManagerWidget::clearAllItems()
     }
 }
 
-void MusicLocalSongsManagerWidget::addAllItems(const QStringList& filename,
-                                               const QStringList& fileDir)
+void MusicLocalSongsManagerWidget::addAllItems(const QStringList &filename,
+                                               const QStringList &fileDir)
 {
     ui->songlistsTable->setRowCount(filename.count());//reset row count
     ui->songCountLabel->setText(tr("showSongCount%1").arg(filename.count()));

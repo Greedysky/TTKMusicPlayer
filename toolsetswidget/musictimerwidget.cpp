@@ -129,7 +129,7 @@ void MusicTimerWidget::writeParemeter()
                      ui->repeatComboBox3->currentIndex());
 }
 
-void MusicTimerWidget::setSongStringList(const QStringList& list)
+void MusicTimerWidget::setSongStringList(const QStringList &list)
 {
     ui->psongComboBox->addItems(list);
     ui->psongComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());

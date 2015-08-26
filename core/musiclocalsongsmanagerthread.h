@@ -12,19 +12,20 @@ public:
     explicit MusicLocalSongsManagerThread(QObject *parent = 0);
     ~MusicLocalSongsManagerThread();
 
-    void setFindFilePath(const QString&);
-    void setFindFilePath(const QStringList&);
+    void setFindFilePath(const QString &path);
+    void setFindFilePath(const QStringList &path);
     void stopAndQuitThread();
 
 signals:
-    void setSongNamePath(const QStringList&,const QStringList&);
+    void setSongNamePath(const QStringList &name,
+                         const QStringList &dir);
 
 public slots:
     void start();
     void run();
 
 protected:
-    void findFile(const QString&);
+    void findFile(const QString &path);
 
     bool m_run;
     QStringList m_path;

@@ -11,7 +11,6 @@ public:
     virtual ~MusicRemoteWidgetForSquare();
 
 signals:
-
 public slots:
     void enterTimeout();
     void leaveTimeout();

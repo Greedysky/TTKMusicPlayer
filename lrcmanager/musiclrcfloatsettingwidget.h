@@ -21,7 +21,7 @@ public slots:
 
 protected:
     virtual void enterEvent(QEvent *){}
-    virtual void leaveEvent(QEvent *);
+    virtual void leaveEvent(QEvent *event);
 
 };
 

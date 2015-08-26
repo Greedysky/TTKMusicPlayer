@@ -29,10 +29,10 @@ public slots:
     void radioStop();
     void radioVolume(int num);
     void timeout();
-    void updateRadioList(const QString&);
+    void updateRadioList(const QString &category);
     void updateRecentList();
     void updateFavouriteList();
-    void itemHasDoubleClicked(QListWidgetItem*);
+    void itemHasDoubleClicked(QListWidgetItem *item);
     void radioStandardOutput();
     void radioColletButton();
     void radioDiscolletButton();

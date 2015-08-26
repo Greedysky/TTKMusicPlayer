@@ -18,13 +18,13 @@ public:
     virtual void stopLrcMask();
     virtual void setMaskLinearGradientColor(QColor = CL_Mask);
     virtual void setSettingParameter();
-    void showPlayStatus(bool);
+    void showPlayStatus(bool status);
     void initCurrentLrc();
-    void updateCurrentLrc(const QString&, const QString&,
-                          qint64 time);
+    void updateCurrentLrc(const QString &first,
+                          const QString &second, qint64 time);
 signals:
     void desktopLrcClosed();
-    void setWindowLockedChanged(bool);
+    void setWindowLockedChanged(bool lock);
 
 public slots:
     void setWindowLockedChanged();
@@ -45,18 +45,18 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
 
     QWidget *m_supperClass;
-    QWidget* m_toolBarWidget;
-    QWidget* m_desktopWidget;
-    QPushButton* m_showMainWindow;
-    QToolButton* m_toolPreSongButton;
-    QToolButton* m_toolNextSongButton;
-    QToolButton* m_toolPlayButton;
-    QToolButton* m_toolSettingButton;
-    QToolButton* m_toolCloseButton;
-    QToolButton* m_toolWindowLockedButton;
-    QToolButton* m_toolLrcBigerButton;
-    QToolButton* m_toolLrcSmallerButton;
-    QToolButton* m_toolUpdateLrcButton;
+    QWidget *m_toolBarWidget;
+    QWidget *m_desktopWidget;
+    QPushButton *m_showMainWindow;
+    QToolButton *m_toolPreSongButton;
+    QToolButton *m_toolNextSongButton;
+    QToolButton *m_toolPlayButton;
+    QToolButton *m_toolSettingButton;
+    QToolButton *m_toolCloseButton;
+    QToolButton *m_toolWindowLockedButton;
+    QToolButton *m_toolLrcBigerButton;
+    QToolButton *m_toolLrcSmallerButton;
+    QToolButton *m_toolUpdateLrcButton;
 
     QPoint m_offset;
     bool m_windowLocked;

@@ -30,8 +30,8 @@ public slots:
 protected:
     void initWidgetStyle();
     void initParameters();
-    void findFiles(const QString&);
-    void setAutoStart(bool);
+    void findFiles(const QString &path);
+    void setAutoStart(bool autoStart);
 
     Ui::MusicDesktopWallpaperWidget *ui;
     MusicDesktopWallpaperThread *m_wallThread;

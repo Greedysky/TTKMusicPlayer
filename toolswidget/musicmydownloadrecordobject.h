@@ -9,8 +9,9 @@ public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);
 
     inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO); }
-    void writeDownloadConfig(const QStringList &, const QStringList &);
-    void readDownloadConfig(QStringList&, QStringList &);
+    void writeDownloadConfig(const QStringList &names,
+                             const QStringList &paths);
+    void readDownloadConfig(QStringList &names, QStringList &paths);
 
 };
 

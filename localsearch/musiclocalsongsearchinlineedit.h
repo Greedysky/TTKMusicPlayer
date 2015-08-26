@@ -12,9 +12,6 @@ public:
     explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
     ~MusicLocalSongSearchInlineEdit();
 
-signals:
-public slots:
-
 protected:
     virtual void focusOutEvent(QFocusEvent *event);
     virtual void enterEvent(QEvent *event);

@@ -7,18 +7,18 @@ class MUSIC_CORE_EXPORT MusicData2DownloadThread : public MusicDataDownloadThrea
 {
     Q_OBJECT
 public:
-    explicit MusicData2DownloadThread(const QString& url, const QString& save,
+    explicit MusicData2DownloadThread(const QString &url, const QString &save,
                                       QObject *parent = 0);
     void deleteAll();
     virtual void startToDownload();
 
 public slots:
     void dataGetFinished();
-    void dataReplyError(QNetworkReply::NetworkError);
+    void dataReplyError(QNetworkReply::NetworkError error);
 
 protected:
-    QNetworkAccessManager* m_dataManager;
-    QNetworkReply* m_dataReply;
+    QNetworkAccessManager *m_dataManager;
+    QNetworkReply *m_dataReply;
 
 };
 

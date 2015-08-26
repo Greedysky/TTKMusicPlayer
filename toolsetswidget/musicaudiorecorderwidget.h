@@ -49,14 +49,14 @@ public slots:
     void onRecordStop();
     void onRecordPlay();
     void onRecordSave();
-    void onStateChange(QAudio::State s);
+    void onStateChange(QAudio::State state);
     void onReadMore();
-    void onSliderValueChanged(int);
+    void onSliderValueChanged(int value);
     void onTimeOut();
     void onTimerout();
 
 protected:
-    int addWavHeader(char *);
+    int addWavHeader(char *filename);
     int applyVolumeToSample(short iSample);
     void initMonitor();
     void createAudioInput();
@@ -70,14 +70,14 @@ protected:
     int m_miVolume;
     int m_miMaxValue;
     QAudioFormat m_mFormatFile;
-    QFile* m_mpOutputFile;
-    QAudioInput* m_mpAudioInputFile;
-    QAudioOutput* m_mpAudioOutputFile;
+    QFile *m_mpOutputFile;
+    QAudioInput *m_mpAudioInputFile;
+    QAudioOutput *m_mpAudioOutputFile;
     QAudioFormat m_mFormatSound;
-    QAudioInput* m_mpAudioInputSound;
-    QAudioOutput* m_mpAudioOutputSound;
-    QIODevice* m_mpInputDevSound;
-    QIODevice* m_mpOutputDevSound;
+    QAudioInput *m_mpAudioInputSound;
+    QAudioOutput *m_mpAudioOutputSound;
+    QIODevice *m_mpInputDevSound;
+    QIODevice *m_mpOutputDevSound;
     QByteArray m_mBuffer;
 
 };

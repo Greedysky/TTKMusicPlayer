@@ -35,16 +35,16 @@ public slots:
 
     void inlineLrcFgChanged();
     void inlineLrcBgChanged();
-    void defaultLrcColorChanged(int);
-    void inlineLrcTransChanged(int);
-    void showInlineLrcDemo(int);
+    void defaultLrcColorChanged(int index);
+    void inlineLrcTransChanged(int index);
+    void showInlineLrcDemo(int index);
     void resetInlineParameter();
 
     void desktopFgChanged();
     void desktopBgChanged();
-    void defaultDesktopLrcColorChanged(int);
-    void desktopLrcTransChanged(int);
-    void showDesktopLrcDemo(int);
+    void defaultDesktopLrcColorChanged(int index);
+    void desktopLrcTransChanged(int index);
+    void showDesktopLrcDemo(int index);
     void resetDesktopParameter();
 
 protected:

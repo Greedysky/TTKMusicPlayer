@@ -17,9 +17,9 @@ public:
     void clearSearchedText();
 
 private:
-    QLabel* m_showIcon;
-    MusicLocalSongSearchEdit* m_searchLine;
-    QToolButton* m_closeButton;
+    QLabel *m_showIcon;
+    MusicLocalSongSearchEdit *m_searchLine;
+    QToolButton *m_closeButton;
 
 };
 
