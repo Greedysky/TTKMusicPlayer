@@ -162,14 +162,6 @@
         <translation>支持歌曲文件的拖拽</translation>
     </message>
     <message>
-        <source>About QMusicPlayer</source>
-        <translation type="vanished">关于天天酷音</translation>
-    </message>
-    <message>
-        <source>Directed By Greedysky</source>
-        <translation type="vanished">Greedysky 工作室出品</translation>
-    </message>
-    <message>
         <location filename="../ui/application/musicapplication.ui" line="674"/>
         <location filename="../ui/application/musicapplication.ui" line="690"/>
         <source>00:00</source>
@@ -397,17 +389,17 @@
     <message>
         <location filename="../musicapplicationobject.cpp" line="92"/>
         <source>About QMusicPlayer</source>
-        <translation type="unfinished">关于天天酷音</translation>
+        <translation >关于天天酷音</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
-        <translation type="unfinished">天天酷音</translation>
+        <translation >天天酷音</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="94"/>
         <source>Directed By Greedysky</source>
-        <translation type="unfinished">Greedysky 工作室出品</translation>
+        <translation>Greedysky 工作室出品</translation>
     </message>
 </context>
 <context>
@@ -614,7 +606,7 @@
     <message>
         <location filename="../musicbottomareawidget.cpp" line="128"/>
         <source>QMusicPlayer</source>
-        <translation type="unfinished">天天酷音</translation>
+        <translation>天天酷音</translation>
     </message>
 </context>
 <context>

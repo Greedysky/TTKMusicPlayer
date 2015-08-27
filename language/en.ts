@@ -105,17 +105,9 @@
         <translation>Play Once</translation>
     </message>
     <message>
-        <source>Import</source>
-        <translation type="vanished">Import</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="194"/>
         <source>Setting</source>
         <translation>Settings</translation>
-    </message>
-    <message>
-        <source>musicSearch</source>
-        <translation type="vanished">Music Search</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="195"/>
@@ -123,37 +115,9 @@
         <translation>Music Locate</translation>
     </message>
     <message>
-        <source>changeskin</source>
-        <translation type="vanished">Skin Change</translation>
-    </message>
-    <message>
-        <source>bestlove</source>
-        <translation type="vanished">Add to Lovest</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="152"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
-    </message>
-    <message>
-        <source>musicCloud</source>
-        <translation type="vanished">Cloud</translation>
-    </message>
-    <message>
-        <source>musicMydownl</source>
-        <translation type="vanished">MyDownload</translation>
-    </message>
-    <message>
-        <source>musicPlaylist</source>
-        <translation type="vanished">Playlist</translation>
-    </message>
-    <message>
-        <source>musicRadio</source>
-        <translation type="vanished">Radio</translation>
-    </message>
-    <message>
-        <source>musicTools</source>
-        <translation type="vanished">Tools</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="450"/>
@@ -193,21 +157,9 @@
         <translation>Audio Recorder</translation>
     </message>
     <message>
-        <source>remoteWindow</source>
-        <translation type="vanished">Open Remote</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="693"/>
         <source>dragAnddrop</source>
         <translation>Files Drag Drop Supported</translation>
-    </message>
-    <message>
-        <source>About QMusicPlayer</source>
-        <translation type="vanished">About QMusicPlayer</translation>
-    </message>
-    <message>
-        <source>Directed By Greedysky</source>
-        <translation type="vanished">Directed By Greedysky</translation>
     </message>
     <message>
         <location filename="../ui/application/musicapplication.ui" line="674"/>
@@ -437,17 +389,17 @@
     <message>
         <location filename="../musicapplicationobject.cpp" line="92"/>
         <source>About QMusicPlayer</source>
-        <translation type="unfinished">About QMusicPlayer</translation>
+        <translation>About QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
-        <translation type="unfinished">QMusicPlayer</translation>
+        <translation >QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="94"/>
         <source>Directed By Greedysky</source>
-        <translation type="unfinished">Directed By Greedysky</translation>
+        <translation>Directed By Greedysky</translation>
     </message>
 </context>
 <context>
@@ -654,7 +606,7 @@
     <message>
         <location filename="../musicbottomareawidget.cpp" line="128"/>
         <source>QMusicPlayer</source>
-        <translation type="unfinished">QMusicPlayer</translation>
+        <translation>QMusicPlayer</translation>
     </message>
 </context>
 <context>
@@ -3468,28 +3420,6 @@
         <location filename="../ui/usermanager/musicuserwindow.ui" line="30"/>
         <source>登录</source>
         <translation>Login</translation>
-    </message>
-</context>
-<context>
-    <name>MusicVideoControl</name>
-    <message>
-        <source>openFile</source>
-        <translation type="vanished">Open File</translation>
-    </message>
-    <message>
-        <source>playList</source>
-        <translation type="vanished">Play List</translation>
-    </message>
-    <message>
-        <source>Open Movie</source>
-        <translation type="vanished">Open Movie</translation>
-    </message>
-</context>
-<context>
-    <name>MusicVideoPlayListWidget</name>
-    <message>
-        <source>close</source>
-        <translation type="vanished">关闭</translation>
     </message>
 </context>
 <context>
