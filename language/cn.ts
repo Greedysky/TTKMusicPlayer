@@ -4,160 +4,160 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../musicapplication.cpp" line="109"/>
+        <location filename="../musicapplication.cpp" line="110"/>
         <source>Prompt</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="110"/>
+        <location filename="../musicapplication.cpp" line="111"/>
         <source>QMusicPlayer will run in the background</source>
         <translation>天天酷音将在后台运行</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="172"/>
+        <location filename="../musicapplication.cpp" line="173"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="164"/>
+        <location filename="../musicapplication.cpp" line="165"/>
         <source>logout</source>
         <translation>登录</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="153"/>
+        <location filename="../musicapplication.cpp" line="154"/>
         <source>not supported</source>
         <translation>不支持的音频格式</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="167"/>
+        <location filename="../musicapplication.cpp" line="168"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="177"/>
+        <location filename="../musicapplication.cpp" line="178"/>
         <source>RemoteControl</source>
         <translation>遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="181"/>
+        <location filename="../musicapplication.cpp" line="182"/>
         <source>DiamondRemote</source>
         <translation>菱形遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="182"/>
+        <location filename="../musicapplication.cpp" line="183"/>
         <source>CircleRemote</source>
         <translation>圆形遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="185"/>
+        <location filename="../musicapplication.cpp" line="186"/>
         <source>Equalizer</source>
         <translation>均衡器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="187"/>
+        <location filename="../musicapplication.cpp" line="188"/>
         <source>TimingSettings</source>
         <translation>定时设置</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="188"/>
+        <location filename="../musicapplication.cpp" line="189"/>
         <source>ShowingSpectrum</source>
         <translation>频谱显示</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="191"/>
+        <location filename="../musicapplication.cpp" line="192"/>
         <source>WindowTop</source>
         <translation>界面总在最前面</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="197"/>
-        <location filename="../musicapplication.cpp" line="199"/>
+        <location filename="../musicapplication.cpp" line="198"/>
+        <location filename="../musicapplication.cpp" line="200"/>
         <source>musicAbout</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="203"/>
+        <location filename="../musicapplication.cpp" line="204"/>
         <source>quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="246"/>
+        <location filename="../musicapplication.cpp" line="247"/>
         <source>ListCycle</source>
         <translation>列表循环</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="247"/>
+        <location filename="../musicapplication.cpp" line="248"/>
         <source>SingleCycle</source>
         <translation>单曲循环</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="244"/>
+        <location filename="../musicapplication.cpp" line="245"/>
         <source>OrderPlay</source>
         <translation>顺序播放</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="245"/>
+        <location filename="../musicapplication.cpp" line="246"/>
         <source>RandomPlay</source>
         <translation>随机播放</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="248"/>
+        <location filename="../musicapplication.cpp" line="249"/>
         <source>PlayOnce</source>
         <translation>单曲播放</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="194"/>
+        <location filename="../musicapplication.cpp" line="195"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="195"/>
+        <location filename="../musicapplication.cpp" line="196"/>
         <source>musicLocation</source>
         <translation>定位正在播放的音乐</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="152"/>
+        <location filename="../musicapplication.cpp" line="153"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="450"/>
+        <location filename="../musicapplication.cpp" line="443"/>
         <source>Playing</source>
         <translation>正在播放</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="169"/>
-        <location filename="../musicapplication.cpp" line="690"/>
+        <location filename="../musicapplication.cpp" line="170"/>
+        <location filename="../musicapplication.cpp" line="683"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="170"/>
-        <location filename="../musicapplication.cpp" line="691"/>
+        <location filename="../musicapplication.cpp" line="171"/>
+        <location filename="../musicapplication.cpp" line="684"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="179"/>
+        <location filename="../musicapplication.cpp" line="180"/>
         <source>SquareRemote</source>
         <translation>正方形遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="180"/>
+        <location filename="../musicapplication.cpp" line="181"/>
         <source>RectangleRemote</source>
         <translation>长方形遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="183"/>
+        <location filename="../musicapplication.cpp" line="184"/>
         <source>DeleteRemote</source>
         <translation>关闭遥控器</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="186"/>
+        <location filename="../musicapplication.cpp" line="187"/>
         <source>AudioRecorder</source>
         <translation>录音设置</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="693"/>
+        <location filename="../musicapplication.cpp" line="686"/>
         <source>dragAnddrop</source>
         <translation>支持歌曲文件的拖拽</translation>
     </message>
@@ -389,12 +389,12 @@
     <message>
         <location filename="../musicapplicationobject.cpp" line="92"/>
         <source>About QMusicPlayer</source>
-        <translation >关于天天酷音</translation>
+        <translation>关于天天酷音</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
-        <translation >天天酷音</translation>
+        <translation>天天酷音</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="94"/>
@@ -485,32 +485,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="24"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="25"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="29"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="30"/>
         <source>startAudio</source>
         <translation>开始录音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="32"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="33"/>
         <source>stopAudio</source>
         <translation>停止录音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="35"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="36"/>
         <source>playAudio</source>
         <translation>播放录音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="38"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="39"/>
         <source>saveButton</source>
         <translation>保存录音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="222"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="217"/>
         <source>choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>
@@ -607,6 +607,29 @@
         <location filename="../musicbottomareawidget.cpp" line="128"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
+    </message>
+</context>
+<context>
+    <name>MusicCoreAlgorithm</name>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="53"/>
+        <source>ss</source>
+        <translation >秒前</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="57"/>
+        <source>mm</source>
+        <translation >分钟前</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="61"/>
+        <source>hh</source>
+        <translation >小时前</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="65"/>
+        <source>day</source>
+        <translation >天前</translation>
     </message>
 </context>
 <context>
@@ -733,27 +756,27 @@
         <translation>随机播放</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="87"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="88"/>
         <source>%1H</source>
         <translation>%1时</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="90"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="92"/>
         <source>%1M</source>
         <translation>%1分</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="91"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="93"/>
         <source>%1S</source>
         <translation>%1秒</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="164"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="171"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="164"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="171"/>
         <source>url is now empty!</source>
         <translation>输入的路径不能为空！</translation>
     </message>
@@ -1202,17 +1225,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="25"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="26"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="41"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="42"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="42"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="43"/>
         <source>The origin one does not exsit?</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
@@ -1307,29 +1330,9 @@
 <context>
     <name>MusicLocalSongSearchPopWidget</name>
     <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="55"/>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="56"/>
         <source>clear</source>
         <translation>清空历史记录</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="97"/>
-        <source>ss</source>
-        <translation>秒前</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="99"/>
-        <source>mm</source>
-        <translation>分钟前</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="101"/>
-        <source>hh</source>
-        <translation>小时前</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="103"/>
-        <source>day</source>
-        <translation>天前</translation>
     </message>
 </context>
 <context>
@@ -1548,13 +1551,13 @@
     <name>MusicLrcContainerForDesktop</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="157"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="332"/>
         <source>hide</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="158"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="330"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="333"/>
         <source>lockLrc</source>
         <translation>锁定桌面歌词</translation>
     </message>
@@ -1570,7 +1573,7 @@
     </message>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="161"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="326"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
@@ -1605,22 +1608,22 @@
         <translation> --- 未找到歌词文件！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="322"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
         <source>changColorMenu</source>
         <translation>歌词颜色</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="328"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="327"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="330"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="335"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="338"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>

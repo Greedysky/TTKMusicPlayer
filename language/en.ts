@@ -4,160 +4,160 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../musicapplication.cpp" line="109"/>
+        <location filename="../musicapplication.cpp" line="110"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="110"/>
+        <location filename="../musicapplication.cpp" line="111"/>
         <source>QMusicPlayer will run in the background</source>
         <translation>MusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="172"/>
+        <location filename="../musicapplication.cpp" line="173"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="164"/>
+        <location filename="../musicapplication.cpp" line="165"/>
         <source>logout</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="153"/>
+        <location filename="../musicapplication.cpp" line="154"/>
         <source>not supported</source>
         <translation>Audio Formats Does&apos;t support</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="167"/>
+        <location filename="../musicapplication.cpp" line="168"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="177"/>
+        <location filename="../musicapplication.cpp" line="178"/>
         <source>RemoteControl</source>
         <translation>Remote Control</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="181"/>
+        <location filename="../musicapplication.cpp" line="182"/>
         <source>DiamondRemote</source>
         <translation>Diamond Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="182"/>
+        <location filename="../musicapplication.cpp" line="183"/>
         <source>CircleRemote</source>
         <translation>Circle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="185"/>
+        <location filename="../musicapplication.cpp" line="186"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="187"/>
+        <location filename="../musicapplication.cpp" line="188"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="188"/>
+        <location filename="../musicapplication.cpp" line="189"/>
         <source>ShowingSpectrum</source>
         <translation>Spectrum</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="191"/>
+        <location filename="../musicapplication.cpp" line="192"/>
         <source>WindowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="197"/>
-        <location filename="../musicapplication.cpp" line="199"/>
+        <location filename="../musicapplication.cpp" line="198"/>
+        <location filename="../musicapplication.cpp" line="200"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="203"/>
+        <location filename="../musicapplication.cpp" line="204"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="246"/>
+        <location filename="../musicapplication.cpp" line="247"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="247"/>
+        <location filename="../musicapplication.cpp" line="248"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="244"/>
+        <location filename="../musicapplication.cpp" line="245"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="245"/>
+        <location filename="../musicapplication.cpp" line="246"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="248"/>
+        <location filename="../musicapplication.cpp" line="249"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="194"/>
+        <location filename="../musicapplication.cpp" line="195"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="195"/>
+        <location filename="../musicapplication.cpp" line="196"/>
         <source>musicLocation</source>
         <translation>Music Locate</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="152"/>
+        <location filename="../musicapplication.cpp" line="153"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="450"/>
+        <location filename="../musicapplication.cpp" line="443"/>
         <source>Playing</source>
         <translation>Playing</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="169"/>
-        <location filename="../musicapplication.cpp" line="690"/>
+        <location filename="../musicapplication.cpp" line="170"/>
+        <location filename="../musicapplication.cpp" line="683"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="170"/>
-        <location filename="../musicapplication.cpp" line="691"/>
+        <location filename="../musicapplication.cpp" line="171"/>
+        <location filename="../musicapplication.cpp" line="684"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="179"/>
+        <location filename="../musicapplication.cpp" line="180"/>
         <source>SquareRemote</source>
         <translation>Square Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="180"/>
+        <location filename="../musicapplication.cpp" line="181"/>
         <source>RectangleRemote</source>
         <translation>Rectangle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="183"/>
+        <location filename="../musicapplication.cpp" line="184"/>
         <source>DeleteRemote</source>
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="186"/>
+        <location filename="../musicapplication.cpp" line="187"/>
         <source>AudioRecorder</source>
         <translation>Audio Recorder</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="693"/>
+        <location filename="../musicapplication.cpp" line="686"/>
         <source>dragAnddrop</source>
         <translation>Files Drag Drop Supported</translation>
     </message>
@@ -394,7 +394,7 @@
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
-        <translation >QMusicPlayer</translation>
+        <translation>QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="94"/>
@@ -485,32 +485,32 @@
         <translation>Mic Monitor:</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="24"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="25"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="29"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="30"/>
         <source>startAudio</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="32"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="33"/>
         <source>stopAudio</source>
         <translation>Over</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="35"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="36"/>
         <source>playAudio</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="38"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="39"/>
         <source>saveButton</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="222"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="217"/>
         <source>choose a filename to save under</source>
         <translation>Choose A File To Save</translation>
     </message>
@@ -607,6 +607,29 @@
         <location filename="../musicbottomareawidget.cpp" line="128"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
+    </message>
+</context>
+<context>
+    <name>MusicCoreAlgorithm</name>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="53"/>
+        <source>ss</source>
+        <translation >SS</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="57"/>
+        <source>mm</source>
+        <translation >MM</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="61"/>
+        <source>hh</source>
+        <translation >HH</translation>
+    </message>
+    <message>
+        <location filename="../core/musiccorealgorithm.cpp" line="65"/>
+        <source>day</source>
+        <translation >DAY</translation>
     </message>
 </context>
 <context>
@@ -733,27 +756,27 @@
         <translation>Random</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="87"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="88"/>
         <source>%1H</source>
         <translation>%1 Hour</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="90"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="92"/>
         <source>%1M</source>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="91"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="93"/>
         <source>%1S</source>
         <translation>%1 Sec</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="164"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="171"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="164"/>
+        <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="171"/>
         <source>url is now empty!</source>
         <translation>The Input Url Is Empty!</translation>
     </message>
@@ -1202,17 +1225,17 @@
         <translation>Descript:</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="25"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="26"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="41"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="42"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="42"/>
+        <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="43"/>
         <source>The origin one does not exsit?</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
@@ -1307,29 +1330,9 @@
 <context>
     <name>MusicLocalSongSearchPopWidget</name>
     <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="55"/>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="56"/>
         <source>clear</source>
         <translation>Clear History</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="97"/>
-        <source>ss</source>
-        <translation>SS</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="99"/>
-        <source>mm</source>
-        <translation>MM</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="101"/>
-        <source>hh</source>
-        <translation>HH</translation>
-    </message>
-    <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="103"/>
-        <source>day</source>
-        <translation>DAY</translation>
     </message>
 </context>
 <context>
@@ -1548,13 +1551,13 @@
     <name>MusicLrcContainerForDesktop</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="157"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="332"/>
         <source>hide</source>
         <translation>Close</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="158"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="330"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="333"/>
         <source>lockLrc</source>
         <translation></translation>
     </message>
@@ -1570,7 +1573,7 @@
     </message>
     <message>
         <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="161"/>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="326"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
         <source>updateLrc</source>
         <translation>Update</translation>
     </message>
@@ -1605,22 +1608,22 @@
         <translation> --- No Lrc File Found！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="322"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
         <source>changColorMenu</source>
         <translation>Color</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="328"/>
         <source>searchLrcs</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="327"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="330"/>
         <source>makeLrc</source>
         <translation>Make Lrc</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="335"/>
+        <location filename="../lrcmanager/musiclrccontainerfordesktop.cpp" line="338"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>
