@@ -2,6 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
 #include "musicsystemtraymenu.h"
+#include "musicwindowextras.h"
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent)
@@ -9,12 +10,15 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     m_supperClass = parent;
     m_systemCloseConfig = false;//Control the mode to exit
     createSystemTrayIcon();
+
+    m_musicWindowExtras = new MusicWindowExtras(parent);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
 {
     delete m_systemTrayMenu;
     delete m_systemTray;
+    delete m_musicWindowExtras;
 }
 
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -116,7 +120,6 @@ void MusicBottomAreaWidget::createMenuActions() const
     connect(m_ui->action_RandomPlay,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayRandom()));
     connect(m_ui->action_SingleCycle,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayOneLoop()));
     connect(m_ui->action_ListCycle,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayListLoop()));
-    connect(m_ui->action_About,SIGNAL(triggered()),m_supperClass,SLOT(musicAboutUs()));
 }
 
 void MusicBottomAreaWidget::createSystemTrayIcon()
@@ -143,6 +146,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status) const
 void MusicBottomAreaWidget::showPlayStatus(bool status) const
 {
     m_systemTrayMenu->showPlayStatus(status);
+    m_musicWindowExtras->showPlayStatus(status);
 }
 
 void MusicBottomAreaWidget::setLabelText(const QString &name) const
@@ -158,6 +162,30 @@ void MusicBottomAreaWidget::setSystemCloseConfig(const QString &status)
 void MusicBottomAreaWidget::showMessage(const QString &title, const QString &text)
 {
     m_systemTray->showMessage(title, text);
+}
+
+#ifdef MUSIC_DEBUG
+void MusicBottomAreaWidget::setValue(int value) const
+{
+    m_musicWindowExtras->setValue(value);
+}
+
+void MusicBottomAreaWidget::setRange(int min, int max) const
+{
+    m_musicWindowExtras->setRange(min, max);
+}
+#endif
+
+void MusicBottomAreaWidget::setWindowConcise()
+{
+    bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+    m_supperClass->resize( con ? 380 : 950, m_supperClass->height());
+    m_ui->musicWindowConcise->setGeometry(con ? 295 : 828, 7, 25, 25);
+    m_ui->minimization->setGeometry(con ? 325 : 889, 7, 25, 25);
+    m_ui->windowClose->setGeometry(con ? 350 : 917, 7, 25, 25);
+    m_musicWindowExtras->disableBlurBehindWindow( !con );
+    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout"
+                                                                  : ":/image/concisein")));
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

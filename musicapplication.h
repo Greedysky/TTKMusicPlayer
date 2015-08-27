@@ -12,9 +12,7 @@ class MusicPlaylist;
 class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
-class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
-class MusicWindowExtras;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
@@ -35,25 +33,6 @@ public:
     QString getCurrentFileName() const;
     bool checkMusicListCurrentIndex() const;
     void musicLoadCurrentSongLrc();
-
-protected:
-    void initWindowSurface();
-    void createPlayModeMenu(QMenu &menu);
-    void createPlayModeMenuIcon(QMenu &menu);
-    void drawWindowRoundedRect();
-    virtual void closeEvent(QCloseEvent *event);
-    virtual void dragEnterEvent(QDragEnterEvent *event);
-    virtual void dragMoveEvent(QDragMoveEvent *event);
-    virtual void dropEvent(QDropEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
-    virtual bool nativeEvent(const QByteArray &, void *, long *);
-
-    void readXMLConfigFromText();
-    void writeXMLConfigToText();
-    void musicImportSongsSettingPath(const QStringList &path);
-    QString musicTimeTransToLabel(qint64 time);
 
 public slots:
     void quitWindowClose();
@@ -78,15 +57,11 @@ public slots:
     void musicPlayAnyTimeAt(int posValue);
     void musicActionVolumeSub();
     void musicActionVolumePlus();
-    void musicAboutUs();
     void musicSetting();
     void musicSearch();
     void musicCurrentPlayLocation();
     void musicAddSongToLovestListAt();
-    void musicSetWindowToTop();
     void musicSetEqualizer();
-    void musicAudioRecorder();
-    void musicTimerWidget();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
     /////////////////////////////////////////////
@@ -106,18 +81,33 @@ public slots:
     void setPlaySongChanged(int);
     void setStopSongChanged();
     /////////////////////////////////////////////
-    //This is a slot by MusicToolSetsWidget's signal emit
-    void musicToolSetsParameter();
-    /////////////////////////////////////////////
     //This is a slot by MusicLeftAreaWidget's signal emit
     void addSongToPlayList(const QStringList &item);
     void setSpectrum(HWND wnd, int w, int h);
     void getCurrentPlayList(QStringList &list);
 
+protected:
+    void initWindowSurface();
+    void createPlayModeMenu(QMenu &menu);
+    void createPlayModeMenuIcon(QMenu &menu);
+    void drawWindowRoundedRect();
+    virtual void closeEvent(QCloseEvent *event);
+    virtual void dragEnterEvent(QDragEnterEvent *event);
+    virtual void dragMoveEvent(QDragMoveEvent *event);
+    virtual void dropEvent(QDropEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual bool nativeEvent(const QByteArray &, void *, long *);
+
+    void readXMLConfigFromText();
+    void writeXMLConfigToText();
+    void musicImportSongsSettingPath(const QStringList &path);
+    QString musicTimeTransToLabel(qint64 time);
+
 private:
     Ui::MusicApplication *ui;
     bool m_playControl;
-    bool m_setWindowToTop;
     int m_currentMusicSongTreeIndex;
     QMenu m_playModeMenu;
     MIntsListMap m_searchfileListCache;
@@ -126,9 +116,7 @@ private:
     MusicPlaylist* m_musicList;
     MusicSongsSummarizied *m_musicSongTree;
     MusicLocalSongSearch *m_musicLocalSongSearch;
-    MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDevices;
-    MusicWindowExtras *m_musicWindowExtras;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;

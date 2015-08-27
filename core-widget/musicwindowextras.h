@@ -14,7 +14,7 @@ class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicWindowExtras(MusicApplication *parent = 0);
+    explicit MusicWindowExtras(QObject *parent = 0);
     ~MusicWindowExtras();
 
     void showPlayStatus(bool status) const;

@@ -3,11 +3,12 @@
 #include <QtWinExtras>
 #include <QStyle>
 
-MusicWindowExtras::MusicWindowExtras(MusicApplication *parent)
-    : QObject(parent), m_superClass(parent), m_playToolButton(NULL),
+MusicWindowExtras::MusicWindowExtras(QObject *parent)
+    : QObject(parent), m_playToolButton(NULL),
     m_forwardToolButton(NULL), m_backwardToolButton(NULL), m_taskbarProgress(NULL),
     m_taskbarButton(NULL), m_thumbnailToolBar(NULL)
 {
+    m_superClass = static_cast<MusicApplication*>(parent);
     disableBlurBehindWindow( QtWin::isCompositionEnabled() );
 #ifdef MUSIC_DEBUG
     createJumpList();

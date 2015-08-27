@@ -7,6 +7,7 @@
 #include "musiclibexportglobal.h"
 
 class MusicSystemTrayMenu;
+class MusicWindowExtras;
 
 namespace Ui {
     class MusicApplication;
@@ -23,6 +24,7 @@ public:
     void setDestopLrcVisible(const QString &status) const;
     void showPlayStatus(bool status) const;
     void setLabelText(const QString &name) const;
+
     void setSystemCloseConfig(const QString &status);
     void setSystemCloseConfig(bool status)
             { m_systemCloseConfig = status;}
@@ -31,6 +33,12 @@ public:
     bool systemTrayIsVisible()
             { return m_systemTray->isVisible();}
     void showMessage(const QString &title, const QString &text);
+
+#ifdef MUSIC_DEBUG
+    void setValue(int value) const;
+    void setRange(int min, int max) const;
+#endif
+    void setWindowConcise();
 
 signals:
     void setShowDesktopLrc(bool show);
@@ -48,10 +56,11 @@ protected:
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
+    bool m_systemCloseConfig;
     QMenu m_toolPopupMenu;
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
-    bool m_systemCloseConfig;
+    MusicWindowExtras *m_musicWindowExtras;
 
 };
 
