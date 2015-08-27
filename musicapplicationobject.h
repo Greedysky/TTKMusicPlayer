@@ -1,10 +1,12 @@
 #ifndef MUSICAPPLICATIONOBJECT_H
 #define MUSICAPPLICATIONOBJECT_H
 
-#include <QObject>
+#include <QMimeData>
+#include <QMessageBox>
+#include <QFileDialog>
 
-class MusicApplication;
 class MusicTimerAutoObject;
+class MusicMobileDevicesWidget;
 class QPropertyAnimation;
 
 class MusicApplicationObject : public QObject
@@ -15,6 +17,8 @@ public:
     ~MusicApplicationObject();
 
     bool getWindowToTop() const {return m_setWindowToTop;}
+    void nativeEvent(const QByteArray &eventType,
+                     void *message, long *result);
 
 signals:
     void getCurrentPlayList(QStringList &list);
@@ -29,8 +33,9 @@ public slots:
 protected:
     bool m_setWindowToTop;
     QPropertyAnimation *m_animation;
-    MusicApplication *m_supperClass;
+    QWidget *m_supperClass;
     MusicTimerAutoObject *m_musicTimerAutoObj;
+    MusicMobileDevicesWidget *m_mobileDevices;
 
 };
 

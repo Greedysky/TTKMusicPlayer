@@ -2,8 +2,6 @@
 #include "ui_musicapplication.h"
 #include "musicequalizerdialog.h"
 #include "musicsongsearchonlinewidget.h"
-#include "musicsongsListwidget.h"
-#include "musicmobiledeviceswidget.h"
 #include "musicsongssummarizied.h"
 #include "musicxmlconfigmanager.h"
 #include "musicplayer.h"
@@ -17,15 +15,10 @@
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
-#include <Dbt.h>
-#include <QMimeData>
-#include <QMessageBox>
-#include <QFileDialog>
 
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
-    ui(new Ui::MusicApplication),
-    m_mobileDevices(NULL)
+    ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
     m_object = new MusicApplicationObject(this);
@@ -89,55 +82,12 @@ MusicApplication::MusicApplication(QWidget *parent) :
 
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
-    MSG* msg = reinterpret_cast<MSG*>(message);
-    if(msg->message == WM_DEVICECHANGE)
-    {
-        PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
-        switch(msg->wParam)
-        {
-            case DBT_DEVICETYPESPECIFIC:
-                break;
-            case DBT_DEVICEARRIVAL:
-                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-                {
-                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-                    if (lpdbv->dbcv_flags == 0)
-                    {
-                        DWORD unitmask = lpdbv ->dbcv_unitmask;
-                        int i;
-                        for(i = 0; i < 26; ++i)
-                        {
-                            if(unitmask & 0x1)
-                                break;
-                            unitmask = unitmask >> 1;
-                        }
-                        qDebug() << "USB_Arrived and The USBDisk is: "<<(char)(i + 'A');
-                        delete m_mobileDevices;
-                        m_mobileDevices = new MusicMobileDevicesWidget;
-                        m_mobileDevices->show();
-                    }
-                }
-                break;
-            case DBT_DEVICEREMOVECOMPLETE:
-                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-                {
-                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-                    if (lpdbv -> dbcv_flags == 0)
-                    {
-                        qDebug() << "USB_remove";
-                        delete m_mobileDevices;
-                        m_mobileDevices = NULL;
-                    }
-                }
-                break;
-        }
-    }
-    return QWidget::nativeEvent(eventType, msg, result);
+    m_object->nativeEvent(eventType, message, result);
+    return QWidget::nativeEvent(eventType, message, result);
 }
 
 MusicApplication::~MusicApplication()
 {
-    delete m_mobileDevices;
     delete m_musicPlayer;
     delete m_musicList;
     delete m_musicSongTree;
@@ -742,13 +692,6 @@ void MusicApplication::musicImportSongs()
     menu.addSeparator();
     menu.addAction(tr("dragAnddrop"))->setEnabled(false);
     menu.exec(QCursor::pos());
-
-    ///////////Repair tray program exit problems
-    if(!this->isVisible())
-    {
-        this->show();
-        this->activateWindow();
-    }
 }
 
 void MusicApplication::musicPlayIndex(int row, int)
@@ -771,7 +714,7 @@ void MusicApplication::musicPlayIndex(int row, int)
 
     m_musicList->setCurrentIndex(row);
     m_playControl = true;
-    this->musicKey();
+    musicKey();
     m_playControl = false;
 }
 
@@ -786,13 +729,6 @@ void MusicApplication::musicPlayAnyTimeAt(int posValue)
 void MusicApplication::musicSetting()
 {
     m_rightAreaWidget->showSettingWidget();
-
-    ///////////Repair tray program exit problems
-    if(!this->isVisible())
-    {
-        this->show();
-        this->activateWindow();
-    }
 }
 
 void MusicApplication::musicCurrentPlayLocation()
@@ -947,7 +883,7 @@ void MusicApplication::musicSetPlay3DMusic()
 
 void MusicApplication::drawWindowRoundedRect()
 {
-    QBitmap bmp( size() );
+    QBitmap bmp(size());
     bmp.fill();
     QPainter p(&bmp);
     p.setPen(Qt::NoPen);

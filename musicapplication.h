@@ -9,9 +9,7 @@
 
 class MusicPlayer;
 class MusicPlaylist;
-class MusicSongsListWidget;
 class MusicSongsSummarizied;
-class MusicMobileDevicesWidget;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
@@ -113,7 +111,6 @@ private:
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
     MusicSongsSummarizied *m_musicSongTree;
-    MusicMobileDevicesWidget *m_mobileDevices;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;
