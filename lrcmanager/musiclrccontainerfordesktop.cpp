@@ -27,7 +27,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
                         << new MusicLRCManagerForDesktop(m_desktopWidget);
     layout->addWidget(m_desktopWidget);
     layout->addWidget(m_toolBarWidget);
-    this->setLayout(layout);
+    setLayout(layout);
 
     //Move the QWidget in the appropriate location
     QDesktopWidget* desktop = QApplication::desktop();
@@ -193,7 +193,10 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
                                         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->getGeometryX(),
                                         m_geometry.y());
     int pos = m_geometry.x() - static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[1])->getGeometryX();
-    if(pos < 0 ) pos = 0;
+    if(pos < 0 )
+    {
+        pos = 0;
+    }
     m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20,
                                         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[1])->getGeometryX(),
                                         m_geometry.y());
@@ -254,7 +257,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
     }
     QWidget::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet(MusicUIObject::MCustomStyle20);
+    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle20 + "}");
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
