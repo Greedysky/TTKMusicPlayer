@@ -99,7 +99,6 @@ protected:
     void readXMLConfigFromText();
     void writeXMLConfigToText();
     void musicImportSongsSettingPath(const QStringList &path);
-    QString musicTimeTransToLabel(qint64 time);
 
 private:
     Ui::MusicApplication *ui;

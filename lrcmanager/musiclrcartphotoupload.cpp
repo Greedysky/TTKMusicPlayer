@@ -87,7 +87,6 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
         if(f.fileName().contains( name ))
         {
             ++count;
-            qDebug()<<f.fileName();
         }
     }
 

@@ -50,7 +50,9 @@ void MusicMarquee::timerEvent(QTimerEvent *event)
     {
         ++m_offset;
         if (m_offset >= fontMetrics().width(text()))
+        {
             m_offset = 0;
+        }
         scroll(-1, 0);
     }
     else

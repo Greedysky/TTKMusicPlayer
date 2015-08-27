@@ -32,7 +32,6 @@ public:
     ~MusicLocalSongSearchPopWidget();
 
     void createItems();
-    QString utcTimeToLocal(const QString &time);
 
 signals:
     void setText(const QString &text);
@@ -43,6 +42,8 @@ public slots:
 
 protected:
     virtual void leaveEvent(QEvent *event);
+    QString utcTimeToLocal(const QString &time) const;
+
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;
     QPushButton *m_clearButton;
 

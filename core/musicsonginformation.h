@@ -14,14 +14,6 @@ public:
         m_musicName(musicName),m_musicType(musicType),
         m_musicSize(musicSize){}
 
-    inline qreal transSizeByte2KByte() const
-    {
-        return m_musicSize/1000.0;
-    }
-    inline qreal transSizeByte2MByte() const
-    {
-        return m_musicSize/1000000.0;
-    }
     inline QString getMusicArtistFront() const
     {
         return m_musicName.split('-').front().trimmed();

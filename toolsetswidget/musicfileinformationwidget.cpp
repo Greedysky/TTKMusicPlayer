@@ -1,6 +1,7 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
 #include "musicuiobject.h"
+#include "musiccorealgorithm.h"
 #include "musicfileinformation.h"
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -50,7 +51,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = transSizeByte(fin.size()) )
+    ui->fileSizeEdit->setText( (check = MusicCoreAlgorithm::fileSzie2Label(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = info.getAlbum()).isEmpty() ? "-" : check) : "-" );
@@ -69,16 +70,4 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     ui->TrackNumEdit->setText( state ? ((check = info.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(info.getDescription())
                                    .arg(info.getVBRString())).isEmpty() ? "-" : check) : "-" );
-}
-
-QString MusicFileInformationWidget::transSizeByte(int size) const
-{
-    if( size < 1024)
-        return QString("%1 Byte").arg(size);
-    else if( 1024 <= size && size < 1024*1024)
-        return QString("%1 KByte").arg((int)(size*1.0/1024*100)/100.0);
-    else if( 1024*1024 <= size && size < 1024*1024*1024)
-        return QString("%1 MByte").arg((int)(size*1.0/1024/1024*100)/100.0);
-    else
-        return QString();
 }

@@ -82,6 +82,7 @@ SOURCES += \
     toolsetswidget/musicfileinformationwidget.cpp \
     toolsetswidget/musicspectrumwidget.cpp \
     toolsetswidget/musicdesktopwallpaperwidget.cpp \
+    core/musiccorealgorithm.cpp \
     core/musicplayer.cpp \
     core/musicplaylist.cpp \
     core/musicequalizer.cpp \
@@ -172,6 +173,7 @@ HEADERS  += \
     toolsetswidget/musicspectrumwidget.h \
     toolsetswidget/musicdesktopwallpaperwidget.h \
     core/musicversion.h \
+    core/musiccorealgorithm.h \
     core/musicsonginformation.h \
     core/musicxmlconfigmanager.h \
     core/musicdownloadquerythread.h \

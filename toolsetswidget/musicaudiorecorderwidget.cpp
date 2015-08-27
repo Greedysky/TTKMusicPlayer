@@ -1,5 +1,6 @@
 #include "musicaudiorecorderwidget.h"
 #include "ui_musicaudiorecorderwidget.h"
+#include "musiccorealgorithm.h"
 #include <QMovie>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -117,14 +118,8 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 
 void MusicAudioRecorderWidget::onTimerout()
 {
-    ++m_time;
-    int hour = m_time/3600;
-    int min = m_time%3600/60;
-    int sec = m_time%3600%60;
-    ui->timer->setText(QString("%1:%2:%3")
-          .arg(QString::number(hour).rightJustified(2,'0'))
-          .arg(QString::number(min).rightJustified(2,'0'))
-          .arg(QString::number(sec).rightJustified(2,'0')));
+    QString text = MusicCoreAlgorithm::normalTime2Label(++m_time);
+    ui->timer->setText( text );
 }
 
 void MusicAudioRecorderWidget::initMonitor()

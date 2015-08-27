@@ -10,6 +10,7 @@
 #include "musicsettingmanager.h"
 #include "musicversion.h"
 #include "musicuiobject.h"
+#include "musiccorealgorithm.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
@@ -402,14 +403,6 @@ void MusicApplication::quitWindowClose()
     qApp->quit();
 }
 
-QString MusicApplication::musicTimeTransToLabel(qint64 time)
-{
-    int min = time/60000;
-    time = time%60000;
-    return QString("%1:%2").arg(QString::number(min).rightJustified(2,'0'))
-            .arg(QString::number(time/1000).rightJustified(2,'0'));
-}
-
 void MusicApplication::positionChanged(qint64 position)
 {
     m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), m_playControl);
@@ -420,7 +413,7 @@ void MusicApplication::positionChanged(qint64 position)
     }
     else
     {
-        ui->playCurrentTime->setText(musicTimeTransToLabel(position));
+        ui->playCurrentTime->setText(MusicCoreAlgorithm::msecTime2LabelJustified(position));
     }
     //Show the current play time
     m_musicSongTree->setTimerLabel(ui->playCurrentTime->text());
@@ -433,7 +426,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     ui->musicTimeWidget->setRange(0,duration);
-    ui->playTotalTime->setText(musicTimeTransToLabel(duration));
+    ui->playTotalTime->setText(MusicCoreAlgorithm::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 #ifdef MUSIC_DEBUG

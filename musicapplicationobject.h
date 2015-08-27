@@ -4,12 +4,13 @@
 #include <QMimeData>
 #include <QMessageBox>
 #include <QFileDialog>
+#include "musiclibexportglobal.h"
 
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class QPropertyAnimation;
 
-class MusicApplicationObject : public QObject
+class MUSIC_WIDGET_EXPORT MusicApplicationObject : public QObject
 {
     Q_OBJECT
 public:

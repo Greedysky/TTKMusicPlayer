@@ -30,19 +30,19 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(DownLoadType type)
     QString stringType;
     switch(type)
     {
-       case DisConnection:
+        case DisConnection:
             stringType = ":/download/disconnection";
             break;
-       case DownLoading:
+        case DownLoading:
             stringType = ":/download/downloading";
             break;
-       case Buffing:
+        case Buffing:
             stringType = ":/download/buffing";
             break;
-       case Waiting:
+        case Waiting:
             stringType = QString();
             break;
-       default:
+        default:
             stringType = QString();
             break;
     }
