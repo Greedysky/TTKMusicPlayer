@@ -1,6 +1,14 @@
 #ifndef MUSICLRCFLOATSETTINGWIDGET_H
 #define MUSICLRCFLOATSETTINGWIDGET_H
 
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include "musiclrcfloatabstractwidget.h"
 
 class MUSIC_WIDGET_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstractWidget

@@ -1,6 +1,14 @@
 #ifndef MUSICLRCMAKERWIDGET_H
 #define MUSICLRCMAKERWIDGET_H
 
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include "musicmovewidgetabstract.h"
 
 namespace Ui {
