@@ -5,6 +5,7 @@
 #include "musiclibexportglobal.h"
 
 class MusicSpectrumWidget;
+class MusicLocalSongSearch;
 
 namespace Ui {
     class MusicApplication;
@@ -18,10 +19,13 @@ public:
     ~MusicLeftAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
+    QString getSearchedText() const;
+    void clearSearchedText()const;
 
 signals:
 
 public slots:
+    void musicSearch();
     void musicSpectrumWidget();
     void musicStackedSongListWidgetChanged();
     void musicStackedToolsWidgetChanged();
@@ -33,6 +37,7 @@ protected:
     Ui::MusicApplication *m_ui;
     QWidget *m_stackedWidget;
     MusicSpectrumWidget *m_musicSpectrumWidget;
+    MusicLocalSongSearch *m_musicLocalSongSearch;
 
 };
 

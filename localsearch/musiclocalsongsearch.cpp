@@ -44,5 +44,5 @@ QString MusicLocalSongSearch::getSearchedText() const
 
 void MusicLocalSongSearch::clearSearchedText() const
 {
-    return m_searchLine->clear();
+    m_searchLine->clear();
 }

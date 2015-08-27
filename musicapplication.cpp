@@ -3,7 +3,6 @@
 #include "musicequalizerdialog.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongsListwidget.h"
-#include "musiclocalsongsearch.h"
 #include "musicmobiledeviceswidget.h"
 #include "musicsongssummarizied.h"
 #include "musicxmlconfigmanager.h"
@@ -11,7 +10,6 @@
 #include "musicplaylist.h"
 #include "musicbgthememanager.h"
 #include "musicsettingmanager.h"
-#include <Dbt.h>
 #include "musicversion.h"
 #include "musicuiobject.h"
 #include "musicbottomareawidget.h"
@@ -19,10 +17,14 @@
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
+#include <Dbt.h>
+#include <QMimeData>
+#include <QMessageBox>
+#include <QFileDialog>
 
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicMoveWidgetAbstract(parent),
-    ui(new Ui::MusicApplication), m_musicLocalSongSearch(NULL),
+    ui(new Ui::MusicApplication),
     m_mobileDevices(NULL)
 {
     ui->setupUi(this);
@@ -139,7 +141,6 @@ MusicApplication::~MusicApplication()
     delete m_musicPlayer;
     delete m_musicList;
     delete m_musicSongTree;
-    delete m_musicLocalSongSearch;
     delete m_bottomAreaWidget;
     delete m_topAreaWidget;
     delete m_rightAreaWidget;
@@ -189,7 +190,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
     QStringList sfx;
     sfx<<"mp3"<<"mp2"<<"mp1"<<"wav"<<"ogg"<<"flac"
        <<"ac3"<<"aac"<<"oga"<<"pcm";
-    foreach(QUrl url,data->urls())
+    foreach(QUrl url, data->urls())
     {
         suffix = QFileInfo(url.toLocalFile()).suffix();
         if( sfx.contains(suffix.toLower()) )
@@ -270,6 +271,7 @@ void MusicApplication::keyReleaseEvent(QKeyEvent *event)
 void MusicApplication::initWindowSurface()
 {
     connect(ui->action_About, SIGNAL(triggered()), m_object, SLOT(musicAboutUs()));
+    connect(ui->musicSearch,SIGNAL(clicked()), m_leftAreaWidget, SLOT(musicSearch()));
     connect(ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
     ui->musicPlayMode->setMenu(&m_playModeMenu);
     ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
@@ -761,9 +763,9 @@ void MusicApplication::musicPlayIndex(int row, int)
     }
     if(!m_searchfileListCache.isEmpty())
     {
-        int count = m_musicLocalSongSearch->getSearchedText().count();
+        int count = m_leftAreaWidget->getSearchedText().count();
         row = m_searchfileListCache.value(count)[row];
-        m_musicLocalSongSearch->clearSearchedText();
+        m_leftAreaWidget->clearSearchedText();
         m_searchfileListCache.clear();
     }
 
@@ -793,29 +795,15 @@ void MusicApplication::musicSetting()
     }
 }
 
-void MusicApplication::musicSearch()
-{
-    if(m_musicList->isEmpty())
-    {
-      return;
-    }
-
-    if(m_musicLocalSongSearch == NULL)
-    {
-        m_musicLocalSongSearch = new MusicLocalSongSearch(this);
-    }
-    m_musicLocalSongSearch->exec();
-}
-
 void MusicApplication::musicCurrentPlayLocation()
 {
     if(m_musicList->isEmpty())
     {
         return;
     }
+    m_musicSongTree->selectRow(0);
     /*Repair when already in the original row, paging,
      cannot return to the original row */
-    m_musicSongTree->selectRow(0);
     m_musicSongTree->selectRow(m_musicList->currentIndex());
 }
 
@@ -826,14 +814,15 @@ void MusicApplication::setDeleteItemAt(const MIntList &index)
         m_musicList->removeMedia(index[i]);
     }
     int oldIndex = index[0];
-    if( oldIndex == m_musicList->mediaCount()/*|| oldIndex == 0*/)  //Play index error correction
+    if( oldIndex == m_musicList->mediaCount())  //Play index error correction
+    {
         --oldIndex;
+    }
     m_musicList->setCurrentIndex(oldIndex);
     //The corresponding item is deleted from the QMediaPlaylist
     m_playControl = true;
-    this->musicKey();
+    musicKey();
     m_playControl = false;
-//    showCurrentSong(oldIndex);
 }
 
 void MusicApplication::getParameterSetting()
@@ -846,15 +835,15 @@ void MusicApplication::getParameterSetting()
     //This attribute is effective immediately.
 }
 
-void MusicApplication::musicSearchIndexChanged(int,int index)
+void MusicApplication::musicSearchIndexChanged(int, int index)
 {
     MIntList searchResult;
     QStringList searchedSongs(m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex()));
     for(int j=0; j<searchedSongs.count(); ++j)
-      if(searchedSongs[j].contains(m_musicLocalSongSearch->getSearchedText(),Qt::CaseInsensitive))
-      {
-        searchResult<<j;
-      }
+    if(searchedSongs[j].contains(m_leftAreaWidget->getSearchedText(), Qt::CaseInsensitive))
+    {
+        searchResult << j;
+    }
     m_searchfileListCache.insert(index,searchResult);
     m_musicSongTree->setMusicSongsSearchedFileName(searchResult);
 }
@@ -909,10 +898,12 @@ void MusicApplication::updateCurrentTime(qint64 pos)
 
 void MusicApplication::musicAddSongToLovestListAt()
 {
-    int index = static_cast<MusicSongsListWidget*>(m_musicSongTree->currentWidget())->currentRow();
-    if(m_musicList->isEmpty() || index < 0 || m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex() )
+    int index = m_musicList->currentIndex();
+    if(m_musicList->isEmpty() || index < 0 || m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex() ||
+       m_musicSongTree->currentIndex() == 1)
+    {
         return;
-
+    }
     m_musicSongTree->addMusicSongToLovestListAt(index);
 }
 

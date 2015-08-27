@@ -9,7 +9,6 @@
 
 class MusicPlayer;
 class MusicPlaylist;
-class MusicLocalSongSearch;
 class MusicSongsListWidget;
 class MusicSongsSummarizied;
 class MusicMobileDevicesWidget;
@@ -58,7 +57,6 @@ public slots:
     void musicActionVolumeSub();
     void musicActionVolumePlus();
     void musicSetting();
-    void musicSearch();
     void musicCurrentPlayLocation();
     void musicAddSongToLovestListAt();
     void musicSetEqualizer();
@@ -115,7 +113,6 @@ private:
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
     MusicSongsSummarizied *m_musicSongTree;
-    MusicLocalSongSearch *m_musicLocalSongSearch;
     MusicMobileDevicesWidget *m_mobileDevices;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;

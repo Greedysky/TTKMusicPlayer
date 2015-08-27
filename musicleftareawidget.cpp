@@ -5,9 +5,10 @@
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiolistview.h"
 #include "musicspectrumwidget.h"
+#include "musiclocalsongsearch.h"
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_musicLocalSongSearch(NULL)
 {
     m_supperClass = parent;
     m_stackedWidget = NULL;
@@ -16,6 +17,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
+    delete m_musicLocalSongSearch;
     delete m_stackedWidget;
     delete m_musicSpectrumWidget;
 }
@@ -89,6 +91,25 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setToolTip(tr("musicPlaylist"));
     ui->musicButton_radio->setToolTip(tr("musicRadio"));
     ui->musicButton_tools->setToolTip(tr("musicTools"));
+}
+
+QString MusicLeftAreaWidget::getSearchedText() const
+{
+    return m_musicLocalSongSearch->getSearchedText();
+}
+
+void MusicLeftAreaWidget::clearSearchedText() const
+{
+    m_musicLocalSongSearch->clearSearchedText();
+}
+
+void MusicLeftAreaWidget::musicSearch()
+{
+    if(m_musicLocalSongSearch == NULL)
+    {
+        m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
+    }
+    m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()

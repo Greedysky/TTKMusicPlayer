@@ -50,8 +50,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSearch->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->musicSearch->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearch->setToolTip(tr("musicSearch"));
-    connect(ui->musicSearch,SIGNAL(clicked()), m_supperClass, SLOT(musicSearch()));
-    
+
     ui->musicCurrentLocation->setIcon(QIcon(QString::fromUtf8(":/image/location")));
     ui->musicCurrentLocation->setIconSize(QSize(40,40));
     ui->musicCurrentLocation->setStyleSheet(MusicUIObject::MToolButtonStyle01);
