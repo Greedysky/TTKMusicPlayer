@@ -1,6 +1,6 @@
 #include "musiclocalsongsearchpopwidget.h"
 #include "musiclocalsongsearchrecordobject.h"
-#include "musiccorealgorithm.h"
+#include "musictime.h"
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QDateTime>
@@ -94,7 +94,7 @@ void MusicLocalSongSearchPopWidget::createItems()
 QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
     qint64 t = (QDateTime::currentMSecsSinceEpoch() - time.toLongLong()) / 1000;
-    return MusicCoreAlgorithm::normalTime2Label(t);
+    return MusicTime::normalTime2Label(t);
 }
 
 void MusicLocalSongSearchPopWidget::clearButtonClicked()

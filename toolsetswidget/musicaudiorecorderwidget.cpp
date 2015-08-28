@@ -1,6 +1,6 @@
 #include "musicaudiorecorderwidget.h"
 #include "ui_musicaudiorecorderwidget.h"
-#include "musiccorealgorithm.h"
+#include "musictime.h"
 #include <QMovie>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -118,7 +118,7 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 
 void MusicAudioRecorderWidget::onTimerout()
 {
-    QString text = MusicCoreAlgorithm::normalTime2Label(++m_time);
+    QString text = MusicTime::normalTime2Label(++m_time);
     ui->timer->setText( text );
 }
 

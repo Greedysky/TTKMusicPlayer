@@ -1,7 +1,7 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
 #include "musicuiobject.h"
-#include "musiccorealgorithm.h"
+#include "musictime.h"
 #include "musicfileinformation.h"
 #include <QDesktopServices>
 #include <QMessageBox>
@@ -51,7 +51,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = MusicCoreAlgorithm::fileSzie2Label(fin.size()) )
+    ui->fileSizeEdit->setText( (check = MusicTime::fileSzie2Label(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = info.getAlbum()).isEmpty() ? "-" : check) : "-" );

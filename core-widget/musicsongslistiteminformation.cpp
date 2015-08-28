@@ -2,7 +2,7 @@
 #include "ui_musicsongslistiteminformation.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musiccorealgorithm.h"
+#include "musictime.h"
 #include <QTime>
 
 MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :
@@ -37,7 +37,7 @@ void MusicSongsListItemInformation::setMusicSongInformation(QMusicSong &info)
     ui->songNameValue->setText( info.m_musicName.isEmpty() ? "-" :
                  str.elidedText(info.m_musicName, Qt::ElideRight, ui->songNameValue->width()));
     ui->artlistValue->setText(musicArt.isEmpty() ? "-" : musicArt);
-    ui->sizeValue->setText(QString::number(MusicCoreAlgorithm::fileSzieByte2MByte(info.m_musicSize)).left(4) + "M");
+    ui->sizeValue->setText(QString::number(MusicTime::fileSzieByte2MByte(info.m_musicSize)).left(4) + "M");
     ui->typeValue->setText(info.m_musicType.isEmpty() ? "-" : info.m_musicType);
     ui->timeValue->setText(QTime::currentTime().toString(Qt::ISODate));
 

@@ -44,7 +44,6 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
     if(msg->message == WM_DEVICECHANGE)
     {
         PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
-        qDebug()<<msg->wParam;
         switch(msg->wParam)
         {
             case DBT_DEVICETYPESPECIFIC:

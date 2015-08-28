@@ -10,7 +10,7 @@
 #include "musicsettingmanager.h"
 #include "musicversion.h"
 #include "musicuiobject.h"
-#include "musiccorealgorithm.h"
+#include "musictime.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
@@ -413,7 +413,7 @@ void MusicApplication::positionChanged(qint64 position)
     }
     else
     {
-        ui->playCurrentTime->setText(MusicCoreAlgorithm::msecTime2LabelJustified(position));
+        ui->playCurrentTime->setText(MusicTime::msecTime2LabelJustified(position));
     }
     //Show the current play time
     m_musicSongTree->setTimerLabel(ui->playCurrentTime->text());
@@ -426,7 +426,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     ui->musicTimeWidget->setRange(0,duration);
-    ui->playTotalTime->setText(MusicCoreAlgorithm::msecTime2LabelJustified(duration));
+    ui->playTotalTime->setText(MusicTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 #ifdef MUSIC_DEBUG
