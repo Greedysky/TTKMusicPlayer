@@ -610,25 +610,6 @@
     </message>
 </context>
 <context>
-    <name>MusicCoreAlgorithm</name>
-    <message>
-        <source>ss</source>
-        <translation type="vanished">SS</translation>
-    </message>
-    <message>
-        <source>mm</source>
-        <translation type="vanished">MM</translation>
-    </message>
-    <message>
-        <source>hh</source>
-        <translation type="vanished">HH</translation>
-    </message>
-    <message>
-        <source>day</source>
-        <translation type="vanished">DAY</translation>
-    </message>
-</context>
-<context>
     <name>MusicDesktopWallpaperWidget</name>
     <message>
         <location filename="../ui/application/musicdesktopwallpaperwidget.ui" line="14"/>
@@ -2804,22 +2785,22 @@
     <message>
         <location filename="../core/musictime.cpp" line="145"/>
         <source>ss</source>
-        <translation type="unfinished">SS</translation>
+        <translation >SS</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="149"/>
         <source>mm</source>
-        <translation type="unfinished">MM</translation>
+        <translation >MM</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="153"/>
         <source>hh</source>
-        <translation type="unfinished">HH</translation>
+        <translation >HH</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="157"/>
         <source>day</source>
-        <translation type="unfinished">DAY</translation>
+        <translation >DAY</translation>
     </message>
 </context>
 <context>

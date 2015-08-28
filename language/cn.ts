@@ -610,25 +610,6 @@
     </message>
 </context>
 <context>
-    <name>MusicCoreAlgorithm</name>
-    <message>
-        <source>ss</source>
-        <translation type="vanished">秒前</translation>
-    </message>
-    <message>
-        <source>mm</source>
-        <translation type="vanished">分钟前</translation>
-    </message>
-    <message>
-        <source>hh</source>
-        <translation type="vanished">小时前</translation>
-    </message>
-    <message>
-        <source>day</source>
-        <translation type="vanished">天前</translation>
-    </message>
-</context>
-<context>
     <name>MusicDesktopWallpaperWidget</name>
     <message>
         <location filename="../ui/application/musicdesktopwallpaperwidget.ui" line="14"/>
@@ -2804,22 +2785,22 @@
     <message>
         <location filename="../core/musictime.cpp" line="145"/>
         <source>ss</source>
-        <translation type="unfinished">秒前</translation>
+        <translation >秒前</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="149"/>
         <source>mm</source>
-        <translation type="unfinished">分钟前</translation>
+        <translation >分钟前</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="153"/>
         <source>hh</source>
-        <translation type="unfinished">小时前</translation>
+        <translation >小时前</translation>
     </message>
     <message>
         <location filename="../core/musictime.cpp" line="157"/>
         <source>day</source>
-        <translation type="unfinished">天前</translation>
+        <translation >天前</translation>
     </message>
 </context>
 <context>
