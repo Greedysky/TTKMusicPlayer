@@ -387,17 +387,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="92"/>
+        <location filename="../musicapplicationobject.cpp" line="91"/>
         <source>About QMusicPlayer</source>
         <translation>关于天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="93"/>
+        <location filename="../musicapplicationobject.cpp" line="92"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="94"/>
+        <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>Directed By Greedysky</source>
         <translation>Greedysky 工作室出品</translation>
     </message>
@@ -612,24 +612,20 @@
 <context>
     <name>MusicCoreAlgorithm</name>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="53"/>
         <source>ss</source>
-        <translation >秒前</translation>
+        <translation type="vanished">秒前</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="57"/>
         <source>mm</source>
-        <translation >分钟前</translation>
+        <translation type="vanished">分钟前</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="61"/>
         <source>hh</source>
-        <translation >小时前</translation>
+        <translation type="vanished">小时前</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="65"/>
         <source>day</source>
-        <translation >天前</translation>
+        <translation type="vanished">天前</translation>
     </message>
 </context>
 <context>
@@ -2801,6 +2797,29 @@
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="106"/>
         <source>unlockLrc</source>
         <translation>解锁桌面歌词</translation>
+    </message>
+</context>
+<context>
+    <name>MusicTime</name>
+    <message>
+        <location filename="../core/musictime.cpp" line="145"/>
+        <source>ss</source>
+        <translation type="unfinished">秒前</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="149"/>
+        <source>mm</source>
+        <translation type="unfinished">分钟前</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="153"/>
+        <source>hh</source>
+        <translation type="unfinished">小时前</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="157"/>
+        <source>day</source>
+        <translation type="unfinished">天前</translation>
     </message>
 </context>
 <context>

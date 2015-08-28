@@ -387,17 +387,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="92"/>
+        <location filename="../musicapplicationobject.cpp" line="91"/>
         <source>About QMusicPlayer</source>
         <translation>About QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="93"/>
+        <location filename="../musicapplicationobject.cpp" line="92"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="94"/>
+        <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>Directed By Greedysky</source>
         <translation>Directed By Greedysky</translation>
     </message>
@@ -612,24 +612,20 @@
 <context>
     <name>MusicCoreAlgorithm</name>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="53"/>
         <source>ss</source>
-        <translation >SS</translation>
+        <translation type="vanished">SS</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="57"/>
         <source>mm</source>
-        <translation >MM</translation>
+        <translation type="vanished">MM</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="61"/>
         <source>hh</source>
-        <translation >HH</translation>
+        <translation type="vanished">HH</translation>
     </message>
     <message>
-        <location filename="../core/musiccorealgorithm.cpp" line="65"/>
         <source>day</source>
-        <translation >DAY</translation>
+        <translation type="vanished">DAY</translation>
     </message>
 </context>
 <context>
@@ -2801,6 +2797,29 @@
         <location filename="../core-widget/musicsystemtraymenu.cpp" line="106"/>
         <source>unlockLrc</source>
         <translation>Unlocked Lrc</translation>
+    </message>
+</context>
+<context>
+    <name>MusicTime</name>
+    <message>
+        <location filename="../core/musictime.cpp" line="145"/>
+        <source>ss</source>
+        <translation type="unfinished">SS</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="149"/>
+        <source>mm</source>
+        <translation type="unfinished">MM</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="153"/>
+        <source>hh</source>
+        <translation type="unfinished">HH</translation>
+    </message>
+    <message>
+        <location filename="../core/musictime.cpp" line="157"/>
+        <source>day</source>
+        <translation type="unfinished">DAY</translation>
     </message>
 </context>
 <context>
