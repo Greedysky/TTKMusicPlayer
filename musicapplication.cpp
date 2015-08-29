@@ -448,7 +448,7 @@ void MusicApplication::showCurrentSong(int index)
         m_bottomAreaWidget->setLabelText(name);
         m_topAreaWidget->setLabelText(name);
         //display current ArtTheme pic
-        M_ARTBG.setArtName(getCurrentFileName());
+        M_BG_MANAGER.setArtName(getCurrentFileName());
         m_topAreaWidget->musicBgThemeDownloadFinished();
     }
     else

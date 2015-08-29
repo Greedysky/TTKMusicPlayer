@@ -4,6 +4,7 @@
 #include "ui_musicbackgroundskindialog.h"
 #include <QFileDialog>
 #include <QColorDialog>
+#include "musicbgthememanager.h"
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     MusicMoveDialogAbstract(parent),

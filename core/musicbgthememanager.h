@@ -12,7 +12,7 @@
 #include "musicobject.h"
 #include "musicsingletone.h"
 
-#define M_ARTBG (MusicSingleton<MusicBgThemeManager>::createInstance())
+#define M_BG_MANAGER (MusicSingleton<MusicBgThemeManager>::createInstance())
 #define MAX_INDEX 5
 
 class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
@@ -29,12 +29,16 @@ public:
     void sendUserSelectArtBg(int index);
     void setObject(QObject *object) const ;
 
+    void setMBackground(const QString &path) { m_MBackground = path;}
+    QString getMBackground() const {return m_MBackground;}
+
 signals:
     void artHasChanged();
 
 protected:
     MusicBgThemeManager();
 
+    QString m_MBackground;
     QStringList m_photos;
     int m_currentIndex;
 
