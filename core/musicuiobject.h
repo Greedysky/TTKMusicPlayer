@@ -14,6 +14,9 @@
 
 namespace MusicUIObject
 {
+///Music Application background
+///
+    static QString MBackground = QString();
 ///Custom
 //////////////////////////////////////////////////////
     const QString MCustomStyle20 = " \
