@@ -2,6 +2,10 @@
 #include "musicuiobject.h"
 #include <QDebug>
 
+#if defined(Q_CC_MSVC)
+#   pragma warning(disable:4129)
+#endif
+
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {

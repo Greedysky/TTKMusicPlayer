@@ -12,7 +12,7 @@
 #include <QtCore/qglobal.h>
 
 #ifdef QT_DEBUG
-    #define MUSIC_DEBUG
+#   define MUSIC_DEBUG
 #endif
 
 #ifdef MUSIC_LIBRARY
