@@ -861,6 +861,11 @@ void MusicApplication::setStopSongChanged()
     m_musicPlayer->pause();
 }
 
+void MusicApplication::musicToolSetsParameter()
+{
+    m_object->musicToolSetsParameter();
+}
+
 void MusicApplication::addSongToPlayList(const QStringList &item)
 {
     musicImportSongsSettingPath(item);

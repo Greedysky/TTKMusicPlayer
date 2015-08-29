@@ -86,6 +86,7 @@ public slots:
     void setStopSongChanged();
     /////////////////////////////////////////////
     //This is a slot by MusicLeftAreaWidget's signal emit
+    void musicToolSetsParameter();
     void addSongToPlayList(const QStringList &item);
     void setSpectrum(HWND wnd, int w, int h);
     void getCurrentPlayList(QStringList &list);
