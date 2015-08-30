@@ -1,5 +1,7 @@
 #include "musicsettingwidget.h"
 #include "ui_musicsettingwidget.h"
+#include "musicbgthememanager.h"
+
 #include <QFontDatabase>
 #include <QColorDialog>
 #include <QApplication>
@@ -407,4 +409,11 @@ void MusicSettingWidget::resetDesktopParameter()
     ui->fontTypeComboBoxD->setCurrentIndex(0);
     ui->fontDefalutColorComboBoxD->setCurrentIndex(0);
     ui->transparentSliderD->setValue(100);
+}
+
+int MusicSettingWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

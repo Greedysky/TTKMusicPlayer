@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicWebRadioWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>25</height>
+     <height>335</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -191,6 +188,33 @@
     <string/>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMaske" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>475</width>
+     <height>310</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMaske</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>line_2</zorder>
+  <zorder>listWidget</zorder>
+  <zorder>movieLabel</zorder>
+  <zorder>playButton</zorder>
+  <zorder>volumnSlider</zorder>
+  <zorder>stopButton</zorder>
+  <zorder>colletButton</zorder>
+  <zorder>discolletButton</zorder>
+  <zorder>label_2</zorder>
+  <zorder>stateLabel</zorder>
  </widget>
  <resources/>
  <connections/>

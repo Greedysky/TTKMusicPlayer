@@ -2,6 +2,7 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
+#include "musicbgthememanager.h"
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicMoveDialogAbstract(parent),
@@ -265,4 +266,11 @@ void MusicTimerWidget::setEnabledControlTrue3()
     ui->hourComboBox3->setEnabled(true);
     ui->secComboBox3->setEnabled(true);
     ui->repeatComboBox3->setEnabled(true);
+}
+
+int MusicTimerWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

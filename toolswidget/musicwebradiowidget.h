@@ -44,6 +44,7 @@ public slots:
     void radioStandardOutput();
     void radioColletButton();
     void radioDiscolletButton();
+    void show();
 
 protected:
     virtual void closeEvent(QCloseEvent *event);

@@ -1,5 +1,7 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
+#include "musicbgthememanager.h"
+
 #include <QFileDialog>
 #include <QProcess>
 #include <QMovie>
@@ -237,4 +239,11 @@ void MusicTransformWidget::setCheckedControl(bool enable) const
     ui->msCombo->setEnabled(enable);
     ui->folderBox->setEnabled(enable);
     ui->transformButton->setEnabled(enable);
+}
+
+int MusicTransformWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

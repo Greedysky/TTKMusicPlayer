@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicTimerWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>471</width>
-     <height>25</height>
+     <height>350</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -372,13 +369,13 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="QWidget" name="backgroundMask1" native="true">
    <property name="geometry">
     <rect>
-     <x>1</x>
+     <x>0</x>
      <y>25</y>
      <width>125</width>
-     <height>321</height>
+     <height>325</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -463,6 +460,28 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>125</x>
+     <y>25</y>
+     <width>345</width>
+     <height>325</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask2</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>stackedWidget</zorder>
+  <zorder>backgroundMask1</zorder>
+  <zorder>confirm</zorder>
+  <zorder>cancel</zorder>
+  <zorder>line_4</zorder>
  </widget>
  <resources/>
  <connections/>

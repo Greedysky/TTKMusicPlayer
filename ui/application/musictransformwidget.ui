@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicTransformWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>25</height>
+     <height>359</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -287,6 +284,42 @@
     </rect>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>475</width>
+     <height>334</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>line_2</zorder>
+  <zorder>inputLineEdit</zorder>
+  <zorder>label</zorder>
+  <zorder>outputLineEdit</zorder>
+  <zorder>label_2</zorder>
+  <zorder>formatCombo</zorder>
+  <zorder>kbpsCombo</zorder>
+  <zorder>inputButton</zorder>
+  <zorder>outputButton</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
+  <zorder>msCombo</zorder>
+  <zorder>hzCombo</zorder>
+  <zorder>label_6</zorder>
+  <zorder>transformButton</zorder>
+  <zorder>loadingLabel</zorder>
+  <zorder>folderBox</zorder>
+  <zorder>listWidget</zorder>
  </widget>
  <resources/>
  <connections/>

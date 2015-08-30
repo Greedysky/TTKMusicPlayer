@@ -41,6 +41,7 @@ public slots:
     void setEnabledControlTrue2();
     void setEnabledControlFalse3();
     void setEnabledControlTrue3();
+    virtual int exec();
 
 protected:
     Ui::MusicTimerWidget *ui;

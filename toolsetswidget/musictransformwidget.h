@@ -39,6 +39,7 @@ public slots:
     void startTransform();
     void transformFinish(int index);
     void folderBoxChecked(bool check);
+    virtual int exec();
 
 protected:
     QString getTransformSongName() const;

@@ -1,6 +1,8 @@
 #include "musicwebradiowidget.h"
 #include "ui_musicwebradiowidget.h"
 #include "musicwebradiodatebase.h"
+#include "musicbgthememanager.h"
+
 #include <QProcess>
 
 MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
@@ -228,4 +230,11 @@ void MusicWebRadioWidget::radioDiscolletButton()
     }
     lItem->setIcon(*m_discollecticon);
     m_database->radioDiscollection(lItem->text());
+}
+
+void MusicWebRadioWidget::show()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    MusicMoveWidgetAbstract::show();
 }

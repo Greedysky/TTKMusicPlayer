@@ -54,6 +54,7 @@ public slots:
     void desktopLrcTransChanged(int index);
     void showDesktopLrcDemo(int index);
     void resetDesktopParameter();
+    virtual int exec();
 
 protected:
     void initInlineLrcWidget();
