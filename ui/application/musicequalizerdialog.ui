@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicEqualizerDialog{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>510</width>
-     <height>25</height>
+     <height>335</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -937,6 +934,82 @@ font-weight:bold;
     <string>通道混合</string>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>510</width>
+     <height>310</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>bwVerticalSlider</zorder>
+  <zorder>verticalSlider3</zorder>
+  <zorder>verticalSlider4</zorder>
+  <zorder>verticalSlider5</zorder>
+  <zorder>verticalSlider2</zorder>
+  <zorder>verticalSlider7</zorder>
+  <zorder>verticalSlider6</zorder>
+  <zorder>verticalSlider8</zorder>
+  <zorder>verticalSlider9</zorder>
+  <zorder>verticalSlider10</zorder>
+  <zorder>verticalSlider1</zorder>
+  <zorder>label</zorder>
+  <zorder>showEqButton</zorder>
+  <zorder>resetButton</zorder>
+  <zorder>eqChoice</zorder>
+  <zorder>showPerArea_2</zorder>
+  <zorder>showPerArea_3</zorder>
+  <zorder>showPerArea_4</zorder>
+  <zorder>showPerArea_5</zorder>
+  <zorder>showPerArea_6</zorder>
+  <zorder>showPerArea_7</zorder>
+  <zorder>showPerArea_8</zorder>
+  <zorder>showPerArea_9</zorder>
+  <zorder>showPerArea_10</zorder>
+  <zorder>showPerArea_11</zorder>
+  <zorder>showPerArea_12</zorder>
+  <zorder>showPerArea_13</zorder>
+  <zorder>showPerArea_14</zorder>
+  <zorder>showPerArea_15</zorder>
+  <zorder>showPerArea_16</zorder>
+  <zorder>showPerArea_17</zorder>
+  <zorder>showPerArea_18</zorder>
+  <zorder>showPerArea_19</zorder>
+  <zorder>showPerArea_20</zorder>
+  <zorder>showPerArea_21</zorder>
+  <zorder>showPerArea_22</zorder>
+  <zorder>showPerArea_23</zorder>
+  <zorder>showPerArea_24</zorder>
+  <zorder>showPerArea_25</zorder>
+  <zorder>showPerArea_26</zorder>
+  <zorder>showPerArea_27</zorder>
+  <zorder>showPerArea_28</zorder>
+  <zorder>showPerArea_29</zorder>
+  <zorder>showPerArea_30</zorder>
+  <zorder>showPerArea_31</zorder>
+  <zorder>eqLabel</zorder>
+  <zorder>funcButton_3</zorder>
+  <zorder>funcButton_4</zorder>
+  <zorder>funcButton_5</zorder>
+  <zorder>funcButton_6</zorder>
+  <zorder>funcButton_7</zorder>
+  <zorder>funcButton_8</zorder>
+  <zorder>funcButton_9</zorder>
+  <zorder>funcButton_10</zorder>
+  <zorder>funcButton_11</zorder>
+  <zorder>funcButton_12</zorder>
+  <zorder>checkBox</zorder>
+  <zorder>checkBox_2</zorder>
+  <zorder>checkBox_3</zorder>
  </widget>
  <resources/>
  <connections/>

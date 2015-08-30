@@ -2,6 +2,7 @@
 #include "ui_musiclrcsearchwidget.h"
 #include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
+#include "musicbgthememanager.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     : MusicMoveDialogAbstract(parent),
@@ -73,4 +74,11 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
     {
        ui->stateLabel->setText(tr("lrc download finished!"));
     }
+}
+
+int MusicLrcSearchWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicLrcMakerWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>25</height>
+     <height>335</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -228,6 +225,37 @@
     <string>请输入着正确的歌词文本，否则会制作失败！</string>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>475</width>
+     <height>310</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>line_2</zorder>
+  <zorder>artNameLabel</zorder>
+  <zorder>artNameEdit</zorder>
+  <zorder>songNameLabel</zorder>
+  <zorder>songNameEdit</zorder>
+  <zorder>authorNameLabel</zorder>
+  <zorder>authorNameEdit</zorder>
+  <zorder>lrcTextEdit</zorder>
+  <zorder>introductionTextEdit</zorder>
+  <zorder>introductionLabel</zorder>
+  <zorder>makeButton</zorder>
+  <zorder>saveButton</zorder>
+  <zorder>reviewButton</zorder>
+  <zorder>llrcIntroductionLabel</zorder>
  </widget>
  <resources/>
  <connections/>

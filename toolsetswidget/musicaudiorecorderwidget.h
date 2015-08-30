@@ -62,6 +62,7 @@ public slots:
     void onSliderValueChanged(int value);
     void onTimeOut();
     void onTimerout();
+    virtual int exec();
 
 protected:
     int addWavHeader(char *filename);

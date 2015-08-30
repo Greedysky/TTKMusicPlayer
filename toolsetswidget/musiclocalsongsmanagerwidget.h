@@ -44,6 +44,7 @@ public slots:
 
     void setShowlistButton();
     void setShowPathButton();
+    virtual int exec();
 
 protected:
     Ui::MusicLocalSongsManagerWidget *ui;

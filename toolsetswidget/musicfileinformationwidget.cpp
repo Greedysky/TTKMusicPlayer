@@ -3,6 +3,8 @@
 #include "musicuiobject.h"
 #include "musictime.h"
 #include "musicfileinformation.h"
+#include "musicbgthememanager.h"
+
 #include <QDesktopServices>
 #include <QMessageBox>
 
@@ -70,4 +72,11 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     ui->TrackNumEdit->setText( state ? ((check = info.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(info.getDescription())
                                    .arg(info.getVBRString())).isEmpty() ? "-" : check) : "-" );
+}
+
+int MusicFileInformationWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

@@ -3,6 +3,7 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicuiobject.h"
 #include "musicdatadownloadthread.h"
+#include "musicbgthememanager.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -226,3 +227,11 @@ void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
     autoStart ? settings.setValue(applicationName, QApplication::applicationFilePath().replace("/", "\\"))
               : settings.remove(applicationName);
 }
+
+void MusicDesktopWallpaperWidget::show()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    MusicMoveWidgetAbstract::show();
+}
+

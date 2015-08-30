@@ -1,6 +1,7 @@
 #include "musicaudiorecorderwidget.h"
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
+#include "musicbgthememanager.h"
 #include <QMovie>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -383,4 +384,11 @@ void MusicAudioRecorderWidget::onReadMore()
 void MusicAudioRecorderWidget::onTimeOut()
 {
     ui->progress->setValue(m_miMaxValue);
+}
+
+int MusicAudioRecorderWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

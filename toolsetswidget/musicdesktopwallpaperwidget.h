@@ -34,6 +34,7 @@ public slots:
     void stopButtonPressed();
     void cancelButtonPressed();
     void parameterFinished();
+    void show();
 
 protected:
     void initWidgetStyle() const;

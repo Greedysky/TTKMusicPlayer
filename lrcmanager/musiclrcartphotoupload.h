@@ -21,10 +21,10 @@ class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoUpload : public MusicMoveDialogAbstrac
 public:
     explicit MusicLrcArtPhotoUpload(QWidget *parent = 0);
 
-signals:
 public slots:
     void selectButtonClicked();
     void uploadButtonClicked();
+    virtual int exec();
 
 protected:
     Ui::MusicLrcArtPhotoUpload *ui;

@@ -2,6 +2,7 @@
 #include "ui_musicequalizerdialog.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
+#include "musicbgthememanager.h"
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     MusicMoveDialogAbstract(parent),
@@ -453,4 +454,11 @@ void MusicEqualizerDialog::setFadeInEffect()
     setEqEnable();
     ui->eqLabel->setText(tr("FadeInEffect"));
     emit setSpEqEffect(MusicObject::EQ_FadeInEffect);
+}
+
+int MusicEqualizerDialog::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

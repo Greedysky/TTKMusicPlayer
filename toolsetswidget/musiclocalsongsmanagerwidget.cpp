@@ -2,6 +2,7 @@
 #include "ui_musiclocalsongsmanagerwidget.h"
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
+#include "musicbgthememanager.h"
 
 #include <QDateTime>
 #include <QMessageBox>
@@ -376,4 +377,11 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
     ui->songlistsTable->createShowPath();
     m_currentIndex = 1;
     addLoaclSongList();
+}
+
+int MusicLocalSongsManagerWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

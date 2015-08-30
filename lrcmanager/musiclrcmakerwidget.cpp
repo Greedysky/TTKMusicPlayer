@@ -2,6 +2,7 @@
 #include "ui_musiclrcmakerwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
+#include "musicbgthememanager.h"
 
 #include <QMessageBox>
 #include <QTime>
@@ -184,4 +185,11 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 {
     MusicMoveWidgetAbstract::keyReleaseEvent(event);
+}
+
+void MusicLrcMakerWidget::show()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    MusicMoveWidgetAbstract::show();
 }

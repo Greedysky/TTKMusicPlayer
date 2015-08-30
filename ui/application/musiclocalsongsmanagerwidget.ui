@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicLocalSongsManagerWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>635</width>
-     <height>25</height>
+     <height>430</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -61,7 +58,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="QWidget" name="backgroundMask1" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -230,6 +227,27 @@
      </rect>
     </property>
    </widget>
+   <widget class="QWidget" name="backgroundMask2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-1</y>
+      <width>511</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(255,255,255,150)</string>
+    </property>
+   </widget>
+   <zorder>backgroundMask2</zorder>
+   <zorder>allSelectedcheckBox</zorder>
+   <zorder>auditionButton</zorder>
+   <zorder>addButton</zorder>
+   <zorder>searchLineEdit</zorder>
+   <zorder>scanButton</zorder>
+   <zorder>searchLineLabel</zorder>
+   <zorder>filterComboBox</zorder>
   </widget>
   <widget class="QLabel" name="loadingLabel">
    <property name="geometry">

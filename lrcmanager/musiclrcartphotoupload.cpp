@@ -2,6 +2,8 @@
 #include "ui_musiclrcartphotoupload.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
+#include "musicbgthememanager.h"
+
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -94,4 +96,11 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
     ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
     close();
+}
+
+int MusicLrcArtPhotoUpload::exec()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicMoveDialogAbstract::exec();
 }

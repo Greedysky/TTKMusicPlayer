@@ -26,9 +26,9 @@ public:
 
     void setFileInformation(const QString &name);
 
-signals:
 public slots:
     void musicOpenFileDir();
+    virtual int exec();
 
 protected:
     Ui::MusicFileInformationWidget *ui;

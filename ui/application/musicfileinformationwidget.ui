@@ -17,17 +17,14 @@
    <string notr="true">#MusicFileInformationWidget{border:1px solid gray}
 QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>25</height>
+     <height>370</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -510,6 +507,57 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>475</width>
+     <height>340</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>line_2</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>filePathEdit</zorder>
+  <zorder>label_3</zorder>
+  <zorder>fileSizeEdit</zorder>
+  <zorder>viewButton</zorder>
+  <zorder>fileFormatEdit</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
+  <zorder>fileArtistEdit</zorder>
+  <zorder>fileTitleEdit</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_7</zorder>
+  <zorder>fileAlbumEdit</zorder>
+  <zorder>label_8</zorder>
+  <zorder>fileTimeEdit</zorder>
+  <zorder>label_9</zorder>
+  <zorder>fileGenreEdit</zorder>
+  <zorder>label_10</zorder>
+  <zorder>label_11</zorder>
+  <zorder>TrackNumEdit</zorder>
+  <zorder>label_12</zorder>
+  <zorder>SamplingRateEdit</zorder>
+  <zorder>ChannelNumberEdit</zorder>
+  <zorder>fileYearEdit</zorder>
+  <zorder>label_13</zorder>
+  <zorder>label_14</zorder>
+  <zorder>BitrateEdit</zorder>
+  <zorder>label_15</zorder>
+  <zorder>line_3</zorder>
+  <zorder>label_16</zorder>
+  <zorder>descriptionEdit</zorder>
+  <zorder>line_4</zorder>
  </widget>
  <resources/>
  <connections/>

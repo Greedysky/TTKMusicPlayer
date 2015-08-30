@@ -59,6 +59,7 @@ public slots:
     void setTempoDownEffect();
     void setFadeOutEffect();
     void setFadeInEffect();
+    virtual int exec();
 
 protected:
     void setControlEnable(bool enable) const;

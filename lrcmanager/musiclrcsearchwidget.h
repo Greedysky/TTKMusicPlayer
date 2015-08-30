@@ -30,6 +30,7 @@ public slots:
     void lrcSearchButtonClicked() const;
     void lrcSearchDownloadClicked();
     void lrcDownloadStateChanged(const QString &string);
+    virtual int exec();
 
 protected:
     Ui::MusicLrcSearchWidget *ui;

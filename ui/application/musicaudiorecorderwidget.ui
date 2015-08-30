@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicAudioRecorderWidget{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>371</width>
-     <height>25</height>
+     <height>270</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -326,6 +323,40 @@ QProgressBar::chunk {
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>371</width>
+     <height>245</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>startButton</zorder>
+  <zorder>stopButton</zorder>
+  <zorder>playButton</zorder>
+  <zorder>label</zorder>
+  <zorder>timer</zorder>
+  <zorder>checkBox</zorder>
+  <zorder>checkBox_2</zorder>
+  <zorder>checkBox_3</zorder>
+  <zorder>checkBox_4</zorder>
+  <zorder>timer_2</zorder>
+  <zorder>checkBox_5</zorder>
+  <zorder>line</zorder>
+  <zorder>horizontalSlider</zorder>
+  <zorder>progress</zorder>
+  <zorder>saveButton</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <resources/>
  <connections/>

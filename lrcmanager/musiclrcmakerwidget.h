@@ -28,6 +28,7 @@ public slots:
     void makeButtonClicked();
     void saveButtonClicked();
     void reviewButtonClicked();
+    void show();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);

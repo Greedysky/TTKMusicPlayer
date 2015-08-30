@@ -16,17 +16,14 @@
   <property name="styleSheet">
    <string notr="true">#MusicLrcArtPhotoUpload{border:1px solid gray}</string>
   </property>
-  <widget class="QLabel" name="topTitleBar">
+  <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>415</width>
-     <height>25</height>
+     <height>321</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:black</string>
    </property>
    <property name="text">
     <string/>
@@ -168,6 +165,31 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>25</y>
+     <width>415</width>
+     <height>295</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>artNameLabel</zorder>
+  <zorder>artSearchEdit</zorder>
+  <zorder>stateLabel</zorder>
+  <zorder>uploadButton</zorder>
+  <zorder>closeButton</zorder>
+  <zorder>imageLabel</zorder>
+  <zorder>selectButton</zorder>
+  <zorder>introduceLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>

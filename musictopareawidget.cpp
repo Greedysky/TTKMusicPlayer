@@ -134,8 +134,14 @@ void MusicTopAreaWidget::musicBackgroundChanged()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
+    QString path = THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE;
+    M_BG_MANAGER.setMBackground(path);
+    if(m_musicbgskin)
+    {
+        m_musicbgskin->updateBackground();
+    }
     m_pictureCarouselTimer.stop();
-    drawWindowBackgroundRectString(THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE);
+    drawWindowBackgroundRectString(path);
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
@@ -150,11 +156,6 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding).toImage()));
     paint.end();
 
-    M_BG_MANAGER.setMBackground(path);
-    if(m_musicbgskin)
-    {
-        m_musicbgskin->updateBackground();
-    }
     emit updateToolStyle();
     m_ui->background->setPixmap(afterDeal);
 }

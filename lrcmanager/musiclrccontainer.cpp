@@ -36,7 +36,7 @@ void MusicLrcContainer::searchMusicLrcs()
         m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
     }
     m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
-    m_musicLrcSearchWidget->show();
+    m_musicLrcSearchWidget->exec();
 }
 
 void MusicLrcContainer::createColorMenu(QMenu &menu)
