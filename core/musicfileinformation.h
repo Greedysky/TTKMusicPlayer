@@ -46,6 +46,7 @@ public:
     QString getLengthString() const;
     QString getDescription() const;
     /////////////////////////////////////////////
+
 protected:
     ZPlay *m_player;
     TID3InfoExW m_tagInfo;

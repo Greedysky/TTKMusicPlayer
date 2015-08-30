@@ -32,36 +32,16 @@ signals:
     void resetEqEffect();
 
 public slots:
-    void verticalSlider1(int value);
-    void verticalSlider2(int value);
-    void verticalSlider3(int value);
-    void verticalSlider4(int value);
-    void verticalSlider5(int value);
-    void verticalSlider6(int value);
-    void verticalSlider7(int value);
-    void verticalSlider8(int value);
-    void verticalSlider9(int value);
-    void verticalSlider10(int value);
     void setEqEnable();
     void resetEq();
+    void verticalSliderChanged(int index);
     void eqChoiceIndexChanged(int index);
-
-    void setEchoEffect(bool echo);
-    void setMixChannelEffect(bool mix);
-    void setReverseEffect(bool reverse);
-    void setSideCutEffect();
-    void setCenterCutEffect();
-    void setRateUpEffect();
-    void setRateDownEffect();
-    void setPitchUpEffect();
-    void setPitchDownEffect();
-    void setTempoUpEffect();
-    void setTempoDownEffect();
-    void setFadeOutEffect();
-    void setFadeInEffect();
+    void setMixedEffect(int index);
+    void setEqualizerEffect(int index);
     virtual int exec();
 
 protected:
+    void init();
     void setControlEnable(bool enable) const;
     void readEqInformation();
     void writeEqInformation() const;
