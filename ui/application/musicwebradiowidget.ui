@@ -188,7 +188,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMaske" native="true">
+  <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -202,7 +202,7 @@
    </property>
   </widget>
   <zorder>background</zorder>
-  <zorder>backgroundMaske</zorder>
+  <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>line_2</zorder>
