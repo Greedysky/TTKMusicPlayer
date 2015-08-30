@@ -94,6 +94,12 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     ui->bgTransparentSlider->setValue(alpha);
 }
 
+void MusicBackgroundSkinDialog::updateBackground()
+{
+    QPixmap pix(M_BG_MANAGER.getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+}
+
 void MusicBackgroundSkinDialog::changeToMySkin()
 {
     ui->stackedWidget->setCurrentIndex(1);
@@ -148,4 +154,10 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
                 "theme" + QString::number(ui->themeListWidget->count()+1),ui->themeListWidget);
     item->setSizeHint(QSize(112,90));
     ui->themeListWidget->addItem(item);
+}
+
+int MusicBackgroundSkinDialog::exec()
+{
+    updateBackground();
+    return MusicMoveDialogAbstract::exec();
 }

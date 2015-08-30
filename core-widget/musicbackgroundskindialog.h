@@ -25,12 +25,14 @@ public:
     void clearAllItems();
     void addThemeListWidgetItem();
     void setCurrentBgTheme(const QString &theme,int alpha);
+    void updateBackground();
 
 public slots:
     void changeToMySkin();
     void changeToNetSkin();
     void showPaletteDialog();
     void showCustomSkinDialog();
+    virtual int exec();
 
 protected:
     Ui::MusicBackgroundSkinDialog *ui;

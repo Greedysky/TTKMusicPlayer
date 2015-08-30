@@ -151,6 +151,10 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     paint.end();
 
     M_BG_MANAGER.setMBackground(path);
+    if(m_musicbgskin)
+    {
+        m_musicbgskin->updateBackground();
+    }
     emit updateToolStyle();
     m_ui->background->setPixmap(afterDeal);
 }
