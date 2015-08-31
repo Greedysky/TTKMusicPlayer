@@ -3,12 +3,13 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
+#include "musicmessagebox.h"
+
 #include <QTableWidgetItem>
 #include <QDebug>
 #include <QFileInfo>
 #include <QLayout>
 #include <QDesktopServices>
-#include <QMessageBox>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
     QToolBox(parent),m_renameLine(NULL)
@@ -193,9 +194,9 @@ void MusicSongsSummarizied::deleteItem()
     int index = this->currentIndex();
     if(index == 0 || index == 1 || index == 2)
     {
-        QMessageBox::information(0,tr("QMusicPlayer"),
-                                   tr("The origin one can't delete?"),
-                                   tr("Yes"),tr("Cancel"));
+        MusicMessageBox message;
+        message.setText(tr("The origin one can't delete!"));
+        message.exec();
         return;//Not allow to delete the origin three item
     }
     this->removeItem(index);
@@ -206,9 +207,9 @@ void MusicSongsSummarizied::changItemName()
     int index = this->currentIndex();
     if(index == 0 || index == 1 || index == 2)
     {
-        QMessageBox::information(0,tr("QMusicPlayer"),
-                                   tr("The origin one can't rename?"),
-                                   tr("Yes"),tr("Cancel"));
+        MusicMessageBox message;
+        message.setText(tr("The origin one can't rename!"));
+        message.exec();
         return;//Not allow to change name for the origin three item
     }
     if(!m_renameLine)
@@ -275,8 +276,9 @@ void MusicSongsSummarizied::musicOpenFileDir(int index)
     if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentIndex()][index]).absolutePath()
                               , QUrl::TolerantMode)))
     {
-        QMessageBox::about(0,tr("QMusicPlayer"),
-                             tr("The origin one does not exsit?"));
+        MusicMessageBox message;
+        message.setText(tr("The origin one does not exsit!"));
+        message.exec();
     }
 }
 

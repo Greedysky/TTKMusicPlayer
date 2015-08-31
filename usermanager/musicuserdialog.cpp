@@ -4,8 +4,9 @@
 #include "musicuserlineedit.h"
 #include "musicuserModel.h"
 #include "musicuserconfigmanager.h"
+#include "musicmessagebox.h"
+
 #include <QValidator>
-#include <QMessageBox>
 #include <time.h>
 #include <QTimer>
 
@@ -215,15 +216,17 @@ void MusicUserDialog::checkUserLogin()
     {
         if( !m_userModel->checkUser(user,pwd) )
         {
-            QMessageBox::warning(this,tr("QMusicPlayer"),
-                         tr("You passwd is incorrect or user is not exist"));
+            MusicMessageBox message;
+            message.setText(tr("You passwd is incorrect or user is not exist"));
+            message.exec();
             return;
         }
     }
     if( user.trimmed() == "" || pwd.trimmed() == "" )
     {
-        QMessageBox::warning(this,tr("QMusicPlayer"),
-                             tr("You entered is incorrect"));
+        MusicMessageBox message;
+        message.setText(tr("You entered is incorrect"));
+        message.exec();
         return;
     }
     emit userLoginSuccess(user);
@@ -239,32 +242,38 @@ void MusicUserDialog::checkRegisterUser()
     {
         if( ui->registerPwdLine->text() != ui->registerPwdCLine->text() )
         {
-            QMessageBox::warning(this,tr("QMusicPlayer"),
-                                 tr("The two passwords do not match"));
+            MusicMessageBox message;
+            message.setText(tr("The two passwords do not match"));
+            message.exec();
             return;
         }
         if( !ui->agreementCheckBox->isChecked() )
         {
-            QMessageBox::warning(this,tr("QMusicPlayer"),
-                                 tr("The agreement does not tick"));
+            MusicMessageBox message;
+            message.setText(tr("The agreement does not tick"));
+            message.exec();
             return;
         }
         if( !m_userModel->addUser(ui->registerUserLine->text(),
                                  ui->registerPwdLine->text(),
                                  ui->registerMailLine->text()) )
         {
-            QMessageBox::warning(this,tr("QMusicPlayer"),
-                                 tr("The username is existed"));
+            MusicMessageBox message;
+            message.setText(tr("The username is existed"));
+            message.exec();
             return;
         }
-        QMessageBox::information(this,tr("QMusicPlayer"),
-                             tr("The register successfully"));
+        MusicMessageBox message;
+        message.setText(tr("The register successfully"));
+        message.exec();
+
         userLogin();
     }
     else
     {
-        QMessageBox::warning(this,tr("QMusicPlayer"),
-                             tr("You entered is incorrect"));
+        MusicMessageBox message;
+        message.setText(tr("You entered is incorrect"));
+        message.exec();
     }
 }
 
@@ -274,33 +283,38 @@ void MusicUserDialog::checkUserForgotPasswd()
      QString mail = ui->mailLineEdit->text();
      if( user.trimmed() == "" || mail.trimmed() == "" )
      {
-         QMessageBox::warning(this,tr("QMusicPlayer"),
-                              tr("You entered is incorrect"));
+         MusicMessageBox message;
+         message.setText(tr("You entered is incorrect"));
+         message.exec();
          return;
      }
      if( !m_userModel->mailCheck(user,mail) )
      {
-         QMessageBox::warning(this,tr("QMusicPlayer"),
-                      tr("You mail is incorrect or user is not exist"));
+         MusicMessageBox message;
+         message.setText(tr("You mail is incorrect or user is not exist"));
+         message.exec();
          return;
      }
      if( !ui->pwdLineEdit->getStrStatus() )
      {
-         QMessageBox::warning(this,tr("QMusicPlayer"),
-                                   tr("You passwd is incorrect"));
+         MusicMessageBox message;
+         message.setText(tr("You passwd is incorrect"));
+         message.exec();
          return;
      }
      if( ui->verificationCode->text() !=
          ui->verificationCodeEdit->text().trimmed() )
      {
-         QMessageBox::warning(this,tr("QMusicPlayer"),
-                                   tr("You verificationCode is incorrect"));
+         MusicMessageBox message;
+         message.setText(tr("You verificationCode is incorrect"));
+         message.exec();
          return;
      }
      if( m_userModel->updateUser(user,ui->pwdLineEdit->text(),mail,"","") )
      {
-         QMessageBox::warning(this,tr("QMusicPlayer"),
-                                   tr("Change password successfully"));
+         MusicMessageBox message;
+         message.setText(tr("Change password successfully"));
+         message.exec();
      }
      userLogin();
 }

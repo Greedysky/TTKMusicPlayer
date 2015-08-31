@@ -18,10 +18,12 @@ public:
     void setText(const QString &text) const;
 
 public slots:
+    void buttonClicked(int index);
     virtual int exec();
 
 protected:
     Ui::MusicMessageBox *ui;
+    int m_status;
 
 };
 

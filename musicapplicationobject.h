@@ -10,7 +10,6 @@
    =================================================*/
 
 #include <QMimeData>
-#include <QMessageBox>
 #include <QFileDialog>
 #include "musiclibexportglobal.h"
 

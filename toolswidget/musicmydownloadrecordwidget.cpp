@@ -1,7 +1,8 @@
 #include "musicmydownloadrecordwidget.h"
 #include "musicmydownloadrecordobject.h"
+#include "musicmessagebox.h"
+
 #include <QDesktopServices>
-#include <QMessageBox>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     MusicTableWidgetAbstract(parent)
@@ -80,10 +81,9 @@ void MusicMyDownloadRecordWidget::setDeleteItemAll()
 
 void MusicMyDownloadRecordWidget::setDeleteItemAt()
 {
-    if(this->rowCount() == 0 || QMessageBox::information(0,tr("QMusicPlayer"),
-                                 tr("Are you sure to delete?"),
-                                 tr("Yes"),
-                                 tr("Cancel")) != 0 )
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to delete?"));
+    if( message.exec() || rowCount() == 0 )
     {
        return;
     }
@@ -139,8 +139,9 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
     if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentRow()]).absolutePath()
                               , QUrl::TolerantMode)))
     {
-        QMessageBox::about(0,tr("QMusicPlayer"),
-                             tr("The origin one does not exsit?"));
+        MusicMessageBox message;
+        message.setText(tr("The origin one does not exsit!"));
+        message.exec();
     }
 }
 

@@ -4,8 +4,9 @@
 #include "musicuiobject.h"
 #include "musicdatadownloadthread.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
+
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QSettings>
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
@@ -169,7 +170,9 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
 {
     if(ui->urlLineEdit->text().trimmed().isEmpty())
     {
-        QMessageBox::information(this,tr("QMusicPlayer"),tr("url is now empty!"));
+        MusicMessageBox message;
+        message.setText(tr("url is now empty!"));
+        message.exec();
         return;
     }
     switch(m_currentMode)

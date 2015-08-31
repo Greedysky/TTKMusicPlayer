@@ -4,7 +4,8 @@
 #include "musicuserdialog.h"
 #include "musicusermodel.h"
 #include "musicusermanager.h"
-#include <QMessageBox>
+#include "musicmessagebox.h"
+
 #include <QDebug>
 #include <QTimer>
 
@@ -89,7 +90,9 @@ bool MusicUserWindow::connectDatabase()
     }
     catch(QString exception)
     {
-        QMessageBox::warning(this, QObject::tr("Error Message"), exception );
+        MusicMessageBox message;
+        message.setText( exception );
+        message.exec();
         return false;
     }
     return true;

@@ -6,6 +6,7 @@
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musictimerautoobject.h"
+#include "musicmessagebox.h"
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(NULL)
@@ -88,11 +89,12 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
 
 void MusicApplicationObject::musicAboutUs()
 {
-    QMessageBox::about(NULL, tr("About QMusicPlayer"),
-       tr("QMusicPlayer") + QString("\n\n") +
-       tr("Directed By Greedysky") +
-       QString("\nCopyright© 2014-2015") +
-       QString("\nMail:Greedysky@163.com"));
+    MusicMessageBox message;
+    message.setText(tr("QMusicPlayer") + QString("\n\n") +
+                    tr("Directed By Greedysky") +
+                    QString("\nCopyright© 2014-2015") +
+                    QString("\nMail:Greedysky@163.com"));
+    message.exec();
 }
 
 void MusicApplicationObject::musicAudioRecorder()

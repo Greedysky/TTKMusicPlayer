@@ -2,8 +2,9 @@
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
+
 #include <QMovie>
-#include <QMessageBox>
 #include <QFileDialog>
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :

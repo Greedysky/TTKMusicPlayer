@@ -10,6 +10,7 @@
 #include "musicsettingmanager.h"
 #include "musicversion.h"
 #include "musicuiobject.h"
+#include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
@@ -150,8 +151,9 @@ void MusicApplication::dropEvent(QDropEvent *event)
         }
         else
         {
-            QMessageBox::information(this,tr("QMusicPlayer"),
-                                     url.toString().split('/').back() + tr("not supported"));
+            MusicMessageBox message;
+            message.setText(url.toString().split('/').back() + tr("not supported"));
+            message.exec();
         }
     }
     musicImportSongsSettingPath(fileList);

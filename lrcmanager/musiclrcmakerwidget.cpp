@@ -3,8 +3,8 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
 
-#include <QMessageBox>
 #include <QTime>
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
@@ -86,7 +86,9 @@ void MusicLrcMakerWidget::makeButtonClicked()
     }
     if(errorFlag)
     {
-        QMessageBox::warning(this, tr("QMusicPlayer"), msg);
+        MusicMessageBox message;
+        message.setText(msg);
+        message.exec();
         return;
     }
 
@@ -177,7 +179,9 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
         else
         {
             ui->saveButton->setEnabled(true);
-            QMessageBox::warning(this, tr("QMusicPlayer"), tr("lrc make finished"));
+            MusicMessageBox message;
+            message.setText(tr("lrc make finished"));
+            message.exec();
         }
     }
 }

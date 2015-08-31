@@ -3,10 +3,11 @@
 #include "musicsongslistplaywidget.h"
 #include "musictransformwidget.h"
 #include "musicfileinformationwidget.h"
+#include "musicmessagebox.h"
+
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
-#include <QMessageBox>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     MusicTableWidgetAbstract(parent),m_musicSongsListItem(NULL),
@@ -219,11 +220,12 @@ void MusicSongsListWidget::setDeleteItemWithFile()
 
 void MusicSongsListWidget::setDeleteItemAt()
 {
-    if(this->rowCount() == 0 || QMessageBox::information(0,tr("QMusicPlayer"),
-                                 tr("Are you sure to delete?"),
-                                 tr("Yes"),
-                                 tr("Cancel")) != 0 || currentRow() < 0)
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to delete?"));
+    if(message.exec() || rowCount() == 0 || currentRow() < 0)
+    {
        return;
+    }
 
     MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)

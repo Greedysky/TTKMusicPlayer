@@ -3,9 +3,9 @@
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
 
 #include <QDateTime>
-#include <QMessageBox>
 #include <QMovie>
 #include <QFileDialog>
 
@@ -282,7 +282,9 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
     if(ui->songlistsTable->rowCount() <= 0 ||
        ui->songlistsTable->currentRow() < 0 )
     {
-        QMessageBox::about(this,tr("QMusicPlayer"),tr("please select one item"));
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
         return;
     }
 
@@ -299,7 +301,9 @@ void MusicLocalSongsManagerWidget::addButtonClick()
     if(ui->songlistsTable->rowCount() <= 0 ||
        ui->songlistsTable->currentRow() < 0 )
     {
-        QMessageBox::about(this,tr("QMusicPlayer"),tr("please select one item"));
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
         return;
     }
 
