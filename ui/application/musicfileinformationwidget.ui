@@ -23,7 +23,7 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>370</height>
+     <height>365</height>
     </rect>
    </property>
    <property name="text">
@@ -507,7 +507,7 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMask">
+  <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>

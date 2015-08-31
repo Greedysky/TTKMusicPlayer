@@ -21,7 +21,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>475</width>
+     <width>465</width>
      <height>360</height>
     </rect>
    </property>
@@ -336,7 +336,7 @@
     <string>停止</string>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMask">
+  <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>

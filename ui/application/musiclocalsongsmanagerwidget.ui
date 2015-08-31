@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>635</width>
-     <height>430</height>
+     <height>432</height>
     </rect>
    </property>
    <property name="text">
@@ -230,9 +230,9 @@
    <widget class="QWidget" name="backgroundMask2" native="true">
     <property name="geometry">
      <rect>
-      <x>-1</x>
-      <y>-1</y>
-      <width>511</width>
+      <x>0</x>
+      <y>0</y>
+      <width>510</width>
       <height>40</height>
      </rect>
     </property>

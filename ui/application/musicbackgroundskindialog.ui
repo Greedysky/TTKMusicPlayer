@@ -209,13 +209,13 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMask">
+  <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>25</y>
      <width>481</width>
-     <height>311</height>
+     <height>310</height>
     </rect>
    </property>
    <property name="styleSheet">
