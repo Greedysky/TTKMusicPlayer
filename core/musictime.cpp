@@ -135,7 +135,26 @@ QString MusicTime::normalTime2LabelJustified(qint64 time)
 
 QString MusicTime::normalTime2Label() const
 {
-    return "not support!";
+    if(m_day == 0 && m_hour == 0 && m_min == 0)
+    {
+        return QString::number(m_sec) + tr("ss");
+    }
+    else if(m_day == 0 && m_hour == 0 && m_min != 0)
+    {
+        return QString::number(m_min) + tr("mm");
+    }
+    else if(m_day == 0 && m_hour != 0)
+    {
+        return QString::number(m_hour) + tr("hh");
+    }
+    else if(m_day != 0)
+    {
+        return QString::number(m_day) + tr("day");
+    }
+    else
+    {
+        return QString();
+    }
 }
 
 QString MusicTime::normalTime2Label(qint64 time)
