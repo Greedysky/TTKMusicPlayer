@@ -73,8 +73,6 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,200)</string>
    </property>
-   <zorder>textLabel</zorder>
-   <zorder>iconLabel</zorder>
   </widget>
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
@@ -106,10 +104,13 @@
    <property name="geometry">
     <rect>
      <x>45</x>
-     <y>50</y>
+     <y>35</y>
      <width>240</width>
-     <height>70</height>
+     <height>95</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:14px;font-weight:bold;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -122,7 +123,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>40</y>
+     <y>35</y>
      <width>100</width>
      <height>100</height>
     </rect>
