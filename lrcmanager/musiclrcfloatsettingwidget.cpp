@@ -1,5 +1,6 @@
 #include "musiclrcfloatsettingwidget.h"
 #include "musiclrccontainerforinline.h"
+
 #include <QTimer>
 #include <QGridLayout>
 #include <QPushButton>
