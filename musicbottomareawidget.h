@@ -41,6 +41,7 @@ public:
     bool systemTrayIsVisible()
             { return m_systemTray->isVisible();}
     void showMessage(const QString &title, const QString &text);
+    void setVolumeValue(int value) const;
 
 #ifdef MUSIC_DEBUG
     void setValue(int value) const;
@@ -56,6 +57,7 @@ public slots:
     void lockDesktopLrc(bool lock);
     void desktopLrcClosed();
     void iconActivated(QSystemTrayIcon::ActivationReason);
+    void musicVolumeChanged(int index);
 
 protected:
     void createToolPopupMenu();

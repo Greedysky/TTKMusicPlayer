@@ -601,6 +601,7 @@ void MusicApplication::musicVolumeNULL()
 void MusicApplication::musicVolumeChanged(int volume)
 {
     m_topAreaWidget->setVolumeValue(volume);
+    m_bottomAreaWidget->setVolumeValue(volume);
     m_musicPlayer->setVolume(volume);
     ui->volumeValue->setText(QString("%1%").arg(volume));
     (volume > 0) ? ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24)

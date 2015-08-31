@@ -60,6 +60,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 
+    m_systemTrayMenu->setVolume(0);
     createToolPopupMenu();
 }
 
@@ -103,6 +104,17 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
         default:
             break;
     }
+}
+
+void MusicBottomAreaWidget::setVolumeValue(int value) const
+{
+    m_ui->musicSoundSlider->setValue(value);
+    m_systemTrayMenu->setVolume(value);
+}
+
+void MusicBottomAreaWidget::musicVolumeChanged(int index)
+{
+    m_ui->musicSoundSlider->setValue(index);
 }
 
 void MusicBottomAreaWidget::createMenuActions() const
