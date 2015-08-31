@@ -32,6 +32,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     ui->userComboBox->addItems(m_userModel->getAllUsers());
     connect(ui->userComboBox, SIGNAL(currentIndexChanged(QString)),
                               SLOT(userComboBoxChanged(QString)));
+    connect(ui->userComboBox, SIGNAL(editTextChanged(QString)),
+                              SLOT(userEditTextChanged(QString)));
     m_userComboIndex = ui->userComboBox->currentText();
     readFromUserConfig();
 
@@ -40,7 +42,6 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
 
 MusicUserDialog::~MusicUserDialog()
 {
-    writeToUserConfig();
     delete m_userModel;
     delete ui;
 }
@@ -229,6 +230,7 @@ void MusicUserDialog::checkUserLogin()
         message.exec();
         return;
     }
+    writeToUserConfig();
     emit userLoginSuccess(user);
     close();
 }
@@ -349,9 +351,23 @@ void MusicUserDialog::writeToUserSettings()
 
 void MusicUserDialog::userComboBoxChanged(const QString &index)
 {
-    writeToUserSettings();
     m_userComboIndex = index;
     readFromUserSettings();
+}
+
+void MusicUserDialog::userEditTextChanged(const QString &index)
+{
+    if(m_userModel->getAllUsers().contains(index))
+    {
+        m_userComboIndex = index;
+        readFromUserSettings();
+    }
+    else
+    {
+        ui->automaticLogon->setChecked(false);
+        ui->rememberPwd->setChecked(false);
+        ui->passwLineEdit->clear();;
+    }
 }
 
 void MusicUserDialog::checkToAutoLogin()

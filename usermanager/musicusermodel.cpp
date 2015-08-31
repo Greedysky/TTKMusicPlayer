@@ -128,7 +128,7 @@ QString MusicUserModel::getUserPWDMD5(const QString &uid)
         return QString();
     }
 
-    return record(0).value("PASSWD").toString().left(10);
+    return record(0).value("PASSWD").toString();
 }
 
 QString MusicUserModel::userPasswordEncryption(const QString &pwd) const

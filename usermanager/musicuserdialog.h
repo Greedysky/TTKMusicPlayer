@@ -31,6 +31,7 @@ public slots:
     void checkUserForgotPasswd();
     void changeVerificationCode();
     void userComboBoxChanged(const QString &index);
+    void userEditTextChanged(const QString &index);
     void checkToAutoLogin();
 
 protected:
