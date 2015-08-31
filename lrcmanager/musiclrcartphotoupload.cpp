@@ -3,9 +3,9 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
 
 #include <QFileDialog>
-#include <QMessageBox>
 
 MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     : MusicMoveDialogAbstract(parent),
@@ -80,7 +80,9 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
     QString name = ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
     {
-        QMessageBox::warning(this, tr("QMusicPlayer"), tr("the art is empty!"));
+        MusicMessageBox message;
+        message.setText(tr("the art is empty!"));
+        message.exec();
         return;
     }
 

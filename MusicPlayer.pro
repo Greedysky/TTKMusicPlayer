@@ -115,7 +115,8 @@ SOURCES += \
     core-widget/musicsongslistiteminformation.cpp \
     core-widget/musicsongsearchonlinewidget.cpp \
     core-widget/musicsongstoolitemrenamedwidget.cpp \
-    core-widget/musicsongslistplaywidget.cpp \ 
+    core-widget/musicsongslistplaywidget.cpp \
+    core-widget/musicmessagebox.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
@@ -210,6 +211,7 @@ HEADERS  += \
     core-widget/musicsongsearchonlinewidget.h \
     core-widget/musicsongstoolitemrenamedwidget.h \
     core-widget/musicsongslistplaywidget.h \
+    core-widget/musicmessagebox.h \
     musicleftareawidget.h \
     musictopareawidget.h \
     musicrightareawidget.h \
@@ -232,7 +234,8 @@ FORMS    += \
     ui/application/musicdesktopwallpaperwidget.ui \
     ui/application/musiclrcsearchwidget.ui \
     ui/application/musiclrcartphotoupload.ui \
-    ui/application/musiclrcmakerwidget.ui
+    ui/application/musiclrcmakerwidget.ui \
+    ui/application/musicmessagebox.ui
 
 
 RESOURCES += \

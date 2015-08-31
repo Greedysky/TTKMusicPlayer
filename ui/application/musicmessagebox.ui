@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicMessagfeBox</class>
- <widget class="QDialog" name="MusicMessagfeBox">
+ <class>MusicMessageBox</class>
+ <widget class="QDialog" name="MusicMessageBox">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>330</width>
-    <height>200</height>
+    <height>190</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#MusicMessagfeBox{border:1px solid gray}</string>
+   <string notr="true">#MusicMessageBox{border:1px solid gray}</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>330</width>
-     <height>200</height>
+     <height>190</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -45,7 +45,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>警告框</string>
+    <string>提示框</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
@@ -67,18 +67,82 @@
      <x>0</x>
      <y>25</y>
      <width>330</width>
-     <height>175</height>
+     <height>165</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:rgba(255,255,255,200)</string>
+   </property>
+   <zorder>textLabel</zorder>
+   <zorder>iconLabel</zorder>
+  </widget>
+  <widget class="QPushButton" name="confirmButton">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>140</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>140</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="textLabel">
+   <property name="geometry">
+    <rect>
+     <x>45</x>
+     <y>50</y>
+     <width>240</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="iconLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>40</y>
+     <width>100</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../../qrc/MusicPlayerShare.qrc">:/share/warning</pixmap>
    </property>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
+  <zorder>confirmButton</zorder>
+  <zorder>cancelButton</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
+  <zorder>iconLabel</zorder>
+  <zorder>textLabel</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../qrc/MusicPlayerShare.qrc"/>
+  <include location="../../qrc/MusicPlayerShare.qrc"/>
+ </resources>
  <connections/>
 </ui>

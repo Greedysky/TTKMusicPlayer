@@ -7,5 +7,6 @@
         <file alias="musicdownload">../resource/music_download.png</file>
         <file alias="autionplay">../resource/music_autionPlay.png</file>
         <file alias="searchlineleft">../resource/music_search_line_left.png</file>
+        <file alias="warning">../resource/warning.png</file>
     </qresource>
 </RCC>

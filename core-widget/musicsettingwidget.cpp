@@ -22,7 +22,6 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     //set window radius
 
     ////////////////////////////////////////////////
-    m_leftButtonPress = false;
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

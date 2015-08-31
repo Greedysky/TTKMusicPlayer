@@ -2,16 +2,27 @@
 #define MUSICMESSAGEBOX_H
 
 #include <QWidget>
+#include "musicmovedialogabstract.h"
 
-class MusicMessageBox : public QWidget
+namespace Ui {
+class MusicMessageBox;
+}
+
+class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicMoveDialogAbstract
 {
     Q_OBJECT
 public:
     explicit MusicMessageBox(QWidget *parent = 0);
+    ~MusicMessageBox();
 
-signals:
+    void setText(const QString &text) const;
 
 public slots:
+    virtual int exec();
+
+protected:
+    Ui::MusicMessageBox *ui;
+
 };
 
 #endif // MUSICMESSAGEBOX_H
