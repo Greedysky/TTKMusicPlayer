@@ -16,7 +16,7 @@ class MUSIC_WIDGET_EXPORT MusicLRCManagerForInline : public MusicLRCManager
     Q_OBJECT
 public:
     explicit MusicLRCManagerForInline(QWidget *parent = 0);
-    ~MusicLRCManagerForInline();
+    virtual ~MusicLRCManagerForInline();
 
     inline void setFontSize(int size)
             { m_gradientFontSize = size;}

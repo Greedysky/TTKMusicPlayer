@@ -48,7 +48,7 @@ struct HEADER
 
 public:
     explicit MusicAudioRecorderWidget(QWidget *parent = 0);
-    ~MusicAudioRecorderWidget();
+    virtual ~MusicAudioRecorderWidget();
 
 signals:
 

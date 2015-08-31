@@ -27,7 +27,7 @@ class MUSIC_WIDGET_EXPORT MusicLocalSongsManagerWidget : public MusicMoveDialogA
     Q_OBJECT
 public:
     explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
-    ~MusicLocalSongsManagerWidget();
+    virtual ~MusicLocalSongsManagerWidget();
 
 signals:
     void addSongToPlay(const QStringList &names);

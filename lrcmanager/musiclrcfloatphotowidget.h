@@ -40,7 +40,7 @@ class MUSIC_WIDGET_EXPORT MusicLrcFloatPhotoWidget : public MusicLrcFloatAbstrac
     Q_OBJECT
 public:
     explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
-    ~MusicLrcFloatPhotoWidget();
+    virtual ~MusicLrcFloatPhotoWidget();
 
 public slots:
     void show();

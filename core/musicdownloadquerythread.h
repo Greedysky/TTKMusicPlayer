@@ -24,7 +24,7 @@ class MUSIC_CORE_EXPORT MusicDownLoadQueryThread : public QObject
     Q_OBJECT
 public:
     explicit MusicDownLoadQueryThread(QObject *parent = 0);
-    virtual ~MusicDownLoadQueryThread();
+    ~MusicDownLoadQueryThread();
 
     void deleteAll();
     void startSearchSong(QueryType type, const QString &text);

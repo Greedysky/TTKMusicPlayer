@@ -20,7 +20,7 @@ class MUSIC_WIDGET_EXPORT MusicTableWidgetAbstract : public QTableWidget
     Q_OBJECT
 public:
     explicit MusicTableWidgetAbstract(QWidget *parent = 0);
-    ~MusicTableWidgetAbstract();
+    virtual ~MusicTableWidgetAbstract();
 
     virtual void clearAllItems();
     void setTransparent(int angle);

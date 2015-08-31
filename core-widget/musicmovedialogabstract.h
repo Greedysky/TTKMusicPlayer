@@ -17,7 +17,7 @@ class MUSIC_WIDGET_EXPORT MusicMoveDialogAbstract : public QDialog
     Q_OBJECT
 public:
     explicit MusicMoveDialogAbstract(QWidget *parent = 0);
-    ~MusicMoveDialogAbstract();
+    virtual ~MusicMoveDialogAbstract();
 
     void drawWindowRoundedRect(QWidget *widget);
 

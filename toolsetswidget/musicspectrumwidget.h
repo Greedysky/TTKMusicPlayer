@@ -30,7 +30,7 @@ class MUSIC_WIDGET_EXPORT  MusicSpectrumWidget : public MusicMoveWidgetAbstract
     };
 public:
     explicit MusicSpectrumWidget(QWidget *parent = 0);
-    ~MusicSpectrumWidget();
+    virtual ~MusicSpectrumWidget();
 
 signals:
     void setSpectrum(HWND wnd, int w, int h, int x = 0, int y = 0);

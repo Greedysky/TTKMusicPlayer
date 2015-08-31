@@ -20,7 +20,7 @@ class MUSIC_WIDGET_EXPORT MusicLocalSongSearchPopTableWidget :
     Q_OBJECT
 public:
     explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = 0);
-    ~MusicLocalSongSearchPopTableWidget();
+    virtual ~MusicLocalSongSearchPopTableWidget();
 
     void clearAllItems();
     void createItems(int index, const QString &name,

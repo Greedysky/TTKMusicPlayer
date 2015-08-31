@@ -23,7 +23,7 @@ class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicMoveDialogAbstract
     Q_OBJECT
 public:
     explicit MusicEqualizerDialog(QWidget *parent = 0);
-    ~MusicEqualizerDialog();
+    virtual ~MusicEqualizerDialog();
 
 signals:
     void setEqEffect(const MIntList &effect);

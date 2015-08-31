@@ -13,7 +13,7 @@ class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicMoveDialogAbstract
     Q_OBJECT
 public:
     explicit MusicMessageBox(QWidget *parent = 0);
-    ~MusicMessageBox();
+    virtual ~MusicMessageBox();
 
     void setText(const QString &text) const;
 

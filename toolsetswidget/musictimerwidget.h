@@ -23,7 +23,7 @@ class MUSIC_WIDGET_EXPORT MusicTimerWidget : public MusicMoveDialogAbstract
     Q_OBJECT
 public:
     explicit MusicTimerWidget(QWidget *parent = 0);
-    ~MusicTimerWidget();
+    virtual ~MusicTimerWidget();
 
     void setSongStringList(const QStringList &list);
 

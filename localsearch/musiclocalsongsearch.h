@@ -19,7 +19,7 @@ class MUSIC_WIDGET_EXPORT MusicLocalSongSearch : public QDialog
     Q_OBJECT
 public:
     explicit MusicLocalSongSearch(QWidget *parent = 0);
-    virtual ~MusicLocalSongSearch();
+    ~MusicLocalSongSearch();
 
     QString getSearchedText() const;
     void clearSearchedText() const;

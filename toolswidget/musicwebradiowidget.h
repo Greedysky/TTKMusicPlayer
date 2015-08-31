@@ -28,7 +28,7 @@ class MUSIC_WIDGET_EXPORT MusicWebRadioWidget : public MusicMoveWidgetAbstract
     Q_OBJECT
 public:
     explicit MusicWebRadioWidget(QWidget *parent = 0);
-    ~MusicWebRadioWidget();
+    virtual ~MusicWebRadioWidget();
 
 signals:
 

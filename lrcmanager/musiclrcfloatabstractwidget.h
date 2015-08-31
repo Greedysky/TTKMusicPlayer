@@ -20,7 +20,7 @@ class MUSIC_WIDGET_EXPORT MusicLrcFloatAbstractWidget : public QLabel
     Q_OBJECT
 public:
     explicit MusicLrcFloatAbstractWidget(QWidget *parent = 0);
-    ~MusicLrcFloatAbstractWidget();
+    virtual ~MusicLrcFloatAbstractWidget();
 
     inline void setblockAnimation(bool b) { m_blockAnimation = b;}
 

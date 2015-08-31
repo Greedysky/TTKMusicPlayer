@@ -22,7 +22,7 @@ class MUSIC_WIDGET_EXPORT MusicFileInformationWidget : public MusicMoveDialogAbs
     Q_OBJECT
 public:
     explicit MusicFileInformationWidget(QWidget *parent = 0);
-    ~MusicFileInformationWidget();
+    virtual ~MusicFileInformationWidget();
 
     void setFileInformation(const QString &name);
 

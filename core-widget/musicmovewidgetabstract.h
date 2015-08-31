@@ -18,7 +18,7 @@ class MUSIC_WIDGET_EXPORT MusicMoveWidgetAbstract : public QWidget
     Q_OBJECT
 public:
     explicit MusicMoveWidgetAbstract(QWidget *parent = 0);
-    ~MusicMoveWidgetAbstract();
+    virtual ~MusicMoveWidgetAbstract();
 
     void drawWindowRoundedRect(QWidget *widget);
 

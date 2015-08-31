@@ -29,7 +29,7 @@ class MUSIC_WIDGET_EXPORT MusicTransformWidget : public MusicMoveDialogAbstract
     Q_OBJECT
 public:
     explicit MusicTransformWidget(QWidget *parent = 0);
-    ~MusicTransformWidget();
+    virtual ~MusicTransformWidget();
 
 signals:
 

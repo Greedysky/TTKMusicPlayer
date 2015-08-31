@@ -18,7 +18,7 @@ class MUSIC_WIDGET_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSong
     Q_OBJECT
 public:
     explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
-    ~MusicLocalSongSearchInlineEdit();
+    virtual ~MusicLocalSongSearchInlineEdit();
 
 protected:
     virtual void focusOutEvent(QFocusEvent *event);

@@ -20,7 +20,7 @@ class MUSIC_WIDGET_EXPORT MusicLrcSearchWidget : public MusicMoveDialogAbstract
     Q_OBJECT
 public:
     explicit MusicLrcSearchWidget(QWidget *parent = 0);
-    ~MusicLrcSearchWidget();
+    virtual ~MusicLrcSearchWidget();
 
     void setCurrentSongName(const QString &name) const;
 
