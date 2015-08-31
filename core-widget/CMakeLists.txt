@@ -3,12 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(MusicWidget)
 
 set(MUSIC_Widget_HEADERS
-    ${MUSIC_Core_DIR}/musicdownloadstatuslabel.h
-    ${MUSIC_Core_DIR}/musicmovedialogabstract.h
-    ${MUSIC_Core_DIR}/musicmovewidgetabstract.h
-    ${MUSIC_Core_DIR}/musiclocalsongstablewidget.h
-    ${MUSIC_Core_DIR}/musictablequerywidget.h
-    ${MUSIC_Core_DIR}/musictablewidgetabstract.h
+    ${MUSIC_Core_Widget_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearch.h
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchinlineedit.h
@@ -29,12 +24,7 @@ set(MUSIC_Widget_HEADERS
   )
 
 set(MUSIC_Widget_SOURCES
-    ${MUSIC_Core_DIR}/musicdownloadstatuslabel.cpp
-    ${MUSIC_Core_DIR}/musicmovedialogabstract.cpp
-    ${MUSIC_Core_DIR}/musicmovewidgetabstract.cpp
-    ${MUSIC_Core_DIR}/musiclocalsongstablewidget.cpp
-    ${MUSIC_Core_DIR}/musictablequerywidget.cpp
-    ${MUSIC_Core_DIR}/musictablewidgetabstract.cpp
+    ${MUSIC_Core_Widget_DIR}/*.cpp
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearch.cpp
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchinlineedit.cpp

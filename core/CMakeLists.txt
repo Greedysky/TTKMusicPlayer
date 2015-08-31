@@ -3,29 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(MusicCore)
 
 set(MUSIC_Core_HEADERS
-    musicbgthemedownload.h
-    musicbgthememanager.h
-    musicdata2downloadthread.h
-    musicdatadownloadthread.h
-    musicdesktopwallpaperthread.h
-    musicdownloadquerythread.h
-    musicdownloadthreadabstract.h
-    musicequalizer.h
-    musicfileinformation.h
-    musiclibexportglobal.h
-    musiclibzplay.h
-    musiclocalsongsmanagerthread.h
-    musiclogger.h
-    musicobject.h
-    musicplayer.h
-    musicplaylist.h
-    musicsingletone.h
-    musicsonginformation.h
-    musictextdownloadthread.h
-    musictimerautoobject.h
-    musicversion.h
-    musicxmlabstract.h
-    musicxmlconfigmanager.h
+    ${MUSIC_Core_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.h
     ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.h
     ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.h
@@ -34,22 +12,7 @@ set(MUSIC_Core_HEADERS
   )
 
 set(MUSIC_Core_SOURCES
-    musicbgthemedownload.cpp
-    musicbgthememanager.cpp
-    musicdata2downloadthread.cpp
-    musicdatadownloadthread.cpp
-    musicdesktopwallpaperthread.cpp
-    musicdownloadquerythread.cpp
-    musicdownloadthreadabstract.cpp
-    musicequalizer.cpp
-    musicfileinformation.cpp
-    musiclocalsongsmanagerthread.cpp
-    musicplayer.cpp
-    musicplaylist.cpp
-    musictextdownloadthread.cpp
-    musictimerautoobject.cpp
-    musicxmlabstract.cpp
-    musicxmlconfigmanager.cpp
+    ${MUSIC_Core_DIR}/*.cpp
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.cpp
     ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.cpp
     ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.cpp
