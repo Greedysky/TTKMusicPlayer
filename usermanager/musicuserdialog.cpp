@@ -157,6 +157,10 @@ void MusicUserDialog::clearOriginData()
     ui->pwdLineEdit->clear();
     ui->mailLineEdit->clear();
     ui->verificationCodeEdit->clear();
+
+    ui->automaticLogon->setChecked(false);
+    ui->rememberPwd->setChecked(false);
+    ui->userComboBox->setCurrentText(QString());
 }
 
 void MusicUserDialog::changeVerificationCode()
@@ -349,7 +353,7 @@ void MusicUserDialog::userEditTextChanged(const QString &index)
     {
         ui->automaticLogon->setChecked(false);
         ui->rememberPwd->setChecked(false);
-        ui->passwLineEdit->clear();;
+        ui->passwLineEdit->clear();
     }
 }
 
