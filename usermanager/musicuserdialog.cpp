@@ -28,7 +28,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     firstStatckWidget();
     secondStatckWidget();
     thirdStatckWidget();
-    drawRoundedRect();
+
+    drawWindowRoundedRect(this);
     ui->userComboBox->addItems(m_userModel->getAllUsers());
     connect(ui->userComboBox, SIGNAL(currentIndexChanged(QString)),
                               SLOT(userComboBoxChanged(QString)));
@@ -163,17 +164,6 @@ void MusicUserDialog::changeVerificationCode()
     ui->verificationCode->setText(QString::number(qrand()));
 }
 
-void MusicUserDialog::drawRoundedRect()
-{
-    QBitmap bmp(this->size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(),4,4);
-    setMask(bmp);
-}
-
 void MusicUserDialog::userLogin()
 {
     clearOriginData();
@@ -181,8 +171,8 @@ void MusicUserDialog::userLogin()
     ui->stackedWidget->setGeometry(1,35,329,180);
     QRect rect = geometry();
     rect.setHeight(216);
-    this->setGeometry(rect);
-    drawRoundedRect();
+    setGeometry(rect);
+    drawWindowRoundedRect(this);
 }
 
 void MusicUserDialog::registerUser()
@@ -192,8 +182,8 @@ void MusicUserDialog::registerUser()
     ui->stackedWidget->setGeometry(1,35,329,299);
     QRect rect = geometry();
     rect.setHeight(335);
-    this->setGeometry(rect);
-    drawRoundedRect();
+    setGeometry(rect);
+    drawWindowRoundedRect(this);
 }
 
 void MusicUserDialog::userForgotPasswd()
@@ -203,8 +193,8 @@ void MusicUserDialog::userForgotPasswd()
     ui->stackedWidget->setGeometry(1,35,329,250);
     QRect rect = geometry();
     rect.setHeight(286);
-    this->setGeometry(rect);
-    drawRoundedRect();
+    setGeometry(rect);
+    drawWindowRoundedRect(this);
 }
 
 void MusicUserDialog::checkUserLogin()

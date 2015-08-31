@@ -10,9 +10,6 @@
    =================================================*/
 
 #include <QDialog>
-#include <QMouseEvent>
-#include <QBitmap>
-#include <QPainter>
 #include "musiclibexportglobal.h"
 
 class MUSIC_WIDGET_EXPORT MusicMoveDialogAbstract : public QDialog
@@ -21,6 +18,8 @@ class MUSIC_WIDGET_EXPORT MusicMoveDialogAbstract : public QDialog
 public:
     explicit MusicMoveDialogAbstract(QWidget *parent = 0);
     ~MusicMoveDialogAbstract();
+
+    void drawWindowRoundedRect(QWidget *widget);
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);

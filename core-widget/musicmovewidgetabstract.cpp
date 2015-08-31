@@ -1,5 +1,8 @@
 #include "musicmovewidgetabstract.h"
 
+#include <QBitmap>
+#include <QPainter>
+
 MusicMoveWidgetAbstract::MusicMoveWidgetAbstract(QWidget *parent)
     : QWidget(parent)
 {
@@ -11,6 +14,17 @@ MusicMoveWidgetAbstract::MusicMoveWidgetAbstract(QWidget *parent)
 MusicMoveWidgetAbstract::~MusicMoveWidgetAbstract()
 {
 
+}
+
+void MusicMoveWidgetAbstract::drawWindowRoundedRect(QWidget *widget)
+{
+    QBitmap bmp(widget->size());
+    bmp.fill();
+    QPainter p(&bmp);
+    p.setPen(Qt::NoPen);
+    p.setBrush(Qt::black);
+    p.drawRoundedRect(bmp.rect(),4,4);
+    widget->setMask(bmp);
 }
 
 void MusicMoveWidgetAbstract::mousePressEvent(QMouseEvent *event)

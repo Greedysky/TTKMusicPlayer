@@ -25,7 +25,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     ui->setupUi(this);
     m_object = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    drawWindowRoundedRect();
+    drawWindowRoundedRect(this);
     //set window radius
     ////////////////////////////////////////////////
     m_musicPlayer = new MusicPlayer(this);
@@ -881,21 +881,10 @@ void MusicApplication::musicSetPlay3DMusic()
     ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(flag ? ":/equalizer/3doff" : ":/equalizer/3don")));
 }
 
-void MusicApplication::drawWindowRoundedRect()
-{
-    QBitmap bmp(size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(),4,4);
-    setMask(bmp);
-}
-
 void MusicApplication::musicWindowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
-    drawWindowRoundedRect();
+    drawWindowRoundedRect(this);
     m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 

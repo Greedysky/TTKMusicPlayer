@@ -95,7 +95,6 @@ protected:
     void initWindowSurface();
     void createPlayModeMenu(QMenu &menu);
     void createPlayModeMenuIcon(QMenu &menu);
-    void drawWindowRoundedRect();
     virtual void closeEvent(QCloseEvent *event);
     virtual void dragEnterEvent(QDragEnterEvent *event);
     virtual void dragMoveEvent(QDragMoveEvent *event);

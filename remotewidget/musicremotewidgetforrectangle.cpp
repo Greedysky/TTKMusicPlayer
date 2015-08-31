@@ -13,13 +13,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     pal.setColor(QPalette::Background, QColor(255,0,0,10));
     setPalette(pal);
 
-    QBitmap bmp(this->size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(),4,4);
-    setMask(bmp);
+    drawWindowRoundedRect(this);
     //set window radius
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5,5,5,2);

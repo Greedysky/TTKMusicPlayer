@@ -39,7 +39,6 @@ protected:
     void secondStatckWidget();
     void thirdStatckWidget();
     void clearOriginData();
-    void drawRoundedRect();
     void readFromUserConfig();
     void readFromUserSettings();
     void writeToUserConfig();

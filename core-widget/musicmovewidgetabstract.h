@@ -11,8 +11,6 @@
 
 #include <QWidget>
 #include <QMouseEvent>
-#include <QBitmap>
-#include <QPainter>
 #include "musiclibexportglobal.h"
 
 class MUSIC_WIDGET_EXPORT MusicMoveWidgetAbstract : public QWidget
@@ -21,6 +19,8 @@ class MUSIC_WIDGET_EXPORT MusicMoveWidgetAbstract : public QWidget
 public:
     explicit MusicMoveWidgetAbstract(QWidget *parent = 0);
     ~MusicMoveWidgetAbstract();
+
+    void drawWindowRoundedRect(QWidget *widget);
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
