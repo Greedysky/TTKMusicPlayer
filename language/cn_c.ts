@@ -115,10 +115,6 @@
         <translation>定位正在播放的音樂</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="445"/>
         <source>Playing</source>
         <translation>正在播放</translation>
@@ -385,10 +381,6 @@
 </context>
 <context>
     <name>MusicApplicationObject</name>
-    <message>
-        <source>About QMusicPlayer</source>
-        <translation type="vanished">關於天天酷音</translation>
-    </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
@@ -744,10 +736,6 @@
         <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="95"/>
         <source>%1S</source>
         <translation>%1秒</translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
     </message>
     <message>
         <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="174"/>
@@ -1206,15 +1194,7 @@
     <message>
         <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="46"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">您所指定的文件已被移動或者不存在！</translation>
+        <translation >您所指定的文件已被移動或者不存在！</translation>
     </message>
 </context>
 <context>
@@ -1381,10 +1361,6 @@
         <translation> 本地音樂文件（%1）</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
         <location filename="../toolsetswidget/musiclocalsongsmanagerwidget.cpp" line="286"/>
         <location filename="../toolsetswidget/musiclocalsongsmanagerwidget.cpp" line="305"/>
         <source>please select one item</source>
@@ -1442,10 +1418,6 @@
         <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="26"/>
         <source>Close</source>
         <translation>關閉</translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="84"/>
@@ -1865,10 +1837,6 @@
         <translation>關閉</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="183"/>
         <source>lrc make finished</source>
         <translation type="unfinished"></translation>
@@ -2003,28 +1971,12 @@
     <message>
         <location filename="../toolswidget/musicmydownloadrecordwidget.cpp" line="143"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
+        <translation >您所指定的文件已被移動或者不存在！</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicmydownloadrecordwidget.cpp" line="85"/>
         <source>Are you sure to delete?</source>
         <translation>妳確定要刪除嗎？</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">確定</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">取消</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">您所指定的文件已被移動或者不存在！</translation>
     </message>
 </context>
 <context>
@@ -2650,21 +2602,9 @@
         <translation>添加到我的最愛</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
         <location filename="../core-widget/musicsongslistwidget.cpp" line="224"/>
         <source>Are you sure to delete?</source>
         <translation>妳確定要刪除嗎？</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">確定</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">取消</translation>
     </message>
 </context>
 <context>
@@ -2692,37 +2632,17 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="198"/>
         <source>The origin one can&apos;t delete!</source>
-        <translation type="unfinished"></translation>
+        <translation >系統默認列表不允許刪除</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="211"/>
         <source>The origin one can&apos;t rename!</source>
-        <translation type="unfinished"></translation>
+        <translation >系統默認列表不允許重命名</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="280"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
-        <source>The origin one can&apos;t delete?</source>
-        <translation type="vanished">系統默認列表不允許刪除</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">確定</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">取消</translation>
-    </message>
-    <message>
-        <source>The origin one can&apos;t rename?</source>
-        <translation type="vanished">系統默認列表不允許重命名</translation>
+        <translation >您所指定的文件已被移動或者不存在！</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="249"/>
@@ -2738,10 +2658,6 @@
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="251"/>
         <source>changItemName</source>
         <translation>重命名</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">您所指定的文件已被移動或者不存在！</translation>
     </message>
 </context>
 <context>
@@ -3296,10 +3212,6 @@
         <translation>關閉</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">天天酷音</translation>
-    </message>
-    <message>
         <location filename="../usermanager/musicuserdialog.cpp" line="228"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="275"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="287"/>
@@ -3570,13 +3482,6 @@
         <location filename="../core-widget/musicwindowextras.cpp" line="102"/>
         <source>Next</source>
         <translation>下壹曲</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <source>Error Message</source>
-        <translation type="vanished">錯誤信息</translation>
     </message>
 </context>
 </TS>

@@ -115,10 +115,6 @@
         <translation>Music Locate</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="445"/>
         <source>Playing</source>
         <translation>Playing</translation>
@@ -385,10 +381,6 @@
 </context>
 <context>
     <name>MusicApplicationObject</name>
-    <message>
-        <source>About QMusicPlayer</source>
-        <translation type="vanished">About QMusicPlayer</translation>
-    </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="93"/>
         <source>QMusicPlayer</source>
@@ -744,10 +736,6 @@
         <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="95"/>
         <source>%1S</source>
         <translation>%1 Sec</translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../toolsetswidget/musicdesktopwallpaperwidget.cpp" line="174"/>
@@ -1206,15 +1194,7 @@
     <message>
         <location filename="../toolsetswidget/musicfileinformationwidget.cpp" line="46"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">The File Has Been Moved Or Does Not Exist!</translation>
+        <translation >The File Has Been Moved Or Does Not Exist!</translation>
     </message>
 </context>
 <context>
@@ -1381,10 +1361,6 @@
         <translation> Loacl Files（%1）</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
         <location filename="../toolsetswidget/musiclocalsongsmanagerwidget.cpp" line="286"/>
         <location filename="../toolsetswidget/musiclocalsongsmanagerwidget.cpp" line="305"/>
         <source>please select one item</source>
@@ -1442,10 +1418,6 @@
         <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="26"/>
         <source>Close</source>
         <translation>Close</translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcartphotoupload.cpp" line="84"/>
@@ -2003,28 +1975,12 @@
     <message>
         <location filename="../toolswidget/musicmydownloadrecordwidget.cpp" line="143"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
+        <translation >The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicmydownloadrecordwidget.cpp" line="85"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Yes</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancel</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">The File Has Been Moved Or Does Not Exist!</translation>
     </message>
 </context>
 <context>
@@ -2650,21 +2606,9 @@
         <translation>Add To Lovest</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
         <location filename="../core-widget/musicsongslistwidget.cpp" line="224"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Yes</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancel</translation>
     </message>
 </context>
 <context>
@@ -2702,23 +2646,7 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="280"/>
         <source>The origin one does not exsit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
-        <source>The origin one does not exsit?</source>
-        <translation type="vanished">The File Has Been Moved Or Does Not Exist!</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Yes</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">Cancel</translation>
+        <translation >The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="249"/>
@@ -3288,10 +3216,6 @@
         <translation>Close</translation>
     </message>
     <message>
-        <source>QMusicPlayer</source>
-        <translation type="vanished">QMusicPlayer</translation>
-    </message>
-    <message>
         <location filename="../usermanager/musicuserdialog.cpp" line="228"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="275"/>
         <location filename="../usermanager/musicuserdialog.cpp" line="287"/>
@@ -3562,13 +3486,6 @@
         <location filename="../core-widget/musicwindowextras.cpp" line="102"/>
         <source>Next</source>
         <translation>Next</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <source>Error Message</source>
-        <translation type="vanished">Error Message</translation>
     </message>
 </context>
 </TS>
