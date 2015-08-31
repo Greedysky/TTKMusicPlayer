@@ -43,6 +43,7 @@ protected:
     void readFromUserSettings();
     void writeToUserConfig();
     void writeToUserSettings();
+    void windowRectChanged(int index, const QRect &rect);
 
     Ui::MusicUserDialog *ui;
     MusicUserModel *m_userModel;
