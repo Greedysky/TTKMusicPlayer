@@ -44,6 +44,14 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
     setItem(index, 1, item1);
 }
 
+void MusicLocalSongSearchPopTableWidget::listCellClicked(int row, int)
+{
+    emit setText( item(row, 0)->text() );
+    QWidget *widget = static_cast<QWidget*>(parent());
+    widget->lower();
+    widget->hide();
+}
+
 
 MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
@@ -60,8 +68,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
 
     m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle06);
     connect(m_clearButton, SIGNAL(clicked()), SLOT(clearButtonClicked()));
-    connect(m_popTableWidget, SIGNAL(cellDoubleClicked(int,int)),
-                              SLOT(cellDoubleClicked(int,int)));
+    connect(m_popTableWidget, SIGNAL(setText(QString)), SIGNAL(setText(QString)));
 }
 
 MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
@@ -105,13 +112,6 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
         return;
     }
     search.writeSearchConfig(QStringList(), QStringList());
-}
-
-void MusicLocalSongSearchPopWidget::cellDoubleClicked(int row, int)
-{
-    emit setText( m_popTableWidget->item(row, 0)->text() );
-    lower();
-    hide();
 }
 
 void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)

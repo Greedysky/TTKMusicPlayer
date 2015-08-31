@@ -25,9 +25,11 @@ public:
     void clearAllItems();
     void createItems(int index, const QString &name,
                      const QString &time);
+signals:
+    void setText(const QString &text);
 
 public slots:
-    virtual void listCellClicked(int, int){}
+    virtual void listCellClicked(int row, int column);
 
 };
 
@@ -46,7 +48,6 @@ signals:
 
 public slots:
     void clearButtonClicked();
-    void cellDoubleClicked(int row, int column);
 
 protected:
     virtual void leaveEvent(QEvent *event);
