@@ -60,7 +60,6 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 
-    m_systemTrayMenu->setVolume(0);
     createToolPopupMenu();
 }
 
