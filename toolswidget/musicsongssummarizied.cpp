@@ -55,7 +55,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
 
     connect(this,SIGNAL(currentChanged(int)),SLOT(currentIndexChanged(int)));
     connect(this,SIGNAL(musicPlay(int,int)),parent,SLOT(musicPlayIndex(int,int)));
-
 }
 
 void MusicSongsSummarizied::musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls)

@@ -18,17 +18,15 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     m_renameItem = NULL;
     m_playRowIndex = 0;
     m_dragStartIndex = -1;
-
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
+    m_leftButtonPressed = false;
+    m_mouseMoved = false;
 
     m_timerShow = new QTimer(this);
     m_timerStay = new QTimer(this);
     connect(m_timerShow,SIGNAL(timeout()),SLOT(showTimeOut()));
     connect(m_timerStay,SIGNAL(timeout()),SLOT(stayTimeOut()));
 
-    m_leftButtonPressed = false;
-    m_mouseMoved = false;
-
+    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()

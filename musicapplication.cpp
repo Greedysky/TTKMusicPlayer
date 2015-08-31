@@ -52,6 +52,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(m_rightAreaWidget,SIGNAL(desktopLrcClosed()),m_bottomAreaWidget,SLOT(desktopLrcClosed()));
 
     initWindowSurface();
+    setAcceptDrops(true);
 
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
     //The default is the order of play
