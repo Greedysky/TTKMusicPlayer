@@ -36,28 +36,28 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
     connect(m_NextSongButton,SIGNAL(clicked()),SIGNAL(musicPlayNextSignal()));
     connect(m_SettingButton,SIGNAL(clicked()),SIGNAL(musicSettingSignal()));
 
-    m_volumnWidget = new QWidget(m_mainWidget);
-    QHBoxLayout *volumnLayout = new QHBoxLayout(m_volumnWidget);
+    m_volumeWidget = new QWidget(m_mainWidget);
+    QHBoxLayout *volumnLayout = new QHBoxLayout(m_volumeWidget);
     volumnLayout->setContentsMargins(0,0,0,0);
     volumnLayout->setSpacing(1);
-    m_volumnLabel = new QLabel(m_volumnWidget);
-    m_volumnLabel->setStyleSheet(MusicUIObject::MCustomStyle26);
-    m_volumnLabel->setFixedSize(QSize(20,20));
-    m_volumnSlider = new QSlider(Qt::Horizontal, m_volumnWidget);
-    m_volumnSlider->setRange(0,100);
-    m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
-    m_volumnSlider->setFixedWidth(45);
-    volumnLayout->addWidget(m_volumnLabel);
-    volumnLayout->addWidget(m_volumnSlider);
-    m_volumnSlider->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_volumnSlider,SIGNAL(valueChanged(int)),SLOT(musicVolumeChanged(int)));
+    m_volumeLabel = new QLabel(m_volumeWidget);
+    m_volumeLabel->setStyleSheet(MusicUIObject::MCustomStyle26);
+    m_volumeLabel->setFixedSize(QSize(20,20));
+    m_volumeSlider = new QSlider(Qt::Horizontal, m_volumeWidget);
+    m_volumeSlider->setRange(0,100);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
+    m_volumeSlider->setFixedWidth(45);
+    volumnLayout->addWidget(m_volumeLabel);
+    volumnLayout->addWidget(m_volumeSlider);
+    m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_volumeSlider,SIGNAL(valueChanged(int)),SLOT(musicVolumeChanged(int)));
 }
 
 MusicRemoteWidget::~MusicRemoteWidget()
 {
-    delete m_volumnLabel;
-    delete m_volumnSlider;
-    delete m_volumnWidget;
+    delete m_volumeLabel;
+    delete m_volumeSlider;
+    delete m_volumeWidget;
     delete m_showMainWindow;
     delete m_PreSongButton;
     delete m_NextSongButton;
@@ -96,7 +96,7 @@ void MusicRemoteWidget::showPlayStatus(bool status) const
 void MusicRemoteWidget::setVolumeValue(int index)
 {
     blockSignals(true);
-    m_volumnSlider->setValue(index);
+    m_volumeSlider->setValue(index);
     musicVolumeChanged(index);
     blockSignals(false);
 }
@@ -104,6 +104,6 @@ void MusicRemoteWidget::setVolumeValue(int index)
 void MusicRemoteWidget::musicVolumeChanged(int index)
 {
     emit musicVolumeSignal(index);
-    m_volumnLabel->setStyleSheet(index > 0 ? MusicUIObject::MCustomStyle24
+    m_volumeLabel->setStyleSheet(index > 0 ? MusicUIObject::MCustomStyle24
                                            : MusicUIObject::MCustomStyle25);
 }

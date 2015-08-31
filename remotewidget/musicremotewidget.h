@@ -46,9 +46,9 @@ protected:
     QPushButton *m_PlayButton;
     QPushButton *m_SettingButton;
     QWidget *m_mainWidget;
-    QWidget *m_volumnWidget;
-    QLabel *m_volumnLabel;
-    QSlider *m_volumnSlider;
+    QWidget *m_volumeWidget;
+    QLabel *m_volumeLabel;
+    QSlider *m_volumeSlider;
 
 };
 

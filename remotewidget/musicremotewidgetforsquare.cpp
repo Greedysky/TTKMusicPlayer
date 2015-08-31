@@ -47,7 +47,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     mainWidgetLayout->setSpacing(0);
     mainWidgetLayout->addWidget(m_showMainWindow);
     mainWidgetLayout->setAlignment(m_showMainWindow,Qt::AlignCenter);
-    mainWidgetLayout->addWidget(m_volumnWidget);
+    mainWidgetLayout->addWidget(m_volumeWidget);
     m_showMainWindow->setFixedSize(30,40);
 
     m_interval = 0.0f;

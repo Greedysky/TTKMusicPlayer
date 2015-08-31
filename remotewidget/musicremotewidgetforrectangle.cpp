@@ -42,7 +42,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     hbox->addWidget(m_PreSongButton);
     hbox->addWidget(m_PlayButton);
     hbox->addWidget(m_NextSongButton);
-    hbox->addWidget(m_volumnWidget);
+    hbox->addWidget(m_volumeWidget);
     hbox->addWidget(m_SettingButton);
 }
 
