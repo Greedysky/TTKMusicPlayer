@@ -33,6 +33,7 @@ public slots:
     void userComboBoxChanged(const QString &index);
     void userEditTextChanged(const QString &index);
     void checkToAutoLogin();
+    void buttonClicked(int index);
 
 protected:
     void firstStatckWidget();

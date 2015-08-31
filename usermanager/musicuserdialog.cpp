@@ -9,6 +9,7 @@
 #include <QValidator>
 #include <time.h>
 #include <QTimer>
+#include <QButtonGroup>
 
 MusicUserDialog::MusicUserDialog(QWidget *parent) :
     MusicMoveDialogAbstract(parent),ui(new Ui::MusicUserDialog)
@@ -37,6 +38,13 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
                               SLOT(userEditTextChanged(QString)));
     m_userComboIndex = ui->userComboBox->currentText();
     readFromUserConfig();
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(ui->useTencentLogin, 0);
+    buttonGroup->addButton(ui->useRenrenLogin, 1);
+    buttonGroup->addButton(ui->useWechatLogin, 2);
+    buttonGroup->addButton(ui->useSinaLogin, 3);
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 
     QTimer::singleShot(1, this, SLOT(checkToAutoLogin()));
 }
@@ -366,4 +374,11 @@ void MusicUserDialog::checkToAutoLogin()
         emit userLoginSuccess(m_userComboIndex);
         close();
     }
+}
+
+void MusicUserDialog::buttonClicked(int)
+{
+    MusicMessageBox message;
+    message.setText(tr("This way of loading is now not supported"));
+    message.exec();
 }

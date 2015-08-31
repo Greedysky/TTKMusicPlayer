@@ -219,7 +219,7 @@
       <string>使用其他账号登录：</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="otherLogin_2">
+    <widget class="QPushButton" name="useTencentLogin">
      <property name="geometry">
       <rect>
        <x>142</x>
@@ -241,7 +241,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="otherLogin_3">
+    <widget class="QPushButton" name="useRenrenLogin">
      <property name="geometry">
       <rect>
        <x>164</x>
@@ -263,7 +263,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="otherLogin_4">
+    <widget class="QPushButton" name="useWechatLogin">
      <property name="geometry">
       <rect>
        <x>186</x>
@@ -285,7 +285,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="otherLogin_5">
+    <widget class="QPushButton" name="useSinaLogin">
      <property name="geometry">
       <rect>
        <x>208</x>
