@@ -954,7 +954,6 @@
   </action>
   <zorder>background</zorder>
   <zorder>windowClose</zorder>
-  <zorder>minimization</zorder>
   <zorder>musicPrivious</zorder>
   <zorder>musicNext</zorder>
   <zorder>musicKey</zorder>
@@ -1000,6 +999,7 @@
   <zorder>musicImport</zorder>
   <zorder>musicSearch</zorder>
   <zorder>resizeWindowLabel</zorder>
+  <zorder>minimization</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
