@@ -193,6 +193,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->musicWindowConcise->setGeometry(con ? 295 : 828, 7, 25, 25);
     m_ui->minimization->setGeometry(con ? 325 : 889, 7, 25, 25);
     m_ui->windowClose->setGeometry(con ? 350 : 917, 7, 25, 25);
+    m_ui->resizeWindowLabel->setGeometry(con ? 360 : 930, 600, 15, 15);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
     m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout"
                                                                   : ":/image/concisein")));
