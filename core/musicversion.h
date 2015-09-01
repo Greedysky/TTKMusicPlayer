@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define QMUSICPLAYER_VERSION "Version 2.2.4.2"
+#define QMUSICPLAYER_VERSION "Version 2.2.4.4"
 
 #endif // MUSICVERSION
 
