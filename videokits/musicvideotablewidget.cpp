@@ -10,7 +10,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0,30);
     headerview->resizeSection(1,175);
-    headerview->resizeSection(2,145);
+    headerview->resizeSection(2,151);
     headerview->resizeSection(3,30);
     headerview->resizeSection(4,55);
     headerview->resizeSection(5,24);

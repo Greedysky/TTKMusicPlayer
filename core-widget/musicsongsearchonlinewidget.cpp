@@ -15,7 +15,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0,30);
     headerview->resizeSection(1,215);
-    headerview->resizeSection(2,161);
+    headerview->resizeSection(2,166);
     headerview->resizeSection(3,50);
     headerview->resizeSection(4,26);
     headerview->resizeSection(5,26);

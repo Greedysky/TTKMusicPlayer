@@ -6,6 +6,7 @@
         <file alias="weixing">../resource/usermanager/weixing-icon.png</file>
         <file alias="xinlang">../resource/usermanager/xinlang-icon.png</file>
         <file alias="downarrow">../resource/usermanager/thin-down-arrow.png</file>
+        <file alias="uparrow">../resource/usermanager/thin-up-arrow.png</file>
         <file alias="vCode">../resource/usermanager/verificationCode.png</file>
     </qresource>
 </RCC>

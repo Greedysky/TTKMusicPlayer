@@ -11,7 +11,7 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(false);
     headerview->resizeSection(0,40);
-    headerview->resizeSection(1,252);
+    headerview->resizeSection(1,257);
     headerview->resizeSection(2,26);
     verticalHeader()->setVisible(false);
     setMouseTracking(true);  //Open the capture mouse function

@@ -9,7 +9,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0,30);
     headerview->resizeSection(1,175);
-    headerview->resizeSection(2,143);
+    headerview->resizeSection(2,148);
     headerview->resizeSection(3,50);
     headerview->resizeSection(4,24);
     setTransparent(255);

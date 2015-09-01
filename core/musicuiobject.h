@@ -208,12 +208,14 @@ namespace MusicUIObject
 ///ScrollBar
 //////////////////////////////////////////////////////
     const QString MScrollBarStyle01 = " \
-            QScrollBar{ background: #494949;width: 13px;}\
-            QScrollBar::handle{background: #DBDBDB; min-width: 20px;min-height: 20px;}\
+            QScrollBar{ background: #F0F0F0;width: 8px;}\
+            QScrollBar::handle{background: #CFCFCF; min-width: 20px;min-height: 20px;}\
             QScrollBar::handle:vertical::disabled{ background:#DBDBDB;}\
             QScrollBar::handle:vertical:hover{ background:#DBDBDB; border:1px solid rgb(230,115,0);}\
             QScrollBar::add-line, QScrollBar::sub-line { background: none; border: none;}\
-            QScrollBar::add-page, QScrollBar::sub-page { background: none; }";
+            QScrollBar::add-page, QScrollBar::sub-page { background: none; }\
+            QScrollBar::up-arrow:vertical{border-image: url(':/usermanager/uparrow');}\
+            QScrollBar::down-arrow:vertical{border-image: url(':/usermanager/downarrow');}";
 
 ///LineEdit
 //////////////////////////////////////////////////////
