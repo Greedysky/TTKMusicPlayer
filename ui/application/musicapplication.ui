@@ -748,6 +748,19 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="resizeWindowLabel">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>600</y>
+     <width>15</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../../qrc/MusicPlayer.qrc">:/image/resizeWindow</pixmap>
+   </property>
+  </widget>
   <action name="action_About">
    <property name="text">
     <string>关于天天酷音(&amp;A)</string>
@@ -986,6 +999,7 @@
   <zorder>musicCurrentLocation</zorder>
   <zorder>musicImport</zorder>
   <zorder>musicSearch</zorder>
+  <zorder>resizeWindowLabel</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
