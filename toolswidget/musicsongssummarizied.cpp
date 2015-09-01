@@ -174,6 +174,9 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
     {
         emit updatePlayLists(path);
     }
+    MusicMessageBox message;
+    message.setText(tr("add music to lovest list done!"));
+    message.exec();
 }
 
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
