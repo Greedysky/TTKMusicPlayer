@@ -36,24 +36,11 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle02);
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(161,35,23,23);
+    m_loveButton->setGeometry(184,35,23,23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
     m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
-
-    m_addButton = new QToolButton(this);
-    m_addButton->setGeometry(184,35,23,23);
-    m_addButton->setStyleSheet( MusicUIObject::MToolButtonStyle05 );
-    m_addButton->setIcon(QIcon(":/image/addtoplaylist"));
-    m_addButton->setIconSize(QSize(23,23));
-    m_addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_addButton->setToolTip(tr("addToPlayList"));
-    m_addButton->setMenu(&m_listMenu);
-    m_addButton->setPopupMode(QToolButton::InstantPopup);
-    m_listMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
-    m_listMenu.addAction(tr("myLoveSongItem"),parent,SLOT(addPlaySongToLovestListAt()));
-    m_listMenu.addAction(tr("myNetSongItem")/*,parent,SLOT(addMusicSongToLovestListAt())*/);
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(207,35,23,23);
@@ -76,8 +63,8 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_songShareButton->setToolTip(tr("songShare"));
 
-    connect(m_loveButton,SIGNAL(clicked()),parent,SLOT(addMusicSongToLovestListAt()));
-    connect(m_deleteButton,SIGNAL(clicked()),parent,SLOT(setDeleteItemAt()));
+    connect(m_loveButton, SIGNAL(clicked()), parent, SLOT(addMusicSongToLovestListAt()));
+    connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
 
 }
 
@@ -91,7 +78,6 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_columnThree;
     delete m_loveButton;
     delete m_deleteButton;
-    delete m_addButton;
     delete m_showMVButton;
     delete m_songShareButton;
 }
