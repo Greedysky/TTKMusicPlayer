@@ -65,17 +65,17 @@ void MusicLrcMakerWidget::makeButtonClicked()
     if(ui->artNameEdit->text().isEmpty())
     {
         errorFlag = true;
-        msg = "Art name is empty!";
+        msg = tr("Art name is empty!");
     }
     if(ui->songNameEdit->text().isEmpty())
     {
         errorFlag = true;
-        msg = "song name is empty!";
+        msg = tr("song name is empty!");
     }
     if(ui->lrcTextEdit->toPlainText().isEmpty())
     {
         errorFlag = true;
-        msg = "lrc text is empty!";
+        msg = tr("lrc text is empty!");
     }
     if(errorFlag)
     {
