@@ -46,11 +46,13 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
                       item = new QTableWidgetItem(songname);
     item->setTextColor(QColor(50,50,50));
     item->setTextAlignment(Qt::AlignCenter);
+    item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem(artistname);
     item->setTextColor(QColor(50,50,50));
     item->setTextAlignment(Qt::AlignCenter);
+    item->setToolTip(artistname);
     setItem(count - 1, 2, item);
 
                       item = new QTableWidgetItem(time);
