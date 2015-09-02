@@ -167,7 +167,6 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
                 cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
                 ui->lrcTextEdit->setTextCursor(cursor);
             }
-
         }
         else
         {

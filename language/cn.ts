@@ -1839,17 +1839,17 @@
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="68"/>
         <source>Art name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌手不能为空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="73"/>
         <source>song name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌曲名不能为空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="78"/>
         <source>lrc text is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌词内容不能为空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="176"/>
@@ -2484,18 +2484,6 @@
         <translation>添加至我的最爱</translation>
     </message>
     <message>
-        <source>addToPlayList</source>
-        <translation type="vanished">添加至其他列表</translation>
-    </message>
-    <message>
-        <source>myLoveSongItem</source>
-        <translation type="vanished">我的最爱</translation>
-    </message>
-    <message>
-        <source>myNetSongItem</source>
-        <translation type="vanished">网络列表</translation>
-    </message>
-    <message>
         <location filename="../core-widget/musicsongslistplaywidget.cpp" line="50"/>
         <source>deleteMusic</source>
         <translation>删除歌曲</translation>
@@ -2644,7 +2632,7 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="178"/>
         <source>add music to lovest list done!</source>
-        <translation type="unfinished"></translation>
+        <translation >添加到我的最爱完成！</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="200"/>

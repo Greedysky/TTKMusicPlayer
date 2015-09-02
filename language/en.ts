@@ -1839,17 +1839,17 @@
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="68"/>
         <source>Art name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >Art Name Is Empty!</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="73"/>
         <source>song name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >Song Name is Empty!</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="78"/>
         <source>lrc text is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >Lrc Text Is Empty!</translation>
     </message>
     <message>
         <source>QMusicPlayer</source>
@@ -2488,18 +2488,6 @@
         <translation>Add To Lovest</translation>
     </message>
     <message>
-        <source>addToPlayList</source>
-        <translation type="vanished">Add To Other List</translation>
-    </message>
-    <message>
-        <source>myLoveSongItem</source>
-        <translation type="vanished">My Love Item</translation>
-    </message>
-    <message>
-        <source>myNetSongItem</source>
-        <translation type="vanished">Net Item</translation>
-    </message>
-    <message>
         <location filename="../core-widget/musicsongslistplaywidget.cpp" line="50"/>
         <source>deleteMusic</source>
         <translation>Delete</translation>
@@ -2648,7 +2636,7 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="178"/>
         <source>add music to lovest list done!</source>
-        <translation type="unfinished"></translation>
+        <translation >Add Music To Lovest List Done!</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="200"/>

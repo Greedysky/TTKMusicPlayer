@@ -1839,17 +1839,17 @@
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="68"/>
         <source>Art name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌手不能為空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="73"/>
         <source>song name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌曲名不能為空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="78"/>
         <source>lrc text is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation >歌詞內容不能為空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="176"/>
@@ -1935,7 +1935,7 @@
     <message>
         <location filename="../ui/application/musicmessagebox.ui" line="87"/>
         <source>确定</source>
-        <translation type="unfinished">確定</translation>
+        <translation >確定</translation>
     </message>
     <message>
         <location filename="../ui/application/musicmessagebox.ui" line="100"/>
@@ -1945,7 +1945,7 @@
     <message>
         <location filename="../core-widget/musicmessagebox.cpp" line="20"/>
         <source>Close</source>
-        <translation type="unfinished">關閉</translation>
+        <translation >關閉</translation>
     </message>
 </context>
 <context>
@@ -2484,18 +2484,6 @@
         <translation>添加至我的最愛</translation>
     </message>
     <message>
-        <source>addToPlayList</source>
-        <translation type="vanished">添加至其他列表</translation>
-    </message>
-    <message>
-        <source>myLoveSongItem</source>
-        <translation type="vanished">我的最愛</translation>
-    </message>
-    <message>
-        <source>myNetSongItem</source>
-        <translation type="vanished">網絡列表</translation>
-    </message>
-    <message>
         <location filename="../core-widget/musicsongslistplaywidget.cpp" line="50"/>
         <source>deleteMusic</source>
         <translation>刪除歌曲</translation>
@@ -2644,7 +2632,7 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="178"/>
         <source>add music to lovest list done!</source>
-        <translation type="unfinished"></translation>
+        <translation >添加到我的最愛完成！</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="200"/>
