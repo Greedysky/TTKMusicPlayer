@@ -15,12 +15,12 @@
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
-class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public MusicTableQueryWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicTableQueryWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
-    virtual ~MusicSongSearchOnlineWidget();
+    explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
+    virtual ~MusicSongSearchOnlineTableWidget();
 
     void startSearchQuery(const QString &text);
 
@@ -38,6 +38,28 @@ public slots:
 protected:
     void addSearchMusicToPlayList(int row);
     void musicDownloadLocal(int row);
+
+};
+
+
+class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
+    virtual ~MusicSongSearchOnlineWidget();
+
+    void startSearchQuery(const QString &name) const;
+
+signals:
+    void musicBgDownloadFinished();
+    void showDownLoadInfoFinished(const QString &name);
+    void muiscSongToPlayListChanged(const QString &name);
+    void showDownLoadInfoFor(DownLoadType type);
+
+protected:
+    void createToolWidget();
+    MusicSongSearchOnlineTableWidget *m_searchTableWidget;
 
 };
 

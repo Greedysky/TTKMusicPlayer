@@ -45,6 +45,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     topLayout->addWidget(m_searchEdit);
     topLayout->addWidget(m_searchButton);
     m_topWidget->setLayout(topLayout);
+    m_topWidget->setFixedHeight(35);
 
     m_stackedWidget = new QStackedWidget(this);
     m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle19);

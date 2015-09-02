@@ -22,8 +22,8 @@ public:
 
 signals:
     void showDownLoadInfoFinished(const QString &name);
-    void MuiscSongToPlayListChanged(const QString &name);
-    void showDownLoadInfoFor(DownLoadType);
+    void muiscSongToPlayListChanged(const QString &name);
+    void showDownLoadInfoFor(DownLoadType type);
 
 public slots:
     virtual void clearAllItems() = 0;

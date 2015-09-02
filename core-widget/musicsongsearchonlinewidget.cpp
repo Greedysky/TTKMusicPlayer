@@ -7,9 +7,10 @@
 #include "musiclocalsongsearchrecordobject.h"
 
 #include <QDateTime>
+#include <QVBoxLayout>
 
-MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
-    MusicTableQueryWidget(parent)
+MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
+    : MusicTableQueryWidget(parent)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -22,12 +23,12 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent) :
     setTransparent(255);
 }
 
-MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
+MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
     clearAllItems();
 }
 
-void MusicSongSearchOnlineWidget::startSearchQuery(const QString &text)
+void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
     ////////////////////////////////////////////////
     QStringList names, times;
@@ -44,14 +45,14 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(Music, text);
 }
 
-void MusicSongSearchOnlineWidget::clearAllItems()
+void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
     MusicTableWidgetAbstract::clearAllItems();
     setColumnCount(6);
 }
 
-void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
-                          const QString &artistname, const QString &time)
+void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songname,
+                               const QString &artistname, const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
@@ -87,7 +88,7 @@ void MusicSongSearchOnlineWidget::creatSearchedItems(const QString &songname,
     setItem(count - 1, 5, item);
 }
 
-void MusicSongSearchOnlineWidget::listCellClicked(int row,int col)
+void MusicSongSearchOnlineTableWidget::listCellClicked(int row,int col)
 {
     switch(col)
     {
@@ -102,14 +103,14 @@ void MusicSongSearchOnlineWidget::listCellClicked(int row,int col)
     }
 }
 
-void MusicSongSearchOnlineWidget::addSearchMusicToPlayList(int row)
+void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
     emit showDownLoadInfoFor(Buffing);
     musicDownloadLocal(row);
-    emit MuiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
+    emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
 }
 
-void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
+void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     emit showDownLoadInfoFor(DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
@@ -144,8 +145,54 @@ void MusicSongSearchOnlineWidget::musicDownloadLocal(int row)
     new MusicBgThemeDownload(musicSongInfo[row][3], musicSongInfo[row][3], this);
 }
 
-void MusicSongSearchOnlineWidget::itemDoubleClicked(int row, int)
+void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int)
 {
     addSearchMusicToPlayList(row);
 }
 
+
+
+MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    QVBoxLayout *boxLayout = new QVBoxLayout(this);
+    boxLayout->setMargin(0);
+    boxLayout->setSpacing(0);
+
+    QWidget *toolWidget = new QWidget(this);
+    toolWidget->setFixedHeight(65);
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, Qt::white);
+    toolWidget->setAutoFillBackground(true);
+    toolWidget->setPalette(pal);
+
+    m_searchTableWidget = new  MusicSongSearchOnlineTableWidget(this);
+    boxLayout->addWidget(toolWidget);
+    boxLayout->addWidget(m_searchTableWidget);
+    setLayout(boxLayout);
+
+    connect(m_searchTableWidget, SIGNAL(musicBgDownloadFinished()),
+                                 SIGNAL(musicBgDownloadFinished()));
+    connect(m_searchTableWidget, SIGNAL(showDownLoadInfoFinished(QString)),
+                                 SIGNAL(showDownLoadInfoFinished(QString)));
+    connect(m_searchTableWidget, SIGNAL(muiscSongToPlayListChanged(QString)),
+                                 SIGNAL(muiscSongToPlayListChanged(QString)));
+    connect(m_searchTableWidget, SIGNAL(showDownLoadInfoFor(DownLoadType)),
+                                 SIGNAL(showDownLoadInfoFor(DownLoadType)));
+
+}
+
+MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
+{
+    delete m_searchTableWidget;
+}
+
+void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
+{
+    m_searchTableWidget->startSearchQuery(name);
+}
+
+void MusicSongSearchOnlineWidget::createToolWidget()
+{
+
+}
