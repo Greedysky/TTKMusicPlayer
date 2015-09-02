@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>475</width>
-    <height>335</height>
+    <height>405</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>475</width>
-     <height>335</height>
+     <height>405</height>
     </rect>
    </property>
    <property name="text">
@@ -62,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>9</x>
-     <y>320</y>
+     <y>390</y>
      <width>455</width>
      <height>5</height>
     </rect>
@@ -111,9 +111,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>135</y>
      <width>435</width>
-     <height>191</height>
+     <height>210</height>
     </rect>
    </property>
   </widget>
@@ -121,7 +121,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>285</y>
+     <y>355</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -133,10 +133,10 @@
   <widget class="QPushButton" name="lrcSearchDownload">
    <property name="geometry">
     <rect>
-     <x>275</x>
-     <y>285</y>
-     <width>75</width>
-     <height>23</height>
+     <x>384</x>
+     <y>82</y>
+     <width>70</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -147,7 +147,7 @@
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>285</y>
+     <y>355</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -162,11 +162,94 @@
      <x>0</x>
      <y>25</y>
      <width>475</width>
-     <height>310</height>
+     <height>380</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="functionTopLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>435</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white</string>
+   </property>
+   <property name="text">
+    <string> 暂无所搜到的歌词</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="functionBottomLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>103</y>
+     <width>435</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(240,240,240)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_song">
+   <property name="geometry">
+    <rect>
+     <x>122</x>
+     <y>110</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌名</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_art">
+   <property name="geometry">
+    <rect>
+     <x>278</x>
+     <y>110</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>艺术家</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_time">
+   <property name="geometry">
+    <rect>
+     <x>385</x>
+     <y>110</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>时间</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="label_checkBox">
+   <property name="geometry">
+    <rect>
+     <x>28</x>
+     <y>112</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QCheckBox{ background-color:transparent; } 
+ QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); }QCheckBox::checked { color: rgb(230,115,0); } 
+QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); };</string>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -179,8 +262,14 @@
   <zorder>songSearchEdit</zorder>
   <zorder>tableWidget</zorder>
   <zorder>stateLabel</zorder>
-  <zorder>lrcSearchDownload</zorder>
   <zorder>closeButton</zorder>
+  <zorder>functionBottomLabel</zorder>
+  <zorder>label_song</zorder>
+  <zorder>label_art</zorder>
+  <zorder>label_time</zorder>
+  <zorder>functionTopLabel</zorder>
+  <zorder>lrcSearchDownload</zorder>
+  <zorder>label_checkBox</zorder>
  </widget>
  <customwidgets>
   <customwidget>

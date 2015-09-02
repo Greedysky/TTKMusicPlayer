@@ -1839,20 +1839,20 @@
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="68"/>
         <source>Art name is empty!</source>
-        <translation >歌手不能为空！</translation>
+        <translation>歌手不能为空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="73"/>
         <source>song name is empty!</source>
-        <translation >歌曲名不能为空！</translation>
+        <translation>歌曲名不能为空！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="78"/>
         <source>lrc text is empty!</source>
-        <translation >歌词内容不能为空！</translation>
+        <translation>歌词内容不能为空！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="176"/>
+        <location filename="../lrcmanager/musiclrcmakerwidget.cpp" line="175"/>
         <source>lrc make finished</source>
         <translation></translation>
     </message>
@@ -1895,6 +1895,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/application/musiclrcsearchwidget.ui" line="185"/>
+        <source> 暂无所搜到的歌词</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcsearchwidget.ui" line="211"/>
+        <source>歌名</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcsearchwidget.ui" line="224"/>
+        <source>艺术家</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/application/musiclrcsearchwidget.ui" line="237"/>
+        <source>时间</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="17"/>
         <source>Close</source>
         <translation>关闭</translation>
@@ -1905,12 +1925,17 @@
         <translation>正在搜索歌词！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="56"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="53"/>
+        <source> find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
+        <translation>　搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相关歌词</translation>
+    </message>
+    <message>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="58"/>
         <source>lrc is downloading now!</source>
         <translation>正在下载歌词！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="68"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="70"/>
         <source>lrc download finished!</source>
         <translation>歌词下载完毕！</translation>
     </message>
@@ -2632,7 +2657,7 @@
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="178"/>
         <source>add music to lovest list done!</source>
-        <translation >添加到我的最爱完成！</translation>
+        <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
         <location filename="../toolswidget/musicsongssummarizied.cpp" line="200"/>
