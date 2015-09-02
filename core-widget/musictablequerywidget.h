@@ -33,6 +33,7 @@ public slots:
     virtual void itemDoubleClicked(int row, int column) = 0;
 
 protected:
+    virtual void paintEvent(QPaintEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
     MusicDownLoadQueryThread *m_downLoadManager;
 

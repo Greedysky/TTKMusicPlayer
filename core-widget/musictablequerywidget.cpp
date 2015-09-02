@@ -1,5 +1,7 @@
 #include "musictablequerywidget.h"
 
+#include <QPainter>
+
 MusicTableQueryWidget::MusicTableQueryWidget(QWidget *parent)
     : MusicTableWidgetAbstract(parent)
 {
@@ -19,4 +21,17 @@ MusicTableQueryWidget::MusicTableQueryWidget(QWidget *parent)
 void MusicTableQueryWidget::contextMenuEvent(QContextMenuEvent *)
 {
 
+}
+
+void MusicTableQueryWidget::paintEvent(QPaintEvent *event)
+{
+    MusicTableWidgetAbstract::paintEvent(event);
+    QPainter painter(viewport());
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setPen(QPen(QBrush(QColor(0,0,0)), 0.1, Qt::SolidLine));
+    for(int i=0; i<rowCount(); ++i)
+    {
+        painter.drawLine(10, rowHeight(0)*(i + 1),
+                         width() - 15, rowHeight(0)*(i + 1));
+    }
 }

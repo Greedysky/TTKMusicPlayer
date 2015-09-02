@@ -1,6 +1,5 @@
 #include "musiclrcsearchtablewidget.h"
 #include "musictextdownloadthread.h"
-#include "musicuiobject.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicTableQueryWidget(parent)
@@ -39,7 +38,7 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
 
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01);
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number( count ));
+    QTableWidgetItem *item = new QTableWidgetItem(QString::number(count));
     item->setTextColor(QColor(50,50,50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 0, item);
@@ -79,4 +78,3 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int)
 {
     musicDownloadLocal(row);
 }
-
