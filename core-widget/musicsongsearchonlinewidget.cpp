@@ -5,12 +5,14 @@
 #include "musicbgthemedownload.h"
 #include "musicmydownloadrecordobject.h"
 #include "musiclocalsongsearchrecordobject.h"
+#include "musicmessagebox.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QCheckBox>
+#include <QButtonGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicTableQueryWidget(parent)
@@ -241,4 +243,32 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(playButton, 0);
+    buttonGroup->addButton(addButton, 1);
+    buttonGroup->addButton(downloadButton, 2);
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+}
+
+void MusicSongSearchOnlineWidget::buttonClicked(int index)
+{
+    int row;
+    if((row = m_searchTableWidget->currentRow()) < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+    switch(index)
+    {
+        case 0:case 1:
+            m_searchTableWidget->listCellClicked(row, 4);
+            break;
+        case 2:
+            m_searchTableWidget->listCellClicked(row, 5);
+            break;
+        default:
+            break;
+    }
 }

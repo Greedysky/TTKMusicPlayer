@@ -60,6 +60,9 @@ signals:
     void muiscSongToPlayListChanged(const QString &name);
     void showDownLoadInfoFor(DownLoadType type);
 
+public slots:
+    void buttonClicked(int index);
+
 protected:
     void createToolWidget();
     QLabel *m_textLabel;
