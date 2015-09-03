@@ -2063,6 +2063,15 @@
     </message>
 </context>
 <context>
+    <name>MusicRightAreaWidget</name>
+    <message>
+        <location filename="../musicrightareawidget.cpp" line="237"/>
+        <location filename="../musicrightareawidget.cpp" line="246"/>
+        <source>please input search text</source>
+        <translation >Please Input Search Words!</translation>
+    </message>
+</context>
+<context>
     <name>MusicSettingWidget</name>
     <message>
         <location filename="../core-widget/musicsettingwidget.cpp" line="21"/>

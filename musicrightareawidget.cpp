@@ -5,6 +5,7 @@
 #include "musicvideoplayer.h"
 #include "musicdownloadstatuslabel.h"
 #include "musicsettingwidget.h"
+#include "musicmessagebox.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent), m_videoPlayer(NULL)
@@ -232,11 +233,18 @@ void MusicRightAreaWidget::musicSearchButtonSearched()
 {
     QString searchedQString = m_ui->musicSongSearchLine->text().trimmed();
     //The string searched wouldn't allow to be none
-    if( !searchedQString.isEmpty())
+    if( !searchedQString.isEmpty() &&
+         searchedQString != tr("please input search text") )
     {
         m_ui->SurfaceStackedWidget->setCurrentIndex(1);
         createVedioWidget(false);
         m_ui->songSearchWidget->startSearchQuery(searchedQString);
+    }
+    else
+    {
+        MusicMessageBox message;
+        message.setText(tr("please input search text"));
+        message.exec();
     }
 }
 

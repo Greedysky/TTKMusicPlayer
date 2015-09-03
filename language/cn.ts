@@ -2059,6 +2059,15 @@
     </message>
 </context>
 <context>
+    <name>MusicRightAreaWidget</name>
+    <message>
+        <location filename="../musicrightareawidget.cpp" line="237"/>
+        <location filename="../musicrightareawidget.cpp" line="246"/>
+        <source>please input search text</source>
+        <translation >请输入搜索内容</translation>
+    </message>
+</context>
+<context>
     <name>MusicSettingWidget</name>
     <message>
         <location filename="../core-widget/musicsettingwidget.cpp" line="21"/>
@@ -2493,17 +2502,17 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="229"/>
         <source>Play</source>
-        <translation >播放</translation>
+        <translation>播放</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="234"/>
         <source>Add</source>
-        <translation >添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="239"/>
         <source>Download</source>
-        <translation >下载</translation>
+        <translation>下载</translation>
     </message>
 </context>
 <context>
