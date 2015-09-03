@@ -9,7 +9,10 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     m_url = url;
     m_savePathName = save;
 
-    if(QFile::exists(save)) QFile::remove(save);
+    if(QFile::exists(save))
+    {
+        QFile::remove(save);
+    }
     m_file = new QFile(save, this);
 }
 

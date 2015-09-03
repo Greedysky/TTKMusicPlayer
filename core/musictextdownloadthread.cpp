@@ -18,6 +18,8 @@ void MusicTextDownLoadThread::startToDownload()
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                              SLOT(replyError(QNetworkReply::NetworkError)) );
+            connect(m_reply, SIGNAL(downloadProgress(qint64,qint64)),
+                             SIGNAL(downloadProgress(qint64,qint64)));
         }
         else
         {

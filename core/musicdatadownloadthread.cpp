@@ -30,8 +30,10 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     m_reply = m_manager->get( QNetworkRequest(url));
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                this, SLOT(replyError(QNetworkReply::NetworkError)) );
+                     SLOT(replyError(QNetworkReply::NetworkError)) );
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
+    connect(m_reply, SIGNAL(downloadProgress(qint64,qint64)),
+                     SIGNAL(downloadProgress(qint64,qint64)));
 }
 
 void MusicDataDownloadThread::downLoadFinished()
