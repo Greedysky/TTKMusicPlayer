@@ -35,6 +35,7 @@ public slots:
 protected:
     QColor m_defaultBkColor;
     int m_previousColorRow;
+    int m_previousClickRow;
 
 };
 

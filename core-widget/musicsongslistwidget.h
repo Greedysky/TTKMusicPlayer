@@ -19,8 +19,7 @@ class QTimer;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInformation;
 
-class MUSIC_WIDGET_EXPORT MusicSongsListWidget :
-        public MusicTableWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicTableWidgetAbstract
 {
     Q_OBJECT
 public:

@@ -57,9 +57,9 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     setRowCount(count = m_downLoadManager->getSongIdIndex());
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01);
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number( count ));
-    item->setTextColor(QColor(50,50,50));
-    item->setTextAlignment(Qt::AlignCenter);
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, false);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
@@ -100,6 +100,7 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
 
 void MusicVideoTableWidget::listCellClicked(int row,int col)
 {
+    MusicTableQueryWidget::listCellClicked(row, col);
     switch(col)
     {
         case 5:
@@ -120,8 +121,12 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
     download->startToDownload();
 }
 
-void MusicVideoTableWidget::itemDoubleClicked(int row, int)
+void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
 {
+    if(column <= 0)
+    {
+        return;
+    }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     emit mvURLChanged(musicSongInfo[row][2]);
 }

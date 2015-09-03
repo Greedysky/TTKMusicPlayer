@@ -31,7 +31,6 @@ public slots:
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time);
     void itemDoubleClicked(int row, int column);
-    virtual void listCellClicked(int, int){}
 
 protected:
     QString m_currentSongName;

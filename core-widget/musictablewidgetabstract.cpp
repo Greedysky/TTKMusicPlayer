@@ -29,6 +29,7 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     setTransparent(80);
 
     m_previousColorRow = -1;
+    m_previousClickRow = -1;
     m_defaultBkColor = QColor(255,255,255,0);
 
 

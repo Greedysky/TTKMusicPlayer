@@ -39,9 +39,9 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
 
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01);
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number(count));
-    item->setTextColor(QColor(50,50,50));
-    item->setTextAlignment(Qt::AlignCenter);
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, false);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
@@ -77,7 +77,11 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     lrcDownload->startToDownload();
 }
 
-void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int)
+void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
 {
+    if(column <= 0)
+    {
+        return;
+    }
     musicDownloadLocal(row);
 }

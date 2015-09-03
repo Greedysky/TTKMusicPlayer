@@ -57,9 +57,8 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
 
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number( count ));
-    item->setTextColor(QColor(50,50,50));
-    item->setTextAlignment(Qt::AlignCenter);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, false);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
@@ -88,8 +87,9 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     setItem(count - 1, 5, item);
 }
 
-void MusicSongSearchOnlineTableWidget::listCellClicked(int row,int col)
+void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
 {
+    MusicTableQueryWidget::listCellClicked(row, col);
     switch(col)
     {
         case 4:
@@ -145,8 +145,12 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     new MusicBgThemeDownload(musicSongInfo[row][3], musicSongInfo[row][3], this);
 }
 
-void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int)
+void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
 {
+    if(column <= 0)
+    {
+        return;
+    }
     addSearchMusicToPlayList(row);
 }
 
