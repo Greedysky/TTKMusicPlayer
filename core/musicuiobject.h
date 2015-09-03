@@ -63,7 +63,7 @@ namespace MusicUIObject
             background-color:rgb(240,240,240);";
 
     const QString MCustomStyle17 = "\
-            font-weight:bold";
+            font-weight:bold;";
 
     const QString MCustomStyle18 = "\
             background-color:black;";

@@ -221,21 +221,21 @@ HEADERS  += \
 
 FORMS    += \
     ui/application/musicapplication.ui \
-    ui/application/musicsongslistiteminformation.ui \
-    ui/application/musicsettingwidget.ui \
-    ui/application/musicbackgroundskindialog.ui \
-    ui/application/musicequalizerdialog.ui \
-    ui/application/musicaudiorecorderwidget.ui \
-    ui/application/musictimerwidget.ui \
-    ui/application/musiclocalsongsmanagerwidget.ui \
-    ui/application/musictransformwidget.ui \
-    ui/application/musicwebradiowidget.ui \
-    ui/application/musicfileinformationwidget.ui \
-    ui/application/musicdesktopwallpaperwidget.ui \
-    ui/application/musiclrcsearchwidget.ui \
-    ui/application/musiclrcartphotoupload.ui \
-    ui/application/musiclrcmakerwidget.ui \
-    ui/application/musicmessagebox.ui
+    ui/core-widget/musicmessagebox.ui \
+    ui/core-widget/musicsongslistiteminformation.ui \
+    ui/core-widget/musicsettingwidget.ui \
+    ui/core-widget/musicbackgroundskindialog.ui \
+    ui/core-widget/musicequalizerdialog.ui \
+    ui/lrcmanager/musiclrcsearchwidget.ui \
+    ui/lrcmanager/musiclrcartphotoupload.ui \
+    ui/lrcmanager/musiclrcmakerwidget.ui \
+    ui/toolsetswidget/musicaudiorecorderwidget.ui \
+    ui/toolsetswidget/musictimerwidget.ui \
+    ui/toolsetswidget/musiclocalsongsmanagerwidget.ui \
+    ui/toolsetswidget/musictransformwidget.ui \
+    ui/toolsetswidget/musicfileinformationwidget.ui \
+    ui/toolsetswidget/musicdesktopwallpaperwidget.ui \
+    ui/toolswidget/musicwebradiowidget.ui
 
 
 RESOURCES += \

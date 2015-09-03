@@ -267,7 +267,7 @@
   <customwidget>
    <class>MusicLocalSongsTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>../core-widget/musiclocalsongstablewidget.h</header>
+   <header>musiclocalsongstablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
