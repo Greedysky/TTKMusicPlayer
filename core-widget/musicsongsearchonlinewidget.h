@@ -42,12 +42,15 @@ protected:
 };
 
 
+class QLabel;
+class QPushButton;
+
 class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
-    virtual ~MusicSongSearchOnlineWidget();
+    ~MusicSongSearchOnlineWidget();
 
     void startSearchQuery(const QString &name) const;
 
@@ -59,6 +62,7 @@ signals:
 
 protected:
     void createToolWidget();
+    QLabel *m_textLabel;
     MusicSongSearchOnlineTableWidget *m_searchTableWidget;
 
 };

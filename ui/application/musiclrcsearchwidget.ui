@@ -201,14 +201,17 @@
   <widget class="QLabel" name="label_song">
    <property name="geometry">
     <rect>
-     <x>122</x>
+     <x>120</x>
      <y>110</y>
-     <width>31</width>
+     <width>41</width>
      <height>20</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight:bold</string>
+   </property>
    <property name="text">
-    <string>歌名</string>
+    <string>歌曲名</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_art">
@@ -219,6 +222,9 @@
      <width>41</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight:bold</string>
    </property>
    <property name="text">
     <string>艺术家</string>
@@ -232,6 +238,9 @@
      <width>31</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight:bold</string>
    </property>
    <property name="text">
     <string>时间</string>

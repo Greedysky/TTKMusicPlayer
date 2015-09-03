@@ -8,6 +8,9 @@
 
 #include <QDateTime>
 #include <QVBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QCheckBox>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicTableQueryWidget(parent)
@@ -175,6 +178,8 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     boxLayout->addWidget(m_searchTableWidget);
     setLayout(boxLayout);
 
+    createToolWidget();
+
     connect(m_searchTableWidget, SIGNAL(musicBgDownloadFinished()),
                                  SIGNAL(musicBgDownloadFinished()));
     connect(m_searchTableWidget, SIGNAL(showDownLoadInfoFinished(QString)),
@@ -188,15 +193,52 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 {
+    delete m_textLabel;
     delete m_searchTableWidget;
 }
 
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 {
     m_searchTableWidget->startSearchQuery(name);
+    m_textLabel->setText(tr(" find <font color=red> %1 </font> result").arg(name));
 }
 
 void MusicSongSearchOnlineWidget::createToolWidget()
 {
+    m_textLabel = new QLabel(this);
+    m_textLabel->setGeometry(0, 0, 280, 30);
+
+    QLabel *colorLabel = new QLabel(this);
+    colorLabel->setStyleSheet(MusicUIObject::MCustomStyle16);
+    colorLabel->setGeometry(0, 30, width(), 35);
+
+    QCheckBox *label_checkBox = new QCheckBox(this);
+    label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    label_checkBox->setGeometry(15, 40, 20, 20);
+
+    QLabel *Label1 = new QLabel(tr("Song"), this);
+    Label1->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label1->setGeometry(120, 40, 60, 20);
+    QLabel *Label2 = new QLabel(tr("Artist"), this);
+    Label2->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label2->setGeometry(310, 40, 60, 20);
+    QLabel *Label3 = new QLabel(tr("Operator"), this);
+    Label3->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label3->setGeometry(435, 40, 60, 20);
+
+    QPushButton *playButton = new QPushButton(tr("Play"), this);
+    playButton->setGeometry(295, 5, 70, 20);
+    playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    playButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+    QPushButton *addButton = new QPushButton(tr("Add"), this);
+    addButton->setGeometry(370, 5, 70, 20);
+    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    addButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+    QPushButton *downloadButton = new QPushButton(tr("Download"), this);
+    downloadButton->setGeometry(445, 5, 70, 20);
+    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
 }
