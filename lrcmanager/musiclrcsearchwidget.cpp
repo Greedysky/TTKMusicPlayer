@@ -29,6 +29,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(ui->label_checkBox, SIGNAL(clicked(bool)), SLOT(lrcCurrentSelectAll(bool)));
     connect(ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)),
                              SLOT(lrcDownloadStateChanged(QString)));
 }
@@ -69,6 +70,11 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
     {
        ui->stateLabel->setText(tr("lrc download finished!"));
     }
+}
+
+void MusicLrcSearchWidget::lrcCurrentSelectAll(bool all)
+{
+    Q_UNUSED(all);
 }
 
 int MusicLrcSearchWidget::exec()
