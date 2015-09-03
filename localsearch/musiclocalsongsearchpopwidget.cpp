@@ -7,7 +7,7 @@
 #include <QFontMetrics>
 
 MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *parent)
-    : MusicTableWidgetAbstract(parent)
+    : MusicAbstractTableWidget(parent)
 {
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
@@ -24,7 +24,7 @@ MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
 
 void MusicLocalSongSearchPopTableWidget::clearAllItems()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(2);
 }
 

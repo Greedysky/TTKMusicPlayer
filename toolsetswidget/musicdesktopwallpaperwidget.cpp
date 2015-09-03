@@ -10,7 +10,7 @@
 #include <QSettings>
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent),
+    MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicDesktopWallpaperWidget)
 {
     ui->setupUi(this);
@@ -228,6 +228,6 @@ void MusicDesktopWallpaperWidget::show()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    MusicMoveWidgetAbstract::show();
+    MusicAbstractMoveWidget::show();
 }
 

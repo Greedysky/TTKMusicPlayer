@@ -13,7 +13,7 @@
 #include <QMouseEvent>
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 class QMovie;
 class MusicLocalSongsManagerThread;
@@ -22,7 +22,7 @@ namespace Ui {
 class MusicLocalSongsManagerWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicLocalSongsManagerWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

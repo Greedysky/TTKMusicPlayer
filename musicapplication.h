@@ -12,7 +12,7 @@
 #include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 #include "musicobject.h"
 
 class MusicPlayer;
@@ -28,7 +28,7 @@ namespace Ui {
 class MusicApplication;
 }
 
-class MUSIC_WIDGET_EXPORT MusicApplication : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicApplication : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

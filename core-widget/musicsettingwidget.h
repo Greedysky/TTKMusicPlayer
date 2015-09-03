@@ -12,7 +12,7 @@
 #include <QDialog>
 #include <QTabWidget>
 #include <QMouseEvent>
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 
@@ -20,7 +20,7 @@ namespace Ui {
 class MusicSettingWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 

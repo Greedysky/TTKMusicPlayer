@@ -8,7 +8,7 @@
 #include <QTime>
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
-    : MusicMoveWidgetAbstract(parent),
+    : MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicLrcMakerWidget)
 {
     ui->setupUi(this);
@@ -144,7 +144,7 @@ QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 {
-    MusicMoveWidgetAbstract::keyPressEvent(event);
+    MusicAbstractMoveWidget::keyPressEvent(event);
     if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A)
     {
         if(m_plainText.count() > m_currentLine)
@@ -180,12 +180,12 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 
 void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 {
-    MusicMoveWidgetAbstract::keyReleaseEvent(event);
+    MusicAbstractMoveWidget::keyReleaseEvent(event);
 }
 
 void MusicLrcMakerWidget::show()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    MusicMoveWidgetAbstract::show();
+    MusicAbstractMoveWidget::show();
 }

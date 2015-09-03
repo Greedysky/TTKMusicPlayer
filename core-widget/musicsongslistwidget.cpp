@@ -1,5 +1,5 @@
 #include "musicsongslistwidget.h"
-#include "musicsongslistiteminformation.h"
+#include "musicsongslistiteminfowidget.h"
 #include "musicsongslistplaywidget.h"
 #include "musictransformwidget.h"
 #include "musicfileinformationwidget.h"
@@ -10,7 +10,7 @@
 #include <QProcess>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
-    MusicTableWidgetAbstract(parent),m_musicSongsListItem(NULL),
+    MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
     m_musicSongsPlayWidget(NULL)
 {
     m_deleteItemWithFile = false;
@@ -72,7 +72,7 @@ void MusicSongsListWidget::clearAllItems()
     m_musicSongsPlayWidget = NULL;
     m_playRowIndex = 0;
     //Remove all the original item
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(3);
 }
 
@@ -277,11 +277,11 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 
 void MusicSongsListWidget::listCellEntered(int row, int column)
 {
-    MusicTableWidgetAbstract::listCellEntered(row, column);
+    MusicAbstractTableWidget::listCellEntered(row, column);
     //To show music Songs Item information
     if(m_musicSongsListItem == NULL)
     {
-        m_musicSongsListItem = new MusicSongsListItemInformation;
+        m_musicSongsListItem = new MusicSongsListItemInfoWidget;
     }
     m_musicSongsListItem->hide();
     m_timerShow->stop();

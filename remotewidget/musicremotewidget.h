@@ -12,9 +12,9 @@
 #include <QtWidgets>
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicRemoteWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

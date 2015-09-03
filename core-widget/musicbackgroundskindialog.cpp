@@ -7,7 +7,7 @@
 #include "musicbgthememanager.h"
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),
+    MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicBackgroundSkinDialog)
 {
     ui->setupUi(this);
@@ -152,5 +152,5 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
 int MusicBackgroundSkinDialog::exec()
 {
     updateBackground();
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

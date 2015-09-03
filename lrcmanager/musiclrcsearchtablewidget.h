@@ -10,9 +10,9 @@
    =================================================*/
 
 #include "musicdownloadquerythread.h"
-#include "musictablequerywidget.h"
+#include "musicquerytablewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicLrcSearchTableWidget : public MusicTableQueryWidget
+class MUSIC_WIDGET_EXPORT MusicLrcSearchTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:

@@ -8,7 +8,7 @@
 #include <QButtonGroup>
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),
+    MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicEqualizerDialog)
 {
     ui->setupUi(this);
@@ -369,5 +369,5 @@ int MusicEqualizerDialog::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

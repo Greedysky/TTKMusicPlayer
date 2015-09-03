@@ -10,12 +10,12 @@
    =================================================*/
 
 #include <QWidget>
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 
 class QPushButton;
 
 class MUSIC_WIDGET_EXPORT MusicLocalSongSearchPopTableWidget :
-            public MusicTableWidgetAbstract
+            public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:

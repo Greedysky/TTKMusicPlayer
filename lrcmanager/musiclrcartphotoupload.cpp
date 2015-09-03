@@ -8,7 +8,7 @@
 #include <QFileDialog>
 
 MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
-    : MusicMoveDialogAbstract(parent),
+    : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicLrcArtPhotoUpload)
 {
     ui->setupUi(this);
@@ -98,5 +98,5 @@ int MusicLrcArtPhotoUpload::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

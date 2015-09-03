@@ -15,7 +15,7 @@
 #include <QButtonGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
-    : MusicTableQueryWidget(parent)
+    : MusicQueryTableWidget(parent)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -52,7 +52,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(6);
 }
 
@@ -94,7 +94,7 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
 
 void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
 {
-    MusicTableQueryWidget::listCellClicked(row, col);
+    MusicQueryTableWidget::listCellClicked(row, col);
     switch(col)
     {
         case 4:

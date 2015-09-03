@@ -16,7 +16,7 @@
 #include <QAudioOutput>
 #include <QAudioDeviceInfo>
 #include "musicuiobject.h"
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 #define BufferSize 14096
 
@@ -26,7 +26,7 @@ namespace Ui {
 class MusicAudioRecorderWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicAudioRecorderWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicAudioRecorderWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 struct HEADER

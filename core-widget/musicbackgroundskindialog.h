@@ -9,13 +9,13 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicBackgroundSkinDialog;
 }
 
-class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

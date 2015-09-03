@@ -1,5 +1,5 @@
-#ifndef MUSICTABLEQUERYWIDGET_H
-#define MUSICTABLEQUERYWIDGET_H
+#ifndef MUSICQUERYTABLEWIDGET_H
+#define MUSICQUERYTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 #include "musicdownloadquerythread.h"
 
 #include <QItemDelegate>
@@ -33,12 +33,12 @@ private:
 };
 
 
-class MUSIC_WIDGET_EXPORT MusicTableQueryWidget : public MusicTableWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicTableQueryWidget(QWidget *parent = 0);
-    virtual ~MusicTableQueryWidget();
+    explicit MusicQueryTableWidget(QWidget *parent = 0);
+    virtual ~MusicQueryTableWidget();
 
     virtual void startSearchQuery(const QString &text) = 0;
     MIntList getSelectedItems() const;
@@ -66,4 +66,4 @@ protected:
 
 };
 
-#endif // MUSICTABLEQUERYWIDGET_H
+#endif // MUSICQUERYTABLEWIDGET_H

@@ -12,10 +12,10 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include "musiclibexportglobal.h"
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 
 class MUSIC_WIDGET_EXPORT MusicMyDownloadRecordWidget :
-        public MusicTableWidgetAbstract
+        public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:

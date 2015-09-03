@@ -12,13 +12,13 @@
 #include <QDialog>
 #include <QMouseEvent>
 #include "musicobject.h"
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicTimerWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicTimerWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

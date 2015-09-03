@@ -2,7 +2,7 @@
 #include "musictextdownloadthread.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
-    : MusicTableQueryWidget(parent)
+    : MusicQueryTableWidget(parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -27,7 +27,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicLrcSearchTableWidget::clearAllItems()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(5);
 }
 

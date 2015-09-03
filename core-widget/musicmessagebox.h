@@ -2,13 +2,13 @@
 #define MUSICMESSAGEBOX_H
 
 #include <QWidget>
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicMessageBox;
 }
 
-class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

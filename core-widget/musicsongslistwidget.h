@@ -12,14 +12,14 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include "musicsonginformation.h"
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 
 class QAction;
 class QTimer;
 class MusicSongsListPlayWidget;
-class MusicSongsListItemInformation;
+class MusicSongsListItemInfoWidget;
 
-class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicTableWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -88,7 +88,7 @@ protected:
     int m_dragStartIndex;
     bool m_mouseMoved;
 
-    MusicSongsListItemInformation *m_musicSongsListItem;
+    MusicSongsListItemInfoWidget *m_musicSongsListItem;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
     bool m_leftButtonPressed;

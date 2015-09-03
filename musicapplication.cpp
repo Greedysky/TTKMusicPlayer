@@ -19,7 +19,7 @@
 #include "musicapplicationobject.h"
 
 MusicApplication::MusicApplication(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent),
+    MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);

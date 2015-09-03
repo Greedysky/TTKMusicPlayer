@@ -1,5 +1,5 @@
-#ifndef MUSICTABLEWIDGETABSTRACT_H
-#define MUSICTABLEWIDGETABSTRACT_H
+#ifndef MUSICABSTRACTTABLEWIDGET_H
+#define MUSICABSTRACTTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -15,12 +15,12 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 
-class MUSIC_WIDGET_EXPORT MusicTableWidgetAbstract : public QTableWidget
+class MUSIC_WIDGET_EXPORT MusicAbstractTableWidget : public QTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicTableWidgetAbstract(QWidget *parent = 0);
-    virtual ~MusicTableWidgetAbstract();
+    explicit MusicAbstractTableWidget(QWidget *parent = 0);
+    virtual ~MusicAbstractTableWidget();
 
     virtual void clearAllItems();
     void setTransparent(int angle);
@@ -39,4 +39,4 @@ protected:
 
 };
 
-#endif // MUSICTABLEWIDGETABSTRACT_H
+#endif // MUSICABSTRACTTABLEWIDGET_H

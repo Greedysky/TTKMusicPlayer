@@ -6,7 +6,7 @@
 #include <QProcess>
 
 MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent),m_radio(NULL),
+    MusicAbstractMoveWidget(parent),m_radio(NULL),
     ui(new Ui::MusicWebRadioWidget)
 {
     ui->setupUi(this);
@@ -229,5 +229,5 @@ void MusicWebRadioWidget::show()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    MusicMoveWidgetAbstract::show();
+    MusicAbstractMoveWidget::show();
 }

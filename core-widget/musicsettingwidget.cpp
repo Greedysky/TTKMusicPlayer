@@ -8,7 +8,7 @@
 #include <QTranslator>
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),
+    MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicSettingWidget)
 {
     ui->setupUi(this);
@@ -407,5 +407,5 @@ int MusicSettingWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

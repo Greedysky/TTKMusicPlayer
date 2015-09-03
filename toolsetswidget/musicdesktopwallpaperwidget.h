@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 
 class MusicDesktopWallpaperThread;
 
@@ -17,7 +17,7 @@ namespace Ui {
 class MusicDesktopWallpaperWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicDesktopWallpaperWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicDesktopWallpaperWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

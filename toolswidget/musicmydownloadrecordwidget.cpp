@@ -5,7 +5,7 @@
 #include <QDesktopServices>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
-    MusicTableWidgetAbstract(parent)
+    MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
@@ -54,7 +54,7 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
 void MusicMyDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(3);
 }
 

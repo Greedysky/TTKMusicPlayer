@@ -9,7 +9,7 @@
 #include <QDesktopServices>
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),
+    MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicFileInformationWidget)
 {
     ui->setupUi(this);
@@ -74,5 +74,5 @@ int MusicFileInformationWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

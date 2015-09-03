@@ -3,7 +3,7 @@
 #include <QMenu>
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent)
+    MusicAbstractMoveWidget(parent)
 {
     setMinimumHeight(80);
     setMinimumWidth(150);

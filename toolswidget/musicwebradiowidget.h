@@ -13,7 +13,7 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include "musicuiobject.h"
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 
 class QProcess;
 class QListWidgetItem;
@@ -23,7 +23,7 @@ namespace Ui {
 class MusicWebRadioWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicWebRadioWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicWebRadioWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

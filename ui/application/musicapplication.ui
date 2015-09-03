@@ -188,7 +188,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="MusicMarquee" name="showCurrentSong" native="true">
+  <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -1004,9 +1004,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>MusicMarquee</class>
+   <class>MusicMarqueeWidget</class>
    <extends>QWidget</extends>
-   <header>musicmarquee.h</header>
+   <header>musicmarqueewidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

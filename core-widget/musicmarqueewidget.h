@@ -1,5 +1,5 @@
-#ifndef MUSICMARQUEE_H
-#define MUSICMARQUEE_H
+#ifndef MUSICMARQUEEWIDGET_H
+#define MUSICMARQUEEWIDGET_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -12,11 +12,11 @@
 #include <QWidget>
 #include "musiclibexportglobal.h"
 
-class MUSIC_WIDGET_EXPORT MusicMarquee : public QWidget
+class MUSIC_WIDGET_EXPORT MusicMarqueeWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicMarquee(QWidget *parent = 0);
+    explicit MusicMarqueeWidget(QWidget *parent = 0);
 
     void setText(const QString &newText);
     inline QString text() const { return m_myText; }
@@ -35,4 +35,4 @@ private:
 
 };
 
-#endif // MUSICMARQUEE_H
+#endif // MUSICMARQUEEWIDGET_H

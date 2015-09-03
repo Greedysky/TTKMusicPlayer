@@ -10,7 +10,7 @@
 #include <QFileDialog>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
-    : MusicMoveDialogAbstract(parent),m_movie(NULL),
+    : MusicAbstractMoveDialog(parent),m_movie(NULL),
       ui(new Ui::MusicLocalSongsManagerWidget)
 {
     ui->setupUi(this);
@@ -380,5 +380,5 @@ int MusicLocalSongsManagerWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

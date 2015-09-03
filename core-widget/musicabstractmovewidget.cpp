@@ -1,23 +1,22 @@
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovewidget.h"
 
-#include <QMouseEvent>
 #include <QBitmap>
 #include <QPainter>
 
-MusicMoveDialogAbstract::MusicMoveDialogAbstract(QWidget *parent)
-    : QDialog(parent)
+MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
+    : QWidget(parent)
 {
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     m_leftButtonPress = false;
 }
 
-MusicMoveDialogAbstract::~MusicMoveDialogAbstract()
+MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
 {
 
 }
 
-void MusicMoveDialogAbstract::drawWindowRoundedRect(QWidget *widget)
+void MusicAbstractMoveWidget::drawWindowRoundedRect(QWidget *widget)
 {
     QBitmap bmp(widget->size());
     bmp.fill();
@@ -28,7 +27,7 @@ void MusicMoveDialogAbstract::drawWindowRoundedRect(QWidget *widget)
     widget->setMask(bmp);
 }
 
-void MusicMoveDialogAbstract::mousePressEvent(QMouseEvent *event)
+void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
     if( event->button() == Qt::LeftButton )///Press the left key
@@ -38,7 +37,7 @@ void MusicMoveDialogAbstract::mousePressEvent(QMouseEvent *event)
     m_pressAt = event->globalPos();
 }
 
-void MusicMoveDialogAbstract::mouseMoveEvent(QMouseEvent *event)
+void MusicAbstractMoveWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
     if( !m_leftButtonPress )///Not press the left key
@@ -52,7 +51,7 @@ void MusicMoveDialogAbstract::mouseMoveEvent(QMouseEvent *event)
     move( this->x()+xpos, this->y()+ypos);
 }
 
-void MusicMoveDialogAbstract::mouseReleaseEvent(QMouseEvent *event)
+void MusicAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
     m_pressAt = event->globalPos();

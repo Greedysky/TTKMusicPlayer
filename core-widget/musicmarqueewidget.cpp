@@ -1,26 +1,26 @@
-#include "musicmarquee.h"
+#include "musicmarqueewidget.h"
 #include <QtGui>
 
-MusicMarquee::MusicMarquee(QWidget *parent)
+MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_offset = 0;
     m_myTimerId = 0;
 }
 
-void MusicMarquee::setText(const QString &newText)
+void MusicMarqueeWidget::setText(const QString &newText)
 {
     m_myText = newText.leftJustified(50,' ');
     update();
     updateGeometry();
 }
 
-QSize MusicMarquee::sizeHint() const
+QSize MusicMarqueeWidget::sizeHint() const
 {
     return fontMetrics().size(0, text());
 }
 
-void MusicMarquee::paintEvent(QPaintEvent *)
+void MusicMarqueeWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
@@ -39,12 +39,12 @@ void MusicMarquee::paintEvent(QPaintEvent *)
     painter.end();
 }
 
-void MusicMarquee::showEvent(QShowEvent *)
+void MusicMarqueeWidget::showEvent(QShowEvent *)
 {
     m_myTimerId = startTimer(30);
 }
 
-void MusicMarquee::timerEvent(QTimerEvent *event)
+void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == m_myTimerId)
     {
@@ -61,7 +61,7 @@ void MusicMarquee::timerEvent(QTimerEvent *event)
     }
 }
 
-void MusicMarquee::hideEvent(QHideEvent *)
+void MusicMarqueeWidget::hideEvent(QHideEvent *)
 {
     killTimer(m_myTimerId);
     m_myTimerId = 0;

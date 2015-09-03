@@ -8,7 +8,7 @@
 #include <QFileDialog>
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),m_mBuffer(BufferSize, 0),
+    MusicAbstractMoveDialog(parent),m_mBuffer(BufferSize, 0),
     ui(new Ui::MusicAudioRecorderWidget)
 {
     ui->setupUi(this);
@@ -384,5 +384,5 @@ int MusicAudioRecorderWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

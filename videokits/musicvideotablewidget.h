@@ -2,9 +2,9 @@
 #define MUSICVIDEOTABLEWIDGET_H
 
 #include "musicdownloadquerythread.h"
-#include "musictablequerywidget.h"
+#include "musicquerytablewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicVideoTableWidget : public MusicTableQueryWidget
+class MUSIC_WIDGET_EXPORT MusicVideoTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:

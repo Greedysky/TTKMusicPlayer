@@ -10,12 +10,12 @@
    =================================================*/
 
 #include "musicdownloadquerythread.h"
-#include "musictablequerywidget.h"
+#include "musicquerytablewidget.h"
 
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
-class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicTableQueryWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:

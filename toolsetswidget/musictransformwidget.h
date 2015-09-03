@@ -15,7 +15,7 @@
 
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 class QMovie;
 class QProcess;
@@ -24,7 +24,7 @@ namespace Ui {
 class MusicTransformWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicTransformWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

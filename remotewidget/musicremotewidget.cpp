@@ -1,7 +1,7 @@
 #include "musicremotewidget.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
-    MusicMoveWidgetAbstract(parent)
+    MusicAbstractMoveWidget(parent)
 {
     setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);
     setMouseTracking(true);

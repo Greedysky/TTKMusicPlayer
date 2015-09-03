@@ -11,13 +11,13 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicFileInformationWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicFileInformationWidget : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

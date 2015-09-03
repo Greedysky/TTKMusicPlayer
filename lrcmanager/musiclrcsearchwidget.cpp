@@ -6,7 +6,7 @@
 #include "musicmessagebox.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
-    : MusicMoveDialogAbstract(parent),
+    : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicLrcSearchWidget)
 {
     ui->setupUi(this);
@@ -85,5 +85,5 @@ int MusicLrcSearchWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

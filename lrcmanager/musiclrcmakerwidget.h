@@ -9,13 +9,13 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 
 namespace Ui {
 class MusicLrcMakerWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicLrcMakerWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

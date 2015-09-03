@@ -13,7 +13,7 @@
 #endif
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
-    : MusicMoveDialogAbstract(parent),m_movie(NULL),
+    : MusicAbstractMoveDialog(parent),m_movie(NULL),
     ui(new Ui::MusicTransformWidget)
 {
     ui->setupUi(this);
@@ -238,5 +238,5 @@ int MusicTransformWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

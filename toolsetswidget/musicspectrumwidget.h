@@ -12,9 +12,9 @@
 #define PADDING 10
 
 #include <QTimer>
-#include "musicmovewidgetabstract.h"
+#include "musicabstractmovewidget.h"
 
-class MUSIC_WIDGET_EXPORT  MusicSpectrumWidget : public MusicMoveWidgetAbstract
+class MUSIC_WIDGET_EXPORT  MusicSpectrumWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     enum Direction{

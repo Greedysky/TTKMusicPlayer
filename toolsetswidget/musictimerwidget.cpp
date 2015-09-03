@@ -5,7 +5,7 @@
 #include "musicbgthememanager.h"
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
-    : MusicMoveDialogAbstract(parent),
+    : MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicTimerWidget)
 {
     ui->setupUi(this);
@@ -265,5 +265,5 @@ int MusicTimerWidget::exec()
 {
     QPixmap pix(M_BG_MANAGER.getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicMoveDialogAbstract::exec();
+    return MusicAbstractMoveDialog::exec();
 }

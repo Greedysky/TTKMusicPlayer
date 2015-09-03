@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QMouseEvent>
 #include "musicobject.h"
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 class MusicUserModel;
 
@@ -12,7 +12,7 @@ namespace Ui {
 class MusicUserDialog;
 }
 
-class MUSIC_WIDGET_EXPORT MusicUserDialog : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicUserDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

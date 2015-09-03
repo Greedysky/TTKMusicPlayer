@@ -1,7 +1,7 @@
 #include "musiclocalsongstablewidget.h"
 
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
-    : MusicTableWidgetAbstract(parent)
+    : MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
@@ -10,13 +10,13 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
 
 void MusicLocalSongsTableWidget::clearShowlist()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(5);
 }
 
 void MusicLocalSongsTableWidget::clearShowPath()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(1);
 }
 

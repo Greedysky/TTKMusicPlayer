@@ -1,4 +1,4 @@
-#include "musictablequerywidget.h"
+#include "musicquerytablewidget.h"
 
 #include <QPainter>
 #include <QCheckBox>
@@ -38,8 +38,8 @@ void MusicCheckBoxDelegate::paint(QPainter *painter,
 }
 
 
-MusicTableQueryWidget::MusicTableQueryWidget(QWidget *parent)
-    : MusicTableWidgetAbstract(parent)
+MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
 {
     m_downLoadManager = new MusicDownLoadQueryThread(this);
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
@@ -57,12 +57,12 @@ MusicTableQueryWidget::MusicTableQueryWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
-MusicTableQueryWidget::~MusicTableQueryWidget()
+MusicQueryTableWidget::~MusicQueryTableWidget()
 {
     delete m_checkBoxDelegate;
 }
 
-void MusicTableQueryWidget::listCellClicked(int row, int column)
+void MusicQueryTableWidget::listCellClicked(int row, int column)
 {
     if(column == 0)
     {
@@ -81,7 +81,7 @@ void MusicTableQueryWidget::listCellClicked(int row, int column)
     }
 }
 
-void MusicTableQueryWidget::setSelectedAllItems(bool all)
+void MusicQueryTableWidget::setSelectedAllItems(bool all)
 {
     for(int i=0; i<rowCount(); ++i)
     {
@@ -89,14 +89,14 @@ void MusicTableQueryWidget::setSelectedAllItems(bool all)
     }
 }
 
-void MusicTableQueryWidget::contextMenuEvent(QContextMenuEvent *)
+void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *)
 {
 
 }
 
-void MusicTableQueryWidget::paintEvent(QPaintEvent *event)
+void MusicQueryTableWidget::paintEvent(QPaintEvent *event)
 {
-    MusicTableWidgetAbstract::paintEvent(event);
+    MusicAbstractTableWidget::paintEvent(event);
     QPainter painter(viewport());
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(QPen(QBrush(QColor(0,0,0)), 0.1, Qt::SolidLine));
@@ -107,7 +107,7 @@ void MusicTableQueryWidget::paintEvent(QPaintEvent *event)
     }
 }
 
-MIntList MusicTableQueryWidget::getSelectedItems() const
+MIntList MusicQueryTableWidget::getSelectedItems() const
 {
     MIntList list;
     for(int i=0; i<rowCount(); ++i)

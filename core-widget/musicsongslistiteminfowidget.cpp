@@ -1,12 +1,13 @@
-#include "musicsongslistiteminformation.h"
-#include "ui_musicsongslistiteminformation.h"
+#include "musicsongslistiteminfowidget.h"
+#include "ui_musicsongslistiteminfowidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 #include <QTime>
 
-MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :
-    QWidget(parent), ui(new Ui::MusicSongsListItemInformation)
+MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
+    : QWidget(parent),
+    ui(new Ui::MusicSongsListItemInfoWidget)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
@@ -14,12 +15,12 @@ MusicSongsListItemInformation::MusicSongsListItemInformation(QWidget *parent) :
     setStyleSheet(MusicUIObject::MCustomStyle01);
 }
 
-MusicSongsListItemInformation::~MusicSongsListItemInformation()
+MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()
 {
     delete ui;
 }
 
-bool MusicSongsListItemInformation::showArtPicture(const QString &name)
+bool MusicSongsListItemInfoWidget::showArtPicture(const QString &name)
 {
     QPixmap originPath(QString(ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
@@ -30,7 +31,7 @@ bool MusicSongsListItemInformation::showArtPicture(const QString &name)
     return false;
 }
 
-void MusicSongsListItemInformation::setMusicSongInformation(QMusicSong &info)
+void MusicSongsListItemInfoWidget::setMusicSongInformation(QMusicSong &info)
 {
     QString musicArt = info.getMusicArtistFront();
     QFontMetrics str(font());

@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicLocalSongsTableWidget : public MusicTableWidgetAbstract
+class MUSIC_WIDGET_EXPORT MusicLocalSongsTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:

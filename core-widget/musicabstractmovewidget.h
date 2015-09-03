@@ -1,5 +1,5 @@
-#ifndef MUSICMOVEDIALOGABSTRACT_H
-#define MUSICMOVEDIALOGABSTRACT_H
+#ifndef MUSICABSTRACTMOVEWIDGET_H
+#define MUSICABSTRACTMOVEWIDGET_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -9,15 +9,16 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QDialog>
+#include <QWidget>
+#include <QMouseEvent>
 #include "musiclibexportglobal.h"
 
-class MUSIC_WIDGET_EXPORT MusicMoveDialogAbstract : public QDialog
+class MUSIC_WIDGET_EXPORT MusicAbstractMoveWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicMoveDialogAbstract(QWidget *parent = 0);
-    virtual ~MusicMoveDialogAbstract();
+    explicit MusicAbstractMoveWidget(QWidget *parent = 0);
+    virtual ~MusicAbstractMoveWidget();
 
     void drawWindowRoundedRect(QWidget *widget);
 
@@ -30,4 +31,4 @@ protected:
 
 };
 
-#endif // MUSICMOVEDIALOGABSTRACT_H
+#endif // MUSICABSTRACTMOVEWIDGET_H

@@ -98,12 +98,12 @@ SOURCES += \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
     core-widget/musicdownloadstatuslabel.cpp \
-    core-widget/musictablewidgetabstract.cpp \
-    core-widget/musictablequerywidget.cpp \
+    core-widget/musicabstracttablewidget.cpp \
+    core-widget/musicquerytablewidget.cpp \
     core-widget/musiclocalsongstablewidget.cpp \
-    core-widget/musicmovedialogabstract.cpp \
-    core-widget/musicmovewidgetabstract.cpp \
-    core-widget/musicmarquee.cpp \
+    core-widget/musicabstractmovedialog.cpp \
+    core-widget/musicabstractmovewidget.cpp \
+    core-widget/musicmarqueewidget.cpp \
     core-widget/musicsettingwidget.cpp \
     core-widget/musicbackgroundskindialog.cpp \
     core-widget/musicsystemtraymenu.cpp \
@@ -112,7 +112,7 @@ SOURCES += \
     core-widget/musictimersliderwidget.cpp \
     core-widget/musicwindowextras.cpp \
     core-widget/musicsongslistwidget.cpp \
-    core-widget/musicsongslistiteminformation.cpp \
+    core-widget/musicsongslistiteminfowidget.cpp \
     core-widget/musicsongsearchonlinewidget.cpp \
     core-widget/musicsongstoolitemrenamedwidget.cpp \
     core-widget/musicsongslistplaywidget.cpp \
@@ -193,12 +193,12 @@ HEADERS  += \
     core/musicsettingmanager.h \
     core/musicdesktopwallpaperthread.h \
     core-widget/musicdownloadstatuslabel.h \
-    core-widget/musictablewidgetabstract.h \
-    core-widget/musictablequerywidget.h \
+    core-widget/musicabstracttablewidget.h \
+    core-widget/musicquerytablewidget.h \
     core-widget/musiclocalsongstablewidget.h \
-    core-widget/musicmovedialogabstract.h \
-    core-widget/musicmovewidgetabstract.h \
-    core-widget/musicmarquee.h \
+    core-widget/musicabstractmovedialog.h \
+    core-widget/musicabstractmovewidget.h \
+    core-widget/musicmarqueewidget.h \
     core-widget/musicsettingwidget.h \
     core-widget/musicbackgroundskindialog.h \
     core-widget/musicsystemtraymenu.h \
@@ -207,7 +207,7 @@ HEADERS  += \
     core-widget/musictimersliderwidget.h \
     core-widget/musicwindowextras.h \
     core-widget/musicsongslistwidget.h \
-    core-widget/musicsongslistiteminformation.h \
+    core-widget/musicsongslistiteminfowidget.h \
     core-widget/musicsongsearchonlinewidget.h \
     core-widget/musicsongstoolitemrenamedwidget.h \
     core-widget/musicsongslistplaywidget.h \
@@ -222,7 +222,7 @@ HEADERS  += \
 FORMS    += \
     ui/application/musicapplication.ui \
     ui/core-widget/musicmessagebox.ui \
-    ui/core-widget/musicsongslistiteminformation.ui \
+    ui/core-widget/musicsongslistiteminfowidget.ui \
     ui/core-widget/musicsettingwidget.ui \
     ui/core-widget/musicbackgroundskindialog.ui \
     ui/core-widget/musicequalizerdialog.ui \

@@ -9,13 +9,13 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicmovedialogabstract.h"
+#include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicLrcArtPhotoUpload;
 }
 
-class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoUpload : public MusicMoveDialogAbstract
+class MUSIC_WIDGET_EXPORT MusicLrcArtPhotoUpload : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

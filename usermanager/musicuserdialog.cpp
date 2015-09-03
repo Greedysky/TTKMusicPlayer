@@ -12,7 +12,7 @@
 #include <QButtonGroup>
 
 MusicUserDialog::MusicUserDialog(QWidget *parent) :
-    MusicMoveDialogAbstract(parent),ui(new Ui::MusicUserDialog)
+    MusicAbstractMoveDialog(parent),ui(new Ui::MusicUserDialog)
 {
     ui->setupUi(this);
 

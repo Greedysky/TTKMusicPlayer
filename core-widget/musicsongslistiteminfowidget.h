@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSLISTITEM_H
-#define MUSICSONGSLISTITEM_H
+#ifndef MUSICSONGSLISTITEMINFOWIDGET_H
+#define MUSICSONGSLISTITEMINFOWIDGET_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -14,22 +14,22 @@
 #include "musiclibexportglobal.h"
 
 namespace Ui {
-class MusicSongsListItemInformation;
+class MusicSongsListItemInfoWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicSongsListItemInformation : public QWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListItemInfoWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListItemInformation(QWidget *parent = 0);
-    ~MusicSongsListItemInformation();
+    explicit MusicSongsListItemInfoWidget(QWidget *parent = 0);
+    ~MusicSongsListItemInfoWidget();
 
     void setMusicSongInformation(QMusicSong &info);
 
 protected:
-    Ui::MusicSongsListItemInformation *ui;
+    Ui::MusicSongsListItemInfoWidget *ui;
     bool showArtPicture(const QString &name);
 
 };
 
-#endif // MUSICSONGSLISTITEM_H
+#endif // MUSICSONGSLISTITEMINFOWIDGET_H

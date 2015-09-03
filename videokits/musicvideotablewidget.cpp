@@ -4,7 +4,7 @@
 #include <time.h>
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
-    : MusicTableQueryWidget(parent)
+    : MusicQueryTableWidget(parent)
 {
     setColumnCount(8);
     QHeaderView *headerview = horizontalHeader();
@@ -32,7 +32,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
 
 void MusicVideoTableWidget::clearAllItems()
 {
-    MusicTableWidgetAbstract::clearAllItems();
+    MusicAbstractTableWidget::clearAllItems();
     setColumnCount(8);
 }
 
@@ -100,7 +100,7 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
 
 void MusicVideoTableWidget::listCellClicked(int row,int col)
 {
-    MusicTableQueryWidget::listCellClicked(row, col);
+    MusicQueryTableWidget::listCellClicked(row, col);
     switch(col)
     {
         case 5:

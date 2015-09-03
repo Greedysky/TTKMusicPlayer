@@ -1,6 +1,6 @@
-#include "musictablewidgetabstract.h"
+#include "musicabstracttablewidget.h"
 
-MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
+MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -36,25 +36,25 @@ MusicTableWidgetAbstract::MusicTableWidgetAbstract(QWidget *parent)
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
 }
 
-MusicTableWidgetAbstract::~MusicTableWidgetAbstract()
+MusicAbstractTableWidget::~MusicAbstractTableWidget()
 {
 
 }
 
-void MusicTableWidgetAbstract::clearAllItems()
+void MusicAbstractTableWidget::clearAllItems()
 {
     clearContents();
     setRowCount(0);
 }
 
-void MusicTableWidgetAbstract::setTransparent(int angle)
+void MusicAbstractTableWidget::setTransparent(int angle)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
     setPalette(pal);
 }
 
-void MusicTableWidgetAbstract::listCellEntered(int row, int column)
+void MusicAbstractTableWidget::listCellEntered(int row, int column)
 {
     QTableWidgetItem *item = this->item(m_previousColorRow, 0);
     if(item != 0)
@@ -71,7 +71,7 @@ void MusicTableWidgetAbstract::listCellEntered(int row, int column)
     m_previousColorRow = row;
 }
 
-void MusicTableWidgetAbstract::setRowColor(int row, const QColor &color) const
+void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
 {
     for(int col=0; col<columnCount(); col++)
     {
