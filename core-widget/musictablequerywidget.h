@@ -41,6 +41,7 @@ public:
     virtual ~MusicTableQueryWidget();
 
     virtual void startSearchQuery(const QString &text) = 0;
+    MIntList getSelectedItems() const;
 
 signals:
     void showDownLoadInfoFinished(const QString &name);
@@ -54,10 +55,12 @@ public slots:
                                     const QString &artistname,
                                     const QString &time) = 0;
     virtual void itemDoubleClicked(int row, int column) = 0;
+    void setSelectedAllItems(bool all);
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
+
     MusicDownLoadQueryThread *m_downLoadManager;
     MusicCheckBoxDelegate *m_checkBoxDelegate;
 

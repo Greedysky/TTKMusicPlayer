@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     : MusicMoveDialogAbstract(parent),
@@ -29,7 +30,8 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->label_checkBox, SIGNAL(clicked(bool)), SLOT(lrcCurrentSelectAll(bool)));
+    connect(ui->label_checkBox, SIGNAL(clicked(bool)), ui->tableWidget,
+                                SLOT(setSelectedAllItems(bool)));
     connect(ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)),
                              SLOT(lrcDownloadStateChanged(QString)));
 }
@@ -57,8 +59,15 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
     ui->stateLabel->setText(tr("lrc is downloading now!"));
-    int row = ui->tableWidget->currentRow();
-    if(row >= 0)
+    MIntList list = ui->tableWidget->getSelectedItems();
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+    foreach(int row, list)
     {
         ui->tableWidget->musicDownloadLocal(row);
     }
@@ -70,11 +79,6 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
     {
        ui->stateLabel->setText(tr("lrc download finished!"));
     }
-}
-
-void MusicLrcSearchWidget::lrcCurrentSelectAll(bool all)
-{
-    Q_UNUSED(all);
 }
 
 int MusicLrcSearchWidget::exec()

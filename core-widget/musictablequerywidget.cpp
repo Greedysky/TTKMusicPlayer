@@ -62,14 +62,31 @@ MusicTableQueryWidget::~MusicTableQueryWidget()
     delete m_checkBoxDelegate;
 }
 
-void MusicTableQueryWidget::listCellClicked(int row, int)
+void MusicTableQueryWidget::listCellClicked(int row, int column)
 {
-    if(m_previousClickRow != -1)
+    if(column == 0)
     {
-        item(m_previousClickRow, 0)->setData(Qt::DisplayRole, false);
+        QTableWidgetItem *it = item(row, 0);
+        bool status = it->data(Qt::DisplayRole).toBool();
+        it->setData(Qt::DisplayRole, !status);
     }
-    m_previousClickRow = row;
-    item(row, 0)->setData(Qt::DisplayRole, true);
+    else
+    {
+        if(m_previousClickRow != -1)
+        {
+            item(m_previousClickRow, 0)->setData(Qt::DisplayRole, false);
+        }
+        m_previousClickRow = row;
+        item(row, 0)->setData(Qt::DisplayRole, true);
+    }
+}
+
+void MusicTableQueryWidget::setSelectedAllItems(bool all)
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        item(i, 0)->setData(Qt::DisplayRole, all);
+    }
 }
 
 void MusicTableQueryWidget::contextMenuEvent(QContextMenuEvent *)
@@ -88,4 +105,17 @@ void MusicTableQueryWidget::paintEvent(QPaintEvent *event)
         painter.drawLine(10, rowHeight(0)*(i + 1),
                          width() - 15, rowHeight(0)*(i + 1));
     }
+}
+
+MIntList MusicTableQueryWidget::getSelectedItems() const
+{
+    MIntList list;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        if(item(i, 0)->data(Qt::DisplayRole) == true)
+        {
+            list << i;
+        }
+    }
+    return list;
 }

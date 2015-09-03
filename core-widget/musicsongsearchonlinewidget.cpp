@@ -217,6 +217,8 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     QCheckBox *label_checkBox = new QCheckBox(this);
     label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     label_checkBox->setGeometry(15, 40, 20, 20);
+    connect(label_checkBox, SIGNAL(clicked(bool)), m_searchTableWidget,
+                            SLOT(setSelectedAllItems(bool)));
 
     QLabel *Label1 = new QLabel(tr("Song"), this);
     Label1->setStyleSheet(MusicUIObject::MCustomStyle17);
@@ -252,23 +254,26 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    int row;
-    if((row = m_searchTableWidget->currentRow()) < 0)
+    MIntList list = m_searchTableWidget->getSelectedItems();
+    if(list.isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }
-    switch(index)
+    foreach(int row, list)
     {
-        case 0:case 1:
-            m_searchTableWidget->listCellClicked(row, 4);
-            break;
-        case 2:
-            m_searchTableWidget->listCellClicked(row, 5);
-            break;
-        default:
-            break;
+        switch(index)
+        {
+            case 0:case 1:
+                m_searchTableWidget->listCellClicked(row, 4);
+                break;
+            case 2:
+                m_searchTableWidget->listCellClicked(row, 5);
+                break;
+            default:
+                break;
+        }
     }
 }
