@@ -8,8 +8,8 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
-    connect(this,SIGNAL(cellDoubleClicked(int,int)),SLOT(listCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 }
 
@@ -35,19 +35,19 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
         item->setTextColor(QColor(50,50,50));
         item->setTextAlignment(Qt::AlignCenter);
-        this->setItem(i,0,item);
+        setItem(i, 0, item);
 
         //To get the song name
         QTableWidgetItem *item1 = new QTableWidgetItem(QFontMetrics(font()).elidedText(
                                                 m_musicFileNameList[i], Qt::ElideRight, 243));
         item1->setTextColor(QColor(50,50,50));
         item1->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        this->setItem(i,1,item1);
+        setItem(i, 1, item1);
 
         //add a delete icon
         QTableWidgetItem *item2 = new QTableWidgetItem(QIcon(":/image/musicdelete"),"");
         item2->setTextAlignment(Qt::AlignCenter);
-        this->setItem(i,2,item2);
+        setItem(i, 2, item2);
     }
 }
 
@@ -63,13 +63,12 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     QTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
-    rightClickMenu.addAction(QIcon(":/contextMenu/play"),tr("musicPlay"),this,SLOT(musicPlay()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
     rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/delete"),tr("delete"),this,SLOT(setDeleteItemAt()));
-    rightClickMenu.addAction(tr("deleteAll"),this,SLOT(setDeleteItemAll()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
     rightClickMenu.exec(QCursor::pos());
-//    //Menu location for the current mouse position
     event->accept();
 }
 
@@ -102,13 +101,13 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
         m_musicFilePathList.removeAt(ind);
     }
 
-    for(int i=0; i<this->rowCount(); i++)
+    for(int i=0; i<rowCount(); i++)
     {   //Re insertion sort
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
         item->setTextColor(QColor(50,50,50));
         item->setTextAlignment(Qt::AlignCenter);
-        delete this->takeItem(i,0);//Remove the original object delete
-        this->setItem(i,0,item); //insert
+        delete takeItem(i,0);//Remove the original object delete
+        setItem(i,0,item); //insert
     }
 }
 

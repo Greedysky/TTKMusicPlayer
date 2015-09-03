@@ -209,6 +209,7 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 {
     m_textLabel = new QLabel(this);
     m_textLabel->setGeometry(0, 0, 280, 30);
+    m_textLabel->setText(tr(" find no result"));
 
     QLabel *colorLabel = new QLabel(this);
     colorLabel->setStyleSheet(MusicUIObject::MCustomStyle16);

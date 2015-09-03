@@ -125,6 +125,10 @@
         <file alias="location">../resource/contextMenu/context_location.png</file>
         <file alias="equalizer">../resource/contextMenu/context_eq.png</file>
         <file alias="remote">../resource/contextMenu/context_remote.png</file>
+        <file alias="sysprivious">../resource/contextMenu/button_privious.png</file>
+        <file alias="sysnext">../resource/contextMenu/button_next.png</file>
+        <file alias="sysplay">../resource/contextMenu/button_play.png</file>
+        <file alias="sysstop">../resource/contextMenu/button_stop.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="favorite">../resource/netRadio/button_favorite.png</file>
