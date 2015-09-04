@@ -3,6 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicbgthememanager.h"
+#include "musicconnectionpool.h"
 
 #include <QSignalMapper>
 #include <QButtonGroup>
@@ -38,10 +39,14 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     initEqualizeValue();
     readEqInformation();
     setControlEnable(false);
+
+    M_Connection->setValue("MusicEqualizerDialog", this);
+    M_Connection->connect("MusicEqualizerDialog", "MusicPlayer");
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
+    M_Connection->disConnect("MusicEqualizerDialog");
     writeEqInformation();
     delete ui;
 }

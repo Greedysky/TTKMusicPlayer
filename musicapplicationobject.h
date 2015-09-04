@@ -37,6 +37,7 @@ public slots:
     void musicTimerWidget();
     void musicSetWindowToTop();
     void musicToolSetsParameter();
+    void musicSetEqualizer();
 
 protected:
     bool m_setWindowToTop;

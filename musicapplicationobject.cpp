@@ -7,6 +7,7 @@
 #include "musictimerwidget.h"
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
+#include "musicequalizerdialog.h"
 #include "musicconnectionpool.h"
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
@@ -127,4 +128,10 @@ void MusicApplicationObject::musicSetWindowToTop()
 void MusicApplicationObject::musicToolSetsParameter()
 {
     m_musicTimerAutoObj->runTimerAutoConfig();
+}
+
+void MusicApplicationObject::musicSetEqualizer()
+{
+    MusicEqualizerDialog eq;
+    eq.exec();
 }

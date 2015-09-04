@@ -65,7 +65,6 @@ public slots:
     void musicSetting();
     void musicCurrentPlayLocation();
     void musicAddSongToLovestListAt();
-    void musicSetEqualizer();
     void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
     /////////////////////////////////////////////

@@ -1,6 +1,7 @@
 #include "musicconnectionpool.h"
 
 #include <QWidget>
+#include "musicobject.h"
 
 MusicConnectionPool::MusicConnectionPool(QObject *parent)
     : QObject(parent)
@@ -18,31 +19,45 @@ void MusicConnectionPool::connect(const QString &from,
         return;
     }
 
-    if(from == "MusicAbstractMoveWidget" && to == "MusicPlayer" )
+    if(from == "MusicSpectrumWidget" && to == "MusicPlayer" )
     {
-        QObject::connect(first, SIGNAL(setSpectrum(HWND,int,int)),
-                        second, SLOT(setSpectrum(HWND,int,int)));
+        QObject::connect(first, SIGNAL(setSpectrum(HWND,int,int)), second,
+                                SLOT(setSpectrum(HWND,int,int)));
     }
 
     if( (from == "MusicLocalSongsManagerWidget" && to == "MusicApplication") ||
         (from == "MusicMyDownloadRecordWidget" && to == "MusicApplication") )
     {
-        QObject::connect(first, SIGNAL(addSongToPlay(QStringList)),
-                        second, SLOT(addSongToPlayList(QStringList)));
+        QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second,
+                                SLOT(addSongToPlayList(QStringList)));
     }
 
     if(from == "MusicTimerWidget" && to == "MusicApplicationObject" )
     {
-        QObject::connect(first, SIGNAL(timerParameterChanged()),
-                        second, SLOT(musicToolSetsParameter()));
+        QObject::connect(first, SIGNAL(timerParameterChanged()), second,
+                                SLOT(musicToolSetsParameter()));
     }
 
     if( (from == "MusicToolSetsWidget" && to == "MusicApplication") ||
         (from == "MusicApplicationObject" && to == "MusicApplication") )
     {
-        QObject::connect(first, SIGNAL(getCurrentPlayList(QStringList&)),
-                        second, SLOT(getCurrentPlayList(QStringList&)));
+        QObject::connect(first, SIGNAL(getCurrentPlayList(QStringList&)), second,
+                                SLOT(getCurrentPlayList(QStringList&)));
     }
+
+    if(from == "MusicEqualizerDialog" && to == "MusicPlayer" )
+    {
+        QObject::connect(first, SIGNAL(setEqEffect(MIntList)), second,
+                                SLOT(setEqEffect(MIntList)));
+        QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second,
+                                SLOT(setEnaleEffect(bool)));
+        QObject::connect(first, SIGNAL(setSpEqEffect(MusicObject::SpecialEQ)), second,
+                                SLOT(setSpEqEffect(MusicObject::SpecialEQ)));
+        QObject::connect(first, SIGNAL(resetEqEffect()), second,
+                                SLOT(resetEqEffect()));
+    }
+
+
 }
 
 //void MusicConnectionPool::multiConnect(const QString &from, const QString &to)

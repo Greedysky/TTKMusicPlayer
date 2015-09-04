@@ -13,13 +13,13 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
     setMouseTracking(true);
     connect(&m_timer,SIGNAL(timeout()),SLOT(timeout()));
 
-    M_Connection->setValue("MusicAbstractMoveWidget", this);
-    M_Connection->connect("MusicAbstractMoveWidget", "MusicPlayer");
+    M_Connection->setValue("MusicSpectrumWidget", this);
+    M_Connection->connect("MusicSpectrumWidget", "MusicPlayer");
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-    M_Connection->disConnect("MusicAbstractMoveWidget");
+    M_Connection->disConnect("MusicSpectrumWidget");
 }
 
 void MusicSpectrumWidget::timeout()

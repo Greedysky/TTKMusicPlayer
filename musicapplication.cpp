@@ -1,6 +1,5 @@
 #include "musicapplication.h"
 #include "ui_musicapplication.h"
-#include "musicequalizerdialog.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongssummarizied.h"
 #include "musicxmlconfigmanager.h"
@@ -188,7 +187,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"),tr("Equalizer"),this,SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"),tr("Equalizer"), m_object, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"), m_object, SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"), m_object, SLOT(musicTimerWidget()));
     rightClickMenu.addAction(tr("ShowingSpectrum"), m_leftAreaWidget, SLOT(musicSpectrumWidget()));
@@ -840,17 +839,6 @@ void MusicApplication::musicAddSongToLovestListAt()
         return;
     }
     m_musicSongTree->addMusicSongToLovestListAt(index);
-}
-
-void MusicApplication::musicSetEqualizer()
-{
-    MusicEqualizerDialog eq(this);
-    connect(&eq,SIGNAL(setEqEffect(MIntList)),m_musicPlayer,SLOT(setEqEffect(MIntList)));
-    connect(&eq,SIGNAL(setEnaleEffect(bool)),m_musicPlayer,SLOT(setEnaleEffect(bool)));
-    connect(&eq,SIGNAL(setSpEqEffect(MusicObject::SpecialEQ)),m_musicPlayer,
-                SLOT(setSpEqEffect(MusicObject::SpecialEQ)));
-    connect(&eq,SIGNAL(resetEqEffect()),m_musicPlayer,SLOT(resetEqEffect()));
-    eq.exec();
 }
 
 void MusicApplication::setPlaySongChanged(int index)
