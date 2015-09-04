@@ -4,6 +4,7 @@
 #include "musiclocalsongstablewidget.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 #include <QDateTime>
 #include <QMovie>
@@ -68,10 +69,13 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(setSongNamePath(QStringList,QStringList)),
                       SLOT(setSongNamePath(QStringList,QStringList)));
 
+    M_Connection->setValue("MusicLocalSongsManagerWidget", this);
+    M_Connection->connect("MusicLocalSongsManagerWidget", "MusicApplication");
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
+    M_Connection->disConnect("MusicLocalSongsManagerWidget");
     delete m_movie;
     clearAllItems();
     m_thread->stopAndQuitThread();

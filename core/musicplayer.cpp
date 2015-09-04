@@ -1,6 +1,7 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
+#include "musicconnectionpool.h"
 
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
@@ -15,6 +16,8 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_play3DMusic = false;
     m_posOnCircle = 0;
     m_currentVolumn = 100;
+
+    M_Connection->setValue("MusicPlayer", this);
 }
 
 MusicPlayer::~MusicPlayer()

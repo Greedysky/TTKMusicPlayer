@@ -25,10 +25,6 @@ public:
     ~MusicToolSetsWidget();
 
 signals:
-    void setSpectrum(HWND wnd, int w, int h,
-                     int x = 0, int y = 0);
-    void timerParameterChanged();
-    void addSongToPlay(const QStringList &list);
     void getCurrentPlayList(QStringList &list);
 
 public slots:

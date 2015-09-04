@@ -43,10 +43,6 @@ public:
 
     void setPlay3DMusicFlag(bool &flag);
 
-#ifdef Q_OS_WIN32
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
-#endif
-
 signals:
     void stateChanged();
     void stateChanged(MusicPlayer::State newState);
@@ -78,6 +74,10 @@ public slots:
     void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
     void resetEqEffect();
+
+#ifdef Q_OS_WIN32
+    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
+#endif
 
 protected:
     MusicEqualizer *m_equalizer;

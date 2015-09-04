@@ -5,6 +5,8 @@
 #include "musictransformwidget.h"
 #include "musicspectrumwidget.h"
 #include "musicdesktopwallpaperwidget.h"
+#include "musicconnectionpool.h"
+
 #include <QProcess>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
@@ -23,10 +25,13 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
                   SLOT(itemHasClicked(QListWidgetItem*)));
 
     addListWidgetItem();
+    M_Connection->setValue("MusicToolSetsWidget", this);
+    M_Connection->connect("MusicToolSetsWidget", "MusicApplication");
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
+    M_Connection->disConnect("MusicToolSetsWidget");
     delete m_wallpaper;
     delete m_musicSpectrumWidget;
     delete m_process;
@@ -118,8 +123,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 0:
            {
                 MusicLocalSongsManagerWidget local(this);
-                connect(&local,SIGNAL(addSongToPlay(QStringList)),
-                               SIGNAL(addSongToPlay(QStringList)));
                 local.exec();
                 break;
            }
@@ -142,8 +145,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 QStringList songlist;
                 emit getCurrentPlayList(songlist);
                 timer.setSongStringList(songlist);
-                connect(&timer,SIGNAL(timerParameterChanged()),
-                               SIGNAL(timerParameterChanged()));
                 timer.exec();
                 break;
             }
@@ -154,8 +155,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
            {
                 delete m_musicSpectrumWidget;
                 m_musicSpectrumWidget = new MusicSpectrumWidget;
-                connect(m_musicSpectrumWidget,SIGNAL(setSpectrum(HWND,int,int)),
-                                              SIGNAL(setSpectrum(HWND,int,int)));
                 m_musicSpectrumWidget->show();
                 break;
            }

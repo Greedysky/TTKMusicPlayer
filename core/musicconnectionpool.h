@@ -9,9 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QMap>
 #include "musicsingletone.h"
 
-#define M_SETTING (MusicSingleton<MusicConnectionPool>::createInstance())
+#define M_Connection (MusicSingleton<MusicConnectionPool>::createInstance())
 
 class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {
@@ -19,8 +20,37 @@ class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 public:
     explicit MusicConnectionPool(QObject *parent = 0);
 
+    inline void setValue(const QString &type, QObject *object)
+    {
+        m_para[type] = object;
+    }
+
+    inline QObject* value(QString type) const
+    {
+        return m_para[type];
+    }
+
+    inline void setMultiValue(const QString &type, QObject *object)
+    {
+        QList<QObject*> l = m_multiPara[type];
+        l.append(object);
+        m_multiPara[type] = l;
+    }
+
+    inline QList<QObject*>  multiValue(QString type) const
+    {
+        return m_multiPara[type];
+    }
+
+    void connect(const QString &from, const QString &to);
+    void disConnect(const QString &name);
+
+    void multiConnect(const QString &from, const QString &to);
+    void disMultiConnect(const QString &name, QObject *object);
 
 protected:
+    QMap<QString, QObject*> m_para;
+    QMap<QString, QList<QObject*> > m_multiPara;
 
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 

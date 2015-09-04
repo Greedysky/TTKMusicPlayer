@@ -3,6 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicbgthememanager.h"
+#include "musicconnectionpool.h"
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -45,10 +46,15 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     initSecondWidget();
     initThreeWidget();
     initParemeter();
+
+    M_Connection->setValue("MusicTimerWidget", this);
+    M_Connection->connect("MusicTimerWidget", "MusicApplicationObject");
+    M_Connection->connect("MusicTimerWidget", "MusicApplication");
 }
 
 MusicTimerWidget::~MusicTimerWidget()
 {
+    M_Connection->disConnect("MusicTimerWidget");
     delete ui;
 }
 

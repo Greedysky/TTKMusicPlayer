@@ -17,12 +17,15 @@
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
+#include "musicconnectionpool.h"
 
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
+
+    M_Connection->setValue("MusicApplication", this);
     m_object = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
     drawWindowRoundedRect(this);
@@ -864,11 +867,6 @@ void MusicApplication::setStopSongChanged()
     m_musicPlayer->pause();
 }
 
-void MusicApplication::musicToolSetsParameter()
-{
-    m_object->musicToolSetsParameter();
-}
-
 void MusicApplication::addSongToPlayList(const QStringList &item)
 {
     musicImportSongsSettingPath(item);
@@ -887,11 +885,6 @@ void MusicApplication::musicWindowConciseChanged()
     m_bottomAreaWidget->setWindowConcise();
     drawWindowRoundedRect(this);
     m_topAreaWidget->musicBgThemeDownloadFinished();
-}
-
-void MusicApplication::setSpectrum(HWND wnd, int w, int h)
-{
-    m_musicPlayer->setSpectrum(wnd, w, h);
 }
 
 void MusicApplication::getCurrentPlayList(QStringList &list)

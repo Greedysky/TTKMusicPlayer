@@ -7,6 +7,7 @@
 #include "musictimerwidget.h"
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(NULL)
@@ -26,8 +27,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
                                  SLOT(setStopSongChanged()));
 
     m_setWindowToTop = false;
-    connect(this, SIGNAL(getCurrentPlayList(QStringList&)), parent,
-                  SLOT(getCurrentPlayList(QStringList&)));
+    M_Connection->setValue("MusicApplicationObject", this);
+    M_Connection->connect("MusicApplicationObject", "MusicApplication");
+
     musicToolSetsParameter();
 }
 
@@ -109,8 +111,6 @@ void MusicApplicationObject::musicTimerWidget()
     QStringList list;
     emit getCurrentPlayList(list);
     timer.setSongStringList(list);
-    connect(&timer, SIGNAL(timerParameterChanged()),
-                    SLOT(musicToolSetsParameter()));
     timer.exec();
 }
 

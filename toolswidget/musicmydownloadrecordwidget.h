@@ -11,7 +11,6 @@
 
 #include <QMenu>
 #include <QContextMenuEvent>
-#include "musiclibexportglobal.h"
 #include "musicabstracttablewidget.h"
 
 class MUSIC_WIDGET_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
@@ -25,7 +24,7 @@ public:
     void clearAllItems();
 
 signals:
-    void musicPlay(const QStringList &list);
+    void addSongToPlay(const QStringList &list);
 
 public slots:
     void musicPlay();

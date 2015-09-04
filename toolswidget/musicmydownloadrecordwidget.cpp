@@ -1,6 +1,7 @@
 #include "musicmydownloadrecordwidget.h"
 #include "musicmydownloadrecordobject.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 #include <QDesktopServices>
 
@@ -11,10 +12,14 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
+
+    M_Connection->setValue("MusicMyDownloadRecordWidget", this);
+    M_Connection->connect("MusicMyDownloadRecordWidget", "MusicApplication");
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
+    M_Connection->disConnect("MusicMyDownloadRecordWidget");
     clearAllItems();
     MusicMyDownloadRecordObject xml;
     xml.writeDownloadConfig(m_musicFileNameList,m_musicFilePathList);
@@ -150,5 +155,5 @@ void MusicMyDownloadRecordWidget::musicPlay()
     {
         return;
     }
-    emit musicPlay(QStringList(m_musicFilePathList[currentRow()]));
+    emit addSongToPlay(QStringList(m_musicFilePathList[currentRow()]));
 }

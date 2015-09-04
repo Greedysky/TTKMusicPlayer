@@ -1,5 +1,7 @@
 #include "musicspectrumwidget.h"
 #include "musicuiobject.h"
+#include "musicconnectionpool.h"
+
 #include <QMenu>
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
@@ -10,11 +12,14 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
     m_direction = NONE;
     setMouseTracking(true);
     connect(&m_timer,SIGNAL(timeout()),SLOT(timeout()));
+
+    M_Connection->setValue("MusicAbstractMoveWidget", this);
+    M_Connection->connect("MusicAbstractMoveWidget", "MusicPlayer");
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-
+    M_Connection->disConnect("MusicAbstractMoveWidget");
 }
 
 void MusicSpectrumWidget::timeout()
