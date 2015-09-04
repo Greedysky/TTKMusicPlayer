@@ -1,4 +1,6 @@
 #include "musicdownloadquerythread.h"
+#include "musicconnectionpool.h"
+
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
@@ -11,6 +13,8 @@ MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
     : QObject(parent),m_reply(NULL)
 {
     m_manager = new QNetworkAccessManager(this);
+    M_Connection->setValue("MusicDownLoadQueryThread", this);
+    M_Connection->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
@@ -20,6 +24,7 @@ MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
 
 void MusicDownLoadQueryThread::deleteAll()
 {
+    M_Connection->disConnect("MusicDownLoadQueryThread");
     if(m_reply)
     {
         m_reply->deleteLater();
@@ -135,7 +140,6 @@ void MusicDownLoadQueryThread::searchFinshed()
             else
             {
                 qDebug()<<"not find the song_Id";
-                emit showDownLoadInfoFinished("not find the song_Id");
             }
         }
     }
@@ -144,6 +148,5 @@ void MusicDownLoadQueryThread::searchFinshed()
 void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)
 {
     qDebug() <<"Abnormal network connection";
-    emit showDownLoadInfoFor(DisConnection);
-    emit showDownLoadInfoFinished("Abnormal network connection");
+    deleteAll();
 }

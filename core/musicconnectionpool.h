@@ -30,27 +30,11 @@ public:
         return m_para[type];
     }
 
-    inline void setMultiValue(const QString &type, QObject *object)
-    {
-        QList<QObject*> l = m_multiPara[type];
-        l.append(object);
-        m_multiPara[type] = l;
-    }
-
-    inline QList<QObject*>  multiValue(QString type) const
-    {
-        return m_multiPara[type];
-    }
-
     void connect(const QString &from, const QString &to);
     void disConnect(const QString &name);
 
-    void multiConnect(const QString &from, const QString &to);
-    void disMultiConnect(const QString &name, QObject *object);
-
 protected:
     QMap<QString, QObject*> m_para;
-    QMap<QString, QList<QObject*> > m_multiPara;
 
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 

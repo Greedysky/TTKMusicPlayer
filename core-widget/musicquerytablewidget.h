@@ -44,9 +44,7 @@ public:
     MIntList getSelectedItems() const;
 
 signals:
-    void showDownLoadInfoFinished(const QString &name);
-    void muiscSongToPlayListChanged(const QString &name);
-    void showDownLoadInfoFor(DownLoadType type);
+    void showDownLoadInfoFor(MusicObject::DownLoadType type);
 
 public slots:
     virtual void listCellClicked(int row, int column);

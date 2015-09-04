@@ -25,7 +25,7 @@ public:
     void startSearchQuery(const QString &text);
 
 signals:
-    void musicBgDownloadFinished();
+    void muiscSongToPlayListChanged(const QString &name);
 
 public slots:
     void listCellClicked(int row, int column);
@@ -53,12 +53,6 @@ public:
     ~MusicSongSearchOnlineWidget();
 
     void startSearchQuery(const QString &name) const;
-
-signals:
-    void musicBgDownloadFinished();
-    void showDownLoadInfoFinished(const QString &name);
-    void muiscSongToPlayListChanged(const QString &name);
-    void showDownLoadInfoFor(DownLoadType type);
 
 public slots:
     void buttonClicked(int index);

@@ -6,6 +6,7 @@
 #include "musicmydownloadrecordobject.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -26,6 +27,8 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(4,26);
     headerview->resizeSection(5,26);
     setTransparent(255);
+
+    M_Connection->setValue("MusicSongSearchOnlineTableWidget", this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
@@ -110,14 +113,14 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
-    emit showDownLoadInfoFor(Buffing);
+    emit showDownLoadInfoFor(MusicObject::Buffing);
     musicDownloadLocal(row);
     emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
-    emit showDownLoadInfoFor(DownLoading);
+    emit showDownLoadInfoFor(MusicObject::DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
     QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
@@ -137,8 +140,6 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
                                             musicSongInfo[row][0], downloadName,this);
-    connect(downSong, SIGNAL(musicDownLoadFinished(QString)),
-                      SIGNAL(showDownLoadInfoFinished(QString)));
     downSong->startToDownload();
 
     (new MusicTextDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
@@ -181,16 +182,6 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     setLayout(boxLayout);
 
     createToolWidget();
-
-    connect(m_searchTableWidget, SIGNAL(musicBgDownloadFinished()),
-                                 SIGNAL(musicBgDownloadFinished()));
-    connect(m_searchTableWidget, SIGNAL(showDownLoadInfoFinished(QString)),
-                                 SIGNAL(showDownLoadInfoFinished(QString)));
-    connect(m_searchTableWidget, SIGNAL(muiscSongToPlayListChanged(QString)),
-                                 SIGNAL(muiscSongToPlayListChanged(QString)));
-    connect(m_searchTableWidget, SIGNAL(showDownLoadInfoFor(DownLoadType)),
-                                 SIGNAL(showDownLoadInfoFor(DownLoadType)));
-
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()

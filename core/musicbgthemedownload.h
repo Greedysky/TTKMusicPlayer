@@ -21,6 +21,8 @@ class MUSIC_CORE_EXPORT MusicBgThemeDownload : public QObject
 public:
     explicit MusicBgThemeDownload(const QString &name, const QString &save,
                                   QObject *parent = 0);
+    ~MusicBgThemeDownload();
+
 signals:
     void musicBgDownloadFinished();
 

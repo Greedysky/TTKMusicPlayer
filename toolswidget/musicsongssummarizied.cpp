@@ -4,6 +4,7 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 #include <QTableWidgetItem>
 #include <QDebug>
@@ -55,6 +56,9 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
 
     connect(this,SIGNAL(currentChanged(int)),SLOT(currentIndexChanged(int)));
     connect(this,SIGNAL(musicPlay(int,int)),parent,SLOT(musicPlayIndex(int,int)));
+
+    M_Connection->setValue("MusicSongsSummarizied", this);
+    M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
 }
 
 void MusicSongsSummarizied::musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls)

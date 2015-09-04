@@ -1,4 +1,6 @@
 #include "musicdownloadthreadabstract.h"
+#include "musicconnectionpool.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 
@@ -14,6 +16,14 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
         QFile::remove(save);
     }
     m_file = new QFile(save, this);
+
+    M_Connection->setValue("MusicDownLoadThreadAbstract", this);
+    M_Connection->connect("MusicDownLoadThreadAbstract", "MusicDownloadStatusLabel");
+}
+
+MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
+{
+    M_Connection->disConnect("MusicDownLoadThreadAbstract");
 }
 
 void MusicDownLoadThreadAbstract::deleteAll()

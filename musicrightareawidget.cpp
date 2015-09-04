@@ -73,14 +73,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
     ///////////////////////////////////////////////////////
-    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFor(DownLoadType)),
-                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFor(DownLoadType)));
-    connect(ui->songSearchWidget,SIGNAL(showDownLoadInfoFinished(QString)),
-                                 m_downloadStatusLabel,SLOT(showDownLoadInfoFinished(QString)));
-    connect(ui->songSearchWidget,SIGNAL(musicBgDownloadFinished()), SIGNAL(updateBgThemeDownload()));
-    connect(m_downloadStatusLabel,SIGNAL(musicBgDownloadFinished()), SIGNAL(updateBgThemeDownload()));
 }
-
 
 void MusicRightAreaWidget::stopLrcMask() const
 {

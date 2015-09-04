@@ -8,6 +8,7 @@
 #include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforcircle.h"
 #include "musicuiobject.h"
+#include "musicconnectionpool.h"
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicbgskin(NULL), m_musicRemoteWidget(NULL)
@@ -16,6 +17,8 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_msuicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
     m_currentPlayStatus = false;
+
+    M_Connection->setValue("MusicTopAreaWidget", this);
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()

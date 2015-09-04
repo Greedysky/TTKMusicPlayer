@@ -6,6 +6,8 @@
 #include "musicbgthemedownload.h"
 #include "musicobject.h"
 #include "musicsettingmanager.h"
+#include "musicconnectionpool.h"
+
 #include <QTimer>
 #include <QMovie>
 #include <QLabel>
@@ -16,6 +18,9 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
     m_parentWidget = static_cast<MusicApplication*>(w);
     m_downloadLrcThreadTimer = NULL;
     m_downloadLrcThread = NULL;
+
+    M_Connection->setValue("MusicDownloadStatusLabel", this);
+    M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
 }
 
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
@@ -25,21 +30,21 @@ MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
     delete m_movie;
 }
 
-void MusicDownloadStatusLabel::showDownLoadInfoFor(DownLoadType type)
+void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType type)
 {
     QString stringType;
     switch(type)
     {
-        case DisConnection:
+        case MusicObject::DisConnection:
             stringType = ":/download/disconnection";
             break;
-        case DownLoading:
+        case MusicObject::DownLoading:
             stringType = ":/download/downloading";
             break;
-        case Buffing:
+        case MusicObject::Buffing:
             stringType = ":/download/buffing";
             break;
-        case Waiting:
+        case MusicObject::Waiting:
             stringType = QString();
             break;
         default:
@@ -96,10 +101,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        m_downloadLrcThread = new MusicDownLoadQueryThread(this);
        m_downloadLrcThread->startSearchSong(Music, filename);
 
-       showDownLoadInfoFor(Buffing);
-       connect(m_downloadLrcThread, SIGNAL(showDownLoadInfoFor(DownLoadType)),
-                                    SLOT(showDownLoadInfoFor(DownLoadType)));
-
+       showDownLoadInfoFor(MusicObject::Buffing);
        if(m_downloadLrcThreadTimer)
        {
            delete m_downloadLrcThreadTimer;
@@ -122,8 +124,6 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo[0][1],
                                                LRC_DOWNLOAD + filename + LRC_FILE,this);
-        connect(lrc,SIGNAL(musicDownLoadFinished(QString)),
-                this,SLOT(showDownLoadInfoFinished(QString)));
         lrc->startToDownload();
 
         int count = filename.split('-').count();

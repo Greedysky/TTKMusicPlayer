@@ -21,6 +21,8 @@ class MUSIC_CORE_EXPORT MusicDownLoadThreadAbstract : public QObject
 public:
     explicit MusicDownLoadThreadAbstract(const QString &url, const QString &save,
                                          QObject *parent = 0);
+    virtual ~MusicDownLoadThreadAbstract();
+
     void deleteAll();
     virtual void startToDownload() = 0;
 

@@ -16,7 +16,6 @@
 
 class QNetworkAccessManager;
 
-enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };
 enum QueryType{ Music, MV };
 
 class MUSIC_CORE_EXPORT MusicDownLoadQueryThread : public QObject
@@ -32,8 +31,6 @@ public:
     inline MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
-    void showDownLoadInfoFor(DownLoadType type);
-    void showDownLoadInfoFinished(const QString &name);
     void clearAllItems();
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time);

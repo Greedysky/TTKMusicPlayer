@@ -28,14 +28,11 @@ public:
     void musicCheckHasLrcAlready();
     bool checkSettingParameterValue() const;
 
-signals:
-    void musicBgDownloadFinished();
-
 public slots:
     void musicHaveNoLrcAlready();
     /////////////////////////////////////////////
     ///This is a slot by MusicSongSearchOnlineWidget's signal emit
-    void showDownLoadInfoFor(DownLoadType type);
+    void showDownLoadInfoFor(MusicObject::DownLoadType type);
     void showDownLoadInfoFinished(const QString &type);
 
 protected:

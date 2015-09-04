@@ -57,29 +57,32 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(resetEqEffect()));
     }
 
+    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicDownloadStatusLabel" )
+    {
+        QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadType)), second,
+                                SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
+    }
 
+    if(from == "MusicDownLoadThreadAbstract" && to == "MusicDownloadStatusLabel" )
+    {
+        QObject::connect(first, SIGNAL(musicDownLoadFinished(QString)), second,
+                                SLOT(showDownLoadInfoFinished(QString)));
+    }
+
+    if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )
+    {
+        QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
+                                SLOT(musicBgThemeDownloadFinished()));
+    }
+
+    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" )
+    {
+        QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString)), second,
+                                SLOT(addNetMusicSongToList(QString)));
+    }
 }
-
-//void MusicConnectionPool::multiConnect(const QString &from, const QString &to)
-//{
-
-//}
 
 void MusicConnectionPool::disConnect(const QString &name)
 {
     m_para.take(name);
-}
-
-void MusicConnectionPool::disMultiConnect(const QString &name, QObject *object)
-{
-    QList<QObject*> l = m_multiPara[name];
-    for(int i=0; i<l.count(); ++i)
-    {
-        if(object == l[i])
-        {
-            l.takeAt(i);
-            break;
-        }
-    }
-    m_multiPara[name] = l;
 }

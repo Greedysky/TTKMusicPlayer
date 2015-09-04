@@ -78,6 +78,8 @@ typedef QMapIterator<qint64,QString> MIntStringMapIt;      /* intStrMapIt */
 
 namespace MusicObject
 {
+    enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };
+
     enum SongPlayType{ MC_PlayOrder = 1, MC_PlayRandom,  MC_PlayListLoop,
                        MC_PlayOneLoop, MC_PlayOnce };
 

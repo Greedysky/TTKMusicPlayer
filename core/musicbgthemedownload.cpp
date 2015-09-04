@@ -1,6 +1,7 @@
 #include "musicbgthemedownload.h"
 #include "musicdatadownloadthread.h"
 #include "musicbgthememanager.h"
+#include "musicconnectionpool.h"
 
 MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &save,
                                            QObject *parent)
@@ -12,9 +13,15 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
     ///Set search image API
     connect(download, SIGNAL(musicDownLoadFinished(QString)),
                       SLOT(downLoadFinished(QString)));
-    connect(this, SIGNAL(musicBgDownloadFinished()), parent,
-                  SIGNAL(musicBgDownloadFinished()));
+
+    M_Connection->setValue("MusicBgThemeDownload", this);
+    M_Connection->connect("MusicBgThemeDownload", "MusicTopAreaWidget");
     download->startToDownload();
+}
+
+MusicBgThemeDownload::~MusicBgThemeDownload()
+{
+    M_Connection->disConnect("MusicBgThemeDownload");
 }
 
 void MusicBgThemeDownload::downLoadFinished(const QString &)
