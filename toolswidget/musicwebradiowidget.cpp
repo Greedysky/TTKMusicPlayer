@@ -227,7 +227,7 @@ void MusicWebRadioWidget::radioDiscolletButton()
 
 void MusicWebRadioWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER.getMBackground());
+    QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveWidget::show();
 }

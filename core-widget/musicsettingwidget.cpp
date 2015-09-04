@@ -139,10 +139,10 @@ MusicSettingWidget::~MusicSettingWidget()
 void MusicSettingWidget::initControllerParameter()
 {
     //Set init parameter
-    ui->autoPlayShowInfoWidget->setChecked(M_SETTING.value(MusicSettingManager::AutoPlayChoiced).toBool());
-    ui->backPlayShowInfoWidget->setChecked(M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced)
+    ui->autoPlayShowInfoWidget->setChecked(M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toBool());
+    ui->backPlayShowInfoWidget->setChecked(M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced)
                .toStringList().at(0).toInt() );
-    if(!M_SETTING.value(MusicSettingManager::CloseEventChoiced).toBool())
+    if(!M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool())
     {
         ui->minimumShowInfoWidget->setChecked(true);
     }
@@ -151,52 +151,52 @@ void MusicSettingWidget::initControllerParameter()
         ui->quitShowInfoWidget->setChecked(true);
     }
 
-    ui->languageComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
+    ui->languageComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
     //Set init parameter
-    ui->showInlineSongWordWidget->setChecked(M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
-    ui->showDesktopSongWordWidget->setChecked(M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
+    ui->showInlineSongWordWidget->setChecked(M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
+    ui->showDesktopSongWordWidget->setChecked(M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
     ui->showInlineSongWordWidget->setEnabled(false);
 
-    ui->fontComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcFamilyChoiced).toInt());
-    ui->fontSizeComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
-    ui->fontTypeComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcTypeChoiced).toInt());
-    if(M_SETTING.value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
+    ui->fontComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcFamilyChoiced).toInt());
+    ui->fontSizeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
+    ui->fontTypeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcTypeChoiced).toInt());
+    if(M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
     {
-        ui->fontDefalutColorComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::LrcColorChoiced).toInt());
+        ui->fontDefalutColorComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt());
     }
     else
     {
         ui->fontDefalutColorComboBox->setCurrentIndex(-1);
         QPixmap pixmap(16,16);
-        pixmap.fill(m_lrcSelectedFg = M_SETTING.value(MusicSettingManager::LrcFgColorChoiced).value<QColor>());
+        pixmap.fill(m_lrcSelectedFg = M_SETTING->value(MusicSettingManager::LrcFgColorChoiced).value<QColor>());
         ui->playedPushButton->setIcon(QIcon(pixmap));
-        pixmap.fill(m_lrcSelectedBg = M_SETTING.value(MusicSettingManager::LrcBgColorChoiced).value<QColor>());
+        pixmap.fill(m_lrcSelectedBg = M_SETTING->value(MusicSettingManager::LrcBgColorChoiced).value<QColor>());
         ui->noPlayedPushButton->setIcon(QIcon(pixmap));
         ui->showLabel->setLinearGradient(m_lrcSelectedFg,m_lrcSelectedBg);
         ui->showLabel->update();
     }
-    ui->transparentSlider->setValue(M_SETTING.value(MusicSettingManager::LrcColorTransChoiced).toInt());
+    ui->transparentSlider->setValue(M_SETTING->value(MusicSettingManager::LrcColorTransChoiced).toInt());
 
-    ui->fontComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcFamilyChoiced).toInt());
-    ui->fontSizeComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
-    ui->fontTypeComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcTypeChoiced).toInt());
-    if(M_SETTING.value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
+    ui->fontComboBoxD->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
+    ui->fontSizeComboBoxD->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
+    ui->fontTypeComboBoxD->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcTypeChoiced).toInt());
+    if(M_SETTING->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
     {
-        ui->fontDefalutColorComboBoxD->setCurrentIndex(M_SETTING.value(MusicSettingManager::DLrcColorChoiced).toInt());
+        ui->fontDefalutColorComboBoxD->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcColorChoiced).toInt());
     }
     else
     {
         ui->fontDefalutColorComboBoxD->setCurrentIndex(-1);
         QPixmap pixmap(16,16);
-        pixmap.fill(m_DlrcSelectedFg = M_SETTING.value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>());
+        pixmap.fill(m_DlrcSelectedFg = M_SETTING->value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>());
         ui->playedPushButtonD->setIcon(QIcon(pixmap));
-        pixmap.fill(m_DlrcSelectedBg = M_SETTING.value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>());
+        pixmap.fill(m_DlrcSelectedBg = M_SETTING->value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>());
         ui->noPlayedPushButtonD->setIcon(QIcon(pixmap));
         ui->showLabelD->setLinearGradient(m_DlrcSelectedFg,m_DlrcSelectedBg);
         ui->showLabelD->update();
     }
-    ui->transparentSliderD->setValue(M_SETTING.value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+    ui->transparentSliderD->setValue(M_SETTING->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
 
 }
 
@@ -222,32 +222,32 @@ void MusicSettingWidget::changeDesktopLrcWidget()
 
 void MusicSettingWidget::commitTheResults()
 {
-    M_SETTING.setValue(MusicSettingManager::CurrentLanIndexChoiced, ui->languageComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::AutoPlayChoiced,ui->autoPlayShowInfoWidget->isChecked());
-    QStringList list = M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    M_SETTING->setValue(MusicSettingManager::CurrentLanIndexChoiced, ui->languageComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced,ui->autoPlayShowInfoWidget->isChecked());
+    QStringList list = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     list.replace(0,QString::number(ui->backPlayShowInfoWidget->isChecked()));
-    M_SETTING.setValue(MusicSettingManager::LastPlayIndexChoiced,list);
-    M_SETTING.setValue(MusicSettingManager::CloseEventChoiced,ui->quitShowInfoWidget->isChecked() ? "true" : "false");
+    M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced,list);
+    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced,ui->quitShowInfoWidget->isChecked() ? "true" : "false");
 
-    M_SETTING.setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineSongWordWidget->isChecked());
-    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced,ui->showDesktopSongWordWidget->isChecked());
+    M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineSongWordWidget->isChecked());
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced,ui->showDesktopSongWordWidget->isChecked());
 
-    M_SETTING.setValue(MusicSettingManager::LrcColorChoiced,ui->fontDefalutColorComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::LrcFamilyChoiced,ui->fontComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced,ui->fontSizeComboBox->currentIndex() + 13);
-    M_SETTING.setValue(MusicSettingManager::LrcTypeChoiced,ui->fontTypeComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::LrcColorTransChoiced,ui->transparentSlider->value());
+    M_SETTING->setValue(MusicSettingManager::LrcColorChoiced,ui->fontDefalutColorComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::LrcFamilyChoiced,ui->fontComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::LrcSizeChoiced,ui->fontSizeComboBox->currentIndex() + 13);
+    M_SETTING->setValue(MusicSettingManager::LrcTypeChoiced,ui->fontTypeComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::LrcColorTransChoiced,ui->transparentSlider->value());
 
-    M_SETTING.setValue(MusicSettingManager::DLrcColorChoiced,ui->fontDefalutColorComboBoxD->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::DLrcFamilyChoiced,ui->fontComboBoxD->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced,ui->fontSizeComboBoxD->currentIndex() + 24);
-    M_SETTING.setValue(MusicSettingManager::DLrcTypeChoiced,ui->fontTypeComboBoxD->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::DLrcColorTransChoiced,ui->transparentSliderD->value());
+    M_SETTING->setValue(MusicSettingManager::DLrcColorChoiced,ui->fontDefalutColorComboBoxD->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::DLrcFamilyChoiced,ui->fontComboBoxD->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced,ui->fontSizeComboBoxD->currentIndex() + 24);
+    M_SETTING->setValue(MusicSettingManager::DLrcTypeChoiced,ui->fontTypeComboBoxD->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::DLrcColorTransChoiced,ui->transparentSliderD->value());
 
-    M_SETTING.setValue(MusicSettingManager::DLrcFgColorChoiced, m_DlrcSelectedFg);
-    M_SETTING.setValue(MusicSettingManager::DLrcBgColorChoiced, m_DlrcSelectedBg);
-    M_SETTING.setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
-    M_SETTING.setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
+    M_SETTING->setValue(MusicSettingManager::DLrcFgColorChoiced, m_DlrcSelectedFg);
+    M_SETTING->setValue(MusicSettingManager::DLrcBgColorChoiced, m_DlrcSelectedBg);
+    M_SETTING->setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
+    M_SETTING->setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
 
     emit parameterSettingChanged();
     close();
@@ -405,7 +405,7 @@ void MusicSettingWidget::resetDesktopParameter()
 
 int MusicSettingWidget::exec()
 {
-    QPixmap pix(M_BG_MANAGER.getMBackground());
+    QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

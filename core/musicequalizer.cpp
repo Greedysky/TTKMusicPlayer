@@ -28,10 +28,10 @@ void MusicEqualizer::init()
 void MusicEqualizer::readEqInformation()
 {
     ///Read the equalizer parameters from a configuration file
-    if(M_SETTING.value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         setEnaleEffect(true);
-        QStringList eqValue = M_SETTING.value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+        QStringList eqValue = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
             MIntList hz;

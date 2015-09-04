@@ -55,7 +55,7 @@ void MusicDesktopWallpaperThread::run()
         if(m_paramter["Mode"].toInt() == 2)
         {
             path.clear();
-            QString name = M_BG_MANAGER.getArtPhotoPathByIndex();
+            QString name = M_BG_MANAGER->getArtPhotoPathByIndex();
             !name.isEmpty() ? path << name : path << m_originPath;
         }
         if( func == 1) ///random mode

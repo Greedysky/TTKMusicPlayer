@@ -97,6 +97,7 @@ SOURCES += \
     core/musicbgthemedownload.cpp \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
+    core/musicconnectionpool.cpp \
     core-widget/musicdownloadstatuslabel.cpp \
     core-widget/musicabstracttablewidget.cpp \
     core-widget/musicquerytablewidget.cpp \
@@ -192,6 +193,7 @@ HEADERS  += \
     core/musicbgthememanager.h \
     core/musicsettingmanager.h \
     core/musicdesktopwallpaperthread.h \
+    core/musicconnectionpool.h \
     core-widget/musicdownloadstatuslabel.h \
     core-widget/musicabstracttablewidget.h \
     core-widget/musicquerytablewidget.h \

@@ -66,8 +66,8 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue() const
 {
-    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
+    return ( M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
              ? true : false;
 }
 

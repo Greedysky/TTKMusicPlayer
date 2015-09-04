@@ -208,5 +208,5 @@ void MusicBottomAreaWidget::desktopLrcClosed()
 {
     m_ui->musicDesktopLrc->setChecked(false);
     m_systemTrayMenu->showDesktopLrc("false");
-    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
 }

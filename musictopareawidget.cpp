@@ -128,14 +128,14 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &filename)
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    QString art_path = M_BG_MANAGER.getArtPhotoPath();
+    QString art_path = M_BG_MANAGER->getArtPhotoPath();
     !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
     QString path = THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE;
-    M_BG_MANAGER.setMBackground(path);
+    M_BG_MANAGER->setMBackground(path);
     if(m_musicbgskin)
     {
         m_musicbgskin->updateBackground();

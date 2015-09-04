@@ -234,7 +234,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
        setCursor(Qt::CrossCursor);
        move(event->globalPos() - m_offset);
-       M_SETTING.setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
+       M_SETTING->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
     }
 }
 
@@ -275,7 +275,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        setStyleSheet(MusicUIObject::MCustomStyle20);
     }
     emit setWindowLockedChanged(m_windowLocked);
-    M_SETTING.setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);
+    M_SETTING->setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);
 }
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
@@ -299,7 +299,7 @@ void MusicLrcContainerForDesktop::setLrcBigerChanged()
     {
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(++m_currentLrcFontSize);
     }
-    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
+    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
@@ -315,7 +315,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
     {
         static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(--m_currentLrcFontSize);
     }
-    M_SETTING.setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
+    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
@@ -346,10 +346,10 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
         m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(
-                                                m_currentLrcFontSize = M_SETTING.value(MusicSettingManager::DLrcSizeChoiced).toInt()));
+                                                m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     }
-    M_SETTING.value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
-    QRect rect = M_SETTING.value(MusicSettingManager::DLrcGeometryChoiced).toRect();
+    M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
+    QRect rect = M_SETTING->value(MusicSettingManager::DLrcGeometryChoiced).toRect();
     if(!rect.isEmpty())
     {
         setGeometry(rect);

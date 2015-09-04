@@ -229,12 +229,12 @@ void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size) const
     {
         m_musicLrcContainer[i]->setLrcFontSize(size);
     }
-    M_SETTING.setValue(MusicSettingManager::LrcSizeChoiced, size);
+    M_SETTING->setValue(MusicSettingManager::LrcSizeChoiced, size);
 }
 
 int MusicLrcContainerForInline::getLrcSize() const
 {
-    return M_SETTING.value(MusicSettingManager::LrcSizeChoiced).toInt();
+    return M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)

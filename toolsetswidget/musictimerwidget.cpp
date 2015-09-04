@@ -54,7 +54,7 @@ MusicTimerWidget::~MusicTimerWidget()
 
 void MusicTimerWidget::initParemeter()
 {
-    if(M_SETTING.value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 1)
+    if(M_SETTING->value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 1)
     {
         ui->noSetRadioButton1->setChecked(true);
         setEnabledControlFalse1();
@@ -63,12 +63,12 @@ void MusicTimerWidget::initParemeter()
     {
         ui->setRadioButton1->setChecked(true);
     }
-    ui->hourComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt());
-    ui->secComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt());
-    ui->repeatComboBox1->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt());
-    ui->plistComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlayItemIndexChoiced).toInt());
+    ui->hourComboBox1->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt());
+    ui->secComboBox1->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt());
+    ui->repeatComboBox1->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt());
+    ui->plistComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoPlayItemIndexChoiced).toInt());
 
-    if(M_SETTING.value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 1)
+    if(M_SETTING->value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 1)
     {
         ui->noSetRadioButton2->setChecked(true);
         setEnabledControlFalse2();
@@ -77,11 +77,11 @@ void MusicTimerWidget::initParemeter()
     {
         ui->setRadioButton2->setChecked(true);
     }
-    ui->hourComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopHourChoiced).toInt());
-    ui->secComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt());
-    ui->repeatComboBox2->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt());
+    ui->hourComboBox2->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoStopHourChoiced).toInt());
+    ui->secComboBox2->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt());
+    ui->repeatComboBox2->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt());
 
-    if(M_SETTING.value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 1)
+    if(M_SETTING->value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 1)
     {
         ui->noSetRadioButton3->setChecked(true);
         setEnabledControlFalse3();
@@ -90,49 +90,49 @@ void MusicTimerWidget::initParemeter()
     {
         ui->setRadioButton3->setChecked(true);
     }
-    ui->hourComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt());
-    ui->secComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt());
-    ui->repeatComboBox3->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt());
+    ui->hourComboBox3->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt());
+    ui->secComboBox3->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt());
+    ui->repeatComboBox3->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt());
 }
 
 void MusicTimerWidget::writeParemeter() const
 {
-    M_SETTING.setValue(MusicSettingManager::TimerAutoIndexChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoIndexChoiced,
                      ui->stackedWidget->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlayChoiced,
                      ui->noSetRadioButton1->isChecked() ? 1 : 0);
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
                      ui->hourComboBox1->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
                      ui->secComboBox1->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
                      ui->repeatComboBox1->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
                      ui->plistComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
                      ui->psongComboBox->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoStopChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoStopChoiced,
                      ui->noSetRadioButton2->isChecked() ? 1 : 0);
-    M_SETTING.setValue(MusicSettingManager::TimerAutoStopHourChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoStopHourChoiced,
                      ui->hourComboBox2->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
                      ui->secComboBox2->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
                      ui->repeatComboBox2->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownChoiced,
                      ui->noSetRadioButton3->isChecked() ? 1 : 0);
-    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
                      ui->hourComboBox3->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
                      ui->secComboBox3->currentIndex());
-    M_SETTING.setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
+    M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
                      ui->repeatComboBox3->currentIndex());
 }
 
 void MusicTimerWidget::setSongStringList(const QStringList &list)
 {
     ui->psongComboBox->addItems(list);
-    ui->psongComboBox->setCurrentIndex(M_SETTING.value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
+    ui->psongComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
 }
 
 void MusicTimerWidget::initComboParameter()
@@ -263,7 +263,7 @@ void MusicTimerWidget::setEnabledControlTrue3()
 
 int MusicTimerWidget::exec()
 {
-    QPixmap pix(M_BG_MANAGER.getMBackground());
+    QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

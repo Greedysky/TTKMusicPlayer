@@ -16,10 +16,10 @@ template <class T>
 class MUSIC_CORE_EXPORT MusicSingleton
 {
 public:
-    static inline T& createInstance()
+    static inline T* createInstance()
     {
         static T obj;
-        return obj;
+        return &obj;
     }
 private:
     MusicSingleton(void){}

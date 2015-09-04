@@ -128,8 +128,8 @@ void MusicRightAreaWidget::setSettingParameter() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return ( M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
+    return ( M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
              ? true : false;
 }
 
@@ -210,9 +210,9 @@ void MusicRightAreaWidget::showSettingWidget() const
 void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();
-    bool config = M_SETTING.value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
+    bool config = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
     m_ui->musiclrccontainerforinline->setVisible(config);
-         config = M_SETTING.value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+         config = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     m_musiclrcfordesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
 }
@@ -221,7 +221,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool v) const
 {
     m_ui->musicDesktopLrc->setChecked(v);
     m_musiclrcfordesktop->setVisible(v);
-    M_SETTING.setValue(MusicSettingManager::ShowDesktopLrcChoiced, v);
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, v);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()

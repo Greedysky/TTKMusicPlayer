@@ -358,7 +358,7 @@ void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)
 
 void MusicSongsSummarizied::setCurrentIndex()
 {
-    QStringList keyList = M_SETTING.value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    QStringList keyList = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     m_currentIndexs = keyList[1].toInt();
     QToolBox::setCurrentIndex(keyList[2].toInt());
     emit showCurrentSong(keyList[2].toInt());

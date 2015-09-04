@@ -95,7 +95,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     radioGroup->addButton(m_radio2, 1);
     radioGroup->addButton(m_radio3, 2);
     connect(radioGroup, SIGNAL(buttonClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
-    M_BG_MANAGER.setObject(this);
+    M_BG_MANAGER->setObject(this);
 
     m_checkBox->setEnabled(false);
     m_cancelButton->setEnabled(false);
@@ -131,7 +131,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list <<  m_artPath[i];
     }
-    M_BG_MANAGER.setArtPhotoPaths(list);
+    M_BG_MANAGER->setArtPhotoPaths(list);
     close();
 }
 
@@ -172,7 +172,7 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
 void MusicLrcFloatPhotoWidget::artHasChanged()
 {
     m_selectNum.clear();
-    m_artPath = M_BG_MANAGER.getArtPhotoPaths();
+    m_artPath = M_BG_MANAGER->getArtPhotoPaths();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;
@@ -191,17 +191,17 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg1()
 {
-    M_BG_MANAGER.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
+    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg2()
 {
-    M_BG_MANAGER.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
+    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
 {
-    M_BG_MANAGER.sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
+    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)

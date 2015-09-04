@@ -55,7 +55,7 @@ void MusicBgThemeDownload::bgDownLoadFinished(const QString &)
 {
     if( ++m_index >= m_counter)
     {
-        M_BG_MANAGER.setArtName( m_artName );
+        M_BG_MANAGER->setArtName( m_artName );
         emit musicBgDownloadFinished();
         deleteLater();
     }

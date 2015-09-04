@@ -123,7 +123,7 @@ void MusicPlayer::play()
 
     ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
-    int volumn = M_SETTING.value(MusicSettingManager::VolumeChoiced).toInt();
+    int volumn = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
     if(volumn != -1)
     {
         setVolume(volumn);
