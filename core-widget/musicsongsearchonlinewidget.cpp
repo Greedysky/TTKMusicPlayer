@@ -135,7 +135,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     down.readDownloadConfig(name,path);
     name<<musicSong;
     path<<QFileInfo(downloadName).absoluteFilePath();
-    down.writeDownloadConfig(name,path);
+    down.writeDownloadConfig(name, path);
     ////////////////////////////////////////////////
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread(

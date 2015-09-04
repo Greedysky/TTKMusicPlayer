@@ -29,7 +29,6 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
         value.appendChild(valuetext);
         download.appendChild(value);
     }
-
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out,4);

@@ -115,6 +115,8 @@ void MusicLeftAreaWidget::musicSearch()
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 {
     m_ui->songsContainer->setCurrentIndex(0);
+    delete m_stackedWidget;
+    m_stackedWidget = NULL;
 }
 
 void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
