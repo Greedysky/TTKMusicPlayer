@@ -12,9 +12,11 @@
 #include "musicabstracttablewidget.h"
 #include "musicdownloadquerythread.h"
 
+#include <QMenu>
 #include <QItemDelegate>
 
 class QCheckBox;
+class QActionGroup;
 
 class MusicCheckBoxDelegate : public QItemDelegate
 {
@@ -41,10 +43,12 @@ public:
     virtual ~MusicQueryTableWidget();
 
     virtual void startSearchQuery(const QString &text) = 0;
+    virtual void musicDownloadLocal(int row) = 0;
     MIntList getSelectedItems() const;
 
 signals:
     void showDownLoadInfoFor(MusicObject::DownLoadType type);
+    void restartSearchQuery(const QString &name);
 
 public slots:
     virtual void listCellClicked(int row, int column);
@@ -53,12 +57,16 @@ public slots:
                                     const QString &artistname,
                                     const QString &time) = 0;
     virtual void itemDoubleClicked(int row, int column) = 0;
+    virtual void actionGroupClick(QAction *action);
     void setSelectedAllItems(bool all);
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *){}
+    void createContextMenu(QMenu &menu);
+    int findActionGroup(QAction *action);
 
+    QActionGroup *m_actionGroup;
     MusicDownLoadQueryThread *m_downLoadManager;
     MusicCheckBoxDelegate *m_checkBoxDelegate;
 

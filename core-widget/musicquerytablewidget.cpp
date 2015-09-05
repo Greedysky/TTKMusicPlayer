@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include <QCheckBox>
+#include <QActionGroup>
 
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
     : QItemDelegate(parent)
@@ -49,12 +50,16 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     m_checkBoxDelegate = new MusicCheckBoxDelegate(this);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 
+    m_actionGroup = new QActionGroup(this);
+    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
+
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicQueryTableWidget::~MusicQueryTableWidget()
 {
+    delete m_actionGroup;
     delete m_checkBoxDelegate;
 }
 
@@ -85,9 +90,48 @@ void MusicQueryTableWidget::setSelectedAllItems(bool all)
     }
 }
 
-void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *)
+void MusicQueryTableWidget::actionGroupClick(QAction *action)
 {
+    int row = currentRow();
+    QString songName = item(currentRow(), 1)->text();
+    QString artistName = item(currentRow(), 2)->text();
 
+    switch( findActionGroup(action) )
+    {
+        case 0: musicDownloadLocal(row); break;
+        case 1: emit restartSearchQuery(songName); break;
+        case 2: emit restartSearchQuery(artistName); break;
+        case 3: emit restartSearchQuery(songName + "-" + artistName); break;
+    }
+}
+
+int MusicQueryTableWidget::findActionGroup(QAction *action)
+{
+    int key = -1;
+    QList<QAction*> actions = m_actionGroup->actions();
+    for(int i=0; i<actions.count(); ++i)
+    {
+        if(actions[i] == action)
+        {
+            key = i;
+            break;
+        }
+    }
+    return key;
+}
+
+void MusicQueryTableWidget::createContextMenu(QMenu &menu)
+{
+    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_actionGroup->addAction(menu.addAction(tr("musicDownload")));
+
+    menu.addSeparator();
+
+    QString songName = item(currentRow(), 1)->text();
+    QString artistName = item(currentRow(), 2)->text();
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)));
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)));
+    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)));
 }
 
 void MusicQueryTableWidget::paintEvent(QPaintEvent *event)

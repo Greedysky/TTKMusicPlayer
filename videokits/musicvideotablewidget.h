@@ -12,6 +12,7 @@ public:
     virtual ~MusicVideoTableWidget();
 
     void startSearchQuery(const QString &text);
+    void musicDownloadLocal(int row);
 
 signals:
     void mvURLChanged(const QString &data);
@@ -26,8 +27,6 @@ public slots:
 
 protected:
     QString randToGetStrength() const;
-    void musicDownloadLocal(int row);
-
     QString m_currentSongName;
 
 };
