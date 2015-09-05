@@ -4,10 +4,58 @@
 #include "musicconnectionpool.h"
 
 #include <QDesktopServices>
+#include <QContextMenuEvent>
+#include <QMenu>
+#include <QPainter>
+#include <QProgressBar>
+
+MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
+    : QItemDelegate(parent)
+{
+    m_progress  = new QProgressBar;
+    m_progress->setStyleSheet(MusicUIObject::MProgressBar01);
+}
+
+MusicProgressBarDelegate::~MusicProgressBarDelegate()
+{
+    delete m_progress;
+}
+
+QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option,
+                                      const QModelIndex &) const
+{
+    QSize size = option.rect.size();
+    size.setHeight(25);
+    return size;
+}
+
+void MusicProgressBarDelegate::paint(QPainter *painter,
+                                  const QStyleOptionViewItem &option,
+                                  const QModelIndex &index) const
+{
+    painter->save();
+    m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
+    m_progress->setValue(index.data(Qt::DisplayRole).toInt());
+    painter->translate(10, 10);
+    m_progress->render(painter, option.rect.topLeft(), QRegion(),
+                       QWidget::DrawChildren);
+    painter->restore();
+}
+
+
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent)
 {
+    setColumnCount(4);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0,15);
+    headerview->resizeSection(1,175);
+    headerview->resizeSection(2,103);
+    headerview->resizeSection(3,30);
+
+    m_delegate = new MusicProgressBarDelegate(this);
+    setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
@@ -20,6 +68,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
     M_Connection->disConnect("MusicMyDownloadRecordWidget");
+    delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordObject xml;
     xml.writeDownloadConfig(m_musicFileNameList,m_musicFilePathList);
@@ -37,22 +86,23 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     setRowCount(m_musicFileNameList.count());//reset row count
     for(int i=0; i<m_musicFileNameList.count(); i++)
     {
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
-        item->setTextColor(QColor(50,50,50));
-        item->setTextAlignment(Qt::AlignCenter);
+        QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
 
-        //To get the song name
-        QTableWidgetItem *item1 = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                m_musicFileNameList[i], Qt::ElideRight, 243));
-        item1->setTextColor(QColor(50,50,50));
-        item1->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        setItem(i, 1, item1);
+                          item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
+                                                  m_musicFileNameList[i], Qt::ElideRight, 170));
+        item->setTextColor(QColor(50,50,50));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        item->setToolTip(m_musicFileNameList[i]);
+        setItem(i, 1, item);
 
-        //add a delete icon
-        QTableWidgetItem *item2 = new QTableWidgetItem(QIcon(":/image/musicdelete"),"");
-        item2->setTextAlignment(Qt::AlignCenter);
-        setItem(i, 2, item2);
+                          item = new QTableWidgetItem;
+        item->setData(Qt::DisplayRole, 100);
+        setItem(i, 2, item);
+
+                          item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(i, 3, item);
     }
 }
 
@@ -60,7 +110,7 @@ void MusicMyDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
     MusicAbstractTableWidget::clearAllItems();
-    setColumnCount(3);
+    setColumnCount(4);
 }
 
 void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -105,22 +155,13 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
         m_musicFileNameList.removeAt(ind);
         m_musicFilePathList.removeAt(ind);
     }
-
-    for(int i=0; i<rowCount(); i++)
-    {   //Re insertion sort
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
-        item->setTextColor(QColor(50,50,50));
-        item->setTextAlignment(Qt::AlignCenter);
-        delete takeItem(i,0);//Remove the original object delete
-        setItem(i,0,item); //insert
-    }
 }
 
 void MusicMyDownloadRecordWidget::listCellClicked(int , int column)
 {
     switch(column)
     {
-        case 2:
+        case 3:
             setDeleteItemAt();
             break;
         default:

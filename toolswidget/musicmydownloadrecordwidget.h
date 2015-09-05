@@ -9,9 +9,27 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMenu>
-#include <QContextMenuEvent>
+#include <QItemDelegate>
 #include "musicabstracttablewidget.h"
+
+class QProgressBar;
+
+class MusicProgressBarDelegate : public QItemDelegate
+{
+public:
+    explicit MusicProgressBarDelegate(QObject* parent = 0);
+    ~MusicProgressBarDelegate();
+
+    QSize sizeHint(const QStyleOptionViewItem &option,
+                   const QModelIndex &) const;
+    void paint(QPainter *painter,
+               const QStyleOptionViewItem &option,
+               const QModelIndex &index) const;
+private:
+    QProgressBar *m_progress;
+
+};
+
 
 class MUSIC_WIDGET_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
 {
@@ -37,6 +55,7 @@ public slots:
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
+    MusicProgressBarDelegate *m_delegate;
     QStringList m_musicFileNameList;
     QStringList m_musicFilePathList;
 
