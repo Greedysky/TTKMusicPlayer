@@ -85,3 +85,12 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
     }
     musicDownloadLocal(row);
 }
+
+void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+    createContextMenu(rightClickMenu);
+
+    rightClickMenu.exec(QCursor::pos());
+}

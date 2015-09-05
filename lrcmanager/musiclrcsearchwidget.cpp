@@ -34,6 +34,8 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
                                 SLOT(setSelectedAllItems(bool)));
     connect(ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)),
                              SLOT(lrcDownloadStateChanged(QString)));
+    connect(ui->tableWidget, SIGNAL(restartSearchQuery(QString)),
+                             SLOT(setCurrentSongName(QString)));
 }
 
 MusicLrcSearchWidget::~MusicLrcSearchWidget()

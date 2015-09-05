@@ -33,6 +33,7 @@ public slots:
     void itemDoubleClicked(int row, int column);
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event);
     QString m_currentSongName;
 
 };

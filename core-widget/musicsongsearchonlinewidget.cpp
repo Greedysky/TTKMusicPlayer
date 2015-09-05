@@ -114,7 +114,6 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicQueryTableWidget::contextMenuEvent(event);
-
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 
@@ -124,7 +123,6 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     rightClickMenu.insertAction(addAction, playAction);
     m_actionGroup->addAction( playAction );
     m_actionGroup->addAction( addAction );
-
     rightClickMenu.exec(QCursor::pos());
 }
 
