@@ -360,6 +360,12 @@ namespace MusicUIObject
     const QString MLabelStyle01 = " \
             QLabel{ background:rgba(255,255,255,50); color:white; font-weight:bold; }";
 
+///ProgressBar
+//////////////////////////////////////////////////////
+    const QString MProgressBar01 = " \
+            QProgressBar{ border:none; background:rgb(210, 225, 240); text-align:center;}\
+            QProgressBar::chunk{ background:rgb(60, 140, 220);}";
+
 }
 
 #endif // MUSICUIOBJECT_H
