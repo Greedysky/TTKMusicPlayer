@@ -6,6 +6,7 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent), m_videoPlayer(NULL)
@@ -17,6 +18,9 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     connect(m_setting, SIGNAL(parameterSettingChanged()), parent,
                        SLOT(getParameterSetting()));
 
+    M_Connection->setValue("MusicRightAreaWidget", this);
+    M_Connection->connect("MusicSongSearchOnlineTableWidget",
+                          "MusicRightAreaWidget");
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -239,6 +243,12 @@ void MusicRightAreaWidget::musicSearchButtonSearched()
         message.setText(tr("please input search text"));
         message.exec();
     }
+}
+
+void MusicRightAreaWidget::musicResearchButtonSearched(const QString &name)
+{
+    m_ui->musicSongSearchLine->setText(name);
+    musicSearchButtonSearched();
 }
 
 void MusicRightAreaWidget::musicIndexWidgetButtonSearched()

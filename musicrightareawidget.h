@@ -56,6 +56,7 @@ public slots:
     void setDestopLrcVisible(bool v) const;
     void setWindowLockedChanged();
     void musicSearchButtonSearched();
+    void musicResearchButtonSearched(const QString &name);
     void musicIndexWidgetButtonSearched();
     void musicSearchWidgetButtonSearched();
     void musicLrcWidgetButtonSearched();

@@ -12,6 +12,7 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
+class QActionGroup;
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
@@ -26,6 +27,7 @@ public:
 
 signals:
     void muiscSongToPlayListChanged(const QString &name);
+    void restartSearchQuery(const QString &name);
 
 public slots:
     void listCellClicked(int row, int column);
@@ -34,10 +36,13 @@ public slots:
                             const QString &artistname,
                             const QString &time);
     void itemDoubleClicked(int row, int column);
+    void actionGroupClick(QAction*);
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event);
     void addSearchMusicToPlayList(int row);
     void musicDownloadLocal(int row);
+    QActionGroup *m_actionGroup;
 
 };
 

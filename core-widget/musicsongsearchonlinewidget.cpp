@@ -14,6 +14,8 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QButtonGroup>
+#include <QMenu>
+#include <QActionGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -28,11 +30,14 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(5,26);
     setTransparent(255);
 
+    m_actionGroup = new QActionGroup(this);
+    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
     M_Connection->setValue("MusicSongSearchOnlineTableWidget", this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
+    delete m_actionGroup;
     clearAllItems();
 }
 
@@ -108,6 +113,50 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
             break;
         default:
             break;
+    }
+}
+
+void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay")));
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("musicAdd")));
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("musicDownload")));
+
+    rightClickMenu.addSeparator();
+
+    QString songName = item(currentRow(), 1)->text();
+    QString artistName = item(currentRow(), 2)->text();
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("search '%1'").arg(songName)));
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("search '%1'").arg(artistName)));
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)));
+    rightClickMenu.exec(QCursor::pos());
+}
+
+void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
+{
+    int key = -1;
+    for(int i=0; i<m_actionGroup->actions().count(); ++i)
+    {
+        if(m_actionGroup->actions()[i] == action)
+        {
+            key = i;
+            break;
+        }
+    }
+
+    int row = currentRow();
+    QString songName = item(currentRow(), 1)->text();
+    QString artistName = item(currentRow(), 2)->text();
+    switch(key)
+    {
+        case 0: case 1: addSearchMusicToPlayList(row); break;
+        case 2: musicDownloadLocal(row); break;
+        case 3: emit restartSearchQuery(songName); break;
+        case 4: emit restartSearchQuery(artistName); break;
+        case 5: emit restartSearchQuery(songName + "-" + artistName); break;
     }
 }
 

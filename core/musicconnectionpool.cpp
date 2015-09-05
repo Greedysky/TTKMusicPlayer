@@ -80,6 +80,12 @@ void MusicConnectionPool::connect(const QString &from,
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString)), second,
                                 SLOT(addNetMusicSongToList(QString)));
     }
+
+    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicRightAreaWidget" )
+    {
+        QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
+                                SLOT(musicResearchButtonSearched(QString)));
+    }
 }
 
 void MusicConnectionPool::disConnect(const QString &name)

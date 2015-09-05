@@ -115,7 +115,7 @@ void MusicMyDownloadRecordWidget::clearAllItems()
 
 void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    QTableWidget::contextMenuEvent(event);
+    MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
     rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
