@@ -2033,18 +2033,18 @@
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="126"/>
         <source>musicDownload</source>
-        <translation type="unfinished"></translation>
+        <translation >Download</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="132"/>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="133"/>
         <source>search &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation >Search '%1'</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="134"/>
         <source>search &apos;%1 - %2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation >Search '%1 - %2'</translation>
     </message>
 </context>
 <context>
@@ -2510,12 +2510,12 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="120"/>
         <source>musicPlay</source>
-        <translation type="unfinished">Play</translation>
+        <translation >Audition</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="121"/>
         <source>musicAdd</source>
-        <translation type="unfinished"></translation>
+        <translation >Add To List</translation>
     </message>
 </context>
 <context>
@@ -2528,7 +2528,7 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="229"/>
         <source> find no result</source>
-        <translation type="unfinished"></translation>
+        <translation >Find No Result</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="241"/>

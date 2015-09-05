@@ -1937,7 +1937,7 @@
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="68"/>
         <source>Please Select One Item First!</source>
-        <translation type="unfinished"></translation>
+        <translation >請選擇某壹條記錄！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="82"/>
@@ -2029,18 +2029,18 @@
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="126"/>
         <source>musicDownload</source>
-        <translation type="unfinished"></translation>
+        <translation >下載</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="132"/>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="133"/>
         <source>search &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation >搜索 '%1'</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="134"/>
         <source>search &apos;%1 - %2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation >搜索 '%1 - %2'</translation>
     </message>
 </context>
 <context>
@@ -2506,12 +2506,12 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="120"/>
         <source>musicPlay</source>
-        <translation type="unfinished">播放</translation>
+        <translation >試聽音樂</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="121"/>
         <source>musicAdd</source>
-        <translation type="unfinished"></translation>
+        <translation >添加音樂</translation>
     </message>
 </context>
 <context>
@@ -2524,7 +2524,7 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="229"/>
         <source> find no result</source>
-        <translation type="unfinished"></translation>
+        <translation >沒有搜到相關內容</translation>
     </message>
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="241"/>
@@ -2559,7 +2559,7 @@
     <message>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="279"/>
         <source>Please Select One Item First!</source>
-        <translation type="unfinished"></translation>
+        <translation >請選擇某壹條記錄！</translation>
     </message>
 </context>
 <context>
