@@ -22,6 +22,7 @@ public slots:
     void backButtonClicked();
     void afterButtonClicked();
     void searchButtonClicked();
+    void musicResearchButtonSearched(const QString &name);
     void mvURLChanged(const QString &data);
 
 protected:

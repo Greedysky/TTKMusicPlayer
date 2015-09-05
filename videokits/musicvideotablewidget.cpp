@@ -130,3 +130,12 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     emit mvURLChanged(musicSongInfo[row][2]);
 }
+
+void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+    createContextMenu(rightClickMenu);
+
+    rightClickMenu.exec(QCursor::pos());
+}

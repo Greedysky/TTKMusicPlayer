@@ -26,6 +26,7 @@ public slots:
     void itemDoubleClicked(int row, int column);
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event);
     QString randToGetStrength() const;
     QString m_currentSongName;
 
