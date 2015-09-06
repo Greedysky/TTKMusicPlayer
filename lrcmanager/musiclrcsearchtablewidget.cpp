@@ -27,7 +27,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicLrcSearchTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(5);
 }
 

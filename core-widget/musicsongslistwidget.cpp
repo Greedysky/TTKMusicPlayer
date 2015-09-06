@@ -72,7 +72,7 @@ void MusicSongsListWidget::clearAllItems()
     m_musicSongsPlayWidget = NULL;
     m_playRowIndex = 0;
     //Remove all the original item
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(3);
 }
 

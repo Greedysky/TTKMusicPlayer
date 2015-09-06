@@ -55,7 +55,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(6);
 }
 

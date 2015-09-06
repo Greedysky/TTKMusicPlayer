@@ -32,7 +32,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
 
 void MusicVideoTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(8);
 }
 

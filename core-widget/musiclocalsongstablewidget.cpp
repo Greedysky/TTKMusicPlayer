@@ -10,13 +10,13 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
 
 void MusicLocalSongsTableWidget::clearShowlist()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(5);
 }
 
 void MusicLocalSongsTableWidget::clearShowPath()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(1);
 }
 

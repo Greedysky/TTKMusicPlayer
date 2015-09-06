@@ -22,17 +22,16 @@ public:
     explicit MusicAbstractTableWidget(QWidget *parent = 0);
     virtual ~MusicAbstractTableWidget();
 
-    virtual void clearAllItems();
-    void setTransparent(int angle);
-    void setRowColor(int row, const QColor &color) const;
-
-signals:
+    void clear();
 
 public slots:
     virtual void listCellEntered(int row, int column);
     virtual void listCellClicked(int row, int column) = 0;
 
 protected:
+    void setTransparent(int angle);
+    void setRowColor(int row, const QColor &color) const;
+
     QColor m_defaultBkColor;
     int m_previousColorRow;
     int m_previousClickRow;

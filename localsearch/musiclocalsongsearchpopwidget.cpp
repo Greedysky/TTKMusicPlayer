@@ -24,7 +24,7 @@ MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
 
 void MusicLocalSongSearchPopTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clearAllItems();
+    MusicAbstractTableWidget::clear();
     setColumnCount(2);
 }
 

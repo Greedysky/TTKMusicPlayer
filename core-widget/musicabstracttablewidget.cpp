@@ -8,12 +8,14 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setColumnCount(3);
     setRowCount(0);
     setShowGrid(false);//Does not display the grid
+
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(false);
     headerview->resizeSection(0,40);
     headerview->resizeSection(1,257);
     headerview->resizeSection(2,26);
     verticalHeader()->setVisible(false);
+
     setMouseTracking(true);  //Open the capture mouse function
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
@@ -27,11 +29,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
 
     setTransparent(80);
-
     m_previousColorRow = -1;
     m_previousClickRow = -1;
     m_defaultBkColor = QColor(255,255,255,0);
-
 
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
 }
@@ -41,7 +41,7 @@ MusicAbstractTableWidget::~MusicAbstractTableWidget()
 
 }
 
-void MusicAbstractTableWidget::clearAllItems()
+void MusicAbstractTableWidget::clear()
 {
     clearContents();
     setRowCount(0);
