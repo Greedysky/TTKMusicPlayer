@@ -33,6 +33,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     m_previousClickRow = -1;
     m_defaultBkColor = QColor(255,255,255,0);
 
+    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
 }
 
@@ -50,7 +51,7 @@ void MusicAbstractTableWidget::clear()
 void MusicAbstractTableWidget::setTransparent(int angle)
 {
     QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
+    pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, angle)));
     setPalette(pal);
 }
 

@@ -14,7 +14,6 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
     headerview->resizeSection(0,215);
     headerview->resizeSection(1,62);
     setTransparent(255);
-    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
 }
 
 MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()

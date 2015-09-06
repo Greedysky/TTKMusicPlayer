@@ -133,7 +133,8 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
     int row = currentRow();
     switch( findActionGroup(action) )
     {
-        case 4: case 5: addSearchMusicToPlayList(row); break;
+        case 4:
+        case 5: addSearchMusicToPlayList(row); break;
     }
 }
 

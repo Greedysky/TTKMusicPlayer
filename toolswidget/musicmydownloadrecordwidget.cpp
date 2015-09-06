@@ -57,7 +57,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
+
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 

@@ -52,7 +52,6 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
 
     m_actionGroup = new QActionGroup(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
-
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 

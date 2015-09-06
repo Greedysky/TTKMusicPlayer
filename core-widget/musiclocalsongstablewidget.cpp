@@ -4,7 +4,6 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     setTransparent(150);
 }
 

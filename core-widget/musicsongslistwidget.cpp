@@ -26,7 +26,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     connect(m_timerShow,SIGNAL(timeout()),SLOT(showTimeOut()));
     connect(m_timerStay,SIGNAL(timeout()),SLOT(stayTimeOut()));
 
-    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
+//    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
