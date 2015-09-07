@@ -50,18 +50,13 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesL
     ///////////////////////////////////////////////////////
     m_ddom->appendChild(
         m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(QMusicPlayer);
+    QDomElement musicPlayer = m_ddom->createElement("QMusicPlayer");
+    m_ddom->appendChild(musicPlayer);
     //Class A
-    QDomElement fileNormalPath = m_ddom->createElement("fileNormalPath");
-    fileNormalPath.setAttribute("count",fileNamesList[0].count());
-    QMusicPlayer.appendChild(fileNormalPath);
-    QDomElement fileLovestPath = m_ddom->createElement("fileLovestPath");
-    fileLovestPath.setAttribute("count",fileNamesList[1].count());
-    QMusicPlayer.appendChild(fileLovestPath);
-    QDomElement netFilePath = m_ddom->createElement("netFilePath");
-    netFilePath.setAttribute("count",fileNamesList[2].count());
-    QMusicPlayer.appendChild(netFilePath);
+
+    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", fileNamesList[0].count());
+    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", fileNamesList[1].count());
+    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", fileNamesList[2].count());
 
     //extend playlist init here
 //    for(int i=3; i<fileNamesList.count(); ++i)
@@ -74,27 +69,15 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesL
     //Class B
     for(int i=0; i<fileNamesList[0].count(); ++i)
     {
-        QDomElement value = m_ddom->createElement("value");
-        value.setAttribute("name",fileNamesList[0][i]);
-        QDomText valuetext = m_ddom->createTextNode(fileUrlsList[0][i]);
-        value.appendChild(valuetext);
-        fileNormalPath.appendChild(value);
+        writeDomEleText(fileNormalPath, "value", "name", fileNamesList[0][i], fileUrlsList[0][i]);
     }
     for(int i=0; i<fileNamesList[1].count(); ++i)
     {
-        QDomElement value = m_ddom->createElement("value");
-        value.setAttribute("name",fileNamesList[1][i]);
-        QDomText valuetext = m_ddom->createTextNode(fileUrlsList[1][i]);
-        value.appendChild(valuetext);
-        fileLovestPath.appendChild(value);
+        writeDomEleText(fileLovestPath, "value", "name", fileNamesList[1][i], fileUrlsList[1][i]);
     }
     for(int i=0; i<fileNamesList[2].count(); ++i)
     {
-        QDomElement value = m_ddom->createElement("value");
-        value.setAttribute("name",fileNamesList[2][i]);
-        QDomText valuetext = m_ddom->createTextNode(fileUrlsList[2][i]);
-        value.appendChild(valuetext);
-        netFilePath.appendChild(value);
+        writeDomEleText(netFilePath, "value", "name", fileNamesList[2][i], fileUrlsList[2][i]);
     }
 
     //Write to file

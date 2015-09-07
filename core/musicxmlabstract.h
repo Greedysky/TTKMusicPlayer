@@ -27,7 +27,11 @@ protected:
     bool readConfig(const QString &type);
     bool writeConfig(const QString &type);
     QString readXmlByTagNameAndAttribute(const QString &tagName) const;
-
+    QDomElement writeDomElement(QDomElement &element, const QString &node,
+                                const QString &key, const QVariant &value);
+    QDomElement writeDomEleText(QDomElement &element, const QString &node,
+                                const QString &key, const QVariant &value,
+                                const QString &text);
     QFile *m_file;
     QDomDocument *m_ddom;
 

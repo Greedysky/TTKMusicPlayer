@@ -51,3 +51,28 @@ QString MusicXmlAbstract::readXmlByTagNameAndAttribute(const QString &tagName) c
     QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
     return nodelist.at(0).toElement().attribute("value");
 }
+
+QDomElement MusicXmlAbstract::writeDomElement(QDomElement &element, const QString &node,
+                                              const QString &key, const QVariant &value)
+{
+    QDomElement domElement = m_ddom->createElement( node );
+    switch(value.type())
+    {
+        case QVariant::Int :
+            domElement.setAttribute(key, value.toInt()); break;
+        case QVariant::String :
+            domElement.setAttribute(key, value.toString()); break;
+    }
+    element.appendChild( domElement );
+    return domElement;
+}
+
+QDomElement MusicXmlAbstract::writeDomEleText(QDomElement &element, const QString &node,
+                                              const QString &key, const QVariant &value,
+                                              const QString &text)
+{
+    QDomElement domElement = writeDomElement(element, node, key, value);
+    QDomText domText = m_ddom->createTextNode( text );
+    domElement.appendChild( domText );
+    return domElement;
+}
