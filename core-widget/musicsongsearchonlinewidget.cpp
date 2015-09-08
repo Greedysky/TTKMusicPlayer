@@ -158,7 +158,7 @@ void MusicSongSearchOnlineTableWidget::listenToMusic(int row)
     {
         item(m_previousAuditionRow, 0)->setData(Qt::UserRole + 1, static_cast<int>(Qt::transparent));
     }
-    item(m_previousAuditionRow = row, i)->setData(Qt::UserRole + 1, static_cast<int>(Qt::yellow));
+    item(m_previousAuditionRow = row, 0)->setData(Qt::UserRole + 1, static_cast<int>(Qt::yellow));
 }
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
@@ -258,7 +258,7 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 
     QCheckBox *label_checkBox = new QCheckBox(this);
     label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    label_checkBox->setGeometry(15, 40, 20, 20);
+    label_checkBox->setGeometry(7, 40, 20, 20);
     connect(label_checkBox, SIGNAL(clicked(bool)), m_searchTableWidget,
                             SLOT(setSelectedAllItems(bool)));
 
