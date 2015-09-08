@@ -84,7 +84,7 @@ SOURCES += \
     core/musicplayer.cpp \
     core/musicplaylist.cpp \
     core/musicequalizer.cpp \
-    core/musicxmlabstract.cpp \
+    core/musicabstractxml.cpp \
     core/musictimerautoobject.cpp \
     core/musicdownloadquerythread.cpp \
     core/musicdownloadthreadabstract.cpp \
@@ -184,7 +184,7 @@ HEADERS  += \
     core/musicplayer.h \
     core/musicplaylist.h \
     core/musicequalizer.h \
-    core/musicxmlabstract.h \
+    core/musicabstractxml.h \
     core/musictimerautoobject.h \
     core/musiclocalsongsmanagerthread.h \
     core/musiclibzplay.h \

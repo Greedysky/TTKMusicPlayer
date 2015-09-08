@@ -1,7 +1,7 @@
 #include "musicuserconfigmanager.h"
 
 MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
-    MusicXmlAbstract(parent)
+    MusicAbstractXml(parent)
 {
 
 }

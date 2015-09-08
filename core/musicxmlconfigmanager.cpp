@@ -4,7 +4,7 @@
 #include <QPixmap>
 
 MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
-    MusicXmlAbstract(parent)
+    MusicAbstractXml(parent)
 {
 
 }

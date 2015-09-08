@@ -1,7 +1,7 @@
 #include "musiclocalsongsearchrecordobject.h"
 
 MusicLocalSongSearchRecordObject::MusicLocalSongSearchRecordObject(QObject *parent)
-    : MusicXmlAbstract(parent)
+    : MusicAbstractXml(parent)
 {
 
 }

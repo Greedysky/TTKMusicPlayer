@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicxmlabstract.h"
+#include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicMyDownloadRecordObject : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
 {
 public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);

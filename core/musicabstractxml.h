@@ -1,5 +1,5 @@
-#ifndef MUSICXMLABSTRACT_H
-#define MUSICXMLABSTRACT_H
+#ifndef MUSICABSTRACTXML_H
+#define MUSICABSTRACTXML_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -16,12 +16,12 @@
 #include "musiclibexportglobal.h"
 #include "musicobject.h"
 
-class MUSIC_CORE_EXPORT MusicXmlAbstract : public QObject
+class MUSIC_CORE_EXPORT MusicAbstractXml : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicXmlAbstract(QObject *parent = 0);
-    ~MusicXmlAbstract();
+    explicit MusicAbstractXml(QObject *parent = 0);
+    ~MusicAbstractXml();
 
 protected:
     bool readConfig(const QString &type);
@@ -43,4 +43,4 @@ protected:
 
 };
 
-#endif // MUSICXMLABSTRACT_H
+#endif // MUSICABSTRACTXML_H

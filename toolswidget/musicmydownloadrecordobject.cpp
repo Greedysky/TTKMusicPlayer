@@ -1,7 +1,7 @@
 #include "musicmydownloadrecordobject.h"
 
 MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
-    MusicXmlAbstract(parent)
+    MusicAbstractXml(parent)
 {
 
 }

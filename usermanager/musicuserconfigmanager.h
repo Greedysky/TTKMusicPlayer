@@ -1,9 +1,9 @@
 #ifndef MUSICXMLCONFIGMANAGER_H
 #define MUSICXMLCONFIGMANAGER_H
 
-#include "musicxmlabstract.h"
+#include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicUserConfigManager : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
 public:
     explicit MusicUserConfigManager(QObject *parent = 0);

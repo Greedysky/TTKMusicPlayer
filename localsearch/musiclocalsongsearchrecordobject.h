@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicxmlabstract.h"
+#include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicLocalSongSearchRecordObject : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicLocalSongSearchRecordObject : public MusicAbstractXml
 {
     Q_OBJECT
 public:

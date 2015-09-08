@@ -11,9 +11,9 @@
 
 #include <QPair>
 #include <QColor>
-#include "musicxmlabstract.h"
+#include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicXmlAbstract
+class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml
 {
 public:
     explicit MusicXMLConfigManager(QObject *parent = 0);
