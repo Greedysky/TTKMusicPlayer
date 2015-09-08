@@ -14,20 +14,13 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
         return;
     }
     ///////////////////////////////////////////////////////
-    m_ddom->appendChild(
-        m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(QMusicPlayer);
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("QMusicPlayer");
+    QDomElement download = writeDom(musicPlayer, "download");
 
-    QDomElement download = m_ddom->createElement("download");
-    QMusicPlayer.appendChild(download);
     for(int i=0; i<names.count(); ++i)
     {
-        QDomElement value = m_ddom->createElement("value");
-        value.setAttribute("value", names[i]);
-        QDomText valuetext = m_ddom->createTextNode(paths[i]);
-        value.appendChild(valuetext);
-        download.appendChild(value);
+        writeDomEleText(download, "value", "value", names[i], paths[i]);
     }
     //Write to file
     QTextStream out(m_file);

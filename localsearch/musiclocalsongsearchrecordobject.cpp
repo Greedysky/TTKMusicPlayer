@@ -16,20 +16,13 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &name
     }
 
     ///////////////////////////////////////////////////////
-    m_ddom->appendChild(
-        m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(QMusicPlayer);
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("QMusicPlayer");
+    QDomElement download = writeDom(musicPlayer, "searchRecord");
 
-    QDomElement download = m_ddom->createElement("searchRecord");
-    QMusicPlayer.appendChild(download);
     for(int i=0; i<names.count(); ++i)
     {
-        QDomElement value = m_ddom->createElement("value");
-        value.setAttribute("name", names[i]);
-        QDomText valuetext = m_ddom->createTextNode(times[i]);
-        value.appendChild(valuetext);
-        download.appendChild(value);
+        writeDomEleText(download, "value", "name", names[i], times[i]);
     }
 
     //Write to file

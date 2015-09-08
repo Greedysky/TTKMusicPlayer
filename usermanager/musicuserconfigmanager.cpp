@@ -8,30 +8,22 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
 
 void MusicUserConfigManager::writeUserXMLConfig(const MStringsListMap& par)
 {
-    if( !writeConfig( USERPATH ) ) return;
+    if( !writeConfig( USERPATH ) )
+    {
+        return;
+    }
     ///////////////////////////////////////////////////////
-    m_ddom->appendChild(
-        m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(QMusicPlayer);
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("QMusicPlayer");
 
     MStringsListMapIt p(par);
     while(p.hasNext())
     {
         p.next();
-        //Class A
-        QDomElement userName = m_ddom->createElement("username");
-        userName.setAttribute("value",p.key());
-        QMusicPlayer.appendChild(userName);
-        QDomElement autoLogin = m_ddom->createElement("userRp");
-        autoLogin.setAttribute("value",p.value()[0]);
-        userName.appendChild(autoLogin);
-        QDomElement userLogin = m_ddom->createElement("userAl");
-        userLogin.setAttribute("value",p.value()[1]);
-        userName.appendChild(userLogin);
-        QDomElement userPwdM = m_ddom->createElement("userWd");
-        userPwdM.setAttribute("value",p.value()[2]);
-        userName.appendChild(userPwdM);
+        QDomElement name = writeDomElement(musicPlayer, "username", "value", p.key());
+        writeDomElement(name, "userRp", "value", p.value()[0]);
+        writeDomElement(name, "userAl", "value", p.value()[1]);
+        writeDomElement(name, "userWd", "value", p.value()[2]);
     }
 
     //Write to file

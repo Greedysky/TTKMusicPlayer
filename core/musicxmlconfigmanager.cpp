@@ -48,12 +48,9 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesL
         return;
     }
     ///////////////////////////////////////////////////////
-    m_ddom->appendChild(
-        m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement musicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(musicPlayer);
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("QMusicPlayer");
     //Class A
-
     QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", fileNamesList[0].count());
     QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", fileNamesList[1].count());
     QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", fileNamesList[2].count());
@@ -143,182 +140,86 @@ void MusicXMLConfigManager::writeXMLConfig()
         return;
     }
     ///////////////////////////////////////////////////////
-    m_ddom->appendChild(
-        m_ddom->createProcessingInstruction("xml","version='1.0' encoding='UTF-8'") );
-    QDomElement QMusicPlayer = m_ddom->createElement("QMusicPlayer");
-    m_ddom->appendChild(QMusicPlayer);
-
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("QMusicPlayer");
     //Class A
-    QDomElement music = m_ddom->createElement("music");
-    QMusicPlayer.appendChild(music);
-    QDomElement settings = m_ddom->createElement("settings");
-    QMusicPlayer.appendChild(settings);
-    QDomElement backgroundSkin = m_ddom->createElement("backgroundSkin");
-    QMusicPlayer.appendChild(backgroundSkin);
-    QDomElement showLrc = m_ddom->createElement("inlineLrc");
-    QMusicPlayer.appendChild(showLrc);
-    QDomElement showDLrc = m_ddom->createElement("desktopLrc");
-    QMusicPlayer.appendChild(showDLrc);
-    QDomElement equalizer = m_ddom->createElement("equalizer");
-    QMusicPlayer.appendChild(equalizer);
-
+    QDomElement music = writeDom(musicPlayer, "music");
+    QDomElement settings = writeDom(musicPlayer, "settings");
+    QDomElement backgroundSkin = writeDom(musicPlayer, "backgroundSkin");
+    QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
+    QDomElement showDLrc = writeDom(musicPlayer, "desktopLrc");
+    QDomElement equalizer = writeDom(musicPlayer, "equalizer");
     //Class B
-    QDomElement playMode = m_ddom->createElement("playMode");
-    playMode.setAttribute("value",playModeChoiced);
-    music.appendChild(playMode);
-    QDomElement playVolume = m_ddom->createElement("playVolume");
-    playVolume.setAttribute("value",volumeChoiced);
-    music.appendChild(playVolume);
+    writeDomElement(music, "playMode", "value", playModeChoiced);
+    writeDomElement(music, "playVolume", "value", volumeChoiced);
 
-    QDomElement play3DMusic = m_ddom->createElement("play3DMusic");
-    play3DMusic.setAttribute("value",play3DMusicChoiced);
-    settings.appendChild(play3DMusic);
-    QDomElement language = m_ddom->createElement("language");
-    language.setAttribute("value",languageIndexChoiced);
-    settings.appendChild(language);
-    QDomElement autoPlay = m_ddom->createElement("autoPlay");
-    autoPlay.setAttribute("value",autoPlayChoiced);
-    settings.appendChild(autoPlay);
-    QDomElement closeEvent = m_ddom->createElement("closeEvent");
-    closeEvent.setAttribute("value",closeEventChoiced);
-    settings.appendChild(closeEvent);
-    QDomElement lastPlayIndex = m_ddom->createElement("lastPlayIndex");
-    lastPlayIndex.setAttribute("value",lastPlayIndexChoiced[0]);
-    QDomText lastPlayIndextext = m_ddom->createTextNode(QString("%1,%2").arg(
-                lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
-    lastPlayIndex.appendChild(lastPlayIndextext);
-    settings.appendChild(lastPlayIndex);
-    ///////////////////////////////////////////////////////////////////////////
-    QDomElement timeAutoIndex = m_ddom->createElement("timeAutoIndex");
-    timeAutoIndex.setAttribute("value",timeAutoIndexChoiced);
-    settings.appendChild(timeAutoIndex);
-    QDomElement timeAutoPlay = m_ddom->createElement("timeAutoPlay");
-    timeAutoPlay.setAttribute("value",timeAutoPlayChoiced);
-    settings.appendChild(timeAutoPlay);
-    QDomElement timeAutoPlayHour = m_ddom->createElement("timeAutoPlayHour");
-    timeAutoPlayHour.setAttribute("value",timeAutoPlayHourChoiced);
-    settings.appendChild(timeAutoPlayHour);
-    QDomElement timeAutoPlaySecond = m_ddom->createElement("timeAutoPlaySecond");
-    timeAutoPlaySecond.setAttribute("value",timeAutoPlaySecondChoiced);
-    settings.appendChild(timeAutoPlaySecond);
-    QDomElement timeAutoPlayRepeat = m_ddom->createElement("timeAutoPlayRepeat");
-    timeAutoPlayRepeat.setAttribute("value",timeAutoPlayRepeatChoiced);
-    settings.appendChild(timeAutoPlayRepeat);
-    QDomElement timeAutoPlayItemIndex = m_ddom->createElement("timeAutoPlayItemIndex");
-    timeAutoPlayItemIndex.setAttribute("value",timeAutoPlayItemIndexChoiced);
-    settings.appendChild(timeAutoPlayItemIndex);
-    QDomElement timeAutoPlaySongIndex = m_ddom->createElement("timeAutoPlaySongIndex");
-    timeAutoPlaySongIndex.setAttribute("value",timeAutoPlaySongIndexChoiced);
-    settings.appendChild(timeAutoPlaySongIndex);
-    QDomElement timeAutoStop = m_ddom->createElement("timeAutoStop");
-    timeAutoStop.setAttribute("value",timeAutoStopChoiced);
-    settings.appendChild(timeAutoStop);
-    QDomElement timeAutoStopHour = m_ddom->createElement("timeAutoStopHour");
-    timeAutoStopHour.setAttribute("value",timeAutoStopHourChoiced);
-    settings.appendChild(timeAutoStopHour);
-    QDomElement timeAutoStopSecond = m_ddom->createElement("timeAutoStopSecond");
-    timeAutoStopSecond.setAttribute("value",timeAutoStopSecondChoiced);
-    settings.appendChild(timeAutoStopSecond);
-    QDomElement timeAutoStopRepeat = m_ddom->createElement("timeAutoStopRepeat");
-    timeAutoStopRepeat.setAttribute("value",timeAutoStopRepeatChoiced);
-    settings.appendChild(timeAutoStopRepeat);
-    QDomElement timeAutoShutdown = m_ddom->createElement("timeAutoShutdown");
-    timeAutoShutdown.setAttribute("value",timeAutoShutdownChoiced);
-    settings.appendChild(timeAutoShutdown);
-    QDomElement timeAutoShutdownHour = m_ddom->createElement("timeAutoShutdownHour");
-    timeAutoShutdownHour.setAttribute("value",timeAutoShutdownHourChoiced);
-    settings.appendChild(timeAutoShutdownHour);
-    QDomElement timeAutoShutdownSecond = m_ddom->createElement("timeAutoShutdownSecond");
-    timeAutoShutdownSecond.setAttribute("value",timeAutoShutdownSecondChoiced);
-    settings.appendChild(timeAutoShutdownSecond);
-    QDomElement timeAutoShutdownRepeat = m_ddom->createElement("timeAutoShutdownRepeat");
-    timeAutoShutdownRepeat.setAttribute("value",timeAutoShutdownRepeatChoiced);
-    settings.appendChild(timeAutoShutdownRepeat);
+    writeDomElement(settings, "play3DMusic", "value", play3DMusicChoiced);
+    writeDomElement(settings, "language", "value", languageIndexChoiced);
+    writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
+    writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
+    writeDomEleText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+          QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
     ///////////////////////////////////////////////////////////////////////////
 
-    QDomElement bgTheme = m_ddom->createElement("bgTheme");
-    bgTheme.setAttribute("value",bgThemeChoiced);
-    backgroundSkin.appendChild(bgTheme);
-    QDomElement bgTransparent = m_ddom->createElement("bgTransparent");
-    bgTransparent.setAttribute("value",bgTransparentChoiced);
-    backgroundSkin.appendChild(bgTransparent);
+    writeDomElement(settings, "timeAutoIndex", "value", timeAutoIndexChoiced);
+    writeDomElement(settings, "timeAutoPlay", "value", timeAutoPlayChoiced);
+    writeDomElement(settings, "timeAutoPlayHour", "value", timeAutoPlayHourChoiced);
+    writeDomElement(settings, "timeAutoPlaySecond", "value", timeAutoPlaySecondChoiced);
+    writeDomElement(settings, "timeAutoPlayRepeat", "value", timeAutoPlayRepeatChoiced);
+    writeDomElement(settings, "timeAutoPlayItemIndex", "value", timeAutoPlayItemIndexChoiced);
+    writeDomElement(settings, "timeAutoPlaySongIndex", "value", timeAutoPlaySongIndexChoiced);
+    writeDomElement(settings, "timeAutoStop", "value", timeAutoStopChoiced);
+    writeDomElement(settings, "timeAutoStopHour", "value", timeAutoStopHourChoiced);
+    writeDomElement(settings, "timeAutoStopSecond", "value", timeAutoStopSecondChoiced);
+    writeDomElement(settings, "timeAutoStopRepeat", "value", timeAutoStopRepeatChoiced);
+    writeDomElement(settings, "timeAutoShutdown", "value", timeAutoShutdownChoiced);
+    writeDomElement(settings, "timeAutoShutdownHour", "value", timeAutoShutdownHourChoiced);
+    writeDomElement(settings, "timeAutoShutdownSecond", "value", timeAutoShutdownSecondChoiced);
+    writeDomElement(settings, "timeAutoShutdownRepeat", "value", timeAutoShutdownRepeatChoiced);
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    writeDomElement(backgroundSkin, "bgTheme", "value", bgThemeChoiced);
+    writeDomElement(backgroundSkin, "bgTransparent", "value", bgTransparentChoiced);
 
     ///////////////////////////////////////////////
-    QDomElement showInlineLrc = m_ddom->createElement("showInlineLrc");
-    showInlineLrc.setAttribute("value",showInlineLrcChoiced);
-    showLrc.appendChild(showInlineLrc);
-    QDomElement lrcColor = m_ddom->createElement("lrcColor");
-    lrcColor.setAttribute("value",lrcColorChoiced);
-    showLrc.appendChild(lrcColor);
-    QDomElement lrcSize = m_ddom->createElement("lrcSize");
-    lrcSize.setAttribute("value",lrcSizeChoiced);
-    showLrc.appendChild(lrcSize);
-    QDomElement lrcFamily = m_ddom->createElement("lrcFamily");
-    lrcFamily.setAttribute("value",lrcFamilyChoiced);
-    showLrc.appendChild(lrcFamily);
-    QDomElement lrcType = m_ddom->createElement("lrcType");
-    lrcType.setAttribute("value",lrcTypeChoiced);
-    showLrc.appendChild(lrcType);
-    QDomElement lrcTransparent = m_ddom->createElement("lrcTransparent");
-    lrcTransparent.setAttribute("value",lrcTransparentChoiced);
-    showLrc.appendChild(lrcTransparent);
-    QDomElement lrcFgColor = m_ddom->createElement("lrcFgColor");
-    lrcFgColor.setAttribute("value",QString("%1,%2,%3").arg(lrcFgColorChoiced.red())
-                          .arg(lrcFgColorChoiced.green()).arg(lrcFgColorChoiced.blue()));
-    showLrc.appendChild(lrcFgColor);
-    QDomElement lrcBgColor = m_ddom->createElement("lrcBgColor");
-    lrcBgColor.setAttribute("value",QString("%1,%2,%3").arg(lrcBgColorChoiced.red())
-                          .arg(lrcBgColorChoiced.green()).arg(lrcBgColorChoiced.blue()));
-    showLrc.appendChild(lrcBgColor);
+
+    writeDomElement(showLrc, "showInlineLrc", "value", showInlineLrcChoiced);
+    writeDomElement(showLrc, "lrcColor", "value", lrcColorChoiced);
+    writeDomElement(showLrc, "lrcSize", "value", lrcSizeChoiced);
+    writeDomElement(showLrc, "lrcFamily", "value", lrcFamilyChoiced);
+    writeDomElement(showLrc, "lrcType", "value", lrcTypeChoiced);
+    writeDomElement(showLrc, "lrcTransparent", "value", lrcTransparentChoiced);
+    writeDomElement(showLrc, "lrcFgColor", "value", QString("%1,%2,%3").arg(lrcFgColorChoiced.red())
+                                        .arg(lrcFgColorChoiced.green()).arg(lrcFgColorChoiced.blue()));
+    writeDomElement(showLrc, "lrcBgColor", "value", QString("%1,%2,%3").arg(lrcBgColorChoiced.red())
+                                        .arg(lrcBgColorChoiced.green()).arg(lrcBgColorChoiced.blue()));
 
     ///////////////////////////////////////////////
-    QDomElement showDesktopLrc = m_ddom->createElement("showDesktopLrc");
-    showDesktopLrc.setAttribute("value",showDesktopLrcChoiced);
-    showDLrc.appendChild(showDesktopLrc);
-    QDomElement lrcDColor = m_ddom->createElement("lrcDColor");
-    lrcDColor.setAttribute("value",DLrcColorChoiced);
-    showDLrc.appendChild(lrcDColor);
-    QDomElement lrcDSize = m_ddom->createElement("lrcDSize");
-    lrcDSize.setAttribute("value",DLrcSizeChoiced);
-    showDLrc.appendChild(lrcDSize);
-    QDomElement lrcDFamily = m_ddom->createElement("lrcDFamily");
-    lrcDFamily.setAttribute("value",DLrcFamilyChoiced);
-    showDLrc.appendChild(lrcDFamily);
-    QDomElement lrcDType = m_ddom->createElement("lrcDType");
-    lrcDType.setAttribute("value",DLrcTypeChoiced);
-    showDLrc.appendChild(lrcDType);
-    QDomElement lrcDTransparent = m_ddom->createElement("lrcDTransparent");
-    lrcDTransparent.setAttribute("value",DLrcTransparentChoiced);
-    showDLrc.appendChild(lrcDTransparent);
-    QDomElement lrcDFgColor = m_ddom->createElement("lrcDFgColor");
-    lrcDFgColor.setAttribute("value",QString("%1,%2,%3").arg(DLrcFgColorChoiced.red())
-                          .arg(DLrcFgColorChoiced.green()).arg(DLrcFgColorChoiced.blue()));
-    showDLrc.appendChild(lrcDFgColor);
-    QDomElement lrcDBgColor = m_ddom->createElement("lrcDBgColor");
-    lrcDBgColor.setAttribute("value",QString("%1,%2,%3").arg(DLrcBgColorChoiced.red())
-                          .arg(DLrcBgColorChoiced.green()).arg(DLrcBgColorChoiced.blue()));
-    showDLrc.appendChild(lrcDBgColor);
-    QDomElement lrcDLocked = m_ddom->createElement("lrcDLocked");
-    lrcDLocked.setAttribute("value",DLrcLockedChoiced);
-    showDLrc.appendChild(lrcDLocked);
-    QDomElement lrcDGeometry = m_ddom->createElement("lrcDGeometry");
-    lrcDGeometry.setAttribute("value",QString("%1,%2,%3,%4").arg(DLrcGeometry.left())
-                           .arg(DLrcGeometry.top()).arg(DLrcGeometry.width())
-                           .arg(DLrcGeometry.height()));
-    showDLrc.appendChild(lrcDGeometry);
 
-    QDomElement equalizerEnale = m_ddom->createElement("equalizerEnale");
-    equalizerEnale.setAttribute("value",equalizerEnableChoiced);
-    equalizer.appendChild(equalizerEnale);
-    QDomElement equalizerIndex = m_ddom->createElement("equalizerIndex");
-    equalizerIndex.setAttribute("value",equalizerIndexChoiced);
-    equalizer.appendChild(equalizerIndex);
-    QDomElement sEqualizerIndex = m_ddom->createElement("sEqualizerIndex");
-    sEqualizerIndex.setAttribute("value",sEqualizerIndexChoiced);
-    equalizer.appendChild(sEqualizerIndex);
-    QDomElement equalizerValue = m_ddom->createElement("equalizerValue");
-    equalizerValue.setAttribute("value",equalizerValueChoiced);
-    equalizer.appendChild(equalizerValue);
+    writeDomElement(showDLrc, "showDesktopLrc", "value", showDesktopLrcChoiced);
+    writeDomElement(showDLrc, "lrcDColor", "value", DLrcColorChoiced);
+    writeDomElement(showDLrc, "lrcDSize", "value", DLrcSizeChoiced);
+    writeDomElement(showDLrc, "lrcDFamily", "value", DLrcFamilyChoiced);
+    writeDomElement(showDLrc, "lrcDType", "value", DLrcTypeChoiced);
+    writeDomElement(showDLrc, "lrcDTransparent", "value", DLrcTransparentChoiced);
+    writeDomElement(showDLrc, "lrcDFgColor", "value", QString("%1,%2,%3").arg(DLrcFgColorChoiced.red())
+                                         .arg(DLrcFgColorChoiced.green()).arg(DLrcFgColorChoiced.blue()));
+    writeDomElement(showDLrc, "lrcDBgColor", "value", QString("%1,%2,%3").arg(DLrcBgColorChoiced.red())
+                                        .arg(DLrcBgColorChoiced.green()).arg(DLrcBgColorChoiced.blue()));
+
+    writeDomElement(showDLrc, "lrcDLocked", "value", DLrcLockedChoiced);
+    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2,%3,%4").arg(DLrcGeometry.left())
+                                                     .arg(DLrcGeometry.top()).arg(DLrcGeometry.width())
+                                                     .arg(DLrcGeometry.height()));
+
+    ///////////////////////////////////////////////
+
+    writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
+    writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
+    writeDomElement(equalizer, "sEqualizerIndex", "value", sEqualizerIndexChoiced);
+    writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
+
     ///////////////////////////////////////////////
 
     //Write to file
