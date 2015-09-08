@@ -12,6 +12,7 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
+class QMediaPlayer;
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
@@ -40,6 +41,8 @@ public slots:
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     void addSearchMusicToPlayList(int row);
+    void listenToMusic(int row);
+    QMediaPlayer *m_audition;
 
 };
 

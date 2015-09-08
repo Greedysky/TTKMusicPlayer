@@ -3,8 +3,10 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
+#include <QMediaPlayer>
+
 MusicPlayer::MusicPlayer(QObject *parent)
-    : QObject(parent)
+    : QObject(parent), m_audition(NULL)
 {
     m_playlist = NULL;
     m_music = NULL;
@@ -22,6 +24,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
 
 MusicPlayer::~MusicPlayer()
 {
+    delete m_audition;
     delete m_equalizer;
     m_music->Close();
     m_music->Release();
@@ -70,6 +73,36 @@ void MusicPlayer::setPlay3DMusicFlag(bool &flag)
     flag = m_play3DMusic;
     m_play3DMusic = !m_play3DMusic;
     m_music->EnableEcho(m_play3DMusic);
+}
+
+void MusicPlayer::addAuditionUrl(const QString &url)
+{
+    addAuditionUrl(QUrl(url));
+}
+
+void MusicPlayer::addAuditionUrl(const QUrl &url)
+{
+    if(m_audition == NULL)
+    {
+        m_audition = new QMediaPlayer(this);
+    }
+    m_audition->setMedia(url);
+}
+
+void MusicPlayer::startAudition()
+{
+    if(m_audition)
+    {
+        m_audition->play();
+    }
+}
+
+void MusicPlayer::stopAudition()
+{
+    if(m_audition)
+    {
+        m_audition->stop();
+    }
 }
 
 #ifdef Q_OS_WIN32

@@ -28,7 +28,7 @@ public:
     void deleteAll();
     void startSearchSong(QueryType type, const QString &text);
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
-    inline MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
+    inline const MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
     void clearAllItems();

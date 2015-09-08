@@ -14,9 +14,10 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QButtonGroup>
+#include <QMediaPlayer>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
-    : MusicQueryTableWidget(parent)
+    : MusicQueryTableWidget(parent), m_audition(NULL)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -33,6 +34,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
+    delete m_audition;
     clearAllItems();
 }
 
@@ -106,6 +108,9 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
         case 5:
             musicDownloadLocal(row);
             break;
+        case 10:
+            listenToMusic(row);
+            break;
         default:
             break;
     }
@@ -133,9 +138,20 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
     int row = currentRow();
     switch( findActionGroup(action) )
     {
-        case 4:
+        case 4: listenToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
     }
+}
+
+void MusicSongSearchOnlineTableWidget::listenToMusic(int row)
+{
+    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    if(m_audition == NULL)
+    {
+        m_audition = new QMediaPlayer(this);
+    }
+    m_audition->setMedia(QUrl(musicSongInfo[row][0]));
+    m_audition->play();
 }
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
@@ -285,7 +301,10 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     {
         switch(index)
         {
-            case 0:case 1:
+            case 0:
+                m_searchTableWidget->listCellClicked(row, 10);
+                break;
+            case 1:
                 m_searchTableWidget->listCellClicked(row, 4);
                 break;
             case 2:

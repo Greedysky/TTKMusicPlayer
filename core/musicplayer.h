@@ -16,6 +16,7 @@
     #include <Windows.h>
 #endif
 
+class QMediaPlayer;
 class MusicPlaylist;
 
 class MUSIC_CORE_EXPORT MusicPlayer : public QObject
@@ -42,6 +43,11 @@ public:
     bool isMuted() const;
 
     void setPlay3DMusicFlag(bool &flag);
+
+    void addAuditionUrl(const QString &url);
+    void addAuditionUrl(const QUrl &url);
+    void startAudition();
+    void stopAudition();
 
 signals:
     void stateChanged();
@@ -80,6 +86,7 @@ public slots:
 #endif
 
 protected:
+    QMediaPlayer *m_audition;
     MusicEqualizer *m_equalizer;
     MusicPlaylist *m_playlist;
     State m_state;
