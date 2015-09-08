@@ -29,6 +29,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(5,26);
     setTransparent(255);
 
+    m_previousAuditionRow = -1;
     M_Connection->setValue("MusicSongSearchOnlineTableWidget", this);
 }
 
@@ -69,6 +70,7 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(Qt::DisplayRole, false);
+    item->setData(Qt::UserRole + 1, static_cast<int>(Qt::transparent));
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
@@ -152,6 +154,11 @@ void MusicSongSearchOnlineTableWidget::listenToMusic(int row)
     }
     m_audition->setMedia(QUrl(musicSongInfo[row][0]));
     m_audition->play();
+    if(m_previousAuditionRow != -1)
+    {
+        item(m_previousAuditionRow, 0)->setData(Qt::UserRole + 1, static_cast<int>(Qt::transparent));
+    }
+    item(m_previousAuditionRow = row, i)->setData(Qt::UserRole + 1, static_cast<int>(Qt::yellow));
 }
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)

@@ -42,7 +42,9 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     void addSearchMusicToPlayList(int row);
     void listenToMusic(int row);
+
     QMediaPlayer *m_audition;
+    int m_previousAuditionRow;
 
 };
 
