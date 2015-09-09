@@ -70,7 +70,7 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(Qt::DisplayRole, false);
-    item->setData(Qt::UserRole + 1, static_cast<int>(Qt::transparent));
+    item->setData(AUDITION_ROLE, AUDITION_STOP);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
@@ -110,12 +110,10 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
         case 5:
             musicDownloadLocal(row);
             break;
-        case 10:
-            listenToMusic(row);
-            break;
         default:
             break;
     }
+    emit auditionIsPlaying( item(row, 0)->data(AUDITION_ROLE).toInt() == AUDITION_STOP );
 }
 
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -136,16 +134,15 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
 void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 {
     MusicQueryTableWidget::actionGroupClick(action);
-
     int row = currentRow();
     switch( findActionGroup(action) )
     {
-        case 4: listenToMusic(row); break;
+        case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
     }
 }
 
-void MusicSongSearchOnlineTableWidget::listenToMusic(int row)
+void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     if(m_audition == NULL)
@@ -156,9 +153,20 @@ void MusicSongSearchOnlineTableWidget::listenToMusic(int row)
     m_audition->play();
     if(m_previousAuditionRow != -1)
     {
-        item(m_previousAuditionRow, 0)->setData(Qt::UserRole + 1, static_cast<int>(Qt::transparent));
+        item(m_previousAuditionRow, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
     }
-    item(m_previousAuditionRow = row, 0)->setData(Qt::UserRole + 1, static_cast<int>(Qt::yellow));
+    item(m_previousAuditionRow = row, 0)->setData(AUDITION_ROLE, AUDITION_PLAY);
+    emit auditionIsPlaying(false);
+}
+
+void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
+{
+    if(m_audition)
+    {
+        m_audition->stop();
+    }
+    item(row, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
+    emit auditionIsPlaying(true);
 }
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
@@ -232,10 +240,12 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     setLayout(boxLayout);
 
     createToolWidget();
+    connect(m_searchTableWidget, SIGNAL(auditionIsPlaying(bool)), SLOT(auditionIsPlaying(bool)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 {
+    delete m_playButton;
     delete m_textLabel;
     delete m_searchTableWidget;
 }
@@ -272,10 +282,10 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     Label3->setStyleSheet(MusicUIObject::MCustomStyle17);
     Label3->setGeometry(435, 40, 60, 20);
 
-    QPushButton *playButton = new QPushButton(tr("Play"), this);
-    playButton->setGeometry(295, 5, 70, 20);
-    playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_playButton = new QPushButton(tr("Play"), this);
+    m_playButton->setGeometry(295, 5, 70, 20);
+    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setGeometry(370, 5, 70, 20);
@@ -288,7 +298,7 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(playButton, 0);
+    buttonGroup->addButton(m_playButton, 0);
     buttonGroup->addButton(addButton, 1);
     buttonGroup->addButton(downloadButton, 2);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
@@ -309,7 +319,8 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         switch(index)
         {
             case 0:
-                m_searchTableWidget->listCellClicked(row, 10);
+                m_playButton->text() == tr("Play") ? m_searchTableWidget->auditionToMusic(row)
+                                                   : m_searchTableWidget->auditionToMusicStop(row);
                 break;
             case 1:
                 m_searchTableWidget->listCellClicked(row, 4);
@@ -321,4 +332,9 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
                 break;
         }
     }
+}
+
+void MusicSongSearchOnlineWidget::auditionIsPlaying(bool play)
+{
+    m_playButton->setText(play ? tr("Play") : tr("Stop"));
 }

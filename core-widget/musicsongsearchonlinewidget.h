@@ -12,6 +12,10 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
+#define AUDITION_ROLE Qt::UserRole + 1
+#define AUDITION_PLAY static_cast<int>(Qt::yellow)
+#define AUDITION_STOP static_cast<int>(Qt::transparent)
+
 class QMediaPlayer;
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
@@ -26,8 +30,12 @@ public:
     void startSearchQuery(const QString &text);
     void musicDownloadLocal(int row);
 
+    void auditionToMusic(int row);
+    void auditionToMusicStop(int row);
+
 signals:
     void muiscSongToPlayListChanged(const QString &name);
+    void auditionIsPlaying(bool play);
 
 public slots:
     void listCellClicked(int row, int column);
@@ -41,7 +49,6 @@ public slots:
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     void addSearchMusicToPlayList(int row);
-    void listenToMusic(int row);
 
     QMediaPlayer *m_audition;
     int m_previousAuditionRow;
@@ -63,10 +70,12 @@ public:
 
 public slots:
     void buttonClicked(int index);
+    void auditionIsPlaying(bool play);
 
 protected:
     void createToolWidget();
     QLabel *m_textLabel;
+    QPushButton *m_playButton;
     MusicSongSearchOnlineTableWidget *m_searchTableWidget;
 
 };

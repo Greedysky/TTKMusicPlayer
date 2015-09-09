@@ -1287,7 +1287,7 @@
 <context>
     <name>MusicLocalSongSearchPopWidget</name>
     <message>
-        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="64"/>
+        <location filename="../localsearch/musiclocalsongsearchpopwidget.cpp" line="63"/>
         <source>clear</source>
         <translation>清空历史记录</translation>
     </message>
@@ -1937,7 +1937,7 @@
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="68"/>
         <source>Please Select One Item First!</source>
-        <translation >请选择某一条记录！</translation>
+        <translation>请选择某一条记录！</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="82"/>
@@ -2029,18 +2029,18 @@
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="126"/>
         <source>musicDownload</source>
-        <translation >下载</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="132"/>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="133"/>
         <source>search &apos;%1&apos;</source>
-        <translation >搜索 '%1'</translation>
+        <translation>搜索 &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../core-widget/musicquerytablewidget.cpp" line="134"/>
         <source>search &apos;%1 - %2&apos;</source>
-        <translation >搜索 '%1 - %2'</translation>
+        <translation>搜索 &apos;%1 - %2&apos;</translation>
     </message>
 </context>
 <context>
@@ -2504,62 +2504,69 @@
 <context>
     <name>MusicSongSearchOnlineTableWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="120"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="125"/>
         <source>musicPlay</source>
-        <translation >试听音乐</translation>
+        <translation>试听音乐</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="121"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="126"/>
         <source>musicAdd</source>
-        <translation >添加音乐</translation>
+        <translation>添加音乐</translation>
     </message>
 </context>
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="222"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="256"/>
         <source> find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>　搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相关歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="229"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="263"/>
         <source> find no result</source>
-        <translation >没有搜到相关内容</translation>
+        <translation>没有搜到相关内容</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="241"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="275"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="244"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="278"/>
         <source>Artist</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="247"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="281"/>
         <source>Operator</source>
         <translation>相关操作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="251"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="285"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="322"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="339"/>
         <source>Play</source>
-        <translation>播放</translation>
+        <translation>试听</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="256"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="290"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="261"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="295"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="279"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="313"/>
         <source>Please Select One Item First!</source>
-        <translation >请选择某一条记录！</translation>
+        <translation>请选择某一条记录！</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="339"/>
+        <source>Stop</source>
+        <translation>暂停</translation>
     </message>
 </context>
 <context>
