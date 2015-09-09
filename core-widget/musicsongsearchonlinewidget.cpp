@@ -146,6 +146,10 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    if(musicSongInfo.isEmpty() || row < 0)
+    {
+        return;
+    }
     if(m_audition == NULL)
     {
         m_audition = new QMediaPlayer(this);
@@ -165,6 +169,10 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
     if(m_audition)
     {
         m_audition->stop();
+    }
+    if(row < 0)
+    {
+        return;
     }
     item(row, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
     emit auditionIsPlaying(true);
@@ -187,6 +195,10 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     if(!M_NETWORK->isOnline())
     {   //no network connection
         emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
+    if(row < 0)
+    {
         return;
     }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
@@ -222,7 +234,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0)
+    if(column <= 0 || row < 0)
     {
         return;
     }

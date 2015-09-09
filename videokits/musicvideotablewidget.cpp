@@ -114,6 +114,10 @@ void MusicVideoTableWidget::listCellClicked(int row,int col)
 
 void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
+    if(row < 0)
+    {
+        return;
+    }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
     MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
@@ -123,7 +127,7 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0)
+    if(column <= 0 || row < 0)
     {
         return;
     }

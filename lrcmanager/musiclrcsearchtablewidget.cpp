@@ -68,6 +68,10 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
 
 void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 {
+    if(row < 0)
+    {
+        return;
+    }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
     MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfo[row][1],
