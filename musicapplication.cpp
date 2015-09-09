@@ -138,9 +138,8 @@ void MusicApplication::dropEvent(QDropEvent *event)
     const QMimeData *data = event->mimeData();
     QStringList fileList;
     QString suffix;
-    QStringList sfx;
-    sfx<<"mp3"<<"mp2"<<"mp1"<<"wav"<<"ogg"<<"flac"
-       <<"ac3"<<"aac"<<"oga"<<"pcm";
+    QStringList sfx = MusicPlayer::supportFormatsString();
+
     foreach(QUrl url, data->urls())
     {
         suffix = QFileInfo(url.toLocalFile()).suffix();
@@ -636,11 +635,8 @@ void MusicApplication::musicImportSongsOnlyFile()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles );
     dialog.setViewMode(QFileDialog::Detail);
-    QStringList varietyMusic;
-    varietyMusic <<"Mp3 File(*.mp3)"<<"Mp2 File(*.mp2)"<<"Mp1 File(*.mp1)"<<"Wav File(*.wav)"
-                 <<"Ogg File(*.ogg)"<<"Flac File(*.flac)"<<"Ac3 File(*.ac3)"<<"Aac File(*.aac)"
-                 <<"Oga File(*.oga)"<<"Pcm File(*.pcm)";
-    dialog.setNameFilters(varietyMusic);
+    dialog.setNameFilters( MusicPlayer::supportFormatsFilterString() );
+
     if(dialog.exec())
     {
         musicImportSongsSettingPath(dialog.selectedFiles());
@@ -659,7 +655,9 @@ void MusicApplication::musicImportSongsOnlyDir()
         for(int i=0; i<file.count(); ++i)
         {
             if(file[i].isFile())
-               fileList<<file[i].absoluteFilePath();
+            {
+               fileList << file[i].absoluteFilePath();
+            }
         }
         musicImportSongsSettingPath(fileList);
     }

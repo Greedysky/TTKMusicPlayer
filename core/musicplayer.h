@@ -49,6 +49,9 @@ public:
     void startAudition();
     void stopAudition();
 
+    static QStringList supportFormatsString();
+    static QStringList supportFormatsFilterString();
+
 signals:
     void stateChanged();
     void stateChanged(MusicPlayer::State newState);
