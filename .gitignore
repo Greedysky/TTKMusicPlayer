@@ -1,5 +1,8 @@
 *.user
 QMusicPlayer.uxf
-what's new.txt
-kuwo api.txt
 MusicPlayer.aps
+build-MusicPlayer-*/
+*.0-pre1
+*.3-pre1
+*.user.*
+*.autosave
