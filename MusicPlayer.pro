@@ -21,6 +21,7 @@ LIBS += -L"./MPlugins/" -llibzplay
 DEFINES += MUSIC_LIBRARY
 
 INCLUDEPATH += $$PWD/core \
+               $$PWD/core\network \
                $$PWD/core-widget \
                $$PWD/localsearch \
                $$PWD/lrcmanager \
@@ -80,21 +81,22 @@ SOURCES += \
     toolsetswidget/musicfileinformationwidget.cpp \
     toolsetswidget/musicspectrumwidget.cpp \
     toolsetswidget/musicdesktopwallpaperwidget.cpp \
+    core/network/musicdownloadquerythread.cpp \
+    core/network/musicdownloadthreadabstract.cpp \
+    core/network/musicdata2downloadthread.cpp \
+    core/network/musicdatadownloadthread.cpp \
+    core/network/musictextdownloadthread.cpp \
+    core/network/musicbgthemedownload.cpp \
+    core/network/musicnetworkthread.cpp \
     core/musictime.cpp \
     core/musicplayer.cpp \
     core/musicplaylist.cpp \
     core/musicequalizer.cpp \
     core/musicabstractxml.cpp \
     core/musictimerautoobject.cpp \
-    core/musicdownloadquerythread.cpp \
-    core/musicdownloadthreadabstract.cpp \
-    core/musicdata2downloadthread.cpp \
-    core/musicdatadownloadthread.cpp \
-    core/musictextdownloadthread.cpp \
     core/musicxmlconfigmanager.cpp \
     core/musiclocalsongsmanagerthread.cpp \
     core/musicfileinformation.cpp \
-    core/musicbgthemedownload.cpp \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
     core/musicconnectionpool.cpp \
@@ -172,15 +174,17 @@ HEADERS  += \
     toolsetswidget/musicfileinformationwidget.h \
     toolsetswidget/musicspectrumwidget.h \
     toolsetswidget/musicdesktopwallpaperwidget.h \
+    core/network/musicdownloadquerythread.h \
+    core/network/musicdownloadthreadabstract.h \
+    core/network/musicdata2downloadthread.h \
+    core/network/musicdatadownloadthread.h \
+    core/network/musictextdownloadthread.h \
+    core/network/musicbgthemedownload.h \
+    core/network/musicnetworkthread.h \
     core/musicversion.h \
     core/musictime.h \
     core/musicsonginformation.h \
     core/musicxmlconfigmanager.h \
-    core/musicdownloadquerythread.h \
-    core/musicdownloadthreadabstract.h \
-    core/musicdata2downloadthread.h \
-    core/musicdatadownloadthread.h \
-    core/musictextdownloadthread.h \
     core/musicplayer.h \
     core/musicplaylist.h \
     core/musicequalizer.h \
@@ -189,7 +193,6 @@ HEADERS  += \
     core/musiclocalsongsmanagerthread.h \
     core/musiclibzplay.h \
     core/musicfileinformation.h \
-    core/musicbgthemedownload.h \
     core/musicbgthememanager.h \
     core/musicsettingmanager.h \
     core/musicdesktopwallpaperthread.h \
