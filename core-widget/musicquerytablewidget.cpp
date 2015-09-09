@@ -59,6 +59,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
 
 MusicQueryTableWidget::~MusicQueryTableWidget()
 {
+    delete m_downLoadManager;
     delete m_actionGroup;
     delete m_checkBoxDelegate;
 }

@@ -19,23 +19,22 @@ MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
 
 MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
 {
-    deleteAll();///The release of all the objects
-}
-
-void MusicDownLoadQueryThread::deleteAll()
-{
     M_Connection->disConnect("MusicDownLoadQueryThread");
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = NULL;
-    }
+    deleteAll();///The release of all the objects
     if(m_manager)
     {
         m_manager->deleteLater();
         m_manager = NULL;
     }
-    this->deleteLater();
+}
+
+void MusicDownLoadQueryThread::deleteAll()
+{
+    if(m_reply)
+    {
+        m_reply->deleteLater();
+        m_reply = NULL;
+    }
 }
 
 void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &text)
@@ -58,6 +57,10 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
 
 void MusicDownLoadQueryThread::searchFinshed()
 {
+    if(m_reply == NULL)
+    {
+        return;
+    }
     m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(m_reply->error() == QNetworkReply::NoError)
     {

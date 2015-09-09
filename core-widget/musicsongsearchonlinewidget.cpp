@@ -3,6 +3,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
+#include "musicnetworkthread.h"
 #include "musicmydownloadrecordobject.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
@@ -171,6 +172,11 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     emit showDownLoadInfoFor(MusicObject::Buffing);
     musicDownloadLocal(row);
     emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
@@ -178,6 +184,11 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;

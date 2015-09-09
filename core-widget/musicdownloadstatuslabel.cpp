@@ -4,6 +4,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
+#include "musicnetworkthread.h"
 #include "musicobject.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
@@ -21,6 +22,7 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
 
     M_Connection->setValue("MusicDownloadStatusLabel", this);
     M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
+    M_Connection->connect("MusicNetworkThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
@@ -67,6 +69,12 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
        m_parentWidget->musicLoadCurrentSongLrc();
     }
     m_movieLabel->clear();
+}
+
+void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
+{
+    state ? showDownLoadInfoFinished( QString() )
+          : showDownLoadInfoFor(MusicObject::DisConnection);
 }
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue() const
@@ -116,6 +124,11 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 
 void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     MStringLists musicSongInfo(m_downloadLrcThread->getMusicSongInfo());
     static int counter = 5;
     if(!musicSongInfo.isEmpty())

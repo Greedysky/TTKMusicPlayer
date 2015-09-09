@@ -1,10 +1,11 @@
 #include "musicnetworkthread.h"
-
+#include "musicconnectionpool.h"
 #include <QDebug>
 
 MusicNetworkThread::MusicNetworkThread(QObject *parent)
     :QObject(parent), m_networkState(true)
 {
+    M_Connection->setValue("MusicNetworkThread", this);
     m_client = NULL;
     connect(&m_timer, SIGNAL(timeout()), SLOT(timerOut()));
     m_timer.start(NETWORK_DETECT_INTERVAL);
@@ -33,8 +34,7 @@ void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketS
 
 void MusicNetworkThread::timerOut()
 {
-    disconnect(m_client);
-    m_client->deleteLater();
+    delete m_client;
     m_client = new QTcpSocket;
     connect(m_client, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
                       SLOT(socketStateChanged(QAbstractSocket::SocketState)));

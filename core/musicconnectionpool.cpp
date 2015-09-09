@@ -86,6 +86,13 @@ void MusicConnectionPool::connect(const QString &from,
         QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
                                 SLOT(musicResearchButtonSearched(QString)));
     }
+
+    if(from == "MusicNetworkThread" && to == "MusicDownloadStatusLabel" )
+    {
+        QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
+                                SLOT(networkConnectionStateChanged(bool)));
+    }
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)
