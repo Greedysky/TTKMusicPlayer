@@ -114,6 +114,11 @@ void MusicSongsSummarizied::updateToolStyle()
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
 }
 
+void MusicSongsSummarizied::setTransparent(int alpha)
+{
+    qDebug()<<alpha;
+}
+
 QString MusicSongsSummarizied::itemText(int row, int col) const
 {
     return m_mainSongLists[m_currentIndexs]->item(row,col)->text();

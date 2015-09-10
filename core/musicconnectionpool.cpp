@@ -93,6 +93,13 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(networkConnectionStateChanged(bool)));
     }
 
+    if(from == "MusicBackgroundSkinDialog" && to == "MusicSongsSummarizied" )
+    {
+        QObject::connect(first, SIGNAL(valueChanged(int)), second,
+                                SLOT(setTransparent(int)));
+    }
+
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)

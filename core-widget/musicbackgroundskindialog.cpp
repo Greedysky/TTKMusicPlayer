@@ -2,9 +2,11 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "ui_musicbackgroundskindialog.h"
+#include "musicbgthememanager.h"
+#include "musicconnectionpool.h"
+
 #include <QFileDialog>
 #include <QColorDialog>
-#include "musicbgthememanager.h"
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     MusicAbstractMoveDialog(parent),
@@ -36,7 +38,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     this->addThemeListWidgetItem();
 
     connect(ui->bgTransparentSlider,SIGNAL(valueChanged(int)),parent,
-                                SLOT(musicBgTransparentChanged(int)));
+                                    SLOT(musicBgTransparentChanged(int)));
     connect(ui->themeListWidget,SIGNAL(currentTextChanged(QString)),parent,
                                 SLOT(musicBackgroundSkinChanged(QString)));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -45,6 +47,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     connect(ui->paletteButton,SIGNAL(clicked()),SLOT(showPaletteDialog()));
     connect(ui->customSkin,SIGNAL(clicked()),SLOT(showCustomSkinDialog()));
 
+    M_Connection->setValue("MusicBackgroundSkinDialog", ui->bgTransparentSliderR);
+    M_Connection->connect("MusicBackgroundSkinDialog", "MusicSongsSummarizied");
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()

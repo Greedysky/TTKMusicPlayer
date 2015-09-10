@@ -69,6 +69,7 @@ public slots:
                              QStringList &list);
     void updateArtPicture();
     void updateToolStyle();
+    void setTransparent(int alpha);
 
 protected:
     void changeItemIcon();
