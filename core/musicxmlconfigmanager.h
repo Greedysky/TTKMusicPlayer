@@ -39,6 +39,8 @@ public:
     { return readXmlByTagNameAndAttribute("bgTheme"); }
     inline QString readBackgroundTransparent() const
     { return readXmlByTagNameAndAttribute("bgTransparent"); }
+    inline QString readBackgroundListTransparent() const
+    { return readXmlByTagNameAndAttribute("bgListTransparent"); }
     inline QString readShowInlineLrc() const
     { return readXmlByTagNameAndAttribute("showInlineLrc"); }
     inline QString readShowDesktopLrc() const

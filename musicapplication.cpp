@@ -340,7 +340,8 @@ void MusicApplication::readXMLConfigFromText()
     //Set the current background color
     //Set the current alpha value
     m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
-                                   xml.readBackgroundTransparent().toInt());
+                                   xml.readBackgroundTransparent().toInt(),
+                                   xml.readBackgroundListTransparent().toInt());
     //////////////////////////////////////////////////////////////
     xml.readTimeAutoConfig();
     //Set the lrc color the user set
@@ -390,6 +391,7 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced,lastPlayIndexChoiced);
     M_SETTING->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBgSkin());
     M_SETTING->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
+    M_SETTING->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getListBgSkinAlpha());
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTree->getMusicAllSongsFileName(),

@@ -72,20 +72,11 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->windowClose,SIGNAL(clicked()), m_supperClass, SLOT(close()));
 }
 
-void MusicTopAreaWidget::setParameters(const QString &skin, int alpha)
+void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alphaR)
 {
     m_currentBgSkin = skin;
     musicBgTransparentChanged(m_alpha = alpha);
-}
-
-QString MusicTopAreaWidget::getBgSkin() const
-{
-    return m_currentBgSkin;
-}
-
-int MusicTopAreaWidget::getBgSkinAlpha() const
-{
-    return m_alpha;
+    m_listAlpha = alphaR;
 }
 
 void MusicTopAreaWidget::setTimerStop()
@@ -99,7 +90,7 @@ void MusicTopAreaWidget::musicShowSkinChangedWindow()
     {
         m_musicbgskin = new MusicBackgroundSkinDialog(this);
     }
-    m_musicbgskin->setCurrentBgTheme(m_currentBgSkin, m_alpha);
+    m_musicbgskin->setCurrentBgTheme(m_currentBgSkin, m_alpha, m_listAlpha);
     m_musicbgskin->exec();
 }
 

@@ -13,8 +13,10 @@
 
 #define M_SETTING (MusicSingleton<MusicSettingManager>::createInstance())
 
-class MUSIC_CORE_EXPORT MusicSettingManager
+class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
 {
+    Q_OBJECT
+    Q_ENUMS(ConfigType)
 public:
     enum ConfigType {
         Null = -1,
@@ -28,6 +30,7 @@ public:
         LastPlayIndexChoiced,
         BgThemeChoiced,
         BgTransparentChoiced,
+        BgListTransparentChoiced,
 
         ShowInlineLrcChoiced,
         ShowDesktopLrcChoiced,
@@ -68,7 +71,6 @@ public:
         TimerAutoShutdownHourChoiced,
         TimerAutoShutdownSecondChoiced,
         TimerAutoShutdownRepeatChoiced
-
     };
 
     ~MusicSettingManager(){}

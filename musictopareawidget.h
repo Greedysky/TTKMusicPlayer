@@ -29,9 +29,11 @@ public:
     ~MusicTopAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
-    void setParameters(const QString &skin, int alpha);
-    QString getBgSkin() const;
-    int getBgSkinAlpha() const;
+    void setParameters(const QString &skin, int alpha, int alphaR);
+    QString getBgSkin() const {return m_currentBgSkin;}
+    int getBgSkinAlpha() const {return m_alpha;}
+    int getListBgSkinAlpha() const {return m_listAlpha;}
+
     void setTimerStop();
     void showPlayStatus(bool status);
     void setLabelText(const QString &name) const;
@@ -72,6 +74,7 @@ protected:
 
     QString m_currentBgSkin;
     int m_alpha;
+    int m_listAlpha;
     QTimer m_pictureCarouselTimer;
     bool m_currentPlayStatus;
 

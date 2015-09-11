@@ -35,7 +35,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle01);
 
-    this->addThemeListWidgetItem();
+    addThemeListWidgetItem();
 
     connect(ui->bgTransparentSlider,SIGNAL(valueChanged(int)),parent,
                                     SLOT(musicBgTransparentChanged(int)));
@@ -75,7 +75,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     }
 }
 
-void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha)
+void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int alphaR)
 {
     //Set the current theme index
     for(int i=0; i<ui->themeListWidget->count(); ++i)
@@ -89,6 +89,7 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     }
     //Set the the slider bar value as what the alpha is
     ui->bgTransparentSlider->setValue(alpha);
+    ui->bgTransparentSliderR->setValue(alphaR);
 }
 
 void MusicBackgroundSkinDialog::updateBackground()

@@ -93,6 +93,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     QString bgThemeChoiced = M_SETTING->value(MusicSettingManager::BgThemeChoiced).toString();
     QString bgTransparentChoiced = M_SETTING->value(MusicSettingManager::BgTransparentChoiced).toString();
+    QString bgListTransparentChoiced = M_SETTING->value(MusicSettingManager::BgListTransparentChoiced).toString();
     QString showInlineLrcChoiced = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toString();
     QString showDesktopLrcChoiced = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toString();
     int lrcColorChoiced = M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt();
@@ -181,6 +182,7 @@ void MusicXMLConfigManager::writeXMLConfig()
 
     writeDomElement(backgroundSkin, "bgTheme", "value", bgThemeChoiced);
     writeDomElement(backgroundSkin, "bgTransparent", "value", bgTransparentChoiced);
+    writeDomElement(backgroundSkin, "bgListTransparent", "value", bgListTransparentChoiced);
 
     ///////////////////////////////////////////////
 

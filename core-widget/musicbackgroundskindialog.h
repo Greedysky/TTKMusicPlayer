@@ -22,9 +22,7 @@ public:
     explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
     virtual ~MusicBackgroundSkinDialog();
 
-    void clearAllItems();
-    void addThemeListWidgetItem();
-    void setCurrentBgTheme(const QString &theme,int alpha);
+    void setCurrentBgTheme(const QString &theme, int alpha, int alphaR);
     void updateBackground();
 
 public slots:
@@ -35,6 +33,8 @@ public slots:
     virtual int exec();
 
 protected:
+    void clearAllItems();
+    void addThemeListWidgetItem();
     Ui::MusicBackgroundSkinDialog *ui;
 
 };
