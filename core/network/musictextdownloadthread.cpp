@@ -1,5 +1,9 @@
 #include "musictextdownloadthread.h"
 
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QJsonParseError>
+
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
                                                  QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, parent)
@@ -36,21 +40,32 @@ void MusicTextDownLoadThread::downLoadFinished()
     {
         return;
     }
-
-    QString s(m_reply->readAll());
-
-    if(!s.contains("\"code\":2"))
+    ///Get all the data obtained by request
+    QByteArray bytes = m_reply->readAll();
+    if(!bytes.contains("\"code\":2"))
     {
-        if(s.contains("\"lrc\":"))
+        QJsonParseError jsonError;
+        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
+        ///Put the data into Json
+        if(jsonError.error != QJsonParseError::NoError ||
+           !parseDoucment.isObject())
         {
-            s.replace("\\r",""); //remove the return line
-            s.replace("\\n","\n"); //ttop api
+            deleteAll();
+            return ;
         }
 
-        m_file->write(s.toUtf8());
-        m_file->flush();
-        m_file->close();
-        qDebug()<<"text download has finished!";
+        QJsonObject jsonObject = parseDoucment.object();
+        if(jsonObject.contains("data"))
+        {
+            jsonObject = jsonObject.take("data").toObject();
+            if(jsonObject.contains("lrc"))
+            {
+                m_file->write(jsonObject.take("lrc").toString().toUtf8());
+                m_file->flush();
+                m_file->close();
+                qDebug()<<"text download has finished!";
+            }
+        }
     }
     else
     {

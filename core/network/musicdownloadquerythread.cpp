@@ -68,11 +68,8 @@ void MusicDownLoadQueryThread::searchFinshed()
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json
-        if(jsonError.error != QJsonParseError::NoError)
-        {
-            return ;
-        }
-        if(!parseDoucment.isObject())
+        if(jsonError.error != QJsonParseError::NoError ||
+           !parseDoucment.isObject())
         {
             return ;
         }
