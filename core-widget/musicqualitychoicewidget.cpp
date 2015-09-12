@@ -46,7 +46,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     :MusicAbstractTableWidget(parent)
 {
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 50);
+    headerview->resizeSection(0, 60);
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
@@ -55,7 +55,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     m_previousClickRow = 0;
 
     createItems();
-    setFixedSize(100, 90);
+    setFixedSize(110, 90);
 }
 
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
@@ -82,19 +82,15 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(2, 0, item);
 
-                      item = new QTableWidgetItem("HH");
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
-     setItem(0, 1, item);
+                      item = new QTableWidgetItem;
+    setItem(0, 1, item);
 
-                      item = new QTableWidgetItem("HD");
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/image/hdQuality"));
     setItem(1, 1, item);
 
-                      item = new QTableWidgetItem("SD");
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/image/sdQuality"));
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
