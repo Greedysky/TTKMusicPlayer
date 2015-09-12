@@ -4,6 +4,7 @@ project(MusicCore)
 
 set(MUSIC_Core_HEADERS
     ${MUSIC_Core_DIR}/*.h
+    ${MUSIC_Network_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.h
     ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.h
     ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.h
@@ -13,6 +14,7 @@ set(MUSIC_Core_HEADERS
 
 set(MUSIC_Core_SOURCES
     ${MUSIC_Core_DIR}/*.cpp
+    ${MUSIC_Network_DIR}/*.cpp
     ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.cpp
     ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.cpp
     ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.cpp

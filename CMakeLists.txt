@@ -12,6 +12,7 @@ set(CMAKE_PREFIX_PATH "D:/Qt/Qt5.5.0/5.5/msvc2013")
 add_definitions(-MUSIC_LIBRARY)
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(MUSIC_Core_DIR "${MUSIC_DIR}/core")
+set(MUSIC_Network_DIR "${MUSIC_DIR}/core/network")
 set(MUSIC_Core_Widget_DIR "${MUSIC_DIR}/core-widget")
 set(MUSIC_Ui_DIR "${MUSIC_DIR}/ui")
 set(MUSIC_Language_DIR "${MUSIC_DIR}/language")
@@ -24,8 +25,11 @@ set(MUSIC_Toolsetswidget_DIR "${MUSIC_DIR}/toolsetswidget")
 set(MUSIC_Toolswidget_DIR "${MUSIC_DIR}/toolswidget")
 set(MUSIC_Usermanager_DIR "${MUSIC_DIR}/usermanager")
 set(MUSIC_Videokits_DIR "${MUSIC_DIR}/videokits")
- 
+
+
+include_directories(${MUSIC_DIR}) 
 include_directories(${MUSIC_Core_DIR})
+include_directories(${MUSIC_Network_DIR})
 include_directories(${MUSIC_Core_Widget_DIR})
 include_directories(${MUSIC_Localsearch_DIR})
 include_directories(${MUSIC_Lrcmanager_DIR})
@@ -34,7 +38,7 @@ include_directories(${MUSIC_Toolsetswidget_DIR})
 include_directories(${MUSIC_Toolswidget_DIR}) 
 include_directories(${MUSIC_Usermanager_DIR})
 include_directories(${MUSIC_Videokits_DIR}) 
-include_directories(${MUSIC_DIR}) 
+
 
 find_package(Qt5Core)
 find_package(Qt5Gui)
@@ -52,6 +56,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(MUSIC_HEADERS
     ${MUSIC_DIR}/*.h
     ${MUSIC_Core_DIR}/*.h
+    ${MUSIC_Network_DIR}/*.h
     ${MUSIC_Core_Widget_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/*.h
     ${MUSIC_Lrcmanager_DIR}/*.h

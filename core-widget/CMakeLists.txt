@@ -46,24 +46,28 @@ set(MUSIC_Widget_SOURCES
 
 set(MUSIC_Widget_UI
     ${MUSIC_Ui_DIR}/application/musicapplication.ui
-    ${MUSIC_Ui_DIR}/application/musicaudiorecorderwidget.ui
-    ${MUSIC_Ui_DIR}/application/musicbackgroundskindialog.ui
-    ${MUSIC_Ui_DIR}/application/musicdesktopwallpaperwidget.ui
-    ${MUSIC_Ui_DIR}/application/musicequalizerdialog.ui
-    ${MUSIC_Ui_DIR}/application/musicfileinformationwidget.ui
-    ${MUSIC_Ui_DIR}/application/musiclocalsongsmanagerwidget.ui
-    ${MUSIC_Ui_DIR}/application/musiclrcartphotoupload.ui
-    ${MUSIC_Ui_DIR}/application/musiclrcsearchwidget.ui
-    ${MUSIC_Ui_DIR}/application/musicsettingwidget.ui
-    ${MUSIC_Ui_DIR}/application/musicsongslistiteminformation.ui
-    ${MUSIC_Ui_DIR}/application/musictimerwidget.ui
-    ${MUSIC_Ui_DIR}/application/musicwebradiowidget.ui
+    ${MUSIC_Ui_DIR}/core-widget/musicbackgroundskindialog.ui
+    ${MUSIC_Ui_DIR}/core-widget/musicequalizerdialog.ui
+    ${MUSIC_Ui_DIR}/core-widget/musicmessagebox.ui
+    ${MUSIC_Ui_DIR}/core-widget/musicsettingwidget.ui
+    ${MUSIC_Ui_DIR}/core-widget/musicsongslistiteminfowidget.ui
+    ${MUSIC_Ui_DIR}/lrcmanager/musiclrcartphotoupload.ui
+    ${MUSIC_Ui_DIR}/lrcmanager/musiclrcmakerwidget.ui
+    ${MUSIC_Ui_DIR}/lrcmanager/musiclrcsearchwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musicaudiorecorderwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musicdesktopwallpaperwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musicfileinformationwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musiclocalsongsmanagerwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musictimerwidget.ui
+    ${MUSIC_Ui_DIR}/toolsetswidget/musictransformwidget.ui
+    ${MUSIC_Ui_DIR}/toolswidget/musicwebradiowidget.ui
     ${MUSIC_Ui_DIR}/usermanager/musicuserdialog.ui
     ${MUSIC_Ui_DIR}/usermanager/musicusermanager.ui
     ${MUSIC_Ui_DIR}/usermanager/musicuserwindow.ui
   )
 
 include_directories(${MUSIC_Core_DIR})
+include_directories(${MUSIC_Network_DIR})
 include_directories(${MUSIC_Localsearch_DIR})
 include_directories(${MUSIC_Toolswidget_DIR})
 include_directories(${MUSIC_Usermanager_DIR})
