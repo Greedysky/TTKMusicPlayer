@@ -2,7 +2,6 @@
 #include "musiclrccontainerforinline.h"
 
 #include <QTimer>
-#include <QGridLayout>
 #include <QPushButton>
 #include <QButtonGroup>
 
@@ -28,22 +27,21 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
+    line->setGeometry(10, 170, 150, 5);
+    colorLabel->setGeometry(10, 30, 70, 20);
+    sizeLabel->setGeometry(10, 80, 70, 20);
+    bgLabel->setGeometry(10, 120, 70, 20);
 
-    QGridLayout *gridLayout = new QGridLayout(this);
-    QWidget* colorWidget = new QWidget(this);
-    QGridLayout *colorLayout = new QGridLayout(colorWidget);
-    colorLayout->setMargin(0);
-    colorLayout->setSpacing(1);
-    QPushButton *originButton = new QPushButton(colorWidget);
-    QPushButton *redButton = new QPushButton(colorWidget);
-    QPushButton *orangeButton = new QPushButton(colorWidget);
-    QPushButton *yellowButton = new QPushButton(colorWidget);
-    QPushButton *greenButton = new QPushButton(colorWidget);
-    QPushButton *blueButton = new QPushButton(colorWidget);
-    QPushButton *indigoButton = new QPushButton(colorWidget);
-    QPushButton *purpleButton = new QPushButton(colorWidget);
-    QPushButton *whiteButton = new QPushButton(colorWidget);
-    QPushButton *blackButton = new QPushButton(colorWidget);
+    QPushButton *originButton = new QPushButton(this);
+    QPushButton *redButton = new QPushButton(this);
+    QPushButton *orangeButton = new QPushButton(this);
+    QPushButton *yellowButton = new QPushButton(this);
+    QPushButton *greenButton = new QPushButton(this);
+    QPushButton *blueButton = new QPushButton(this);
+    QPushButton *indigoButton = new QPushButton(this);
+    QPushButton *purpleButton = new QPushButton(this);
+    QPushButton *whiteButton = new QPushButton(this);
+    QPushButton *blackButton = new QPushButton(this);
     originButton->setIcon(QIcon(":/color/origin"));
     redButton->setIcon(QIcon(":/color/red"));
     orangeButton->setIcon(QIcon(":/color/orange"));
@@ -54,16 +52,16 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     purpleButton->setIcon(QIcon(":/color/purple"));
     whiteButton->setIcon(QIcon(":/color/white"));
     blackButton->setIcon(QIcon(":/color/black"));
-    colorLayout->addWidget(originButton,0,0);
-    colorLayout->addWidget(redButton,0,1);
-    colorLayout->addWidget(orangeButton,0,2);
-    colorLayout->addWidget(yellowButton,0,3);
-    colorLayout->addWidget(greenButton,1,0);
-    colorLayout->addWidget(blueButton,1,1);
-    colorLayout->addWidget(indigoButton,1,2);
-    colorLayout->addWidget(purpleButton,1,3);
-    colorLayout->addWidget(whiteButton,2,0);
-    colorLayout->addWidget(blackButton,2,1);
+    originButton->setGeometry(80, 10, 16, 16);
+    redButton->setGeometry(100, 10, 16, 16);
+    orangeButton->setGeometry(120, 10, 16, 16);
+    yellowButton->setGeometry(140, 10, 16, 16);
+    greenButton->setGeometry(80, 30, 16, 16);
+    blueButton->setGeometry(100, 30, 16, 16);
+    indigoButton->setGeometry(120, 30, 16, 16);
+    purpleButton->setGeometry(140, 30, 16, 16);
+    whiteButton->setGeometry(80, 50, 16, 16);
+    blackButton->setGeometry(100, 50, 16, 16);
     originButton->setCursor(QCursor(Qt::PointingHandCursor));
     redButton->setCursor(QCursor(Qt::PointingHandCursor));
     orangeButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -88,16 +86,14 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     group->addButton(blackButton, 9);
     connect(group, SIGNAL(buttonClicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
 
-    QWidget* sizeWidget = new QWidget(this);
-    QHBoxLayout *sizeLayout = new QHBoxLayout(sizeWidget);
-    QPushButton *sizeBigerButton = new QPushButton(sizeWidget);
-    QPushButton *sizeSmallerButton = new QPushButton(sizeWidget);
+    QPushButton *sizeBigerButton = new QPushButton(this);
+    QPushButton *sizeSmallerButton = new QPushButton(this);
     sizeBigerButton->setIcon(QIcon(":/desktopTool/lrcsizeUp"));
     sizeSmallerButton->setIcon(QIcon(":/desktopTool/lrcsizeDown"));
     sizeBigerButton->setIconSize(QSize(25,25));
     sizeSmallerButton->setIconSize(QSize(25,25));
-    sizeLayout->addWidget(sizeBigerButton);
-    sizeLayout->addWidget(sizeSmallerButton);
+    sizeBigerButton->setGeometry(85, 80, 25, 25);
+    sizeSmallerButton->setGeometry(125, 80, 25, 25);
     sizeBigerButton->setCursor(QCursor(Qt::PointingHandCursor));
     sizeSmallerButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(sizeBigerButton,SIGNAL(clicked()),SLOT(lrcSizeUpChanged()));
@@ -111,21 +107,14 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(artBgButton,SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
     musicBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     artBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    musicBgButton->setGeometry(10, 145, 70, 20);
+    artBgButton->setGeometry(90, 145, 70, 20);
 
     QPushButton *settingButton = new QPushButton(tr("More"),this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(settingButton,SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
     settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
-
-    gridLayout->addWidget(colorLabel,0,0);
-    gridLayout->addWidget(colorWidget,0,1);
-    gridLayout->addWidget(sizeLabel,1,0);
-    gridLayout->addWidget(sizeWidget,1,1);
-    gridLayout->addWidget(bgLabel,2,0);
-    gridLayout->addWidget(musicBgButton,3,0);
-    gridLayout->addWidget(artBgButton,3,1);
-    gridLayout->addWidget(line,4,0,1,0);
-    gridLayout->addWidget(settingButton,5,0,1,0);
+    settingButton->setGeometry(10, 180, 150, 20);
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
