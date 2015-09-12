@@ -6,9 +6,10 @@
 #include "musicwebradiolistview.h"
 #include "musicspectrumwidget.h"
 #include "musiclocalsongsearch.h"
+#include "musicqualitychoicewidget.h"
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicLocalSongSearch(NULL)
+    : QWidget(parent), m_musicLocalSongSearch(NULL), m_qualityChoiceWidget(NULL)
 {
     m_supperClass = parent;
     m_stackedWidget = NULL;
@@ -17,6 +18,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
+    delete m_qualityChoiceWidget;
     delete m_musicLocalSongSearch;
     delete m_stackedWidget;
     delete m_musicSpectrumWidget;
@@ -101,6 +103,15 @@ QString MusicLeftAreaWidget::getSearchedText() const
 void MusicLeftAreaWidget::clearSearchedText() const
 {
     m_musicLocalSongSearch->clearSearchedText();
+}
+
+void MusicLeftAreaWidget::createQualityChoiceWidget()
+{
+    if(m_qualityChoiceWidget == NULL)
+    {
+        m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
+        m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
+    }
 }
 
 void MusicLeftAreaWidget::musicSearch()

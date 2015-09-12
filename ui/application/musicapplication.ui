@@ -761,6 +761,17 @@
     <pixmap resource="../../qrc/MusicPlayer.qrc">:/image/resizeWindow</pixmap>
    </property>
   </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>10</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="musicQualityWindow"/>
+  </widget>
   <action name="action_About">
    <property name="text">
     <string>关于天天酷音(&amp;A)</string>
@@ -1000,6 +1011,7 @@
   <zorder>musicSearch</zorder>
   <zorder>resizeWindowLabel</zorder>
   <zorder>minimization</zorder>
+  <zorder>verticalLayoutWidget</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

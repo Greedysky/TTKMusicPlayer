@@ -120,6 +120,7 @@ SOURCES += \
     core-widget/musicsongstoolitemrenamedwidget.cpp \
     core-widget/musicsongslistplaywidget.cpp \
     core-widget/musicmessagebox.cpp \
+    core-widget/musicqualitychoicewidget.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
@@ -217,6 +218,7 @@ HEADERS  += \
     core-widget/musicsongstoolitemrenamedwidget.h \
     core-widget/musicsongslistplaywidget.h \
     core-widget/musicmessagebox.h \
+    core-widget/musicqualitychoicewidget.h \
     musicleftareawidget.h \
     musictopareawidget.h \
     musicrightareawidget.h \

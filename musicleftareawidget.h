@@ -14,6 +14,7 @@
 
 class MusicSpectrumWidget;
 class MusicLocalSongSearch;
+class MusicQualityChoiceWidget;
 
 namespace Ui {
     class MusicApplication;
@@ -28,7 +29,8 @@ public:
 
     void setupUi(Ui::MusicApplication* ui);
     QString getSearchedText() const;
-    void clearSearchedText()const;
+    void clearSearchedText() const;
+    void createQualityChoiceWidget();
 
 signals:
 
@@ -46,6 +48,7 @@ protected:
     QWidget *m_stackedWidget;
     MusicSpectrumWidget *m_musicSpectrumWidget;
     MusicLocalSongSearch *m_musicLocalSongSearch;
+    MusicQualityChoiceWidget *m_qualityChoiceWidget;
 
 };
 
