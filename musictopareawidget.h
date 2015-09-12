@@ -32,7 +32,7 @@ public:
     void setParameters(const QString &skin, int alpha, int alphaR);
     QString getBgSkin() const {return m_currentBgSkin;}
     int getBgSkinAlpha() const {return m_alpha;}
-    int getListBgSkinAlpha() const {return m_listAlpha;}
+    int getListBgSkinAlpha();
 
     void setTimerStop();
     void showPlayStatus(bool status);
@@ -40,7 +40,7 @@ public:
     void setVolumeValue(int value) const;
 
 signals:
-    void updateToolStyle();
+    void setTransparent(int index);
     void updateArtPicture();
     void musicSearchButtonClicked();
 

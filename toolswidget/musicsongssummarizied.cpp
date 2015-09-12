@@ -109,11 +109,6 @@ void MusicSongsSummarizied::updateArtPicture()
     m_mainSongLists[m_currentIndexs]->updateArtPicture();
 }
 
-void MusicSongsSummarizied::updateToolStyle()
-{
-    setStyleSheet(MusicUIObject::MToolBoxStyle01);
-}
-
 void MusicSongsSummarizied::setTransparent(int alpha)
 {
     alpha = alpha*2.55;

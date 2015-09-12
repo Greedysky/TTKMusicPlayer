@@ -24,6 +24,7 @@ public:
 
     void setCurrentBgTheme(const QString &theme, int alpha, int alphaR);
     void updateBackground();
+    int getListBgSkinAlpha() const;
 
 public slots:
     void changeToMySkin();

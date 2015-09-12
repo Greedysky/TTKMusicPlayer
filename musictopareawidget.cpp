@@ -79,6 +79,15 @@ void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alpha
     m_listAlpha = alphaR;
 }
 
+int MusicTopAreaWidget::getListBgSkinAlpha()
+{
+    if(m_musicbgskin)
+    {
+        m_listAlpha = m_musicbgskin->getListBgSkinAlpha();
+    }
+    return m_listAlpha;
+}
+
 void MusicTopAreaWidget::setTimerStop()
 {
     m_pictureCarouselTimer.stop();
@@ -150,7 +159,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding).toImage()));
     paint.end();
 
-    emit updateToolStyle();
+    emit setTransparent(m_listAlpha);
     m_ui->background->setPixmap(afterDeal);
 }
 

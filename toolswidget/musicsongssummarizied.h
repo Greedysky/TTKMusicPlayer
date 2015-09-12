@@ -68,7 +68,6 @@ public slots:
     void setMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
     void updateArtPicture();
-    void updateToolStyle();
     void setTransparent(int alpha);
 
 protected:
