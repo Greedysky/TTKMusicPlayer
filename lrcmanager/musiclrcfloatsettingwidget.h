@@ -11,6 +11,8 @@
 
 #include "musiclrcfloatabstractwidget.h"
 
+class QPushButton;
+
 class MUSIC_WIDGET_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstractWidget
 {
     Q_OBJECT
@@ -30,6 +32,7 @@ public slots:
 protected:
     virtual void enterEvent(QEvent *){}
     virtual void leaveEvent(QEvent *event);
+    QPushButton *createPushButton(int index);
 
 };
 
