@@ -2,26 +2,7 @@
 #define MUSICQUALITYCHOICEWIDGET_H
 
 #include <QToolButton>
-#include <QItemDelegate>
 #include "musicabstracttablewidget.h"
-
-class QCheckBox;
-
-class MusicQualityRadioDelegate : public QItemDelegate
-{
-public:
-    explicit MusicQualityRadioDelegate(QObject* parent = 0);
-    ~MusicQualityRadioDelegate();
-
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
-private:
-    QCheckBox *m_checkBox;
-
-};
 
 class MUSIC_WIDGET_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTableWidget
 {

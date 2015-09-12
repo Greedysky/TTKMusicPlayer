@@ -1,46 +1,9 @@
 #include "musicqualitychoicewidget.h"
 #include "musicuiobject.h"
+#include "musicitemdelegate.h"
 
 #include <QMenu>
 #include <QWidgetAction>
-#include <QPainter>
-#include <QCheckBox>
-
-MusicQualityRadioDelegate::MusicQualityRadioDelegate(QObject *parent)
-    : QItemDelegate(parent)
-{
-    m_checkBox  = new QCheckBox;
-    m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-}
-
-MusicQualityRadioDelegate::~MusicQualityRadioDelegate()
-{
-    delete m_checkBox;
-}
-
-QSize MusicQualityRadioDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                          const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
-}
-
-void MusicQualityRadioDelegate::paint(QPainter *painter,
-                                      const QStyleOptionViewItem &option,
-                                      const QModelIndex &index) const
-{
-    painter->save();
-    int minSize = qMin(option.rect.width(), option.rect.height());
-    m_checkBox->resize(minSize, minSize);
-    m_checkBox->setChecked( index.data(Qt::DisplayRole).toBool() );
-    painter->translate((option.rect.width() - 16)/2, 0); // top left
-    m_checkBox->render(painter, option.rect.topLeft(), QRegion(),
-                       QWidget::DrawChildren);
-    painter->restore();
-}
-
-
 
 MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     :MusicAbstractTableWidget(parent)
@@ -50,7 +13,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
-    MusicQualityRadioDelegate *delegate = new MusicQualityRadioDelegate(this);
+    MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     setItemDelegateForColumn(2, delegate);
     m_previousClickRow = 0;
 

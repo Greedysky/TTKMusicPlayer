@@ -13,27 +13,9 @@
 #include "musicdownloadquerythread.h"
 
 #include <QMenu>
-#include <QItemDelegate>
 
-class QCheckBox;
 class QActionGroup;
-
-class MusicCheckBoxDelegate : public QItemDelegate
-{
-public:
-    explicit MusicCheckBoxDelegate(QObject* parent = 0);
-    ~MusicCheckBoxDelegate();
-
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
-private:
-    QCheckBox *m_checkBox;
-
-};
-
+class MusicQueryTableDelegate;
 
 class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicAbstractTableWidget
 {
@@ -68,7 +50,7 @@ protected:
 
     QActionGroup *m_actionGroup;
     MusicDownLoadQueryThread *m_downLoadManager;
-    MusicCheckBoxDelegate *m_checkBoxDelegate;
+    MusicQueryTableDelegate *m_checkBoxDelegate;
 
 };
 
