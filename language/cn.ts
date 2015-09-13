@@ -2027,36 +2027,54 @@
 <context>
     <name>MusicQualityChoiceTableWidget</name>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="70"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="33"/>
         <source>ST</source>
         <translation>普通品质</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="75"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="38"/>
         <source>HD</source>
         <translation>高清品质</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="80"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="43"/>
         <source>SD</source>
         <translation>超清品质</translation>
     </message>
 </context>
 <context>
+    <name>MusicQualityChoiceWidget</name>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="119"/>
+        <source>ST-text</source>
+        <translation >普通</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="120"/>
+        <source>HD-text</source>
+        <translation >高清</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="121"/>
+        <source>SD-text</source>
+        <translation >超清</translation>
+    </message>
+</context>
+<context>
     <name>MusicQueryTableWidget</name>
     <message>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="127"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="90"/>
         <source>musicDownload</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="133"/>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="134"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="96"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="97"/>
         <source>search &apos;%1&apos;</source>
         <translation>搜索 &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="135"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="98"/>
         <source>search &apos;%1 - %2&apos;</source>
         <translation>搜索 &apos;%1 - %2&apos;</translation>
     </message>

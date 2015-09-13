@@ -49,11 +49,11 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(0, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/image/hdQuality"));
+    item->setIcon(QIcon(":/quality/hdQuality"));
     setItem(1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/image/sdQuality"));
+    item->setIcon(QIcon(":/quality/sdQuality"));
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
@@ -78,6 +78,7 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
     }
     m_previousClickRow = row;
     item(row, 2)->setData(Qt::DisplayRole, true);
+
 }
 
 
@@ -87,22 +88,36 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
 {
     setFixedSize(45, 20);
     initWidget();
+    setCursor(Qt::PointingHandCursor);
+    setStyleSheet(MusicUIObject::MToolButtonStyle09);
 }
 
 MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
 {
-
+    delete m_menu;
 }
 
 void MusicQualityChoiceWidget::initWidget()
 {
-    QMenu *menu = new QMenu(this);
-    menu->setStyleSheet(MusicUIObject::MMenuStyle01);
-    QWidgetAction *actionWidget = new QWidgetAction(menu);
-    MusicQualityChoiceTableWidget *containWidget = new MusicQualityChoiceTableWidget(menu);
+    m_menu = new QMenu(this);
+    m_menu->setStyleSheet(MusicUIObject::MMenuStyle01);
+    QWidgetAction *actionWidget = new QWidgetAction(m_menu);
+    MusicQualityChoiceTableWidget *containWidget = new MusicQualityChoiceTableWidget(m_menu);
+    connect(containWidget, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));
 
     actionWidget->setDefaultWidget(containWidget);
-    menu->addAction(actionWidget);
-    setMenu(menu);
+    m_menu->addAction(actionWidget);
+    setMenu(m_menu);
     setPopupMode(QToolButton::InstantPopup);
+}
+
+void MusicQualityChoiceWidget::listCellClicked(int row)
+{
+    m_menu->close();
+    switch(row)
+    {
+        case 0: setText(tr("ST-text"));break;
+        case 1: setText(tr("HD-text"));break;
+        case 2: setText(tr("SD-text"));break;
+    }
 }

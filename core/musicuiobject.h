@@ -123,6 +123,10 @@ namespace MusicUIObject
 
     const QString MToolButtonStyle07 = MToolButtonStyle04 + MToolButtonStyle08 + " \
             QToolButton{image: url(:/image/addtoplaylist);}";
+
+    const QString MToolButtonStyle09 = MToolButtonStyle02 + " \
+            QToolButton{background-image:url(':/quality/bg');border:none; \
+            font-weight:bold; color:white}";
            
 ///ToolBox
 //////////////////////////////////////////////////////

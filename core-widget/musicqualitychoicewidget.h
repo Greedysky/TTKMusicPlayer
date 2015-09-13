@@ -17,6 +17,7 @@ public slots:
 
 };
 
+class QMenu;
 
 class MUSIC_WIDGET_EXPORT MusicQualityChoiceWidget : public QToolButton
 {
@@ -27,9 +28,11 @@ public:
 
 signals:
 public slots:
+    void listCellClicked(int row);
 
 protected:
     void initWidget();
+    QMenu *m_menu;
 
 };
 

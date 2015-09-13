@@ -45,8 +45,11 @@
         <file alias="musicslider">../resource/music_slider.png</file>
         <file alias="imagetrans">../resource/image_transparent.png</file>
         <file alias="resizeWindow">../resource/resizeWindow.png</file>
-        <file alias="hdQuality">../resource/hd_quality.png</file>
-        <file alias="sdQuality">../resource/sq_quality.png</file>
+    </qresource>
+    <qresource prefix="/quality">
+        <file alias="bg">../resource/quality/background.png</file>
+        <file alias="hdQuality">../resource/quality/hd_quality.png</file>
+        <file alias="sdQuality">../resource/quality/sq_quality.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../resource/color/Black.png</file>

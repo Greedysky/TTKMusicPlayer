@@ -5,6 +5,7 @@
 
 class QCheckBox;
 
+
 class MusicCheckBoxDelegate : public QItemDelegate
 {
 public:
