@@ -2027,37 +2027,58 @@
 <context>
     <name>MusicQualityChoiceTableWidget</name>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="33"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="34"/>
         <source>ST</source>
-        <translation>普通品質</translation>
+        <translation>压缩品質</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="38"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="39"/>
         <source>HD</source>
-        <translation>高清品質</translation>
+        <translation>标准品質</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="43"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="44"/>
         <source>SD</source>
-        <translation>超清品質</translation>
+        <translation>超高品質</translation>
     </message>
 </context>
 <context>
     <name>MusicQualityChoiceWidget</name>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="119"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="129"/>
         <source>ST-text</source>
-        <translation >普通</translation>
+        <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="120"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="91"/>
+        <source>Quality Choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="130"/>
+        <source>ST</source>
+        <translation >压缩品質</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="90"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="135"/>
         <source>HD-text</source>
-        <translation >高清</translation>
+        <translation>标准</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="121"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="136"/>
+        <source>HD</source>
+        <translation >标准品質</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="141"/>
         <source>SD-text</source>
-        <translation >超清</translation>
+        <translation>超高</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="142"/>
+        <source>SD</source>
+        <translation >超高品質</translation>
     </message>
 </context>
 <context>
@@ -2540,12 +2561,12 @@
 <context>
     <name>MusicSongSearchOnlineTableWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="126"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="132"/>
         <source>musicPlay</source>
         <translation>試聽音樂</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="127"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="133"/>
         <source>musicAdd</source>
         <translation>添加音樂</translation>
     </message>
@@ -2553,54 +2574,54 @@
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="279"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="285"/>
         <source> find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>　搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相關歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="286"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="292"/>
         <source> find no result</source>
         <translation>沒有搜到相關內容</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="298"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="304"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="301"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="307"/>
         <source>Artist</source>
         <translation>藝術家</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="304"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="310"/>
         <source>Operator</source>
         <translation>相關操作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="308"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="345"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="362"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="314"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="351"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="368"/>
         <source>Play</source>
         <translation>試聽</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="313"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="319"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="318"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="324"/>
         <source>Download</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="336"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="342"/>
         <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="362"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="368"/>
         <source>Stop</source>
         <translation>暫停</translation>
     </message>

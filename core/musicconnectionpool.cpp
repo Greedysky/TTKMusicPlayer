@@ -93,6 +93,12 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(networkConnectionStateChanged(bool)));
     }
 
+    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )
+    {
+        QObject::connect(first, SIGNAL(getQualityString(QString&)), second,
+                                SLOT(getQualityString(QString&)));
+    }
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)

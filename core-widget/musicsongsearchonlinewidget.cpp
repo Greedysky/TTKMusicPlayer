@@ -54,6 +54,12 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
     search.writeSearchConfig(names, times);
     ////////////////////////////////////////////////
+    QString currentQuality;
+    emit getQualityString(currentQuality);
+    if(!currentQuality.isEmpty())
+    {
+        m_downLoadManager->setSearchQuality(currentQuality);
+    }
     m_downLoadManager->startSearchSong(Music, text);
 }
 

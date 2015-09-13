@@ -12,6 +12,7 @@
 MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
     : QObject(parent),m_reply(NULL)
 {
+    m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
     M_Connection->setValue("MusicDownLoadQueryThread", this);
     M_Connection->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
@@ -101,7 +102,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                     for(int j=0; j<urls.count(); ++j)
                     {
                         object = urls[j].toObject();
-                        if( object.value("type_description").toString() == "标准品质")
+                        if( object.value("type_description").toString() == m_searchQuality)
                         {
                             emit creatSearchedItems(songName, singerName,
                                                     object.value("duration").toString());

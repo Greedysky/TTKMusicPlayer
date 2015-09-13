@@ -2031,17 +2031,17 @@
 <context>
     <name>MusicQualityChoiceTableWidget</name>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="33"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="34"/>
         <source>ST</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="38"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="39"/>
         <source>HD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="43"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="44"/>
         <source>SD</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2049,19 +2049,40 @@
 <context>
     <name>MusicQualityChoiceWidget</name>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="119"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="129"/>
         <source>ST-text</source>
-        <translation >ST</translation>
+        <translation>ST</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="120"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="91"/>
+        <source>Quality Choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="130"/>
+        <source>ST</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="90"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="135"/>
         <source>HD-text</source>
-        <translation >HD</translation>
+        <translation>HD</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="121"/>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="136"/>
+        <source>HD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="141"/>
         <source>SD-text</source>
-        <translation >SD</translation>
+        <translation>SD</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicqualitychoicewidget.cpp" line="142"/>
+        <source>SD</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2544,12 +2565,12 @@
 <context>
     <name>MusicSongSearchOnlineTableWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="126"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="132"/>
         <source>musicPlay</source>
         <translation>Audition</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="127"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="133"/>
         <source>musicAdd</source>
         <translation>Add To List</translation>
     </message>
@@ -2557,54 +2578,54 @@
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="279"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="285"/>
         <source> find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>　Find &lt;font color=red&gt; %1 &lt;/font&gt; Results</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="286"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="292"/>
         <source> find no result</source>
         <translation>Find No Result</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="298"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="304"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="301"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="307"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="304"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="310"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="308"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="345"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="362"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="314"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="351"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="368"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="313"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="319"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="318"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="324"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="336"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="342"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="362"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="368"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>

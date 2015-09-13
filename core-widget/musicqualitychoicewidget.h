@@ -29,10 +29,12 @@ public:
 signals:
 public slots:
     void listCellClicked(int row);
+    void getQualityString(QString &string);
 
 protected:
     void initWidget();
     QMenu *m_menu;
+    QString m_currentQuality;
 
 };
 

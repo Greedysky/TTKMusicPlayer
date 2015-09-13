@@ -36,6 +36,7 @@ public:
 signals:
     void muiscSongToPlayListChanged(const QString &name);
     void auditionIsPlaying(bool play);
+    void getQualityString(QString &string);
 
 public slots:
     void listCellClicked(int row, int column);

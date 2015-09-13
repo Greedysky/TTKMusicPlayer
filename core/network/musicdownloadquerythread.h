@@ -27,6 +27,7 @@ public:
 
     void deleteAll();
     void startSearchSong(QueryType type, const QString &text);
+    void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
     inline const MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
@@ -45,6 +46,7 @@ protected:
     MStringLists m_musicSongInfo;
     QString m_searchText;
     QueryType m_currentType;
+    QString m_searchQuality;
 
 };
 

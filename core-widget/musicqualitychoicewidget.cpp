@@ -1,6 +1,7 @@
 #include "musicqualitychoicewidget.h"
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
+#include "musicconnectionpool.h"
 
 #include <QMenu>
 #include <QWidgetAction>
@@ -57,11 +58,11 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, true);
+    item->setData(Qt::DisplayRole, false);
     setItem(0, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, false);
+    item->setData(Qt::DisplayRole, true);
     setItem(1, 2, item);
 
                       item = new QTableWidgetItem;
@@ -86,10 +87,17 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     : QToolButton(parent)
 {
+    setText(tr("HD-text"));
+    setToolTip(tr("Quality Choice"));
     setFixedSize(45, 20);
     initWidget();
     setCursor(Qt::PointingHandCursor);
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
+    setEnabled(false);
+
+    M_Connection->setValue("MusicQualityChoiceTableWidget", this);
+    M_Connection->connect("MusicSongSearchOnlineTableWidget",
+                          "MusicQualityChoiceTableWidget");
 }
 
 MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
@@ -116,8 +124,29 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
     m_menu->close();
     switch(row)
     {
-        case 0: setText(tr("ST-text"));break;
-        case 1: setText(tr("HD-text"));break;
-        case 2: setText(tr("SD-text"));break;
+        case 0:
+            {
+                setText(tr("ST-text"));
+                m_currentQuality = tr("ST");
+                break;
+            }
+        case 1:
+            {
+                setText(tr("HD-text"));
+                m_currentQuality = tr("HD");
+                break;
+            }
+        case 2:
+            {
+                setText(tr("SD-text"));
+                m_currentQuality = tr("SD");
+                break;
+            }
     }
+}
+
+void MusicQualityChoiceWidget::getQualityString(QString &string)
+{
+    setEnabled(true);
+    string = m_currentQuality;
 }
