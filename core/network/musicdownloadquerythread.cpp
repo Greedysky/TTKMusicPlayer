@@ -96,7 +96,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 QString songName = object.take("song_name").toString();
                 QString singerName = object.take("singer_name").toString();
 
-                if(m_currentType == Music)
+                if(m_currentType == MusicQuery)
                 {
                     QJsonArray urls = object.take("audition_list").toArray();
                     for(int j=0; j<urls.count(); ++j)

@@ -68,7 +68,6 @@ void MusicQualityChoiceTableWidget::createItems()
                       item = new QTableWidgetItem;
     item->setData(Qt::DisplayRole, false);
     setItem(2, 2, item);
-
 }
 
 void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
@@ -79,7 +78,6 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
     }
     m_previousClickRow = row;
     item(row, 2)->setData(Qt::DisplayRole, true);
-
 }
 
 

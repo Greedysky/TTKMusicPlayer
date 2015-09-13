@@ -17,6 +17,7 @@ public slots:
 
 };
 
+
 class QMenu;
 
 class MUSIC_WIDGET_EXPORT MusicQualityChoiceWidget : public QToolButton

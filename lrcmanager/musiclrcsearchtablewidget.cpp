@@ -22,7 +22,7 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
     m_currentSongName = text;
-    m_downLoadManager->startSearchSong(Music, text);
+    m_downLoadManager->startSearchSong(MusicQuery, text);
 }
 
 void MusicLrcSearchTableWidget::clearAllItems()

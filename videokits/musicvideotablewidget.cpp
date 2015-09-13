@@ -27,7 +27,7 @@ MusicVideoTableWidget::~MusicVideoTableWidget()
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
-    m_downLoadManager->startSearchSong(MV, text);
+    m_downLoadManager->startSearchSong(MVQuery, text);
 }
 
 void MusicVideoTableWidget::clearAllItems()
