@@ -162,12 +162,9 @@
 #ifndef _LIBZPLAY_H__
 #define _LIBZPLAY_H__
 
-
 /*
 *	Define LIB_ZPLAY_STATIC to build static library.
-*
 *	Define LIB_ZPLAY_DYNAMIC to build dynamic library exporting functions with __declspec (dllexport)
-*
 *	Define LIB_ZPLAY_DYNAMIC and LIB_ZPLAY_EXPORT_WITH_DEF_FILE   to disable __declspec (dllexport)
 *	so you can export functions with def file.
 *
@@ -175,17 +172,11 @@
 *
 *	If there is nothing defined, functions are using __declspec (dllimport) and you need
 *	dynamic version ( dll file ) of libzplay library.
-*
 *	Define LIB_ZPLAY_STATIC to disable __declspec (dllimport) and use library as static library.
-*
-*
 *	By default, this library is configured to dynamicly link with your application using  __declspec (dllimport)
-*
 *	So, if you need to link with static version of this library define LIB_ZPLAY_STATIC
 *
 */
-
-
 
 #ifdef LIB_ZPLAY_STATIC
 	#define W_DECLSPEC
@@ -201,10 +192,7 @@
 	#endif
 #endif
 
-
 namespace libZPlay {
-
-
 #define ZPLAY_HANDLE char*
 
 enum TStreamFormat
@@ -222,7 +210,6 @@ enum TStreamFormat
 		sfAutodetect = 1000
 };
 
-
 #define WaveOutWaveMapper 0xFFFFFFFF
 #define WaveInWaveMapper 0xFFFFFFFF
 
@@ -232,20 +219,17 @@ enum TFFTGraphSize
 	FFTGraphMinHeight = 60
 };
 
-
 enum TBMPDetectionMethod
 {
 	dmPeaks = 0,
 	dmAutoCorrelation = 1
 };
 
-
 enum TFFTGraphHorizontalScale
 {
 	gsLogarithmic = 0,
 	gsLinear = 1
 };
-
 
 enum TSeekMethod
 {
@@ -254,8 +238,6 @@ enum TSeekMethod
 	smFromCurrentForward = 4,
 	smFromCurrentBackward = 8
 };
-
-
 
 enum TTimeFormat
 {
@@ -272,14 +254,12 @@ typedef struct {
 	unsigned int millisecond;
 } TStreamHMSTime;
 
-
 typedef struct {
 	unsigned int sec;
 	unsigned int ms;
 	unsigned int samples;
 	TStreamHMSTime hms;
 } TStreamTime;
-
 
 typedef struct {
 	int nLeftDelay;	
@@ -289,7 +269,6 @@ typedef struct {
 	int nRightSrcVolume;
 	int nRightEchoVolume;
 } TEchoEffect;
-
 
 enum TWaveOutFormat
 {
@@ -308,7 +287,6 @@ enum TWaveOutFormat
 	format_44khz_16bit_stereo = 2048
 };
 
-
 enum TWaveOutFunctionality
 {
 	supportPitchControl = 1,
@@ -320,7 +298,6 @@ enum TWaveOutFunctionality
 	supportDirectSound = 6
 }; 
 
-
 typedef struct {
 	unsigned int ManufacturerID;
 	unsigned int ProductID;
@@ -330,7 +307,6 @@ typedef struct {
 	unsigned int Support;
 	char *ProductName;
 } TWaveOutInfo;
-
 
 typedef struct {
 	unsigned int ManufacturerID;
@@ -342,8 +318,6 @@ typedef struct {
 	wchar_t *ProductName;
 } TWaveOutInfoW;
 
-
-
 typedef struct {
 	unsigned int ManufacturerID;
 	unsigned int ProductID;
@@ -353,7 +327,6 @@ typedef struct {
 	char *ProductName;
 } TWaveInInfo;
 
-
 typedef struct {
 	unsigned int ManufacturerID;
 	unsigned int ProductID;
@@ -362,8 +335,6 @@ typedef struct {
 	unsigned int Channels;
 	wchar_t *ProductName;
 } TWaveInInfoW;
-
-
 
 typedef struct {
 	int fPlay;
@@ -380,17 +351,11 @@ typedef struct {
 	int nSongsInQueue;
 } TStreamStatus;
 
-
-
-
-
 enum TID3Version
 {
 	id3Version1 = 1,
 	id3Version2 = 2
 };
-
-
 
 typedef struct {
 	char *Title;
@@ -401,7 +366,6 @@ typedef struct {
 	char *TrackNum; 
 	char *Genre;
 } TID3Info;
-
 
 typedef struct {
 	unsigned int PicturePresent;
@@ -471,7 +435,6 @@ typedef struct {
 	char reserved[128];
 } TID3InfoExW;
 
-
 typedef struct {
 	wchar_t *Title;
 	wchar_t *Artist;
@@ -482,8 +445,6 @@ typedef struct {
 	wchar_t *Genre;
 } TID3InfoW;
 
-
-
 typedef struct {
 	int SamplingRate;
 	int ChannelNumber;
@@ -492,7 +453,6 @@ typedef struct {
 	TStreamTime Length;
 	char *Description;
 } TStreamInfo;
-
 
 typedef struct {
 	int SamplingRate;
@@ -503,12 +463,10 @@ typedef struct {
 	wchar_t *Description;
 } TStreamInfoW;
 
-
 typedef struct {
 	unsigned int NumberOfBuffers;
 	unsigned int NumberOfBytes;
 } TStreamLoadInfo;
-
 
 enum TFFTGraphType
 {
@@ -520,7 +478,6 @@ enum TFFTGraphType
 	gtBarsRightOnTop,
 	gtSpectrum
 };
-
 
 enum TFFTWindow
 {
@@ -539,8 +496,6 @@ enum TFFTWindow
 	fwBlackmanNuttall,
 	fwFlatTop
 };
-
-
 
 enum TFFTGraphParamID
 {
@@ -572,16 +527,10 @@ enum TFFTGraphParamID
 	gpColor14,
 	gpColor15,
 	gpColor16
-
 };
-
-
-
-
 
 enum  TCallbackMessage
 {
-
 	MsgStopAsync = 1,
 	MsgPlayAsync = 2,
 	MsgEnterLoopAsync = 4,
@@ -603,9 +552,7 @@ enum  TCallbackMessage
 	MsgWaveBuffer = 33554432
 };
 
-
 typedef int  (__stdcall * TCallbackFunc)(void* instance, void *user_data, TCallbackMessage message, unsigned int param1, unsigned int param2);
-
 
 enum TSettingID {
 	sidWaveBufferSize = 1,
@@ -626,101 +573,95 @@ enum TSettingID {
 
 class ZPlay
 {
-	public:
+public:
+    virtual int __stdcall SetSettings(TSettingID nSettingID, int nValue) = 0;
+    virtual int __stdcall GetSettings(TSettingID nSettingID) = 0;
+    virtual int __stdcall GetVersion() = 0;
+    virtual char * __stdcall GetError() = 0;
+    virtual wchar_t * __stdcall GetErrorW() = 0;
+    virtual TStreamFormat __stdcall GetFileFormat(const char *pchFileName) = 0;
+    virtual TStreamFormat __stdcall GetFileFormatW(const wchar_t *pchFileName) = 0;
+    virtual int __stdcall EnumerateWaveOut() = 0;
+    virtual int __stdcall GetWaveOutInfo(unsigned int nIndex, TWaveOutInfo *pWaveOutInfo) = 0;
+    virtual int __stdcall GetWaveOutInfoW(unsigned int nIndex, TWaveOutInfoW *pWaveOutInfo) = 0;
+    virtual int __stdcall SetWaveOutDevice(unsigned int nIndex) = 0;
+    virtual int __stdcall OpenFile(const char *sFileName, TStreamFormat nFormat)= 0;
+    virtual int __stdcall OpenFileW(const wchar_t *sFileName, TStreamFormat nFormat)= 0;
+    virtual int __stdcall AddFile(const char *sFileName, TStreamFormat nFormat)= 0;
+    virtual int __stdcall AddFileW(const wchar_t *sFileName, TStreamFormat nFormat)= 0;
+    virtual int __stdcall OpenStream(int fBuffered, int fDynamic, const void *sMemStream, unsigned int nStreamSize, TStreamFormat nFormat) = 0;
+    virtual int __stdcall PushDataToStream(const void *sMemNewData, unsigned int nNewDataize) = 0;
+    virtual int __stdcall IsStreamDataFree(const void *sMemNewData) = 0;
+    virtual void __stdcall GetDynamicStreamLoad(TStreamLoadInfo *pStreamLoadInfo) = 0;
+    virtual void __stdcall GetStreamInfo(TStreamInfo *pInfo) = 0;
+    virtual void __stdcall GetStreamInfoW(TStreamInfoW *pInfo) = 0;
+    virtual int __stdcall Close() = 0;
+    virtual int __stdcall Play() = 0;
+    virtual int __stdcall PlayLoop(TTimeFormat fFormatStartTime, TStreamTime *pStartTime, TTimeFormat fFormatEndTime, TStreamTime *pEndTime, unsigned int nNumOfCycles, unsigned int fContinuePlaying) = 0;
+    virtual int __stdcall Seek(TTimeFormat fFormat, TStreamTime *pTime, TSeekMethod nMoveMethod) = 0;
+    virtual int __stdcall ReverseMode(int fEnable) = 0;
+    virtual int __stdcall Stop() = 0;
+    virtual int __stdcall Pause() = 0;
+    virtual int __stdcall Resume() = 0;
+    virtual void __stdcall GetPosition(TStreamTime *pTime) = 0;
+    virtual int __stdcall SetMasterVolume(unsigned int nLeftVolume, unsigned int nRightVolume) = 0;
+    virtual int __stdcall SetPlayerVolume(unsigned int nLeftVolume, unsigned int nRightVolume) = 0;
+    virtual void __stdcall GetMasterVolume(unsigned int *pnLeftVolume, unsigned int *pnRightVolume) = 0;
+    virtual void __stdcall GetPlayerVolume(unsigned int *pnLeftVolume,unsigned int *pnRightVolume) = 0;
+    virtual int __stdcall GetBitrate(int fAverage) = 0;
+    virtual void __stdcall GetStatus(TStreamStatus *pStatus) = 0;
+    virtual int __stdcall MixChannels(int fEnable, unsigned int nLeftPercent, unsigned int nRightPercent) = 0;
+    virtual void __stdcall GetVUData(unsigned int *pnLeftChannel, unsigned int *pnRightChannel) = 0;
+    virtual int __stdcall SlideVolume(int fFormatStart, TStreamTime *pTimeStart, unsigned int nStartVolumeLeft, unsigned int nStartVolumeRight, int fFormatEnd, TStreamTime *pTimeEnd, unsigned int nEndVolumeLeft,unsigned int nEndVolumeRight) = 0;
+    virtual int __stdcall EnableEqualizer(int fEnable) = 0;
+    virtual int __stdcall SetEqualizerPoints(int *pnFreqPoint, int nNumOfPoints) = 0;
+    virtual int __stdcall GetEqualizerPoints(int *pnFreqPoint, int nFreqPointNumber) = 0;
+    virtual int __stdcall SetEqualizerParam(int nPreAmpGain, int *pnBandGain, int nNumberOfBands) = 0;
+    virtual int __stdcall GetEqualizerParam(int *pnPreAmpGain, int *pnBandGain,	int nNumberOfBands) = 0;
+    virtual int __stdcall SetEqualizerPreampGain(int nGain) = 0;
+    virtual int __stdcall GetEqualizerPreampGain() = 0;
+    virtual int __stdcall SetEqualizerBandGain(int nBandIndex, int nGain) = 0;
+    virtual int __stdcall GetEqualizerBandGain(int nBandIndex) = 0;
+    virtual int __stdcall LoadID3(TID3Version nId3Version, TID3Info *pId3Info) = 0;
+    virtual int __stdcall LoadID3W(TID3Version nId3Version,	TID3InfoW *pId3Info) = 0;
+    virtual int __stdcall LoadFileID3(const char *pchFileName, TStreamFormat nFormat, TID3Version nId3Version, TID3Info *pId3Info) = 0;
+    virtual int __stdcall LoadFileID3W(const wchar_t *pchFileName, TStreamFormat nFormat, TID3Version nId3Version, TID3InfoW *pId3Info) = 0;
+    virtual int __stdcall EnableEcho(int fEnable) = 0;
+    virtual int __stdcall SetEchoParam(TEchoEffect *pEchoEffect, int nNumberOfEffects) = 0;
+    virtual int __stdcall GetEchoParam(TEchoEffect *pEchoEffect, int nNumberOfEffects) = 0;
+    virtual int __stdcall SetCallbackFunc(TCallbackFunc pCallbackFunc,TCallbackMessage nMessages, void *user_data) = 0;
+    virtual int __stdcall SetRate(unsigned int nRate)= 0;
+    virtual unsigned int __stdcall GetRate()= 0;
+    virtual int __stdcall SetPitch(unsigned int nPitch)= 0;
+    virtual unsigned int __stdcall GetPitch()= 0;
+    virtual int __stdcall SetTempo(unsigned int nTempo)= 0;
+    virtual unsigned int __stdcall GetTempo()= 0;
+    virtual int __stdcall StereoCut(int fEnable, int fOutputCenter, int fBassToSides)= 0;
+    virtual void __stdcall Release() = 0;
+    virtual int __stdcall DetectBPM(TBMPDetectionMethod nMethod) = 0;
+    virtual int __stdcall DetectFileBPM(const char *pchFileName, TStreamFormat nFormat, TBMPDetectionMethod nMethod)= 0;
+    virtual int __stdcall DetectFileBPMW(const wchar_t *pchFileName, TStreamFormat nFormat, TBMPDetectionMethod nMethod)= 0;
+    virtual int __stdcall GetFFTData(int nFFTPoints, TFFTWindow nFFTWindow, int *pnHarmonicNumber,int *pnHarmonicFreq,int *pnLeftAmplitude,int *pnRightAmplitude,int *pnLeftPhase,int *pnRightPhase) = 0;
+    virtual int __stdcall DrawFFTGraphOnHDC(void* hdc, int nX, int nY, int nWidth, int nHeight) = 0;
+    virtual int __stdcall DrawFFTGraphOnHWND(void* hwnd, int nX, int nY, int nWidth, int nHeight) = 0;
+    virtual int __stdcall SetFFTGraphParam(TFFTGraphParamID nParamID, int nValue) = 0;
+    virtual int __stdcall GetFFTGraphParam(TFFTGraphParamID nParamID) = 0;
 
+    // new inferface in ver. 2.0  - 23.04.2010.
+    virtual int __stdcall LoadID3Ex(TID3InfoEx *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
+    virtual int __stdcall LoadID3ExW(TID3InfoExW *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
+    virtual int __stdcall LoadFileID3Ex(const char *pchFileName, TStreamFormat nFormat, TID3InfoEx *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
+    virtual int __stdcall LoadFileID3ExW(const wchar_t *pchFileName, TStreamFormat nFormat, TID3InfoExW *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
+    virtual int __stdcall DrawBitmapToHDC(void *hdc, int X, int Y, int Width, int Height, void *hBitmap) = 0;
+    virtual int __stdcall DrawBitmapToHWND(void *hwnd, int X, int Y, int Width, int Height, void *hBitmap) = 0;
+    virtual int __stdcall EnumerateWaveIn() = 0;
+    virtual int __stdcall GetWaveInInfo(unsigned int nIndex, TWaveInInfo *pWaveInInfo) = 0;
+    virtual int __stdcall GetWaveInInfoW(unsigned int nIndex, TWaveInInfoW *pWaveInInfo) = 0;
+    virtual int __stdcall SetWaveInDevice(unsigned int nIndex) = 0;
 
-virtual int __stdcall SetSettings(TSettingID nSettingID, int nValue) = 0;
-virtual int __stdcall GetSettings(TSettingID nSettingID) = 0;
-virtual int __stdcall GetVersion() = 0;
-virtual char * __stdcall GetError() = 0;	
-virtual wchar_t * __stdcall GetErrorW() = 0;
-virtual TStreamFormat __stdcall GetFileFormat(const char *pchFileName) = 0;	
-virtual TStreamFormat __stdcall GetFileFormatW(const wchar_t *pchFileName) = 0;
-virtual int __stdcall EnumerateWaveOut() = 0;
-virtual int __stdcall GetWaveOutInfo(unsigned int nIndex, TWaveOutInfo *pWaveOutInfo) = 0;
-virtual int __stdcall GetWaveOutInfoW(unsigned int nIndex, TWaveOutInfoW *pWaveOutInfo) = 0;
-virtual int __stdcall SetWaveOutDevice(unsigned int nIndex) = 0;
-virtual int __stdcall OpenFile(const char *sFileName, TStreamFormat nFormat)= 0;	
-virtual int __stdcall OpenFileW(const wchar_t *sFileName, TStreamFormat nFormat)= 0;		
-virtual int __stdcall AddFile(const char *sFileName, TStreamFormat nFormat)= 0;
-virtual int __stdcall AddFileW(const wchar_t *sFileName, TStreamFormat nFormat)= 0;
-virtual int __stdcall OpenStream(int fBuffered, int fDynamic, const void *sMemStream, unsigned int nStreamSize, TStreamFormat nFormat) = 0;
-virtual int __stdcall PushDataToStream(const void *sMemNewData, unsigned int nNewDataize) = 0;
-virtual int __stdcall IsStreamDataFree(const void *sMemNewData) = 0;
-virtual void __stdcall GetDynamicStreamLoad(TStreamLoadInfo *pStreamLoadInfo) = 0;
-virtual void __stdcall GetStreamInfo(TStreamInfo *pInfo) = 0;
-virtual void __stdcall GetStreamInfoW(TStreamInfoW *pInfo) = 0;
-virtual int __stdcall Close() = 0;
-virtual int __stdcall Play() = 0;
-virtual int __stdcall PlayLoop(TTimeFormat fFormatStartTime, TStreamTime *pStartTime, TTimeFormat fFormatEndTime, TStreamTime *pEndTime, unsigned int nNumOfCycles, unsigned int fContinuePlaying) = 0;
-virtual int __stdcall Seek(TTimeFormat fFormat, TStreamTime *pTime, TSeekMethod nMoveMethod) = 0;
-virtual int __stdcall ReverseMode(int fEnable) = 0;
-virtual int __stdcall Stop() = 0;
-virtual int __stdcall Pause() = 0;
-virtual int __stdcall Resume() = 0;
-virtual void __stdcall GetPosition(TStreamTime *pTime) = 0;
-virtual int __stdcall SetMasterVolume(unsigned int nLeftVolume, unsigned int nRightVolume) = 0;
-virtual int __stdcall SetPlayerVolume(unsigned int nLeftVolume, unsigned int nRightVolume) = 0;
-virtual void __stdcall GetMasterVolume(unsigned int *pnLeftVolume, unsigned int *pnRightVolume) = 0;
-virtual void __stdcall GetPlayerVolume(unsigned int *pnLeftVolume,unsigned int *pnRightVolume) = 0;
-virtual int __stdcall GetBitrate(int fAverage) = 0;
-virtual void __stdcall GetStatus(TStreamStatus *pStatus) = 0;
-virtual int __stdcall MixChannels(int fEnable, unsigned int nLeftPercent, unsigned int nRightPercent) = 0;
-virtual void __stdcall GetVUData(unsigned int *pnLeftChannel, unsigned int *pnRightChannel) = 0;
-virtual int __stdcall SlideVolume(int fFormatStart, TStreamTime *pTimeStart, unsigned int nStartVolumeLeft, unsigned int nStartVolumeRight, int fFormatEnd, TStreamTime *pTimeEnd, unsigned int nEndVolumeLeft,unsigned int nEndVolumeRight) = 0;
-virtual int __stdcall EnableEqualizer(int fEnable) = 0;
-virtual int __stdcall SetEqualizerPoints(int *pnFreqPoint, int nNumOfPoints) = 0;
-virtual int __stdcall GetEqualizerPoints(int *pnFreqPoint, int nFreqPointNumber) = 0;
-virtual int __stdcall SetEqualizerParam(int nPreAmpGain, int *pnBandGain, int nNumberOfBands) = 0;
-virtual int __stdcall GetEqualizerParam(int *pnPreAmpGain, int *pnBandGain,	int nNumberOfBands) = 0;
-virtual int __stdcall SetEqualizerPreampGain(int nGain) = 0;
-virtual int __stdcall GetEqualizerPreampGain() = 0; 
-virtual int __stdcall SetEqualizerBandGain(int nBandIndex, int nGain) = 0;
-virtual int __stdcall GetEqualizerBandGain(int nBandIndex) = 0;
-virtual int __stdcall LoadID3(TID3Version nId3Version, TID3Info *pId3Info) = 0;
-virtual int __stdcall LoadID3W(TID3Version nId3Version,	TID3InfoW *pId3Info) = 0;
-virtual int __stdcall LoadFileID3(const char *pchFileName, TStreamFormat nFormat, TID3Version nId3Version, TID3Info *pId3Info) = 0;
-virtual int __stdcall LoadFileID3W(const wchar_t *pchFileName, TStreamFormat nFormat, TID3Version nId3Version, TID3InfoW *pId3Info) = 0;
-virtual int __stdcall EnableEcho(int fEnable) = 0;
-virtual int __stdcall SetEchoParam(TEchoEffect *pEchoEffect, int nNumberOfEffects) = 0;
-virtual int __stdcall GetEchoParam(TEchoEffect *pEchoEffect, int nNumberOfEffects) = 0;
-virtual int __stdcall SetCallbackFunc(TCallbackFunc pCallbackFunc,TCallbackMessage nMessages, void *user_data) = 0;
-virtual int __stdcall SetRate(unsigned int nRate)= 0;
-virtual unsigned int __stdcall GetRate()= 0;
-virtual int __stdcall SetPitch(unsigned int nPitch)= 0;
-virtual unsigned int __stdcall GetPitch()= 0;
-virtual int __stdcall SetTempo(unsigned int nTempo)= 0;
-virtual unsigned int __stdcall GetTempo()= 0;
-virtual int __stdcall StereoCut(int fEnable, int fOutputCenter, int fBassToSides)= 0;
-virtual void __stdcall Release() = 0;
-virtual int __stdcall DetectBPM(TBMPDetectionMethod nMethod) = 0;
-virtual int __stdcall DetectFileBPM(const char *pchFileName, TStreamFormat nFormat, TBMPDetectionMethod nMethod)= 0;
-virtual int __stdcall DetectFileBPMW(const wchar_t *pchFileName, TStreamFormat nFormat, TBMPDetectionMethod nMethod)= 0;
-virtual int __stdcall GetFFTData(int nFFTPoints, TFFTWindow nFFTWindow, int *pnHarmonicNumber,int *pnHarmonicFreq,int *pnLeftAmplitude,int *pnRightAmplitude,int *pnLeftPhase,int *pnRightPhase) = 0;
-virtual int __stdcall DrawFFTGraphOnHDC(void* hdc, int nX, int nY, int nWidth, int nHeight) = 0;
-virtual int __stdcall DrawFFTGraphOnHWND(void* hwnd, int nX, int nY, int nWidth, int nHeight) = 0;
-virtual int __stdcall SetFFTGraphParam(TFFTGraphParamID nParamID, int nValue) = 0;
-virtual int __stdcall GetFFTGraphParam(TFFTGraphParamID nParamID) = 0;
-
-// new inferface in ver. 2.0  - 23.04.2010.
-virtual int __stdcall LoadID3Ex(TID3InfoEx *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
-virtual int __stdcall LoadID3ExW(TID3InfoExW *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
-virtual int __stdcall LoadFileID3Ex(const char *pchFileName, TStreamFormat nFormat, TID3InfoEx *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
-virtual int __stdcall LoadFileID3ExW(const wchar_t *pchFileName, TStreamFormat nFormat, TID3InfoExW *pId3Info, unsigned int fDecodeEmbededPicture) = 0;
-virtual int __stdcall DrawBitmapToHDC(void *hdc, int X, int Y, int Width, int Height, void *hBitmap) = 0;
-virtual int __stdcall DrawBitmapToHWND(void *hwnd, int X, int Y, int Width, int Height, void *hBitmap) = 0;
-virtual int __stdcall EnumerateWaveIn() = 0;
-virtual int __stdcall GetWaveInInfo(unsigned int nIndex, TWaveInInfo *pWaveInInfo) = 0;
-virtual int __stdcall GetWaveInInfoW(unsigned int nIndex, TWaveInInfoW *pWaveInInfo) = 0;
-virtual int __stdcall SetWaveInDevice(unsigned int nIndex) = 0;
-
-virtual int __stdcall SetWaveOutFile(const char *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard)= 0;
-virtual int __stdcall SetWaveOutFileW(const wchar_t *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard)= 0;
-
+    virtual int __stdcall SetWaveOutFile(const char *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard)= 0;
+    virtual int __stdcall SetWaveOutFileW(const wchar_t *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard)= 0;
 };
-
-
-
 
 // =============================================================================================================
 //
@@ -728,27 +669,22 @@ virtual int __stdcall SetWaveOutFileW(const wchar_t *sFileName, TStreamFormat nF
 //
 // =============================================================================================================
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 // =============================================================================================================
 //
 //	CLASS FACTORY FOR ZPlay INTERFACE
 //
 // =============================================================================================================
 
-
 W_DECLSPEC  ZPlay *  __stdcall CreateZPlay(); 
-
 
 // =============================================================================================================
 //
 //	END OF CLASS FACTORY FOR ZPLAY INTERFACE
 //
 // =============================================================================================================
-
 
 // =============================================================================================================
 //
@@ -863,15 +799,9 @@ W_DECLSPEC  int __stdcall zplay_SetWaveInDevice(ZPLAY_HANDLE handle, unsigned in
 W_DECLSPEC int __stdcall zplay_SetWaveOutFile(ZPLAY_HANDLE handle, const char *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard);
 W_DECLSPEC int __stdcall zplay_SetWaveOutFileW(ZPLAY_HANDLE handle, const wchar_t *sFileName, TStreamFormat nFormat, unsigned int fOutputToSoundcard);
 
-
 // =============================================================================================================
-
 #ifdef __cplusplus
 }
 #endif
-
 }
-
 #endif
-
-
