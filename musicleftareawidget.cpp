@@ -27,6 +27,9 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
+    m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
+
     connect(ui->musicKey,SIGNAL(clicked()),m_supperClass,SLOT(musicKey()));
     connect(ui->musicPrivious,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayPrivious()));
     connect(ui->musicNext,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayNext()));
@@ -103,15 +106,6 @@ QString MusicLeftAreaWidget::getSearchedText() const
 void MusicLeftAreaWidget::clearSearchedText() const
 {
     m_musicLocalSongSearch->clearSearchedText();
-}
-
-void MusicLeftAreaWidget::createQualityChoiceWidget()
-{
-    if(m_qualityChoiceWidget == NULL)
-    {
-        m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
-        m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
-    }
 }
 
 void MusicLeftAreaWidget::musicSearch()

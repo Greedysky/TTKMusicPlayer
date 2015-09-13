@@ -30,9 +30,6 @@ public:
     void setupUi(Ui::MusicApplication* ui);
     QString getSearchedText() const;
     void clearSearchedText() const;
-    void createQualityChoiceWidget();
-
-signals:
 
 public slots:
     void musicSearch();

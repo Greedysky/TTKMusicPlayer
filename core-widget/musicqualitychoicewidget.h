@@ -27,6 +27,8 @@ public:
     ~MusicQualityChoiceWidget();
 
 signals:
+    void researchQueryByQuality();
+
 public slots:
     void listCellClicked(int row);
     void getQualityString(QString &string);

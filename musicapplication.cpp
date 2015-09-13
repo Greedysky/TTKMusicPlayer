@@ -485,7 +485,6 @@ void MusicApplication::musicKey()
         m_musicPlayer->play();
         m_topAreaWidget->musicBgThemeDownloadFinished();
         m_rightAreaWidget->startTimerClock();
-        m_leftAreaWidget->createQualityChoiceWidget();
     }
     else
     {

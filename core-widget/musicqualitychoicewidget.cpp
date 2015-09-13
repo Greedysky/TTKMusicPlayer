@@ -16,7 +16,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
 
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     setItemDelegateForColumn(2, delegate);
-    m_previousClickRow = 0;
+    m_previousClickRow = 1;
 
     createItems();
     setFixedSize(110, 90);
@@ -143,6 +143,7 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
                 break;
             }
     }
+    emit researchQueryByQuality();
 }
 
 void MusicQualityChoiceWidget::getQualityString(QString &string)

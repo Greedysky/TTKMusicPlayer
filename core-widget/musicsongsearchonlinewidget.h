@@ -46,6 +46,7 @@ public slots:
                             const QString &time);
     void itemDoubleClicked(int row, int column);
     void actionGroupClick(QAction *action);
+    void researchQueryByQuality();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
@@ -53,6 +54,7 @@ protected:
 
     QMediaPlayer *m_audition;
     int m_previousAuditionRow;
+    QString m_searchText;
 
 };
 

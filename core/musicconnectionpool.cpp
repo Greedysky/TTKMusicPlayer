@@ -97,6 +97,9 @@ void MusicConnectionPool::connect(const QString &from,
     {
         QObject::connect(first, SIGNAL(getQualityString(QString&)), second,
                                 SLOT(getQualityString(QString&)));
+        QObject::connect(second, SIGNAL(researchQueryByQuality()), first,
+                                 SLOT(researchQueryByQuality()));
+
     }
 
 }

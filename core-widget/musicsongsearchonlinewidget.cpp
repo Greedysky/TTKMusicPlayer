@@ -60,7 +60,12 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     {
         m_downLoadManager->setSearchQuality(currentQuality);
     }
-    m_downLoadManager->startSearchSong(Music, text);
+    m_downLoadManager->startSearchSong(Music, m_searchText = text);
+}
+
+void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
+{
+    startSearchQuery(m_searchText);
 }
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
