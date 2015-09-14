@@ -17,6 +17,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_msuicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
     m_currentPlayStatus = false;
+    m_listAlpha = 40;
 
     M_Connection->setValue("MusicTopAreaWidget", this);
 }
@@ -75,8 +76,8 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alphaR)
 {
     m_currentBgSkin = skin;
-    musicBgTransparentChanged(m_alpha = alpha);
     m_listAlpha = alphaR;
+    musicBgTransparentChanged(m_alpha = alpha);
 }
 
 int MusicTopAreaWidget::getListBgSkinAlpha()
