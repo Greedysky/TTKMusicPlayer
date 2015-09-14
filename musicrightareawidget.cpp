@@ -34,6 +34,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
@@ -194,7 +195,6 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
 
 void MusicRightAreaWidget::musicCheckHasLrcAlready() const
 {
-    m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
     m_downloadStatusLabel->musicCheckHasLrcAlready();
 }
 
