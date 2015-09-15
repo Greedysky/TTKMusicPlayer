@@ -144,6 +144,7 @@ void MusicDownLoadQueryThread::searchFinshed()
             }
         }
     }
+    emit resolvedSuccess();
 }
 
 void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)

@@ -32,6 +32,7 @@ public:
     inline const MStringLists& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
+    void resolvedSuccess();
     void clearAllItems();
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time);

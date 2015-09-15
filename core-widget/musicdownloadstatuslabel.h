@@ -14,7 +14,6 @@
 
 class QLabel;
 class QMovie;
-class QTimer;
 class MusicApplication;
 
 class MUSIC_WIDGET_EXPORT MusicDownloadStatusLabel : public QObject
@@ -39,7 +38,6 @@ public slots:
 protected:
     MusicApplication *m_parentWidget;
     MusicDownLoadQueryThread *m_downloadLrcThread;
-    QTimer *m_downloadLrcThreadTimer;
     QMovie *m_movie;
     QLabel *m_movieLabel;
 

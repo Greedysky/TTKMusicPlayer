@@ -5,11 +5,9 @@
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musicnetworkthread.h"
-#include "musicobject.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
-#include <QTimer>
 #include <QMovie>
 #include <QLabel>
 
@@ -17,7 +15,6 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
     QObject(w), m_movie(NULL)
 {
     m_parentWidget = static_cast<MusicApplication*>(w);
-    m_downloadLrcThreadTimer = NULL;
     m_downloadLrcThread = NULL;
 
     M_Connection->setValue("MusicDownloadStatusLabel", this);
@@ -27,7 +24,6 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
 
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
 {
-    delete m_downloadLrcThreadTimer;
     delete m_downloadLrcThread;
     delete m_movie;
 }
@@ -108,17 +104,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        ///Start the request query
        m_downloadLrcThread = new MusicDownLoadQueryThread(this);
        m_downloadLrcThread->startSearchSong(MusicQuery, filename);
-
+       connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
-       if(m_downloadLrcThreadTimer)
-       {
-           delete m_downloadLrcThreadTimer;
-           m_downloadLrcThreadTimer = NULL;
-       }
-       ///This delay of two seconds so that request can be obtained correctly
-       m_downloadLrcThreadTimer = new QTimer(this);
-       connect(m_downloadLrcThreadTimer, SIGNAL(timeout()), SLOT(musicHaveNoLrcAlready()));
-       m_downloadLrcThreadTimer->start(2000);
     }
 }
 
@@ -130,34 +117,24 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         return;
     }
     MStringLists musicSongInfo(m_downloadLrcThread->getMusicSongInfo());
-    static int counter = 5;
     if(!musicSongInfo.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo[0][1],
-                                               LRC_DOWNLOAD + filename + LRC_FILE,this);
+                                               LRC_DOWNLOAD + filename + LRC_FILE, this);
         lrc->startToDownload();
 
         int count = filename.split('-').count();
         filename = filename.split('-').front().trimmed();
-
         ///download art picture
         (new MusicData2DownloadThread(musicSongInfo[0][2],
-             ART_DOWNLOAD + filename + SKN_FILE,this))->startToDownload();
-
+                             ART_DOWNLOAD + filename + SKN_FILE, this))->startToDownload();
         ///download big picture
         new MusicBgThemeDownload( count == 1 ? musicSongInfo[0][3] : filename, filename, this);
-
-        m_downloadLrcThreadTimer->stop();
-        counter = 5;
-        return;
     }
-
-    if(--counter == 0)
+    else
     {
-        counter = 5;
-        m_downloadLrcThreadTimer->stop();
         showDownLoadInfoFinished("find error!");
     }
 }
