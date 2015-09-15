@@ -26,7 +26,8 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
 
     init();
 
-    ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle03);
+    ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->eqChoice->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->eqChoice->addItems(QStringList()<<tr("Custom")<<tr("Default")<<tr("Classical")
                   <<tr("Club")<<tr("Dance")<<tr("Bass")<<tr("Soprano")<<tr("BassSoprano")
                   <<tr("Headset")<<tr("Hall")<<tr("Scene")<<tr("Pop")<<tr("Repaglinide")

@@ -28,10 +28,14 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle03);
+    ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);

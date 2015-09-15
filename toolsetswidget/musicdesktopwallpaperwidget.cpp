@@ -57,12 +57,18 @@ void MusicDesktopWallpaperWidget::initWidgetStyle() const
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
-    ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle03);
-    ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle03);
+    ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureType->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeH->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeM->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeS->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->openWithstart->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->recoveryWallpaper->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 

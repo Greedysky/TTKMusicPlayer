@@ -44,10 +44,10 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->scanButton->setStyleSheet("QPushButton{ background:transparent;}"
                                   "QPushButton::hover{ border:1px solid #000000;}");
 
-
     ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle03);
+    ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));

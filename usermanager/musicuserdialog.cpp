@@ -76,6 +76,7 @@ void MusicUserDialog::writeToUserConfig()
 void MusicUserDialog::firstStatckWidget()
 {
     ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->userComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
     ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);

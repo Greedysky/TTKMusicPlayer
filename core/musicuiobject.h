@@ -342,12 +342,6 @@ namespace MusicUIObject
             border-left-color: darkgray; border-left-style: solid;}\
             QComboBox::down-arrow {image:url(:/usermanager/downarrow);}";
 
-    const QString MComboBoxStyle02 = MComboBoxStyle01 + "\
-            QComboBox::drop-down { width: 14px; }";
-
-    const QString MComboBoxStyle03 = MComboBoxStyle01 + "\
-            QComboBox::down-arrow {image:url(:/equalizer/arrow);}";
-
 ///TableWidget
 //////////////////////////////////////////////////////
     const QString MTableWidgetStyle01 = " \

@@ -47,7 +47,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ui->minimumShowInfoWidget->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->quitShowInfoWidget->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
 
-    ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle03);
+    ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->languageComboBox->addItems(QStringList()<<tr("0")<<tr("1")<<tr("2"));
     ////////////////////////////////////////////////
     ui->showInlineSongWordWidget->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -62,10 +63,14 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
 
 void MusicSettingWidget::initInlineLrcWidget()
 {
-    ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontDefalutColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
+    ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontDefalutColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontDefalutColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->fontSizeComboBox->addItems(QStringList()<<tr("smaller")<<tr("small")
                                    <<tr("middle")<<tr("big")<<tr("bigger"));
@@ -97,10 +102,14 @@ void MusicSettingWidget::initInlineLrcWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
-    ui->fontComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontSizeComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontTypeComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    ui->fontDefalutColorComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle02);
+    ui->fontComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontComboBoxD->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontSizeComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontSizeComboBoxD->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontTypeComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontTypeComboBoxD->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->fontDefalutColorComboBoxD->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontDefalutColorComboBoxD->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->fontComboBoxD->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->fontSizeComboBoxD->addItems(QStringList()<<tr("smaller3")<<tr("smaller2")<<tr("smaller")<<tr("small3")
                                    <<tr("small2")<<tr("small")<<tr("middle")<<tr("big")<<tr("big2")<<tr("big3")
