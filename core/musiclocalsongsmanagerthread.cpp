@@ -50,7 +50,7 @@ void MusicLocalSongsManagerThread::findFile(const QString &path)
     {
         return;
     }
-    dir.setFilter(QDir::Dirs|QDir::Files);
+    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
     dir.setSorting(QDir::DirsFirst);
 
     QFileInfoList list = dir.entryInfoList();
@@ -61,11 +61,6 @@ void MusicLocalSongsManagerThread::findFile(const QString &path)
     int i=0;
     do{
         QFileInfo fileInfo = list.at(i);
-        if(fileInfo.fileName() == "." | fileInfo.fileName() == ".." )
-        {
-            ++i;
-            continue;
-        }
         if(fileInfo.isDir())
         {
             m_filename<<fileInfo.fileName();

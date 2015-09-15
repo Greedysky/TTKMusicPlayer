@@ -1,15 +1,15 @@
 #include "musicdesktopwallpaperthread.h"
+#include "musicbgthememanager.h"
+
 #include <time.h>
 #include <QSettings>
 #include <QFileInfo>
-#include "musicobject.h"
-#include "musicbgthememanager.h"
+#include <QDebug>
 
 #if defined Q_OS_WIN32 && defined _MSC_VER
     #include <Windows.h>
     #pragma comment(lib,"user32.lib")
 #endif
-#include <QDebug>
 
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent) :
     QThread(parent)

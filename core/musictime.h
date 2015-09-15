@@ -100,7 +100,8 @@ protected:
     void fromTimeStamp(qint64 value, int delta);
 
     Type m_defaultType;
-    int m_day, m_hour, m_min, m_sec, m_msec;
+    int m_day, m_hour;
+    int m_min, m_sec, m_msec;
 
 };
 
