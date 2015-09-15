@@ -51,6 +51,7 @@ public:
 
     static QStringList supportFormatsString();
     static QStringList supportFormatsFilterString();
+    static QStringList supportFormatsFilterDialogString();
 
 signals:
     void stateChanged();

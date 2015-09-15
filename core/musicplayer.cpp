@@ -113,6 +113,13 @@ QStringList MusicPlayer::supportFormatsString()
 
 QStringList MusicPlayer::supportFormatsFilterString()
 {
+    return QStringList()<< "*.mp3" << "*.mp2" << "*.mp1" << "*.wav"
+                        << "*.ogg" << "*.flac" << "*.ac3" << "*.aac"
+                        << "*.oga" << "*.pcm";
+}
+
+QStringList MusicPlayer::supportFormatsFilterDialogString()
+{
     return QStringList()<< "Mp3 File(*.mp3)" << "Mp2 File(*.mp2)" << "Mp1 File(*.mp1)"
                         << "Wav File(*.wav)" << "Ogg File(*.ogg)" << "Flac File(*.flac)"
                         << "Ac3 File(*.ac3)" << "Aac File(*.aac)" << "Oga File(*.oga)"
