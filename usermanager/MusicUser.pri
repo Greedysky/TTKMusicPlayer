@@ -5,13 +5,25 @@
 #-------------------------------------------------
 
 SOURCES += \
-    usermanager/*.cpp
+    usermanager/musicusermanager.cpp \
+    usermanager/musicusermodel.cpp \
+    usermanager/musicuserdialog.cpp \
+    usermanager/musicuserlineedit.cpp \
+    usermanager/musicuserwindow.cpp \
+    usermanager/musicuserconfigmanager.cpp
 
 HEADERS  += \
-    usermanager/*.h
+    usermanager/musicusermanager.h \
+    usermanager/musicusermodel.h \
+    usermanager/musicuserdialog.h \
+    usermanager/musicuserlineedit.h \
+    usermanager/musicuserwindow.h \
+    usermanager/musicuserconfigmanager.h
 
 FORMS    += \
-    ui/usermanager/*.ui
+    ui/usermanager/musicuserdialog.ui \
+    ui/usermanager/musicuserwindow.ui \
+    ui/usermanager/musicusermanager.ui
 
 RESOURCES += \
     qrc/MusicPlayerShare.qrc \
