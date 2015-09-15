@@ -18,6 +18,9 @@ namespace Ui {
 class MusicEqualizerDialog;
 }
 
+class QSlider;
+class QSignalMapper;
+
 class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
@@ -42,6 +45,7 @@ public slots:
 
 protected:
     void init();
+    void initSlider(QSlider *slider, int index);
     void setControlEnable(bool enable) const;
     void readEqInformation();
     void writeEqInformation() const;
@@ -52,6 +56,7 @@ protected:
     bool m_eable;
     bool m_eqChoiceSelected;
     MIntList m_equalizeValue;
+    QSignalMapper *m_signalMapper;
 
 };
 

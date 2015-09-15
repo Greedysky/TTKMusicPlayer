@@ -48,56 +48,25 @@ MusicEqualizerDialog::~MusicEqualizerDialog()
 {
     M_Connection->disConnect("MusicEqualizerDialog");
     writeEqInformation();
+    delete m_signalMapper;
     delete ui;
 }
 
 void MusicEqualizerDialog::init()
 {
-    ui->bwVerticalSlider->setRange(-17,17);
-    ui->verticalSlider1->setRange(-15,15);
-    ui->verticalSlider2->setRange(-15,15);
-    ui->verticalSlider3->setRange(-15,15);
-    ui->verticalSlider4->setRange(-15,15);
-    ui->verticalSlider5->setRange(-15,15);
-    ui->verticalSlider6->setRange(-15,15);
-    ui->verticalSlider7->setRange(-15,15);
-    ui->verticalSlider8->setRange(-15,15);
-    ui->verticalSlider9->setRange(-15,15);
-    ui->verticalSlider10->setRange(-15,15);
-    ui->bwVerticalSlider->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider1->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider2->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider3->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider4->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider5->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider6->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider7->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider8->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider9->setStyleSheet(MusicUIObject::MSliderStyle03);
-    ui->verticalSlider10->setStyleSheet(MusicUIObject::MSliderStyle03);
-
-    QSignalMapper *signalMapper = new QSignalMapper(this);
-    connect(ui->verticalSlider1,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider2,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider3,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider4,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider5,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider6,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider7,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider8,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider9,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    connect(ui->verticalSlider10,SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
-    signalMapper->setMapping(ui->verticalSlider1, 0);
-    signalMapper->setMapping(ui->verticalSlider2, 1);
-    signalMapper->setMapping(ui->verticalSlider3, 2);
-    signalMapper->setMapping(ui->verticalSlider4, 3);
-    signalMapper->setMapping(ui->verticalSlider5, 4);
-    signalMapper->setMapping(ui->verticalSlider6, 5);
-    signalMapper->setMapping(ui->verticalSlider7, 6);
-    signalMapper->setMapping(ui->verticalSlider8, 7);
-    signalMapper->setMapping(ui->verticalSlider9, 8);
-    signalMapper->setMapping(ui->verticalSlider10,9);
-    connect(signalMapper ,SIGNAL(mapped(int)), SLOT(verticalSliderChanged(int)));
+    m_signalMapper = new QSignalMapper(this);
+    initSlider(ui->verticalSlider1, 0);
+    initSlider(ui->verticalSlider2, 1);
+    initSlider(ui->verticalSlider3, 2);
+    initSlider(ui->verticalSlider4, 3);
+    initSlider(ui->verticalSlider5, 4);
+    initSlider(ui->verticalSlider6, 5);
+    initSlider(ui->verticalSlider7, 6);
+    initSlider(ui->verticalSlider8, 7);
+    initSlider(ui->verticalSlider9, 8);
+    initSlider(ui->verticalSlider10, 9);
+    initSlider(ui->bwVerticalSlider, 10);
+    connect(m_signalMapper ,SIGNAL(mapped(int)), SLOT(verticalSliderChanged(int)));
 
     connect(ui->showEqButton,SIGNAL(clicked()),SLOT(setEqEnable()));
     connect(ui->resetButton,SIGNAL(clicked()),SLOT(resetEq()));
@@ -139,6 +108,14 @@ void MusicEqualizerDialog::init()
     buttonGroup->addButton(ui->funcButton_11, 8);
     buttonGroup->addButton(ui->funcButton_12, 9);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setEqualizerEffect(int)));
+}
+
+void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
+{
+    slider->setRange(-15, 15);
+    slider->setStyleSheet(MusicUIObject::MSliderStyle03);
+    connect(slider, SIGNAL(valueChanged(int)), m_signalMapper, SLOT(map()));
+    m_signalMapper->setMapping(slider, index);
 }
 
 void MusicEqualizerDialog::readEqInformation()
