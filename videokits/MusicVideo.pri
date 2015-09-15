@@ -5,18 +5,10 @@
 #-------------------------------------------------
 
 SOURCES += \
-    videokits/musicvideoplayer.cpp \
-    videokits/musicvideocontrol.cpp \
-    videokits/musicvideoview.cpp \
-    videokits/musicvideotablewidget.cpp
-
+    videokits/*.cpp
 
 HEADERS  += \
-    videokits/musicvideoplayer.h \
-    videokits/musicvideocontrol.h \
-    videokits/musicvideoview.h \
-    videokits/musicvideotablewidget.h
-
+    videokits/*.h
 
 RESOURCES += \
     qrc/MusicPlayerVedio.qrc
