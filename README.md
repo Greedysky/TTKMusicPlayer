@@ -28,3 +28,7 @@ Copyright
  * Redistribution and use of the source code or any derivative.
  * works are strictly forbiden.
  * mail: greedysky@163.com.
+ 
+Contributing
+-------
+If you want to join the project developed together, please send e-mail to me.
