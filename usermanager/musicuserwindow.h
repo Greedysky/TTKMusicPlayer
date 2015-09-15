@@ -11,7 +11,7 @@ namespace Ui {
 class MusicUserWindow;
 }
 
-class MUSIC_WIDGET_EXPORT MusicUserWindow : public QStackedWidget
+class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
 {
     Q_OBJECT
 public:

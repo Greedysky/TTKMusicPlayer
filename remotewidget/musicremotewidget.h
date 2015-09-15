@@ -14,7 +14,7 @@
 #include "musicuiobject.h"
 #include "musicabstractmovewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
+class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

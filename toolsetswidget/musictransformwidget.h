@@ -24,7 +24,7 @@ namespace Ui {
 class MusicTransformWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

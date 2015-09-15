@@ -28,7 +28,7 @@ namespace Ui {
 class MusicApplication;
 }
 
-class MUSIC_WIDGET_EXPORT MusicApplication : public MusicAbstractMoveWidget
+class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

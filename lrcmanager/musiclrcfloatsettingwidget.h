@@ -13,7 +13,7 @@
 
 class QPushButton;
 
-class MUSIC_WIDGET_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstractWidget
 {
     Q_OBJECT
 public:

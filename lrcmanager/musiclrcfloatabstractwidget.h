@@ -15,7 +15,7 @@
 #include "musicuiobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_WIDGET_EXPORT MusicLrcFloatAbstractWidget : public QLabel
+class MUSIC_LRC_EXPORT MusicLrcFloatAbstractWidget : public QLabel
 {
     Q_OBJECT
 public:

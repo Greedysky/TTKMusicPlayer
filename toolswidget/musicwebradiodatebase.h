@@ -12,7 +12,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class MUSIC_CORE_EXPORT MusicWebRadioDatabase
+class MUSIC_TOOL_EXPORT MusicWebRadioDatabase
 {
 
 public:

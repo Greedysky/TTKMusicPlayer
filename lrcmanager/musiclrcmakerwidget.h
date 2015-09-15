@@ -15,7 +15,7 @@ namespace Ui {
 class MusicLrcMakerWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
+class MUSIC_LRC_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

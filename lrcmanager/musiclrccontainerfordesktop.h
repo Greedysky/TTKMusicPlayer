@@ -15,7 +15,7 @@ class QPushButton;
 class QToolButton;
 class MusicLRCManagerForDesktop;
 
-class MUSIC_WIDGET_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
+class MUSIC_LRC_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
 {
     Q_OBJECT
 public:

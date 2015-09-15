@@ -15,7 +15,7 @@
 
 class MusicWebRadioWidget;
 
-class MUSIC_WIDGET_EXPORT MusicWebRadioListView : public QListWidget
+class MUSIC_TOOL_EXPORT MusicWebRadioListView : public QListWidget
 {
     Q_OBJECT
 public:

@@ -18,7 +18,7 @@
 class MusicLrcSearchWidget;
 class MusicLrcMakerWidget;
 
-class MUSIC_WIDGET_EXPORT MusicLrcContainer : public QWidget
+class MUSIC_LRC_EXPORT MusicLrcContainer : public QWidget
 {
     Q_OBJECT
 public:

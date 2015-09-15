@@ -17,7 +17,7 @@ namespace Ui {
 class MusicFileInformationWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

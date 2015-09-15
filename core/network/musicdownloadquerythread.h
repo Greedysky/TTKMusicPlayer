@@ -18,7 +18,7 @@ class QNetworkAccessManager;
 
 enum QueryType{ MusicQuery, MVQuery };
 
-class MUSIC_CORE_EXPORT MusicDownLoadQueryThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThread : public QObject
 {
     Q_OBJECT
 public:

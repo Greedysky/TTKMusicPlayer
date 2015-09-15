@@ -14,7 +14,7 @@
 
 class MusicLocalSongSearchEdit;
 
-class MUSIC_WIDGET_EXPORT MusicLocalSongSearch : public QDialog
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearch : public QDialog
 {
     Q_OBJECT
 public:

@@ -11,7 +11,7 @@ class QToolButton;
 class QPushButton;
 class QWidgetAction;
 
-class MUSIC_WIDGET_EXPORT MusicVideoControl : public QWidget
+class MUSIC_VIDEO_EXPORT MusicVideoControl : public QWidget
 {
     Q_OBJECT
 public:

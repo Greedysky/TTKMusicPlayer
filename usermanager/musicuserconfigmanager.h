@@ -3,7 +3,7 @@
 
 #include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicUserConfigManager : public MusicAbstractXml
+class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
 public:
     explicit MusicUserConfigManager(QObject *parent = 0);

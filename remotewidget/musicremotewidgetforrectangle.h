@@ -11,7 +11,7 @@
 
 #include "musicremotewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
+class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
 public:

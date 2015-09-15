@@ -12,7 +12,7 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicLrcSearchTableWidget : public MusicQueryTableWidget
+class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:

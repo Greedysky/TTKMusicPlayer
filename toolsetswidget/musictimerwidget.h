@@ -18,7 +18,7 @@ namespace Ui {
 class MusicTimerWidget;
 }
 
-class MUSIC_WIDGET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

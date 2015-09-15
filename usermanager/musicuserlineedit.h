@@ -8,7 +8,7 @@
 
 enum LabelType{ User, Passwd, PasswdC, Mail};
 
-class MUSIC_WIDGET_EXPORT MusicUserLineEdit : public QLineEdit
+class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:

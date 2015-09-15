@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
+class MUSIC_TOOL_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
 {
 public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);

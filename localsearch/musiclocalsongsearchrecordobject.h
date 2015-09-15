@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-class MUSIC_CORE_EXPORT MusicLocalSongSearchRecordObject : public MusicAbstractXml
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordObject : public MusicAbstractXml
 {
     Q_OBJECT
 public:

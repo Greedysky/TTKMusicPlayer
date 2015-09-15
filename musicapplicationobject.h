@@ -17,7 +17,7 @@ class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class QPropertyAnimation;
 
-class MUSIC_WIDGET_EXPORT MusicApplicationObject : public QObject
+class MUSIC_GUI_EXPORT MusicApplicationObject : public QObject
 {
     Q_OBJECT
 public:

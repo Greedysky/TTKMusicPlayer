@@ -11,7 +11,7 @@
 
 #include "musicdownloadthreadabstract.h"
 
-class MUSIC_CORE_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:

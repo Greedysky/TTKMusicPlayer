@@ -18,7 +18,7 @@ class QVBoxLayout;
 class MusicLRCManagerForInline;
 class MusicLrcFloatWidget;
 
-class MUSIC_WIDGET_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
+class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
     Q_OBJECT
 public:

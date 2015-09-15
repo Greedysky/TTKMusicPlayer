@@ -19,7 +19,7 @@
 #define NETWORK_DETECT_INTERVAL 5000             // second
 #define NETWORK_REQUEST_ADDRESS "121.40.79.172"  // ip
 
-class MUSIC_CORE_EXPORT MusicNetworkThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
 public:

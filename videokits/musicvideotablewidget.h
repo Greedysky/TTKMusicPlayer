@@ -4,7 +4,7 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
-class MUSIC_WIDGET_EXPORT MusicVideoTableWidget : public MusicQueryTableWidget
+class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:

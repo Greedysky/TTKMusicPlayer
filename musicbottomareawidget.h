@@ -21,7 +21,7 @@ namespace Ui {
     class MusicApplication;
 }
 
-class MUSIC_WIDGET_EXPORT MusicBottomAreaWidget : public QWidget
+class MUSIC_GUI_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
 public:

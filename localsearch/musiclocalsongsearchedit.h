@@ -12,7 +12,7 @@
 #include <QLineEdit>
 #include "musiclibexportglobal.h"
 
-class MUSIC_WIDGET_EXPORT MusicLocalSongSearchEdit : public QLineEdit
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
 public:

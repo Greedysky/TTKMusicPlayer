@@ -17,7 +17,7 @@ class QProcess;
 class MusicSpectrumWidget;
 class MusicDesktopWallpaperWidget;
 
-class MUSIC_WIDGET_EXPORT MusicToolSetsWidget : public QListWidget
+class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public QListWidget
 {
     Q_OBJECT
 public:

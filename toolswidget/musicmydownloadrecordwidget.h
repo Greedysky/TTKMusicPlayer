@@ -14,7 +14,7 @@
 
 class QProgressBar;
 
-class MusicProgressBarDelegate : public QItemDelegate
+class MUSIC_TOOL_EXPORT MusicProgressBarDelegate : public QItemDelegate
 {
 public:
     explicit MusicProgressBarDelegate(QObject* parent = 0);
@@ -31,7 +31,7 @@ private:
 };
 
 
-class MUSIC_WIDGET_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
