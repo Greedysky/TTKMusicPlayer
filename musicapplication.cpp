@@ -637,7 +637,7 @@ void MusicApplication::musicImportSongsOnlyFile()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles );
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters( MusicPlayer::supportFormatsFilterString() );
+    dialog.setNameFilters( MusicPlayer::supportFormatsFilterDialogString() );
 
     if(dialog.exec())
     {

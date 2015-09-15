@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QThread>
-#include <QStringList>
+#include <QFileInfoList>
 #include "musiclibexportglobal.h"
 
 class MUSIC_CORE_EXPORT MusicLocalSongsManagerThread : public QThread
@@ -25,20 +25,17 @@ public:
     void stopAndQuitThread();
 
 signals:
-    void setSongNamePath(const QStringList &name,
-                         const QStringList &dir);
+    void setSongNamePath(const QFileInfoList &name);
 
 public slots:
     void start();
     void run();
 
 protected:
-    void findFile(const QString &path);
+    QFileInfoList findFile(const QString &path);
 
     bool m_run;
     QStringList m_path;
-    QStringList m_filename;
-    QStringList m_fileDir;
 
 };
 

@@ -1,6 +1,7 @@
 #include "musiclocalsongsmanagerthread.h"
 #include <QDir>
 #include <QDebug>
+#include "musicplayer.h"
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
     : QThread(parent)
@@ -15,13 +16,14 @@ MusicLocalSongsManagerThread::~MusicLocalSongsManagerThread()
 
 void MusicLocalSongsManagerThread::run()
 {
+    QFileInfoList list;
     for(int i=0; i<m_path.count(); ++i)
     {
-        findFile(m_path[i]);
+        list << findFile(m_path[i]);
     }
 
     ///The name and path search ended when sending the corresponding
-    emit setSongNamePath(m_filename, m_fileDir);
+    emit setSongNamePath( list );
 }
 
 void MusicLocalSongsManagerThread::start()
@@ -38,42 +40,26 @@ void MusicLocalSongsManagerThread::setFindFilePath(const QString &path)
 void MusicLocalSongsManagerThread::setFindFilePath(const QStringList &path)
 {
     m_path = path;
-    m_filename.clear();
-    m_fileDir.clear();
 }
 
-void MusicLocalSongsManagerThread::findFile(const QString &path)
+QFileInfoList MusicLocalSongsManagerThread::findFile(const QString &path)
 {
     ///Find the corresponding suffix name
     QDir dir(path);
     if(!m_run || !dir.exists())
     {
-        return;
+        return QFileInfoList();
     }
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
-    dir.setSorting(QDir::DirsFirst);
+    QFileInfoList fileList = dir.entryInfoList(MusicPlayer::supportFormatsFilterString(),
+                                               QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
-    QFileInfoList list = dir.entryInfoList();
-    if(list.count() == 0)
+    for(int i=0; i<folderList.size(); ++i)
     {
-        return;
+        QString childPath = folderList[i].absoluteFilePath();
+        fileList.append( findFile(childPath) );
     }
-    int i=0;
-    do{
-        QFileInfo fileInfo = list.at(i);
-        if(fileInfo.isDir())
-        {
-            m_filename<<fileInfo.fileName();
-            m_fileDir<<fileInfo.path();
-            findFile(fileInfo.filePath());
-        }
-        else
-        {
-            m_filename<<fileInfo.fileName();
-            m_fileDir<<fileInfo.path();
-        }
-        ++i;
-    }while(i < list.size());
+    return fileList;
 }
 
 void MusicLocalSongsManagerThread::stopAndQuitThread()

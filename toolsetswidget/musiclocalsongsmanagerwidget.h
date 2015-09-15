@@ -14,6 +14,7 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicabstractmovedialog.h"
+#include <QFileInfo>
 
 class QMovie;
 class MusicLocalSongsManagerThread;
@@ -38,7 +39,7 @@ public slots:
     void addButtonClick();
     void itemCellOnClick(int row, int col);
     void itemDoubleClicked(int row, int col);
-    void setSongNamePath(const QStringList &name, const QStringList &dir);
+    void setSongNamePath(const QFileInfoList &name);
     void filterIndexChanged();
     void musicSearchIndexChanged(int row, int col);
 
@@ -49,13 +50,11 @@ public slots:
 protected:
     Ui::MusicLocalSongsManagerWidget *ui;
     void clearAllItems();
-    void addAllItems(const QStringList &filename, const QStringList &fileDir);
-    void addLoaclSongList();
+    void addAllItems(const QFileInfoList &name = QFileInfoList());
     void addDrivesList();
     void itemsSelected();
 
-    QStringList m_filename;
-    QStringList m_fileDir;
+    QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;
     MIntsListMap m_searchfileListCache;
     int m_currentIndex;
