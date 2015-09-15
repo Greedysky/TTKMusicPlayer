@@ -69,7 +69,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(m_musicPlayer,SIGNAL(positionChanged(qint64)),SLOT(positionChanged(qint64)));
     connect(m_musicPlayer,SIGNAL(durationChanged(qint64)),SLOT(durationChanged(qint64)));
     connect(m_musicPlayer,SIGNAL(stateChanged()),SLOT(stateChanged()));
-    connect(m_musicList,SIGNAL(currentIndexChanged(int)),this,SLOT(showCurrentSong(int)));
+    connect(m_musicList,SIGNAL(currentIndexChanged(int)), this, SLOT(showCurrentSong(int)));
 
     connect(m_musicSongTree,SIGNAL(deleteItemAt(MIntList)),SLOT(setDeleteItemAt(MIntList)));
     connect(m_musicSongTree,SIGNAL(updatePlayLists(QString)),m_musicList,SLOT(appendMedia(QString)));
@@ -744,11 +744,12 @@ void MusicApplication::setDeleteItemAt(const MIntList &index)
     {
         m_musicList->removeMedia(index[i]);
     }
-    int oldIndex = index[0];
+    int oldIndex = m_musicList->currentIndex();
     if( oldIndex == m_musicList->mediaCount())  //Play index error correction
     {
         --oldIndex;
     }
+
     m_musicList->setCurrentIndex(oldIndex);
     //The corresponding item is deleted from the QMediaPlaylist
     m_playControl = true;

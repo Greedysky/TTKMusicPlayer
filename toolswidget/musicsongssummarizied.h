@@ -30,12 +30,13 @@ public:
     void musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls);
     void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
     void importOtherMusicSongs(const QStringList &filelist);
-    inline QStringList& getMusicSongsFileName(int index) { return m_musicFileNameList[index];}
-    inline QStringList& getMusicSongsFilePath(int index) { return m_musicFilePathList[index];}
-    inline MStringLists& getMusicAllSongsFileName() { return m_musicFileNameList;}
-    inline MStringLists& getMusicAllSongsFilePath() { return m_musicFilePathList;}
+
+    inline const QStringList& getMusicSongsFileName(int index) { return m_musicFileNameList[index];}
+    inline const QStringList& getMusicSongsFilePath(int index) { return m_musicFilePathList[index];}
+    inline const MStringLists& getMusicAllSongsFileName() { return m_musicFileNameList;}
+    inline const MStringLists& getMusicAllSongsFilePath() { return m_musicFilePathList;}
     inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
-    void clearAllLists();
+
     void currentMusicSongTreeIndexChanged(int index);
     void selectRow(int index);
     void setTimerLabel(const QString &time) const;
@@ -72,6 +73,7 @@ public slots:
 
 protected:
     void changeItemIcon();
+    void clearAllLists();
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     QList<MusicSongsListWidget*> m_mainSongLists;

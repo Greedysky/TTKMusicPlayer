@@ -390,7 +390,7 @@ void MusicSongsListWidget::musicFileInformation()
         return;
     }
     MusicFileInformationWidget file(this);
-    QString name,path;
+    QString name, path;
     emit getMusicSongFileInformation(currentRow(), name, path, false);
     file.setFileInformation(path);
     file.exec();
@@ -426,21 +426,21 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     removeCellWidget(m_playRowIndex, 1);
     removeCellWidget(m_playRowIndex, 2);
 
-    delete takeItem(m_playRowIndex,0);
-    delete takeItem(m_playRowIndex,1);
-    delete takeItem(m_playRowIndex,2);
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number(m_playRowIndex+1));
-    item->setTextColor(QColor(50,50,50));
+    delete takeItem(m_playRowIndex, 0);
+    delete takeItem(m_playRowIndex, 1);
+    delete takeItem(m_playRowIndex, 2);
+    QTableWidgetItem *item = new QTableWidgetItem(QString::number(m_playRowIndex + 1));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
-    setItem(m_playRowIndex,0,item);
+    setItem(m_playRowIndex, 0, item);
     item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 243));
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(m_playRowIndex,1,item);
-    item = new QTableWidgetItem(QIcon(":/image/musicdelete"),"");
-    item->setTextColor(QColor(50,50,50));
+    setItem(m_playRowIndex, 1, item);
+    item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
-    setItem(m_playRowIndex,2,item);
+    setItem(m_playRowIndex, 2, item);
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = NULL;
 }
@@ -457,20 +457,20 @@ void MusicSongsListWidget::selectRow(int index)
 
     replacePlayWidgetRow();
 
-    delete takeItem(index,0);
-    delete takeItem(index,1);
-    delete takeItem(index,2);
-    setItem(index,0,new QTableWidgetItem);
-    setItem(index,1,new QTableWidgetItem);
-    setItem(index,2,new QTableWidgetItem);
+    delete takeItem(index, 0);
+    delete takeItem(index, 1);
+    delete takeItem(index, 2);
+    setItem(index, 0, new QTableWidgetItem);
+    setItem(index, 1, new QTableWidgetItem);
+    setItem(index, 2, new QTableWidgetItem);
 
     emit getMusicSongFileInformation(index, name, path);
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(this);
-    connect(m_musicSongsPlayWidget,SIGNAL(renameFinished(QString)),
-            SLOT(setItemRenameFinished(QString)));
+    connect(m_musicSongsPlayWidget, SIGNAL(renameFinished(QString)),
+                                    SLOT(setItemRenameFinished(QString)));
     m_musicSongsPlayWidget->setParameter(name, path);
-    QWidget *widget,*widget1;
-    m_musicSongsPlayWidget->getWidget(widget,widget1);
+    QWidget *widget, *widget1;
+    m_musicSongsPlayWidget->getWidget(widget, widget1);
 
     setCellWidget(index, 0, widget);
     setCellWidget(index, 1, m_musicSongsPlayWidget);

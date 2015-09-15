@@ -282,7 +282,7 @@ void MusicSongsSummarizied::musicPlay(int index)
 void MusicSongsSummarizied::musicOpenFileDir(int index)
 {
     if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentIndex()][index]).absolutePath()
-                              , QUrl::TolerantMode)))
+                                , QUrl::TolerantMode)))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exsit!"));
