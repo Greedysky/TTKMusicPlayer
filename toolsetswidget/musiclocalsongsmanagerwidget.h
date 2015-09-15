@@ -50,7 +50,7 @@ public slots:
 protected:
     Ui::MusicLocalSongsManagerWidget *ui;
     void clearAllItems();
-    void addAllItems(const QFileInfoList &name = QFileInfoList());
+    void addAllItems(const QFileInfoList &name);
     void addDrivesList();
     void itemsSelected();
 

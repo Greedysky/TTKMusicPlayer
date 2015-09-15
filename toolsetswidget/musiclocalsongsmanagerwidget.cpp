@@ -91,9 +91,8 @@ void MusicLocalSongsManagerWidget::clearAllItems()
     m_currentIndex == 0 ? ui->songlistsTable->clearShowlist() : ui->songlistsTable->clearShowPath();
 }
 
-void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &name)
+void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
 {
-    QFileInfoList fileName = name.isEmpty() ? m_filenames : name;
     ui->songlistsTable->setRowCount(fileName.count());//reset row count
     ui->songCountLabel->setText(tr("showSongCount%1").arg(fileName.count()));
 
@@ -212,9 +211,8 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
     ui->loadingLabel->hide();
     delete m_movie;
     m_movie = NULL;
-    m_filenames = name;
     clearAllItems();
-    addAllItems();
+    addAllItems( m_filenames = name );
 }
 
 void MusicLocalSongsManagerWidget::itemsSelected()
@@ -341,7 +339,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     m_searchfileListCache.clear();
     ui->songlistsTable->createShowlist();
     m_currentIndex = 0;
-    addAllItems();
+    addAllItems( m_filenames );
 }
 
 void MusicLocalSongsManagerWidget::setShowPathButton()
@@ -351,7 +349,7 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
     m_searchfileListCache.clear();
     ui->songlistsTable->createShowPath();
     m_currentIndex = 1;
-    addAllItems();
+    addAllItems( m_filenames );
 }
 
 int MusicLocalSongsManagerWidget::exec()
