@@ -75,7 +75,7 @@ MusicProgressBarDelegate::~MusicProgressBarDelegate()
 }
 
 QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                      const QModelIndex &) const
+                                         const QModelIndex &) const
 {
     QSize size = option.rect.size();
     size.setHeight(25);
@@ -83,8 +83,8 @@ QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option,
 }
 
 void MusicProgressBarDelegate::paint(QPainter *painter,
-                                  const QStyleOptionViewItem &option,
-                                  const QModelIndex &index) const
+                                     const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
 {
     painter->save();
     m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
