@@ -43,16 +43,16 @@ MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
     ////////////////////////////////////////////////
-    QStringList names, times;
+    MusicSearchRecord record;
     MusicLocalSongSearchRecordObject search(this);
     if(!search.readSearchXMLConfig())
     {
         return;
     }
-    search.readSearchConfig(names, times);
-    names.insert(0, text);
-    times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
-    search.writeSearchConfig(names, times);
+    search.readSearchConfig( record );
+    record.m_names.insert(0, text);
+    record.m_times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
+    search.writeSearchConfig( record );
     ////////////////////////////////////////////////
     QString currentQuality;
     emit getQualityString(currentQuality);

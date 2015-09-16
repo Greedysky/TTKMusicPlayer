@@ -85,15 +85,16 @@ void MusicLocalSongSearchPopWidget::createItems()
         return;
     }
 
-    QStringList names, times;
-    search.readSearchConfig(names, times);
-    int count = names.count();
+    MusicSearchRecord record;
+    search.readSearchConfig( record );
+    int count = record.m_names.count();
     resize(285, count == 0 ? 40 : (count < 5 ? (20 + count*20) : 120) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
     {
-        m_popTableWidget->createItems(i, names[i], utcTimeToLocal(times[i]));
+        m_popTableWidget->createItems(i, record.m_names[i],
+                                      utcTimeToLocal(record.m_times[i]));
     }
 }
 
@@ -110,7 +111,7 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
     {
         return;
     }
-    search.writeSearchConfig(QStringList(), QStringList());
+    search.writeSearchConfig( MusicSearchRecord() );
 }
 
 void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)

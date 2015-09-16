@@ -7,8 +7,7 @@ MusicLocalSongSearchRecordObject::MusicLocalSongSearchRecordObject(QObject *pare
 }
 
 
-void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &names,
-                                                         const QStringList &times)
+void MusicLocalSongSearchRecordObject::writeSearchConfig(const MusicSearchRecord &record)
 {
     if( !writeConfig( MUSICSEARCH ) )
     {
@@ -20,9 +19,10 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &name
     QDomElement musicPlayer = createRoot("QMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "searchRecord");
 
-    for(int i=0; i<names.count(); ++i)
+    for(int i=0; i<record.m_names.count(); ++i)
     {
-        writeDomElementText(download, "value", "name", names[i], times[i]);
+        writeDomElementText(download, "value", "name",
+                            record.m_names[i], record.m_times[i]);
     }
 
     //Write to file
@@ -30,12 +30,16 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &name
     m_ddom->save(out,4);
 }
 
-void MusicLocalSongSearchRecordObject::readSearchConfig(QStringList &names, QStringList &times)
+void MusicLocalSongSearchRecordObject::readSearchConfig(MusicSearchRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
+    QStringList names;
+    QStringList times;
     for(int i=0; i<nodelist.count(); ++i)
     {
-        names<<nodelist.at(i).toElement().attribute("name");
-        times<<nodelist.at(i).toElement().text();
+        names << nodelist.at(i).toElement().attribute("name");
+        times << nodelist.at(i).toElement().text();
     }
+    record.m_names = names;
+    record.m_times = times;
 }
