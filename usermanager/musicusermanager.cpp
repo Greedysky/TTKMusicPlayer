@@ -53,12 +53,11 @@ void MusicUserManager::musicUserLogoff()
     {
         return;
     }
-    MStringsListMap parameter;
-    xml.readUserConfig(parameter);
-    QStringList values = parameter.value(m_currentUser);
-    values[0] = "0";//auto login flag
-    parameter.insert(m_currentUser,values);
-    xml.writeUserXMLConfig(parameter);
+    MusicUserRecord record;
+    xml.readUserConfig( record );
+    int index = record.m_names.indexOf(m_currentUser);
+    record.m_als[index] = "0";  //auto login flag
+    xml.writeUserXMLConfig( record );
 
     m_currentUser.clear();
     emit userStateChanged("");

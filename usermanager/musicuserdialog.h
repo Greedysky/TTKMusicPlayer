@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "musicobject.h"
 #include "musicabstractmovedialog.h"
+#include "musicuserconfigmanager.h"
 
 class MusicUserModel;
 
@@ -48,7 +48,7 @@ protected:
 
     Ui::MusicUserDialog *ui;
     MusicUserModel *m_userModel;
-    MStringsListMap m_parameter;
+    MusicUserRecord m_record;
     QString m_userComboIndex;
 
 };

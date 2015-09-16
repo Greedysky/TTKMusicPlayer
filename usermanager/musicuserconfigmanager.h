@@ -3,6 +3,14 @@
 
 #include "musicabstractxml.h"
 
+typedef struct MusicUserRecord
+{
+    QStringList m_names;
+    QStringList m_rps;
+    QStringList m_als;
+    QStringList m_pwds;
+}MusicUserRecord;
+
 class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
 public:
@@ -10,8 +18,8 @@ public:
 
     //UserXMLConfig
     inline bool readUserXMLConfig(){ return readConfig(USERPATH); }
-    void writeUserXMLConfig(const MStringsListMap &par);
-    void readUserConfig(MStringsListMap &name);
+    void writeUserXMLConfig(const MusicUserRecord &record);
+    void readUserConfig(MusicUserRecord &record);
 
 };
 

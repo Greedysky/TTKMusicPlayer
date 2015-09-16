@@ -6,7 +6,7 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
 
 }
 
-void MusicUserConfigManager::writeUserXMLConfig(const MStringsListMap& par)
+void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecord& record)
 {
     if( !writeConfig( USERPATH ) )
     {
@@ -16,14 +16,11 @@ void MusicUserConfigManager::writeUserXMLConfig(const MStringsListMap& par)
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("QMusicPlayer");
 
-    MStringsListMapIt p(par);
-    while(p.hasNext())
+    for(int i=0; i<record.m_names.count(); ++i)
     {
-        p.next();
-        QDomElement name = writeDomElement(musicPlayer, "username", "value", p.key());
-        writeDomElement(name, "userRp", "value", p.value()[0]);
-        writeDomElement(name, "userAl", "value", p.value()[1]);
-        writeDomElement(name, "userWd", "value", p.value()[2]);
+        writeDomElementMutilText(musicPlayer, "username", QStringList()<<"name"<<"userRp"<<"userAl",
+                                 QList<QVariant>()<<record.m_names[i]<<record.m_rps[i]<<record.m_als[i],
+                                 record.m_pwds[i]);
     }
 
     //Write to file
@@ -31,16 +28,19 @@ void MusicUserConfigManager::writeUserXMLConfig(const MStringsListMap& par)
     m_ddom->save(out,4);
 }
 
-void MusicUserConfigManager::readUserConfig(MStringsListMap &name)
+void MusicUserConfigManager::readUserConfig(MusicUserRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("username");
-    QDomNodeList childlist;
+    QStringList names, rps, als, pwds;
     for(int i=0; i<nodelist.count(); ++i)
     {
-        childlist = nodelist.at(i).childNodes();
-        name.insert(nodelist.at(i).toElement().attribute("value"),
-                    QStringList()<<childlist.at(0).toElement().attribute("value")
-                                 <<childlist.at(1).toElement().attribute("value")
-                                 <<childlist.at(2).toElement().attribute("value"));
+        names << nodelist.at(i).toElement().attribute("name");
+        rps << nodelist.at(i).toElement().attribute("userRp");
+        als << nodelist.at(i).toElement().attribute("userAl");
+        pwds << nodelist.at(i).toElement().text();
     }
+    record.m_names = names;
+    record.m_rps = rps;
+    record.m_als = als;
+    record.m_pwds = pwds;
 }
