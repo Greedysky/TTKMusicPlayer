@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicabstracttablewidget.h"
+#include "musicmydownloadrecordobject.h"
 
 class MusicProgressBarDelegate;
 
@@ -38,8 +39,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     MusicProgressBarDelegate *m_delegate;
-    QStringList m_musicFileNameList;
-    QStringList m_musicFilePathList;
+    MusicRecord m_musicRecord;
 
 };
 

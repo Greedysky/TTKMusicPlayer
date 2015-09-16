@@ -1,5 +1,4 @@
 #include "musicmydownloadrecordwidget.h"
-#include "musicmydownloadrecordobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
@@ -36,7 +35,7 @@ MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
     delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordObject xml;
-    xml.writeDownloadConfig(m_musicFileNameList,m_musicFilePathList);
+    xml.writeDownloadConfig(m_musicRecord);
 }
 
 void MusicMyDownloadRecordWidget::musicSongsFileName()
@@ -46,19 +45,19 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     {
         return;
     }
-    xml.readDownloadConfig(m_musicFileNameList,m_musicFilePathList);
+    xml.readDownloadConfig(m_musicRecord);
 
-    setRowCount(m_musicFileNameList.count());//reset row count
-    for(int i=0; i<m_musicFileNameList.count(); i++)
+    setRowCount(m_musicRecord.m_names.count());//reset row count
+    for(int i=0; i<m_musicRecord.m_names.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                  m_musicFileNameList[i], Qt::ElideRight, 170));
+                                                  m_musicRecord.m_names[i], Qt::ElideRight, 170));
         item->setTextColor(QColor(50,50,50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        item->setToolTip(m_musicFileNameList[i]);
+        item->setToolTip(m_musicRecord.m_names[i]);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
@@ -117,8 +116,8 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
     {
         int ind = deleteList[i];
         removeRow(ind); //Delete the current row
-        m_musicFileNameList.removeAt(ind);
-        m_musicFilePathList.removeAt(ind);
+        m_musicRecord.m_names.removeAt(ind);
+        m_musicRecord.m_names.removeAt(ind);
     }
 }
 
@@ -146,8 +145,8 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentRow()]).absolutePath()
-                              , QUrl::TolerantMode)))
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absolutePath()
+                                , QUrl::TolerantMode)))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exsit!"));
@@ -161,5 +160,5 @@ void MusicMyDownloadRecordWidget::musicPlay()
     {
         return;
     }
-    emit addSongToPlay(QStringList(m_musicFilePathList[currentRow()]));
+    emit addSongToPlay(QStringList(m_musicRecord.m_paths[currentRow()]));
 }

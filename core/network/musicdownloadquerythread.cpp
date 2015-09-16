@@ -111,6 +111,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                                                  "song_id=%3").arg(singerName).arg(songName).arg(songId);
                             musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
                             musicInfo << singerName;
+                            musicInfo << object.value("size").toString();
                             m_musicSongInfo << musicInfo;
                             break;
                         }

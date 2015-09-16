@@ -6,8 +6,7 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 
 }
 
-void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
-                                                      const QStringList &paths)
+void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicRecord &record)
 {
     if( !writeConfig( DOWNLOADINFO ) )
     {
@@ -18,21 +17,30 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
     QDomElement musicPlayer = createRoot("QMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "download");
 
-    for(int i=0; i<names.count(); ++i)
+    for(int i=0; i<record.m_names.count(); ++i)
     {
-        writeDomElementText(download, "value", "value", names[i], paths[i]);
+        writeDomElementMutilText(download, "value", QStringList()<<"name"<<"size",
+                                 QList<QVariant>()<<record.m_names[i]<<record.m_sizes[i],
+                                 record.m_paths[i]);
     }
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out,4);
 }
 
-void MusicMyDownloadRecordObject::readDownloadConfig(QStringList &name, QStringList &path)
+void MusicMyDownloadRecordObject::readDownloadConfig(MusicRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
+    QStringList names;
+    QStringList paths;
+    QStringList size;
     for(int i=0; i<nodelist.count(); ++i)
     {
-        name<<nodelist.at(i).toElement().attribute("value");
-        path<<nodelist.at(i).toElement().text();
+        names << nodelist.at(i).toElement().attribute("name");
+        paths << nodelist.at(i).toElement().text();
+        size << nodelist.at(i).toElement().attribute("size");
     }
+    record.m_names = names;
+    record.m_paths = paths;
+    record.m_sizes = size;
 }

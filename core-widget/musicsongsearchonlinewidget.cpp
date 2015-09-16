@@ -218,16 +218,18 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
 
     ////////////////////////////////////////////////
-    QStringList name, path;
+    MusicRecord record;
     MusicMyDownloadRecordObject down(this);
     if(!down.readDownloadXMLConfig())
     {
         return;
     }
-    down.readDownloadConfig(name,path);
-    name<<musicSong;
-    path<<QFileInfo(downloadName).absoluteFilePath();
-    down.writeDownloadConfig(name, path);
+    qDebug()<<"aa";
+    down.readDownloadConfig( record );qDebug()<<"aa";
+    record.m_names << musicSong;qDebug()<<"aa";
+    record.m_paths << QFileInfo(downloadName).absoluteFilePath();qDebug()<<"aa";
+    record.m_sizes << musicSongInfo[row][4];qDebug()<<"aa";
+    down.writeDownloadConfig( record );qDebug()<<"aa";
     ////////////////////////////////////////////////
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
