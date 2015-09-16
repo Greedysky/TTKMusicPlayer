@@ -77,7 +77,7 @@
   <widget class="QLabel" name="type">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>185</x>
      <y>55</y>
      <width>31</width>
      <height>15</height>
@@ -92,12 +92,12 @@
     <rect>
      <x>90</x>
      <y>77</y>
-     <width>58</width>
+     <width>80</width>
      <height>15</height>
     </rect>
    </property>
    <property name="text">
-    <string>最新播放:</string>
+    <string>最新播放次数:</string>
    </property>
   </widget>
   <widget class="QLabel" name="artlistValue">
@@ -160,9 +160,9 @@
   <widget class="QLabel" name="timeValue">
    <property name="geometry">
     <rect>
-     <x>148</x>
+     <x>170</x>
      <y>77</y>
-     <width>109</width>
+     <width>86</width>
      <height>15</height>
     </rect>
    </property>

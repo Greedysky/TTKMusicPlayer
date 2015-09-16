@@ -3,7 +3,6 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musictime.h"
-#include <QTime>
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : QWidget(parent),
@@ -36,11 +35,11 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(MusicSong &info)
     QString musicArt = info.getMusicArtistFront();
     QFontMetrics str(font());
     ui->songNameValue->setText( info.getMusicName().isEmpty() ? "-" :
-                 str.elidedText(info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()));
-    ui->artlistValue->setText(musicArt.isEmpty() ? "-" : musicArt);
-    ui->sizeValue->setText(QString::number(MusicTime::fileSzieByte2MByte(info.getMusicSize())).left(4) + "M");
-    ui->typeValue->setText(info.getMusicType().isEmpty() ? "-" : info.getMusicType());
-    ui->timeValue->setText(QTime::currentTime().toString(Qt::ISODate));
+                 str.elidedText( info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()) );
+    ui->artlistValue->setText( musicArt.isEmpty() ? "-" : musicArt );
+    ui->sizeValue->setText( QString::number(MusicTime::fileSzieByte2MByte(info.getMusicSize())).left(4) + "M" );
+    ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" : info.getMusicType());
+    ui->timeValue->setText( QString::number(info.getMusicPlayCount()) );
 
     if(!showArtPicture(musicArt) && !showArtPicture(info.getMusicArtistBack()))
     {

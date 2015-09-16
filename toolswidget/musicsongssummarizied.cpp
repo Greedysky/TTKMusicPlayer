@@ -95,6 +95,8 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 void MusicSongsSummarizied::selectRow(int index)
 {
     QToolBox::setCurrentIndex(m_currentIndexs);
+    int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
+    m_musicFileNames[m_currentIndexs].m_playCount.replace(index, ++countNumber);
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
@@ -308,6 +310,7 @@ void MusicSongsSummarizied::setMusicSongInformation(int row, MusicSong &song)
     song.setMusicName(l[row]);
     QFileInfo f(m_musicFileNames[currentIndex()].m_paths[row]);
     song.setMusicSize(f.size());
+    song.setMusicPlayCount(m_musicFileNames[currentIndex()].m_playCount[row]);
     song.setMusicType(f.suffix());
 }
 
