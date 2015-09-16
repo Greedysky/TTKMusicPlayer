@@ -224,12 +224,12 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     {
         return;
     }
-    qDebug()<<"aa";
-    down.readDownloadConfig( record );qDebug()<<"aa";
-    record.m_names << musicSong;qDebug()<<"aa";
-    record.m_paths << QFileInfo(downloadName).absoluteFilePath();qDebug()<<"aa";
-    record.m_sizes << musicSongInfo[row][4];qDebug()<<"aa";
-    down.writeDownloadConfig( record );qDebug()<<"aa";
+
+    down.readDownloadConfig( record );
+    record.m_names << musicSong;
+    record.m_paths << QFileInfo(downloadName).absoluteFilePath();
+    record.m_sizes << musicSongInfo[row][4];
+    down.writeDownloadConfig( record );
     ////////////////////////////////////////////////
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
