@@ -236,8 +236,7 @@ void MusicPlayer::setMuted(bool muted)
 void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
 {
     m_playlist = playlist;
-    connect(m_playlist, SIGNAL(removeCurrentMedia()),
-                        SLOT(removeCurrentMedia()));
+    connect(m_playlist, SIGNAL(removeCurrentMedia()), SLOT(removeCurrentMedia()));
 }
 
 void MusicPlayer::setTimeOut()

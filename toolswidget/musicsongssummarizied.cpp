@@ -95,8 +95,6 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 void MusicSongsSummarizied::selectRow(int index)
 {
     QToolBox::setCurrentIndex(m_currentIndexs);
-    int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
-    m_musicFileNames[m_currentIndexs].m_playCount.replace(index, ++countNumber);
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
@@ -115,6 +113,12 @@ void MusicSongsSummarizied::setTransparent(int alpha)
     alpha = alpha*2.55;
     setStyleSheet(MusicUIObject::MToolBoxStyle01 + \
           QString("QToolBox::tab{background-color:rgba(255,255,255,%1);}").arg(alpha) );
+}
+
+void MusicSongsSummarizied::setMusicPlayCount(int index)
+{
+    int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
+    m_musicFileNames[m_currentIndexs].m_playCount.replace(index, ++countNumber);
 }
 
 QString MusicSongsSummarizied::itemText(int row, int col) const

@@ -69,6 +69,7 @@ public slots:
                              QStringList &list);
     void updateArtPicture();
     void setTransparent(int alpha);
+    void setMusicPlayCount(int index);
 
 protected:
     void changeItemIcon();
