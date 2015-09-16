@@ -23,10 +23,9 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
 
     m_timerShow = new QTimer(this);
     m_timerStay = new QTimer(this);
+
     connect(m_timerShow,SIGNAL(timeout()),SLOT(showTimeOut()));
     connect(m_timerStay,SIGNAL(timeout()),SLOT(stayTimeOut()));
-
-//    connect(this,SIGNAL(cellEntered(int,int)),SLOT(listCellEntered(int,int)));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
@@ -47,17 +46,18 @@ void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
         item->setTextColor(QColor(50,50,50));
         item->setTextAlignment(Qt::AlignCenter);
-        this->setItem(i,0,item);
+        setItem(i, 0, item);
         //To get the song name
-        QTableWidgetItem *item1 = new QTableWidgetItem(QFontMetrics(font()).elidedText(
+                          item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
                                                 filenamelists[i], Qt::ElideRight, 243));
-        item1->setTextColor(QColor(50,50,50));
-        item1->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        this->setItem(i,1,item1);
+        item->setTextColor(QColor(50,50,50));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 1, item);
+
         //add a delete icon
-        QTableWidgetItem *item2 = new QTableWidgetItem(QIcon(":/image/musicdelete"),"");
-        item2->setTextAlignment(Qt::AlignCenter);
-        this->setItem(i,2,item2);
+                          item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(i, 2, item);
     }
 }
 
