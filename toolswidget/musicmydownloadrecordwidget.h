@@ -39,7 +39,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     MusicProgressBarDelegate *m_delegate;
-    MusicRecord m_musicRecord;
+    MusicDownloadRecord m_musicRecord;
 
 };
 

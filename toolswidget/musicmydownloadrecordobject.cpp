@@ -6,7 +6,7 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 
 }
 
-void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicRecord &record)
+void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicDownloadRecord &record)
 {
     if( !writeConfig( DOWNLOADINFO ) )
     {
@@ -28,7 +28,7 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicRecord &record)
     m_ddom->save(out,4);
 }
 
-void MusicMyDownloadRecordObject::readDownloadConfig(MusicRecord &record)
+void MusicMyDownloadRecordObject::readDownloadConfig(MusicDownloadRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
     QStringList names;

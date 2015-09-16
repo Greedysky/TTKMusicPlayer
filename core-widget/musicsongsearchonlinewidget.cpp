@@ -218,7 +218,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
 
     ////////////////////////////////////////////////
-    MusicRecord record;
+    MusicDownloadRecord record;
     MusicMyDownloadRecordObject down(this);
     if(!down.readDownloadXMLConfig())
     {

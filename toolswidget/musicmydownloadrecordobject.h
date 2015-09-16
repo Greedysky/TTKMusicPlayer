@@ -11,12 +11,12 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MusicRecord
+typedef struct MusicDownloadRecord
 {
     QStringList m_names;
     QStringList m_paths;
     QStringList m_sizes;
-}MusicRecord;
+}MusicDownloadRecord;
 
 class MUSIC_TOOL_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
 {
@@ -24,8 +24,8 @@ public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);
 
     inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO); }
-    void writeDownloadConfig(const MusicRecord &record);
-    void readDownloadConfig(MusicRecord &record);
+    void writeDownloadConfig(const MusicDownloadRecord &record);
+    void readDownloadConfig(MusicDownloadRecord &record);
 
 };
 
