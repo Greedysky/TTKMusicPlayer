@@ -1,6 +1,6 @@
 #include "musicsonginformation.h"
 
-QMusicSong::QMusicSong()
+MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
 {
     m_musicType = QString();
@@ -8,8 +8,7 @@ QMusicSong::QMusicSong()
     m_musicPlayCount = 0;
 }
 
-QMusicSong::QMusicSong(const QString &musicName,
-                       const QString &musicPath)
+MusicSong::MusicSong(const QString &musicName, const QString &musicPath)
     : m_musicName(musicName), m_musicPath(musicPath)
 {
     m_musicType = QString();
@@ -17,12 +16,12 @@ QMusicSong::QMusicSong(const QString &musicName,
     m_musicPlayCount = 0;
 }
 
-QString QMusicSong::getMusicArtistFront() const
+QString MusicSong::getMusicArtistFront() const
 {
     return m_musicName.split('-').front().trimmed();
 }
 
-QString QMusicSong::getMusicArtistBack() const
+QString MusicSong::getMusicArtistBack() const
 {
     return m_musicName.split('-').back().trimmed();
 }

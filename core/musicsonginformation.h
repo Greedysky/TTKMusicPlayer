@@ -12,12 +12,12 @@
 #include <QObject>
 #include "musiclibexportglobal.h"
 
-class MUSIC_CORE_EXPORT QMusicSong
+class MUSIC_CORE_EXPORT MusicSong
 {
 public:
-    explicit QMusicSong();
-    explicit QMusicSong(const QString &musicName,
-                        const QString &musicPath);
+    explicit MusicSong();
+    explicit MusicSong(const QString &musicName,
+                       const QString &musicPath);
 
     QString getMusicArtistFront() const;
     QString getMusicArtistBack() const;

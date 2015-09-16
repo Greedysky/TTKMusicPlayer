@@ -43,8 +43,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
         connect(m_mainSongLists[i],SIGNAL(deleteItemAt(MIntList,bool)),SLOT(setDeleteItemAt(MIntList,bool)));
         connect(m_mainSongLists[i],SIGNAL(currentTextChanged(int,QString)),SLOT(currentTextChanged(int,QString)));
         connect(m_mainSongLists[i],SIGNAL(musicOpenFileDir(int)),SLOT(musicOpenFileDir(int)));
-        connect(m_mainSongLists[i],SIGNAL(getMusicSongInformation(int,QMusicSong&)),
-                                     SLOT(setMusicSongInformation(int,QMusicSong&)));
+        connect(m_mainSongLists[i],SIGNAL(getMusicSongInformation(int,MusicSong&)),
+                                     SLOT(setMusicSongInformation(int,MusicSong&)));
         connect(m_mainSongLists[i],SIGNAL(getMusicSongFileInformation(int,QString&,QString&,bool)),
                                      SLOT(setMusicSongFileInformation(int,QString&,QString&,bool)));
         connect(m_mainSongLists[i],SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
@@ -298,7 +298,7 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
     }
 }
 
-void MusicSongsSummarizied::setMusicSongInformation(int row, QMusicSong &song)
+void MusicSongsSummarizied::setMusicSongInformation(int row, MusicSong &song)
 {
     QStringList l = m_musicFileNameList[currentIndex()];
     if(row >= l.count())

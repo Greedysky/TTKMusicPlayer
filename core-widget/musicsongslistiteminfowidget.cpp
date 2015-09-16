@@ -31,7 +31,7 @@ bool MusicSongsListItemInfoWidget::showArtPicture(const QString &name)
     return false;
 }
 
-void MusicSongsListItemInfoWidget::setMusicSongInformation(QMusicSong &info)
+void MusicSongsListItemInfoWidget::setMusicSongInformation(MusicSong &info)
 {
     QString musicArt = info.getMusicArtistFront();
     QFontMetrics str(font());

@@ -50,7 +50,7 @@ signals:
     void musicAddNewDir();
     void musicOpenFileDir(int index);
 
-    void getMusicSongInformation(int row, QMusicSong &song);
+    void getMusicSongInformation(int row, MusicSong &song);
     void getMusicSongFileInformation(int row, QString &name,
                                      QString &path, bool st = true);
     void getMusicIndexSwaped(int before, int after, int play,

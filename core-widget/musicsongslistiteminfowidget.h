@@ -24,7 +24,7 @@ public:
     explicit MusicSongsListItemInfoWidget(QWidget *parent = 0);
     ~MusicSongsListItemInfoWidget();
 
-    void setMusicSongInformation(QMusicSong &info);
+    void setMusicSongInformation(MusicSong &info);
 
 protected:
     Ui::MusicSongsListItemInfoWidget *ui;

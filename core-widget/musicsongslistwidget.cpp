@@ -294,8 +294,8 @@ void MusicSongsListWidget::showTimeOut()
 {
     if(m_musicSongsListItem)
     {
-        QMusicSong musicinfo;
-        emit getMusicSongInformation(m_previousColorRow,musicinfo);
+        MusicSong musicinfo;
+        emit getMusicSongInformation(m_previousColorRow, musicinfo);
         m_musicSongsListItem->setMusicSongInformation(musicinfo);
         m_musicSongsListItem->setGeometry(QCursor::pos().x()+50,QCursor::pos().y(),264,108);
         m_musicSongsListItem->show();
