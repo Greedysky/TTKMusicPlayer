@@ -89,6 +89,7 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
         m_musicFileNames[0].m_names.append(splitString.left(splitString.lastIndexOf('.')));
     }
     m_musicFileNames[0].m_paths.append(filelist);
+    m_musicFileNames[0].m_playCount.append(0);
     m_mainSongLists[0]->musicSongsFileName(m_musicFileNames[0].m_names);
 }
 
