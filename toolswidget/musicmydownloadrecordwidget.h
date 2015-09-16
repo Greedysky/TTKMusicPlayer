@@ -9,27 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QItemDelegate>
 #include "musicabstracttablewidget.h"
 
-class QProgressBar;
-
-class MUSIC_TOOL_EXPORT MusicProgressBarDelegate : public QItemDelegate
-{
-public:
-    explicit MusicProgressBarDelegate(QObject* parent = 0);
-    ~MusicProgressBarDelegate();
-
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
-private:
-    QProgressBar *m_progress;
-
-};
-
+class MusicProgressBarDelegate;
 
 class MUSIC_TOOL_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
 {

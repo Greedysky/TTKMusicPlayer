@@ -2,46 +2,11 @@
 #include "musicmydownloadrecordobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
+#include "musicitemdelegate.h"
 
 #include <QDesktopServices>
 #include <QContextMenuEvent>
 #include <QMenu>
-#include <QPainter>
-#include <QProgressBar>
-
-MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
-    : QItemDelegate(parent)
-{
-    m_progress  = new QProgressBar;
-    m_progress->setStyleSheet(MusicUIObject::MProgressBar01);
-}
-
-MusicProgressBarDelegate::~MusicProgressBarDelegate()
-{
-    delete m_progress;
-}
-
-QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                      const QModelIndex &) const
-{
-    QSize size = option.rect.size();
-    size.setHeight(25);
-    return size;
-}
-
-void MusicProgressBarDelegate::paint(QPainter *painter,
-                                  const QStyleOptionViewItem &option,
-                                  const QModelIndex &index) const
-{
-    painter->save();
-    m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
-    m_progress->setValue(index.data(Qt::DisplayRole).toInt());
-    painter->translate(10, 10);
-    m_progress->render(painter, option.rect.topLeft(), QRegion(),
-                       QWidget::DrawChildren);
-    painter->restore();
-}
-
 
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
