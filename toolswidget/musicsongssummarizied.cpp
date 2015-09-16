@@ -119,7 +119,7 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
     int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
-    m_musicFileNames[m_currentIndexs].m_playCount.replace(index, ++countNumber);
+    m_musicFileNames[m_currentIndexs].m_playCount[index] = ++countNumber;
 }
 
 QString MusicSongsSummarizied::itemText(int row, int col) const
@@ -275,9 +275,9 @@ void MusicSongsSummarizied::changeItemIcon()
     setItemIcon(currentIndex(),QIcon(":/image/arrowdown"));
 }
 
-void MusicSongsSummarizied::currentTextChanged(int index,const QString& text)
+void MusicSongsSummarizied::currentTextChanged(int index, const QString &text)
 {
-    m_musicFileNames[currentIndex()].m_names.replace(index,text);
+    m_musicFileNames[currentIndex()].m_names[index] = text;
 }
 
 void MusicSongsSummarizied::musicPlay(int index)

@@ -80,7 +80,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     foreach(QString oneLine, lines)
     {
         QString temp = oneLine;
-        temp.replace(reg,"");
+        temp.replace(reg, "");
         /*Replace the regular expression matching in place with the empty
         string, then we get the lyrics text,And then get all the time the
         label in the current row, and separately with lyrics text into QMap

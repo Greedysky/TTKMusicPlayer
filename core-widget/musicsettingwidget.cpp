@@ -234,8 +234,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::CurrentLanIndexChoiced, ui->languageComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced,ui->autoPlayShowInfoWidget->isChecked());
     QStringList list = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    list.replace(0,QString::number(ui->backPlayShowInfoWidget->isChecked()));
-    M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced,list);
+    list[0] = QString::number(ui->backPlayShowInfoWidget->isChecked());
+    M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
     M_SETTING->setValue(MusicSettingManager::CloseEventChoiced,ui->quitShowInfoWidget->isChecked() ? "true" : "false");
 
     M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineSongWordWidget->isChecked());
