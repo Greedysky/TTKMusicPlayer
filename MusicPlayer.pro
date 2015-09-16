@@ -88,6 +88,7 @@ SOURCES += \
     core/network/musictextdownloadthread.cpp \
     core/network/musicbgthemedownload.cpp \
     core/network/musicnetworkthread.cpp \
+    core/musicsonginformation.cpp \
     core/musictime.cpp \
     core/musicplayer.cpp \
     core/musicplaylist.cpp \

@@ -306,10 +306,10 @@ void MusicSongsSummarizied::setMusicSongInformation(int row, QMusicSong &song)
         return;
     }
 
-    song.m_musicName = l[row];
+    song.setMusicName(l[row]);
     QFileInfo f(m_musicFilePathList[currentIndex()][row]);
-    song.m_musicSize = f.size();
-    song.m_musicType = f.suffix();
+    song.setMusicSize(f.size());
+    song.setMusicType(f.suffix());
 }
 
 void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString &name, QString &path, bool st)

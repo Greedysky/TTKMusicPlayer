@@ -9,43 +9,40 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QStringList>
+#include <QObject>
 #include "musiclibexportglobal.h"
 
 class MUSIC_CORE_EXPORT QMusicSong
 {
 public:
-    explicit QMusicSong() : m_musicName(QString()), m_musicType(QString()),
-                            m_musicSize(0)
-    {
-
-    }
-
+    explicit QMusicSong();
     explicit QMusicSong(const QString &musicName,
-                        const QString &musicType,
-                        const qint64 musicSize) :
-        m_musicName(musicName), m_musicType(musicType),
-        m_musicSize(musicSize)
-    {
+                        const QString &musicPath);
 
-    }
+    QString getMusicArtistFront() const;
+    QString getMusicArtistBack() const;
 
-    inline QString getMusicArtistFront() const
-    {
-        return m_musicName.split('-').front().trimmed();
-    }
-    inline QString getMusicArtistBack() const
-    {
-        return m_musicName.split('-').back().trimmed();
-    }
-    inline QString getMusicAbName() const
-    {
-        return m_musicName.split('-').back().trimmed();
-    }
+    inline void setMusicName(const QString &n) { m_musicName = n;}
+    inline QString getMusicName() const { return m_musicName;}
 
+    inline void setMusicPath(const QString &p) { m_musicPath = p;}
+    inline QString getMusicPath() const { return m_musicPath;}
+
+    inline void setMusicType(const QString &t) { m_musicType = t;}
+    inline QString getMusicType() const { return m_musicType;}
+
+    inline void setMusicSize(const qint64 s) { m_musicSize = s;}
+    inline qint64 getMusicSize() const { return m_musicSize;}
+
+    inline void setMusicPlayCount(const int c) { m_musicPlayCount = c;}
+    inline int getMusicPlayCount() const { return m_musicPlayCount;}
+
+protected:
     QString m_musicName;
+    QString m_musicPath;
     QString m_musicType;
     qint64  m_musicSize;
+    int m_musicPlayCount;
 
 };
 

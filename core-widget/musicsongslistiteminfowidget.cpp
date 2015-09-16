@@ -35,11 +35,11 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(QMusicSong &info)
 {
     QString musicArt = info.getMusicArtistFront();
     QFontMetrics str(font());
-    ui->songNameValue->setText( info.m_musicName.isEmpty() ? "-" :
-                 str.elidedText(info.m_musicName, Qt::ElideRight, ui->songNameValue->width()));
+    ui->songNameValue->setText( info.getMusicName().isEmpty() ? "-" :
+                 str.elidedText(info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()));
     ui->artlistValue->setText(musicArt.isEmpty() ? "-" : musicArt);
-    ui->sizeValue->setText(QString::number(MusicTime::fileSzieByte2MByte(info.m_musicSize)).left(4) + "M");
-    ui->typeValue->setText(info.m_musicType.isEmpty() ? "-" : info.m_musicType);
+    ui->sizeValue->setText(QString::number(MusicTime::fileSzieByte2MByte(info.getMusicSize())).left(4) + "M");
+    ui->typeValue->setText(info.getMusicType().isEmpty() ? "-" : info.getMusicType());
     ui->timeValue->setText(QTime::currentTime().toString(Qt::ISODate));
 
     if(!showArtPicture(musicArt) && !showArtPicture(info.getMusicArtistBack()))
