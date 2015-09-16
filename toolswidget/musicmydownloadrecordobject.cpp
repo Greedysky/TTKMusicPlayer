@@ -20,7 +20,7 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const QStringList &names,
 
     for(int i=0; i<names.count(); ++i)
     {
-        writeDomEleText(download, "value", "value", names[i], paths[i]);
+        writeDomElementText(download, "value", "value", names[i], paths[i]);
     }
     //Write to file
     QTextStream out(m_file);

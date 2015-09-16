@@ -21,10 +21,8 @@ public:
     inline bool readXMLConfig() { return readConfig(COFIGPATH); }
     inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH); }
     void writeXMLConfig();
-    void writeMusicSongsConfig(const MStringLists &fileNamesList,
-                               const MStringLists &fileUrlsList);
-    void readMusicSongsConfig(MStringLists &fileNamesList,
-                              MStringLists &fileUrlsList);
+    void writeMusicSongsConfig(const MMusicList &musics);
+    void readMusicSongsConfig(MMusicList &musics);
     inline int readMusicPlayModeConfig() const
     { return readXmlByTagNameAndAttribute("playMode").toInt(); }
     inline int readMusicPlayVolumeConfig() const
@@ -92,7 +90,7 @@ public:
     void readTimeAutoConfig() const;
 
 protected:
-    MStringListsPair readMusicFilePath(const QString &value) const;
+    MusicSongs readMusicFilePath(const QString &value) const;
     QColor readColorConfig(const QString &value) const;
 
 };

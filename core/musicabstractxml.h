@@ -33,10 +33,16 @@ protected:
     QDomElement writeDom(QDomElement &element, const QString &node);
     QDomElement writeDomElement(QDomElement &element, const QString &node,
                                 const QString &key, const QVariant &value);
-    QDomElement writeDomEleText(QDomElement &element, const QString &node,
-                                const QString &key, const QVariant &value,
-                                const QString &text);
+    QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
+                                     const QStringList &keys, const QList<QVariant> &values);
+    QDomElement writeDomElementText(QDomElement &element, const QString &node,
+                                    const QString &key, const QVariant &value,
+                                    const QString &text);
+    QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
+                                         const QStringList &keys, const QList<QVariant> &values,
+                                         const QString &text);
     QDomElement writeDomText(QDomElement &element, const QString &node, const QString &text);
+    void writeAttribute(QDomElement &element, const QString &key, const QVariant &value);
 
     QFile *m_file;
     QDomDocument *m_ddom;

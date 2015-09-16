@@ -77,29 +77,63 @@ QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QStrin
                                               const QString &key, const QVariant &value)
 {
     QDomElement domElement = writeDom(element, node);
-    switch(value.type())
+    writeAttribute(domElement, key, value);
+    return domElement;
+}
+
+QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node,
+                                                   const QStringList &keys,
+                                                   const QList<QVariant> &values)
+{
+    Q_ASSERT(!keys.isEmpty());
+    Q_ASSERT(!values.isEmpty());
+
+    QDomElement domElement = writeDomElement(element, node, keys.front(), values.front());
+    for(int i=1; i<keys.count(); ++i)
     {
-        case QVariant::Int :
-            domElement.setAttribute(key, value.toInt()); break;
-        case QVariant::String :
-            domElement.setAttribute(key, value.toString()); break;
-        case QVariant::LongLong :
-            domElement.setAttribute(key, value.toLongLong()); break;
-        case QVariant::ULongLong :
-            domElement.setAttribute(key, value.toULongLong()); break;
-        case QVariant::Double :
-            domElement.setAttribute(key, value.toDouble()); break;
-        case QVariant::UInt :
-            domElement.setAttribute(key, value.toUInt()); break;
+        writeAttribute(domElement, keys[i], values[i]);
     }
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDomEleText(QDomElement &element, const QString &node,
-                                              const QString &key, const QVariant &value,
-                                              const QString &text)
+void MusicAbstractXml::writeAttribute(QDomElement &element, const QString &key,
+                                      const QVariant &value)
+{
+    switch(value.type())
+    {
+        case QVariant::Int :
+            element.setAttribute(key, value.toInt()); break;
+        case QVariant::String :
+            element.setAttribute(key, value.toString()); break;
+        case QVariant::LongLong :
+            element.setAttribute(key, value.toLongLong()); break;
+        case QVariant::ULongLong :
+            element.setAttribute(key, value.toULongLong()); break;
+        case QVariant::Double :
+            element.setAttribute(key, value.toDouble()); break;
+        case QVariant::UInt :
+            element.setAttribute(key, value.toUInt()); break;
+    }
+}
+
+QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node,
+                                                  const QString &key, const QVariant &value,
+                                                  const QString &text)
 {
     QDomElement domElement = writeDomElement(element, node, key, value);
+    QDomText domText = m_ddom->createTextNode( text );
+    domElement.appendChild( domText );
+    return domElement;
+}
+
+QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node,
+                                                       const QStringList &keys, const QList<QVariant> &values,
+                                                       const QString &text)
+{
+    Q_ASSERT(!keys.isEmpty());
+    Q_ASSERT(!values.isEmpty());
+
+    QDomElement domElement = writeDomElementMutil(element, node, keys, values);
     QDomText domText = m_ddom->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;

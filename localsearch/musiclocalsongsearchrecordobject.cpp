@@ -22,7 +22,7 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const QStringList &name
 
     for(int i=0; i<names.count(); ++i)
     {
-        writeDomEleText(download, "value", "name", names[i], times[i]);
+        writeDomElementText(download, "value", "name", names[i], times[i]);
     }
 
     //Write to file

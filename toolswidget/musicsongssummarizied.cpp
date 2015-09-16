@@ -61,13 +61,12 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
     M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
 }
 
-void MusicSongsSummarizied::musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls)
+void MusicSongsSummarizied::setMusicLists(const MMusicList &names)
 {
-    m_musicFileNameList = names;
-    m_musicFilePathList = urls;
-    for(int i=0; i< m_musicFileNameList.count(); ++i)
+    m_musicFileNames = names;
+    for(int i=0; i<m_musicFileNames.count(); ++i)
     {
-        m_mainSongLists[i]->musicSongsFileName(m_musicFileNameList[i]);
+        m_mainSongLists[i]->musicSongsFileName(m_musicFileNames[i].m_names);
     }
 }
 
@@ -76,7 +75,7 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIn
     QStringList t;
     for(int i=0; i<fileIndexs.count(); ++i)
     {
-        t.append(m_musicFileNameList[currentIndex()][fileIndexs[i]]);
+        t.append(m_musicFileNames[currentIndex()].m_names[fileIndexs[i]]);
     }
     m_mainSongLists[currentIndex()]->clearAllItems();
     m_mainSongLists[currentIndex()]->musicSongsFileName(t);
@@ -87,10 +86,10 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     for(int i=0; i<filelist.count(); ++i)
     {
         QString splitString = filelist[i].split("/").last();
-        m_musicFileNameList[0].append(splitString.left(splitString.lastIndexOf('.')));
+        m_musicFileNames[0].m_names.append(splitString.left(splitString.lastIndexOf('.')));
     }
-    m_musicFilePathList[0].append(filelist);
-    m_mainSongLists[0]->musicSongsFileName(m_musicFileNameList[0]);
+    m_musicFileNames[0].m_paths.append(filelist);
+    m_mainSongLists[0]->musicSongsFileName(m_musicFileNames[0].m_names);
 }
 
 void MusicSongsSummarizied::selectRow(int index)
@@ -144,12 +143,12 @@ void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemo
     }
     for(int i=index.count() - 1; i>=0; --i)
     {
-        m_musicFileNameList[currentIndex()].removeAt(index[i]);
+        m_musicFileNames[currentIndex()].m_names.removeAt(index[i]);
         if(fileRemove)
         {
-            QFile::remove(m_musicFilePathList[currentIndex()][index[i]]);
+            QFile::remove(m_musicFileNames[currentIndex()].m_paths[index[i]]);
         }
-        m_musicFilePathList[currentIndex()].removeAt(index[i]);
+        m_musicFileNames[currentIndex()].m_paths.removeAt(index[i]);
     }
     if(currentIndex() == m_currentIndexs)
     {
@@ -172,10 +171,10 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    const QString path = m_musicFilePathList[currentIndex()][row];
-    m_musicFileNameList[1].append(m_musicFileNameList[currentIndex()][row]);
-    m_musicFilePathList[1].append(path);
-    m_mainSongLists[1]->musicSongsFileName(m_musicFileNameList[1]);
+    const QString path = m_musicFileNames[currentIndex()].m_paths[row];
+    m_musicFileNames[1].m_names.append(m_musicFileNames[currentIndex()].m_names[row]);
+    m_musicFileNames[1].m_paths.append(path);
+    m_mainSongLists[1]->musicSongsFileName(m_musicFileNames[1].m_names);
     if(m_currentIndexs == 1)
     {
         emit updatePlayLists(path);
@@ -188,9 +187,9 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
 {
     const QString path = MUSIC_DOWNLOAD + name + MUSIC_FILE;
-    m_musicFileNameList[2].append(name);
-    m_musicFilePathList[2].append(path);
-    m_mainSongLists[2]->musicSongsFileName(m_musicFileNameList[2]);
+    m_musicFileNames[2].m_names.append(name);
+    m_musicFileNames[2].m_paths.append(path);
+    m_mainSongLists[2]->musicSongsFileName(m_musicFileNames[2].m_names);
     if(m_currentIndexs == 2)
     {
         emit updatePlayLists(path);
@@ -271,7 +270,7 @@ void MusicSongsSummarizied::changeItemIcon()
 
 void MusicSongsSummarizied::currentTextChanged(int index,const QString& text)
 {
-    m_musicFileNameList[currentIndex()].replace(index,text);
+    m_musicFileNames[currentIndex()].m_names.replace(index,text);
 }
 
 void MusicSongsSummarizied::musicPlay(int index)
@@ -281,7 +280,7 @@ void MusicSongsSummarizied::musicPlay(int index)
 
 void MusicSongsSummarizied::musicOpenFileDir(int index)
 {
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFilePathList[currentIndex()][index]).absolutePath()
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFileNames[currentIndex()].m_paths[index]).absolutePath()
                                 , QUrl::TolerantMode)))
     {
         MusicMessageBox message;
@@ -300,14 +299,14 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
 
 void MusicSongsSummarizied::setMusicSongInformation(int row, MusicSong &song)
 {
-    QStringList l = m_musicFileNameList[currentIndex()];
+    QStringList l = m_musicFileNames[currentIndex()].m_names;
     if(row >= l.count())
     {
         return;
     }
 
     song.setMusicName(l[row]);
-    QFileInfo f(m_musicFilePathList[currentIndex()][row]);
+    QFileInfo f(m_musicFileNames[currentIndex()].m_paths[row]);
     song.setMusicSize(f.size());
     song.setMusicType(f.suffix());
 }
@@ -316,21 +315,21 @@ void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString &name, 
 {
     int index;
     st ? index = m_currentIndexs : index = currentIndex();
-    QStringList l = m_musicFileNameList[index];
+    QStringList l = m_musicFileNames[index].m_names;
     if(row >= l.count())
     {
         return;
     }
 
     l.isEmpty() ? name = "" : name = l[row];
-    l = m_musicFilePathList[index];
+    l = m_musicFileNames[index].m_paths;
     l.isEmpty() ? path = "" : path = l[row];
 }
 
 void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
 {
-    QStringList *names = &m_musicFileNameList[currentIndex()];
-    QStringList *paths = &m_musicFilePathList[currentIndex()];
+    QStringList *names = &m_musicFileNames[currentIndex()].m_names;
+    QStringList *paths = &m_musicFileNames[currentIndex()].m_paths;
 
     if(before > after)
     {

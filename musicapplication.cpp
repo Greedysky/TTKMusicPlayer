@@ -261,9 +261,9 @@ void MusicApplication::readXMLConfigFromText()
     }
     //////////////////////////////////////////////////////////////
     //Path configuration song
-    MStringLists names,songs;
-    xml.readMusicSongsConfig(names, songs);
-    m_musicSongTree->musicSongsFileNameAndPath(names, songs);
+    MMusicList songs;
+    xml.readMusicSongsConfig(songs);
+    m_musicSongTree->setMusicLists(songs);
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig())//open file
     {
@@ -394,8 +394,7 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getListBgSkinAlpha());
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
-    xml.writeMusicSongsConfig( m_musicSongTree->getMusicAllSongsFileName(),
-                               m_musicSongTree->getMusicAllSongsFilePath() );
+    xml.writeMusicSongsConfig( m_musicSongTree->getMusicLists() );
 }
 
 void MusicApplication::quitWindowClose()

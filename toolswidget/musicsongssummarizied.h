@@ -27,16 +27,15 @@ public:
     explicit MusicSongsSummarizied(QWidget *parent = 0);
     virtual ~MusicSongsSummarizied();
 
-    void musicSongsFileNameAndPath(const MStringLists &names, const MStringLists &urls);
+    void setMusicLists(const MMusicList &names);
     void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
     void importOtherMusicSongs(const QStringList &filelist);
 
-    inline const QStringList& getMusicSongsFileName(int index) { return m_musicFileNameList[index];}
-    inline const QStringList& getMusicSongsFilePath(int index) { return m_musicFilePathList[index];}
-    inline const MStringLists& getMusicAllSongsFileName() { return m_musicFileNameList;}
-    inline const MStringLists& getMusicAllSongsFilePath() { return m_musicFilePathList;}
-    inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
+    inline const QStringList& getMusicSongsFileName(int index) { return m_musicFileNames[index].m_names;}
+    inline const QStringList& getMusicSongsFilePath(int index) { return m_musicFileNames[index].m_paths;}
+    inline const MMusicList& getMusicLists() const  { return m_musicFileNames;}
 
+    inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
     void currentMusicSongTreeIndexChanged(int index);
     void selectRow(int index);
     void setTimerLabel(const QString &time) const;
@@ -77,8 +76,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     QList<MusicSongsListWidget*> m_mainSongLists;
-    MStringLists m_musicFileNameList;
-    MStringLists m_musicFilePathList;
+    MMusicList m_musicFileNames;
     int m_currentIndexs;
     int m_renameIndex;
     MusicSongsToolItemRenamedWidget *m_renameLine;

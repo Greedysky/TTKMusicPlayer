@@ -9,19 +9,11 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
 
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MStringLists &fileNamesList,
-                                                 MStringLists &fileUrlsList)
+void MusicXMLConfigManager::readMusicSongsConfig(MMusicList &musics)
 {
-    MStringListsPair onePara;
-    onePara = readMusicFilePath("fileNormalPath");
-    fileNamesList<<onePara.first;
-    fileUrlsList<<onePara.second;
-    onePara = readMusicFilePath("fileLovestPath");
-    fileNamesList<<onePara.first;
-    fileUrlsList<<onePara.second;
-    onePara = readMusicFilePath("netFilePath");
-    fileNamesList<<onePara.first;
-    fileUrlsList<<onePara.second;
+    musics << readMusicFilePath("fileNormalPath")
+           << readMusicFilePath("fileLovestPath")
+           << readMusicFilePath("netFilePath");
 
     //extend playlist init here
 //    for(int i=3; i<8; ++i)
@@ -35,10 +27,9 @@ void MusicXMLConfigManager::readMusicSongsConfig(MStringLists &fileNamesList,
 //    }
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesList,
-                                                  const MStringLists &fileUrlsList)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicList &musics)
 {
-    if( fileNamesList.isEmpty() || fileUrlsList.isEmpty() )
+    if( musics.isEmpty() )
     {
         return;
     }
@@ -51,9 +42,9 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesL
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("QMusicPlayer");
     //Class A
-    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", fileNamesList[0].count());
-    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", fileNamesList[1].count());
-    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", fileNamesList[2].count());
+    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", musics[0].m_names.count());
+    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", musics[1].m_names.count());
+    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", musics[2].m_names.count());
 
     //extend playlist init here
 //    for(int i=3; i<fileNamesList.count(); ++i)
@@ -64,17 +55,24 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MStringLists &fileNamesL
 //    }
 
     //Class B
-    for(int i=0; i<fileNamesList[0].count(); ++i)
+
+    for(int i=0; i<musics[0].m_names.count(); ++i)
     {
-        writeDomEleText(fileNormalPath, "value", "name", fileNamesList[0][i], fileUrlsList[0][i]);
+        writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount",
+                                 QList<QVariant>()<<musics[0].m_names[i]<<musics[0].m_playCount[i],
+                                 musics[0].m_paths[i]);
     }
-    for(int i=0; i<fileNamesList[1].count(); ++i)
+    for(int i=0; i<musics[1].m_names.count(); ++i)
     {
-        writeDomEleText(fileLovestPath, "value", "name", fileNamesList[1][i], fileUrlsList[1][i]);
+        writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount",
+                                 QList<QVariant>()<<musics[1].m_names[i]<<musics[1].m_playCount[i],
+                                 musics[1].m_paths[i]);
     }
-    for(int i=0; i<fileNamesList[2].count(); ++i)
+    for(int i=0; i<musics[2].m_names.count(); ++i)
     {
-        writeDomEleText(netFilePath, "value", "name", fileNamesList[2][i], fileUrlsList[2][i]);
+        writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount",
+                                 QList<QVariant>()<<musics[2].m_names[i]<<musics[2].m_playCount[i],
+                                 musics[2].m_paths[i]);
     }
 
     //Write to file
@@ -158,7 +156,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(settings, "language", "value", languageIndexChoiced);
     writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
-    writeDomEleText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+    writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
           QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
     ///////////////////////////////////////////////////////////////////////////
 
@@ -229,17 +227,23 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out,4);
 }
 
-MStringListsPair MusicXMLConfigManager::readMusicFilePath(const QString &value) const
+MusicSongs MusicXMLConfigManager::readMusicFilePath(const QString &value) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
-    QStringList name;
-    QStringList url;
+    QStringList names;
+    QStringList paths;
+    MIntList playCounts;
     for(int i=0; i<nodelist.count(); i++)
     {
-       name.append(nodelist.at(i).toElement().attribute("name"));
-       url.append(nodelist.at(i).toElement().text());
+        names << nodelist.at(i).toElement().attribute("name");
+        paths << nodelist.at(i).toElement().text();
+        playCounts << nodelist.at(i).toElement().attribute("playCount").toInt();
     }
-    return MStringListsPair(name,url);
+    MusicSongs songs;
+    songs.m_names = names;
+    songs.m_paths = paths;
+    songs.m_playCount = playCounts;
+    return songs;
 }
 
 void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const

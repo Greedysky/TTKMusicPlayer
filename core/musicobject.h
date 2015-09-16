@@ -65,16 +65,22 @@ typedef QList<int> MIntList;                /* intlist */
 typedef QList<MIntList> MIntLists;          /* intlists */
 typedef QSet<int> MIntSet;                  /* intset */
 typedef QSet<MIntSet> MIntSets;             /* intsets */
-typedef QPair<QStringList,QStringList> MStringListsPair; /* stringlistsPair */
-typedef QMap<QString,QVariant> MStriantMap;    /* stringVariantMap */
-typedef QMap<QString,QStringList> MStringsListMap; /* stringStrlistsMap */
-typedef QMap<int,MIntList> MIntsListMap;        /* intIntlistMap */
-typedef QMap<qint64,QString> MIntStringMap;      /* intStrMap */
-typedef QMapIterator<QString,QVariant> MStriantMapIt;    /* stringVariantMapIt */
-typedef QMapIterator<QString,QStringList> MStringsListMapIt; /* stringStrlistsMapIt */
-typedef QMapIterator<int,MIntList> MIntsListMapIt;        /* intIntlistMapIt */
-typedef QMapIterator<qint64,QString> MIntStringMapIt;      /* intStrMapIt */
+typedef QMap<QString, QVariant> MStriantMap;    /* stringVariantMap */
+typedef QMap<QString, QStringList> MStringsListMap; /* stringStrlistsMap */
+typedef QMap<int, MIntList> MIntsListMap;        /* intIntlistMap */
+typedef QMap<qint64, QString> MIntStringMap;      /* intStrMap */
+typedef QMapIterator<QString, QVariant> MStriantMapIt;    /* stringVariantMapIt */
+typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsMapIt */
+typedef QMapIterator<int, MIntList> MIntsListMapIt;        /* intIntlistMapIt */
+typedef QMapIterator<qint64, QString> MIntStringMapIt;      /* intStrMapIt */
 
+typedef struct MusicSongs
+{
+    QStringList m_names;
+    QStringList m_paths;
+    MIntList m_playCount;
+}MusicSongs;
+typedef QList<MusicSongs> MMusicList;           /* musiclist */
 
 namespace MusicObject
 {
