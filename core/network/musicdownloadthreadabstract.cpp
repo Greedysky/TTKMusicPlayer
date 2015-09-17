@@ -5,11 +5,12 @@
 #include <QNetworkRequest>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
-                                          const QString &save, QObject *parent)
-    : QObject(parent),m_reply(NULL),m_manager(NULL)
+                const QString &save, Download_Type type, QObject *parent)
+    : QObject(parent), m_reply(NULL), m_manager(NULL)
 {
     m_url = url;
     m_savePathName = save;
+    m_downloadType = type;
 
     if(QFile::exists(save))
     {

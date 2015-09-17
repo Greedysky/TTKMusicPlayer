@@ -16,7 +16,7 @@ class MUSIC_NETWORK_EXPORT MusicData2DownloadThread : public MusicDataDownloadTh
     Q_OBJECT
 public:
     explicit MusicData2DownloadThread(const QString &url, const QString &save,
-                                      QObject *parent = 0);
+                                      Download_Type type, QObject *parent = 0);
     void deleteAll();
     virtual void startToDownload();
 

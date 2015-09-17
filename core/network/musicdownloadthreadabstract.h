@@ -13,19 +13,29 @@
 #include <QFile>
 #include "musiclibexportglobal.h"
 
+class QNetworkAccessManager;
+
 const QString MUSIC_REQUERY_URL = "http://so.ard.iyyin.com/s/song_with_out?q=%1&page=1&size=10000000";
 const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&song_id=%3";
 const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
 const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
 
-class QNetworkAccessManager;
+typedef enum Download_Type
+{
+    Download_Music,
+    Download_Lrc,
+    Download_SmlBG,
+    Download_BigBG,
+    Download_Video,
+    Download_Other
+}Download_Type;
 
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
     explicit MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                         QObject *parent = 0);
+                                         Download_Type type, QObject *parent = 0);
     virtual ~MusicDownLoadThreadAbstract();
 
     void deleteAll();
@@ -45,6 +55,7 @@ protected:
     QFile *m_file;
     QString m_url;
     QString m_savePathName;
+    Download_Type m_downloadType;
 
 };
 

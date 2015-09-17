@@ -5,8 +5,8 @@
 #include <QJsonParseError>
 
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
-                                                 QObject *parent)
-    : MusicDownLoadThreadAbstract(url, save, parent)
+                                                 Download_Type type, QObject *parent)
+    : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
 }

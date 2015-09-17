@@ -122,14 +122,14 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo[0][1],
-                                               LRC_DOWNLOAD + filename + LRC_FILE, this);
+                                           LRC_DOWNLOAD + filename + LRC_FILE, Download_Lrc, this);
         lrc->startToDownload();
 
         int count = filename.split('-').count();
         filename = filename.split('-').front().trimmed();
         ///download art picture
         (new MusicData2DownloadThread(musicSongInfo[0][2],
-                             ART_DOWNLOAD + filename + SKN_FILE, this))->startToDownload();
+             ART_DOWNLOAD + filename + SKN_FILE, Download_SmlBG, this))->startToDownload();
         ///download big picture
         new MusicBgThemeDownload( count == 1 ? musicSongInfo[0][3] : filename, filename, this);
     }

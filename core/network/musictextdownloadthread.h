@@ -16,7 +16,7 @@ class MUSIC_NETWORK_EXPORT MusicTextDownLoadThread : public MusicDownLoadThreadA
     Q_OBJECT
 public:
     explicit MusicTextDownLoadThread(const QString &url, const QString &save,
-                                     QObject *parent = 0);
+                                     Download_Type type, QObject *parent = 0);
     virtual void startToDownload();
 
 public slots:

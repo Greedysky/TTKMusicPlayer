@@ -120,8 +120,8 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
     }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2],QString("%1 - %2.%3")
-                       .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), this);
+    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2], QString("%1 - %2.%3")
+        .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), Download_Video, this);
     download->startToDownload();
 }
 

@@ -179,10 +179,10 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         case 0:
          {
             m_path << QString("./tmp%1").arg(JPG_FILE);
-            MusicDataDownloadThread *song = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
-                                                                        m_path[0], this);
-            connect(song, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
-            song->startToDownload();
+            MusicDataDownloadThread *background = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
+                                                                              m_path[0], Download_BigBG, this);
+            connect(background, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
+            background->startToDownload();
             break;
          }
         case 1:
@@ -236,4 +236,3 @@ void MusicDesktopWallpaperWidget::show()
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveWidget::show();
 }
-

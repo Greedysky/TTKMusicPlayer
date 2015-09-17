@@ -232,14 +232,14 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     down.writeDownloadConfig( record );
     ////////////////////////////////////////////////
 
-    MusicDataDownloadThread *downSong = new MusicDataDownloadThread(
-                                            musicSongInfo[row][0], downloadName,this);
+    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongInfo[row][0],
+                                                       downloadName, Download_Music, this);
     downSong->startToDownload();
 
     (new MusicTextDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
-                                 musicSong + LRC_FILE,this))->startToDownload();
+                                 musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
     (new MusicData2DownloadThread(musicSongInfo[row][2],
-          ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE,this))->startToDownload();
+         ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE, Download_SmlBG, this))->startToDownload();
 
     ///download big picture
     new MusicBgThemeDownload(musicSongInfo[row][3], musicSongInfo[row][3], this);

@@ -8,7 +8,7 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
     MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                             BIG_BG_ART_URL.arg(name), TMP_DOWNLOAD, this);
+                             BIG_BG_ART_URL.arg(name), TMP_DOWNLOAD, Download_BigBG, this);
     ///Set search image API
     connect(download, SIGNAL(musicDownLoadFinished(QString)),
                       SLOT(downLoadFinished(QString)));
@@ -46,7 +46,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString &)
             line = line.remove("sp");
             qDebug()<<line;
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4")
-                                  .arg(ART_BG).arg(m_savePath).arg(m_counter++).arg(SKN_FILE),this);
+                .arg(ART_BG).arg(m_savePath).arg(m_counter++).arg(SKN_FILE), Download_BigBG, this);
             connect(down, SIGNAL(musicDownLoadFinished(QString)),SLOT(bgDownLoadFinished(QString)));
             down->startToDownload();
         }

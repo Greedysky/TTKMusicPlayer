@@ -3,8 +3,8 @@
 #include <QJsonObject>
 
 MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QString &save,
-                                                       QObject *parent)
-    : MusicDataDownloadThread(url, save, parent)
+                                                   Download_Type type, QObject *parent)
+    : MusicDataDownloadThread(url, save, type, parent)
 {
     m_dataReply = NULL;
     m_dataManager = new QNetworkAccessManager(this);
