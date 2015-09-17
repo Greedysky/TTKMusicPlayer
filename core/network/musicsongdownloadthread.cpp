@@ -1,10 +1,11 @@
 #include "musicsongdownloadthread.h"
+#include "musicconnectionpool.h"
 
 MusicSongDownloadThread::MusicSongDownloadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
-
+    M_Connection->connectMusicDownload(this);
 }
 
 void MusicSongDownloadThread::startRequest(const QUrl &url)
@@ -22,6 +23,5 @@ void MusicSongDownloadThread::startRequest(const QUrl &url)
 
 void MusicSongDownloadThread::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    qDebug()<<bytesReceived*1.0/ bytesTotal;
     emit downloadProgressChanged(bytesReceived*1.0/ bytesTotal, m_createItemTime);
 }

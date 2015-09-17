@@ -33,6 +33,7 @@ public:
     void setNetworkMultiValue(QObject *object);
     void removeNetworkMultiValue(QObject *object);
 
+    void connectMusicDownload(QObject *object);
     void connect(const QString &from, const QString &to);
     void disConnect(const QString &name);
 

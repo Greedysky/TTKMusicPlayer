@@ -35,6 +35,9 @@ public slots:
     void listCellDoubleClicked(int row, int column);
     void musicOpenFileDir();
 
+    void downloadProgressChanged(float percent, qint64 time);
+    void createDownloadItem(const QString &name, qint64 time);
+
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 

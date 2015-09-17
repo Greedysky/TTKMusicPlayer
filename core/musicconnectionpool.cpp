@@ -20,6 +20,18 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
     }
 }
 
+void MusicConnectionPool::connectMusicDownload(QObject *object)
+{
+    QObject *to = m_para.value( "MusicMyDownloadRecordWidget" );
+    if(to != NULL && object)
+    {
+        QObject::connect(object, SIGNAL(downloadProgressChanged(float, qint64)), to,
+                                 SLOT(downloadProgressChanged(float, qint64)));
+        QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to,
+                                 SLOT(createDownloadItem(QString, qint64)));
+    }
+}
+
 void MusicConnectionPool::removeNetworkMultiValue(QObject *object)
 {
     int index = m_queueList.indexOf(object);
