@@ -98,6 +98,7 @@ void MusicDesktopWallpaperWidget::initParameters() const
     ui->timeS->addItems(s);
 }
 
+
 void MusicDesktopWallpaperWidget::findFiles(const QString &path)
 {
     QDir dir(path);
@@ -105,28 +106,16 @@ void MusicDesktopWallpaperWidget::findFiles(const QString &path)
     {
         return;
     }
-    dir.setFilter(QDir::Files);
-    QFileInfoList list = dir.entryInfoList();
-    if(list.count() == 0)
+    QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
+    QStringList filters;
+    filters << "png" << "bmp" << "jpg";
+    foreach(QFileInfo fileInfo, list)
     {
-        return;
-    }
-    int i=0;
-    do{
-        QFileInfo fileInfo = list.at(i);
-        if(fileInfo.fileName() == "." | fileInfo.fileName() == ".." )
+        if( filters.contains(fileInfo.suffix()) )
         {
-            ++i;
-            continue;
-        }
-        if(!fileInfo.isDir())
-        {
-            if( fileInfo.suffix() == "png" || fileInfo.suffix() == "bmp" ||
-                fileInfo.suffix() == "jpg" )
             m_path<<fileInfo.absoluteFilePath();
         }
-        ++i;
-    }while(i < list.size());
+    }
 }
 
 void MusicDesktopWallpaperWidget::viewButtonPressed()
