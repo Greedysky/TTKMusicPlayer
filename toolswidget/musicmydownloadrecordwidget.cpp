@@ -50,24 +50,30 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     setRowCount(m_musicRecord.m_names.count());//reset row count
     for(int i=0; i<m_musicRecord.m_names.count(); i++)
     {
-        QTableWidgetItem *item = new QTableWidgetItem;
-        setItem(i, 0, item);
-
-                          item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                  m_musicRecord.m_names[i], Qt::ElideRight, 170));
-        item->setTextColor(QColor(50,50,50));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        item->setToolTip(m_musicRecord.m_names[i]);
-        setItem(i, 1, item);
-
-                          item = new QTableWidgetItem;
-        item->setData(Qt::DisplayRole, 100);
-        setItem(i, 2, item);
-
-                          item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
-        item->setTextAlignment(Qt::AlignCenter);
-        setItem(i, 3, item);
+        createItem(i, m_musicRecord.m_names[i], 999);
     }
+}
+
+void MusicMyDownloadRecordWidget::createItem(int index, const QString &name, qint64 time)
+{
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(index, 0, item);
+
+                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name,
+                                                                                  Qt::ElideRight, 170));
+    item->setTextColor(QColor(50,50,50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setToolTip( name );
+    setItem(index, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, 100);
+    setItem(index, 2, item);
+
+                      item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+    item->setTextAlignment(Qt::AlignCenter);
+    item->setData(Qt::DisplayRole, time);
+    setItem(index, 3, item);
 }
 
 void MusicMyDownloadRecordWidget::clearAllItems()
@@ -165,10 +171,22 @@ void MusicMyDownloadRecordWidget::musicPlay()
 
 void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, qint64 time)
 {
-    qDebug()<< percent << time;
+    QTableWidgetItem *it = item(rowCount() - 1, 3);
+    if(it && it->data(Qt::DisplayRole).toLongLong() == time)
+    {
+        item(rowCount() - 1 , 2)->setData(Qt::DisplayRole, percent);
+    }
 }
 
 void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64 time)
 {
-    qDebug()<< name << time;
+    setRowCount( rowCount()  + 1);
+    QString musicName = name;
+    musicName.remove(MUSIC_DOWNLOAD).chop(4);
+
+    m_musicRecord.m_names << musicName;
+    m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();
+    m_musicRecord.m_sizes << QString("1M");
+
+    createItem(rowCount() - 1, musicName, time);
 }

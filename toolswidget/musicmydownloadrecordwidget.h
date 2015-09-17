@@ -40,6 +40,7 @@ public slots:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
+    void createItem(int index, const QString &name, qint64 time);
 
     MusicProgressBarDelegate *m_delegate;
     MusicDownloadRecord m_musicRecord;
