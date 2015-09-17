@@ -32,8 +32,6 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64,qint64)),
-                     SIGNAL(downloadProgress(qint64,qint64)));
 }
 
 void MusicDataDownloadThread::downLoadFinished()
@@ -52,7 +50,6 @@ void MusicDataDownloadThread::downLoadFinished()
     }
     else if(!redirectionTarget.isNull())
     {
-//       QUrl newUrl = reply->url().resolved(redirectionTarget.toUrl());
         m_reply->deleteLater();
         m_file->open(QIODevice::WriteOnly);
         m_file->resize(0);
@@ -61,7 +58,7 @@ void MusicDataDownloadThread::downLoadFinished()
     }
     else
     {
-        emit musicDownLoadFinished("Music");
+        emit musicDownLoadFinished("Data");
         qDebug()<<"data download has finished!";
         deleteAll();
     }
@@ -70,5 +67,7 @@ void MusicDataDownloadThread::downLoadFinished()
 void MusicDataDownloadThread::downLoadReadyRead()
 {
     if(m_file)
-      m_file->write(m_reply->readAll());
+    {
+        m_file->write(m_reply->readAll());
+    }
 }

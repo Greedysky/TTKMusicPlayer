@@ -16,8 +16,6 @@ void MusicData2DownloadThread::startToDownload()
     connect(m_dataReply, SIGNAL(finished()), SLOT(dataGetFinished()));
     connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
                          SLOT(dataReplyError(QNetworkReply::NetworkError)) );
-//    connect(m_dataReply, SIGNAL(downloadProgress(qint64,qint64)),
-//                         SIGNAL(downloadProgress(qint64,qint64)));
 }
 
 void MusicData2DownloadThread::deleteAll()

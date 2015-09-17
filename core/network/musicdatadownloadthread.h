@@ -24,7 +24,7 @@ public slots:
     void downLoadReadyRead();
 
 protected:
-    void startRequest(const QUrl &url);
+    virtual void startRequest(const QUrl &url);
 
 };
 

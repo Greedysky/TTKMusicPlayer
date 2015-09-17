@@ -2,6 +2,7 @@
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
+#include "musicsongdownloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musicnetworkthread.h"
 #include "musicmydownloadrecordobject.h"
@@ -232,7 +233,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     down.writeDownloadConfig( record );
     ////////////////////////////////////////////////
 
-    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongInfo[row][0],
+    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongInfo[row][0],
                                                        downloadName, Download_Music, this);
     downSong->startToDownload();
 

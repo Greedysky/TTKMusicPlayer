@@ -43,7 +43,6 @@ public:
 
 signals:
     void musicDownLoadFinished(const QString &name);
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 public slots:
     virtual void downLoadFinished() = 0;

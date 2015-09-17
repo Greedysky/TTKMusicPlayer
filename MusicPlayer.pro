@@ -88,6 +88,7 @@ SOURCES += \
     core/network/musictextdownloadthread.cpp \
     core/network/musicbgthemedownload.cpp \
     core/network/musicnetworkthread.cpp \
+    core/network/musicsongdownloadthread.cpp \
     core/musicsonginformation.cpp \
     core/musictime.cpp \
     core/musicplayer.cpp \
@@ -184,6 +185,7 @@ HEADERS  += \
     core/network/musictextdownloadthread.h \
     core/network/musicbgthemedownload.h \
     core/network/musicnetworkthread.h \
+    core/network/musicsongdownloadthread.h \
     core/musicversion.h \
     core/musictime.h \
     core/musicsonginformation.h \
