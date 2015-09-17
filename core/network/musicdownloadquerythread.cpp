@@ -1,5 +1,6 @@
 #include "musicdownloadquerythread.h"
 #include "musicconnectionpool.h"
+#include "musicdownloadthreadabstract.h"
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -43,7 +44,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = "http://so.ard.iyyin.com/s/song_with_out?q=" + text + "&page=1&size=10000000";
+    QUrl musicUrl = MUSIC_REQUERY_URL.arg(text);
     ///This is a ttop music API
     if(m_reply)
     {
@@ -107,9 +108,8 @@ void MusicDownLoadQueryThread::searchFinshed()
                             emit creatSearchedItems(songName, singerName,
                                                     object.value("duration").toString());
                             musicInfo << object.value("url").toString();
-                            musicInfo << QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&"
-                                                 "song_id=%3").arg(singerName).arg(songName).arg(songId);
-                            musicInfo << QString("http://lp.music.ttpod.com/pic/down?artist=%1").arg(singerName);
+                            musicInfo << MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                            musicInfo << SML_BG_ART_URL.arg(singerName);
                             musicInfo << singerName;
                             musicInfo << object.value("size").toString();
                             m_musicSongInfo << musicInfo;

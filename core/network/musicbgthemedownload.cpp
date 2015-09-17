@@ -8,8 +8,7 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
     MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                 "http://www.kuwo.cn/mingxing/" + name + "/pic.htm"
-                  ,TMP_DOWNLOAD, this);
+                             BIG_BG_ART_URL.arg(name), TMP_DOWNLOAD, this);
     ///Set search image API
     connect(download, SIGNAL(musicDownLoadFinished(QString)),
                       SLOT(downLoadFinished(QString)));

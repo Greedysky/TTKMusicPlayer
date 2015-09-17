@@ -13,6 +13,11 @@
 #include <QFile>
 #include "musiclibexportglobal.h"
 
+const QString MUSIC_REQUERY_URL = "http://so.ard.iyyin.com/s/song_with_out?q=%1&page=1&size=10000000";
+const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&song_id=%3";
+const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
+const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
+
 class QNetworkAccessManager;
 
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
