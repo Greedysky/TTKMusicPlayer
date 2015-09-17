@@ -9,6 +9,26 @@ MusicConnectionPool::MusicConnectionPool(QObject *parent)
 
 }
 
+void MusicConnectionPool::setNetworkMultiValue(QObject *object)
+{
+    m_queueList << object;
+    QObject *to = m_para.value( "MusicDownloadStatusLabel" );
+    if(to != NULL)
+    {
+        QObject::connect(object, SIGNAL(musicDownLoadFinished(QString)), to,
+                                 SLOT(showDownLoadInfoFinished(QString)));
+    }
+}
+
+void MusicConnectionPool::removeNetworkMultiValue(QObject *object)
+{
+    int index = m_queueList.indexOf(object);
+    if(index != -1)
+    {
+        m_queueList.takeAt( index );
+    }
+}
+
 void MusicConnectionPool::connect(const QString &from,
                                   const QString &to)
 {
@@ -61,12 +81,6 @@ void MusicConnectionPool::connect(const QString &from,
     {
         QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadType)), second,
                                 SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
-    }
-
-    if(from == "MusicDownLoadThreadAbstract" && to == "MusicDownloadStatusLabel" )
-    {
-        QObject::connect(first, SIGNAL(musicDownLoadFinished(QString)), second,
-                                SLOT(showDownLoadInfoFinished(QString)));
     }
 
     if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )

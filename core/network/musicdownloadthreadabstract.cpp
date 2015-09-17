@@ -17,13 +17,12 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     }
     m_file = new QFile(save, this);
 
-    M_Connection->setValue("MusicDownLoadThreadAbstract", this);
-    M_Connection->connect("MusicDownLoadThreadAbstract", "MusicDownloadStatusLabel");
+    M_Connection->setNetworkMultiValue(this);
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
-    M_Connection->disConnect("MusicDownLoadThreadAbstract");
+    M_Connection->removeNetworkMultiValue(this);
 }
 
 void MusicDownLoadThreadAbstract::deleteAll()
