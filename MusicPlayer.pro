@@ -102,7 +102,7 @@ SOURCES += \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
     core/musicconnectionpool.cpp \
-    core/musicitemdelegate.cpp \
+    core-widget/musicitemdelegate.cpp \
     core-widget/musicdownloadstatuslabel.cpp \
     core-widget/musicabstracttablewidget.cpp \
     core-widget/musicquerytablewidget.cpp \
@@ -202,7 +202,7 @@ HEADERS  += \
     core/musicsettingmanager.h \
     core/musicdesktopwallpaperthread.h \
     core/musicconnectionpool.h \
-    core/musicitemdelegate.h \
+    core-widget/musicitemdelegate.h \
     core-widget/musicdownloadstatuslabel.h \
     core-widget/musicabstracttablewidget.h \
     core-widget/musicquerytablewidget.h \
