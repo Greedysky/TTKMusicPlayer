@@ -36,17 +36,19 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
 
     addThemeListWidgetItem();
 
-    connect(ui->bgTransparentSlider,SIGNAL(valueChanged(int)),parent,
-                                    SLOT(musicBgTransparentChanged(int)));
-    connect(ui->bgTransparentSliderR,SIGNAL(valueChanged(int)),parent,
-                                     SIGNAL(setTransparent(int)));
-    connect(ui->themeListWidget,SIGNAL(currentTextChanged(QString)),parent,
-                                SLOT(musicBackgroundSkinChanged(QString)));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
-    connect(ui->mySkin,SIGNAL(clicked()),SLOT(changeToMySkin()));
-    connect(ui->netSkin,SIGNAL(clicked()),SLOT(changeToNetSkin()));
-    connect(ui->paletteButton,SIGNAL(clicked()),SLOT(showPaletteDialog()));
-    connect(ui->customSkin,SIGNAL(clicked()),SLOT(showCustomSkinDialog()));
+    connect(ui->bgTransparentSlider, SIGNAL(valueChanged(int)), parent,
+                                     SLOT(musicBgTransparentChanged(int)));
+    connect(ui->bgTransparentSliderR, SIGNAL(valueChanged(int)), parent,
+                                      SIGNAL(setTransparent(int)));
+    connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),
+                                 SLOT(itemUserClicked(QListWidgetItem*)));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(ui->mySkin, SIGNAL(clicked()), SLOT(changeToMySkin()));
+    connect(ui->netSkin, SIGNAL(clicked()), SLOT(changeToNetSkin()));
+    connect(ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
+    connect(ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
+    connect(this, SIGNAL(currentTextChanged(QString)), parent,
+                  SLOT(musicBackgroundSkinChanged(QString)));
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
@@ -67,11 +69,17 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     {
         QString fileName = file[i].fileName();
         fileName.chop(4);
-        QListWidgetItem *item = new QListWidgetItem(QIcon(QPixmap(file[i].filePath()).scaled(90,70)),
-                                                    fileName, ui->themeListWidget);
-        item->setSizeHint(QSize(112, 90));
-        ui->themeListWidget->addItem(item);
+        createItem(fileName, QIcon(QPixmap(file[i].filePath()).scaled(90,70)));
     }
+}
+
+void MusicBackgroundSkinDialog::createItem(const QString &name, const QIcon &icon)
+{
+    QListWidgetItem *item = new QListWidgetItem(ui->themeListWidget);
+    item->setIcon(icon);
+    item->setData(MUSIC_BG_ROLE, name);
+    item->setToolTip(name);
+    ui->themeListWidget->addItem(item);
 }
 
 void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int alphaR)
@@ -80,7 +88,7 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     for(int i=0; i<ui->themeListWidget->count(); ++i)
     {
         QListWidgetItem *item = ui->themeListWidget->item(i);
-        if(item && item->text() == theme )
+        if(item && item->data(MUSIC_BG_ROLE) == theme )
         {
             ui->themeListWidget->setCurrentItem(item);
             break;
@@ -120,20 +128,18 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
         return;
     }
     QImage image(16, 16, QImage::Format_ARGB32);
-    QString palettePath = QString("%1theme%2%3").arg(THEME_DOWNLOAD)
+    QString palettePath = QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
                           .arg(ui->themeListWidget->count() + 1).arg(JPG_FILE);
     image.fill(paletteColor);
     if(image.save(palettePath))
     {
         //add item to listwidget
-        QListWidgetItem *item = new QListWidgetItem(QIcon(QPixmap::fromImage(image).scaled(90, 70)),
-                    "theme" + QString::number(ui->themeListWidget->count()+1), ui->themeListWidget);
-        item->setSizeHint(QSize(112, 90));
-        ui->themeListWidget->addItem(item);
+        createItem(QString("theme-%1").arg(ui->themeListWidget->count() + 1),
+                   QIcon(QPixmap::fromImage(image).scaled(90, 70)));
 
         QFile file(palettePath);
         file.open(QIODevice::ReadOnly);
-        file.rename(QString("%1theme%2%3").arg(THEME_DOWNLOAD)
+        file.rename(QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
                     .arg(ui->themeListWidget->count()).arg(SKN_FILE));
         file.close();
     }
@@ -143,19 +149,24 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
     QString customSkinPath =  QFileDialog::getOpenFileName(
-                      this,"","./",
-                      "Images (*.png *.bmp *.jpg)");
+                              this, "", "./", "Images (*.png *.bmp *.jpg)");
     if(customSkinPath.isEmpty())
     {
         return;
     }
-    QFile::copy(customSkinPath, QString("%1theme%2%3").arg(THEME_DOWNLOAD)
+    QFile::copy(customSkinPath, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
                   .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
     //add item to listwidget
-    QListWidgetItem *item = new QListWidgetItem(QIcon(QPixmap(customSkinPath).scaled(90, 70)),
-                "theme" + QString::number(ui->themeListWidget->count()+1), ui->themeListWidget);
-    item->setSizeHint(QSize(112, 90));
-    ui->themeListWidget->addItem(item);
+    createItem(QString("theme-%1").arg(ui->themeListWidget->count() + 1),
+               QIcon(QPixmap(customSkinPath).scaled(90,70)));
+}
+
+void MusicBackgroundSkinDialog::itemUserClicked(QListWidgetItem *item)
+{
+    if( item )
+    {
+        emit currentTextChanged( item->data(MUSIC_BG_ROLE).toString() );
+    }
 }
 
 int MusicBackgroundSkinDialog::exec()

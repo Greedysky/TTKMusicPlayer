@@ -11,9 +11,13 @@
 
 #include "musicabstractmovedialog.h"
 
+#define MUSIC_BG_ROLE Qt::UserRole + 1
+
 namespace Ui {
 class MusicBackgroundSkinDialog;
 }
+
+class QListWidgetItem;
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDialog
 {
@@ -26,16 +30,22 @@ public:
     void updateBackground();
     int getListBgSkinAlpha() const;
 
+signals:
+    void currentTextChanged(const QString &text);
+
 public slots:
     void changeToMySkin();
     void changeToNetSkin();
     void showPaletteDialog();
     void showCustomSkinDialog();
+    void itemUserClicked(QListWidgetItem *item);
     virtual int exec();
 
 protected:
     void clearAllItems();
     void addThemeListWidgetItem();
+    void createItem(const QString &name, const QIcon &icon);
+
     Ui::MusicBackgroundSkinDialog *ui;
 
 };

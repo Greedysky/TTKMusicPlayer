@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>335</height>
+    <width>530</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,10 +19,10 @@
   <widget class="QLabel" name="showPerArea">
    <property name="geometry">
     <rect>
-     <x>412</x>
-     <y>90</y>
+     <x>462</x>
+     <y>105</y>
      <width>24</width>
-     <height>201</height>
+     <height>226</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -36,7 +36,9 @@
 
 
 
+
  50%
+
 
 
 
@@ -48,10 +50,10 @@
   <widget class="QSlider" name="bgTransparentSlider">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>95</y>
+     <x>440</x>
+     <y>110</y>
      <width>20</width>
-     <height>200</height>
+     <height>225</height>
     </rect>
    </property>
    <property name="orientation">
@@ -63,8 +65,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>475</width>
-     <height>335</height>
+     <width>530</width>
+     <height>370</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -93,7 +95,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>453</x>
+     <x>505</x>
      <y>2</y>
      <width>20</width>
      <height>20</height>
@@ -107,7 +109,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>40</y>
+     <y>50</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -120,7 +122,7 @@
    <property name="geometry">
     <rect>
      <x>105</x>
-     <y>40</y>
+     <y>50</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -132,10 +134,10 @@
   <widget class="QSlider" name="bgTransparentSliderR">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>95</y>
+     <x>490</x>
+     <y>110</y>
      <width>20</width>
-     <height>200</height>
+     <height>225</height>
     </rect>
    </property>
    <property name="orientation">
@@ -146,9 +148,9 @@
    <property name="geometry">
     <rect>
      <x>15</x>
-     <y>85</y>
-     <width>355</width>
-     <height>221</height>
+     <y>100</y>
+     <width>395</width>
+     <height>235</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -161,8 +163,8 @@
    <property name="geometry">
     <rect>
      <x>9</x>
-     <y>73</y>
-     <width>455</width>
+     <y>85</y>
+     <width>510</width>
      <height>5</height>
     </rect>
    </property>
@@ -173,8 +175,8 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>40</y>
+     <x>440</x>
+     <y>50</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -186,8 +188,8 @@
   <widget class="QPushButton" name="paletteButton">
    <property name="geometry">
     <rect>
-     <x>295</x>
-     <y>40</y>
+     <x>355</x>
+     <y>50</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -200,8 +202,8 @@
    <property name="geometry">
     <rect>
      <x>9</x>
-     <y>315</y>
-     <width>455</width>
+     <y>350</y>
+     <width>510</width>
      <height>5</height>
     </rect>
    </property>
@@ -214,8 +216,8 @@
     <rect>
      <x>0</x>
      <y>25</y>
-     <width>481</width>
-     <height>310</height>
+     <width>530</width>
+     <height>345</height>
     </rect>
    </property>
    <property name="styleSheet">
