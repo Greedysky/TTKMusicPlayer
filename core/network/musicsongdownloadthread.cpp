@@ -23,5 +23,8 @@ void MusicSongDownloadThread::startRequest(const QUrl &url)
 
 void MusicSongDownloadThread::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, m_createItemTime);
+    QString total = QString::number(bytesTotal*1.0/1024/1024);
+    total = total.left(total.indexOf(".") + 3) + "M";
+    emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal,
+                                 total, m_createItemTime);
 }

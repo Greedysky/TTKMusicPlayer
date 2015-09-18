@@ -35,12 +35,13 @@ public slots:
     void listCellDoubleClicked(int row, int column);
     void musicOpenFileDir();
 
-    void downloadProgressChanged(float percent, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
     void createDownloadItem(const QString &name, qint64 time);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
-    void createItem(int index, const QString &name, qint64 time);
+    void createItem(int index, const QString &name, const QString &size,
+                    qint64 time);
 
     MusicProgressBarDelegate *m_delegate;
     MusicDownloadRecord m_musicRecord;

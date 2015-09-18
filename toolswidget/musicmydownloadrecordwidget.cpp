@@ -12,10 +12,10 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
 {
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,15);
-    headerview->resizeSection(1,175);
-    headerview->resizeSection(2,103);
-    headerview->resizeSection(3,30);
+    headerview->resizeSection(0,10);
+    headerview->resizeSection(1,170);
+    headerview->resizeSection(2,93);
+    headerview->resizeSection(3,50);
 
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);
@@ -49,11 +49,12 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     setRowCount(m_loadRecordCount = m_musicRecord.m_names.count()); //reset row count
     for(int i=0; i<m_musicRecord.m_names.count(); i++)
     {
-        createItem(i, m_musicRecord.m_names[i], 999);
+        createItem(i, m_musicRecord.m_names[i], m_musicRecord.m_sizes[i], 999);
     }
 }
 
-void MusicMyDownloadRecordWidget::createItem(int index, const QString &name, qint64 time)
+void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
+                                             const QString &size, qint64 time)
 {
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
@@ -69,9 +70,9 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name, qin
     item->setData(Qt::DisplayRole, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+                      item = new QTableWidgetItem( size );
     item->setTextAlignment(Qt::AlignCenter);
-    item->setData(Qt::DisplayRole, time);
+    item->setData(Qt::UserRole + 1, time);
     setItem(index, 3, item);
 }
 
@@ -123,6 +124,7 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
         removeRow(ind); //Delete the current row
         m_musicRecord.m_names.removeAt(ind);
         m_musicRecord.m_paths.removeAt(ind);
+        m_musicRecord.m_sizes.removeAt(ind);
         --m_loadRecordCount;
     }
 }
@@ -169,14 +171,20 @@ void MusicMyDownloadRecordWidget::musicPlay()
     emit addSongToPlay(QStringList(m_musicRecord.m_paths[currentRow()]));
 }
 
-void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, qint64 time)
+void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total,
+                                                          qint64 time)
 {
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 3);
-        if(it && it->data(Qt::DisplayRole).toLongLong() == time)
+        if(it && it->data(Qt::UserRole + 1).toLongLong() == time)
         {
             item(i, 2)->setData(Qt::DisplayRole, percent);
+            item(i, 3)->setText( total );
+            if(percent == 100)
+            {
+                m_musicRecord.m_sizes[m_musicRecord.m_names.indexOf(item(i, 1)->text())] = total;
+            }
             break;
         }
     }
@@ -190,8 +198,7 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 
     m_musicRecord.m_names << musicName;
     m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();
-    QString size = QString::number(QFileInfo(name).size()/1024/1024.0);
-    m_musicRecord.m_sizes << size.left(size.indexOf(".") + 2);
+    m_musicRecord.m_sizes << "0.0M";
 
-    createItem(rowCount() - 1, musicName, time);
+    createItem(rowCount() - 1, musicName, "0.0M", time);
 }

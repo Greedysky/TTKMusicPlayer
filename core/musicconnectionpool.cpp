@@ -25,8 +25,8 @@ void MusicConnectionPool::connectMusicDownload(QObject *object)
     QObject *to = m_para.value( "MusicMyDownloadRecordWidget" );
     if(to != NULL && object)
     {
-        QObject::connect(object, SIGNAL(downloadProgressChanged(float, qint64)), to,
-                                 SLOT(downloadProgressChanged(float, qint64)));
+        QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,
+                                 SLOT(downloadProgressChanged(float, QString, qint64)));
         QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to,
                                  SLOT(createDownloadItem(QString, qint64)));
     }

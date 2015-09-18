@@ -19,7 +19,7 @@ public:
                                      Download_Type type, QObject *parent = 0);
 
 signals:
-    void downloadProgressChanged(float percent, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
     void createDownloadItem(const QString &name, qint64 time);
 
 public slots:
