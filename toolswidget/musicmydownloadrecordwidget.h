@@ -44,6 +44,7 @@ protected:
 
     MusicProgressBarDelegate *m_delegate;
     MusicDownloadRecord m_musicRecord;
+    int m_loadRecordCount;
 
 };
 

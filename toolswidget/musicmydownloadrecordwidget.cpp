@@ -7,7 +7,6 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 
-
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent)
 {
@@ -47,7 +46,7 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     }
     xml.readDownloadConfig(m_musicRecord);
 
-    setRowCount(m_musicRecord.m_names.count());//reset row count
+    setRowCount(m_loadRecordCount = m_musicRecord.m_names.count()); //reset row count
     for(int i=0; i<m_musicRecord.m_names.count(); i++)
     {
         createItem(i, m_musicRecord.m_names[i], 999);
@@ -123,7 +122,8 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
         int ind = deleteList[i];
         removeRow(ind); //Delete the current row
         m_musicRecord.m_names.removeAt(ind);
-        m_musicRecord.m_names.removeAt(ind);
+        m_musicRecord.m_paths.removeAt(ind);
+        --m_loadRecordCount;
     }
 }
 
@@ -171,10 +171,14 @@ void MusicMyDownloadRecordWidget::musicPlay()
 
 void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, qint64 time)
 {
-    QTableWidgetItem *it = item(rowCount() - 1, 3);
-    if(it && it->data(Qt::DisplayRole).toLongLong() == time)
+    for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
-        item(rowCount() - 1 , 2)->setData(Qt::DisplayRole, percent);
+        QTableWidgetItem *it = item(i, 3);
+        if(it && it->data(Qt::DisplayRole).toLongLong() == time)
+        {
+            item(i, 2)->setData(Qt::DisplayRole, percent);
+            break;
+        }
     }
 }
 
@@ -186,7 +190,8 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 
     m_musicRecord.m_names << musicName;
     m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();
-    m_musicRecord.m_sizes << QString("1M");
+    QString size = QString::number(QFileInfo(name).size()/1024/1024.0);
+    m_musicRecord.m_sizes << size.left(size.indexOf(".") + 2);
 
     createItem(rowCount() - 1, musicName, time);
 }
