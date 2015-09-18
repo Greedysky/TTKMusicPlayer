@@ -13,8 +13,6 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-#define TMP_DOWNLOAD "tmp"
-
 class MUSIC_NETWORK_EXPORT MusicBgThemeDownload : public QObject
 {
     Q_OBJECT

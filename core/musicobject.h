@@ -20,10 +20,13 @@
 #define TRANS_PLUGINS  "MPlugins/"
 #define ART_BG         "MArt/background/"
 #define TR_LANGUAGE    "MLanguage/"
+#define TMP_DOWNLOAD   "temporary"
+
 #define MUSIC_FILE     ".mp3"
 #define SKN_FILE       ".skn"
 #define JPG_FILE       ".jpg"
 #define LRC_FILE       ".lrc"
+
 #define MAKE_TRANSFORM "MPlugins/avconv.dll"
 #define MAKE_RING      "MPlugins/avring.dll"
 #define MAKE_RADIO     "MPlugins/avradio.dll"
