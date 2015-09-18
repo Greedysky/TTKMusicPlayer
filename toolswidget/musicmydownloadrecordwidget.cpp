@@ -183,7 +183,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
             item(i, 3)->setText( total );
             if(percent == 100)
             {
-                m_musicRecord.m_sizes[m_musicRecord.m_names.indexOf(item(i, 1)->text())] = total;
+                m_musicRecord.m_sizes[i] = total;
             }
             break;
         }
