@@ -129,16 +129,9 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
     }
 }
 
-void MusicMyDownloadRecordWidget::listCellClicked(int , int column)
+void MusicMyDownloadRecordWidget::listCellClicked(int, int)
 {
-    switch(column)
-    {
-        case 3:
-            setDeleteItemAt();
-            break;
-        default:
-            break;
-    }
+
 }
 
 void MusicMyDownloadRecordWidget::listCellDoubleClicked(int, int)
