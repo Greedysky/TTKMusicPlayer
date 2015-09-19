@@ -24,9 +24,6 @@ public:
     void setImagePath(const QString &path);
     void saveImagePath(const QString &path) const;
 
-signals:
-public slots:
-
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void wheelEvent(QWheelEvent *event);
