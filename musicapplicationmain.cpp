@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
+
     QTranslator translator;
     translator.load(MusicObject::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);

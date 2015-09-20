@@ -1,8 +1,9 @@
 #include "musicbackgroundskindialog.h"
+#include "ui_musicbackgroundskindialog.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "ui_musicbackgroundskindialog.h"
 #include "musicbgthememanager.h"
+#include "musicbackgroundremotewidget.h"
 
 #include <QFileDialog>
 #include <QColorDialog>
@@ -112,12 +113,12 @@ int MusicBackgroundSkinDialog::getListBgSkinAlpha() const
 
 void MusicBackgroundSkinDialog::changeToMySkin()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MusicBackgroundSkinDialog::changeToNetSkin()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MusicBackgroundSkinDialog::showPaletteDialog()

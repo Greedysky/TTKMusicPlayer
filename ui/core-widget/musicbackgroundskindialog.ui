@@ -154,10 +154,10 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
-   <widget class="QWidget" name="page"/>
    <widget class="QListWidget" name="themeListWidget"/>
+   <widget class="MusicBackgroundRemoteWidget" name="remoteWidget"/>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -239,6 +239,14 @@
   <zorder>paletteButton</zorder>
   <zorder>line_2</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicBackgroundRemoteWidget</class>
+   <extends>QWidget</extends>
+   <header>musicbackgroundremotewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
