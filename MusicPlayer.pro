@@ -125,6 +125,7 @@ SOURCES += \
     core-widget/musicmessagebox.cpp \
     core-widget/musicqualitychoicewidget.cpp \
     core-widget/musicbackgroundremotewidget.cpp \
+    core-widget/musicbackgroundlistwidget.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
@@ -226,6 +227,7 @@ HEADERS  += \
     core-widget/musicmessagebox.h \
     core-widget/musicqualitychoicewidget.h \
     core-widget/musicbackgroundremotewidget.h \
+    core-widget/musicbackgroundlistwidget.h \
     musicleftareawidget.h \
     musictopareawidget.h \
     musicrightareawidget.h \

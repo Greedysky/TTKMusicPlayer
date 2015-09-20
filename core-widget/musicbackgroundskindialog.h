@@ -11,8 +11,6 @@
 
 #include "musicabstractmovedialog.h"
 
-#define MUSIC_BG_ROLE Qt::UserRole + 1
-
 namespace Ui {
 class MusicBackgroundSkinDialog;
 }
@@ -42,9 +40,7 @@ public slots:
     virtual int exec();
 
 protected:
-    void clearAllItems();
     void addThemeListWidgetItem();
-    void createItem(const QString &name, const QIcon &icon);
 
     Ui::MusicBackgroundSkinDialog *ui;
 

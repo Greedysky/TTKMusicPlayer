@@ -156,7 +156,7 @@
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QListWidget" name="themeListWidget"/>
+   <widget class="MusicBackgroundListWidget" name="themeListWidget"/>
    <widget class="MusicBackgroundRemoteWidget" name="remoteWidget"/>
   </widget>
   <widget class="Line" name="line">
@@ -240,6 +240,12 @@
   <zorder>line_2</zorder>
  </widget>
  <customwidgets>
+   <customwidget>
+   <class>MusicBackgroundListWidget</class>
+   <extends>QListWidget</extends>
+   <header>musicbackgroundlistwidget.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MusicBackgroundRemoteWidget</class>
    <extends>QWidget</extends>

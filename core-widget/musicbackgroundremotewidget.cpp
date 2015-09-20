@@ -1,4 +1,5 @@
 #include "musicbackgroundremotewidget.h"
+#include "musicbackgroundlistwidget.h"
 #include "musicuiobject.h"
 
 #include <QPushButton>
@@ -15,7 +16,6 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
 {
-    clearAllItems();
     delete m_listWidget;
     delete m_group;
 }
@@ -34,12 +34,7 @@ void MusicBackgroundRemoteWidget::initWidget()
     }
     vbox->addLayout(hbox);
 
-    m_listWidget = new QListWidget(this);
-    m_listWidget->setFrameShape(QFrame::NoFrame);
-    m_listWidget->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_listWidget->setIconSize(QSize(100,80));
-    m_listWidget->setViewMode(QListView::IconMode);
-    m_listWidget->setMovement(QListView::Static);
+    m_listWidget = new MusicBackgroundListWidget(this);
     vbox->addWidget(m_listWidget);
 
     setLayout(vbox);
@@ -61,22 +56,9 @@ void MusicBackgroundRemoteWidget::createButton()
 
 void MusicBackgroundRemoteWidget::buttonClicked(int )
 {
-    clearAllItems();
+    m_listWidget->clearAllItems();
     for(int i=0; i<100; i++)
     {
-        createItem("sdfsdf", QIcon(":/image/noneImage"));
+        m_listWidget->createItem("sdfsdf", QIcon(":/image/noneImage"));
     }
-}
-
-void MusicBackgroundRemoteWidget::clearAllItems()
-{
-    m_listWidget->clear();
-}
-
-void MusicBackgroundRemoteWidget::createItem(const QString &name, const QIcon &icon)
-{
-    QListWidgetItem *item = new QListWidgetItem(m_listWidget);
-    item->setIcon(icon);
-    item->setToolTip(name);
-    m_listWidget->addItem(item);
 }

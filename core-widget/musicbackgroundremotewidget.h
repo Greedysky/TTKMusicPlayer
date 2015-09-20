@@ -12,8 +12,8 @@
 #include <QWidget>
 #include "musiclibexportglobal.h"
 
-class QListWidget;
 class QButtonGroup;
+class MusicBackgroundListWidget;
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
@@ -30,10 +30,8 @@ public slots:
 protected:
     void initWidget();
     void createButton();
-    void clearAllItems();
-    void createItem(const QString &name, const QIcon &icon);
 
-    QListWidget *m_listWidget;
+    MusicBackgroundListWidget *m_listWidget;
     QButtonGroup *m_group;
 
 };
