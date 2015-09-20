@@ -36,6 +36,7 @@ public slots:
     void changeToNetSkin();
     void showPaletteDialog();
     void showCustomSkinDialog();
+    void showCustomSkin(const QString &path);
     void itemUserClicked(QListWidgetItem *item);
     virtual int exec();
 

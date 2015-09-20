@@ -13,6 +13,7 @@
 #include "musiclibexportglobal.h"
 
 class QButtonGroup;
+class QListWidgetItem;
 class MusicBackgroundListWidget;
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
@@ -23,9 +24,11 @@ public:
     ~MusicBackgroundRemoteWidget();
 
 signals:
+    void showCustomSkin(const QString &path);
 
 public slots:
     void buttonClicked(int index);
+    void itemUserClicked(QListWidgetItem *item);
 
 protected:
     void initWidget();
@@ -33,6 +36,7 @@ protected:
 
     MusicBackgroundListWidget *m_listWidget;
     QButtonGroup *m_group;
+    int m_currentIndex;
 
 };
 

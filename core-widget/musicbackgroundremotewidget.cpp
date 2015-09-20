@@ -1,6 +1,6 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicbackgroundlistwidget.h"
-#include "musicuiobject.h"
+#include "musicobject.h"
 
 #include <QPushButton>
 #include <QButtonGroup>
@@ -10,6 +10,7 @@
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_currentIndex = -1;
     m_group = new QButtonGroup(this);
     initWidget();
 }
@@ -33,10 +34,10 @@ void MusicBackgroundRemoteWidget::initWidget()
         hbox->addWidget( m_group->button(i) );
     }
     vbox->addLayout(hbox);
-
     m_listWidget = new MusicBackgroundListWidget(this);
+    connect(m_listWidget, SIGNAL(itemClicked(QListWidgetItem*)),
+                          SLOT(itemUserClicked(QListWidgetItem*)));
     vbox->addWidget(m_listWidget);
-
     setLayout(vbox);
 }
 
@@ -54,11 +55,29 @@ void MusicBackgroundRemoteWidget::createButton()
     connect(m_group, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 }
 
-void MusicBackgroundRemoteWidget::buttonClicked(int )
+void MusicBackgroundRemoteWidget::buttonClicked(int index)
 {
-    m_listWidget->clearAllItems();
-    for(int i=0; i<100; i++)
+    int count = 0;
+    switch(m_currentIndex = index)
     {
-        m_listWidget->createItem("sdfsdf", QIcon(":/image/noneImage"));
+        case 0: count = 10; break;
+        case 1: count = 20; break;
+        case 2: count = 30; break;
+        case 3: count = 40; break;
+    }
+    m_listWidget->clearAllItems();
+    for(int i=0; i<count; i++)
+    {
+        m_listWidget->createItem(QString(), QIcon(":/image/noneImage"));
+    }
+}
+
+void MusicBackgroundRemoteWidget::itemUserClicked(QListWidgetItem *item)
+{
+    if(!item->text().isEmpty())
+    {
+        emit showCustomSkin(QString("%1%2/%3%4").arg(THEME_CACHED)
+                            .arg(m_currentIndex).arg(m_listWidget->currentRow())
+                            .arg(JPG_FILE));
     }
 }

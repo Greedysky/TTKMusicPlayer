@@ -16,6 +16,7 @@
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
 #define THEME_DOWNLOAD "MTheme/"
+#define THEME_CACHED   "MCachedTheme/"
 #define ART_DOWNLOAD   "MArt/"
 #define TRANS_PLUGINS  "MPlugins/"
 #define ART_BG         "MArt/background/"
@@ -117,6 +118,7 @@ namespace MusicObject
     {
         dirIsExist(LRC_DOWNLOAD);
         dirIsExist(MUSIC_DOWNLOAD);
+        dirIsExist(THEME_CACHED);
         dirIsExist(THEME_DOWNLOAD);
         dirIsExist(ART_DOWNLOAD);
         dirIsExist(TRANS_PLUGINS);

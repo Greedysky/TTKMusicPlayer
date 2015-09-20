@@ -12,6 +12,7 @@
 #define MUSIC_BG_ROLE Qt::UserRole + 1
 
 #include <QListWidget>
+#include "musicuiobject.h"
 #include "musiclibexportglobal.h"
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QListWidget

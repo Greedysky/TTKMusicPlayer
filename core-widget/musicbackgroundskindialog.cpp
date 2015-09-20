@@ -1,9 +1,7 @@
 #include "musicbackgroundskindialog.h"
 #include "ui_musicbackgroundskindialog.h"
 #include "musicobject.h"
-#include "musicuiobject.h"
 #include "musicbgthememanager.h"
-#include "musicbackgroundremotewidget.h"
 
 #include <QFileDialog>
 #include <QColorDialog>
@@ -38,6 +36,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
                                       SIGNAL(setTransparent(int)));
     connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),
                                  SLOT(itemUserClicked(QListWidgetItem*)));
+    connect(ui->remoteWidget, SIGNAL(showCustomSkin(QString)), SLOT(showCustomSkin(QString)));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->mySkin, SIGNAL(clicked()), SLOT(changeToMySkin()));
     connect(ui->netSkin, SIGNAL(clicked()), SLOT(changeToNetSkin()));
@@ -134,6 +133,11 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     ui->themeListWidget->createItem(QString("theme-%1")
                         .arg(ui->themeListWidget->count() + 1),
                         QIcon(QPixmap(customSkinPath).scaled(90,70)));
+}
+
+void MusicBackgroundSkinDialog::showCustomSkin(const QString &path)
+{
+    qDebug()<<path;
 }
 
 void MusicBackgroundSkinDialog::itemUserClicked(QListWidgetItem *item)
