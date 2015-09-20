@@ -45,6 +45,7 @@
         <file alias="musicslider">../resource/music_slider.png</file>
         <file alias="imagetrans">../resource/image_transparent.png</file>
         <file alias="resizeWindow">../resource/resizeWindow.png</file>
+        <file alias="noneImage">../resource/noneImage.png</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="bg">../resource/quality/background.png</file>
