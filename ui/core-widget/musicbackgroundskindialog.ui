@@ -6,21 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
-    <height>370</height>
+    <width>570</width>
+    <height>410</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicBackgroundSkinDialog{border:1px solid gray}</string>
-  </property>
   <widget class="QLabel" name="showPerArea">
    <property name="geometry">
     <rect>
-     <x>462</x>
-     <y>105</y>
+     <x>482</x>
+     <y>125</y>
      <width>24</width>
      <height>226</height>
     </rect>
@@ -50,8 +47,8 @@
   <widget class="QSlider" name="bgTransparentSlider">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>110</y>
+     <x>460</x>
+     <y>130</y>
      <width>20</width>
      <height>225</height>
     </rect>
@@ -63,8 +60,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>530</width>
      <height>370</height>
     </rect>
@@ -79,8 +76,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -95,8 +92,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>505</x>
-     <y>2</y>
+     <x>525</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -108,8 +105,8 @@
   <widget class="QPushButton" name="mySkin">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
+     <x>40</x>
+     <y>70</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -121,8 +118,8 @@
   <widget class="QPushButton" name="netSkin">
    <property name="geometry">
     <rect>
-     <x>105</x>
-     <y>50</y>
+     <x>125</x>
+     <y>70</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -134,8 +131,8 @@
   <widget class="QSlider" name="bgTransparentSliderR">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>110</y>
+     <x>510</x>
+     <y>130</y>
      <width>20</width>
      <height>225</height>
     </rect>
@@ -147,8 +144,8 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>100</y>
+     <x>35</x>
+     <y>120</y>
      <width>395</width>
      <height>235</height>
     </rect>
@@ -162,8 +159,8 @@
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>85</y>
+     <x>29</x>
+     <y>105</y>
      <width>510</width>
      <height>5</height>
     </rect>
@@ -175,8 +172,8 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>50</y>
+     <x>460</x>
+     <y>70</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -188,8 +185,8 @@
   <widget class="QPushButton" name="paletteButton">
    <property name="geometry">
     <rect>
-     <x>355</x>
-     <y>50</y>
+     <x>375</x>
+     <y>70</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -201,8 +198,8 @@
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>350</y>
+     <x>29</x>
+     <y>370</y>
      <width>510</width>
      <height>5</height>
     </rect>
@@ -214,8 +211,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>530</width>
      <height>345</height>
     </rect>
@@ -240,7 +237,7 @@
   <zorder>line_2</zorder>
  </widget>
  <customwidgets>
-   <customwidget>
+  <customwidget>
    <class>MusicBackgroundListWidget</class>
    <extends>QListWidget</extends>
    <header>musicbackgroundlistwidget.h</header>

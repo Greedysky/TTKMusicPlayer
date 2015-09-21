@@ -6,21 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>510</width>
-    <height>335</height>
+    <width>550</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicEqualizerDialog</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicEqualizerDialog{border:1px solid gray}</string>
-  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>510</width>
      <height>335</height>
     </rect>
@@ -32,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>51</width>
      <height>25</height>
     </rect>
@@ -48,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>489</x>
-     <y>2</y>
+     <x>509</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +58,8 @@
   <widget class="QSlider" name="bwVerticalSlider">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>90</y>
+     <x>35</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -74,8 +71,8 @@
   <widget class="QSlider" name="verticalSlider3">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>90</y>
+     <x>170</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -87,8 +84,8 @@
   <widget class="QSlider" name="verticalSlider4">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>90</y>
+     <x>200</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -100,8 +97,8 @@
   <widget class="QSlider" name="verticalSlider5">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>90</y>
+     <x>230</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -113,8 +110,8 @@
   <widget class="QSlider" name="verticalSlider2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>90</y>
+     <x>140</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -126,8 +123,8 @@
   <widget class="QSlider" name="verticalSlider7">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>90</y>
+     <x>290</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -139,8 +136,8 @@
   <widget class="QSlider" name="verticalSlider6">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>90</y>
+     <x>260</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -152,8 +149,8 @@
   <widget class="QSlider" name="verticalSlider8">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>90</y>
+     <x>320</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -165,8 +162,8 @@
   <widget class="QSlider" name="verticalSlider9">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>90</y>
+     <x>350</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -178,8 +175,8 @@
   <widget class="QSlider" name="verticalSlider10">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>90</y>
+     <x>380</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -191,8 +188,8 @@
   <widget class="QSlider" name="verticalSlider1">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>90</y>
+     <x>110</x>
+     <y>110</y>
      <width>19</width>
      <height>211</height>
     </rect>
@@ -204,8 +201,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>42</y>
+     <x>40</x>
+     <y>62</y>
      <width>101</width>
      <height>35</height>
     </rect>
@@ -222,8 +219,8 @@ font-weight:bold;
   <widget class="QPushButton" name="showEqButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>42</y>
+     <x>140</x>
+     <y>62</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -244,8 +241,8 @@ font-weight:bold;
   <widget class="QPushButton" name="resetButton">
    <property name="geometry">
     <rect>
-     <x>405</x>
-     <y>38</y>
+     <x>425</x>
+     <y>58</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -257,8 +254,8 @@ font-weight:bold;
   <widget class="QComboBox" name="eqChoice">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>45</y>
+     <x>300</x>
+     <y>65</y>
      <width>91</width>
      <height>21</height>
     </rect>
@@ -267,8 +264,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>85</y>
+     <x>60</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -283,8 +280,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_3">
    <property name="geometry">
     <rect>
-     <x>105</x>
-     <y>85</y>
+     <x>125</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -299,8 +296,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_4">
    <property name="geometry">
     <rect>
-     <x>115</x>
-     <y>85</y>
+     <x>135</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -315,8 +312,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_5">
    <property name="geometry">
     <rect>
-     <x>135</x>
-     <y>85</y>
+     <x>155</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -331,8 +328,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_6">
    <property name="geometry">
     <rect>
-     <x>145</x>
-     <y>85</y>
+     <x>165</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -347,8 +344,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_7">
    <property name="geometry">
     <rect>
-     <x>165</x>
-     <y>85</y>
+     <x>185</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -363,8 +360,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_8">
    <property name="geometry">
     <rect>
-     <x>175</x>
-     <y>85</y>
+     <x>195</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -379,8 +376,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_9">
    <property name="geometry">
     <rect>
-     <x>195</x>
-     <y>85</y>
+     <x>215</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -395,8 +392,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_10">
    <property name="geometry">
     <rect>
-     <x>205</x>
-     <y>85</y>
+     <x>225</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -411,8 +408,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_11">
    <property name="geometry">
     <rect>
-     <x>225</x>
-     <y>85</y>
+     <x>245</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -427,8 +424,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_12">
    <property name="geometry">
     <rect>
-     <x>235</x>
-     <y>85</y>
+     <x>255</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -443,8 +440,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_13">
    <property name="geometry">
     <rect>
-     <x>255</x>
-     <y>85</y>
+     <x>275</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -459,8 +456,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_14">
    <property name="geometry">
     <rect>
-     <x>265</x>
-     <y>85</y>
+     <x>285</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -475,8 +472,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_15">
    <property name="geometry">
     <rect>
-     <x>285</x>
-     <y>85</y>
+     <x>305</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -491,8 +488,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_16">
    <property name="geometry">
     <rect>
-     <x>295</x>
-     <y>85</y>
+     <x>315</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -507,8 +504,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_17">
    <property name="geometry">
     <rect>
-     <x>315</x>
-     <y>85</y>
+     <x>335</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -523,8 +520,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_18">
    <property name="geometry">
     <rect>
-     <x>325</x>
-     <y>85</y>
+     <x>345</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -539,8 +536,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_19">
    <property name="geometry">
     <rect>
-     <x>345</x>
-     <y>85</y>
+     <x>365</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -555,8 +552,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_20">
    <property name="geometry">
     <rect>
-     <x>355</x>
-     <y>85</y>
+     <x>375</x>
+     <y>105</y>
      <width>5</width>
      <height>220</height>
     </rect>
@@ -571,8 +568,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_21">
    <property name="geometry">
     <rect>
-     <x>55</x>
-     <y>64</y>
+     <x>75</x>
+     <y>84</y>
      <width>30</width>
      <height>261</height>
     </rect>
@@ -587,8 +584,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_22">
    <property name="geometry">
     <rect>
-     <x>92</x>
-     <y>305</y>
+     <x>112</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -603,8 +600,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_23">
    <property name="geometry">
     <rect>
-     <x>121</x>
-     <y>305</y>
+     <x>141</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -619,8 +616,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_24">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>305</y>
+     <x>170</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -635,8 +632,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_25">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>305</y>
+     <x>200</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -651,8 +648,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_26">
    <property name="geometry">
     <rect>
-     <x>211</x>
-     <y>305</y>
+     <x>231</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -667,8 +664,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_27">
    <property name="geometry">
     <rect>
-     <x>242</x>
-     <y>305</y>
+     <x>262</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -683,8 +680,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_28">
    <property name="geometry">
     <rect>
-     <x>272</x>
-     <y>305</y>
+     <x>292</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -699,8 +696,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_29">
    <property name="geometry">
     <rect>
-     <x>302</x>
-     <y>305</y>
+     <x>322</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -715,8 +712,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_30">
    <property name="geometry">
     <rect>
-     <x>332</x>
-     <y>305</y>
+     <x>352</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -731,8 +728,8 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_31">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>305</y>
+     <x>380</x>
+     <y>325</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -747,8 +744,8 @@ font-weight:bold;
   <widget class="QLabel" name="eqLabel">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>308</y>
+     <x>410</x>
+     <y>328</y>
      <width>101</width>
      <height>21</height>
     </rect>
@@ -768,8 +765,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_3">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>93</y>
+     <x>410</x>
+     <y>113</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -781,8 +778,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_4">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>93</y>
+     <x>470</x>
+     <y>113</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -794,8 +791,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_5">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>153</y>
+     <x>470</x>
+     <y>173</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -807,8 +804,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_6">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>123</y>
+     <x>470</x>
+     <y>143</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -820,8 +817,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_7">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>123</y>
+     <x>410</x>
+     <y>143</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -833,8 +830,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_8">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>153</y>
+     <x>410</x>
+     <y>173</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -846,8 +843,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_9">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>213</y>
+     <x>410</x>
+     <y>233</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -859,8 +856,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_10">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>213</y>
+     <x>470</x>
+     <y>233</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -872,8 +869,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_11">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>183</y>
+     <x>470</x>
+     <y>203</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -885,8 +882,8 @@ font-weight:bold;
   <widget class="QPushButton" name="funcButton_12">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>183</y>
+     <x>410</x>
+     <y>203</y>
      <width>45</width>
      <height>28</height>
     </rect>
@@ -898,8 +895,8 @@ font-weight:bold;
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>250</y>
+     <x>410</x>
+     <y>270</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -911,8 +908,8 @@ font-weight:bold;
   <widget class="QCheckBox" name="checkBox_2">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>250</y>
+     <x>470</x>
+     <y>270</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -924,8 +921,8 @@ font-weight:bold;
   <widget class="QCheckBox" name="checkBox_3">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>280</y>
+     <x>410</x>
+     <y>300</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -934,11 +931,11 @@ font-weight:bold;
     <string>通道混合</string>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMask">
+  <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>510</width>
      <height>310</height>
     </rect>
@@ -946,6 +943,7 @@ font-weight:bold;
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <zorder>verticalSlider7</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
