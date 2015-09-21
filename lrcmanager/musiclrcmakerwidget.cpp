@@ -12,7 +12,8 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui(new Ui::MusicLrcMakerWidget)
 {
     ui->setupUi(this);
-    
+    setAttribute(Qt::WA_TranslucentBackground, true);
+
     ui->lrcTextEdit->setFontPointSize(15);
     ui->lrcTextEdit->setFontWeight(QFont::Bold);
     ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
