@@ -177,17 +177,17 @@ void MusicUserDialog::changeVerificationCode()
 
 void MusicUserDialog::userLogin()
 {
-    windowRectChanged(0, QRect(1, 35, 329, 180));
+    windowRectChanged(0, QRect(20, 45, 331, 181));
 }
 
 void MusicUserDialog::registerUser()
 {
-    windowRectChanged(1, QRect(1, 35, 329, 299));
+    windowRectChanged(1, QRect(20, 45, 331, 300));
 }
 
 void MusicUserDialog::userForgotPasswd()
 {
-    windowRectChanged(2, QRect(1, 35, 329, 250));
+    windowRectChanged(2, QRect(20, 45, 331, 251));
 }
 
 void MusicUserDialog::windowRectChanged(int index, const QRect &rect)
@@ -196,7 +196,7 @@ void MusicUserDialog::windowRectChanged(int index, const QRect &rect)
     ui->stackedWidget->setCurrentIndex(index);
     ui->stackedWidget->setGeometry(rect);
     QRect other = geometry();
-    other.setHeight(rect.height() + 30);
+    other.setHeight(rect.height() + 61);
     setGeometry(other);
 }
 
