@@ -5,10 +5,21 @@ MusicBgThemeManager::MusicBgThemeManager()
     m_currentIndex = 0;
 }
 
+void MusicBgThemeManager::clearArtName()
+{
+    m_currentArtName.clear();
+}
+
 void MusicBgThemeManager::setArtName(const QString &name)
 {
+    QString sName = name.split('-').front().trimmed();
+    if(!m_currentArtName.isEmpty() && m_currentArtName != sName)
+    {
+        return;
+    }
+
     m_photos.clear();
-    QString filter = ART_BG + name.split('-').front().trimmed()+ "%1" + SKN_FILE;
+    QString filter = ART_BG + (m_currentArtName = sName) + "%1" + SKN_FILE;
     for(int i=0; i<MAX_INDEX; ++i)
     {
         if(QFile::exists(filter.arg(i)))

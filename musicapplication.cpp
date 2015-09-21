@@ -442,10 +442,9 @@ void MusicApplication::showCurrentSong(int index)
     {
         m_musicSongTree->selectRow(index);
         QString name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex())[index];
-        ui->showCurrentSong->setText(tr("Playing")+QString(": %1 = = %2")
-            .arg(index + 1)
-            .arg(name));
+        ui->showCurrentSong->setText(tr("Playing")+QString(": %1 = = %2").arg(index + 1).arg(name));
         //Show the current play song information
+        M_BG_MANAGER->clearArtName();
         m_rightAreaWidget->musicCheckHasLrcAlready();
         m_bottomAreaWidget->setLabelText(name);
         m_topAreaWidget->setLabelText(name);

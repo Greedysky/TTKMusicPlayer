@@ -20,6 +20,8 @@ class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
     Q_OBJECT
 public:
     void setArtName(const QString &name);
+    void clearArtName();
+
     inline int getArtPhotoCount() const { return m_photos.count(); }
     QString getArtPhotoPath();
     QString getArtPhotoPathByIndex(int index = -1) const;
@@ -38,6 +40,7 @@ signals:
 protected:
     MusicBgThemeManager();
 
+    QString m_currentArtName;
     QString m_MBackground;
     QStringList m_photos;
     int m_currentIndex;
