@@ -7,6 +7,9 @@
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
     MusicAbstractMoveWidget(parent)
 {
+    setAttribute(Qt::WA_TranslucentBackground, false);
+    drawWindowShadow(false);
+
     setMinimumHeight(80);
     setMinimumWidth(150);
     m_direction = NONE;
@@ -24,7 +27,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
 
 void MusicSpectrumWidget::timeout()
 {
-    emit setSpectrum((HWND)winId(),size().width(),size().height());
+    emit setSpectrum((HWND)winId(), size().width(), size().height());
 }
 
 void MusicSpectrumWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -32,7 +35,7 @@ void MusicSpectrumWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
-    rightClickMenu.addAction(tr("close"),this,SLOT(close()));
+    rightClickMenu.addAction(tr("close"), this, SLOT(close()));
     rightClickMenu.exec(QCursor::pos());
 }
 
