@@ -13,7 +13,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 {
     ui->setupUi(this);
     drawWindowRoundedRect(this);
-    //set window radius
+    
     ui->lrcTextEdit->setFontPointSize(15);
     ui->lrcTextEdit->setFontWeight(QFont::Bold);
     ui->lrcTextEdit->setAlignment(Qt::AlignCenter);

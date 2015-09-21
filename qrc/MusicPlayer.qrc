@@ -173,4 +173,14 @@
         <file alias="shadow">../resource/lrc/shadow.png</file>
         <file alias="film">../resource/lrc/filmBg.png</file>
     </qresource>
+    <qresource prefix="/shadow">
+        <file alias="bottom">../resource/borderShadow/shadow_bottom.png</file>
+        <file alias="corner1">../resource/borderShadow/shadow_corner1.png</file>
+        <file alias="corner2">../resource/borderShadow/shadow_corner2.png</file>
+        <file alias="corner3">../resource/borderShadow/shadow_corner3.png</file>
+        <file alias="corner4">../resource/borderShadow/shadow_corner4.png</file>
+        <file alias="left">../resource/borderShadow/shadow_left.png</file>
+        <file alias="right">../resource/borderShadow/shadow_right.png</file>
+        <file alias="top">../resource/borderShadow/shadow_top.png</file>
+    </qresource>
 </RCC>

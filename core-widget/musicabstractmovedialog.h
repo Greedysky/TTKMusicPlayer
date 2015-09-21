@@ -9,6 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
+#define WIDTH_S  20
+#define HEIGHT_S 20
+
 #include <QDialog>
 #include "musiclibexportglobal.h"
 
@@ -19,12 +22,12 @@ public:
     explicit MusicAbstractMoveDialog(QWidget *parent = 0);
     virtual ~MusicAbstractMoveDialog();
 
-    void drawWindowRoundedRect(QWidget *widget);
-
 protected:
+    virtual void paintEvent(QPaintEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
+
     QPoint m_pressAt;
     bool m_leftButtonPress;
 

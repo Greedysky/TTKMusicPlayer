@@ -17,8 +17,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

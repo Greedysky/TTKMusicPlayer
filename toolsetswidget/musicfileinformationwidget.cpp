@@ -13,8 +13,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
     ui(new Ui::MusicFileInformationWidget)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+    
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

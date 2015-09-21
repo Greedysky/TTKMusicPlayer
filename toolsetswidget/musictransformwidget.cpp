@@ -17,8 +17,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui(new Ui::MusicTransformWidget)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+    
     m_process = new QProcess(this);
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);

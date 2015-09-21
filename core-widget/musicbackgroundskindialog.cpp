@@ -11,8 +11,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
     ui(new Ui::MusicBackgroundSkinDialog)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+
 
     ui->showPerArea->setWordWrap(true);
     ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle02);

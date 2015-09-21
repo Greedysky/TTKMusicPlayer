@@ -4,14 +4,14 @@
 #include "musicuiobject.h"
 
 #include <QButtonGroup>
+#include <QPainter>
 
 MusicMessageBox::MusicMessageBox(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicMessageBox)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+
     m_status = 0;
     ////////////////////////////////////////////////
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
@@ -36,7 +36,6 @@ MusicMessageBox::~MusicMessageBox()
 {
     delete ui;
 }
-
 
 void MusicMessageBox::setText(const QString &text) const
 {

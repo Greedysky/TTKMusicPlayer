@@ -29,7 +29,6 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     secondStatckWidget();
     thirdStatckWidget();
 
-    drawWindowRoundedRect(this);
     ui->userComboBox->addItems(m_userModel->getAllUsers());
     connect(ui->userComboBox, SIGNAL(currentIndexChanged(QString)),
                               SLOT(userComboBoxChanged(QString)));
@@ -199,7 +198,6 @@ void MusicUserDialog::windowRectChanged(int index, const QRect &rect)
     QRect other = geometry();
     other.setHeight(rect.height() + 30);
     setGeometry(other);
-    drawWindowRoundedRect(this);
 }
 
 void MusicUserDialog::checkUserLogin()

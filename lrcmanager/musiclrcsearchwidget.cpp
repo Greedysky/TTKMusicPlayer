@@ -10,8 +10,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
       ui(new Ui::MusicLrcSearchWidget)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
-    //set window radius
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
