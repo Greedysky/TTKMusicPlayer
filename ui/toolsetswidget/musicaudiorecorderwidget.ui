@@ -6,21 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>372</width>
-    <height>270</height>
+    <width>412</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicAudioRecorderWidget</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicAudioRecorderWidget{border:1px solid gray}</string>
-  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>372</width>
      <height>270</height>
     </rect>
@@ -32,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -48,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>2</y>
+     <x>370</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +58,8 @@
   <widget class="QPushButton" name="startButton">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>60</y>
+     <x>60</x>
+     <y>80</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -74,8 +71,8 @@
   <widget class="QPushButton" name="stopButton">
    <property name="geometry">
     <rect>
-     <x>155</x>
-     <y>60</y>
+     <x>175</x>
+     <y>80</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -87,8 +84,8 @@
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>95</y>
+     <x>60</x>
+     <y>115</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -100,8 +97,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>97</y>
+     <x>170</x>
+     <y>117</y>
      <width>41</width>
      <height>16</height>
     </rect>
@@ -116,8 +113,8 @@
   <widget class="QLabel" name="timer">
    <property name="geometry">
     <rect>
-     <x>195</x>
-     <y>97</y>
+     <x>215</x>
+     <y>117</y>
      <width>61</width>
      <height>16</height>
     </rect>
@@ -132,8 +129,8 @@
   <widget class="QCheckBox" name="checkBox">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>90</y>
+     <x>290</x>
+     <y>110</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -145,8 +142,8 @@
   <widget class="QCheckBox" name="checkBox_2">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>112</y>
+     <x>290</x>
+     <y>132</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -158,8 +155,8 @@
   <widget class="QCheckBox" name="checkBox_3">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>135</y>
+     <x>290</x>
+     <y>155</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -171,8 +168,8 @@
   <widget class="QCheckBox" name="checkBox_4">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>157</y>
+     <x>290</x>
+     <y>177</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -184,8 +181,8 @@
   <widget class="QLabel" name="timer_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>130</y>
+     <x>60</x>
+     <y>150</y>
      <width>211</width>
      <height>65</height>
     </rect>
@@ -200,8 +197,8 @@
   <widget class="QCheckBox" name="checkBox_5">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>180</y>
+     <x>290</x>
+     <y>200</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -213,8 +210,8 @@
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
+     <x>40</x>
+     <y>70</y>
      <width>3</width>
      <height>200</height>
     </rect>
@@ -226,8 +223,8 @@
   <widget class="QSlider" name="horizontalSlider">
    <property name="geometry">
     <rect>
-     <x>123</x>
-     <y>203</y>
+     <x>143</x>
+     <y>223</y>
      <width>231</width>
      <height>20</height>
     </rect>
@@ -255,8 +252,8 @@ QSlider::handle:horizontal {
   <widget class="QProgressBar" name="progress">
    <property name="geometry">
     <rect>
-     <x>123</x>
-     <y>230</y>
+     <x>143</x>
+     <y>250</y>
      <width>231</width>
      <height>23</height>
     </rect>
@@ -281,8 +278,8 @@ QProgressBar::chunk {
   <widget class="QPushButton" name="saveButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>60</y>
+     <x>290</x>
+     <y>80</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -294,8 +291,8 @@ QProgressBar::chunk {
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>206</y>
+     <x>50</x>
+     <y>226</y>
      <width>91</width>
      <height>15</height>
     </rect>
@@ -310,8 +307,8 @@ QProgressBar::chunk {
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>233</y>
+     <x>50</x>
+     <y>253</y>
      <width>91</width>
      <height>15</height>
     </rect>
@@ -326,8 +323,8 @@ QProgressBar::chunk {
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>372</width>
      <height>245</height>
     </rect>

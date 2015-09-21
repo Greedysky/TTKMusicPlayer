@@ -6,22 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>365</height>
+    <width>515</width>
+    <height>405</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicFileInformationWidget</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicFileInformationWidget{border:1px solid gray}
-QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
-  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>475</width>
      <height>365</height>
     </rect>
@@ -33,8 +29,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -49,8 +45,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>453</x>
-     <y>2</y>
+     <x>473</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -62,8 +58,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>50</y>
+     <x>90</x>
+     <y>70</y>
      <width>380</width>
      <height>5</height>
     </rect>
@@ -75,8 +71,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>40</x>
+     <y>65</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -88,8 +84,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>75</y>
+     <x>45</x>
+     <y>95</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -101,8 +97,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="filePathEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>70</y>
+     <x>105</x>
+     <y>90</y>
      <width>300</width>
      <height>23</height>
     </rect>
@@ -117,8 +113,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>105</y>
+     <x>45</x>
+     <y>125</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -130,8 +126,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileSizeEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>100</y>
+     <x>105</x>
+     <y>120</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -143,8 +139,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QPushButton" name="viewButton">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>70</y>
+     <x>410</x>
+     <y>90</y>
      <width>61</width>
      <height>23</height>
     </rect>
@@ -156,8 +152,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileFormatEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>100</y>
+     <x>330</x>
+     <y>120</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -169,8 +165,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>105</y>
+     <x>270</x>
+     <y>125</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -182,8 +178,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>135</y>
+     <x>270</x>
+     <y>155</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -195,8 +191,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileArtistEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>130</y>
+     <x>330</x>
+     <y>150</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -208,8 +204,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileTitleEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>130</y>
+     <x>105</x>
+     <y>150</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -221,8 +217,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>135</y>
+     <x>45</x>
+     <y>155</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -234,8 +230,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>165</y>
+     <x>45</x>
+     <y>185</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -247,8 +243,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileAlbumEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>160</y>
+     <x>105</x>
+     <y>180</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -260,8 +256,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>165</y>
+     <x>270</x>
+     <y>185</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -273,8 +269,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileTimeEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>160</y>
+     <x>330</x>
+     <y>180</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -286,8 +282,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>195</y>
+     <x>270</x>
+     <y>215</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -299,8 +295,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileGenreEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>190</y>
+     <x>330</x>
+     <y>210</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -312,8 +308,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>255</y>
+     <x>45</x>
+     <y>275</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -325,8 +321,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>285</y>
+     <x>45</x>
+     <y>305</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -338,8 +334,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="TrackNumEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>280</y>
+     <x>105</x>
+     <y>300</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -351,8 +347,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>285</y>
+     <x>270</x>
+     <y>305</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -364,8 +360,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="SamplingRateEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>250</y>
+     <x>105</x>
+     <y>270</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -377,8 +373,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="ChannelNumberEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>280</y>
+     <x>330</x>
+     <y>300</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -390,8 +386,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="fileYearEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>190</y>
+     <x>105</x>
+     <y>210</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -403,8 +399,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>195</y>
+     <x>45</x>
+     <y>215</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -416,8 +412,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_14">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>255</y>
+     <x>270</x>
+     <y>275</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -429,8 +425,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="BitrateEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>250</y>
+     <x>330</x>
+     <y>270</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -442,8 +438,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>225</y>
+     <x>40</x>
+     <y>245</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -455,8 +451,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>230</y>
+     <x>90</x>
+     <y>250</y>
      <width>380</width>
      <height>5</height>
     </rect>
@@ -468,8 +464,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
-     <x>25</x>
-     <y>315</y>
+     <x>45</x>
+     <y>335</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -481,8 +477,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QLineEdit" name="descriptionEdit">
    <property name="geometry">
     <rect>
-     <x>85</x>
-     <y>310</y>
+     <x>105</x>
+     <y>330</y>
      <width>365</width>
      <height>23</height>
     </rect>
@@ -497,8 +493,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="Line" name="line_4">
    <property name="geometry">
     <rect>
-     <x>18</x>
-     <y>353</y>
+     <x>38</x>
+     <y>373</y>
      <width>440</width>
      <height>5</height>
     </rect>
@@ -510,8 +506,8 @@ QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gra
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>475</width>
      <height>340</height>
     </rect>
