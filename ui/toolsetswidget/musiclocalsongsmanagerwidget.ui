@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>432</height>
+    <width>675</width>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicLocalSongsManagerWidget</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#MusicLocalSongsManagerWidget{border:1px solid gray}</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>635</width>
      <height>432</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -48,8 +48,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>614</x>
-     <y>2</y>
+     <x>634</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +61,8 @@
   <widget class="QWidget" name="backgroundMask1" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>125</width>
      <height>406</height>
     </rect>
@@ -132,8 +132,8 @@
   <widget class="MusicLocalSongsTableWidget" name="songlistsTable">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>61</y>
+     <x>145</x>
+     <y>81</y>
      <width>510</width>
      <height>371</height>
     </rect>
@@ -142,8 +142,8 @@
   <widget class="QWidget" name="toolWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>25</y>
+     <x>145</x>
+     <y>45</y>
      <width>509</width>
      <height>36</height>
     </rect>
@@ -252,8 +252,8 @@
   <widget class="QLabel" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>220</y>
+     <x>290</x>
+     <y>240</y>
      <width>220</width>
      <height>19</height>
     </rect>

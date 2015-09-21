@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MusicFileInformationWidget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
