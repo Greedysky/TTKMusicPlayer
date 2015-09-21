@@ -26,9 +26,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
 
     M_Connection->setValue("MusicApplication", this);
     m_object = new MusicApplicationObject(this);
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    drawWindowRoundedRect(this);
-    //set window radius
+
     ////////////////////////////////////////////////
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);
@@ -868,7 +866,6 @@ void MusicApplication::musicSetPlay3DMusic()
 void MusicApplication::musicWindowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
-    drawWindowRoundedRect(this);
     m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 

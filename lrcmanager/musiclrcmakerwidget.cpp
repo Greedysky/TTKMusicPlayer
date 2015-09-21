@@ -12,7 +12,6 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui(new Ui::MusicLrcMakerWidget)
 {
     ui->setupUi(this);
-    drawWindowRoundedRect(this);
     
     ui->lrcTextEdit->setFontPointSize(15);
     ui->lrcTextEdit->setFontWeight(QFont::Bold);

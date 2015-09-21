@@ -1,6 +1,5 @@
 #include "musicabstractmovewidget.h"
 
-#include <QBitmap>
 #include <QPainter>
 
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
@@ -8,7 +7,10 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
 {
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setAttribute(Qt::WA_TranslucentBackground, true);
+
     m_leftButtonPress = false;
+    m_showShadow = true;
 }
 
 MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
@@ -16,15 +18,28 @@ MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
 
 }
 
-void MusicAbstractMoveWidget::drawWindowRoundedRect(QWidget *widget)
+void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)
 {
-    QBitmap bmp(widget->size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(),4,4);
-    widget->setMask(bmp);
+    QWidget::paintEvent(event);
+
+    if(m_showShadow)
+    {
+        QPainter painter(this);
+
+        painter.drawPixmap(0, 0, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner1"));
+        painter.drawPixmap(width() - WIDTH_S, 0, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner2"));
+        painter.drawPixmap(0, height() - HEIGHT_S, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner3"));
+        painter.drawPixmap(width() - WIDTH_S, height() - HEIGHT_S, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner4"));
+
+        painter.drawPixmap(0, WIDTH_S, HEIGHT_S, height() - 2*WIDTH_S,
+                           QPixmap(":/shadow/left").scaled(WIDTH_S, height() - 2*HEIGHT_S));
+        painter.drawPixmap(width() - WIDTH_S, WIDTH_S, HEIGHT_S, height() - 2*HEIGHT_S,
+                           QPixmap(":/shadow/right").scaled(WIDTH_S, height() - 2*HEIGHT_S));
+        painter.drawPixmap(HEIGHT_S, 0, width() - 2*WIDTH_S, HEIGHT_S,
+                           QPixmap(":/shadow/top").scaled(width() - 2*WIDTH_S, HEIGHT_S));
+        painter.drawPixmap(WIDTH_S, height() - HEIGHT_S, width() - 2*WIDTH_S, HEIGHT_S,
+                           QPixmap(":/shadow/bottom").scaled(width() - 2*WIDTH_S, HEIGHT_S));
+    }
 }
 
 void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)

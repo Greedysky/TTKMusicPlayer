@@ -6,21 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>475</width>
-    <height>335</height>
+    <width>515</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicLrcMakerWidget{border:1px solid gray}</string>
-  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>475</width>
      <height>335</height>
     </rect>
@@ -32,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>0</y>
+     <x>30</x>
+     <y>20</y>
      <width>71</width>
      <height>25</height>
     </rect>
@@ -48,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>453</x>
-     <y>2</y>
+     <x>473</x>
+     <y>22</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +58,8 @@
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>315</y>
+     <x>29</x>
+     <y>335</y>
      <width>455</width>
      <height>5</height>
     </rect>
@@ -74,8 +71,8 @@
   <widget class="QLabel" name="artNameLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>100</y>
+     <x>40</x>
+     <y>120</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -87,8 +84,8 @@
   <widget class="QLineEdit" name="artNameEdit">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>98</y>
+     <x>90</x>
+     <y>118</y>
      <width>113</width>
      <height>20</height>
     </rect>
@@ -97,8 +94,8 @@
   <widget class="QLabel" name="songNameLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>60</y>
+     <x>40</x>
+     <y>80</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -110,8 +107,8 @@
   <widget class="QLineEdit" name="songNameEdit">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>58</y>
+     <x>90</x>
+     <y>78</y>
      <width>113</width>
      <height>20</height>
     </rect>
@@ -120,8 +117,8 @@
   <widget class="QLabel" name="authorNameLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>140</y>
+     <x>40</x>
+     <y>160</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -133,8 +130,8 @@
   <widget class="QLineEdit" name="authorNameEdit">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>138</y>
+     <x>90</x>
+     <y>158</y>
      <width>113</width>
      <height>20</height>
     </rect>
@@ -143,8 +140,8 @@
   <widget class="QTextEdit" name="lrcTextEdit">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>58</y>
+     <x>220</x>
+     <y>78</y>
      <width>261</width>
      <height>201</height>
     </rect>
@@ -153,8 +150,8 @@
   <widget class="QTextEdit" name="introductionTextEdit">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>178</y>
+     <x>90</x>
+     <y>198</y>
      <width>111</width>
      <height>81</height>
     </rect>
@@ -163,8 +160,8 @@
   <widget class="QLabel" name="introductionLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>180</y>
+     <x>40</x>
+     <y>200</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -177,7 +174,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>280</y>
+     <y>300</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -190,7 +187,7 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>280</y>
+     <y>300</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -203,7 +200,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>280</y>
+     <y>300</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -215,8 +212,8 @@
   <widget class="QLabel" name="llrcIntroductionLabel">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>38</y>
+     <x>220</x>
+     <y>58</y>
      <width>251</width>
      <height>16</height>
     </rect>
@@ -228,8 +225,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>25</y>
+     <x>20</x>
+     <y>45</y>
      <width>475</width>
      <height>310</height>
     </rect>

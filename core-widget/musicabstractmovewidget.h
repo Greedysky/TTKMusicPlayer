@@ -9,6 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
+#define WIDTH_S  20
+#define HEIGHT_S 20
+
 #include <QWidget>
 #include <QMouseEvent>
 #include "musiclibexportglobal.h"
@@ -20,14 +23,17 @@ public:
     explicit MusicAbstractMoveWidget(QWidget *parent = 0);
     virtual ~MusicAbstractMoveWidget();
 
-    void drawWindowRoundedRect(QWidget *widget);
+    inline void drawWindowShadow(bool show) { m_showShadow = show;}
 
 protected:
+    virtual void paintEvent(QPaintEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
+
     QPoint m_pressAt;
     bool m_leftButtonPress;
+    bool m_showShadow;
 
 };
 
