@@ -4,6 +4,7 @@
 #include "musicnetworkthread.h"
 //#include "musiclogger.h"
 
+#include <QDesktopWidget>
 #include <QApplication>
 #include <QTranslator>
 //#include <vld.h>
@@ -31,6 +32,9 @@ int main(int argc, char *argv[])
 //    M_LOOGER("MusicApplication Begin");
     MusicApplication w;
     w.show();
+
+    QWidget *widget = QApplication::desktop();
+    w.move((widget->width() - w.width())/2, (widget->height() - w.height())/2);
 
     return a.exec();
 }
