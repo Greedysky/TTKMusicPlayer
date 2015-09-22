@@ -5,7 +5,6 @@
 #include <QPushButton>
 #include <QButtonGroup>
 #include <QBoxLayout>
-#include <QListWidget>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent)
