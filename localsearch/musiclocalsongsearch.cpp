@@ -6,7 +6,7 @@ MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent)
     : QDialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint);
-    setGeometry(40,546,330,35);
+    setGeometry(60, 566, 330, 35);
 
     QPalette Pal(palette());
     Pal.setColor(QPalette::Background,QColor(176,196,222));

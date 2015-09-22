@@ -189,11 +189,11 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 void MusicBottomAreaWidget::setWindowConcise()
 {
     bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-    m_supperClass->resize( con ? 380 : 950, m_supperClass->height());
-    m_ui->musicWindowConcise->setGeometry(con ? 295 : 828, 7, 25, 25);
-    m_ui->minimization->setGeometry(con ? 325 : 889, 7, 25, 25);
-    m_ui->windowClose->setGeometry(con ? 350 : 917, 7, 25, 25);
-    m_ui->resizeWindowLabel->setGeometry(con ? 360 : 930, 600, 15, 15);
+    m_supperClass->resize( con ? 400 : 990, m_supperClass->height());
+    m_ui->musicWindowConcise->setGeometry(con ? 315 : 848, 27, 25, 25);
+    m_ui->minimization->setGeometry(con ? 345 : 909, 27, 25, 25);
+    m_ui->windowClose->setGeometry(con ? 370 : 937, 27, 25, 25);
+    m_ui->resizeWindowLabel->setGeometry(con ? 380 : 950, 620, 15, 15);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
     m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout"
                                                                   : ":/image/concisein")));
