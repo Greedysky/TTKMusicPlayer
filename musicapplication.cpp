@@ -27,7 +27,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     M_Connection->setValue("MusicApplication", this);
     m_object = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
-    drawWindowShadow(false);
+//    drawWindowShadow(false);
 
     ////////////////////////////////////////////////
     m_musicPlayer = new MusicPlayer(this);

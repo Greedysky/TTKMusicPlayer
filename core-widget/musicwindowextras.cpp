@@ -66,14 +66,9 @@ void MusicWindowExtras::setRange(int start, int end) const
 
 void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 {
-    if( m_disableBlurBehindWindow = enable )
-    {
-        QtWin::enableBlurBehindWindow(m_superClass);
-    }
-    else
-    {
-        QtWin::disableBlurBehindWindow(m_superClass);
-    }
+    m_disableBlurBehindWindow = enable;
+    QtWin::enableBlurBehindWindow(m_superClass);
+    QtWin::disableBlurBehindWindow(m_superClass);
 }
 
 void MusicWindowExtras::createTaskbar()
