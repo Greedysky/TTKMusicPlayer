@@ -5,6 +5,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const QString &url,
                             const QString &save, Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
+    m_request = NULL;
     m_isDownload = false;
     m_isAbort = false;
 }
@@ -13,6 +14,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const QStringList &url,
                         const QStringList &save, Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(QString(), QString(), type, parent)
 {
+    m_request = NULL;
     m_isDownload = false;
     m_isAbort = false;
     addImageQueue(url, save);
