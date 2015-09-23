@@ -1,21 +1,30 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicbackgroundlistwidget.h"
-#include "musicobject.h"
+#include "musicdownloadqueuecache.h"
 
 #include <QPushButton>
 #include <QButtonGroup>
 #include <QBoxLayout>
+#include <QDir>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_downloadQueue(NULL)
 {
     m_currentIndex = -1;
     m_group = new QButtonGroup(this);
+
     initWidget();
+    createUrls();
+
+    m_downloadQueue = new MusicDownloadQueueCache(QStringList(), QStringList(),
+                                                  Download_BigBG, this);
+    connect(m_downloadQueue, SIGNAL(musicDownLoadFinished(QString)), m_listWidget,
+                             SLOT(recreateItem(QString)));
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
 {
+    delete m_downloadQueue;
     delete m_listWidget;
     delete m_group;
 }
@@ -57,26 +66,134 @@ void MusicBackgroundRemoteWidget::createButton()
 void MusicBackgroundRemoteWidget::buttonClicked(int index)
 {
     int count = 0;
+    if(m_currentIndex != index)
+    {
+        m_downloadQueue->abort();
+    }
     switch(m_currentIndex = index)
     {
-        case 0: count = 10; break;
-        case 1: count = 20; break;
-        case 2: count = 30; break;
-        case 3: count = 40; break;
+        case 0: count = 13; break;
+        case 1: count = 14; break;
+        case 2: count = 27; break;
+        case 3: count = 9; break;
     }
+
+    QString path = QString("%1").arg(m_currentIndex);
+    QDir dir( path );
+    if(!dir.exists())
+    {
+        dir.mkpath( path );
+    }
+
     m_listWidget->clearAllItems();
     for(int i=0; i<count; i++)
     {
         m_listWidget->createItem(QString(), QIcon(":/image/noneImage"));
     }
+
+    m_downloadQueue->addImageQueue(m_urls[m_currentIndex], createPaths());
+    m_downloadQueue->startToDownload();
 }
 
 void MusicBackgroundRemoteWidget::itemUserClicked(QListWidgetItem *item)
 {
-    if(!item->text().isEmpty())
+    if(!item->data(MUSIC_BG_ROLE).toString().isEmpty())
     {
-        emit showCustomSkin(QString("%1%2/%3%4").arg(THEME_CACHED)
-                            .arg(m_currentIndex).arg(m_listWidget->currentRow())
-                            .arg(JPG_FILE));
+        emit showCustomSkin(QString("%1%2/%3%4").arg(THEME_CACHED).arg(m_currentIndex)
+                            .arg(m_listWidget->currentRow()).arg(JPG_FILE));
     }
+}
+
+void MusicBackgroundRemoteWidget::createUrls()
+{
+    ////////////////////1
+    m_urls << (QStringList()
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706532786_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706533257_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706531729_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706530884_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706530322_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706529683_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706772382_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706773800_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706857712_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392706858550_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707046854_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707043813_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707042612_0.jpg")
+    ////////////////////2
+           << (QStringList()
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392710159240_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392710158654_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716523048_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716523976_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716641276_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716644700_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716646260_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716647355_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716642799_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716685115_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716688192_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716690865_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716691391_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392716691992_0.jpg")
+    ////////////////////3
+           << (QStringList()
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392630277898_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392630274891_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392630274257_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392630272320_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392630269669_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633744378_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633739646_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633739218_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633734129_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633472586_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633476617_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633475965_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633460419_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633462485_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633465121_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633040098_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633042823_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633043634_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633034581_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392633017171_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632216085_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632215251_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632211699_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632209023_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632031561_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632022038_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392632018561_0.jpg")
+    ////////////////////4
+           << (QStringList()
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707254886_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707296538_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707322411_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707398965_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707420038_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707447194_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707472146_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707690215_0.jpg"
+           << "http://img1.kwcdn.kuwo.cn/star/KuwoPhotoArt/0/0/1392707678198_0.jpg");
+}
+
+QStringList MusicBackgroundRemoteWidget::createPaths()
+{
+    QStringList paths;
+    int count = 0;
+    switch(m_currentIndex)
+    {
+        case 0: count = 13; break;
+        case 1: count = 14; break;
+        case 2: count = 27; break;
+        case 3: count = 9; break;
+    }
+    for(int i=0; i<count; ++i)
+    {
+        paths << QString("%1%2/%3%4").arg(THEME_CACHED)
+                 .arg(m_currentIndex).arg(i).arg(JPG_FILE);
+    }
+    return paths;
 }

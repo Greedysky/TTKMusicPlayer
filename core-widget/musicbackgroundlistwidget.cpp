@@ -43,3 +43,18 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QIcon &ico
     it->setToolTip(name);
     addItem(it);
 }
+
+void MusicBackgroundListWidget::recreateItem(const QString &name)
+{
+    QListWidgetItem *it = NULL;
+    for(int i=0; i<count(); ++i)
+    {
+        if((it = item(i))->data(MUSIC_BG_ROLE).toString().isEmpty())
+        {
+            break;
+        }
+    }
+    it->setIcon(QIcon(QPixmap(name).scaled(90, 70)));
+    it->setData(MUSIC_BG_ROLE, name);
+    it->setToolTip(name);
+}

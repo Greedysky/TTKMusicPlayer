@@ -11,10 +11,12 @@
 
 #include <QWidget>
 #include "musiclibexportglobal.h"
+#include "musicobject.h"
 
 class QButtonGroup;
 class QListWidgetItem;
 class MusicBackgroundListWidget;
+class MusicDownloadQueueCache;
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
@@ -33,8 +35,12 @@ public slots:
 protected:
     void initWidget();
     void createButton();
+    void createUrls();
+    QStringList createPaths();
 
+    MStringLists m_urls;
     MusicBackgroundListWidget *m_listWidget;
+    MusicDownloadQueueCache *m_downloadQueue;
     QButtonGroup *m_group;
     int m_currentIndex;
 

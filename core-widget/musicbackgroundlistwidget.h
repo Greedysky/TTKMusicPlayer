@@ -28,6 +28,8 @@ public:
 
 signals:
 public slots:
+    void recreateItem(const QString &name);
+
 protected:
 
 };

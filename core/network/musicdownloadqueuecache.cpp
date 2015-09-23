@@ -1,4 +1,5 @@
 #include "musicdownloadqueuecache.h"
+#include "musicnetworkthread.h"
 
 MusicDownloadQueueCache::MusicDownloadQueueCache(const QString &url,
                             const QString &save, Download_Type type, QObject *parent)
@@ -45,6 +46,7 @@ void MusicDownloadQueueCache::abort()
         m_file->close();
         m_file->remove();
         delete m_reply;
+        m_reply = NULL;
         m_isAbort = false;
     }
 }
@@ -64,7 +66,7 @@ void MusicDownloadQueueCache::addImageQueue(const QStringList &url,
 
 void MusicDownloadQueueCache::startOrderImageQueue()
 {
-    if(!m_imageQueue.isEmpty())
+    if(!m_imageQueue.isEmpty() && M_NETWORK->isOnline())
     {
         if(QFile::exists(m_imageQueue.first().savePath))
         {
