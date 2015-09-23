@@ -126,17 +126,17 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     {
         return;
     }
-    QFile::copy(customSkinPath, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
-                  .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
-    //add item to listwidget
-    ui->themeListWidget->createItem(QString("theme-%1")
-                        .arg(ui->themeListWidget->count() + 1),
-                        QIcon(QPixmap(customSkinPath).scaled(90,70)));
+    showCustomSkin( customSkinPath );
 }
 
 void MusicBackgroundSkinDialog::showCustomSkin(const QString &path)
 {
-    qDebug()<<path;
+    QFile::copy(path, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
+                  .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
+    //add item to listwidget
+    ui->themeListWidget->createItem(QString("theme-%1")
+                        .arg(ui->themeListWidget->count() + 1),
+                        QIcon(QPixmap(path).scaled(90,70)));
 }
 
 void MusicBackgroundSkinDialog::itemUserClicked(QListWidgetItem *item)
