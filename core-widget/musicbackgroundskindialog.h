@@ -42,6 +42,7 @@ public slots:
 
 protected:
     void addThemeListWidgetItem();
+    void cpoyFileFromLocal(const QString &path);
 
     Ui::MusicBackgroundSkinDialog *ui;
 

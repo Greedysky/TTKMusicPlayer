@@ -9,7 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define MUSIC_BG_ROLE Qt::UserRole + 1
+#define MUSIC_BG_ROLE       Qt::UserRole + 1
+#define MUSIC_FILEHASH_ROLE Qt::UserRole + 2
 
 #include <QListWidget>
 #include "musicuiobject.h"
@@ -23,14 +24,21 @@ public:
     ~MusicBackgroundListWidget();
 
     void setCurrentItemName(const QString &name);
-    void createItem(const QString &name, const QIcon &icon);
     void clearAllItems();
 
-signals:
+    void createItem(const QString &name, const QString &path);
+    void createItem(const QString &name, const QIcon &icon);
+
+    bool contains(const QString &name);
+    bool contains(QListWidgetItem *item);
+
+    int indexOf(const QString &name);
+    int indexOf(QListWidgetItem *item);
+
+    QString fileHash(const QString &name);
+
 public slots:
     void recreateItem(const QString &name);
-
-protected:
 
 };
 

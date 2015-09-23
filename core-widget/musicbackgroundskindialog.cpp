@@ -57,8 +57,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     {
         QString fileName = file[i].fileName();
         fileName.chop(4);
-        ui->themeListWidget->createItem(fileName,
-                                        QIcon(QPixmap(file[i].filePath()).scaled(90,70)));
+        ui->themeListWidget->createItem(fileName, file[i].filePath() );
     }
 }
 
@@ -126,17 +125,25 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     {
         return;
     }
-    showCustomSkin( customSkinPath );
+    cpoyFileFromLocal( customSkinPath );
+}
+
+void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
+{
+    QFile::copy(path, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
+                .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
+    //add item to listwidget
+    ui->themeListWidget->createItem(QString("theme-%1")
+                        .arg(ui->themeListWidget->count() + 1), path);
 }
 
 void MusicBackgroundSkinDialog::showCustomSkin(const QString &path)
 {
-    QFile::copy(path, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
-                  .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
-    //add item to listwidget
-    ui->themeListWidget->createItem(QString("theme-%1")
-                        .arg(ui->themeListWidget->count() + 1),
-                        QIcon(QPixmap(path).scaled(90,70)));
+    if( !ui->themeListWidget->contains(path) )
+    {
+        cpoyFileFromLocal(path);
+    }
+    itemUserClicked( ui->themeListWidget->item(ui->themeListWidget->indexOf(path)) );
 }
 
 void MusicBackgroundSkinDialog::itemUserClicked(QListWidgetItem *item)
