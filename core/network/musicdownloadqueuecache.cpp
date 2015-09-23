@@ -111,6 +111,7 @@ void MusicDownloadQueueCache::downLoadFinished()
     m_file->flush();
     m_file->close();
     m_reply->deleteLater();
+    m_reply = NULL;
     m_isDownload = false;
     emit musicDownLoadFinished(m_imageQueue.takeFirst().savePath);
 
@@ -130,5 +131,6 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
     if(!m_isAbort)
     {
         m_reply->deleteLater();
+        m_reply = NULL;
     }
 }
