@@ -96,6 +96,7 @@
 #  define MUSIC_VIDEO_IMPORT Q_DECL_IMPORT
 #endif
 
-
+///load logger
+#include "musiclogger.h"
 
 #endif // MUSICLIBEXPORTGLOBAL_H
