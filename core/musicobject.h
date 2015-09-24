@@ -11,6 +11,7 @@
 
 #include <QDir>
 #include <QMap>
+#include <QSet>
 
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
