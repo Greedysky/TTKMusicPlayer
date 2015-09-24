@@ -1,6 +1,5 @@
 #include "musicnetworkthread.h"
 #include "musicconnectionpool.h"
-#include <QDebug>
 
 MusicNetworkThread::MusicNetworkThread(QObject *parent)
     :QObject(parent), m_networkState(true)
@@ -16,6 +15,11 @@ MusicNetworkThread::~MusicNetworkThread()
     delete m_client;
 }
 
+void MusicNetworkThread::start()
+{
+    M_LOOGERS("Load NetworkThread");
+}
+
 void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketState)
 {
     if(socketState == QAbstractSocket::UnconnectedState ||
@@ -28,7 +32,7 @@ void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketS
             return;
         }
         emit networkConnectionStateChanged(m_networkState = state);
-        qDebug()<<"Connect state: " << m_networkState;
+        M_LOOGER << "Connect state: " << m_networkState;
     }
 }
 

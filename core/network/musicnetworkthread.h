@@ -25,7 +25,7 @@ class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 public:
     ~MusicNetworkThread();
 
-    inline void start() {}
+    void start();
     inline bool isOnline() const {return m_networkState;}
 
 signals:
