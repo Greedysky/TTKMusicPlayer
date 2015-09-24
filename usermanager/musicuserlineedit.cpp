@@ -1,6 +1,5 @@
 #include "musicuserlineedit.h"
 #include "musicuiobject.h"
-#include <QDebug>
 
 #if defined(Q_CC_MSVC)
 #   pragma warning(disable:4129)

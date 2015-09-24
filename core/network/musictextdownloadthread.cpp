@@ -26,7 +26,7 @@ void MusicTextDownLoadThread::startToDownload()
         else
         {
             emit musicDownLoadFinished("The text file create failed");
-            qDebug() <<"The text file create failed";
+            M_LOOGER << "The text file create failed";
             deleteAll();
         }
     }
@@ -61,13 +61,13 @@ void MusicTextDownLoadThread::downLoadFinished()
                 m_file->write(jsonObject.take("lrc").toString().toUtf8());
                 m_file->flush();
                 m_file->close();
-                qDebug()<<"text download has finished!";
+                M_LOOGER << "text download has finished!";
             }
         }
     }
     else
     {
-        qDebug()<<"text download file error!";
+        M_LOOGER << "text download file error!";
         m_file->remove();
         m_file->close();
     }

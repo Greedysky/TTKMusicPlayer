@@ -44,7 +44,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString &)
             line.remove(0, 1);
             line.remove(line.length() - 1, 1);
             line = line.remove("sp");
-            qDebug()<<line;
+            M_LOOGER << line;
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4")
                 .arg(ART_BG).arg(m_savePath).arg(m_counter++).arg(SKN_FILE), Download_BigBG, this);
             connect(down, SIGNAL(musicDownLoadFinished(QString)),SLOT(bgDownLoadFinished(QString)));

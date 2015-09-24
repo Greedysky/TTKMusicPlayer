@@ -126,7 +126,7 @@ void MusicDownloadQueueCache::readyReadSlot()
 
 void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
 {
-    qDebug()<<"QNetworkReply::NetworkError : " << code <<m_reply->errorString();
+    M_LOOGER << "QNetworkReply::NetworkError : " << code <<m_reply->errorString();
     m_file->flush();
     if(!m_isAbort)
     {

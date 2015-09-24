@@ -1,5 +1,4 @@
 #include "musictime.h"
-#include <QDebug>
 
 MusicTime::MusicTime(QObject *parent)
     : QObject(parent)

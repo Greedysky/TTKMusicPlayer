@@ -1,7 +1,6 @@
 #include "musiclrcartphotolabel.h"
 
 #include <QPainter>
-#include <QDebug>
 #include <QWheelEvent>
 
 MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)

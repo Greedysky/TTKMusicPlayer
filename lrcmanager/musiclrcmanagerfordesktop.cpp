@@ -1,5 +1,4 @@
 #include "musiclrcmanagerfordesktop.h"
-#include <QDebug>
 
 MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent) :
     MusicLRCManager(parent)

@@ -6,7 +6,6 @@
 #include "musicusermanager.h"
 #include "musicmessagebox.h"
 
-#include <QDebug>
 #include <QTimer>
 
 MusicUserWindow::MusicUserWindow(QWidget *parent)

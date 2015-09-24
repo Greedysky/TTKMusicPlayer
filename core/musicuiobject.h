@@ -10,7 +10,6 @@
    =================================================*/
 
 #include <QObject>
-#include <QDebug>
 
 namespace MusicUIObject
 {

@@ -151,7 +151,7 @@ void MusicLocalSongsManagerWidget::filterIndexChanged()
         return;
     }
 
-    qDebug()<<"start fetch!";
+    M_LOOGER << "start fetch!";
     m_thread->stopAndQuitThread();
 
     if(ui->filterComboBox->currentIndex() == 0)
@@ -206,7 +206,7 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
 
 void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 {
-    qDebug()<<"stop fetch!";
+    M_LOOGER << "stop fetch!";
     ui->loadingLabel->hide();
     delete m_movie;
     m_movie = NULL;

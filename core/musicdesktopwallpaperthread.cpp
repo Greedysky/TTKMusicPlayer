@@ -4,7 +4,6 @@
 #include <time.h>
 #include <QSettings>
 #include <QFileInfo>
-#include <QDebug>
 
 #if defined Q_OS_WIN32 && defined _MSC_VER
     #include <Windows.h>

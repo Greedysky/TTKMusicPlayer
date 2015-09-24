@@ -1,5 +1,4 @@
 #include "musicfileinformation.h"
-#include <QDebug>
 
 MusicFileInformation::MusicFileInformation()
 {
@@ -9,7 +8,7 @@ MusicFileInformation::MusicFileInformation()
     ///2.00 version is full version
     if(m_player->GetVersion() < 190)
     {
-        qDebug()<<"Error: Need library version 2.00 and above !";
+        M_LOOGER << "Error: Need library version 2.00 and above !";
         m_player->Release();
         Q_ASSERT(false);
     }
@@ -25,13 +24,13 @@ bool MusicFileInformation::readFile(const QString &file)
 {
     if(m_player->OpenFileW(file.toStdWString().c_str(), sfAutodetect) == 0)
     {
-        qDebug()<<"Error: "<<m_player->GetError();
+        M_LOOGER << "Error: " << m_player->GetError();
         return false;
     }
     m_player->GetStreamInfoW(&m_pInfo);
     if(!m_player->LoadID3ExW(&m_tagInfo, 1))
     {
-        qDebug()<<"No ID3 data\r\n\r\n";
+        M_LOOGER << "No ID3 data\r\n\r\n";
     }
     return true;
 }

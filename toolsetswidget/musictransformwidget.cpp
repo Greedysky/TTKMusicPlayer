@@ -189,10 +189,10 @@ bool MusicTransformWidget::processTransform(const QString &para) const
         ui->msCombo->setCurrentIndex(1);
     }
 
-    qDebug()<<ui->formatCombo->currentText()
-            <<ui->kbpsCombo->currentText()
-            <<ui->hzCombo->currentText()
-            <<QString::number(ui->msCombo->currentIndex() + 1);
+    M_LOOGER << ui->formatCombo->currentText()
+             << ui->kbpsCombo->currentText()
+             << ui->hzCombo->currentText()
+             << QString::number(ui->msCombo->currentIndex() + 1);
 
     m_process->start(para, QStringList()<<"-i"<<in<<"-y"
                      <<"-ab"<<ui->kbpsCombo->currentText()+ "k"

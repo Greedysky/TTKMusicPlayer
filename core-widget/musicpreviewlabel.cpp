@@ -1,6 +1,6 @@
 #include "musicpreviewlabel.h"
+
 #include <QPainter>
-#include <QDebug>
 
 MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
     : QLabel(parent)

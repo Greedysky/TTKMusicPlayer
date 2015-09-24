@@ -1,7 +1,7 @@
 #include "musicusermodel.h"
+
 #include <QCryptographicHash>
 #include <QtSql/QSqlRecord>
-#include <QDebug>
 
 MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     : QSqlTableModel(parent,db)
@@ -24,12 +24,12 @@ bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
     if(submitAll())
     {
         database().commit();
-        qDebug()<<"submit successfully";
+        M_LOOGER << "submit successfully";
         return true;
     }
     else
     {
-        qDebug()<<"submit failed";
+        M_LOOGER << "submit failed";
         database().rollback();
         return false;
     }

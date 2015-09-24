@@ -18,7 +18,7 @@ void MusicDataDownloadThread::startToDownload()
         }
         else
         {
-            qDebug() <<"The data file create failed";
+            M_LOOGER << "The data file create failed";
             emit musicDownLoadFinished("The data file create failed");
             deleteAll();
         }
@@ -59,7 +59,7 @@ void MusicDataDownloadThread::downLoadFinished()
     else
     {
         emit musicDownLoadFinished("Data");
-        qDebug()<<"data download has finished!";
+        M_LOOGER << "data download has finished!";
         deleteAll();
     }
 }

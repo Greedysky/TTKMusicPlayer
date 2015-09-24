@@ -1,7 +1,7 @@
 #include "musiclrcmanager.h"
+
 #include <QFile>
 #include <QFontDatabase>
-#include <QDebug>
 
 MusicLRCManager::MusicLRCManager(QWidget *parent)
     : QLabel(parent)

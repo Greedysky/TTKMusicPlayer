@@ -141,7 +141,7 @@ void MusicDownLoadQueryThread::searchFinshed()
             }
             else
             {
-                qDebug()<<"not find the song_Id";
+                M_LOOGER << "not find the song_Id";
             }
         }
     }
@@ -150,6 +150,6 @@ void MusicDownLoadQueryThread::searchFinshed()
 
 void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)
 {
-    qDebug() <<"Abnormal network connection";
+    M_LOOGER << "Abnormal network connection";
     deleteAll();
 }

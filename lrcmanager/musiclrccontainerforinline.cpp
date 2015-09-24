@@ -222,7 +222,7 @@ void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size) const
 {
     if(size < 13 || size > 17)
     {
-        qDebug()<<"set lrc size error!";
+        M_LOOGER << "set lrc size error!";
         return;
     }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)

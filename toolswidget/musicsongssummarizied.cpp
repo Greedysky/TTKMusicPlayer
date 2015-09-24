@@ -7,7 +7,6 @@
 #include "musicconnectionpool.h"
 
 #include <QTableWidgetItem>
-#include <QDebug>
 #include <QFileInfo>
 #include <QLayout>
 #include <QDesktopServices>

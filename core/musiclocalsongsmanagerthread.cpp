@@ -1,6 +1,5 @@
 #include "musiclocalsongsmanagerthread.h"
 #include <QDir>
-#include <QDebug>
 #include "musicplayer.h"
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)

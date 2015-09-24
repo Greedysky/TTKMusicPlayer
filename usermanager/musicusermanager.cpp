@@ -3,7 +3,6 @@
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
-#include <QDebug>
 
 MusicUserManager::MusicUserManager(QWidget *parent)
      : QDialog(parent),ui(new Ui::MusicUserManager)

@@ -47,7 +47,7 @@ QString MusicBgThemeManager::getArtPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() )
     {
-        qDebug()<<"index out of range";
+        M_LOOGER << "index out of range";
         return QString();
     }
     return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0]
