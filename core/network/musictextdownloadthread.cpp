@@ -58,7 +58,7 @@ void MusicTextDownLoadThread::downLoadFinished()
             jsonObject = jsonObject.take("data").toObject();
             if(jsonObject.contains("lrc"))
             {
-                m_file->write(jsonObject.take("lrc").toString().toUtf8());
+                m_file->write(jsonObject.take("lrc").toString().remove("\r").toUtf8());
                 m_file->flush();
                 m_file->close();
                 M_LOOGER << "text download has finished!";
