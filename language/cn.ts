@@ -500,7 +500,7 @@
         <translation>保存录音</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="211"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="212"/>
         <source>choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>
@@ -510,7 +510,7 @@
     <message>
         <location filename="../core-widget/musicbackgroundremotewidget.cpp" line="58"/>
         <source>NetButton%1</source>
-        <translation >自定义%1</translation>
+        <translation>自定义%1</translation>
     </message>
 </context>
 <context>
@@ -2803,57 +2803,57 @@
 <context>
     <name>MusicSongsSummarizied</name>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="24"/>
         <source>myDefaultPlayItem</source>
         <translation>默认列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
         <source>myLoveSongItem</source>
         <translation>我的最爱</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="27"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
         <source>myNetSongItem</source>
         <translation>网络列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="175"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="174"/>
         <source>newSongItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="190"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="189"/>
         <source>add music to lovest list done!</source>
         <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="212"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="211"/>
         <source>The origin one can&apos;t delete!</source>
         <translation>系统默认列表不允许删除</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="225"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="224"/>
         <source>The origin one can&apos;t rename!</source>
         <translation>系统默认列表不允许重命名</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="294"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="293"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="263"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="262"/>
         <source>deleteItem</source>
         <translation>删除列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="264"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="263"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="265"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="264"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
@@ -2927,26 +2927,26 @@
 <context>
     <name>MusicTime</name>
     <message>
-        <location filename="../core/musictime.cpp" line="140"/>
-        <location filename="../core/musictime.cpp" line="164"/>
+        <location filename="../core/musictime.cpp" line="139"/>
+        <location filename="../core/musictime.cpp" line="163"/>
         <source>ss</source>
         <translation>秒前</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="144"/>
-        <location filename="../core/musictime.cpp" line="168"/>
+        <location filename="../core/musictime.cpp" line="143"/>
+        <location filename="../core/musictime.cpp" line="167"/>
         <source>mm</source>
         <translation>分钟前</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="148"/>
-        <location filename="../core/musictime.cpp" line="172"/>
+        <location filename="../core/musictime.cpp" line="147"/>
+        <location filename="../core/musictime.cpp" line="171"/>
         <source>hh</source>
         <translation>小时前</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="152"/>
-        <location filename="../core/musictime.cpp" line="176"/>
+        <location filename="../core/musictime.cpp" line="151"/>
+        <location filename="../core/musictime.cpp" line="175"/>
         <source>day</source>
         <translation>天前</translation>
     </message>
@@ -3504,47 +3504,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="81"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="80"/>
         <source>%1day %2hour %3min</source>
         <translation>%1天 %2小时 %3分钟</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="89"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="88"/>
         <source>level1</source>
         <translation>白色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="90"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="89"/>
         <source>level2</source>
         <translation>绿色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="91"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="90"/>
         <source>level3</source>
         <translation>蓝色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="92"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="91"/>
         <source>level4</source>
         <translation>红色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="93"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="92"/>
         <source>level5</source>
         <translation>黄色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="94"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="93"/>
         <source>level6</source>
         <translation>橙色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="95"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="94"/>
         <source>level7</source>
         <translation>紫色会员</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="96"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="95"/>
         <source>level8</source>
         <translation>黑色会员</translation>
     </message>

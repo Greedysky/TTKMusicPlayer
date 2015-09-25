@@ -500,7 +500,7 @@
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="211"/>
+        <location filename="../toolsetswidget/musicaudiorecorderwidget.cpp" line="212"/>
         <source>choose a filename to save under</source>
         <translation>Choose A File To Save</translation>
     </message>
@@ -510,7 +510,7 @@
     <message>
         <location filename="../core-widget/musicbackgroundremotewidget.cpp" line="58"/>
         <source>NetButton%1</source>
-        <translation >Custom%1</translation>
+        <translation>Custom%1</translation>
     </message>
 </context>
 <context>
@@ -2830,57 +2830,57 @@
 <context>
     <name>MusicSongsSummarizied</name>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="24"/>
         <source>myDefaultPlayItem</source>
         <translation>Default Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
         <source>myLoveSongItem</source>
         <translation>Lovest Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="27"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
         <source>myNetSongItem</source>
         <translation>Net Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="175"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="174"/>
         <source>newSongItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="190"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="189"/>
         <source>add music to lovest list done!</source>
         <translation>Add Music To Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="212"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="211"/>
         <source>The origin one can&apos;t delete!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="225"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="224"/>
         <source>The origin one can&apos;t rename!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="294"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="293"/>
         <source>The origin one does not exsit!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="263"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="262"/>
         <source>deleteItem</source>
         <translation>Delete Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="264"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="263"/>
         <source>addNewItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="265"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="264"/>
         <source>changItemName</source>
         <translation>Rename</translation>
     </message>
@@ -2954,26 +2954,26 @@
 <context>
     <name>MusicTime</name>
     <message>
-        <location filename="../core/musictime.cpp" line="140"/>
-        <location filename="../core/musictime.cpp" line="164"/>
+        <location filename="../core/musictime.cpp" line="139"/>
+        <location filename="../core/musictime.cpp" line="163"/>
         <source>ss</source>
         <translation>SS</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="144"/>
-        <location filename="../core/musictime.cpp" line="168"/>
+        <location filename="../core/musictime.cpp" line="143"/>
+        <location filename="../core/musictime.cpp" line="167"/>
         <source>mm</source>
         <translation>MM</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="148"/>
-        <location filename="../core/musictime.cpp" line="172"/>
+        <location filename="../core/musictime.cpp" line="147"/>
+        <location filename="../core/musictime.cpp" line="171"/>
         <source>hh</source>
         <translation>HH</translation>
     </message>
     <message>
-        <location filename="../core/musictime.cpp" line="152"/>
-        <location filename="../core/musictime.cpp" line="176"/>
+        <location filename="../core/musictime.cpp" line="151"/>
+        <location filename="../core/musictime.cpp" line="175"/>
         <source>day</source>
         <translation>DAY</translation>
     </message>
@@ -3531,47 +3531,47 @@
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="81"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="80"/>
         <source>%1day %2hour %3min</source>
         <translation>%1Day %2Hour %3Min</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="89"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="88"/>
         <source>level1</source>
         <translation>level1</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="90"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="89"/>
         <source>level2</source>
         <translation>level2</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="91"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="90"/>
         <source>level3</source>
         <translation>level3</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="92"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="91"/>
         <source>level4</source>
         <translation>level4</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="93"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="92"/>
         <source>level5</source>
         <translation>level5</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="94"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="93"/>
         <source>level6</source>
         <translation>level6</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="95"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="94"/>
         <source>level7</source>
         <translation>level7</translation>
     </message>
     <message>
-        <location filename="../usermanager/musicusermanager.cpp" line="96"/>
+        <location filename="../usermanager/musicusermanager.cpp" line="95"/>
         <source>level8</source>
         <translation>level8</translation>
     </message>
