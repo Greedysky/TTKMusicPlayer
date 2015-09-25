@@ -1,6 +1,14 @@
 #ifndef MUSICDOWNLOADQUEUECACHE_H
 #define MUSICDOWNLOADQUEUECACHE_H
 
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include "musicdownloadthreadabstract.h"
 
 typedef struct DownloadData
@@ -9,7 +17,7 @@ typedef struct DownloadData
     QString savePath;
 }DownloadData;
 
-class MusicDownloadQueueCache : public MusicDownLoadThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownloadQueueCache : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
