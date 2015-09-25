@@ -53,6 +53,8 @@ public:
     {
 #ifdef MUSIC_DEBUG
         m_streamString.append( QString("%1 ").arg(t ? "true" : "false") );
+#else
+        Q_UNUSED(t);
 #endif
         return *this;
     }
@@ -90,6 +92,8 @@ protected:
     {
 #ifdef MUSIC_DEBUG
         m_streamString.append( QString("%1 ").arg(data) );
+#else
+        Q_UNUSED(data);
 #endif
         return *this;
     }
