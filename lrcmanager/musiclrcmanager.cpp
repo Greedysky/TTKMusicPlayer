@@ -41,6 +41,7 @@ void MusicLRCManager::startTimerClock()
 void MusicLRCManager::setLrcFontSize(LrcSizeTable size)
 {
     m_font.setPointSize(size);
+    setText( text() );
     update();
 }
 
