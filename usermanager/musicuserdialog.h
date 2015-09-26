@@ -1,7 +1,14 @@
 #ifndef MUSICUSERDIALOG_H
 #define MUSICUSERDIALOG_H
 
-#include <QDialog>
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QMouseEvent>
 #include "musicabstractmovedialog.h"
 #include "musicuserconfigmanager.h"
