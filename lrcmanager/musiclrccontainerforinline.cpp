@@ -51,7 +51,6 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 {
-    static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(false);
     m_lrcContainer.clear();///Clear the original map
     m_currentShowLrcContainer.clear();///Clear the original lrc
     QFile file(m_currentLrcFileName = lrcFileName); ///Open the lyrics file
@@ -193,26 +192,30 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
             m_musicLrcContainer[i]->setText(m_currentShowLrcContainer[m_currentLrcIndex + i]);
         }
         ++m_currentLrcIndex;
-        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[CURRENT_LRC_PAINT])->setUpdateLrc(true);
         m_musicLrcContainer[CURRENT_LRC_PAINT]->startLrcMask(time);
 
         for(int i=1; i<= MIN_LRCCONTAIN_COUNT; ++i)
         {
             MusicLRCManagerForInline *w = static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i-1]);
+            w->setCenterOnLrc(true);
             if(i == 1 || i == 9)
             {
                 w->setFontSize(3);
                 w->setTransparent(220);
             }
-            if(i == 2 || i == 8)
+            else if(i == 2 || i == 8)
             {
                 w->setFontSize(2);
                 w->setTransparent(105);
             }
-            if(i == 3 || i == 4 || i == 6 || i == 7)
+            else if(i == 3 || i == 4 || i == 6 || i == 7)
             {
                 w->setFontSize(1);
                 w->setTransparent(45);
+            }
+            else
+            {
+                w->setCenterOnLrc(false);
             }
         }
     }

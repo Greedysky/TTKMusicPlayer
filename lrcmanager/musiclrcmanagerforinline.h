@@ -22,14 +22,14 @@ public:
             { m_gradientFontSize = size;}
     inline void setTransparent(int transparent)
             { m_gradientTransparent = transparent;}
-    inline void setUpdateLrc(bool status)
-            { m_UpdateLrc = status;}
+    inline void setCenterOnLrc(bool status)
+            { m_centerOnLrc = status;}
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
     int m_gradientFontSize;
     int m_gradientTransparent;
-    bool m_UpdateLrc;
+    bool m_centerOnLrc;
 
 };
 
