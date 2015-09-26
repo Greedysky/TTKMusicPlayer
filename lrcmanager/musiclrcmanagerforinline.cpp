@@ -22,8 +22,7 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     QPainter painter(this);
     QFont font(m_font);
     int ttplus = font.pointSize() - m_gradientFontSize;
-    (ttplus < 0) ? ttplus = 0 : ttplus = ttplus;
-    font.setPointSize(ttplus);
+    font.setPointSize( ttplus = (ttplus < 0) ? 0 : ttplus );
     painter.setFont(font);
 
     if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth &&
@@ -34,8 +33,7 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture
     ttplus = 2*(m_transparent - m_gradientTransparent);
-    (ttplus < 0) ? ttplus = 0 : ttplus = ttplus;
-    painter.setPen(QColor(0, 0, 0, ttplus));
+    painter.setPen(QColor(0, 0, 0, ttplus = (ttplus < 0) ? 0 : ttplus));
 
     if((ttplus = m_lrcPerWidth - m_geometry.x()) < 0)
     {

@@ -65,26 +65,8 @@ void MusicLRCManager::setFontFamily(int index)
 
 void MusicLRCManager::setFontType(int type)
 {
-    if(type == 1)
-    {
-        m_font.setBold(true);
-        m_font.setItalic(false);
-    }
-    else if(type == 2)
-    {
-        m_font.setBold(false);
-        m_font.setItalic(true);
-    }
-    else if(type == 3)
-    {
-        m_font.setBold(true);
-        m_font.setItalic(true);
-    }
-    else
-    {
-        m_font.setBold(false);
-        m_font.setItalic(false);
-    }
+    m_font.setBold( (type == 1 || type == 3) ? true : false );
+    m_font.setItalic( (type == 2 || type == 3) ? true : false );
 }
 
 void MusicLRCManager::startLrcMask(qint64 intervaltime)
