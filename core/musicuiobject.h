@@ -162,11 +162,8 @@ namespace MusicUIObject
             padding: 1px;}";
 
     const QString MPushButtonStyle03 =  MPushButtonStyle10 + " \
-            QPushButton{font-size:17px;font-weight:bold;color:#FFFFFF}\
-            QPushButton::hover{\
-            background:qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 rgba(255,255,255,100), \
-            stop: 0.5 rgba(255,255,255,100),stop: 1.0 rgba(255,255,255,100));\
-            border:none;}";
+            QPushButton{font-size:17px; font-weight:bold; color:#FFFFFF;}\
+            QPushButton::hover{ background:rgba(255,255,255,50); border:none;}";
 
     const QString MPushButtonStyle04 = " \
             QPushButton{ border: 1px solid gray;background:#DDDDDD;}\
@@ -195,6 +192,9 @@ namespace MusicUIObject
     const QString MPushButtonStyle12 = MPushButtonStyle14 + MPushButtonStyle15 + "\
             QPushButton{text-align:left;color:white;}";
            
+    const QString MPushButtonStyle16 = MPushButtonStyle03 + "\
+            QPushButton{ image:url(':/lrc/shadow');}";
+
 ///RadioButton
 //////////////////////////////////////////////////////
     const QString MRadioButtonStyle01 = " \

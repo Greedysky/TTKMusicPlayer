@@ -66,6 +66,7 @@ public slots:
 
 protected:
     void createVedioWidget(bool create);
+    void musicButtonStyleClear();
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
