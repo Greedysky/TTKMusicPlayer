@@ -286,7 +286,6 @@ void MusicRightAreaWidget::musicVedioWidgetButtonSearched()
     musicButtonStyleClear();
     m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
     createVedioWidget(true);
-    m_ui->SurfaceStackedWidget->setCurrentIndex(3);
 }
 
 void MusicRightAreaWidget::musicSearchRefreshButtonRefreshed()
@@ -303,7 +302,7 @@ void MusicRightAreaWidget::createVedioWidget(bool create)
         delete m_videoPlayer;
         m_videoPlayer = new MusicVideoPlayer;
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
-//        if(!m_playControl) musicKey();
+        m_ui->SurfaceStackedWidget->setCurrentIndex(3);
     }
     else if(m_videoPlayer)
     {
