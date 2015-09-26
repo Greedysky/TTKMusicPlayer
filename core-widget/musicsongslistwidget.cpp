@@ -177,8 +177,14 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
         }
         else
         {
-            if(start > m_playRowIndex && end < m_playRowIndex) ++index;
-            else if(start < m_playRowIndex && end > m_playRowIndex) --index;
+            if(start > m_playRowIndex && end < m_playRowIndex)
+            {
+                ++index;
+            }
+            else if(start < m_playRowIndex && end > m_playRowIndex)
+            {
+                --index;
+            }
         }
 
         emit getMusicIndexSwaped(start, end, index, list);
