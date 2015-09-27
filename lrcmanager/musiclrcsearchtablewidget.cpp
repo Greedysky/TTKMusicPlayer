@@ -1,5 +1,6 @@
 #include "musiclrcsearchtablewidget.h"
 #include "musictextdownloadthread.h"
+#include "musicmessagebox.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -70,6 +71,9 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 {
     if(row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());

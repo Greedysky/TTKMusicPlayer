@@ -1,5 +1,6 @@
 #include "musicvideotablewidget.h"
 #include "musicdatadownloadthread.h"
+#include "musicmessagebox.h"
 
 #include <time.h>
 
@@ -116,6 +117,9 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
     if(row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());

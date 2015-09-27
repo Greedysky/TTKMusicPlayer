@@ -160,6 +160,9 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     if(musicSongInfo.isEmpty() || row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     if(m_audition == NULL)
@@ -184,6 +187,9 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
     }
     if(row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     item(row, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
@@ -199,6 +205,9 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     if(row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     emit showDownLoadInfoFor(MusicObject::Buffing);
@@ -215,6 +224,9 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     }
     if(row < 0)
     {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
         return;
     }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
