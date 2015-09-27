@@ -21,12 +21,12 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->normalSet->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->hotKeySet->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->inlineLrc->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->desktopLrc->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle02);
-    ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    ui->normalSet->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->hotKeySet->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->inlineLrc->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->desktopLrc->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->normalSet->setCursor(QCursor(Qt::PointingHandCursor));
     ui->hotKeySet->setCursor(QCursor(Qt::PointingHandCursor));
     ui->desktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
@@ -83,16 +83,16 @@ void MusicSettingWidget::initInlineLrcWidget()
 
     ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->noPlayedPushButton->setIcon(QIcon(":/color/purple"));
-    ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->noPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playedPushButton->setIcon(QIcon(":/color/purple"));
-    ui->playedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->playedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->playedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButton,SIGNAL(clicked()),SLOT(inlineLrcBgChanged()));
     connect(ui->playedPushButton,SIGNAL(clicked()),SLOT(inlineLrcFgChanged()));
     connect(ui->transparentSlider,SIGNAL(valueChanged(int)),SLOT(inlineLrcTransChanged(int)));
 
-    ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->resetPushButton,SIGNAL(clicked()),SLOT(resetInlineParameter()));
 
@@ -123,16 +123,16 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
     ui->transparentSliderD->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->noPlayedPushButtonD->setIcon(QIcon(":/color/purple"));
-    ui->noPlayedPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->noPlayedPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->noPlayedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playedPushButtonD->setIcon(QIcon(":/color/purple"));
-    ui->playedPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->playedPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->playedPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButtonD,SIGNAL(clicked()),SLOT(desktopBgChanged()));
     connect(ui->playedPushButtonD,SIGNAL(clicked()),SLOT(desktopFgChanged()));
     connect(ui->transparentSliderD,SIGNAL(valueChanged(int)),SLOT(desktopLrcTransChanged(int)));
 
-    ui->resetPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->resetPushButtonD->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->resetPushButtonD->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->resetPushButtonD,SIGNAL(clicked()),SLOT(resetDesktopParameter()));
 

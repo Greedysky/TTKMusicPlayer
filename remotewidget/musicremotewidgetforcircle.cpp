@@ -8,10 +8,10 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     QRect deskRect = QApplication::desktop()->availableGeometry();
     move( deskRect.width() - width() - 150, height() + 70);
 
-    m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_showMainWindow->setIconSize(QSize(40,40));
     m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 

@@ -12,9 +12,9 @@ MusicUserManager::MusicUserManager(QWidget *parent)
 
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->logoffButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->modifiedName->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->logoffButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->modifiedName->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     connect(ui->cancelButton,SIGNAL(clicked()),SLOT(musicUserCancel()));
     connect(ui->logoffButton,SIGNAL(clicked()),SLOT(musicUserLogoff()));
     connect(ui->modifiedName,SIGNAL(clicked()),SLOT(modifiedUserName()));

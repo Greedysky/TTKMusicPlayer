@@ -37,7 +37,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
     connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
@@ -47,15 +47,15 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), SLOT(musicIndexWidgetButtonSearched()));
 
     ui->musicSearchWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     connect(ui->musicSearchWidgetButton,SIGNAL(clicked()), SLOT(musicSearchWidgetButtonSearched()));
 
     ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), SLOT(musicLrcWidgetButtonSearched()));
 
     ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     connect(ui->vedioWidgetButton,SIGNAL(clicked()), SLOT(musicVideoWidgetButtonSearched()));
     ///////////////////////////////////////////////////////
     connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
@@ -319,10 +319,10 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
 
 void MusicRightAreaWidget::musicButtonStyleClear()
 {
-    m_ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    m_ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
 }
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)

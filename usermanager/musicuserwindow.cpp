@@ -12,8 +12,8 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent), ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
-    ui->userLogin->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    ui->userName->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    ui->userLogin->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    ui->userName->setStyleSheet(MusicUIObject::MPushButtonStyle11);
     ui->userLogin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->userName->setCursor(QCursor(Qt::PointingHandCursor));
 

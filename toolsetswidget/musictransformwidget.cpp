@@ -25,8 +25,8 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
@@ -35,7 +35,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 

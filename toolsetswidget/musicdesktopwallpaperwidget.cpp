@@ -58,10 +58,10 @@ void MusicDesktopWallpaperWidget::initWidgetStyle() const
     ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->localRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->playRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01);

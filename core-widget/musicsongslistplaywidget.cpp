@@ -38,28 +38,28 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
 
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(184,35,23,23);
-    m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
+    m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(207,35,23,23);
-    m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
+    m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
     m_showMVButton = new QPushButton(this);
     m_showMVButton->setGeometry(230,35,23,23);
-    m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
+    m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_showMVButton->setIcon(QIcon(":/share/showMV"));
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
     m_songShareButton = new QPushButton(this);
     m_songShareButton->setGeometry(230,7,23,23);
-    m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle09 );
+    m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_songShareButton->setIcon(QIcon(":/image/songShare"));
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_songShareButton->setToolTip(tr("songShare"));

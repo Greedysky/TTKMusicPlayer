@@ -140,7 +140,7 @@ void MusicLrcContainerForDesktop::setButtonCursor() const
     m_toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
     m_toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
     m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);

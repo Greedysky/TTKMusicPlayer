@@ -19,16 +19,16 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
-    ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->startButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->startButton->setToolTip(tr("startAudio"));
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->stopButton->setToolTip(tr("stopAudio"));
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playButton->setToolTip(tr("playAudio"));
-    ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setToolTip(tr("saveButton"));
 

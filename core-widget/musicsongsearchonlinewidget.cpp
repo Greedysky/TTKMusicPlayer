@@ -337,17 +337,17 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 
     m_playButton = new QPushButton(tr("Play"), this);
     m_playButton->setGeometry(295, 5, 70, 20);
-    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setGeometry(370, 5, 70, 20);
-    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
     downloadButton->setGeometry(445, 5, 70, 20);
-    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

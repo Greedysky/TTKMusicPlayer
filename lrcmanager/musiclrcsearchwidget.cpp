@@ -17,9 +17,9 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     ui->songSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->lrcSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->lrcSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
     ui->lrcSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));

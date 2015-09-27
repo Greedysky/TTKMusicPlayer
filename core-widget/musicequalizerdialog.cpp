@@ -70,17 +70,17 @@ void MusicEqualizerDialog::init()
 
     connect(ui->showEqButton,SIGNAL(clicked()),SLOT(setEqEnable()));
     connect(ui->resetButton,SIGNAL(clicked()),SLOT(resetEq()));
-    ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_3->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_4->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_5->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_6->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_7->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_8->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_9->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_10->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_11->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->funcButton_12->setStyleSheet(MusicUIObject::MPushButtonStyle01);
+    ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_3->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_4->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_5->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_6->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_7->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_8->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_9->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_10->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_11->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->funcButton_12->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
     ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);

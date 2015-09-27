@@ -135,67 +135,67 @@ namespace MusicUIObject
 
 ///PushButton
 //////////////////////////////////////////////////////
-    const QString MPushButtonStyle13 = "\
+    const QString MPushButtonStyle01 = "\
             QPushButton::hover{image:url(:/image/shadow);}";
 
-    const QString MPushButtonStyle14 = "\
+    const QString MPushButtonStyle02 = "\
             QPushButton::hover{image:url(:/lrc/shadow);}";
 
-    const QString MPushButtonStyle15 = "\
+    const QString MPushButtonStyle03 = "\
             QPushButton{background-color:transparent;}";
 
-    const QString MPushButtonStyle10 = MPushButtonStyle15 + "\
+    const QString MPushButtonStyle04 = MPushButtonStyle03 + "\
             QPushButton{border-none;}";
             
-    const QString MPushButtonStyle01 = " \
+    const QString MPushButtonStyle05 = " \
             QPushButton{background-color:rgb(173,216,230);border:none;}\
             QPushButton::hover{\
             background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
             stop:0 #3BA1E6,stop: 0.5 #3BA1E6,stop: 1.0 #3BA1E6);\
             border:none;}";
 
-    const QString MPushButtonStyle02 = " \
+    const QString MPushButtonStyle06 = " \
             QPushButton{border-style: outset;  \
             border-width: 1px;  \
             border-radius: 2px;  \
             border-color: #3BA1E6;  \
             padding: 1px;}";
 
-    const QString MPushButtonStyle03 =  MPushButtonStyle10 + " \
+    const QString MPushButtonStyle07 =  MPushButtonStyle04 + " \
             QPushButton{font-size:17px; font-weight:bold; color:#FFFFFF;}\
             QPushButton::hover{ background:rgba(255,255,255,50); border:none;}";
 
-    const QString MPushButtonStyle04 = " \
+    const QString MPushButtonStyle08 = " \
             QPushButton{ border: 1px solid gray;background:#DDDDDD;}\
             QPushButton::hover{ border: 2px solid #AAAAFF;}";
 
-    const QString MPushButtonStyle05 = " \
+    const QString MPushButtonStyle09 = " \
             QPushButton{ border:none;color: #3333FF;} \
             QPushButton::hover{ color: #7777FF;}";
 
-    const QString MPushButtonStyle06 = " \
+    const QString MPushButtonStyle10 = " \
             QPushButton{border-image:url(:/usermanager/vCode); \
             font-size:30px;font-weight:bold;color:gray}";
 
-    const QString MPushButtonStyle07 = MPushButtonStyle10 + " \
+    const QString MPushButtonStyle11 = MPushButtonStyle04 + " \
             QPushButton{font:italic;font-size:17px; font-weight:bold; color:orange}";
 
-    const QString MPushButtonStyle08 = MPushButtonStyle13 + "\
+    const QString MPushButtonStyle12 = MPushButtonStyle01 + "\
             QPushButton{background-color:rgba(0,0,0,125);border-none;}";
 
-    const QString MPushButtonStyle09 = MPushButtonStyle13 + MPushButtonStyle15 + "\
+    const QString MPushButtonStyle13 = MPushButtonStyle01 + MPushButtonStyle03 + "\
             QPushButton::hover{border:none;}";
 
-    const QString MPushButtonStyle11 = MPushButtonStyle14 + MPushButtonStyle10 + "\
+    const QString MPushButtonStyle14 = MPushButtonStyle02 + MPushButtonStyle04 + "\
             QPushButton{color:white;font-size:15px;}";
            
-    const QString MPushButtonStyle12 = MPushButtonStyle14 + MPushButtonStyle15 + "\
+    const QString MPushButtonStyle15 = MPushButtonStyle02 + MPushButtonStyle03 + "\
             QPushButton{text-align:left;color:white;}";
            
-    const QString MPushButtonStyle16 = MPushButtonStyle03 + "\
+    const QString MPushButtonStyle16 = MPushButtonStyle07 + "\
             QPushButton{ image:url(':/lrc/shadow');}";
 
-    const QString MPushButtonStyle17 = MPushButtonStyle02 + "\
+    const QString MPushButtonStyle17 = MPushButtonStyle06 + "\
             QPushButton{ color: #3BA1E6;}";
 
 ///RadioButton

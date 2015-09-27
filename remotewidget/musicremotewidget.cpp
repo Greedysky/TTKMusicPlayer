@@ -27,7 +27,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
     m_PreSongButton->setIcon(QIcon(":/desktopTool/previousP"));
     m_NextSongButton->setIcon(QIcon(":/desktopTool/nextP"));
