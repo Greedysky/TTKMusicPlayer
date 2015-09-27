@@ -122,6 +122,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name,const QString &p
         m_totalTime = "/" + info.getLengthString();
     }
     m_songName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 160));
+    m_songName->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
     if(!showArtPicture(name.split('-').front().trimmed()) &&
@@ -143,6 +144,7 @@ void MusicSongsListPlayWidget::setItemRename()
 void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
     m_songName->setText(name);
+    m_songName->setToolTip(name);
     emit renameFinished(name);
     delete m_renameLine;
     m_renameLine = NULL;
