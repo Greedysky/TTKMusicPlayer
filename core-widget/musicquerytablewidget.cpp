@@ -57,8 +57,8 @@ void MusicQueryTableWidget::setSelectedAllItems(bool all)
 void MusicQueryTableWidget::actionGroupClick(QAction *action)
 {
     int row = currentRow();
-    QString songName = rowCount() > 0 ? item(currentRow(), 1)->text() : QString();
-    QString artistName = rowCount() > 0 ? item(currentRow(), 2)->text() : QString();
+    QString songName = row != -1 && rowCount() > 0 ? item(row, 1)->text() : QString();
+    QString artistName = row != -1 && rowCount() > 0 ? item(row, 2)->text() : QString();
 
     switch( findActionGroup(action) )
     {
@@ -91,8 +91,10 @@ void MusicQueryTableWidget::createContextMenu(QMenu &menu)
 
     menu.addSeparator();
 
-    QString songName = rowCount() > 0 ? item(currentRow(), 1)->text() : QString();
-    QString artistName = rowCount() > 0 ? item(currentRow(), 2)->text() : QString();
+    QString songName = currentRow() != -1 && rowCount() > 0 ?
+                item(currentRow(), 1)->text() : QString();
+    QString artistName = currentRow() != -1 && rowCount() > 0 ?
+                item(currentRow(), 2)->text() : QString();
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)));
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)));
     m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)));
