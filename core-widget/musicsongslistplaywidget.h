@@ -36,6 +36,7 @@ signals:
 
 public slots:
     void setChangItemName(const QString &name);
+    void showMVButtonClicked();
 
 protected:
     bool showArtPicture(const QString &name) const;

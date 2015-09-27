@@ -61,11 +61,11 @@ public slots:
     void musicSearchWidgetButtonSearched();
     void musicLrcWidgetButtonSearched();
     void musicSearchRefreshButtonRefreshed();
-    void musicVedioWidgetButtonSearched();
-    void musicVedioWidgetButtonDoubleClicked();
+    void musicVideoWidgetButtonSearched();
+    void musicVideoButtonSearched(const QString &name);
 
 protected:
-    void createVedioWidget(bool create);
+    void createVideoWidget(bool create);
     void musicButtonStyleClear();
 
     QWidget *m_supperClass;

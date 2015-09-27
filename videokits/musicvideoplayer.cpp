@@ -65,6 +65,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     connect(m_videoTable, SIGNAL(mvURLChanged(QString)), SLOT(mvURLChanged(QString)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)),
                           SLOT(musicResearchButtonSearched(QString)));
+
 }
 
 MusicVideoPlayer::~MusicVideoPlayer()

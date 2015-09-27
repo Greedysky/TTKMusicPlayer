@@ -2,6 +2,7 @@
 #include "musicfileinformation.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicuiobject.h"
+#include "musicconnectionpool.h"
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     : QWidget(parent),m_renameLine(NULL)
@@ -65,11 +66,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
 
     connect(m_loveButton, SIGNAL(clicked()), parent, SLOT(addMusicSongToLovestListAt()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
+    connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
 
+    M_Connection->setValue("MusicSongsListPlayWidget", this);
+    M_Connection->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
+    M_Connection->disConnect("MusicSongsListPlayWidget");
     delete m_renameLine;
     delete m_artPicture;
     delete m_songName;
@@ -141,4 +146,9 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
     emit renameFinished(name);
     delete m_renameLine;
     m_renameLine = NULL;
+}
+
+void MusicSongsListPlayWidget::showMVButtonClicked()
+{
+    emit renameFinished(m_songName->text());
 }
