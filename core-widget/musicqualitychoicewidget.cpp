@@ -106,7 +106,7 @@ MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
 void MusicQualityChoiceWidget::initWidget()
 {
     m_menu = new QMenu(this);
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_menu->setStyleSheet(MusicUIObject::MMenuStyle02);
     QWidgetAction *actionWidget = new QWidgetAction(m_menu);
     MusicQualityChoiceTableWidget *containWidget = new MusicQualityChoiceTableWidget(m_menu);
     connect(containWidget, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));

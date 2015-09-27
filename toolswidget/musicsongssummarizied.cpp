@@ -258,7 +258,7 @@ void MusicSongsSummarizied::currentIndexChanged(int)
 void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(QIcon(":/contextMenu/delete"),tr("deleteItem"), this, SLOT(deleteItem()));
     menu.addAction(QIcon(":/contextMenu/add"),tr("addNewItem"), this, SLOT(addNewItem()));
     menu.addAction(tr("changItemName"), this, SLOT(changItemName()));

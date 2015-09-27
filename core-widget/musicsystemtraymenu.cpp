@@ -11,7 +11,7 @@
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
-    setStyleSheet(MusicUIObject::MMenuStyle01);
+    setStyleSheet(MusicUIObject::MMenuStyle02);
 
     createPlayWidgetActions();
     createVolumeWidgetActions();

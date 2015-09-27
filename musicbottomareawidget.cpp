@@ -65,7 +65,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 
 void MusicBottomAreaWidget::createToolPopupMenu()
 {
-    m_toolPopupMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_toolPopupMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     m_toolPopupMenu.addAction(m_ui->action_ImportSongs);
     m_toolPopupMenu.addAction(m_ui->action_Setting);
 

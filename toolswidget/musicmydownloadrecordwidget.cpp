@@ -87,7 +87,7 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
     rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();

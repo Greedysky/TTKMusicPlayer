@@ -323,8 +323,8 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     QMenu changColorMenu(tr("changColorMenu"),this);
-    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));

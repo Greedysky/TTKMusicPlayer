@@ -86,7 +86,7 @@ int MusicQueryTableWidget::findActionGroup(QAction *action)
 
 void MusicQueryTableWidget::createContextMenu(QMenu &menu)
 {
-    menu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("musicDownload")));
 
     menu.addSeparator();

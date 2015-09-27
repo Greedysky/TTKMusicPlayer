@@ -34,7 +34,7 @@ void MusicSpectrumWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle01);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(tr("close"), this, SLOT(close()));
     rightClickMenu.exec(QCursor::pos());
 }

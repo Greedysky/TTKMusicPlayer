@@ -83,7 +83,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
     menu.addAction(QIcon(":/share/selected"),tr("WindowTop"))->setEnabled(false);
     menu.addSeparator();
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));

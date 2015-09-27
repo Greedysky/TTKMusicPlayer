@@ -244,17 +244,17 @@ namespace MusicUIObject
 
 ///Menu
 //////////////////////////////////////////////////////
-    const QString MMenuStyle03 = " \
+    const QString MMenuStyle01 = " \
             QMenu {border: 1px solid gray; padding: 5px; }\
             QMenu::item {padding: 4px 25px 4px 30px;border: 1px solid transparent; }\
             QMenu::item:disabled {color: #666666;}\
             QMenu::item:selected { color: white; background: #BBBBBB;}\
             QMenu::separator {height: 1px;background: #BBBBBB;margin-top: 5px; margin-bottom: 5px;}";
 
-    const QString MMenuStyle01 = MMenuStyle03 + " \
+    const QString MMenuStyle02 = MMenuStyle01 + " \
             QMenu { background-color: rgba(255, 255, 255, 235);}";
 
-    const QString MMenuStyle02 = MMenuStyle03 + " \
+    const QString MMenuStyle03 = MMenuStyle01 + " \
             QMenu { color:white; background-color: rgba(0, 0, 0, 50);}";
 
 ///Slider
