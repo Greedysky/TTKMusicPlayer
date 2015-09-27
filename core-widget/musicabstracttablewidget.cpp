@@ -19,7 +19,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setMouseTracking(true);  //Open the capture mouse function
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
-                  MusicUIObject::MLineEditStyle01 );
+                  MusicUIObject::MLineEditStyle02 );
     //Set the color of selected row
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit

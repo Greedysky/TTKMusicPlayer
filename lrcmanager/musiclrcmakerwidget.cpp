@@ -24,9 +24,9 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
-    ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
     ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
 

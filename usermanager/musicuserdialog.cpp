@@ -75,7 +75,7 @@ void MusicUserDialog::firstStatckWidget()
 {
     ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->userComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
@@ -90,10 +90,10 @@ void MusicUserDialog::firstStatckWidget()
 
 void MusicUserDialog::secondStatckWidget()
 {
-    ui->registerUserLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->registerMailLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->registerPwdLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->registerPwdCLine->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->registerUserLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->registerMailLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->registerPwdLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->registerPwdCLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
@@ -118,10 +118,10 @@ void MusicUserDialog::secondStatckWidget()
 
 void MusicUserDialog::thirdStatckWidget()
 {
-    ui->userLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->pwdLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->mailLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->userLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->pwdLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->mailLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 

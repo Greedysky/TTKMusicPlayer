@@ -36,8 +36,8 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
-    ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
-    ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
     ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));

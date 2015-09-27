@@ -18,7 +18,7 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);

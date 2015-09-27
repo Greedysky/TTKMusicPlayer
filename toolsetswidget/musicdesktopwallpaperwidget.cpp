@@ -54,7 +54,7 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 
 void MusicDesktopWallpaperWidget::initWidgetStyle() const
 {
-    ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle02);
+    ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->localRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->playRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);

@@ -231,11 +231,11 @@ namespace MusicUIObject
 
 ///LineEdit
 //////////////////////////////////////////////////////
-    const QString MLineEditStyle02 = " \
+    const QString MLineEditStyle01 = " \
             QLineEdit{ border: 1px solid gray;} \
             QLineEdit::hover{ border: 1px solid #AAAAFF;}";
 
-    const QString MLineEditStyle01 = MLineEditStyle02 + " \
+    const QString MLineEditStyle02 = MLineEditStyle01 + " \
             QLineEdit{font-size:17px; font-weight:bold; color:AAAAFF }";
 
     const QString MLineEditStyle03 = " \
