@@ -195,6 +195,9 @@ namespace MusicUIObject
     const QString MPushButtonStyle16 = MPushButtonStyle03 + "\
             QPushButton{ image:url(':/lrc/shadow');}";
 
+    const QString MPushButtonStyle17 = MPushButtonStyle02 + "\
+            QPushButton{ color: #3BA1E6;}";
+
 ///RadioButton
 //////////////////////////////////////////////////////
     const QString MRadioButtonStyle01 = " \

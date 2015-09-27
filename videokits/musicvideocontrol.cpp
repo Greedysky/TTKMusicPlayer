@@ -15,6 +15,9 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_timeSlider = new QSlider(Qt::Horizontal,this);
     m_menuButton = new QToolButton(this);
     m_playButton = new QPushButton(this);
+    m_inSideButton = new QPushButton(this);
+    m_fullButton = new QPushButton(this);
+
     m_volumnButton = new QToolButton(this);
     m_volumnSlider = new QSlider(Qt::Vertical,this);
     m_volumnSlider->setRange(0,100);
@@ -24,11 +27,18 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_volumnButton->setIcon(QIcon(":/video/volumn"));
     m_menuButton->setIcon(QIcon(":/video/menu"));
 
+    m_inSideButton->setText("AAAA");
+    m_fullButton->setText("BBBB");
+    m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
+    m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
+
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumnButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_timeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumnSlider->setCursor(QCursor(Qt::PointingHandCursor));
+    m_inSideButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_fullButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
@@ -39,6 +49,8 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     controlLayout->addWidget(m_playButton);
     controlLayout->addWidget(m_volumnButton);
     controlLayout->addWidget(m_timeSlider);
+    controlLayout->addWidget(m_inSideButton);
+    controlLayout->addWidget(m_fullButton);
     setLayout(controlLayout);
 
     m_widgetAction = new QWidgetAction(this);
@@ -51,8 +63,10 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
                           SLOT(setPosition(int)));
     connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent,
                             SLOT(volumnChanged(int)));
-    connect(m_playButton, SIGNAL(clicked()), parent,
-                          SLOT(play()));
+    connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
+    connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
+    connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
+
 }
 
 MusicVideoControl::~MusicVideoControl()
@@ -63,6 +77,8 @@ MusicVideoControl::~MusicVideoControl()
     delete m_menuButton;
     delete m_playButton;
     delete m_volumnButton;
+    delete m_inSideButton;
+    delete m_fullButton;
 }
 
 void MusicVideoControl::setValue(qint64 position) const
@@ -79,4 +95,14 @@ void MusicVideoControl::setButtonStyle(bool style) const
 {
     m_playButton->setIcon(QIcon( style ? ":/video/play"
                                        : ":/video/pause"));
+}
+
+void MusicVideoControl::inSideButtonClicked()
+{
+
+}
+
+void MusicVideoControl::fullButtonClicked()
+{
+
 }

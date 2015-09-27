@@ -30,14 +30,17 @@ public:
     void durationChanged(qint64 duration) const;
     void setButtonStyle(bool style) const;
 
+private slots:
+    void inSideButtonClicked();
+    void fullButtonClicked();
+
 protected:
     QMenu m_popupVolumn;
     QWidgetAction *m_widgetAction;
-    QSlider *m_timeSlider;
-    QSlider *m_volumnSlider;
-    QToolButton *m_menuButton;
+    QSlider *m_timeSlider, *m_volumnSlider;
+    QToolButton *m_menuButton, *m_volumnButton;
     QPushButton *m_playButton;
-    QToolButton *m_volumnButton;
+    QPushButton *m_inSideButton, *m_fullButton;
 
 };
 
