@@ -30,7 +30,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle02 + "}");
+    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle03 + "}");
 
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);

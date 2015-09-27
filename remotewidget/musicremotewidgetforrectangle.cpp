@@ -22,7 +22,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle08 + "}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(0,0,0,0);

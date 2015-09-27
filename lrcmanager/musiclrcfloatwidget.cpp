@@ -7,7 +7,7 @@
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle02);
+    setStyleSheet(MusicUIObject::MCustomStyle03);
     m_rectIn = QRect(405, 120, 115, 210);
     m_rectOut = QRect(515, 171, 115, 105);
     setGeometry( m_rectOut );

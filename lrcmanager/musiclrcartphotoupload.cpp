@@ -27,7 +27,7 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->selectButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->stateLabel->setStyleSheet(MusicUIObject::MCustomStyle07);
+    ui->stateLabel->setStyleSheet(MusicUIObject::MCustomStyle08);
 
     ui->uploadButton->hide();
     ui->closeButton->hide();

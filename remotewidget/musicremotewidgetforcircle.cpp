@@ -13,7 +13,7 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_showMainWindow->setIconSize(QSize(40,40));
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle08 + "}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
     QGridLayout* grid = new QGridLayout(this);
     m_PreSongButton->setFixedSize(30,30);

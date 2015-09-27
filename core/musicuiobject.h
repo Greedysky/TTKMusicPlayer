@@ -15,66 +15,66 @@ namespace MusicUIObject
 {
 ///Custom
 //////////////////////////////////////////////////////
-    const QString MCustomStyle20 = " \
+    const QString MCustomStyle01 = " \
             background-color:transparent;";
 
-    const QString MCustomStyle01 = "\
+    const QString MCustomStyle02 = "\
             background-color:rgba(255,255,255,125);";
 
-    const QString MCustomStyle02 = "\
+    const QString MCustomStyle03 = "\
             background:rgba(0,0,0,100);";
 
-    const QString MCustomStyle03 = "\
+    const QString MCustomStyle04 = "\
             background:white;border:3px solid rgb(173,216,230);";
 
-    const QString MCustomStyle04 = MCustomStyle20 + "\
+    const QString MCustomStyle05 = MCustomStyle01 + "\
             border-image: url(:/share/searchlineleft);";
 
-    const QString MCustomStyle05 = "\
+    const QString MCustomStyle06 = "\
             border-image: url(:/share/searchclosed);";
 
-    const QString MCustomStyle06 = "\
+    const QString MCustomStyle07 = "\
             text-align:left; font-weight:bold; font-size:15px;\
             color:red; height:20px; border:none; background-color:white;";
 
-    const QString MCustomStyle07 = "\
+    const QString MCustomStyle08 = "\
             background:rgb(250,231,191);color:rgb(160,99,11);";
 
-    const QString MCustomStyle08 = "\
+    const QString MCustomStyle09 = "\
             background-color:rgba(0,0,0,155);";
 
-    const QString MCustomStyle09 = "\
+    const QString MCustomStyle10 = "\
             border: 1px solid #555555;background-color:rgba(0,0,0,40);";
            
-    const QString MCustomStyle10 = "\
+    const QString MCustomStyle11 = "\
             color:white;";
 
-    const QString MCustomStyle11 = "\
+    const QString MCustomStyle12 = "\
             color:#888888;";
 
-    const QString MCustomStyle12 = "\
+    const QString MCustomStyle13 = "\
             color:#AAAAAA;";
 
-    const QString MCustomStyle13 = "\
+    const QString MCustomStyle14 = "\
             color:#FF0000;";
 
-    const QString MCustomStyle16 = "\
+    const QString MCustomStyle17 = "\
             background-color:rgb(240,240,240);";
 
-    const QString MCustomStyle17 = "\
+    const QString MCustomStyle18 = "\
             font-weight:bold;";
 
-    const QString MCustomStyle18 = "\
+    const QString MCustomStyle19 = "\
             background-color:black;";
            
-    const QString MCustomStyle19 = "\
+    const QString MCustomStyle20 = "\
             border:none;";
            
     const QString MCustomStyle21 = " \
             background-image:url(':/lrc/film');";
            
     const QString MCustomStyle22 = " \
-            background:rgba(255, 255, 255, 50);" + MCustomStyle19;
+            background:rgba(255, 255, 255, 50);" + MCustomStyle20;
            
     const QString MCustomStyle23 = " \
             color:white;image:url(:/lrc/shadow);text-align:center;";
@@ -85,7 +85,7 @@ namespace MusicUIObject
     const QString MCustomStyle25 = " \
             border-image: url(:/image/soundmin);";
 
-    const QString MCustomStyle26 = MCustomStyle20 + MCustomStyle24;
+    const QString MCustomStyle26 = MCustomStyle01 + MCustomStyle24;
 
     const QString MCustomStyle27 = " \
             background:rgba(0,0,0,35);";

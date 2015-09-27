@@ -66,7 +66,7 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
 void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);
-    m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle08);
+    m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle09);
     m_toolBarWidget->setFixedWidth(320);
     m_toolBarWidget->setGeometry(0,-10,320,20);
 
@@ -246,7 +246,7 @@ void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
     }
     QWidget::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle09 + "}");
+    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle10 + "}");
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
@@ -257,7 +257,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
     }
     QWidget::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle20 + "}");
+    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle01 + "}");
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
@@ -272,7 +272,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
     if(m_windowLocked)
     {
        m_toolBarWidget->hide();
-       setStyleSheet(MusicUIObject::MCustomStyle20);
+       setStyleSheet(MusicUIObject::MCustomStyle01);
     }
     emit setWindowLockedChanged(m_windowLocked);
     M_SETTING->setValue(MusicSettingManager::DLrcLockedChoiced, m_windowLocked ? 1 : 0);

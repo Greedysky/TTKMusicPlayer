@@ -316,7 +316,7 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     m_textLabel->setText(tr(" find no result"));
 
     QLabel *colorLabel = new QLabel(this);
-    colorLabel->setStyleSheet(MusicUIObject::MCustomStyle16);
+    colorLabel->setStyleSheet(MusicUIObject::MCustomStyle17);
     colorLabel->setGeometry(0, 30, width(), 35);
 
     QCheckBox *label_checkBox = new QCheckBox(this);
@@ -326,13 +326,13 @@ void MusicSongSearchOnlineWidget::createToolWidget()
                             SLOT(setSelectedAllItems(bool)));
 
     QLabel *Label1 = new QLabel(tr("Song"), this);
-    Label1->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label1->setStyleSheet(MusicUIObject::MCustomStyle18);
     Label1->setGeometry(120, 40, 60, 20);
     QLabel *Label2 = new QLabel(tr("Artist"), this);
-    Label2->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label2->setStyleSheet(MusicUIObject::MCustomStyle18);
     Label2->setGeometry(310, 40, 60, 20);
     QLabel *Label3 = new QLabel(tr("Operator"), this);
-    Label3->setStyleSheet(MusicUIObject::MCustomStyle17);
+    Label3->setStyleSheet(MusicUIObject::MCustomStyle18);
     Label3->setGeometry(435, 40, 60, 20);
 
     m_playButton = new QPushButton(tr("Play"), this);

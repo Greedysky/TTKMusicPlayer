@@ -22,19 +22,19 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_songName = new QLabel(this);
     m_songName->setFixedSize(182,25);
     m_songName->setAttribute(Qt::WA_TranslucentBackground);
-    m_songName->setStyleSheet(MusicUIObject::MCustomStyle10);
+    m_songName->setStyleSheet(MusicUIObject::MCustomStyle11);
     m_songName->setGeometry(65,5,182,25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100,20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle10);
+    m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
     m_timeLabel->setGeometry(65,37,100,20);
 
     m_columnOne = new QWidget(this);
-    m_columnOne->setStyleSheet(MusicUIObject::MCustomStyle02);
+    m_columnOne->setStyleSheet(MusicUIObject::MCustomStyle03);
     m_columnThree = new QWidget(this);
-    m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle02);
+    m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle03);
 
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(184,35,23,23);

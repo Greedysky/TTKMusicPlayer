@@ -13,7 +13,7 @@ MusicRemoteWidgetForDiamond::MusicRemoteWidgetForDiamond(QWidget *parent)
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     m_showMainWindow->setIconSize(QSize(40,40));
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle20 + "}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle01 + "}");
 
     QGridLayout* grid = new QGridLayout(this);
     m_PreSongButton->setFixedSize(30,30);

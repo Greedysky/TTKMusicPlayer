@@ -16,7 +16,7 @@ void MusicUserLineEdit::focusInEvent(QFocusEvent *event)
 {
     QLineEdit::focusInEvent(event);
     m_tipsLabel->show();
-    m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle12);
+    m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
 }
 
 void MusicUserLineEdit::focusOutEvent(QFocusEvent *event)
@@ -47,7 +47,7 @@ void MusicUserLineEdit::showLabel(int s, int e)
         m_strContains = false;
         m_tipsLabel->show();
         m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
+        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
     }
 }
 
@@ -64,7 +64,7 @@ void MusicUserLineEdit::showLabel()
     {
         m_tipsLabel->show();
         m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
+        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
     }
 }
 

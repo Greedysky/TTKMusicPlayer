@@ -12,7 +12,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     m_rectOut = QRect(515, 171, 165, 105);
     setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatSettingWidget");
-    setStyleSheet("#MusicLrcFloatSettingWidget{" + MusicUIObject::MCustomStyle02 + "}" +
+    setStyleSheet("#MusicLrcFloatSettingWidget{" + MusicUIObject::MCustomStyle03 + "}" +
                   MusicUIObject::MPushButtonStyle11);
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
