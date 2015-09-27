@@ -65,18 +65,18 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPlayMode->setIconSize(QSize(25,25));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->musicPrivious->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    ui->musicPrivious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->music3DPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle02);
+    ui->music3DPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
+    ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04);
 
     ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));

@@ -141,15 +141,15 @@ void MusicLrcContainerForDesktop::setButtonCursor() const
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    m_toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolUpdateLrcButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolLrcBigerButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolPreSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolNextSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    m_toolSettingButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolUpdateLrcButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolLrcBigerButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolPreSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolNextSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_toolSettingButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
 }
 
 void MusicLrcContainerForDesktop::setButtonTips() const

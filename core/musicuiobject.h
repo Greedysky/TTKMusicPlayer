@@ -95,35 +95,35 @@ namespace MusicUIObject
           
 ///ToolButton
 //////////////////////////////////////////////////////
-    const QString MToolButtonStyle04 = " \
+    const QString MToolButtonStyle01 = " \
             QToolButton{background-color:transparent;}";
 
-    const QString MToolButtonStyle08 = " \
+    const QString MToolButtonStyle02 = " \
             QToolButton::hover{ border:1px solid #000000;}";
             
-    const QString MToolButtonStyle01 = MToolButtonStyle04 + " \
+    const QString MToolButtonStyle03 = MToolButtonStyle01 + " \
             QToolButton::hover{background-color:rgba(255,255,255,20)}";
 
-    const QString MToolButtonStyle02 = MToolButtonStyle04 + " \
+    const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
             QToolButton::menu-indicator{image:None;}";
 
-    const QString MToolButtonStyle03 = MToolButtonStyle04 + " \
+    const QString MToolButtonStyle05 = MToolButtonStyle01 + " \
             QToolButton{border:none;}\
             QToolButton::hover{ \
             background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
             stop:0 #EEEEEE,stop: 0.5 #EEEEEE,stop: 1.0 #EEEEEE);\
             border:none;}";
 
-    const QString MToolButtonStyle05 = MToolButtonStyle04 + " \
+    const QString MToolButtonStyle06 = MToolButtonStyle01 + " \
             QToolButton::hover{ image:url(:/image/shadow); border:none;}";
 
-    const QString MToolButtonStyle06 = MToolButtonStyle04 + MToolButtonStyle08 + " \
+    const QString MToolButtonStyle07 = MToolButtonStyle01 + MToolButtonStyle02 + " \
             QToolButton{image: url(:/share/autionplay);}";
 
-    const QString MToolButtonStyle07 = MToolButtonStyle04 + MToolButtonStyle08 + " \
+    const QString MToolButtonStyle08 = MToolButtonStyle01 + MToolButtonStyle02 + " \
             QToolButton{image: url(:/image/addtoplaylist);}";
 
-    const QString MToolButtonStyle09 = MToolButtonStyle02 + " \
+    const QString MToolButtonStyle09 = MToolButtonStyle04 + " \
             QToolButton{background-image:url(':/quality/bg');border:none; \
             font-weight:bold; color:white}";
            

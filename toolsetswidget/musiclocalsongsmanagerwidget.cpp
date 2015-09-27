@@ -19,7 +19,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->setupUi(this);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
@@ -27,8 +27,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle27 + "}");
 
     ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
-    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
-    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
+    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
+    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle08);
 
     ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));

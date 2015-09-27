@@ -67,9 +67,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setIconSize(QSize(40,40));
     m_PlayOrStop->setIconSize(QSize(45,45));
 
-    previousPlay->setStyleSheet(MusicUIObject::MToolButtonStyle04);
-    nextPlay->setStyleSheet(MusicUIObject::MToolButtonStyle04);
-    m_PlayOrStop->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    previousPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    nextPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    m_PlayOrStop->setStyleSheet(MusicUIObject::MToolButtonStyle01);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
