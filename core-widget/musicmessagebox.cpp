@@ -32,9 +32,27 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
 
 }
 
+MusicMessageBox::MusicMessageBox(const QString &text, QWidget *parent)
+    : MusicMessageBox(parent)
+{
+    setText(text);
+}
+
+MusicMessageBox::MusicMessageBox(const QString &title, const QString &text,
+                                 QWidget *parent)
+    : MusicMessageBox(text, parent)
+{
+    setTitle(title);
+}
+
 MusicMessageBox::~MusicMessageBox()
 {
     delete ui;
+}
+
+void MusicMessageBox::setTitle(const QString &text) const
+{
+    ui->topTitleName->setText(text);
 }
 
 void MusicMessageBox::setText(const QString &text) const

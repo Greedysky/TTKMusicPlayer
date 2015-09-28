@@ -20,8 +20,12 @@ class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
     Q_OBJECT
 public:
     explicit MusicMessageBox(QWidget *parent = 0);
+    explicit MusicMessageBox(const QString &text, QWidget *parent = 0);
+    MusicMessageBox(const QString &title, const QString &text,
+                    QWidget *parent = 0);
     virtual ~MusicMessageBox();
 
+    void setTitle(const QString &text) const;
     void setText(const QString &text) const;
 
 public slots:
