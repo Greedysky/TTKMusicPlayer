@@ -2,6 +2,7 @@
 #include "musicobject.h"
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
+#include "musicsettingmanager.h"
 #include "musiclogger.h"
 
 #include <QDesktopWidget>
@@ -32,10 +33,12 @@ int main(int argc, char *argv[])
     M_NETWORK->start();
 
     MusicObject::checkTheDirectoryExist();
-    MusicApplication w;
-    w.show();
 
     QWidget *widget = QApplication::desktop();
+    M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
+
+    MusicApplication w;
+    w.show();
     w.move((widget->width() - w.width())/2, (widget->height() - w.height())/2);
 
     return a.exec();

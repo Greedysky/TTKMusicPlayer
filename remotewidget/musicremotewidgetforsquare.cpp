@@ -1,13 +1,14 @@
 #include "musicremotewidgetforsquare.h"
-#include <QDesktopWidget>
+#include "musicsettingmanager.h"
 
 MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200,200,100,100);
     setAttribute(Qt::WA_TranslucentBackground);
-    QRect deskRect = QApplication::desktop()->availableGeometry();
-    move( deskRect.width() - width() - 150, height() + 70);
+
+    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    move( windowSize.width() - width() - 150, height() + 70);
 
     m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);

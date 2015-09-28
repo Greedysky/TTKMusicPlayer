@@ -21,6 +21,7 @@ class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
 public:
     enum ConfigType {
         Null = -1,
+        ScreenSize,
 
         PlayModeChoiced,
         VolumeChoiced,

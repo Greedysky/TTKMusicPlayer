@@ -1,12 +1,13 @@
 #include "musicremotewidgetforrectangle.h"
-#include <QDesktopWidget>
+#include "musicsettingmanager.h"
 
 MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200,200,230,70);
-    QRect deskRect = QApplication::desktop()->availableGeometry();
-    move( deskRect.width() - width() - 150, height() + 70);
+
+    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    move( windowSize.width() - width() - 150, height() + 70);
 
     setAutoFillBackground(true);
     QPalette pal = palette();

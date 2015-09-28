@@ -1,9 +1,9 @@
 #include "musiclrccontainerfordesktop.h"
 #include "musiclrcmanagerfordesktop.h"
 #include "musicuiobject.h"
+#include "musicsettingmanager.h"
+
 #include <QVBoxLayout>
-#include <QDesktopWidget>
-#include <QApplication>
 #include <QToolButton>
 #include <QPushButton>
 
@@ -30,11 +30,10 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     setLayout(layout);
 
     //Move the QWidget in the appropriate location
-    QDesktopWidget* desktop = QApplication::desktop();
-    QRect deskRect = desktop->availableGeometry();
-    move( 200, deskRect.height() - this->height() - 150);
+    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    move( 200, windowSize.height() - height() - 150);
 
-    m_geometry.setX(deskRect.width()-300);
+    m_geometry.setX(windowSize.width() - 300);
     m_geometry.setY(80);
     m_desktopWidget->setMaximumSize(m_geometry.x(), 2*m_geometry.y());
     m_desktopWidget->setMinimumSize(m_geometry.x(), 2*m_geometry.y());

@@ -1,7 +1,7 @@
 #include "musicmobiledeviceswidget.h"
 #include "musiclocalsongsmanagerwidget.h"
-#include <QApplication>
-#include <QDesktopWidget>
+#include "musicsettingmanager.h"
+
 #include <QToolButton>
 #include <QBitmap>
 #include <QPainter>
@@ -22,8 +22,8 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     p.drawRoundedRect(bmp.rect(),4,4);
     setMask(bmp);
 
-    QRect rect = QApplication::desktop()->availableGeometry();
-    setGeometry(rect.width() - 246, rect.height() - 169, 246, 169);
+    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    setGeometry(windowSize.width() - 246, windowSize.height() - 169, 246, 169);
     setPixmap(QPixmap(":/image/mobile"));
 
     m_closeButton = new QToolButton(this);
