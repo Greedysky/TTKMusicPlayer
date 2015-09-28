@@ -1588,119 +1588,119 @@
     <name>MusicLrcContainerForInline</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="41"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="70"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="69"/>
         <source>noCurrentSongPlay</source>
         <translation> --- 当前没有正在播放的歌曲</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="65"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="64"/>
         <source>unFoundLrc</source>
         <translation> --- 未找到歌词文件！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="117"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="116"/>
         <source>lrcFileError</source>
         <translation> --- 歌词文件内容错误！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="320"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="323"/>
         <source>changColorMenu</source>
         <translation>歌词颜色</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="321"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="324"/>
         <source>changeLrcSize</source>
         <translation>歌词大小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="325"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="328"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="326"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="329"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="346"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="349"/>
         <source>artbgon</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="345"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="346"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="348"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="349"/>
         <source>artbgoff</source>
         <translation>关闭写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="327"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="330"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="334"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="366"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="337"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="369"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="335"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="367"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="338"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
         <source>small</source>
         <translation>小号</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="336"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="368"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="339"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="371"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="337"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="369"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="340"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
         <source>big</source>
         <translation>大号</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="338"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="341"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="373"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="342"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="345"/>
         <source>custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="347"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="348"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="350"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="351"/>
         <source>lrcoff</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="348"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="351"/>
         <source>lrcon</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="349"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="352"/>
         <source>artbgupload</source>
         <translation>上传歌手写真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="352"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="355"/>
         <source>copyToClip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="354"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="357"/>
         <source>showLrcFile</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="358"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="361"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>
@@ -1868,6 +1868,14 @@
     </message>
 </context>
 <context>
+    <name>MusicLrcSearchTableWidget</name>
+    <message>
+        <location filename="../lrcmanager/musiclrcsearchtablewidget.cpp" line="75"/>
+        <source>Please Select One Item First!</source>
+        <translation>请选择某一条记录！</translation>
+    </message>
+</context>
+<context>
     <name>MusicLrcSearchWidget</name>
     <message>
         <location filename="../ui/lrcmanager/musiclrcsearchwidget.ui" line="14"/>
@@ -1940,17 +1948,17 @@
         <translation>　搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相关歌词</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="62"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="63"/>
         <source>lrc is downloading now!</source>
         <translation>正在下载歌词！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="67"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="68"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="81"/>
+        <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="82"/>
         <source>lrc download finished!</source>
         <translation>歌词下载完毕！</translation>
     </message>
@@ -2099,13 +2107,13 @@
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="96"/>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="97"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="98"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="99"/>
         <source>search &apos;%1&apos;</source>
         <translation>搜索 &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicquerytablewidget.cpp" line="98"/>
+        <location filename="../core-widget/musicquerytablewidget.cpp" line="100"/>
         <source>search &apos;%1 - %2&apos;</source>
         <translation>搜索 &apos;%1 - %2&apos;</translation>
     </message>
@@ -2153,7 +2161,7 @@
     <name>MusicRightAreaWidget</name>
     <message>
         <location filename="../musicrightareawidget.cpp" line="234"/>
-        <location filename="../musicrightareawidget.cpp" line="243"/>
+        <location filename="../musicrightareawidget.cpp" line="245"/>
         <source>please input search text</source>
         <translation>请输入搜索内容</translation>
     </message>
@@ -2580,58 +2588,66 @@
         <source>musicAdd</source>
         <translation>添加音乐</translation>
     </message>
+    <message>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="164"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="191"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="209"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="228"/>
+        <source>Please Select One Item First!</source>
+        <translation>请选择某一条记录！</translation>
+    </message>
 </context>
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="293"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="309"/>
         <source> find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>　搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相关歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="300"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="317"/>
         <source> find no result</source>
         <translation>没有搜到相关内容</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="312"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="329"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="315"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="332"/>
         <source>Artist</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="318"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="335"/>
         <source>Operator</source>
         <translation>相关操作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="322"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="359"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="339"/>
         <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="376"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="393"/>
         <source>Play</source>
         <translation>试听</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="327"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="344"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="332"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="349"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="350"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="367"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="376"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="393"/>
         <source>Stop</source>
         <translation>暂停</translation>
     </message>
@@ -2672,22 +2688,22 @@
 <context>
     <name>MusicSongsListPlayWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="43"/>
+        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="44"/>
         <source>bestlove</source>
         <translation>添加至我的最爱</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="50"/>
+        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="51"/>
         <source>deleteMusic</source>
         <translation>删除歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="57"/>
+        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="58"/>
         <source>showMV</source>
         <translation>观看MV</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="64"/>
+        <location filename="../core-widget/musicsongslistplaywidget.cpp" line="65"/>
         <source>songShare</source>
         <translation>分享</translation>
     </message>
@@ -2795,7 +2811,7 @@
         <translation>添加到我的最爱</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="222"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="228"/>
         <source>Are you sure to delete?</source>
         <translation>你确定要删除吗？</translation>
     </message>
@@ -3560,6 +3576,47 @@
         <location filename="../ui/usermanager/musicuserwindow.ui" line="30"/>
         <source>登录</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>MusicVideoControl</name>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="32"/>
+        <source>InlineMode</source>
+        <translation>内嵌模式</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="32"/>
+        <source>PopupMode</source>
+        <translation>弹出模式</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="114"/>
+        <source>FullScreenMode</source>
+        <translation>全屏模式</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="113"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="114"/>
+        <source>NormalMode</source>
+        <translation>普通模式</translation>
+    </message>
+</context>
+<context>
+    <name>MusicVideoPlayer</name>
+    <message>
+        <location filename="../videokits/musicvideoplayer.cpp" line="38"/>
+        <source>Music Video</source>
+        <translation>MV 视频</translation>
+    </message>
+</context>
+<context>
+    <name>MusicVideoTableWidget</name>
+    <message>
+        <location filename="../videokits/musicvideotablewidget.cpp" line="121"/>
+        <source>Please Select One Item First!</source>
+        <translation>请选择某一条记录！</translation>
     </message>
 </context>
 <context>
