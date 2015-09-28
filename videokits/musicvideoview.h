@@ -29,6 +29,7 @@ public slots:
     void play();
 
 private slots:
+    void stop();
     void positionChanged(qint64 position);
     void durationChanged(qint64 duration);
     void setPosition(int position);

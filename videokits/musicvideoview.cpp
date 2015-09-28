@@ -1,9 +1,11 @@
 #include "musicvideoview.h"
 #include "musicvideocontrol.h"
+#include "musicmessagebox.h"
 
 #include <QVideoSurfaceFormat>
 #include <QGraphicsVideoItem>
 #include <QMouseEvent>
+#include <QTimer>
 
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent)
@@ -64,6 +66,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer.setMedia(QUrl(data));
+    QTimer::singleShot(10*1000, this, SLOT(stop()));
 }
 
 void MusicVideoView::play()
@@ -78,6 +81,17 @@ void MusicVideoView::play()
             m_mediaPlayer.play();
             m_videoControl->setButtonStyle(false);
             break;
+    }
+}
+
+void MusicVideoView::stop()
+{
+    if(m_mediaPlayer.state() == QMediaPlayer::StoppedState)
+    {
+        m_mediaPlayer.stop();
+        MusicMessageBox message;
+        message.setText("Session time out, try again!");
+        message.exec();
     }
 }
 
