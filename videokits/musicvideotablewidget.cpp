@@ -106,7 +106,7 @@ void MusicVideoTableWidget::listCellClicked(int row,int col)
     {
         case 5:
         case 6:
-            itemDoubleClicked(row, -1);break;
+            itemDoubleClicked(row, 999);break;
         case 7:
             musicDownloadLocal(row);break;
         default:break;
