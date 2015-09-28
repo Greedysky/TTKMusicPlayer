@@ -341,7 +341,7 @@ void MusicRightAreaWidget::msuicVideoSetPopup(bool popup)
     {
         createVideoWidget(false);
         musicButtonStyleClear();
-        m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+        m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
         m_videoPlayer = new MusicVideoPlayer(true);
         m_videoPlayer->show();
     }
