@@ -11,7 +11,7 @@
 #include <QStackedWidget>
 
 MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
-    : QWidget(parent)
+    : MusicAbstractMoveWidget(parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);

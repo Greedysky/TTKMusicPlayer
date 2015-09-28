@@ -133,6 +133,12 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(musicVideoButtonSearched(QString)));
     }
 
+    if(from == "MusicVideoControl" && to == "MusicRightAreaWidget" )
+    {
+        QObject::connect(first, SIGNAL(msuicVideoSetPopup(bool)), second,
+                                SLOT(msuicVideoSetPopup(bool)));
+    }
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)

@@ -9,8 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
-#include "musiclibexportglobal.h"
+#include "musicabstractmovewidget.h"
 
 class QLabel;
 class QPushButton;
@@ -19,7 +18,7 @@ class MusicVideoView;
 class MusicVideoTableWidget;
 class MusicLocalSongSearchEdit;
 
-class MUSIC_VIDEO_EXPORT MusicVideoPlayer : public QWidget
+class MUSIC_VIDEO_EXPORT MusicVideoPlayer : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

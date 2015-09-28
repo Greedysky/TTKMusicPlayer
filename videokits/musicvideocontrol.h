@@ -30,6 +30,9 @@ public:
     void durationChanged(qint64 duration) const;
     void setButtonStyle(bool style) const;
 
+signals:
+    void msuicVideoSetPopup(bool popup);
+
 private slots:
     void inSideButtonClicked();
     void fullButtonClicked();

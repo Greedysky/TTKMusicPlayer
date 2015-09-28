@@ -63,6 +63,7 @@ public slots:
     void musicSearchRefreshButtonRefreshed();
     void musicVideoWidgetButtonSearched();
     void musicVideoButtonSearched(const QString &name);
+    void msuicVideoSetPopup(bool popup);
 
 protected:
     void createVideoWidget(bool create);

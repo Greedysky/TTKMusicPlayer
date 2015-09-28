@@ -1,4 +1,6 @@
 #include "musicvideocontrol.h"
+#include "musicconnectionpool.h"
+
 #include <QPushButton>
 #include <QToolButton>
 #include <QSlider>
@@ -9,8 +11,8 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet(MusicUIObject::MCustomStyle01);
-    setFixedSize(520,40);
-    setGeometry(0,375,520,40);
+    setFixedSize(520, 40);
+    setGeometry(0, 375, 520, 40);
 
     m_timeSlider = new QSlider(Qt::Horizontal,this);
     m_menuButton = new QToolButton(this);
@@ -27,8 +29,8 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_volumnButton->setIcon(QIcon(":/video/volumn"));
     m_menuButton->setIcon(QIcon(":/video/menu"));
 
-    m_inSideButton->setText("AAAA");
-    m_fullButton->setText("BBBB");
+    m_inSideButton->setText(tr("PopupMode"));
+    m_fullButton->setText(tr("FullScreenMode"));
     m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
     m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
 
@@ -67,10 +69,13 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
 
+    M_Connection->setValue("MusicVideoControl", this);
+    M_Connection->connect("MusicVideoControl", "MusicRightAreaWidget");
 }
 
 MusicVideoControl::~MusicVideoControl()
 {
+    M_Connection->disConnect("MusicVideoControl");
     delete m_volumnSlider;
     delete m_widgetAction;
     delete m_timeSlider;
@@ -99,7 +104,7 @@ void MusicVideoControl::setButtonStyle(bool style) const
 
 void MusicVideoControl::inSideButtonClicked()
 {
-
+    emit msuicVideoSetPopup(true);
 }
 
 void MusicVideoControl::fullButtonClicked()
