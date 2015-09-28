@@ -15,9 +15,17 @@ The music player use of  libzplay(http://sourceforge.net/projects/libzplay) libr
 Example
 ----
 
+index
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/1.png?raw=true)
 
+search
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/2.png?raw=true)
+
+lrc
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/3.png?raw=true)
+
+desktop-lrc
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/4.png?raw=true)
 
 
 Copyright
