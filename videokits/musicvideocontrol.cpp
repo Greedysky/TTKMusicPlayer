@@ -7,8 +7,8 @@
 #include <QHBoxLayout>
 #include <QWidgetAction>
 
-MusicVideoControl::MusicVideoControl(QWidget *parent)
-    : QWidget(parent)
+MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
+    : QWidget(parent), m_widgetPopup(popup)
 {
     setStyleSheet(MusicUIObject::MCustomStyle01);
     setFixedSize(520, 40);
@@ -29,8 +29,10 @@ MusicVideoControl::MusicVideoControl(QWidget *parent)
     m_volumnButton->setIcon(QIcon(":/video/volumn"));
     m_menuButton->setIcon(QIcon(":/video/menu"));
 
-    m_inSideButton->setText(tr("PopupMode"));
+    m_inSideButton->setText(popup ? tr("InlineMode") : tr("PopupMode"));
     m_fullButton->setText(tr("FullScreenMode"));
+    m_fullButton->setEnabled( popup );
+
     m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
     m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
 
@@ -98,16 +100,16 @@ void MusicVideoControl::durationChanged(qint64 duration) const
 
 void MusicVideoControl::setButtonStyle(bool style) const
 {
-    m_playButton->setIcon(QIcon( style ? ":/video/play"
-                                       : ":/video/pause"));
+    m_playButton->setIcon(QIcon( style ? ":/video/play" : ":/video/pause"));
 }
 
 void MusicVideoControl::inSideButtonClicked()
 {
-    emit msuicVideoSetPopup(true);
+    emit msuicVideoSetPopup( !m_widgetPopup );
 }
 
 void MusicVideoControl::fullButtonClicked()
 {
-
+    m_fullButton->setText(m_fullButton->text() == tr("NormalMode") ?
+                           tr("FullScreenMode") : tr("NormalMode"));
 }

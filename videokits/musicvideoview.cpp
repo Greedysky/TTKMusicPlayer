@@ -5,7 +5,7 @@
 #include <QGraphicsVideoItem>
 #include <QMouseEvent>
 
-MusicVideoView::MusicVideoView(QWidget *parent)
+MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent)
     , m_mediaPlayer(0, QMediaPlayer::VideoSurface)
     , m_videoItem(0) , m_videoControl(0)
@@ -21,7 +21,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     m_videoItem->setSize(QSizeF(500,400));
 //    fitInView(m_videoItem, Qt::KeepAspectRatio);
 
-    m_videoControl = new MusicVideoControl(this);
+    m_videoControl = new MusicVideoControl(popup, this);
     m_videoControl->hide();
 
     connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));

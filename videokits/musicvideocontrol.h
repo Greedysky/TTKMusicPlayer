@@ -23,7 +23,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoControl : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoControl(QWidget *parent = 0);
+    explicit MusicVideoControl(bool popup, QWidget *parent = 0);
     ~MusicVideoControl();
 
     void setValue(qint64 position) const;
@@ -44,6 +44,7 @@ protected:
     QToolButton *m_menuButton, *m_volumnButton;
     QPushButton *m_playButton;
     QPushButton *m_inSideButton, *m_fullButton;
+    bool m_widgetPopup;
 
 };
 

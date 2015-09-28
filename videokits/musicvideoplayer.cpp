@@ -10,9 +10,14 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
-MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
+MusicVideoPlayer::MusicVideoPlayer(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent)
 {
+    if(popup)
+    {
+        resize(525, 455);
+    }
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -30,7 +35,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     m_afterButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_afterButton->setIconSize(QSize(20, 20));
 
-    m_textLabel = new QLabel("Music Video", m_topWidget);
+    m_textLabel = new QLabel(tr("Music Video"), m_topWidget);
     m_textLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
     m_searchEdit = new MusicLocalSongSearchEdit(m_topWidget);
     m_searchButton = new QPushButton(m_topWidget);
@@ -53,7 +58,7 @@ MusicVideoPlayer::MusicVideoPlayer(QWidget *parent)
     layout->addWidget(m_stackedWidget);
     setLayout(layout);
 
-    m_videoView = new MusicVideoView(this);
+    m_videoView = new MusicVideoView(popup, this);
     m_videoTable = new MusicVideoTableWidget(this);
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);

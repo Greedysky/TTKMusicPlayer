@@ -304,7 +304,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
             return;
         }
         delete m_videoPlayer;
-        m_videoPlayer = new MusicVideoPlayer;
+        m_videoPlayer = new MusicVideoPlayer(false);
         m_videoPlayer->blockMoveOption(true);
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
         m_ui->SurfaceStackedWidget->setCurrentIndex(3);
@@ -342,7 +342,7 @@ void MusicRightAreaWidget::msuicVideoSetPopup(bool popup)
         createVideoWidget(false);
         musicButtonStyleClear();
         m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
-        m_videoPlayer = new MusicVideoPlayer;
+        m_videoPlayer = new MusicVideoPlayer(true);
         m_videoPlayer->show();
     }
     else

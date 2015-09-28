@@ -22,7 +22,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoPlayer : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    MusicVideoPlayer(QWidget *parent = 0);
+    MusicVideoPlayer(bool popup, QWidget *parent = 0);
     ~MusicVideoPlayer();
 
 public slots:

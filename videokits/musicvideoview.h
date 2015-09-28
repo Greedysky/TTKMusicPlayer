@@ -20,7 +20,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    MusicVideoView(QWidget *parent = 0);
+    MusicVideoView(bool popup, QWidget *parent = 0);
     virtual ~MusicVideoView();
 
     void setMedia(const QString &data);
