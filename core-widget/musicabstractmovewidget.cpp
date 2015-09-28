@@ -8,6 +8,7 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
 
+    m_moveOption = false;
     m_leftButtonPress = false;
     m_showShadow = true;
 }
@@ -44,7 +45,7 @@ void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)
 void MusicAbstractMoveWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
-    if( event->button() == Qt::LeftButton )///Press the left key
+    if( event->button() == Qt::LeftButton && !m_moveOption)///Press the left key
     {
         m_leftButtonPress = true;
     }

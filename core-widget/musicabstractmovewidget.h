@@ -24,6 +24,7 @@ public:
     virtual ~MusicAbstractMoveWidget();
 
     inline void drawWindowShadow(bool show) { m_showShadow = show;}
+    inline void blockMoveOption(bool block) { m_moveOption = block;}
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
@@ -32,6 +33,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
 
     QPoint m_pressAt;
+    bool m_moveOption;
     bool m_leftButtonPress;
     bool m_showShadow;
 
