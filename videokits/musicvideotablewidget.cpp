@@ -8,15 +8,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
     setColumnCount(8);
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,30);
-    headerview->resizeSection(1,175);
-    headerview->resizeSection(2,151);
-    headerview->resizeSection(3,30);
-    headerview->resizeSection(4,55);
-    headerview->resizeSection(5,24);
-    headerview->resizeSection(6,24);
-    headerview->resizeSection(7,24);
+    resizeWindow(1.0f);
     setTransparent(255);
     qsrand(time(NULL));
 }
@@ -127,6 +119,19 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
     MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2], QString("%1 - %2.%3")
         .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), Download_Video, this);
     download->startToDownload();
+}
+
+void MusicVideoTableWidget::resizeWindow(float delta)
+{
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 30*delta);
+    headerview->resizeSection(1, 175*delta);
+    headerview->resizeSection(2, 151*delta);
+    headerview->resizeSection(3, 30*delta);
+    headerview->resizeSection(4, 55*delta);
+    headerview->resizeSection(5, 24*delta);
+    headerview->resizeSection(6, 24*delta);
+    headerview->resizeSection(7, 24*delta);
 }
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int column)

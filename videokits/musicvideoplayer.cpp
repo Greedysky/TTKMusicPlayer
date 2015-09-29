@@ -84,6 +84,20 @@ MusicVideoPlayer::~MusicVideoPlayer()
     delete m_stackedWidget;
 }
 
+void MusicVideoPlayer::resizeWindow(bool resize)
+{
+    if(resize)
+    {
+        showFullScreen();
+    }
+    else
+    {
+        setGeometry(250, 150, 525, 455);
+    }
+    m_videoView->resizeWindow(resize, size());
+    m_videoTable->resizeWindow(size().width() / 525.0);
+}
+
 void MusicVideoPlayer::backButtonClicked()
 {
     m_stackedWidget->setCurrentIndex(0);

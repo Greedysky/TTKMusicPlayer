@@ -21,6 +21,7 @@ public:
 
     void startSearchQuery(const QString &text);
     void musicDownloadLocal(int row);
+    void resizeWindow(float delta);
 
 signals:
     void mvURLChanged(const QString &data);

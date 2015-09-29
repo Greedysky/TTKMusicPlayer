@@ -135,8 +135,10 @@ void MusicConnectionPool::connect(const QString &from,
 
     if(from == "MusicVideoControl" && to == "MusicRightAreaWidget" )
     {
-        QObject::connect(first, SIGNAL(msuicVideoSetPopup(bool)), second,
-                                SLOT(msuicVideoSetPopup(bool)));
+        QObject::connect(first, SIGNAL(musicVideoSetPopup(bool)), second,
+                                SLOT(musicVideoSetPopup(bool)));
+        QObject::connect(first, SIGNAL(musicVideoFullscreen(bool)), second,
+                                SLOT(musicVideoFullscreen(bool)));
     }
 
 }

@@ -24,6 +24,7 @@ public:
     virtual ~MusicVideoView();
 
     void setMedia(const QString &data);
+    void resizeWindow(bool resize, QSize size);
 
 public slots:
     void play();

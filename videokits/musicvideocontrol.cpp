@@ -105,11 +105,12 @@ void MusicVideoControl::setButtonStyle(bool style) const
 
 void MusicVideoControl::inSideButtonClicked()
 {
-    emit msuicVideoSetPopup( !m_widgetPopup );
+    emit musicVideoSetPopup( !m_widgetPopup );
 }
 
 void MusicVideoControl::fullButtonClicked()
 {
     m_fullButton->setText(m_fullButton->text() == tr("NormalMode") ?
-                           tr("FullScreenMode") : tr("NormalMode"));
+                          tr("FullScreenMode") : tr("NormalMode"));
+    emit musicVideoFullscreen( m_fullButton->text() == tr("NormalMode") );
 }

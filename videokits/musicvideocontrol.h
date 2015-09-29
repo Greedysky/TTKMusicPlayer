@@ -31,7 +31,8 @@ public:
     void setButtonStyle(bool style) const;
 
 signals:
-    void msuicVideoSetPopup(bool popup);
+    void musicVideoSetPopup(bool popup);
+    void musicVideoFullscreen(bool full);
 
 private slots:
     void inSideButtonClicked();

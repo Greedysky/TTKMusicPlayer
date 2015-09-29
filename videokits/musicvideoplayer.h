@@ -25,6 +25,8 @@ public:
     MusicVideoPlayer(bool popup, QWidget *parent = 0);
     ~MusicVideoPlayer();
 
+    void resizeWindow(bool resize);
+
 public slots:
     void backButtonClicked();
     void afterButtonClicked();

@@ -335,7 +335,7 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
     }
 }
 
-void MusicRightAreaWidget::msuicVideoSetPopup(bool popup)
+void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
 {
     if(popup)
     {
@@ -350,4 +350,9 @@ void MusicRightAreaWidget::msuicVideoSetPopup(bool popup)
         createVideoWidget(false);
         createVideoWidget(true);
     }
+}
+
+void MusicRightAreaWidget::musicVideoFullscreen(bool full)
+{
+    m_videoPlayer->resizeWindow(full);
 }

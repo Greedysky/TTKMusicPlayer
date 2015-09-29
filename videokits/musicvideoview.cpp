@@ -14,13 +14,17 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
 {
     setObjectName("VideoPlayer");
     setStyleSheet(MusicUIObject::MCustomStyle19);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     m_videoItem = new QGraphicsVideoItem;
     m_mediaPlayer.setVideoOutput(m_videoItem);
 
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->addItem(m_videoItem);
     setScene(scene);
-    m_videoItem->setSize(QSizeF(500,400));
+    m_videoItem->setSize(QSizeF(500, 400));
 //    fitInView(m_videoItem, Qt::KeepAspectRatio);
 
     m_videoControl = new MusicVideoControl(popup, this);
@@ -67,6 +71,22 @@ void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer.setMedia(QUrl(data));
     QTimer::singleShot(10*1000, this, SLOT(stop()));
+}
+
+void MusicVideoView::resizeWindow(bool resize, QSize size)
+{
+    if(resize)
+    {
+        m_videoItem->setSize(QSizeF(size.width()*0.8, size.height()*0.8));
+        m_videoControl->setFixedWidth( size.width() );
+        m_videoControl->setGeometry(0, size.height() - 40 - 50, size.width(), 40);
+    }
+    else
+    {
+        m_videoItem->setSize(QSizeF(500, 400));
+        m_videoControl->setFixedWidth( 520 );
+        m_videoControl->setGeometry(0, 375, 520, 40);
+    }
 }
 
 void MusicVideoView::play()
