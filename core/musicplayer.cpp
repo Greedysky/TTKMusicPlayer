@@ -244,10 +244,11 @@ void MusicPlayer::setTimeOut()
     emit positionChanged( position() );
 
     if(m_play3DMusic)
-    {   ///3D music settings
+    {
+        ///3D music settings
         m_posOnCircle += 0.5f;
         TEchoEffect effect;
-        effect.nLeftDelay = 1000;
+        effect.nLeftDelay = 450;
         effect.nLeftEchoVolume = 20;
         effect.nLeftSrcVolume = 100 * cosf(m_posOnCircle);
         effect.nRightDelay = 500;
