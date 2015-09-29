@@ -28,6 +28,9 @@ public:
     void nativeEvent(const QByteArray &eventType,
                      void *message, long *result);
 
+    void windowStartAnimationOpacity();
+    void windowCloseAnimationOpacity();
+
 signals:
     void getCurrentPlayList(QStringList &list);
 

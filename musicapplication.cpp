@@ -104,17 +104,16 @@ MusicApplication::~MusicApplication()
 void MusicApplication::closeEvent(QCloseEvent *event)
 {
     QWidget::closeEvent(event);
+    event->ignore();
     if(!m_bottomAreaWidget->getSystemCloseConfig() &&
         m_bottomAreaWidget->systemTrayIsVisible() )
     {
-       this->hide();
+       hide();
        m_bottomAreaWidget->showMessage(tr("Prompt"),
                                        tr("QMusicPlayer will run in the background"));
-       event->ignore();
     }
     else
     {
-       event->accept();
        quitWindowClose();
     }
 }
@@ -400,9 +399,9 @@ void MusicApplication::writeXMLConfigToText()
 
 void MusicApplication::quitWindowClose()
 {
-    writeXMLConfigToText();
     //Write configuration files
-    qApp->quit();
+    writeXMLConfigToText();
+    m_object->windowCloseAnimationOpacity();
 }
 
 void MusicApplication::positionChanged(qint64 position)

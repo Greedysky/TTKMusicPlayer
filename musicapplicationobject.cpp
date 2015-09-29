@@ -1,5 +1,4 @@
 #include "musicapplicationobject.h"
-#include <QPropertyAnimation>
 #include <Windows.h>
 #include <Dbt.h>
 #include "musicmobiledeviceswidget.h"
@@ -10,16 +9,15 @@
 #include "musicequalizerdialog.h"
 #include "musicconnectionpool.h"
 
+#include <QPropertyAnimation>
+#include <QApplication>
+
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(NULL)
 {
     m_supperClass = static_cast<QWidget*>(parent);
 
-    m_animation = new QPropertyAnimation(parent, "windowOpacity");
-    m_animation->setDuration(1000);
-    m_animation->setStartValue(0);
-    m_animation->setEndValue(1);
-    m_animation->start();
+    windowStartAnimationOpacity();
 
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
     connect(m_musicTimerAutoObj, SIGNAL(setPlaySong(int)), parent,
@@ -39,6 +37,25 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;
     delete m_animation;
+}
+
+void MusicApplicationObject::windowStartAnimationOpacity()
+{
+    m_animation = new QPropertyAnimation(m_supperClass, "windowOpacity");
+    m_animation->setDuration(1000);
+    m_animation->setStartValue(0);
+    m_animation->setEndValue(1);
+    m_animation->start();
+}
+
+void MusicApplicationObject::windowCloseAnimationOpacity()
+{
+    m_animation->stop();
+    m_animation->setDuration(1000);
+    m_animation->setStartValue(1);
+    m_animation->setEndValue(0);
+    m_animation->start();
+    QTimer::singleShot(1000, qApp, SLOT(quit()));
 }
 
 void MusicApplicationObject::nativeEvent(const QByteArray &,
