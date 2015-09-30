@@ -70,11 +70,15 @@ bool MusicPlayer::isMuted() const
 
 void MusicPlayer::setMusicEnhanced(Enhanced type)
 {
-    qDebug()<<type;
     m_musicEnhanced = type;
     m_music->EnableEcho(false);
     m_music->EnableEqualizer(false);
-    setMusicEnhancedCase();
+    if(m_musicEnhanced != Music3D &&
+       m_musicEnhanced != EnhancedOff)
+    {
+        m_music->EnableEqualizer(true);
+        setMusicEnhancedCase();
+    }
 }
 
 MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
@@ -291,7 +295,6 @@ void MusicPlayer::setTimeOut()
 
 void MusicPlayer::setMusicEnhancedCase()
 {
-    m_music->EnableEqualizer(true);
     switch(m_musicEnhanced)
     {
         case MusicVocal:

@@ -141,6 +141,12 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(musicVideoFullscreen(bool)));
     }
 
+    if(from == "MusicApplicationObject" && to == "MusicEnhancedWidget" )
+    {
+        QObject::connect(first, SIGNAL(enhancedMusicChanged(int)), second,
+                                SLOT(setEnhancedMusicConfig(int)));
+    }
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)

@@ -1,5 +1,7 @@
 #include "musicenhancedwidget.h"
+#include "musicsettingmanager.h"
 #include "musicuiobject.h"
+#include "musicconnectionpool.h"
 
 #include <QMenu>
 #include <QWidgetAction>
@@ -10,6 +12,12 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     : QToolButton(parent)
 {
     initWidget();
+    M_Connection->setValue("MusicEnhancedWidget", this);
+}
+
+MusicEnhancedWidget::~MusicEnhancedWidget()
+{
+    M_Connection->disConnect("MusicEnhancedWidget");
 }
 
 void MusicEnhancedWidget::initWidget()
@@ -49,5 +57,7 @@ void MusicEnhancedWidget::initWidget()
 
 void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
 {
+    M_SETTING->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
+    M_SETTING->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
     emit enhancedMusicChanged(type);
 }

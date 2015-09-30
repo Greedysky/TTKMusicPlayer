@@ -17,6 +17,7 @@ class MUSIC_WIDGET_EXPORT MusicEnhancedWidget : public QToolButton
     Q_OBJECT
 public:
     explicit MusicEnhancedWidget(QWidget *parent = 0);
+    ~MusicEnhancedWidget();
 
 signals:
     void enhancedMusicChanged(int type);

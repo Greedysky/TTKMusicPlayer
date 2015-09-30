@@ -8,9 +8,11 @@
 #include "musicmessagebox.h"
 #include "musicequalizerdialog.h"
 #include "musicconnectionpool.h"
+#include "musicsettingmanager.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
+#include <QDebug>
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(NULL)
@@ -28,6 +30,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_setWindowToTop = false;
     M_Connection->setValue("MusicApplicationObject", this);
     M_Connection->connect("MusicApplicationObject", "MusicApplication");
+    M_Connection->connect("MusicApplicationObject", "MusicEnhancedWidget");
 
     musicToolSetsParameter();
 }
@@ -149,6 +152,16 @@ void MusicApplicationObject::musicToolSetsParameter()
 
 void MusicApplicationObject::musicSetEqualizer()
 {
+    if(M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("we are opening the magic sound, if you want to close?"));
+        if(message.exec())
+        {
+            return;
+        }
+        emit enhancedMusicChanged(0);
+    }
     MusicEqualizerDialog eq;
     eq.exec();
 }

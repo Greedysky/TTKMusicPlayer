@@ -33,6 +33,7 @@ public:
 
 signals:
     void getCurrentPlayList(QStringList &list);
+    void enhancedMusicChanged(int type);
 
 public slots:
     void musicAboutUs();
