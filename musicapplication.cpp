@@ -270,10 +270,8 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
     //Configure playback mode
-    if(xml.readEnhancedMusicConfig())
-    {
-        musicSetPlay3DMusic();
-    }
+    ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
+
     createPlayModeMenu(m_playModeMenu);
     switch( xml.readMusicPlayModeConfig() )
     {
@@ -855,17 +853,15 @@ void MusicApplication::addSongToPlayList(const QStringList &item)
     musicPlayIndex(m_musicList->mediaCount() - 1, 0);
 }
 
-void MusicApplication::musicSetPlay3DMusic()
-{
-//    bool flag = true;
-//    m_musicPlayer->setPlay3DMusicFlag(flag);
-//    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(flag ? ":/equalizer/3doff" : ":/equalizer/3don")));
-}
-
 void MusicApplication::musicWindowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
     m_topAreaWidget->musicBgThemeDownloadFinished();
+}
+
+void MusicApplication::musicEnhancedMusicChanged(int type)
+{
+    m_musicPlayer->setMusicEnhanced(static_cast<MusicPlayer::Enhanced>(type));
 }
 
 void MusicApplication::getCurrentPlayList(QStringList &list)

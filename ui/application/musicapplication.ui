@@ -536,7 +536,7 @@
     <enum>QToolButton::InstantPopup</enum>
    </property>
   </widget>
-  <widget class="MusicEnhancedWidget" name="musicEnhancedButton">
+  <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
      <x>338</x>
@@ -960,7 +960,6 @@
   <zorder>musicBestLove</zorder>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>musicButton_tools</zorder>
-  <zorder>music3DPlayButton</zorder>
   <zorder>musicWindowRemote</zorder>
   <zorder>musicButton_playlist</zorder>
   <zorder>musicButton_radio</zorder>
@@ -981,6 +980,7 @@
   <zorder>resizeWindowLabel</zorder>
   <zorder>minimization</zorder>
   <zorder>verticalLayoutWidget</zorder>
+  <zorder>musicEnhancedButton</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1014,9 +1014,9 @@
    <header>musiclocalsongsearchinlineedit.h</header>
    <container>1</container>
   </customwidget>
-    <customwidget>
+  <customwidget>
    <class>MusicEnhancedWidget</class>
-   <extends>QToolButton</extends>
+   <extends>QWidget</extends>
    <header>musicenhancedwidget.h</header>
    <container>1</container>
   </customwidget>

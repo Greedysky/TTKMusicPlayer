@@ -70,6 +70,7 @@ bool MusicPlayer::isMuted() const
 
 void MusicPlayer::setMusicEnhanced(Enhanced type)
 {
+    qDebug()<<type;
     m_musicEnhanced = type;
     m_music->EnableEcho(false);
     m_music->EnableEqualizer(false);

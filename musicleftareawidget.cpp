@@ -40,6 +40,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
     connect(ui->musicButton_mydownl,SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
+    connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), m_supperClass,
+                                    SLOT(musicEnhancedMusicChanged(int)));
 
     ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));

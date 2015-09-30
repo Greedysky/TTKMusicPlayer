@@ -65,8 +65,8 @@ public slots:
     void musicSetting();
     void musicCurrentPlayLocation();
     void musicAddSongToLovestListAt();
-    void musicSetPlay3DMusic();
     void musicWindowConciseChanged();
+    void musicEnhancedMusicChanged(int type);
     /////////////////////////////////////////////
     //This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int row, int col);

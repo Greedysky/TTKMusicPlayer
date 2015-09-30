@@ -19,8 +19,11 @@ public:
     explicit MusicEnhancedWidget(QWidget *parent = 0);
 
 signals:
+    void enhancedMusicChanged(int type);
 
 public slots:
+    void setEnhancedMusicConfig(int type);
+
 protected:
     void initWidget();
     QMenu *m_menu;

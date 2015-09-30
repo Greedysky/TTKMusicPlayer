@@ -30,7 +30,6 @@ void MusicEqualizer::readEqInformation()
     ///Read the equalizer parameters from a configuration file
     if(M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
-        setEnaleEffect(true);
         QStringList eqValue = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
@@ -46,6 +45,7 @@ void MusicEqualizer::readEqInformation()
 
 void MusicEqualizer::setEqEffect(const MIntList &hz)
 {
+    setEnaleEffect(true);
     M_LOOGER << "Equalizer" << "setEqEffect-----";
     ///set equalizer
     for(int i=0; i<m_Fcount; ++i)
