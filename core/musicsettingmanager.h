@@ -26,7 +26,7 @@ public:
         PlayModeChoiced,
         VolumeChoiced,
         AutoPlayChoiced,
-        Play3DMusicChoiced,
+        EnhancedMusicChoiced,
         CurrentLanIndexChoiced,
         CloseEventChoiced,
         LastPlayIndexChoiced,

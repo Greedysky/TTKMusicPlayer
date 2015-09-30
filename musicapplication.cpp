@@ -270,7 +270,7 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
     //Configure playback mode
-    if(xml.read3DMusicPlayConfig())
+    if(xml.readEnhancedMusicConfig())
     {
         musicSetPlay3DMusic();
     }
@@ -380,11 +380,9 @@ void MusicApplication::writeXMLConfigToText()
     MusicXMLConfigManager xml;
     QStringList lastPlayIndexChoiced;
 
-    bool flag;
-    m_musicPlayer->setPlay3DMusicFlag(flag);
-    M_SETTING->setValue(MusicSettingManager::Play3DMusicChoiced, flag ? 1 : 0);
+    M_SETTING->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
     M_SETTING->setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
-    M_SETTING->setValue(MusicSettingManager::VolumeChoiced,ui->musicSoundSlider->value());
+    M_SETTING->setValue(MusicSettingManager::VolumeChoiced, ui->musicSoundSlider->value());
     lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     lastPlayIndexChoiced[1] = QString::number(m_musicSongTree->getCurrentPlayToolIndex());
     lastPlayIndexChoiced[2] = QString::number(m_musicList->currentIndex());
@@ -859,9 +857,9 @@ void MusicApplication::addSongToPlayList(const QStringList &item)
 
 void MusicApplication::musicSetPlay3DMusic()
 {
-    bool flag;
-    m_musicPlayer->setPlay3DMusicFlag(flag);
-    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(flag ? ":/equalizer/3doff" : ":/equalizer/3don")));
+//    bool flag = true;
+//    m_musicPlayer->setPlay3DMusicFlag(flag);
+//    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(flag ? ":/equalizer/3doff" : ":/equalizer/3don")));
 }
 
 void MusicApplication::musicWindowConciseChanged()

@@ -11,14 +11,14 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_playlist = NULL;
     m_music = NULL;
     m_state = StoppedState;
+    m_musicEnhanced = EnhancedOff;
     m_music = CreateZPlay();
     Q_ASSERT(m_music);
     m_equalizer = new MusicEqualizer(m_music);
-    connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
-    m_play3DMusic = false;
     m_posOnCircle = 0;
     m_currentVolumn = 100;
 
+    connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
     M_Connection->setValue("MusicPlayer", this);
 }
 
@@ -71,18 +71,14 @@ bool MusicPlayer::isMuted() const
 void MusicPlayer::setMusicEnhanced(Enhanced type)
 {
     m_musicEnhanced = type;
+    m_music->EnableEcho(false);
+    m_music->EnableEqualizer(false);
+    setMusicEnhancedCase();
 }
 
 MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
 {
     return m_musicEnhanced;
-}
-
-void MusicPlayer::setPlay3DMusicFlag(bool &flag)
-{
-    flag = m_play3DMusic;
-    m_play3DMusic = !m_play3DMusic;
-    m_music->EnableEcho(m_play3DMusic);
 }
 
 void MusicPlayer::addAuditionUrl(const QString &url)
@@ -253,9 +249,9 @@ void MusicPlayer::setTimeOut()
 {
     emit positionChanged( position() );
 
-    if(m_play3DMusic)
-    {
-        ///3D music settings
+    if(m_musicEnhanced == Music3D)
+    {   ///3D music settings
+        m_music->EnableEcho(true);
         m_posOnCircle += 0.5f;
         TEchoEffect effect;
         effect.nLeftDelay = 450;
@@ -289,6 +285,25 @@ void MusicPlayer::setTimeOut()
             return;
         }
         play();
+    }
+}
+
+void MusicPlayer::setMusicEnhancedCase()
+{
+    m_music->EnableEqualizer(true);
+    switch(m_musicEnhanced)
+    {
+        case MusicVocal:
+            setEqEffect(MIntList()<<0<<6<<4<<1<<0<<0<<-3<<-4<<-4<<0<<0);
+            break;
+        case MusicNICAM:
+            setEqEffect(MIntList()<<0<<-12<<-12<<-9<<-6<<-3<<-12<<-9<<-6<<-3<<-12);
+            break;
+        case MusicSubwoofer:
+            setEqEffect(MIntList()<<0<<8<<1<<-5<<-1<<2<<-2<<-4<<-4<<0<<0);
+            break;
+        default:
+            break;
     }
 }
 

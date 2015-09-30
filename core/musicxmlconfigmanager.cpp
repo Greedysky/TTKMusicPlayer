@@ -85,7 +85,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int playModeChoiced = M_SETTING->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
     QString autoPlayChoiced = M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toString();
-    int play3DMusicChoiced = M_SETTING->value(MusicSettingManager::Play3DMusicChoiced).toInt();
+    int enhancedMusicChoiced = M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     int languageIndexChoiced = M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     QString closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toString();
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
@@ -152,7 +152,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
 
-    writeDomElement(settings, "play3DMusic", "value", play3DMusicChoiced);
+    writeDomElement(settings, "enhancedMusic", "value", enhancedMusicChoiced);
     writeDomElement(settings, "language", "value", languageIndexChoiced);
     writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);

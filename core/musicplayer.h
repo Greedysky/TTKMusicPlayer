@@ -61,8 +61,6 @@ public:
     void setMusicEnhanced(Enhanced type);
     Enhanced getMusicEnhanced() const;
 
-    void setPlay3DMusicFlag(bool &flag);
-
     void addAuditionUrl(const QString &url);
     void addAuditionUrl(const QUrl &url);
     void startAudition();
@@ -100,6 +98,8 @@ private slots:
     void removeCurrentMedia();
 
 protected:
+    void setMusicEnhancedCase();
+
     QMediaPlayer *m_audition;
     MusicEqualizer *m_equalizer;
     MusicPlaylist *m_playlist;
@@ -110,7 +110,6 @@ protected:
     Enhanced m_musicEnhanced;
 
     int m_currentVolumn;
-    bool m_play3DMusic;
     float m_posOnCircle;
 
 };

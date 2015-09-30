@@ -536,7 +536,7 @@
     <enum>QToolButton::InstantPopup</enum>
    </property>
   </widget>
-  <widget class="QToolButton" name="music3DPlayButton">
+  <widget class="MusicEnhancedWidget" name="musicEnhancedButton">
    <property name="geometry">
     <rect>
      <x>338</x>
@@ -544,9 +544,6 @@
      <width>40</width>
      <height>20</height>
     </rect>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
   <widget class="QToolButton" name="musicWindowRemote">
@@ -1015,6 +1012,12 @@
    <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
    <header>musiclocalsongsearchinlineedit.h</header>
+   <container>1</container>
+  </customwidget>
+    <customwidget>
+   <class>MusicEnhancedWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicenhancedwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

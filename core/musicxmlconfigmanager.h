@@ -31,8 +31,8 @@ public:
     { return readXmlByTagNameAndAttribute("closeEvent"); }
     inline QString readSystemAutoPlayConfig() const
     { return readXmlByTagNameAndAttribute("autoPlay"); }
-    inline int read3DMusicPlayConfig() const
-    { return readXmlByTagNameAndAttribute("play3DMusic").toInt(); }
+    inline int readEnhancedMusicConfig() const
+    { return readXmlByTagNameAndAttribute("enhancedMusic").toInt(); }
     inline QString readBackgroundTheme() const
     { return readXmlByTagNameAndAttribute("bgTheme"); }
     inline QString readBackgroundTransparent() const

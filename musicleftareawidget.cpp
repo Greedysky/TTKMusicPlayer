@@ -36,7 +36,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSound,SIGNAL(clicked()),m_supperClass,SLOT(musicVolumeNULL()));
     connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),m_supperClass,SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove,SIGNAL(clicked()),m_supperClass,SLOT(musicAddSongToLovestListAt()));
-    connect(ui->music3DPlayButton,SIGNAL(clicked()),m_supperClass,SLOT(musicSetPlay3DMusic()));
     connect(ui->musicButton_playlist,SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
     connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
@@ -46,7 +45,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
-    ui->music3DPlayButton->setIcon(QIcon(QString::fromUtf8(":/equalizer/3doff")));
     ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/image/buttoncloud")));
     ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/image/buttonmydownl")));
     ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/image/buttonplaylist")));
@@ -56,7 +54,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setIconSize(QSize(45,45));
     ui->musicKey->setIconSize(QSize(45,45));
     ui->musicBestLove->setIconSize(QSize(25,25));
-    ui->music3DPlayButton->setIconSize(QSize(40,20));
     ui->musicButton_cloud->setIconSize(QSize(35,35));
     ui->musicButton_mydownl->setIconSize(QSize(35,35));
     ui->musicButton_playlist->setIconSize(QSize(35,35));
@@ -70,7 +67,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->music3DPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle03);
