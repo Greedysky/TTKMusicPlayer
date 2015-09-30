@@ -30,17 +30,36 @@ public:
         PausedState
     };
 
+    enum Enhanced
+    {
+        EnhancedOff,
+        Music3D,
+        MusicVocal,
+        MusicNICAM,
+        MusicSubwoofer
+    };
+
     MusicPlayer(QObject *parent = 0);
     ~MusicPlayer();
 
     State state() const;
+    void setPlaylist(MusicPlaylist *playlist);
     MusicPlaylist *playlist() const;
 
     qint64 duration() const;
     qint64 position() const;
 
+    void playNext();
+    void playPrivious();
+
     int volume() const;
+    void setVolume(int volume);
     bool isMuted() const;
+    void setMuted(bool muted);
+    void setPosition(qint64 position);
+
+    void setMusicEnhanced(Enhanced type);
+    Enhanced getMusicEnhanced() const;
 
     void setPlay3DMusicFlag(bool &flag);
 
@@ -54,7 +73,6 @@ public:
     static QStringList supportFormatsFilterDialogString();
 
 signals:
-    void stateChanged();
     void stateChanged(MusicPlayer::State newState);
 
     void durationChanged(qint64 duration);
@@ -67,27 +85,19 @@ public slots:
     void play();
     void pause();
     void stop();
-    void playNext();
-    void playPrivious();
-
-    void setPosition(qint64 position);
-    void setVolume(int volume);
-    void setMuted(bool muted);
-
-    void setPlaylist(MusicPlaylist *playlist);
-
-    void setTimeOut();
-    void removeCurrentMedia();
 
     void setEqEffect(const MIntList &hz);
     void setEnaleEffect(bool enable);
     void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
     void resetEqEffect();
-
 #ifdef Q_OS_WIN32
     void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
 #endif
+
+private slots:
+    void setTimeOut();
+    void removeCurrentMedia();
 
 protected:
     QMediaPlayer *m_audition;
@@ -97,6 +107,7 @@ protected:
     ZPlay *m_music;
     QTimer m_timer;
     QString m_currentMedia;
+    Enhanced m_musicEnhanced;
 
     int m_currentVolumn;
     bool m_play3DMusic;

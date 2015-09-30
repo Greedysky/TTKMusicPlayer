@@ -68,6 +68,16 @@ bool MusicPlayer::isMuted() const
     return (volume() == 0) ? true : false;
 }
 
+void MusicPlayer::setMusicEnhanced(Enhanced type)
+{
+    m_musicEnhanced = type;
+}
+
+MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
+{
+    return m_musicEnhanced;
+}
+
 void MusicPlayer::setPlay3DMusicFlag(bool &flag)
 {
     flag = m_play3DMusic;
@@ -266,7 +276,7 @@ void MusicPlayer::setTimeOut()
         {
             m_music->Stop();
             emit positionChanged(0);
-            emit stateChanged();
+            emit stateChanged(StoppedState);
             return;
         }
         m_playlist->setCurrentIndex();
@@ -275,7 +285,7 @@ void MusicPlayer::setTimeOut()
         {
             m_music->Stop();
             emit positionChanged(0);
-            emit stateChanged();
+            emit stateChanged(StoppedState);
             return;
         }
         play();

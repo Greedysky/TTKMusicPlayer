@@ -68,7 +68,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
 
     connect(m_musicPlayer,SIGNAL(positionChanged(qint64)),SLOT(positionChanged(qint64)));
     connect(m_musicPlayer,SIGNAL(durationChanged(qint64)),SLOT(durationChanged(qint64)));
-    connect(m_musicPlayer,SIGNAL(stateChanged()),SLOT(stateChanged()));
+    connect(m_musicPlayer,SIGNAL(stateChanged(MusicPlayer::State)),SLOT(stateChanged()));
     connect(m_musicList,SIGNAL(currentIndexChanged(int)), this, SLOT(showCurrentSong(int)));
     connect(m_musicList,SIGNAL(currentIndexChanged(int)), m_musicSongTree, SLOT(setMusicPlayCount(int)));
 

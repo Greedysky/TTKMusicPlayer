@@ -43,8 +43,7 @@ signals:
     void removeCurrentMedia();
 
 public slots:
-    void setCurrentIndex(int index);
-    void setCurrentIndex();
+    void setCurrentIndex(int index = -2);
     void appendMedia(const QString &content);
     void appendMedia(const QStringList &items);
     void updateMediaLists(const QStringList &list, int index);

@@ -130,28 +130,27 @@ bool MusicPlaylist::removeMedia(int start, int end)
 
 void MusicPlaylist::setCurrentIndex(int index)
 {
-//    if( index < 0 || index >= m_mediaList.count())
-//        return;
-    m_currentIndex = index;
-    emit currentIndexChanged(index);
-}
-
-void MusicPlaylist::setCurrentIndex()
-{
-    switch(m_playbackMode)
+    if(index == -2)
     {
-        case MusicObject::MC_PlayOneLoop:break;
-        case MusicObject::MC_PlayOrder:
-            if(++m_currentIndex >= m_mediaList.count())
-                m_currentIndex = -1;
-            break;
-        case MusicObject::MC_PlayListLoop:
-            if(++m_currentIndex >= m_mediaList.count())
-                m_currentIndex = 0;
-            break;
-        case MusicObject::MC_PlayRandom:
-            m_currentIndex = rand() % m_mediaList.count();
-            break;
+        switch(m_playbackMode)
+        {
+            case MusicObject::MC_PlayOneLoop:break;
+            case MusicObject::MC_PlayOrder:
+                if(++m_currentIndex >= m_mediaList.count())
+                    m_currentIndex = -1;
+                break;
+            case MusicObject::MC_PlayListLoop:
+                if(++m_currentIndex >= m_mediaList.count())
+                    m_currentIndex = 0;
+                break;
+            case MusicObject::MC_PlayRandom:
+                m_currentIndex = rand() % m_mediaList.count();
+                break;
+        }
+    }
+    else
+    {
+        m_currentIndex = index;
     }
     emit currentIndexChanged(m_currentIndex);
 }
