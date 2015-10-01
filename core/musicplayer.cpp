@@ -298,13 +298,13 @@ void MusicPlayer::setMusicEnhancedCase()
     switch(m_musicEnhanced)
     {
         case MusicVocal:
-            setEqEffect(MIntList()<<0<<6<<4<<1<<0<<0<<-3<<-4<<-4<<0<<0);
+            setEqEffect(MIntList()<<0<<8<<1<<-5<<-1<<2<<-2<<-4<<-4<<0<<0);
             break;
         case MusicNICAM:
             setEqEffect(MIntList()<<0<<-12<<-12<<-9<<-6<<-3<<-12<<-9<<-6<<-3<<-12);
             break;
         case MusicSubwoofer:
-            setEqEffect(MIntList()<<0<<8<<1<<-5<<-1<<2<<-2<<-4<<-4<<0<<0);
+            setEqEffect(MIntList()<<0<<6<<4<<1<<-2<<-3<<-5<<-7<<-9<<-11<<-13);
             break;
         default:
             break;
