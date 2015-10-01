@@ -355,4 +355,5 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)
 {
     m_videoPlayer->resizeWindow(full);
+    m_videoPlayer->blockMoveOption(full);
 }
