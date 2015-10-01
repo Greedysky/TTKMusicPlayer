@@ -195,5 +195,11 @@
         <file alias="off">../resource/enhance/enhance_off.png</file>
         <file alias="on">../resource/enhance/enhance_on.png</file>
         <file alias="background">../resource/enhance/enhance_background.png</file>
+        <file alias="iconOff">../resource/enhance/icon_off.png</file>
+        <file alias="icon3D">../resource/enhance/icon_3D.png</file>
+        <file alias="iconNICAM">../resource/enhance/icon_NICAM.png</file>
+        <file alias="iconVocal">../resource/enhance/icon_vocal.png</file>
+        <file alias="iconSubwoofer">../resource/enhance/icon_subwoofer.png</file>
     </qresource>
+
 </RCC>
