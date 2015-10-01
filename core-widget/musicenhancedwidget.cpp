@@ -6,7 +6,6 @@
 #include <QMenu>
 #include <QWidgetAction>
 #include <QButtonGroup>
-#include <QDebug>
 
 MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     : QToolButton(parent)
@@ -86,8 +85,7 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
         case 3: prfix.append("iconNICAM');}"); break;
         case 4: prfix.append("iconSubwoofer');}"); break;
     }
-    setStyleSheet("QToolButton::menu-indicator{image:None;}" + prfix +
-                  "QWidget{border:none;}");
+    setStyleSheet("QToolButton::menu-indicator{image:None;}" + prfix + "QWidget{border:none;}");
 
     prfix = QString("background-image:url(':/enhance/%1')");
     m_caseButton->setStyleSheet(prfix.arg(type ? "on" : "off"));
@@ -95,8 +93,6 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
     m_Button2->setStyleSheet(prfix.arg(type == 2 ? "vocalOn" : "vocalOff"));
     m_Button3->setStyleSheet(prfix.arg(type == 3 ? "NICAMOn" : "NICAMOff"));
     m_Button4->setStyleSheet(prfix.arg(type == 4 ? "subwooferOn" : "subwooferOff"));
-
-
 
     M_SETTING->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
     M_SETTING->setValue(MusicSettingManager::EnhancedMusicChoiced, type);

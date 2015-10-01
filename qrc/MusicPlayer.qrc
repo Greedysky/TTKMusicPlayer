@@ -94,8 +94,6 @@
     <qresource prefix="/equalizer">
         <file alias="off">../resource/equalizer/eq_off.png</file>
         <file alias="on">../resource/equalizer/eq_on.png</file>
-        <file alias="3doff">../resource/equalizer/3DMusic_off.png</file>
-        <file alias="3don">../resource/equalizer/3DMusic_on.png</file>
         <file alias="arrow">../resource/equalizer/thin-down-arrow.png</file>
     </qresource>
     <qresource prefix="/tools">
