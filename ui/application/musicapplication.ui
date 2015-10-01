@@ -94,9 +94,9 @@
   <widget class="MusicTimerSliderWidget" name="musicTimeWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>60</y>
-     <width>355</width>
+     <width>375</width>
      <height>40</height>
     </rect>
    </property>
@@ -645,7 +645,7 @@
   <widget class="QLabel" name="playCurrentTime">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
      <y>95</y>
      <width>30</width>
      <height>15</height>
@@ -661,7 +661,7 @@
   <widget class="QLabel" name="playTotalTime">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>350</x>
      <y>95</y>
      <width>30</width>
      <height>15</height>

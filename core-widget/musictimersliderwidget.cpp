@@ -6,15 +6,15 @@
 MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setGeometry(0,0,356,40);
+    setGeometry(0, 0, 376, 40);
 
     m_label = new QLabel(this);
-    m_label->setFixedSize(35,35);
+    m_label->setFixedSize(35, 35);
     m_label->setAttribute(Qt::WA_TransparentForMouseEvents,true);
     m_label->hide();
 
     m_slider = new QSlider(Qt::Horizontal,this);
-    m_slider->setGeometry(17,17,325,10);
+    m_slider->setGeometry(17, 17, 345, 10);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -65,7 +65,7 @@ void MusicTimerSliderWidget::setRange(int min, int max)
 
 void MusicTimerSliderWidget::sliderMovedAt(int pos) const
 {
-    m_label->setGeometry(5 + ceil(pos * 318 / m_duration), 5,35,35);
+    m_label->move(5 + ceil(pos * 338 / m_duration), 5);
 }
 
 void MusicTimerSliderWidget::timeout()
