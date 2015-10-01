@@ -183,4 +183,17 @@
         <file alias="right">../resource/borderShadow/shadow_right.png</file>
         <file alias="top">../resource/borderShadow/shadow_top.png</file>
     </qresource>
+    <qresource prefix="/enhance">
+        <file alias="3dOff">../resource/enhance/enhance_3d.png</file>
+        <file alias="3dOn">../resource/enhance/enhance_3d_on.png</file>
+        <file alias="NICAMOff">../resource/enhance/enhance_NICAM.png</file>
+        <file alias="NICAMOn">../resource/enhance/enhance_NICAM_on.png</file>
+        <file alias="subwooferOff">../resource/enhance/enhance_subwoofer.png</file>
+        <file alias="subwooferOn">../resource/enhance/enhance_subwoofer_on.png</file>
+        <file alias="vocalOff">../resource/enhance/enhance_vocal.png</file>
+        <file alias="vocalOn">../resource/enhance/enhance_vocal_on.png</file>
+        <file alias="off">../resource/enhance/enhance_off.png</file>
+        <file alias="on">../resource/enhance/enhance_on.png</file>
+        <file alias="background">../resource/enhance/enhance_background.png</file>
+    </qresource>
 </RCC>
