@@ -539,9 +539,9 @@
   <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
-     <x>338</x>
+     <x>335</x>
      <y>120</y>
-     <width>40</width>
+     <width>50</width>
      <height>20</height>
     </rect>
    </property>
