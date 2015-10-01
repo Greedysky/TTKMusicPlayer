@@ -78,14 +78,14 @@ void MusicVideoView::resizeWindow(bool resize, QSize size)
     if(resize)
     {
         m_videoItem->setSize(QSizeF(size.width()*0.8, size.height()*0.8));
-        m_videoControl->setFixedWidth( size.width() );
-        m_videoControl->setGeometry(0, size.height() - 40 - 50, size.width(), 40);
+        m_videoControl->setFixedSize( size.width(), 40 );
+        m_videoControl->move(0, size.height() - 40 - 50);
     }
     else
     {
         m_videoItem->setSize(QSizeF(500, 400));
-        m_videoControl->setFixedWidth( 520 );
-        m_videoControl->setGeometry(0, 375, 520, 40);
+        m_videoControl->setFixedSize( 520, 40 );
+        m_videoControl->move(0, 375);
     }
 }
 

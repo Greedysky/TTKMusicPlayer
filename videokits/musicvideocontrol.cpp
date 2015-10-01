@@ -12,7 +12,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 {
     setStyleSheet(MusicUIObject::MCustomStyle01);
     setFixedSize(520, 40);
-    setGeometry(0, 375, 520, 40);
+    move(0, 375);
 
     m_timeSlider = new QSlider(Qt::Horizontal,this);
     m_menuButton = new QToolButton(this);
