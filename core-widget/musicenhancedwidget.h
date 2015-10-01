@@ -28,6 +28,8 @@ public slots:
 protected:
     void initWidget();
     QMenu *m_menu;
+    QToolButton *m_caseButton, *m_Button1, *m_Button2;
+    QToolButton *m_Button3, *m_Button4;
 
 };
 

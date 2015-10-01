@@ -5,7 +5,6 @@
 
 #include <QMenu>
 #include <QWidgetAction>
-#include <QGridLayout>
 #include <QButtonGroup>
 
 MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
@@ -18,36 +17,56 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
     M_Connection->disConnect("MusicEnhancedWidget");
+    delete m_caseButton;
+    delete m_Button1;
+    delete m_Button2;
+    delete m_Button3;
+    delete m_Button4;
 }
 
 void MusicEnhancedWidget::initWidget()
 {
     m_menu = new QMenu(this);
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle02);
     QWidgetAction *actionWidget = new QWidgetAction(m_menu);
 
     QWidget *containWidget = new QWidget(this);
-    QGridLayout *gridLayout = new QGridLayout(containWidget);
+    containWidget->setFixedSize(270, 358);
+    containWidget->setObjectName("containWidget");
+    containWidget->setStyleSheet("#containWidget{background:url(':/enhance/background')}");
 
-    QToolButton *caseButton = new QToolButton(this);
-    QToolButton *tButton1 = new QToolButton(this);
-    QToolButton *tButton2 = new QToolButton(this);
-    QToolButton *tButton3 = new QToolButton(this);
-    QToolButton *tButton4 = new QToolButton(this);
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(caseButton, 0);
-    buttonGroup->addButton(tButton1, 1);
-    buttonGroup->addButton(tButton2, 2);
-    buttonGroup->addButton(tButton3, 3);
-    buttonGroup->addButton(tButton4, 4);
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setEnhancedMusicConfig(int)));
+    m_caseButton = new QToolButton(containWidget);
+    m_caseButton->setGeometry(200, 73, 54, 24);
+    m_caseButton->setStyleSheet("border:none; background-image:url(':/enhance/on')");
+    m_caseButton->setCursor(Qt::PointingHandCursor);
 
-    gridLayout->addWidget(caseButton, 0, 1);
-    gridLayout->addWidget(tButton1, 1, 0);
-    gridLayout->addWidget(tButton2, 1, 1);
-    gridLayout->addWidget(tButton3, 2, 0);
-    gridLayout->addWidget(tButton4, 2, 1);
-    containWidget->setLayout(gridLayout);
+    m_Button1 = new QToolButton(containWidget);
+    m_Button1->setGeometry(15, 115, 112, 107);
+    m_Button1->setStyleSheet("border:none; background-image:url(':/enhance/3dOff')");
+    m_Button1->setCursor(Qt::PointingHandCursor);
+
+    m_Button2 = new QToolButton(containWidget);
+    m_Button2->setGeometry(145, 115, 112, 107);
+    m_Button2->setStyleSheet("border:none; background-image:url(':/enhance/vocalOff')");
+    m_Button2->setCursor(Qt::PointingHandCursor);
+
+    m_Button3 = new QToolButton(containWidget);
+    m_Button3->setGeometry(15, 240, 112, 107);
+    m_Button3->setStyleSheet("border:none; background-image:url(':/enhance/NICAMOff')");
+    m_Button3->setCursor(Qt::PointingHandCursor);
+
+    m_Button4 = new QToolButton(containWidget);
+    m_Button4->setGeometry(145, 240, 112, 107);
+    m_Button4->setStyleSheet("border:none; background-image:url(':/enhance/subwooferOff')");
+    m_Button4->setCursor(Qt::PointingHandCursor);
+
+    QButtonGroup *group = new QButtonGroup(this);
+    group->addButton(m_caseButton, 0);
+    group->addButton(m_Button1, 1);
+    group->addButton(m_Button2, 2);
+    group->addButton(m_Button3, 3);
+    group->addButton(m_Button4, 4);
+    connect(group, SIGNAL(buttonClicked(int)), SLOT(setEnhancedMusicConfig(int)));
+
     actionWidget->setDefaultWidget(containWidget);
 
     m_menu->addAction(actionWidget);
@@ -57,6 +76,13 @@ void MusicEnhancedWidget::initWidget()
 
 void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
 {
+    QString prfix = QString("border:none; background-image:url(':/enhance/%1')");
+    m_caseButton->setStyleSheet(prfix.arg(type ? "on" : "off"));
+    m_Button1->setStyleSheet(prfix.arg(type == 1 ? "3dOn" : "3dOff"));
+    m_Button2->setStyleSheet(prfix.arg(type == 2 ? "vocalOn" : "vocalOff"));
+    m_Button3->setStyleSheet(prfix.arg(type == 3 ? "NICAMOn" : "NICAMOff"));
+    m_Button4->setStyleSheet(prfix.arg(type == 4 ? "subwooferOn" : "subwooferOff"));
+
     M_SETTING->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
     M_SETTING->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
     emit enhancedMusicChanged(type);
