@@ -1125,7 +1125,7 @@ font-weight:bold;</string>
   <widget class="QWidget" name="backgroundMask1" native="true">
    <property name="geometry">
     <rect>
-     <x>21</x>
+     <x>20</x>
      <y>45</y>
      <width>125</width>
      <height>325</height>
@@ -1265,7 +1265,7 @@ font-weight:bold;</string>
   <widget class="QWidget" name="backgroundMask2" native="true">
    <property name="geometry">
     <rect>
-     <x>145</x>
+     <x>144</x>
      <y>45</y>
      <width>346</width>
      <height>325</height>
