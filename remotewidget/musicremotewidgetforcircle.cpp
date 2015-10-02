@@ -43,6 +43,7 @@ void MusicRemoteWidgetForCircle::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     QPainterPath path;
     path.addEllipse(15, 15, 135, 135);
     path.addEllipse(32, 32, 100, 100);

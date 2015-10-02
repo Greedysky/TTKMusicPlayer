@@ -39,7 +39,6 @@ public slots:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void paintEvent(QPaintEvent *event);
 
     QPushButton *m_showMainWindow;
     QPushButton *m_PreSongButton;

@@ -43,6 +43,7 @@ void MusicRemoteWidgetForDiamond::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     QPolygon pts;
     pts.setPoints(4, 8,80 , 80,8, 154,81, 80,154);
     QPainterPath path;

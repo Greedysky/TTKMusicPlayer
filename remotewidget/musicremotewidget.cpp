@@ -106,14 +106,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicRemoteWidget::paintEvent(QPaintEvent* event)
-{
-    QWidget::paintEvent(event);
-    QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.end();
-}
-
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
     m_PlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
