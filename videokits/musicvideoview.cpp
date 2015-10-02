@@ -70,7 +70,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer.setMedia(QUrl(data));
-    QTimer::singleShot(10*1000, this, SLOT(stop()));
+    QTimer::singleShot(5*1000, this, SLOT(stop()));
 }
 
 void MusicVideoView::resizeWindow(bool resize, QSize size)
