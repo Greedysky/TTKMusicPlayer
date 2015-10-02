@@ -192,6 +192,11 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
     else if(type->text() == tr("DiamondRemote")) musicDiamondRemote();
     else if(type->text() == tr("SquareRemote")) musicSquareRemote();
     else if(type->text() == tr("RectangleRemote")) musicRectangleRemote();
+    else
+    {
+        m_musicRemoteWidget = tempRemote;
+        return;
+    }
     tempRemote->deleteLater();
 }
 
