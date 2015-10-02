@@ -2,7 +2,6 @@
 #include "musicobject.h"
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
-#include "musicsettingmanager.h"
 #include "musiclogger.h"
 
 #include <QApplication>
@@ -34,9 +33,6 @@ int main(int argc, char *argv[])
     MusicObject::checkTheDirectoryExist();
     MusicApplication w;
     w.show();
-
-    QSize size = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
-    w.move((size.width() - w.width())/2, (size.height() - w.height())/2);
 
     return a.exec();
 }
