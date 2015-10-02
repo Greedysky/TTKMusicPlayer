@@ -32,6 +32,7 @@ signals:
     void musicPlayNextSignal();
     void musicVolumeSignal(int index);
     void musicSettingSignal();
+    void musicRemoteTypeChanged(QAction *type);
 
 public slots:
     void musicVolumeChanged(int index);

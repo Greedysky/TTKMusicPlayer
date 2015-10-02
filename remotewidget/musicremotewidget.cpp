@@ -1,4 +1,8 @@
 #include "musicremotewidget.h"
+#include "musicremotewidgetforcircle.h"
+#include "musicremotewidgetfordiamond.h"
+#include "musicremotewidgetforrectangle.h"
+#include "musicremotewidgetforsquare.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -85,9 +89,20 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle03);
     menu.addAction(QIcon(":/share/selected"),tr("WindowTop"))->setEnabled(false);
-    menu.addSeparator();
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
+    menu.addSeparator();
+
+    menu.addAction(tr("CircleRemote"))->setEnabled(
+                !qobject_cast<MusicRemoteWidgetForCircle*>(this));
+    menu.addAction(tr("SquareRemote"))->setEnabled(
+                !qobject_cast<MusicRemoteWidgetForSquare*>(this));
+    menu.addAction(tr("RectangleRemote"))->setEnabled(
+                !qobject_cast<MusicRemoteWidgetForRectangle*>(this));
+    menu.addAction(tr("DiamondRemote"))->setEnabled(
+                !qobject_cast<MusicRemoteWidgetForDiamond*>(this));
     menu.addAction(tr("quit"), this, SLOT(close()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
+
     menu.exec(QCursor::pos());
 }
 
@@ -104,7 +119,6 @@ void MusicRemoteWidget::showPlayStatus(bool status) const
     m_PlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
                                                           : ":/desktopTool/play")) );
 }
-
 
 void MusicRemoteWidget::setVolumeValue(int index)
 {

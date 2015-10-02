@@ -184,6 +184,17 @@ void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
     m_ui->musicSoundSlider->setValue(value);
 }
 
+void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
+{
+    MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
+    m_musicRemoteWidget = NULL;
+    if(type->text() == tr("CircleRemote")) musicCircleRemote();
+    else if(type->text() == tr("DiamondRemote")) musicDiamondRemote();
+    else if(type->text() == tr("SquareRemote")) musicSquareRemote();
+    else if(type->text() == tr("RectangleRemote")) musicRectangleRemote();
+    tempRemote->deleteLater();
+}
+
 void MusicTopAreaWidget::showPlayStatus(bool status)
 {
     m_currentPlayStatus = status;
@@ -217,12 +228,13 @@ void MusicTopAreaWidget::createRemoteWidget()
     }
     m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSoundSlider->value());
-    connect(m_musicRemoteWidget,SIGNAL(musicWindowSignal()), m_supperClass, SLOT(showNormal()));
-    connect(m_musicRemoteWidget,SIGNAL(musicPlayPriviousSignal()), m_supperClass, SLOT(musicPlayPrivious()));
-    connect(m_musicRemoteWidget,SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));
-    connect(m_musicRemoteWidget,SIGNAL(musicKeySignal()), m_supperClass, SLOT(musicKey()));
-    connect(m_musicRemoteWidget,SIGNAL(musicVolumeSignal(int)), this, SLOT(musicVolumeChangedFromRemote(int)));
-    connect(m_musicRemoteWidget,SIGNAL(musicSettingSignal()), m_supperClass, SLOT(musicSetting()));
+    connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), m_supperClass, SLOT(showNormal()));
+    connect(m_musicRemoteWidget, SIGNAL(musicPlayPriviousSignal()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));
+    connect(m_musicRemoteWidget, SIGNAL(musicKeySignal()), m_supperClass, SLOT(musicKey()));
+    connect(m_musicRemoteWidget, SIGNAL(musicSettingSignal()), m_supperClass, SLOT(musicSetting()));
+    connect(m_musicRemoteWidget, SIGNAL(musicVolumeSignal(int)), SLOT(musicVolumeChangedFromRemote(int)));
+    connect(m_musicRemoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
     m_musicRemoteWidget->show();
 }
 

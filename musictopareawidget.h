@@ -59,6 +59,7 @@ public slots:
     void musicDeleteRemote();
     //This is a slot by MusicRemoteWidget's signal emit
     void musicVolumeChangedFromRemote(int value);
+    void musicRemoteTypeChanged(QAction *type);
     /////////////////////////////////////////////
 
 protected:
