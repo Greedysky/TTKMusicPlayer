@@ -18,12 +18,16 @@
 #include "musicapplicationobject.h"
 #include "musicconnectionpool.h"
 
+#include <QDesktopWidget>
+
 MusicApplication::MusicApplication(QWidget *parent) :
     MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
 
+    QWidget *widget = QApplication::desktop();
+    M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
     M_Connection->setValue("MusicApplication", this);
     m_object = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

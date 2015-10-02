@@ -5,7 +5,6 @@
 #include "musicsettingmanager.h"
 #include "musiclogger.h"
 
-#include <QDesktopWidget>
 #include <QApplication>
 #include <QTranslator>
 //#include <vld.h>
@@ -33,13 +32,11 @@ int main(int argc, char *argv[])
     M_NETWORK->start();
 
     MusicObject::checkTheDirectoryExist();
-
-    QWidget *widget = QApplication::desktop();
-    M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
-
     MusicApplication w;
     w.show();
-    w.move((widget->width() - w.width())/2, (widget->height() - w.height())/2);
+
+    QSize size = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    w.move((size.width() - w.width())/2, (size.height() - w.height())/2);
 
     return a.exec();
 }
