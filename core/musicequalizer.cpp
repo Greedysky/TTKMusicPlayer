@@ -35,10 +35,10 @@ void MusicEqualizer::readEqInformation()
         if(eqValue.count() == 11)
         {
             MIntList hz;
-            hz<<eqValue[1].toInt()<<eqValue[2].toInt()<<eqValue[3].toInt()
-              <<eqValue[4].toInt()<<eqValue[5].toInt()<<eqValue[6].toInt()
-              <<eqValue[7].toInt()<<eqValue[8].toInt()<<eqValue[9].toInt()
-              <<eqValue[10].toInt();
+            hz<<eqValue[0].toInt()<<eqValue[1].toInt()<<eqValue[2].toInt()
+              <<eqValue[3].toInt()<<eqValue[4].toInt()<<eqValue[5].toInt()
+              <<eqValue[6].toInt()<<eqValue[7].toInt()<<eqValue[8].toInt()
+              <<eqValue[9].toInt()<<eqValue[10].toInt();
             setEqEffect(hz);
         }
     }
