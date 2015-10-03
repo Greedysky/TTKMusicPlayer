@@ -6,17 +6,14 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QSlider>
 
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
     setStyleSheet(MusicUIObject::MMenuStyle02);
-
     createPlayWidgetActions();
-    createVolumeWidgetActions();
     addAction(m_widgetAction);
-    addAction(m_volumeAction);
+
     m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"),this);
     connect(m_showLrcAction,SIGNAL(triggered()),SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"),tr("lockLrc"),this);
@@ -37,11 +34,9 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
 {
     delete m_showText;
     delete m_PlayOrStop;
-    delete m_volumeSlider;
     delete m_showLrcAction;
     delete m_lockLrcAction;
     delete m_widgetAction;
-    delete m_volumeAction;
 }
 
 void MusicSystemTrayMenu::createPlayWidgetActions()
@@ -96,22 +91,6 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicKey()));
 }
 
-void MusicSystemTrayMenu::createVolumeWidgetActions()
-{
-    m_volumeAction = new QWidgetAction(this);
-    QWidget *widgetContainer = new QWidget(this);
-    QHBoxLayout *box = new QHBoxLayout(widgetContainer);
-
-    m_volumeSlider = new QSlider(Qt::Horizontal, widgetContainer);
-    m_volumeSlider->setRange(0,100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
-    box->addWidget(m_volumeSlider);
-    widgetContainer->setLayout(box);
-
-    m_volumeAction->setDefaultWidget(widgetContainer);
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent(), SLOT(musicVolumeChanged(int)));
-}
-
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
     QFontMetrics str(font());
@@ -134,13 +113,6 @@ void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
     m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/contextMenu/sysstop"
                                                           : ":/contextMenu/sysplay")) );
-}
-
-void MusicSystemTrayMenu::setVolume(int index)
-{
-    blockSignals(true);
-    m_volumeSlider->setValue(index);
-    blockSignals(false);
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()

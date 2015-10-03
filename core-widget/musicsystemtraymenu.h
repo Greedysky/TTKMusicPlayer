@@ -13,7 +13,6 @@
 #include "musiclibexportglobal.h"
 
 class QLabel;
-class QSlider;
 class QWidgetAction;
 class QToolButton;
 
@@ -27,7 +26,6 @@ public:
     void setLabelText(const QString &text) const;
     void showDesktopLrc(const QString &show) const;
     void showPlayStatus(bool status) const;
-    void setVolume(int index);
 
 signals:
     void setShowDesktopLrc(bool status);
@@ -39,13 +37,10 @@ public slots:
 
 protected:
     void createPlayWidgetActions();
-    void createVolumeWidgetActions();
 
     QWidgetAction *m_widgetAction;
-    QWidgetAction *m_volumeAction;
     QLabel *m_showText;
     QToolButton *m_PlayOrStop;
-    QSlider *m_volumeSlider;
     QAction *m_showLrcAction;
     QAction *m_lockLrcAction;
 

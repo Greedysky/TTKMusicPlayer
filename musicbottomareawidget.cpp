@@ -108,12 +108,6 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 void MusicBottomAreaWidget::setVolumeValue(int value) const
 {
     m_ui->musicSoundSlider->setValue(value);
-    m_systemTrayMenu->setVolume(value);
-}
-
-void MusicBottomAreaWidget::musicVolumeChanged(int index)
-{
-    m_ui->musicSoundSlider->setValue(index);
 }
 
 void MusicBottomAreaWidget::createMenuActions() const

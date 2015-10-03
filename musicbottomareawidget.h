@@ -57,7 +57,6 @@ public slots:
     void lockDesktopLrc(bool lock);
     void desktopLrcClosed();
     void iconActivated(QSystemTrayIcon::ActivationReason);
-    void musicVolumeChanged(int index);
 
 protected:
     void createToolPopupMenu();
