@@ -34,6 +34,7 @@ signals:
 
 public slots:
     void sliderMovedAt(int pos) const;
+    void setSliderStyleByType(int type);
     void timeout();
 
 protected:

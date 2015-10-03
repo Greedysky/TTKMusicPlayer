@@ -42,6 +42,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicButton_mydownl,SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
     connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), m_supperClass,
                                     SLOT(musicEnhancedMusicChanged(int)));
+    connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
+                                    SLOT(setSliderStyleByType(int)));
 
     ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
