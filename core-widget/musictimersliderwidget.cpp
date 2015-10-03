@@ -1,6 +1,5 @@
 #include "musictimersliderwidget.h"
 #include "musicuiobject.h"
-#include "musicconnectionpool.h"
 
 #include <QLabel>
 #include <QSlider>

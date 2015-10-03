@@ -8,7 +8,6 @@
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
-#include <QDebug>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
