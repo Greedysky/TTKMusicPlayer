@@ -136,7 +136,7 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>228</x>
+     <x>238</x>
      <y>148</y>
      <width>18</width>
      <height>18</height>
@@ -152,7 +152,7 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>260</x>
      <y>150</y>
      <width>89</width>
      <height>16</height>
@@ -165,7 +165,7 @@
   <widget class="QLabel" name="volumeValue">
    <property name="geometry">
     <rect>
-     <x>345</x>
+     <x>355</x>
      <y>150</y>
      <width>30</width>
      <height>15</height>
