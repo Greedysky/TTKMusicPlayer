@@ -510,7 +510,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>Ctrl + I</string>
+      <string>Ctrl + S</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -529,7 +529,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>Ctrl + S</string>
+      <string>Ctrl + I</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
