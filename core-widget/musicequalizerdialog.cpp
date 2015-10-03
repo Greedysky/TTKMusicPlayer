@@ -178,7 +178,7 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
 
 void MusicEqualizerDialog::emitParameter()
 {
-    emit setEqEffect(MIntList()<<ui->bwVerticalSlider->value()<<ui->verticalSlider1->value()
+    emit setEqEffect(MIntList()<<ui->verticalSlider1->value()
                      <<ui->verticalSlider2->value()<<ui->verticalSlider3->value()
                      <<ui->verticalSlider4->value()<<ui->verticalSlider5->value()
                      <<ui->verticalSlider6->value()<<ui->verticalSlider7->value()
@@ -261,7 +261,6 @@ void MusicEqualizerDialog::eqChoiceIndexChanged(int index)
     if(index > 0)
     {
         index = (--index)*10;
-        ui->bwVerticalSlider->setValue(0);
         ui->verticalSlider1->setValue(m_equalizeValue[index + 0]);
         ui->verticalSlider2->setValue(m_equalizeValue[index + 1]);
         ui->verticalSlider3->setValue(m_equalizeValue[index + 2]);
