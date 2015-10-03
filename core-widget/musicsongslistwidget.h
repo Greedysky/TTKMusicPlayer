@@ -86,6 +86,7 @@ protected:
 
     int m_playRowIndex;
     int m_dragStartIndex;
+    QPoint m_dragStartPoint;
     bool m_mouseMoved;
 
     MusicSongsListItemInfoWidget *m_musicSongsListItem;

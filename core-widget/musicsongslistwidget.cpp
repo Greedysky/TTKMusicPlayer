@@ -8,6 +8,7 @@
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
+#include <QDebug>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
@@ -143,13 +144,14 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     {
         m_leftButtonPressed = true;
         m_dragStartIndex = currentRow();
+        m_dragStartPoint = event->pos();
     }
 }
 
 void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QTableWidget::mouseMoveEvent(event);
-    if(m_leftButtonPressed)
+    if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
     {
         m_mouseMoved = true;
         setCursor(QCursor(Qt::CrossCursor));
