@@ -35,6 +35,8 @@ signals:
     void parameterSettingChanged();
 
 public slots:
+    void downloadGroupCached(int index);
+    void downloadGroupSpeedLimit(int index);
     void changeInlineLrcWidget();
     void changeDesktopLrcWidget();
     void commitTheResults();

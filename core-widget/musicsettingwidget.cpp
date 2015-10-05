@@ -71,7 +71,6 @@ MusicSettingWidget::~MusicSettingWidget()
     delete ui;
 }
 
-
 void MusicSettingWidget::initInlineLrcWidget()
 {
     ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
@@ -153,7 +152,40 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initDownloadWidget()
 {
+    ui->downloadDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
+    ui->downloadSpinBox->setRange(1024, 5*1024);
+    ui->downloadDirEdit->setText(MUSIC_DOWNLOAD);
+    ui->downloadLrcDirEdit->setText(LRC_DOWNLOAD);
+    QStringList downloadSpeed;
+    downloadSpeed << "100" << "200" << "300" << "400" << "500" << "600"
+                  << "700" << "800" << "900" << "1000" << "1100" << "1200";
+    ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
+    ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(ui->downloadCacheAutoRadioBox, 0);
+    buttonGroup->addButton(ui->downloadCacheManRadioBox, 1);
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(downloadGroupCached(int)));
+
+    QButtonGroup *buttonGroup2 = new QButtonGroup(this);
+    buttonGroup2->addButton(ui->downloadFullRadioBox, 0);
+    buttonGroup2->addButton(ui->downloadLimitRadioBox, 1);
+    connect(buttonGroup2, SIGNAL(buttonClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
+
+    ui->downloadCacheAutoRadioBox->click();
+    ui->downloadFullRadioBox->click();
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -418,4 +450,15 @@ int MusicSettingWidget::exec()
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicSettingWidget::downloadGroupCached(int index)
+{
+    ui->downloadSpinBox->setEnabled(index);
+}
+
+void MusicSettingWidget::downloadGroupSpeedLimit(int index)
+{
+    ui->downloadLimitSpeedComboBox->setEnabled(index);
+    ui->uploadLimitSpeedComboBox->setEnabled(index);
 }
