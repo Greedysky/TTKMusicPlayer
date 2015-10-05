@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -239,7 +239,7 @@ font-weight:bold;;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="currentLanguageLabelWarning">
+    <widget class="QLabel" name="currentLanguageWarningLabel">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -257,7 +257,7 @@ font-weight:bold;;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="second">
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_S1">
      <property name="geometry">
       <rect>
        <x>85</x>
@@ -594,7 +594,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="third">
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_T1">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -607,7 +607,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="baseSetSongWordWidget_2">
+    <widget class="QLabel" name="baseSetSongWordWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -643,7 +643,7 @@ font-weight:bold;</string>
       <string>预览</string>
      </property>
     </widget>
-    <widget class="Line" name="line_3">
+    <widget class="Line" name="line_T2">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -843,7 +843,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QCheckBox" name="showInlineSongWordWidget">
+    <widget class="QCheckBox" name="showInlineCheckBox">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1122,7 +1122,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
   </widget>
-  <widget class="QWidget" name="backgroundMask1" native="true">
+  <widget class="QWidget" name="functionArea" native="true">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -1249,7 +1249,7 @@ font-weight:bold;</string>
     <string>取消</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
+  <widget class="Line" name="line_M">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -1262,7 +1262,7 @@ font-weight:bold;</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="backgroundMask2" native="true">
+  <widget class="QWidget" name="functionAreaDisplay" native="true">
    <property name="geometry">
     <rect>
      <x>144</x>
@@ -1276,14 +1276,14 @@ font-weight:bold;</string>
    </property>
   </widget>
   <zorder>background</zorder>
-  <zorder>backgroundMask2</zorder>
+  <zorder>functionAreaDisplay</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>stackedWidget</zorder>
-  <zorder>backgroundMask1</zorder>
+  <zorder>functionArea</zorder>
   <zorder>confirmButton</zorder>
   <zorder>cancelButton</zorder>
-  <zorder>line_2</zorder>
+  <zorder>line_M</zorder>
  </widget>
  <customwidgets>
   <customwidget>

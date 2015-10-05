@@ -49,7 +49,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->languageComboBox->addItems(QStringList()<<tr("0")<<tr("1")<<tr("2"));
     ////////////////////////////////////////////////
-    ui->showInlineSongWordWidget->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->showInlineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->showDesktopSongWordWidget->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     ////////////////////////////////////////////////
@@ -161,9 +161,9 @@ void MusicSettingWidget::initControllerParameter()
     ui->languageComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
     //Set init parameter
-    ui->showInlineSongWordWidget->setChecked(M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
+    ui->showInlineCheckBox->setChecked(M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
     ui->showDesktopSongWordWidget->setChecked(M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
-    ui->showInlineSongWordWidget->setEnabled(false);
+    ui->showInlineCheckBox->setEnabled(false);
 
     ui->fontComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcFamilyChoiced).toInt());
     ui->fontSizeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
@@ -236,7 +236,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
     M_SETTING->setValue(MusicSettingManager::CloseEventChoiced,ui->quitRadioBox->isChecked() ? "true" : "false");
 
-    M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineSongWordWidget->isChecked());
+    M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced,ui->showDesktopSongWordWidget->isChecked());
 
     M_SETTING->setValue(MusicSettingManager::LrcColorChoiced,ui->fontDefalutColorComboBox->currentIndex());
