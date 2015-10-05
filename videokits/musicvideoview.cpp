@@ -25,7 +25,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     scene->addItem(m_videoItem);
     setScene(scene);
     m_videoItem->setSize(QSizeF(500, 400));
-//    fitInView(m_videoItem, Qt::KeepAspectRatio);
+    m_positionChanged = false;
 
     m_videoControl = new MusicVideoControl(popup, this);
     m_videoControl->hide();
@@ -106,17 +106,22 @@ void MusicVideoView::play()
 
 void MusicVideoView::stop()
 {
-    if(m_mediaPlayer.state() == QMediaPlayer::StoppedState)
+    if(!m_positionChanged)
     {
         m_mediaPlayer.stop();
         MusicMessageBox message;
-        message.setText("Session time out, try again!");
+        message.setText(tr("Session time out, try again!"));
         message.exec();
     }
+    m_positionChanged = false;
 }
 
 void MusicVideoView::positionChanged(qint64 position)
 {
+    if(position != 0)
+    {
+        m_positionChanged = true;
+    }
     m_videoControl->setValue(position);
 }
 

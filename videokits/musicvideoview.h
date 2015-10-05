@@ -42,6 +42,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
+    bool m_positionChanged;
     QMediaPlayer m_mediaPlayer;
     QGraphicsVideoItem *m_videoItem;
     MusicVideoControl *m_videoControl;
