@@ -4,7 +4,6 @@
 
 #include <QFontDatabase>
 #include <QColorDialog>
-#include <QApplication>
 #include <QTranslator>
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
@@ -21,30 +20,30 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->normalSet->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->hotKeySet->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->inlineLrc->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->desktopLrc->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->normalSet->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->hotKeySet->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->desktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->inlineLrc->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->confirm->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->cancel->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->normalSet,SIGNAL(clicked()),this,SLOT(changeInfoWidget()));
-    connect(ui->hotKeySet,SIGNAL(clicked()),this,SLOT(changeShotKeyWidget()));
-    connect(ui->desktopLrc,SIGNAL(clicked()),this,SLOT(changeDesktopLrcWidget()));
-    connect(ui->inlineLrc,SIGNAL(clicked()),this,SLOT(changeInlineLrcWidget()));
-    connect(ui->confirm,SIGNAL(clicked()),this,SLOT(commitTheResults()));
-    connect(ui->cancel,SIGNAL(clicked()),this,SLOT(close()));
+    ui->normalSetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->hotKeySetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->inlineLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->desktopLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->normalSetButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->hotKeySetButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->desktopLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->inlineLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->normalSetButton,SIGNAL(clicked()),this,SLOT(changeInfoWidget()));
+    connect(ui->hotKeySetButton,SIGNAL(clicked()),this,SLOT(changeShotKeyWidget()));
+    connect(ui->desktopLrcButton,SIGNAL(clicked()),this,SLOT(changeDesktopLrcWidget()));
+    connect(ui->inlineLrcButton,SIGNAL(clicked()),this,SLOT(changeInlineLrcWidget()));
+    connect(ui->confirmButton,SIGNAL(clicked()),this,SLOT(commitTheResults()));
+    connect(ui->cancelButton,SIGNAL(clicked()),this,SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->autoPlayShowInfoWidget->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->backPlayShowInfoWidget->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->minimumShowInfoWidget->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->quitShowInfoWidget->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->minimumRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->quitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
 
     ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -147,16 +146,16 @@ MusicSettingWidget::~MusicSettingWidget()
 void MusicSettingWidget::initControllerParameter()
 {
     //Set init parameter
-    ui->autoPlayShowInfoWidget->setChecked(M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toBool());
-    ui->backPlayShowInfoWidget->setChecked(M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced)
+    ui->autoPlayCheckBox->setChecked(M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toBool());
+    ui->backPlayCheckBox->setChecked(M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced)
                .toStringList().at(0).toInt() );
     if(!M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool())
     {
-        ui->minimumShowInfoWidget->setChecked(true);
+        ui->minimumRadioBox->setChecked(true);
     }
     else
     {
-        ui->quitShowInfoWidget->setChecked(true);
+        ui->quitRadioBox->setChecked(true);
     }
 
     ui->languageComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
@@ -231,11 +230,11 @@ void MusicSettingWidget::changeDesktopLrcWidget()
 void MusicSettingWidget::commitTheResults()
 {
     M_SETTING->setValue(MusicSettingManager::CurrentLanIndexChoiced, ui->languageComboBox->currentIndex());
-    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced,ui->autoPlayShowInfoWidget->isChecked());
+    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced,ui->autoPlayCheckBox->isChecked());
     QStringList list = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    list[0] = QString::number(ui->backPlayShowInfoWidget->isChecked());
+    list[0] = QString::number(ui->backPlayCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
-    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced,ui->quitShowInfoWidget->isChecked() ? "true" : "false");
+    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced,ui->quitRadioBox->isChecked() ? "true" : "false");
 
     M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced,ui->showInlineSongWordWidget->isChecked());
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced,ui->showDesktopSongWordWidget->isChecked());

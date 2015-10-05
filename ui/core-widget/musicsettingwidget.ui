@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -104,7 +104,7 @@ font-weight:bold;;</string>
       <string>关闭主面板时</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="autoPlayShowInfoWidget">
+    <widget class="QCheckBox" name="autoPlayCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -117,7 +117,7 @@ font-weight:bold;;</string>
       <string>自动播放歌曲</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="backPlayShowInfoWidget">
+    <widget class="QCheckBox" name="backPlayCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -130,7 +130,7 @@ font-weight:bold;;</string>
       <string>恢复上次关闭时的界面</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="minimumShowInfoWidget">
+    <widget class="QRadioButton" name="minimumRadioBox">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -143,7 +143,7 @@ font-weight:bold;;</string>
       <string>最小化到托盘，不退出</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="quitShowInfoWidget">
+    <widget class="QRadioButton" name="quitRadioBox">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -156,7 +156,7 @@ font-weight:bold;;</string>
       <string>退出程序</string>
      </property>
     </widget>
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_F1">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -169,7 +169,7 @@ font-weight:bold;;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="Line" name="line_2">
+    <widget class="Line" name="line_F2">
      <property name="geometry">
       <rect>
        <x>115</x>
@@ -182,7 +182,7 @@ font-weight:bold;;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="multiLanguageChoice">
+    <widget class="QLabel" name="multiLanguageChoiceWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -200,7 +200,7 @@ font-weight:bold;;</string>
       <string>多语言选择</string>
      </property>
     </widget>
-    <widget class="Line" name="line_5">
+    <widget class="Line" name="line_F3">
      <property name="geometry">
       <rect>
        <x>99</x>
@@ -223,7 +223,7 @@ font-weight:bold;;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="currentLanguage">
+    <widget class="QLabel" name="currentLanguageLabel">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -239,7 +239,7 @@ font-weight:bold;;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="currentLanguage_2">
+    <widget class="QLabel" name="currentLanguageLabelWarning">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -288,7 +288,7 @@ font-weight:bold;</string>
       <string>基本设置</string>
      </property>
     </widget>
-    <widget class="QLabel" name="item">
+    <widget class="QLabel" name="item_S1">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -307,7 +307,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_1">
+    <widget class="QLabel" name="item_S2">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -326,7 +326,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_2">
+    <widget class="QLabel" name="item_S3">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -345,7 +345,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_3">
+    <widget class="QLabel" name="item_S4">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -364,7 +364,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_4">
+    <widget class="QLabel" name="item_S5">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -383,7 +383,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_6">
+    <widget class="QLabel" name="item_S7">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -402,7 +402,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_8">
+    <widget class="QLabel" name="item_S9">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -421,7 +421,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_13">
+    <widget class="QLabel" name="item_S11">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -440,7 +440,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_5">
+    <widget class="QLabel" name="item_S6">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -459,7 +459,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_7">
+    <widget class="QLabel" name="item_S8">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -478,7 +478,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_9">
+    <widget class="QLabel" name="item_S10">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -497,7 +497,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_10">
+    <widget class="QLabel" name="item_S12">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -516,7 +516,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_11">
+    <widget class="QLabel" name="item_S14">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -535,7 +535,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_14">
+    <widget class="QLabel" name="item_S13">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -554,7 +554,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_12">
+    <widget class="QLabel" name="item_S16">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -573,7 +573,7 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="item_15">
+    <widget class="QLabel" name="item_S15">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -1134,7 +1134,7 @@ font-weight:bold;</string>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,200)</string>
    </property>
-   <widget class="QLabel" name="baseSet">
+   <widget class="QLabel" name="baseSetWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -1152,7 +1152,7 @@ font-weight:bold;</string>
      <string>基本设置</string>
     </property>
    </widget>
-   <widget class="QLabel" name="wordSet">
+   <widget class="QLabel" name="wordSetWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -1170,7 +1170,7 @@ font-weight:bold;</string>
      <string>歌词设置</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="normalSet">
+   <widget class="QPushButton" name="normalSetButton">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -1183,7 +1183,7 @@ font-weight:bold;</string>
      <string>常规设置</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="hotKeySet">
+   <widget class="QPushButton" name="hotKeySetButton">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -1196,7 +1196,7 @@ font-weight:bold;</string>
      <string>热键设置</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="desktopLrc">
+   <widget class="QPushButton" name="desktopLrcButton">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -1209,7 +1209,7 @@ font-weight:bold;</string>
      <string>桌面歌词</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="inlineLrc">
+   <widget class="QPushButton" name="inlineLrcButton">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -1223,7 +1223,7 @@ font-weight:bold;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="confirm">
+  <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -1236,7 +1236,7 @@ font-weight:bold;</string>
     <string>确认</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="cancel">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -1249,7 +1249,7 @@ font-weight:bold;</string>
     <string>取消</string>
    </property>
   </widget>
-  <widget class="Line" name="line_4">
+  <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -1281,9 +1281,9 @@ font-weight:bold;</string>
   <zorder>topTitleCloseButton</zorder>
   <zorder>stackedWidget</zorder>
   <zorder>backgroundMask1</zorder>
-  <zorder>confirm</zorder>
-  <zorder>cancel</zorder>
-  <zorder>line_4</zorder>
+  <zorder>confirmButton</zorder>
+  <zorder>cancelButton</zorder>
+  <zorder>line_2</zorder>
  </widget>
  <customwidgets>
   <customwidget>
