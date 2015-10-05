@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -1121,6 +1121,331 @@ font-weight:bold;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="five">
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+    </property>
+    <widget class="Line" name="line_FS1">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>30</y>
+       <width>225</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="baseSetDownloadWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>基本设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadDirLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载目录</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="downloadDirEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>48</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadDirButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>45</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更改目录</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadLrcDirLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>77</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>歌词目录</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadLrcDirButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>70</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更改目录</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="downloadLrcDirEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>75</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadCacheLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>缓存大小设置</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadCacheAutoRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadCacheManRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>110</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>手动</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_FS1_2">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>150</y>
+       <width>225</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadSpeedWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>基本设置</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadFullRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>全速下载</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadLimitRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>195</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>限速</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>110</y>
+       <width>61</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="downloadLimitSpeedComboBox">
+     <property name="geometry">
+      <rect>
+       <x>52</x>
+       <y>228</y>
+       <width>69</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="uploadLimitSpeedComboBox">
+     <property name="geometry">
+      <rect>
+       <x>205</x>
+       <y>228</y>
+       <width>69</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadCacheSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>305</x>
+       <y>113</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>M</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadLimitSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>230</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="uploadLimitSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>175</x>
+       <y>230</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上传</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>230</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>KB/s</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="uploadSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>230</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>KB/s</string>
+     </property>
+    </widget>
+    <zorder>line_FS1</zorder>
+    <zorder>baseSetDownloadWidget</zorder>
+    <zorder>downloadDirLabel</zorder>
+    <zorder>downloadDirEdit</zorder>
+    <zorder>downloadDirButton</zorder>
+    <zorder>downloadLrcDirLabel</zorder>
+    <zorder>downloadLrcDirButton</zorder>
+    <zorder>downloadLrcDirEdit</zorder>
+    <zorder>downloadCacheLabel</zorder>
+    <zorder>downloadCacheAutoRadioBox</zorder>
+    <zorder>downloadCacheManRadioBox</zorder>
+    <zorder>line_FS1_2</zorder>
+    <zorder>downloadSpeedWidget</zorder>
+    <zorder>downloadFullRadioBox</zorder>
+    <zorder>downloadLimitRadioBox</zorder>
+    <zorder>spinBox</zorder>
+    <zorder>downloadLimitSpeedComboBox</zorder>
+    <zorder>uploadLimitSpeedComboBox</zorder>
+    <zorder>downloadCacheSizeLabel</zorder>
+    <zorder>downloadLimitSpeedLabel</zorder>
+    <zorder>uploadLimitSpeedLabel</zorder>
+    <zorder>functionAreaDisplay</zorder>
+    <zorder>functionAreaDisplay</zorder>
+    <zorder>functionAreaDisplay</zorder>
+    <zorder>downloadSpeedLabel</zorder>
+    <zorder>uploadSpeedLabel</zorder>
+   </widget>
   </widget>
   <widget class="QWidget" name="functionArea" native="true">
    <property name="geometry">
@@ -1274,6 +1599,8 @@ font-weight:bold;</string>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <zorder>stackedWidget</zorder>
+   <zorder>stackedWidget</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>functionAreaDisplay</zorder>
