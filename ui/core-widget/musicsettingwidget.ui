@@ -1481,7 +1481,7 @@ font-weight:bold;</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>105</y>
+      <y>135</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -1525,7 +1525,7 @@ font-weight:bold;</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>160</y>
+      <y>190</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -1538,13 +1538,26 @@ font-weight:bold;</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>130</y>
+      <y>160</y>
       <width>60</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>窗口歌词</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="downloadSetButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>105</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下载设置</string>
     </property>
    </widget>
   </widget>

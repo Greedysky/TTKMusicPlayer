@@ -4,7 +4,7 @@
 
 #include <QFontDatabase>
 #include <QColorDialog>
-#include <QTranslator>
+#include <QButtonGroup>
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     MusicAbstractMoveDialog(parent),
@@ -22,22 +22,29 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ////////////////////////////////////////////////
     ui->normalSetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->hotKeySetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->downloadSetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->inlineLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->desktopLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+
     ui->normalSetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->hotKeySetButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->downloadSetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->desktopLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->inlineLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->normalSetButton,SIGNAL(clicked()),this,SLOT(changeInfoWidget()));
-    connect(ui->hotKeySetButton,SIGNAL(clicked()),this,SLOT(changeShotKeyWidget()));
-    connect(ui->desktopLrcButton,SIGNAL(clicked()),this,SLOT(changeDesktopLrcWidget()));
-    connect(ui->inlineLrcButton,SIGNAL(clicked()),this,SLOT(changeInlineLrcWidget()));
-    connect(ui->confirmButton,SIGNAL(clicked()),this,SLOT(commitTheResults()));
-    connect(ui->cancelButton,SIGNAL(clicked()),this,SLOT(close()));
+
+    QButtonGroup *group = new QButtonGroup(this);
+    group->addButton(ui->normalSetButton, 0);
+    group->addButton(ui->hotKeySetButton, 1);
+    group->addButton(ui->desktopLrcButton, 2);
+    group->addButton(ui->inlineLrcButton, 3);
+    group->addButton(ui->downloadSetButton, 4);
+    connect(group, SIGNAL(buttonClicked(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(ui->confirmButton, SIGNAL(clicked()), SLOT(commitTheResults()));
+    connect(ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 
     ////////////////////////////////////////////////
     ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -54,10 +61,16 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
 
     ////////////////////////////////////////////////
     initInlineLrcWidget();
-    ////////////////////////////////////////////////
     initDesktopLrcWidget();
+    initDownloadWidget();
     ////////////////////////////////////////////////
 }
+
+MusicSettingWidget::~MusicSettingWidget()
+{
+    delete ui;
+}
+
 
 void MusicSettingWidget::initInlineLrcWidget()
 {
@@ -138,9 +151,9 @@ void MusicSettingWidget::initDesktopLrcWidget()
     resetDesktopParameter();
 }
 
-MusicSettingWidget::~MusicSettingWidget()
+void MusicSettingWidget::initDownloadWidget()
 {
-    delete ui;
+
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -205,16 +218,6 @@ void MusicSettingWidget::initControllerParameter()
     }
     ui->DtransparentSlider->setValue(M_SETTING->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
 
-}
-
-void MusicSettingWidget::changeInfoWidget()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-void MusicSettingWidget::changeShotKeyWidget()
-{
-    ui->stackedWidget->setCurrentIndex(1);
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()

@@ -35,8 +35,6 @@ signals:
     void parameterSettingChanged();
 
 public slots:
-    void changeInfoWidget();
-    void changeShotKeyWidget();
     void changeInlineLrcWidget();
     void changeDesktopLrcWidget();
     void commitTheResults();
@@ -59,6 +57,7 @@ public slots:
 protected:
     void initInlineLrcWidget();
     void initDesktopLrcWidget();
+    void initDownloadWidget();
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
     void lrcTransparentValue(Type key, int index) const;
