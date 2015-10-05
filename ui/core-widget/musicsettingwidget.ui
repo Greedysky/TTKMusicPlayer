@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -858,7 +858,7 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="four">
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_FO1">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -871,7 +871,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="baseSetSongWordWidget_2">
+    <widget class="QLabel" name="DbaseSetSongWordWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -907,7 +907,7 @@ font-weight:bold;</string>
       <string>预览</string>
      </property>
     </widget>
-    <widget class="Line" name="line_3">
+    <widget class="Line" name="line_FO2">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -920,7 +920,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="MusicPreviewLabel" name="showLabelD">
+    <widget class="MusicPreviewLabel" name="DshowLabel">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -937,7 +937,7 @@ font-weight:bold;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontComboBoxD">
+    <widget class="QComboBox" name="DfontComboBox">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -947,7 +947,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="fontLabel">
+    <widget class="QLabel" name="DfontLabel">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -960,7 +960,7 @@ font-weight:bold;</string>
       <string>字体</string>
      </property>
     </widget>
-    <widget class="QLabel" name="fontSizeLabel">
+    <widget class="QLabel" name="DfontSizeLabel">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -973,7 +973,7 @@ font-weight:bold;</string>
       <string>大小</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontSizeComboBoxD">
+    <widget class="QComboBox" name="DfontSizeComboBox">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -983,7 +983,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="fontTypeLabel">
+    <widget class="QLabel" name="DfontTypeLabel">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -996,7 +996,7 @@ font-weight:bold;</string>
       <string>字型</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontTypeComboBoxD">
+    <widget class="QComboBox" name="DfontTypeComboBox">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1006,7 +1006,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="fontColorLabel">
+    <widget class="QLabel" name="DfontColorLabel">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1019,7 +1019,7 @@ font-weight:bold;</string>
       <string>颜色</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="noPlayedPushButtonD">
+    <widget class="QPushButton" name="DnoPlayedPushButton">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -1032,7 +1032,7 @@ font-weight:bold;</string>
       <string>未播放</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="playedPushButtonD">
+    <widget class="QPushButton" name="DplayedPushButton">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1045,7 +1045,7 @@ font-weight:bold;</string>
       <string>已播放</string>
      </property>
     </widget>
-    <widget class="QLabel" name="fontDefalutColorLabel">
+    <widget class="QLabel" name="DfontDefalutColorLabel">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -1058,7 +1058,7 @@ font-weight:bold;</string>
       <string>预设</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontDefalutColorComboBoxD">
+    <widget class="QComboBox" name="DfontDefalutColorComboBox">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -1068,7 +1068,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="resetPushButtonD">
+    <widget class="QPushButton" name="DresetPushButton">
      <property name="geometry">
       <rect>
        <x>219</x>
@@ -1081,7 +1081,7 @@ font-weight:bold;</string>
       <string>恢复默认方案</string>
      </property>
     </widget>
-    <widget class="QLabel" name="fontTransLabel_2">
+    <widget class="QLabel" name="DfontTransLabel">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1094,7 +1094,7 @@ font-weight:bold;</string>
       <string>透明度</string>
      </property>
     </widget>
-    <widget class="QSlider" name="transparentSliderD">
+    <widget class="QSlider" name="DtransparentSlider">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -1107,7 +1107,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QCheckBox" name="showDesktopSongWordWidget">
+    <widget class="QCheckBox" name="showDesktopCheckBox">
      <property name="geometry">
       <rect>
        <x>30</x>
