@@ -493,22 +493,16 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    QString path = openSelectedFileDialog();
-    if(!path.isEmpty())
-    {
-        index == 0 ? ui->downloadDirEdit->setText(path)
-                   : ui->downloadLrcDirEdit->setText(path);
-    }
-}
-
-QString MusicSettingWidget::openSelectedFileDialog() const
-{
+    QString path;
     QFileDialog dialog;
     dialog.setFileMode(QFileDialog::Directory );
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
-        return dialog.directory().absolutePath();
+        if(!(path = dialog.directory().absolutePath()).isEmpty())
+        {
+            index == 0 ? ui->downloadDirEdit->setText(path)
+                       : ui->downloadLrcDirEdit->setText(path);
+        }
     }
-    return QString();
 }

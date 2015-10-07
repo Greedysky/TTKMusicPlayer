@@ -9,9 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QDialog>
-#include <QTabWidget>
-#include <QMouseEvent>
 #include "musicabstractmovedialog.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
@@ -23,9 +20,9 @@ class MusicSettingWidget;
 class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-
 public:
     typedef enum Type{ Inline, Desktop} Type;
+
     explicit MusicSettingWidget(QWidget *parent = 0);
     virtual ~MusicSettingWidget();
 
@@ -64,7 +61,6 @@ protected:
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
     void lrcTransparentValue(Type key, int index) const;
-    QString openSelectedFileDialog() const;
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg;
