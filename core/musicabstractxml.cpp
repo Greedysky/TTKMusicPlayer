@@ -46,10 +46,35 @@ bool MusicAbstractXml::writeConfig(const QString &type)
     return true;
 }
 
-QString MusicAbstractXml::readXmlByTagNameAndAttribute(const QString &tagName) const
+QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName) const
+{
+    return readXmlAttributeByTagName(tagName, "value");
+}
+
+QString MusicAbstractXml::readXmlAttributeByTagName(const QString &tagName,
+                                                       const QString &attrName) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
-    return nodelist.at(0).toElement().attribute("value");
+    return nodelist.at(0).toElement().attribute(attrName);
+}
+
+QString MusicAbstractXml::readXmlTextByTagName(const QString &tagName) const
+{
+    QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
+    return nodelist.at(0).toElement().text();
+}
+
+MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
+{
+    QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
+    QDomNamedNodeMap nodes = nodelist.at(0).toElement().attributes();
+    MStriantMap maps;
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomAttr attr = nodes.item(i).toAttr();
+        maps[attr.name()] = attr.value();
+    }
+    return maps;
 }
 
 void MusicAbstractXml::createProcessingInstruction()

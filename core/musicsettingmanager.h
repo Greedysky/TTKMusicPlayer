@@ -25,11 +25,13 @@ public:
 
         PlayModeChoiced,
         VolumeChoiced,
+
         AutoPlayChoiced,
         EnhancedMusicChoiced,
         CurrentLanIndexChoiced,
         CloseEventChoiced,
         LastPlayIndexChoiced,
+
         BgThemeChoiced,
         BgTransparentChoiced,
         BgListTransparentChoiced,
@@ -43,6 +45,7 @@ public:
         LrcFgColorChoiced,
         LrcBgColorChoiced,
         LrcColorTransChoiced,
+
         DLrcColorChoiced,
         DLrcSizeChoiced,
         DLrcTypeChoiced,
@@ -72,7 +75,16 @@ public:
         TimerAutoShutdownChoiced,
         TimerAutoShutdownHourChoiced,
         TimerAutoShutdownSecondChoiced,
-        TimerAutoShutdownRepeatChoiced
+        TimerAutoShutdownRepeatChoiced,
+
+        DownloadMusicPathDirChoiced,
+        DownloadLrcPathDirChoiced,
+        DownloadCacheLimitChoiced,
+        DownloadCacheSizeChoiced,
+        DownloadLimitChoiced,
+        DownloadDLoadLimitChoiced,
+        DownloadULoadLimitChoiced
+
     };
 
     ~MusicSettingManager(){}

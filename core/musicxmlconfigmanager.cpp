@@ -143,6 +143,15 @@ void MusicXMLConfigManager::writeXMLConfig()
     int timeAutoShutdownRepeatChoiced = M_SETTING->value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt();
     ///////////////////////////////////////////////////////////////////////////
 
+    QString downloadMusicPath = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    QString downloadLrcPath = M_SETTING->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
+    int downloadCacheLimit = M_SETTING->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt();
+    int downloadCacheSize = M_SETTING->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt();
+    int downloadLimit = M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt();
+    int downloadDLoadLimit = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
+    int downloadULoadLimit = M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toInt();
+    ///////////////////////////////////////////////////////////////////////////
+
     //Open wirte file
     if( !writeConfig(COFIGPATH) )
     {
@@ -159,6 +168,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QDomElement showDLrc = writeDom(musicPlayer, "desktopLrc");
     QDomElement equalizer = writeDom(musicPlayer, "equalizer");
     QDomElement timeSettings = writeDom(musicPlayer, "timeSettings");
+    QDomElement downloads = writeDom(musicPlayer, "downloads");
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
@@ -229,6 +239,13 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
 
     ///////////////////////////////////////////////
+    writeDomElement(downloads, "downloadMusicPath", "value", downloadMusicPath);
+    writeDomElement(downloads, "downloadLrcPath", "value", downloadLrcPath);
+    writeDomElement(downloads, "downloadCacheLimit", "value", downloadCacheLimit);
+    writeDomElement(downloads, "downloadCacheSize", "value", downloadCacheSize);
+    writeDomElement(downloads, "downloadLimit", "value", downloadLimit);
+    writeDomElement(downloads, "downloadDLoadLimit", "value", downloadDLoadLimit);
+    writeDomElement(downloads, "downloadULoadLimit", "value", downloadULoadLimit);
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out,4);
@@ -267,7 +284,7 @@ void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
 
 QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
 {
-    QStringList rgb = readXmlByTagNameAndAttribute(value).split(',');
+    QStringList rgb = readXmlAttributeByTagNameValue(value).split(',');
     if(rgb.count() != 3)
     {
         return QColor();
@@ -277,7 +294,7 @@ QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
 
 QRect MusicXMLConfigManager::readShowDLrcGeometry() const
 {
-    QStringList geometry = readXmlByTagNameAndAttribute("lrcDGeometry").split(',');
+    QStringList geometry = readXmlAttributeByTagNameValue("lrcDGeometry").split(',');
     if(geometry.count() != 4)
     {
         return QRect();
@@ -289,33 +306,51 @@ QRect MusicXMLConfigManager::readShowDLrcGeometry() const
 void MusicXMLConfigManager::readTimeAutoConfig() const
 {
     M_SETTING->setValue(MusicSettingManager::TimerAutoIndexChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoIndex").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoIndex").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlayChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlay").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlay").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlayHour").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlayHour").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlaySecond").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlaySecond").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlayRepeat").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlayRepeat").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlayItemIndex").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlayItemIndex").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoPlaySongIndex").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoPlaySongIndex").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoStopChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoStop").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoStop").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoStopHourChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoStopHour").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoStopHour").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoStopSecond").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoStopSecond").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoStopRepeat").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoStopRepeat").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoShutdown").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoShutdown").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoShutdownHour").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoShutdownHour").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoShutdownSecond").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoShutdownSecond").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
-                     readXmlByTagNameAndAttribute("timeAutoShutdownRepeat").toInt());
+                     readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
+}
+
+void MusicXMLConfigManager::readDownloadConfig() const
+{
+    M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
+                     readXmlAttributeByTagNameValue("downloadMusicPath"));
+    M_SETTING->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
+                     readXmlAttributeByTagNameValue("downloadLrcPath"));
+    M_SETTING->setValue(MusicSettingManager::DownloadCacheLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadCacheLimit").toInt());
+    M_SETTING->setValue(MusicSettingManager::DownloadCacheSizeChoiced,
+                     readXmlAttributeByTagNameValue("downloadCacheSize").toInt());
+    M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadLimit").toInt());
+    M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadDLoadLimit").toInt());
+    M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadULoadLimit").toInt());
 }

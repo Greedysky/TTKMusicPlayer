@@ -26,7 +26,11 @@ public:
 protected:
     bool readConfig(const QString &type);
     bool writeConfig(const QString &type);
-    QString readXmlByTagNameAndAttribute(const QString &tagName) const;
+    QString readXmlAttributeByTagNameValue(const QString &tagName) const;
+    QString readXmlAttributeByTagName(const QString &tagName,
+                                      const QString &attrName) const;
+    QString readXmlTextByTagName(const QString &tagName) const;
+    MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
 
     void createProcessingInstruction();
     QDomElement createRoot(const QString &node);

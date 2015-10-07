@@ -24,57 +24,57 @@ public:
     void writeMusicSongsConfig(const MMusicList &musics);
     void readMusicSongsConfig(MMusicList &musics);
     inline int readMusicPlayModeConfig() const
-    { return readXmlByTagNameAndAttribute("playMode").toInt(); }
+    { return readXmlAttributeByTagNameValue("playMode").toInt(); }
     inline int readMusicPlayVolumeConfig() const
-    { return readXmlByTagNameAndAttribute("playVolume").toInt(); }
+    { return readXmlAttributeByTagNameValue("playVolume").toInt(); }
     inline QString readSystemCloseConfig() const
-    { return readXmlByTagNameAndAttribute("closeEvent"); }
+    { return readXmlAttributeByTagNameValue("closeEvent"); }
     inline QString readSystemAutoPlayConfig() const
-    { return readXmlByTagNameAndAttribute("autoPlay"); }
+    { return readXmlAttributeByTagNameValue("autoPlay"); }
     inline int readEnhancedMusicConfig() const
-    { return readXmlByTagNameAndAttribute("enhancedMusic").toInt(); }
+    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
     inline QString readBackgroundTheme() const
-    { return readXmlByTagNameAndAttribute("bgTheme"); }
+    { return readXmlAttributeByTagNameValue("bgTheme"); }
     inline QString readBackgroundTransparent() const
-    { return readXmlByTagNameAndAttribute("bgTransparent"); }
+    { return readXmlAttributeByTagNameValue("bgTransparent"); }
     inline QString readBackgroundListTransparent() const
-    { return readXmlByTagNameAndAttribute("bgListTransparent"); }
+    { return readXmlAttributeByTagNameValue("bgListTransparent"); }
     inline QString readShowInlineLrc() const
-    { return readXmlByTagNameAndAttribute("showInlineLrc"); }
+    { return readXmlAttributeByTagNameValue("showInlineLrc"); }
     inline QString readShowDesktopLrc() const
-    { return readXmlByTagNameAndAttribute("showDesktopLrc"); }
+    { return readXmlAttributeByTagNameValue("showDesktopLrc"); }
     inline int readShowLrcColor() const
-    { return readXmlByTagNameAndAttribute("lrcColor").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcColor").toInt(); }
     inline int readShowLrcSize() const
-    { return readXmlByTagNameAndAttribute("lrcSize").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcSize").toInt(); }
     inline int readShowLrcFamily() const
-    { return readXmlByTagNameAndAttribute("lrcFamily").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcFamily").toInt(); }
     inline int readShowLrcType() const
-    { return readXmlByTagNameAndAttribute("lrcType").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcType").toInt(); }
     inline int readShowLrcTransparent() const
-    { return readXmlByTagNameAndAttribute("lrcTransparent").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcTransparent").toInt(); }
     inline int readShowDLrcColor() const
-    { return readXmlByTagNameAndAttribute("lrcDColor").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDColor").toInt(); }
     inline int readShowDLrcSize() const
-    { return readXmlByTagNameAndAttribute("lrcDSize").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDSize").toInt(); }
     inline int readShowDLrcFamily() const
-    { return readXmlByTagNameAndAttribute("lrcDFamily").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDFamily").toInt(); }
     inline int readShowDLrcType() const
-    { return readXmlByTagNameAndAttribute("lrcDType").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDType").toInt(); }
     inline int readShowDLrcTransparent() const
-    { return readXmlByTagNameAndAttribute("lrcDTransparent").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDTransparent").toInt(); }
     inline int readShowDLrcLocked() const
-    { return readXmlByTagNameAndAttribute("lrcDLocked").toInt(); }
+    { return readXmlAttributeByTagNameValue("lrcDLocked").toInt(); }
     inline int readEqualizerIndex() const
-    { return readXmlByTagNameAndAttribute("equalizerIndex").toInt(); }
+    { return readXmlAttributeByTagNameValue("equalizerIndex").toInt(); }
     inline int readEqualizerEnale() const
-    { return readXmlByTagNameAndAttribute("equalizerEnale").toInt(); }
+    { return readXmlAttributeByTagNameValue("equalizerEnale").toInt(); }
     inline QString readEqualizerValue() const
-    { return readXmlByTagNameAndAttribute("equalizerValue"); }
+    { return readXmlAttributeByTagNameValue("equalizerValue"); }
     inline int readSEqualizerIndex() const
-    { return readXmlByTagNameAndAttribute("sEqualizerIndex").toInt(); }
+    { return readXmlAttributeByTagNameValue("sEqualizerIndex").toInt(); }
     inline int readLanguageIndex() const
-    { return readXmlByTagNameAndAttribute("language").toInt(); }
+    { return readXmlAttributeByTagNameValue("language").toInt(); }
 
     inline QColor readShowLrcFgColor() const
     { return readColorConfig("lrcFgColor");}
@@ -88,6 +88,7 @@ public:
     void readSystemLastPlayIndexConfig(QStringList &key) const;
     QRect readShowDLrcGeometry() const;
     void readTimeAutoConfig() const;
+    void readDownloadConfig() const;
 
 protected:
     MusicSongs readMusicFilePath(const QString &value) const;
