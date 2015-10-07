@@ -84,14 +84,20 @@ void MusicXMLConfigManager::writeXMLConfig()
 {
     int playModeChoiced = M_SETTING->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
+
+    ///////////////////////////////////////////////////////////////////////////
     QString autoPlayChoiced = M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toString();
     int enhancedMusicChoiced = M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     int languageIndexChoiced = M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     QString closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toString();
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+
+    ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING->value(MusicSettingManager::BgThemeChoiced).toString();
     QString bgTransparentChoiced = M_SETTING->value(MusicSettingManager::BgTransparentChoiced).toString();
     QString bgListTransparentChoiced = M_SETTING->value(MusicSettingManager::BgListTransparentChoiced).toString();
+
+    ///////////////////////////////////////////////////////////////////////////
     QString showInlineLrcChoiced = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toString();
     QString showDesktopLrcChoiced = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toString();
     int lrcColorChoiced = M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt();
@@ -101,6 +107,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     QColor lrcFgColorChoiced = M_SETTING->value(MusicSettingManager::LrcFgColorChoiced).value<QColor>();
     QColor lrcBgColorChoiced = M_SETTING->value(MusicSettingManager::LrcBgColorChoiced).value<QColor>();
     int lrcTransparentChoiced = M_SETTING->value(MusicSettingManager::LrcColorTransChoiced).toInt();
+
+    ///////////////////////////////////////////////////////////////////////////
     int DLrcColorChoiced = M_SETTING->value(MusicSettingManager::DLrcColorChoiced).toInt();
     int DLrcSizeChoiced = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt();
     int DLrcTypeChoiced = M_SETTING->value(MusicSettingManager::DLrcTypeChoiced).toInt();
@@ -110,6 +118,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     int DLrcTransparentChoiced = M_SETTING->value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     int DLrcLockedChoiced = M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt();
     QRect DLrcGeometry = M_SETTING->value(MusicSettingManager::DLrcGeometryChoiced).toRect();
+
+    ///////////////////////////////////////////////////////////////////////////
     int equalizerEnableChoiced = M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
     QString equalizerValueChoiced = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString();
     int equalizerIndexChoiced = M_SETTING->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
@@ -148,42 +158,42 @@ void MusicXMLConfigManager::writeXMLConfig()
     QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
     QDomElement showDLrc = writeDom(musicPlayer, "desktopLrc");
     QDomElement equalizer = writeDom(musicPlayer, "equalizer");
+    QDomElement timeSettings = writeDom(musicPlayer, "timeSettings");
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
 
+    ///////////////////////////////////////////////////////////////////////////
     writeDomElement(settings, "enhancedMusic", "value", enhancedMusicChoiced);
     writeDomElement(settings, "language", "value", languageIndexChoiced);
     writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
     writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
           QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
-    ///////////////////////////////////////////////////////////////////////////
-
-    writeDomElement(settings, "timeAutoIndex", "value", timeAutoIndexChoiced);
-    writeDomElement(settings, "timeAutoPlay", "value", timeAutoPlayChoiced);
-    writeDomElement(settings, "timeAutoPlayHour", "value", timeAutoPlayHourChoiced);
-    writeDomElement(settings, "timeAutoPlaySecond", "value", timeAutoPlaySecondChoiced);
-    writeDomElement(settings, "timeAutoPlayRepeat", "value", timeAutoPlayRepeatChoiced);
-    writeDomElement(settings, "timeAutoPlayItemIndex", "value", timeAutoPlayItemIndexChoiced);
-    writeDomElement(settings, "timeAutoPlaySongIndex", "value", timeAutoPlaySongIndexChoiced);
-    writeDomElement(settings, "timeAutoStop", "value", timeAutoStopChoiced);
-    writeDomElement(settings, "timeAutoStopHour", "value", timeAutoStopHourChoiced);
-    writeDomElement(settings, "timeAutoStopSecond", "value", timeAutoStopSecondChoiced);
-    writeDomElement(settings, "timeAutoStopRepeat", "value", timeAutoStopRepeatChoiced);
-    writeDomElement(settings, "timeAutoShutdown", "value", timeAutoShutdownChoiced);
-    writeDomElement(settings, "timeAutoShutdownHour", "value", timeAutoShutdownHourChoiced);
-    writeDomElement(settings, "timeAutoShutdownSecond", "value", timeAutoShutdownSecondChoiced);
-    writeDomElement(settings, "timeAutoShutdownRepeat", "value", timeAutoShutdownRepeatChoiced);
 
     ///////////////////////////////////////////////////////////////////////////
+    writeDomElement(timeSettings, "timeAutoIndex", "value", timeAutoIndexChoiced);
+    writeDomElement(timeSettings, "timeAutoPlay", "value", timeAutoPlayChoiced);
+    writeDomElement(timeSettings, "timeAutoPlayHour", "value", timeAutoPlayHourChoiced);
+    writeDomElement(timeSettings, "timeAutoPlaySecond", "value", timeAutoPlaySecondChoiced);
+    writeDomElement(timeSettings, "timeAutoPlayRepeat", "value", timeAutoPlayRepeatChoiced);
+    writeDomElement(timeSettings, "timeAutoPlayItemIndex", "value", timeAutoPlayItemIndexChoiced);
+    writeDomElement(timeSettings, "timeAutoPlaySongIndex", "value", timeAutoPlaySongIndexChoiced);
+    writeDomElement(timeSettings, "timeAutoStop", "value", timeAutoStopChoiced);
+    writeDomElement(timeSettings, "timeAutoStopHour", "value", timeAutoStopHourChoiced);
+    writeDomElement(timeSettings, "timeAutoStopSecond", "value", timeAutoStopSecondChoiced);
+    writeDomElement(timeSettings, "timeAutoStopRepeat", "value", timeAutoStopRepeatChoiced);
+    writeDomElement(timeSettings, "timeAutoShutdown", "value", timeAutoShutdownChoiced);
+    writeDomElement(timeSettings, "timeAutoShutdownHour", "value", timeAutoShutdownHourChoiced);
+    writeDomElement(timeSettings, "timeAutoShutdownSecond", "value", timeAutoShutdownSecondChoiced);
+    writeDomElement(timeSettings, "timeAutoShutdownRepeat", "value", timeAutoShutdownRepeatChoiced);
 
+    ///////////////////////////////////////////////////////////////////////////
     writeDomElement(backgroundSkin, "bgTheme", "value", bgThemeChoiced);
     writeDomElement(backgroundSkin, "bgTransparent", "value", bgTransparentChoiced);
     writeDomElement(backgroundSkin, "bgListTransparent", "value", bgListTransparentChoiced);
 
     ///////////////////////////////////////////////
-
     writeDomElement(showLrc, "showInlineLrc", "value", showInlineLrcChoiced);
     writeDomElement(showLrc, "lrcColor", "value", lrcColorChoiced);
     writeDomElement(showLrc, "lrcSize", "value", lrcSizeChoiced);
@@ -196,7 +206,6 @@ void MusicXMLConfigManager::writeXMLConfig()
                                         .arg(lrcBgColorChoiced.green()).arg(lrcBgColorChoiced.blue()));
 
     ///////////////////////////////////////////////
-
     writeDomElement(showDLrc, "showDesktopLrc", "value", showDesktopLrcChoiced);
     writeDomElement(showDLrc, "lrcDColor", "value", DLrcColorChoiced);
     writeDomElement(showDLrc, "lrcDSize", "value", DLrcSizeChoiced);
@@ -214,14 +223,12 @@ void MusicXMLConfigManager::writeXMLConfig()
                                                      .arg(DLrcGeometry.height()));
 
     ///////////////////////////////////////////////
-
     writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
     writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
     writeDomElement(equalizer, "sEqualizerIndex", "value", sEqualizerIndexChoiced);
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
 
     ///////////////////////////////////////////////
-
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out,4);
