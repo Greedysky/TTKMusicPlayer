@@ -26,8 +26,8 @@ SOURCES += \
     core/musicfileinformation.cpp \
     core/musicbgthememanager.cpp \
     core/musicdesktopwallpaperthread.cpp \
-    core/musicconnectionpool.cpp
-
+    core/musicconnectionpool.cpp \
+    core/musicregeditmanager.cpp
 
 
 HEADERS  += \
@@ -60,4 +60,6 @@ HEADERS  += \
     core/musicbgthememanager.h \
     core/musicsettingmanager.h \
     core/musicdesktopwallpaperthread.h \
-    core/musicconnectionpool.h
+    core/musicconnectionpool.h \
+    core/musicregeditmanager.h
+

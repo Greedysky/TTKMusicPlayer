@@ -5,9 +5,9 @@
 #include "musicdatadownloadthread.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
+#include "musicregeditmanager.h"
 
 #include <QFileDialog>
-#include <QSettings>
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
     MusicAbstractMoveWidget(parent),
@@ -217,11 +217,7 @@ void MusicDesktopWallpaperWidget::cancelButtonPressed()
 
 void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
 {
-    const QString REG_RUN = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
-    QString applicationName = QApplication::applicationName();
-    QSettings settings(REG_RUN, QSettings::NativeFormat);
-    autoStart ? settings.setValue(applicationName, QApplication::applicationFilePath().replace("/", "\\"))
-              : settings.remove(applicationName);
+    MusicRegeditManager().setDesktopWallAutoStart(autoStart);
 }
 
 void MusicDesktopWallpaperWidget::show()

@@ -1,8 +1,8 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicbgthememanager.h"
+#include "musicregeditmanager.h"
 
 #include <time.h>
-#include <QSettings>
 #include <QFileInfo>
 
 #if defined Q_OS_WIN32 && defined _MSC_VER
@@ -13,9 +13,7 @@
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent) :
     QThread(parent)
 {
-    QSettings appSettings("HKEY_CURRENT_USER\\Control Panel\\Desktop",QSettings::NativeFormat);
-    m_originPath = appSettings.value("Wallpaper").toString();
-    m_originType = appSettings.value("WallpaperStyle").toInt();
+    MusicRegeditManager().getDesktopWallControlPanel(m_originPath, m_originType);
     qsrand(time(NULL));
     m_run = true;
     m_currentImageIndex = 0;
@@ -87,10 +85,7 @@ void MusicDesktopWallpaperThread::stopAndQuitThread()
 
 void MusicDesktopWallpaperThread::setWallpaper(const QString &path, int type) const
 {
-    QSettings appSettings("HKEY_CURRENT_USER\\Control Panel\\Desktop",QSettings::NativeFormat);
-    appSettings.setValue ("Wallpaper", path);
-    QString wallpaperStyle = (type == 0 || type == 1) ? "00" : "10";
-    appSettings.setValue ("WallpaperStyle", wallpaperStyle);
+    MusicRegeditManager().setDesktopWallControlPanel(path, type);
     SystemParametersInfo(SPI_SETDESKWALLPAPER, 0,
                          (TCHAR*)path.toStdWString().c_str(),
                          SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
