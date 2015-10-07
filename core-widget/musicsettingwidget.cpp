@@ -202,9 +202,9 @@ void MusicSettingWidget::initControllerParameter()
     {
         ui->quitRadioBox->setChecked(true);
     }
-
     ui->languageComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
+    ////////////////////////////////////////////////
     //Set init parameter
     ui->showInlineCheckBox->setChecked(M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
     ui->showDesktopCheckBox->setChecked(M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
@@ -230,6 +230,7 @@ void MusicSettingWidget::initControllerParameter()
     }
     ui->transparentSlider->setValue(M_SETTING->value(MusicSettingManager::LrcColorTransChoiced).toInt());
 
+    ////////////////////////////////////////////////
     ui->DfontComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
     ui->DfontSizeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
     ui->DfontTypeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcTypeChoiced).toInt());
@@ -249,6 +250,18 @@ void MusicSettingWidget::initControllerParameter()
         ui->DshowLabel->update();
     }
     ui->DtransparentSlider->setValue(M_SETTING->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+
+    ////////////////////////////////////////////////
+    ui->downloadDirEdit->setText(M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
+    ui->downloadLrcDirEdit->setText(M_SETTING->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
+    ui->downloadSpinBox->setValue(M_SETTING->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
+    M_SETTING->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
+                     ui->downloadCacheAutoRadioBox->click() : ui->downloadCacheManRadioBox->click();
+    ui->downloadLimitSpeedComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt());
+    ui->uploadLimitSpeedComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toInt());
+    M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
+                     ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
+    ///////////////////////////////////////////////////////////////////////////
 
 }
 
@@ -290,6 +303,14 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DLrcBgColorChoiced, m_DlrcSelectedBg);
     M_SETTING->setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
     M_SETTING->setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
+
+    M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,ui->downloadDirEdit->text());
+    M_SETTING->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,ui->downloadLrcDirEdit->text());
+    M_SETTING->setValue(MusicSettingManager::DownloadCacheLimitChoiced,ui->downloadCacheAutoRadioBox->isChecked());
+    M_SETTING->setValue(MusicSettingManager::DownloadCacheSizeChoiced,ui->downloadSpinBox->value());
+    M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,ui->downloadCacheAutoRadioBox->isChecked());
+    M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,ui->downloadLimitSpeedComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,ui->uploadLimitSpeedComboBox->currentIndex());
 
     emit parameterSettingChanged();
     close();

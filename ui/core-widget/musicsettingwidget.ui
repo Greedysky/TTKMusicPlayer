@@ -1419,32 +1419,6 @@ font-weight:bold;</string>
       <string>KB/s</string>
      </property>
     </widget>
-    <zorder>line_FS1</zorder>
-    <zorder>baseSetDownloadWidget</zorder>
-    <zorder>downloadDirLabel</zorder>
-    <zorder>downloadDirEdit</zorder>
-    <zorder>downloadDirButton</zorder>
-    <zorder>downloadLrcDirLabel</zorder>
-    <zorder>downloadLrcDirButton</zorder>
-    <zorder>downloadLrcDirEdit</zorder>
-    <zorder>downloadCacheLabel</zorder>
-    <zorder>downloadCacheAutoRadioBox</zorder>
-    <zorder>downloadCacheManRadioBox</zorder>
-    <zorder>line_FS1_2</zorder>
-    <zorder>downloadSpeedWidget</zorder>
-    <zorder>downloadFullRadioBox</zorder>
-    <zorder>downloadLimitRadioBox</zorder>
-    <zorder>downloadSpinBox</zorder>
-    <zorder>downloadLimitSpeedComboBox</zorder>
-    <zorder>uploadLimitSpeedComboBox</zorder>
-    <zorder>downloadCacheSizeLabel</zorder>
-    <zorder>downloadLimitSpeedLabel</zorder>
-    <zorder>uploadLimitSpeedLabel</zorder>
-    <zorder>functionAreaDisplay</zorder>
-    <zorder>functionAreaDisplay</zorder>
-    <zorder>functionAreaDisplay</zorder>
-    <zorder>downloadSpeedLabel</zorder>
-    <zorder>uploadSpeedLabel</zorder>
    </widget>
   </widget>
   <widget class="QWidget" name="functionArea" native="true">
@@ -1612,8 +1586,6 @@ font-weight:bold;</string>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>stackedWidget</zorder>
-   <zorder>stackedWidget</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>functionAreaDisplay</zorder>

@@ -277,6 +277,7 @@ void MusicApplication::readXMLConfigFromText()
     }
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
+    xml.readDownloadConfig();
 
     createPlayModeMenu(m_playModeMenu);
     switch( xml.readMusicPlayModeConfig() )
