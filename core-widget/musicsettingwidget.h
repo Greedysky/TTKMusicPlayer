@@ -37,6 +37,7 @@ signals:
 public slots:
     void downloadGroupCached(int index);
     void downloadGroupSpeedLimit(int index);
+    void downloadDirSelected(int index);
     void changeInlineLrcWidget();
     void changeDesktopLrcWidget();
     void commitTheResults();
@@ -63,6 +64,7 @@ protected:
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
     void lrcTransparentValue(Type key, int index) const;
+    QString openSelectedFileDialog() const;
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg;

@@ -4,6 +4,7 @@
 
 #include <QFontDatabase>
 #include <QColorDialog>
+#include <QFileDialog>
 #include <QButtonGroup>
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
@@ -184,8 +185,14 @@ void MusicSettingWidget::initDownloadWidget()
     buttonGroup2->addButton(ui->downloadLimitRadioBox, 1);
     connect(buttonGroup2, SIGNAL(buttonClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
 
+    QButtonGroup *buttonGroup3 = new QButtonGroup(this);
+    buttonGroup3->addButton(ui->downloadDirButton, 0);
+    buttonGroup3->addButton(ui->downloadLrcDirButton, 1);
+    connect(buttonGroup3, SIGNAL(buttonClicked(int)), SLOT(downloadDirSelected(int)));
+
     ui->downloadCacheAutoRadioBox->click();
     ui->downloadFullRadioBox->click();
+
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -482,4 +489,26 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 {
     ui->downloadLimitSpeedComboBox->setEnabled(index);
     ui->uploadLimitSpeedComboBox->setEnabled(index);
+}
+
+void MusicSettingWidget::downloadDirSelected(int index)
+{
+    QString path = openSelectedFileDialog();
+    if(!path.isEmpty())
+    {
+        index == 0 ? ui->downloadDirEdit->setText(path)
+                   : ui->downloadLrcDirEdit->setText(path);
+    }
+}
+
+QString MusicSettingWidget::openSelectedFileDialog() const
+{
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::Directory );
+    dialog.setViewMode(QFileDialog::Detail);
+    if(dialog.exec())
+    {
+        return dialog.directory().absolutePath();
+    }
+    return QString();
 }
