@@ -17,12 +17,15 @@ class MUSIC_CORE_EXPORT MusicRegeditManager
 public:
     explicit MusicRegeditManager();
 
+    void setMusicRegeditAssociateFileIcon();
     void setDesktopWallAutoStart(bool state);
     void getDesktopWallControlPanel(QString &originPath,
                                     int &originType);
     void setDesktopWallControlPanel(const QString &originPath,
                                     int originType);
 
+protected:
+    void createMusicRegedit(const QString &key);
 
 };
 
