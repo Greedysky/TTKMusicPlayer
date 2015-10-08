@@ -30,13 +30,9 @@ HEADERS  += \
     $$PWD/musicplaylist.h \
     $$PWD/musicequalizer.h \
     $$PWD/musicabstractxml.h \
-    $$PWD/musictimerautoobject.h \
-    $$PWD/musiclocalsongsmanagerthread.h \
     $$PWD/musiclibzplay.h \
-    $$PWD/musicfileinformation.h \
     $$PWD/musicbgthememanager.h \
     $$PWD/musicsettingmanager.h \
-    $$PWD/musicdesktopwallpaperthread.h \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicregeditmanager.h
 
@@ -57,11 +53,7 @@ SOURCES += \
     $$PWD/musicplaylist.cpp \
     $$PWD/musicequalizer.cpp \
     $$PWD/musicabstractxml.cpp \
-    $$PWD/musictimerautoobject.cpp \
     $$PWD/musicxmlconfigmanager.cpp \
-    $$PWD/musiclocalsongsmanagerthread.cpp \
-    $$PWD/musicfileinformation.cpp \
     $$PWD/musicbgthememanager.cpp \
-    $$PWD/musicdesktopwallpaperthread.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp

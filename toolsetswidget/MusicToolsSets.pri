@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD \
+               $$PWD/core
                
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
@@ -14,7 +15,11 @@ HEADERS  += \
     $$PWD/musictransformwidget.h \
     $$PWD/musicfileinformationwidget.h \
     $$PWD/musicspectrumwidget.h \
-    $$PWD/musicdesktopwallpaperwidget.h
+    $$PWD/musicdesktopwallpaperwidget.h \
+    $$PWD/core/musicdesktopwallpaperthread.h \
+    $$PWD/core/musictimerautoobject.h \
+    $$PWD/core/musiclocalsongsmanagerthread.h \
+    $$PWD/core/musicfileinformation.h
 
 
 SOURCES += \
@@ -25,7 +30,11 @@ SOURCES += \
     $$PWD/musictransformwidget.cpp \
     $$PWD/musicfileinformationwidget.cpp \
     $$PWD/musicspectrumwidget.cpp \
-    $$PWD/musicdesktopwallpaperwidget.cpp
+    $$PWD/musicdesktopwallpaperwidget.cpp \
+    $$PWD/core/musicdesktopwallpaperthread.cpp \
+    $$PWD/core/musictimerautoobject.cpp \
+    $$PWD/core/musiclocalsongsmanagerthread.cpp \
+    $$PWD/core/musicfileinformation.cpp
 
 
 FORMS    += \
