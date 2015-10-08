@@ -4,41 +4,42 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    lrcmanager/musiclrcmanager.cpp \
-    lrcmanager/musiclrcmanagerfordesktop.cpp \
-    lrcmanager/musiclrcmanagerforinline.cpp \
-    lrcmanager/musiclrccontainer.cpp \
-    lrcmanager/musiclrccontainerfordesktop.cpp \
-    lrcmanager/musiclrccontainerforinline.cpp \
-    lrcmanager/musiclrcsearchwidget.cpp \
-    lrcmanager/musiclrcsearchtablewidget.cpp \
-    lrcmanager/musiclrcartphotoupload.cpp \
-    lrcmanager/musiclrcartphotolabel.cpp \
-    lrcmanager/musiclrcfloatwidget.cpp \
-    lrcmanager/musiclrcfloatabstractwidget.cpp \
-    lrcmanager/musiclrcfloatsettingwidget.cpp \
-    lrcmanager/musiclrcfloatphotowidget.cpp \
-    lrcmanager/musiclrcmakerwidget.cpp
-
-
-
+INCLUDEPATH += $$PWD
+               
 HEADERS  += \
-    lrcmanager/musiclrcmanager.h \
-    lrcmanager/musiclrcmanagerfordesktop.h \
-    lrcmanager/musiclrcmanagerforinline.h \
-    lrcmanager/musiclrccontainer.h \
-    lrcmanager/musiclrccontainerfordesktop.h \
-    lrcmanager/musiclrccontainerforinline.h \
-    lrcmanager/musiclrcsearchwidget.h \
-    lrcmanager/musiclrcsearchtablewidget.h \
-    lrcmanager/musiclrcartphotoupload.h \
-    lrcmanager/musiclrcartphotolabel.h \
-    lrcmanager/musiclrcfloatwidget.h \
-    lrcmanager/musiclrcfloatabstractwidget.h \
-    lrcmanager/musiclrcfloatsettingwidget.h \
-    lrcmanager/musiclrcfloatphotowidget.h \
-    lrcmanager/musiclrcmakerwidget.h
+    $$PWD/musiclrcmanager.h \
+    $$PWD/musiclrcmanagerfordesktop.h \
+    $$PWD/musiclrcmanagerforinline.h \
+    $$PWD/musiclrccontainer.h \
+    $$PWD/musiclrccontainerfordesktop.h \
+    $$PWD/musiclrccontainerforinline.h \
+    $$PWD/musiclrcsearchwidget.h \
+    $$PWD/musiclrcsearchtablewidget.h \
+    $$PWD/musiclrcartphotoupload.h \
+    $$PWD/musiclrcartphotolabel.h \
+    $$PWD/musiclrcfloatwidget.h \
+    $$PWD/musiclrcfloatabstractwidget.h \
+    $$PWD/musiclrcfloatsettingwidget.h \
+    $$PWD/musiclrcfloatphotowidget.h \
+    $$PWD/musiclrcmakerwidget.h
+
+
+SOURCES += \
+    $$PWD/musiclrcmanager.cpp \
+    $$PWD/musiclrcmanagerfordesktop.cpp \
+    $$PWD/musiclrcmanagerforinline.cpp \
+    $$PWD/musiclrccontainer.cpp \
+    $$PWD/musiclrccontainerfordesktop.cpp \
+    $$PWD/musiclrccontainerforinline.cpp \
+    $$PWD/musiclrcsearchwidget.cpp \
+    $$PWD/musiclrcsearchtablewidget.cpp \
+    $$PWD/musiclrcartphotoupload.cpp \
+    $$PWD/musiclrcartphotolabel.cpp \
+    $$PWD/musiclrcfloatwidget.cpp \
+    $$PWD/musiclrcfloatabstractwidget.cpp \
+    $$PWD/musiclrcfloatsettingwidget.cpp \
+    $$PWD/musiclrcfloatphotowidget.cpp \
+    $$PWD/musiclrcmakerwidget.cpp
 
 
 FORMS    += \

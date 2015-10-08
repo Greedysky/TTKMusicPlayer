@@ -4,18 +4,19 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    remotewidget/musicremotewidget.cpp \
-    remotewidget/musicremotewidgetforsquare.cpp \
-    remotewidget/musicremotewidgetforrectangle.cpp \
-    remotewidget/musicremotewidgetfordiamond.cpp \
-    remotewidget/musicremotewidgetforcircle.cpp
-
-
-
+INCLUDEPATH += $$PWD
+               
 HEADERS  += \
-    remotewidget/musicremotewidget.h \
-    remotewidget/musicremotewidgetforsquare.h \
-    remotewidget/musicremotewidgetforrectangle.h \
-    remotewidget/musicremotewidgetfordiamond.h \
-    remotewidget/musicremotewidgetforcircle.h
+    $$PWD/musicremotewidget.h \
+    $$PWD/musicremotewidgetforsquare.h \
+    $$PWD/musicremotewidgetforrectangle.h \
+    $$PWD/musicremotewidgetfordiamond.h \
+    $$PWD/musicremotewidgetforcircle.h
+
+
+SOURCES += \
+    $$PWD/musicremotewidget.cpp \
+    $$PWD/musicremotewidgetforsquare.cpp \
+    $$PWD/musicremotewidgetforrectangle.cpp \
+    $$PWD/musicremotewidgetfordiamond.cpp \
+    $$PWD/musicremotewidgetforcircle.cpp

@@ -4,18 +4,20 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    videokits/musicvideoplayer.cpp \
-    videokits/musicvideocontrol.cpp \
-    videokits/musicvideoview.cpp \
-    videokits/musicvideotablewidget.cpp
-
-
+INCLUDEPATH += $$PWD
+               
 HEADERS  += \
-    videokits/musicvideoplayer.h \
-    videokits/musicvideocontrol.h \
-    videokits/musicvideoview.h \
-    videokits/musicvideotablewidget.h
+    $$PWD/musicvideoplayer.h \
+    $$PWD/musicvideocontrol.h \
+    $$PWD/musicvideoview.h \
+    $$PWD/musicvideotablewidget.h
+
+
+SOURCES += \
+    $$PWD/musicvideoplayer.cpp \
+    $$PWD/musicvideocontrol.cpp \
+    $$PWD/musicvideoview.cpp \
+    $$PWD/musicvideotablewidget.cpp
 
 
 RESOURCES += \

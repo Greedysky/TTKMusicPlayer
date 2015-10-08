@@ -4,18 +4,20 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    localsearch/musiclocalsongsearch.cpp \
-    localsearch/musiclocalsongsearchedit.cpp \
-    localsearch/musiclocalsongsearchinlineedit.cpp \
-    localsearch/musiclocalsongsearchpopwidget.cpp \
-    localsearch/musiclocalsongsearchrecordobject.cpp
-
-
-
+INCLUDEPATH += $$PWD \
+               $$PWD/core
+               
 HEADERS  += \
-    localsearch/musiclocalsongsearch.h \
-    localsearch/musiclocalsongsearchedit.h \
-    localsearch/musiclocalsongsearchinlineedit.h \
-    localsearch/musiclocalsongsearchpopwidget.h \
-    localsearch/musiclocalsongsearchrecordobject.h
+    $$PWD/musiclocalsongsearch.h \
+    $$PWD/musiclocalsongsearchedit.h \
+    $$PWD/musiclocalsongsearchinlineedit.h \
+    $$PWD/musiclocalsongsearchpopwidget.h \
+    $$PWD/core/musiclocalsongsearchrecordobject.h
+
+
+SOURCES += \
+    $$PWD/musiclocalsongsearch.cpp \
+    $$PWD/musiclocalsongsearchedit.cpp \
+    $$PWD/musiclocalsongsearchinlineedit.cpp \
+    $$PWD/musiclocalsongsearchpopwidget.cpp \
+    $$PWD/core/musiclocalsongsearchrecordobject.cpp

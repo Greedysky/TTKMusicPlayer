@@ -4,62 +4,64 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    core/network/musicdownloadquerythread.cpp \
-    core/network/musicdownloadthreadabstract.cpp \
-    core/network/musicdata2downloadthread.cpp \
-    core/network/musicdatadownloadthread.cpp \
-    core/network/musictextdownloadthread.cpp \
-    core/network/musicbgthemedownload.cpp \
-    core/network/musicnetworkthread.cpp \
-    core/network/musicsongdownloadthread.cpp \
-    core/network/musicdownloadqueuecache.cpp \
-    core/musicsonginformation.cpp \
-    core/musictime.cpp \
-    core/musicplayer.cpp \
-    core/musicplaylist.cpp \
-    core/musicequalizer.cpp \
-    core/musicabstractxml.cpp \
-    core/musictimerautoobject.cpp \
-    core/musicxmlconfigmanager.cpp \
-    core/musiclocalsongsmanagerthread.cpp \
-    core/musicfileinformation.cpp \
-    core/musicbgthememanager.cpp \
-    core/musicdesktopwallpaperthread.cpp \
-    core/musicconnectionpool.cpp \
-    core/musicregeditmanager.cpp
-
-
+INCLUDEPATH += $$PWD \
+               $$PWD/network
+               
 HEADERS  += \
-    core/musiclogger.h \
-    core/musiclibexportglobal.h \
-    core/musicobject.h \
-    core/musicuiobject.h \
-    core/musicsingletone.h \
-    core/network/musicdownloadquerythread.h \
-    core/network/musicdownloadthreadabstract.h \
-    core/network/musicdata2downloadthread.h \
-    core/network/musicdatadownloadthread.h \
-    core/network/musictextdownloadthread.h \
-    core/network/musicbgthemedownload.h \
-    core/network/musicnetworkthread.h \
-    core/network/musicsongdownloadthread.h \
-    core/network/musicdownloadqueuecache.h \
-    core/musicversion.h \
-    core/musictime.h \
-    core/musicsonginformation.h \
-    core/musicxmlconfigmanager.h \
-    core/musicplayer.h \
-    core/musicplaylist.h \
-    core/musicequalizer.h \
-    core/musicabstractxml.h \
-    core/musictimerautoobject.h \
-    core/musiclocalsongsmanagerthread.h \
-    core/musiclibzplay.h \
-    core/musicfileinformation.h \
-    core/musicbgthememanager.h \
-    core/musicsettingmanager.h \
-    core/musicdesktopwallpaperthread.h \
-    core/musicconnectionpool.h \
-    core/musicregeditmanager.h
+    $$PWD/musiclogger.h \
+    $$PWD/musiclibexportglobal.h \
+    $$PWD/musicobject.h \
+    $$PWD/musicuiobject.h \
+    $$PWD/musicsingletone.h \
+    $$PWD/network/musicdownloadquerythread.h \
+    $$PWD/network/musicdownloadthreadabstract.h \
+    $$PWD/network/musicdata2downloadthread.h \
+    $$PWD/network/musicdatadownloadthread.h \
+    $$PWD/network/musictextdownloadthread.h \
+    $$PWD/network/musicbgthemedownload.h \
+    $$PWD/network/musicnetworkthread.h \
+    $$PWD/network/musicsongdownloadthread.h \
+    $$PWD/network/musicdownloadqueuecache.h \
+    $$PWD/musicversion.h \
+    $$PWD/musictime.h \
+    $$PWD/musicsonginformation.h \
+    $$PWD/musicxmlconfigmanager.h \
+    $$PWD/musicplayer.h \
+    $$PWD/musicplaylist.h \
+    $$PWD/musicequalizer.h \
+    $$PWD/musicabstractxml.h \
+    $$PWD/musictimerautoobject.h \
+    $$PWD/musiclocalsongsmanagerthread.h \
+    $$PWD/musiclibzplay.h \
+    $$PWD/musicfileinformation.h \
+    $$PWD/musicbgthememanager.h \
+    $$PWD/musicsettingmanager.h \
+    $$PWD/musicdesktopwallpaperthread.h \
+    $$PWD/musicconnectionpool.h \
+    $$PWD/musicregeditmanager.h
 
+
+SOURCES += \
+    $$PWD/network/musicdownloadquerythread.cpp \
+    $$PWD/network/musicdownloadthreadabstract.cpp \
+    $$PWD/network/musicdata2downloadthread.cpp \
+    $$PWD/network/musicdatadownloadthread.cpp \
+    $$PWD/network/musictextdownloadthread.cpp \
+    $$PWD/network/musicbgthemedownload.cpp \
+    $$PWD/network/musicnetworkthread.cpp \
+    $$PWD/network/musicsongdownloadthread.cpp \
+    $$PWD/network/musicdownloadqueuecache.cpp \
+    $$PWD/musicsonginformation.cpp \
+    $$PWD/musictime.cpp \
+    $$PWD/musicplayer.cpp \
+    $$PWD/musicplaylist.cpp \
+    $$PWD/musicequalizer.cpp \
+    $$PWD/musicabstractxml.cpp \
+    $$PWD/musictimerautoobject.cpp \
+    $$PWD/musicxmlconfigmanager.cpp \
+    $$PWD/musiclocalsongsmanagerthread.cpp \
+    $$PWD/musicfileinformation.cpp \
+    $$PWD/musicbgthememanager.cpp \
+    $$PWD/musicdesktopwallpaperthread.cpp \
+    $$PWD/musicconnectionpool.cpp \
+    $$PWD/musicregeditmanager.cpp

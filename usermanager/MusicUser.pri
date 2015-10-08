@@ -4,22 +4,27 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    usermanager/musicusermanager.cpp \
-    usermanager/musicusermodel.cpp \
-    usermanager/musicuserdialog.cpp \
-    usermanager/musicuserlineedit.cpp \
-    usermanager/musicuserwindow.cpp \
-    usermanager/musicuserconfigmanager.cpp
-
+INCLUDEPATH += $$PWD \
+               $$PWD/core
+               
 HEADERS  += \
-    usermanager/musicusermanager.h \
-    usermanager/musicusermodel.h \
-    usermanager/musicuserdialog.h \
-    usermanager/musicuserlineedit.h \
-    usermanager/musicuserwindow.h \
-    usermanager/musicuserconfigmanager.h
-
+    $$PWD/musicusermanager.h \
+    $$PWD/musicuserdialog.h \
+    $$PWD/musicuserlineedit.h \
+    $$PWD/musicuserwindow.h \
+    $$PWD/core/musicusermodel.h \
+    $$PWD/core/musicuserconfigmanager.h
+    
+    
+SOURCES += \
+    $$PWD/musicusermanager.cpp \
+    $$PWD/musicuserdialog.cpp \
+    $$PWD/musicuserlineedit.cpp \
+    $$PWD/musicuserwindow.cpp \
+    $$PWD/core/musicusermodel.cpp \
+    $$PWD/core/musicuserconfigmanager.cpp
+    
+    
 FORMS    += \
     ui/usermanager/musicuserdialog.ui \
     ui/usermanager/musicuserwindow.ui \

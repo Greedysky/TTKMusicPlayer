@@ -4,25 +4,27 @@
 #
 #-------------------------------------------------
 
+INCLUDEPATH += $$PWD \
+               $$PWD/core
+               
 SOURCES += \
-    toolswidget/musicsongssummarizied.cpp \
-    toolswidget/musictoolsetswidget.cpp \
-    toolswidget/musicmydownloadrecordwidget.cpp \
-    toolswidget/musicwebradiolistview.cpp \
-    toolswidget/musicwebradiowidget.cpp \
-    toolswidget/musicwebradiodatebase.cpp \
-    toolswidget/musicmydownloadrecordobject.cpp
-
-
-
+    $$PWD/musicsongssummarizied.cpp \
+    $$PWD/musictoolsetswidget.cpp \
+    $$PWD/musicmydownloadrecordwidget.cpp \
+    $$PWD/musicwebradiolistview.cpp \
+    $$PWD/musicwebradiowidget.cpp \
+    $$PWD/core/musicwebradiodatebase.cpp \
+    $$PWD/core/musicmydownloadrecordobject.cpp
+    
+    
 HEADERS  += \
-    toolswidget/musicsongssummarizied.h \
-    toolswidget/musictoolsetswidget.h \
-    toolswidget/musicmydownloadrecordwidget.h \
-    toolswidget/musicwebradiolistview.h \
-    toolswidget/musicwebradiowidget.h \
-    toolswidget/musicwebradiodatebase.h \
-    toolswidget/musicmydownloadrecordobject.h
+    $$PWD/musicsongssummarizied.h \
+    $$PWD/musictoolsetswidget.h \
+    $$PWD/musicmydownloadrecordwidget.h \
+    $$PWD/musicwebradiolistview.h \
+    $$PWD/musicwebradiowidget.h \
+    $$PWD/core/musicwebradiodatebase.h \
+    $$PWD/core/musicmydownloadrecordobject.h
 
 
 FORMS    += \

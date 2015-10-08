@@ -20,17 +20,7 @@ LIBS += -L"./MPlugins/" -llibzplay
 
 DEFINES += MUSIC_LIBRARY
 
-INCLUDEPATH += $$PWD/core \
-               $$PWD/core\network \
-               $$PWD/core-widget \
-               $$PWD/localsearch \
-               $$PWD/lrcmanager \
-               $$PWD/remotewidget \
-               $$PWD/toolsetswidget \
-               $$PWD/toolswidget \
-               $$PWD/usermanager \
-               $$PWD/videokits \
-               $$PWD/
+INCLUDEPATH += $$PWD
 
 TRANSLATIONS += language/cn.ts \
                 language/cn_c.ts \

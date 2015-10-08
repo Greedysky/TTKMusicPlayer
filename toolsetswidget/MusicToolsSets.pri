@@ -4,27 +4,28 @@
 #
 #-------------------------------------------------
 
-SOURCES += \
-    toolsetswidget/musicmobiledeviceswidget.cpp \
-    toolsetswidget/musicaudiorecorderwidget.cpp \
-    toolsetswidget/musictimerwidget.cpp \
-    toolsetswidget/musiclocalsongsmanagerwidget.cpp \
-    toolsetswidget/musictransformwidget.cpp \
-    toolsetswidget/musicfileinformationwidget.cpp \
-    toolsetswidget/musicspectrumwidget.cpp \
-    toolsetswidget/musicdesktopwallpaperwidget.cpp
-
-
-
+INCLUDEPATH += $$PWD
+               
 HEADERS  += \
-    toolsetswidget/musicmobiledeviceswidget.h \
-    toolsetswidget/musicaudiorecorderwidget.h \
-    toolsetswidget/musictimerwidget.h \
-    toolsetswidget/musiclocalsongsmanagerwidget.h \
-    toolsetswidget/musictransformwidget.h \
-    toolsetswidget/musicfileinformationwidget.h \
-    toolsetswidget/musicspectrumwidget.h \
-    toolsetswidget/musicdesktopwallpaperwidget.h
+    $$PWD/musicmobiledeviceswidget.h \
+    $$PWD/musicaudiorecorderwidget.h \
+    $$PWD/musictimerwidget.h \
+    $$PWD/musiclocalsongsmanagerwidget.h \
+    $$PWD/musictransformwidget.h \
+    $$PWD/musicfileinformationwidget.h \
+    $$PWD/musicspectrumwidget.h \
+    $$PWD/musicdesktopwallpaperwidget.h
+
+
+SOURCES += \
+    $$PWD/musicmobiledeviceswidget.cpp \
+    $$PWD/musicaudiorecorderwidget.cpp \
+    $$PWD/musictimerwidget.cpp \
+    $$PWD/musiclocalsongsmanagerwidget.cpp \
+    $$PWD/musictransformwidget.cpp \
+    $$PWD/musicfileinformationwidget.cpp \
+    $$PWD/musicspectrumwidget.cpp \
+    $$PWD/musicdesktopwallpaperwidget.cpp
 
 
 FORMS    += \
@@ -34,4 +35,3 @@ FORMS    += \
     ui/toolsetswidget/musictransformwidget.ui \
     ui/toolsetswidget/musicfileinformationwidget.ui \
     ui/toolsetswidget/musicdesktopwallpaperwidget.ui
-
