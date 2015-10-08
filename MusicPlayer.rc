@@ -4,7 +4,17 @@
     #include <winver.h>
 #endif
 
-IDI_ICON1               ICON     DISCARDABLE     "resource/mymusicplayer.ico"
+IDI_ICON1                ICON     DISCARDABLE     "resource/mymusicplayer.ico"
+IDI_ICON2                ICON     DISCARDABLE     "resource/fileIcon/aac.ico"
+IDI_ICON3                ICON     DISCARDABLE     "resource/fileIcon/ac3.ico"
+IDI_ICON4                ICON     DISCARDABLE     "resource/fileIcon/flac.ico"
+IDI_ICON5                ICON     DISCARDABLE     "resource/fileIcon/mp1.ico"
+IDI_ICON6                ICON     DISCARDABLE     "resource/fileIcon/mp2.ico"
+IDI_ICON7                ICON     DISCARDABLE     "resource/fileIcon/mp3.ico"
+IDI_ICON8                ICON     DISCARDABLE     "resource/fileIcon/oga.ico"
+IDI_ICON9                ICON     DISCARDABLE     "resource/fileIcon/ogg.ico"
+IDI_ICON10               ICON     DISCARDABLE     "resource/fileIcon/pmc.ico"
+IDI_ICON11               ICON     DISCARDABLE     "resource/fileIcon/wav.ico"
 
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION 2,2,5,6
