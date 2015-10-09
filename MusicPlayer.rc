@@ -13,7 +13,7 @@ IDI_ICON6                ICON     DISCARDABLE     "resource/fileIcon/mp2.ico"
 IDI_ICON7                ICON     DISCARDABLE     "resource/fileIcon/mp3.ico"
 IDI_ICON8                ICON     DISCARDABLE     "resource/fileIcon/oga.ico"
 IDI_ICON9                ICON     DISCARDABLE     "resource/fileIcon/ogg.ico"
-IDI_ICON10               ICON     DISCARDABLE     "resource/fileIcon/pmc.ico"
+IDI_ICON10               ICON     DISCARDABLE     "resource/fileIcon/pcm.ico"
 IDI_ICON11               ICON     DISCARDABLE     "resource/fileIcon/wav.ico"
 
 VS_VERSION_INFO VERSIONINFO
