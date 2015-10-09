@@ -38,6 +38,7 @@ public:
     QString getCurrentFileName() const;
     bool checkMusicListCurrentIndex() const;
     void musicLoadCurrentSongLrc();
+    void musicImportSongsSettingPath(const QStringList &path);
 
 public slots:
     void quitWindowClose();
@@ -103,7 +104,6 @@ protected:
 
     void readXMLConfigFromText();
     void writeXMLConfigToText();
-    void musicImportSongsSettingPath(const QStringList &path);
 
 private:
     Ui::MusicApplication *ui;

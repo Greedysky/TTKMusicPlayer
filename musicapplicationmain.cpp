@@ -34,5 +34,10 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
+    if(argc == 3 && QString(argv[1]) == "-path" )
+    {
+        w.musicImportSongsSettingPath(QStringList() << argv[2]);
+    }
+
     return a.exec();
 }
