@@ -86,24 +86,6 @@ font-weight:bold;;</string>
       <string>启动时</string>
      </property>
     </widget>
-    <widget class="QLabel" name="windowSetShowInfoWidget">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>100</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:transparent;
-font-size:14px;
-font-weight:bold;;</string>
-     </property>
-     <property name="text">
-      <string>关闭主面板时</string>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="autoPlayCheckBox">
      <property name="geometry">
       <rect>
@@ -120,8 +102,8 @@ font-weight:bold;;</string>
     <widget class="QCheckBox" name="backPlayCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>75</y>
+       <x>150</x>
+       <y>50</y>
        <width>140</width>
        <height>20</height>
       </rect>
@@ -133,8 +115,8 @@ font-weight:bold;;</string>
     <widget class="QRadioButton" name="minimumRadioBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>135</y>
+       <x>150</x>
+       <y>80</y>
        <width>140</width>
        <height>20</height>
       </rect>
@@ -147,7 +129,7 @@ font-weight:bold;;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>160</y>
+       <y>80</y>
        <width>70</width>
        <height>20</height>
       </rect>
@@ -162,19 +144,6 @@ font-weight:bold;;</string>
        <x>70</x>
        <y>30</y>
        <width>240</width>
-       <height>5</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-    <widget class="Line" name="line_F2">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>120</y>
-       <width>195</width>
        <height>5</height>
       </rect>
      </property>
@@ -253,6 +222,32 @@ font-weight:bold;;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="closeNetWorkCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>125</y>
+       <width>221</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>关闭网络功能，作为本地播放器使用</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="setDefalutPlayerCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>155</y>
+       <width>221</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>将天天酷音作为默认播放器</string>
      </property>
     </widget>
    </widget>

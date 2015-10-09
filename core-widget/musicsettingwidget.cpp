@@ -52,6 +52,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->minimumRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->quitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->setDefalutPlayerCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
