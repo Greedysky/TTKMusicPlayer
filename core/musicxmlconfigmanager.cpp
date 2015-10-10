@@ -153,7 +153,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
-    if( !writeConfig(COFIGPATH) )
+    if( !writeConfig(getAppDir() + COFIGPATH) )
     {
         return;
     }
