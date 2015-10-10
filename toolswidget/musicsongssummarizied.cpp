@@ -195,6 +195,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
     const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
     m_musicFileNames[2].m_names.append(name);
     m_musicFileNames[2].m_paths.append(path);
+    m_musicFileNames[2].m_playCount.append(0);
     m_mainSongLists[2]->musicSongsFileName(m_musicFileNames[2].m_names);
     if(m_currentIndexs == 2)
     {

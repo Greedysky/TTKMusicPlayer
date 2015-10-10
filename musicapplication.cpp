@@ -383,8 +383,15 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING->setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
     M_SETTING->setValue(MusicSettingManager::VolumeChoiced, ui->musicSoundSlider->value());
     lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    lastPlayIndexChoiced[1] = QString::number(m_musicSongTree->getCurrentPlayToolIndex());
-    lastPlayIndexChoiced[2] = QString::number(m_musicList->currentIndex());
+    if(lastPlayIndexChoiced.isEmpty())
+    {
+        lastPlayIndexChoiced << "0" << "0" << "-1";
+    }
+    else
+    {
+        lastPlayIndexChoiced[1] = QString::number(m_musicSongTree->getCurrentPlayToolIndex());
+        lastPlayIndexChoiced[2] = QString::number(m_musicList->currentIndex());
+    }
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced,lastPlayIndexChoiced);
     M_SETTING->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBgSkin());
     M_SETTING->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
