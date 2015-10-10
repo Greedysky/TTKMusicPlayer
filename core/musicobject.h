@@ -12,6 +12,7 @@
 #include <QDir>
 #include <QMap>
 #include <QSet>
+#include <QApplication>
 
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
@@ -46,10 +47,6 @@
 #define EMAIL          20
 #define USERNAME       20
 #define LOGINTIME      20
-
-#define kOptTopMusicURL "http://www.kugou.com/"
-#define kOptTopRadioURL "http://www.kugou.com/fmweb/html/index.html"
-#define kOptTopMvURL    "http://www.kugou.com/mvweb/html/"
 
 typedef signed char MInt8;           /* 8 bit signed */
 typedef unsigned char MUint8;        /* 8 bit unsigned */
@@ -101,7 +98,10 @@ namespace MusicObject
     static void dirIsExist(const QString& name)
     {
         QDir dir;
-        if(!dir.exists(name)) dir.mkdir(name);
+        if(!dir.exists(name))
+        {
+            dir.mkdir(name);
+        }
     }
 
     static void fileIsExist(const QString& name)
@@ -114,33 +114,38 @@ namespace MusicObject
         }
     }
 
+    static QString getAppDir()
+    {
+        return QApplication::applicationDirPath() + "/";
+    }
+
     static void checkTheDirectoryExist()
     {
-        dirIsExist(LRC_DOWNLOAD);
-        dirIsExist(MUSIC_DOWNLOAD);
-        dirIsExist(THEME_CACHED);
-        dirIsExist(THEME_DOWNLOAD);
-        dirIsExist(ART_DOWNLOAD);
-        dirIsExist(TRANS_PLUGINS);
-        dirIsExist(ART_BG);
-        dirIsExist(TR_LANGUAGE);
+        dirIsExist(getAppDir() + LRC_DOWNLOAD);
+        dirIsExist(getAppDir() + MUSIC_DOWNLOAD);
+        dirIsExist(getAppDir() + THEME_CACHED);
+        dirIsExist(getAppDir() + THEME_DOWNLOAD);
+        dirIsExist(getAppDir() + ART_DOWNLOAD);
+        dirIsExist(getAppDir() + TRANS_PLUGINS);
+        dirIsExist(getAppDir() + ART_BG);
+        dirIsExist(getAppDir() + TR_LANGUAGE);
 
-        fileIsExist(DOWNLOADINFO);
-        fileIsExist(DARABASEPATH);
-        fileIsExist(USERPATH);
-        fileIsExist(COFIGPATH);
-        fileIsExist(MUSICPATH);
-        fileIsExist(MUSICSEARCH);
+        fileIsExist(getAppDir() + DOWNLOADINFO);
+        fileIsExist(getAppDir() + DARABASEPATH);
+        fileIsExist(getAppDir() + USERPATH);
+        fileIsExist(getAppDir() + COFIGPATH);
+        fileIsExist(getAppDir() + MUSICPATH);
+        fileIsExist(getAppDir() + MUSICSEARCH);
     }
 
     static QString getLanguageName(int index)
     {
-        QString lan(TR_LANGUAGE);
+        QString lan(getAppDir() + TR_LANGUAGE);
         switch(index)
         {
-            case 0 : return lan.append("cn.ln");
-            case 1 : return lan.append("cn_c.ln");
-            case 2 : return lan.append("en.ln");
+            case 0 : return lan.append(getAppDir() + "cn.ln");
+            case 1 : return lan.append(getAppDir() + "cn_c.ln");
+            case 2 : return lan.append(getAppDir() + "en.ln");
             default: return QString();
         }
     }
