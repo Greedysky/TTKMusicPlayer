@@ -784,8 +784,9 @@ void MusicApplication::musicLoadCurrentSongLrc()
     {
         return;
     }
-    QString filename = LRC_DOWNLOAD + m_musicSongTree->getMusicSongsFileName( \
-              m_currentMusicSongTreeIndex)[m_musicList->currentIndex()] + LRC_FILE;
+    QString filename = MusicObject::getAppDir() + LRC_DOWNLOAD +
+            m_musicSongTree->getMusicSongsFileName(m_currentMusicSongTreeIndex)
+            [m_musicList->currentIndex()] + LRC_FILE;
     m_rightAreaWidget->loadCurrentSongLrc(getCurrentFileName(), filename);
 }
 
@@ -807,7 +808,7 @@ bool MusicApplication::checkMusicListCurrentIndex() const
 void MusicApplication::musicCurrentLrcUpdated()
 {
     QString filename = getCurrentFileName();
-    QFile file(LRC_DOWNLOAD + filename + LRC_FILE);
+    QFile file(MusicObject::getAppDir() + LRC_DOWNLOAD + filename + LRC_FILE);
     if(file.exists())
     {
         file.remove();

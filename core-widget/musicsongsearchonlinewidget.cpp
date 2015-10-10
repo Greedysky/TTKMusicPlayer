@@ -253,7 +253,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
                                                        downloadName, Download_Music, this);
     downSong->startToDownload();
 
-    (new MusicTextDownLoadThread(musicSongInfo[row][1],LRC_DOWNLOAD +
+    (new MusicTextDownLoadThread(musicSongInfo[row][1], MusicObject::getAppDir() + LRC_DOWNLOAD +
                                  musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
     (new MusicData2DownloadThread(musicSongInfo[row][2],
          ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE, Download_SmlBG, this))->startToDownload();

@@ -90,7 +90,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
-       QFile file(LRC_DOWNLOAD + filename + LRC_FILE);
+       QFile file(MusicObject::getAppDir() + LRC_DOWNLOAD + filename + LRC_FILE);
        if(file.exists())
        {
            return;
@@ -122,7 +122,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo[0][1],
-                                           LRC_DOWNLOAD + filename + LRC_FILE, Download_Lrc, this);
+                    MusicObject::getAppDir() + LRC_DOWNLOAD + filename + LRC_FILE, Download_Lrc, this);
         lrc->startToDownload();
 
         int count = filename.split('-').count();
