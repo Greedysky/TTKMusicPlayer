@@ -138,7 +138,7 @@ void MusicTopAreaWidget::musicBackgroundChanged()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
-    QString path = THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE;
+    QString path = MusicObject::getAppDir() + THEME_DOWNLOAD + m_currentBgSkin + SKN_FILE;
     M_BG_MANAGER->setMBackground(path);
     if(m_musicbgskin)
     {

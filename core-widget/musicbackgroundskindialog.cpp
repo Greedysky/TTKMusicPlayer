@@ -52,7 +52,8 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 
 void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 {
-    QList<QFileInfo> file(QDir(THEME_DOWNLOAD).entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
+    QList<QFileInfo> file(QDir(MusicObject::getAppDir() + THEME_DOWNLOAD)
+                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
     for(int i=0; i<file.count(); ++i)
     {
         QString fileName = file[i].fileName();
@@ -98,7 +99,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
         return;
     }
     QImage image(16, 16, QImage::Format_ARGB32);
-    QString palettePath = QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
+    QString palettePath = QString("%1theme-%2%3").arg(MusicObject::getAppDir() + THEME_DOWNLOAD)
                           .arg(ui->themeListWidget->count() + 1).arg(JPG_FILE);
     image.fill(paletteColor);
     if(image.save(palettePath))
@@ -110,7 +111,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 
         QFile file(palettePath);
         file.open(QIODevice::ReadOnly);
-        file.rename(QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
+        file.rename(QString("%1theme-%2%3").arg(MusicObject::getAppDir() + THEME_DOWNLOAD)
                     .arg(ui->themeListWidget->count()).arg(SKN_FILE));
         file.close();
     }
@@ -130,7 +131,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
 
 void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
 {
-    QFile::copy(path, QString("%1theme-%2%3").arg(THEME_DOWNLOAD)
+    QFile::copy(path, QString("%1theme-%2%3").arg(MusicObject::getAppDir() + THEME_DOWNLOAD)
                 .arg(ui->themeListWidget->count()+1).arg(SKN_FILE));
     //add item to listwidget
     ui->themeListWidget->createItem(QString("theme-%1")

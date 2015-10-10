@@ -128,7 +128,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         int count = filename.split('-').count();
         filename = filename.split('-').front().trimmed();
         ///download art picture
-        (new MusicData2DownloadThread(musicSongInfo[0][2],
+        (new MusicData2DownloadThread(musicSongInfo[0][2], MusicObject::getAppDir() +
              ART_DOWNLOAD + filename + SKN_FILE, Download_SmlBG, this))->startToDownload();
         ///download big picture
         new MusicBgThemeDownload( count == 1 ? musicSongInfo[0][3] : filename, filename, this);

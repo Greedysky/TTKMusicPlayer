@@ -192,7 +192,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
 {
-    const QString path = MUSIC_DOWNLOAD + name + MUSIC_FILE;
+    const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
     m_musicFileNames[2].m_names.append(name);
     m_musicFileNames[2].m_paths.append(path);
     m_mainSongLists[2]->musicSongsFileName(m_musicFileNames[2].m_names);

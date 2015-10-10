@@ -232,7 +232,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     emit showDownLoadInfoFor(MusicObject::DownLoading);
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
-    QString downloadName = MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
+    QString downloadName = MusicObject::getAppDir() + MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
 
     ////////////////////////////////////////////////
     MusicDownloadRecord record;
@@ -255,7 +255,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 
     (new MusicTextDownLoadThread(musicSongInfo[row][1], MusicObject::getAppDir() + LRC_DOWNLOAD +
                                  musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
-    (new MusicData2DownloadThread(musicSongInfo[row][2],
+    (new MusicData2DownloadThread(musicSongInfo[row][2], MusicObject::getAppDir() +
          ART_DOWNLOAD + musicSongInfo[row][3] + SKN_FILE, Download_SmlBG, this))->startToDownload();
 
     ///download big picture
