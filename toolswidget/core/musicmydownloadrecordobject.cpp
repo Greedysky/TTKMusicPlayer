@@ -8,7 +8,7 @@ MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
 
 void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicDownloadRecord &record)
 {
-    if( !writeConfig( DOWNLOADINFO ) )
+    if( !writeConfig( MusicObject::getAppDir() + DOWNLOADINFO ) )
     {
         return;
     }

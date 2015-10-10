@@ -22,8 +22,6 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_supperClass->move( (widget->width() - m_supperClass->width())/2,
                          (widget->height() - m_supperClass->height())/2 );
     M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
-    M_SETTING->setValue(MusicSettingManager::ApplicationDir,
-                        QApplication::applicationDirPath() + "/");
 
     windowStartAnimationOpacity();
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);

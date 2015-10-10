@@ -9,7 +9,7 @@ MusicLocalSongSearchRecordObject::MusicLocalSongSearchRecordObject(QObject *pare
 
 void MusicLocalSongSearchRecordObject::writeSearchConfig(const MusicSearchRecord &record)
 {
-    if( !writeConfig( MUSICSEARCH ) )
+    if( !writeConfig( MusicObject::getAppDir() + MUSICSEARCH ) )
     {
         return;
     }
