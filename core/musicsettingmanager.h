@@ -22,6 +22,7 @@ public:
     enum ConfigType {
         Null = -1,
         ScreenSize,
+        ApplicationDir,
 
         PlayModeChoiced,
         VolumeChoiced,

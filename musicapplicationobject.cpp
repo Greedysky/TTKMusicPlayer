@@ -12,15 +12,20 @@
 
 #include <QPropertyAnimation>
 #include <QApplication>
-#include <QDebug>
+#include <QDesktopWidget>
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(NULL)
 {
     m_supperClass = static_cast<QWidget*>(parent);
+    QWidget *widget = QApplication::desktop();
+    m_supperClass->move( (widget->width() - m_supperClass->width())/2,
+                         (widget->height() - m_supperClass->height())/2 );
+    M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
+    M_SETTING->setValue(MusicSettingManager::ApplicationDir,
+                        QApplication::applicationDirPath() + "/");
 
     windowStartAnimationOpacity();
-
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
     connect(m_musicTimerAutoObj, SIGNAL(setPlaySong(int)), parent,
                                  SLOT(setPlaySongChanged(int)));
