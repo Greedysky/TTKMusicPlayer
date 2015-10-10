@@ -143,9 +143,9 @@ namespace MusicObject
         QString lan(getAppDir() + TR_LANGUAGE);
         switch(index)
         {
-            case 0 : return lan.append(getAppDir() + "cn.ln");
-            case 1 : return lan.append(getAppDir() + "cn_c.ln");
-            case 2 : return lan.append(getAppDir() + "en.ln");
+            case 0 : return lan.append("cn.ln");
+            case 1 : return lan.append("cn_c.ln");
+            case 2 : return lan.append("en.ln");
             default: return QString();
         }
     }

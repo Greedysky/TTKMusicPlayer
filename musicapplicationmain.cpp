@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     xml->readXMLConfig();
 
     QTranslator translator;
+    qDebug()<<MusicObject::getLanguageName(xml->readLanguageIndex());
     translator.load(MusicObject::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
     delete xml;

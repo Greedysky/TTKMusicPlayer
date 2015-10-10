@@ -131,12 +131,16 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             break;
         case 2:
            {
-                if(!QFile(MAKE_RING).exists())
+                if(!QFile(MusicObject::getAppDir() + MAKE_RING).exists())
+                {
                     return;
+                }
                 if(m_process)
+                {
                     delete m_process;
+                }
                 m_process = new QProcess(this);
-                m_process->start(MAKE_RING);
+                m_process->start(MusicObject::getAppDir() + MAKE_RING);
                 break;
            }
         case 3:
