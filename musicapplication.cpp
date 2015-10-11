@@ -474,6 +474,18 @@ void MusicApplication::stateChanged()
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
 }
 
+void MusicApplication::musicImportPlay()
+{
+    if(m_playControl)
+    {
+        musicKey();
+    }
+    else
+    {
+        musicPlayIndex(m_musicList->mediaCount() - 1, 0);
+    }
+}
+
 void MusicApplication::musicKey()
 {
     if(m_musicList->isEmpty())

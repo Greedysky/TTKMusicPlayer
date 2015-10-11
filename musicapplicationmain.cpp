@@ -34,9 +34,17 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
-    if(argc == 3 && QString(argv[1]) == "-path" )
+    if(argc == 3)
     {
-        w.musicImportSongsSettingPath(QStringList() << argv[2]);
+        if( QString(argv[1]) == "-Open" )
+        {
+            w.musicImportSongsSettingPath(QStringList() << argv[2]);
+            w.musicImportPlay();
+        }
+        if( QString(argv[1]) == "-List" )
+        {
+            w.musicImportSongsSettingPath(QStringList() << argv[2]);
+        }
     }
 
     return a.exec();

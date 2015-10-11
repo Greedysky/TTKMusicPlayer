@@ -39,6 +39,7 @@ public:
     bool checkMusicListCurrentIndex() const;
     void musicLoadCurrentSongLrc();
     void musicImportSongsSettingPath(const QStringList &path);
+    void musicImportPlay();
 
 public slots:
     void quitWindowClose();
