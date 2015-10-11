@@ -74,9 +74,9 @@
         <file alias="timerDown">../resource/controls/timerDown.png</file>
     </qresource>
     <qresource prefix="/download">
-        <file alias="downloading">../resource/download/dowload_1.gif</file>
-        <file alias="buffing">../resource/download/dowload_2.gif</file>
-        <file alias="disconnection">../resource/download/dowload_3.gif</file>
+        <file alias="downloading">../resource/download/dowload_1.png</file>
+        <file alias="buffing">../resource/download/dowload_2.png</file>
+        <file alias="disconnection">../resource/download/dowload_3.png</file>
     </qresource>
     <qresource prefix="/desktopTool">
         <file alias="lockWindow">../resource/desktopTool/lockWindow.png</file>

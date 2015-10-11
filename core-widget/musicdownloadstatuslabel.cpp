@@ -8,11 +8,10 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
-#include <QMovie>
 #include <QLabel>
 
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
-    QObject(w), m_movie(NULL)
+    QObject(w)
 {
     m_parentWidget = static_cast<MusicApplication*>(w);
     m_downloadLrcThread = NULL;
@@ -25,7 +24,6 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
 {
     delete m_downloadLrcThread;
-    delete m_movie;
 }
 
 void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType type)
@@ -43,18 +41,12 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType typ
             stringType = ":/download/buffing";
             break;
         case MusicObject::Waiting:
-            stringType = QString();
             break;
         default:
-            stringType = QString();
             break;
     }
     ///Start up the information for show download - message;
-    delete m_movie;
-    m_movie = new QMovie(stringType, QByteArray(), this);
-    m_movieLabel->setMovie(m_movie);
-    m_movie->start();
-    ///start movie
+    m_movieLabel->setPixmap( QPixmap(stringType) );
 }
 
 void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)

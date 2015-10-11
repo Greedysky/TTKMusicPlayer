@@ -13,7 +13,6 @@
 #include "musiclibexportglobal.h"
 
 class QLabel;
-class QMovie;
 class MusicApplication;
 
 class MUSIC_WIDGET_EXPORT MusicDownloadStatusLabel : public QObject
@@ -38,7 +37,6 @@ public slots:
 protected:
     MusicApplication *m_parentWidget;
     MusicDownLoadQueryThread *m_downloadLrcThread;
-    QMovie *m_movie;
     QLabel *m_movieLabel;
 
 };
