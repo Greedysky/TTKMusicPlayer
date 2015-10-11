@@ -31,6 +31,7 @@ public:
         CurrentLanIndexChoiced,
         CloseEventChoiced,
         LastPlayIndexChoiced,
+        CloseNetWorkChoiced,
 
         BgThemeChoiced,
         BgTransparentChoiced,

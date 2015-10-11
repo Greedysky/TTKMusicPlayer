@@ -17,18 +17,19 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("QMusicPlayer.com");
     QCoreApplication::setApplicationName("QMusicPlayer");
 
+    //detect the current network state
+    M_NETWORK->start();
+
     M_LOOGERS("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
-
     QTranslator translator;
     translator.load(MusicObject::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
+
+    M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOOGERS("End load translation");
-
-    //detect the current network state
-    M_NETWORK->start();
 
     MusicObject::checkTheDirectoryExist();
     MusicApplication w;

@@ -1,6 +1,7 @@
 #include "musicsettingwidget.h"
 #include "ui_musicsettingwidget.h"
 #include "musicbgthememanager.h"
+#include "musicnetworkthread.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -272,6 +273,7 @@ void MusicSettingWidget::initControllerParameter()
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
     ///////////////////////////////////////////////////////////////////////////
 
+    ui->closeNetWorkCheckBox->setChecked(M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
@@ -320,6 +322,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,ui->downloadCacheAutoRadioBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,ui->downloadLimitSpeedComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,ui->uploadLimitSpeedComboBox->currentIndex());
+
+    M_NETWORK->setBlockNetWork( ui->closeNetWorkCheckBox->isChecked() );
 
     emit parameterSettingChanged();
     close();
