@@ -29,6 +29,8 @@ public:
     { return readXmlAttributeByTagNameValue("playVolume").toInt(); }
     inline QString readSystemCloseConfig() const
     { return readXmlAttributeByTagNameValue("closeEvent"); }
+    inline int readCloseNetworkConfig() const
+    { return readXmlAttributeByTagNameValue("closeNetwork").toInt(); }
     inline QString readSystemAutoPlayConfig() const
     { return readXmlAttributeByTagNameValue("autoPlay"); }
     inline int readEnhancedMusicConfig() const

@@ -1,5 +1,6 @@
 #include "musicnetworkthread.h"
 #include "musicconnectionpool.h"
+#include "musicsettingmanager.h"
 
 MusicNetworkThread::MusicNetworkThread(QObject *parent)
     :QObject(parent), m_networkState(true)
@@ -17,7 +18,14 @@ MusicNetworkThread::~MusicNetworkThread()
 
 void MusicNetworkThread::start()
 {
+    m_blockNetWork = false;
     M_LOOGERS("Load NetworkThread");
+}
+
+void MusicNetworkThread::setBlockNetWork(int block)
+{
+    m_blockNetWork = block;
+    M_SETTING->setValue(MusicSettingManager::CloseNetWorkChoiced, block);
 }
 
 void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketState)
@@ -31,7 +39,8 @@ void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketS
         {
             return;
         }
-        emit networkConnectionStateChanged(m_networkState = state);
+
+        emit networkConnectionStateChanged(m_networkState = m_blockNetWork ? false : state);
         M_LOOGER << "Connect state: " << m_networkState;
     }
 }

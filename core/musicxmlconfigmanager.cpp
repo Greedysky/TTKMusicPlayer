@@ -91,6 +91,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int languageIndexChoiced = M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     QString closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toString();
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    int closeNetWorkChoiced = M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING->value(MusicSettingManager::BgThemeChoiced).toString();
@@ -180,6 +181,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
     writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
           QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
+    writeDomElement(settings, "closeNetwork", "value", closeNetWorkChoiced);
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(timeSettings, "timeAutoIndex", "value", timeAutoIndexChoiced);

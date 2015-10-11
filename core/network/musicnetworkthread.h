@@ -26,6 +26,7 @@ public:
     ~MusicNetworkThread();
 
     void start();
+    void setBlockNetWork(int block);
     inline bool isOnline() const {return m_networkState;}
 
 signals:
@@ -40,6 +41,7 @@ private:
     QTimer m_timer;
     QTcpSocket *m_client;
     bool m_networkState;
+    bool m_blockNetWork;
     MusicNetworkThread(QObject *parent = 0);
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
