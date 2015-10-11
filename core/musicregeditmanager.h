@@ -25,7 +25,7 @@ public:
                                     int originType);
 
 protected:
-    void createMusicRegedit(const QString &key);
+    void createMusicRegedit(const QString &key, int index);
 
 };
 

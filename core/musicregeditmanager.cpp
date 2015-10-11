@@ -34,19 +34,19 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
-    createMusicRegedit("aac");
-    createMusicRegedit("ac3");
-    createMusicRegedit("flac");
-    createMusicRegedit("mp1");
-    createMusicRegedit("mp2");
-    createMusicRegedit("mp3");
-    createMusicRegedit("oga");
-    createMusicRegedit("ogg");
-    createMusicRegedit("pmc");
-    createMusicRegedit("wav");
+    createMusicRegedit("aac",  1);
+    createMusicRegedit("ac3",  2);
+    createMusicRegedit("flac", 3);
+    createMusicRegedit("mp1",  4);
+    createMusicRegedit("mp2",  5);
+    createMusicRegedit("mp3",  6);
+    createMusicRegedit("oga",  7);
+    createMusicRegedit("ogg",  8);
+    createMusicRegedit("pmc",  9);
+    createMusicRegedit("wav",  10);
 }
 
-void MusicRegeditManager::createMusicRegedit(const QString &key)
+void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
 {
 //    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
 //    QSettings keyXSetting(keyX, QSettings::NativeFormat);
@@ -63,7 +63,8 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
 
     const QString iconString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\DefaultIcon";
     QSettings iconSetting(iconString, QSettings::NativeFormat);
-    iconSetting.setValue("Default", QApplication::applicationFilePath().replace("/", "\\"));
+    iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace("/", "\\"))
+                                                    .arg(index));
 
     const QString openString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
@@ -71,7 +72,8 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
 
     const QString openComString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
-    openComSetting.setValue("Default", QApplication::applicationFilePath().replace("/", "\\"));
+    openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
+                                     + QString(" -Open \"%1\""));
 
     const QString playListString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
@@ -79,5 +81,6 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
 
     const QString playListComString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
-    playListComSetting.setValue("Default", QApplication::applicationFilePath().replace("/", "\\"));
+    playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
+                                         + QString(" -List \"%1\""));
 }
