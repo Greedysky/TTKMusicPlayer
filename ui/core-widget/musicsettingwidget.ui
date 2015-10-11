@@ -237,7 +237,7 @@ font-weight:bold;;</string>
       <string>关闭网络功能，作为本地播放器使用</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="setDefalutPlayerCheckBox">
+    <widget class="QCheckBox" name="setDefaultPlayerCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -776,7 +776,7 @@ font-weight:bold;</string>
       <string>已播放</string>
      </property>
     </widget>
-    <widget class="QLabel" name="fontDefalutColorLabel">
+    <widget class="QLabel" name="fontDefaultColorLabel">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -789,7 +789,7 @@ font-weight:bold;</string>
       <string>预设</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontDefalutColorComboBox">
+    <widget class="QComboBox" name="fontDefaultColorComboBox">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -1040,7 +1040,7 @@ font-weight:bold;</string>
       <string>已播放</string>
      </property>
     </widget>
-    <widget class="QLabel" name="DfontDefalutColorLabel">
+    <widget class="QLabel" name="DfontDefaultColorLabel">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -1053,7 +1053,7 @@ font-weight:bold;</string>
       <string>预设</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="DfontDefalutColorComboBox">
+    <widget class="QComboBox" name="DfontDefaultColorComboBox">
      <property name="geometry">
       <rect>
        <x>220</x>
