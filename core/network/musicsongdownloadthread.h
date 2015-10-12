@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicdatadownloadthread.h"
+#include <QTimer>
 
 class MUSIC_NETWORK_EXPORT MusicSongDownloadThread : public MusicDataDownloadThread
 {
@@ -23,11 +24,15 @@ signals:
     void createDownloadItem(const QString &name, qint64 time);
 
 public slots:
+    virtual void downLoadFinished();
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void updateDownloadSpeed();
 
 protected:
     virtual void startRequest(const QUrl &url);
     qint64 m_createItemTime;
+    qint64 m_hasRecevied, m_currentRecevied;
+    QTimer m_timer;
 
 };
 

@@ -320,7 +320,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,ui->downloadLrcDirEdit->text());
     M_SETTING->setValue(MusicSettingManager::DownloadCacheLimitChoiced,ui->downloadCacheAutoRadioBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DownloadCacheSizeChoiced,ui->downloadSpinBox->value());
-    M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,ui->downloadCacheAutoRadioBox->isChecked());
+    M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,ui->downloadFullRadioBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,ui->downloadLimitSpeedComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,ui->uploadLimitSpeedComboBox->currentIndex());
 
