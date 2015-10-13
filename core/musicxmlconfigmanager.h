@@ -77,6 +77,10 @@ public:
     { return readXmlAttributeByTagNameValue("sEqualizerIndex").toInt(); }
     inline int readLanguageIndex() const
     { return readXmlAttributeByTagNameValue("language").toInt(); }
+    inline int readDownloadCacheLimit() const
+    { return readXmlAttributeByTagNameValue("downloadCacheLimit").toInt(); }
+    inline int readDownloadCacheSize() const
+    { return readXmlAttributeByTagNameValue("downloadCacheSize").toInt(); }
 
     inline QColor readShowLrcFgColor() const
     { return readColorConfig("lrcFgColor");}
