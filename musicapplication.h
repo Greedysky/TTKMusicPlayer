@@ -39,7 +39,6 @@ public:
     bool checkMusicListCurrentIndex() const;
     void musicLoadCurrentSongLrc();
     void musicImportSongsSettingPath(const QStringList &path);
-    void musicImportPlay();
 
 public slots:
     void quitWindowClose();
@@ -69,6 +68,7 @@ public slots:
     void musicAddSongToLovestListAt();
     void musicWindowConciseChanged();
     void musicEnhancedMusicChanged(int type);
+    void musicImportPlay();
     /////////////////////////////////////////////
     //This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int row, int col);

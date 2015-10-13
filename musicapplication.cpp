@@ -476,14 +476,7 @@ void MusicApplication::stateChanged()
 
 void MusicApplication::musicImportPlay()
 {
-    if(m_playControl)
-    {
-        musicKey();
-    }
-    else
-    {
-        musicPlayIndex(m_musicList->mediaCount() - 1, 0);
-    }
+    musicPlayIndex(m_musicList->mediaCount() - 1, 0);
 }
 
 void MusicApplication::musicKey()

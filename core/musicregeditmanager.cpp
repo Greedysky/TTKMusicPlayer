@@ -34,29 +34,29 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
-    createMusicRegedit("aac",  1);
-    createMusicRegedit("ac3",  2);
-    createMusicRegedit("flac", 3);
-    createMusicRegedit("mp1",  4);
-    createMusicRegedit("mp2",  5);
-    createMusicRegedit("mp3",  6);
-    createMusicRegedit("oga",  7);
-    createMusicRegedit("ogg",  8);
-    createMusicRegedit("pmc",  9);
-    createMusicRegedit("wav",  10);
+    createMusicRegedit("pmc",  1);
+    createMusicRegedit("wav",  2);
+    createMusicRegedit("aac",  3);
+    createMusicRegedit("ac3",  4);
+    createMusicRegedit("flac", 5);
+    createMusicRegedit("mp1",  6);
+    createMusicRegedit("mp2",  7);
+    createMusicRegedit("mp3",  8);
+    createMusicRegedit("oga",  9);
+    createMusicRegedit("ogg",  10);
 }
 
 void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
 {
-//    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
-//    QSettings keyXSetting(keyX, QSettings::NativeFormat);
-//    keyX = keyXSetting->value("Default").toString();
-//    if(keyX.isEmpty() ||
-//       keyX != "QMusicPlayer." + key)
-//    {
-//        keyXSetting->setValue("Default", "QMusicPlayer." + key);
-//    }
+    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
+    QSettings keyXSetting(keyX, QSettings::NativeFormat);
+    keyX = keyXSetting.value("Default").toString();
+    if(keyX.isEmpty() || keyX != "QMusicPlayer." + key)
+    {
+        keyXSetting.setValue("Default", "QMusicPlayer." + key);
+    }
 
+    ////////////////////////////////////////////////////////
     const QString keyString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key;
     QSettings keySetting(keyString, QSettings::NativeFormat);
     keySetting.setValue("Default", key + QObject::tr("File"));
@@ -83,4 +83,14 @@ void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
     playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
                                          + QString(" -List \"%1\""));
+
+    ////////////////////////////////////////////////////////
+    const QString fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;
+    QSettings fileExtsSetting(fileExtsString, QSettings::NativeFormat);
+    fileExtsSetting.setValue("Progid", "QMusicPlayer." + key);
+
+    const QString fileExtsUserString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key + "\\UserChoice";
+    QSettings fileExtsUserSetting(fileExtsUserString, QSettings::NativeFormat);
+    fileExtsUserSetting.setValue("Progid", "QMusicPlayer." + key);
+
 }
