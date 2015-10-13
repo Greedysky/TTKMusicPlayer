@@ -32,6 +32,7 @@ public:
         CloseEventChoiced,
         LastPlayIndexChoiced,
         CloseNetWorkChoiced,
+        FileAssociationChoiced,
 
         BgThemeChoiced,
         BgTransparentChoiced,

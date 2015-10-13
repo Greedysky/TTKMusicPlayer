@@ -93,8 +93,7 @@ public:
 
     void readSystemLastPlayIndexConfig(QStringList &key) const;
     QRect readShowDLrcGeometry() const;
-    void readTimeAutoConfig() const;
-    void readDownloadConfig() const;
+    void readOtherLoadConfig() const;
 
 protected:
     MusicSongs readMusicFilePath(const QString &value) const;

@@ -271,7 +271,7 @@ void MusicApplication::readXMLConfigFromText()
     }
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
-    xml.readDownloadConfig();
+    xml.readOtherLoadConfig();
 
     createPlayModeMenu(m_playModeMenu);
     switch( xml.readMusicPlayModeConfig() )
@@ -342,7 +342,6 @@ void MusicApplication::readXMLConfigFromText()
                                    xml.readBackgroundTransparent().toInt(),
                                    xml.readBackgroundListTransparent().toInt());
     //////////////////////////////////////////////////////////////
-    xml.readTimeAutoConfig();
     //Set the lrc color the user set
     M_SETTING->setValue(MusicSettingManager::LrcColorChoiced,xml.readShowLrcColor());
     M_SETTING->setValue(MusicSettingManager::LrcFgColorChoiced,xml.readShowLrcFgColor());

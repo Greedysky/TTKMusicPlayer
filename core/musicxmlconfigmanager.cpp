@@ -92,6 +92,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QString closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toString();
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     int closeNetWorkChoiced = M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt();
+    int fileAssociationChoiced = M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING->value(MusicSettingManager::BgThemeChoiced).toString();
@@ -182,6 +183,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
           QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
     writeDomElement(settings, "closeNetwork", "value", closeNetWorkChoiced);
+    writeDomElement(settings, "fileAssociation", "value", fileAssociationChoiced);
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(timeSettings, "timeAutoIndex", "value", timeAutoIndexChoiced);
@@ -305,7 +307,7 @@ QRect MusicXMLConfigManager::readShowDLrcGeometry() const
                  geometry[2].toInt(),geometry[3].toInt() );
 }
 
-void MusicXMLConfigManager::readTimeAutoConfig() const
+void MusicXMLConfigManager::readOtherLoadConfig() const
 {
     M_SETTING->setValue(MusicSettingManager::TimerAutoIndexChoiced,
                      readXmlAttributeByTagNameValue("timeAutoIndex").toInt());
@@ -337,10 +339,7 @@ void MusicXMLConfigManager::readTimeAutoConfig() const
                      readXmlAttributeByTagNameValue("timeAutoShutdownSecond").toInt());
     M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
                      readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
-}
 
-void MusicXMLConfigManager::readDownloadConfig() const
-{
     M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
                      readXmlAttributeByTagNameValue("downloadMusicPath"));
     M_SETTING->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
@@ -355,4 +354,8 @@ void MusicXMLConfigManager::readDownloadConfig() const
                      readXmlAttributeByTagNameValue("downloadDLoadLimit").toInt());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadULoadLimit").toInt());
+
+    M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced,
+                     readXmlAttributeByTagNameValue("fileAssociation"));
+
 }

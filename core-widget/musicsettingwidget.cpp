@@ -55,7 +55,6 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
     ui->quitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->setDefaultPlayerCheckBox->setEnabled(false);
 
     ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -275,6 +274,12 @@ void MusicSettingWidget::initControllerParameter()
     ///////////////////////////////////////////////////////////////////////////
 
     ui->closeNetWorkCheckBox->setChecked(M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
+    ui->setDefaultPlayerCheckBox->setChecked(M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt());
+    if(ui->setDefaultPlayerCheckBox->isChecked())
+    {
+        ui->setDefaultPlayerCheckBox->setEnabled(false);
+    }
+
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
@@ -325,6 +330,11 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,ui->uploadLimitSpeedComboBox->currentIndex());
 
     M_NETWORK->setBlockNetWork( ui->closeNetWorkCheckBox->isChecked() );
+    M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced,ui->setDefaultPlayerCheckBox->isChecked());
+    if(ui->setDefaultPlayerCheckBox->isChecked())
+    {
+        ui->setDefaultPlayerCheckBox->setEnabled(false);
+    }
 
     emit parameterSettingChanged();
     close();
