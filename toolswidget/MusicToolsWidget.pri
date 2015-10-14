@@ -14,7 +14,8 @@ SOURCES += \
     $$PWD/musicwebradiolistview.cpp \
     $$PWD/musicwebradiowidget.cpp \
     $$PWD/core/musicwebradiodatebase.cpp \
-    $$PWD/core/musicmydownloadrecordobject.cpp
+    $$PWD/core/musicmydownloadrecordobject.cpp \
+    $$PWD/musicconnectmobilewidget.cpp
     
     
 HEADERS  += \
@@ -24,7 +25,8 @@ HEADERS  += \
     $$PWD/musicwebradiolistview.h \
     $$PWD/musicwebradiowidget.h \
     $$PWD/core/musicwebradiodatebase.h \
-    $$PWD/core/musicmydownloadrecordobject.h
+    $$PWD/core/musicmydownloadrecordobject.h \
+    $$PWD/musicconnectmobilewidget.h
 
 
 FORMS    += \

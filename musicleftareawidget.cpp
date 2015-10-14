@@ -6,6 +6,7 @@
 #include "musicwebradiolistview.h"
 #include "musicspectrumwidget.h"
 #include "musiclocalsongsearch.h"
+#include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
@@ -40,6 +41,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
     connect(ui->musicButton_mydownl,SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
+    connect(ui->musicButton_mobile,SIGNAL(clicked()), this, SLOT(musicStackedMobileWidgetChanged()));
     connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), m_supperClass,
                                     SLOT(musicEnhancedMusicChanged(int)));
     connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
@@ -54,6 +56,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonplaylist")));
     ui->musicButton_radio->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonradio")));
     ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/appTools/buttontools")));
+    ui->musicButton_mobile->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmobile")));
 
     ui->musicPrivious->setIconSize(QSize(45,45));
     ui->musicNext->setIconSize(QSize(45,45));
@@ -64,6 +67,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setIconSize(QSize(35,35));
     ui->musicButton_radio->setIconSize(QSize(35,35));
     ui->musicButton_tools->setIconSize(QSize(35,35));
+    ui->musicButton_mobile->setIconSize(QSize(35,35));
     ui->musicPlayMode->setIconSize(QSize(25,25));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
@@ -77,6 +81,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04);
 
     ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
@@ -97,6 +102,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_playlist->setToolTip(tr("musicPlaylist"));
     ui->musicButton_radio->setToolTip(tr("musicRadio"));
     ui->musicButton_tools->setToolTip(tr("musicTools"));
+    ui->musicButton_mobile->setToolTip(tr("musicMobile"));
 }
 
 QString MusicLeftAreaWidget::getSearchedText() const
@@ -138,6 +144,14 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 {
     delete m_stackedWidget;
     m_stackedWidget = new MusicMyDownloadRecordWidget(this);
+    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->setCurrentIndex(1);
+}
+
+void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
+{
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicConnectMobileWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setCurrentIndex(1);
 }

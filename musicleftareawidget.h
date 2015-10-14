@@ -38,7 +38,8 @@ public slots:
     void musicStackedToolsWidgetChanged();
     void musicStackedRadioWidgetChanged();
     void musicStackedMyDownWidgetChanged();
-    
+    void musicStackedMobileWidgetChanged();
+
 protected:
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;

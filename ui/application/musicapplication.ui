@@ -524,7 +524,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>430</y>
+     <y>490</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -614,7 +614,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>370</y>
+     <y>430</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -742,6 +742,22 @@
     </rect>
    </property>
    <layout class="QVBoxLayout" name="musicQualityWindow"/>
+  </widget>
+  <widget class="QToolButton" name="musicButton_mobile">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>370</y>
+     <width>40</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
   <action name="action_About">
    <property name="text">
@@ -981,6 +997,7 @@
   <zorder>minimization</zorder>
   <zorder>verticalLayoutWidget</zorder>
   <zorder>musicEnhancedButton</zorder>
+  <zorder>musicButton_mobile</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
