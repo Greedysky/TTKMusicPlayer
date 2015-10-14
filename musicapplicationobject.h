@@ -28,6 +28,7 @@ public:
     void nativeEvent(const QByteArray &eventType,
                      void *message, long *result);
 
+    void getParameterSetting();
     void windowStartAnimationOpacity();
     void windowCloseAnimationOpacity();
 

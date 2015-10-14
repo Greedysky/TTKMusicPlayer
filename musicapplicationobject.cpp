@@ -9,6 +9,7 @@
 #include "musicequalizerdialog.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
+#include "musicregeditmanager.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -43,6 +44,12 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;
     delete m_animation;
+}
+
+void MusicApplicationObject::getParameterSetting()
+{
+    MusicRegeditManager regeditManager;
+    regeditManager.setMusicRegeditAssociateFileIcon();
 }
 
 void MusicApplicationObject::windowStartAnimationOpacity()

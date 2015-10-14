@@ -8,6 +8,7 @@
 #include <QTranslator>
 //#include <vld.h>
 
+
 quint64 dirSize(const QString& dirName)
 {
     quint64 size = 0;
@@ -94,5 +95,6 @@ int main(int argc, char *argv[])
             w.musicImportSongsSettingPath(QStringList() << argv[2]);
         }
     }
+
     return a.exec();
 }

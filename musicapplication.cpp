@@ -765,6 +765,7 @@ void MusicApplication::setDeleteItemAt(const MIntList &index)
 
 void MusicApplication::getParameterSetting()
 {
+    m_object->getParameterSetting();
     m_rightAreaWidget->getParameterSetting();
     bool config = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool();
     m_bottomAreaWidget->setSystemCloseConfig(config);
