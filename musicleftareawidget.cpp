@@ -49,11 +49,12 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
-    ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/image/buttoncloud")));
-    ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/image/buttonmydownl")));
-    ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/image/buttonplaylist")));
-    ui->musicButton_radio->setIcon(QIcon(QString::fromUtf8(":/image/buttonradio")));
-    ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/image/buttontools")));
+    ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/appTools/buttoncloud")));
+    ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
+    ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonplaylist")));
+    ui->musicButton_radio->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonradio")));
+    ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/appTools/buttontools")));
+
     ui->musicPrivious->setIconSize(QSize(45,45));
     ui->musicNext->setIconSize(QSize(45,45));
     ui->musicKey->setIconSize(QSize(45,45));

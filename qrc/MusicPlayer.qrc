@@ -10,20 +10,11 @@
         <file alias="randomplay">../resource/random_play.png</file>
         <file alias="playonce">../resource/play_once.png</file>
         <file alias="menu">../resource/menu_setting.png</file>
-        <file alias="buttoncloud">../resource/musicButton_cloud.png</file>
-        <file alias="buttonmydownl">../resource/musicButton_mydownl.png</file>
-        <file alias="buttonplaylist">../resource/musicButton_playlist.png</file>
-        <file alias="buttonradio">../resource/musicButton_radio.png</file>
-        <file alias="buttontools">../resource/musicButton_tools.png</file>
         <file alias="soundmax">../resource/sound_max.png</file>
         <file alias="soundmin">../resource/sound_min.png</file>
         <file alias="beauty">../resource/music_beauty.jpg</file>
         <file alias="windowicon">../resource/mymusicplayer.ico</file>
         <file alias="close">../resource/music_close.png</file>
-        <file alias="import">../resource/music_importSong.png</file>
-        <file alias="setting">../resource/music_setting.png</file>
-        <file alias="location">../resource/music_location.png</file>
-        <file alias="search">../resource/music_searching.png</file>
         <file alias="screentop">../resource/music_screen_top.png</file>
         <file alias="searchline">../resource/music_search_line.png</file>
         <file alias="windowskin">../resource/music_window_skin.png</file>
@@ -199,5 +190,16 @@
         <file alias="iconVocal">../resource/enhance/icon_vocal.png</file>
         <file alias="iconSubwoofer">../resource/enhance/icon_subwoofer.png</file>
     </qresource>
-
+    <qresource prefix="/appTools">
+        <file alias="import">../resource/appTools/music_importSong.png</file>
+        <file alias="setting">../resource/appTools/music_setting.png</file>
+        <file alias="location">../resource/appTools/music_location.png</file>
+        <file alias="search">../resource/appTools/music_searching.png</file>
+        <file alias="buttoncloud">../resource/appTools/musicButton_cloud.png</file>
+        <file alias="buttonmydownl">../resource/appTools/musicButton_mydownl.png</file>
+        <file alias="buttonplaylist">../resource/appTools/musicButton_playlist.png</file>
+        <file alias="buttonradio">../resource/appTools/musicButton_radio.png</file>
+        <file alias="buttontools">../resource/appTools/musicButton_tools.png</file>
+        <file alias="buttonmobile">../resource/appTools/musicButton_mobile.png</file>
+    </qresource>
 </RCC>

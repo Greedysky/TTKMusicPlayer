@@ -772,7 +772,7 @@
   <action name="action_ImportSongs">
    <property name="icon">
     <iconset resource="../../qrc/MusicPlayer.qrc">
-     <normaloff>:/image/import</normaloff>:/image/import</iconset>
+     <normaloff>:/appTools/import</normaloff>:/appTools/import</iconset>
    </property>
    <property name="text">
     <string>导入本地歌曲(&amp;I)</string>
@@ -922,7 +922,7 @@
   <action name="action_Setting">
    <property name="icon">
     <iconset resource="../../qrc/MusicPlayer.qrc">
-     <normaloff>:/image/setting</normaloff>:/image/setting</iconset>
+     <normaloff>:/appTools/setting</normaloff>:/appTools/setting</iconset>
    </property>
    <property name="text">
     <string>设置(&amp;S)</string>
