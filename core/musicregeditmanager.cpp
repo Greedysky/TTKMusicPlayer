@@ -86,7 +86,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
 
     const QString openString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
-    openSetting.setValue("Default", "user QMusicPlayer play");
+    openSetting.setValue("Default", QObject::tr("user QMusicPlayer play"));
 
     const QString openComString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
@@ -95,7 +95,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
 
     const QString playListString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
-    playListSetting.setValue("Default", "add QMusicPlayer playList");
+    playListSetting.setValue("Default", QObject::tr("add QMusicPlayer playList"));
 
     const QString playListComString = "HKEY_CLASSES_ROOT\\QMusicPlayer." + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
