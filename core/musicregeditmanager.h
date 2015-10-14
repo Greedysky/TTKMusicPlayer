@@ -25,6 +25,7 @@ public:
                                     int originType);
 
 protected:
+    bool currentNodeHasExsit(const QString &key);
     void createMusicRegedit(const QString &key, int index);
 
 };

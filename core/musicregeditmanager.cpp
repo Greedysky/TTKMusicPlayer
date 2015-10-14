@@ -34,16 +34,34 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
-    createMusicRegedit("pmc",  1);
-    createMusicRegedit("wav",  2);
-    createMusicRegedit("aac",  3);
-    createMusicRegedit("ac3",  4);
-    createMusicRegedit("flac", 5);
-    createMusicRegedit("mp1",  6);
-    createMusicRegedit("mp2",  7);
-    createMusicRegedit("mp3",  8);
-    createMusicRegedit("oga",  9);
-    createMusicRegedit("ogg",  10);
+    QStringList types;
+    types<<"pmc"<<"wav"<<"aac"<<"ac3"<<"flac"<<"mp1";
+    types<<"mp2"<<"mp3"<<"oga"<<"ogg";
+    for(int i=0; i<types.count(); ++i)
+    {
+        if(!currentNodeHasExsit(types[i]))
+        {
+            createMusicRegedit(types[i], i + 1);
+        }
+    }
+}
+
+bool MusicRegeditManager::currentNodeHasExsit(const QString &key)
+{
+    bool state = false;
+    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
+    QSettings keyXSetting(keyX, QSettings::NativeFormat);
+    state = (keyXSetting.value("Default").toString() == "QMusicPlayer." + key);
+
+    const QString fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;
+    QSettings fileExtsSetting(fileExtsString, QSettings::NativeFormat);
+    state &= (fileExtsSetting.value("Progid").toString() == "QMusicPlayer." + key);
+
+    const QString fileExtsUserString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key + "\\UserChoice";
+    QSettings fileExtsUserSetting(fileExtsUserString, QSettings::NativeFormat);
+    state &= (fileExtsUserSetting.value("Progid").toString() == "QMusicPlayer." + key);
+
+    return state;
 }
 
 void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
