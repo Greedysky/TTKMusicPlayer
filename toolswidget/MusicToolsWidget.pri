@@ -6,17 +6,6 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/core
-               
-SOURCES += \
-    $$PWD/musicsongssummarizied.cpp \
-    $$PWD/musictoolsetswidget.cpp \
-    $$PWD/musicmydownloadrecordwidget.cpp \
-    $$PWD/musicwebradiolistview.cpp \
-    $$PWD/musicwebradiowidget.cpp \
-    $$PWD/core/musicwebradiodatebase.cpp \
-    $$PWD/core/musicmydownloadrecordobject.cpp \
-    $$PWD/musicconnectmobilewidget.cpp
-    
     
 HEADERS  += \
     $$PWD/musicsongssummarizied.h \
@@ -27,6 +16,17 @@ HEADERS  += \
     $$PWD/core/musicwebradiodatebase.h \
     $$PWD/core/musicmydownloadrecordobject.h \
     $$PWD/musicconnectmobilewidget.h
+
+
+SOURCES += \
+    $$PWD/musicsongssummarizied.cpp \
+    $$PWD/musictoolsetswidget.cpp \
+    $$PWD/musicmydownloadrecordwidget.cpp \
+    $$PWD/musicwebradiolistview.cpp \
+    $$PWD/musicwebradiowidget.cpp \
+    $$PWD/core/musicwebradiodatebase.cpp \
+    $$PWD/core/musicmydownloadrecordobject.cpp \
+    $$PWD/musicconnectmobilewidget.cpp
 
 
 FORMS    += \
