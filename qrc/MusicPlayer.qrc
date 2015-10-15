@@ -201,5 +201,8 @@
         <file alias="buttonradio">../resource/appTools/musicButton_radio.png</file>
         <file alias="buttontools">../resource/appTools/musicButton_tools.png</file>
         <file alias="buttonmobile">../resource/appTools/musicButton_mobile.png</file>
+        <file alias="wired">../resource/appTools/music_wired.png</file>
+        <file alias="wireless">../resource/appTools/music_wireless.png</file>
+        <file alias="wired_con">../resource/appTools/music_wired_con.png</file>
     </qresource>
 </RCC>
