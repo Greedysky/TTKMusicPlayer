@@ -589,12 +589,12 @@ void MusicApplication::musicVolumeNULL()
     if(!m_musicPlayer->isMuted())
     {
         m_musicPlayer->setMuted(true);
-        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24);
+        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle25);
     }
     else
     {
         m_musicPlayer->setMuted(false);
-        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle25);
+        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24);
     }
     ui->musicSoundSlider->blockSignals(true);
     ui->musicSoundSlider->setValue(m_musicPlayer->volume());
