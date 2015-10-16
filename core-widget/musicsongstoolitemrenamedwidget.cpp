@@ -2,9 +2,10 @@
 #include "musicuiobject.h"
 
 MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
-    int offset, const QString &originText, QWidget *parent) :QLineEdit(parent)
+    int offset, const QString &originText, QWidget *parent)
+    : QLineEdit(parent)
 {
-    setGeometry(1,offset,265,20);
+    setGeometry(1, offset, 330, 20);
     setText(originText);
     setStyleSheet(MusicUIObject::MCustomStyle04);
     setFocus(Qt::MouseFocusReason);

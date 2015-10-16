@@ -11,8 +11,8 @@
 #include <QLayout>
 #include <QDesktopServices>
 
-MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent) :
-    QToolBox(parent),m_renameLine(NULL)
+MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
+    : QToolBox(parent),m_renameLine(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
