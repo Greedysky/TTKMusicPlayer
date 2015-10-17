@@ -60,6 +60,11 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
 }
 
+MusicSongsSummarizied::~MusicSongsSummarizied()
+{
+    clearAllLists();
+}
+
 void MusicSongsSummarizied::setMusicLists(const MMusicList &names)
 {
     m_musicFileNames = names;
@@ -119,16 +124,6 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
     int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
     m_musicFileNames[m_currentIndexs].m_playCount[index] = ++countNumber;
-}
-
-QString MusicSongsSummarizied::itemText(int row, int col) const
-{
-    return m_mainSongLists[m_currentIndexs]->item(row,col)->text();
-}
-
-MusicSongsSummarizied::~MusicSongsSummarizied()
-{
-    clearAllLists();
 }
 
 void MusicSongsSummarizied::clearAllLists()
