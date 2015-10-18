@@ -48,8 +48,11 @@ MusicApplicationObject::~MusicApplicationObject()
 
 void MusicApplicationObject::getParameterSetting()
 {
-    MusicRegeditManager regeditManager;
-    regeditManager.setMusicRegeditAssociateFileIcon();
+    if(M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt())
+    {
+        MusicRegeditManager regeditManager;
+        regeditManager.setMusicRegeditAssociateFileIcon();
+    }
 }
 
 void MusicApplicationObject::windowStartAnimationOpacity()
