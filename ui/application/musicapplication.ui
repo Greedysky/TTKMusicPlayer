@@ -191,9 +191,9 @@
   <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>574</y>
-     <width>521</width>
+     <x>90</x>
+     <y>30</y>
+     <width>200</width>
      <height>31</height>
     </rect>
    </property>
@@ -268,25 +268,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="musicWindowTitle">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>81</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size:16px;color:#FFFFFF;font-weight:bold</string>
-   </property>
-   <property name="text">
-    <string>天天酷音</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-   </property>
-  </widget>
   <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
    <property name="geometry">
     <rect>
@@ -301,25 +282,6 @@
    </property>
    <property name="text" stdset="0">
     <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="musicWindowIcon">
-   <property name="geometry">
-    <rect>
-     <x>105</x>
-     <y>25</y>
-     <width>35</width>
-     <height>35</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/image/windowicon);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="musicWindowSpace">
@@ -376,11 +338,11 @@
      <x>410</x>
      <y>120</y>
      <width>521</width>
-     <height>455</height>
+     <height>481</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QLabel" name="showPicture">
     <property name="styleSheet">
@@ -735,8 +697,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>30</y>
+     <x>35</x>
+     <y>35</y>
      <width>46</width>
      <height>21</height>
     </rect>
@@ -960,8 +922,6 @@
   <zorder>volumeValue</zorder>
   <zorder>songsContainer</zorder>
   <zorder>showCurrentSong</zorder>
-  <zorder>musicWindowTitle</zorder>
-  <zorder>musicWindowIcon</zorder>
   <zorder>musicWindowSpace</zorder>
   <zorder>musicSongSearchLine</zorder>
   <zorder>musicSearchButton</zorder>
