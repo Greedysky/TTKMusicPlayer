@@ -198,7 +198,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     QMenu musicInfo(tr("musicAbout"),&rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
     musicInfo.addAction(QIcon(":/contextMenu/about"),tr("musicAbout"), m_object, SLOT(musicAboutUs()));
-    musicInfo.addAction(QIcon(":/contextMenu/edition"), QMUSICPLAYER_VERSION);
+    musicInfo.addAction(QIcon(":/contextMenu/edition"), QMUSICPLAYER_VERSION_STR);
 
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/quit"),tr("quit"),this,SLOT(quitWindowClose()));
