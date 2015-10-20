@@ -1,13 +1,20 @@
 #include "musicwindowextras.h"
 #include "musicapplication.h"
-#include <QtWinExtras>
 #include <QStyle>
+#ifdef Q_OS_WIN
+#   include <QtWinExtras>
+#endif
 
 MusicWindowExtras::MusicWindowExtras(QObject *parent)
-    : QObject(parent), m_playToolButton(NULL),
-    m_forwardToolButton(NULL), m_backwardToolButton(NULL), m_taskbarProgress(NULL),
-    m_taskbarButton(NULL), m_thumbnailToolBar(NULL)
+    : QObject(parent)
 {
+#ifdef Q_OS_WIN
+    m_playToolButton = NULL;
+    m_forwardToolButton = NULL;
+    m_backwardToolButton = NULL;
+    m_taskbarProgress = NULL;
+    m_taskbarButton = NULL;
+    m_thumbnailToolBar = NULL;
     m_superClass = static_cast<MusicApplication*>(parent);
     disableBlurBehindWindow( QtWin::isCompositionEnabled() );
 #ifdef MUSIC_DEBUG
@@ -15,6 +22,9 @@ MusicWindowExtras::MusicWindowExtras(QObject *parent)
     createTaskbar();
 #endif
     createThumbnailToolBar();
+#else
+    m_disableBlurBehindWindow = true;
+#endif
 }
 
 MusicWindowExtras::~MusicWindowExtras()
@@ -27,6 +37,16 @@ MusicWindowExtras::~MusicWindowExtras()
     delete m_thumbnailToolBar;
 }
 
+void MusicWindowExtras::disableBlurBehindWindow(bool enable)
+{
+    m_disableBlurBehindWindow = enable;
+#ifdef Q_OS_WIN
+    QtWin::enableBlurBehindWindow(m_superClass);
+    QtWin::disableBlurBehindWindow(m_superClass);
+#endif
+}
+
+#ifdef Q_OS_WIN
 void MusicWindowExtras::showPlayStatus(bool status) const
 {
     if(!status)
@@ -49,11 +69,6 @@ void MusicWindowExtras::showPlayStatus(bool status) const
     }
 }
 
-void MusicWindowExtras::createJumpList() const
-{
-    QWinJumpList().recent()->setVisible(true);
-}
-
 void MusicWindowExtras::setValue(int value) const
 {
     m_taskbarProgress->setValue(value);
@@ -64,11 +79,9 @@ void MusicWindowExtras::setRange(int start, int end) const
     m_taskbarProgress->setRange(start, end);
 }
 
-void MusicWindowExtras::disableBlurBehindWindow(bool enable)
+void MusicWindowExtras::createJumpList() const
 {
-    m_disableBlurBehindWindow = enable;
-    QtWin::enableBlurBehindWindow(m_superClass);
-    QtWin::disableBlurBehindWindow(m_superClass);
+    QWinJumpList().recent()->setVisible(true);
 }
 
 void MusicWindowExtras::createTaskbar()
@@ -102,3 +115,4 @@ void MusicWindowExtras::createThumbnailToolBar()
     m_thumbnailToolBar->addButton(m_playToolButton);
     m_thumbnailToolBar->addButton(m_backwardToolButton);
 }
+#endif

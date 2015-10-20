@@ -12,11 +12,13 @@
 #include <QObject>
 #include "musiclibexportglobal.h"
 
+#ifdef Q_OS_WIN
 class MusicApplication;
 class QWinTaskbarButton;
 class QWinTaskbarProgress;
 class QWinThumbnailToolBar;
 class QWinThumbnailToolButton;
+#endif
 
 class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
@@ -31,7 +33,7 @@ public:
     void disableBlurBehindWindow(bool enable);
     inline bool isDisableBlurBehindWindow() const
                 { return m_disableBlurBehindWindow; }
-
+#ifdef Q_OS_WIN
 signals:
 
 protected:
@@ -47,6 +49,7 @@ protected:
     QWinThumbnailToolButton *m_playToolButton;
     QWinThumbnailToolButton *m_forwardToolButton;
     QWinThumbnailToolButton *m_backwardToolButton;
+#endif
 
 };
 

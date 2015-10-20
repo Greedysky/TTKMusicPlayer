@@ -43,7 +43,7 @@ public:
     void showMessage(const QString &title, const QString &text);
     void setVolumeValue(int value) const;
 
-#ifdef MUSIC_DEBUG
+#if defined MUSIC_DEBUG && defined Q_OS_WIN
     void setValue(int value) const;
     void setRange(int min, int max) const;
 #endif

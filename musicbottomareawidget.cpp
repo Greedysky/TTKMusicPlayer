@@ -150,7 +150,9 @@ void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status) const
 void MusicBottomAreaWidget::showPlayStatus(bool status) const
 {
     m_systemTrayMenu->showPlayStatus(status);
+#if defined MUSIC_DEBUG && defined Q_OS_WIN
     m_musicWindowExtras->showPlayStatus(status);
+#endif
 }
 
 void MusicBottomAreaWidget::setLabelText(const QString &name) const
@@ -168,7 +170,7 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
     m_systemTray->showMessage(title, text);
 }
 
-#ifdef MUSIC_DEBUG
+#if defined MUSIC_DEBUG && defined Q_OS_WIN
 void MusicBottomAreaWidget::setValue(int value) const
 {
     m_musicWindowExtras->setValue(value);

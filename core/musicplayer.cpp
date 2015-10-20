@@ -137,7 +137,7 @@ QStringList MusicPlayer::supportFormatsFilterDialogString()
                         << "Pcm File(*.pcm)";
 }
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 void MusicPlayer::setSpectrum(HWND wnd, int w, int h, int x, int y)
 {
     if(!m_music)

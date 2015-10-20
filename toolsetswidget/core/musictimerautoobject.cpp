@@ -3,7 +3,7 @@
 
 #include <QTime>
 #ifdef Q_OS_WIN
-    #include <windows.h>
+#   include <windows.h>
 #endif
 #include <QProcess>
 

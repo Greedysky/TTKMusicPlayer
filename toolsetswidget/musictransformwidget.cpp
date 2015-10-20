@@ -6,10 +6,10 @@
 #include <QProcess>
 #include <QMovie>
 
-#if defined Q_OS_WIN32 && defined _MSC_VER
-    #include <windows.h>
-    #include <mmsystem.h>
-    #pragma comment(lib,"winmm.lib")
+#if defined Q_OS_WIN && defined _MSC_VER
+#   include <windows.h>
+#   include <mmsystem.h>
+#   pragma comment(lib,"winmm.lib")
 #endif
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)

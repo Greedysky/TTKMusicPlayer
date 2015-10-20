@@ -5,9 +5,9 @@
 #include <time.h>
 #include <QFileInfo>
 
-#if defined Q_OS_WIN32 && defined _MSC_VER
-    #include <Windows.h>
-    #pragma comment(lib,"user32.lib")
+#if defined Q_OS_WIN && defined _MSC_VER
+#   include <Windows.h>
+#   pragma comment(lib,"user32.lib")
 #endif
 
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent) :

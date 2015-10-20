@@ -12,8 +12,8 @@
 #include <QTimer>
 #include "musicequalizer.h"
 
-#ifdef Q_OS_WIN32
-    #include <Windows.h>
+#ifdef Q_OS_WIN
+#   include <Windows.h>
 #endif
 
 class QMediaPlayer;
@@ -89,7 +89,7 @@ public slots:
     void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
     void resetEqEffect();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
 #endif
 
