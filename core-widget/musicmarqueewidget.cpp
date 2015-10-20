@@ -10,7 +10,8 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
 
 void MusicMarqueeWidget::setText(const QString &newText)
 {
-    m_myText = newText.leftJustified(50, ' ');
+    m_myText = newText.leftJustified(fontMetrics().width(newText) >= width()
+                                     ? 45 : 25, ' ');
     update();
     updateGeometry();
 }
@@ -20,10 +21,10 @@ QSize MusicMarqueeWidget::sizeHint() const
     return fontMetrics().size(0, text());
 }
 
-void MusicMarqueeWidget::paintEvent(QPaintEvent *)
+void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
 {
+    QWidget::paintEvent(event);
     QPainter painter(this);
-
     int textWidth = fontMetrics().width(text());
     if(textWidth < 1)
     {
@@ -39,8 +40,9 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *)
     painter.end();
 }
 
-void MusicMarqueeWidget::showEvent(QShowEvent *)
+void MusicMarqueeWidget::showEvent(QShowEvent *event)
 {
+    QWidget::showEvent(event);
     m_myTimerId = startTimer(30);
 }
 
@@ -61,8 +63,9 @@ void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
     }
 }
 
-void MusicMarqueeWidget::hideEvent(QHideEvent *)
+void MusicMarqueeWidget::hideEvent(QHideEvent *event)
 {
+    QWidget::hideEvent(event);
     killTimer(m_myTimerId);
     m_myTimerId = 0;
 }
