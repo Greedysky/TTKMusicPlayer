@@ -287,10 +287,10 @@
   <widget class="QLabel" name="musicWindowSpace">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>380</x>
      <y>20</y>
-     <width>351</width>
-     <height>40</height>
+     <width>590</width>
+     <height>45</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -926,7 +926,6 @@
    </property>
   </action>
   <zorder>background</zorder>
-  <zorder>windowClose</zorder>
   <zorder>musicPrivious</zorder>
   <zorder>musicNext</zorder>
   <zorder>musicKey</zorder>
@@ -972,6 +971,7 @@
   <zorder>musicEnhancedButton</zorder>
   <zorder>musicButton_mobile</zorder>
   <zorder>lrcDisplayAllButton</zorder>
+  <zorder>windowClose</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
