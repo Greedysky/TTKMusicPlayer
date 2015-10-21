@@ -161,6 +161,7 @@
         <file alias="wallpaper">../resource/lrc/wallpaper.png</file>
         <file alias="shadow">../resource/lrc/shadow.png</file>
         <file alias="film">../resource/lrc/filmBg.png</file>
+        <file alias="lrcDisplayAll">../resource/lrc/lrcDisplayAll.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="bottom">../resource/borderShadow/shadow_bottom.png</file>

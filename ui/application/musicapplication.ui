@@ -721,6 +721,19 @@
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="lrcDisplayAllButton">
+   <property name="geometry">
+    <rect>
+     <x>392</x>
+     <y>320</y>
+     <width>15</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{border-image:url(':/lrc/lrcDisplayAll');border:none;background:transparent;};</string>
+   </property>
+  </widget>
   <action name="action_About">
    <property name="text">
     <string>关于天天酷音(&amp;A)</string>
@@ -958,6 +971,7 @@
   <zorder>verticalLayoutWidget</zorder>
   <zorder>musicEnhancedButton</zorder>
   <zorder>musicButton_mobile</zorder>
+  <zorder>lrcDisplayAllButton</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

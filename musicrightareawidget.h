@@ -65,6 +65,7 @@ public slots:
     void musicVideoButtonSearched(const QString &name);
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
+    void musicLrcDisplayAllButtonClicked();
 
 protected:
     void createVideoWidget(bool create);

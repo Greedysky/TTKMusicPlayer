@@ -36,46 +36,49 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
 
+    ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
+
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
-    connect(ui->musicSearchRefreshButton,SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
+    connect(ui->musicSearchRefreshButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicIndexWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
-    connect(ui->musicIndexWidgetButton,SIGNAL(clicked()), SLOT(musicIndexWidgetButtonSearched()));
+    connect(ui->musicIndexWidgetButton, SIGNAL(clicked()), SLOT(musicIndexWidgetButtonSearched()));
 
     ui->musicSearchWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    connect(ui->musicSearchWidgetButton,SIGNAL(clicked()), SLOT(musicSearchWidgetButtonSearched()));
+    connect(ui->musicSearchWidgetButton, SIGNAL(clicked()), SLOT(musicSearchWidgetButtonSearched()));
 
     ui->musicLrcWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    connect(ui->musicLrcWidgetButton,SIGNAL(clicked()), SLOT(musicLrcWidgetButtonSearched()));
+    connect(ui->musicLrcWidgetButton, SIGNAL(clicked()), SLOT(musicLrcWidgetButtonSearched()));
 
     ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    connect(ui->vedioWidgetButton,SIGNAL(clicked()), SLOT(musicVideoWidgetButtonSearched()));
+    connect(ui->vedioWidgetButton, SIGNAL(clicked()), SLOT(musicVideoWidgetButtonSearched()));
     ///////////////////////////////////////////////////////
-    connect(m_musiclrcfordesktop,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
+    connect(m_musiclrcfordesktop, SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
+    connect(m_musiclrcfordesktop, SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
-    connect(m_musiclrcfordesktop,SIGNAL(changeCurrentLrcColorCustom()), m_setting,
+    connect(m_musiclrcfordesktop, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeDesktopLrcWidget()));
-    connect(m_musiclrcfordesktop,SIGNAL(desktopLrcClosed()), SIGNAL(desktopLrcClosed()));
-    connect(m_musiclrcfordesktop,SIGNAL(setWindowLockedChanged(bool)), SIGNAL(lockDesktopLrc(bool)));
+    connect(m_musiclrcfordesktop, SIGNAL(desktopLrcClosed()), SIGNAL(desktopLrcClosed()));
+    connect(m_musiclrcfordesktop, SIGNAL(setWindowLockedChanged(bool)), SIGNAL(lockDesktopLrc(bool)));
     ///////////////////////////////////////////////////////
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorCustom()), m_setting,
+    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeInlineLrcWidget()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(theCurrentLrcUpdated()), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline, SIGNAL(theArtBgHasChanged()),
                  SIGNAL(updateBgThemeDownload()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
                  SLOT(musicSetting()));
-    connect(ui->musiclrccontainerforinline,SIGNAL(updateCurrentTime(qint64)), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
     ///////////////////////////////////////////////////////
 }
@@ -356,4 +359,9 @@ void MusicRightAreaWidget::musicVideoFullscreen(bool full)
 {
     m_videoPlayer->resizeWindow(full);
     m_videoPlayer->blockMoveOption(full);
+}
+
+void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
+{
+
 }
