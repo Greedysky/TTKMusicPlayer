@@ -65,7 +65,7 @@ MusicSongsSummarizied::~MusicSongsSummarizied()
     clearAllLists();
 }
 
-void MusicSongsSummarizied::setMusicLists(const MMusicList &names)
+void MusicSongsSummarizied::setMusicLists(const MMusicSongsList &names)
 {
     m_musicFileNames = names;
     for(int i=0; i<m_musicFileNames.count(); ++i)

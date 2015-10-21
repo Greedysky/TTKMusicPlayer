@@ -27,13 +27,13 @@ public:
     explicit MusicSongsSummarizied(QWidget *parent = 0);
     virtual ~MusicSongsSummarizied();
 
-    void setMusicLists(const MMusicList &names);
+    void setMusicLists(const MMusicSongsList &names);
     void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
     void importOtherMusicSongs(const QStringList &filelist);
 
     inline const QStringList& getMusicSongsFileName(int index) { return m_musicFileNames[index].m_names;}
     inline const QStringList& getMusicSongsFilePath(int index) { return m_musicFileNames[index].m_paths;}
-    inline const MMusicList& getMusicLists() const  { return m_musicFileNames;}
+    inline const MMusicSongsList& getMusicLists() const  { return m_musicFileNames;}
 
     inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
     void currentMusicSongTreeIndexChanged(int index);
@@ -76,7 +76,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     QList<MusicSongsListWidget*> m_mainSongLists;
-    MMusicList m_musicFileNames;
+    MMusicSongsList m_musicFileNames;
     int m_currentIndexs;
     int m_renameIndex;
     MusicSongsToolItemRenamedWidget *m_renameLine;

@@ -81,7 +81,7 @@ typedef struct MusicSongs
     QStringList m_paths;
     MIntList m_playCount;
 }MusicSongs;
-typedef QList<MusicSongs> MMusicList;           /* musiclist */
+typedef QList<MusicSongs> MMusicSongsList;           /* musiclist */
 
 namespace MusicObject
 {

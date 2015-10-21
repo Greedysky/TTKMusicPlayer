@@ -9,7 +9,7 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
 
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MMusicList &musics)
+void MusicXMLConfigManager::readMusicSongsConfig(MMusicSongsList &musics)
 {
     musics << readMusicFilePath("fileNormalPath")
            << readMusicFilePath("fileLovestPath")
@@ -27,7 +27,7 @@ void MusicXMLConfigManager::readMusicSongsConfig(MMusicList &musics)
 //    }
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicList &musics)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicSongsList &musics)
 {
     if( musics.isEmpty() )
     {
