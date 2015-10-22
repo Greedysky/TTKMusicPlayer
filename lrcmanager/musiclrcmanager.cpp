@@ -24,6 +24,7 @@ MusicLRCManager::MusicLRCManager(QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
     m_lrcMaskWidth = 0;
     m_lrcMaskWidthInterval = 0;
+    m_speedLeve = 1;
 
     m_transparent = 100;
 }

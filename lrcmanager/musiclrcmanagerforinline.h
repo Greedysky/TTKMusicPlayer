@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musiclrcmanager.h"
+#define LRC_PER_WIDTH 522
 
 class MUSIC_LRC_EXPORT MusicLRCManagerForInline : public MusicLRCManager
 {
@@ -18,13 +19,10 @@ public:
     explicit MusicLRCManagerForInline(QWidget *parent = 0);
     virtual ~MusicLRCManagerForInline();
 
-    void setLrcPerWidth(int width);
-    inline void setFontSize(int size)
-            { m_gradientFontSize = size;}
-    inline void setTransparent(int transparent)
-            { m_gradientTransparent = transparent;}
-    inline void setCenterOnLrc(bool status)
-            { m_centerOnLrc = status;}
+    inline void setLrcPerWidth(int width){ m_lrcPerWidth = width + LRC_PER_WIDTH;}
+    inline void setFontSize(int size) { m_gradientFontSize = size;}
+    inline void setTransparent(int tran) { m_gradientTransparent = tran;}
+    inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
 
 protected:
     virtual void paintEvent(QPaintEvent *event);

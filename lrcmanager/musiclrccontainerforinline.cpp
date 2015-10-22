@@ -34,11 +34,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
     m_showArtBackground = true;
     m_showInlineLrc = true;
 
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
-    {
-        m_musicLrcContainer[i]->setText(".........");
-    }
-    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
+    initLrc();
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
@@ -240,12 +236,26 @@ int MusicLrcContainerForInline::getLrcSize() const
     return M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
+void MusicLrcContainerForInline::initLrc()
+{
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
+    {
+        m_musicLrcContainer[i]->setText(".........");
+    }
+    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
+}
+
 void MusicLrcContainerForInline::resizeWidth(int width)
 {
     for(int i=0; i< MIN_LRCCONTAIN_COUNT; ++i)
     {
-        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i])->setLrcPerWidth(522 + width);
+        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i])->setLrcPerWidth(width);
         m_lrcFloatWidget->resizeWidth(width);
+    }
+
+    if(m_lrcContainer.isEmpty() || m_currentLrcIndex == 0)
+    {
+        initLrc();
     }
 }
 
@@ -317,7 +327,9 @@ void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
     {
         MIntStringMapIt it(m_lrcContainer);
         for(int i=0; i<m_currentLrcIndex + 1; ++i)
+        {
             if(it.hasNext()) it.next();
+        }
         emit updateCurrentTime(it.key());
     }
     else

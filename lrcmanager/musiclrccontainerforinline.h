@@ -61,6 +61,7 @@ protected:
     virtual void wheelEvent(QWheelEvent *);
     virtual void paintEvent(QPaintEvent *event);
     void changeLrcPostion(const QString &type);
+    void initLrc();
 
     QPoint m_mousePressedAt;
     QPoint m_mouseMovedAt;
