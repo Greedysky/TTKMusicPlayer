@@ -718,7 +718,7 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{border-image:url(':/lrc/lrcDisplayAll');border:none;background:transparent;};</string>
+    <string notr="true">QPushButton{border:none;background:transparent;};</string>
    </property>
   </widget>
   <action name="action_About">

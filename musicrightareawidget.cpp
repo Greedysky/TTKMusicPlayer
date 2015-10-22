@@ -38,6 +38,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
 
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -283,6 +284,7 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     m_ui->SurfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
     m_ui->musicWindowSpace->setVisible(false);
+    m_ui->lrcDisplayAllButton->setIcon(QIcon(":/lrc/lrcDisplayAll"));
     m_ui->lrcDisplayAllButton->setVisible(true);
     emit updateBgThemeDownload();
 }
@@ -323,6 +325,10 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
     }
     m_ui->musicWindowSpace->setVisible(true);
     m_ui->lrcDisplayAllButton->setVisible(false);
+    if(m_lrcDisplayAll)
+    {
+        musicLrcDisplayAllButtonClicked();
+    }
     emit updateBackgroundTheme();
 }
 
@@ -374,4 +380,6 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 410, 138,
                                             m_lrcDisplayAll ? 871: 521, 461);
     m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 350 : 0);
+    m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor"
+                                                             : ":/lrc/lrcDisplayAll"));
 }

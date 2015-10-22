@@ -87,7 +87,6 @@
     <qresource prefix="/equalizer">
         <file alias="off">../resource/equalizer/eq_off.png</file>
         <file alias="on">../resource/equalizer/eq_on.png</file>
-        <file alias="arrow">../resource/equalizer/thin-down-arrow.png</file>
     </qresource>
     <qresource prefix="/tools">
         <file alias="localmanager">../resource/tools/localmanager.png</file>
@@ -164,6 +163,7 @@
         <file alias="shadow">../resource/lrc/shadow.png</file>
         <file alias="film">../resource/lrc/filmBg.png</file>
         <file alias="lrcDisplayAll">../resource/lrc/lrcDisplayAll.png</file>
+        <file alias="lrcDisplayNor">../resource/lrc/lrcDisplayNor.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="bottom">../resource/borderShadow/shadow_bottom.png</file>
