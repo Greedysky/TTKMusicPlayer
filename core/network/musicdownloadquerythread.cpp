@@ -53,8 +53,8 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     }
     m_reply = m_manager->get(QNetworkRequest(musicUrl));
     connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),this,
-                   SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
+                     SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
 void MusicDownLoadQueryThread::searchFinshed()
