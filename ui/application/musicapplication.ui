@@ -69,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>114</x>
-     <y>75</y>
+     <y>80</y>
      <width>55</width>
      <height>55</height>
     </rect>
@@ -82,7 +82,7 @@
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>75</y>
+     <y>80</y>
      <width>55</width>
      <height>55</height>
     </rect>
@@ -124,7 +124,7 @@
    <property name="geometry">
     <rect>
      <x>177</x>
-     <y>75</y>
+     <y>80</y>
      <width>55</width>
      <height>55</height>
     </rect>
@@ -136,8 +136,8 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>238</x>
-     <y>133</y>
+     <x>303</x>
+     <y>114</y>
      <width>18</width>
      <height>18</height>
     </rect>
@@ -152,9 +152,9 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>135</y>
-     <width>89</width>
+     <x>328</x>
+     <y>116</y>
+     <width>53</width>
      <height>16</height>
     </rect>
    </property>
@@ -162,29 +162,13 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="volumeValue">
-   <property name="geometry">
-    <rect>
-     <x>355</x>
-     <y>135</y>
-     <width>30</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;</string>
-   </property>
-   <property name="text">
-    <string>100%</string>
-   </property>
-  </widget>
   <widget class="QStackedWidget" name="songsContainer">
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>165</y>
+     <y>138</y>
      <width>331</width>
-     <height>436</height>
+     <height>461</height>
     </rect>
    </property>
   </widget>
@@ -336,9 +320,9 @@
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>120</y>
+     <y>140</y>
      <width>521</width>
-     <height>481</height>
+     <height>461</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -356,7 +340,7 @@
    <property name="geometry">
     <rect>
      <x>585</x>
-     <y>80</y>
+     <y>85</y>
      <width>80</width>
      <height>40</height>
     </rect>
@@ -372,7 +356,7 @@
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>80</y>
+     <y>85</y>
      <width>80</width>
      <height>40</height>
     </rect>
@@ -388,7 +372,7 @@
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>80</y>
+     <y>85</y>
      <width>55</width>
      <height>40</height>
     </rect>
@@ -404,7 +388,7 @@
    <property name="geometry">
     <rect>
      <x>490</x>
-     <y>80</y>
+     <y>85</y>
      <width>80</width>
      <height>40</height>
     </rect>
@@ -432,17 +416,14 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>42</x>
-     <y>135</y>
-     <width>71</width>
+     <x>35</x>
+     <y>110</y>
+     <width>16</width>
      <height>19</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color:#FFFFFF;</string>
-   </property>
    <property name="text">
-    <string>桌面歌词</string>
+    <string/>
    </property>
    <property name="checkable">
     <bool>true</bool>
@@ -454,8 +435,8 @@
   <widget class="QToolButton" name="musicBestLove">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>105</y>
+     <x>87</x>
+     <y>108</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -502,7 +483,7 @@
    <property name="geometry">
     <rect>
      <x>335</x>
-     <y>105</y>
+     <y>95</y>
      <width>50</width>
      <height>20</height>
     </rect>
@@ -592,7 +573,7 @@
    <property name="geometry">
     <rect>
      <x>775</x>
-     <y>80</y>
+     <y>85</y>
      <width>80</width>
      <height>40</height>
     </rect>
@@ -639,8 +620,8 @@
   <widget class="QToolButton" name="musicPlayMode">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>132</y>
+     <x>56</x>
+     <y>108</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -931,7 +912,6 @@
   <zorder>musicKey</zorder>
   <zorder>musicSound</zorder>
   <zorder>musicSoundSlider</zorder>
-  <zorder>volumeValue</zorder>
   <zorder>songsContainer</zorder>
   <zorder>showCurrentSong</zorder>
   <zorder>musicWindowSpace</zorder>

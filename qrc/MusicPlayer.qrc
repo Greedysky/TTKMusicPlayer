@@ -60,6 +60,8 @@
         <file alias="checkbox_unchecked">../resource/controls/CheckBox_unchecked.png</file>
         <file alias="radiobutton_checked">../resource/controls/Radiobutton_checked.png</file>
         <file alias="radiobutton_unchecked">../resource/controls/RadioButton_unchecked.png</file>
+        <file alias="lrc_checkBox_unchecked">../resource/controls/lrc_checkBox_unchecked.png</file>
+        <file alias="lrc_checkBox_checked">../resource/controls/lrc_checkBox_checked.png</file>
         <file alias="timerPlay">../resource/controls/timerPlay.png</file>
         <file alias="timerStop">../resource/controls/timerStop.png</file>
         <file alias="timerDown">../resource/controls/timerDown.png</file>

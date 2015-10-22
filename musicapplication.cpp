@@ -599,7 +599,6 @@ void MusicApplication::musicVolumeNULL()
     ui->musicSoundSlider->blockSignals(true);
     ui->musicSoundSlider->setValue(m_musicPlayer->volume());
     ui->musicSoundSlider->blockSignals(false);
-    ui->volumeValue->setText(QString("%1%").arg(m_musicPlayer->volume()));
     M_SETTING->setValue(MusicSettingManager::VolumeChoiced, m_musicPlayer->volume());
 }
 
@@ -608,7 +607,6 @@ void MusicApplication::musicVolumeChanged(int volume)
     m_topAreaWidget->setVolumeValue(volume);
     m_bottomAreaWidget->setVolumeValue(volume);
     m_musicPlayer->setVolume(volume);
-    ui->volumeValue->setText(QString("%1%").arg(volume));
     (volume > 0) ? ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24)
                  : ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle25);
     M_SETTING->setValue(MusicSettingManager::VolumeChoiced, volume);

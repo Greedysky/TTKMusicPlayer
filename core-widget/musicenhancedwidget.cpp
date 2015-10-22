@@ -10,6 +10,9 @@
 MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     : QToolButton(parent)
 {
+    setCursor(Qt::PointingHandCursor);
+    setToolTip(tr("magic music"));
+
     initWidget();
     M_Connection->setValue("MusicEnhancedWidget", this);
 }

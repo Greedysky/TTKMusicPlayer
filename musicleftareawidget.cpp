@@ -75,7 +75,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle06);
-    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle03);
     ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -90,6 +90,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSoundSlider->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->windowClose->setToolTip(tr("Close"));
@@ -97,6 +98,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPrivious->setToolTip(tr("Privious"));
     ui->musicNext->setToolTip(tr("Next"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
+    ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));
+    ui->musicPlayMode->setToolTip(tr("playMode"));
     ui->musicButton_cloud->setToolTip(tr("musicCloud"));
     ui->musicButton_mydownl->setToolTip(tr("musicMydownl"));
     ui->musicButton_playlist->setToolTip(tr("musicPlaylist"));
