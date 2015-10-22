@@ -11,20 +11,29 @@ Usage
 The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt
 ( just only on windows PC!!!)
 
+# For Developers
 
-Example
+QMusicPlayer is free software licensed under the term of GPL v2. If you use QMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
 ----
 
-index
+Features
+-------
+QMusicPlayer can meet your most demands
+ * Support for multiple music formats (mp3、mp2、mp1、wav、ogg、flac、ac3、aac、oga、pcm)
+
+Screenshots
+----
+
+Index
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/1.png?raw=true)
 
-search
+Search
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/2.png?raw=true)
 
-lrc
+Lrc
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/3.png?raw=true)
 
-desktop-lrc
+Desktop-lrc
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/4.png?raw=true)
 
 
@@ -37,6 +46,9 @@ Copyright
  * works are strictly forbiden.
  * mail: greedysky@163.com.
  
-Contributing
+How To Contribute
 -------
-If you want to join the project developed together, please send e-mail to me.
+ * Fork this project on github and make a branch. Commit in that branch, and push, then create a pull request to be reviewed and merged.
+ * Create an issue if you have any problem when using project or you find a bug, etc.
+ * What you can do: translation, write document, wiki, find or fix bugs, give your idea for this project etc.
+ * If you want to join the project developed together, please send e-mail to me.
