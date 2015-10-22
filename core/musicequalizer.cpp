@@ -180,7 +180,7 @@ void MusicEqualizer::setFadeOutEffect()
     TStreamTime end;
     m_parentClass->GetPosition(&start);
     end.sec = start.sec + 5;
-    m_parentClass->SlideVolume( tfSecond, &start, 100,100, tfSecond, &end, 0,0);
+    m_parentClass->SlideVolume(tfSecond, &start, 100, 100, tfSecond, &end, 0, 0);
 }
 
 void MusicEqualizer::setFadeInEffect()
@@ -190,5 +190,5 @@ void MusicEqualizer::setFadeInEffect()
     TStreamTime end;
     m_parentClass->GetPosition(&start);
     end.sec = start.sec + 5;
-    m_parentClass->SlideVolume( tfSecond, &start, 0,0, tfSecond, &end, 100, 100);
+    m_parentClass->SlideVolume(tfSecond, &start, 0, 0, tfSecond, &end, 100, 100);
 }
