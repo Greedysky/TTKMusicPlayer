@@ -134,14 +134,18 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MusicObject::MC_PlayOneLoop:break;
+            case MusicObject::MC_PlayOneLoop: break;
             case MusicObject::MC_PlayOrder:
                 if(++m_currentIndex >= m_mediaList.count())
+                {
                     m_currentIndex = -1;
+                }
                 break;
             case MusicObject::MC_PlayListLoop:
                 if(++m_currentIndex >= m_mediaList.count())
+                {
                     m_currentIndex = 0;
+                }
                 break;
             case MusicObject::MC_PlayRandom:
                 m_currentIndex = rand() % m_mediaList.count();
