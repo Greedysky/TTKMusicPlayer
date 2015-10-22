@@ -20,7 +20,7 @@ QMusicPlayer is free software licensed under the term of GPL v2. If you use QMus
 Features
 -------
 QMusicPlayer can meet your most demands
- * Support for multiple music formats (mp3、mp2、mp1、wav、ogg、flac、ac3、aac、oga、pcm).
+ * Support for multiple music formats (mp3, mp2, mp1, wav, ogg, flac, ac3, aac, oga, pcm).
  * 
 Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
@@ -36,7 +36,8 @@ Music cube model. After entering the mini mode, it will remain in your desktop a
  * 
 Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
  * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
- 
+
+Screenshots
 ----
 
 Index
