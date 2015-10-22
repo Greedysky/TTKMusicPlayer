@@ -48,32 +48,32 @@
 #define USERNAME       20
 #define LOGINTIME      20
 
-typedef signed char MInt8;           /* 8 bit signed */
-typedef unsigned char MUint8;        /* 8 bit unsigned */
-typedef short MInt16;                /* 16 bit signed */
-typedef unsigned short MUint16;      /* 16 bit unsigned */
-typedef int MInt32;                  /* 32 bit signed */
-typedef unsigned int MUint32;        /* 32 bit unsigned */
-typedef long long MInt64;            /* 64 bit signed */
-typedef unsigned long long MUint64;  /* 64 bit unsigned */
+typedef signed char        MInt8;         /* 8 bit signed */
+typedef unsigned char      MUint8;        /* 8 bit unsigned */
+typedef short              MInt16;        /* 16 bit signed */
+typedef unsigned short     MUint16;       /* 16 bit unsigned */
+typedef int                MInt32;        /* 32 bit signed */
+typedef unsigned int       MUint32;       /* 32 bit unsigned */
+typedef long long          MInt64;        /* 64 bit signed */
+typedef unsigned long long MUint64;       /* 64 bit unsigned */
 
-typedef double MDouble;              /* double */
-typedef float MFloat;                /* float */
-typedef bool MBool;                  /* bool */
+typedef double             MDouble;       /* double */
+typedef float              MFloat;        /* float */
+typedef bool               MBool;         /* bool */
 
-typedef QList<QStringList> MStringLists;    /* stringlists */
-typedef QList<int> MIntList;                /* intlist */
-typedef QList<MIntList> MIntLists;          /* intlists */
-typedef QSet<int> MIntSet;                  /* intset */
-typedef QSet<MIntSet> MIntSets;             /* intsets */
-typedef QMap<QString, QVariant> MStriantMap;    /* stringVariantMap */
-typedef QMap<QString, QStringList> MStringsListMap; /* stringStrlistsMap */
-typedef QMap<int, MIntList> MIntsListMap;        /* intIntlistMap */
-typedef QMap<qint64, QString> MIntStringMap;      /* intStrMap */
-typedef QMapIterator<QString, QVariant> MStriantMapIt;    /* stringVariantMapIt */
+typedef QList<QStringList>                 MStringLists;      /* stringlists */
+typedef QList<int>                         MIntList;          /* intlist */
+typedef QList<MIntList>                    MIntLists;         /* intlists */
+typedef QSet<int>                          MIntSet;           /* intset */
+typedef QSet<MIntSet>                      MIntSets;          /* intsets */
+typedef QMap<QString, QVariant>            MStriantMap;       /* stringVariantMap */
+typedef QMap<QString, QStringList>         MStringsListMap;   /* stringStrlistsMap */
+typedef QMap<int, MIntList>                MIntsListMap;      /* intIntlistMap */
+typedef QMap<qint64, QString>              MIntStringMap;     /* intStrMap */
+typedef QMapIterator<QString, QVariant>    MStriantMapIt;     /* stringVariantMapIt */
 typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsMapIt */
-typedef QMapIterator<int, MIntList> MIntsListMapIt;        /* intIntlistMapIt */
-typedef QMapIterator<qint64, QString> MIntStringMapIt;      /* intStrMapIt */
+typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
+typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
 typedef struct MusicSongs
 {
@@ -81,7 +81,7 @@ typedef struct MusicSongs
     QStringList m_paths;
     MIntList m_playCount;
 }MusicSongs;
-typedef QList<MusicSongs> MMusicSongsList;           /* musiclist */
+typedef QList<MusicSongs>                  MMusicSongsList;   /* musiclist */
 
 namespace MusicObject
 {
