@@ -52,6 +52,15 @@ Lrc
 Desktop-lrc
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/4.png?raw=true)
 
+Remote Controller
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/5.png?raw=true)
+
+Lrc Display Expand
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/6.png?raw=true)
+
+Magic Music
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/7.png?raw=true)
+
 
 Copyright
 -------
