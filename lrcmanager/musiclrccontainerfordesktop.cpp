@@ -39,6 +39,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     m_desktopWidget->setMinimumSize(m_geometry.x(), 2*m_geometry.y());
     setSelfGeometry();
 
+    m_currentTime = -1;
     m_reverse = false;
     m_windowLocked = false;
 
@@ -172,16 +173,20 @@ void MusicLrcContainerForDesktop::startTimerClock()
 
 void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
-    m_musicLrcContainer[0]->setText(tr("unFoundLrc"));
-    m_musicLrcContainer[0]->setGeometry(0, 20,
-                                        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->getGeometryX(),
-                                        m_geometry.y());
-    m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20,0,0);
+    if(m_currentTime == -1)
+    {
+        m_musicLrcContainer[0]->setText(tr("welcome use QMusicPlayer"));
+        m_musicLrcContainer[0]->setGeometry(0, 20,
+                                            static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->getGeometryX(),
+                                            m_geometry.y());
+        m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
+    }
 }
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
                                                    const QString &second, qint64 time)
 {
+    m_currentTime = time;
     m_reverse = !m_reverse;
     static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[ m_reverse])->resetOrigin();
     m_musicLrcContainer[ m_reverse]->stopLrcMask();
@@ -307,8 +312,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
     {
         return;
     }
-    int y = m_geometry.y();
-    m_geometry.setY(--y);
+    m_geometry.setY(m_geometry.y() - 1);
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
@@ -357,6 +361,5 @@ void MusicLrcContainerForDesktop::setSettingParameter()
 
 void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
 {
-    m_toolPlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
-                                                              : ":/desktopTool/play")) );
+    m_toolPlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop" : ":/desktopTool/play")) );
 }

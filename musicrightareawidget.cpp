@@ -189,7 +189,6 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         m_ui->musiclrccontainerforinline->setCurrentSongName( name );
         m_ui->musiclrccontainerforinline->transLrcFileToTime( path.trimmed() );
         m_musiclrcfordesktop->setCurrentSongName( name );
-        m_musiclrcfordesktop->initCurrentLrc();
     }
 }
 
@@ -223,6 +222,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool v) const
 {
     m_ui->musicDesktopLrc->setChecked(v);
     m_musiclrcfordesktop->setVisible(v);
+    m_musiclrcfordesktop->initCurrentLrc();
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, v);
 }
 

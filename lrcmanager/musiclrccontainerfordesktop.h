@@ -70,6 +70,7 @@ protected:
     bool m_windowLocked;
     bool m_reverse;
     int m_currentLrcFontSize;
+    qint64 m_currentTime;
     QPoint m_geometry;
 
 };
