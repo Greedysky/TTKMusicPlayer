@@ -69,11 +69,11 @@ public:
     inline MusicLogger &operator<<(quint64 t) { return debugData<quint64>(t); }
     inline MusicLogger &operator<<(float t) { return debugData<float>(t); }
     inline MusicLogger &operator<<(double t) { return debugData<double>(t); }
-    inline MusicLogger &operator<<(const char* t) { return debugData<const char*>(t); }
-    inline MusicLogger &operator<<(const QString & t) { return debugData<QString>(t); }
-    inline MusicLogger &operator<<(const QStringRef & t) { return debugData<QString>(t.toString()); }
-    inline MusicLogger &operator<<(QLatin1String t) { return debugData<QLatin1String>(t); }
-    inline MusicLogger &operator<<(const QByteArray & t) { return debugData<QString>(QString(t)); }
+    inline MusicLogger &operator<<(const char *t) { return debugData<const char*>(t); }
+    inline MusicLogger &operator<<(const QString &t) { return debugData<QString>(t); }
+    inline MusicLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
+    inline MusicLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
+    inline MusicLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
 
 
 protected:
