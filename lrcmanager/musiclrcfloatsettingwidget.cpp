@@ -8,9 +8,6 @@
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
 {
-    m_rectIn = QRect(355, 120, 165, 210);
-    m_rectOut = QRect(515, 171, 165, 105);
-    setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatSettingWidget");
     setStyleSheet("#MusicLrcFloatSettingWidget{" + MusicUIObject::MCustomStyle03 + "}" +
                   MusicUIObject::MPushButtonStyle14);
@@ -74,6 +71,13 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(settingButton,SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
     settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     settingButton->setGeometry(10, 180, 150, 20);
+}
+
+void MusicLrcFloatSettingWidget::resizeWidth(int width)
+{
+    m_rectIn = QRect(355 + width, 120, 165, 210);
+    m_rectOut = QRect(515 + width, 171, 165, 105);
+    setGeometry(m_rectOut);
 }
 
 QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)

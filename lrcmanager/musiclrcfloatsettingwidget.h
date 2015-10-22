@@ -19,6 +19,8 @@ class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstract
 public:
     explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
 
+    void resizeWidth(int width);
+
 signals:
     void widgetClose();
 

@@ -42,6 +42,8 @@ public:
     explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
     virtual ~MusicLrcFloatPhotoWidget();
 
+    void resizeWidth(int width);
+
 public slots:
     void show();
     void close();

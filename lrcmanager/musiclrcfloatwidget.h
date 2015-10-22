@@ -22,6 +22,8 @@ public:
     explicit MusicLrcFloatWidget(QWidget *parent = 0);
     ~MusicLrcFloatWidget();
 
+    void resizeWidth(int width);
+
 public slots:
     void showFloatSettingWidget();
     void closeFloatSettingWidget();

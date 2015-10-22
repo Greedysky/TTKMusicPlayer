@@ -32,11 +32,14 @@ public:
 
     bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
-    void setLrcSize(LrcSizeTable = Middle) const;
-    int getLrcSize() const;
     void setSongSpeedAndSlow(qint64 time);
     inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
+
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
+    void setLrcSize(LrcSizeTable = Middle) const;
+    int getLrcSize() const;
+
+    void resizeWidth(int width);
 
 signals:
     void updateCurrentTime(qint64 time);

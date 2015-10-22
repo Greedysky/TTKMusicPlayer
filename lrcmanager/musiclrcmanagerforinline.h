@@ -18,6 +18,7 @@ public:
     explicit MusicLRCManagerForInline(QWidget *parent = 0);
     virtual ~MusicLRCManagerForInline();
 
+    void setLrcPerWidth(int width);
     inline void setFontSize(int size)
             { m_gradientFontSize = size;}
     inline void setTransparent(int transparent)

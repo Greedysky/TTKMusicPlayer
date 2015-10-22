@@ -71,6 +71,7 @@ protected:
     void createVideoWidget(bool create);
     void musicButtonStyleClear();
 
+    bool m_lrcDisplayAll;
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;

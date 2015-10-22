@@ -240,6 +240,15 @@ int MusicLrcContainerForInline::getLrcSize() const
     return M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
+void MusicLrcContainerForInline::resizeWidth(int width)
+{
+    for(int i=0; i< MIN_LRCCONTAIN_COUNT; ++i)
+    {
+        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i])->setLrcPerWidth(522 + width);
+        m_lrcFloatWidget->resizeWidth(width);
+    }
+}
+
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);

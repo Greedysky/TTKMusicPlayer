@@ -25,10 +25,6 @@ void MusicLrcFloatPhotoPlaneWidget::mousePressEvent(QMouseEvent *event)
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
 {
-    m_rectIn = QRect(0, 500, 115, 105);
-    m_rectOut = QRect(0, 300, 640, 180);
-
-    setGeometry(m_rectOut);
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle03 + "}");
 
@@ -109,6 +105,13 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_previous, m_next;
     delete m_confirmButton, m_cancelButton;
     delete m_checkBox;
+}
+
+void MusicLrcFloatPhotoWidget::resizeWidth(int width)
+{
+    m_rectIn = QRect(0 + width/2, 500, 115, 105);
+    m_rectOut = QRect(0 + width/2, 300, 522, 180);
+    setGeometry(m_rectOut);
 }
 
 void MusicLrcFloatPhotoWidget::show()
