@@ -281,6 +281,8 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     //Show lrc display widget
     m_ui->SurfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
+    m_ui->musicWindowSpace->setVisible(false);
+    m_ui->lrcDisplayAllButton->setVisible(true);
     emit updateBgThemeDownload();
 }
 
@@ -318,6 +320,8 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         delete m_videoPlayer;
         m_videoPlayer = NULL;
     }
+    m_ui->musicWindowSpace->setVisible(true);
+    m_ui->lrcDisplayAllButton->setVisible(false);
     emit updateBackgroundTheme();
 }
 

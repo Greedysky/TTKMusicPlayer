@@ -703,6 +703,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="lrcDisplayAllButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>392</x>
@@ -710,6 +713,9 @@
      <width>15</width>
      <height>56</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{border-image:url(':/lrc/lrcDisplayAll');border:none;background:transparent;};</string>

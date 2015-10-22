@@ -76,6 +76,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     connect(m_musicSongTree,SIGNAL(updatePlayLists(QString)),m_musicList,SLOT(appendMedia(QString)));
     connect(m_musicSongTree,SIGNAL(updateMediaLists(QStringList,int)),m_musicList,SLOT(updateMediaLists(QStringList,int)));
 
+    ui->lrcDisplayAllButton->hide();
     ui->SurfaceStackedWidget->setCurrentIndex(0);
     ui->musicTimeWidget->setObject(this);
 
