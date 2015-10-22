@@ -13,15 +13,30 @@ The music player use of  libzplay(http://sourceforge.net/projects/libzplay) libr
 
 # For Developers
 
+License
+---
 QMusicPlayer is free software licensed under the term of GPL v2. If you use QMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
-----
 
 Features
 -------
 QMusicPlayer can meet your most demands
- * Support for multiple music formats (mp3、mp2、mp1、wav、ogg、flac、ac3、aac、oga、pcm)
-
-Screenshots
+ * Support for multiple music formats (mp3、mp2、mp1、wav、ogg、flac、ac3、aac、oga、pcm).
+ * 
+Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
+Screenshots.
+ * 
+Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
+ * Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
+ * User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
+ * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones Yang Hyun.
+ * Audio format I choose. I made my songs, I decided to sound quality.
+ * Personalized skin. DIY your own personalized skin, creating a only part of your skin.
+ * 
+Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
+ * 
+Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
+ * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
+ 
 ----
 
 Index
