@@ -73,8 +73,7 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     m_musicEnhanced = type;
     m_music->EnableEcho(false);
     m_music->EnableEqualizer(false);
-    if(m_musicEnhanced != Music3D &&
-       m_musicEnhanced != EnhancedOff)
+    if(m_musicEnhanced != Music3D && m_musicEnhanced != EnhancedOff)
     {
         m_music->EnableEqualizer(true);
         setMusicEnhancedCase();
@@ -161,8 +160,7 @@ void MusicPlayer::play()
 
     TStreamStatus status;
     m_music->GetStatus(&status);///Get the current state of play
-    if(m_currentMedia == m_playlist->currentMediaString() &&
-       status.fPause)
+    if(m_currentMedia == m_playlist->currentMediaString() && status.fPause)
     {
         m_music->Resume();///When the pause time for recovery
         m_timer.start(1000);
