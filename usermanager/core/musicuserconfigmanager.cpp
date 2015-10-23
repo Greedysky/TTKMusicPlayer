@@ -1,12 +1,12 @@
 #include "musicuserconfigmanager.h"
 
-MusicUserConfigManager::MusicUserConfigManager(QObject *parent) :
-    MusicAbstractXml(parent)
+MusicUserConfigManager::MusicUserConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
 {
 
 }
 
-void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecord& record)
+void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecord &record)
 {
     if( !writeConfig( MusicObject::getAppDir() + USERPATH ) )
     {
@@ -25,7 +25,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecord& record)
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out,4);
+    m_ddom->save(out, 4);
 }
 
 void MusicUserConfigManager::readUserConfig(MusicUserRecord &record)
