@@ -16,6 +16,8 @@ class MUSIC_LRC_EXPORT MusicLRCManagerForDesktop : public MusicLRCManager
     Q_OBJECT
 public:
     explicit MusicLRCManagerForDesktop(QWidget *parent = 0);
+    virtual ~MusicLRCManagerForDesktop();
+
     void setSelfGeometry(const QPoint &point);
     void setSelfGeometry(int x, int y);
     int getGeometryX() const;
