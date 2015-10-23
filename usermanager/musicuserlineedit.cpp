@@ -25,8 +25,7 @@ void MusicUserLineEdit::focusOutEvent(QFocusEvent *event)
     checkTheInput();
 }
 
-void MusicUserLineEdit::setLabel(LabelType ty,
-                                 QLabel* &t, QLabel* &s)
+void MusicUserLineEdit::setLabel(LabelType ty, QLabel *&t, QLabel *&s)
 {
     m_tipsLabel = t;
     m_statusLabel = s;
@@ -73,13 +72,13 @@ void MusicUserLineEdit::checkTheInput()
     switch(m_type)
     {
         case User:
-             showLabel(4,20);
+             showLabel(4, 20);
              break;
         case Passwd:
-             showLabel(6,16);
+             showLabel(6, 16);
              break;
         case PasswdC:
-             showLabel(6,16);
+             showLabel(6, 16);
              break;
         case Mail:
              showLabel();

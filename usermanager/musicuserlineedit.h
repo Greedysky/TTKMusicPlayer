@@ -22,7 +22,7 @@ class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 public:
     explicit MusicUserLineEdit(QWidget *parent = 0);
 
-    void setLabel(LabelType ty, QLabel *&t, QLabel* &s);
+    void setLabel(LabelType ty, QLabel *&t, QLabel *&s);
     bool getMailStatus() const { return m_mailContains;}
     bool getStrStatus() const { return m_strContains;}
 
