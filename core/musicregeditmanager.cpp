@@ -35,8 +35,8 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
     QStringList types;
-    types<<"pmc"<<"wav"<<"aac"<<"ac3"<<"flac"<<"mp1";
-    types<<"mp2"<<"mp3"<<"oga"<<"ogg";
+    types << "pmc" << "wav" << "aac" << "ac3" << "flac" << "mp1"
+          << "mp2" << "mp3" << "oga" << "ogg";
     for(int i=0; i<types.count(); ++i)
     {
         if(!currentNodeHasExsit(types[i]))
