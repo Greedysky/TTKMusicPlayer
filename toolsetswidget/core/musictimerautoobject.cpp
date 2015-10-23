@@ -46,6 +46,7 @@ void MusicTimerAutoObject::runTimerAutoConfig()
                 m_second = M_SETTING->value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt();
             }
             break;
+        default: break;
     }
 }
 
