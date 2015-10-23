@@ -23,7 +23,7 @@ public:
 
     void showPlayStatus(bool status) const;
     void setVolumeValue(int index);
-    virtual void setLabelText(const QString&){}
+    virtual void setLabelText(const QString &){}
 
 signals:
     void musicWindowSignal();
