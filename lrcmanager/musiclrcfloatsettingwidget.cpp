@@ -52,15 +52,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     sizeSmallerButton->setGeometry(125, 80, 25, 25);
     sizeBigerButton->setCursor(QCursor(Qt::PointingHandCursor));
     sizeSmallerButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(sizeBigerButton,SIGNAL(clicked()),SLOT(lrcSizeUpChanged()));
-    connect(sizeSmallerButton,SIGNAL(clicked()),SLOT(lrcSizeLowChanged()));
+    connect(sizeBigerButton, SIGNAL(clicked()), SLOT(lrcSizeUpChanged()));
+    connect(sizeSmallerButton, SIGNAL(clicked()), SLOT(lrcSizeLowChanged()));
 
-    QPushButton *musicBgButton = new QPushButton(tr("MusicBg"),this);
+    QPushButton *musicBgButton = new QPushButton(tr("MusicBg"), this);
     musicBgButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(musicBgButton,SIGNAL(clicked()), SLOT(lrcMusicBackgroundChanged()));
-    QPushButton *artBgButton = new QPushButton(tr("ArtBg"),this);
+    QPushButton *artBgButton = new QPushButton(tr("ArtBg"), this);
     artBgButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(artBgButton,SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
+    connect(artBgButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
     musicBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     artBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     musicBgButton->setGeometry(10, 145, 70, 20);
@@ -68,7 +68,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
     QPushButton *settingButton = new QPushButton(tr("More"),this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(settingButton,SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
+    connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
     settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     settingButton->setGeometry(10, 180, 150, 20);
 }
@@ -85,16 +85,16 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
     QPushButton *button = new QPushButton(this);
     switch(index)
     {
-        case 0: button->setIcon(QIcon(":/color/origin"));break;
-        case 1: button->setIcon(QIcon(":/color/red"));break;
-        case 2: button->setIcon(QIcon(":/color/orange"));break;
-        case 3: button->setIcon(QIcon(":/color/yellow"));break;
-        case 4: button->setIcon(QIcon(":/color/green"));break;
-        case 5: button->setIcon(QIcon(":/color/blue"));break;
-        case 6: button->setIcon(QIcon(":/color/indigo"));break;
-        case 7: button->setIcon(QIcon(":/color/purple"));break;
-        case 8: button->setIcon(QIcon(":/color/white"));break;
-        case 9: button->setIcon(QIcon(":/color/black"));break;
+        case 0: button->setIcon(QIcon(":/color/origin")); break;
+        case 1: button->setIcon(QIcon(":/color/red")); break;
+        case 2: button->setIcon(QIcon(":/color/orange")); break;
+        case 3: button->setIcon(QIcon(":/color/yellow")); break;
+        case 4: button->setIcon(QIcon(":/color/green")); break;
+        case 5: button->setIcon(QIcon(":/color/blue")); break;
+        case 6: button->setIcon(QIcon(":/color/indigo")); break;
+        case 7: button->setIcon(QIcon(":/color/purple")); break;
+        case 8: button->setIcon(QIcon(":/color/white")); break;
+        case 9: button->setIcon(QIcon(":/color/black")); break;
     }
     if(index < 4)
         button->setGeometry(80 + index*20, 10, 16, 16);
