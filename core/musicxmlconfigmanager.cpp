@@ -3,8 +3,8 @@
 
 #include <QPixmap>
 
-MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent) :
-    MusicAbstractXml(parent)
+MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
 {
 
 }
@@ -77,7 +77,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicSongsList &musics)
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out,4);
+    m_ddom->save(out, 4);
 }
 
 void MusicXMLConfigManager::writeXMLConfig()
@@ -181,7 +181,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
     writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
-          QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
+                        QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
     writeDomElement(settings, "closeNetwork", "value", closeNetWorkChoiced);
     writeDomElement(settings, "fileAssociation", "value", fileAssociationChoiced);
 
@@ -252,14 +252,13 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(downloads, "downloadULoadLimit", "value", downloadULoadLimit);
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out,4);
+    m_ddom->save(out, 4);
 }
 
 MusicSongs MusicXMLConfigManager::readMusicFilePath(const QString &value) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
-    QStringList names;
-    QStringList paths;
+    QStringList names, paths;
     MIntList playCounts;
     for(int i=0; i<nodelist.count(); i++)
     {
