@@ -22,7 +22,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ui->toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle27 + "}");
 
@@ -37,7 +37,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->searchLineLabel->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->allSelectedcheckBox->setText(tr("allselected"));
-    connect(ui->allSelectedcheckBox,SIGNAL(clicked(bool)),SLOT(selectedAllItems(bool)));
+    connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
     ui->scanButton->setIcon(QIcon(":/image/searchlocalfile"));
     ui->scanButton->setStyleSheet("QPushButton{ background:transparent;}"
@@ -51,14 +51,14 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(ui->scanButton,SIGNAL(clicked()),SLOT(filterIndexChanged()));
-    connect(ui->auditionButton,SIGNAL(clicked()),SLOT(auditionButtonClick()));
-    connect(ui->addButton,SIGNAL(clicked()),SLOT(addButtonClick()));
-    connect(ui->songlistsTable,SIGNAL(cellClicked(int,int)),SLOT(itemCellOnClick(int,int)));
-    connect(ui->songlistsTable,SIGNAL(cellDoubleClicked(int,int)),SLOT(itemDoubleClicked(int,int)));
-    connect(ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)),SLOT(musicSearchIndexChanged(int,int)));
-    connect(ui->showlistButton,SIGNAL(clicked()),SLOT(setShowlistButton()));
-    connect(ui->showPathButton,SIGNAL(clicked()),SLOT(setShowPathButton()));
+    connect(ui->scanButton, SIGNAL(clicked()), SLOT(filterIndexChanged()));
+    connect(ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
+    connect(ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
+    connect(ui->songlistsTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
+    connect(ui->songlistsTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
+    connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+    connect(ui->showlistButton, SIGNAL(clicked()), SLOT(setShowlistButton()));
+    connect(ui->showPathButton, SIGNAL(clicked()), SLOT(setShowPathButton()));
 
     addDrivesList();
     ui->filterComboBox->setCurrentIndex(-1);
@@ -100,17 +100,17 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
         if(m_currentIndex == 0)
         {
             QTableWidgetItem *item = new QTableWidgetItem(fileName[i].fileName());
-            item->setTextColor(QColor(50,50,50));
+            item->setTextColor(QColor(50, 50, 50));
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             ui->songlistsTable->setItem(i, 0, item);
 
                               item = new QTableWidgetItem(MusicTime::fileSzie2Label(fileName[i].size()));
-            item->setTextColor(QColor(50,50,50));
+            item->setTextColor(QColor(50, 50, 50));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 1, item);
 
                               item = new QTableWidgetItem(fileName[i].lastModified().date().toString(Qt::ISODate));
-            item->setTextColor(QColor(50,50,50));
+            item->setTextColor(QColor(50, 50, 50));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 2, item);
 
@@ -125,7 +125,7 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
         else
         {
             QTableWidgetItem *item = new QTableWidgetItem(fileName[i].absoluteFilePath());
-            item->setTextColor(QColor(50,50,50));
+            item->setTextColor(QColor(50, 50, 50));
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             ui->songlistsTable->setItem(i, 0, item);
         }
@@ -284,17 +284,20 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row,int col)
 {
     switch(col)
     {
-      case 3:
-      case 4:
-            if(!m_searchfileListCache.isEmpty())
-            {
-                int count = ui->searchLineEdit->text().trimmed().count();
-                row = m_searchfileListCache.value(count)[row];
-                ui->searchLineEdit->clear();
-                m_searchfileListCache.clear();
-            }
-            emit addSongToPlay(QStringList(m_filenames[row].absoluteFilePath()));break;
-      default:break;
+        case 3:
+        case 4:
+           {
+              if(!m_searchfileListCache.isEmpty())
+              {
+                  int count = ui->searchLineEdit->text().trimmed().count();
+                  row = m_searchfileListCache.value(count)[row];
+                  ui->searchLineEdit->clear();
+                  m_searchfileListCache.clear();
+              }
+              emit addSongToPlay(QStringList(m_filenames[row].absoluteFilePath()));
+              break;
+           }
+        default: break;
     }
 }
 
@@ -310,14 +313,14 @@ void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
     emit addSongToPlay(QStringList(m_filenames[row].absoluteFilePath()));
 }
 
-void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int,int index)
+void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
 {
     MIntList searchResult;
     for(int j=0; j<m_filenames.count(); ++j)
     {
-        if(m_filenames[j].fileName().contains(ui->searchLineEdit->text().trimmed(),Qt::CaseInsensitive))
+        if(m_filenames[j].fileName().contains(ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
-            searchResult<<j;
+            searchResult << j;
         }
     }
     m_searchfileListCache.insert(index, searchResult);
