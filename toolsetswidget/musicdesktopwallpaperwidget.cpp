@@ -9,8 +9,8 @@
 
 #include <QFileDialog>
 
-MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
-    MusicAbstractMoveWidget(parent),
+MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
+    : MusicAbstractMoveWidget(parent),
     ui(new Ui::MusicDesktopWallpaperWidget)
 {
     ui->setupUi(this);
@@ -20,19 +20,19 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent) :
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     initWidgetStyle();
     initParameters();
 
-    connect(ui->netRadioButton,SIGNAL(clicked()),SLOT(netRadioButtonPressed()));
-    connect(ui->localRadioButton,SIGNAL(clicked()),SLOT(localRadioButtonPressed()));
-    connect(ui->playRadioButton,SIGNAL(clicked()),SLOT(playRadioButtonPressed()));
+    connect(ui->netRadioButton, SIGNAL(clicked()), SLOT(netRadioButtonPressed()));
+    connect(ui->localRadioButton, SIGNAL(clicked()), SLOT(localRadioButtonPressed()));
+    connect(ui->playRadioButton, SIGNAL(clicked()), SLOT(playRadioButtonPressed()));
 
-    connect(ui->viewButton,SIGNAL(clicked()),SLOT(viewButtonPressed()));
-    connect(ui->confirmButton,SIGNAL(clicked()),SLOT(confirmButtonPressed()));
-    connect(ui->stopButton,SIGNAL(clicked()),SLOT(stopButtonPressed()));
-    connect(ui->cancelButton,SIGNAL(clicked()),SLOT(cancelButtonPressed()));
+    connect(ui->viewButton, SIGNAL(clicked()), SLOT(viewButtonPressed()));
+    connect(ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonPressed()));
+    connect(ui->stopButton, SIGNAL(clicked()), SLOT(stopButtonPressed()));
+    connect(ui->cancelButton, SIGNAL(clicked()), SLOT(cancelButtonPressed()));
 
     ui->localRadioButton->setChecked(true);
     localRadioButtonPressed();
@@ -91,12 +91,12 @@ void MusicDesktopWallpaperWidget::initParameters() const
     QStringList h,m,s;
     for(int i=0; i<24; ++i)
     {
-        h<<tr("%1H").arg(i);
+        h << tr("%1H").arg(i);
     }
     for(int i=0; i<60; ++i)
     {
-        m<<tr("%1M").arg(i);
-        s<<tr("%1S").arg(i);
+        m << tr("%1M").arg(i);
+        s << tr("%1S").arg(i);
     }
     ui->timeH->addItems(h);
     ui->timeM->addItems(m);
@@ -180,10 +180,11 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
             break;
          }
         case 1:
-            parameterFinished();break;
+            parameterFinished(); break;
         case 2:
             m_path << "Play";
-            parameterFinished();break;
+            parameterFinished(); break;
+        default: break;
     }
 }
 
@@ -192,13 +193,13 @@ void MusicDesktopWallpaperWidget::parameterFinished()
     MStriantMap para;
     para.insert("Mode", m_currentMode);
     para.insert("Path", m_path);
-    para.insert("Effect",ui->pictureEffect->currentIndex());
-    para.insert("Type",ui->pictureType->currentIndex());
-    para.insert("Func",ui->pictureFunc->currentIndex());
-    para.insert("Time",ui->timeH->currentIndex()*3600 +
-                       ui->timeM->currentIndex()*60 +
-                       ui->timeS->currentIndex() );
-    para.insert("Close",ui->recoveryWallpaper->isChecked());
+    para.insert("Effect", ui->pictureEffect->currentIndex());
+    para.insert("Type", ui->pictureType->currentIndex());
+    para.insert("Func", ui->pictureFunc->currentIndex());
+    para.insert("Time", ui->timeH->currentIndex()*3600 +
+                        ui->timeM->currentIndex()*60 +
+                        ui->timeS->currentIndex() );
+    para.insert("Close", ui->recoveryWallpaper->isChecked());
     m_wallThread->setParamters(para);
     m_wallThread->start();
     setAutoStart(ui->openWithstart->isChecked());
