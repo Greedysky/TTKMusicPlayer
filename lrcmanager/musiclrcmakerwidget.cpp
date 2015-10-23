@@ -22,7 +22,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
@@ -36,9 +36,9 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->makeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->reviewButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->makeButton,SIGNAL(clicked()),SLOT(makeButtonClicked()));
-    connect(ui->saveButton,SIGNAL(clicked()),SLOT(saveButtonClicked()));
-    connect(ui->reviewButton,SIGNAL(clicked()),SLOT(reviewButtonClicked()));
+    connect(ui->makeButton, SIGNAL(clicked()), SLOT(makeButtonClicked()));
+    connect(ui->saveButton, SIGNAL(clicked()), SLOT(saveButtonClicked()));
+    connect(ui->reviewButton, SIGNAL(clicked()), SLOT(reviewButtonClicked()));
 
     ui->saveButton->setEnabled(false);
     m_position = 0;
