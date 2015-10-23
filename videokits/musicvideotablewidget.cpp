@@ -56,37 +56,37 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem(artistname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
     setItem(count - 1, 2, item);
 
-                      item = new QTableWidgetItem(QIcon( randToGetStrength() ),"");
+                      item = new QTableWidgetItem(QIcon( randToGetStrength() ), "");
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
                       item = new QTableWidgetItem(time);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 4, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/showMV")),"");
+                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/showMV")), "");
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 5, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/autionplay")),"");
-    item->setTextColor(QColor(50,50,50));
+                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/autionplay")), "");
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 6, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/musicdownload")),"");
-    item->setTextColor(QColor(50,50,50));
+                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/musicdownload")), "");
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 7, item);
 }

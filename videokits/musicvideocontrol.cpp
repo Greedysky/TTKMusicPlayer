@@ -8,7 +8,8 @@
 #include <QWidgetAction>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
-    : QWidget(parent), m_widgetPopup(popup)
+    : QWidget(parent),
+      m_widgetPopup(popup)
 {
     setStyleSheet(MusicUIObject::MCustomStyle01);
     setFixedSize(520, 40);
@@ -22,7 +23,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     m_volumnButton = new QToolButton(this);
     m_volumnSlider = new QSlider(Qt::Vertical,this);
-    m_volumnSlider->setRange(0,100);
+    m_volumnSlider->setRange(0, 100);
     m_volumnSlider->setValue(100);
 
     m_playButton->setIcon(QIcon(":/video/play"));
@@ -111,6 +112,6 @@ void MusicVideoControl::inSideButtonClicked()
 void MusicVideoControl::fullButtonClicked()
 {
     m_fullButton->setText(m_fullButton->text() == tr("NormalMode") ?
-                          tr("FullScreenMode") : tr("NormalMode"));
+                           tr("FullScreenMode") : tr("NormalMode"));
     emit musicVideoFullscreen( m_fullButton->text() == tr("NormalMode") );
 }
