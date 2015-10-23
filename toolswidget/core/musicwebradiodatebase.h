@@ -17,6 +17,7 @@ class MUSIC_TOOL_EXPORT MusicWebRadioDatabase
 
 public:
     MusicWebRadioDatabase();
+
     bool connectDatabase() const;
     bool disConnectDatabase() const;
     QString getRadioUrl(const QString &channelName) const;

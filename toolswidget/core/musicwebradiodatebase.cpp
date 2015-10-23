@@ -1,4 +1,5 @@
 #include "musicwebradiodatebase.h"
+
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QDateTime>
@@ -6,6 +7,7 @@
 
 MusicWebRadioDatabase::MusicWebRadioDatabase()
 {
+
 }
 
 bool MusicWebRadioDatabase::disConnectDatabase() const
@@ -31,7 +33,7 @@ bool MusicWebRadioDatabase::connectDatabase() const
 {
     try
     {
-        QSqlDatabase data = QSqlDatabase::addDatabase(DATABASETYPE,"radio-data");
+        QSqlDatabase data = QSqlDatabase::addDatabase(DATABASETYPE, "radio-data");
         data.setDatabaseName(MusicObject::getAppDir() + NETDADIOPATH);
         if( !data.isDriverAvailable(DATABASETYPE) )
         {
@@ -92,7 +94,7 @@ QStringList MusicWebRadioDatabase::getRadioNames(const QString &category) const
                              QSqlDatabase::database("radio-data"));
     while(query.next())
     {
-        channelNames<<query.value(1).toString();
+        channelNames << query.value(1).toString();
     }
     return channelNames;
 }
@@ -107,7 +109,7 @@ QStringList MusicWebRadioDatabase::getRecords(const QString& filter) const
                                  QSqlDatabase::database("radio-data"));
         if(queryC.next())
         {
-            channelNames<<queryC.value(1).toString();
+            channelNames << queryC.value(1).toString();
         }
     }
     return channelNames;
@@ -139,15 +141,15 @@ void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName) const
                 if(queryC.value(1).toInt() == channelId)
                 {
                     queryC.prepare("update recently set time =:datetime where channel_id=:channel_id");
-                    queryC.bindValue(":datetime",QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
-                    queryC.bindValue(":channel_id",channelId);
+                    queryC.bindValue(":datetime", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+                    queryC.bindValue(":channel_id", channelId);
                     queryC.exec();
                     return;
                 }
             }
             queryC.prepare("insert into recently(channel_id,time) values(:channel_id,:time)");
-            queryC.bindValue(":channel_id",channelId);
-            queryC.bindValue(":time",QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+            queryC.bindValue(":channel_id", channelId);
+            queryC.bindValue(":time", QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
             queryC.exec();
             return;
         }
@@ -169,7 +171,7 @@ void MusicWebRadioDatabase::radioCollection(const QString &name) const
     if(!queryC.next())
     {
         queryC.prepare("insert into collect(channel_id) values(:channel_id)");
-        queryC.bindValue(":channel_id",channelId);
+        queryC.bindValue(":channel_id", channelId);
         queryC.exec();
     }
 }
@@ -189,7 +191,7 @@ void MusicWebRadioDatabase::radioDiscollection(const QString &name) const
     if(queryC.next())
     {
         queryC.prepare("delete from collect where channel_id = :channel_id");
-        queryC.bindValue(":channel_id",channelId);
+        queryC.bindValue(":channel_id", channelId);
         queryC.exec();
     }
 }
