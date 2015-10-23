@@ -23,7 +23,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
@@ -43,13 +43,13 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(ui->inputButton,SIGNAL(clicked()),SLOT(initInputPath()));
-    connect(ui->outputButton,SIGNAL(clicked()),SLOT(initOutputPath()));
-    connect(ui->transformButton,SIGNAL(clicked()),SLOT(startTransform()));
-    connect(m_process,SIGNAL(finished(int)),SLOT(transformFinish(int)));
+    connect(ui->inputButton, SIGNAL(clicked()), SLOT(initInputPath()));
+    connect(ui->outputButton, SIGNAL(clicked()), SLOT(initOutputPath()));
+    connect(ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
+    connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish(int)));
 
     ui->folderBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    connect(ui->folderBox,SIGNAL(clicked(bool)),SLOT(folderBoxChecked(bool)));
+    connect(ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked(bool)));
     initControlParameter();
 
 }
@@ -63,13 +63,13 @@ MusicTransformWidget::~MusicTransformWidget()
 
 void MusicTransformWidget::initControlParameter() const
 {
-    ui->formatCombo->addItems(QStringList()<<"MP3"<<"WAV"<<"WMA"
-                              <<"OGG"<<"FLAC"<<"AC3"<<"AAC");
-    ui->kbpsCombo->addItems(QStringList()<<"32"<<"48"<<"56"<<"64"<<"80"
-                    <<"96"<<"112"<<"128"<<"192"<<"224"<<"256"<<"320");
-    ui->hzCombo->addItems(QStringList()<<"8000"<<"12050"<<"16000"
-                    <<"22050"<<"24000"<<"32000"<<"44100"<<"48000");
-    ui->msCombo->addItems(QStringList()<<"Mono"<<"Stereo");
+    ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA"
+                                   << "OGG" << "FLAC" << "AC3" << "AAC");
+    ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
+                     << "96" << "112" << "128" << "192" << "224" << "256" << "320");
+    ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
+                            << "24000" << "32000" << "44100" << "48000");
+    ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");
 
     ui->kbpsCombo->setCurrentIndex(7);
     ui->hzCombo->setCurrentIndex(6);
@@ -86,8 +86,8 @@ void MusicTransformWidget::initInputPath()
         {
             return;
         }
-        ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft,215));
-        m_path<<path;
+        ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, 215));
+        m_path << path;
     }
     else
     {
@@ -101,13 +101,15 @@ void MusicTransformWidget::initInputPath()
             for(int i=0; i<file.count(); ++i)
             {
                 if(file[i].isFile())
-                   m_path<<file[i].absoluteFilePath();
+                {
+                   m_path << file[i].absoluteFilePath();
+                }
             }
 
             for(int i=0; i<m_path.count(); ++i)
             {
                 ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
-                                                                        Qt::ElideLeft,215));
+                                                                        Qt::ElideLeft, 215));
             }
         }
     }
@@ -134,7 +136,7 @@ QString MusicTransformWidget::getTransformSongName() const
         return QString();
     }
     QString str = m_path[0];
-    str.replace("\\","/");
+    str.replace("\\", "/");
     str = str.split('/').back().split('.').front();
     return str;
 }
@@ -142,9 +144,9 @@ QString MusicTransformWidget::getTransformSongName() const
 void MusicTransformWidget::transformFinish(int)
 {
 #ifdef Q_OS_WIN
-    mciSendString(TEXT("close sound.wav"),NULL,0,NULL);
-    mciSendString(TEXT("open  sound.wav"),NULL,0,NULL);
-    mciSendString(TEXT("play  sound.wav"),NULL,0,NULL);
+    mciSendString(TEXT("close sound.wav"), NULL, 0, NULL);
+    mciSendString(TEXT("open  sound.wav"), NULL, 0, NULL);
+    mciSendString(TEXT("play  sound.wav"), NULL, 0, NULL);
 #endif
     m_path.removeAt(0);
     ui->listWidget->clear();
@@ -153,7 +155,7 @@ void MusicTransformWidget::transformFinish(int)
         for(int i=0; i<m_path.count(); ++i)
         {
             ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
-                                                                    Qt::ElideLeft,215));
+                                                                    Qt::ElideLeft, 215));
         }
         if(!processTransform(MusicObject::getAppDir() + MAKE_TRANSFORM))
         {
@@ -194,12 +196,12 @@ bool MusicTransformWidget::processTransform(const QString &para) const
              << ui->hzCombo->currentText()
              << QString::number(ui->msCombo->currentIndex() + 1);
 
-    m_process->start(para, QStringList()<<"-i"<<in<<"-y"
-                     <<"-ab"<<ui->kbpsCombo->currentText()+ "k"
-                     <<"-ar"<<ui->hzCombo->currentText()
-                     <<"-ac"<<QString::number(ui->msCombo->currentIndex()+1)
-                     <<QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
-                       .arg(ui->formatCombo->currentText().toLower()) );
+    m_process->start(para, QStringList() << "-i" << in << "-y"
+                     << "-ab" << ui->kbpsCombo->currentText() + "k"
+                     << "-ar" << ui->hzCombo->currentText()
+                     << "-ac" << QString::number(ui->msCombo->currentIndex()+1)
+                     << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
+                        .arg(ui->formatCombo->currentText().toLower()) );
     return true;
 }
 
@@ -212,7 +214,7 @@ void MusicTransformWidget::startTransform()
     }
     ///////////////////////////////////////////////////////////
     ui->loadingLabel->show();
-    ui->loadingLabel->setMovie(m_movie = new QMovie(":/image/loading",QByteArray(),this));
+    ui->loadingLabel->setMovie(m_movie = new QMovie(":/image/loading", QByteArray(), this));
     m_movie->start();
     setCheckedControl(false);
 }
