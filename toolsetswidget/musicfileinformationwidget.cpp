@@ -8,8 +8,8 @@
 
 #include <QDesktopServices>
 
-MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),
+MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
     ui(new Ui::MusicFileInformationWidget)
 {
     ui->setupUi(this);
@@ -18,11 +18,11 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent) :
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->viewButton,SIGNAL(clicked()),SLOT(musicOpenFileDir()));
+    connect(ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
