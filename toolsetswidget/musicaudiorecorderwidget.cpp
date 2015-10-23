@@ -7,8 +7,8 @@
 #include <QMovie>
 #include <QFileDialog>
 
-MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),m_mBuffer(BufferSize, 0),
+MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),m_mBuffer(BufferSize, 0),
     ui(new Ui::MusicAudioRecorderWidget)
 {
     ui->setupUi(this);
@@ -18,7 +18,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->startButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->startButton->setToolTip(tr("startAudio"));
@@ -32,10 +32,10 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setToolTip(tr("saveButton"));
 
-    connect(ui->startButton,SIGNAL(clicked()),SLOT(onRecordStart()));
-    connect(ui->stopButton,SIGNAL(clicked()),SLOT(onRecordStop()));
-    connect(ui->playButton,SIGNAL(clicked()),SLOT(onRecordPlay()));
-    connect(ui->saveButton,SIGNAL(clicked()),SLOT(onRecordSave()));
+    connect(ui->startButton, SIGNAL(clicked()), SLOT(onRecordStart()));
+    connect(ui->stopButton, SIGNAL(clicked()), SLOT(onRecordStop()));
+    connect(ui->playButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
+    connect(ui->saveButton, SIGNAL(clicked()), SLOT(onRecordSave()));
 
     ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -48,7 +48,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     ui->checkBox_4->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox_5->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(&m_timer,SIGNAL(timeout()),SLOT(onTimerout()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(onTimerout()));
     ui->stopButton->setEnabled(false);
     ui->playButton->setEnabled(false);
     ui->saveButton->setEnabled(false);
@@ -77,13 +77,13 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent) :
     m_mFormatFile.setCodec("audio/pcm");
 
     QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
-    if (!info.isFormatSupported(m_mFormatFile))
+    if(!info.isFormatSupported(m_mFormatFile))
     {
         M_LOOGERS("input default mFormatFile not supported try to use nearest");
         m_mFormatFile = info.nearestFormat(m_mFormatFile);
     }
     QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
-    if (!info1.isFormatSupported(m_mFormatFile))
+    if(!info1.isFormatSupported(m_mFormatFile))
     {
         M_LOOGER << "output default mFormatFile not supported - trying to use nearest";
         //           mFormatFile = info.nearestFormat(mFormatSound);
@@ -113,7 +113,7 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 
 void MusicAudioRecorderWidget::onTimerout()
 {
-    QString text = MusicTime::normalTime2Label(++m_time);
+    QString text = MusicTime::normalTime2Label( ++m_time );
     ui->timer->setText( text );
 }
 
@@ -162,7 +162,7 @@ void MusicAudioRecorderWidget::onRecordStart()
 
     if(m_movie == NULL)
     {
-        m_movie = new QMovie(":/image/rate",QByteArray(),this);
+        m_movie = new QMovie(":/image/rate", QByteArray(), this);
     }
     ui->timer_2->setMovie(m_movie);
     m_movie->start();
@@ -322,7 +322,7 @@ void MusicAudioRecorderWidget::createAudioOutput()
 int MusicAudioRecorderWidget::applyVolumeToSample(short iSample)
 {
     //Calculate volume, Volume limited to  max 30000 and min -30000
-    return std::max(std::min(((iSample * m_miVolume) / 50) ,30000), -30000);
+    return std::max(std::min(((iSample * m_miVolume) / 50), 30000), -30000);
 }
 
 void MusicAudioRecorderWidget::onSliderValueChanged(int value)
