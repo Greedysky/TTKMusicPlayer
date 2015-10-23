@@ -1,7 +1,7 @@
 #include "musicmydownloadrecordobject.h"
 
-MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent) :
-    MusicAbstractXml(parent)
+MusicMyDownloadRecordObject::MusicMyDownloadRecordObject(QObject *parent)
+    : MusicAbstractXml(parent)
 {
 
 }
@@ -25,15 +25,13 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicDownloadRecord 
     }
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out,4);
+    m_ddom->save(out, 4);
 }
 
 void MusicMyDownloadRecordObject::readDownloadConfig(MusicDownloadRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
-    QStringList names;
-    QStringList paths;
-    QStringList size;
+    QStringList names, paths, size;
     for(int i=0; i<nodelist.count(); ++i)
     {
         names << nodelist.at(i).toElement().attribute("name");
