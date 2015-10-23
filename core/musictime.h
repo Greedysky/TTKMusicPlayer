@@ -79,14 +79,14 @@ public:
     bool operator== (const MusicTime &other) const;
     bool operator!= (const MusicTime &other) const;
 
-    friend QDataStream& operator<<(QDataStream& stream, const MusicTime &other)
+    friend QDataStream& operator<<(QDataStream &stream, const MusicTime &other)
     {
         stream<<other.getDay()<<other.getHour()<<other.getMinute()
               <<other.getSecond()<<other.getMillionSecond();
         return stream;
     }
 
-    friend QDataStream& operator>>(QDataStream& stream, MusicTime &other)
+    friend QDataStream& operator>>(QDataStream &stream, MusicTime &other)
     {
         int x[5];
         stream>>x[0]>>x[1]>>x[2]>>x[3]>>x[4];
