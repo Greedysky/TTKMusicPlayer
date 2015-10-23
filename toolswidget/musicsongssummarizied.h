@@ -10,7 +10,6 @@
    =================================================*/
 
 #include <QToolBox>
-#include <QScrollBar>
 #include <QContextMenuEvent>
 #include "musicsonginformation.h"
 #include "musiclibexportglobal.h"

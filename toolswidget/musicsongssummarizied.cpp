@@ -6,13 +6,14 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 
+#include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QFileInfo>
 #include <QLayout>
 #include <QDesktopServices>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
-    : QToolBox(parent),m_renameLine(NULL)
+    : QToolBox(parent), m_renameLine(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
@@ -21,40 +22,40 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         MusicSongsListWidget* w = new MusicSongsListWidget(this);
         m_mainSongLists.append(w);
     }
-    addItem(m_mainSongLists[0],tr("myDefaultPlayItem"));
-    addItem(m_mainSongLists[1],tr("myLoveSongItem"));
-    addItem(m_mainSongLists[2],tr("myNetSongItem"));
+    addItem(m_mainSongLists[0], tr("myDefaultPlayItem"));
+    addItem(m_mainSongLists[1], tr("myLoveSongItem"));
+    addItem(m_mainSongLists[2], tr("myNetSongItem"));
     layout()->setSpacing(0);
     changeItemIcon();
     m_currentIndexs = 0;
 
     for(int i=0; i<3; ++i)
     {
-        connect(m_mainSongLists[i],SIGNAL(cellDoubleClicked(int,int)),parent,SLOT(musicPlayIndex(int,int)));
-        connect(m_mainSongLists[i],SIGNAL(musicPlay(int)),this,SLOT(musicPlay(int)));
-        connect(m_mainSongLists[i],SIGNAL(musicPlayOrder()),parent,SLOT(musicPlayOrder()));
-        connect(m_mainSongLists[i],SIGNAL(musicPlayRandom()),parent,SLOT(musicPlayRandom()));
-        connect(m_mainSongLists[i],SIGNAL(musicPlayListLoop()),parent,SLOT(musicPlayListLoop()));
-        connect(m_mainSongLists[i],SIGNAL(musicPlayOneLoop()),parent,SLOT(musicPlayOneLoop()));
-        connect(m_mainSongLists[i],SIGNAL(musicPlayItemOnce()),parent,SLOT(musicPlayItemOnce()));
-        connect(m_mainSongLists[i],SIGNAL(musicAddNewFiles()),parent,SLOT(musicImportSongsOnlyFile()));
-        connect(m_mainSongLists[i],SIGNAL(musicAddNewDir()),parent,SLOT(musicImportSongsOnlyDir()));
-        connect(m_mainSongLists[i],SIGNAL(deleteItemAt(MIntList,bool)),SLOT(setDeleteItemAt(MIntList,bool)));
-        connect(m_mainSongLists[i],SIGNAL(currentTextChanged(int,QString)),SLOT(currentTextChanged(int,QString)));
-        connect(m_mainSongLists[i],SIGNAL(musicOpenFileDir(int)),SLOT(musicOpenFileDir(int)));
-        connect(m_mainSongLists[i],SIGNAL(getMusicSongInformation(int,MusicSong&)),
-                                     SLOT(setMusicSongInformation(int,MusicSong&)));
-        connect(m_mainSongLists[i],SIGNAL(getMusicSongFileInformation(int,QString&,QString&,bool)),
-                                     SLOT(setMusicSongFileInformation(int,QString&,QString&,bool)));
-        connect(m_mainSongLists[i],SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
-                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
-        connect(this,SIGNAL(showCurrentSong(int)),parent,SLOT(showCurrentSong(int)));
+        connect(m_mainSongLists[i], SIGNAL(cellDoubleClicked(int,int)), parent, SLOT(musicPlayIndex(int,int)));
+        connect(m_mainSongLists[i], SIGNAL(musicPlay(int)), this, SLOT(musicPlay(int)));
+        connect(m_mainSongLists[i], SIGNAL(musicPlayOrder()), parent, SLOT(musicPlayOrder()));
+        connect(m_mainSongLists[i], SIGNAL(musicPlayRandom()), parent, SLOT(musicPlayRandom()));
+        connect(m_mainSongLists[i], SIGNAL(musicPlayListLoop()), parent, SLOT(musicPlayListLoop()));
+        connect(m_mainSongLists[i], SIGNAL(musicPlayOneLoop()), parent, SLOT(musicPlayOneLoop()));
+        connect(m_mainSongLists[i], SIGNAL(musicPlayItemOnce()), parent, SLOT(musicPlayItemOnce()));
+        connect(m_mainSongLists[i], SIGNAL(musicAddNewFiles()), parent, SLOT(musicImportSongsOnlyFile()));
+        connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
+        connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
+        connect(m_mainSongLists[i], SIGNAL(currentTextChanged(int,QString)), SLOT(currentTextChanged(int,QString)));
+        connect(m_mainSongLists[i], SIGNAL(musicOpenFileDir(int)), SLOT(musicOpenFileDir(int)));
+        connect(m_mainSongLists[i], SIGNAL(getMusicSongInformation(int,MusicSong&)),
+                                    SLOT(setMusicSongInformation(int,MusicSong&)));
+        connect(m_mainSongLists[i], SIGNAL(getMusicSongFileInformation(int,QString&,QString&,bool)),
+                                    SLOT(setMusicSongFileInformation(int,QString&,QString&,bool)));
+        connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
+                                    SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+        connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     }
     connect(m_mainSongLists[0], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
     connect(m_mainSongLists[2], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
 
-    connect(this,SIGNAL(currentChanged(int)),SLOT(currentIndexChanged(int)));
-    connect(this,SIGNAL(musicPlay(int,int)),parent,SLOT(musicPlayIndex(int,int)));
+    connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged(int)));
+    connect(this, SIGNAL(musicPlay(int,int)), parent, SLOT(musicPlayIndex(int,int)));
 
     M_Connection->setValue("MusicSongsSummarizied", this);
     M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
@@ -103,7 +104,7 @@ void MusicSongsSummarizied::selectRow(int index)
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
-void MusicSongsSummarizied::setTimerLabel(const QString& time) const
+void MusicSongsSummarizied::setTimerLabel(const QString &time) const
 {
     m_mainSongLists[m_currentIndexs]->setTimerLabel(time);
 }
@@ -166,7 +167,7 @@ void MusicSongsSummarizied::addNewItem()
 
     MusicSongsListWidget *w = new MusicSongsListWidget(this);
     m_mainSongLists.append(w);
-    addItem(w,tr("newSongItem"));
+    addItem(w, tr("newSongItem"));
     changeItemIcon();
 }
 
@@ -225,8 +226,8 @@ void MusicSongsSummarizied::changItemName()
     {
         m_renameIndex = currentIndex();
         m_renameLine =new MusicSongsToolItemRenamedWidget(m_renameIndex*26,
-                                  QToolBox::itemText(m_renameIndex),this);
-        connect(m_renameLine,SIGNAL(renameFinished(QString)),this,SLOT(setChangItemName(QString)));
+                                  QToolBox::itemText(m_renameIndex), this);
+        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
         m_renameLine->show();
     }
 }
@@ -255,8 +256,8 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/delete"),tr("deleteItem"), this, SLOT(deleteItem()));
-    menu.addAction(QIcon(":/contextMenu/add"),tr("addNewItem"), this, SLOT(addNewItem()));
+    menu.addAction(QIcon(":/contextMenu/delete"), tr("deleteItem"), this, SLOT(deleteItem()));
+    menu.addAction(QIcon(":/contextMenu/add"), tr("addNewItem"), this, SLOT(addNewItem()));
     menu.addAction(tr("changItemName"), this, SLOT(changItemName()));
     menu.exec(event->globalPos());
 }
@@ -265,9 +266,9 @@ void MusicSongsSummarizied::changeItemIcon()
 {
     for(int i=0; i<count(); ++i)
     {
-        setItemIcon(i,QIcon(":/image/arrowup"));
+        setItemIcon(i, QIcon(":/image/arrowup"));
     }
-    setItemIcon(currentIndex(),QIcon(":/image/arrowdown"));
+    setItemIcon(currentIndex(), QIcon(":/image/arrowdown"));
 }
 
 void MusicSongsSummarizied::currentTextChanged(int index, const QString &text)
@@ -282,8 +283,8 @@ void MusicSongsSummarizied::musicPlay(int index)
 
 void MusicSongsSummarizied::musicOpenFileDir(int index)
 {
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFileNames[currentIndex()].m_paths[index]).absolutePath()
-                                , QUrl::TolerantMode)))
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFileNames[currentIndex()].m_paths[index]).absolutePath(),
+                                  QUrl::TolerantMode)))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exsit!"));
@@ -293,7 +294,7 @@ void MusicSongsSummarizied::musicOpenFileDir(int index)
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
 {
-    foreach(MusicSongsListWidget* m, m_mainSongLists)
+    foreach(MusicSongsListWidget *m, m_mainSongLists)
     {
         m->setPlaybackMode(mode);
     }
@@ -338,16 +339,16 @@ void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play,
     {
         for(int i=before; i>after; --i)
         {
-            names->swap(i, i-1);
-            paths->swap(i, i-1);
+            names->swap(i, i - 1);
+            paths->swap(i, i - 1);
         }
     }
     else
     {
         for(int i=before; i<after; ++i)
         {
-            names->swap(i, i+1);
-            paths->swap(i, i+1);
+            names->swap(i, i + 1);
+            paths->swap(i, i + 1);
         }
     }
 
