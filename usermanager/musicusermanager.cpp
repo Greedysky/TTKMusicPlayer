@@ -5,7 +5,8 @@
 #include "musicuserconfigmanager.h"
 
 MusicUserManager::MusicUserManager(QWidget *parent)
-     : QDialog(parent),ui(new Ui::MusicUserManager)
+     : QDialog(parent),
+       ui(new Ui::MusicUserManager)
 {
     ui->setupUi(this);
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
@@ -15,9 +16,9 @@ MusicUserManager::MusicUserManager(QWidget *parent)
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->logoffButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->modifiedName->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    connect(ui->cancelButton,SIGNAL(clicked()),SLOT(musicUserCancel()));
-    connect(ui->logoffButton,SIGNAL(clicked()),SLOT(musicUserLogoff()));
-    connect(ui->modifiedName,SIGNAL(clicked()),SLOT(modifiedUserName()));
+    connect(ui->cancelButton, SIGNAL(clicked()), SLOT(musicUserCancel()));
+    connect(ui->logoffButton, SIGNAL(clicked()), SLOT(musicUserLogoff()));
+    connect(ui->modifiedName, SIGNAL(clicked()), SLOT(modifiedUserName()));
 }
 
 MusicUserManager::~MusicUserManager()
@@ -43,9 +44,9 @@ void MusicUserManager::setUserName(const QString &name)
 
 void MusicUserManager::musicUserLogoff()
 {
-    m_userModel->updateUser(m_currentUser,"","",ui->username->text(),
-               QString::number(m_userModel->getUserLogTime(m_currentUser)
-                               .toLongLong() + m_time.elapsed()/1000 ));
+    m_userModel->updateUser(m_currentUser, "", "", ui->username->text(),
+            QString::number(m_userModel->getUserLogTime(m_currentUser)
+                     .toLongLong() + m_time.elapsed()/1000 ));
 
     MusicUserConfigManager xml;
     if(!xml.readUserXMLConfig())
