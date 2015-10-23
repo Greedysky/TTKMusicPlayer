@@ -118,22 +118,22 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
     {
-        m_currentShowLrcContainer<<".........";
+        m_currentShowLrcContainer << ".........";
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0,".........");
+       m_lrcContainer.insert(0, ".........");
     }
 
     MIntStringMapIt it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
-        m_currentShowLrcContainer.append(it.value());
+        m_currentShowLrcContainer << it.value();
     }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
     {
-        m_currentShowLrcContainer<<" ";
+        m_currentShowLrcContainer << " ";
     }
     return true;
 }
@@ -296,7 +296,7 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
         setCursor(Qt::ArrowCursor);
         m_mouseLeftPressed = false;
         changeLrcPostion("mouse");
-        m_mouseMovedAt = m_mousePressedAt = QPoint(-1,-1);
+        m_mouseMovedAt = m_mousePressedAt = QPoint(-1, -1);
         update();
     }
 }
