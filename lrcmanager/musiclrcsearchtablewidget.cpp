@@ -7,11 +7,11 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,30);
-    headerview->resizeSection(1,175);
-    headerview->resizeSection(2,148);
-    headerview->resizeSection(3,50);
-    headerview->resizeSection(4,24);
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 175);
+    headerview->resizeSection(2, 148);
+    headerview->resizeSection(3, 50);
+    headerview->resizeSection(4, 24);
     setTransparent(255);
 }
 
@@ -46,23 +46,23 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem(artistname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
     setItem(count - 1, 2, item);
 
                       item = new QTableWidgetItem(time);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/radio/collect")),"");
+                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/radio/collect")), "");
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 4, item);
 }
