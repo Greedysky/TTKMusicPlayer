@@ -16,7 +16,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    setIconSize(QSize(60,60));
+    setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
     setSpacing(15);
@@ -41,7 +41,7 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 void MusicToolSetsWidget::setTransparent(int angle)
 {
     QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255,255,255,angle)));
+    pal.setBrush(QPalette::Base,QBrush(QColor(255, 255, 255, angle)));
     setPalette(pal);
     repaint();
 }
@@ -54,64 +54,64 @@ void MusicToolSetsWidget::clearAllItems()
 void MusicToolSetsWidget::addListWidgetItem()
 {
     QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/localmanager")
-                                                ,tr("localmanager"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("localmanager"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/recorder")
-                                                ,tr("recorder"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("recorder"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/bell")
-                                                ,tr("bell"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("bell"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/timer")
-                                                ,tr("timer"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("timer"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/transform")
-                                                ,tr("transform"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("transform"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/spectrum")
-                                                ,tr("spectrum"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("spectrum"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/wallpaper")
-                                                ,tr("wallpaper"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("wallpaper"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/ktv")
-                                                    ,tr("ktv"),this);
-    item->setSizeHint(QSize(80,90));
+                                                    ,tr("ktv"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/live")
-                                                ,tr("live"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("live"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/game")
-                                                ,tr("game"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("game"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/lottery")
-                                                ,tr("lottery"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("lottery"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/phone")
-                                                ,tr("phone"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("phone"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/radio")
-                                                ,tr("radio"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("radio"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/speed")
-                                                ,tr("speed"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("speed"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/vip")
-                                                ,tr("vip"),this);
-    item->setSizeHint(QSize(80,90));
+                                                ,tr("vip"), this);
+    item->setSizeHint(QSize(80, 90));
     addItem(item);
 
 }
