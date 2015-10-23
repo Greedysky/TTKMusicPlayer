@@ -27,14 +27,13 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const MusicSearchRecord
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out,4);
+    m_ddom->save(out, 4);
 }
 
 void MusicLocalSongSearchRecordObject::readSearchConfig(MusicSearchRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
-    QStringList names;
-    QStringList times;
+    QStringList names, times;
     for(int i=0; i<nodelist.count(); ++i)
     {
         names << nodelist.at(i).toElement().attribute("name");
