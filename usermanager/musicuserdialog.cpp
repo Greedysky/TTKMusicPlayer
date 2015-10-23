@@ -10,8 +10,9 @@
 #include <QTimer>
 #include <QButtonGroup>
 
-MusicUserDialog::MusicUserDialog(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),ui(new Ui::MusicUserDialog)
+MusicUserDialog::MusicUserDialog(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicUserDialog)
 {
     ui->setupUi(this);
 
@@ -23,7 +24,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent) :
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     firstStatckWidget();
     secondStatckWidget();
@@ -83,9 +84,9 @@ void MusicUserDialog::firstStatckWidget()
     ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->loginButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->registerButton,SIGNAL(clicked()),SLOT(registerUser()));
-    connect(ui->forgotPwdButton,SIGNAL(clicked()),SLOT(userForgotPasswd()));
-    connect(ui->loginButton,SIGNAL(clicked()),SLOT(checkUserLogin()));
+    connect(ui->registerButton, SIGNAL(clicked()), SLOT(registerUser()));
+    connect(ui->forgotPwdButton, SIGNAL(clicked()), SLOT(userForgotPasswd()));
+    connect(ui->loginButton, SIGNAL(clicked()), SLOT(checkUserLogin()));
 }
 
 void MusicUserDialog::secondStatckWidget()
@@ -100,20 +101,20 @@ void MusicUserDialog::secondStatckWidget()
 
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->confirmButton,SIGNAL(clicked()),SLOT(checkRegisterUser()));
-    connect(ui->cancelButton,SIGNAL(clicked()),SLOT(userLogin()));
+    connect(ui->confirmButton, SIGNAL(clicked()), SLOT(checkRegisterUser()));
+    connect(ui->cancelButton, SIGNAL(clicked()), SLOT(userLogin()));
 
     QRegExp userRx("[^\u4E00-\u9FA5]+$");
-    QRegExpValidator *valid = new QRegExpValidator(userRx,this);
+    QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     ui->registerUserLine->setValidator(valid);
     ui->registerMailLine->setValidator(valid);
     ui->registerPwdLine->setValidator(valid);
     ui->registerPwdCLine->setValidator(valid);
 
-    ui->registerUserLine->setLabel(User,ui->registerUserLineR,ui->labelRight);
-    ui->registerMailLine->setLabel(Mail,ui->registerMailLineR,ui->labelRigh_2);
-    ui->registerPwdLine->setLabel(Passwd,ui->registerPwdLineR,ui->labelRigh_3);
-    ui->registerPwdCLine->setLabel(PasswdC,ui->registerPwdCLineR,ui->labelRigh_4);
+    ui->registerUserLine->setLabel(User, ui->registerUserLineR, ui->labelRight);
+    ui->registerMailLine->setLabel(Mail, ui->registerMailLineR, ui->labelRigh_2);
+    ui->registerPwdLine->setLabel(Passwd, ui->registerPwdLineR, ui->labelRigh_3);
+    ui->registerPwdCLine->setLabel(PasswdC, ui->registerPwdCLineR, ui->labelRigh_4);
 }
 
 void MusicUserDialog::thirdStatckWidget()
@@ -127,19 +128,18 @@ void MusicUserDialog::thirdStatckWidget()
 
     ui->confirmButton_2->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton_2->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->confirmButton_2,SIGNAL(clicked()),SLOT(checkUserForgotPasswd()));
-    connect(ui->cancelButton_2,SIGNAL(clicked()),SLOT(userLogin()));
+    connect(ui->confirmButton_2, SIGNAL(clicked()), SLOT(checkUserForgotPasswd()));
+    connect(ui->cancelButton_2, SIGNAL(clicked()), SLOT(userLogin()));
 
     QRegExp userRx("[^\u4E00-\u9FA5]+$");
-    QRegExpValidator *valid = new QRegExpValidator(userRx,this);
+    QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     ui->userLineEdit->setValidator(valid);
     ui->pwdLineEdit->setValidator(valid);
     ui->mailLineEdit->setValidator(valid);
 
-    ui->pwdLineEdit->setLabel(Passwd,ui->pwdLineEditR,ui->labelRigh_5);
+    ui->pwdLineEdit->setLabel(Passwd, ui->pwdLineEditR, ui->labelRigh_5);
     ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    connect(ui->verificationCode,SIGNAL(clicked()),
-                                 SLOT(changeVerificationCode()));
+    connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCode()));
 }
 
 void MusicUserDialog::clearOriginData()
@@ -208,7 +208,7 @@ void MusicUserDialog::checkUserLogin()
     if(!ui->rememberPwd->isChecked() ||
        pwd != m_userModel->getUserPWDMD5(m_userComboIndex) )
     {
-        if( !m_userModel->checkUser(user,pwd) )
+        if( !m_userModel->checkUser(user, pwd) )
         {
             MusicMessageBox message;
             message.setText(tr("You passwd is incorrect or user is not exist"));
@@ -250,8 +250,8 @@ void MusicUserDialog::checkRegisterUser()
             return;
         }
         if( !m_userModel->addUser(ui->registerUserLine->text(),
-                                 ui->registerPwdLine->text(),
-                                 ui->registerMailLine->text()) )
+                                  ui->registerPwdLine->text(),
+                                  ui->registerMailLine->text()) )
         {
             MusicMessageBox message;
             message.setText(tr("The username is existed"));
@@ -297,15 +297,14 @@ void MusicUserDialog::checkUserForgotPasswd()
          message.exec();
          return;
      }
-     if( ui->verificationCode->text() !=
-         ui->verificationCodeEdit->text().trimmed() )
+     if( ui->verificationCode->text() != ui->verificationCodeEdit->text().trimmed() )
      {
          MusicMessageBox message;
          message.setText(tr("You verificationCode is incorrect"));
          message.exec();
          return;
      }
-     if( m_userModel->updateUser(user,ui->pwdLineEdit->text(),mail,"","") )
+     if( m_userModel->updateUser(user, ui->pwdLineEdit->text(), mail, "", "") )
      {
          MusicMessageBox message;
          message.setText(tr("Change password successfully"));
@@ -368,8 +367,7 @@ void MusicUserDialog::userEditTextChanged(const QString &index)
 
 void MusicUserDialog::checkToAutoLogin()
 {
-    if(ui->automaticLogon->isChecked() &&
-       ui->rememberPwd->isChecked() &&
+    if(ui->automaticLogon->isChecked() && ui->rememberPwd->isChecked() &&
        ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userComboIndex))
     {
         emit userLoginSuccess(m_userComboIndex);
