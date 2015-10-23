@@ -15,11 +15,11 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    connect(ui->timerToPlay,SIGNAL(clicked()),SLOT(changeFirstWidget()));
-    connect(ui->timerToStop,SIGNAL(clicked()),SLOT(changeSecondWidget()));
-    connect(ui->timerToShutdown,SIGNAL(clicked()),SLOT(changeThreeWidget()));
+    connect(ui->timerToPlay, SIGNAL(clicked()), SLOT(changeFirstWidget()));
+    connect(ui->timerToStop, SIGNAL(clicked()), SLOT(changeSecondWidget()));
+    connect(ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
 
     ui->timerToPlay->setIcon(QIcon(":/control/timerPlay"));
     ui->timerToStop->setIcon(QIcon(":/control/timerStop"));
@@ -34,11 +34,11 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     ui->timerToShutdown->setCursor(QCursor(Qt::PointingHandCursor));
     ui->confirm->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancel->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->timerToPlay,SIGNAL(clicked()),SLOT(changeFirstWidget()));
-    connect(ui->timerToStop,SIGNAL(clicked()),SLOT(changeSecondWidget()));
-    connect(ui->timerToShutdown,SIGNAL(clicked()),SLOT(changeThreeWidget()));
-    connect(ui->confirm,SIGNAL(clicked()),this,SLOT(commitTheResults()));
-    connect(ui->cancel,SIGNAL(clicked()),this,SLOT(close()));
+    connect(ui->timerToPlay, SIGNAL(clicked()), SLOT(changeFirstWidget()));
+    connect(ui->timerToStop, SIGNAL(clicked()), SLOT(changeSecondWidget()));
+    connect(ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
+    connect(ui->confirm, SIGNAL(clicked()), SLOT(commitTheResults()));
+    connect(ui->cancel, SIGNAL(clicked()), SLOT(close()));
 
     initComboParameter();
     initFirstWidget();
@@ -144,13 +144,13 @@ void MusicTimerWidget::initComboParameter()
 {
     for(int i=0; i<24; ++i)
     {
-        m_hour<<tr("%1H").arg(i);
+        m_hour << tr("%1H").arg(i);
     }
     for(int i=0; i<60; ++i)
     {
-        m_second<<tr("%1S").arg(i);
+        m_second << tr("%1S").arg(i);
     }
-    m_repeat<<tr("once")<<tr("evMonth")<<tr("evWeek")<<tr("evDay");
+    m_repeat << tr("once") << tr("evMonth") << tr("evWeek") << tr("evDay");
 }
 
 void MusicTimerWidget::changeFirstWidget()
@@ -186,8 +186,8 @@ void MusicTimerWidget::initFirstWidget()
     ui->plistComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->psongComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->psongComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton1,SIGNAL(clicked()),SLOT(setEnabledControlFalse1()));
-    connect(ui->setRadioButton1,SIGNAL(clicked()),SLOT(setEnabledControlTrue1()));
+    connect(ui->noSetRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlFalse1()));
+    connect(ui->setRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlTrue1()));
 }
 
 void MusicTimerWidget::initSecondWidget()
@@ -203,8 +203,8 @@ void MusicTimerWidget::initSecondWidget()
     ui->secComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->repeatComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->repeatComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton2,SIGNAL(clicked()),SLOT(setEnabledControlFalse2()));
-    connect(ui->setRadioButton2,SIGNAL(clicked()),SLOT(setEnabledControlTrue2()));
+    connect(ui->noSetRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlFalse2()));
+    connect(ui->setRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlTrue2()));
 }
 
 void MusicTimerWidget::initThreeWidget()
@@ -220,8 +220,8 @@ void MusicTimerWidget::initThreeWidget()
     ui->secComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->repeatComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->repeatComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton3,SIGNAL(clicked()),SLOT(setEnabledControlFalse3()));
-    connect(ui->setRadioButton3,SIGNAL(clicked()),SLOT(setEnabledControlTrue3()));
+    connect(ui->noSetRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlFalse3()));
+    connect(ui->setRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlTrue3()));
 }
 
 void MusicTimerWidget::commitTheResults()
