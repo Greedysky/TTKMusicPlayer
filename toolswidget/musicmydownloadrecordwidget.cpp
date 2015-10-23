@@ -7,15 +7,15 @@
 #include <QContextMenuEvent>
 #include <QMenu>
 
-MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent) :
-    MusicAbstractTableWidget(parent)
+MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
 {
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,10);
-    headerview->resizeSection(1,170);
-    headerview->resizeSection(2,93);
-    headerview->resizeSection(3,50);
+    headerview->resizeSection(0, 10);
+    headerview->resizeSection(1, 170);
+    headerview->resizeSection(2, 93);
+    headerview->resizeSection(3, 50);
 
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);
@@ -89,7 +89,7 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
-    rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
+    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
     rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
@@ -146,8 +146,8 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absolutePath()
-                                , QUrl::TolerantMode)))
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absolutePath(),
+                                  QUrl::TolerantMode)))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exsit!"));
@@ -164,8 +164,7 @@ void MusicMyDownloadRecordWidget::musicPlay()
     emit addSongToPlay(QStringList(m_musicRecord.m_paths[currentRow()]));
 }
 
-void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total,
-                                                          qint64 time)
+void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
