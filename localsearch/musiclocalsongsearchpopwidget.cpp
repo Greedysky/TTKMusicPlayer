@@ -11,8 +11,8 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
 {
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,215);
-    headerview->resizeSection(1,62);
+    headerview->resizeSection(0, 215);
+    headerview->resizeSection(1, 62);
     setTransparent(255);
 }
 
@@ -33,12 +33,12 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
     setRowHeight(index, 20);
 
     QTableWidgetItem *item0 = new QTableWidgetItem(name);
-    item0->setTextColor(QColor(50,50,50));
+    item0->setTextColor(QColor(50, 50, 50));
     item0->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 0, item0);
 
     QTableWidgetItem *item1 = new QTableWidgetItem(time);
-    item1->setTextColor(QColor(50,50,50));
+    item1->setTextColor(QColor(50, 50, 50));
     item1->setTextAlignment(Qt::AlignCenter);
     setItem(index, 1, item1);
 }

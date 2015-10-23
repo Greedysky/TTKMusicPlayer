@@ -22,8 +22,8 @@ public:
     virtual ~MusicLocalSongSearchPopTableWidget();
 
     void clearAllItems();
-    void createItems(int index, const QString &name,
-                     const QString &time);
+    void createItems(int index, const QString &name, const QString &time);
+
 signals:
     void setText(const QString &text);
 
