@@ -27,11 +27,10 @@ public:
 
     virtual void startTimerClock() = 0;
     virtual void stopLrcMask() = 0;
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const = 0 ;
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const = 0;
     virtual void setSettingParameter();
     void setLinearGradientColor(LrcColorType lrcColorType) const;
-    inline void setCurrentSongName(const QString &name)
-            { m_currentSongName = name;}
+    inline void setCurrentSongName(const QString &name) { m_currentSongName = name;}
     void setCurrentPosition(qint64 pos) const;
 
 signals:

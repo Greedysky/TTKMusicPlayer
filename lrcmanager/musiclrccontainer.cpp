@@ -3,8 +3,8 @@
 #include "musiclrcmakerwidget.h"
 #include <QActionGroup>
 
-MusicLrcContainer::MusicLrcContainer(QWidget *parent) :
-    QWidget(parent)
+MusicLrcContainer::MusicLrcContainer(QWidget *parent)
+    : QWidget(parent)
 {
     m_musicLrcSearchWidget = NULL;
     m_makerWidget = NULL;
@@ -106,10 +106,9 @@ void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType) const
             default:break;
         }
     }
-    if(m_containerType == "DESKTOP")
-        M_SETTING->setValue(MusicSettingManager::DLrcColorChoiced, lrcColorType);
-    else
-        M_SETTING->setValue(MusicSettingManager::LrcColorChoiced, lrcColorType);
+
+    M_SETTING->setValue( (m_containerType == "DESKTOP") ? MusicSettingManager::DLrcColorChoiced :
+                                                          MusicSettingManager::LrcColorChoiced, lrcColorType);
 }
 
 void MusicLrcContainer::setSettingParameter()
@@ -140,7 +139,6 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
         setMaskLinearGradientColor(M_SETTING->value(t + "LrcFgColorChoiced").value<QColor>());
     }
 }
-
 
 void MusicLrcContainer::theCurrentLrcMaked()
 {
