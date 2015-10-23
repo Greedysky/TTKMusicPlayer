@@ -132,7 +132,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     QStringList list;
     foreach(int i, m_selectNum)
     {
-       list <<  m_artPath[i];
+       list << m_artPath[i];
     }
     M_BG_MANAGER->setArtPhotoPaths(list);
     close();

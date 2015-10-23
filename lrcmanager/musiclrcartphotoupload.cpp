@@ -33,10 +33,10 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     ui->closeButton->hide();
     ui->stateLabel->hide();
 
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
-    connect(ui->selectButton,SIGNAL(clicked()),SLOT(selectButtonClicked()));
-    connect(ui->closeButton,SIGNAL(clicked()),SLOT(close()));
-    connect(ui->uploadButton,SIGNAL(clicked()),SLOT(uploadButtonClicked()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(ui->selectButton, SIGNAL(clicked()), SLOT(selectButtonClicked()));
+    connect(ui->closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
 }
 
 void MusicLrcArtPhotoUpload::selectButtonClicked()
