@@ -15,11 +15,11 @@ bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
                              const QString &mail)
 {
     insertRow(0);
-    setData(index(0,fieldIndex("USERID")),uid);
-    setData(index(0,fieldIndex("PASSWD")),userPasswordEncryption(pwd));
-    setData(index(0,fieldIndex("EMAIL")),mail);
-    setData(index(0,fieldIndex("USERNAME")),uid);
-    setData(index(0,fieldIndex("LOGINTIME")),0);
+    setData(index(0, fieldIndex("USERID")), uid);
+    setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(pwd));
+    setData(index(0, fieldIndex("EMAIL")), mail);
+    setData(index(0, fieldIndex("USERNAME")), uid);
+    setData(index(0, fieldIndex("LOGINTIME")), 0);
     database().transaction();
     if(submitAll())
     {
@@ -52,10 +52,10 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
         return false;
     }
 
-    if(!pwd.isEmpty()) setData(index(0,fieldIndex("PASSWD")),userPasswordEncryption(pwd));
-    if(!mail.isEmpty()) setData(index(0,fieldIndex("EMAIL")),mail);
-    if(!name.isEmpty()) setData(index(0,fieldIndex("USERNAME")),name);
-    if(!time.isEmpty()) setData(index(0,fieldIndex("LOGINTIME")),time);
+    if(!pwd.isEmpty()) setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(pwd));
+    if(!mail.isEmpty()) setData(index(0, fieldIndex("EMAIL")), mail);
+    if(!name.isEmpty()) setData(index(0, fieldIndex("USERNAME")), name);
+    if(!time.isEmpty()) setData(index(0, fieldIndex("LOGINTIME")), time);
     submitAll();
     return true;
 }
