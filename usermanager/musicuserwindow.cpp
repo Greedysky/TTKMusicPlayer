@@ -9,7 +9,8 @@
 #include <QTimer>
 
 MusicUserWindow::MusicUserWindow(QWidget *parent)
-   : QStackedWidget(parent), ui(new Ui::MusicUserWindow)
+   : QStackedWidget(parent),
+     ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
     ui->userLogin->setStyleSheet(MusicUIObject::MPushButtonStyle07);
@@ -21,9 +22,9 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     connectDatabase();
 
     m_userManager = new MusicUserManager(this);
-    connect(ui->userLogin,SIGNAL(clicked()),SLOT(musicUserLogin()));
-    connect(ui->userName,SIGNAL(clicked()),m_userManager,SLOT(exec()));
-    connect(m_userManager,SIGNAL(userStateChanged(QString)),SLOT(userStateChanged(QString)));
+    connect(ui->userLogin, SIGNAL(clicked()), SLOT(musicUserLogin()));
+    connect(ui->userName, SIGNAL(clicked()), m_userManager, SLOT(exec()));
+    connect(m_userManager, SIGNAL(userStateChanged(QString)), SLOT(userStateChanged(QString)));
 }
 
 MusicUserWindow::~MusicUserWindow()
@@ -99,8 +100,7 @@ bool MusicUserWindow::connectDatabase()
 
 void MusicUserWindow::userStateChanged(const QString &name)
 {
-    ui->userName->setText(QFontMetrics(font())
-                .elidedText(name, Qt::ElideRight,44));
+    ui->userName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 44));
 
     if(currentIndex() == 1)
     {
