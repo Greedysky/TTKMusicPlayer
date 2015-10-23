@@ -106,7 +106,7 @@ void MusicLRCManager::setMaskLinearGradientColor(QColor color)
 {
     color.setAlpha(m_transparent*2.55);
     m_maskLinearGradient.setColorAt(0.1, color);
-    m_maskLinearGradient.setColorAt(0.5, QColor(255, 72, 16,m_transparent*2.55));
+    m_maskLinearGradient.setColorAt(0.5, QColor(255, 72, 16, m_transparent*2.55));
     m_maskLinearGradient.setColorAt(0.9, color);
 }
 
