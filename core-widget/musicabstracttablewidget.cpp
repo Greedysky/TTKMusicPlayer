@@ -11,9 +11,9 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
 
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(false);
-    headerview->resizeSection(0,40);
-    headerview->resizeSection(1,257);
-    headerview->resizeSection(2,26);
+    headerview->resizeSection(0, 40);
+    headerview->resizeSection(1, 257);
+    headerview->resizeSection(2, 26);
     verticalHeader()->setVisible(false);
 
     setMouseTracking(true);  //Open the capture mouse function
@@ -31,7 +31,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setTransparent(80);
     m_previousColorRow = -1;
     m_previousClickRow = -1;
-    m_defaultBkColor = QColor(255,255,255,0);
+    m_defaultBkColor = QColor(255, 255, 255, 0);
 
     connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
     connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
@@ -57,16 +57,16 @@ void MusicAbstractTableWidget::setTransparent(int angle)
 
 void MusicAbstractTableWidget::listCellEntered(int row, int column)
 {
-    QTableWidgetItem *item = this->item(m_previousColorRow, 0);
-    if(item != 0)
+    QTableWidgetItem *it = item(m_previousColorRow, 0);
+    if(it != 0)
     {
        setRowColor(m_previousColorRow, m_defaultBkColor);
     }
 
-    item = this->item(row, column);
-    if(item != 0 && !item->isSelected() && !item->text().isEmpty())
+    it = item(row, column);
+    if(it != 0 && !it->isSelected() && !it->text().isEmpty())
     {
-       setRowColor(row, QColor(20,20,20,40));
+       setRowColor(row, QColor(20, 20, 20, 40));
     }
 
     m_previousColorRow = row;
@@ -76,7 +76,7 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
 {
     for(int col=0; col<columnCount(); col++)
     {
-        QTableWidgetItem *item = this->item(row, col);
-        item->setBackgroundColor(color);
+        QTableWidgetItem *it = item(row, col);
+        it->setBackgroundColor(color);
     }
 }

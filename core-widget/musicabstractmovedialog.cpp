@@ -58,7 +58,7 @@ void MusicAbstractMoveDialog::mouseMoveEvent(QMouseEvent *event)
     int xpos = event->globalX() - m_pressAt.x();
     int ypos = event->globalY() - m_pressAt.y();
     m_pressAt = event->globalPos();
-    move( this->x()+xpos, this->y()+ypos);
+    move( x() + xpos, y() + ypos);
 }
 
 void MusicAbstractMoveDialog::mouseReleaseEvent(QMouseEvent *event)
