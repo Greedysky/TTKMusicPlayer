@@ -54,7 +54,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
     ///If the lyrics download finished immediately loaded to display
     if(type == "Lrc")
     {
-       m_parentWidget->musicLoadCurrentSongLrc();
+        m_parentWidget->musicLoadCurrentSongLrc();
     }
     m_movieLabel->clear();
 }
