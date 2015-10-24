@@ -23,12 +23,12 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0,30);
-    headerview->resizeSection(1,215);
-    headerview->resizeSection(2,166);
-    headerview->resizeSection(3,50);
-    headerview->resizeSection(4,26);
-    headerview->resizeSection(5,26);
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 215);
+    headerview->resizeSection(2, 166);
+    headerview->resizeSection(3, 50);
+    headerview->resizeSection(4, 26);
+    headerview->resizeSection(5, 26);
     setTransparent(255);
 
     m_previousAuditionRow = -1;
@@ -87,19 +87,19 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem(artistname);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
     setItem(count - 1, 2, item);
 
                       item = new QTableWidgetItem(time);
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
