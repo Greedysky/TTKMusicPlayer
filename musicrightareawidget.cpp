@@ -43,7 +43,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->musicSearchRefreshButton->setIconSize(QSize(25,25));
+    ui->musicSearchRefreshButton->setIconSize(QSize(25, 25));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
     connect(ui->musicSearchRefreshButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
