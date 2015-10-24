@@ -18,7 +18,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton,SIGNAL(clicked()),SLOT(close()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_eable = false;
     m_eqChoiceSelected = false;
@@ -27,12 +27,12 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
 
     ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->eqChoice->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->eqChoice->addItems(QStringList()<<tr("Custom")<<tr("Default")<<tr("Classical")
-                  <<tr("Club")<<tr("Dance")<<tr("Bass")<<tr("Soprano")<<tr("BassSoprano")
-                  <<tr("Headset")<<tr("Hall")<<tr("Scene")<<tr("Pop")<<tr("Repaglinide")
-                  <<tr("Party")<<tr("Rock")<<tr("Oscar")<<tr("Mild")<<tr("SoftRock")
-                  <<tr("Electronics"));
-    connect(ui->eqChoice,SIGNAL(currentIndexChanged(int)),SLOT(eqChoiceIndexChanged(int)));
+    ui->eqChoice->addItems(QStringList() << tr("Custom") << tr("Default") << tr("Classical")
+                  << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")
+                  << tr("Headset") << tr("Hall") << tr("Scene") << tr("Pop") << tr("Repaglinide")
+                  << tr("Party") << tr("Rock") << tr("Oscar") << tr("Mild") << tr("SoftRock")
+                  << tr("Electronics"));
+    connect(ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
     ui->showEqButton->setIcon(QIcon(":/equalizer/off"));
 
@@ -66,10 +66,10 @@ void MusicEqualizerDialog::init()
     initSlider(ui->verticalSlider9, 8);
     initSlider(ui->verticalSlider10, 9);
     initSlider(ui->bwVerticalSlider, 10);
-    connect(m_signalMapper ,SIGNAL(mapped(int)), SLOT(verticalSliderChanged(int)));
+    connect(m_signalMapper, SIGNAL(mapped(int)), SLOT(verticalSliderChanged(int)));
 
-    connect(ui->showEqButton,SIGNAL(clicked()),SLOT(setEqEnable()));
-    connect(ui->resetButton,SIGNAL(clicked()),SLOT(resetEq()));
+    connect(ui->showEqButton, SIGNAL(clicked()), SLOT(setEqEnable()));
+    connect(ui->resetButton, SIGNAL(clicked()), SLOT(resetEq()));
     ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->funcButton_3->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->funcButton_4->setStyleSheet(MusicUIObject::MPushButtonStyle05);
@@ -178,12 +178,12 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
 
 void MusicEqualizerDialog::emitParameter()
 {
-    emit setEqEffect(MIntList()<<ui->verticalSlider1->value()
-                     <<ui->verticalSlider2->value()<<ui->verticalSlider3->value()
-                     <<ui->verticalSlider4->value()<<ui->verticalSlider5->value()
-                     <<ui->verticalSlider6->value()<<ui->verticalSlider7->value()
-                     <<ui->verticalSlider8->value()<<ui->verticalSlider9->value()
-                     <<ui->verticalSlider10->value());
+    emit setEqEffect(MIntList() << ui->verticalSlider1->value()
+                     << ui->verticalSlider2->value() << ui->verticalSlider3->value()
+                     << ui->verticalSlider4->value() << ui->verticalSlider5->value()
+                     << ui->verticalSlider6->value() << ui->verticalSlider7->value()
+                     << ui->verticalSlider8->value() << ui->verticalSlider9->value()
+                     << ui->verticalSlider10->value());
 }
 
 void MusicEqualizerDialog::setEqEnable()
@@ -293,7 +293,7 @@ void MusicEqualizerDialog::setMixedEffect(int index)
             ui->eqLabel->setText(tr("ReverseEffect"));
             emit setSpEqEffect(MusicObject::EQ_ReverseEffect);
             break;
-        default:break;
+        default: break;
     }
 }
 
