@@ -105,7 +105,7 @@ void MusicQueryTableWidget::paintEvent(QPaintEvent *event)
     MusicAbstractTableWidget::paintEvent(event);
     QPainter painter(viewport());
     painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setPen(QPen(QBrush(QColor(0,0,0)), 0.1, Qt::SolidLine));
+    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
     for(int i=0; i<rowCount(); ++i)
     {
         painter.drawLine(10, rowHeight(0)*(i + 1),
