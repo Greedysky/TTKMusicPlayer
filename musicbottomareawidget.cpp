@@ -25,34 +25,34 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
     ui->menuSetting->setIcon(QIcon(QString::fromUtf8(":/image/menu")));
-    ui->menuSetting->setIconSize(QSize(50,50));
+    ui->menuSetting->setIconSize(QSize(50, 50));
     ui->menuSetting->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     ui->menuSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->menuSetting->setToolTip(tr("Menu"));
     ui->menuSetting->setMenu(&m_toolPopupMenu);
     
     ui->musicImport->setIcon(QIcon(QString::fromUtf8(":/appTools/import")));
-    ui->musicImport->setIconSize(QSize(40,40));
+    ui->musicImport->setIconSize(QSize(40, 40));
     ui->musicImport->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicImport->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicImport->setToolTip(tr("Import"));
-    connect(ui->musicImport,SIGNAL(clicked()), m_supperClass, SLOT(musicImportSongs()));
+    connect(ui->musicImport, SIGNAL(clicked()), m_supperClass, SLOT(musicImportSongs()));
     
     ui->musicSetting->setIcon(QIcon(QString::fromUtf8(":/appTools/setting")));
-    ui->musicSetting->setIconSize(QSize(40,40));
+    ui->musicSetting->setIconSize(QSize(40, 40));
     ui->musicSetting->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSetting->setToolTip(tr("Setting"));
-    connect(ui->musicSetting,SIGNAL(clicked()), m_supperClass, SLOT(musicSetting()));
+    connect(ui->musicSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicSetting()));
     
     ui->musicSearch->setIcon(QIcon(QString::fromUtf8(":/appTools/search")));
-    ui->musicSearch->setIconSize(QSize(40,40));
+    ui->musicSearch->setIconSize(QSize(40, 40));
     ui->musicSearch->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicSearch->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearch->setToolTip(tr("musicSearch"));
 
     ui->musicCurrentLocation->setIcon(QIcon(QString::fromUtf8(":/appTools/location")));
-    ui->musicCurrentLocation->setIconSize(QSize(40,40));
+    ui->musicCurrentLocation->setIconSize(QSize(40, 40));
     ui->musicCurrentLocation->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicCurrentLocation->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicCurrentLocation->setToolTip(tr("musicLocation"));
@@ -112,18 +112,18 @@ void MusicBottomAreaWidget::setVolumeValue(int value) const
 
 void MusicBottomAreaWidget::createMenuActions() const
 {
-    connect(m_ui->action_ImportSongs,SIGNAL(triggered()),m_supperClass,SLOT(musicImportSongs()));
-    connect(m_ui->action_Setting,SIGNAL(triggered()),m_supperClass,SLOT(musicSetting()));
-    connect(m_ui->action_Quit,SIGNAL(triggered()),m_supperClass,SLOT(quitWindowClose()));
-    connect(m_ui->action_Next,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayNext()));
-    connect(m_ui->action_Play,SIGNAL(triggered()),m_supperClass,SLOT(musicKey()));
-    connect(m_ui->action_Privious,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayPrivious()));
-    connect(m_ui->action_VolumeSub,SIGNAL(triggered()),m_supperClass,SLOT(musicActionVolumeSub()));
-    connect(m_ui->action_VolumePlus,SIGNAL(triggered()),m_supperClass,SLOT(musicActionVolumePlus()));
-    connect(m_ui->action_OrderPlay,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayOrder()));
-    connect(m_ui->action_RandomPlay,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayRandom()));
-    connect(m_ui->action_SingleCycle,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayOneLoop()));
-    connect(m_ui->action_ListCycle,SIGNAL(triggered()),m_supperClass,SLOT(musicPlayListLoop()));
+    connect(m_ui->action_ImportSongs, SIGNAL(triggered()), m_supperClass, SLOT(musicImportSongs()));
+    connect(m_ui->action_Setting, SIGNAL(triggered()), m_supperClass, SLOT(musicSetting()));
+    connect(m_ui->action_Quit, SIGNAL(triggered()), m_supperClass, SLOT(quitWindowClose()));
+    connect(m_ui->action_Next, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayNext()));
+    connect(m_ui->action_Play, SIGNAL(triggered()), m_supperClass, SLOT(musicKey()));
+    connect(m_ui->action_Privious, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_ui->action_VolumeSub, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumeSub()));
+    connect(m_ui->action_VolumePlus, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumePlus()));
+    connect(m_ui->action_OrderPlay, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayOrder()));
+    connect(m_ui->action_RandomPlay, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayRandom()));
+    connect(m_ui->action_SingleCycle, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayOneLoop()));
+    connect(m_ui->action_ListCycle, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayListLoop()));
 }
 
 void MusicBottomAreaWidget::createSystemTrayIcon()
