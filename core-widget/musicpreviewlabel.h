@@ -14,9 +14,8 @@
 
 class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
 {
-
 public:
-    MusicPreviewLabel(QWidget *parent = 0);
+    explicit MusicPreviewLabel(QWidget *parent = 0);
 
     void setParameter(const QStringList &para);
     void setLinearGradient(QColor &fg, QColor &bg);
