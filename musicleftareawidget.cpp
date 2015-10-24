@@ -31,21 +31,21 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
 
-    connect(ui->musicKey,SIGNAL(clicked()),m_supperClass,SLOT(musicKey()));
-    connect(ui->musicPrivious,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayPrivious()));
-    connect(ui->musicNext,SIGNAL(clicked()),m_supperClass,SLOT(musicPlayNext()));
-    connect(ui->musicSound,SIGNAL(clicked()),m_supperClass,SLOT(musicVolumeNULL()));
-    connect(ui->musicSoundSlider,SIGNAL(valueChanged(int)),m_supperClass,SLOT(musicVolumeChanged(int)));
-    connect(ui->musicBestLove,SIGNAL(clicked()),m_supperClass,SLOT(musicAddSongToLovestListAt()));
-    connect(ui->musicButton_playlist,SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
-    connect(ui->musicButton_tools,SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
-    connect(ui->musicButton_radio,SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
-    connect(ui->musicButton_mydownl,SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
-    connect(ui->musicButton_mobile,SIGNAL(clicked()), this, SLOT(musicStackedMobileWidgetChanged()));
-    connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), m_supperClass,
-                                    SLOT(musicEnhancedMusicChanged(int)));
-    connect(ui->musicEnhancedButton,SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
-                                    SLOT(setSliderStyleByType(int)));
+    connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
+    connect(ui->musicPrivious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
+    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeNULL()));
+    connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
+    connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
+    connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
+    connect(ui->musicButton_tools, SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
+    connect(ui->musicButton_radio, SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
+    connect(ui->musicButton_mydownl, SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
+    connect(ui->musicButton_mobile, SIGNAL(clicked()), this, SLOT(musicStackedMobileWidgetChanged()));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), m_supperClass,
+                                     SLOT(musicEnhancedMusicChanged(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
+                                     SLOT(setSliderStyleByType(int)));
 
     ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
@@ -58,17 +58,17 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/appTools/buttontools")));
     ui->musicButton_mobile->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmobile")));
 
-    ui->musicPrivious->setIconSize(QSize(45,45));
-    ui->musicNext->setIconSize(QSize(45,45));
-    ui->musicKey->setIconSize(QSize(45,45));
-    ui->musicBestLove->setIconSize(QSize(25,25));
-    ui->musicButton_cloud->setIconSize(QSize(35,35));
-    ui->musicButton_mydownl->setIconSize(QSize(35,35));
-    ui->musicButton_playlist->setIconSize(QSize(35,35));
-    ui->musicButton_radio->setIconSize(QSize(35,35));
-    ui->musicButton_tools->setIconSize(QSize(35,35));
-    ui->musicButton_mobile->setIconSize(QSize(35,35));
-    ui->musicPlayMode->setIconSize(QSize(25,25));
+    ui->musicPrivious->setIconSize(QSize(45, 45));
+    ui->musicNext->setIconSize(QSize(45, 45));
+    ui->musicKey->setIconSize(QSize(45, 45));
+    ui->musicBestLove->setIconSize(QSize(25, 25));
+    ui->musicButton_cloud->setIconSize(QSize(35, 35));
+    ui->musicButton_mydownl->setIconSize(QSize(35, 35));
+    ui->musicButton_playlist->setIconSize(QSize(35, 35));
+    ui->musicButton_radio->setIconSize(QSize(35, 35));
+    ui->musicButton_tools->setIconSize(QSize(35, 35));
+    ui->musicButton_mobile->setIconSize(QSize(35, 35));
+    ui->musicPlayMode->setIconSize(QSize(25, 25));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->musicPrivious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
