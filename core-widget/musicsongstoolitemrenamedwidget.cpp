@@ -2,7 +2,7 @@
 #include "musicuiobject.h"
 
 MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
-    int offset, const QString &originText, QWidget *parent)
+            int offset, const QString &originText, QWidget *parent)
     : QLineEdit(parent)
 {
     setGeometry(1, offset, 330, 20);
