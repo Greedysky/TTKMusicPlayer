@@ -14,20 +14,20 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     createPlayWidgetActions();
     addAction(m_widgetAction);
 
-    m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"),this);
-    connect(m_showLrcAction,SIGNAL(triggered()),SLOT(showDesktopLrc()));
-    m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"),tr("lockLrc"),this);
-    connect(m_lockLrcAction,SIGNAL(triggered()),SIGNAL(setWindowLockedChanged()));
+    m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"), this);
+    connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
+    m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"), tr("lockLrc"), this);
+    connect(m_lockLrcAction, SIGNAL(triggered()), SIGNAL(setWindowLockedChanged()));
 
     addSeparator();
-    addAction(QIcon(":/contextMenu/window"),tr("showMainWindow"),parent,SLOT(showNormal()));
+    addAction(QIcon(":/contextMenu/window"), tr("showMainWindow"), parent, SLOT(showNormal()));
     addSeparator();
-    addAction(QIcon(":/contextMenu/setting"),tr("showSetting"),parent,SLOT(musicSetting()));
+    addAction(QIcon(":/contextMenu/setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addAction(m_showLrcAction);
     addSeparator();
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(":/contextMenu/quit"),tr("appClose"),parent,SLOT(quitWindowClose()));
+    addAction(QIcon(":/contextMenu/quit"), tr("appClose"), parent, SLOT(quitWindowClose()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
@@ -58,9 +58,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysnext")));
     m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysplay")));
 
-    previousPlay->setIconSize(QSize(40,40));
-    nextPlay->setIconSize(QSize(40,40));
-    m_PlayOrStop->setIconSize(QSize(45,45));
+    previousPlay->setIconSize(QSize(40, 40));
+    nextPlay->setIconSize(QSize(40, 40));
+    m_PlayOrStop->setIconSize(QSize(45, 45));
 
     previousPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
     nextPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
