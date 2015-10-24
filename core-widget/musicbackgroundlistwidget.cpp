@@ -9,7 +9,7 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 {
     setFrameShape(QFrame::NoFrame); //Set No Border
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    setIconSize(QSize(100,80));
+    setIconSize(QSize(100, 80));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
 }
@@ -51,7 +51,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QIcon &ico
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path)
 {
     QListWidgetItem *it = new QListWidgetItem(this);
-    it->setIcon( QIcon(QPixmap(path).scaled(90,70)) );
+    it->setIcon( QIcon(QPixmap(path).scaled(90, 70)) );
     it->setData(MUSIC_BG_ROLE, name);
     it->setData(MUSIC_FILEHASH_ROLE, fileHash(path));
     it->setToolTip(name);
