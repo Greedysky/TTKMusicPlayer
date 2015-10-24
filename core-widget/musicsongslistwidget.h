@@ -29,8 +29,7 @@ public:
     void musicSongsFileName(const QStringList &filenamelists);
     void clearAllItems();
     void selectRow(int index);
-    inline void setPlaybackMode(MusicObject::SongPlayType type)
-        { m_songplaymode = type;}
+    inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
     void setTimerLabel(const QString &t) const;
     void updateArtPicture() const;
     void replacePlayWidgetRow();

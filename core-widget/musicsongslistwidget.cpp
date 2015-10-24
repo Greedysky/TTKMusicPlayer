@@ -24,8 +24,8 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     m_timerShow = new QTimer(this);
     m_timerStay = new QTimer(this);
 
-    connect(m_timerShow,SIGNAL(timeout()),SLOT(showTimeOut()));
-    connect(m_timerStay,SIGNAL(timeout()),SLOT(stayTimeOut()));
+    connect(m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
+    connect(m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
@@ -44,13 +44,13 @@ void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
     for(int i=count; i<filenamelists.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
-        item->setTextColor(QColor(50,50,50));
+        item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
                                                 filenamelists[i], Qt::ElideRight, 243));
-        item->setTextColor(QColor(50,50,50));
+        item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -80,17 +80,17 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
-    QMenu musicPlaybackMode(tr("playbackMode"),&rightClickMenu);
+    QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(tr("changSongName"),this,SLOT(setChangSongName()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/play"),tr("musicPlay"),this,SLOT(musicPlay()));
+    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
 
     rightClickMenu.addMenu(&musicPlaybackMode);
-    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"),this,SIGNAL(musicPlayOrder()));
-    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"),this,SIGNAL(musicPlayRandom()));
-    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"),this,SIGNAL(musicPlayListLoop()));
-    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"),this,SIGNAL(musicPlayOneLoop()));
-    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"),this,SIGNAL(musicPlayItemOnce()));
+    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SIGNAL(musicPlayOrder()));
+    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"), this, SIGNAL(musicPlayRandom()));
+    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SIGNAL(musicPlayListLoop()));
+    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SIGNAL(musicPlayOneLoop()));
+    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SIGNAL(musicPlayItemOnce()));
     (m_songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/share/selected")) : order->setIcon(QIcon());
     (m_songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/share/selected")) : random->setIcon(QIcon());
     (m_songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/share/selected")) : lCycle->setIcon(QIcon());
@@ -98,24 +98,24 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/share/selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/love"),tr("addToLove"),this,SLOT(addMusicSongToLovestListAt()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/love"), tr("addToLove"), this, SLOT(addMusicSongToLovestListAt()));
 
-    QMenu musicAddNewFiles(tr("addNewFiles"),&rightClickMenu);
+    QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
-    musicAddNewFiles.addAction(tr("openOnlyFiles"),this,SIGNAL(musicAddNewFiles()));
-    musicAddNewFiles.addAction(tr("openOnlyDir"),this,SIGNAL(musicAddNewDir()));
+    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
+    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
 
-    QMenu musicToolMenu(tr("musicTool"),&rightClickMenu);
-    musicToolMenu.addAction(tr("bell"),this,SLOT(musicMakeRingWidget()));
-    musicToolMenu.addAction(tr("transform"),this,SLOT(musicTransformWidget()));
+    QMenu musicToolMenu(tr("musicTool"), &rightClickMenu);
+    musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()));
+    musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
-    rightClickMenu.addAction(tr("musicInfoD"),this,SLOT(musicFileInformation()));
-    rightClickMenu.addAction(tr("openFileDir"),this,SLOT(musicOpenFileDir()));
+    rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()));
+    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/delete"),tr("delete"),this,SLOT(setDeleteItemAt()));
-    rightClickMenu.addAction(tr("deleteWithFile"),this,SLOT(setDeleteItemWithFile()));
-    rightClickMenu.addAction(tr("deleteAll"),this,SLOT(setDeleteItemAll()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
+    rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()));
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
     rightClickMenu.exec(QCursor::pos());
     //Menu location for the current mouse position
     event->accept();
@@ -256,11 +256,11 @@ void MusicSongsListWidget::setDeleteItemAt()
 
     for(int i=0; i<this->rowCount(); i++)
     {   //Re insertion sort
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
-        item->setTextColor(QColor(50,50,50));
+        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i + 1));
+        item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignCenter);
-        delete this->takeItem(i,0);//Remove the original object delete
-        this->setItem(i,0,item); //insert
+        delete this->takeItem(i, 0);//Remove the original object delete
+        this->setItem(i, 0, item); //insert
     }
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
@@ -304,7 +304,7 @@ void MusicSongsListWidget::showTimeOut()
         MusicSong musicinfo;
         emit getMusicSongInformation(m_previousColorRow, musicinfo);
         m_musicSongsListItem->setMusicSongInformation(musicinfo);
-        m_musicSongsListItem->setGeometry(QCursor::pos().x()+50,QCursor::pos().y(),264,108);
+        m_musicSongsListItem->setGeometry(QCursor::pos().x() + 50,QCursor::pos().y(), 264, 108);
         m_musicSongsListItem->show();
     }
 }
