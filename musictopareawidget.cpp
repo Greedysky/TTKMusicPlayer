@@ -15,7 +15,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 {
     m_supperClass = parent;
     m_msuicUserWindow = new MusicUserWindow(this);
-    connect(&m_pictureCarouselTimer,SIGNAL(timeout()),SLOT(musicBackgroundChanged()));
+    connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 
@@ -37,40 +37,40 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->musicSearchButton,SIGNAL(clicked()), SIGNAL(musicSearchButtonClicked()));
+    connect(ui->musicSearchButton, SIGNAL(clicked()), SIGNAL(musicSearchButtonClicked()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicWindowChangeSkin->setIconSize(QSize(22,22));
+    ui->musicWindowChangeSkin->setIconSize(QSize(22, 22));
     ui->musicWindowChangeSkin->setIcon(QIcon(QString::fromUtf8(":/image/windowskin")));
-    connect(ui->musicWindowChangeSkin,SIGNAL(clicked()) ,SLOT(musicShowSkinChangedWindow()));
+    connect(ui->musicWindowChangeSkin, SIGNAL(clicked()) , SLOT(musicShowSkinChangedWindow()));
 
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowConcise->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(":/image/concisein")));
-    connect(ui->musicWindowConcise,SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
+    connect(ui->musicWindowConcise, SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
 
     ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowRemote->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicWindowRemote->setIcon(QIcon(QString::fromUtf8(":/image/windowremote")));
-    connect(ui->musicWindowRemote,SIGNAL(clicked()), SLOT(musicSquareRemote()));
+    connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(musicSquareRemote()));
 
     QPixmap minPix  = style()->standardPixmap(QStyle::SP_TitleBarMinButton);
-    ui->minimization->setIcon(QIcon(minPix.scaled(25,25)));
+    ui->minimization->setIcon(QIcon(minPix.scaled(25, 25)));
     ui->minimization->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
-    connect(ui->minimization,SIGNAL(clicked()), m_supperClass, SLOT(hide()));
+    connect(ui->minimization, SIGNAL(clicked()), m_supperClass, SLOT(hide()));
 
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
     ui->windowClose->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->windowClose->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/close")).scaled(25,25)));
-    connect(ui->windowClose,SIGNAL(clicked()), m_supperClass, SLOT(close()));
+    ui->windowClose->setIcon(QIcon(QPixmap(QString::fromUtf8(":/image/close")).scaled(25, 25)));
+    connect(ui->windowClose, SIGNAL(clicked()), m_supperClass, SLOT(close()));
 }
 
 void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alphaR)
@@ -155,9 +155,9 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     QPixmap afterDeal( size );
     afterDeal.fill(Qt::transparent);
     QPainter paint(&afterDeal);
-    paint.fillRect(0,0,afterDeal.width(),afterDeal.height(),QColor(255,255,255,2.55*m_alpha));
+    paint.fillRect(0, 0, afterDeal.width(), afterDeal.height(), QColor(255, 255, 255, 2.55*m_alpha));
     paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    paint.drawPixmap(0,0,QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding).toImage()));
+    paint.drawPixmap(0, 0, QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding).toImage()));
     paint.end();
 
     emit setTransparent(m_listAlpha);
