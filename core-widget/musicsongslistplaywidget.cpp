@@ -8,28 +8,28 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     : QWidget(parent),m_renameLine(NULL)
 {
     QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(0,0,0,100)));
+    pal.setBrush(QPalette::Base,QBrush(QColor(0, 0, 0, 100)));
     setPalette(pal);
     setAutoFillBackground(true);
 
     m_totalTime = "/00:00";
 
     m_artPicture = new QLabel(this);
-    m_artPicture->setFixedSize(60,60);
+    m_artPicture->setFixedSize(60, 60);
     m_artPicture->setAttribute(Qt::WA_TranslucentBackground);
-    m_artPicture->setGeometry(0,0,60,60);
+    m_artPicture->setGeometry(0, 0, 60, 60);
 
     m_songName = new QLabel(this);
-    m_songName->setFixedSize(182,25);
+    m_songName->setFixedSize(182, 25);
     m_songName->setAttribute(Qt::WA_TranslucentBackground);
     m_songName->setStyleSheet(MusicUIObject::MCustomStyle11);
-    m_songName->setGeometry(65,5,182,25);
+    m_songName->setGeometry(65, 5, 182, 25);
 
     m_timeLabel = new QLabel(this);
-    m_timeLabel->setFixedSize(100,20);
+    m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
     m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
-    m_timeLabel->setGeometry(65,37,100,20);
+    m_timeLabel->setGeometry(65, 37, 100, 20);
 
     m_columnOne = new QWidget(this);
     m_columnOne->setStyleSheet(MusicUIObject::MCustomStyle03);
@@ -37,28 +37,28 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle03);
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(184,35,23,23);
+    m_loveButton->setGeometry(184, 35, 23, 23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(207,35,23,23);
+    m_deleteButton->setGeometry(207, 35, 23, 23);
     m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
     m_showMVButton = new QPushButton(this);
-    m_showMVButton->setGeometry(230,35,23,23);
+    m_showMVButton->setGeometry(230, 35, 23, 23);
     m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_showMVButton->setIcon(QIcon(":/share/showMV"));
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
     m_songShareButton = new QPushButton(this);
-    m_songShareButton->setGeometry(230,7,23,23);
+    m_songShareButton->setGeometry(230, 7, 23, 23);
     m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_songShareButton->setIcon(QIcon(":/image/songShare"));
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -108,7 +108,7 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
     QPixmap originPath(QString(MusicObject::getAppDir() + ART_DOWNLOAD + name + SKN_FILE));
     if(!originPath.isNull())
     {
-        m_artPicture->setPixmap(originPath.scaled(60,60));
+        m_artPicture->setPixmap(originPath.scaled(60, 60));
         return true;
     }
     return false;
@@ -128,16 +128,16 @@ void MusicSongsListPlayWidget::setParameter(const QString &name,const QString &p
     if(!showArtPicture(name.split('-').front().trimmed()) &&
        !showArtPicture(name.split('-').back().trimmed()) )
     {
-        m_artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60,60));
+        m_artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
     }
 }
 
 void MusicSongsListPlayWidget::setItemRename()
 {
-    m_renameLine = new MusicSongsToolItemRenamedWidget(0,m_songName->text(),this);
+    m_renameLine = new MusicSongsToolItemRenamedWidget(0, m_songName->text(), this);
     connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
-    m_renameLine->setFixedSize(182,25);
-    m_renameLine->setGeometry(65,5,182,25);
+    m_renameLine->setFixedSize(182, 25);
+    m_renameLine->setGeometry(65, 5, 182, 25);
     m_renameLine->show();
 }
 
