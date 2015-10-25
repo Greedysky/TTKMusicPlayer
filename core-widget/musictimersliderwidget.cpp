@@ -10,6 +10,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     setGeometry(0, 0, 376, 40);
 
     m_label = new QLabel(this);
+    m_label->move(5, 5);
     m_label->setFixedSize(35, 35);
     m_label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     m_label->hide();
