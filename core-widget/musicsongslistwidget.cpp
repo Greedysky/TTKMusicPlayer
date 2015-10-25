@@ -43,13 +43,11 @@ void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
     setRowCount(filenamelists.count());//reset row count
     for(int i=count; i<filenamelists.count(); i++)
     {
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i+1));
-        item->setTextColor(QColor(50, 50, 50));
-        item->setTextAlignment(Qt::AlignCenter);
+        QTableWidgetItem *item = new QTableWidgetItem();
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                filenamelists[i], Qt::ElideRight, 243));
+                                                filenamelists[i], Qt::ElideRight, 263));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);

@@ -19,7 +19,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    setSpacing(15);
+    setSpacing(20);
     setTransparent(50);
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
