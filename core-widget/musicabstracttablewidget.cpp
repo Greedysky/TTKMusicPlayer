@@ -64,7 +64,7 @@ void MusicAbstractTableWidget::listCellEntered(int row, int column)
     }
 
     it = item(row, column);
-    if(it != 0 && !it->isSelected() && !it->text().isEmpty())
+    if(it != NULL)
     {
        setRowColor(row, QColor(20, 20, 20, 40));
     }
