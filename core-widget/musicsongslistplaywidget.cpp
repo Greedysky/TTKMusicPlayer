@@ -4,14 +4,25 @@
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 
-MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
-    : QWidget(parent),m_renameLine(NULL)
+MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
+    : QWidget(parent), m_currentPlayIndex(index)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base,QBrush(QColor(0, 0, 0, 100)));
     setPalette(pal);
     setAutoFillBackground(true);
+}
 
+void MusicSongsEnterPlayWidget::enterEvent(QEvent *event)
+{
+    QWidget::enterEvent(event);
+    emit enterChanged(m_currentPlayIndex, -1);
+}
+
+
+MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
+    : MusicSongsEnterPlayWidget(index, parent), m_renameLine(NULL)
+{
     m_totalTime = "/00:00";
 
     m_artPicture = new QLabel(this);
@@ -31,10 +42,11 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(QWidget *parent)
     m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
     m_timeLabel->setGeometry(65, 37, 100, 20);
 
-    m_columnOne = new QWidget(this);
-    m_columnOne->setStyleSheet(MusicUIObject::MCustomStyle03);
-    m_columnThree = new QWidget(this);
-    m_columnThree->setStyleSheet(MusicUIObject::MCustomStyle03);
+    m_columnOne = new MusicSongsEnterPlayWidget(index, this);
+    m_columnThree = new MusicSongsEnterPlayWidget(index, this);
+    connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
+    connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
+    connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
 
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(204, 35, 23, 23);

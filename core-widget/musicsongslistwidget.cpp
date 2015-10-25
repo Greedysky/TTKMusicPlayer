@@ -8,6 +8,7 @@
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
+#include <QDebug>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
@@ -43,7 +44,7 @@ void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
     setRowCount(filenamelists.count());//reset row count
     for(int i=count; i<filenamelists.count(); i++)
     {
-        QTableWidgetItem *item = new QTableWidgetItem();
+        QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
@@ -434,9 +435,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 1);
     delete takeItem(m_playRowIndex, 2);
-    QTableWidgetItem *item = new QTableWidgetItem(QString::number(m_playRowIndex + 1));
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+    QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
     item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 243));
     item->setTextColor(QColor(50, 50, 50));
@@ -470,7 +469,7 @@ void MusicSongsListWidget::selectRow(int index)
     setItem(index, 2, new QTableWidgetItem);
 
     emit getMusicSongFileInformation(index, name, path);
-    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(this);
+    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
     connect(m_musicSongsPlayWidget, SIGNAL(renameFinished(QString)),
                                     SLOT(setItemRenameFinished(QString)));
     m_musicSongsPlayWidget->setParameter(name, path);

@@ -18,11 +18,30 @@
 
 class MusicSongsToolItemRenamedWidget;
 
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicSongsEnterPlayWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListPlayWidget(QWidget *parent = 0);
+    explicit MusicSongsEnterPlayWidget(int index, QWidget *parent = 0);
+
+    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
+    inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
+
+signals:
+    void enterChanged(int row, int column);
+
+protected:
+    void enterEvent(QEvent *event);
+    int m_currentPlayIndex;
+
+};
+
+
+class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public MusicSongsEnterPlayWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
     ~MusicSongsListPlayWidget();
 
     void getWidget(QWidget *&one, QWidget *&two) const;
@@ -45,8 +64,8 @@ protected:
     QLabel *m_songName;
     QLabel *m_timeLabel;
     QString m_totalTime;
-    QWidget *m_columnOne;
-    QWidget *m_columnThree;
+    MusicSongsEnterPlayWidget *m_columnOne;
+    MusicSongsEnterPlayWidget *m_columnThree;
     QPushButton *m_loveButton;
     QPushButton *m_deleteButton;
     QPushButton *m_showMVButton;
