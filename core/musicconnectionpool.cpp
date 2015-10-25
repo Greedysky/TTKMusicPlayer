@@ -129,7 +129,7 @@ void MusicConnectionPool::connect(const QString &from,
 
     if(from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget" )
     {
-        QObject::connect(first, SIGNAL(renameFinished(QString)), second,
+        QObject::connect(first, SIGNAL(videoButtonClicked(QString)), second,
                                 SLOT(musicVideoButtonSearched(QString)));
     }
 

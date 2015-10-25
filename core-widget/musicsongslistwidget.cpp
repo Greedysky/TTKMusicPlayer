@@ -469,8 +469,6 @@ void MusicSongsListWidget::selectRow(int index)
 
     emit getMusicSongFileInformation(index, name, path);
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    connect(m_musicSongsPlayWidget, SIGNAL(renameFinished(QString)),
-                                    SLOT(setItemRenameFinished(QString)));
     m_musicSongsPlayWidget->setParameter(name, path);
     QWidget *widget, *widget1;
     m_musicSongsPlayWidget->getWidget(widget, widget1);

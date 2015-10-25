@@ -44,9 +44,6 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_columnOne = new MusicSongsEnterPlayWidget(index, this);
     m_columnThree = new MusicSongsEnterPlayWidget(index, this);
-    connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
 
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(204, 35, 23, 23);
@@ -78,6 +75,10 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     connect(m_loveButton, SIGNAL(clicked()), parent, SLOT(addMusicSongToLovestListAt()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
+    connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
+    connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
+    connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
+    connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
 
     M_Connection->setValue("MusicSongsListPlayWidget", this);
@@ -164,5 +165,5 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 
 void MusicSongsListPlayWidget::showMVButtonClicked()
 {
-    emit renameFinished(m_songName->text());
+    emit videoButtonClicked(m_songName->text());
 }

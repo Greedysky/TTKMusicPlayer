@@ -52,6 +52,7 @@ public:
 
 signals:
     void renameFinished(const QString &text);
+    void videoButtonClicked(const QString &text);
 
 public slots:
     void setChangItemName(const QString &name);
