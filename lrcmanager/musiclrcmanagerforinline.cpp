@@ -1,5 +1,4 @@
 #include "musiclrcmanagerforinline.h"
-#include <QDebug>
 
 MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent) :
     MusicLRCManager(parent)
