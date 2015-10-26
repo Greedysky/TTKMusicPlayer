@@ -120,6 +120,7 @@ QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
 void MusicSongsSummarizied::selectRow(int index)
 {
     QToolBox::setCurrentIndex(m_currentIndexs);
+    setMusicPlayCount(index);
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
