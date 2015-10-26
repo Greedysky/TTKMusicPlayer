@@ -262,7 +262,7 @@ void MusicApplication::readXMLConfigFromText()
     }
     //////////////////////////////////////////////////////////////
     //Path configuration song
-    MMusicSongsList songs;
+    MusicSongsList songs;
     xml.readMusicSongsConfig(songs);
     m_musicSongTree->setMusicLists(songs);
     //////////////////////////////////////////////////////////////

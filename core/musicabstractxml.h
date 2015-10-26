@@ -14,6 +14,7 @@
 #include <QFile>
 
 #include "musiclibexportglobal.h"
+#include "musicsonginformation.h"
 #include "musicobject.h"
 
 class MUSIC_CORE_EXPORT MusicAbstractXml : public QObject

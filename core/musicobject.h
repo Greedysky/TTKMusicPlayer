@@ -75,14 +75,6 @@ typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsM
 typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
 typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
-typedef struct MusicSongs
-{
-    QStringList m_names;
-    QStringList m_paths;
-    MIntList m_playCount;
-}MusicSongs;
-typedef QList<MusicSongs>                  MMusicSongsList;   /* musiclist */
-
 namespace MusicObject
 {
     enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };

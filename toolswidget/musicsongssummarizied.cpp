@@ -66,21 +66,21 @@ MusicSongsSummarizied::~MusicSongsSummarizied()
     clearAllLists();
 }
 
-void MusicSongsSummarizied::setMusicLists(const MMusicSongsList &names)
+void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
 {
     m_musicFileNames = names;
     for(int i=0; i<m_musicFileNames.count(); ++i)
     {
-        m_mainSongLists[i]->musicSongsFileName(m_musicFileNames[i].m_names);
+        m_mainSongLists[i]->musicSongsFileName(getMusicSongsFileName(i));
     }
 }
 
 void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIndexs)
 {
-    QStringList t;
+    QStringList t, names = getMusicSongsFileName(currentIndex());
     for(int i=0; i<fileIndexs.count(); ++i)
     {
-        t.append(m_musicFileNames[currentIndex()].m_names[fileIndexs[i]]);
+        t.append(names[fileIndexs[i]]);
     }
     m_mainSongLists[currentIndex()]->clearAllItems();
     m_mainSongLists[currentIndex()]->musicSongsFileName(t);
@@ -90,12 +90,31 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
     for(int i=0; i<filelist.count(); ++i)
     {
-        QString splitString = filelist[i].split("/").last();
-        m_musicFileNames[0].m_names.append(splitString.left(splitString.lastIndexOf('.')));
+        m_musicFileNames[0] << MusicSong(filelist[i]);
     }
-    m_musicFileNames[0].m_paths.append(filelist);
-    m_musicFileNames[0].m_playCount.append(0);
-    m_mainSongLists[0]->musicSongsFileName(m_musicFileNames[0].m_names);
+    m_mainSongLists[0]->musicSongsFileName(getMusicSongsFileName(0));
+}
+
+QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
+{
+    QStringList list;
+    MusicSongs songs = m_musicFileNames[index];
+    for(int i=0; i<songs.count(); ++i)
+    {
+        list << songs[i].getMusicName();
+    }
+    return list;
+}
+
+QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
+{
+    QStringList list;
+    MusicSongs songs = m_musicFileNames[index];
+    for(int i=0; i<songs.count(); ++i)
+    {
+        list << songs[i].getMusicPath();
+    }
+    return list;
 }
 
 void MusicSongsSummarizied::selectRow(int index)
@@ -123,8 +142,8 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
-    int countNumber = m_musicFileNames[m_currentIndexs].m_playCount[index];
-    m_musicFileNames[m_currentIndexs].m_playCount[index] = ++countNumber;
+    int countNumber = m_musicFileNames[m_currentIndexs][index].getMusicPlayCount();
+    m_musicFileNames[m_currentIndexs][index].setMusicPlayCount(++countNumber);
 }
 
 void MusicSongsSummarizied::clearAllLists()
@@ -145,12 +164,11 @@ void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemo
     }
     for(int i=index.count() - 1; i>=0; --i)
     {
-        m_musicFileNames[currentIndex()].m_names.removeAt(index[i]);
+        MusicSong song = m_musicFileNames[currentIndex()].takeAt(index[i]);
         if(fileRemove)
         {
-            QFile::remove(m_musicFileNames[currentIndex()].m_paths[index[i]]);
+            QFile::remove(song.getMusicPath());
         }
-        m_musicFileNames[currentIndex()].m_paths.removeAt(index[i]);
     }
     if(currentIndex() == m_currentIndexs)
     {
@@ -173,10 +191,9 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    const QString path = m_musicFileNames[currentIndex()].m_paths[row];
-    m_musicFileNames[1].m_names.append(m_musicFileNames[currentIndex()].m_names[row]);
-    m_musicFileNames[1].m_paths.append(path);
-    m_mainSongLists[1]->musicSongsFileName(m_musicFileNames[1].m_names);
+    const QString path = m_musicFileNames[currentIndex()][row].getMusicPath();
+    m_musicFileNames[1] << MusicSong(path);
+    m_mainSongLists[1]->musicSongsFileName(getMusicSongsFileName(1));
     if(m_currentIndexs == 1)
     {
         emit updatePlayLists(path);
@@ -189,10 +206,8 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
 {
     const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
-    m_musicFileNames[2].m_names.append(name);
-    m_musicFileNames[2].m_paths.append(path);
-    m_musicFileNames[2].m_playCount.append(0);
-    m_mainSongLists[2]->musicSongsFileName(m_musicFileNames[2].m_names);
+    m_musicFileNames[2] << MusicSong(path, name);
+    m_mainSongLists[2]->musicSongsFileName(getMusicSongsFileName(2));
     if(m_currentIndexs == 2)
     {
         emit updatePlayLists(path);
@@ -273,7 +288,7 @@ void MusicSongsSummarizied::changeItemIcon()
 
 void MusicSongsSummarizied::currentTextChanged(int index, const QString &text)
 {
-    m_musicFileNames[currentIndex()].m_names[index] = text;
+    m_musicFileNames[currentIndex()][index].setMusicName(text);
 }
 
 void MusicSongsSummarizied::musicPlay(int index)
@@ -283,7 +298,7 @@ void MusicSongsSummarizied::musicPlay(int index)
 
 void MusicSongsSummarizied::musicOpenFileDir(int index)
 {
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicFileNames[currentIndex()].m_paths[index]).absolutePath(),
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(getMusicSongsFilePath(currentIndex())[index]).absolutePath(),
                                   QUrl::TolerantMode)))
     {
         MusicMessageBox message;
@@ -302,16 +317,16 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
 
 void MusicSongsSummarizied::setMusicSongInformation(int row, MusicSong &song)
 {
-    QStringList l = m_musicFileNames[currentIndex()].m_names;
+    QStringList l = getMusicSongsFileName(currentIndex());
     if(row >= l.count())
     {
         return;
     }
 
     song.setMusicName(l[row]);
-    QFileInfo f(m_musicFileNames[currentIndex()].m_paths[row]);
+    QFileInfo f(getMusicSongsFilePath(currentIndex())[row]);
     song.setMusicSize(f.size());
-    song.setMusicPlayCount(m_musicFileNames[currentIndex()].m_playCount[row]);
+    song.setMusicPlayCount(m_musicFileNames[currentIndex()][row].getMusicPlayCount());
     song.setMusicType(f.suffix());
 }
 
@@ -319,28 +334,26 @@ void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString &name, 
 {
     int index;
     st ? index = m_currentIndexs : index = currentIndex();
-    QStringList l = m_musicFileNames[index].m_names;
+    QStringList l = getMusicSongsFileName(index);
     if(row >= l.count())
     {
         return;
     }
 
     l.isEmpty() ? name = "" : name = l[row];
-    l = m_musicFileNames[index].m_paths;
+    l = getMusicSongsFilePath(index);
     l.isEmpty() ? path = "" : path = l[row];
 }
 
 void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
 {
-    QStringList *names = &m_musicFileNames[currentIndex()].m_names;
-    QStringList *paths = &m_musicFileNames[currentIndex()].m_paths;
+    MusicSongs *names = &m_musicFileNames[currentIndex()];
 
     if(before > after)
     {
         for(int i=before; i>after; --i)
         {
             names->swap(i, i - 1);
-            paths->swap(i, i - 1);
         }
     }
     else
@@ -348,14 +361,13 @@ void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play,
         for(int i=before; i<after; ++i)
         {
             names->swap(i, i + 1);
-            paths->swap(i, i + 1);
         }
     }
 
-    list = *names;
+    list = getMusicSongsFileName(currentIndex());
     if(currentIndex() == m_currentIndexs)
     {
-        emit updateMediaLists(*paths, play);
+        emit updateMediaLists(getMusicSongsFilePath(m_currentIndexs), play);
     }
 }
 

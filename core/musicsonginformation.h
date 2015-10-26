@@ -16,8 +16,12 @@ class MUSIC_CORE_EXPORT MusicSong
 {
 public:
     explicit MusicSong();
-    explicit MusicSong(const QString &musicName,
-                       const QString &musicPath);
+    explicit MusicSong(const QString &musicPath,
+                       const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, int playCount,
+                       const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, const QString &type,
+                       int playCount, const QString &musicName = QString());
 
     QString getMusicArtistFront() const;
     QString getMusicArtistBack() const;
@@ -45,5 +49,8 @@ protected:
     int m_musicPlayCount;
 
 };
+
+typedef QList<MusicSong>    MusicSongs;
+typedef QList<MusicSongs>   MusicSongsList;
 
 #endif // QMUSICSONG_H

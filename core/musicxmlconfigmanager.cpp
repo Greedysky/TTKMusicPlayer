@@ -9,7 +9,7 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
 
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MMusicSongsList &musics)
+void MusicXMLConfigManager::readMusicSongsConfig(MusicSongsList &musics)
 {
     musics << readMusicFilePath("fileNormalPath")
            << readMusicFilePath("fileLovestPath")
@@ -27,7 +27,7 @@ void MusicXMLConfigManager::readMusicSongsConfig(MMusicSongsList &musics)
 //    }
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicSongsList &musics)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
 {
     if( musics.isEmpty() )
     {
@@ -42,9 +42,9 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicSongsList &musics)
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("QMusicPlayer");
     //Class A
-    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", musics[0].m_names.count());
-    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", musics[1].m_names.count());
-    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", musics[2].m_names.count());
+    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", musics[0].count());
+    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", musics[1].count());
+    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", musics[2].count());
 
     //extend playlist init here
 //    for(int i=3; i<fileNamesList.count(); ++i)
@@ -56,23 +56,23 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MMusicSongsList &musics)
 
     //Class B
 
-    for(int i=0; i<musics[0].m_names.count(); ++i)
+    for(int i=0; i<musics[0].count(); ++i)
     {
         writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>()<<musics[0].m_names[i]<<musics[0].m_playCount[i],
-                                 musics[0].m_paths[i]);
+                                 QList<QVariant>() << musics[0][i].getMusicName() << musics[0][i].getMusicPlayCount(),
+                                 musics[0][i].getMusicPath());
     }
-    for(int i=0; i<musics[1].m_names.count(); ++i)
+    for(int i=0; i<musics[1].count(); ++i)
     {
         writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>()<<musics[1].m_names[i]<<musics[1].m_playCount[i],
-                                 musics[1].m_paths[i]);
+                                 QList<QVariant>() << musics[1][i].getMusicName() << musics[1][i].getMusicPlayCount(),
+                                 musics[1][i].getMusicPath());
     }
-    for(int i=0; i<musics[2].m_names.count(); ++i)
+    for(int i=0; i<musics[2].count(); ++i)
     {
         writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>()<<musics[2].m_names[i]<<musics[2].m_playCount[i],
-                                 musics[2].m_paths[i]);
+                                 QList<QVariant>() << musics[2][i].getMusicName() << musics[2][i].getMusicPlayCount(),
+                                 musics[2][i].getMusicPath());
     }
 
     //Write to file
@@ -258,18 +258,14 @@ void MusicXMLConfigManager::writeXMLConfig()
 MusicSongs MusicXMLConfigManager::readMusicFilePath(const QString &value) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
-    QStringList names, paths;
-    MIntList playCounts;
+
+    MusicSongs songs;
     for(int i=0; i<nodelist.count(); i++)
     {
-        names << nodelist.at(i).toElement().attribute("name");
-        paths << nodelist.at(i).toElement().text();
-        playCounts << nodelist.at(i).toElement().attribute("playCount").toInt();
+        songs << MusicSong(nodelist.at(i).toElement().text(),
+                           nodelist.at(i).toElement().attribute("playCount").toInt(),
+                           nodelist.at(i).toElement().attribute("name"));
     }
-    MusicSongs songs;
-    songs.m_names = names;
-    songs.m_paths = paths;
-    songs.m_playCount = playCounts;
     return songs;
 }
 

@@ -21,8 +21,8 @@ public:
     inline bool readXMLConfig() { return readConfig(MusicObject::getAppDir() + COFIGPATH); }
     inline bool readMusicXMLConfig(){ return readConfig(MusicObject::getAppDir() + MUSICPATH); }
     void writeXMLConfig();
-    void writeMusicSongsConfig(const MMusicSongsList &musics);
-    void readMusicSongsConfig(MMusicSongsList &musics);
+    void writeMusicSongsConfig(const MusicSongsList &musics);
+    void readMusicSongsConfig(MusicSongsList &musics);
     inline int readMusicPlayModeConfig() const
     { return readXmlAttributeByTagNameValue("playMode").toInt(); }
     inline int readMusicPlayVolumeConfig() const
