@@ -31,7 +31,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     for(int i=0; i<3; ++i)
     {
         connect(m_mainSongLists[i], SIGNAL(cellDoubleClicked(int,int)), parent, SLOT(musicPlayIndex(int,int)));
-        connect(m_mainSongLists[i], SIGNAL(musicPlay(int)), this, SLOT(musicPlay(int)));
+        connect(m_mainSongLists[i], SIGNAL(musicPlay(int,int)), parent, SLOT(musicPlayIndex(int,int)));
         connect(m_mainSongLists[i], SIGNAL(musicPlayOrder()), parent, SLOT(musicPlayOrder()));
         connect(m_mainSongLists[i], SIGNAL(musicPlayRandom()), parent, SLOT(musicPlayRandom()));
         connect(m_mainSongLists[i], SIGNAL(musicPlayListLoop()), parent, SLOT(musicPlayListLoop()));
@@ -48,7 +48,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     connect(m_mainSongLists[2], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
 
     connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged(int)));
-    connect(this, SIGNAL(musicPlay(int,int)), parent, SLOT(musicPlayIndex(int,int)));
 
     M_Connection->setValue("MusicSongsSummarizied", this);
     M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
@@ -114,7 +113,6 @@ QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
 void MusicSongsSummarizied::selectRow(int index)
 {
     QToolBox::setCurrentIndex(m_currentIndexs);
-    setMusicPlayCount(index);
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
@@ -137,8 +135,12 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
-    int countNumber = m_musicFileNames[m_currentIndexs][index].getMusicPlayCount();
-    m_musicFileNames[m_currentIndexs][index].setMusicPlayCount(++countNumber);
+    MusicSongs songs = m_musicFileNames[m_currentIndexs];
+    if(!songs.isEmpty())
+    {
+        int countNumber = songs[index].getMusicPlayCount();
+        songs[index].setMusicPlayCount(++countNumber);
+    }
 }
 
 void MusicSongsSummarizied::clearAllLists()
@@ -281,11 +283,6 @@ void MusicSongsSummarizied::changeItemIcon()
     setItemIcon(currentIndex(), QIcon(":/image/arrowdown"));
 }
 
-void MusicSongsSummarizied::musicPlay(int index)
-{
-    emit musicPlay(index,index);
-}
-
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
 {
     foreach(MusicSongsListWidget *m, m_mainSongLists)
@@ -297,7 +294,6 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
 void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
 {
     MusicSongs *names = &m_musicFileNames[currentIndex()];
-
     if(before > after)
     {
         for(int i=before; i>after; --i)

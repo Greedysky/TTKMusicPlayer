@@ -41,7 +41,6 @@ public:
     void setPlaybackMode(MusicObject::SongPlayType mode) const;
 
 signals:
-    void musicPlay(int row, int col);
     void deleteItemAt(MIntList list);
     void updatePlayLists(const QString &list);
     void showCurrentSong(int index);
@@ -57,9 +56,7 @@ public slots:
     void changItemName();
     void setChangItemName(const QString &name);
     void currentIndexChanged(int index);
-    void musicPlay(int index);
-    void setMusicIndexSwaped(int before, int after, int play,
-                             QStringList &list);
+    void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
     void updateArtPicture();
     void setTransparent(int alpha);
     void setMusicPlayCount(int index);

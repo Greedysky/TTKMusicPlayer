@@ -37,10 +37,7 @@ public:
     void replacePlayWidgetRow();
 
 signals:
-    void deleteItemAt(const MIntList &index, bool fileRemove);
-    void musicSongToLovestListAt(int row);
-
-    void musicPlay(int index);
+    void musicPlay(int row, int col);
     void musicPlayOrder();
     void musicPlayRandom();
     void musicPlayListLoop();
@@ -49,11 +46,13 @@ signals:
     void musicAddNewFiles();
     void musicAddNewDir();
 
+    void deleteItemAt(const MIntList &index, bool fileRemove);
+    void musicSongToLovestListAt(int row);
     void getMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
 
 public slots:
-    void musicPlay();
+    void musicPlayClicked();
     void setDeleteItemAt();
     void setDeleteItemAll();
     void setDeleteItemWithFile();

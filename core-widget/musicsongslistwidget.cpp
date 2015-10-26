@@ -87,7 +87,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
 
     rightClickMenu.addMenu(&musicPlaybackMode);
     QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SIGNAL(musicPlayOrder()));
@@ -368,13 +368,13 @@ void MusicSongsListWidget::musicOpenFileDir()
     }
 }
 
-void MusicSongsListWidget::musicPlay()
+void MusicSongsListWidget::musicPlayClicked()
 {
     if(rowCount() == 0 || currentRow() < 0 )
     {
         return;
     }
-    emit musicPlay(currentRow());
+    emit musicPlay(currentRow(), 0);
 }
 
 void MusicSongsListWidget::musicMakeRingWidget()
