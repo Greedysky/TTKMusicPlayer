@@ -252,14 +252,6 @@ void MusicSongsListWidget::setDeleteItemAt()
         removeRow(deleteList[i]); //Delete the current row
     }
 
-    for(int i=0; i<this->rowCount(); i++)
-    {   //Re insertion sort
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(i + 1));
-        item->setTextColor(QColor(50, 50, 50));
-        item->setTextAlignment(Qt::AlignCenter);
-        delete this->takeItem(i, 0);//Remove the original object delete
-        this->setItem(i, 0, item); //insert
-    }
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
