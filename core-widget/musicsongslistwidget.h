@@ -26,6 +26,8 @@ public:
     explicit MusicSongsListWidget(QWidget *parent = 0);
     virtual ~MusicSongsListWidget();
 
+    void setSongsFileName(MusicSongs *songs);
+
     void musicSongsFileName(const QStringList &filenamelists);
     void clearAllItems();
     void selectRow(int index);
@@ -37,7 +39,6 @@ public:
 signals:
     void deleteItemAt(const MIntList &index, bool fileRemove);
     void musicSongToLovestListAt(int row);
-    void currentTextChanged(int index, const QString &text);
 
     void musicPlay(int index);
     void musicPlayOrder();
@@ -47,11 +48,7 @@ signals:
     void musicPlayItemOnce();
     void musicAddNewFiles();
     void musicAddNewDir();
-    void musicOpenFileDir(int index);
 
-    void getMusicSongInformation(int row, MusicSong &song);
-    void getMusicSongFileInformation(int row, QString &name,
-                                     QString &path, bool st = true);
     void getMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
 
@@ -88,6 +85,7 @@ protected:
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
 
+    MusicSongs *m_musicSongs;
     MusicSongsListItemInfoWidget *m_musicSongsListItem;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 

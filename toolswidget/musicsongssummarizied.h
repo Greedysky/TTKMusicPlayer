@@ -57,12 +57,7 @@ public slots:
     void changItemName();
     void setChangItemName(const QString &name);
     void currentIndexChanged(int index);
-    void currentTextChanged(int index, const QString &text);
-    void musicOpenFileDir(int index);
     void musicPlay(int index);
-    void setMusicSongInformation(int row, MusicSong &song);
-    void setMusicSongFileInformation(int row, QString &name,
-                                     QString &path, bool st = true);
     void setMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
     void updateArtPicture();

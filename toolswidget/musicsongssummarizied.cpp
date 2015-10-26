@@ -10,7 +10,6 @@
 #include <QTableWidgetItem>
 #include <QFileInfo>
 #include <QLayout>
-#include <QDesktopServices>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(NULL)
@@ -41,12 +40,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         connect(m_mainSongLists[i], SIGNAL(musicAddNewFiles()), parent, SLOT(musicImportSongsOnlyFile()));
         connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
         connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
-        connect(m_mainSongLists[i], SIGNAL(currentTextChanged(int,QString)), SLOT(currentTextChanged(int,QString)));
-        connect(m_mainSongLists[i], SIGNAL(musicOpenFileDir(int)), SLOT(musicOpenFileDir(int)));
-        connect(m_mainSongLists[i], SIGNAL(getMusicSongInformation(int,MusicSong&)),
-                                    SLOT(setMusicSongInformation(int,MusicSong&)));
-        connect(m_mainSongLists[i], SIGNAL(getMusicSongFileInformation(int,QString&,QString&,bool)),
-                                    SLOT(setMusicSongFileInformation(int,QString&,QString&,bool)));
         connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
         connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
@@ -72,6 +65,7 @@ void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
     for(int i=0; i<m_musicFileNames.count(); ++i)
     {
         m_mainSongLists[i]->musicSongsFileName(getMusicSongsFileName(i));
+        m_mainSongLists[i]->setSongsFileName(&m_musicFileNames[i]);
     }
 }
 
@@ -287,25 +281,9 @@ void MusicSongsSummarizied::changeItemIcon()
     setItemIcon(currentIndex(), QIcon(":/image/arrowdown"));
 }
 
-void MusicSongsSummarizied::currentTextChanged(int index, const QString &text)
-{
-    m_musicFileNames[currentIndex()][index].setMusicName(text);
-}
-
 void MusicSongsSummarizied::musicPlay(int index)
 {
     emit musicPlay(index,index);
-}
-
-void MusicSongsSummarizied::musicOpenFileDir(int index)
-{
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(getMusicSongsFilePath(currentIndex())[index]).absolutePath(),
-                                  QUrl::TolerantMode)))
-    {
-        MusicMessageBox message;
-        message.setText(tr("The origin one does not exsit!"));
-        message.exec();
-    }
 }
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
@@ -314,36 +292,6 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
     {
         m->setPlaybackMode(mode);
     }
-}
-
-void MusicSongsSummarizied::setMusicSongInformation(int row, MusicSong &song)
-{
-    QStringList l = getMusicSongsFileName(currentIndex());
-    if(row >= l.count())
-    {
-        return;
-    }
-
-    song.setMusicName(l[row]);
-    QFileInfo f(getMusicSongsFilePath(currentIndex())[row]);
-    song.setMusicSize(f.size());
-    song.setMusicPlayCount(m_musicFileNames[currentIndex()][row].getMusicPlayCount());
-    song.setMusicType(f.suffix());
-}
-
-void MusicSongsSummarizied::setMusicSongFileInformation(int row, QString &name, QString &path, bool st)
-{
-    int index;
-    st ? index = m_currentIndexs : index = currentIndex();
-    QStringList l = getMusicSongsFileName(index);
-    if(row >= l.count())
-    {
-        return;
-    }
-
-    l.isEmpty() ? name = "" : name = l[row];
-    l = getMusicSongsFilePath(index);
-    l.isEmpty() ? path = "" : path = l[row];
 }
 
 void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)

@@ -8,6 +8,7 @@
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
+#include <QDesktopServices>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
     MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
@@ -35,6 +36,11 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_timerStay;
     delete m_musicSongsListItem;
     delete m_musicSongsPlayWidget;
+}
+
+void MusicSongsListWidget::setSongsFileName(MusicSongs *songs)
+{
+    m_musicSongs = songs;
 }
 
 void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
@@ -131,7 +137,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     //the two if function to deal with
     if(m_renameActived)
     {
-        emit currentTextChanged(m_renameItem->row(),m_renameItem->text());
+        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
         m_renameItem->setText(QFontMetrics(font()).elidedText(
                        m_renameItem->text(), Qt::ElideRight, 243));
         m_renameActived = false;
@@ -291,9 +297,7 @@ void MusicSongsListWidget::showTimeOut()
 {
     if(m_musicSongsListItem)
     {
-        MusicSong musicinfo;
-        emit getMusicSongInformation(m_previousColorRow, musicinfo);
-        m_musicSongsListItem->setMusicSongInformation(musicinfo);
+        m_musicSongsListItem->setMusicSongInformation((*m_musicSongs)[m_previousColorRow]);
         m_musicSongsListItem->setGeometry(QCursor::pos().x() + 50,QCursor::pos().y(), 264, 108);
         m_musicSongsListItem->show();
     }
@@ -345,7 +349,7 @@ void MusicSongsListWidget::setChangSongName()
 
 void MusicSongsListWidget::setItemRenameFinished(const QString &name)
 {
-    emit currentTextChanged(m_playRowIndex, name);
+    (*m_musicSongs)[m_playRowIndex].setMusicName(name);
 }
 
 void MusicSongsListWidget::musicOpenFileDir()
@@ -354,7 +358,14 @@ void MusicSongsListWidget::musicOpenFileDir()
     {
         return;
     }
-    emit musicOpenFileDir(currentRow());
+
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicSongs->at(currentRow()).
+                                                 getMusicPath()).absolutePath(), QUrl::TolerantMode)))
+    {
+        MusicMessageBox message;
+        message.setText(tr("The origin one does not exsit!"));
+        message.exec();
+    }
 }
 
 void MusicSongsListWidget::musicPlay()
@@ -387,9 +398,7 @@ void MusicSongsListWidget::musicFileInformation()
         return;
     }
     MusicFileInformationWidget file(this);
-    QString name, path;
-    emit getMusicSongFileInformation(currentRow(), name, path, false);
-    file.setFileInformation(path);
+    file.setFileInformation( m_musicSongs->at(currentRow()).getMusicPath() );
     file.exec();
 }
 
@@ -411,12 +420,12 @@ void MusicSongsListWidget::updateArtPicture() const
 
 void MusicSongsListWidget::replacePlayWidgetRow()
 {
-    QString name,path;
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
         m_playRowIndex = 0;
     }
-    emit getMusicSongFileInformation(m_playRowIndex, name, path);
+
+    QString name = m_musicSongs->at(m_playRowIndex).getMusicName();
 
     setRowHeight(m_playRowIndex, 30);
     removeCellWidget(m_playRowIndex, 0);
@@ -446,12 +455,9 @@ void MusicSongsListWidget::selectRow(int index)
     {
         return;
     }
-
     QTableWidget::selectRow(index);
-    QString name,path;
 
     replacePlayWidgetRow();
-
     delete takeItem(index, 0);
     delete takeItem(index, 1);
     delete takeItem(index, 2);
@@ -459,7 +465,9 @@ void MusicSongsListWidget::selectRow(int index)
     setItem(index, 1, new QTableWidgetItem);
     setItem(index, 2, new QTableWidgetItem);
 
-    emit getMusicSongFileInformation(index, name, path);
+    QString name = m_musicSongs->at(index).getMusicName();
+    QString path = m_musicSongs->at(index).getMusicPath();
+
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
     m_musicSongsPlayWidget->setParameter(name, path);
     QWidget *widget, *widget1;
