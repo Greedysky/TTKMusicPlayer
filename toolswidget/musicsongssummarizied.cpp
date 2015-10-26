@@ -8,7 +8,6 @@
 
 #include <QScrollBar>
 #include <QTableWidgetItem>
-#include <QFileInfo>
 #include <QLayout>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)

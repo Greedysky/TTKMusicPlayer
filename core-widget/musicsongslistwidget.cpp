@@ -9,9 +9,9 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
-
-MusicSongsListWidget::MusicSongsListWidget(QWidget *parent) :
-    MusicAbstractTableWidget(parent),m_musicSongsListItem(NULL),
+#include <QDebug>
+MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent), m_musicSongsListItem(NULL),
     m_musicSongsPlayWidget(NULL)
 {
     m_deleteItemWithFile = false;
@@ -425,7 +425,11 @@ void MusicSongsListWidget::replacePlayWidgetRow()
         m_playRowIndex = 0;
     }
 
-    QString name = m_musicSongs->at(m_playRowIndex).getMusicName();
+    QString name;
+    if(!m_musicSongs->isEmpty())
+    {
+        name = m_musicSongs->at(m_playRowIndex).getMusicName();
+    }
 
     setRowHeight(m_playRowIndex, 30);
     removeCellWidget(m_playRowIndex, 0);
@@ -465,8 +469,12 @@ void MusicSongsListWidget::selectRow(int index)
     setItem(index, 1, new QTableWidgetItem);
     setItem(index, 2, new QTableWidgetItem);
 
-    QString name = m_musicSongs->at(index).getMusicName();
-    QString path = m_musicSongs->at(index).getMusicPath();
+    QString name, path;
+    if(!m_musicSongs->isEmpty())
+    {
+        name = m_musicSongs->at(index).getMusicName();
+        path = m_musicSongs->at(index).getMusicPath();
+    }
 
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
     m_musicSongsPlayWidget->setParameter(name, path);

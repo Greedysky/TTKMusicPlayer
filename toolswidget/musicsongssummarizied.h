@@ -47,15 +47,15 @@ signals:
     void updateMediaLists(const QStringList &list, int index);
 
 public slots:
-    void setCurrentIndex();
-    void addMusicSongToLovestListAt(int row);
-    void addNetMusicSongToList(const QString &name);
-    void setDeleteItemAt(const MIntList &index, bool fileRemove);
     void addNewItem();
     void deleteItem();
     void changItemName();
-    void setChangItemName(const QString &name);
+    void setCurrentIndex();
     void currentIndexChanged(int index);
+    void addMusicSongToLovestListAt(int row);
+    void addNetMusicSongToList(const QString &name);
+    void setDeleteItemAt(const MIntList &index, bool fileRemove);
+    void setChangItemName(const QString &name);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
     void updateArtPicture();
     void setTransparent(int alpha);
