@@ -9,7 +9,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
-#include <QDebug>
+
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsListItem(NULL),
     m_musicSongsPlayWidget(NULL)
