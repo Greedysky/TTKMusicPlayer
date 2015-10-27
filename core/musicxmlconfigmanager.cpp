@@ -58,21 +58,21 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
 
     for(int i=0; i<musics[0].count(); ++i)
     {
-        writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>() << musics[0][i].getMusicName() << musics[0][i].getMusicPlayCount(),
-                                 musics[0][i].getMusicPath());
+        writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount" << "time",
+                                 QList<QVariant>() << musics[0][i].getMusicName() << musics[0][i].getMusicPlayCount()
+                                                   << musics[0][i].getMusicTime(), musics[0][i].getMusicPath());
     }
     for(int i=0; i<musics[1].count(); ++i)
     {
-        writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>() << musics[1][i].getMusicName() << musics[1][i].getMusicPlayCount(),
-                                 musics[1][i].getMusicPath());
+        writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount" << "time",
+                                 QList<QVariant>() << musics[1][i].getMusicName() << musics[1][i].getMusicPlayCount()
+                                                   << musics[1][i].getMusicTime(), musics[0][i].getMusicPath());
     }
     for(int i=0; i<musics[2].count(); ++i)
     {
-        writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount",
-                                 QList<QVariant>() << musics[2][i].getMusicName() << musics[2][i].getMusicPlayCount(),
-                                 musics[2][i].getMusicPath());
+        writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount" << "time",
+                                 QList<QVariant>() << musics[2][i].getMusicName() << musics[2][i].getMusicPlayCount()
+                                                   << musics[2][i].getMusicTime(), musics[0][i].getMusicPath());
     }
 
     //Write to file
@@ -264,6 +264,7 @@ MusicSongs MusicXMLConfigManager::readMusicFilePath(const QString &value) const
     {
         songs << MusicSong(nodelist.at(i).toElement().text(),
                            nodelist.at(i).toElement().attribute("playCount").toInt(),
+                           nodelist.at(i).toElement().attribute("time"),
                            nodelist.at(i).toElement().attribute("name"));
     }
     return songs;

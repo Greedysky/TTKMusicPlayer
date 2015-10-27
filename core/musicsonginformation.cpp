@@ -49,6 +49,7 @@ MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &tim
     : MusicSong(musicPath, playCount, musicName)
 {
     m_musicTime = time;
+    m_musicTime.chop(4); //just remove :XXX
 }
 
 QString MusicSong::getMusicArtistFront() const

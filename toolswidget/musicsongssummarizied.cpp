@@ -5,6 +5,7 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
+#include "musicfileinformation.h"
 
 #include <QScrollBar>
 #include <QTableWidgetItem>
@@ -81,7 +82,9 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
     for(int i=0; i<filelist.count(); ++i)
     {
-        m_musicFileNames[0] << MusicSong(filelist[i]);
+        MusicFileInformation info;
+        info.readFile(filelist[i]);
+        m_musicFileNames[0] << MusicSong(filelist[i], 0, info.getLengthString(), QString());
     }
     m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
 }
