@@ -41,23 +41,23 @@ MusicSongsListWidget::~MusicSongsListWidget()
 void MusicSongsListWidget::setSongsFileName(MusicSongs *songs)
 {
     m_musicSongs = songs;
+    updateSongsFileName(*songs);
 }
 
-void MusicSongsListWidget::musicSongsFileName(const QStringList &filenamelists)
+void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
 {
     int count = rowCount();
-    setRowCount(filenamelists.count());//reset row count
-    for(int i=count; i<filenamelists.count(); i++)
+    setRowCount(songs.count());    //reset row count
+    for(int i=count; i<songs.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                filenamelists[i], Qt::ElideRight, 263));
+                                                  songs[i].getMusicName(), Qt::ElideRight, 263));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
-
         //add a delete icon
                           item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
         item->setTextAlignment(Qt::AlignCenter);
@@ -359,8 +359,8 @@ void MusicSongsListWidget::musicOpenFileDir()
         return;
     }
 
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicSongs->at(currentRow()).
-                                                 getMusicPath()).absolutePath(), QUrl::TolerantMode)))
+    QString path = !m_musicSongs->isEmpty() ?m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    if(!QDesktopServices::openUrl(QUrl(QFileInfo(path).absolutePath(), QUrl::TolerantMode)))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exsit!"));
@@ -397,8 +397,10 @@ void MusicSongsListWidget::musicFileInformation()
     {
         return;
     }
+
     MusicFileInformationWidget file(this);
-    file.setFileInformation( m_musicSongs->at(currentRow()).getMusicPath() );
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    file.setFileInformation(path);
     file.exec();
 }
 
@@ -424,12 +426,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     {
         m_playRowIndex = 0;
     }
-
-    QString name;
-    if(!m_musicSongs->isEmpty())
-    {
-        name = m_musicSongs->at(m_playRowIndex).getMusicName();
-    }
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
 
     setRowHeight(m_playRowIndex, 30);
     removeCellWidget(m_playRowIndex, 0);
@@ -469,12 +466,8 @@ void MusicSongsListWidget::selectRow(int index)
     setItem(index, 1, new QTableWidgetItem);
     setItem(index, 2, new QTableWidgetItem);
 
-    QString name, path;
-    if(!m_musicSongs->isEmpty())
-    {
-        name = m_musicSongs->at(index).getMusicName();
-        path = m_musicSongs->at(index).getMusicPath();
-    }
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
 
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
     m_musicSongsPlayWidget->setParameter(name, path);

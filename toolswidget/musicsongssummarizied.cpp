@@ -9,6 +9,7 @@
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
+#include <QDebug>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(NULL)
@@ -62,20 +63,19 @@ void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
     m_musicFileNames = names;
     for(int i=0; i<m_musicFileNames.count(); ++i)
     {
-        m_mainSongLists[i]->musicSongsFileName(getMusicSongsFileName(i));
         m_mainSongLists[i]->setSongsFileName(&m_musicFileNames[i]);
     }
 }
 
 void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIndexs)
 {
-    QStringList t, names = getMusicSongsFileName(currentIndex());
+    MusicSongs songs;
     for(int i=0; i<fileIndexs.count(); ++i)
     {
-        t.append(names[fileIndexs[i]]);
+        songs << m_musicFileNames[currentIndex()][fileIndexs[i]];
     }
     m_mainSongLists[currentIndex()]->clearAllItems();
-    m_mainSongLists[currentIndex()]->musicSongsFileName(t);
+    m_mainSongLists[currentIndex()]->updateSongsFileName(songs);
 }
 
 void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
@@ -84,7 +84,7 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     {
         m_musicFileNames[0] << MusicSong(filelist[i]);
     }
-    m_mainSongLists[0]->musicSongsFileName(getMusicSongsFileName(0));
+    m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
 }
 
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
@@ -189,7 +189,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
     const QString path = m_musicFileNames[currentIndex()][row].getMusicPath();
     m_musicFileNames[1] << MusicSong(path);
-    m_mainSongLists[1]->musicSongsFileName(getMusicSongsFileName(1));
+    m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
     if(m_currentIndexs == 1)
     {
         emit updatePlayLists(path);
@@ -203,7 +203,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
 {
     const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
     m_musicFileNames[2] << MusicSong(path, name);
-    m_mainSongLists[2]->musicSongsFileName(getMusicSongsFileName(2));
+    m_mainSongLists[2]->updateSongsFileName(m_musicFileNames[2]);
     if(m_currentIndexs == 2)
     {
         emit updatePlayLists(path);

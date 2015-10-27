@@ -14,7 +14,6 @@
 #include "musicsonginformation.h"
 #include "musicabstracttablewidget.h"
 
-class QAction;
 class QTimer;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
@@ -27,9 +26,9 @@ public:
     virtual ~MusicSongsListWidget();
 
     void setSongsFileName(MusicSongs *songs);
-
-    void musicSongsFileName(const QStringList &filenamelists);
+    void updateSongsFileName(const MusicSongs &songs);
     void clearAllItems();
+
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
     void setTimerLabel(const QString &t) const;
