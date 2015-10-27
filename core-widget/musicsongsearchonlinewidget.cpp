@@ -306,7 +306,7 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 {
     m_searchTableWidget->startSearchQuery(name);
-    m_textLabel->setText(tr(" find <font color=red> %1 </font> result")
+    m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
                          .arg(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 170)));
 }
 
