@@ -22,6 +22,9 @@ public:
                        const QString &musicName = QString());
     explicit MusicSong(const QString &musicPath, const QString &type,
                        int playCount, const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, const QString &type,
+                       const QString &time, int playCount,
+                       const QString &musicName = QString());
 
     QString getMusicArtistFront() const;
     QString getMusicArtistBack() const;
@@ -35,6 +38,9 @@ public:
     inline void setMusicType(const QString &t) { m_musicType = t;}
     inline QString getMusicType() const { return m_musicType;}
 
+    inline void setMusicTime(const QString &t) { m_musicTime = t;}
+    inline QString getMusicTime() const { return m_musicTime;}
+
     inline void setMusicSize(const qint64 s) { m_musicSize = s;}
     inline qint64 getMusicSize() const { return m_musicSize;}
 
@@ -42,9 +48,7 @@ public:
     inline int getMusicPlayCount() const { return m_musicPlayCount;}
 
 protected:
-    QString m_musicName;
-    QString m_musicPath;
-    QString m_musicType;
+    QString m_musicName, m_musicPath, m_musicType, m_musicTime;
     qint64  m_musicSize;
     int m_musicPlayCount;
 

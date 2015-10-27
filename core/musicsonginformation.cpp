@@ -36,6 +36,14 @@ MusicSong::MusicSong(const QString &musicPath, const QString &type,
     m_musicType = type;
 }
 
+MusicSong::MusicSong(const QString &musicPath, const QString &type,
+                     const QString &time, int playCount,
+                     const QString &musicName)
+    : MusicSong(musicPath, type, playCount, musicName)
+{
+    m_musicTime = time;
+}
+
 QString MusicSong::getMusicArtistFront() const
 {
     return m_musicName.split('-').front().trimmed();
