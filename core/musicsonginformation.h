@@ -25,6 +25,8 @@ public:
     explicit MusicSong(const QString &musicPath, const QString &type,
                        const QString &time, int playCount,
                        const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, int playCount, const QString &time,
+                       const QString &musicName);
 
     QString getMusicArtistFront() const;
     QString getMusicArtistBack() const;
