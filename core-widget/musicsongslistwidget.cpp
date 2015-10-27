@@ -297,8 +297,10 @@ void MusicSongsListWidget::showTimeOut()
 {
     if(m_musicSongsListItem)
     {
-        m_musicSongsListItem->setMusicSongInformation((*m_musicSongs)[m_previousColorRow]);
-        m_musicSongsListItem->setGeometry(QCursor::pos().x() + 50,QCursor::pos().y(), 264, 108);
+        MusicSong song = (*m_musicSongs)[m_previousColorRow];
+        song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
+        m_musicSongsListItem->setMusicSongInformation( song );
+        m_musicSongsListItem->setGeometry(QCursor::pos().x() + 50, QCursor::pos().y(), 264, 108);
         m_musicSongsListItem->show();
     }
 }

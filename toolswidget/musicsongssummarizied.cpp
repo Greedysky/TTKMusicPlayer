@@ -9,7 +9,6 @@
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
-#include <QDebug>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(NULL)

@@ -1,5 +1,4 @@
 #include "musicsonginformation.h"
-#include <QFileInfo>
 
 MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
@@ -14,7 +13,6 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
 {
     m_musicPath = musicPath;
     m_musicName = musicName;
-    m_musicSize = QFileInfo(m_musicPath).size();
 
     QString splitString = musicPath.split("/").last();
     if(m_musicName.isEmpty())
