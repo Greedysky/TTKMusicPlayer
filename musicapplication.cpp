@@ -745,11 +745,26 @@ void MusicApplication::musicCurrentPlayLocation()
 
 void MusicApplication::setDeleteItemAt(const MIntList &index)
 {
+    if(index.isEmpty())
+    {
+        return;
+    }
+
+    bool contains = false;
+    int oldIndex = m_musicList->currentIndex();
     for(int i=index.count() - 1; i>=0; --i)
     {
         m_musicList->removeMedia(index[i]);
+        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])
+        {
+            oldIndex -= i;
+            contains = true;
+        }
     }
-    int oldIndex = m_musicList->currentIndex();
+    if(!contains && m_musicList->currentIndex() > index[0])
+    {
+        oldIndex -= index.count();
+    }
     if( oldIndex == m_musicList->mediaCount())  //Play index error correction
     {
         --oldIndex;
