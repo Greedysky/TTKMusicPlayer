@@ -225,7 +225,7 @@ namespace MusicUIObject
 ///ScrollBar
 //////////////////////////////////////////////////////
     const QString MScrollBarStyle01 = " \
-            QScrollBar{ background: #F0F0F0;width: 8px;}\
+            QScrollBar{ background: #F0F0F0;width: 8px; padding-top:10px; padding-bottom:10px;}\
             QScrollBar::handle{background: #CFCFCF; min-width: 20px;min-height: 20px;}\
             QScrollBar::handle:vertical::disabled{ background:#DBDBDB;}\
             QScrollBar::handle:vertical:hover{ background:#DBDBDB; border:1px solid rgb(230,115,0);}\
