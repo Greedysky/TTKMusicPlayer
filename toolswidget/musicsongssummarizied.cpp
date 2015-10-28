@@ -136,11 +136,11 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
-    MusicSongs songs = m_musicFileNames[m_currentIndexs];
-    if(!songs.isEmpty())
+    MusicSongs *songs = &m_musicFileNames[m_currentIndexs];
+    if(!songs->isEmpty())
     {
-        int countNumber = songs[index].getMusicPlayCount();
-        songs[index].setMusicPlayCount(++countNumber);
+        int countNumber = (*songs)[index].getMusicPlayCount();
+        (*songs)[index].setMusicPlayCount(++countNumber);
     }
 }
 
