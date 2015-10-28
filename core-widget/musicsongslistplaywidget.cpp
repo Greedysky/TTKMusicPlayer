@@ -46,28 +46,28 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_columnThree = new MusicSongsEnterPlayWidget(index, this);
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(204, 35, 23, 23);
+    m_loveButton->setGeometry(214, 35, 23, 23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_loveButton->setIcon(QIcon(":/image/bestlove"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(227, 35, 23, 23);
+    m_deleteButton->setGeometry(235, 35, 23, 23);
     m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
-    m_showMVButton = new QPushButton(this);
-    m_showMVButton->setGeometry(250, 35, 23, 23);
+    m_showMVButton = new QPushButton(m_columnThree);
+    m_showMVButton->setGeometry(0, 35, 23, 23);
     m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_showMVButton->setIcon(QIcon(":/share/showMV"));
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
-    m_songShareButton = new QPushButton(this);
-    m_songShareButton->setGeometry(250, 7, 23, 23);
+    m_songShareButton = new QPushButton(m_columnThree);
+    m_songShareButton->setGeometry(0, 7, 23, 23);
     m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_songShareButton->setIcon(QIcon(":/image/songShare"));
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -92,15 +92,15 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_artPicture;
     delete m_songName;
     delete m_timeLabel;
-    delete m_columnOne;
-    delete m_columnThree;
     delete m_loveButton;
     delete m_deleteButton;
     delete m_showMVButton;
     delete m_songShareButton;
+    delete m_columnOne;
+    delete m_columnThree;
 }
 
-void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const
+void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two)
 {
     one = m_columnOne;
     two = m_columnThree;

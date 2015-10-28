@@ -54,12 +54,12 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem(QFontMetrics(font()).elidedText(
-                                                  songs[i].getMusicName(), Qt::ElideRight, 263));
+                                                  songs[i].getMusicName(), Qt::ElideRight, 242));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
         //add a delete icon
-                          item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+                          item = new QTableWidgetItem(songs[i].getMusicTime());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 2, item);
     }
@@ -440,11 +440,11 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 2);
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 243));
+    item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 242));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);
-    item = new QTableWidgetItem(QIcon(":/image/musicdelete"), QString());
+    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(m_playRowIndex, 2, item);
