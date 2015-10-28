@@ -44,7 +44,7 @@ public:
     explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
     ~MusicSongsListPlayWidget();
 
-    void getWidget(QWidget *&one, QWidget *&two);
+    void getWidget(QWidget *&one, QWidget *&two) const;
     void insertTimerLabel(const QString &t) const;
     void updateArtPicture() const;
     void setParameter(const QString &name, const QString &path);

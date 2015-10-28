@@ -60,7 +60,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 1, item);
         //add a delete icon
                           item = new QTableWidgetItem(songs[i].getMusicTime());
-        item->setTextAlignment(Qt::AlignCenter);
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
     }
 }
@@ -446,7 +446,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     setItem(m_playRowIndex, 1, item);
     item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
     item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 2, item);
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = NULL;

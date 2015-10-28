@@ -84,7 +84,8 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     {
         MusicFileInformation info;
         info.readFile(filelist[i]);
-        m_musicFileNames[0] << MusicSong(filelist[i], 0, info.getLengthString(), QString());
+        QString time(info.getLengthString());
+        m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
     }
     m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
 }

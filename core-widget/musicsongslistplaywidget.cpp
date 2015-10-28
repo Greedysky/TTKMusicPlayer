@@ -100,7 +100,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_columnThree;
 }
 
-void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two)
+void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const
 {
     one = m_columnOne;
     two = m_columnThree;

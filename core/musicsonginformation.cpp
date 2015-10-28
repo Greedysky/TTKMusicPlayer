@@ -3,7 +3,6 @@
 MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
 {
-    m_musicType = QString();
     m_musicSize = 0;
     m_musicPlayCount = 0;
 }
@@ -49,7 +48,6 @@ MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &tim
     : MusicSong(musicPath, playCount, musicName)
 {
     m_musicTime = time;
-    m_musicTime.chop(4); //just remove :XXX
 }
 
 QString MusicSong::getMusicArtistFront() const
