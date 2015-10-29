@@ -160,14 +160,23 @@ void MusicLrcContainerForInline::stopLrcMask()
 
 void MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
 {
-    foreach(qint64 value, m_lrcContainer.keys())
+    QList<qint64> keys(m_lrcContainer.keys());
+    qint64 beforeTime;
+    if(!keys.isEmpty())
     {
-        if(time < value)
+        beforeTime = keys[0];
+    }
+    for(int i=1; i<keys.count(); ++i)
+    {
+        qint64 afterTime = keys[i];
+        if(beforeTime <= time && time <= afterTime)
         {
-            time = value;
+            time = afterTime;
             break;
         }
+        beforeTime = afterTime;
     }
+
     for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
     {
         if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
