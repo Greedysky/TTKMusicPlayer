@@ -181,7 +181,10 @@ void MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
     {
         if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
         {
-            m_currentLrcIndex = i - CURRENT_LRC_PAINT - 1;
+            if((m_currentLrcIndex = i - CURRENT_LRC_PAINT - 1) < 0 )
+            {
+                m_currentLrcIndex = 0;
+            }
             break;
         }
     }
