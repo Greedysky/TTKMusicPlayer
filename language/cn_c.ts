@@ -158,8 +158,8 @@
         <translation>00:00</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="846"/>
-        <location filename="../ui/application/musicapplication.ui" line="849"/>
+        <location filename="../ui/application/musicapplication.ui" line="862"/>
+        <location filename="../ui/application/musicapplication.ui" line="865"/>
         <source>顺序播放</source>
         <translation>順序播放</translation>
     </message>
@@ -194,171 +194,171 @@
         <translation>視頻</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="726"/>
+        <location filename="../ui/application/musicapplication.ui" line="742"/>
         <source>关于天天酷音(&amp;A)</source>
         <translation>關於天天酷音(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="729"/>
+        <location filename="../ui/application/musicapplication.ui" line="745"/>
         <source>关于天天酷音</source>
         <translation>關於天天酷音</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="732"/>
+        <location filename="../ui/application/musicapplication.ui" line="748"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="741"/>
+        <location filename="../ui/application/musicapplication.ui" line="757"/>
         <source>退出(&amp;Q)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="744"/>
+        <location filename="../ui/application/musicapplication.ui" line="760"/>
         <source>退出</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="747"/>
+        <location filename="../ui/application/musicapplication.ui" line="763"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="756"/>
+        <location filename="../ui/application/musicapplication.ui" line="772"/>
         <source>导入本地歌曲(&amp;I)</source>
         <translation>導入本地歌曲(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="759"/>
+        <location filename="../ui/application/musicapplication.ui" line="775"/>
         <source>添加歌曲</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="762"/>
+        <location filename="../ui/application/musicapplication.ui" line="778"/>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="771"/>
+        <location filename="../ui/application/musicapplication.ui" line="787"/>
         <source>上一曲(&amp;P)</source>
         <translation>上壹曲(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="774"/>
+        <location filename="../ui/application/musicapplication.ui" line="790"/>
         <source>上一曲</source>
         <translation>上壹曲</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="777"/>
+        <location filename="../ui/application/musicapplication.ui" line="793"/>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="786"/>
+        <location filename="../ui/application/musicapplication.ui" line="802"/>
         <source>下一曲(&amp;N)</source>
         <translation>下壹曲(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="789"/>
+        <location filename="../ui/application/musicapplication.ui" line="805"/>
         <source>下一曲</source>
         <translation>下壹曲(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="792"/>
+        <location filename="../ui/application/musicapplication.ui" line="808"/>
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="801"/>
-        <location filename="../ui/application/musicapplication.ui" line="804"/>
+        <location filename="../ui/application/musicapplication.ui" line="817"/>
+        <location filename="../ui/application/musicapplication.ui" line="820"/>
         <source>播放/暂停</source>
         <translation>播放/暫停</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="807"/>
+        <location filename="../ui/application/musicapplication.ui" line="823"/>
         <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="816"/>
+        <location filename="../ui/application/musicapplication.ui" line="832"/>
         <source>音量(&amp;+)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="819"/>
+        <location filename="../ui/application/musicapplication.ui" line="835"/>
         <source>增加音量</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="822"/>
+        <location filename="../ui/application/musicapplication.ui" line="838"/>
         <source>Ctrl+Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="831"/>
+        <location filename="../ui/application/musicapplication.ui" line="847"/>
         <source>音量(&amp;-)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="834"/>
+        <location filename="../ui/application/musicapplication.ui" line="850"/>
         <source>降低音量</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="837"/>
+        <location filename="../ui/application/musicapplication.ui" line="853"/>
         <source>Ctrl+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="852"/>
+        <location filename="../ui/application/musicapplication.ui" line="868"/>
         <source>Alt+1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="861"/>
-        <location filename="../ui/application/musicapplication.ui" line="864"/>
+        <location filename="../ui/application/musicapplication.ui" line="877"/>
+        <location filename="../ui/application/musicapplication.ui" line="880"/>
         <source>随机播放</source>
         <translation>隨機播放</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="867"/>
+        <location filename="../ui/application/musicapplication.ui" line="883"/>
         <source>Alt+2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="876"/>
-        <location filename="../ui/application/musicapplication.ui" line="879"/>
+        <location filename="../ui/application/musicapplication.ui" line="892"/>
+        <location filename="../ui/application/musicapplication.ui" line="895"/>
         <source>单曲循环</source>
         <translation>單曲循環</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="882"/>
+        <location filename="../ui/application/musicapplication.ui" line="898"/>
         <source>Alt+3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="891"/>
-        <location filename="../ui/application/musicapplication.ui" line="894"/>
+        <location filename="../ui/application/musicapplication.ui" line="907"/>
+        <location filename="../ui/application/musicapplication.ui" line="910"/>
         <source>列表循环</source>
         <translation>列表循環</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="897"/>
+        <location filename="../ui/application/musicapplication.ui" line="913"/>
         <source>Alt+4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="906"/>
+        <location filename="../ui/application/musicapplication.ui" line="922"/>
         <source>设置(&amp;S)</source>
         <translation>設置(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="909"/>
+        <location filename="../ui/application/musicapplication.ui" line="925"/>
         <source>设置</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../ui/application/musicapplication.ui" line="912"/>
+        <location filename="../ui/application/musicapplication.ui" line="928"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1991,7 +1991,7 @@
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="57"/>
         <source>&amp;nbsp;find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
-        <translation>>&amp;nbsp;搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相關歌詞</translation>
+        <translation>&amp;nbsp;搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相關歌詞</translation>
     </message>
     <message>
         <location filename="../lrcmanager/musiclrcsearchwidget.cpp" line="63"/>
@@ -2226,8 +2226,8 @@
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../musicrightareawidget.cpp" line="239"/>
-        <location filename="../musicrightareawidget.cpp" line="250"/>
+        <location filename="../musicrightareawidget.cpp" line="245"/>
+        <location filename="../musicrightareawidget.cpp" line="256"/>
         <source>please input search text</source>
         <translation>請輸入搜索內容</translation>
     </message>
@@ -2745,49 +2745,49 @@
         <translation>&amp;nbsp;搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相關歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="317"/>
-        <source> find no result</source>
-        <translation>沒有搜到相關內容</translation>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="318"/>
+        <source>&amp;nbsp;find no result</source>
+        <translation>&amp;nbsp;沒有搜到相關內容</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="329"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="330"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="332"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="333"/>
         <source>Artist</source>
         <translation>藝術家</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="335"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="336"/>
         <source>Operator</source>
         <translation>相關操作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="339"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="376"/>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="393"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="340"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="377"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="394"/>
         <source>Play</source>
         <translation>試聽</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="344"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="345"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="349"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="350"/>
         <source>Download</source>
         <translation>下載</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="367"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="368"/>
         <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="393"/>
+        <location filename="../core-widget/musicsongsearchonlinewidget.cpp" line="394"/>
         <source>Stop</source>
         <translation>暫停</translation>
     </message>
@@ -2862,112 +2862,112 @@
 <context>
     <name>MusicSongsListWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="87"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="79"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="81"/>
         <source>changSongName</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
         <source>musicPlay</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="93"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
         <source>OrderPlay</source>
         <translation>順序播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="94"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="86"/>
         <source>RandomPlay</source>
         <translation>隨機播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="95"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="87"/>
         <source>ListCycle</source>
         <translation>列表循環</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="96"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
         <source>SingleCycle</source>
         <translation>單曲循環</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="97"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
         <source>PlayOnce</source>
         <translation>單曲播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="107"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="99"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="101"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="110"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夾</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
         <source>musicTool</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
         <source>bell</source>
         <translation>鈴聲制作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="114"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="106"/>
         <source>transform</source>
         <translation>格式轉換</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
         <source>musicInfoD</source>
         <translation>歌曲信息...</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
         <source>openFileDir</source>
         <translation>打開文件所在目錄</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="120"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
         <source>delete</source>
         <translation>刪除歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="121"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
         <source>deleteWithFile</source>
         <translation>刪除(包括文件)</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="122"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="114"/>
         <source>deleteAll</source>
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="368"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="382"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移動或者不存在！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="97"/>
         <source>addToLove</source>
         <translation>添加到我的最愛</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="233"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="225"/>
         <source>Are you sure to delete?</source>
         <translation>妳確定要刪除嗎？</translation>
     </message>
@@ -2990,37 +2990,37 @@
         <translation>網絡列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="186"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="187"/>
         <source>newSongItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="200"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="201"/>
         <source>add music to lovest list done!</source>
         <translation>添加到我的最愛完成！</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="221"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="222"/>
         <source>The origin one can&apos;t delete!</source>
         <translation>系統默認列表不允許刪除</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="234"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="235"/>
         <source>The origin one can&apos;t rename!</source>
         <translation>系統默認列表不允許重命名</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="272"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="273"/>
         <source>deleteItem</source>
         <translation>刪除列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="273"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="274"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="274"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="275"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
