@@ -14,7 +14,6 @@
 #include "musicsonginformation.h"
 #include "musicabstracttablewidget.h"
 
-class QTimer;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
 
@@ -74,9 +73,6 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void leaveEvent(QEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
-
-    QTimer *m_timerShow;
-    QTimer *m_timerStay;
 
     int m_playRowIndex;
     int m_dragStartIndex;

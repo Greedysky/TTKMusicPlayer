@@ -21,19 +21,11 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
     m_mouseMoved = false;
-
-    m_timerShow = new QTimer(this);
-    m_timerStay = new QTimer(this);
-
-    connect(m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
-    connect(m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
 {
     clearAllItems();
-    delete m_timerShow;
-    delete m_timerStay;
     delete m_musicSongsListItem;
     delete m_musicSongsPlayWidget;
 }
@@ -287,10 +279,8 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
         m_musicSongsListItem = new MusicSongsListItemInfoWidget;
     }
     m_musicSongsListItem->hide();
-    m_timerShow->stop();
-    m_timerShow->start(1000);
-    m_timerStay->stop();
-    m_timerStay->start(3000);
+    QTimer::singleShot(1000, this, SLOT(showTimeOut()));
+    QTimer::singleShot(3000, this, SLOT(stayTimeOut()));
 }
 
 void MusicSongsListWidget::showTimeOut()
