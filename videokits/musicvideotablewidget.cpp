@@ -141,7 +141,9 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
     MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
-    emit mvURLChanged(musicSongInfo[row][2]);
+    QString mvPath = musicSongInfo[row][2];
+    mvPath.replace(0, mvPath.indexOf("/mv_"), "http://otmv.alicdn.com/new");
+    emit mvURLChanged(mvPath);
 }
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
