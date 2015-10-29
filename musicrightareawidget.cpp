@@ -41,6 +41,12 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
 
+    ui->musicSearchBackButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    ui->musicSearchBackButton->setIconSize(QSize(25, 25));
+    ui->musicSearchBackButton->setIcon(QIcon(QString::fromUtf8(":/image/back")));
+//    connect(ui->musicSearchBackButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
+
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     ui->musicSearchRefreshButton->setIconSize(QSize(25, 25));

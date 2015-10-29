@@ -339,7 +339,7 @@
   <widget class="QPushButton" name="musicSearchWidgetButton">
    <property name="geometry">
     <rect>
-     <x>585</x>
+     <x>595</x>
      <y>85</y>
      <width>80</width>
      <height>40</height>
@@ -355,7 +355,7 @@
   <widget class="QPushButton" name="musicLrcWidgetButton">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>690</x>
      <y>85</y>
      <width>80</width>
      <height>40</height>
@@ -371,10 +371,10 @@
   <widget class="QPushButton" name="musicSearchRefreshButton">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>85</y>
-     <width>55</width>
-     <height>40</height>
+     <x>450</x>
+     <y>87</y>
+     <width>35</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -387,7 +387,7 @@
   <widget class="QPushButton" name="musicIndexWidgetButton">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>500</x>
      <y>85</y>
      <width>80</width>
      <height>40</height>
@@ -572,7 +572,7 @@
   <widget class="QPushButton" name="vedioWidgetButton">
    <property name="geometry">
     <rect>
-     <x>775</x>
+     <x>785</x>
      <y>85</y>
      <width>80</width>
      <height>40</height>
@@ -719,6 +719,22 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{border:none;background:transparent;};</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="musicSearchBackButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>87</y>
+     <width>35</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <action name="action_About">
@@ -958,6 +974,7 @@
   <zorder>musicButton_mobile</zorder>
   <zorder>lrcDisplayAllButton</zorder>
   <zorder>windowClose</zorder>
+  <zorder>musicSearchBackButton</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
