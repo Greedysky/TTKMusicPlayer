@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QMenu>
+#include <QTimer>
 #include <QContextMenuEvent>
 #include "musicsonginformation.h"
 #include "musicabstracttablewidget.h"
@@ -79,6 +80,8 @@ protected:
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
 
+    QTimer m_timerShow;
+    QTimer m_timerStay;
     MusicSongs *m_musicSongs;
     MusicSongsListItemInfoWidget *m_musicSongsListItem;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;

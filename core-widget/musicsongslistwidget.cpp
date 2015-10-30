@@ -21,6 +21,9 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
     m_mouseMoved = false;
+
+    connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
+    connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
@@ -303,8 +306,10 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
         m_musicSongsListItem = new MusicSongsListItemInfoWidget;
         m_musicSongsListItem->hide();
     }
-    QTimer::singleShot(1000, this, SLOT(showTimeOut()));
-    QTimer::singleShot(3000, this, SLOT(stayTimeOut()));
+    m_timerShow.stop();
+    m_timerShow.start(1000);
+    m_timerStay.stop();
+    m_timerStay.start(3000);
 }
 
 void MusicSongsListWidget::showTimeOut()
