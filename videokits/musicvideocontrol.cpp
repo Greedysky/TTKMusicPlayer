@@ -70,7 +70,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumnButton->setPopupMode(QToolButton::InstantPopup);
 
     m_mvNormal = m_popupQuality.addAction(tr("NormalMV"));
-    m_mvHd = m_popupQuality.addAction(tr("HeighMV"));
+    m_mvHd = m_popupQuality.addAction(tr("HdMV"));
     connect(&m_popupQuality, SIGNAL(triggered(QAction*)), SLOT(menuActionTriggered(QAction*)));
     m_qualityButton->setMenu(&m_popupQuality);
 

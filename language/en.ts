@@ -1634,7 +1634,7 @@
     <name>MusicLrcContainerForInline</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="65"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="245"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="257"/>
         <source>noCurrentSongPlay</source>
         <translation> --- No Song Is PLaying now! </translation>
     </message>
@@ -1649,104 +1649,104 @@
         <translation> --- Lrc File Error! </translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="344"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="356"/>
         <source>changColorMenu</source>
         <translation>Color</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="345"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="357"/>
         <source>changeLrcSize</source>
         <translation>Size</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="349"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="361"/>
         <source>searchLrcs</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="350"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="362"/>
         <source>updateLrc</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
         <source>artbgon</source>
         <translation>Art ON</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="369"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="381"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
         <source>artbgoff</source>
         <translation>Art Off</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="351"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="363"/>
         <source>makeLrc</source>
         <translation>Make Lrc</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="358"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="390"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="402"/>
         <source>smaller</source>
         <translation>Smaller</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="359"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="391"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="371"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="403"/>
         <source>small</source>
         <translation>Small</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="360"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="392"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="404"/>
         <source>middle</source>
         <translation>Middle</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="361"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="393"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="373"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="405"/>
         <source>big</source>
         <translation>Big</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="362"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="394"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="374"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="406"/>
         <source>bigger</source>
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="366"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="378"/>
         <source>custom</source>
         <translation>Custom</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="371"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="383"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="384"/>
         <source>lrcoff</source>
         <translation>Lrc Off</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="384"/>
         <source>lrcon</source>
         <translation>Lrc On</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="373"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="385"/>
         <source>artbgupload</source>
         <translation>Art Bg Upload</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="376"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="388"/>
         <source>copyToClip</source>
         <translation>Copy To Clip</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="378"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="390"/>
         <source>showLrcFile</source>
         <translation>Show Lrc File</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="394"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>
@@ -3772,27 +3772,41 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="72"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="141"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="143"/>
+        <source>NormalMV</source>
+        <translation>SD</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
         <source>InlineMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
         <source>PopupMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="115"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="35"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
         <source>FullScreenMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="114"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="115"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="116"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="132"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="134"/>
         <source>NormalMode</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="73"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="148"/>
+        <source>HdMV</source>
+        <translation>HD</translation>
     </message>
 </context>
 <context>
@@ -3806,7 +3820,7 @@
 <context>
     <name>MusicVideoTableWidget</name>
     <message>
-        <location filename="../videokits/musicvideotablewidget.cpp" line="113"/>
+        <location filename="../videokits/musicvideotablewidget.cpp" line="116"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3814,7 +3828,7 @@
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../videokits/musicvideoview.cpp" line="113"/>
+        <location filename="../videokits/musicvideoview.cpp" line="114"/>
         <source>Session time out, try again!</source>
         <translation type="unfinished"></translation>
     </message>

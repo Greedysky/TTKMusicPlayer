@@ -1634,7 +1634,7 @@
     <name>MusicLrcContainerForInline</name>
     <message>
         <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="65"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="245"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="257"/>
         <source>noCurrentSongPlay</source>
         <translation> --- 當前沒有正在播放的歌曲</translation>
     </message>
@@ -1649,104 +1649,104 @@
         <translation> --- 歌詞文件內容錯誤！</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="344"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="356"/>
         <source>changColorMenu</source>
         <translation>歌詞顏色</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="345"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="357"/>
         <source>changeLrcSize</source>
         <translation>歌詞大小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="349"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="361"/>
         <source>searchLrcs</source>
         <translation>搜索歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="350"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="362"/>
         <source>updateLrc</source>
         <translation>更新歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
         <source>artbgon</source>
         <translation>打開寫真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="369"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="381"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
         <source>artbgoff</source>
         <translation>關閉寫真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="351"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="363"/>
         <source>makeLrc</source>
         <translation>歌詞制作</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="358"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="390"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="370"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="402"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="359"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="391"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="371"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="403"/>
         <source>small</source>
         <translation>小號</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="360"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="392"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="404"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="361"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="393"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="373"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="405"/>
         <source>big</source>
         <translation>大號</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="362"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="394"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="374"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="406"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="366"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="378"/>
         <source>custom</source>
         <translation>自定義</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="371"/>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="383"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="384"/>
         <source>lrcoff</source>
         <translation>關閉歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="384"/>
         <source>lrcon</source>
         <translation>打開歌詞</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="373"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="385"/>
         <source>artbgupload</source>
         <translation>上傳歌手寫真</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="376"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="388"/>
         <source>copyToClip</source>
         <translation>復制到剪切板</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="378"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="390"/>
         <source>showLrcFile</source>
         <translation>遊覽歌詞文件</translation>
     </message>
     <message>
-        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="382"/>
+        <location filename="../lrcmanager/musiclrccontainerforinline.cpp" line="394"/>
         <source>customSetting</source>
         <translation>設置</translation>
     </message>
@@ -3752,27 +3752,41 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="72"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="141"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="143"/>
+        <source>NormalMV</source>
+        <translation>標清</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
         <source>InlineMode</source>
         <translation>内嵌模式</translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
         <source>PopupMode</source>
         <translation>彈出模式</translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="115"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="35"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
         <source>FullScreenMode</source>
         <translation>全屏模式</translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="114"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="115"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="116"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="132"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="134"/>
         <source>NormalMode</source>
         <translation>普通模式</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="73"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="148"/>
+        <source>HdMV</source>
+        <translation>高清</translation>
     </message>
 </context>
 <context>
@@ -3786,7 +3800,7 @@
 <context>
     <name>MusicVideoTableWidget</name>
     <message>
-        <location filename="../videokits/musicvideotablewidget.cpp" line="113"/>
+        <location filename="../videokits/musicvideotablewidget.cpp" line="116"/>
         <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
@@ -3794,7 +3808,7 @@
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../videokits/musicvideoview.cpp" line="113"/>
+        <location filename="../videokits/musicvideoview.cpp" line="114"/>
         <source>Session time out, try again!</source>
         <translation>連接超時，請重試！</translation>
     </message>
