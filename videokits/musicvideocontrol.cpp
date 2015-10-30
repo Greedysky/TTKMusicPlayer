@@ -8,8 +8,7 @@
 #include <QWidgetAction>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
-    : QWidget(parent),
-      m_widgetPopup(popup)
+    : QWidget(parent), m_widgetPopup(popup)
 {
     setStyleSheet(MusicUIObject::MCustomStyle01);
     setFixedSize(520, 40);

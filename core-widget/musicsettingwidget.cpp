@@ -8,9 +8,9 @@
 #include <QFileDialog>
 #include <QButtonGroup>
 
-MusicSettingWidget::MusicSettingWidget(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicSettingWidget)
+MusicSettingWidget::MusicSettingWidget(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicSettingWidget)
 {
     ui->setupUi(this);
 

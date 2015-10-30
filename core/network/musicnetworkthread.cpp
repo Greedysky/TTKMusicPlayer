@@ -3,7 +3,7 @@
 #include "musicsettingmanager.h"
 
 MusicNetworkThread::MusicNetworkThread(QObject *parent)
-    :QObject(parent), m_networkState(true)
+    : QObject(parent), m_networkState(true)
 {
     M_CONNECTION->setValue("MusicNetworkThread", this);
     m_client = NULL;

@@ -18,9 +18,9 @@
 #include "musicapplicationobject.h"
 #include "musicconnectionpool.h"
 
-MusicApplication::MusicApplication(QWidget *parent) :
-    MusicAbstractMoveWidget(parent),
-    ui(new Ui::MusicApplication)
+MusicApplication::MusicApplication(QWidget *parent)
+    : MusicAbstractMoveWidget(parent),
+      ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
     M_CONNECTION->setValue("MusicApplication", this);

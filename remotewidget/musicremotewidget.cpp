@@ -7,8 +7,8 @@
 #include <QBitmap>
 #include <QPainter>
 
-MusicRemoteWidget::MusicRemoteWidget(QWidget *parent) :
-    MusicAbstractMoveWidget(parent)
+MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
+    : MusicAbstractMoveWidget(parent)
 {
     setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);
     drawWindowShadow(false);

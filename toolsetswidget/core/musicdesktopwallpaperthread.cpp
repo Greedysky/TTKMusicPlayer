@@ -10,8 +10,8 @@
 #   pragma comment(lib,"user32.lib")
 #endif
 
-MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent) :
-    QThread(parent)
+MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
+    : QThread(parent)
 {
     MusicRegeditManager().getDesktopWallControlPanel(m_originPath, m_originType);
     qsrand(time(NULL));

@@ -9,7 +9,7 @@
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-    ui(new Ui::MusicLrcMakerWidget)
+      ui(new Ui::MusicLrcMakerWidget)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

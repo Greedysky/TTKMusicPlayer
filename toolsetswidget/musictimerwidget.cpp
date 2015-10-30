@@ -7,7 +7,7 @@
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicTimerWidget)
+      ui(new Ui::MusicTimerWidget)
 {
     ui->setupUi(this);
 

@@ -11,7 +11,7 @@
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-    ui(new Ui::MusicDesktopWallpaperWidget)
+      ui(new Ui::MusicDesktopWallpaperWidget)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

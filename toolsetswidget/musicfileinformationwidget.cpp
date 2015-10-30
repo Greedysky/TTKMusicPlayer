@@ -10,7 +10,7 @@
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicFileInformationWidget)
+      ui(new Ui::MusicFileInformationWidget)
 {
     ui->setupUi(this);
     

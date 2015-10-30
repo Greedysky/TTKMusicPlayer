@@ -8,9 +8,9 @@
 #include <QSignalMapper>
 #include <QButtonGroup>
 
-MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicEqualizerDialog)
+MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicEqualizerDialog)
 {
     ui->setupUi(this);
 

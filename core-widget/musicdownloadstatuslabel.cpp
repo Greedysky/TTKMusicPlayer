@@ -10,8 +10,8 @@
 
 #include <QLabel>
 
-MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w) :
-    QObject(w)
+MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
+    : QObject(w)
 {
     m_parentWidget = static_cast<MusicApplication*>(w);
     m_downloadLrcThread = NULL;

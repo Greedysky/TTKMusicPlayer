@@ -8,8 +8,8 @@
 #include <QFileDialog>
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),m_mBuffer(BufferSize, 0),
-    ui(new Ui::MusicAudioRecorderWidget)
+    : MusicAbstractMoveDialog(parent), m_mBuffer(BufferSize, 0),
+      ui(new Ui::MusicAudioRecorderWidget)
 {
     ui->setupUi(this);
 

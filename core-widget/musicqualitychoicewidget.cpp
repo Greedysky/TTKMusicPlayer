@@ -7,7 +7,7 @@
 #include <QWidgetAction>
 
 MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
-    :MusicAbstractTableWidget(parent)
+    : MusicAbstractTableWidget(parent)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 60);

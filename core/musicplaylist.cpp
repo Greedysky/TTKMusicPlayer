@@ -1,8 +1,8 @@
 #include "musicplaylist.h"
 #include "time.h"
 
-MusicPlaylist::MusicPlaylist(QObject *parent) :
-    QObject(parent)
+MusicPlaylist::MusicPlaylist(QObject *parent)
+    : QObject(parent)
 {
     qsrand(time(NULL));
     m_currentIndex = 0;

@@ -8,7 +8,7 @@
 
 MusicMessageBox::MusicMessageBox(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicMessageBox)
+      ui(new Ui::MusicMessageBox)
 {
     ui->setupUi(this);
 

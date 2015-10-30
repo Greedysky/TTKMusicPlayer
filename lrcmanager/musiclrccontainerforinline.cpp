@@ -11,8 +11,8 @@
 #include <QApplication>
 #include <QActionGroup>
 
-MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent) :
-    MusicLrcContainer(parent)
+MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
+    : MusicLrcContainer(parent)
 {
     m_vBoxLayout = new QVBoxLayout(this);
     m_vBoxLayout->setMargin(0);

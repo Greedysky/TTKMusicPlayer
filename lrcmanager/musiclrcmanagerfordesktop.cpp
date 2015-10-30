@@ -1,7 +1,7 @@
 #include "musiclrcmanagerfordesktop.h"
 
-MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent) :
-    MusicLRCManager(parent)
+MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent)
+    : MusicLRCManager(parent)
 {
     m_font.setPointSize(30);
     m_speedLeve = 50;

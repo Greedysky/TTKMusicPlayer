@@ -9,8 +9,8 @@
 
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent),
-    m_mediaPlayer(0, QMediaPlayer::VideoSurface),
-    m_videoItem(0) , m_videoControl(0)
+      m_mediaPlayer(0, QMediaPlayer::VideoSurface),
+      m_videoItem(0) , m_videoControl(0)
 {
     setObjectName("VideoPlayer");
     setStyleSheet(MusicUIObject::MCustomStyle19);

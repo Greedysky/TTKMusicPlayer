@@ -14,7 +14,7 @@
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),m_movie(NULL),
-    ui(new Ui::MusicTransformWidget)
+      ui(new Ui::MusicTransformWidget)
 {
     ui->setupUi(this);
     

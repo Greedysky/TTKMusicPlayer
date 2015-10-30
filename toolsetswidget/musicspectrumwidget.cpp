@@ -4,8 +4,8 @@
 
 #include <QMenu>
 
-MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent) :
-    MusicAbstractMoveWidget(parent)
+MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
+    : MusicAbstractMoveWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     drawWindowShadow(false);

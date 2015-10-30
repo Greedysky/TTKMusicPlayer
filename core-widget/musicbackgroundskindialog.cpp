@@ -6,9 +6,9 @@
 #include <QFileDialog>
 #include <QColorDialog>
 
-MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent) :
-    MusicAbstractMoveDialog(parent),
-    ui(new Ui::MusicBackgroundSkinDialog)
+MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicBackgroundSkinDialog)
 {
     ui->setupUi(this);
 

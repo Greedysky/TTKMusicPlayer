@@ -7,7 +7,7 @@
 
 MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),m_radio(NULL),
-    ui(new Ui::MusicWebRadioWidget)
+      ui(new Ui::MusicWebRadioWidget)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

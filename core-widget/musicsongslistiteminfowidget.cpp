@@ -6,7 +6,7 @@
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : QWidget(parent),
-    ui(new Ui::MusicSongsListItemInfoWidget)
+      ui(new Ui::MusicSongsListItemInfoWidget)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
