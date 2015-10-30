@@ -126,7 +126,10 @@ void MusicDownLoadQueryThread::searchFinshed()
                         emit creatSearchedItems(songName, singerName,
                                                 object.value("duration").toString());
                         musicInfo << singerName << songName;
-                        musicInfo << object.value("url").toString();
+                        QString mvPath = object.value("url").toString();
+                        mvPath.replace(0, mvPath.indexOf("/mv_"), "http://otmv.alicdn.com/new");
+                        qDebug() << mvPath;
+                        musicInfo << mvPath;
                         musicInfo << object.value("format").toString();
                         m_musicSongInfo << musicInfo;
                     }
