@@ -24,10 +24,11 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     QGraphicsScene *scene = new QGraphicsScene(this);
     scene->addItem(m_videoItem);
     setScene(scene);
-    m_videoItem->setSize(QSizeF(500, 400));
+    m_videoItem->setSize(QSizeF(500, 340));
     m_positionChanged = false;
 
     m_videoControl = new MusicVideoControl(popup, this);
+    connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     m_videoControl->hide();
 
     connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));

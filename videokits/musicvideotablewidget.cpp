@@ -1,6 +1,7 @@
 #include "musicvideotablewidget.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
 
 #include <time.h>
 
@@ -11,10 +12,12 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     resizeWindow(1.0f);
     setTransparent(255);
     qsrand(time(NULL));
+    M_Connection->setValue("MusicVideoTableWidget", this);
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
+    M_Connection->disConnect("MusicVideoTableWidget");
     clearAllItems();
 }
 
@@ -142,6 +145,13 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     }
     DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
     emit mvURLChanged(musicSongInfo[row].m_songUrl.first().m_url);
+}
+
+void MusicVideoTableWidget::getMusicMvInfo(SongUrlFormats &data)
+{
+    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    data = !musicSongInfo.isEmpty() && m_previousClickRow != -1
+           ? musicSongInfo[m_previousClickRow].m_songUrl : SongUrlFormats();
 }
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)

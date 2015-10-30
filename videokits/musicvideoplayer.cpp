@@ -58,8 +58,8 @@ MusicVideoPlayer::MusicVideoPlayer(bool popup, QWidget *parent)
     layout->addWidget(m_stackedWidget);
     setLayout(layout);
 
-    m_videoView = new MusicVideoView(popup, this);
     m_videoTable = new MusicVideoTableWidget(this);
+    m_videoView = new MusicVideoView(popup, this);
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
     m_stackedWidget->setCurrentIndex(0);

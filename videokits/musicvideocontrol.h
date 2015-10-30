@@ -12,12 +12,12 @@
 #include <QMenu>
 #include <QWidget>
 #include "musicuiobject.h"
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
 class QSlider;
 class QToolButton;
 class QPushButton;
-class QWidgetAction;
 
 class MUSIC_VIDEO_EXPORT MusicVideoControl : public QWidget
 {
@@ -33,19 +33,26 @@ public:
 signals:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
+    void getMusicMvInfo(SongUrlFormats &data);
+    void mvURLChanged(const QString &data);
 
-private slots:
+public slots:
+    void show();
     void inSideButtonClicked();
     void fullButtonClicked();
+    void menuActionTriggered(QAction *action);
 
 protected:
+    void setQualityActionState();
+
+    bool m_widgetPopup;
     QMenu m_popupVolumn;
-    QWidgetAction *m_widgetAction;
+    QMenu m_popupQuality;
     QSlider *m_timeSlider, *m_volumnSlider;
     QToolButton *m_menuButton, *m_volumnButton;
-    QPushButton *m_playButton;
-    QPushButton *m_inSideButton, *m_fullButton;
-    bool m_widgetPopup;
+    QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
+    QPushButton *m_qualityButton;
+    QAction *m_mvNormal, *m_mvHd;
 
 };
 

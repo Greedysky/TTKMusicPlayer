@@ -147,6 +147,12 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(setEnhancedMusicConfig(int)));
     }
 
+    if(from == "MusicVideoControl" && to == "MusicVideoTableWidget" )
+    {
+        QObject::connect(first, SIGNAL(getMusicMvInfo(SongUrlFormats&)), second,
+                                SLOT(getMusicMvInfo(SongUrlFormats&)));
+    }
+
 }
 
 void MusicConnectionPool::disConnect(const QString &name)
