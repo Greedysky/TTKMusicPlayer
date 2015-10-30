@@ -76,9 +76,9 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
         message.exec();
         return;
     }
-    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfo[row][1],
+    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfo[row].m_lrcUrl,
                  MusicObject::getAppDir() + LRC_DOWNLOAD + m_currentSongName + LRC_FILE, Download_Lrc, this);
     connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)),
                          SIGNAL(lrcDownloadStateChanged(QString)));

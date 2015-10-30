@@ -114,10 +114,10 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
         message.exec();
         return;
     }
-    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row][2], QString("%1 - %2.%3")
-        .arg(musicSongInfo[row][0]).arg(musicSongInfo[row][1]).arg(musicSongInfo[row][3]), Download_Video, this);
+    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row].m_songUrl.first().m_url, QString("%1 - %2.%3")
+        .arg(musicSongInfo[row].m_singerName).arg(musicSongInfo[row].m_songName).arg(musicSongInfo[row].m_format), Download_Video, this);
     download->startToDownload();
 }
 
@@ -140,8 +140,8 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    MStringLists musicSongInfo(m_downLoadManager->getMusicSongInfo());
-    emit mvURLChanged(musicSongInfo[row][2]);
+    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    emit mvURLChanged(musicSongInfo[row].m_songUrl.first().m_url);
 }
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)

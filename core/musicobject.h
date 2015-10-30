@@ -75,6 +75,25 @@ typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsM
 typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
 typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
+typedef struct SongUrlFormat
+{
+    QString m_format;
+    QString m_url;
+}SongUrlFormat;
+typedef QList<SongUrlFormat> SongUrlFormats;
+
+typedef struct DownloadSongInfo
+{
+    SongUrlFormats m_songUrl;
+    QString m_lrcUrl;
+    QString m_smallPicUrl;
+    QString m_singerName;
+    QString m_songName;
+    QString m_size;
+    QString m_format;
+}DownloadSongInfo;
+typedef QList<DownloadSongInfo> DownloadSongInfos;
+
 namespace MusicObject
 {
     enum DownLoadType{ DisConnection, DownLoading, Buffing, Waiting };

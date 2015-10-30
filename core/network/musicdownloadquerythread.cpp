@@ -92,7 +92,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 }
                 QJsonObject object = value.toObject();
 
-                QStringList musicInfo;
+                DownloadSongInfo musicInfo;
                 QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                 QString songName = object.take("song_name").toString();
                 QString singerName = object.take("singer_name").toString();
@@ -107,11 +107,17 @@ void MusicDownLoadQueryThread::searchFinshed()
                         {
                             emit creatSearchedItems(songName, singerName,
                                                     object.value("duration").toString());
-                            musicInfo << object.value("url").toString();
-                            musicInfo << MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                            musicInfo << SML_BG_ART_URL.arg(singerName);
-                            musicInfo << singerName;
-                            musicInfo << object.value("size").toString();
+                            SongUrlFormat urlFormat;
+                            urlFormat.m_format = m_searchQuality;
+                            urlFormat.m_url = object.value("url").toString();
+                            musicInfo.m_songUrl << urlFormat;
+
+                            musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                            musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                            musicInfo.m_singerName = singerName;
+                            musicInfo.m_songName = songName;
+                            musicInfo.m_size = object.value("size").toString();
+                            musicInfo.m_format = object.value("format").toString();
                             m_musicSongInfo << musicInfo;
                             break;
                         }
@@ -125,12 +131,19 @@ void MusicDownLoadQueryThread::searchFinshed()
                         object = urls[0].toObject();
                         emit creatSearchedItems(songName, singerName,
                                                 object.value("duration").toString());
-                        musicInfo << singerName << songName;
-                        QString mvPath = object.value("url").toString();
-                        mvPath.replace(0, mvPath.indexOf("/mv_"), "http://otmv.alicdn.com/new");
-                        qDebug() << mvPath;
-                        musicInfo << mvPath;
-                        musicInfo << object.value("format").toString();
+                        for(int i=0; i<urls.count(); ++i)
+                        {
+                            object = urls[i].toObject();
+                            SongUrlFormat urlFormat;
+                            urlFormat.m_format = QString::number(object.value("bitrate").toInt());
+                            QString mvPath = object.value("url").toString();
+                            mvPath.replace(0, mvPath.indexOf("/mv_"), "http://otmv.alicdn.com/new");
+                            urlFormat.m_url = mvPath;
+                            musicInfo.m_songUrl << urlFormat;
+                        }
+                        musicInfo.m_singerName = singerName;
+                        musicInfo.m_songName = songName;
+                        musicInfo.m_format = object.value("format").toString();
                         m_musicSongInfo << musicInfo;
                     }
                 }
