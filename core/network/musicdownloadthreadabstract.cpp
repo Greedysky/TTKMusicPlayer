@@ -18,12 +18,12 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     }
     m_file = new QFile(save, this);
 
-    M_Connection->setNetworkMultiValue(this);
+    M_CONNECTION->setNetworkMultiValue(this);
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
-    M_Connection->removeNetworkMultiValue(this);
+    M_CONNECTION->removeNetworkMultiValue(this);
 }
 
 void MusicDownLoadThreadAbstract::deleteAll()

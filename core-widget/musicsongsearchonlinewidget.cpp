@@ -32,7 +32,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     setTransparent(255);
 
     m_previousAuditionRow = -1;
-    M_Connection->setValue("MusicSongSearchOnlineTableWidget", this);
+    M_CONNECTION->setValue("MusicSongSearchOnlineTableWidget", this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()

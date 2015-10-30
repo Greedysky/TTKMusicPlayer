@@ -19,7 +19,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_currentVolumn = 100;
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
-    M_Connection->setValue("MusicPlayer", this);
+    M_CONNECTION->setValue("MusicPlayer", this);
 }
 
 MusicPlayer::~MusicPlayer()

@@ -13,14 +13,14 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
     connect(download, SIGNAL(musicDownLoadFinished(QString)),
                       SLOT(downLoadFinished(QString)));
 
-    M_Connection->setValue("MusicBgThemeDownload", this);
-    M_Connection->connect("MusicBgThemeDownload", "MusicTopAreaWidget");
+    M_CONNECTION->setValue("MusicBgThemeDownload", this);
+    M_CONNECTION->connect("MusicBgThemeDownload", "MusicTopAreaWidget");
     download->startToDownload();
 }
 
 MusicBgThemeDownload::~MusicBgThemeDownload()
 {
-    M_Connection->disConnect("MusicBgThemeDownload");
+    M_CONNECTION->disConnect("MusicBgThemeDownload");
 }
 
 void MusicBgThemeDownload::downLoadFinished(const QString &)

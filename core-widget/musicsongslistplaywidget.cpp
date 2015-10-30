@@ -81,13 +81,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
 
-    M_Connection->setValue("MusicSongsListPlayWidget", this);
-    M_Connection->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
+    M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
+    M_CONNECTION->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_Connection->disConnect("MusicSongsListPlayWidget");
+    M_CONNECTION->disConnect("MusicSongsListPlayWidget");
     delete m_renameLine;
     delete m_artPicture;
     delete m_songName;

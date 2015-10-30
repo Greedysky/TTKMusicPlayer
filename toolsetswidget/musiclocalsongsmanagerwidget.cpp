@@ -70,13 +70,13 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)),
                       SLOT(setSongNamePath(QFileInfoList)));
 
-    M_Connection->setValue("MusicLocalSongsManagerWidget", this);
-    M_Connection->connect("MusicLocalSongsManagerWidget", "MusicApplication");
+    M_CONNECTION->setValue("MusicLocalSongsManagerWidget", this);
+    M_CONNECTION->connect("MusicLocalSongsManagerWidget", "MusicApplication");
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
-    M_Connection->disConnect("MusicLocalSongsManagerWidget");
+    M_CONNECTION->disConnect("MusicLocalSongsManagerWidget");
     delete m_movie;
     clearAllItems();
     m_thread->stopAndQuitThread();

@@ -46,14 +46,14 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     initThreeWidget();
     initParemeter();
 
-    M_Connection->setValue("MusicTimerWidget", this);
-    M_Connection->connect("MusicTimerWidget", "MusicApplicationObject");
-    M_Connection->connect("MusicTimerWidget", "MusicApplication");
+    M_CONNECTION->setValue("MusicTimerWidget", this);
+    M_CONNECTION->connect("MusicTimerWidget", "MusicApplicationObject");
+    M_CONNECTION->connect("MusicTimerWidget", "MusicApplication");
 }
 
 MusicTimerWidget::~MusicTimerWidget()
 {
-    M_Connection->disConnect("MusicTimerWidget");
+    M_CONNECTION->disConnect("MusicTimerWidget");
     delete ui;
 }
 

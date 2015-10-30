@@ -5,7 +5,7 @@
 MusicNetworkThread::MusicNetworkThread(QObject *parent)
     :QObject(parent), m_networkState(true)
 {
-    M_Connection->setValue("MusicNetworkThread", this);
+    M_CONNECTION->setValue("MusicNetworkThread", this);
     m_client = NULL;
     connect(&m_timer, SIGNAL(timeout()), SLOT(timerOut()));
     m_timer.start(NETWORK_DETECT_INTERVAL);

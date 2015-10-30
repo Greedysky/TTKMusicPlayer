@@ -12,7 +12,7 @@
 #include <QMap>
 #include "musicsingletone.h"
 
-#define M_Connection (MusicSingleton<MusicConnectionPool>::createInstance())
+#define M_CONNECTION (MusicSingleton<MusicConnectionPool>::createInstance())
 
 class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {

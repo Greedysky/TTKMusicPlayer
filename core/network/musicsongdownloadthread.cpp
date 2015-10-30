@@ -8,7 +8,7 @@ MusicSongDownloadThread::MusicSongDownloadThread(const QString &url, const QStri
                                                  Download_Type type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
-    M_Connection->connectMusicDownload(this);
+    M_CONNECTION->connectMusicDownload(this);
     m_createItemTime = -1;
     m_hasRecevied = -1;
     m_currentRecevied = -1;

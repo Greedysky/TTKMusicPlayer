@@ -49,8 +49,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
     connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged(int)));
 
-    M_Connection->setValue("MusicSongsSummarizied", this);
-    M_Connection->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
+    M_CONNECTION->setValue("MusicSongsSummarizied", this);
+    M_CONNECTION->connect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
 }
 
 MusicSongsSummarizied::~MusicSongsSummarizied()

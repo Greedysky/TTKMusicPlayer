@@ -93,8 +93,8 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
     setEnabled(false);
 
-    M_Connection->setValue("MusicQualityChoiceTableWidget", this);
-    M_Connection->connect("MusicSongSearchOnlineTableWidget",
+    M_CONNECTION->setValue("MusicQualityChoiceTableWidget", this);
+    M_CONNECTION->connect("MusicSongSearchOnlineTableWidget",
                           "MusicQualityChoiceTableWidget");
 }
 

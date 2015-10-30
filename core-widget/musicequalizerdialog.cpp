@@ -40,13 +40,13 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent) :
     readEqInformation();
     setControlEnable(false);
 
-    M_Connection->setValue("MusicEqualizerDialog", this);
-    M_Connection->connect("MusicEqualizerDialog", "MusicPlayer");
+    M_CONNECTION->setValue("MusicEqualizerDialog", this);
+    M_CONNECTION->connect("MusicEqualizerDialog", "MusicPlayer");
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_Connection->disConnect("MusicEqualizerDialog");
+    M_CONNECTION->disConnect("MusicEqualizerDialog");
     writeEqInformation();
     delete m_signalMapper;
     delete ui;

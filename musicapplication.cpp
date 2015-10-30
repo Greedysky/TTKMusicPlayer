@@ -23,7 +23,7 @@ MusicApplication::MusicApplication(QWidget *parent) :
     ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
-    M_Connection->setValue("MusicApplication", this);
+    M_CONNECTION->setValue("MusicApplication", this);
 
     m_object = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

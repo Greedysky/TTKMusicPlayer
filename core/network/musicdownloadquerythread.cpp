@@ -15,13 +15,13 @@ MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
 {
     m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
-    M_Connection->setValue("MusicDownLoadQueryThread", this);
-    M_Connection->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
+    M_CONNECTION->setValue("MusicDownLoadQueryThread", this);
+    M_CONNECTION->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
 {
-    M_Connection->disConnect("MusicDownLoadQueryThread");
+    M_CONNECTION->disConnect("MusicDownLoadQueryThread");
     deleteAll();///The release of all the objects
     if(m_manager)
     {

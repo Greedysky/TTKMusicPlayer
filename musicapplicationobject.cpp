@@ -32,9 +32,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
                                  SLOT(setStopSongChanged()));
 
     m_setWindowToTop = false;
-    M_Connection->setValue("MusicApplicationObject", this);
-    M_Connection->connect("MusicApplicationObject", "MusicApplication");
-    M_Connection->connect("MusicApplicationObject", "MusicEnhancedWidget");
+    M_CONNECTION->setValue("MusicApplicationObject", this);
+    M_CONNECTION->connect("MusicApplicationObject", "MusicApplication");
+    M_CONNECTION->connect("MusicApplicationObject", "MusicEnhancedWidget");
 
     musicToolSetsParameter();
 }

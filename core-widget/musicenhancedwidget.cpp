@@ -14,12 +14,12 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     setToolTip(tr("magic music"));
 
     initWidget();
-    M_Connection->setValue("MusicEnhancedWidget", this);
+    M_CONNECTION->setValue("MusicEnhancedWidget", this);
 }
 
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
-    M_Connection->disConnect("MusicEnhancedWidget");
+    M_CONNECTION->disConnect("MusicEnhancedWidget");
     delete m_caseButton;
     delete m_Button1;
     delete m_Button2;

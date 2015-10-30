@@ -12,12 +12,12 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     resizeWindow(1.0f);
     setTransparent(255);
     qsrand(time(NULL));
-    M_Connection->setValue("MusicVideoTableWidget", this);
+    M_CONNECTION->setValue("MusicVideoTableWidget", this);
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_Connection->disConnect("MusicVideoTableWidget");
+    M_CONNECTION->disConnect("MusicVideoTableWidget");
     clearAllItems();
 }
 
