@@ -44,7 +44,8 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = MUSIC_REQUERY_URL.arg(text);
+    QUrl musicUrl = (type == MusicQuery) ? MUSIC_REQUERY_URL.arg(text)
+                                         : MV_REQUERY_URL.arg(text);
     ///This is a ttop music API
     if(m_reply)
     {
@@ -93,12 +94,11 @@ void MusicDownLoadQueryThread::searchFinshed()
                 QJsonObject object = value.toObject();
 
                 DownloadSongInfo musicInfo;
-                QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
-                QString songName = object.take("song_name").toString();
-                QString singerName = object.take("singer_name").toString();
-
                 if(m_currentType == MusicQuery)
                 {
+                    QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
+                    QString songName = object.take("song_name").toString();
+                    QString singerName = object.take("singer_name").toString();
                     QJsonArray urls = object.take("audition_list").toArray();
                     for(int j=0; j<urls.count(); ++j)
                     {
@@ -125,7 +125,9 @@ void MusicDownLoadQueryThread::searchFinshed()
                 }
                 else
                 {
-                    QJsonArray urls = object.take("mv_list").toArray();
+                    QString songName = object.take("videoName").toString();
+                    QString singerName = object.take("singerName").toString();
+                    QJsonArray urls = object.take("mvList").toArray();
                     if( urls.count() > 0)
                     {
                         object = urls[0].toObject();
@@ -135,15 +137,13 @@ void MusicDownLoadQueryThread::searchFinshed()
                         {
                             object = urls[i].toObject();
                             SongUrlFormat urlFormat;
-                            urlFormat.m_format = QString::number(object.value("bitrate").toInt());
-                            QString mvPath = object.value("url").toString();
-                            mvPath.replace(0, mvPath.indexOf("/mv_"), "http://otmv.alicdn.com/new");
-                            urlFormat.m_url = mvPath;
+                            urlFormat.m_format = QString::number(object.value("bitRate").toInt());
+                            urlFormat.m_url = object.value("url").toString();
                             musicInfo.m_songUrl << urlFormat;
                         }
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
-                        musicInfo.m_format = object.value("format").toString();
+                        musicInfo.m_format = object.value("suffix").toString();
                         m_musicSongInfo << musicInfo;
                     }
                 }
