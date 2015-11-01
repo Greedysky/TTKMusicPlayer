@@ -20,6 +20,9 @@ public:
     static T* createInstance();
 
 private:
+    MusicSingleton(){}
+    ~MusicSingleton(){}
+
     static QMutex m_mutex;
     static QScopedPointer<T> m_instance;
     Q_DISABLE_COPY(MusicSingleton)
