@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicobject.h"
-#include "musicsingletone.h"
+#include "musicsingleton.h"
 
 #define M_BG_MANAGER (MusicSingleton<MusicBgThemeManager>::createInstance())
 #define MAX_INDEX 5

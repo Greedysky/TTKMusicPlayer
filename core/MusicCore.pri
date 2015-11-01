@@ -12,7 +12,6 @@ HEADERS  += \
     $$PWD/musiclibexportglobal.h \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
-    $$PWD/musicsingletone.h \
     $$PWD/network/musicdownloadquerythread.h \
     $$PWD/network/musicdownloadthreadabstract.h \
     $$PWD/network/musicdata2downloadthread.h \
@@ -34,7 +33,8 @@ HEADERS  += \
     $$PWD/musicbgthememanager.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
-    $$PWD/musicregeditmanager.h
+    $$PWD/musicregeditmanager.h \
+    $$PWD/musicsingleton.h
 
 
 SOURCES += \

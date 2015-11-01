@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicsingletone.h"
+#include "musicsingleton.h"
 #include <QMetaEnum>
 
 #define M_SETTING (MusicSingleton<MusicSettingManager>::createInstance())

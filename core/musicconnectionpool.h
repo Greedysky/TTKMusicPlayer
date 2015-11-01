@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QMap>
-#include "musicsingletone.h"
+#include "musicsingleton.h"
 
 #define M_CONNECTION (MusicSingleton<MusicConnectionPool>::createInstance())
 
