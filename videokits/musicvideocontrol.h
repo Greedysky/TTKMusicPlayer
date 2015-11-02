@@ -34,7 +34,7 @@ public:
 signals:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
-    void getMusicMvInfo(SongUrlFormats &data);
+    void getMusicMvInfo(DownloadSongInfo &data);
     void mvURLChanged(const QString &data);
 
 public slots:
