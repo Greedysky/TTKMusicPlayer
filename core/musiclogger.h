@@ -18,9 +18,9 @@
 
 #define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
+#define LOG_END  QString("log::npos")
 
 #define M_LOGGER (*MusicLogger::createInstance())
-#define LOG_END  QString("log::npos")
 
 #ifdef MUSIC_DEBUG
     #define M_LOGGERS(str) M_LOGGER << str << LOG_END

@@ -89,7 +89,6 @@ public:
 
     };
 
-    ~MusicSettingManager(){}
     inline void setValue(ConfigType type, const QVariant &var)
     {
         m_para[type] = var;
@@ -127,6 +126,8 @@ public:
 
 protected:
     MusicSettingManager(){}
+    ~MusicSettingManager(){}
+
     ConfigType typeStringToEnum(const QString &stype) const
     {
         int index = staticMetaObject.indexOfEnumerator("ConfigType");

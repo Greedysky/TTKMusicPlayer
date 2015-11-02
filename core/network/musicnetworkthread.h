@@ -41,7 +41,7 @@ private:
     bool m_networkState;
     bool m_blockNetWork;
 
-    MusicNetworkThread(QObject *parent = 0);
+    MusicNetworkThread();
     ~MusicNetworkThread();
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)

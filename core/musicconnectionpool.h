@@ -18,8 +18,6 @@ class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicConnectionPool(QObject *parent = 0);
-
     inline void setValue(const QString &type, QObject *object)
     {
         m_para[type] = object;
@@ -40,6 +38,9 @@ public:
 protected:
     QMap<QString, QObject*> m_para;
     QList<QObject*> m_queueList;
+
+    MusicConnectionPool();
+    ~MusicConnectionPool();
 
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 

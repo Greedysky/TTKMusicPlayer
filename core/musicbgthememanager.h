@@ -39,6 +39,7 @@ signals:
 
 protected:
     MusicBgThemeManager();
+    ~MusicBgThemeManager();
 
     QString m_currentArtName;
     QString m_MBackground;

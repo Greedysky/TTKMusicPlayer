@@ -5,6 +5,11 @@ MusicBgThemeManager::MusicBgThemeManager()
     m_currentIndex = 0;
 }
 
+MusicBgThemeManager::~MusicBgThemeManager()
+{
+
+}
+
 void MusicBgThemeManager::clearArtName()
 {
     m_currentArtName.clear();

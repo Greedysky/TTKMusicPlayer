@@ -2,8 +2,8 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 
-MusicNetworkThread::MusicNetworkThread(QObject *parent)
-    : QObject(parent), m_networkState(true)
+MusicNetworkThread::MusicNetworkThread()
+    : QObject(0), m_networkState(true)
 {
     M_CONNECTION->setValue("MusicNetworkThread", this);
     m_client = NULL;

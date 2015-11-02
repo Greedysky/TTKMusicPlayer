@@ -3,8 +3,13 @@
 #include <QWidget>
 #include "musicobject.h"
 
-MusicConnectionPool::MusicConnectionPool(QObject *parent)
-    : QObject(parent)
+MusicConnectionPool::MusicConnectionPool()
+    : QObject(0)
+{
+
+}
+
+MusicConnectionPool::~MusicConnectionPool()
 {
 
 }
