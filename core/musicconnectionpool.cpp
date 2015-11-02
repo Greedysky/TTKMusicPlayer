@@ -154,8 +154,8 @@ void MusicConnectionPool::connect(const QString &from,
 
     if(from == "MusicVideoControl" && to == "MusicVideoTableWidget" )
     {
-        QObject::connect(first, SIGNAL(getMusicMvInfo(DownloadSongInfo&)), second,
-                                SLOT(getMusicMvInfo(DownloadSongInfo&)));
+        QObject::connect(first, SIGNAL(getMusicMvInfo(SongUrlFormats&)), second,
+                                SLOT(getMusicMvInfo(SongUrlFormats&)));
     }
 
 }

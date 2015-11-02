@@ -124,20 +124,14 @@ void MusicVideoControl::setButtonStyle(bool style) const
 
 void MusicVideoControl::mediaChanged(const QString &url)
 {
-    DownloadSongInfo data;
-    SongUrlFormats songUrls;
+    SongUrlFormats data;
     emit getMusicMvInfo(data);
 
-    if((songUrls = data.m_songUrl).isEmpty())
+    for(int i=0; i<data.count(); ++i)
     {
-        return;
-    }
-
-    for(int i=0; i<songUrls.count(); ++i)
-    {
-        if(songUrls[i].m_url == url)
+        if(data[i].m_url == url)
         {
-            m_qualityButton->setText( (songUrls[i].m_format == "500") ? tr("NormalMV") : tr("HdMV"));
+            m_qualityButton->setText( (data[i].m_format == "500") ? tr("NormalMV") : tr("HdMV"));
         }
     }
 }
@@ -167,45 +161,36 @@ void MusicVideoControl::downloadButtonClicked()
 
 void MusicVideoControl::menuActionTriggered(QAction *action)
 {
-    DownloadSongInfo data;
-    SongUrlFormats songUrls;
+    SongUrlFormats data;
     emit getMusicMvInfo(data);
-
-    if((songUrls = data.m_songUrl).isEmpty())
-    {
-        return;
-    }
-
     if(action->text() == tr("NormalMV"))
     {
         m_qualityButton->setText(tr("NormalMV"));
-        emit mvURLChanged((songUrls.first().m_format == "500") ? songUrls.first().m_url
-                                                               : songUrls.last().m_url);
+        emit mvURLChanged((data.first().m_format == "500") ? data.first().m_url : data.last().m_url);
     }
     else
     {
         m_qualityButton->setText(tr("HdMV"));
-        emit mvURLChanged((songUrls.first().m_format == "750") ? songUrls.first().m_url
-                                                               : songUrls.last().m_url);
+        emit mvURLChanged((data.first().m_format == "750") ? data.first().m_url : data.last().m_url);
     }
 }
 
 void MusicVideoControl::setQualityActionState()
 {
+    SongUrlFormats data;
+    emit getMusicMvInfo(data);
+
     m_mvNormal->setEnabled(true);
     m_mvHd->setEnabled(true);
 
-    DownloadSongInfo data;
-    SongUrlFormats songUrls;
-    emit getMusicMvInfo(data);
-
-    if((songUrls = data.m_songUrl).isEmpty())
+    if(data.isEmpty())
     {
         m_mvNormal->setEnabled(false);
         m_mvHd->setEnabled(false);
+        return;
     }
-    else if(songUrls.count() == 1)
+    else if(data.count() == 1)
     {
-        songUrls.first().m_format == "500" ? m_mvHd->setEnabled(false) : m_mvNormal->setEnabled(false);
+        data.first().m_format == "500" ? m_mvHd->setEnabled(false) : m_mvNormal->setEnabled(false);
     }
 }

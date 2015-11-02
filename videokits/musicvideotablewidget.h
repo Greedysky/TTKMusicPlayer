@@ -33,7 +33,7 @@ public slots:
                             const QString &artistname,
                             const QString &time);
     void itemDoubleClicked(int row, int column);
-    void getMusicMvInfo(DownloadSongInfo &data);
+    void getMusicMvInfo(SongUrlFormats &data);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);

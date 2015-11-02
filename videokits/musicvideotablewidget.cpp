@@ -150,11 +150,11 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     emit mvURLChanged(musicSongInfo[row].m_songUrl.first().m_url);
 }
 
-void MusicVideoTableWidget::getMusicMvInfo(DownloadSongInfo &data)
+void MusicVideoTableWidget::getMusicMvInfo(SongUrlFormats &data)
 {
     DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
-    data = (!musicSongInfo.isEmpty() && m_previousClickRow != -1)
-           ? musicSongInfo[m_previousClickRow] : DownloadSongInfo();
+    data = !musicSongInfo.isEmpty() && m_previousClickRow != -1
+           ? musicSongInfo[m_previousClickRow].m_songUrl : SongUrlFormats();
 }
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
