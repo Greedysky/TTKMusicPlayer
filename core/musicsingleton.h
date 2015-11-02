@@ -14,7 +14,7 @@
 #include "musiclibexportglobal.h"
 
 template <typename T>
-class MusicSingleton
+class MUSIC_CORE_EXPORT MusicSingleton
 {
 public:
     static T* createInstance();

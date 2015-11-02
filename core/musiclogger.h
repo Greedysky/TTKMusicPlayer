@@ -9,12 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicsingleton.h"
-#include "musiclibexportglobal.h"
-
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
+#include "musiclibexportglobal.h"
 
 #define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
