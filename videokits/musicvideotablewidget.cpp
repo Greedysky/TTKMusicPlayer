@@ -119,8 +119,11 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
     }
     DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
 
-    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row].m_songUrl.first().m_url, QString("%1 - %2.%3")
-        .arg(musicSongInfo[row].m_singerName).arg(musicSongInfo[row].m_songName).arg(musicSongInfo[row].m_format), Download_Video, this);
+    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row].m_songUrl.first().m_url,
+                                            QString("%1/%2 - %3.%4").arg(MusicObject::getAppDir() + MOVIE_DOWNLOAD).
+                                                                     arg(musicSongInfo[row].m_singerName)
+                                                                    .arg(musicSongInfo[row].m_songName)
+                                                                    .arg(musicSongInfo[row].m_format), Download_Video, this);
     download->startToDownload();
 }
 

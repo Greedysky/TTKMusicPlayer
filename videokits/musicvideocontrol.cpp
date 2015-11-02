@@ -166,14 +166,12 @@ void MusicVideoControl::menuActionTriggered(QAction *action)
     if(action->text() == tr("NormalMV"))
     {
         m_qualityButton->setText(tr("NormalMV"));
-        emit mvURLChanged( (data.first().m_format == "500") ?
-                            data.first().m_url : data.last().m_url);
+        emit mvURLChanged((data.first().m_format == "500") ? data.first().m_url : data.last().m_url);
     }
     else
     {
         m_qualityButton->setText(tr("HdMV"));
-        emit mvURLChanged( (data.first().m_format == "750") ?
-                            data.first().m_url : data.last().m_url);
+        emit mvURLChanged((data.first().m_format == "750") ? data.first().m_url : data.last().m_url);
     }
 }
 
@@ -193,7 +191,6 @@ void MusicVideoControl::setQualityActionState()
     }
     else if(data.count() == 1)
     {
-        data.first().m_format == "500" ? m_mvHd->setEnabled(false)
-                                       : m_mvNormal->setEnabled(false);
+        data.first().m_format == "500" ? m_mvHd->setEnabled(false) : m_mvNormal->setEnabled(false);
     }
 }
