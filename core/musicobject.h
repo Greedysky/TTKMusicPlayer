@@ -16,6 +16,7 @@
 
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
+#define MOVIE_DOWNLOAD "Movie/"
 #define THEME_DOWNLOAD "MTheme/"
 #define THEME_CACHED   "MCachedTheme/"
 #define ART_DOWNLOAD   "MArt/"
@@ -77,7 +78,7 @@ typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
 typedef struct SongUrlFormat
 {
-    QString m_format;
+    QString m_format;                      /* 500p or 720p */
     QString m_url;
 }SongUrlFormat;
 typedef QList<SongUrlFormat> SongUrlFormats;
@@ -140,6 +141,7 @@ namespace MusicObject
     {
         dirIsExist(getAppDir() + LRC_DOWNLOAD);
         dirIsExist(getAppDir() + MUSIC_DOWNLOAD);
+        dirIsExist(getAppDir() + MOVIE_DOWNLOAD);
         dirIsExist(getAppDir() + THEME_CACHED);
         dirIsExist(getAppDir() + THEME_DOWNLOAD);
         dirIsExist(getAppDir() + ART_DOWNLOAD);
