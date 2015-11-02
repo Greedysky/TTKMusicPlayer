@@ -117,13 +117,49 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
         message.exec();
         return;
     }
-    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    downloadLocalMovie(row, 500);
+}
 
-    MusicDataDownloadThread* download = new MusicDataDownloadThread(musicSongInfo[row].m_songUrl.first().m_url,
+void MusicVideoTableWidget::downloadLocalByQuality(int quality)
+{
+    if( m_previousClickRow != -1 )
+    {
+        downloadLocalMovie(m_previousClickRow, quality);
+    }
+}
+
+void MusicVideoTableWidget::downloadLocalMovie(int row, int quality)
+{
+    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfo songInfo = musicSongInfo[row];
+    SongUrlFormats data = songInfo.m_songUrl;
+    if(data.isEmpty())
+    {
+        return;
+    }
+
+    QString movieDownloadUrl;
+    if(data.count() == 1)
+    {
+        movieDownloadUrl = data.first().m_url;
+    }
+    else
+    {
+        if(data.first().m_format == QString::number(quality))
+        {
+            movieDownloadUrl = data.first().m_url;
+        }
+        else
+        {
+            movieDownloadUrl = data.last().m_url;
+        }
+    }
+
+    MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
                                             QString("%1/%2 - %3.%4").arg(MusicObject::getAppDir() + MOVIE_DOWNLOAD).
-                                                                     arg(musicSongInfo[row].m_singerName)
-                                                                    .arg(musicSongInfo[row].m_songName)
-                                                                    .arg(musicSongInfo[row].m_format), Download_Video, this);
+                                                                     arg(songInfo.m_singerName)
+                                                                    .arg(songInfo.m_songName)
+                                                                    .arg(songInfo.m_format), Download_Video, this);
     download->startToDownload();
 }
 

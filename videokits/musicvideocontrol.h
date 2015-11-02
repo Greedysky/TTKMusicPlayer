@@ -35,6 +35,7 @@ signals:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
     void getMusicMvInfo(SongUrlFormats &data);
+    void downloadLocalByQuality(int quality);
     void mvURLChanged(const QString &data);
 
 public slots:

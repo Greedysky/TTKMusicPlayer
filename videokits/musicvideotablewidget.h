@@ -34,10 +34,13 @@ public slots:
                             const QString &time);
     void itemDoubleClicked(int row, int column);
     void getMusicMvInfo(SongUrlFormats &data);
+    void downloadLocalByQuality(int quality);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     QString randToGetStrength() const;
+    void downloadLocalMovie(int row, int quality);
+
     QString m_currentSongName;
 
 };

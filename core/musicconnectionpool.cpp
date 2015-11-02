@@ -156,6 +156,8 @@ void MusicConnectionPool::connect(const QString &from,
     {
         QObject::connect(first, SIGNAL(getMusicMvInfo(SongUrlFormats&)), second,
                                 SLOT(getMusicMvInfo(SongUrlFormats&)));
+        QObject::connect(first, SIGNAL(downloadLocalByQuality(int)), second,
+                                SLOT(downloadLocalByQuality(int)));
     }
 
 }

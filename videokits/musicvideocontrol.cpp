@@ -6,7 +6,6 @@
 #include <QSlider>
 #include <QHBoxLayout>
 #include <QWidgetAction>
-#include <QDebug>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
@@ -156,7 +155,9 @@ void MusicVideoControl::fullButtonClicked()
 
 void MusicVideoControl::downloadButtonClicked()
 {
-
+    int quality;
+    quality = m_qualityButton->text() == tr("NormalMV") ? 500 : 750;
+    emit downloadLocalByQuality( quality );
 }
 
 void MusicVideoControl::menuActionTriggered(QAction *action)
@@ -182,12 +183,13 @@ void MusicVideoControl::setQualityActionState()
 
     m_mvNormal->setEnabled(true);
     m_mvHd->setEnabled(true);
+    m_downloadButton->setEnabled(true);
 
     if(data.isEmpty())
     {
         m_mvNormal->setEnabled(false);
         m_mvHd->setEnabled(false);
-        return;
+        m_downloadButton->setEnabled(false);
     }
     else if(data.count() == 1)
     {
