@@ -33,7 +33,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
 
     connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(&m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-
+    connect(&m_mediaPlayer, SIGNAL(mediaChanged(QMediaContent)), SLOT(mediaChanged(QMediaContent)));
 }
 
 MusicVideoView::~MusicVideoView()
@@ -139,4 +139,9 @@ void MusicVideoView::setPosition(int position)
 void MusicVideoView::volumnChanged(int volumn)
 {
     m_mediaPlayer.setVolume(volumn);
+}
+
+void MusicVideoView::mediaChanged(const QMediaContent &data)
+{
+    m_videoControl->mediaChanged(data.canonicalUrl().toString());
 }

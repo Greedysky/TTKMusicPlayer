@@ -6,6 +6,7 @@
 #include <QSlider>
 #include <QHBoxLayout>
 #include <QWidgetAction>
+#include <QDebug>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
@@ -20,6 +21,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_inSideButton = new QPushButton(this);
     m_fullButton = new QPushButton(this);
     m_qualityButton = new QPushButton(tr("NormalMV"), this);
+    m_downloadButton = new QPushButton(tr("DownloadMV"), this);
 
     m_volumnButton = new QToolButton(this);
     m_volumnSlider = new QSlider(Qt::Vertical,this);
@@ -37,6 +39,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
     m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
     m_qualityButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
+    m_downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumnButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -46,6 +49,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_inSideButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_fullButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_qualityButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_popupQuality.setStyleSheet(MusicUIObject::MMenuStyle01);
@@ -58,6 +62,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     controlLayout->addWidget(m_volumnButton);
     controlLayout->addWidget(m_timeSlider);
     controlLayout->addWidget(m_qualityButton);
+    controlLayout->addWidget(m_downloadButton);
     controlLayout->addWidget(m_inSideButton);
     controlLayout->addWidget(m_fullButton);
     setLayout(controlLayout);
@@ -80,6 +85,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
+    connect(m_downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
 
     M_CONNECTION->setValue("MusicVideoControl", this);
     M_CONNECTION->connect("MusicVideoControl", "MusicRightAreaWidget");
@@ -98,6 +104,7 @@ MusicVideoControl::~MusicVideoControl()
     delete m_inSideButton;
     delete m_fullButton;
     delete m_qualityButton;
+    delete m_downloadButton;
 }
 
 void MusicVideoControl::setValue(qint64 position) const
@@ -113,6 +120,20 @@ void MusicVideoControl::durationChanged(qint64 duration) const
 void MusicVideoControl::setButtonStyle(bool style) const
 {
     m_playButton->setIcon(QIcon( style ? ":/video/play" : ":/video/pause"));
+}
+
+void MusicVideoControl::mediaChanged(const QString &url)
+{
+    SongUrlFormats data;
+    emit getMusicMvInfo(data);
+
+    for(int i=0; i<data.count(); ++i)
+    {
+        if(data[i].m_url == url)
+        {
+            m_qualityButton->setText( (data[i].m_format == "500") ? tr("NormalMV") : tr("HdMV"));
+        }
+    }
 }
 
 void MusicVideoControl::show()
@@ -133,6 +154,11 @@ void MusicVideoControl::fullButtonClicked()
     emit musicVideoFullscreen( m_fullButton->text() == tr("NormalMode") );
 }
 
+void MusicVideoControl::downloadButtonClicked()
+{
+
+}
+
 void MusicVideoControl::menuActionTriggered(QAction *action)
 {
     SongUrlFormats data;
@@ -140,12 +166,14 @@ void MusicVideoControl::menuActionTriggered(QAction *action)
     if(action->text() == tr("NormalMV"))
     {
         m_qualityButton->setText(tr("NormalMV"));
-        emit mvURLChanged(data.first().m_url);
+        emit mvURLChanged( (data.first().m_format == "500") ?
+                            data.first().m_url : data.last().m_url);
     }
     else
     {
         m_qualityButton->setText(tr("HdMV"));
-        emit mvURLChanged(data.last().m_url);
+        emit mvURLChanged( (data.first().m_format == "750") ?
+                            data.first().m_url : data.last().m_url);
     }
 }
 
@@ -153,22 +181,19 @@ void MusicVideoControl::setQualityActionState()
 {
     SongUrlFormats data;
     emit getMusicMvInfo(data);
+
     m_mvNormal->setEnabled(true);
     m_mvHd->setEnabled(true);
+
     if(data.isEmpty())
     {
         m_mvNormal->setEnabled(false);
         m_mvHd->setEnabled(false);
+        return;
     }
-    if(data.count() == 1)
+    else if(data.count() == 1)
     {
-        if(data.first().m_format == "500")
-        {
-            m_mvHd->setEnabled(false);
-        }
-        else
-        {
-            m_mvNormal->setEnabled(false);
-        }
+        data.first().m_format == "500" ? m_mvHd->setEnabled(false)
+                                       : m_mvNormal->setEnabled(false);
     }
 }

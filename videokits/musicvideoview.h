@@ -35,6 +35,7 @@ private slots:
     void durationChanged(qint64 duration);
     void setPosition(int position);
     void volumnChanged(int volumn);
+    void mediaChanged(const QMediaContent &data);
 
 protected:
     virtual void enterEvent(QEvent *event);

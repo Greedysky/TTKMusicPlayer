@@ -29,6 +29,7 @@ public:
     void setValue(qint64 position) const;
     void durationChanged(qint64 duration) const;
     void setButtonStyle(bool style) const;
+    void mediaChanged(const QString &url);
 
 signals:
     void musicVideoSetPopup(bool popup);
@@ -40,6 +41,7 @@ public slots:
     void show();
     void inSideButtonClicked();
     void fullButtonClicked();
+    void downloadButtonClicked();
     void menuActionTriggered(QAction *action);
 
 protected:
@@ -51,7 +53,7 @@ protected:
     QSlider *m_timeSlider, *m_volumnSlider;
     QToolButton *m_menuButton, *m_volumnButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
-    QPushButton *m_qualityButton;
+    QPushButton *m_qualityButton, *m_downloadButton;
     QAction *m_mvNormal, *m_mvHd;
 
 };
