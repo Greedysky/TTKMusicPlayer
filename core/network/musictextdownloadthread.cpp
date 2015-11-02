@@ -26,7 +26,7 @@ void MusicTextDownLoadThread::startToDownload()
         else
         {
             emit musicDownLoadFinished("The text file create failed");
-            M_LOOGER << "The text file create failed";
+            M_LOGGER << "The text file create failed" << LOG_END;
             deleteAll();
         }
     }
@@ -61,13 +61,13 @@ void MusicTextDownLoadThread::downLoadFinished()
                 m_file->write(jsonObject.take("lrc").toString().remove("\r").toUtf8());
                 m_file->flush();
                 m_file->close();
-                M_LOOGER << "text download has finished!";
+                M_LOGGER << "text download has finished!" << LOG_END;
             }
         }
     }
     else
     {
-        M_LOOGER << "text download file error!";
+        M_LOGGER << "text download file error!" << LOG_END;
         m_file->remove();
         m_file->close();
     }

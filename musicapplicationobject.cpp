@@ -99,7 +99,8 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
                                 break;
                             unitmask = unitmask >> 1;
                         }
-                        M_LOOGER << "USB_Arrived and The USBDisk is: "<<(char)(i + 'A');
+                        M_LOGGER << "USB_Arrived and The USBDisk is: "
+                                 << (char)(i + 'A') << LOG_END;
                         delete m_mobileDevices;
                         m_mobileDevices = new MusicMobileDevicesWidget;
                         m_mobileDevices->show();
@@ -112,7 +113,7 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
                     PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
                     if (lpdbv -> dbcv_flags == 0)
                     {
-                        M_LOOGER << "USB_remove";
+                        M_LOGGER << "USB_remove" << LOG_END;
                         delete m_mobileDevices;
                         m_mobileDevices = NULL;
                     }

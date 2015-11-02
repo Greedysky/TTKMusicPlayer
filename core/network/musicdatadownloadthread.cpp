@@ -18,7 +18,7 @@ void MusicDataDownloadThread::startToDownload()
         }
         else
         {
-            M_LOOGER << "The data file create failed";
+            M_LOGGER << "The data file create failed" << LOG_END;
             emit musicDownLoadFinished("The data file create failed");
             deleteAll();
         }
@@ -59,7 +59,7 @@ void MusicDataDownloadThread::downLoadFinished()
     else
     {
         emit musicDownLoadFinished("Data");
-        M_LOOGER << "data download has finished!";
+        M_LOGGER << "data download has finished!" << LOG_END;
         deleteAll();
     }
 }

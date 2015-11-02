@@ -191,7 +191,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
         ui->msCombo->setCurrentIndex(1);
     }
 
-    M_LOOGER << ui->formatCombo->currentText()
+    M_LOGGER << ui->formatCombo->currentText()
              << ui->kbpsCombo->currentText()
              << ui->hzCombo->currentText()
              << QString::number(ui->msCombo->currentIndex() + 1);
@@ -199,7 +199,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
     m_process->start(para, QStringList() << "-i" << in << "-y"
                      << "-ab" << ui->kbpsCombo->currentText() + "k"
                      << "-ar" << ui->hzCombo->currentText()
-                     << "-ac" << QString::number(ui->msCombo->currentIndex()+1)
+                     << "-ac" << QString::number(ui->msCombo->currentIndex() + 1)
                      << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
                         .arg(ui->formatCombo->currentText().toLower()) );
     return true;

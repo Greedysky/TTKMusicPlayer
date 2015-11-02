@@ -67,7 +67,7 @@ bool MusicWebRadioDatabase::connectDatabase() const
     }
     catch(QString exception)
     {
-        M_LOOGER << "Error Message :" << exception;
+        M_LOGGER << "Error Message :" << exception << LOG_END;
         return false;
     }
     return true;

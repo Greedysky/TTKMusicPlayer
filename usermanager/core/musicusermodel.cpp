@@ -24,12 +24,12 @@ bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
     if(submitAll())
     {
         database().commit();
-        M_LOOGER << "submit successfully";
+        M_LOGGER << "submit successfully" << LOG_END;
         return true;
     }
     else
     {
-        M_LOOGER << "submit failed";
+        M_LOGGER << "submit failed" << LOG_END;
         database().rollback();
         return false;
     }

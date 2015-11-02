@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    M_LOOGERS("MusicApplication Begin");
+    M_LOGGERS("MusicApplication Begin");
     QCoreApplication::setOrganizationName("QMusicPlayer");
     QCoreApplication::setOrganizationDomain("QMusicPlayer.com");
     QCoreApplication::setApplicationName("QMusicPlayer");
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     //detect the current network state
     M_NETWORK->start();
 
-    M_LOOGERS("Load Translation");
+    M_LOGGERS("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
     QTranslator translator;
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
-    M_LOOGERS("End load translation");
+    M_LOGGERS("End load translation");
 
     MusicObject::checkTheDirectoryExist();
     MusicApplication w;

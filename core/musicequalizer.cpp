@@ -46,7 +46,7 @@ void MusicEqualizer::readEqInformation()
 
 void MusicEqualizer::setEqEffect(const MIntList &hz)
 {
-    M_LOOGER << "Equalizer" << "setEqEffect-----";
+    M_LOGGER << "Equalizer" << "setEqEffect-----" << LOG_END;
     ///set equalizer
     for(int i=0; i<m_Fcount; ++i)
     {
@@ -109,7 +109,7 @@ void MusicEqualizer::setReverseEffect()
     m_reverse = !m_reverse;
     if(m_parentClass->ReverseMode(m_reverse) == 0)
     {
-        M_LOOGER << "Equalizer" << m_parentClass->GetError();
+        M_LOGGER << "Equalizer" << m_parentClass->GetError() << LOG_END;
     }
 }
 

@@ -23,8 +23,6 @@ class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
 public:
-    ~MusicNetworkThread();
-
     void start();
     void setBlockNetWork(int block);
     inline bool isOnline() const {return m_networkState;}
@@ -42,7 +40,9 @@ private:
     QTcpSocket *m_client;
     bool m_networkState;
     bool m_blockNetWork;
+
     MusicNetworkThread(QObject *parent = 0);
+    ~MusicNetworkThread();
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 };

@@ -172,7 +172,7 @@ void MusicPlayer::play()
     ///The current playback path
     if(m_music->OpenFileW(m_currentMedia.toStdWString().c_str(), sfAutodetect) == 0)
     {
-        M_LOOGER << "Error1." << m_music->GetError();
+        M_LOGGER << "Error1." << m_music->GetError() << LOG_END;
         return;
     }
 
@@ -183,7 +183,7 @@ void MusicPlayer::play()
     m_state = PlayingState;
     if(m_music->Play() == 0)
     {
-        M_LOOGER << "Error2." << m_music->GetError();
+        M_LOGGER << "Error2." << m_music->GetError() << LOG_END;
         return;
     }
 

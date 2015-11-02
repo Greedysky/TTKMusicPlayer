@@ -19,7 +19,7 @@ MusicNetworkThread::~MusicNetworkThread()
 void MusicNetworkThread::start()
 {
     m_blockNetWork = false;
-    M_LOOGERS("Load NetworkThread");
+    M_LOGGERS("Load NetworkThread");
 }
 
 void MusicNetworkThread::setBlockNetWork(int block)
@@ -41,7 +41,7 @@ void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketS
         }
 
         emit networkConnectionStateChanged(m_networkState = m_blockNetWork ? false : state);
-        M_LOOGER << "Connect state: " << m_networkState;
+        M_LOGGER << "Connect state: " << m_networkState << LOG_END;
     }
 }
 

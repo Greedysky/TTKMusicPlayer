@@ -126,18 +126,18 @@ void MusicTimerAutoObject::setShutdown()
                 item = lists[j];
                 if(item.contains("\\WINDOWS\\SYSTEM32"))
                 {   ///x86 or x64
-                    M_LOOGER << "x86_x64" << item;
+                    M_LOGGER << "x86_x64" << item << LOG_END;
                     break;
                 }
                 if(isWind64 && item.contains("\\WINDOWS\\SYSWOW64"))
                 {   ///x64
-                    M_LOOGER << "x64" << item;
+                    M_LOGGER << "x64" << item << LOG_END;
                     break;
                 }
             }
         }
     }
     QString program = item + "\\shutdown.exe";
-    (new QProcess(this))->start(program, QStringList()<<"-s"<<"-t"<<"1");
-    M_LOOGER << "shutdown now";
+    (new QProcess(this))->start(program, QStringList() << "-s" << "-t" << "1");
+    M_LOGGER << "shutdown now" << LOG_END;
 }

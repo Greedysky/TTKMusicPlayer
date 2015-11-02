@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsingleton.h"
 #include "musiclibexportglobal.h"
 
 #include <QFile>
@@ -18,11 +19,13 @@
 #define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
 
-#define M_LOOGER (*MusicLogger::createInstance())
+#define M_LOGGER (*MusicLogger::createInstance())
+#define LOG_END  QString("log::npos")
+
 #ifdef MUSIC_DEBUG
-    #define M_LOOGERS(str) M_LOOGER << str
+    #define M_LOGGERS(str) M_LOGGER << str << LOG_END
 #else
-    #define M_LOOGERS(str)
+    #define M_LOGGERS(str)
 #endif
 
 class MUSIC_CORE_EXPORT MusicLogger
@@ -31,23 +34,8 @@ public:
     static inline MusicLogger* createInstance()
     {
         static MusicLogger obj;
-#ifdef MUSIC_DEBUG
-        obj.stream() << QString("[%1 %2]:  %3").arg(CURRENTDATE)
-                      .arg(CURRENTTIME).arg(obj.streamString()) << endl;
-        obj.streamString().clear();
-#endif
         return &obj;
     }
-
-    ~MusicLogger()
-    {
-#ifdef MUSIC_DEBUG
-        m_file.close();
-#endif
-    }
-
-    QTextStream &stream() { return m_stream; }
-    QString &streamString() { return m_streamString; }
 
     inline MusicLogger &operator <<(bool t)
     {
@@ -70,13 +58,28 @@ public:
     inline MusicLogger &operator<<(float t) { return debugData<float>(t); }
     inline MusicLogger &operator<<(double t) { return debugData<double>(t); }
     inline MusicLogger &operator<<(const char *t) { return debugData<const char*>(t); }
-    inline MusicLogger &operator<<(const QString &t) { return debugData<QString>(t); }
+    inline MusicLogger &operator<<(const QString &t)
+    {
+#ifdef MUSIC_DEBUG
+        if(t == LOG_END)
+        {
+            m_stream << QString("[%1 %2]:  %3").arg(CURRENTDATE).arg(CURRENTTIME).arg(m_streamString) << endl;
+            m_streamString.clear();
+        }
+        else
+        {
+            debugData<QString>(t);
+        }
+#else
+        Q_UNUSED(t);
+#endif
+        return *this;
+    }
     inline MusicLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
     inline MusicLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
     inline MusicLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
 
-
-protected:
+private:
     MusicLogger()
     {
 #ifdef MUSIC_DEBUG
@@ -84,6 +87,13 @@ protected:
         m_file.open(QIODevice::WriteOnly | QIODevice::Append);
         m_stream.setDevice(&m_file);
         m_stream << QString().rightJustified(70, '=') << endl;
+#endif
+    }
+
+    ~MusicLogger()
+    {
+#ifdef MUSIC_DEBUG
+        m_file.close();
 #endif
     }
 
@@ -102,7 +112,6 @@ protected:
     QString m_streamString;
     QFile m_file;
 
-    Q_DISABLE_COPY(MusicLogger)
 };
 
 #endif // MUSICLOGGER_H
