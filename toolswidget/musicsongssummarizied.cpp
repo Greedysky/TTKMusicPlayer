@@ -82,8 +82,10 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIn
 void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
     MusicProgressWidget progress;
+    progress.show();
     progress.setTitle(tr("Import File Mode"));
     progress.setRange(0, filelist.count());
+
     for(int i=0; i<filelist.count(); ++i)
     {
         MusicFileInformation info;
