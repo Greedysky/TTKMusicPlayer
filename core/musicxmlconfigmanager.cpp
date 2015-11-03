@@ -66,13 +66,13 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
     {
         writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount" << "time",
                                  QList<QVariant>() << musics[1][i].getMusicName() << musics[1][i].getMusicPlayCount()
-                                                   << musics[1][i].getMusicTime(), musics[0][i].getMusicPath());
+                                                   << musics[1][i].getMusicTime(), musics[1][i].getMusicPath());
     }
     for(int i=0; i<musics[2].count(); ++i)
     {
         writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount" << "time",
                                  QList<QVariant>() << musics[2][i].getMusicName() << musics[2][i].getMusicPlayCount()
-                                                   << musics[2][i].getMusicTime(), musics[0][i].getMusicPath());
+                                                   << musics[2][i].getMusicTime(), musics[2][i].getMusicPath());
     }
 
     //Write to file
