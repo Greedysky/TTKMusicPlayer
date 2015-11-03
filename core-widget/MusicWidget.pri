@@ -31,7 +31,8 @@ HEADERS  += \
     $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
-    $$PWD/musicenhancedwidget.h
+    $$PWD/musicenhancedwidget.h \
+    $$PWD/musicprogresswidget.h
 
 
 SOURCES += \
@@ -59,11 +60,13 @@ SOURCES += \
     $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
-    $$PWD/musicenhancedwidget.cpp
+    $$PWD/musicenhancedwidget.cpp \
+    $$PWD/musicprogresswidget.cpp
 
 
 FORMS    += \
     ui/core-widget/musicmessagebox.ui \
+    ui/core-widget/musicprogresswidget.ui \
     ui/core-widget/musicsongslistiteminfowidget.ui \
     ui/core-widget/musicsettingwidget.ui \
     ui/core-widget/musicbackgroundskindialog.ui \

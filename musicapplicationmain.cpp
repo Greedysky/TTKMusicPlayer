@@ -7,7 +7,7 @@
 #include <QApplication>
 #include <QTranslator>
 //#include <vld.h>
-
+#include "musicprogresswidget.h"
 
 quint64 dirSize(const QString& dirName)
 {
@@ -95,6 +95,6 @@ int main(int argc, char *argv[])
             w.musicImportSongsSettingPath(QStringList() << argv[2]);
         }
     }
-
+MusicProgressWidget().exec();
     return a.exec();
 }
