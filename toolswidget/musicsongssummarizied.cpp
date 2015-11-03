@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicfileinformation.h"
+#include "musicprogresswidget.h"
 
 #include <QScrollBar>
 #include <QTableWidgetItem>
@@ -80,12 +81,16 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIn
 
 void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
+    MusicProgressWidget progress;
+    progress.setTitle(tr("Import File Mode"));
+    progress.setRange(0, filelist.count());
     for(int i=0; i<filelist.count(); ++i)
     {
         MusicFileInformation info;
         info.readFile(filelist[i]);
         QString time(info.getLengthString());
         m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
+        progress.setValue(i + 1);
     }
     m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
 }
