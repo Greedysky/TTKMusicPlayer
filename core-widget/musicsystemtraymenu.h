@@ -41,8 +41,7 @@ protected:
     QWidgetAction *m_widgetAction;
     QLabel *m_showText;
     QToolButton *m_PlayOrStop;
-    QAction *m_showLrcAction;
-    QAction *m_lockLrcAction;
+    QAction *m_showLrcAction, *m_lockLrcAction;
 
 };
 

@@ -61,16 +61,11 @@ public slots:
 protected:
     bool showArtPicture(const QString &name) const;
 
-    QLabel *m_artPicture;
-    QLabel *m_songName;
-    QLabel *m_timeLabel;
+    QLabel *m_artPicture, *m_songName, *m_timeLabel;
     QString m_totalTime;
-    MusicSongsEnterPlayWidget *m_columnOne;
-    MusicSongsEnterPlayWidget *m_columnThree;
-    QPushButton *m_loveButton;
-    QPushButton *m_deleteButton;
-    QPushButton *m_showMVButton;
-    QPushButton *m_songShareButton;
+    MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
+    QPushButton *m_loveButton, *m_deleteButton;
+    QPushButton *m_showMVButton, *m_songShareButton;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };

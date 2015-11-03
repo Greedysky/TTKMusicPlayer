@@ -75,21 +75,18 @@ protected:
     virtual void leaveEvent(QEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
-    int m_playRowIndex;
-    int m_dragStartIndex;
+    int m_playRowIndex, m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
 
-    QTimer m_timerShow;
-    QTimer m_timerStay;
+    QTimer m_timerShow, m_timerStay;
     MusicSongs *m_musicSongs;
     MusicSongsListItemInfoWidget *m_musicSongsListItem;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
     bool m_leftButtonPressed;
-    bool m_renameActived;
+    bool m_renameActived, m_deleteItemWithFile;
     QTableWidgetItem *m_renameItem;
-    bool m_deleteItemWithFile;
     MusicObject::SongPlayType m_songplaymode;
 
 };

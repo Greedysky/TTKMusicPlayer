@@ -1,13 +1,21 @@
 #ifndef MUSICPROGRESSWIDGET_H
 #define MUSICPROGRESSWIDGET_H
 
-#define WIDTH_S  20
-#define HEIGHT_S 20
+/* =================================================
+ * This file is part of the Music Player project
+ * Copyright (c) 2014 - 2015 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 
-class QLabel;
+#define WIDTH  20
+#define HEIGHT 20
 
 #include <QProgressDialog>
 #include "musiclibexportglobal.h"
+
+class QLabel;
 
 class MUSIC_WIDGET_EXPORT MusicProgressWidget : public QProgressDialog
 {
