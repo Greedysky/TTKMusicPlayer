@@ -1,6 +1,11 @@
 #ifndef MUSICPROGRESSWIDGET_H
 #define MUSICPROGRESSWIDGET_H
 
+#define WIDTH_S  20
+#define HEIGHT_S 20
+
+class QLabel;
+
 #include <QProgressDialog>
 #include "musiclibexportglobal.h"
 
@@ -11,15 +16,18 @@ public:
     explicit MusicProgressWidget(QWidget *parent = 0);
     ~MusicProgressWidget();
 
-//    void setTitle(const QString &name);
-//    void setValue(int value);
-//    void setRange(int min, int max);
+    void setTitle(const QString &name);
 
 public slots:
-    virtual int exec();
+    void show();
 
 protected:
+    virtual void paintEvent(QPaintEvent *event);
+    virtual void resizeEvent(QResizeEvent *event);
+    void initWidget();
 
+    QLabel *m_background, *m_textLabel;
+    QProgressBar *m_progressBar;
 
 };
 
