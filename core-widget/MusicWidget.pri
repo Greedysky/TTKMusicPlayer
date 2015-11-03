@@ -66,7 +66,6 @@ SOURCES += \
 
 FORMS    += \
     ui/core-widget/musicmessagebox.ui \
-    ui/core-widget/musicprogresswidget.ui \
     ui/core-widget/musicsongslistiteminfowidget.ui \
     ui/core-widget/musicsettingwidget.ui \
     ui/core-widget/musicbackgroundskindialog.ui \

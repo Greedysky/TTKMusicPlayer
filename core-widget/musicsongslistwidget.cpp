@@ -4,6 +4,7 @@
 #include "musictransformwidget.h"
 #include "musicfileinformationwidget.h"
 #include "musicmessagebox.h"
+#include "musicprogresswidget.h"
 
 #include <QAction>
 #include <QTimer>
@@ -231,11 +232,19 @@ void MusicSongsListWidget::setDeleteItemAt()
        return;
     }
 
+    MusicProgressWidget progress;
+    progress.setRange(0, selectedItems().count()/3*2);
+
     MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
     {
         deletedRow.insert(selectedItems()[i]->row());
+        if(i%3 == 0)
+        {
+            progress.setValue(i/3);
+        }
     }
+
     MIntList deleteList = deletedRow.toList();
     if(deleteList.count() == 0)
     {
@@ -251,6 +260,7 @@ void MusicSongsListWidget::setDeleteItemAt()
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
         removeRow(deleteList[i]); //Delete the current row
+        progress.setValue(deleteList.count()*2 - i);
     }
 
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
