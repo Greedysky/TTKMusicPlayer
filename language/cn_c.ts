@@ -366,17 +366,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="129"/>
+        <location filename="../musicapplicationobject.cpp" line="130"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="130"/>
+        <location filename="../musicapplicationobject.cpp" line="131"/>
         <source>Directed By Greedysky</source>
         <translation>Greedysky 工作室出品</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="171"/>
+        <location filename="../musicapplicationobject.cpp" line="172"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation>打開均衡器將關閉神奇音效，是否繼續？</translation>
     </message>
@@ -2862,112 +2862,112 @@
 <context>
     <name>MusicSongsListWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="79"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="81"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="84"/>
         <source>changSongName</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
         <source>musicPlay</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
         <source>OrderPlay</source>
         <translation>順序播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="86"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
         <source>RandomPlay</source>
         <translation>隨機播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="87"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
         <source>ListCycle</source>
         <translation>列表循環</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
         <source>SingleCycle</source>
         <translation>單曲循環</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
         <source>PlayOnce</source>
         <translation>單曲播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="99"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="101"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夾</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="107"/>
         <source>musicTool</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
         <source>bell</source>
         <translation>鈴聲制作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="106"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
         <source>transform</source>
         <translation>格式轉換</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="111"/>
         <source>musicInfoD</source>
         <translation>歌曲信息...</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
         <source>openFileDir</source>
         <translation>打開文件所在目錄</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="115"/>
         <source>delete</source>
         <translation>刪除歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
         <source>deleteWithFile</source>
         <translation>刪除(包括文件)</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="114"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
         <source>deleteAll</source>
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="382"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="387"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移動或者不存在！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="97"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="100"/>
         <source>addToLove</source>
         <translation>添加到我的最愛</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="225"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="228"/>
         <source>Are you sure to delete?</source>
         <translation>妳確定要刪除嗎？</translation>
     </message>
@@ -3752,12 +3752,19 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="72"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="141"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="143"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="22"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="75"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="159"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="167"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="169"/>
         <source>NormalMV</source>
         <translation>標清</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
+        <source>DownloadMV</source>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
@@ -3771,20 +3778,21 @@
     </message>
     <message>
         <location filename="../videokits/musicvideocontrol.cpp" line="35"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="152"/>
         <source>FullScreenMode</source>
         <translation>全屏模式</translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="132"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="134"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="151"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="152"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="153"/>
         <source>NormalMode</source>
         <translation>普通模式</translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="73"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="148"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="76"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="174"/>
         <source>HdMV</source>
         <translation>高清</translation>
     </message>

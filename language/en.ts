@@ -366,17 +366,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="129"/>
+        <location filename="../musicapplicationobject.cpp" line="130"/>
         <source>QMusicPlayer</source>
         <translation>QMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="130"/>
+        <location filename="../musicapplicationobject.cpp" line="131"/>
         <source>Directed By Greedysky</source>
         <translation>Directed By Greedysky</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="171"/>
+        <location filename="../musicapplicationobject.cpp" line="172"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2882,112 +2882,112 @@
 <context>
     <name>MusicSongsListWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="79"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="81"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="84"/>
         <source>changSongName</source>
         <translation>Rename</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="86"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="87"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="99"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="101"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="107"/>
         <source>musicTool</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
         <source>bell</source>
         <translation>Bell</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="106"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
         <source>transform</source>
         <translation>Transform</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="111"/>
         <source>musicInfoD</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="115"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
         <source>deleteWithFile</source>
         <translation>Delete(With File)</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="114"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
         <source>deleteAll</source>
         <translation>Delete-All</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="382"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="387"/>
         <source>The origin one does not exsit!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="97"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="100"/>
         <source>addToLove</source>
         <translation>Add To Lovest</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="225"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="228"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
     </message>
@@ -3772,12 +3772,19 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="72"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="141"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="143"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="22"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="75"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="159"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="167"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="169"/>
         <source>NormalMV</source>
         <translation>SD</translation>
+    </message>
+    <message>
+        <location filename="../videokits/musicvideocontrol.cpp" line="23"/>
+        <source>DownloadMV</source>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="../videokits/musicvideocontrol.cpp" line="34"/>
@@ -3791,20 +3798,21 @@
     </message>
     <message>
         <location filename="../videokits/musicvideocontrol.cpp" line="35"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="152"/>
         <source>FullScreenMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="132"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="134"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="151"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="152"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="153"/>
         <source>NormalMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../videokits/musicvideocontrol.cpp" line="73"/>
-        <location filename="../videokits/musicvideocontrol.cpp" line="148"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="76"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="133"/>
+        <location filename="../videokits/musicvideocontrol.cpp" line="174"/>
         <source>HdMV</source>
         <translation>HD</translation>
     </message>
