@@ -52,23 +52,16 @@ protected:
     virtual void leaveEvent(QEvent *event);
     virtual void closeEvent(QCloseEvent *event);
 
-    QWidget *m_supperClass;
-    QWidget *m_toolBarWidget;
-    QWidget *m_desktopWidget;
+    QWidget *m_supperClass, *m_toolBarWidget, *m_desktopWidget;
     QPushButton *m_showMainWindow;
-    QToolButton *m_toolPreSongButton;
-    QToolButton *m_toolNextSongButton;
-    QToolButton *m_toolPlayButton;
-    QToolButton *m_toolSettingButton;
-    QToolButton *m_toolCloseButton;
-    QToolButton *m_toolWindowLockedButton;
-    QToolButton *m_toolLrcBigerButton;
-    QToolButton *m_toolLrcSmallerButton;
+    QToolButton *m_toolPreSongButton, *m_toolNextSongButton;
+    QToolButton *m_toolPlayButton, *m_toolSettingButton;
+    QToolButton *m_toolCloseButton, *m_toolWindowLockedButton;
+    QToolButton *m_toolLrcBigerButton, *m_toolLrcSmallerButton;
     QToolButton *m_toolUpdateLrcButton;
 
     QPoint m_offset;
-    bool m_windowLocked;
-    bool m_reverse;
+    bool m_windowLocked, m_reverse;
     int m_currentLrcFontSize;
     qint64 m_currentTime;
     QPoint m_geometry;

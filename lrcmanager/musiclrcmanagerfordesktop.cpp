@@ -23,7 +23,7 @@ void MusicLRCManagerForDesktop::setSelfGeometry(int x, int y)
     m_lrcPerWidth = x;
 }
 
-int MusicLRCManagerForDesktop::getGeometryX() const
+int MusicLRCManagerForDesktop::x() const
 {
     return m_geometry.x();
 }

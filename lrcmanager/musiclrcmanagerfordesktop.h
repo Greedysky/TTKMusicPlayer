@@ -20,7 +20,7 @@ public:
 
     void setSelfGeometry(const QPoint &point);
     void setSelfGeometry(int x, int y);
-    int getGeometryX() const;
+    int x() const;
     void resetOrigin();
     void setLrcFontSize(int size);
     inline int getFirstFontSize() const { return m_font.pointSize(); }

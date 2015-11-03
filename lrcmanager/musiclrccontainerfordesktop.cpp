@@ -177,7 +177,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
     {
         m_musicLrcContainer[0]->setText(tr("welcome use QMusicPlayer"));
         m_musicLrcContainer[0]->setGeometry(0, 20,
-                                            static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->getGeometryX(),
+                                            static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->x(),
                                             m_geometry.y());
         m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
     }
@@ -188,22 +188,22 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
 {
     m_currentTime = time;
     m_reverse = !m_reverse;
-    static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[ m_reverse])->resetOrigin();
+    static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[m_reverse])->resetOrigin();
     m_musicLrcContainer[ m_reverse]->stopLrcMask();
     m_musicLrcContainer[ m_reverse]->setText(second);
     m_musicLrcContainer[!m_reverse]->setText(first);
     m_musicLrcContainer[!m_reverse]->startLrcMask(time);
-    m_musicLrcContainer[0]->setGeometry(0, 20,
-                                        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->getGeometryX(),
-                                        m_geometry.y());
-    int pos = m_geometry.x() - static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[1])->getGeometryX();
+
+    int width = static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->x();
+    m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
+
+    width = static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[1])->x();
+    int pos = m_geometry.x() - width;
     if(pos < 0 )
     {
         pos = 0;
     }
-    m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20,
-                                        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[1])->getGeometryX(),
-                                        m_geometry.y());
+    m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
 }
 
 void MusicLrcContainerForDesktop::stopLrcMask()
@@ -277,8 +277,8 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MCustomStyle01);
     }
-    emit setWindowLockedChanged(m_windowLocked);
     M_SETTING->setValue(MusicSettingManager::DLrcLockedChoiced,  m_windowLocked ? 1 : 0);
+    emit setWindowLockedChanged(m_windowLocked);
 }
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
@@ -295,8 +295,7 @@ void MusicLrcContainerForDesktop::setLrcBigerChanged()
     {
         return;
     }
-    int y = m_geometry.y();
-    m_geometry.setY(++y);
+    m_geometry.setY(m_geometry.y() + 1);
     setSelfGeometry();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
