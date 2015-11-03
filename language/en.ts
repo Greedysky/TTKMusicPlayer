@@ -2093,6 +2093,14 @@
     </message>
 </context>
 <context>
+    <name>MusicProgressWidget</name>
+    <message>
+        <location filename="../core-widget/musicprogresswidget.cpp" line="40"/>
+        <source>Progress Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicQualityChoiceTableWidget</name>
     <message>
         <location filename="../core-widget/musicqualitychoicewidget.cpp" line="34"/>
@@ -2882,112 +2890,117 @@
 <context>
     <name>MusicSongsListWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="83"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="84"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
         <source>changSongName</source>
         <translation>Rename</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="86"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="93"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="103"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="106"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="107"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
         <source>musicTool</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
         <source>bell</source>
         <translation>Bell</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="110"/>
         <source>transform</source>
         <translation>Transform</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="111"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
         <source>musicInfoD</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="115"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
         <source>deleteWithFile</source>
         <translation>Delete(With File)</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="118"/>
         <source>deleteAll</source>
         <translation>Delete-All</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="387"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="236"/>
+        <source>Delete File Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="398"/>
         <source>The origin one does not exsit!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="100"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="101"/>
         <source>addToLove</source>
         <translation>Add To Lovest</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="228"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="229"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
     </message>
@@ -2995,52 +3008,57 @@
 <context>
     <name>MusicSongsSummarizied</name>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="24"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
         <source>myDefaultPlayItem</source>
         <translation>Default Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
         <source>myLoveSongItem</source>
         <translation>Lovest Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="27"/>
         <source>myNetSongItem</source>
         <translation>Net Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="187"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="85"/>
+        <source>Import File Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="192"/>
         <source>newSongItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="201"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="206"/>
         <source>add music to lovest list done!</source>
         <translation>Add Music To Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="222"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="227"/>
         <source>The origin one can&apos;t delete!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="235"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="240"/>
         <source>The origin one can&apos;t rename!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="273"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="278"/>
         <source>deleteItem</source>
         <translation>Delete Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="274"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="279"/>
         <source>addNewItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="275"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="280"/>
         <source>changItemName</source>
         <translation>Rename</translation>
     </message>

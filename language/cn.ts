@@ -2089,6 +2089,14 @@
     </message>
 </context>
 <context>
+    <name>MusicProgressWidget</name>
+    <message>
+        <location filename="../core-widget/musicprogresswidget.cpp" line="40"/>
+        <source>Progress Bar</source>
+        <translation>进度条</translation>
+    </message>
+</context>
+<context>
     <name>MusicQualityChoiceTableWidget</name>
     <message>
         <location filename="../core-widget/musicqualitychoicewidget.cpp" line="34"/>
@@ -2851,112 +2859,117 @@
 <context>
     <name>MusicSongsListWidget</name>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="82"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="83"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="84"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
         <source>changSongName</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="85"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="86"/>
         <source>musicPlay</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="88"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
         <source>OrderPlay</source>
         <translation>顺序播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="89"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
         <source>RandomPlay</source>
         <translation>随机播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="90"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
         <source>ListCycle</source>
         <translation>列表循环</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="91"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
         <source>SingleCycle</source>
         <translation>单曲循环</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="92"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="93"/>
         <source>PlayOnce</source>
         <translation>单曲播放</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="102"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="103"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="104"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="105"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="106"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="107"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
         <source>musicTool</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="108"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
         <source>bell</source>
         <translation>铃声制作</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="109"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="110"/>
         <source>transform</source>
         <translation>格式转换</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="111"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
         <source>musicInfoD</source>
         <translation>歌曲信息...</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="112"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="113"/>
         <source>openFileDir</source>
         <translation>打开文件所在目录</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="115"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
         <source>delete</source>
         <translation>删除歌曲</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="116"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
         <source>deleteWithFile</source>
         <translation>删除(包括文件)</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="117"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="118"/>
         <source>deleteAll</source>
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="387"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="236"/>
+        <source>Delete File Mode</source>
+        <translation>正在删除文件，请稍候！</translation>
+    </message>
+    <message>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="398"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="100"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="101"/>
         <source>addToLove</source>
         <translation>添加到我的最爱</translation>
     </message>
     <message>
-        <location filename="../core-widget/musicsongslistwidget.cpp" line="228"/>
+        <location filename="../core-widget/musicsongslistwidget.cpp" line="229"/>
         <source>Are you sure to delete?</source>
         <translation>你确定要删除吗？</translation>
     </message>
@@ -2964,52 +2977,57 @@
 <context>
     <name>MusicSongsSummarizied</name>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="24"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
         <source>myDefaultPlayItem</source>
         <translation>默认列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="25"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
         <source>myLoveSongItem</source>
         <translation>我的最爱</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="26"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="27"/>
         <source>myNetSongItem</source>
         <translation>网络列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="187"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="85"/>
+        <source>Import File Mode</source>
+        <translation>正在导入文件，请稍候！</translation>
+    </message>
+    <message>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="192"/>
         <source>newSongItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="201"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="206"/>
         <source>add music to lovest list done!</source>
         <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="222"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="227"/>
         <source>The origin one can&apos;t delete!</source>
         <translation>系统默认列表不允许删除</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="235"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="240"/>
         <source>The origin one can&apos;t rename!</source>
         <translation>系统默认列表不允许重命名</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="273"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="278"/>
         <source>deleteItem</source>
         <translation>删除列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="274"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="279"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../toolswidget/musicsongssummarizied.cpp" line="275"/>
+        <location filename="../toolswidget/musicsongssummarizied.cpp" line="280"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
