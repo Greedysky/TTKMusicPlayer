@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define QMUSICPLAYER_VERSION_STR "Version 2.2.6.4"
+#define QMUSICPLAYER_VERSION_STR "Version 2.2.6.6"
 
-#define QMUSICPLAYER_VERSION  0x02264
+#define QMUSICPLAYER_VERSION  0x02266
 
 #define QMUSICPLAYER_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
