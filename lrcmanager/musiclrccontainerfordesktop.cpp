@@ -3,7 +3,6 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 
-#include <QVBoxLayout>
 #include <QToolButton>
 #include <QPushButton>
 
@@ -16,27 +15,20 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
-    layout->setSpacing(0);
     m_containerType = "DESKTOP";
+    //Move the QWidget in the appropriate location
+    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    m_geometry.setX(windowSize.width() - 300);
+    m_geometry.setY(80);
+
     creatToolBarWidget();
     m_desktopWidget = new QWidget(this);
     m_desktopWidget->setObjectName("desktopWidget");
     m_musicLrcContainer << new MusicLRCManagerForDesktop(m_desktopWidget)
                         << new MusicLRCManagerForDesktop(m_desktopWidget);
-    layout->addWidget(m_desktopWidget);
-    layout->addWidget(m_toolBarWidget);
-    setLayout(layout);
 
-    //Move the QWidget in the appropriate location
-    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
-    move( 200,  windowSize.height() - height() - 150);
-
-    m_geometry.setX(windowSize.width() - 300);
-    m_geometry.setY(80);
-    m_desktopWidget->setMaximumSize(m_geometry.x(), 2*m_geometry.y());
-    m_desktopWidget->setMinimumSize(m_geometry.x(), 2*m_geometry.y());
+    setGeometry(200,  windowSize.height() - height() - 150, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_HEIGHT);
+    m_desktopWidget->setGeometry(0, TOOLBAR_HEIGHT, m_geometry.x(), 2*m_geometry.y());
     setSelfGeometry();
 
     m_currentTime = -1;
@@ -67,41 +59,40 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);
     m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle09);
-    m_toolBarWidget->setFixedWidth(320);
-    m_toolBarWidget->setGeometry(0, -10, 320, 20);
+    m_toolBarWidget->setGeometry((m_geometry.x() - TOOLBAR_WIDTH)/2, 0, TOOLBAR_WIDTH, TOOLBAR_HEIGHT);
 
     m_showMainWindow = new QPushButton(m_toolBarWidget);
 
     m_toolCloseButton = new QToolButton(m_toolBarWidget);
-    m_toolCloseButton->setGeometry(290, 0, 30, 30);
+    m_toolCloseButton->setGeometry(290, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_toolWindowLockedButton = new QToolButton(m_toolBarWidget);
-    m_toolWindowLockedButton->setGeometry(260, 0, 30, 30);
+    m_toolWindowLockedButton->setGeometry(260, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolWindowLockedButton, SIGNAL(clicked()), SLOT(setWindowLockedChanged()));
 
     m_toolLrcBigerButton = new QToolButton(m_toolBarWidget);
-    m_toolLrcBigerButton->setGeometry(200, 0, 30, 30);
+    m_toolLrcBigerButton->setGeometry(200, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolLrcBigerButton, SIGNAL(clicked()), SLOT(setLrcBigerChanged()));
 
     m_toolLrcSmallerButton = new QToolButton(m_toolBarWidget);
-    m_toolLrcSmallerButton->setGeometry(230, 0, 30, 30);
+    m_toolLrcSmallerButton->setGeometry(230, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolLrcSmallerButton, SIGNAL(clicked()), SLOT(setLrcSmallerChanged()));
 
     m_toolUpdateLrcButton = new QToolButton(m_toolBarWidget);
-    m_toolUpdateLrcButton->setGeometry(170, 0, 30, 30);
+    m_toolUpdateLrcButton->setGeometry(170, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolUpdateLrcButton, SIGNAL(clicked()),  SIGNAL(theCurrentLrcUpdated()));
 
     m_toolSettingButton = new QToolButton(m_toolBarWidget);
-    m_toolSettingButton->setGeometry(140, 0, 30, 30);
+    m_toolSettingButton->setGeometry(140, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolSettingButton, SIGNAL(clicked()), SLOT(currentLrcCustom()));
 
     m_toolPreSongButton = new QToolButton(m_toolBarWidget);
-    m_toolPreSongButton->setGeometry(50, 0, 30, 30);
+    m_toolPreSongButton->setGeometry(50, 0, 30, TOOLBAR_HEIGHT);
     m_toolNextSongButton = new QToolButton(m_toolBarWidget);
-    m_toolNextSongButton->setGeometry(110, 0, 30, 30);
+    m_toolNextSongButton->setGeometry(110, 0, 30, TOOLBAR_HEIGHT);
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
-    m_toolPlayButton->setGeometry(80, 0, 30, 30);
+    m_toolPlayButton->setGeometry(80, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolPreSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(m_toolNextSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
     connect(m_toolPlayButton, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));

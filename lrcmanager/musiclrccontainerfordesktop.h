@@ -11,6 +11,9 @@
 
 #include "musiclrccontainer.h"
 
+#define TOOLBAR_HEIGHT 30
+#define TOOLBAR_WIDTH  320
+
 class QPushButton;
 class QToolButton;
 class MusicLRCManagerForDesktop;
