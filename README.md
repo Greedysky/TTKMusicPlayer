@@ -59,10 +59,10 @@ Lrc Display Expand
 ![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/6.png?raw=true)
 
 MV
-![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/8.png?raw=true)
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/7.png?raw=true)
 
 Magic Music
-![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/7.png?raw=true)
+![Rungholt](https://github.com/Greedysky/QMusicPlayer/blob/plugins/8.png?raw=true)
 
 Copyright
 -------
