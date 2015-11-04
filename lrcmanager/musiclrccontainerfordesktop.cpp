@@ -16,7 +16,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true);
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
     m_containerType = "DESKTOP";
@@ -194,6 +194,11 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
     m_musicLrcContainer[!m_reverse]->setText(first);
     m_musicLrcContainer[!m_reverse]->startLrcMask(time);
 
+    resizeLrcSizeArea();
+}
+
+void MusicLrcContainerForDesktop::resizeLrcSizeArea()
+{
     int width = static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->x();
     m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
 
@@ -204,6 +209,20 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
         pos = 0;
     }
     m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
+}
+
+void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool bigger)
+{
+    m_geometry.setY(bigger ? m_geometry.y() + 1 : m_geometry.y() - 1);
+    setSelfGeometry();
+    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    {
+        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(bigger ? ++m_currentLrcFontSize
+                                                                                               : --m_currentLrcFontSize);
+    }
+    m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
+    resizeLrcSizeArea();
+    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::stopLrcMask()
@@ -295,13 +314,7 @@ void MusicLrcContainerForDesktop::setLrcBigerChanged()
     {
         return;
     }
-    m_geometry.setY(m_geometry.y() + 1);
-    setSelfGeometry();
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
-    {
-        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(++m_currentLrcFontSize);
-    }
-    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
+    resizeLrcSizeArea(true);
 }
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
@@ -310,13 +323,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
     {
         return;
     }
-    m_geometry.setY(m_geometry.y() - 1);
-    setSelfGeometry();
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
-    {
-        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(--m_currentLrcFontSize);
-    }
-    M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
+    resizeLrcSizeArea(false);
 }
 
 void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)

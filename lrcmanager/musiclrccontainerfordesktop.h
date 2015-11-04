@@ -45,6 +45,8 @@ protected:
     void setButtonIcon() const;
     void setButtonCursor() const;
     void setButtonTips() const;
+    void resizeLrcSizeArea();
+    void resizeLrcSizeArea(bool bigger);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
