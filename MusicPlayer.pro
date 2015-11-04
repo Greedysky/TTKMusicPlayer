@@ -24,23 +24,23 @@ DEFINES += MUSIC_LIBRARY
 
 INCLUDEPATH += $$PWD
 
-TRANSLATIONS += language/cn.ts \
-                language/cn_c.ts \
-                language/en.ts
+TRANSLATIONS += musicLanguage/cn.ts \
+                musicLanguage/cn_c.ts \
+                musicLanguage/en.ts
 
 #support on windows XP
 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
 
 
-include(core/MusicCore.pri)
-include(core-widget/MusicWidget.pri)
-include(localsearch/MusicLocalSearch.pri)
-include(lrcmanager/MusicLrc.pri)
-include(remotewidget/MusicRemote.pri)
-include(toolsetswidget/MusicToolsSets.pri)
-include(toolswidget/MusicToolsWidget.pri)
-include(usermanager/MusicUser.pri)
-include(videokits/MusicVideo.pri)
+include(musicCore/MusicCore.pri)
+include(musicWidget/MusicWidget.pri)
+include(musicLocalsearch/MusicLocalSearch.pri)
+include(musicLrcmanager/MusicLrc.pri)
+include(musicRemotewidget/MusicRemote.pri)
+include(musicToolsetswidget/MusicToolsSets.pri)
+include(musicToolswidget/MusicToolsWidget.pri)
+include(musicUsermanager/MusicUser.pri)
+include(musicVideokits/MusicVideo.pri)
 
 
 SOURCES += \
@@ -63,12 +63,12 @@ HEADERS  += \
 
 
 FORMS    += \
-    ui/application/musicapplication.ui
+    musicUi/application/musicapplication.ui
 
 
 RESOURCES += \
-    qrc/MusicPlayerShare.qrc \
-    qrc/MusicPlayer.qrc \
+    musicQrc/MusicPlayerShare.qrc \
+    musicQrc/MusicPlayer.qrc \
 
 RC_FILE = \
     MusicPlayer.rc

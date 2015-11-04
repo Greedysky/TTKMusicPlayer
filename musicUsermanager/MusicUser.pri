@@ -26,10 +26,10 @@ SOURCES += \
     
     
 FORMS    += \
-    ui/usermanager/musicuserdialog.ui \
-    ui/usermanager/musicuserwindow.ui \
-    ui/usermanager/musicusermanager.ui
+    musicUi/musicUsermanager/musicuserdialog.ui \
+    musicUi/musicUsermanager/musicuserwindow.ui \
+    musicUi/musicUsermanager/musicusermanager.ui
 
 RESOURCES += \
-    qrc/MusicPlayerShare.qrc \
-    qrc/MusicPlayerUser.qrc \
+    musicQrc/MusicPlayerShare.qrc \
+    musicQrc/MusicPlayerUser.qrc \

@@ -14,7 +14,7 @@
    <string>天天酷音</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../qrc/MusicPlayer.qrc">
+   <iconset resource="../../musicQrc/MusicPlayer.qrc">
     <normaloff>:/image/windowicon</normaloff>:/image/windowicon</iconset>
   </property>
   <widget class="QToolButton" name="windowClose">
@@ -672,7 +672,7 @@
     </rect>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../qrc/MusicPlayer.qrc">:/image/resizeWindow</pixmap>
+    <pixmap resource="../../musicQrc/MusicPlayer.qrc">:/image/resizeWindow</pixmap>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
@@ -750,7 +750,7 @@
   </action>
   <action name="action_Quit">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/close</normaloff>:/image/close</iconset>
    </property>
    <property name="text">
@@ -765,7 +765,7 @@
   </action>
   <action name="action_ImportSongs">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/appTools/import</normaloff>:/appTools/import</iconset>
    </property>
    <property name="text">
@@ -780,7 +780,7 @@
   </action>
   <action name="action_Privious">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/privious</normaloff>:/image/privious</iconset>
    </property>
    <property name="text">
@@ -795,7 +795,7 @@
   </action>
   <action name="action_Next">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/next</normaloff>:/image/next</iconset>
    </property>
    <property name="text">
@@ -810,7 +810,7 @@
   </action>
   <action name="action_Play">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/play</normaloff>:/image/play</iconset>
    </property>
    <property name="text">
@@ -825,7 +825,7 @@
   </action>
   <action name="action_VolumePlus">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/soundmax</normaloff>:/image/soundmax</iconset>
    </property>
    <property name="text">
@@ -840,7 +840,7 @@
   </action>
   <action name="action_VolumeSub">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/soundmin</normaloff>:/image/soundmin</iconset>
    </property>
    <property name="text">
@@ -855,7 +855,7 @@
   </action>
   <action name="action_OrderPlay">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/orderplay</normaloff>:/image/orderplay</iconset>
    </property>
    <property name="text">
@@ -870,7 +870,7 @@
   </action>
   <action name="action_RandomPlay">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/randomplay</normaloff>:/image/randomplay</iconset>
    </property>
    <property name="text">
@@ -885,7 +885,7 @@
   </action>
   <action name="action_SingleCycle">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/oneloop</normaloff>:/image/oneloop</iconset>
    </property>
    <property name="text">
@@ -900,7 +900,7 @@
   </action>
   <action name="action_ListCycle">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/image/listloop</normaloff>:/image/listloop</iconset>
    </property>
    <property name="text">
@@ -915,7 +915,7 @@
   </action>
   <action name="action_Setting">
    <property name="icon">
-    <iconset resource="../../qrc/MusicPlayer.qrc">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
      <normaloff>:/appTools/setting</normaloff>:/appTools/setting</iconset>
    </property>
    <property name="text">
@@ -1016,7 +1016,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../qrc/MusicPlayer.qrc"/>
+  <include location="../../musicQrc/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

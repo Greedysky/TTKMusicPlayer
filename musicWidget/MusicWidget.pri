@@ -65,8 +65,8 @@ SOURCES += \
 
 
 FORMS    += \
-    ui/core-widget/musicmessagebox.ui \
-    ui/core-widget/musicsongslistiteminfowidget.ui \
-    ui/core-widget/musicsettingwidget.ui \
-    ui/core-widget/musicbackgroundskindialog.ui \
-    ui/core-widget/musicequalizerdialog.ui
+    musicUi/musicWidget/musicmessagebox.ui \
+    musicUi/musicWidget/musicsongslistiteminfowidget.ui \
+    musicUi/musicWidget/musicsettingwidget.ui \
+    musicUi/musicWidget/musicbackgroundskindialog.ui \
+    musicUi/musicWidget/musicequalizerdialog.ui

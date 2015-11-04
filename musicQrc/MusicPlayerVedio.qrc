@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/video">
+        <file alias="play">../musicResource/video/video_play.png</file>
+        <file alias="pause">../musicResource/video/video_pause.png</file>
+        <file alias="volumn">../musicResource/video/video_volumn.png</file>
+        <file alias="menu">../musicResource/video/video_menu.png</file>
+        <file alias="back">../musicResource/video/video_goback.png</file>
+        <file alias="after">../musicResource/video/video_goafter.png</file>
+        <file alias="video_1">../musicResource/video/video_1.png</file>
+        <file alias="video_2">../musicResource/video/video_2.png</file>
+        <file alias="video_3">../musicResource/video/video_3.png</file>
+        <file alias="video_4">../musicResource/video/video_4.png</file>
+        <file alias="video_5">../musicResource/video/video_5.png</file>
+    </qresource>
+</RCC>

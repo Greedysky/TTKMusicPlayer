@@ -43,6 +43,6 @@ SOURCES += \
 
 
 FORMS    += \
-    ui/lrcmanager/musiclrcsearchwidget.ui \
-    ui/lrcmanager/musiclrcartphotoupload.ui \
-    ui/lrcmanager/musiclrcmakerwidget.ui
+    musicUi/musicLrcmanager/musiclrcsearchwidget.ui \
+    musicUi/musicLrcmanager/musiclrcartphotoupload.ui \
+    musicUi/musicLrcmanager/musiclrcmakerwidget.ui

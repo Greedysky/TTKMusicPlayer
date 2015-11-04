@@ -38,9 +38,9 @@ SOURCES += \
 
 
 FORMS    += \
-    ui/toolsetswidget/musicaudiorecorderwidget.ui \
-    ui/toolsetswidget/musictimerwidget.ui \
-    ui/toolsetswidget/musiclocalsongsmanagerwidget.ui \
-    ui/toolsetswidget/musictransformwidget.ui \
-    ui/toolsetswidget/musicfileinformationwidget.ui \
-    ui/toolsetswidget/musicdesktopwallpaperwidget.ui
+    musicUi/musicToolsetswidget/musicaudiorecorderwidget.ui \
+    musicUi/musicToolsetswidget/musictimerwidget.ui \
+    musicUi/musicToolsetswidget/musiclocalsongsmanagerwidget.ui \
+    musicUi/musicToolsetswidget/musictransformwidget.ui \
+    musicUi/musicToolsetswidget/musicfileinformationwidget.ui \
+    musicUi/musicToolsetswidget/musicdesktopwallpaperwidget.ui

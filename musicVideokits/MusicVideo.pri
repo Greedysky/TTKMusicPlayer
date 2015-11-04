@@ -21,4 +21,4 @@ SOURCES += \
 
 
 RESOURCES += \
-    qrc/MusicPlayerVedio.qrc
+    musicQrc/MusicPlayerVedio.qrc

@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/usermanager">
+        <file alias="qq">../musicResource/usermanager/qq-icon.png</file>
+        <file alias="right">../musicResource/usermanager/right-icon.png</file>
+        <file alias="renren">../musicResource/usermanager/renren-icon.png</file>
+        <file alias="weixing">../musicResource/usermanager/weixing-icon.png</file>
+        <file alias="xinlang">../musicResource/usermanager/xinlang-icon.png</file>
+        <file alias="downarrow">../musicResource/usermanager/thin-down-arrow.png</file>
+        <file alias="uparrow">../musicResource/usermanager/thin-up-arrow.png</file>
+        <file alias="vCode">../musicResource/usermanager/verificationCode.png</file>
+    </qresource>
+</RCC>

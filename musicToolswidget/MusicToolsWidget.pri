@@ -30,4 +30,4 @@ SOURCES += \
 
 
 FORMS    += \
-    ui/toolswidget/musicwebradiowidget.ui
+    musicUi/musicToolswidget/musicwebradiowidget.ui
