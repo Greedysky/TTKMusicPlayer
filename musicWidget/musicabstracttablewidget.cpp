@@ -20,6 +20,11 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
                   MusicUIObject::MLineEditStyle02 );
+
+    QFont f = font();
+    f.setBold(false);
+    setFont(f);
+
     //Set the color of selected row
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit
