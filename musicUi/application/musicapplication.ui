@@ -588,7 +588,7 @@
   <widget class="QLabel" name="playCurrentTime">
    <property name="geometry">
     <rect>
-     <x>38</x>
+     <x>316</x>
      <y>75</y>
      <width>30</width>
      <height>15</height>
@@ -604,9 +604,9 @@
   <widget class="QLabel" name="playTotalTime">
    <property name="geometry">
     <rect>
-     <x>352</x>
+     <x>347</x>
      <y>75</y>
-     <width>30</width>
+     <width>35</width>
      <height>15</height>
     </rect>
    </property>
@@ -614,7 +614,7 @@
     <string notr="true">color:#FFFFFF;</string>
    </property>
    <property name="text">
-    <string>00:00</string>
+    <string>/00:00</string>
    </property>
   </widget>
   <widget class="QToolButton" name="musicPlayMode">

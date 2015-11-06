@@ -431,7 +431,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     ui->musicTimeWidget->setRange(0, duration);
-    ui->playTotalTime->setText(MusicTime::msecTime2LabelJustified(duration));
+    ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 #ifdef MUSIC_DEBUG
