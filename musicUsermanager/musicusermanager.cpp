@@ -3,6 +3,7 @@
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
+#include <QDebug>
 
 MusicUserManager::MusicUserManager(QWidget *parent)
      : QDialog(parent),
@@ -10,6 +11,7 @@ MusicUserManager::MusicUserManager(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground, true);
 
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
@@ -68,6 +70,14 @@ void MusicUserManager::musicUserCancel()
 {
     ui->username->setEnabled(false);
     close();
+}
+
+int MusicUserManager::exec()
+{
+    QWidget *pa = static_cast<QWidget*>(parent());
+    QPoint point = pa->mapToGlobal(QPoint(0, 0));
+    move(point.x(), point.y() + 27);
+    return QDialog::exec();
 }
 
 void MusicUserManager::modifiedUserName()

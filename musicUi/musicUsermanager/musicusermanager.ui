@@ -6,15 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>257</width>
-    <height>175</height>
+    <width>290</width>
+    <height>185</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicUserManager</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">#MusicUserManager{background:white;border:1px solid gray}</string>
   </property>
   <property name="currentIndex" stdset="0">
    <number>0</number>
@@ -151,7 +148,52 @@
     <string>编辑</string>
    </property>
   </widget>
+  <widget class="QLabel" name="topLabel">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>0</y>
+     <width>9</width>
+     <height>7</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../../musicQrc/MusicPlayerUser.qrc">:/usermanager/topLabel</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mainLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>7</y>
+     <width>290</width>
+     <height>178</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:#FFFFFF</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>mainLabel</zorder>
+  <zorder>userIcon</zorder>
+  <zorder>username</zorder>
+  <zorder>logoffButton</zorder>
+  <zorder>cancelButton</zorder>
+  <zorder>label</zorder>
+  <zorder>totalTimeLabel</zorder>
+  <zorder>label_3</zorder>
+  <zorder>totalLevelLabel</zorder>
+  <zorder>modifiedName</zorder>
+  <zorder>topLabel</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../musicQrc/MusicPlayerUser.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -178,7 +178,7 @@ namespace MusicUIObject
             font-size:30px;font-weight:bold;color:gray}";
 
     const QString MPushButtonStyle11 = MPushButtonStyle04 + " \
-            QPushButton{font:italic;font-size:17px; font-weight:bold; color:orange}";
+            QPushButton{font-size:17px; font-weight:bold; color:orange}";
 
     const QString MPushButtonStyle12 = MPushButtonStyle01 + "\
             QPushButton{background-color:rgba(0,0,0,125);border-none;}";

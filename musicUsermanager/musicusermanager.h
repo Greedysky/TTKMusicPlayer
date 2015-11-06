@@ -36,6 +36,7 @@ public slots:
     void musicUserLogoff();
     void modifiedUserName();
     void musicUserCancel();
+    virtual int exec();
 
 protected:
     void createUserTime() const;
