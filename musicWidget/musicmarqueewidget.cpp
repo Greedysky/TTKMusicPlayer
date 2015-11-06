@@ -25,6 +25,11 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+
+    QFont f(font());
+    f.setBold(false);
+    painter.setFont(f);
+
     int textWidth = fontMetrics().width(text());
     if(textWidth < 1)
     {

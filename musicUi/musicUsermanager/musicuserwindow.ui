@@ -26,6 +26,10 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{font-size:17px; border-none; color:#FFFFFF;background-color:transparent;}
+QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
+    </property>
     <property name="text">
      <string>登录</string>
     </property>
