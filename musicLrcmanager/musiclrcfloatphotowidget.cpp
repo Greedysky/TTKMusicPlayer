@@ -1,26 +1,11 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbgthememanager.h"
-#include <QMouseEvent>
+#include "musicclickedlabel.h"
+
 #include <QCheckBox>
 #include <QPushButton>
 #include <QTimer>
 #include <QButtonGroup>
-
-MusicLrcFloatPhotoPlaneWidget::MusicLrcFloatPhotoPlaneWidget(QWidget *parent)
-    : QLabel(parent)
-{
-
-}
-
-void MusicLrcFloatPhotoPlaneWidget::mousePressEvent(QMouseEvent *event)
-{
-    QLabel::mousePressEvent(event);
-    if(event->button() == Qt::LeftButton)
-    {
-       emit clicked();
-    }
-}
-
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
@@ -32,11 +17,11 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);
     m_filmBGWidget->setStyleSheet(MusicUIObject::MCustomStyle21);
 
-    m_plane1 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane1 = new MusicClickedLabel(this);
     m_plane1->setGeometry(65, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane2 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane2 = new MusicClickedLabel(this);
     m_plane2->setGeometry(210, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane3 = new MusicLrcFloatPhotoPlaneWidget(this);
+    m_plane3 = new MusicClickedLabel(this);
     m_plane3->setGeometry(355, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
 
     m_radio1 = new QCheckBox(this);

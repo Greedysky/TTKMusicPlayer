@@ -19,7 +19,7 @@
   <property name="currentIndex" stdset="0">
    <number>0</number>
   </property>
-  <widget class="QLabel" name="userIcon">
+  <widget class="MusicClickedLabel" name="userIcon">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -118,7 +118,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="username">
+  <widget class="MusicClickedLabel" name="username">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -301,6 +301,13 @@
   <zorder>label_2</zorder>
   <zorder>muiscOVipButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../musicQrc/MusicPlayerUser.qrc"/>
  </resources>

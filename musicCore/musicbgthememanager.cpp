@@ -77,5 +77,5 @@ void MusicBgThemeManager::sendUserSelectArtBg(int index)
 
 void MusicBgThemeManager::setObject(QObject *obj) const
 {
-    connect(this,SIGNAL(artHasChanged()), obj, SLOT(artHasChanged()));
+    connect(this, SIGNAL(artHasChanged()), obj, SLOT(artHasChanged()));
 }

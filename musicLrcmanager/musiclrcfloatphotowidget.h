@@ -18,22 +18,7 @@
 
 class QPushButton;
 class QCheckBox;
-
-class MUSIC_LRC_EXPORT MusicLrcFloatPhotoPlaneWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    explicit MusicLrcFloatPhotoPlaneWidget(QWidget *parent = 0);
-
-signals:
-    void clicked();
-
-protected:
-    virtual void mousePressEvent(QMouseEvent *event);
-
-};
-
-
+class MusicClickedLabel;
 
 class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicLrcFloatAbstractWidget
 {
@@ -66,7 +51,7 @@ protected:
     QCheckBox* m_checkBox;
     QPushButton* m_previous,*m_next;
     QPushButton* m_confirmButton,*m_cancelButton;
-    MusicLrcFloatPhotoPlaneWidget* m_plane1,*m_plane2,*m_plane3;
+    MusicClickedLabel* m_plane1,*m_plane2,*m_plane3;
     QCheckBox* m_radio1,* m_radio2,* m_radio3;
     QStringList m_artPath;
     MIntSet m_selectNum;

@@ -32,7 +32,8 @@ HEADERS  += \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicenhancedwidget.h \
-    $$PWD/musicprogresswidget.h
+    $$PWD/musicprogresswidget.h \
+    $$PWD/musicclickedlabel.h
 
 
 SOURCES += \
@@ -61,7 +62,8 @@ SOURCES += \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicenhancedwidget.cpp \
-    $$PWD/musicprogresswidget.cpp
+    $$PWD/musicprogresswidget.cpp \
+    $$PWD/musicclickedlabel.cpp
 
 
 FORMS    += \
