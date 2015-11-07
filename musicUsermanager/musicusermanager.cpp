@@ -15,7 +15,10 @@ MusicUserManager::MusicUserManager(QWidget *parent)
 
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
+
     connect(ui->logoffButton, SIGNAL(clicked()), SLOT(musicUserLogoff()));
+    connect(ui->userIcon, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
+    connect(ui->username, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
 }
 
 MusicUserManager::~MusicUserManager()
@@ -28,7 +31,6 @@ void MusicUserManager::setUserName(const QString &name)
 {
     m_currentUser = name;
     ui->username->setText(m_userModel->getUserName(m_currentUser));
-    ui->username->setEnabled(false);
     createUserTime();
     m_time.start();
 }
@@ -77,5 +79,5 @@ void MusicUserManager::leaveEvent(QEvent *event)
 
 void MusicUserManager::popupUserRecordWidget()
 {
-
+    MusicUserRecordWidget().exec();
 }
