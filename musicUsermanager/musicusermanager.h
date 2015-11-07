@@ -27,13 +27,13 @@ public:
     ~MusicUserManager();
 
     void setUserName(const QString &name);
-    bool checkUser(const QString &id) const;
 
 signals:
     void userStateChanged(const QString &index);
 
 public slots:
     void musicUserLogoff();
+    void popupUserRecordWidget();
     virtual int exec();
     virtual void leaveEvent(QEvent *event);
 

@@ -3,6 +3,7 @@
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
+#include "musicuserrecordwidget.h"
 
 MusicUserManager::MusicUserManager(QWidget *parent)
      : QDialog(parent),
@@ -23,11 +24,6 @@ MusicUserManager::~MusicUserManager()
     delete ui;
 }
 
-bool MusicUserManager::checkUser(const QString &uid) const
-{
-    return m_userModel->databaseSelectedFilter(uid);
-}
-
 void MusicUserManager::setUserName(const QString &name)
 {
     m_currentUser = name;
@@ -35,6 +31,12 @@ void MusicUserManager::setUserName(const QString &name)
     ui->username->setEnabled(false);
     createUserTime();
     m_time.start();
+}
+
+void MusicUserManager::createUserTime() const
+{
+    qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
+    ui->totalTimeLabel->setText(QString::number(time));
 }
 
 void MusicUserManager::musicUserLogoff()
@@ -73,8 +75,7 @@ void MusicUserManager::leaveEvent(QEvent *event)
     close();
 }
 
-void MusicUserManager::createUserTime() const
+void MusicUserManager::popupUserRecordWidget()
 {
-    qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
-    ui->totalTimeLabel->setText(QString::number(time));
+
 }

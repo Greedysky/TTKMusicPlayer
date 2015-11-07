@@ -13,7 +13,8 @@ HEADERS  += \
     $$PWD/musicuserlineedit.h \
     $$PWD/musicuserwindow.h \
     $$PWD/core/musicusermodel.h \
-    $$PWD/core/musicuserconfigmanager.h
+    $$PWD/core/musicuserconfigmanager.h \
+    $$PWD/musicuserrecordwidget.h
     
     
 SOURCES += \
@@ -22,7 +23,8 @@ SOURCES += \
     $$PWD/musicuserlineedit.cpp \
     $$PWD/musicuserwindow.cpp \
     $$PWD/core/musicusermodel.cpp \
-    $$PWD/core/musicuserconfigmanager.cpp
+    $$PWD/core/musicuserconfigmanager.cpp \
+    $$PWD/musicuserrecordwidget.cpp
     
     
 FORMS    += \
