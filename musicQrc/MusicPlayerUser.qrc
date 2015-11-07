@@ -9,5 +9,6 @@
         <file alias="uparrow">../musicResource/usermanager/thin-up-arrow.png</file>
         <file alias="vCode">../musicResource/usermanager/verificationCode.png</file>
         <file alias="topLabel">../musicResource/usermanager/topLabel.png</file>
+        <file alias="settings">../musicResource/usermanager/settings.png</file>
     </qresource>
 </RCC>

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MusicUserManager</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color:#666666</string>
+  </property>
   <property name="currentIndex" stdset="0">
    <number>0</number>
   </property>
@@ -20,7 +23,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>15</y>
      <width>60</width>
      <height>60</height>
     </rect>
@@ -32,13 +35,45 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="username">
+  <widget class="QPushButton" name="logoffButton">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>15</y>
-     <width>151</width>
-     <height>25</height>
+     <x>0</x>
+     <y>156</y>
+     <width>290</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background:#EEEEEE;border:none;}</string>
+   </property>
+   <property name="text">
+    <string>退出当前帐号</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>93</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>积分：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="totalTimeLabel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>91</y>
+     <width>81</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -49,103 +84,6 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="logoffButton">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>140</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>注销</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>145</x>
-     <y>140</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>取消</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>83</y>
-     <width>71</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>在线总时长：</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="totalTimeLabel">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>80</y>
-     <width>140</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>108</y>
-     <width>71</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>在线总等级：</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="totalLevelLabel">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>105</y>
-     <width>140</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="modifiedName">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>45</y>
-     <width>50</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>编辑</string>
    </property>
   </widget>
   <widget class="QLabel" name="topLabel">
@@ -180,17 +118,188 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="username">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>18</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>118</y>
+     <width>270</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>85</y>
+     <width>3</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vipButton">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>52</y>
+     <width>28</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{border-radius:3px;background-color:#BFBFBF;font-size:11px;color:white;}</string>
+   </property>
+   <property name="text">
+    <string>VIP</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="muiscPackButton">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>52</y>
+     <width>40</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{border-radius:3px;background-color:#BFBFBF;font-size:11px;color:white;}</string>
+   </property>
+   <property name="text">
+    <string>音乐包</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="musicSettingButton">
+   <property name="geometry">
+    <rect>
+     <x>185</x>
+     <y>21</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{border-image:url(:/usermanager/settings);}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="muiscPurchasedButton">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>21</y>
+     <width>55</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{border-radius:3px;background-color:#80B7F1;color:white;}</string>
+   </property>
+   <property name="text">
+    <string>已购音乐</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="muiscBalanceButton">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>88</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background:transparent;color:#80B7F1;}</string>
+   </property>
+   <property name="text">
+    <string>查看酷币余额</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>开通会员，享受缤纷特权</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="muiscOVipButton">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>126</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{background:transparent;color:#80B7F1;}</string>
+   </property>
+   <property name="text">
+    <string>开通会员&gt;&gt;</string>
+   </property>
+  </widget>
   <zorder>mainLabel</zorder>
   <zorder>userIcon</zorder>
-  <zorder>username</zorder>
   <zorder>logoffButton</zorder>
-  <zorder>cancelButton</zorder>
   <zorder>label</zorder>
   <zorder>totalTimeLabel</zorder>
-  <zorder>label_3</zorder>
-  <zorder>totalLevelLabel</zorder>
-  <zorder>modifiedName</zorder>
   <zorder>topLabel</zorder>
+  <zorder>username</zorder>
+  <zorder>line</zorder>
+  <zorder>line_2</zorder>
+  <zorder>vipButton</zorder>
+  <zorder>muiscPackButton</zorder>
+  <zorder>musicSettingButton</zorder>
+  <zorder>muiscPurchasedButton</zorder>
+  <zorder>muiscBalanceButton</zorder>
+  <zorder>label_2</zorder>
+  <zorder>muiscOVipButton</zorder>
  </widget>
  <resources>
   <include location="../../musicQrc/MusicPlayerUser.qrc"/>

@@ -34,13 +34,11 @@ signals:
 
 public slots:
     void musicUserLogoff();
-    void modifiedUserName();
-    void musicUserCancel();
     virtual int exec();
+    virtual void leaveEvent(QEvent *event);
 
 protected:
     void createUserTime() const;
-    void createUserLevel() const;
 
     Ui::MusicUserManager *ui;
     MusicUserModel* m_userModel;
