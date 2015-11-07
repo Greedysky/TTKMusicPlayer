@@ -4,7 +4,7 @@
 MusicClickedLabel::MusicClickedLabel(QWidget *parent)
     : QLabel(parent)
 {
-
+    setCursor(Qt::PointingHandCursor);
 }
 
 void MusicClickedLabel::mousePressEvent(QMouseEvent *event)
