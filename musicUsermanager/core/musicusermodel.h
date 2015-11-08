@@ -29,14 +29,17 @@ public:
     bool deleteUser(const QString &uid);
     bool mailCheck(const QString &uid, const QString &mail);
 
-    QStringList getAllUsers() const;
+    QStringList getAllUsers();
     QString getUserLogTime(const QString &uid);
     QString getUserName(const QString &uid);
     QString getUserPWDMD5(const QString &uid);
-    bool databaseSelectedFilter(const QString &uid);
+
+    QStringList getAllCities();
+    QStringList getAllCounties(const QString &city);
 
 protected:
     QString userPasswordEncryption(const QString &pwd) const;
+    bool databaseSelectedFilter(const QString &uid);
 
 };
 

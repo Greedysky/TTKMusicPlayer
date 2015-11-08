@@ -91,5 +91,7 @@ void MusicUserManager::leaveEvent(QEvent *event)
 
 void MusicUserManager::popupUserRecordWidget()
 {
-    MusicUserRecordWidget().exec();
+    MusicUserRecordWidget record;
+    record.setUserModel(m_userModel, m_currentUser);
+    record.exec();
 }

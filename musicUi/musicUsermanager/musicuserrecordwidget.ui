@@ -112,7 +112,7 @@ QTabBar::tab:selected {
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>30</y>
+        <y>110</y>
         <width>31</width>
         <height>21</height>
        </rect>
@@ -121,23 +121,20 @@ QTabBar::tab:selected {
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>帐号:</string>
+       <string>积分:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="userNameLabel_F">
+     <widget class="QLabel" name="userTimeLabel_F">
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>30</y>
+        <y>110</y>
         <width>261</width>
         <height>21</height>
        </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background:red</string>
       </property>
       <property name="text">
        <string/>
@@ -168,9 +165,6 @@ QTabBar::tab:selected {
         <height>21</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background:red</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -179,7 +173,7 @@ QTabBar::tab:selected {
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>110</y>
+        <y>30</y>
         <width>31</width>
         <height>21</height>
        </rect>
@@ -264,21 +258,27 @@ QTabBar::tab:selected {
         <height>41</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>保存</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="nicknameEdit">
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>108</y>
+        <y>30</y>
         <width>211</width>
         <height>25</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+       <string notr="true">QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="maleRadioButton_F">
@@ -365,6 +365,9 @@ QTabBar::tab:selected {
         <height>21</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
+      </property>
       <property name="text">
        <string>设置您喜爱的一个头像:</string>
       </property>
@@ -436,15 +439,21 @@ QTabBar::tab:selected {
         <height>41</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>打开</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <property name="styleSheet">
       <string notr="true">QWidget{color:#666666;}
-QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}
+QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}
 </string>
      </property>
      <attribute name="title">
@@ -475,6 +484,9 @@ QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gra
         <height>25</height>
        </rect>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
      </widget>
      <widget class="QLabel" name="label_2T">
       <property name="geometry">
@@ -501,6 +513,9 @@ QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gra
         <height>25</height>
        </rect>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
      </widget>
      <widget class="QLabel" name="label_3T">
       <property name="geometry">
@@ -526,6 +541,9 @@ QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gra
         <width>211</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
       </property>
      </widget>
      <widget class="QLineEdit" name="verificationCodeEdit_T">
@@ -554,7 +572,7 @@ QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gra
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="confirmButton_F_3">
+     <widget class="QPushButton" name="confirmButton_T">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -563,8 +581,14 @@ QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gra
         <height>41</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>保存</string>
       </property>
      </widget>
     </widget>

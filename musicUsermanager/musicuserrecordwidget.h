@@ -15,6 +15,8 @@ namespace Ui {
 class MusicUserRecordWidget;
 }
 
+class MusicUserModel;
+
 class MUSIC_USER_EXPORT MusicUserRecordWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
@@ -22,13 +24,20 @@ public:
     explicit MusicUserRecordWidget(QWidget *parent = 0);
     ~MusicUserRecordWidget();
 
+    void setUserModel(MusicUserModel *model, const QString &id);
+
 signals:
 
 public slots:
+    void cityComboBoxIndexChanged(const QString &city);
+    void confirmButtonClickedF();
     virtual int exec();
 
 protected:
+    void initWidget(const QString &id);
+
     Ui::MusicUserRecordWidget *ui;
+    MusicUserModel *m_userModel;
 
 };
 

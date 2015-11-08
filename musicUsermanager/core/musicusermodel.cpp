@@ -2,18 +2,20 @@
 
 #include <QCryptographicHash>
 #include <QtSql/QSqlRecord>
+#include <QSet>
 
 MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     : QSqlTableModel(parent,db)
 {
-    setTable("MusicUser");
     setEditStrategy(QSqlTableModel::OnManualSubmit);
-    select();
 }
 
 bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
                              const QString &mail)
 {
+    setTable("MusicUser");
+    select();
+
     insertRow(0);
     setData(index(0, fieldIndex("USERID")), uid);
     setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(pwd));
@@ -91,12 +93,15 @@ bool MusicUserModel::mailCheck(const QString &uid, const QString &mail)
     return record(0).value("EMAIL") == mail;
 }
 
-QStringList MusicUserModel::getAllUsers() const
+QStringList MusicUserModel::getAllUsers()
 {
+    setTable("MusicUser");
+    select();
+
     QStringList users;
     for(int i=0; i<rowCount(); ++i)
     {
-        users<<record(i).value("USERID").toString();
+        users << record(i).value("USERID").toString();
     }
     return users;
 }
@@ -135,4 +140,33 @@ QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
 {
     return QCryptographicHash::hash( pwd.toLatin1(),
                                QCryptographicHash::Sha256).toHex();
+}
+
+QStringList MusicUserModel::getAllCities()
+{
+    setTable("MusicCountry");
+    select();
+
+    QSet<QString> cities;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        cities << record(i).value("CITYNAME").toString();
+    }
+
+    return cities.toList();
+}
+
+QStringList MusicUserModel::getAllCounties(const QString &city)
+{
+    setTable("MusicCountry");
+    setFilter(QString("CITYNAME='%1'").arg(city));
+    select();
+
+    QStringList cities;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        cities << record(i).value("COUNTRYNAME").toString();
+    }
+
+    return cities;
 }
