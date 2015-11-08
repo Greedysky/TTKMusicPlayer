@@ -277,6 +277,9 @@ QTabBar::tab:selected {
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+      </property>
      </widget>
      <widget class="QRadioButton" name="maleRadioButton_F">
       <property name="geometry">
@@ -440,8 +443,9 @@ QTabBar::tab:selected {
     </widget>
     <widget class="QWidget" name="tab_3">
      <property name="styleSheet">
-      <string notr="true">
-	color:#666666;</string>
+      <string notr="true">QWidget{color:#666666;}
+QLineEdit{font-size:14px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}
+</string>
      </property>
      <attribute name="title">
       <string>修改密码</string>

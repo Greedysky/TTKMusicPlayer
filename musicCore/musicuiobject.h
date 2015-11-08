@@ -241,11 +241,11 @@ namespace MusicUIObject
             QLineEdit::hover{ border: 1px solid #AAAAFF;}";
 
     const QString MLineEditStyle02 = MLineEditStyle01 + " \
-            QLineEdit{font-size:17px; font-weight:bold; color:AAAAFF }";
+            QLineEdit{font-size:15px; color:#AAAAFF }";
 
     const QString MLineEditStyle03 = " \
             QLineEdit{border-image: url(:/image/searchline); \
-            font-size:15px; color:#6495ED;}";
+            font-size:15px; color:#BFBFBF;}";
 
 ///Menu
 //////////////////////////////////////////////////////
