@@ -39,6 +39,8 @@ void MusicUserRecordWidget::initTabF()
     QString uid = ui->userIDLabel_F->text();
     ui->cityComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->countryComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->signatureEdit_F->setStyleSheet(MusicUIObject::MTextEditStyle01);
     connect(ui->cityComboBox_F, SIGNAL(currentIndexChanged(QString)),
                                 SLOT(cityComboBoxIndexChanged(QString)));

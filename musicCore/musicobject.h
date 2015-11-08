@@ -18,7 +18,7 @@
 #define MUSIC_DOWNLOAD "Music/"
 #define MOVIE_DOWNLOAD "Movie/"
 #define THEME_DOWNLOAD "MTheme/"
-#define THEME_CACHED   "MCachedTheme/"
+#define DATA_CACHED    "MCached/"
 #define ART_DOWNLOAD   "MArt/"
 #define TRANS_PLUGINS  "MPlugins/"
 #define ART_BG         "MArt/background/"
@@ -142,7 +142,7 @@ namespace MusicObject
         dirIsExist(getAppDir() + LRC_DOWNLOAD);
         dirIsExist(getAppDir() + MUSIC_DOWNLOAD);
         dirIsExist(getAppDir() + MOVIE_DOWNLOAD);
-        dirIsExist(getAppDir() + THEME_CACHED);
+        dirIsExist(getAppDir() + DATA_CACHED);
         dirIsExist(getAppDir() + THEME_DOWNLOAD);
         dirIsExist(getAppDir() + ART_DOWNLOAD);
         dirIsExist(getAppDir() + TRANS_PLUGINS);
