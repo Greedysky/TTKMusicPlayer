@@ -60,6 +60,9 @@ public:
     // xx MB
     static qreal fileSzieByte2MByte(qint64 size);
     //////////////////////////////////////////////
+    static quint64 dirSize(const QString &dirName);
+    static void checkCacheSize(quint64 cacheSize,
+                               bool disabled, const QString &path);
 
     MusicTime& operator= (const MusicTime &other);
     MusicTime& operator+= (const MusicTime &other);

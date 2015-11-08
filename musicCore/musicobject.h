@@ -116,16 +116,6 @@ namespace MusicObject
         }
     }
 
-    static void fileIsExist(const QString& name)
-    {
-        QFile file(name);
-        if(!file.exists())
-        {
-            file.open( QIODevice::WriteOnly );
-            file.close();
-        }
-    }
-
     static QString getAppDir()
     {
         QString path = QApplication::applicationDirPath();
@@ -148,13 +138,17 @@ namespace MusicObject
         dirIsExist(getAppDir() + TRANS_PLUGINS);
         dirIsExist(getAppDir() + ART_BG);
         dirIsExist(getAppDir() + TR_LANGUAGE);
+    }
 
-        fileIsExist(getAppDir() + DOWNLOADINFO);
-        fileIsExist(getAppDir() + DARABASEPATH);
-        fileIsExist(getAppDir() + USERPATH);
-        fileIsExist(getAppDir() + COFIGPATH);
-        fileIsExist(getAppDir() + MUSICPATH);
-        fileIsExist(getAppDir() + MUSICSEARCH);
+    static bool checkTheFileExist()
+    {
+        return QFile::exists(getAppDir() + DOWNLOADINFO) &&
+               QFile::exists(getAppDir() + DARABASEPATH) &&
+               QFile::exists(getAppDir() + USERPATH) &&
+               QFile::exists(getAppDir() + COFIGPATH) &&
+               QFile::exists(getAppDir() + MUSICPATH) &&
+               QFile::exists(getAppDir() + MUSICSEARCH) &&
+               QFile::exists(getAppDir() + NETDADIOPATH);
     }
 
     static QString getLanguageName(int index)

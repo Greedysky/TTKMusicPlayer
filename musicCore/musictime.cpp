@@ -1,5 +1,8 @@
 #include "musictime.h"
 
+#include <QFileInfo>
+#include <QDir>
+
 MusicTime::MusicTime(QObject *parent)
     : QObject(parent)
 {
@@ -204,6 +207,49 @@ qreal MusicTime::fileSzieByte2KByte(qint64 size)
 qreal MusicTime::fileSzieByte2MByte(qint64 size)
 {
     return fileSzieByte2KByte(size) / 1024.0;
+}
+
+quint64 MusicTime::dirSize(const QString &dirName)
+{
+    quint64 size = 0;
+    if(QFileInfo(dirName).isDir())
+    {
+        QDir dir(dirName);
+        QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
+                                               QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        for(int i = 0; i < list.size(); ++i)
+        {
+            QFileInfo fileInfo = list.at(i);
+            if(fileInfo.isDir())
+            {
+                size += dirSize(fileInfo.absoluteFilePath());
+            }
+            else
+                size += fileInfo.size();
+        }
+    }
+    return size;
+}
+
+void MusicTime::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
+{
+    if(disabled)
+    {
+        quint64 size = dirSize( path );
+        if( size > cacheSize)
+        {
+            QFileInfoList fileList = QDir(path).entryInfoList(QDir::Dirs|QDir::NoDotAndDotDot);
+            for(int i=0; i<fileList.count(); ++i)
+            {
+                size -= fileList[i].size();
+                QFile::remove(fileList[i].absoluteFilePath());
+                if(size <= cacheSize)
+                {
+                    break;
+                }
+            }
+        }
+    }
 }
 
 MusicTime& MusicTime::operator= (const MusicTime &other)

@@ -3,58 +3,26 @@
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
 #include "musiclogger.h"
+#include "musictime.h"
 
 #include <QApplication>
 #include <QTranslator>
+#include <QMessageBox>
 //#include <vld.h>
-
-quint64 dirSize(const QString &dirName)
-{
-    quint64 size = 0;
-    if(QFileInfo(dirName).isDir())
-    {
-        QDir dir(dirName);
-        QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
-                                               QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        for(int i = 0; i < list.size(); ++i)
-        {
-            QFileInfo fileInfo = list.at(i);
-            if(fileInfo.isDir())
-            {
-                size += dirSize(fileInfo.absoluteFilePath());
-            }
-            else
-                size += fileInfo.size();
-        }
-    }
-    return size;
-}
-
-void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
-{
-    if(disabled)
-    {
-        quint64 size = dirSize( path );
-        if( size > cacheSize)
-        {
-            QFileInfoList fileList = QDir(path).entryInfoList(QDir::Dirs|QDir::NoDotAndDotDot);
-            for(int i=0; i<fileList.count(); ++i)
-            {
-                size -= fileList[i].size();
-                QFile::remove(fileList[i].absoluteFilePath());
-                if(size <= cacheSize)
-                {
-                    break;
-                }
-            }
-        }
-    }
-}
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    MusicObject::checkTheDirectoryExist();
+    if(!MusicObject::checkTheFileExist())
+    {
+        QMessageBox::warning(NULL, QObject::tr("QMusicPlayer"),
+                             QObject::tr("Lack of necessary component files!"));
+        return -1;
+    }//check file error!
+
+    ///////////////////////////////////////////////////////
     M_LOGGERS("MusicApplication Begin");
     QCoreApplication::setOrganizationName("QMusicPlayer");
     QCoreApplication::setOrganizationDomain("QMusicPlayer.com");
@@ -70,15 +38,13 @@ int main(int argc, char *argv[])
     translator.load(MusicObject::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
-    checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
-                   xml->readDownloadCacheLimit(),
-                   MusicObject::getAppDir() + MUSIC_DOWNLOAD);
-
+    MusicTime::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
+                              xml->readDownloadCacheLimit(),
+                              MusicObject::getAppDir() + MUSIC_DOWNLOAD);
     M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGERS("End load translation");
 
-    MusicObject::checkTheDirectoryExist();
     MusicApplication w;
     w.show();
 
