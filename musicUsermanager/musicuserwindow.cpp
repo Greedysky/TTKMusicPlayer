@@ -97,9 +97,9 @@ bool MusicUserWindow::connectDatabase()
     return true;
 }
 
-void MusicUserWindow::userStateChanged(const QString &name)
+void MusicUserWindow::userStateChanged(const QString &uid)
 {
-    ui->userName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 44));
+    ui->userName->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
 
     if(currentIndex() == 1)
     {
@@ -107,7 +107,7 @@ void MusicUserWindow::userStateChanged(const QString &name)
     }
     else
     {
-        m_userManager->setUserName(name);
+        m_userManager->setUserUID(uid);
         setCurrentIndex(1);
     }
 }

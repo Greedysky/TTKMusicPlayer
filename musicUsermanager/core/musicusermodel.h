@@ -25,21 +25,32 @@ public:
     bool updateUser(const QString &uid, const QString &pwd,
                     const QString &mail, const QString &name,
                     const QString &time);
+    bool updateUser(const QString &uid, const QString &name,
+                    const QString &sex, const QString &birth,
+                    const QString &city, const QString &country,
+                    const QString &sign);
     bool checkUser(const QString &uid, const QString &pwd);
     bool deleteUser(const QString &uid);
     bool mailCheck(const QString &uid, const QString &mail);
 
-    QStringList getAllUsers();
-    QString getUserLogTime(const QString &uid);
-    QString getUserName(const QString &uid);
-    QString getUserPWDMD5(const QString &uid);
+    inline QString getUserLogTime(const QString &uid) { return getRecordData(uid, "LOGINTIME");}
+    inline QString getUserName(const QString &uid) { return getRecordData(uid, "USERNAME");}
+    inline QString getUserSex(const QString &uid) { return getRecordData(uid, "SEX");}
+    inline QString getUserCity(const QString &uid) { return getRecordData(uid, "CITY");}
+    inline QString getUserCountry(const QString &uid) { return getRecordData(uid, "COUNTRY");}
+    inline QString getUserBirthday(const QString &uid) { return getRecordData(uid, "BIRTHDAY");}
+    inline QString getUserSignature(const QString &uid) { return getRecordData(uid, "SIGNATURE");}
+    inline QString getUserPWDMD5(const QString &uid) { return getRecordData(uid, "PASSWD");}
 
+    QStringList getAllUsers();
     QStringList getAllCities();
     QStringList getAllCounties(const QString &city);
 
 protected:
     QString userPasswordEncryption(const QString &pwd) const;
+    QString getRecordData(const QString &uid, const QString &field);
     bool databaseSelectedFilter(const QString &uid);
+
 
 };
 

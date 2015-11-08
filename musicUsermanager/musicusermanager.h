@@ -26,14 +26,15 @@ public:
     explicit MusicUserManager(QWidget *parent = 0);
     ~MusicUserManager();
 
-    void setUserName(const QString &name);
+    void setUserUID(const QString &uid);
 
 signals:
-    void userStateChanged(const QString &index);
+    void userStateChanged(const QString &uid);
 
 public slots:
     void musicUserLogoff();
     void popupUserRecordWidget();
+    void resetUserName(const QString &name);
     virtual int exec();
     virtual void leaveEvent(QEvent *event);
 
@@ -43,7 +44,7 @@ protected:
 
     Ui::MusicUserManager *ui;
     MusicUserModel* m_userModel;
-    QString m_currentUser;
+    QString m_currentUserUID;
     QTime m_time;
     QMenu m_popMenu;
 

@@ -30,17 +30,17 @@ MusicUserManager::~MusicUserManager()
     delete ui;
 }
 
-void MusicUserManager::setUserName(const QString &name)
+void MusicUserManager::setUserUID(const QString &uid)
 {
-    m_currentUser = name;
-    ui->username->setText(m_userModel->getUserName(m_currentUser));
+    m_currentUserUID = uid;
+    ui->username->setText(m_userModel->getUserName(uid));
     createUserTime();
     m_time.start();
 }
 
 void MusicUserManager::createUserTime() const
 {
-    qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
+    qlonglong time = m_userModel->getUserLogTime(m_currentUserUID).toLongLong();
     ui->totalTimeLabel->setText(QString::number(time));
 }
 
@@ -55,8 +55,8 @@ void MusicUserManager::createButtonPopMenu()
 
 void MusicUserManager::musicUserLogoff()
 {
-    m_userModel->updateUser(m_currentUser, "", "", ui->username->text(),
-            QString::number(m_userModel->getUserLogTime(m_currentUser)
+    m_userModel->updateUser(m_currentUserUID, "", "", ui->username->text(),
+            QString::number(m_userModel->getUserLogTime(m_currentUserUID)
                      .toLongLong() + m_time.elapsed()/1000 ));
 
     MusicUserConfigManager xml;
@@ -66,11 +66,11 @@ void MusicUserManager::musicUserLogoff()
     }
     MusicUserRecord record;
     xml.readUserConfig( record );
-    int index = record.m_names.indexOf(m_currentUser);
+    int index = record.m_names.indexOf(m_currentUserUID);
     record.m_als[index] = "0";  //auto login flag
     xml.writeUserXMLConfig( record );
 
-    m_currentUser.clear();
+    m_currentUserUID.clear();
     emit userStateChanged(QString());
     close();
 }
@@ -92,6 +92,12 @@ void MusicUserManager::leaveEvent(QEvent *event)
 void MusicUserManager::popupUserRecordWidget()
 {
     MusicUserRecordWidget record;
-    record.setUserModel(m_userModel, m_currentUser);
+    connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));
+    record.setUserModel(m_userModel, m_currentUserUID);
     record.exec();
+}
+
+void MusicUserManager::resetUserName(const QString &name)
+{
+    ui->username->setText(name);
 }

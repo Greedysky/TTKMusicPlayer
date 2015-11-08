@@ -24,9 +24,10 @@ public:
     explicit MusicUserRecordWidget(QWidget *parent = 0);
     ~MusicUserRecordWidget();
 
-    void setUserModel(MusicUserModel *model, const QString &id);
+    void setUserModel(MusicUserModel *model, const QString &uid);
 
 signals:
+    void resetUserName(const QString &name);
 
 public slots:
     void cityComboBoxIndexChanged(const QString &city);
@@ -34,7 +35,9 @@ public slots:
     virtual int exec();
 
 protected:
-    void initWidget(const QString &id);
+    void initTabF();
+    void initTabS();
+    void initTabT();
 
     Ui::MusicUserRecordWidget *ui;
     MusicUserModel *m_userModel;

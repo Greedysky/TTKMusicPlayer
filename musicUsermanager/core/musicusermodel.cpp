@@ -45,6 +45,16 @@ bool MusicUserModel::databaseSelectedFilter(const QString &uid)
     return (rowCount() == 0);
 }
 
+QString MusicUserModel::getRecordData(const QString &uid, const QString &field)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return QString();
+    }
+
+    return record(0).value(field).toString();
+}
+
 bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
                                 const QString &mail,const QString &name,
                                 const QString &time)
@@ -58,6 +68,28 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
     if(!mail.isEmpty()) setData(index(0, fieldIndex("EMAIL")), mail);
     if(!name.isEmpty()) setData(index(0, fieldIndex("USERNAME")), name);
     if(!time.isEmpty()) setData(index(0, fieldIndex("LOGINTIME")), time);
+
+    submitAll();
+    return true;
+}
+
+bool MusicUserModel::updateUser(const QString &uid, const QString &name,
+                                const QString &sex, const QString &birth,
+                                const QString &city, const QString &country,
+                                const QString &sign)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return false;
+    }
+
+    if(!name.isEmpty()) setData(index(0, fieldIndex("USERNAME")), name);
+    if(!sex.isEmpty()) setData(index(0, fieldIndex("SEX")), sex);
+    if(!birth.isEmpty()) setData(index(0, fieldIndex("BIRTHDAY")), birth);
+    if(!city.isEmpty()) setData(index(0, fieldIndex("CITY")), city);
+    if(!country.isEmpty()) setData(index(0, fieldIndex("COUNTRY")), country);
+    if(!sign.isEmpty()) setData(index(0, fieldIndex("SIGNATURE")), sign);
+
     submitAll();
     return true;
 }
@@ -104,36 +136,6 @@ QStringList MusicUserModel::getAllUsers()
         users << record(i).value("USERID").toString();
     }
     return users;
-}
-
-QString MusicUserModel::getUserLogTime(const QString &uid)
-{
-    if(databaseSelectedFilter(uid))
-    {
-        return QString();
-    }
-
-    return record(0).value("LOGINTIME").toString();
-}
-
-QString MusicUserModel::getUserName(const QString &uid)
-{
-    if(databaseSelectedFilter(uid))
-    {
-        return QString();
-    }
-
-    return record(0).value("USERNAME").toString();
-}
-
-QString MusicUserModel::getUserPWDMD5(const QString &uid)
-{
-    if(databaseSelectedFilter(uid))
-    {
-        return QString();
-    }
-
-    return record(0).value("PASSWD").toString();
 }
 
 QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
