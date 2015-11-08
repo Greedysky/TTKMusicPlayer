@@ -208,7 +208,8 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{border-image:url(:/usermanager/settings);}</string>
+    <string notr="true">QPushButton{border-image:url(:/usermanager/settings);}
+QPushButton::menu-indicator{image:None;}</string>
    </property>
    <property name="text">
     <string/>

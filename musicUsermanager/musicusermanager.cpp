@@ -1,9 +1,11 @@
 #include "musicusermanager.h"
-#include "MusicUIObject.h"
+#include "musicuiobject.h"
 #include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
 #include "musicuserrecordwidget.h"
+
+#include <QMenu>
 
 MusicUserManager::MusicUserManager(QWidget *parent)
      : QDialog(parent),
@@ -13,6 +15,7 @@ MusicUserManager::MusicUserManager(QWidget *parent)
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, true);
 
+    createButtonPopMenu();
     m_userModel = new MusicUserModel(this);
     ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
 
@@ -39,6 +42,15 @@ void MusicUserManager::createUserTime() const
 {
     qlonglong time = m_userModel->getUserLogTime(m_currentUser).toLongLong();
     ui->totalTimeLabel->setText(QString::number(time));
+}
+
+void MusicUserManager::createButtonPopMenu()
+{
+    m_popMenu.addAction(tr("Modifies"), this, SLOT(popupUserRecordWidget()));
+    m_popMenu.addAction(tr("Switches"), this, SLOT(musicUserLogoff()));
+    m_popMenu.addAction(tr("Spacing"));
+    m_popMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    ui->musicSettingButton->setMenu(&m_popMenu);
 }
 
 void MusicUserManager::musicUserLogoff()

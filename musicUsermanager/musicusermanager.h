@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QDialog>
 #include <QTime>
-#include "musiclibexportglobal.h"
+#include <QMenu>
+#include "musicabstractmovedialog.h"
 
 class MusicUserModel;
 
@@ -39,11 +39,14 @@ public slots:
 
 protected:
     void createUserTime() const;
+    void createButtonPopMenu();
 
     Ui::MusicUserManager *ui;
     MusicUserModel* m_userModel;
     QString m_currentUser;
     QTime m_time;
+    QMenu m_popMenu;
+
 
 };
 
