@@ -53,7 +53,7 @@ public slots:
     void setCurrentIndex();
     void currentIndexChanged(int index);
     void addMusicSongToLovestListAt(int row);
-    void addNetMusicSongToList(const QString &name);
+    void addNetMusicSongToList(const QString &name, const QString &time);
     void setDeleteItemAt(const MIntList &index, bool fileRemove);
     void setChangItemName(const QString &name);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);

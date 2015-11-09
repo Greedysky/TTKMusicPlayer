@@ -212,7 +212,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::Buffing);
     musicDownloadLocal(row);
-    emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text() );
+    emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text(),
+                                     item(row, 3)->text());
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)

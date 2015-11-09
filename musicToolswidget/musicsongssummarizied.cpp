@@ -197,22 +197,22 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    const QString path = m_musicFileNames[currentIndex()][row].getMusicPath();
-    m_musicFileNames[1] << MusicSong(path);
+    MusicSong song = m_musicFileNames[currentIndex()][row];
+    m_musicFileNames[1] << song;
     m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
     if(m_currentIndexs == 1)
     {
-        emit updatePlayLists(path);
+        emit updatePlayLists(song.getMusicPath());
     }
     MusicMessageBox message;
     message.setText(tr("add music to lovest list done!"));
     message.exec();
 }
 
-void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
+void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time)
 {
     const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
-    m_musicFileNames[2] << MusicSong(path, name);
+    m_musicFileNames[2] << MusicSong(path, 0, time, name);
     m_mainSongLists[2]->updateSongsFileName(m_musicFileNames[2]);
     if(m_currentIndexs == 2)
     {
@@ -222,7 +222,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name)
 
 void MusicSongsSummarizied::deleteItem()
 {
-    int index = this->currentIndex();
+    int index = currentIndex();
     if(index == 0 || index == 1 || index == 2)
     {
         MusicMessageBox message;
@@ -230,12 +230,12 @@ void MusicSongsSummarizied::deleteItem()
         message.exec();
         return;//Not allow to delete the origin three item
     }
-    this->removeItem(index);
+    removeItem(index);
 }
 
 void MusicSongsSummarizied::changItemName()
 {
-    int index = this->currentIndex();
+    int index = currentIndex();
     if(index == 0 || index == 1 || index == 2)
     {
         MusicMessageBox message;
@@ -255,7 +255,7 @@ void MusicSongsSummarizied::changItemName()
 
 void MusicSongsSummarizied::setChangItemName(const QString &name)
 {
-    this->setItemText(m_renameIndex, name);
+    setItemText(m_renameIndex, name);
     delete m_renameLine;
     m_renameLine = NULL;
 }

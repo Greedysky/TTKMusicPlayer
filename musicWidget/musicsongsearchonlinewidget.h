@@ -34,7 +34,7 @@ public:
     void auditionToMusicStop(int row);
 
 signals:
-    void muiscSongToPlayListChanged(const QString &name);
+    void muiscSongToPlayListChanged(const QString &name, const QString &size);
     void auditionIsPlaying(bool play);
     void getQualityString(QString &string);
 
