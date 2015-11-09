@@ -45,6 +45,8 @@ public:
     qint64 getTimeStamp(Type type) const;
 
     //////////////////////////////////////////////
+    static void timeSRand();
+    //////////////////////////////////////////////
     QString msecTime2LabelJustified() const;
     static QString msecTime2LabelJustified(qint64 time);
     // xx:xx:xx

@@ -2,6 +2,7 @@
 
 #include <QFileInfo>
 #include <QDir>
+#include <time.h>
 
 MusicTime::MusicTime(QObject *parent)
     : QObject(parent)
@@ -98,6 +99,11 @@ qint64 MusicTime::getTimeStamp(Type type) const
            delta = (m_day*3600*24 + m_hour*3600 + m_min*60 +
                     m_sec)*delta;
     return (type == All_Sec) ? delta : (delta + m_msec);
+}
+
+void MusicTime::timeSRand()
+{
+    qsrand(time(NULL));
 }
 
 QString MusicTime::msecTime2LabelJustified() const
