@@ -173,7 +173,7 @@ void MusicUserDialog::clearOriginData()
 
 void MusicUserDialog::changeVerificationCode()
 {
-    ui->verificationCode->setText(QString::number(qrand()));
+    ui->verificationCode->setText(QString::number(qrand()).leftJustified(5, '0'));
 }
 
 void MusicUserDialog::userLogin()

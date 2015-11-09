@@ -18,7 +18,6 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-
 }
 
 MusicUserRecordWidget::~MusicUserRecordWidget()
@@ -154,7 +153,7 @@ void MusicUserRecordWidget::openFileButtonClickedS()
 
 void MusicUserRecordWidget::changeVerificationCodeT()
 {
-    ui->verificationCode->setText(QString::number(qrand()));
+    ui->verificationCode->setText(QString::number(qrand()).leftJustified(5, '0'));
 }
 
 void MusicUserRecordWidget::confirmButtonClickedT()
