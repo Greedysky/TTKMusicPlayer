@@ -736,9 +736,165 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
+     <property name="styleSheet">
+      <string notr="true">
+	color:#666666;</string>
+     </property>
      <attribute name="title">
       <string>账号安全</string>
      </attribute>
+     <widget class="QLabel" name="label_FF1">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>391</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;font size=5&gt;&lt;b&gt;安全邮箱&lt;/b&gt;&lt;/font&gt;（安全邮箱可用于找回密码，验证后还可以作为登录邮箱）</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_FF">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>115</y>
+        <width>420</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_FF2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>225</y>
+        <width>420</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>130</y>
+        <width>391</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;font size=5&gt;&lt;b&gt;安全手机&lt;/b&gt;&lt;/font&gt;（安全手机可用于找回密码，验证后还可以作为登录手机）</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_FF3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>335</y>
+        <width>420</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF3">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>240</y>
+        <width>321</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>&lt;font size=5&gt;&lt;b&gt;安全问题&lt;/b&gt;&lt;/font&gt;（忘记密码时，通过安全问题重新设置密码）</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF4">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>70</y>
+        <width>161</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:#80B7F1;font-size:15px;font-weight:bold</string>
+      </property>
+      <property name="text">
+       <string>g******ky@163.com</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF6">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>180</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:#80B7F1;font-size:15px;font-weight:bold</string>
+      </property>
+      <property name="text">
+       <string>180******48</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF5">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>70</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态:&lt;font color=&quot;#000000&quot; size=4 &gt;&lt;b&gt;已验证&lt;/b&gt;&lt;/font&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF7">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>180</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态:&lt;font color=&quot;#000000&quot; size=4 &gt;&lt;b&gt;已验证&lt;/b&gt;&lt;/font&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_FF8">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>285</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>状态:&lt;font color=&quot;#000000&quot; size=4 &gt;&lt;b&gt;已设置&lt;/b&gt;&lt;/font&gt;</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
