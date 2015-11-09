@@ -35,6 +35,8 @@ public slots:
     void confirmButtonClickedF();
     void openFileButtonClickedS();
     void changeVerificationCodeT();
+    void confirmButtonClickedT();
+    void checkPwdStrength(int code);
     virtual int exec();
 
 protected:

@@ -465,7 +465,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="originPwdEdit_T">
+     <widget class="MusicUserLineEdit" name="originPwdEdit_T">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -494,7 +494,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="newPwdEdit_T">
+     <widget class="MusicUserLineEdit" name="newPwdEdit_T">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -523,7 +523,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="newCPwdEdit_T">
+     <widget class="MusicUserLineEdit" name="newCPwdEdit_T">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -623,7 +623,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background:#80B7F1;</string>
+       <string notr="true">background:#BFBFBF;</string>
       </property>
       <property name="text">
        <string/>
@@ -747,6 +747,14 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicUserLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>musicuserlineedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

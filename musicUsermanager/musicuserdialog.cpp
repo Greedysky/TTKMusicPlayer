@@ -115,7 +115,7 @@ void MusicUserDialog::secondStatckWidget()
     ui->registerUserLine->setLabel(User, ui->registerUserLineR, ui->labelRight);
     ui->registerMailLine->setLabel(Mail, ui->registerMailLineR, ui->labelRigh_2);
     ui->registerPwdLine->setLabel(Passwd, ui->registerPwdLineR, ui->labelRigh_3);
-    ui->registerPwdCLine->setLabel(PasswdC, ui->registerPwdCLineR, ui->labelRigh_4);
+    ui->registerPwdCLine->setLabel(PwdConfirm, ui->registerPwdCLineR, ui->labelRigh_4);
 }
 
 void MusicUserDialog::thirdStatckWidget()
@@ -209,7 +209,7 @@ void MusicUserDialog::checkUserLogin()
     if(!ui->rememberPwd->isChecked() ||
        pwd != m_userModel->getUserPWDMD5(m_userComboIndex) )
     {
-        if( !m_userModel->checkUser(user, pwd) )
+        if( !m_userModel->passwordCheck(user, pwd) )
         {
             MusicMessageBox message;
             message.setText(tr("You passwd is incorrect or user is not exist"));

@@ -30,9 +30,10 @@ public:
                     const QString &city, const QString &country,
                     const QString &sign);
     bool updateUserIcon(const QString &uid, const QString &icon);
+    bool updateUserPwd(const QString &uid, const QString &pwd);
 
-    bool checkUser(const QString &uid, const QString &pwd);
     bool deleteUser(const QString &uid);
+    bool passwordCheck(const QString &uid, const QString &pwd);
     bool mailCheck(const QString &uid, const QString &mail);
 
     inline QString getUserLogTime(const QString &uid) { return getRecordData(uid, "LOGINTIME");}
@@ -42,8 +43,12 @@ public:
     inline QString getUserCountry(const QString &uid) { return getRecordData(uid, "COUNTRY");}
     inline QString getUserBirthday(const QString &uid) { return getRecordData(uid, "BIRTHDAY");}
     inline QString getUserSignature(const QString &uid) { return getRecordData(uid, "SIGNATURE");}
-    inline QString getUserIcon(const QString &uid) { return getRecordData(uid, "ICON");}
     inline QString getUserPWDMD5(const QString &uid) { return getRecordData(uid, "PASSWD");}
+    inline QString getUserIcon(const QString &uid)
+    {
+        QString icon = getRecordData(uid, "ICON");
+        return icon.isEmpty() ? ":/share/defaultArt" : icon;
+    }
 
     QStringList getAllUsers();
     QStringList getAllCities();
@@ -52,6 +57,7 @@ public:
 protected:
     QString userPasswordEncryption(const QString &pwd) const;
     QString getRecordData(const QString &uid, const QString &field);
+    bool updateRecordData(const QString &uid, const QVariantMap &data);
     bool databaseSelectedFilter(const QString &uid);
 
 

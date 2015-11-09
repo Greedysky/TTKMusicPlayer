@@ -10,13 +10,18 @@ MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
 {
     m_mailContains = false;
     m_strContains = false;
+    m_tipsLabel = NULL;
+    m_statusLabel = NULL;
 }
 
 void MusicUserLineEdit::focusInEvent(QFocusEvent *event)
 {
     QLineEdit::focusInEvent(event);
-    m_tipsLabel->show();
-    m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
+    if(m_tipsLabel)
+    {
+        m_tipsLabel->show();
+        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
+    }
 }
 
 void MusicUserLineEdit::focusOutEvent(QFocusEvent *event)
@@ -25,46 +30,41 @@ void MusicUserLineEdit::focusOutEvent(QFocusEvent *event)
     checkTheInput();
 }
 
-void MusicUserLineEdit::setLabel(LabelType ty, QLabel *&t, QLabel *&s)
+void MusicUserLineEdit::setLabel(LabelType ty, QLabel *t, QLabel *s)
 {
     m_tipsLabel = t;
     m_statusLabel = s;
     m_type = ty;
 }
 
-void MusicUserLineEdit::showLabel(int s, int e)
+void MusicUserLineEdit::labelCheck(bool check)
 {
-    int textLength = text().length();
-    if( s <= textLength && textLength <= e)
+    if(check)
     {
-        m_strContains = true;
-        m_tipsLabel->hide();
-        m_statusLabel->show();
+        if(m_tipsLabel) m_tipsLabel->hide();
+        if(m_statusLabel) m_statusLabel->show();
     }
     else
     {
-        m_strContains = false;
-        m_tipsLabel->show();
-        m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
+        if(m_statusLabel) m_statusLabel->hide();
+        if(m_tipsLabel)
+        {
+            m_tipsLabel->show();
+            m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
+        }
     }
+}
+
+void MusicUserLineEdit::showLabel(int s, int e)
+{
+    int textLength = text().length();
+    labelCheck(m_strContains = (s <= textLength && textLength <= e));
 }
 
 void MusicUserLineEdit::showLabel()
 {
     QRegExp mailRx("^[0-9a-z][a-z0-9\._-]{1,}@[a-z0-9-]{1,}[a-z0-9]\.[a-z\.]{1,}[a-z]+$");
-    m_mailContains = text().contains(mailRx);
-    if(m_mailContains)
-    {
-        m_tipsLabel->hide();
-        m_statusLabel->show();
-    }
-    else
-    {
-        m_tipsLabel->show();
-        m_statusLabel->hide();
-        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
-    }
+    labelCheck(m_mailContains = (text().contains(mailRx)));
 }
 
 void MusicUserLineEdit::checkTheInput()
@@ -75,13 +75,39 @@ void MusicUserLineEdit::checkTheInput()
              showLabel(4, 20);
              break;
         case Passwd:
-             showLabel(6, 16);
-             break;
-        case PasswdC:
+             checkPwdStrength();
+        case PwdConfirm:
              showLabel(6, 16);
              break;
         case Mail:
              showLabel();
              break;
     }
+}
+
+void MusicUserLineEdit::checkPwdStrength()
+{
+    bool onlyNum, onlyChar, onlySp;
+    onlyNum = text().contains(QRegExp("[0-9]"));
+    onlyChar = text().contains(QRegExp("[a-zA-z]"));;
+    onlySp = text().contains(QRegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#"
+                                     "￥……&*（）&mdash;—|{}【】‘；：”“'。，、？]"));
+    if( ( onlyNum && !onlyChar && !onlySp) ||
+        (!onlyNum &&  onlyChar && !onlySp) ||
+        (!onlyNum && !onlyChar &&  onlySp) ||
+        (!onlyNum && !onlyChar && !onlySp) )
+    {
+        emit checkPwdStrength(0);
+    }
+    else if( ( onlyNum &&  onlyChar && !onlySp) ||
+             ( onlyNum && !onlyChar &&  onlySp) ||
+             (!onlyNum &&  onlyChar &&  onlySp) )
+    {
+        emit checkPwdStrength(1);
+    }
+    else
+    {
+        emit checkPwdStrength(2);
+    }
+
 }

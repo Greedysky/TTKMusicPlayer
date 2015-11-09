@@ -51,26 +51,40 @@ QString MusicUserModel::getRecordData(const QString &uid, const QString &field)
     {
         return QString();
     }
-
     return record(0).value(field).toString();
 }
 
-bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
-                                const QString &mail,const QString &name,
-                                const QString &time)
+bool MusicUserModel::updateRecordData(const QString &uid, const QVariantMap &data)
 {
     if(databaseSelectedFilter(uid))
     {
         return false;
     }
 
-    if(!pwd.isEmpty()) setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(pwd));
-    if(!mail.isEmpty()) setData(index(0, fieldIndex("EMAIL")), mail);
-    if(!name.isEmpty()) setData(index(0, fieldIndex("USERNAME")), name);
-    if(!time.isEmpty()) setData(index(0, fieldIndex("LOGINTIME")), time);
+    QStringList keys = data.keys();
+    foreach(QString key, keys)
+    {
+        QString var = data[key].toString();
+        if(!var.isEmpty())
+        {
+            setData(index(0, fieldIndex(key)), var);
+        }
+    }
 
     submitAll();
     return true;
+}
+
+bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
+                                const QString &mail,const QString &name,
+                                const QString &time)
+{
+    QVariantMap map;
+    map["USERNAME"] = name;
+    map["PASSWD"] = userPasswordEncryption(pwd);
+    map["EMAIL"] = mail;
+    map["LOGINTIME"] = time;
+    return updateRecordData(uid, map);
 }
 
 bool MusicUserModel::updateUser(const QString &uid, const QString &name,
@@ -78,36 +92,31 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &name,
                                 const QString &city, const QString &country,
                                 const QString &sign)
 {
-    if(databaseSelectedFilter(uid))
-    {
-        return false;
-    }
-
-    if(!name.isEmpty()) setData(index(0, fieldIndex("USERNAME")), name);
-    if(!sex.isEmpty()) setData(index(0, fieldIndex("SEX")), sex);
-    if(!birth.isEmpty()) setData(index(0, fieldIndex("BIRTHDAY")), birth);
-    if(!city.isEmpty()) setData(index(0, fieldIndex("CITY")), city);
-    if(!country.isEmpty()) setData(index(0, fieldIndex("COUNTRY")), country);
-    if(!sign.isEmpty()) setData(index(0, fieldIndex("SIGNATURE")), sign);
-
-    submitAll();
-    return true;
+    QVariantMap map;
+    map["USERNAME"] = name;
+    map["SEX"] = sex;
+    map["BIRTHDAY"] = birth;
+    map["CITY"] = city;
+    map["COUNTRY"] = country;
+    map["SIGNATURE"] = sign;
+    return updateRecordData(uid, map);
 }
 
 bool MusicUserModel::updateUserIcon(const QString &uid, const QString &icon)
 {
-    if(databaseSelectedFilter(uid))
-    {
-        return false;
-    }
-
-    if(!icon.isEmpty()) setData(index(0, fieldIndex("ICON")), icon);
-
-    submitAll();
-    return true;
+    QVariantMap map;
+    map["ICON"] = icon;
+    return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::checkUser(const QString &uid, const QString &pwd)
+bool MusicUserModel::updateUserPwd(const QString &uid, const QString &pwd)
+{
+    QVariantMap map;
+    map["PASSWD"] = userPasswordEncryption(pwd);
+    return updateRecordData(uid, map);
+}
+
+bool MusicUserModel::passwordCheck(const QString &uid, const QString &pwd)
 {
     if(databaseSelectedFilter(uid))
     {

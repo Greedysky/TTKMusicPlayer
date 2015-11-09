@@ -14,7 +14,7 @@
 
 #include "musiclibexportglobal.h"
 
-enum LabelType{ User, Passwd, PasswdC, Mail};
+enum LabelType{ User, Passwd, PwdConfirm, Mail};
 
 class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 {
@@ -22,16 +22,22 @@ class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 public:
     explicit MusicUserLineEdit(QWidget *parent = 0);
 
-    void setLabel(LabelType ty, QLabel *&t, QLabel *&s);
-    bool getMailStatus() const { return m_mailContains;}
-    bool getStrStatus() const { return m_strContains;}
+    void setLabel(LabelType ty, QLabel *t, QLabel *s);
+    inline bool getMailStatus() const { return m_mailContains;}
+    inline bool getStrStatus() const { return m_strContains;}
+
+signals:
+    //0 weak, 1 middle, 2 strong
+    void checkPwdStrength(int code);
 
 protected:
     virtual void focusInEvent(QFocusEvent *event);
     virtual void focusOutEvent(QFocusEvent *event);
     void checkTheInput();
+    void checkPwdStrength();
     void showLabel();
     void showLabel(int s, int e);
+    void labelCheck(bool check);
 
     QLabel *m_tipsLabel;
     QLabel *m_statusLabel;
