@@ -60,7 +60,6 @@ protected:
     bool updateRecordData(const QString &uid, const QVariantMap &data);
     bool databaseSelectedFilter(const QString &uid);
 
-
 };
 
 #endif // MUSICUSERMODEL_H

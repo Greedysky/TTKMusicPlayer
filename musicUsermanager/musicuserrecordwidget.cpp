@@ -164,6 +164,13 @@ void MusicUserRecordWidget::confirmButtonClickedT()
         ui->newPwdEdit_T->getStrStatus() &&
         ui->newCPwdEdit_T->getStrStatus() )
     {
+        if(ui->verificationCode->text() != ui->verificationCodeEdit_T->text().trimmed())
+        {
+            MusicMessageBox message;
+            message.setText(tr("You verificationCode is incorrect"));
+            message.exec();
+            return;
+        }
         if(!m_userModel->passwordCheck(uid, ui->originPwdEdit_T->text()))
         {
             MusicMessageBox message;
@@ -186,8 +193,11 @@ void MusicUserRecordWidget::confirmButtonClickedT()
             return;
         }
 
+        emit userIconChanged(QString(), QString());
+        close();
+
         MusicMessageBox message;
-        message.setText(tr("The modity password successfully"));
+        message.setText(tr("The modity password successfully, please relogin"));
         message.exec();
     }
     else

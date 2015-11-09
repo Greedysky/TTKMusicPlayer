@@ -81,7 +81,7 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
 {
     QVariantMap map;
     map["USERNAME"] = name;
-    map["PASSWD"] = userPasswordEncryption(pwd);
+    map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
     map["EMAIL"] = mail;
     map["LOGINTIME"] = time;
     return updateRecordData(uid, map);
@@ -112,7 +112,7 @@ bool MusicUserModel::updateUserIcon(const QString &uid, const QString &icon)
 bool MusicUserModel::updateUserPwd(const QString &uid, const QString &pwd)
 {
     QVariantMap map;
-    map["PASSWD"] = userPasswordEncryption(pwd);
+    map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
     return updateRecordData(uid, map);
 }
 
@@ -162,8 +162,7 @@ QStringList MusicUserModel::getAllUsers()
 
 QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
 {
-    return QCryptographicHash::hash( pwd.toLatin1(),
-                               QCryptographicHash::Sha256).toHex();
+    return QCryptographicHash::hash( pwd.toLatin1(), QCryptographicHash::Md5).toHex();
 }
 
 QStringList MusicUserModel::getAllCities()
