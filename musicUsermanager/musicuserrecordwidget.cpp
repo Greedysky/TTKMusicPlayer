@@ -88,7 +88,9 @@ void MusicUserRecordWidget::initTabS()
 
 void MusicUserRecordWidget::initTabT()
 {
-
+    ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
+    changeVerificationCodeT();
 }
 
 void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)
@@ -138,6 +140,11 @@ void MusicUserRecordWidget::openFileButtonClickedS()
 
     m_userModel->updateUserIcon(ui->userIDLabel_F->text(), path);
     emit userIconChanged(ui->userIDLabel_F->text(), path);
+}
+
+void MusicUserRecordWidget::changeVerificationCodeT()
+{
+    ui->verificationCode->setText(QString::number(qrand()));
 }
 
 int MusicUserRecordWidget::exec()

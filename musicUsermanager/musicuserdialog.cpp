@@ -4,9 +4,9 @@
 #include "musicuserlineedit.h"
 #include "musicuserModel.h"
 #include "musicmessagebox.h"
+#include "musictime.h"
 
 #include <QValidator>
-#include <time.h>
 #include <QTimer>
 #include <QButtonGroup>
 
@@ -17,7 +17,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     ui->setupUi(this);
 
     m_userModel = new MusicUserModel(this);
-    qsrand(time(NULL));
+
+    MusicTime::timeSRand();
     changeVerificationCode();
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));

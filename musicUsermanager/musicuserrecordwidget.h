@@ -34,6 +34,7 @@ public slots:
     void cityComboBoxIndexChanged(const QString &city);
     void confirmButtonClickedF();
     void openFileButtonClickedS();
+    void changeVerificationCodeT();
     virtual int exec();
 
 protected:
