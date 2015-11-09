@@ -94,6 +94,19 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &name,
     return true;
 }
 
+bool MusicUserModel::updateUserIcon(const QString &uid, const QString &icon)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return false;
+    }
+
+    if(!icon.isEmpty()) setData(index(0, fieldIndex("ICON")), icon);
+
+    submitAll();
+    return true;
+}
+
 bool MusicUserModel::checkUser(const QString &uid, const QString &pwd)
 {
     if(databaseSelectedFilter(uid))

@@ -29,6 +29,8 @@ public:
                     const QString &sex, const QString &birth,
                     const QString &city, const QString &country,
                     const QString &sign);
+    bool updateUserIcon(const QString &uid, const QString &icon);
+
     bool checkUser(const QString &uid, const QString &pwd);
     bool deleteUser(const QString &uid);
     bool mailCheck(const QString &uid, const QString &mail);

@@ -5,6 +5,7 @@
 #include "musicusermodel.h"
 
 #include <QFileDialog>
+#include <QCryptographicHash>
 
 MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -78,8 +79,10 @@ void MusicUserRecordWidget::initTabF()
 
 void MusicUserRecordWidget::initTabS()
 {
-    ui->bigPixmapLabel_S->setPixmap(QPixmap(":/share/defaultArt").scaled(200, 200));
-    ui->smlPixmapLabel_S->setPixmap(QPixmap(":/share/defaultArt").scaled(100, 100));
+    QString path = m_userModel->getUserIcon(ui->userIDLabel_F->text());
+    path = path.isEmpty() ? ":/share/defaultArt" : path;
+    ui->bigPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->bigPixmapLabel_S->size()));
+    ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->smlPixmapLabel_S->size()));
     connect(ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
 }
 
@@ -119,8 +122,22 @@ void MusicUserRecordWidget::openFileButtonClickedS()
     {
         return;
     }
-    ui->bigPixmapLabel_S->setPixmap(QPixmap( path ).scaled(200, 200));
-    ui->smlPixmapLabel_S->setPixmap(QPixmap( path ).scaled(100, 100));
+    ui->bigPixmapLabel_S->setPixmap(QPixmap( path ).scaled(ui->bigPixmapLabel_S->size()));
+    ui->smlPixmapLabel_S->setPixmap(QPixmap( path ).scaled(ui->smlPixmapLabel_S->size()));
+
+    QFile file(path);
+    QByteArray name;
+    if(file.open(QIODevice::ReadOnly))
+    {
+        name = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
+    }
+    path = QString("%1%2").arg(MusicObject::getAppDir() + DATA_CACHED)
+                          .arg(QString(name.toHex().toUpper()));
+    file.copy( path );
+    file.close();
+
+    m_userModel->updateUserIcon(ui->userIDLabel_F->text(), path);
+    emit userIconChanged(ui->userIDLabel_F->text(), path);
 }
 
 int MusicUserRecordWidget::exec()

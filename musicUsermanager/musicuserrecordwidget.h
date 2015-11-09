@@ -28,6 +28,7 @@ public:
 
 signals:
     void resetUserName(const QString &name);
+    void userIconChanged(const QString &uid, const QString &icon);
 
 public slots:
     void cityComboBoxIndexChanged(const QString &city);

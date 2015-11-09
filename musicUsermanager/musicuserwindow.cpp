@@ -100,15 +100,14 @@ bool MusicUserWindow::connectDatabase()
 void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 {
     ui->userName->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
-
-    if(currentIndex() == 1)
+    if(uid.isEmpty())
     {
-        ui->userIcon->setPixmap(QPixmap(icon));
         setCurrentIndex(0);
     }
     else
     {
         m_userManager->setUserUID(uid);
+        ui->userIcon->setPixmap(QPixmap(icon).scaled(ui->userIcon->size()));
         setCurrentIndex(1);
     }
 }
