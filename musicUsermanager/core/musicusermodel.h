@@ -40,6 +40,7 @@ public:
     inline QString getUserCountry(const QString &uid) { return getRecordData(uid, "COUNTRY");}
     inline QString getUserBirthday(const QString &uid) { return getRecordData(uid, "BIRTHDAY");}
     inline QString getUserSignature(const QString &uid) { return getRecordData(uid, "SIGNATURE");}
+    inline QString getUserIcon(const QString &uid) { return getRecordData(uid, "ICON");}
     inline QString getUserPWDMD5(const QString &uid) { return getRecordData(uid, "PASSWD");}
 
     QStringList getAllUsers();

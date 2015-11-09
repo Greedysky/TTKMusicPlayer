@@ -30,7 +30,7 @@ signals:
 
 public slots:
     void musicUserLogin();
-    void userStateChanged(const QString &uid);
+    void userStateChanged(const QString &uid, const QString &icon);
     void musicUserContextLogin();
 
 protected:

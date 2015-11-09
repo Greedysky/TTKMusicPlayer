@@ -224,7 +224,8 @@ void MusicUserDialog::checkUserLogin()
         return;
     }
     writeToUserConfig();
-    emit userLoginSuccess(user);
+
+    emit userLoginSuccess(user, m_userModel->getUserIcon(user));
     close();
 }
 
@@ -370,7 +371,7 @@ void MusicUserDialog::checkToAutoLogin()
     if(ui->automaticLogon->isChecked() && ui->rememberPwd->isChecked() &&
        ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userComboIndex))
     {
-        emit userLoginSuccess(m_userComboIndex);
+        emit userLoginSuccess(m_userComboIndex, m_userModel->getUserIcon(m_userComboIndex));
         close();
     }
 }

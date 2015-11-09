@@ -29,7 +29,7 @@ public:
     void setUserUID(const QString &uid);
 
 signals:
-    void userStateChanged(const QString &uid);
+    void userStateChanged(const QString &uid, const QString &icon);
 
 public slots:
     void musicUserLogoff();

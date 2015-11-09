@@ -17,13 +17,13 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     ui->userLogin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->userName->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->userIcon->setStyleSheet(MusicUIObject::MCustomStyle28);
     connectDatabase();
 
     m_userManager = new MusicUserManager(this);
     connect(ui->userLogin, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(ui->userName, SIGNAL(clicked()), m_userManager, SLOT(exec()));
-    connect(m_userManager, SIGNAL(userStateChanged(QString)), SLOT(userStateChanged(QString)));
+    connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
+                           SLOT(userStateChanged(QString,QString)));
 }
 
 MusicUserWindow::~MusicUserWindow()
@@ -97,12 +97,13 @@ bool MusicUserWindow::connectDatabase()
     return true;
 }
 
-void MusicUserWindow::userStateChanged(const QString &uid)
+void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 {
     ui->userName->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
 
     if(currentIndex() == 1)
     {
+        ui->userIcon->setPixmap(QPixmap(icon));
         setCurrentIndex(0);
     }
     else
@@ -115,7 +116,8 @@ void MusicUserWindow::userStateChanged(const QString &uid)
 void MusicUserWindow::musicUserLogin()
 {
     MusicUserDialog dialog;
-    connect(&dialog, SIGNAL(userLoginSuccess(QString)), SLOT(userStateChanged(QString)));
+    connect(&dialog, SIGNAL(userLoginSuccess(QString,QString)),
+                     SLOT(userStateChanged(QString,QString)));
     dialog.exec();
 }
 

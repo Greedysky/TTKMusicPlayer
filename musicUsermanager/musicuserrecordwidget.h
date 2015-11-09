@@ -32,6 +32,7 @@ signals:
 public slots:
     void cityComboBoxIndexChanged(const QString &city);
     void confirmButtonClickedF();
+    void openFileButtonClickedS();
     virtual int exec();
 
 protected:

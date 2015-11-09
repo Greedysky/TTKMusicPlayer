@@ -44,6 +44,7 @@ public:
 
     qint64 getTimeStamp(Type type) const;
 
+    //////////////////////////////////////////////
     QString msecTime2LabelJustified() const;
     static QString msecTime2LabelJustified(qint64 time);
     // xx:xx:xx
@@ -52,7 +53,6 @@ public:
     //ss / mm / hh / dd
     QString normalTime2Label() const;
     static QString normalTime2Label(qint64 time);
-
     //////////////////////////////////////////////
     static QString fileSzie2Label(qint64 size);
     // xx KB
@@ -61,8 +61,8 @@ public:
     static qreal fileSzieByte2MByte(qint64 size);
     //////////////////////////////////////////////
     static quint64 dirSize(const QString &dirName);
-    static void checkCacheSize(quint64 cacheSize,
-                               bool disabled, const QString &path);
+    static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+    //////////////////////////////////////////////
 
     MusicTime& operator= (const MusicTime &other);
     MusicTime& operator+= (const MusicTime &other);
@@ -84,17 +84,16 @@ public:
 
     friend QDataStream& operator<<(QDataStream &stream, const MusicTime &other)
     {
-        stream<<other.getDay()<<other.getHour()<<other.getMinute()
-              <<other.getSecond()<<other.getMillionSecond();
+        stream << other.getDay() << other.getHour() << other.getMinute()
+               << other.getSecond() << other.getMillionSecond();
         return stream;
     }
 
     friend QDataStream& operator>>(QDataStream &stream, MusicTime &other)
     {
         int x[5];
-        stream>>x[0]>>x[1]>>x[2]>>x[3]>>x[4];
+        stream >> x[0] >> x[1] >> x[2] >> x[3] >> x[4];
         other.setHMSM(x[0], x[1], x[2], x[3], x[4]);
-
         return stream;
     }
 

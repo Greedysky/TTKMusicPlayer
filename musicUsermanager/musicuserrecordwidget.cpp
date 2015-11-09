@@ -3,7 +3,9 @@
 #include "musicbgthememanager.h"
 #include "musicuiobject.h"
 #include "musicusermodel.h"
-#include <QDebug>
+
+#include <QFileDialog>
+
 MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicUserRecordWidget)
@@ -76,7 +78,9 @@ void MusicUserRecordWidget::initTabF()
 
 void MusicUserRecordWidget::initTabS()
 {
-
+    ui->bigPixmapLabel_S->setPixmap(QPixmap(":/share/defaultArt").scaled(200, 200));
+    ui->smlPixmapLabel_S->setPixmap(QPixmap(":/share/defaultArt").scaled(100, 100));
+    connect(ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
 }
 
 void MusicUserRecordWidget::initTabT()
@@ -105,6 +109,18 @@ void MusicUserRecordWidget::confirmButtonClickedF()
                             ui->countryComboBox_F->currentText(),
                             ui->signatureEdit_F->toPlainText());
     close();
+}
+
+void MusicUserRecordWidget::openFileButtonClickedS()
+{
+    QString path =  QFileDialog::getOpenFileName(
+                              this, "", "./", "Images (*.png *.bmp *.jpg)");
+    if(path.isEmpty())
+    {
+        return;
+    }
+    ui->bigPixmapLabel_S->setPixmap(QPixmap( path ).scaled(200, 200));
+    ui->smlPixmapLabel_S->setPixmap(QPixmap( path ).scaled(100, 100));
 }
 
 int MusicUserRecordWidget::exec()

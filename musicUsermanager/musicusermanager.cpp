@@ -71,7 +71,7 @@ void MusicUserManager::musicUserLogoff()
     xml.writeUserXMLConfig( record );
 
     m_currentUserUID.clear();
-    emit userStateChanged(QString());
+    emit userStateChanged(QString(), QString());
     close();
 }
 

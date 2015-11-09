@@ -27,7 +27,7 @@ public:
     ~MusicUserDialog();
 
 signals:
-    void userLoginSuccess(const QString &name);
+    void userLoginSuccess(const QString &uid, const QString &icon);
 
 public slots:
     void userLogin();

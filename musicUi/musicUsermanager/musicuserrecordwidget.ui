@@ -98,7 +98,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -385,7 +385,7 @@ QTabBar::tab:selected {
        <string>(请选择图片文件，最佳尺寸400X400，支持JPG,JPEG,PNG,GIF)</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3S">
+     <widget class="QLabel" name="bigPixmapLabel_S">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -394,14 +394,8 @@ QTabBar::tab:selected {
         <height>200</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background:red</string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
      </widget>
-     <widget class="QLabel" name="label_4S">
+     <widget class="QLabel" name="smlPixmapLabel_S">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -410,18 +404,15 @@ QTabBar::tab:selected {
         <height>100</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background:red</string>
-      </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_5S">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>120</y>
+        <x>335</x>
+        <y>130</y>
         <width>61</width>
         <height>21</height>
        </rect>
@@ -430,7 +421,7 @@ QTabBar::tab:selected {
        <string>头像预览</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="confirmButton_S">
+     <widget class="QPushButton" name="openFileButton_S">
       <property name="geometry">
        <rect>
         <x>60</x>
@@ -446,7 +437,7 @@ QTabBar::tab:selected {
        <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
       </property>
       <property name="text">
-       <string>打开</string>
+       <string>选择头像</string>
       </property>
      </widget>
     </widget>
