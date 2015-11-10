@@ -28,14 +28,14 @@ public:
 
     QStringList getArtPhotoPaths() const;
     void setArtPhotoPaths(const QStringList &list);
-    void sendUserSelectArtBg(int index);
-    void setObject(QObject *object) const ;
+    void setUserSelectArtIndex(int index);
 
     void setMBackground(const QString &path) { m_MBackground = path;}
     QString getMBackground() const {return m_MBackground;}
 
 signals:
     void artHasChanged();
+    void userSelectIndexChanged();
 
 protected:
     MusicBgThemeManager();

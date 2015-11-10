@@ -16,6 +16,8 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_supperClass = parent;
     m_msuicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
+    connect(M_BG_MANAGER, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 

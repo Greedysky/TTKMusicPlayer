@@ -76,7 +76,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     radioGroup->addButton(m_radio2, 1);
     radioGroup->addButton(m_radio3, 2);
     connect(radioGroup, SIGNAL(buttonClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
-    M_BG_MANAGER->setObject(this);
+    connect(M_BG_MANAGER, SIGNAL(artHasChanged()), SLOT(artHasChanged()));
 
     m_checkBox->setEnabled(false);
     m_cancelButton->setEnabled(false);
@@ -179,17 +179,17 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg1()
 {
-    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 0);
+    M_BG_MANAGER->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 0);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg2()
 {
-    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 1);
+    M_BG_MANAGER->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 1);
 }
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
 {
-    M_BG_MANAGER->sendUserSelectArtBg(m_currentIndex * PHOTO_PERLINE + 2);
+    M_BG_MANAGER->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 2);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)

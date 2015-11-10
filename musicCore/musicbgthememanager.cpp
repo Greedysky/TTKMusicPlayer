@@ -70,12 +70,8 @@ void MusicBgThemeManager::setArtPhotoPaths(const QStringList &list)
     m_photos = list;
 }
 
-void MusicBgThemeManager::sendUserSelectArtBg(int index)
+void MusicBgThemeManager::setUserSelectArtIndex(int index)
 {
     m_currentIndex = index;
-}
-
-void MusicBgThemeManager::setObject(QObject *obj) const
-{
-    connect(this, SIGNAL(artHasChanged()), obj, SLOT(artHasChanged()));
+    emit userSelectIndexChanged();
 }
