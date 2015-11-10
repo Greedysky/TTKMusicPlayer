@@ -300,7 +300,7 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
             it->setText(QString());
         }
     }
-    else if(m_previousColorRow != m_playRowIndex)
+    else if(m_previousColorRow != -1 && m_previousColorRow != m_playRowIndex)
     {
         if(it != NULL)
         {
