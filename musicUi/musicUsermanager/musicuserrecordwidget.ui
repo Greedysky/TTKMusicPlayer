@@ -179,7 +179,7 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <property name="text">
-       <string>I昵称:</string>
+       <string>昵称:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

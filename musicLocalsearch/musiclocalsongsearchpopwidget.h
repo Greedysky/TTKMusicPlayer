@@ -12,6 +12,8 @@
 #include <QWidget>
 #include "musicabstracttablewidget.h"
 
+#define ROW_HEIGHT 25
+
 class QPushButton;
 
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget

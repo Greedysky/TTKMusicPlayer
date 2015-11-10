@@ -1,6 +1,7 @@
 #include "musiclocalsongsearchpopwidget.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musictime.h"
+
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QDateTime>
@@ -30,7 +31,7 @@ void MusicLocalSongSearchPopTableWidget::clearAllItems()
 void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &name,
                                                      const QString &time)
 {
-    setRowHeight(index, 20);
+    setRowHeight(index, ROW_HEIGHT);
 
     QTableWidgetItem *item0 = new QTableWidgetItem(name);
     item0->setTextColor(QColor(50, 50, 50));
@@ -59,8 +60,10 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
+
     m_popTableWidget = new MusicLocalSongSearchPopTableWidget(this);
     m_clearButton = new QPushButton(tr("clear"), this);
+    m_clearButton->setCursor(Qt::PointingHandCursor);
     layout->addWidget(m_popTableWidget);
     layout->addWidget(m_clearButton);
     setLayout(layout);
@@ -88,7 +91,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     MusicSearchRecord record;
     search.readSearchConfig( record );
     int count = record.m_names.count();
-    resize(285, count == 0 ? 40 : (count < 5 ? (20 + count*20) : 120) );
+    resize(285, count == 0 ? 40 : (count < 6 ? (count + 1)*ROW_HEIGHT : 7*ROW_HEIGHT - 10) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
