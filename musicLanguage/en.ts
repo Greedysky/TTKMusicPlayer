@@ -153,7 +153,6 @@
     </message>
     <message>
         <location filename="../musicUi/application/musicapplication.ui" line="601"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="617"/>
         <source>00:00</source>
         <translation>00:00</translation>
     </message>
@@ -192,6 +191,11 @@
         <location filename="../musicUi/application/musicapplication.ui" line="585"/>
         <source>视频</source>
         <translation>Video</translation>
+    </message>
+    <message>
+        <location filename="../musicUi/application/musicapplication.ui" line="617"/>
+        <source>/00:00</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../musicUi/application/musicapplication.ui" line="742"/>
@@ -1754,17 +1758,17 @@
 <context>
     <name>MusicLrcFloatPhotoWidget</name>
     <message>
-        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="52"/>
+        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="37"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="57"/>
+        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="42"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="62"/>
+        <location filename="../musicLrcmanager/musiclrcfloatphotowidget.cpp" line="47"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
     </message>
@@ -2748,7 +2752,7 @@
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="164"/>
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="191"/>
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="209"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="228"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="229"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2756,54 +2760,54 @@
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="309"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="310"/>
         <source>&amp;nbsp;find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;Find &lt;font color=red&gt; %1 &lt;/font&gt; Results</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="318"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="319"/>
         <source>&amp;nbsp;find no result</source>
         <translation>&amp;nbsp;Find No Result</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="330"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="331"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="333"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="334"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="336"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="337"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="340"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="377"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="394"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="341"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="378"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="395"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="345"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="346"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="350"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="351"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="368"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="369"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="394"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="395"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>
@@ -3132,26 +3136,26 @@
 <context>
     <name>MusicTime</name>
     <message>
-        <location filename="../musicCore/musictime.cpp" line="139"/>
-        <location filename="../musicCore/musictime.cpp" line="163"/>
+        <location filename="../musicCore/musictime.cpp" line="148"/>
+        <location filename="../musicCore/musictime.cpp" line="172"/>
         <source>ss</source>
         <translation>SS</translation>
     </message>
     <message>
-        <location filename="../musicCore/musictime.cpp" line="143"/>
-        <location filename="../musicCore/musictime.cpp" line="167"/>
+        <location filename="../musicCore/musictime.cpp" line="152"/>
+        <location filename="../musicCore/musictime.cpp" line="176"/>
         <source>mm</source>
         <translation>MM</translation>
     </message>
     <message>
-        <location filename="../musicCore/musictime.cpp" line="147"/>
-        <location filename="../musicCore/musictime.cpp" line="171"/>
+        <location filename="../musicCore/musictime.cpp" line="156"/>
+        <location filename="../musicCore/musictime.cpp" line="180"/>
         <source>hh</source>
         <translation>HH</translation>
     </message>
     <message>
-        <location filename="../musicCore/musictime.cpp" line="151"/>
-        <location filename="../musicCore/musictime.cpp" line="175"/>
+        <location filename="../musicCore/musictime.cpp" line="160"/>
+        <location filename="../musicCore/musictime.cpp" line="184"/>
         <source>day</source>
         <translation>DAY</translation>
     </message>
@@ -3593,13 +3597,13 @@
     </message>
     <message>
         <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="481"/>
-        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="751"/>
+        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="754"/>
         <source>确定</source>
         <translation>Confirm</translation>
     </message>
     <message>
         <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="494"/>
-        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="764"/>
+        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="767"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
@@ -3629,69 +3633,69 @@
         <translation>NewPWD:</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="738"/>
+        <location filename="../musicUi/musicUsermanager/musicuserdialog.ui" line="741"/>
         <source>输入验证码：</source>
         <translation>Verification:</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="26"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="27"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="222"/>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="270"/>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="282"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="223"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="272"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="284"/>
         <source>You entered is incorrect</source>
         <translation>Incorrect!</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="214"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="215"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>PWD Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="241"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="243"/>
         <source>The two passwords do not match</source>
         <translation>Two PWDS Don&apos;t Match！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="248"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="250"/>
         <source>The agreement does not tick</source>
         <translation>Agreement Doesn&apos;t Ticked！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="257"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="259"/>
         <source>The username is existed</source>
         <translation>User Existed!</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="262"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="264"/>
         <source>The register successfully</source>
         <translation>Register Successfully！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="289"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="291"/>
         <source>You mail is incorrect or user is not exist</source>
         <translation>Mail Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="296"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="298"/>
         <source>You passwd is incorrect</source>
         <translation>You PWD Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="303"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="305"/>
         <source>You verificationCode is incorrect</source>
         <translation>You VerificationCode Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="310"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="312"/>
         <source>Change password successfully</source>
         <translation>Change PWD Successfully!</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicuserdialog.cpp" line="381"/>
+        <location filename="../musicUsermanager/musicuserdialog.cpp" line="383"/>
         <source>This way of loading is now not supported</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3704,74 +3708,325 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="54"/>
+        <source>退出当前帐号</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="67"/>
+        <source>积分：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="176"/>
+        <source>VIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="195"/>
+        <source>音乐包</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="234"/>
+        <source>已购音乐</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="253"/>
+        <source>查看酷币余额</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="266"/>
+        <source>开通会员，享受缤纷特权</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="285"/>
+        <source>开通会员&gt;&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>注销</source>
-        <translation>Logoff</translation>
+        <translation type="vanished">Logoff</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="80"/>
         <source>取消</source>
-        <translation>Cancel</translation>
+        <translation type="vanished">Cancel</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="93"/>
         <source>在线总时长：</source>
-        <translation>Time:</translation>
+        <translation type="vanished">Time:</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="122"/>
         <source>在线总等级：</source>
-        <translation>Level:</translation>
+        <translation type="vanished">Level:</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicusermanager.ui" line="151"/>
         <source>编辑</source>
-        <translation>Edit</translation>
+        <translation type="vanished">Edit</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="81"/>
         <source>%1day %2hour %3min</source>
-        <translation>%1Day %2Hour %3Min</translation>
+        <translation type="vanished">%1Day %2Hour %3Min</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="89"/>
         <source>level1</source>
-        <translation>level1</translation>
+        <translation type="vanished">level1</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="90"/>
         <source>level2</source>
-        <translation>level2</translation>
+        <translation type="vanished">level2</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="91"/>
         <source>level3</source>
-        <translation>level3</translation>
+        <translation type="vanished">level3</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="92"/>
         <source>level4</source>
-        <translation>level4</translation>
+        <translation type="vanished">level4</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="93"/>
         <source>level5</source>
-        <translation>level5</translation>
+        <translation type="vanished">level5</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="94"/>
         <source>level6</source>
-        <translation>level6</translation>
+        <translation type="vanished">level6</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="95"/>
         <source>level7</source>
-        <translation>level7</translation>
+        <translation type="vanished">level7</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="96"/>
         <source>level8</source>
-        <translation>level8</translation>
+        <translation type="vanished">level8</translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="49"/>
+        <source>Modifies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="50"/>
+        <source>Switches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="51"/>
+        <source>Spacing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicUserRecordWidget</name>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="48"/>
+        <source>用户设置 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="61"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="109"/>
+        <source>个人资料</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="124"/>
+        <source>积分:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="153"/>
+        <source>ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="182"/>
+        <source>昵称:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="198"/>
+        <source>性别:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="214"/>
+        <source>生日:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="230"/>
+        <source>城市:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="246"/>
+        <source>签名:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="268"/>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="581"/>
+        <source>保存</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="294"/>
+        <source>男</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="307"/>
+        <source>女</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="357"/>
+        <source>修改头像</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="372"/>
+        <source>设置您喜爱的一个头像:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="385"/>
+        <source>(请选择图片文件，最佳尺寸400X400，支持JPG,JPEG,PNG,GIF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="421"/>
+        <source>头像预览</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="440"/>
+        <source>选择头像</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="450"/>
+        <source>修改密码</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="462"/>
+        <source>&lt;font color=&quot;#FF0000&quot;&gt;*&lt;/font&gt;原密码:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="491"/>
+        <source>&lt;font color=&quot;#FF0000&quot;&gt;*&lt;/font&gt;新密码:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="520"/>
+        <source>&lt;font color=&quot;#FF0000&quot;&gt;*&lt;/font&gt;确认密码:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="559"/>
+        <source>&lt;font color=&quot;#FF0000&quot;&gt;*&lt;/font&gt;验证码:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="594"/>
+        <source>密码强度：弱</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="610"/>
+        <source>强</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="747"/>
+        <source>账号安全</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="759"/>
+        <source>&lt;font size=5&gt;&lt;b&gt;安全邮箱&lt;/b&gt;&lt;/font&gt;（安全邮箱可用于找回密码，验证后还可以作为登录邮箱）</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="798"/>
+        <source>&lt;font size=5&gt;&lt;b&gt;安全手机&lt;/b&gt;&lt;/font&gt;（安全手机可用于找回密码，验证后还可以作为登录手机）</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="827"/>
+        <source>&lt;font size=5&gt;&lt;b&gt;安全问题&lt;/b&gt;&lt;/font&gt;（忘记密码时，通过安全问题重新设置密码）</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="843"/>
+        <source>g******ky@163.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="859"/>
+        <source>180******48</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="872"/>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="885"/>
+        <source>状态:&lt;font color=&quot;#000000&quot; size=4 &gt;&lt;b&gt;已验证&lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicUsermanager/musicuserrecordwidget.ui" line="898"/>
+        <source>状态:&lt;font color=&quot;#000000&quot; size=4 &gt;&lt;b&gt;已设置&lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="19"/>
+        <source>Close</source>
+        <translation type="unfinished">Close</translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="169"/>
+        <source>You verificationCode is incorrect</source>
+        <translation type="unfinished">You VerificationCode Is Incorrect！</translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="176"/>
+        <source>The origin password does not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="183"/>
+        <source>The two passwords do not match</source>
+        <translation type="unfinished">Two PWDS Don&apos;t Match！</translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="190"/>
+        <source>The modity password failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="199"/>
+        <source>The modity password successfully, please relogin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUsermanager/musicuserrecordwidget.cpp" line="205"/>
+        <source>You entered is incorrect</source>
+        <translation type="unfinished">Incorrect!</translation>
     </message>
 </context>
 <context>
@@ -3782,7 +4037,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicUsermanager/musicuserwindow.ui" line="30"/>
+        <location filename="../musicUi/musicUsermanager/musicuserwindow.ui" line="34"/>
         <source>登录</source>
         <translation>Login</translation>
     </message>
@@ -4004,6 +4259,16 @@
         <location filename="../musicCore/musicregeditmanager.cpp" line="98"/>
         <source>add QMusicPlayer playList</source>
         <translation>Add To QMusicPlayer PlayList</translation>
+    </message>
+    <message>
+        <location filename="../musicapplicationmain.cpp" line="20"/>
+        <source>QMusicPlayer</source>
+        <translation type="unfinished">QMusicPlayer</translation>
+    </message>
+    <message>
+        <location filename="../musicapplicationmain.cpp" line="21"/>
+        <source>Lack of necessary component files!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
