@@ -322,7 +322,7 @@ QTabBar::tab:selected {
        <rect>
         <x>90</x>
         <y>230</y>
-        <width>81</width>
+        <width>110</width>
         <height>22</height>
        </rect>
       </property>
@@ -330,7 +330,7 @@ QTabBar::tab:selected {
      <widget class="QComboBox" name="countryComboBox_F">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>220</x>
         <y>230</y>
         <width>111</width>
         <height>22</height>
