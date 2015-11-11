@@ -8,8 +8,9 @@
 
 Usage
 ----
-The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt
-( just only on windows PC!!!)
+The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt.
+Qt develop version : Qt5.5.0 for msvc 2013.
+( The future will support the development of cross-platform, now only supports windows )
 
 # For Developers
 
