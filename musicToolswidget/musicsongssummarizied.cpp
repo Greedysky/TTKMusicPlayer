@@ -32,7 +32,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     for(int i=0; i<3; ++i)
     {
         connect(m_mainSongLists[i], SIGNAL(cellDoubleClicked(int,int)), parent, SLOT(musicPlayIndex(int,int)));
-        connect(m_mainSongLists[i], SIGNAL(musicPlay(int,int)), parent, SLOT(musicPlayIndex(int,int)));
         connect(m_mainSongLists[i], SIGNAL(musicPlayOrder()), parent, SLOT(musicPlayOrder()));
         connect(m_mainSongLists[i], SIGNAL(musicPlayRandom()), parent, SLOT(musicPlayRandom()));
         connect(m_mainSongLists[i], SIGNAL(musicPlayListLoop()), parent, SLOT(musicPlayListLoop()));

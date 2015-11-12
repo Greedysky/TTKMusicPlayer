@@ -36,7 +36,6 @@ public:
     void replacePlayWidgetRow();
 
 signals:
-    void musicPlay(int row, int col);
     void musicPlayOrder();
     void musicPlayRandom();
     void musicPlayListLoop();
@@ -51,12 +50,12 @@ signals:
                              QStringList &list);
 
 public slots:
+    virtual void listCellEntered(int row, int column);
+    virtual void listCellClicked(int row, int column);
     void musicPlayClicked();
     void setDeleteItemAt();
     void setDeleteItemAll();
     void setDeleteItemWithFile();
-    void listCellEntered(int row, int column);
-    void listCellClicked(int row, int column);
     void showTimeOut();
     void stayTimeOut();
     void addMusicSongToLovestListAt();

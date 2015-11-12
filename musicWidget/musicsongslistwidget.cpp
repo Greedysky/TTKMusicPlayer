@@ -407,7 +407,7 @@ void MusicSongsListWidget::musicPlayClicked()
     {
         return;
     }
-    emit musicPlay(currentRow(), 0);
+    emit cellDoubleClicked(currentRow(), 0);
 }
 
 void MusicSongsListWidget::musicMakeRingWidget()

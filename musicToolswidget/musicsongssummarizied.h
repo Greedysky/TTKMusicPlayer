@@ -55,8 +55,8 @@ public slots:
     void addMusicSongToLovestListAt(int row);
     void addNetMusicSongToList(const QString &name, const QString &time);
     void setDeleteItemAt(const MIntList &index, bool fileRemove);
-    void setChangItemName(const QString &name);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
+    void setChangItemName(const QString &name);
     void updateArtPicture();
     void setTransparent(int alpha);
     void setMusicPlayCount(int index);
