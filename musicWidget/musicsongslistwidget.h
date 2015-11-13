@@ -81,7 +81,7 @@ protected:
 
     QTimer m_timerShow, m_timerStay;
     MusicSongs *m_musicSongs;
-    MusicSongsListItemInfoWidget *m_musicSongsListItem;
+    MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
     bool m_leftButtonPressed;

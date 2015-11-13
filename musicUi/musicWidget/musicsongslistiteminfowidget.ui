@@ -6,17 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>264</width>
+    <width>260</width>
     <height>108</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MusicSongsListItemInfoWidget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{background:#FDFDFD;}
+QLabel{background:#EEEEEE;}</string>
+  </property>
   <widget class="QLabel" name="songNameValue">
    <property name="geometry">
     <rect>
-     <x>15</x>
+     <x>10</x>
      <y>10</y>
      <width>242</width>
      <height>15</height>
@@ -35,7 +39,7 @@
   <widget class="QLabel" name="artPicture">
    <property name="geometry">
     <rect>
-     <x>15</x>
+     <x>10</x>
      <y>35</y>
      <width>60</width>
      <height>60</height>
@@ -51,7 +55,7 @@
   <widget class="QLabel" name="artlist">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>85</x>
      <y>35</y>
      <width>45</width>
      <height>15</height>
@@ -64,7 +68,7 @@
   <widget class="QLabel" name="size">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>85</x>
      <y>55</y>
      <width>34</width>
      <height>15</height>
@@ -77,7 +81,7 @@
   <widget class="QLabel" name="type">
    <property name="geometry">
     <rect>
-     <x>185</x>
+     <x>180</x>
      <y>55</y>
      <width>31</width>
      <height>15</height>
@@ -90,7 +94,7 @@
   <widget class="QLabel" name="time">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>85</x>
      <y>77</y>
      <width>80</width>
      <height>15</height>
@@ -103,14 +107,11 @@
   <widget class="QLabel" name="artlistValue">
    <property name="geometry">
     <rect>
-     <x>135</x>
+     <x>130</x>
      <y>35</y>
      <width>122</width>
      <height>15</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -122,14 +123,11 @@
   <widget class="QLabel" name="sizeValue">
    <property name="geometry">
     <rect>
-     <x>124</x>
+     <x>119</x>
      <y>55</y>
      <width>50</width>
      <height>15</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -141,14 +139,11 @@
   <widget class="QLabel" name="typeValue">
    <property name="geometry">
     <rect>
-     <x>216</x>
+     <x>211</x>
      <y>55</y>
      <width>41</width>
      <height>15</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -160,14 +155,11 @@
   <widget class="QLabel" name="timeValue">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>165</x>
      <y>77</y>
      <width>86</width>
      <height>15</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -176,20 +168,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="transparent">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>264</width>
-     <height>108</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <zorder>transparent</zorder>
   <zorder>songNameValue</zorder>
   <zorder>artlist</zorder>
   <zorder>size</zorder>

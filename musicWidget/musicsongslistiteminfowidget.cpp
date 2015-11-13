@@ -10,8 +10,6 @@ MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setStyleSheet(MusicUIObject::MCustomStyle02);
 }
 
 MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()

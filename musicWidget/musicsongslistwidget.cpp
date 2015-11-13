@@ -12,7 +12,7 @@
 #include <QDesktopServices>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_musicSongsListItem(NULL),
+    : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(NULL),
       m_musicSongsPlayWidget(NULL)
 {
     m_deleteItemWithFile = false;
@@ -30,7 +30,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
 MusicSongsListWidget::~MusicSongsListWidget()
 {
     clearAllItems();
-    delete m_musicSongsListItem;
+    delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
 }
 
@@ -207,8 +207,8 @@ void MusicSongsListWidget::leaveEvent(QEvent *event)
 {
     QTableWidget::leaveEvent(event);
     listCellEntered(currentRow(), -1);
-    delete m_musicSongsListItem;
-    m_musicSongsListItem = NULL;
+    delete m_musicSongsInfoWidget;
+    m_musicSongsInfoWidget = NULL;
 }
 
 void MusicSongsListWidget::setDeleteItemAll()
@@ -310,10 +310,10 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     MusicAbstractTableWidget::listCellEntered(row, column);
 
     //To show music Songs Item information
-    if(m_musicSongsListItem == NULL)
+    if(m_musicSongsInfoWidget == NULL)
     {
-        m_musicSongsListItem = new MusicSongsListItemInfoWidget;
-        m_musicSongsListItem->hide();
+        m_musicSongsInfoWidget = new MusicSongsListItemInfoWidget;
+        m_musicSongsInfoWidget->hide();
     }
     m_timerShow.stop();
     m_timerShow.start(1000);
@@ -323,20 +323,20 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
 void MusicSongsListWidget::showTimeOut()
 {
-    if(m_musicSongsListItem)
+    if(m_musicSongsInfoWidget)
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
-        m_musicSongsListItem->setMusicSongInformation( song );
-        m_musicSongsListItem->setGeometry(QCursor::pos().x() + 50, QCursor::pos().y(), 264, 108);
-        m_musicSongsListItem->show();
+        m_musicSongsInfoWidget->setMusicSongInformation( song );
+        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 5, QCursor::pos().y(), 264, 108);
+        m_musicSongsInfoWidget->show();
     }
 }
 
 void MusicSongsListWidget::stayTimeOut()
 {
-    delete m_musicSongsListItem;
-    m_musicSongsListItem = NULL;
+    delete m_musicSongsInfoWidget;
+    m_musicSongsInfoWidget = NULL;
 }
 
 void MusicSongsListWidget::addMusicSongToLovestListAt()
