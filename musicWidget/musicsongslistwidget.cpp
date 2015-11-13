@@ -316,9 +316,9 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
         m_musicSongsInfoWidget->hide();
     }
     m_timerShow.stop();
-    m_timerShow.start(1000);
+    m_timerShow.start(500);
     m_timerStay.stop();
-    m_timerStay.start(3000);
+    m_timerStay.start(4000);
 }
 
 void MusicSongsListWidget::showTimeOut()
