@@ -58,7 +58,6 @@ public slots:
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
     void isCurrentIndexs(bool &state);
     void setChangItemName(const QString &name);
-    void updateArtPicture();
     void setTransparent(int alpha);
     void setMusicPlayCount(int index);
 

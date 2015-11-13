@@ -131,11 +131,6 @@ void MusicSongsSummarizied::setTimerLabel(const QString &time) const
     m_mainSongLists[m_currentIndexs]->setTimerLabel(time);
 }
 
-void MusicSongsSummarizied::updateArtPicture()
-{
-    m_mainSongLists[m_currentIndexs]->updateArtPicture();
-}
-
 void MusicSongsSummarizied::setTransparent(int alpha)
 {
     alpha = alpha*2.55;

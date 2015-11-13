@@ -44,7 +44,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
     m_leftAreaWidget->setupUi(ui);
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTree, SLOT(setTransparent(int)));
-    connect(m_topAreaWidget, SIGNAL(updateArtPicture()), m_musicSongTree, SLOT(updateArtPicture()));
     connect(m_topAreaWidget, SIGNAL(musicSearchButtonClicked()), m_rightAreaWidget, SLOT(musicSearchButtonSearched()));
     connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));

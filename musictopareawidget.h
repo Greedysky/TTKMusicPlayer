@@ -41,7 +41,6 @@ public:
 
 signals:
     void setTransparent(int index);
-    void updateArtPicture();
     void musicSearchButtonClicked();
 
 public slots:

@@ -46,7 +46,6 @@ public:
 
     void getWidget(QWidget *&one, QWidget *&two) const;
     void insertTimerLabel(const QString &t) const;
-    void updateArtPicture() const;
     void setParameter(const QString &name, const QString &path);
     void setItemRename();
 

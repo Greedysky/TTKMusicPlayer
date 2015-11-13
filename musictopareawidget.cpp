@@ -173,7 +173,6 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
-        emit updateArtPicture();
         m_pictureCarouselTimer.start(5000);
     }
     else

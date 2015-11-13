@@ -442,14 +442,6 @@ void MusicSongsListWidget::setTimerLabel(const QString &t) const
     }
 }
 
-void MusicSongsListWidget::updateArtPicture() const
-{
-    if(m_musicSongsPlayWidget)
-    {
-        m_musicSongsPlayWidget->updateArtPicture();
-    }
-}
-
 void MusicSongsListWidget::replacePlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
