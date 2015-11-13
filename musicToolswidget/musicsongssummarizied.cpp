@@ -39,11 +39,13 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         connect(m_mainSongLists[i], SIGNAL(musicPlayItemOnce()), parent, SLOT(musicPlayItemOnce()));
         connect(m_mainSongLists[i], SIGNAL(musicAddNewFiles()), parent, SLOT(musicImportSongsOnlyFile()));
         connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
+        connect(m_mainSongLists[i], SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
         connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
         connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
-        connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     }
+
+    connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     connect(m_mainSongLists[0], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
     connect(m_mainSongLists[2], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
 
@@ -322,6 +324,11 @@ void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play,
     {
         emit updateMediaLists(getMusicSongsFilePath(m_currentIndexs), play);
     }
+}
+
+void MusicSongsSummarizied::isCurrentIndexs(bool &state)
+{
+    state = ( currentIndex() == m_currentIndexs );
 }
 
 void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)

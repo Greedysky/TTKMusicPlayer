@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
+#include <QDebug>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsListItem(NULL),
@@ -288,27 +289,20 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 void MusicSongsListWidget::listCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 2);
-    if(row == m_playRowIndex && it != NULL)
+    if(it != NULL)
     {
         it->setIcon(QIcon());
-        if(m_previousColorRow != m_playRowIndex)
-        {
-            it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
-        }
-        else
-        {
-            it->setText(QString());
-        }
+        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
     }
-    else if(m_previousColorRow != -1 && m_previousColorRow != m_playRowIndex)
+    item(row, 2)->setText(QString());
+    item(row, 2)->setIcon(QIcon(":/image/musicdelete"));
+
+    bool isCurrentIndex;
+    emit isCurrentIndexs(isCurrentIndex);
+    if(isCurrentIndex)
     {
-        if(it != NULL)
-        {
-            it->setIcon(QIcon());
-            it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
-        }
-        item(row, 2)->setText(QString());
-        item(row, 2)->setIcon(QIcon(":/image/musicdelete"));
+        item(m_playRowIndex, 2)->setText(QString());
+        item(m_playRowIndex, 2)->setIcon(QIcon());
     }
     MusicAbstractTableWidget::listCellEntered(row, column);
 

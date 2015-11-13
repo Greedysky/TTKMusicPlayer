@@ -56,6 +56,7 @@ public slots:
     void addNetMusicSongToList(const QString &name, const QString &time);
     void setDeleteItemAt(const MIntList &index, bool fileRemove);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
+    void isCurrentIndexs(bool &state);
     void setChangItemName(const QString &name);
     void updateArtPicture();
     void setTransparent(int alpha);

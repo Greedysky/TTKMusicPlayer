@@ -44,6 +44,7 @@ signals:
     void musicAddNewFiles();
     void musicAddNewDir();
 
+    void isCurrentIndexs(bool &state);
     void deleteItemAt(const MIntList &index, bool fileRemove);
     void musicSongToLovestListAt(int row);
     void getMusicIndexSwaped(int before, int after, int play,
