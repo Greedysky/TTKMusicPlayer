@@ -248,8 +248,8 @@
   <widget class="QLabel" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>37</x>
-     <y>317</y>
+     <x>57</x>
+     <y>337</y>
      <width>220</width>
      <height>19</height>
     </rect>
