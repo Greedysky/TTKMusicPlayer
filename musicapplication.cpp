@@ -306,15 +306,11 @@ void MusicApplication::readXMLConfigFromText()
     m_bottomAreaWidget->setDestopLrcVisible(key);
     m_rightAreaWidget->setDestopLrcVisible(key);
     //////////////////////////////////////////////////////////////
-    //Configure automatic playback
-    key = xml.readSystemAutoPlayConfig();
-    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced, key);
-    m_bottomAreaWidget->showPlayStatus(m_playControl);
-    m_rightAreaWidget->showPlayStatus(m_playControl);
-    if(key == "true")
-    {
-        musicKey();
-    }
+    //Set the current background color
+    //Set the current alpha value
+    m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
+                                   xml.readBackgroundTransparent().toInt(),
+                                   xml.readBackgroundListTransparent().toInt());
     //////////////////////////////////////////////////////////////
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
@@ -331,16 +327,21 @@ void MusicApplication::readXMLConfigFromText()
         m_musicList->blockSignals(false);
     }
     //////////////////////////////////////////////////////////////
+    //Configure automatic playback
+    key = xml.readSystemAutoPlayConfig();
+    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced, key);
+    if(key == "true")
+    {
+        m_playControl = true;
+        musicKey();
+    }
+    m_bottomAreaWidget->showPlayStatus(m_playControl);
+    m_rightAreaWidget->showPlayStatus(m_playControl);
+    //////////////////////////////////////////////////////////////
     //When the configuration is close to the direct exit
     key = xml.readSystemCloseConfig();
     M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, key);
     m_bottomAreaWidget->setSystemCloseConfig(key);
-    //////////////////////////////////////////////////////////////
-    //Set the current background color
-    //Set the current alpha value
-    m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
-                                   xml.readBackgroundTransparent().toInt(),
-                                   xml.readBackgroundListTransparent().toInt());
     //////////////////////////////////////////////////////////////
     //Set the lrc color the user set
     M_SETTING->setValue(MusicSettingManager::LrcColorChoiced, xml.readShowLrcColor());
