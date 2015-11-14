@@ -32,7 +32,6 @@ signals:
     void setEqEffect(const MIntList &effect);
     void setEnaleEffect(bool enable);
     void setSpEqEffect(MusicObject::SpecialEQ eq);
-    void resetEqEffect();
 
 public slots:
     void setEqEnable();

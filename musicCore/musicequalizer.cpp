@@ -60,18 +60,6 @@ void MusicEqualizer::setEnaleEffect(bool enale)
     m_parentClass->EnableEqualizer(enale);
 }
 
-void MusicEqualizer::resetEqEffect()
-{
-    init();
-    m_parentClass->EnableEcho(m_echoEffect);
-    m_parentClass->MixChannels(m_mixChannelEffect, 50, 50);
-    m_parentClass->ReverseMode(m_reverse);
-    m_parentClass->SetRate(m_nRate);
-    m_parentClass->StereoCut(m_fCenterCut, 0, 0);
-    m_parentClass->SetPitch(m_nPitch);
-    m_parentClass->SetTempo(m_nTempo);
-}
-
 void MusicEqualizer::setEchoEffect()
 {
     ///set echo effect

@@ -37,7 +37,6 @@ public:
     void setFadeOutEffect();
     void setFadeInEffect();
     void readEqInformation();
-    void resetEqEffect();
 
 protected:
     void init();

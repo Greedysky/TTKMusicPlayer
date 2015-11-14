@@ -333,14 +333,12 @@ void MusicPlayer::setEqInformation()
     m_equalizer->readEqInformation();
 }
 
-void MusicPlayer::resetEqEffect()
-{
-    m_equalizer->resetEqEffect();
-}
-
 void MusicPlayer::setSpEqEffect(MusicObject::SpecialEQ eq)
 {
-    if(m_state != PlayingState) return;
+    if(m_state != PlayingState)
+    {
+        return;
+    }
     switch(eq)
     {
         case MusicObject::EQ_EchoEffect:

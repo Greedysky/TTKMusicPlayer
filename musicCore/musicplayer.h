@@ -88,7 +88,6 @@ public slots:
     void setEnaleEffect(bool enable);
     void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
-    void resetEqEffect();
 #ifdef Q_OS_WIN
     void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
 #endif

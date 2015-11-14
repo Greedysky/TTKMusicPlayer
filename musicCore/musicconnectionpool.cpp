@@ -90,8 +90,6 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(setEnaleEffect(bool)));
         QObject::connect(first, SIGNAL(setSpEqEffect(MusicObject::SpecialEQ)), second,
                                 SLOT(setSpEqEffect(MusicObject::SpecialEQ)));
-        QObject::connect(first, SIGNAL(resetEqEffect()), second,
-                                SLOT(resetEqEffect()));
     }
 
     if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicDownloadStatusLabel" )

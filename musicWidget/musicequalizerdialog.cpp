@@ -216,7 +216,6 @@ void MusicEqualizerDialog::setControlEnable(bool) const
 
 void MusicEqualizerDialog::resetEq()
 {
-    emit resetEqEffect();
     ui->eqChoice->setCurrentIndex(1);
     ui->bwVerticalSlider->setValue(0);
     ui->verticalSlider1->setValue(0);
