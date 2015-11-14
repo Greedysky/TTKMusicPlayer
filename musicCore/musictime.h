@@ -16,7 +16,11 @@ class MUSIC_CORE_EXPORT MusicTime : public QObject
 {
     Q_OBJECT
 public:
-    enum Type { All_Msec, All_Sec};
+    enum Type
+    {
+        All_Msec,
+        All_Sec
+    };
 
     explicit MusicTime(QObject *parent = 0);
     MusicTime(qint64 value, Type type, QObject *parent = 0);

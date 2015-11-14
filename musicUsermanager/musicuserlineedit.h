@@ -14,7 +14,13 @@
 
 #include "musiclibexportglobal.h"
 
-enum LabelType{ User, Passwd, PwdConfirm, Mail};
+enum LabelType
+{
+    User,
+    Passwd,
+    PwdConfirm,
+    Mail
+};
 
 class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 {

@@ -21,7 +21,11 @@ class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    typedef enum Type{ Inline, Desktop} Type;
+    enum Type
+    {
+        Inline,
+        Desktop
+    };
 
     explicit MusicSettingWidget(QWidget *parent = 0);
     virtual ~MusicSettingWidget();

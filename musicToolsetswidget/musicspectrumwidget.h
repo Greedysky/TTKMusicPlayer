@@ -17,7 +17,9 @@
 class MUSIC_TOOLSET_EXPORT  MusicSpectrumWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    enum Direction{
+public:
+    enum Direction
+    {
         UP,
         DOWN,
         LEFT,
@@ -28,7 +30,7 @@ class MUSIC_TOOLSET_EXPORT  MusicSpectrumWidget : public MusicAbstractMoveWidget
         RIGHTTOP,
         NONE
     };
-public:
+
     explicit MusicSpectrumWidget(QWidget *parent = 0);
     virtual ~MusicSpectrumWidget();
 

@@ -23,7 +23,7 @@ const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=
 const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
 const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
 
-typedef enum Download_Type
+enum Download_Type
 {
     Download_Music,
     Download_Lrc,
@@ -31,7 +31,7 @@ typedef enum Download_Type
     Download_BigBG,
     Download_Video,
     Download_Other
-}Download_Type;
+};
 
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
 {
