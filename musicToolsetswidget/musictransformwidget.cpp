@@ -5,12 +5,7 @@
 #include <QFileDialog>
 #include <QProcess>
 #include <QMovie>
-
-#if defined Q_OS_WIN && defined _MSC_VER
-#   include <windows.h>
-#   include <mmsystem.h>
-#   pragma comment(lib,"winmm.lib")
-#endif
+#include <QSound>
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),m_movie(NULL),
@@ -143,11 +138,7 @@ QString MusicTransformWidget::getTransformSongName() const
 
 void MusicTransformWidget::transformFinish(int)
 {
-#ifdef Q_OS_WIN
-    mciSendString(TEXT("close sound.wav"), NULL, 0, NULL);
-    mciSendString(TEXT("open  sound.wav"), NULL, 0, NULL);
-    mciSendString(TEXT("play  sound.wav"), NULL, 0, NULL);
-#endif
+    QSound::play("sound.wav");
     m_path.removeAt(0);
     ui->listWidget->clear();
     if(!m_path.isEmpty())
