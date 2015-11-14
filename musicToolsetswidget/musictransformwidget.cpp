@@ -1,6 +1,7 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
 #include "musicbgthememanager.h"
+#include "musicmessagebox.h"
 
 #include <QFileDialog>
 #include <QProcess>
@@ -166,6 +167,9 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 {
     if(m_path.isEmpty())
     {
+        MusicMessageBox message;
+        message.setText(tr("the input is empty!"));
+        message.exec();
         return false;
     }
 
@@ -174,6 +178,9 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
     if(in.isEmpty() || out.isEmpty() )
     {
+        MusicMessageBox message;
+        message.setText(tr("the out is empty!"));
+        message.exec();
         return false;
     }
 
