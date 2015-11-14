@@ -190,7 +190,6 @@ void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
     emit setEnaleEffect(m_eable);
-    ui->eqLabel->clear();
     ui->showEqButton->setIcon(QIcon(!m_eable ? ":/equalizer/off" : ":/equalizer/on"));
 
     setControlEnable(!m_eable);
@@ -281,15 +280,12 @@ void MusicEqualizerDialog::setMixedEffect(int index)
     switch(index)
     {
         case 0:
-            ui->eqLabel->setText(tr("EchoEffect"));
             emit setSpEqEffect(MusicObject::EQ_EchoEffect);
             break;
         case 1:
-            ui->eqLabel->setText(tr("MixChannelEffect"));
             emit setSpEqEffect(MusicObject::EQ_MixChannelEffect);
             break;
         case 2:
-            ui->eqLabel->setText(tr("ReverseEffect"));
             emit setSpEqEffect(MusicObject::EQ_ReverseEffect);
             break;
         default: break;
@@ -303,43 +299,33 @@ void MusicEqualizerDialog::setEqualizerEffect(int index)
     switch(index)
     {
         case 0:
-            ui->eqLabel->setText(tr("SideCutEffect"));
             emit setSpEqEffect(MusicObject::EQ_SideCutEffect);
             break;
         case 1:
-            ui->eqLabel->setText(tr("CenterCutEffect"));
             emit setSpEqEffect(MusicObject::EQ_CenterCutEffect);
             break;
         case 2:
-            ui->eqLabel->setText(tr("RateDownEffect"));
             emit setSpEqEffect(MusicObject::EQ_RateDownEffect);
             break;
         case 3:
-            ui->eqLabel->setText(tr("FadeOutEffect"));
             emit setSpEqEffect(MusicObject::EQ_FadeOutEffect);
             break;
         case 4:
-            ui->eqLabel->setText(tr("FadeInEffect"));
             emit setSpEqEffect(MusicObject::EQ_FadeInEffect);
             break;
         case 5:
-            ui->eqLabel->setText(tr("RateUpEffect"));
             emit setSpEqEffect(MusicObject::EQ_RateUpEffect);
             break;
         case 6:
-            ui->eqLabel->setText(tr("TempoUpEffect"));
             emit setSpEqEffect(MusicObject::EQ_TempoUpEffect);
             break;
         case 7:
-            ui->eqLabel->setText(tr("TempoDownEffect"));
             emit setSpEqEffect(MusicObject::EQ_TempoDownEffect);
             break;
         case 8:
-            ui->eqLabel->setText(tr("PitchDownEffect"));
             emit setSpEqEffect(MusicObject::EQ_PitchDownEffect);
             break;
         case 9:
-            ui->eqLabel->setText(tr("PitchUpEffect"));
             emit setSpEqEffect(MusicObject::EQ_PitchUpEffect);
             break;
         default:break;

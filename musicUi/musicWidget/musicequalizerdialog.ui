@@ -741,27 +741,6 @@ font-weight:bold;
     <string>16k</string>
    </property>
   </widget>
-  <widget class="QLabel" name="eqLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>328</y>
-     <width>101</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font-size:15px;
-font-weight:bold;
-</string>
-   </property>
-   <property name="text">
-    <string>无效果</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QPushButton" name="funcButton_3">
    <property name="geometry">
     <rect>
@@ -896,7 +875,7 @@ font-weight:bold;
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>270</y>
+     <y>285</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -909,7 +888,7 @@ font-weight:bold;
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>270</y>
+     <y>285</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -922,7 +901,7 @@ font-weight:bold;
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>300</y>
+     <y>320</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -943,7 +922,6 @@ font-weight:bold;
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>verticalSlider7</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
@@ -994,7 +972,6 @@ font-weight:bold;
   <zorder>showPerArea_29</zorder>
   <zorder>showPerArea_30</zorder>
   <zorder>showPerArea_31</zorder>
-  <zorder>eqLabel</zorder>
   <zorder>funcButton_3</zorder>
   <zorder>funcButton_4</zorder>
   <zorder>funcButton_5</zorder>
