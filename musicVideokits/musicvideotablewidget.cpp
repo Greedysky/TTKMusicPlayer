@@ -23,6 +23,11 @@ MusicVideoTableWidget::~MusicVideoTableWidget()
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     m_downLoadManager->startSearchSong(MVQuery, text);
 }
 

@@ -11,6 +11,7 @@
 
 #include "musicabstracttablewidget.h"
 #include "musicdownloadquerythread.h"
+#include "musicnetworkthread.h"
 
 #include <QMenu>
 

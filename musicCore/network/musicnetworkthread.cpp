@@ -13,6 +13,7 @@ MusicNetworkThread::MusicNetworkThread()
 
 MusicNetworkThread::~MusicNetworkThread()
 {
+    m_timer.stop();
     delete m_client;
 }
 

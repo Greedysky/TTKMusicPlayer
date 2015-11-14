@@ -7,6 +7,7 @@
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
+#include "musicnetworkthread.h"
 
 #include <QLabel>
 
@@ -74,8 +75,15 @@ bool MusicDownloadStatusLabel::checkSettingParameterValue() const
 
 void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 {
-    if( checkSettingParameterValue() )
-    {///Check there is no opening lyrics display mode
+    if(!M_NETWORK->isOnline())
+    {
+        ///no network connection
+        showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
+    else if( checkSettingParameterValue() )
+    {
+        ///Check there is no opening lyrics display mode
        if( m_parentWidget->checkMusicListCurrentIndex() )
        {
            return;

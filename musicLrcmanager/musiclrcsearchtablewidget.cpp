@@ -22,6 +22,11 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
 
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     m_currentSongName = text;
     m_downLoadManager->startSearchSong(MusicQuery, text);
 }

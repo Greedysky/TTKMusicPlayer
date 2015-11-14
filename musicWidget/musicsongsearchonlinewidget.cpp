@@ -4,7 +4,6 @@
 #include "musicdata2downloadthread.h"
 #include "musicsongdownloadthread.h"
 #include "musicbgthemedownload.h"
-#include "musicnetworkthread.h"
 #include "musicmydownloadrecordobject.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
@@ -43,6 +42,11 @@ MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
+    if(!M_NETWORK->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        return;
+    }
     ////////////////////////////////////////////////
     MusicSearchRecord record;
     MusicLocalSongSearchRecordObject search(this);
