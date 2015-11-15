@@ -84,11 +84,17 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 {
-    delete m_radio1, m_radio2, m_radio3;
-    delete m_plane1, m_plane2, m_plane3;
+    delete m_radio1;
+    delete m_radio2;
+    delete m_radio3;
+    delete m_plane1;
+    delete m_plane2;
+    delete m_plane3;
     delete m_filmBGWidget;
-    delete m_previous, m_next;
-    delete m_confirmButton, m_cancelButton;
+    delete m_previous;
+    delete m_next;
+    delete m_confirmButton;
+    delete m_cancelButton;
     delete m_checkBox;
 }
 

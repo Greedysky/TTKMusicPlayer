@@ -282,7 +282,8 @@ void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
 
 void MusicLrcContainerForDesktop::setWindowLockedChanged()
 {
-    if(m_windowLocked = !m_windowLocked)
+    m_windowLocked = !m_windowLocked;
+    if(m_windowLocked)
     {
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MCustomStyle01);

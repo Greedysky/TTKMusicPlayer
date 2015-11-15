@@ -54,8 +54,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
 
 MusicLrcFloatWidget::~MusicLrcFloatWidget()
 {
-    delete m_more, m_update, m_search;
-    delete m_wallp, m_photo;
+    delete m_more;
+    delete m_update;
+    delete m_search;
+    delete m_wallp;
+    delete m_photo;
     delete m_floatPhotoWidget;
     delete m_floatSettingWidget;
 }
