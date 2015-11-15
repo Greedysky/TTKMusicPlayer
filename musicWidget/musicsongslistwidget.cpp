@@ -174,7 +174,7 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
         }
         else if(m_playRowIndex == end)
         {
-            index = (start > end) ? index = end + 1 : index = end - 1;
+            index = (start > end) ? (end + 1) : (end - 1);
         }
         else
         {

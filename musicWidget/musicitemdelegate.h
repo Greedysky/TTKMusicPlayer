@@ -17,6 +17,7 @@ class QProgressBar;
 
 class MUSIC_WIDGET_EXPORT MusicCheckBoxDelegate : public QItemDelegate
 {
+    Q_OBJECT
 public:
     explicit MusicCheckBoxDelegate(QObject* parent = 0);
     virtual ~MusicCheckBoxDelegate();
@@ -34,6 +35,7 @@ protected:
 
 class MUSIC_WIDGET_EXPORT MusicQueryTableDelegate : public MusicCheckBoxDelegate
 {
+    Q_OBJECT
 public:
     explicit MusicQueryTableDelegate(QObject* parent = 0);
     virtual ~MusicQueryTableDelegate();
@@ -47,6 +49,7 @@ public:
 
 class MUSIC_WIDGET_EXPORT MusicProgressBarDelegate : public QItemDelegate
 {
+    Q_OBJECT
 public:
     explicit MusicProgressBarDelegate(QObject* parent = 0);
     ~MusicProgressBarDelegate();
