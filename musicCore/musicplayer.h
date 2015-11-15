@@ -1,5 +1,5 @@
-#ifndef QMUSICPLAYER_H
-#define QMUSICPLAYER_H
+#ifndef MUSICPLAYER_H
+#define MUSICPLAYER_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -14,6 +14,9 @@
 
 #ifdef Q_OS_WIN
 #   include <Windows.h>
+#   ifdef Q_CC_GNU
+#     pragma GCC diagnostic ignored "-Wswitch"
+#   endif
 #endif
 
 class QMediaPlayer;
@@ -113,4 +116,4 @@ protected:
 
 };
 
-#endif // QMUSICPLAYER_H
+#endif // MUSICPLAYER_H

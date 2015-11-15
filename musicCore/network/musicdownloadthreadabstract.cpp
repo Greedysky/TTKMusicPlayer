@@ -6,7 +6,7 @@
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)
-    : QObject(parent), m_reply(NULL), m_manager(NULL)
+    : QObject(parent), m_manager(NULL), m_reply(NULL)
 {
     m_url = url;
     m_savePathName = save;

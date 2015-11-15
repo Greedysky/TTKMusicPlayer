@@ -150,6 +150,8 @@ void MusicPlaylist::setCurrentIndex(int index)
             case MusicObject::MC_PlayRandom:
                 m_currentIndex = rand() % m_mediaList.count();
                 break;
+            case MusicObject::MC_PlayOnce :
+                break;
         }
     }
     else

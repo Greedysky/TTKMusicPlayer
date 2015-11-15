@@ -12,9 +12,8 @@
 #include <QDataStream>
 #include "musiclibexportglobal.h"
 
-class MUSIC_CORE_EXPORT MusicTime : public QObject
+class MUSIC_CORE_EXPORT MusicTime
 {
-    Q_OBJECT
 public:
     enum Type
     {
@@ -22,10 +21,9 @@ public:
         All_Sec
     };
 
-    explicit MusicTime(QObject *parent = 0);
-    MusicTime(qint64 value, Type type, QObject *parent = 0);
-    MusicTime(int day, int hour, int min, int sec, int msec = 0,
-              QObject *parent = 0);
+    explicit MusicTime();
+    MusicTime(qint64 value, Type type);
+    MusicTime(int day, int hour, int min, int sec, int msec);
     ~MusicTime();
 
     void setHMSM(int day, int hour, int min, int sec, int msec = 0);

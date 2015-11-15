@@ -4,22 +4,21 @@
 #include <QDir>
 #include <time.h>
 
-MusicTime::MusicTime(QObject *parent)
-    : QObject(parent)
+MusicTime::MusicTime()
 {
     m_defaultType = All_Msec;
     init();
 }
 
-MusicTime::MusicTime(qint64 value, Type type, QObject *parent)
-    : MusicTime(parent)
+MusicTime::MusicTime(qint64 value, Type type)
+    : MusicTime()
 {
     m_defaultType = type;
     fromTimeStamp(value, type == All_Sec ? 1 : 1000);
 }
 
-MusicTime::MusicTime(int day, int hour, int min, int sec, int msec,
-      QObject *parent) : MusicTime(parent)
+MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
+    : MusicTime()
 {
     m_defaultType = All_Msec;
     setHMSM(day, hour, min, sec, msec);
@@ -145,19 +144,19 @@ QString MusicTime::normalTime2Label() const
 {
     if(m_day == 0 && m_hour == 0 && m_min == 0)
     {
-        return QString::number(m_sec) + tr("ss");
+        return QString::number(m_sec) + QObject::tr("ss");
     }
     else if(m_day == 0 && m_hour == 0 && m_min != 0)
     {
-        return QString::number(m_min) + tr("mm");
+        return QString::number(m_min) + QObject::tr("mm");
     }
     else if(m_day == 0 && m_hour != 0)
     {
-        return QString::number(m_hour) + tr("hh");
+        return QString::number(m_hour) + QObject::tr("hh");
     }
     else if(m_day != 0)
     {
-        return QString::number(m_day) + tr("day");
+        return QString::number(m_day) + QObject::tr("day");
     }
     else
     {
@@ -169,19 +168,19 @@ QString MusicTime::normalTime2Label(qint64 time)
 {
     if(time < 60)
     {
-        return QString::number(time) + tr("ss");
+        return QString::number(time) + QObject::tr("ss");
     }
     else if(60 <= time && time < 60*60)
     {
-        return QString::number(time/60) + tr("mm");
+        return QString::number(time/60) + QObject::tr("mm");
     }
     else if(60*60 <= time && time < 60*60*24)
     {
-        return QString::number(time/60/60) + tr("hh");
+        return QString::number(time/60/60) + QObject::tr("hh");
     }
     else
     {
-        return QString::number(time/60/60/24) + tr("day");
+        return QString::number(time/60/60/24) + QObject::tr("day");
     }
 }
 

@@ -14,6 +14,10 @@
 #include <QSet>
 #include <QApplication>
 
+#ifdef Q_CC_GNU
+    #pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
 #define LRC_DOWNLOAD   "MLrc/"
 #define MUSIC_DOWNLOAD "Music/"
 #define MOVIE_DOWNLOAD "Movie/"

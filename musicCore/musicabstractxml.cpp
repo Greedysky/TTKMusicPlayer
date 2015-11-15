@@ -1,5 +1,9 @@
 #include "musicabstractxml.h"
 
+#ifdef Q_CC_GNU
+    #pragma GCC diagnostic ignored "-Wswitch"
+#endif
+
 MusicAbstractXml::MusicAbstractXml(QObject *parent)
     : QObject(parent)
 {
