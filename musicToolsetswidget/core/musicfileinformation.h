@@ -19,117 +19,117 @@ public:
 
     bool readFile(const QString &file);
     /////////////////////////////////////////////
-    inline QString MusicFileInformation::getArtist() const
+    inline QString getArtist() const
     {
         return QString::fromWCharArray(m_tagInfo.Artist);
     }
 
-    inline QString MusicFileInformation::getTitle() const
+    inline QString getTitle() const
     {
         return QString::fromWCharArray(m_tagInfo.Title);
     }
 
-    inline QString MusicFileInformation::getAlbum() const
+    inline QString getAlbum() const
     {
         return QString::fromWCharArray(m_tagInfo.Album);
     }
 
-    inline QString MusicFileInformation::getComment() const
+    inline QString getComment() const
     {
         return QString::fromWCharArray(m_tagInfo.Comment);
     }
 
-    inline QString MusicFileInformation::getYear() const
+    inline QString getYear() const
     {
         return QString::fromWCharArray(m_tagInfo.Year);
     }
 
-    inline QString MusicFileInformation::getTrackNum() const
+    inline QString getTrackNum() const
     {
         return QString::fromWCharArray(m_tagInfo.TrackNum);
     }
 
-    inline QString MusicFileInformation::getGenre() const
+    inline QString getGenre() const
     {
         return QString::fromWCharArray(m_tagInfo.Genre);
     }
 
-    inline QString MusicFileInformation::getAlbumArtist() const
+    inline QString getAlbumArtist() const
     {
         return QString::fromWCharArray(m_tagInfo.AlbumArtist);
     }
 
-    inline QString MusicFileInformation::getComposer() const
+    inline QString getComposer() const
     {
         return QString::fromWCharArray(m_tagInfo.Composer);
     }
 
-    inline QString MusicFileInformation::getOriginalArtist() const
+    inline QString getOriginalArtist() const
     {
         return QString::fromWCharArray(m_tagInfo.OriginalArtist);
     }
 
-    inline QString MusicFileInformation::getCopyright() const
+    inline QString getCopyright() const
     {
         return QString::fromWCharArray(m_tagInfo.Copyright);
     }
 
-    inline QString MusicFileInformation::getURL() const
+    inline QString getURL() const
     {
         return QString::fromWCharArray(m_tagInfo.URL);
     }
 
-    inline QString MusicFileInformation::getEncoder() const
+    inline QString getEncoder() const
     {
         return QString::fromWCharArray(m_tagInfo.Encoder);
     }
 
-    inline QString MusicFileInformation::getPublisher() const
+    inline QString getPublisher() const
     {
         return QString::fromWCharArray(m_tagInfo.Publisher);
     }
 
-    inline uint MusicFileInformation::getBPM() const
+    inline uint getBPM() const
     {
         return m_tagInfo.BPM;
     }
 
-    inline TID3PictureW MusicFileInformation::getPicture() const
+    inline TID3PictureW getPicture() const
     {
         return m_tagInfo.Picture;
     }
     /////////////////////////////////////////////
-    inline int MusicFileInformation::getSamplingRate() const
+    inline int getSamplingRate() const
     {
         return m_pInfo.SamplingRate;
     }
 
-    inline int MusicFileInformation::getChannelNumber() const
+    inline int getChannelNumber() const
     {
         return m_pInfo.ChannelNumber;
     }
 
-    inline int MusicFileInformation::getVBR() const
+    inline int getVBR() const
     {
         return m_pInfo.VBR;
     }
 
-    inline QString MusicFileInformation::getVBRString() const
+    inline QString getVBRString() const
     {
         return getVBR() ? "VBR" : "CBR";
     }
 
-    inline int MusicFileInformation::getBitrate() const
+    inline int getBitrate() const
     {
         return m_pInfo.Bitrate;
     }
 
-    inline TStreamTime MusicFileInformation::getLength() const
+    inline TStreamTime getLength() const
     {
         return m_pInfo.Length;
     }
 
-    inline QString MusicFileInformation::getLengthString() const
+    inline QString getLengthString() const
     {
         return QString("%1:%2:%3")
     //           .arg(QString::number(m_pInfo.Length.hms.hour).rightJustified(2,'0'))
@@ -138,7 +138,7 @@ public:
                .arg(QString::number(m_pInfo.Length.hms.millisecond));
     }
 
-    inline QString MusicFileInformation::getDescription() const
+    inline QString getDescription() const
     {
         return QString::fromWCharArray(m_pInfo.Description);
     }

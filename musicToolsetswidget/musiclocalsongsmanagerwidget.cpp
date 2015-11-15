@@ -12,8 +12,8 @@
 #include <QFileDialog>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),m_movie(NULL),
-      ui(new Ui::MusicLocalSongsManagerWidget)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicLocalSongsManagerWidget), m_movie(NULL)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     ui->setupUi(this);

@@ -9,8 +9,8 @@
 #include <QSound>
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),m_movie(NULL),
-      ui(new Ui::MusicTransformWidget)
+    : MusicAbstractMoveDialog(parent),
+      ui(new Ui::MusicTransformWidget), m_movie(NULL)
 {
     ui->setupUi(this);
     
