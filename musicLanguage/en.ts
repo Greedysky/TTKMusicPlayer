@@ -4,145 +4,145 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../musicapplication.cpp" line="113"/>
+        <location filename="../musicapplication.cpp" line="112"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="114"/>
+        <location filename="../musicapplication.cpp" line="113"/>
         <source>QMusicPlayer will run in the background</source>
         <translation>MusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="174"/>
+        <location filename="../musicapplication.cpp" line="173"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="166"/>
+        <location filename="../musicapplication.cpp" line="165"/>
         <source>logout</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="154"/>
+        <location filename="../musicapplication.cpp" line="153"/>
         <source>not supported</source>
         <translation>Audio Formats Does&apos;t support</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="169"/>
+        <location filename="../musicapplication.cpp" line="168"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="179"/>
+        <location filename="../musicapplication.cpp" line="178"/>
         <source>RemoteControl</source>
         <translation>Remote Control</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="183"/>
+        <location filename="../musicapplication.cpp" line="182"/>
         <source>DiamondRemote</source>
         <translation>Diamond Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="184"/>
+        <location filename="../musicapplication.cpp" line="183"/>
         <source>CircleRemote</source>
         <translation>Circle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="187"/>
+        <location filename="../musicapplication.cpp" line="186"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="189"/>
+        <location filename="../musicapplication.cpp" line="188"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="190"/>
+        <location filename="../musicapplication.cpp" line="189"/>
         <source>ShowingSpectrum</source>
         <translation>Spectrum</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="193"/>
+        <location filename="../musicapplication.cpp" line="192"/>
         <source>WindowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="199"/>
-        <location filename="../musicapplication.cpp" line="201"/>
+        <location filename="../musicapplication.cpp" line="198"/>
+        <location filename="../musicapplication.cpp" line="200"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="205"/>
+        <location filename="../musicapplication.cpp" line="204"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="248"/>
+        <location filename="../musicapplication.cpp" line="247"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="249"/>
+        <location filename="../musicapplication.cpp" line="248"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="246"/>
+        <location filename="../musicapplication.cpp" line="245"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="247"/>
+        <location filename="../musicapplication.cpp" line="246"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="250"/>
+        <location filename="../musicapplication.cpp" line="249"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="196"/>
+        <location filename="../musicapplication.cpp" line="195"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="197"/>
+        <location filename="../musicapplication.cpp" line="196"/>
         <source>musicLocation</source>
         <translation>Music Locate</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="171"/>
+        <location filename="../musicapplication.cpp" line="170"/>
         <location filename="../musicapplication.cpp" line="690"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="172"/>
+        <location filename="../musicapplication.cpp" line="171"/>
         <location filename="../musicapplication.cpp" line="691"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="181"/>
+        <location filename="../musicapplication.cpp" line="180"/>
         <source>SquareRemote</source>
         <translation>Square Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="182"/>
+        <location filename="../musicapplication.cpp" line="181"/>
         <source>RectangleRemote</source>
         <translation>Rectangle Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="185"/>
+        <location filename="../musicapplication.cpp" line="184"/>
         <source>DeleteRemote</source>
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="188"/>
+        <location filename="../musicapplication.cpp" line="187"/>
         <source>AudioRecorder</source>
         <translation>Audio Recorder</translation>
     </message>
@@ -834,7 +834,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="918"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="897"/>
         <source>回声</source>
         <translation>Echo</translation>
     </message>
@@ -899,67 +899,62 @@
         <translation>16k</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="759"/>
-        <source>无效果</source>
-        <translation>None</translation>
-    </message>
-    <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="775"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="754"/>
         <source>侧切</source>
         <translation>s-Cut</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="788"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="767"/>
         <source>中切</source>
         <translation>c-Cut</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="801"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="780"/>
         <source>比特-</source>
         <translation>Bit-</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="814"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="793"/>
         <source>淡出</source>
         <translation>FadeOut</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="827"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="806"/>
         <source>淡入</source>
         <translation>FadeIn</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="840"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="819"/>
         <source>比特+</source>
         <translation>Bit+</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="853"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="832"/>
         <source>节奏+</source>
         <translation>Tempo+</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="866"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="845"/>
         <source>节奏-</source>
         <translation>Tempo-</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="879"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="858"/>
         <source>音高-</source>
         <translation>Pitch-</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="892"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="871"/>
         <source>音高+</source>
         <translation>Pitch+</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="905"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="884"/>
         <source>反向</source>
         <translation>Rev</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="931"/>
+        <location filename="../musicUi/musicWidget/musicequalizerdialog.ui" line="910"/>
         <source>通道混合</source>
         <translation>Mixed</translation>
     </message>
@@ -1062,71 +1057,6 @@
         <location filename="../musicWidget/musicequalizerdialog.cpp" line="34"/>
         <source>Electronics</source>
         <translation>Electronics</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="285"/>
-        <source>EchoEffect</source>
-        <translation>Echo</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="289"/>
-        <source>MixChannelEffect</source>
-        <translation>Mixed</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="293"/>
-        <source>ReverseEffect</source>
-        <translation>Reverse</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="307"/>
-        <source>SideCutEffect</source>
-        <translation>Side Cut</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="311"/>
-        <source>CenterCutEffect</source>
-        <translation>Center Cut</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="327"/>
-        <source>RateUpEffect</source>
-        <translation>Rate Up</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="315"/>
-        <source>RateDownEffect</source>
-        <translation>Rate Down</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="343"/>
-        <source>PitchUpEffect</source>
-        <translation>Pitch Up</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="339"/>
-        <source>PitchDownEffect</source>
-        <translation>Pitch Down</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="331"/>
-        <source>TempoUpEffect</source>
-        <translation>Tempo Up</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="335"/>
-        <source>TempoDownEffect</source>
-        <translation>Tempo Down</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="319"/>
-        <source>FadeOutEffect</source>
-        <translation>Fade Out</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicequalizerdialog.cpp" line="323"/>
-        <source>FadeInEffect</source>
-        <translation>Fade In</translation>
     </message>
 </context>
 <context>
@@ -1347,7 +1277,7 @@
 <context>
     <name>MusicLocalSongSearchPopWidget</name>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchpopwidget.cpp" line="63"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchpopwidget.cpp" line="65"/>
         <source>clear</source>
         <translation>Clear History</translation>
     </message>
@@ -1557,13 +1487,13 @@
     <name>MusicLrcContainerForDesktop</name>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="148"/>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="331"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="332"/>
         <source>hide</source>
         <translation>Close</translation>
     </message>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="149"/>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="332"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="333"/>
         <source>lockLrc</source>
         <translation></translation>
     </message>
@@ -1579,7 +1509,7 @@
     </message>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="152"/>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="328"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
         <source>updateLrc</source>
         <translation>Update</translation>
     </message>
@@ -1614,22 +1544,22 @@
         <translation>Welcome Use QMusicPlayer!</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="324"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
         <source>changColorMenu</source>
         <translation>Color</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="327"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="328"/>
         <source>searchLrcs</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="329"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="330"/>
         <source>makeLrc</source>
         <translation>Make Lrc</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="337"/>
+        <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="338"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>
@@ -1924,7 +1854,7 @@
 <context>
     <name>MusicLrcSearchTableWidget</name>
     <message>
-        <location filename="../musicLrcmanager/musiclrcsearchtablewidget.cpp" line="75"/>
+        <location filename="../musicLrcmanager/musiclrcsearchtablewidget.cpp" line="80"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2739,20 +2669,20 @@
 <context>
     <name>MusicSongSearchOnlineTableWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="138"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="142"/>
         <source>musicPlay</source>
         <translation>Audition</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="139"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="143"/>
         <source>musicAdd</source>
         <translation>Add To List</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="164"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="191"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="209"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="229"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="168"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="195"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="213"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="233"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2760,54 +2690,54 @@
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="310"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="314"/>
         <source>&amp;nbsp;find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;Find &lt;font color=red&gt; %1 &lt;/font&gt; Results</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="319"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="323"/>
         <source>&amp;nbsp;find no result</source>
         <translation>&amp;nbsp;Find No Result</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="331"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="335"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="334"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="338"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="337"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="341"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="341"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="378"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="395"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="345"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="382"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="399"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="346"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="350"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="351"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="355"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="369"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="373"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="395"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="399"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>
@@ -2820,27 +2750,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="48"/>
+        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="52"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="61"/>
+        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="65"/>
         <source>艺术家:</source>
         <translation type="unfinished">Artist</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="74"/>
+        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="78"/>
         <source>大小:</source>
         <translation type="unfinished">Size:</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="87"/>
+        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="91"/>
         <source>类型:</source>
         <translation type="unfinished">Type:</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="100"/>
+        <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="104"/>
         <source>最新播放次数:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2989,12 +2919,12 @@
         <translation>Delete-All</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="237"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="238"/>
         <source>Delete File Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="399"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="396"/>
         <source>The origin one does not exsit!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
@@ -3004,7 +2934,7 @@
         <translation>Add To Lovest</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="229"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="230"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
     </message>
@@ -3027,42 +2957,42 @@
         <translation>Net Item</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="86"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="87"/>
         <source>Import File Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="194"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="190"/>
         <source>newSongItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="208"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="204"/>
         <source>add music to lovest list done!</source>
         <translation>Add Music To Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="229"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="225"/>
         <source>The origin one can&apos;t delete!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="242"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="238"/>
         <source>The origin one can&apos;t rename!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="280"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="276"/>
         <source>deleteItem</source>
         <translation>Delete Item</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="281"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="277"/>
         <source>addNewItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="282"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="278"/>
         <source>changItemName</source>
         <translation>Rename</translation>
     </message>
@@ -3131,33 +3061,6 @@
         <location filename="../musicWidget/musicsystemtraymenu.cpp" line="109"/>
         <source>unlockLrc</source>
         <translation>Unlocked Lrc</translation>
-    </message>
-</context>
-<context>
-    <name>MusicTime</name>
-    <message>
-        <location filename="../musicCore/musictime.cpp" line="148"/>
-        <location filename="../musicCore/musictime.cpp" line="172"/>
-        <source>ss</source>
-        <translation>SS</translation>
-    </message>
-    <message>
-        <location filename="../musicCore/musictime.cpp" line="152"/>
-        <location filename="../musicCore/musictime.cpp" line="176"/>
-        <source>mm</source>
-        <translation>MM</translation>
-    </message>
-    <message>
-        <location filename="../musicCore/musictime.cpp" line="156"/>
-        <location filename="../musicCore/musictime.cpp" line="180"/>
-        <source>hh</source>
-        <translation>HH</translation>
-    </message>
-    <message>
-        <location filename="../musicCore/musictime.cpp" line="160"/>
-        <location filename="../musicCore/musictime.cpp" line="184"/>
-        <source>day</source>
-        <translation>DAY</translation>
     </message>
 </context>
 <context>
@@ -3386,52 +3289,52 @@
 <context>
     <name>MusicTopAreaWidget</name>
     <message>
-        <location filename="../musictopareawidget.cpp" line="37"/>
+        <location filename="../musictopareawidget.cpp" line="39"/>
         <source>please input search text</source>
         <translation>Please Input Search Text</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="42"/>
+        <location filename="../musictopareawidget.cpp" line="44"/>
         <source>changeskin</source>
         <translation>Skin Change</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="49"/>
+        <location filename="../musictopareawidget.cpp" line="51"/>
         <source>concisein/out</source>
         <translation>Concise in/out</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="55"/>
+        <location filename="../musictopareawidget.cpp" line="57"/>
         <source>remoteWindow</source>
         <translation>Open Remote</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="66"/>
+        <location filename="../musictopareawidget.cpp" line="68"/>
         <source>Minimization</source>
         <translation>Minimization</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="70"/>
+        <location filename="../musictopareawidget.cpp" line="72"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="192"/>
+        <location filename="../musictopareawidget.cpp" line="193"/>
         <source>CircleRemote</source>
         <translation type="unfinished">Circle Remote</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="193"/>
+        <location filename="../musictopareawidget.cpp" line="194"/>
         <source>DiamondRemote</source>
         <translation type="unfinished">Diamond Remote</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="194"/>
+        <location filename="../musictopareawidget.cpp" line="195"/>
         <source>SquareRemote</source>
         <translation type="unfinished">Square Remote</translation>
     </message>
     <message>
-        <location filename="../musictopareawidget.cpp" line="195"/>
+        <location filename="../musictopareawidget.cpp" line="196"/>
         <source>RectangleRemote</source>
         <translation type="unfinished">Rectangle Remote</translation>
     </message>
@@ -3496,9 +3399,19 @@
         <translation>Add Directory (for batch)</translation>
     </message>
     <message>
-        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="25"/>
+        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="21"/>
         <source>Close</source>
         <translation>Close</translation>
+    </message>
+    <message>
+        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="171"/>
+        <source>the input is empty!</source>
+        <translation>The Input File Path Is Empty!</translation>
+    </message>
+    <message>
+        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="182"/>
+        <source>the out is empty!</source>
+        <translation>The Output File Path Is Empty!</translation>
     </message>
 </context>
 <context>
@@ -4101,7 +4014,7 @@
 <context>
     <name>MusicVideoTableWidget</name>
     <message>
-        <location filename="../musicVideokits/musicvideotablewidget.cpp" line="116"/>
+        <location filename="../musicVideokits/musicvideotablewidget.cpp" line="121"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4269,6 +4182,30 @@
         <location filename="../musicapplicationmain.cpp" line="21"/>
         <source>Lack of necessary component files!</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicCore/musictime.cpp" line="147"/>
+        <location filename="../musicCore/musictime.cpp" line="171"/>
+        <source>ss</source>
+        <translation>SS</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/musictime.cpp" line="151"/>
+        <location filename="../musicCore/musictime.cpp" line="175"/>
+        <source>mm</source>
+        <translation>MM</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/musictime.cpp" line="155"/>
+        <location filename="../musicCore/musictime.cpp" line="179"/>
+        <source>hh</source>
+        <translation>HH</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/musictime.cpp" line="159"/>
+        <location filename="../musicCore/musictime.cpp" line="183"/>
+        <source>day</source>
+        <translation>DAY</translation>
     </message>
 </context>
 </TS>
