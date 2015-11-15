@@ -6,9 +6,6 @@
 
 QT       += core gui xml sql
 QT       += multimedia multimediawidgets
-win32{
-    QT   += winextras
-}
 
 equals(QT_MAJOR_VERSION, 5): QT += widgets
 
@@ -18,8 +15,22 @@ TARGET = MusicPlayer
 TEMPLATE = app
 #LIBS += -L"./" -lMusicCore
 #TEMPLATE = lib
-LIBS += -L"./MPlugins/" -llibzplay
 
+win32{
+    QT   += winextras
+    msvc{
+        LIBS += -L"./MPlugins" -llibzplay
+        #support on windows XP
+        QMAKE_LFLAGS_WINDOWS += /SUBSYSTEM:WINDOWS,5.01
+    }
+
+    gcc{
+        LIBS += ./MPlugins/libzplay.a
+        QMAKE_CXXFLAGS += -std=c++11
+        QMAKE_CXXFLAGS += -Wunused-function
+        QMAKE_CXXFLAGS += -Wswitch
+    }
+}
 DEFINES += MUSIC_LIBRARY
 
 INCLUDEPATH += $$PWD
@@ -27,10 +38,6 @@ INCLUDEPATH += $$PWD
 TRANSLATIONS += musicLanguage/cn.ts \
                 musicLanguage/cn_c.ts \
                 musicLanguage/en.ts
-
-#support on windows XP
-QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-
 
 include(musicCore/MusicCore.pri)
 include(musicWidget/MusicWidget.pri)

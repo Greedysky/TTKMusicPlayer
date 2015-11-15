@@ -54,7 +54,7 @@ void MusicUserRecordWidget::initTabF()
     ui->userIDLabel_F->setText(uid);
 
     QString string(m_userModel->getUserSex(uid));
-    ui->maleRadioButton_F->setChecked(string.isEmpty() | string == "0");
+    ui->maleRadioButton_F->setChecked(string.isEmpty() || string == "0");
     ui->femaleRadioButton_F->setChecked(string == "1");
 
     string = m_userModel->getUserBirthday(uid);
