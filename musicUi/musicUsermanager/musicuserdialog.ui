@@ -309,7 +309,7 @@
     </widget>
    </widget>
    <widget class="QWidget" name="two">
-    <widget class="QLabel" name="usernameLabel">
+    <widget class="QLabel" name="usernameRegisterLabel">
      <property name="geometry">
       <rect>
        <x>30</x>

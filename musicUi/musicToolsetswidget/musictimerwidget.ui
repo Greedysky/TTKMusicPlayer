@@ -127,7 +127,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_F">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -140,7 +140,7 @@
       <string>播放时间:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_F2">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -153,7 +153,7 @@
       <string>重复频率:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_F3">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -166,7 +166,7 @@
       <string>播放列表:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_F4">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -257,7 +257,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_S">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -270,7 +270,7 @@
       <string>停止时间:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_S2">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -341,7 +341,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_T">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -354,7 +354,7 @@
       <string>关机时间:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_T2">
      <property name="geometry">
       <rect>
        <x>40</x>

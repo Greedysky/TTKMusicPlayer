@@ -884,7 +884,7 @@ font-weight:bold;</string>
       <string>样式设置</string>
      </property>
     </widget>
-    <widget class="QLabel" name="setColorSongWordWidget">
+    <widget class="QLabel" name="DSetColorSongWordWidget">
      <property name="geometry">
       <rect>
        <x>20</x>
