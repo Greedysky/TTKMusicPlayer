@@ -10,8 +10,8 @@
 #include <QProcess>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
-    : QListWidget(parent),m_process(NULL),
-      m_musicSpectrumWidget(NULL),m_wallpaper(NULL)
+    : QListWidget(parent), m_musicSpectrumWidget(NULL),
+      m_wallpaper(NULL), m_process(NULL)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
