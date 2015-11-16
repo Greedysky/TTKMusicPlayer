@@ -7,7 +7,6 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     : QObject(parent)
 {
     m_process = NULL;
-    m_playState = StoppedState;
 }
 
 MusicCoreMPlayer::~MusicCoreMPlayer()
@@ -25,8 +24,10 @@ void MusicCoreMPlayer::setMedia(const QString &data, int winId)
     {
         m_process->kill();
         delete m_process;
+        m_process = NULL;
     }
 
+    m_playState = StoppedState;
     m_process = new QProcess(this);
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-wid";
@@ -37,7 +38,8 @@ void MusicCoreMPlayer::setMedia(const QString &data, int winId)
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
     m_process->write("get_time_length\n");
-    m_process->start(MusicObject::getAppDir() + MAKE_RADIO, arguments);
+    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+
 }
 
 void MusicCoreMPlayer::setPosition(qint64 pos)

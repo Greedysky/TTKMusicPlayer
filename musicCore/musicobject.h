@@ -36,7 +36,7 @@
 
 #define MAKE_TRANSFORM "MPlugins/avconv.dll"
 #define MAKE_RING      "MPlugins/avring.dll"
-#define MAKE_RADIO     "MPlugins/avradio.dll"
+#define MAKE_PLAYER    "MPlugins/avplayer.dll"
 
 #define COFIGPATH      "musicconfig.xml"
 #define DATABASETYPE   "QSQLITE"

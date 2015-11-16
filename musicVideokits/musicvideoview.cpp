@@ -16,12 +16,11 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);
     m_videoWidget = new QWidget(this);
-    m_videoWidget->setGeometry(0, 20, 520, 375);
-
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     m_videoControl->hide();
 
+    resizeWindow(false, QSize(-1, -1));
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
@@ -70,13 +69,13 @@ void MusicVideoView::resizeWindow(bool resize, QSize size)
 {
     if(resize)
     {
-        m_videoWidget->resize(QSize(size.width()*0.8, size.height()*0.8));
+        m_videoWidget->resize(QSize(size.width(), size.height()*0.8));
         m_videoControl->setFixedSize( size.width(), 40 );
         m_videoControl->move(0, size.height() - 40 - 50);
     }
     else
     {
-        m_videoWidget->setGeometry(0, 20, 520, 375);
+        m_videoWidget->setGeometry(0, 40, 525, 330);
         m_videoControl->setFixedSize( 520, 40 );
         m_videoControl->move(0, 375);
     }

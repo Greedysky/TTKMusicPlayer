@@ -11,6 +11,7 @@
 
 #include <QObject>
 #include "musiclibexportglobal.h"
+
 class QProcess;
 
 class MUSIC_CORE_EXPORT MusicCoreMPlayer : public QObject

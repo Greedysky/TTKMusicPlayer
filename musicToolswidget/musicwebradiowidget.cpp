@@ -105,7 +105,7 @@ void MusicWebRadioWidget::radioPlay()
 
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << m_radioUrl;
-    m_radio->start(MusicObject::getAppDir() + MAKE_RADIO, arguments);
+    m_radio->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
     connect(m_radio, SIGNAL(readyReadStandardOutput()), SLOT(radioStandardOutput()));
     m_radio->write(QString("volume " + QString::number(ui->volumnSlider->value()) + " 1\n").toUtf8());
     ui->stateLabel->setText(tr("Connecting..."));
