@@ -34,7 +34,10 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     M_CONNECTION->disConnect("MusicToolSetsWidget");
     delete m_wallpaper;
     delete m_musicSpectrumWidget;
-    m_process->kill();
+    if(m_process)
+    {
+        m_process->kill();
+    }
     delete m_process;
     clearAllItems();
 }

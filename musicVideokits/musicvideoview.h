@@ -10,18 +10,17 @@
    =================================================*/
 
 #include <QGraphicsView>
-#include <QMediaPlayer>
 #include "musiclibexportglobal.h"
 
 class MusicVideoControl;
-class QGraphicsVideoItem;
+class MusicCoreMPlayer;
 
 class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
     MusicVideoView(bool popup, QWidget *parent = 0);
-    virtual ~MusicVideoView();
+    ~MusicVideoView();
 
     void setMedia(const QString &data);
     void resizeWindow(bool resize, QSize size);
@@ -35,7 +34,7 @@ private slots:
     void durationChanged(qint64 duration);
     void setPosition(int position);
     void volumnChanged(int volumn);
-    void mediaChanged(const QMediaContent &data);
+    void mediaChanged(const QString &data);
 
 protected:
     virtual void enterEvent(QEvent *event);
@@ -44,8 +43,8 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     bool m_positionChanged;
-    QMediaPlayer m_mediaPlayer;
-    QGraphicsVideoItem *m_videoItem;
+    QWidget *m_videoWidget;
+    MusicCoreMPlayer *m_mediaPlayer;
     MusicVideoControl *m_videoControl;
 
 };

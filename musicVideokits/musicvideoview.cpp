@@ -1,6 +1,7 @@
 #include "musicvideoview.h"
 #include "musicvideocontrol.h"
 #include "musicmessagebox.h"
+#include "musiccoremplayer.h"
 
 #include <QVideoSurfaceFormat>
 #include <QGraphicsVideoItem>
@@ -8,55 +9,46 @@
 #include <QTimer>
 
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
-    : QGraphicsView(parent),
-      m_mediaPlayer(0, QMediaPlayer::VideoSurface),
-      m_videoItem(0) , m_videoControl(0)
+    : QGraphicsView(parent), m_videoControl(0)
 {
-    setObjectName("VideoPlayer");
     setStyleSheet(MusicUIObject::MCustomStyle19);
 
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    m_videoItem = new QGraphicsVideoItem;
-    m_mediaPlayer.setVideoOutput(m_videoItem);
-
-    QGraphicsScene *scene = new QGraphicsScene(this);
-    scene->addItem(m_videoItem);
-    setScene(scene);
-    m_videoItem->setSize(QSizeF(500, 340));
     m_positionChanged = false;
+    m_mediaPlayer = new MusicCoreMPlayer(this);
+    m_videoWidget = new QWidget(this);
+    m_videoWidget->setGeometry(0, 20, 520, 375);
 
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     m_videoControl->hide();
 
-    connect(&m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(&m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(&m_mediaPlayer, SIGNAL(mediaChanged(QMediaContent)), SLOT(mediaChanged(QMediaContent)));
+    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
 }
 
 MusicVideoView::~MusicVideoView()
 {
+    delete m_mediaPlayer;
     delete m_videoControl;
-    delete m_videoItem;
+    delete m_videoWidget;
 }
 
 void MusicVideoView::enterEvent(QEvent *event)
 {
-    QGraphicsView::enterEvent(event);
+    QWidget::enterEvent(event);
     m_videoControl->show();
 }
 
 void MusicVideoView::leaveEvent(QEvent *event)
 {
-    QGraphicsView::leaveEvent(event);
+    QWidget::leaveEvent(event);
     m_videoControl->hide();
 }
 
 void MusicVideoView::mousePressEvent(QMouseEvent *event)
 {
-    QGraphicsView::mousePressEvent(event);
+    QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         play();
@@ -70,7 +62,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_mediaPlayer.setMedia(QUrl(data));
+    m_mediaPlayer->setMedia(data, (int)m_videoWidget->winId());
     QTimer::singleShot(5*1000, this, SLOT(stop()));
 }
 
@@ -78,13 +70,13 @@ void MusicVideoView::resizeWindow(bool resize, QSize size)
 {
     if(resize)
     {
-        m_videoItem->setSize(QSizeF(size.width()*0.8, size.height()*0.8));
+        m_videoWidget->resize(QSize(size.width()*0.8, size.height()*0.8));
         m_videoControl->setFixedSize( size.width(), 40 );
         m_videoControl->move(0, size.height() - 40 - 50);
     }
     else
     {
-        m_videoItem->setSize(QSizeF(500, 400));
+        m_videoWidget->setGeometry(0, 20, 520, 375);
         m_videoControl->setFixedSize( 520, 40 );
         m_videoControl->move(0, 375);
     }
@@ -92,16 +84,16 @@ void MusicVideoView::resizeWindow(bool resize, QSize size)
 
 void MusicVideoView::play()
 {
-    switch(m_mediaPlayer.state())
+    m_mediaPlayer->play();
+    switch(m_mediaPlayer->state())
     {
-        case QMediaPlayer::PlayingState:
-            m_mediaPlayer.pause();
-            m_videoControl->setButtonStyle(true);
-            break;
-        default:
-            m_mediaPlayer.play();
+        case MusicCoreMPlayer::PlayingState:
             m_videoControl->setButtonStyle(false);
             break;
+        case MusicCoreMPlayer::PausedState:
+            m_videoControl->setButtonStyle(true);
+            break;
+        default: break;
     }
 }
 
@@ -109,7 +101,7 @@ void MusicVideoView::stop()
 {
     if(!m_positionChanged)
     {
-        m_mediaPlayer.stop();
+        m_mediaPlayer->stop();
         MusicMessageBox message;
         message.setText(tr("Session time out, try again!"));
         message.exec();
@@ -133,15 +125,15 @@ void MusicVideoView::durationChanged(qint64 duration)
 
 void MusicVideoView::setPosition(int position)
 {
-    m_mediaPlayer.setPosition(position);
+    m_mediaPlayer->setPosition(position);
 }
 
 void MusicVideoView::volumnChanged(int volumn)
 {
-    m_mediaPlayer.setVolume(volumn);
+    m_mediaPlayer->setVolume(volumn);
 }
 
-void MusicVideoView::mediaChanged(const QMediaContent &data)
+void MusicVideoView::mediaChanged(const QString &data)
 {
-    m_videoControl->mediaChanged(data.canonicalUrl().toString());
+    m_videoControl->mediaChanged(data);
 }

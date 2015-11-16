@@ -77,7 +77,6 @@ MusicWebRadioWidget::~MusicWebRadioWidget()
 void MusicWebRadioWidget::closeEvent(QCloseEvent *event)
 {
     m_timer.stop();
-    m_radio->kill();
     delete m_radio;
     m_radio = NULL;
     QWidget::closeEvent(event);
@@ -101,7 +100,6 @@ void MusicWebRadioWidget::radioPlay()
         return;
     }
 
-    m_radio->kill();
     delete m_radio;
     m_radio = new QProcess(this);
 

@@ -34,7 +34,8 @@ HEADERS  += \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicregeditmanager.h \
-    $$PWD/musicsingleton.h
+    $$PWD/musicsingleton.h \
+    $$PWD/musiccoremplayer.h
 
 
 SOURCES += \
@@ -56,4 +57,5 @@ SOURCES += \
     $$PWD/musicxmlconfigmanager.cpp \
     $$PWD/musicbgthememanager.cpp \
     $$PWD/musicconnectionpool.cpp \
-    $$PWD/musicregeditmanager.cpp
+    $$PWD/musicregeditmanager.cpp \
+    $$PWD/musiccoremplayer.cpp
