@@ -64,11 +64,6 @@ public:
     void setMusicEnhanced(Enhanced type);
     Enhanced getMusicEnhanced() const;
 
-    void addAuditionUrl(const QString &url);
-    void addAuditionUrl(const QUrl &url);
-    void startAudition();
-    void stopAudition();
-
     static QStringList supportFormatsString();
     static QStringList supportFormatsFilterString();
     static QStringList supportFormatsFilterDialogString();
@@ -102,7 +97,6 @@ private slots:
 protected:
     void setMusicEnhancedCase();
 
-    QMediaPlayer *m_audition;
     MusicEqualizer *m_equalizer;
     MusicPlaylist *m_playlist;
     State m_state;

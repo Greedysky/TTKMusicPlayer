@@ -3,10 +3,8 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
-#include <QMediaPlayer>
-
 MusicPlayer::MusicPlayer(QObject *parent)
-    : QObject(parent), m_audition(NULL)
+    : QObject(parent)
 {
     m_playlist = NULL;
     m_music = NULL;
@@ -24,7 +22,6 @@ MusicPlayer::MusicPlayer(QObject *parent)
 
 MusicPlayer::~MusicPlayer()
 {
-    delete m_audition;
     delete m_equalizer;
     m_music->Close();
     m_music->Release();
@@ -83,36 +80,6 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
 MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
 {
     return m_musicEnhanced;
-}
-
-void MusicPlayer::addAuditionUrl(const QString &url)
-{
-    addAuditionUrl(QUrl(url));
-}
-
-void MusicPlayer::addAuditionUrl(const QUrl &url)
-{
-    if(m_audition == NULL)
-    {
-        m_audition = new QMediaPlayer(this);
-    }
-    m_audition->setMedia(url);
-}
-
-void MusicPlayer::startAudition()
-{
-    if(m_audition)
-    {
-        m_audition->play();
-    }
-}
-
-void MusicPlayer::stopAudition()
-{
-    if(m_audition)
-    {
-        m_audition->stop();
-    }
 }
 
 QStringList MusicPlayer::supportFormatsString()
