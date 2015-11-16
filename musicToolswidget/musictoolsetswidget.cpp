@@ -34,6 +34,7 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     M_CONNECTION->disConnect("MusicToolSetsWidget");
     delete m_wallpaper;
     delete m_musicSpectrumWidget;
+    m_process->kill();
     delete m_process;
     clearAllItems();
 }
@@ -137,6 +138,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 }
                 if(m_process)
                 {
+                    m_process->kill();
                     delete m_process;
                 }
                 m_process = new QProcess(this);

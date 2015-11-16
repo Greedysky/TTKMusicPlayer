@@ -52,6 +52,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
 MusicTransformWidget::~MusicTransformWidget()
 {
+    m_process->kill();
     delete m_movie;
     delete m_process;
     delete ui;

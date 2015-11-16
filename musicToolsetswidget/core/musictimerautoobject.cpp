@@ -2,10 +2,11 @@
 #include "musicsettingmanager.h"
 
 #include <QTime>
+#include <QProcess>
+
 #ifdef Q_OS_WIN
 #   include <windows.h>
 #endif
-#include <QProcess>
 
 MusicTimerAutoObject::MusicTimerAutoObject(QObject *parent)
     : QObject(parent)
