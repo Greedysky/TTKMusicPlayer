@@ -7,17 +7,17 @@
 INCLUDEPATH += $$PWD
                
 HEADERS  += \
-    $$PWD/musicvideoplayer.h \
     $$PWD/musicvideocontrol.h \
     $$PWD/musicvideoview.h \
-    $$PWD/musicvideotablewidget.h
+    $$PWD/musicvideotablewidget.h \
+    $$PWD/musicvideoplaywidget.h
 
 
 SOURCES += \
-    $$PWD/musicvideoplayer.cpp \
     $$PWD/musicvideocontrol.cpp \
     $$PWD/musicvideoview.cpp \
-    $$PWD/musicvideotablewidget.cpp
+    $$PWD/musicvideotablewidget.cpp \
+    $$PWD/musicvideoplaywidget.cpp
 
 
 RESOURCES += \

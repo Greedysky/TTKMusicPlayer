@@ -12,7 +12,7 @@
 #include <QWidget>
 #include "musiclibexportglobal.h"
 
-class MusicVideoPlayer;
+class MusicVideoPlayWidget;
 class MusicSettingWidget;
 class MusicDownloadStatusLabel;
 class MusicLrcContainerForDesktop;
@@ -77,7 +77,7 @@ protected:
     MusicSettingWidget *m_setting;
     MusicLrcContainerForDesktop *m_musiclrcfordesktop;
     MusicDownloadStatusLabel *m_downloadStatusLabel;
-    MusicVideoPlayer *m_videoPlayer;
+    MusicVideoPlayWidget *m_videoPlayer;
 
 };
 

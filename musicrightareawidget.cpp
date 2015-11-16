@@ -2,7 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
 #include "musiclrccontainerfordesktop.h"
-#include "musicvideoplayer.h"
+#include "musicvideoplaywidget.h"
 #include "musicdownloadstatuslabel.h"
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
@@ -318,7 +318,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
             return;
         }
         delete m_videoPlayer;
-        m_videoPlayer = new MusicVideoPlayer(false);
+        m_videoPlayer = new MusicVideoPlayWidget(false);
         m_videoPlayer->blockMoveOption(true);
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
         m_ui->SurfaceStackedWidget->setCurrentIndex(3);
@@ -362,7 +362,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         createVideoWidget(false);
         musicButtonStyleClear();
         m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
-        m_videoPlayer = new MusicVideoPlayer(true);
+        m_videoPlayer = new MusicVideoPlayWidget(true);
         m_videoPlayer->show();
     }
     else

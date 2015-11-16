@@ -1,4 +1,4 @@
-#include "musicvideoplayer.h"
+#include "musicvideoplaywidget.h"
 #include "musicvideoview.h"
 #include "musicvideotablewidget.h"
 #include "musiclocalsongsearchedit.h"
@@ -10,7 +10,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
-MusicVideoPlayer::MusicVideoPlayer(bool popup, QWidget *parent)
+MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent)
 {
     if(popup)
@@ -73,7 +73,7 @@ MusicVideoPlayer::MusicVideoPlayer(bool popup, QWidget *parent)
 
 }
 
-MusicVideoPlayer::~MusicVideoPlayer()
+MusicVideoPlayWidget::~MusicVideoPlayWidget()
 {
     delete m_backButton;
     delete m_textLabel;
@@ -84,7 +84,7 @@ MusicVideoPlayer::~MusicVideoPlayer()
     delete m_stackedWidget;
 }
 
-void MusicVideoPlayer::resizeWindow(bool resize)
+void MusicVideoPlayWidget::resizeWindow(bool resize)
 {
     if(resize)
     {
@@ -98,29 +98,29 @@ void MusicVideoPlayer::resizeWindow(bool resize)
     m_videoTable->resizeWindow(size().width() / 525.0);
 }
 
-void MusicVideoPlayer::backButtonClicked()
+void MusicVideoPlayWidget::backButtonClicked()
 {
     m_stackedWidget->setCurrentIndex(0);
 }
 
-void MusicVideoPlayer::afterButtonClicked()
+void MusicVideoPlayWidget::afterButtonClicked()
 {
     m_stackedWidget->setCurrentIndex(1);
 }
 
-void MusicVideoPlayer::searchButtonClicked()
+void MusicVideoPlayWidget::searchButtonClicked()
 {
     musicResearchButtonSearched(m_searchEdit->text().trimmed());
 }
 
-void MusicVideoPlayer::musicResearchButtonSearched(const QString &name)
+void MusicVideoPlayWidget::musicResearchButtonSearched(const QString &name)
 {
     m_searchEdit->setText(name);
     m_stackedWidget->setCurrentIndex(1);
     m_videoTable->startSearchQuery(name);
 }
 
-void MusicVideoPlayer::mvURLChanged(const QString &data)
+void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 {
     m_videoView->setMedia(data);
     m_videoView->play();
