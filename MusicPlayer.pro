@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui xml sql
-QT       += multimedia multimediawidgets
+QT       += multimediawidgets
 
 equals(QT_MAJOR_VERSION, 5): QT += widgets
 

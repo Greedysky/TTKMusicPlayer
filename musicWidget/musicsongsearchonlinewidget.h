@@ -16,7 +16,7 @@
 #define AUDITION_PLAY static_cast<int>(Qt::yellow)
 #define AUDITION_STOP static_cast<int>(Qt::transparent)
 
-class QMediaPlayer;
+class MusicCoreMPlayer;
 class MusicDataDownloadThread;
 class MusicTextDownLoadThread;
 
@@ -52,7 +52,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     void addSearchMusicToPlayList(int row);
 
-    QMediaPlayer *m_audition;
+    MusicCoreMPlayer *m_audition;
     int m_previousAuditionRow;
     QString m_searchText;
 

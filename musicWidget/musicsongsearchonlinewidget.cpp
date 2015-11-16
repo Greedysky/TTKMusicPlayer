@@ -8,6 +8,7 @@
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
+#include "musiccoremplayer.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -15,7 +16,6 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QButtonGroup>
-#include <QMediaPlayer>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent), m_audition(NULL)
@@ -171,10 +171,11 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
     }
     if(m_audition == NULL)
     {
-        m_audition = new QMediaPlayer(this);
+        m_audition = new MusicCoreMPlayer(this);
     }
-    m_audition->setMedia(QUrl(musicSongInfo[row].m_songUrl.first().m_url));
-    m_audition->play();
+    m_audition->setMedia(MusicCoreMPlayer::MusicCategory,
+                         musicSongInfo[row].m_songUrl.first().m_url, -1);
+
     if(m_previousAuditionRow != -1)
     {
         item(m_previousAuditionRow, 0)->setData(AUDITION_ROLE, AUDITION_STOP);

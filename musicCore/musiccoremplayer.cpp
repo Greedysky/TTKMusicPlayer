@@ -59,7 +59,9 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 
 void MusicCoreMPlayer::setMusicMedia(const QString &data)
 {
-
+    QStringList arguments;
+    arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
 }
 
 void MusicCoreMPlayer::setRadioMedia(const QString &data)
@@ -68,7 +70,6 @@ void MusicCoreMPlayer::setRadioMedia(const QString &data)
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
     m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
-//    m_radio->write(QString("volume " + QString::number(ui->volumnSlider->value()) + " 1\n").toUtf8());
 }
 
 void MusicCoreMPlayer::setPosition(qint64 pos)

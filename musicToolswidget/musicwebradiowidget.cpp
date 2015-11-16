@@ -104,7 +104,7 @@ void MusicWebRadioWidget::radioPlay()
     delete m_radio;
     m_radio = new MusicCoreMPlayer(this);
     connect(m_radio, SIGNAL(radioChanged()), SLOT(radioStandardOutput()));
-    m_radio->setMedia(MusicCoreMPlayer::RadioCategory, m_radioUrl, -1);
+    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, m_radioUrl, -1);
     m_radio->setVolume(ui->volumnSlider->value());
 
     ui->stateLabel->setText(tr("Connecting..."));
