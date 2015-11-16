@@ -15,8 +15,8 @@
 #include "musicuiobject.h"
 #include "musicabstractmovewidget.h"
 
-class QProcess;
 class QListWidgetItem;
+class MusicCoreMPlayer;
 class MusicWebRadioDatabase;
 
 namespace Ui {
@@ -29,8 +29,6 @@ class MUSIC_TOOL_EXPORT MusicWebRadioWidget : public MusicAbstractMoveWidget
 public:
     explicit MusicWebRadioWidget(QWidget *parent = 0);
     virtual ~MusicWebRadioWidget();
-
-signals:
 
 public slots:
     void radioPlay();
@@ -50,13 +48,12 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
     void clearAllItems();
     Ui::MusicWebRadioWidget *ui;
-    QProcess *m_radio;
-    QTimer m_timer;
+
     int m_timerCount;
-    QString m_radioUrl;
-    QString m_currentRadioName;
-    QIcon *m_collecticon;
-    QIcon *m_discollecticon;
+    MusicCoreMPlayer *m_radio;
+    QTimer m_timer;
+    QString m_radioUrl, m_currentRadioName;
+    QIcon *m_collecticon, *m_discollecticon;
     MusicWebRadioDatabase *m_database;
 
 };

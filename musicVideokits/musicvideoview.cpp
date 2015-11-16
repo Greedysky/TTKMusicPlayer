@@ -61,7 +61,8 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_mediaPlayer->setMedia(data, (int)m_videoWidget->winId());
+    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory,
+                            data, (int)m_videoWidget->winId());
     QTimer::singleShot(5*1000, this, SLOT(stop()));
 }
 

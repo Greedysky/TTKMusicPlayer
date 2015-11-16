@@ -2,6 +2,7 @@
 #include "ui_musicwebradiowidget.h"
 #include "musicwebradiodatebase.h"
 #include "musicbgthememanager.h"
+#include "musiccoremplayer.h"
 
 #include <QProcess>
 
@@ -101,13 +102,11 @@ void MusicWebRadioWidget::radioPlay()
     }
 
     delete m_radio;
-    m_radio = new QProcess(this);
+    m_radio = new MusicCoreMPlayer(this);
+    connect(m_radio, SIGNAL(radioChanged()), SLOT(radioStandardOutput()));
+    m_radio->setMedia(MusicCoreMPlayer::RadioCategory, m_radioUrl, -1);
+    m_radio->setVolume(ui->volumnSlider->value());
 
-    QStringList arguments;
-    arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << m_radioUrl;
-    m_radio->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
-    connect(m_radio, SIGNAL(readyReadStandardOutput()), SLOT(radioStandardOutput()));
-    m_radio->write(QString("volume " + QString::number(ui->volumnSlider->value()) + " 1\n").toUtf8());
     ui->stateLabel->setText(tr("Connecting..."));
     m_timer.start(100);
 }
@@ -116,7 +115,7 @@ void MusicWebRadioWidget::radioStop()
 {
     if(m_radio)
     {
-        m_radio->write("pause\n");
+        m_radio->stop();
         m_timer.stop();
     }
 }
@@ -125,7 +124,7 @@ void MusicWebRadioWidget::radioVolume(int num)
 {
     if(m_radio)
     {
-        m_radio->write(QString("volume " + QString::number(num) + " 1\n").toUtf8());
+        m_radio->setVolume(num);
     }
 }
 
@@ -191,16 +190,8 @@ void MusicWebRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
 
 void MusicWebRadioWidget::radioStandardOutput()
 {
-    while(m_radio->canReadLine())
-    {
-        QString message(m_radio->readLine());
-        QStringList messagelist = message.split(" ");
-        if(messagelist[0] == "Starting")
-        {
-            ui->stateLabel->setText(m_currentRadioName);
-            m_database->radioRecentPlay(m_currentRadioName);
-        }
-    }
+    ui->stateLabel->setText(m_currentRadioName);
+    m_database->radioRecentPlay(m_currentRadioName);
 }
 
 void MusicWebRadioWidget::radioColletButton()

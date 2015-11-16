@@ -7,6 +7,8 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     : QObject(parent)
 {
     m_process = NULL;
+    m_playState = StoppedState;
+    m_category = NullCategory;
 }
 
 MusicCoreMPlayer::~MusicCoreMPlayer()
@@ -18,7 +20,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
     delete m_process;
 }
 
-void MusicCoreMPlayer::setMedia(const QString &data, int winId)
+void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 {
     if(m_process)
     {
@@ -27,8 +29,22 @@ void MusicCoreMPlayer::setMedia(const QString &data, int winId)
         m_process = NULL;
     }
 
+    m_category = type;
     m_playState = StoppedState;
     m_process = new QProcess(this);
+
+    switch(m_category)
+    {
+        case MusicCategory: setMusicMedia(data); break;
+        case RadioCategory: setRadioMedia(data); break;
+        case VideoCategory: setVideoMedia(data, winId); break;
+        case NullCategory: break;
+        default: break;
+    }
+}
+
+void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
+{
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-wid";
     arguments << QString::number(winId);
@@ -39,7 +55,20 @@ void MusicCoreMPlayer::setMedia(const QString &data, int winId)
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
     m_process->write("get_time_length\n");
     m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+}
 
+void MusicCoreMPlayer::setMusicMedia(const QString &data)
+{
+
+}
+
+void MusicCoreMPlayer::setRadioMedia(const QString &data)
+{
+    QStringList arguments;
+    arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
+//    m_radio->write(QString("volume " + QString::number(ui->volumnSlider->value()) + " 1\n").toUtf8());
 }
 
 void MusicCoreMPlayer::setPosition(qint64 pos)
@@ -107,6 +136,18 @@ void MusicCoreMPlayer::durationRecieve()
     }
 }
 
+void MusicCoreMPlayer::dataRecieve()
+{
+    switch(m_category)
+    {
+        case MusicCategory: musicStandardRecieve(); break;
+        case RadioCategory: radioStandardRecieve(); break;
+        case VideoCategory: positionRecieve(); break;
+        case NullCategory: break;
+        default: break;
+    }
+}
+
 void MusicCoreMPlayer::positionRecieve()
 {
     m_process->write("get_time_length\n");
@@ -120,6 +161,24 @@ void MusicCoreMPlayer::positionRecieve()
             emit positionChanged(QString(data).mid(18).toFloat());
         }
     }
+}
+
+void MusicCoreMPlayer::radioStandardRecieve()
+{
+    while(m_process->canReadLine())
+    {
+        QString message(m_process->readLine());
+        QStringList messagelist = message.split(" ");
+        if(messagelist[0] == "Starting")
+        {
+            emit radioChanged();
+        }
+    }
+}
+
+void MusicCoreMPlayer::musicStandardRecieve()
+{
+    emit musicChanged();
 }
 
 void MusicCoreMPlayer::stop()

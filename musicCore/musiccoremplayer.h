@@ -25,10 +25,18 @@ public:
         PausedState
     };
 
+    enum Category
+    {
+        NullCategory,
+        MusicCategory,
+        RadioCategory,
+        VideoCategory
+    };
+
     explicit MusicCoreMPlayer(QObject *parent = 0);
     ~MusicCoreMPlayer();
 
-    void setMedia(const QString &data, int winId);
+    void setMedia(Category type, const QString &data, int winId);
     void setPosition(qint64 pos);
 
     void setMute(bool mute);
@@ -43,17 +51,28 @@ signals:
     void mediaChanged(const QString &data);
     void stateChanged(State state);
 
+    void radioChanged();
+    void musicChanged();
+
 public slots:
     void play();
     void stop();
 
 private slots:
+    void dataRecieve();
     void positionRecieve();
     void durationRecieve();
+    void radioStandardRecieve();
+    void musicStandardRecieve();
 
 protected:
+    void setVideoMedia(const QString &data, int winId);
+    void setMusicMedia(const QString &data);
+    void setRadioMedia(const QString &data);
+
     QProcess *m_process;
     State m_playState;
+    Category m_category;
 
 };
 
