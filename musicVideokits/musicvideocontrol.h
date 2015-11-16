@@ -30,6 +30,7 @@ public:
     void durationChanged(qint64 duration) const;
     void setButtonStyle(bool style) const;
     void mediaChanged(const QString &url);
+    inline bool isPopup() const { return m_widgetPopup;}
 
 signals:
     void musicVideoSetPopup(bool popup);

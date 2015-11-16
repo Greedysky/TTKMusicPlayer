@@ -15,11 +15,27 @@
 class MusicVideoControl;
 class MusicCoreMPlayer;
 
+class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicViewWidget(QWidget *parent = 0);
+
+signals:
+    void setFullScreen();
+    void setClick();
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseDoubleClickEvent(QMouseEvent *event);
+
+};
+
 class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    MusicVideoView(bool popup, QWidget *parent = 0);
+    explicit MusicVideoView(bool popup, QWidget *parent = 0);
     ~MusicVideoView();
 
     void setMedia(const QString &data);
@@ -27,6 +43,7 @@ public:
 
 public slots:
     void play();
+    void setFullScreen();
 
 private slots:
     void stop();
@@ -39,11 +56,10 @@ private slots:
 protected:
     virtual void enterEvent(QEvent *event);
     virtual void leaveEvent(QEvent *event);
-    virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
     bool m_positionChanged;
-    QWidget *m_videoWidget;
+    MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicVideoControl *m_videoControl;
 

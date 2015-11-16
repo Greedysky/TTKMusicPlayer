@@ -8,14 +8,43 @@
 #include <QMouseEvent>
 #include <QTimer>
 
+
+MusicViewWidget::MusicViewWidget(QWidget *parent)
+    : QWidget(parent)
+{
+
+}
+
+void MusicViewWidget::mousePressEvent(QMouseEvent *event)
+{
+    QWidget::mousePressEvent(event);
+    if(event->button() == Qt::LeftButton)
+    {
+        emit setClick();
+    }
+}
+
+void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QWidget::mouseDoubleClickEvent(event);
+    if(event->button() == Qt::LeftButton)
+    {
+        emit setFullScreen();
+    }
+}
+
+
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
-    : QGraphicsView(parent), m_videoControl(0)
+    : QGraphicsView(parent)
 {
     setStyleSheet(MusicUIObject::MCustomStyle19);
 
     m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);
-    m_videoWidget = new QWidget(this);
+    m_videoWidget = new MusicViewWidget(this);
+    connect(m_videoWidget, SIGNAL(setClick()), SLOT(play()));
+    connect(m_videoWidget, SIGNAL(setFullScreen()), SLOT(setFullScreen()));
+
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     m_videoControl->hide();
@@ -45,15 +74,6 @@ void MusicVideoView::leaveEvent(QEvent *event)
     m_videoControl->hide();
 }
 
-void MusicVideoView::mousePressEvent(QMouseEvent *event)
-{
-    QWidget::mousePressEvent(event);
-    if(event->button() == Qt::LeftButton)
-    {
-        play();
-    }
-}
-
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
@@ -79,6 +99,14 @@ void MusicVideoView::resizeWindow(bool resize, QSize size)
         m_videoWidget->setGeometry(0, 40, 525, 330);
         m_videoControl->setFixedSize( 520, 40 );
         m_videoControl->move(0, 375);
+    }
+}
+
+void MusicVideoView::setFullScreen()
+{
+    if(m_videoControl->isPopup())
+    {
+        m_videoControl->fullButtonClicked();
     }
 }
 
