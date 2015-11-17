@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 
 #include <QTime>
+#include "musictime.h"
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -139,7 +140,8 @@ void MusicLrcMakerWidget::setControlEnable(bool enable) const
 
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
-    return QString("[%1.%2]").arg(QTime::fromMSecsSinceStartOfDay(time).toString("mm:ss"))
+    MusicTime t(time, MusicTime::All_Msec);
+    return QString("[%1.%2]").arg(QString("%1:%2").arg(t.getMinute()).arg(t.getSecond()))
                              .arg( QString::number(time%1000).left(2) );
 }
 

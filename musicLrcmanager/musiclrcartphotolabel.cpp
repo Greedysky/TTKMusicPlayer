@@ -1,5 +1,6 @@
 #include "musiclrcartphotolabel.h"
 
+#include <qmath.h>
 #include <QPainter>
 #include <QWheelEvent>
 

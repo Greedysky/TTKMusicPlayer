@@ -2,6 +2,7 @@
 #include "musicbgthememanager.h"
 #include "musicclickedlabel.h"
 
+#include <qmath.h>
 #include <QCheckBox>
 #include <QPushButton>
 #include <QTimer>

@@ -4,6 +4,7 @@
 #include "musiclrcfloatwidget.h"
 #include "musicuiobject.h"
 
+#include <QUrl>
 #include <QVBoxLayout>
 #include <QPainter>
 #include <QDesktopServices>
