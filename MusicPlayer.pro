@@ -5,9 +5,13 @@
 #-------------------------------------------------
 
 QT       += core gui xml sql
-QT       += multimediawidgets
 
-equals(QT_MAJOR_VERSION, 5): QT += widgets
+equals(QT_MAJOR_VERSION, 4){
+QT       += multimedia network script
+}
+equals(QT_MAJOR_VERSION, 5){
+QT       += widgets multimediawidgets
+}
 
 TARGET = MusicPlayer
 #TARGET = MusicCore
@@ -17,18 +21,26 @@ TEMPLATE = app
 #TEMPLATE = lib
 
 win32{
+    equals(QT_MAJOR_VERSION, 5):{
     QT   += winextras
-    msvc{
-        LIBS += -L"./MPlugins" -llibzplay
-        #support on windows XP
-        QMAKE_LFLAGS_WINDOWS += /SUBSYSTEM:WINDOWS,5.01
-    }
+        msvc{
+            LIBS += -L"./MPlugins" -llibzplay
+            #support on windows XP
+            QMAKE_LFLAGS_WINDOWS += /SUBSYSTEM:WINDOWS,5.01
+        }
 
-    gcc{
-        LIBS += ./MPlugins/libzplay.a
-        QMAKE_CXXFLAGS += -std=c++11
-        QMAKE_CXXFLAGS += -Wunused-function
-        QMAKE_CXXFLAGS += -Wswitch
+        gcc{
+            LIBS += ./MPlugins/libzplay.a
+            QMAKE_CXXFLAGS += -std=c++11
+            QMAKE_CXXFLAGS += -Wunused-function
+            QMAKE_CXXFLAGS += -Wswitch
+        }
+    }
+    equals(QT_MAJOR_VERSION, 4):{
+            LIBS += ./MPlugins/libzplay.a
+            QMAKE_CXXFLAGS += -std=c++11
+            QMAKE_CXXFLAGS += -Wunused-function
+            QMAKE_CXXFLAGS += -Wswitch
     }
 }
 DEFINES += MUSIC_LIBRARY

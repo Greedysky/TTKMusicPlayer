@@ -9,10 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QtWidgets>
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicabstractmovewidget.h"
+#ifdef MUSIC_QT_5
+#   include <QtWidgets>
+#else
+#   include <QtGui>
+#endif
 
 class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {

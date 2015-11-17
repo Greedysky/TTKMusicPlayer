@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 
+#include <QUrl>
 #include <QDesktopServices>
 #include <QContextMenuEvent>
 #include <QMenu>
