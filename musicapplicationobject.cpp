@@ -74,10 +74,16 @@ void MusicApplicationObject::windowCloseAnimationOpacity()
     QTimer::singleShot(1000, qApp, SLOT(quit()));
 }
 
+#if defined(Q_WS_WIN)
+#  ifdef MUSIC_QT_5
 void MusicApplicationObject::nativeEvent(const QByteArray &,
                                          void *message, long *)
 {
     MSG* msg = reinterpret_cast<MSG*>(message);
+#  else
+void MusicApplicationObject::winEvent(MSG *msg, long *)
+{
+#  endif
     if(msg->message == WM_DEVICECHANGE)
     {
         PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
@@ -123,6 +129,7 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
         }
     }
 }
+#endif
 
 void MusicApplicationObject::musicAboutUs()
 {

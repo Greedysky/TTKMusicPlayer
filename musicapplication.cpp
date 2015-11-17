@@ -82,11 +82,21 @@ MusicApplication::MusicApplication(QWidget *parent)
     readXMLConfigFromText();
 }
 
+#if defined(Q_WS_WIN)
+#  ifdef MUSIC_QT_5
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
     m_object->nativeEvent(eventType, message, result);
     return QWidget::nativeEvent(eventType, message, result);
 }
+#  else
+bool MusicApplication::winEvent(MSG *message, long *result)
+{
+    m_object->winEvent(message, result);
+    return QWidget::winEvent(message, result);
+}
+#  endif
+#endif
 
 MusicApplication::~MusicApplication()
 {

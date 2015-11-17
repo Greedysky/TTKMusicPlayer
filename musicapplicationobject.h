@@ -25,9 +25,14 @@ public:
     ~MusicApplicationObject();
 
     bool getWindowToTop() const {return m_setWindowToTop;}
+#if defined(Q_WS_WIN)
+#  ifdef MUSIC_QT_5
     void nativeEvent(const QByteArray &eventType,
                      void *message, long *result);
-
+#  else
+    void winEvent(MSG *message, long *result);
+#  endif
+#endif
     void getParameterSetting();
     void windowStartAnimationOpacity();
     void windowCloseAnimationOpacity();

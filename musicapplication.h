@@ -101,7 +101,13 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
-    virtual bool nativeEvent(const QByteArray &, void *, long *);
+#if defined(Q_WS_WIN)
+#  ifdef MUSIC_QT_5
+     virtual bool nativeEvent(const QByteArray &, void *, long *);
+#  else
+     virtual bool winEvent(MSG *message, long *result);
+#  endif
+#endif
 
     void readXMLConfigFromText();
     void writeXMLConfigToText();
