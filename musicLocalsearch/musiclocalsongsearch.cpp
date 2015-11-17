@@ -2,6 +2,9 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicuiobject.h"
 
+#include <QLabel>
+#include <QToolButton>
+
 MusicLocalSongSearch::MusicLocalSongSearch(QWidget *parent)
     : QDialog(parent)
 {

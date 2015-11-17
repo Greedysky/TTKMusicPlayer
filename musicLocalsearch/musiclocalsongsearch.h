@@ -9,9 +9,11 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QtWidgets>
+#include <QDialog>
 #include "musiclibexportglobal.h"
 
+class QLabel;
+class QToolButton;
 class MusicLocalSongSearchEdit;
 
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearch : public QDialog
