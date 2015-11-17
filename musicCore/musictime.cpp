@@ -92,6 +92,19 @@ bool MusicTime::isValid() const
              m_msec == 0);
 }
 
+void MusicTime::fromString(const QString &s, const QString &format)
+{
+    QTime t;
+    t.fromString(s, format);
+    setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
+}
+
+QString MusicTime::toString(const QString &format)
+{
+    return QLocale::system().toString(
+           QTime(m_hour, m_min, m_sec, m_msec), format);
+}
+
 qint64 MusicTime::getTimeStamp(Type type) const
 {
     qint64 delta = (type == All_Sec) ? 1 : 1000;

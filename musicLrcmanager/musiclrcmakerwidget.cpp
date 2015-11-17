@@ -4,8 +4,6 @@
 #include "musicuiobject.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
-
-#include <QTime>
 #include "musictime.h"
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
@@ -141,8 +139,8 @@ void MusicLrcMakerWidget::setControlEnable(bool enable) const
 QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
     MusicTime t(time, MusicTime::All_Msec);
-    return QString("[%1.%2]").arg(QString("%1:%2").arg(t.getMinute()).arg(t.getSecond()))
-                             .arg( QString::number(time%1000).left(2) );
+    return QString("[%1.%2]").arg(t.toString("mm:ss")).arg(
+           QString::number(t.getMillionSecond()).rightJustified(3, '0').left(2));
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
