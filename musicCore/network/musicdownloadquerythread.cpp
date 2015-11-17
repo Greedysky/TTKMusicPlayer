@@ -15,7 +15,7 @@
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QFile>
-#include <QDebug>
+
 MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
     : QObject(parent), m_reply(NULL)
 {

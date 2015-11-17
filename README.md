@@ -9,6 +9,7 @@
 Usage
 ----
 The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt.
+ * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt5.5.0 for windows-msvc 2013 32bit
  * Qt develop version be tested on Qt5.5.0 for windows-mingw 32bit
 

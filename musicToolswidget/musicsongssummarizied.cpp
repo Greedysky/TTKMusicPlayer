@@ -135,7 +135,7 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 {
     alpha = alpha*2.55;
     setStyleSheet(MusicUIObject::MToolBoxStyle01 + \
-          QString("QToolBox::tab{background-color:rgba(255,255,255,%1);}").arg(alpha) );
+                  QString("QToolBox::tab{background-color:rgba(255,255,255,%1);}").arg(alpha) );
 }
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)

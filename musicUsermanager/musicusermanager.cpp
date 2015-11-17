@@ -91,6 +91,9 @@ void MusicUserManager::leaveEvent(QEvent *event)
 
 void MusicUserManager::popupUserRecordWidget()
 {
+#ifndef MUSIC_QT_5
+    close();
+#endif
     MusicUserRecordWidget record;
     connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));
     connect(&record, SIGNAL(userIconChanged(QString,QString)),
