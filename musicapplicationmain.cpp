@@ -4,21 +4,32 @@
 #include "musicnetworkthread.h"
 #include "musiclogger.h"
 #include "musictime.h"
+#include "musicmessagebox.h"
 
 #include <QApplication>
 #include <QTranslator>
-#include <QMessageBox>
+#ifndef MUSIC_QT_5
+#  include <QTextCodec>
+#endif
 //#include <vld.h>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+#ifndef MUSIC_QT_5
+    QTextCodec *codec = QTextCodec::codecForName("utf-8");
+    QTextCodec::setCodecForLocale(codec);
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForTr(codec);
+#endif
+
     MusicObject::checkTheDirectoryExist();
     if(!MusicObject::checkTheFileExist())
     {
-        QMessageBox::warning(NULL, QObject::tr("QMusicPlayer"),
-                             QObject::tr("Lack of necessary component files!"));
+        MusicMessageBox(QObject::tr("QMusicPlayer"),
+                        QObject::tr("Lack of necessary component files!")
+                        ).exec();
         return -1;
     }//check file error!
 

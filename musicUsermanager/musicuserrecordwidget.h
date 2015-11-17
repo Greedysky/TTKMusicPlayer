@@ -15,6 +15,7 @@ namespace Ui {
 class MusicUserRecordWidget;
 }
 
+class QComboBox;
 class MusicUserModel;
 
 class MUSIC_USER_EXPORT MusicUserRecordWidget : public MusicAbstractMoveDialog
@@ -43,6 +44,7 @@ protected:
     void initTabF();
     void initTabS();
     void initTabT();
+    void setComboboxText(QComboBox *object, const QString &text);
 
     Ui::MusicUserRecordWidget *ui;
     MusicUserModel *m_userModel;

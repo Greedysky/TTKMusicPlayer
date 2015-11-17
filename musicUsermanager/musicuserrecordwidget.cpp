@@ -67,16 +67,7 @@ void MusicUserRecordWidget::initTabF()
 #ifdef MUSIC_QT_5
         ui->cityComboBox_F->setCurrentText(string);
 #else
-        if(ui->cityComboBox_F->isEditable())
-        {
-            ui->cityComboBox_F->setEditText(string);
-        }
-        else
-        {
-            const int i = ui->cityComboBox_F->findText(string);
-            if (i > -1)
-                ui->cityComboBox_F->setCurrentIndex(i);
-        }
+        setComboboxText(ui->cityComboBox_F, string);
 #endif
     }
 
@@ -86,16 +77,7 @@ void MusicUserRecordWidget::initTabF()
 #ifdef MUSIC_QT_5
         ui->countryComboBox_F->setCurrentText(string);
 #else
-        if(ui->countryComboBox_F->isEditable())
-        {
-            ui->countryComboBox_F->setEditText(string);
-        }
-        else
-        {
-            const int i = ui->countryComboBox_F->findText(string);
-            if (i > -1)
-                ui->countryComboBox_F->setCurrentIndex(i);
-        }
+        setComboboxText(ui->countryComboBox_F, string);
 #endif
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
@@ -126,6 +108,22 @@ void MusicUserRecordWidget::initTabT()
     changeVerificationCodeT();
 
     connect(ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
+}
+
+void MusicUserRecordWidget::setComboboxText(QComboBox *object, const QString &text)
+{
+    if(object->isEditable())
+    {
+        object->setEditText(text);
+    }
+    else
+    {
+        const int i = object->findText(text);
+        if (i > -1)
+        {
+            object->setCurrentIndex(i);
+        }
+    }
 }
 
 void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)

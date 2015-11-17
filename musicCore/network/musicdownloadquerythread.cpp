@@ -15,7 +15,7 @@
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QFile>
-
+#include <QDebug>
 MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
     : QObject(parent), m_reply(NULL)
 {
@@ -58,6 +58,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
         m_reply->deleteLater();
         m_reply = NULL;
     }
+
     m_reply = m_manager->get(QNetworkRequest(musicUrl));
     connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
@@ -159,7 +160,7 @@ void MusicDownLoadQueryThread::searchFinshed()
 #else
         QScriptEngine engine;
         QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
-        if(sc.property("code").toInt32() == 1)
+        if(sc.property("code").toInt32() == 1 || sc.property("code").toInt32() == 200 )
         {
             if(sc.property("data").isArray())
             {
@@ -173,7 +174,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                         QString songId = QString::number(it.value().property("singer_id").toVariant().toULongLong());
                         QString songName = it.value().property("song_name").toString();
                         QString singerName = it.value().property("singer_name").toString();
-                        QScriptValueIterator urlIt(sc.property("audition_list"));
+                        QScriptValueIterator urlIt(it.value().property("audition_list"));
                         while(urlIt.hasNext())
                         {
                             urlIt.next();
@@ -201,15 +202,19 @@ void MusicDownLoadQueryThread::searchFinshed()
                     {
                         QString songName = it.value().property("videoName").toString();
                         QString singerName = it.value().property("singerName").toString();
-
-                        QScriptValueIterator urlIt(sc.property("mvList"));
+                        QScriptValueIterator urlIt(it.value().property("mvList"));
                         if( urlIt.hasNext() )
                         {
                             while(urlIt.hasNext())
                             {
                                 urlIt.next();
+                                QString bitRate = QString::number(urlIt.value().property("bitRate").toInt32());
+                                if(bitRate == "0")
+                                {
+                                    continue;
+                                }
                                 SongUrlFormat urlFormat;
-                                urlFormat.m_format = QString::number(urlIt.value().property("bitRate").toInt32());
+                                urlFormat.m_format = bitRate;
                                 urlFormat.m_url = urlIt.value().property("url").toString();
                                 musicInfo.m_songUrl << urlFormat;
                             }
