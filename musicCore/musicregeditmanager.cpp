@@ -1,6 +1,7 @@
 #include "musicregeditmanager.h"
 
 #include <QSettings>
+#include <QStringList>
 #include <QApplication>
 
 MusicRegeditManager::MusicRegeditManager()

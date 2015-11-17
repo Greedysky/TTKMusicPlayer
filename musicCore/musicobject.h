@@ -15,7 +15,11 @@
 #include <QApplication>
 
 #ifdef Q_CC_GNU
-    #pragma GCC diagnostic ignored "-Wunused-function"
+#  pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
+#if QT_VERSION > QT_VERSION_CHECK(5,0,0)
+#  define MUSIC_QT_5
 #endif
 
 #define LRC_DOWNLOAD   "MLrc/"

@@ -3,6 +3,8 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 
+#include <qmath.h>
+
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {

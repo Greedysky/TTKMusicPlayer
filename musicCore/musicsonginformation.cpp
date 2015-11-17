@@ -1,5 +1,7 @@
 #include "musicsonginformation.h"
 
+#include <QStringList>
+
 MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
 {

@@ -11,6 +11,7 @@
 
 #include <QNetworkReply>
 #include <QFile>
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
 class QNetworkAccessManager;

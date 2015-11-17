@@ -2,16 +2,22 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadthreadabstract.h"
 
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QJsonValue>
-#include <QJsonParseError>
+#ifdef MUSIC_QT_5
+#   include <QJsonArray>
+#   include <QJsonObject>
+#   include <QJsonValue>
+#   include <QJsonParseError>
+#else
+#   include <QtScript/QScriptEngine>
+#   include <QtScript/QScriptValue>
+#   include <QtScript/QScriptValueIterator>
+#endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QFile>
 
 MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
-    : QObject(parent),m_reply(NULL)
+    : QObject(parent), m_reply(NULL)
 {
     m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
@@ -67,6 +73,7 @@ void MusicDownLoadQueryThread::searchFinshed()
     m_reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(m_reply->error() == QNetworkReply::NoError)
     {
+#ifdef MUSIC_QT_5
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
@@ -76,11 +83,11 @@ void MusicDownLoadQueryThread::searchFinshed()
         {
             return ;
         }
-
+#endif
         emit clearAllItems();     ///Clear origin items
         m_musicSongInfo.clear();  ///Empty the last search to songsInfo
+#ifdef MUSIC_QT_5
         QJsonObject jsonObject = parseDoucment.object();
-
         if(jsonObject.contains("data"))
         {
             QJsonArray array = jsonObject.take("data").toArray();
@@ -148,17 +155,86 @@ void MusicDownLoadQueryThread::searchFinshed()
                     }
                 }
             }
-            ///If there is no search to song_id, is repeated several times in the search
-            ///If more than 5 times or no results give up
-            static int counter = 5;
-            if(m_musicSongInfo.isEmpty() && counter-- > 0)
+        }
+#else
+        QScriptEngine engine;
+        QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
+        if(sc.property("code").toInt32() == 1)
+        {
+            if(sc.property("data").isArray())
             {
-                startSearchSong(m_currentType, m_searchText);
+                QScriptValueIterator it(sc.property("data"));
+                while(it.hasNext())
+                {
+                    it.next();
+                    DownloadSongInfo musicInfo;
+                    if(m_currentType == MusicQuery)
+                    {
+                        QString songId = QString::number(it.value().property("singer_id").toVariant().toULongLong());
+                        QString songName = it.value().property("song_name").toString();
+                        QString singerName = it.value().property("singer_name").toString();
+                        QScriptValueIterator urlIt(sc.property("audition_list"));
+                        while(urlIt.hasNext())
+                        {
+                            urlIt.next();
+                            if( urlIt.value().property("type_description").toString() == m_searchQuality)
+                            {
+                                emit creatSearchedItems(songName, singerName,
+                                                        urlIt.value().property("duration").toString());
+                                SongUrlFormat urlFormat;
+                                urlFormat.m_format = m_searchQuality;
+                                urlFormat.m_url = urlIt.value().property("url").toString();
+                                musicInfo.m_songUrl << urlFormat;
+
+                                musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                                musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                                musicInfo.m_singerName = singerName;
+                                musicInfo.m_songName = songName;
+                                musicInfo.m_size = urlIt.value().property("size").toString();
+                                musicInfo.m_format = urlIt.value().property("format").toString();
+                                m_musicSongInfo << musicInfo;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        QString songName = it.value().property("videoName").toString();
+                        QString singerName = it.value().property("singerName").toString();
+
+                        QScriptValueIterator urlIt(sc.property("mvList"));
+                        if( urlIt.hasNext() )
+                        {
+                            while(urlIt.hasNext())
+                            {
+                                urlIt.next();
+                                SongUrlFormat urlFormat;
+                                urlFormat.m_format = QString::number(urlIt.value().property("bitRate").toInt32());
+                                urlFormat.m_url = urlIt.value().property("url").toString();
+                                musicInfo.m_songUrl << urlFormat;
+                            }
+                            emit creatSearchedItems(songName, singerName,
+                                                    urlIt.value().property("duration").toString());
+                            musicInfo.m_singerName = singerName;
+                            musicInfo.m_songName = songName;
+                            musicInfo.m_format = urlIt.value().property("suffix").toString();
+                            m_musicSongInfo << musicInfo;
+                        }
+                    }
+                }
             }
-            else
-            {
-                M_LOGGER << "not find the song_Id" << LOG_END;
-            }
+        }
+#endif
+        ///If there is no search to song_id, is repeated several times in the search
+        ///If more than 5 times or no results give up
+        static int counter = 5;
+        if(m_musicSongInfo.isEmpty() && counter-- > 0)
+        {
+            startSearchSong(m_currentType, m_searchText);
+        }
+        else
+        {
+            M_LOGGER << "not find the song_Id" << LOG_END;
         }
     }
     emit resolvedSuccess();

@@ -1,6 +1,8 @@
 #include "musicdownloadqueuecache.h"
 #include "musicnetworkthread.h"
 
+#include <QStringList>
+
 MusicDownloadQueueCache::MusicDownloadQueueCache(const QString &url,
                             const QString &save, Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)

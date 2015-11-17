@@ -1,8 +1,13 @@
 #include "musictextdownloadthread.h"
 
-#include <QJsonObject>
-#include <QJsonValue>
-#include <QJsonParseError>
+#ifdef MUSIC_QT_5
+#   include <QJsonObject>
+#   include <QJsonValue>
+#   include <QJsonParseError>
+#else
+#   include <QtScript/QScriptEngine>
+#   include <QtScript/QScriptValue>
+#endif
 
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)
@@ -42,6 +47,7 @@ void MusicTextDownLoadThread::downLoadFinished()
     QByteArray bytes = m_reply->readAll();
     if(!bytes.contains("\"code\":2"))
     {
+#ifdef MUSIC_QT_5
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json
@@ -64,6 +70,21 @@ void MusicTextDownLoadThread::downLoadFinished()
                 M_LOGGER << "text download has finished!" << LOG_END;
             }
         }
+#else
+        QScriptEngine engine;
+        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
+        if(!sc.property("data").isNull())
+        {
+            sc = sc.property("data");
+            if(!sc.property("lrc").isNull())
+            {
+                m_file->write(sc.property("lrc").toString().remove("\r").toUtf8());
+                m_file->flush();
+                m_file->close();
+                M_LOGGER << "text download has finished!" << LOG_END;
+            }
+        }
+#endif
     }
     else
     {

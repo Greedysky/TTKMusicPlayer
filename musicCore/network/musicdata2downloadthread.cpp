@@ -1,6 +1,12 @@
 #include "musicdata2downloadthread.h"
-#include <QJsonParseError>
-#include <QJsonObject>
+
+#ifdef MUSIC_QT_5
+#   include <QJsonParseError>
+#   include <QJsonObject>
+#else
+#   include <QtScript/QScriptEngine>
+#   include <QtScript/QScriptValue>
+#endif
 
 MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QString &save,
                                                    Download_Type type, QObject *parent)
@@ -44,6 +50,7 @@ void MusicData2DownloadThread::dataGetFinished()
     if(m_dataReply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_dataReply->readAll();
+#ifdef MUSIC_QT_5
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())
@@ -55,6 +62,13 @@ void MusicData2DownloadThread::dataGetFinished()
         if(jsonObject.value("code").toInt() == 1)
         {
             m_url = jsonObject.value("data").toObject().value("singerPic").toString();
+#else
+        QScriptEngine engine;
+        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
+        if(sc.property("code").toInt32() == 1)
+        {
+            m_url = sc.property("data").property("singerPic").toString();
+#endif
             MusicDataDownloadThread::startToDownload();
         }
         else

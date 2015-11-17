@@ -3,6 +3,9 @@
 #include "musicsettingmanager.h"
 
 #include <QThread>
+#ifdef Q_OS_WIN
+#   include <windows.h>
+#endif
 
 MusicSongDownloadThread::MusicSongDownloadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)
@@ -55,7 +58,13 @@ void MusicSongDownloadThread::updateDownloadSpeed()
         int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*1024)
         {
-            QThread::msleep(1000 - limitValue*1024*1000/delta);
+#if defined Q_OS_WIN
+#   ifdef MUSIC_QT_5
+      QThread::msleep(1000 - limitValue*1024*1000/delta);
+#   else
+      ::Sleep(1000 - limitValue*1024*1000/delta);
+#   endif
+#endif
             delta = limitValue*1024;
         }
     }
