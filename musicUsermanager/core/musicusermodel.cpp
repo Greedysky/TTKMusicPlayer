@@ -1,5 +1,6 @@
 #include "musicusermodel.h"
 
+#include <QStringList>
 #include <QCryptographicHash>
 #include <QtSql/QSqlRecord>
 #include <QSet>

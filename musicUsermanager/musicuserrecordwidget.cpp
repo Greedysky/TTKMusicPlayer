@@ -64,13 +64,39 @@ void MusicUserRecordWidget::initTabF()
     string = m_userModel->getUserCity(uid);
     if(!string.isEmpty())
     {
+#ifdef MUSIC_QT_5
         ui->cityComboBox_F->setCurrentText(string);
+#else
+        if(ui->cityComboBox_F->isEditable())
+        {
+            ui->cityComboBox_F->setEditText(string);
+        }
+        else
+        {
+            const int i = ui->cityComboBox_F->findText(string);
+            if (i > -1)
+                ui->cityComboBox_F->setCurrentIndex(i);
+        }
+#endif
     }
 
     string = m_userModel->getUserCountry(uid);
     if(!string.isEmpty())
     {
+#ifdef MUSIC_QT_5
         ui->countryComboBox_F->setCurrentText(string);
+#else
+        if(ui->countryComboBox_F->isEditable())
+        {
+            ui->countryComboBox_F->setEditText(string);
+        }
+        else
+        {
+            const int i = ui->countryComboBox_F->findText(string);
+            if (i > -1)
+                ui->countryComboBox_F->setCurrentIndex(i);
+        }
+#endif
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
 
