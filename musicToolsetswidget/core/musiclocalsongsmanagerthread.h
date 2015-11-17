@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QThread>
+#include <QStringList>
 #include <QFileInfoList>
 #include "musiclibexportglobal.h"
 

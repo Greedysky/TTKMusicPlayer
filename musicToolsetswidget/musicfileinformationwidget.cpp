@@ -6,6 +6,7 @@
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
 
+#include <QUrl>
 #include <QDesktopServices>
 
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
