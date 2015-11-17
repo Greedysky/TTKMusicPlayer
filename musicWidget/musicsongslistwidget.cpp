@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 
+#include <QUrl>
 #include <QAction>
 #include <QTimer>
 #include <QProcess>

@@ -3,8 +3,6 @@
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
 
-#include <QVideoSurfaceFormat>
-#include <QGraphicsVideoItem>
 #include <QMouseEvent>
 #include <QTimer>
 

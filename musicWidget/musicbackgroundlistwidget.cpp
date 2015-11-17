@@ -121,7 +121,7 @@ QString MusicBackgroundListWidget::fileHash(const QString &name)
     }
     QByteArray data = file.readAll();
     file.close();
-    return QCryptographicHash::hash(data, QCryptographicHash::Sha384);
+    return QCryptographicHash::hash(data, QCryptographicHash::Md5);
 }
 
 void MusicBackgroundListWidget::recreateItem(const QString &name)

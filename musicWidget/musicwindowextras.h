@@ -10,9 +10,10 @@
    =================================================*/
 
 #include <QObject>
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN && defined MUSIC_QT_5
 class MusicApplication;
 class QWinTaskbarButton;
 class QWinTaskbarProgress;
@@ -33,15 +34,14 @@ public:
     void disableBlurBehindWindow(bool enable);
     inline bool isDisableBlurBehindWindow() const
                 { return m_disableBlurBehindWindow; }
-#ifdef Q_OS_WIN
 signals:
 
 protected:
+#if defined Q_OS_WIN && defined MUSIC_QT_5
     void createJumpList() const;
     void createTaskbar();
     void createThumbnailToolBar();
 
-    bool m_disableBlurBehindWindow;
     MusicApplication *m_superClass;
     QWinTaskbarButton *m_taskbarButton;
     QWinTaskbarProgress *m_taskbarProgress;
@@ -50,6 +50,7 @@ protected:
     QWinThumbnailToolButton *m_forwardToolButton;
     QWinThumbnailToolButton *m_backwardToolButton;
 #endif
+    bool m_disableBlurBehindWindow;
 
 };
 
