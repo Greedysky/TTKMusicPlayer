@@ -47,6 +47,7 @@ v2.2.8.0
 视频播放核心采用mplayer。 ---
 
 
+To be repaired
 v2.2.8.6
 歌曲重命名优化。
 部分文件目录移动至AppData下
