@@ -73,6 +73,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void leaveEvent(QEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
+    void startToDrag();
 
     int m_playRowIndex, m_dragStartIndex;
     QPoint m_dragStartPoint;

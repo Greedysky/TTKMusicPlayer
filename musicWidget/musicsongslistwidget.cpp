@@ -162,6 +162,24 @@ void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
 void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QTableWidget::mouseReleaseEvent(event);
+    startToDrag();
+
+    m_leftButtonPressed = false;
+    m_mouseMoved = false;
+    setCursor(QCursor(Qt::ArrowCursor));
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+}
+
+void MusicSongsListWidget::leaveEvent(QEvent *event)
+{
+    QTableWidget::leaveEvent(event);
+    listCellEntered(currentRow(), -1);
+    delete m_musicSongsInfoWidget;
+    m_musicSongsInfoWidget = NULL;
+}
+
+void MusicSongsListWidget::startToDrag()
+{
     if(m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
         QStringList list;
@@ -203,18 +221,6 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
             selectRow(index);
         }
     }
-    m_leftButtonPressed = false;
-    m_mouseMoved = false;
-    setCursor(QCursor(Qt::ArrowCursor));
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
-}
-
-void MusicSongsListWidget::leaveEvent(QEvent *event)
-{
-    QTableWidget::leaveEvent(event);
-    listCellEntered(currentRow(), -1);
-    delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = NULL;
 }
 
 void MusicSongsListWidget::setDeleteItemAll()
