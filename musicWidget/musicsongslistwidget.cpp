@@ -196,7 +196,12 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
             item(i, 1)->setText(list[i]);
         }
 
-        selectRow(index);
+        bool isCurrent;
+        emit isCurrentIndexs(isCurrent);
+        if(isCurrent)
+        {
+            selectRow(index);
+        }
     }
     m_leftButtonPressed = false;
     m_mouseMoved = false;
