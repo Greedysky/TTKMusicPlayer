@@ -882,7 +882,8 @@ void MusicApplication::setPlaySongChanged(int index)
 
 void MusicApplication::setStopSongChanged()
 {
-    m_musicPlayer->pause();
+    m_playControl = false;
+    musicKey();
 }
 
 void MusicApplication::addSongToPlayList(const QStringList &item)
