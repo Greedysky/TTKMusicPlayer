@@ -240,8 +240,9 @@ namespace MusicUIObject
             QLineEdit{ border: 1px solid gray;} \
             QLineEdit::hover{ border: 1px solid #AAAAFF;}";
 
-    const QString MLineEditStyle02 = MLineEditStyle01 + " \
-            QLineEdit{font-size:15px; color:#AAAAFF }";
+    const QString MLineEditStyle02 = " \
+            QLineEdit{ border: 3px solid gray; font-size:14px; color:#AAAAFF;} \
+            QLineEdit::hover{ border: 3px solid #AAAAFF;}";
 
     const QString MLineEditStyle03 = " \
             QLineEdit{border-image: url(:/image/searchline); \

@@ -11,7 +11,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
-
+#include <QDebug>
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(NULL),
       m_musicSongsPlayWidget(NULL)
@@ -335,7 +335,8 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
 void MusicSongsListWidget::showTimeOut()
 {
-    if(m_musicSongsInfoWidget)
+    if( m_musicSongsInfoWidget && m_musicSongsPlayWidget &&
+       !m_musicSongsPlayWidget->getItemRenameState())
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
@@ -377,7 +378,7 @@ void MusicSongsListWidget::setChangSongName()
         return;
     }
     if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
-       //the playing widget allow renaming
+    //the playing widget allow renaming
     {
         m_musicSongsPlayWidget->setItemRename();
         return;

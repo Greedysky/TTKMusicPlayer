@@ -48,6 +48,7 @@ public:
     void insertTimerLabel(const QString &t) const;
     void setParameter(const QString &name, const QString &path);
     void setItemRename();
+    bool getItemRenameState() { return m_renameLine != NULL;}
 
 signals:
     void renameFinished(const QString &text);
