@@ -74,7 +74,7 @@ void MusicApplicationObject::windowCloseAnimationOpacity()
     QTimer::singleShot(1000, qApp, SLOT(quit()));
 }
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
 void MusicApplicationObject::nativeEvent(const QByteArray &,
                                          void *message, long *)

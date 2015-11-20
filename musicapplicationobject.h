@@ -11,6 +11,7 @@
 
 #include <QMimeData>
 #include <QFileDialog>
+#include "musicobject.h"
 #include "musiclibexportglobal.h"
 
 class MusicTimerAutoObject;
@@ -25,7 +26,7 @@ public:
     ~MusicApplicationObject();
 
     bool getWindowToTop() const {return m_setWindowToTop;}
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
     void nativeEvent(const QByteArray &eventType,
                      void *message, long *result);

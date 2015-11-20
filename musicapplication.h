@@ -101,7 +101,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
      virtual bool nativeEvent(const QByteArray &, void *, long *);
 #  else
