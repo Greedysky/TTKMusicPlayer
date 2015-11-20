@@ -11,7 +11,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
-#include <QDebug>
+
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(NULL),
       m_musicSongsPlayWidget(NULL)
@@ -335,14 +335,15 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
 void MusicSongsListWidget::showTimeOut()
 {
-    if( m_musicSongsInfoWidget && m_musicSongsPlayWidget &&
-       !m_musicSongsPlayWidget->getItemRenameState())
+    if(m_musicSongsInfoWidget)
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
         m_musicSongsInfoWidget->setMusicSongInformation( song );
-        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 5, QCursor::pos().y(), 264, 108);
-        m_musicSongsInfoWidget->show();
+        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 5,
+                                            QCursor::pos().y(), 264, 108);
+        m_musicSongsInfoWidget->setVisible( m_musicSongsPlayWidget &&
+                                           !m_musicSongsPlayWidget->getItemRenameState());
     }
 }
 
