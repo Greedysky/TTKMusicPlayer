@@ -182,17 +182,17 @@ void MusicDownLoadQueryThread::searchFinshed()
                             {
                                 emit creatSearchedItems(songName, singerName,
                                                         urlIt.value().property("duration").toString());
-                                MusicSongAttribute urlFormat;
-                                urlFormat.m_format = m_searchQuality;
-                                urlFormat.m_url = urlIt.value().property("url").toString();
-                                musicInfo.m_songUrl << urlFormat;
+                                MusicSongAttribute songAttr;
+                                songAttr.m_url = urlIt.value().property("url").toString();
+                                songAttr.m_size = urlIt.value().property("size").toString();
+                                songAttr.m_format = urlIt.value().property("format").toString();
+                                songAttr.m_bitrate = urlIt.value().property("bitrate").toInt32();
+                                musicInfo.m_songAttrs << songAttr;
 
                                 musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                                 musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
                                 musicInfo.m_singerName = singerName;
                                 musicInfo.m_songName = songName;
-                                musicInfo.m_size = urlIt.value().property("size").toString();
-                                musicInfo.m_format = urlIt.value().property("format").toString();
                                 m_musicSongInfo << musicInfo;
                                 break;
                             }
@@ -208,21 +208,21 @@ void MusicDownLoadQueryThread::searchFinshed()
                             while(urlIt.hasNext())
                             {
                                 urlIt.next();
-                                QString bitRate = QString::number(urlIt.value().property("bitRate").toInt32());
-                                if(bitRate == "0")
+                                int bitRate = urlIt.value().property("bitRate").toInt32();
+                                if(bitRate == 0)
                                 {
                                     continue;
                                 }
-                                MusicSongAttribute urlFormat;
-                                urlFormat.m_format = bitRate;
-                                urlFormat.m_url = urlIt.value().property("url").toString();
-                                musicInfo.m_songUrl << urlFormat;
+                                MusicSongAttribute songAttr;
+                                songAttr.m_bitrate = bitRate;
+                                songAttr.m_format = urlIt.value().property("suffix").toString();
+                                songAttr.m_url = urlIt.value().property("url").toString();
+                                musicInfo.m_songAttrs << songAttr;
                             }
                             emit creatSearchedItems(songName, singerName,
                                                     urlIt.value().property("duration").toString());
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
-                            musicInfo.m_format = urlIt.value().property("suffix").toString();
                             m_musicSongInfo << musicInfo;
                         }
                     }
