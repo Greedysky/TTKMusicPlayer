@@ -33,7 +33,6 @@
 #define TR_LANGUAGE    "MLanguage/"
 #define TMP_DOWNLOAD   "temporary"
 
-#define MUSIC_FILE     ".mp3"
 #define SKN_FILE       ".skn"
 #define JPG_FILE       ".jpg"
 #define LRC_FILE       ".lrc"
@@ -86,20 +85,20 @@ typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
 typedef struct SongUrlFormat
 {
-    QString m_format;                      /* 500p or 720p */
+    int m_bitrate;
+    QString m_format;
     QString m_url;
+    QString m_size;
 }SongUrlFormat;
 typedef QList<SongUrlFormat> SongUrlFormats;
 
 typedef struct DownloadSongInfo
 {
-    SongUrlFormats m_songUrl;
+    SongUrlFormats m_songInfo;
     QString m_lrcUrl;
     QString m_smallPicUrl;
     QString m_singerName;
     QString m_songName;
-    QString m_size;
-    QString m_format;
 }DownloadSongInfo;
 typedef QList<DownloadSongInfo> DownloadSongInfos;
 

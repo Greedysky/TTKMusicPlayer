@@ -50,9 +50,9 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = (type == MusicQuery) ? MUSIC_REQUERY_URL.arg(text)
-                                         : MV_REQUERY_URL.arg(text);
+    QUrl musicUrl = (type == MusicQuery) ? MUSIC_REQUERY_URL.arg(text) : MV_REQUERY_URL.arg(text);
     ///This is a ttop music API
+
     if(m_reply)
     {
         m_reply->deleteLater();
@@ -79,7 +79,7 @@ void MusicDownLoadQueryThread::searchFinshed()
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json
-        if(jsonError.error != QJsonParseError::NoError ||
+        if( jsonError.error != QJsonParseError::NoError ||
            !parseDoucment.isObject())
         {
             return ;
@@ -116,16 +116,16 @@ void MusicDownLoadQueryThread::searchFinshed()
                             emit creatSearchedItems(songName, singerName,
                                                     object.value("duration").toString());
                             SongUrlFormat urlFormat;
-                            urlFormat.m_format = m_searchQuality;
                             urlFormat.m_url = object.value("url").toString();
-                            musicInfo.m_songUrl << urlFormat;
+                            urlFormat.m_size = object.value("size").toString();
+                            urlFormat.m_format = object.value("format").toString();
+                            urlFormat.m_bitrate = object.value("bitrate").toInt();
+                            musicInfo.m_songInfo << urlFormat;
 
                             musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                             musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
-                            musicInfo.m_size = object.value("size").toString();
-                            musicInfo.m_format = object.value("format").toString();
                             m_musicSongInfo << musicInfo;
                             break;
                         }
@@ -145,13 +145,13 @@ void MusicDownLoadQueryThread::searchFinshed()
                         {
                             object = urls[i].toObject();
                             SongUrlFormat urlFormat;
-                            urlFormat.m_format = QString::number(object.value("bitRate").toInt());
+                            urlFormat.m_format = object.value("suffix").toString();
+                            urlFormat.m_bitrate = object.value("bitRate").toInt();
                             urlFormat.m_url = object.value("url").toString();
-                            musicInfo.m_songUrl << urlFormat;
+                            musicInfo.m_songInfo << urlFormat;
                         }
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
-                        musicInfo.m_format = object.value("suffix").toString();
                         m_musicSongInfo << musicInfo;
                     }
                 }

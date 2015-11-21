@@ -205,9 +205,11 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
     message.exec();
 }
 
-void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time)
+void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time,
+                                                  const QString &format)
 {
-    const QString path = MusicObject::getAppDir() + MUSIC_DOWNLOAD + name + MUSIC_FILE;
+    const QString path = QString("%1%2%3.%4").arg(MusicObject::getAppDir()).arg(MUSIC_DOWNLOAD)
+                                             .arg(name).arg(format);
     m_musicFileNames[2] << MusicSong(path, 0, time, name);
     m_mainSongLists[2]->updateSongsFileName(m_musicFileNames[2]);
     if(m_currentIndexs == 2)

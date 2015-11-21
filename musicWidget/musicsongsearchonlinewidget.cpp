@@ -161,8 +161,8 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
-    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
-    if(musicSongInfo.isEmpty() || row < 0)
+    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    if(musicSongInfos.isEmpty() || row < 0)
     {
         MusicMessageBox message;
         message.setText(tr("Please Select One Item First!"));
@@ -174,7 +174,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
         m_audition = new MusicCoreMPlayer(this);
     }
     m_audition->setMedia(MusicCoreMPlayer::MusicCategory,
-                         musicSongInfo[row].m_songUrl.first().m_url, -1);
+                         musicSongInfos[row].m_songInfo.first().m_url, -1);
 
     if(m_previousAuditionRow != -1)
     {
@@ -217,8 +217,11 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::Buffing);
     musicDownloadLocal(row);
+    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfo musicSongInfo = musicSongInfos[row];
+    SongUrlFormat songInfo = musicSongInfo.m_songInfo.first();
     emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text(),
-                                     item(row, 3)->text());
+                                     item(row, 3)->text(), songInfo.m_format);
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
@@ -236,9 +239,12 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
         return;
     }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
-    DownloadSongInfos musicSongInfo(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    DownloadSongInfo musicSongInfo = musicSongInfos[row];
+    SongUrlFormat songInfo = musicSongInfo.m_songInfo.first();
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
-    QString downloadName = MusicObject::getAppDir() + MUSIC_DOWNLOAD + musicSong + MUSIC_FILE;
+    QString downloadName = QString("%1%2%3.%4").arg(MusicObject::getAppDir()).arg(MUSIC_DOWNLOAD)
+                                               .arg(musicSong).arg(songInfo.m_format);
 
     ////////////////////////////////////////////////
     MusicDownloadRecord record;
@@ -251,21 +257,21 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     down.readDownloadConfig( record );
     record.m_names << musicSong;
     record.m_paths << QFileInfo(downloadName).absoluteFilePath();
-    record.m_sizes << musicSongInfo[row].m_size;
+    record.m_sizes << songInfo.m_size;
     down.writeDownloadConfig( record );
     ////////////////////////////////////////////////
 
-    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongInfo[row].m_songUrl.first().m_url,
-                                                       downloadName, Download_Music, this);
+    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( songInfo.m_url,
+                                                                     downloadName, Download_Music, this);
     downSong->startToDownload();
 
-    (new MusicTextDownLoadThread(musicSongInfo[row].m_lrcUrl, MusicObject::getAppDir() + LRC_DOWNLOAD +
+    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, MusicObject::getAppDir() + LRC_DOWNLOAD +
                                  musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
-    (new MusicData2DownloadThread(musicSongInfo[row].m_smallPicUrl, MusicObject::getAppDir() +
-         ART_DOWNLOAD + musicSongInfo[row].m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
+    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, MusicObject::getAppDir() +
+         ART_DOWNLOAD + musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
 
     ///download big picture
-    new MusicBgThemeDownload(musicSongInfo[row].m_singerName, musicSongInfo[row].m_singerName, this);
+    new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this);
 }
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
