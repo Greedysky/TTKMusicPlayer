@@ -18,8 +18,8 @@ class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml
 public:
     explicit MusicXMLConfigManager(QObject *parent = 0);
 
-    inline bool readXMLConfig() { return readConfig(MusicObject::getAppDir() + COFIGPATH); }
-    inline bool readMusicXMLConfig(){ return readConfig(MusicObject::getAppDir() + MUSICPATH); }
+    inline bool readXMLConfig() { return readConfig(COFIGPATH_AL); }
+    inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH_AL); }
     void writeXMLConfig();
     void writeMusicSongsConfig(const MusicSongsList &musics);
     void readMusicSongsConfig(MusicSongsList &musics);

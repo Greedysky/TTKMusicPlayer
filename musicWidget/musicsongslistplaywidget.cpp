@@ -113,7 +113,7 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
 
 bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 {
-    QPixmap originPath(QString(MusicObject::getAppDir() + ART_DOWNLOAD + name + SKN_FILE));
+    QPixmap originPath(QString(ART_DOWNLOAD_AL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_artPicture->setPixmap(originPath.scaled(60, 60));

@@ -23,7 +23,7 @@ class MUSIC_TOOL_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
 public:
     explicit MusicMyDownloadRecordObject(QObject *parent = 0);
 
-    inline bool readDownloadXMLConfig(){ return readConfig(MusicObject::getAppDir() + DOWNLOADINFO); }
+    inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_AL); }
     void writeDownloadConfig(const MusicDownloadRecord &record);
     void readDownloadConfig(MusicDownloadRecord &record);
 

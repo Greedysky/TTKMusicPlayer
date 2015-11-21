@@ -428,11 +428,11 @@ void MusicSongsListWidget::musicPlayClicked()
 
 void MusicSongsListWidget::musicMakeRingWidget()
 {
-    if(!QFile(MusicObject::getAppDir() + MAKE_RING).exists())
+    if(!QFile(MAKE_RING_AL).exists())
     {
         return;
     }
-    (new QProcess(this))->start(MusicObject::getAppDir() + MAKE_RING);
+    (new QProcess(this))->start(MAKE_RING_AL);
 }
 
 void MusicSongsListWidget::musicTransformWidget()

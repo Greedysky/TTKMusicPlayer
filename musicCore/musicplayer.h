@@ -42,7 +42,7 @@ public:
         MusicSubwoofer
     };
 
-    MusicPlayer(QObject *parent = 0);
+    explicit MusicPlayer(QObject *parent = 0);
     ~MusicPlayer();
 
     State state() const;

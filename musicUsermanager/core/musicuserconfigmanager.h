@@ -25,7 +25,7 @@ public:
     explicit MusicUserConfigManager(QObject *parent = 0);
 
     //UserXMLConfig
-    inline bool readUserXMLConfig(){ return readConfig(MusicObject::getAppDir() + USERPATH); }
+    inline bool readUserXMLConfig(){ return readConfig(USERPATH_AL); }
     void writeUserXMLConfig(const MusicUserRecord &record);
     void readUserConfig(MusicUserRecord &record);
 

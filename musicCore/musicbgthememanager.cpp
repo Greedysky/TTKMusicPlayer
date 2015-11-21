@@ -24,8 +24,7 @@ void MusicBgThemeManager::setArtName(const QString &name)
     }
 
     m_photos.clear();
-    QString filter = MusicObject::getAppDir() + ART_BG +
-                     (m_currentArtName = sName) + "%1" + SKN_FILE;
+    QString filter = ART_BG_AL + (m_currentArtName = sName) + "%1" + SKN_FILE;
     for(int i=0; i<MAX_INDEX; ++i)
     {
         if(QFile::exists(filter.arg(i)))

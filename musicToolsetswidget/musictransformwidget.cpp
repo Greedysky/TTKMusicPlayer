@@ -150,7 +150,7 @@ void MusicTransformWidget::transformFinish(int)
             ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
                                                                     Qt::ElideLeft, 215));
         }
-        if(!processTransform(MusicObject::getAppDir() + MAKE_TRANSFORM))
+        if(!processTransform(MAKE_TRANSFORM_AL))
         {
             return;
         }
@@ -206,8 +206,8 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
 void MusicTransformWidget::startTransform()
 {
-    if(!QFile(MusicObject::getAppDir() + MAKE_TRANSFORM).exists() ||
-       !processTransform(MusicObject::getAppDir() + MAKE_TRANSFORM))
+    if(!QFile(MAKE_TRANSFORM_AL).exists() ||
+       !processTransform(MAKE_TRANSFORM_AL))
     {
         return;
     }

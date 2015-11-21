@@ -50,8 +50,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
 
     MusicTime::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
-                              xml->readDownloadCacheLimit(),
-                              MusicObject::getAppDir() + MUSIC_DOWNLOAD);
+                              xml->readDownloadCacheLimit(), MUSIC_DOWNLOAD_AL);
     M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGERS("End load translation");

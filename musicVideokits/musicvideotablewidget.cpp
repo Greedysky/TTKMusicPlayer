@@ -165,8 +165,7 @@ void MusicVideoTableWidget::downloadLocalMovie(int row, int quality)
     }
 
     MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
-                                            QString("%1/%2 - %3.%4").arg(MusicObject::getAppDir() + MOVIE_DOWNLOAD).
-                                                                     arg(songInfo.m_singerName)
+                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(songInfo.m_singerName)
                                                                     .arg(songInfo.m_songName)
                                                                     .arg(movieDownloadFormat), Download_Video, this);
     download->startToDownload();

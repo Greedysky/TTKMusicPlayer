@@ -34,7 +34,7 @@ bool MusicWebRadioDatabase::connectDatabase() const
     try
     {
         QSqlDatabase data = QSqlDatabase::addDatabase(DATABASETYPE, "radio-data");
-        data.setDatabaseName(MusicObject::getAppDir() + NETDADIOPATH);
+        data.setDatabaseName(NETDADIOPATH_AL);
         if( !data.isDriverAvailable(DATABASETYPE) )
         {
             throw QString("The driver name is not available!");

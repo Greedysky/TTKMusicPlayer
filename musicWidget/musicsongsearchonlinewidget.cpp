@@ -243,8 +243,8 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
     MusicSongAttribute songInfo = musicSongInfo.m_songAttrs.first();
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
-    QString downloadName = QString("%1%2%3.%4").arg(MusicObject::getAppDir()).arg(MUSIC_DOWNLOAD)
-                                               .arg(musicSong).arg(songInfo.m_format);
+    QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
+                                             .arg(musicSong).arg(songInfo.m_format);
 
     ////////////////////////////////////////////////
     MusicDownloadRecord record;
@@ -265,10 +265,10 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
                                                                      downloadName, Download_Music, this);
     downSong->startToDownload();
 
-    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, MusicObject::getAppDir() + LRC_DOWNLOAD +
+    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL +
                                  musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
-    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, MusicObject::getAppDir() +
-         ART_DOWNLOAD + musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
+    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
+                                  musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
 
     ///download big picture
     new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this);

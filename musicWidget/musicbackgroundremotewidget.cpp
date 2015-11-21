@@ -79,7 +79,7 @@ void MusicBackgroundRemoteWidget::buttonClicked(int index)
     }
 
     QDir dir( "." );
-    dir.mkpath( QString("%1%2").arg(MusicObject::getAppDir() + DATA_CACHED).arg(m_currentIndex) );
+    dir.mkpath( QString("%1%2").arg(DATA_CACHED_AL).arg(m_currentIndex) );
 
     m_listWidget->clearAllItems();
     for(int i=0; i<count; i++)
@@ -95,7 +95,7 @@ void MusicBackgroundRemoteWidget::itemUserClicked(QListWidgetItem *item)
 {
     if(!item->data(MUSIC_BG_ROLE).toString().isEmpty())
     {
-        emit showCustomSkin(QString("%1%2/%3%4").arg(MusicObject::getAppDir() + DATA_CACHED)
+        emit showCustomSkin(QString("%1%2/%3%4").arg(DATA_CACHED_AL)
                            .arg(m_currentIndex).arg(m_listWidget->currentRow()).arg(JPG_FILE));
     }
 }
@@ -159,7 +159,7 @@ QStringList MusicBackgroundRemoteWidget::createPaths()
     }
     for(int i=0; i<count; ++i)
     {
-        paths << QString("%1%2/%3%4").arg(MusicObject::getAppDir() + DATA_CACHED)
+        paths << QString("%1%2/%3%4").arg(DATA_CACHED_AL)
                  .arg(m_currentIndex).arg(i).arg(JPG_FILE);
     }
     return paths;

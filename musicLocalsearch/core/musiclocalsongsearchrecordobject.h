@@ -23,7 +23,7 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordObject : public MusicAbstrac
 public:
     explicit MusicLocalSongSearchRecordObject(QObject *parent = 0);
 
-    inline bool readSearchXMLConfig(){ return readConfig(MusicObject::getAppDir() + MUSICSEARCH); }
+    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_AL); }
     void writeSearchConfig(const MusicSearchRecord &record);
     void readSearchConfig(MusicSearchRecord &record);
 

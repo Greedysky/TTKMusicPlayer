@@ -22,39 +22,67 @@
 #  define MUSIC_QT_5
 #endif
 
-#define LRC_DOWNLOAD   "MLrc/"
-#define MUSIC_DOWNLOAD "Music/"
-#define MOVIE_DOWNLOAD "Movie/"
-#define THEME_DOWNLOAD "MTheme/"
-#define DATA_CACHED    "MCached/"
-#define ART_DOWNLOAD   "MArt/"
-#define TRANS_PLUGINS  "MPlugins/"
-#define ART_BG         "MArt/background/"
-#define TR_LANGUAGE    "MLanguage/"
-#define TMP_DOWNLOAD   "temporary"
 
-#define SKN_FILE       ".skn"
-#define JPG_FILE       ".jpg"
-#define LRC_FILE       ".lrc"
+///////////////////////////////////////
+#define LRC_DOWNLOAD       "MLrc/"
+#define MUSIC_DOWNLOAD     "Music/"
+#define MOVIE_DOWNLOAD     "Movie/"
+#define THEME_DOWNLOAD     "MTheme/"
+#define DATA_CACHED        "MCached/"
+#define ART_DOWNLOAD       "MArt/"
+#define TRANS_PLUGINS      "MPlugins/"
+#define ART_BG             "MArt/background/"
+#define TR_LANGUAGE        "MLanguage/"
+#define TMP_DOWNLOAD       "temporary"
 
-#define MAKE_TRANSFORM "MPlugins/avconv.dll"
-#define MAKE_RING      "MPlugins/avring.dll"
-#define MAKE_PLAYER    "MPlugins/avplayer.dll"
+#define SKN_FILE           ".skn"
+#define JPG_FILE           ".jpg"
+#define LRC_FILE           ".lrc"
 
-#define COFIGPATH      "musicconfig.xml"
-#define DATABASETYPE   "QSQLITE"
-#define NETDADIOPATH   "musicradio.dll"
-#define MUSICPATH      "music.dll"
-#define DOWNLOADINFO   "music_1.dll"
-#define MUSICSEARCH    "music_2.dll"
-#define DARABASEPATH   "musicuser_1.dll"
-#define USERPATH       "musicuser_2.dll"
+#define MAKE_TRANSFORM     "MPlugins/avconv.dll"
+#define MAKE_RING          "MPlugins/avring.dll"
+#define MAKE_PLAYER        "MPlugins/avplayer.dll"
 
-#define USERID         20
-#define PASSWD         100
-#define EMAIL          20
-#define USERNAME       20
-#define LOGINTIME      20
+#define COFIGPATH          "musicconfig.xml"
+#define NETDADIOPATH       "musicradio.dll"
+#define MUSICPATH          "music.dll"
+#define DOWNLOADINFO       "music_1.dll"
+#define MUSICSEARCH        "music_2.dll"
+#define DARABASEPATH       "musicuser_1.dll"
+#define USERPATH           "musicuser_2.dll"
+#define DATABASETYPE       "QSQLITE"
+
+///////////////////////////////////////
+#define LRC_DOWNLOAD_AL    MusicObject::getAppDir() + "MLrc/"
+#define MUSIC_DOWNLOAD_AL  MusicObject::getAppDir() + "Music/"
+#define MOVIE_DOWNLOAD_AL  MusicObject::getAppDir() + "Movie/"
+#define THEME_DOWNLOAD_AL  MusicObject::getAppDir() + "MTheme/"
+#define DATA_CACHED_AL     MusicObject::getAppDir() + "MCached/"
+#define ART_DOWNLOAD_AL    MusicObject::getAppDir() + "MArt/"
+#define TRANS_PLUGINS_AL   MusicObject::getAppDir() + "MPlugins/"
+#define ART_BG_AL          MusicObject::getAppDir() + "MArt/background/"
+#define TR_LANGUAGE_AL     MusicObject::getAppDir() + "MLanguage/"
+#define TMP_DOWNLOAD_AL    MusicObject::getAppDir() + "temporary"
+
+#define MAKE_TRANSFORM_AL  MusicObject::getAppDir() + "MPlugins/avconv.dll"
+#define MAKE_RING_AL       MusicObject::getAppDir() + "MPlugins/avring.dll"
+#define MAKE_PLAYER_AL     MusicObject::getAppDir() + "MPlugins/avplayer.dll"
+
+#define COFIGPATH_AL       MusicObject::getAppDir() + "musicconfig.xml"
+#define NETDADIOPATH_AL    MusicObject::getAppDir() + "musicradio.dll"
+#define MUSICPATH_AL       MusicObject::getAppDir() + "music.dll"
+#define DOWNLOADINFO_AL    MusicObject::getAppDir() + "music_1.dll"
+#define MUSICSEARCH_AL     MusicObject::getAppDir() + "music_2.dll"
+#define DARABASEPATH_AL    MusicObject::getAppDir() + "musicuser_1.dll"
+#define USERPATH_AL        MusicObject::getAppDir() + "musicuser_2.dll"
+
+///////////////////////////////////////
+#define USERID             20
+#define PASSWD             100
+#define EMAIL              20
+#define USERNAME           20
+#define LOGINTIME          20
+
 
 typedef signed char        MInt8;         /* 8 bit signed */
 typedef unsigned char      MUint8;        /* 8 bit unsigned */

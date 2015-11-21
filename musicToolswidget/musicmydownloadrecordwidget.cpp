@@ -187,7 +187,7 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 {
     setRowCount( rowCount()  + 1);
     QString musicName = name;
-    musicName.remove(MusicObject::getAppDir() + MUSIC_DOWNLOAD).chop(4);
+    musicName.remove(MUSIC_DOWNLOAD_AL).chop(4);
 
     m_musicRecord.m_names << musicName;
     m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();

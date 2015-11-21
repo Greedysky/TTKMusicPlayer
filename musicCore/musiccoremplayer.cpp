@@ -54,21 +54,21 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
     m_process->write("get_time_length\n");
-    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+    m_process->start(MAKE_PLAYER_AL, arguments);
 }
 
 void MusicCoreMPlayer::setMusicMedia(const QString &data)
 {
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
-    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+    m_process->start(MAKE_PLAYER_AL, arguments);
 }
 
 void MusicCoreMPlayer::setRadioMedia(const QString &data)
 {
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
-    m_process->start(MusicObject::getAppDir() + MAKE_PLAYER, arguments);
+    m_process->start(MAKE_PLAYER_AL, arguments);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
 }
 

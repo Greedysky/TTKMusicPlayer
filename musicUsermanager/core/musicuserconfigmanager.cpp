@@ -8,7 +8,7 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent)
 
 void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecord &record)
 {
-    if( !writeConfig( MusicObject::getAppDir() + USERPATH ) )
+    if( !writeConfig( USERPATH_AL ) )
     {
         return;
     }
