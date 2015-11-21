@@ -116,10 +116,10 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         showDownLoadInfoFor(MusicObject::DisConnection);
         return;
     }
-    DownloadSongInfos musicSongInfos(m_downloadLrcThread->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfo());
     if(!musicSongInfos.isEmpty())
     {
-        DownloadSongInfo musicSongInfo = musicSongInfos.first();
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl,

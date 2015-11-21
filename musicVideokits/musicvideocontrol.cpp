@@ -121,7 +121,7 @@ void MusicVideoControl::setButtonStyle(bool style) const
 
 void MusicVideoControl::mediaChanged(const QString &url)
 {
-    SongUrlFormats data;
+    MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
     for(int i=0; i<data.count(); ++i)
@@ -160,7 +160,7 @@ void MusicVideoControl::downloadButtonClicked()
 
 void MusicVideoControl::menuActionTriggered(QAction *action)
 {
-    SongUrlFormats data;
+    MusicSongAttributes data;
     emit getMusicMvInfo(data);
     if(action->text() == tr("NormalMV"))
     {
@@ -176,7 +176,7 @@ void MusicVideoControl::menuActionTriggered(QAction *action)
 
 void MusicVideoControl::setQualityActionState()
 {
-    SongUrlFormats data;
+    MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
     m_mvNormal->setEnabled(true);

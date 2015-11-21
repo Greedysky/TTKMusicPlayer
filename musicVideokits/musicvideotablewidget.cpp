@@ -135,15 +135,15 @@ void MusicVideoTableWidget::downloadLocalByQuality(int quality)
 
 void MusicVideoTableWidget::downloadLocalMovie(int row, int quality)
 {
-    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
-    DownloadSongInfo songInfo = musicSongInfos[row];
-    SongUrlFormats datas = songInfo.m_songInfo;
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomation songInfo = musicSongInfos[row];
+    MusicSongAttributes datas = songInfo.m_songAttrs;
     if(datas.isEmpty())
     {
         return;
     }
 
-    SongUrlFormat data = datas.first();
+    MusicSongAttribute data = datas.first();
     QString movieDownloadUrl, movieDownloadFormat;
     if(datas.count() == 1)
     {
@@ -191,15 +191,15 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
-    emit mvURLChanged(musicSongInfos[row].m_songInfo.first().m_url);
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    emit mvURLChanged(musicSongInfos[row].m_songAttrs.first().m_url);
 }
 
-void MusicVideoTableWidget::getMusicMvInfo(SongUrlFormats &data)
+void MusicVideoTableWidget::getMusicMvInfo(MusicSongAttributes &data)
 {
-    DownloadSongInfos musicSongInfos(m_downLoadManager->getMusicSongInfo());
-    data = !musicSongInfos.isEmpty() && m_previousClickRow != -1
-           ? musicSongInfos[m_previousClickRow].m_songInfo : SongUrlFormats();
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    data = !musicSongInfos.isEmpty() && m_previousClickRow != -1 ?
+            musicSongInfos[m_previousClickRow].m_songAttrs : MusicSongAttributes();
 }
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)

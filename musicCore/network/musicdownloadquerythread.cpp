@@ -101,7 +101,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 }
                 QJsonObject object = value.toObject();
 
-                DownloadSongInfo musicInfo;
+                MusicSongInfomation musicInfo;
                 if(m_currentType == MusicQuery)
                 {
                     QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
@@ -115,12 +115,12 @@ void MusicDownLoadQueryThread::searchFinshed()
                         {
                             emit creatSearchedItems(songName, singerName,
                                                     object.value("duration").toString());
-                            SongUrlFormat urlFormat;
-                            urlFormat.m_url = object.value("url").toString();
-                            urlFormat.m_size = object.value("size").toString();
-                            urlFormat.m_format = object.value("format").toString();
-                            urlFormat.m_bitrate = object.value("bitrate").toInt();
-                            musicInfo.m_songInfo << urlFormat;
+                            MusicSongAttribute songAttr;
+                            songAttr.m_url = object.value("url").toString();
+                            songAttr.m_size = object.value("size").toString();
+                            songAttr.m_format = object.value("format").toString();
+                            songAttr.m_bitrate = object.value("bitrate").toInt();
+                            musicInfo.m_songAttrs << songAttr;
 
                             musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                             musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
@@ -144,11 +144,11 @@ void MusicDownLoadQueryThread::searchFinshed()
                         for(int i=0; i<urls.count(); ++i)
                         {
                             object = urls[i].toObject();
-                            SongUrlFormat urlFormat;
-                            urlFormat.m_format = object.value("suffix").toString();
-                            urlFormat.m_bitrate = object.value("bitRate").toInt();
-                            urlFormat.m_url = object.value("url").toString();
-                            musicInfo.m_songInfo << urlFormat;
+                            MusicSongAttribute songAttr;
+                            songAttr.m_format = object.value("suffix").toString();
+                            songAttr.m_bitrate = object.value("bitRate").toInt();
+                            songAttr.m_url = object.value("url").toString();
+                            musicInfo.m_songAttrs << songAttr;
                         }
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
@@ -168,7 +168,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 while(it.hasNext())
                 {
                     it.next();
-                    DownloadSongInfo musicInfo;
+                    MusicSongInfomation musicInfo;
                     if(m_currentType == MusicQuery)
                     {
                         QString songId = QString::number(it.value().property("singer_id").toVariant().toULongLong());
@@ -182,7 +182,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                             {
                                 emit creatSearchedItems(songName, singerName,
                                                         urlIt.value().property("duration").toString());
-                                SongUrlFormat urlFormat;
+                                MusicSongAttribute urlFormat;
                                 urlFormat.m_format = m_searchQuality;
                                 urlFormat.m_url = urlIt.value().property("url").toString();
                                 musicInfo.m_songUrl << urlFormat;
@@ -213,7 +213,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 {
                                     continue;
                                 }
-                                SongUrlFormat urlFormat;
+                                MusicSongAttribute urlFormat;
                                 urlFormat.m_format = bitRate;
                                 urlFormat.m_url = urlIt.value().property("url").toString();
                                 musicInfo.m_songUrl << urlFormat;

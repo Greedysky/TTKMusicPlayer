@@ -83,24 +83,24 @@ typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsM
 typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
 typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
-typedef struct SongUrlFormat
+typedef struct MusicSongAttribute
 {
     int m_bitrate;
     QString m_format;
     QString m_url;
     QString m_size;
-}SongUrlFormat;
-typedef QList<SongUrlFormat> SongUrlFormats;
+}MusicSongAttribute;
+typedef QList<MusicSongAttribute> MusicSongAttributes;
 
-typedef struct DownloadSongInfo
+typedef struct MusicSongInfomation
 {
-    SongUrlFormats m_songInfo;
+    MusicSongAttributes m_songAttrs;
     QString m_lrcUrl;
     QString m_smallPicUrl;
     QString m_singerName;
     QString m_songName;
-}DownloadSongInfo;
-typedef QList<DownloadSongInfo> DownloadSongInfos;
+}MusicSongInfomation;
+typedef QList<MusicSongInfomation> MusicSongInfomations;
 
 namespace MusicObject
 {

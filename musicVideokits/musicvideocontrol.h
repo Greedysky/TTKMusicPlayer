@@ -35,7 +35,7 @@ public:
 signals:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
-    void getMusicMvInfo(SongUrlFormats &data);
+    void getMusicMvInfo(MusicSongAttributes &data);
     void downloadLocalByQuality(int quality);
     void mvURLChanged(const QString &data);
 

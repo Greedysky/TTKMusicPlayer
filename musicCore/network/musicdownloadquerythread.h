@@ -33,7 +33,7 @@ public:
     void startSearchSong(QueryType type, const QString &text);
     void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
-    inline const DownloadSongInfos& getMusicSongInfo(){ return m_musicSongInfo;}
+    inline const MusicSongInfomations& getMusicSongInfo(){ return m_musicSongInfo;}
 
 signals:
     void resolvedSuccess();
@@ -48,7 +48,7 @@ public slots:
 protected:
     QNetworkAccessManager *m_manager;
     QNetworkReply *m_reply;
-    DownloadSongInfos m_musicSongInfo;
+    MusicSongInfomations m_musicSongInfo;
     QString m_searchText;
     QueryType m_currentType;
     QString m_searchQuality;
