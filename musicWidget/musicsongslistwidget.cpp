@@ -330,11 +330,12 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     m_timerShow.stop();
     m_timerShow.start(500);
     m_timerStay.stop();
-    m_timerStay.start(4000);
+    m_timerStay.start(3000);
 }
 
 void MusicSongsListWidget::showTimeOut()
 {
+    m_timerShow.stop();
     if(m_musicSongsInfoWidget)
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
@@ -342,13 +343,17 @@ void MusicSongsListWidget::showTimeOut()
         m_musicSongsInfoWidget->setMusicSongInformation( song );
         m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 5,
                                             QCursor::pos().y(), 264, 108);
-        m_musicSongsInfoWidget->setVisible( m_musicSongsPlayWidget &&
-                                           !m_musicSongsPlayWidget->getItemRenameState());
+        bool isCurrentIndex;
+        emit isCurrentIndexs(isCurrentIndex);
+        m_musicSongsInfoWidget->setVisible( isCurrentIndex ? (m_musicSongsPlayWidget &&
+                                            !m_musicSongsPlayWidget->getItemRenameState()) :
+                                            true);
     }
 }
 
 void MusicSongsListWidget::stayTimeOut()
 {
+    m_timerStay.stop();
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = NULL;
 }
