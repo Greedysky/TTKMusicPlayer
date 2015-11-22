@@ -22,19 +22,19 @@ void MusicAbstractMoveDialog::paintEvent(QPaintEvent *event)
     QDialog::paintEvent(event);
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner1"));
-    painter.drawPixmap(width() - WIDTH_S, 0, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner2"));
-    painter.drawPixmap(0, height() - HEIGHT_S, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner3"));
-    painter.drawPixmap(width() - WIDTH_S, height() - HEIGHT_S, WIDTH_S, HEIGHT_S, QPixmap(":/shadow/corner4"));
+    painter.drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/corner1"));
+    painter.drawPixmap(width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/corner2"));
+    painter.drawPixmap(0, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/corner3"));
+    painter.drawPixmap(width() - WIDTH, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/corner4"));
 
-    painter.drawPixmap(0, WIDTH_S, HEIGHT_S, height() - 2*WIDTH_S,
-                       QPixmap(":/shadow/left").scaled(WIDTH_S, height() - 2*HEIGHT_S));
-    painter.drawPixmap(width() - WIDTH_S, WIDTH_S, HEIGHT_S, height() - 2*HEIGHT_S,
-                       QPixmap(":/shadow/right").scaled(WIDTH_S, height() - 2*HEIGHT_S));
-    painter.drawPixmap(HEIGHT_S, 0, width() - 2*WIDTH_S, HEIGHT_S,
-                       QPixmap(":/shadow/top").scaled(width() - 2*WIDTH_S, HEIGHT_S));
-    painter.drawPixmap(WIDTH_S, height() - HEIGHT_S, width() - 2*WIDTH_S, HEIGHT_S,
-                       QPixmap(":/shadow/bottom").scaled(width() - 2*WIDTH_S, HEIGHT_S));
+    painter.drawPixmap(0, WIDTH, HEIGHT, height() - 2*WIDTH,
+                       QPixmap(":/shadow/left").scaled(WIDTH, height() - 2*HEIGHT));
+    painter.drawPixmap(width() - WIDTH, WIDTH, HEIGHT, height() - 2*HEIGHT,
+                       QPixmap(":/shadow/right").scaled(WIDTH, height() - 2*HEIGHT));
+    painter.drawPixmap(HEIGHT, 0, width() - 2*WIDTH, HEIGHT,
+                       QPixmap(":/shadow/top").scaled(width() - 2*WIDTH, HEIGHT));
+    painter.drawPixmap(WIDTH, height() - HEIGHT, width() - 2*WIDTH, HEIGHT,
+                       QPixmap(":/shadow/bottom").scaled(width() - 2*WIDTH, HEIGHT));
 }
 
 void MusicAbstractMoveDialog::mousePressEvent(QMouseEvent *event)

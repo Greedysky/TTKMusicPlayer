@@ -9,8 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define WIDTH_S  20
-#define HEIGHT_S 20
+#define WIDTH  20
+#define HEIGHT 20
 
 #include <QDialog>
 #include "musiclibexportglobal.h"
