@@ -1,5 +1,5 @@
 #include "musicsongslistplaywidget.h"
-#include "musicfileinformation.h"
+#include "musicsongtag.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
@@ -124,10 +124,10 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 
 void MusicSongsListPlayWidget::setParameter(const QString &name,const QString &path)
 {
-    MusicFileInformation info;
-    if(info.readFile(path))
+    MusicSongTag tag;
+    if(tag.readFile(path))
     {
-        m_totalTime = "/" + info.getLengthString();
+        m_totalTime = "/" + tag.getLengthString();
     }
     m_songName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 180));
     m_songName->setToolTip(name);

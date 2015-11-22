@@ -11,7 +11,7 @@
 
 #include <QToolBox>
 #include <QContextMenuEvent>
-#include "musicsonginformation.h"
+#include "musicsong.h"
 #include "musiclibexportglobal.h"
 #include "musicobject.h"
 

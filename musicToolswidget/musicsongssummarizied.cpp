@@ -5,7 +5,7 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
-#include "musicfileinformation.h"
+#include "musicsongtag.h"
 #include "musicprogresswidget.h"
 
 #include <QScrollBar>
@@ -87,11 +87,11 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     progress.setTitle(tr("Import File Mode"));
     progress.setRange(0, filelist.count());
 
+    MusicSongTag tag;
     for(int i=0; i<filelist.count(); ++i)
     {
-        MusicFileInformation info;
-        info.readFile(filelist[i]);
-        QString time(info.getLengthString());
+        tag.readFile(filelist[i]);
+        QString time(tag.getLengthString());
         m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
         progress.setValue(i + 1);
     }

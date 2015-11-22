@@ -1,6 +1,6 @@
-#include "musicfileinformation.h"
+#include "musicsongtag.h"
 
-MusicFileInformation::MusicFileInformation()
+MusicSongTag::MusicSongTag()
 {
     m_player = CreateZPlay();
     Q_ASSERT(m_player);
@@ -14,19 +14,20 @@ MusicFileInformation::MusicFileInformation()
     }
 }
 
-MusicFileInformation::~MusicFileInformation()
+MusicSongTag::~MusicSongTag()
 {
     m_player->Close();
     m_player->Release();
 }
 
-bool MusicFileInformation::readFile(const QString &file)
+bool MusicSongTag::readFile(const QString &file)
 {
     if(m_player->OpenFileW(file.toStdWString().c_str(), sfAutodetect) == 0)
     {
         M_LOGGER << "Error: " << m_player->GetError() << LOG_END;
         return false;
     }
+
     m_player->GetStreamInfoW(&m_pInfo);
     if(!m_player->LoadID3ExW(&m_tagInfo, 1))
     {

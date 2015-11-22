@@ -1,4 +1,4 @@
-#include "musicsonginformation.h"
+#include "musicsong.h"
 
 #include <QStringList>
 

@@ -19,7 +19,7 @@ HEADERS  += \
     $$PWD/core/musicdesktopwallpaperthread.h \
     $$PWD/core/musictimerautoobject.h \
     $$PWD/core/musiclocalsongsmanagerthread.h \
-    $$PWD/core/musicfileinformation.h
+    $$PWD/core/musicsongtag.h
 
 
 SOURCES += \
@@ -34,7 +34,7 @@ SOURCES += \
     $$PWD/core/musicdesktopwallpaperthread.cpp \
     $$PWD/core/musictimerautoobject.cpp \
     $$PWD/core/musiclocalsongsmanagerthread.cpp \
-    $$PWD/core/musicfileinformation.cpp
+    $$PWD/core/musicsongtag.cpp
 
 
 FORMS    += \

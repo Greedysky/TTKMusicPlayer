@@ -1,5 +1,5 @@
-#ifndef MUSICFILEINFORMATION_H
-#define MUSICFILEINFORMATION_H
+#ifndef MUSICSONGTAG_H
+#define MUSICSONGTAG_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -11,11 +11,11 @@
 
 #include "musicplayer.h"
 
-class MUSIC_CORE_EXPORT MusicFileInformation
+class MUSIC_CORE_EXPORT MusicSongTag
 {
 public:
-    MusicFileInformation();
-    ~MusicFileInformation();
+    MusicSongTag();
+    ~MusicSongTag();
 
     bool readFile(const QString &file);
     /////////////////////////////////////////////
@@ -151,4 +151,4 @@ protected:
 
 };
 
-#endif // MUSICFILEINFORMATION_H
+#endif // MUSICSONGTAG_H

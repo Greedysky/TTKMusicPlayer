@@ -12,7 +12,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QContextMenuEvent>
-#include "musicsonginformation.h"
+#include "musicsong.h"
 #include "musicabstracttablewidget.h"
 
 class MusicSongsListPlayWidget;

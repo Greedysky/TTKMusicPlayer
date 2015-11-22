@@ -23,7 +23,6 @@ HEADERS  += \
     $$PWD/network/musicdownloadqueuecache.h \
     $$PWD/musicversion.h \
     $$PWD/musictime.h \
-    $$PWD/musicsonginformation.h \
     $$PWD/musicxmlconfigmanager.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
@@ -35,7 +34,8 @@ HEADERS  += \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicregeditmanager.h \
     $$PWD/musicsingleton.h \
-    $$PWD/musiccoremplayer.h
+    $$PWD/musiccoremplayer.h \
+    $$PWD/musicsong.h
 
 
 SOURCES += \
@@ -48,7 +48,6 @@ SOURCES += \
     $$PWD/network/musicnetworkthread.cpp \
     $$PWD/network/musicsongdownloadthread.cpp \
     $$PWD/network/musicdownloadqueuecache.cpp \
-    $$PWD/musicsonginformation.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
@@ -58,4 +57,5 @@ SOURCES += \
     $$PWD/musicbgthememanager.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
-    $$PWD/musiccoremplayer.cpp
+    $$PWD/musiccoremplayer.cpp \
+    $$PWD/musicsong.cpp

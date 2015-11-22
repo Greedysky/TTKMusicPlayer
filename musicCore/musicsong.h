@@ -1,5 +1,5 @@
-#ifndef QMUSICSONG_H
-#define QMUSICSONG_H
+#ifndef MUSICSONG_H
+#define MUSICSONG_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -59,4 +59,4 @@ protected:
 typedef QList<MusicSong>    MusicSongs;
 typedef QList<MusicSongs>   MusicSongsList;
 
-#endif // QMUSICSONG_H
+#endif // MUSICSONG_H

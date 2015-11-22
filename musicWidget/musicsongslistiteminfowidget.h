@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QWidget>
-#include "musicsonginformation.h"
+#include "musicsong.h"
 #include "musiclibexportglobal.h"
 
 namespace Ui {
