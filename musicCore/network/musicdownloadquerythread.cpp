@@ -50,7 +50,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = (type == MusicQuery) ? MUSIC_REQUERY_URL.arg(text) : MV_REQUERY_URL.arg(text);
+    QUrl musicUrl = (type != MVQuery ) ? MUSIC_REQUERY_URL.arg(text) : MV_REQUERY_URL.arg(text);
     ///This is a ttop music API
 
     if(m_reply)
@@ -102,7 +102,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 QJsonObject object = value.toObject();
 
                 MusicSongInfomation musicInfo;
-                if(m_currentType == MusicQuery)
+                if(m_currentType != MVQuery)
                 {
                     QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                     QString songName = object.take("song_name").toString();
@@ -169,7 +169,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 {
                     it.next();
                     MusicSongInfomation musicInfo;
-                    if(m_currentType == MusicQuery)
+                    if(m_currentType != MVQuery)
                     {
                         QString songId = QString::number(it.value().property("singer_id").toVariant().toULongLong());
                         QString songName = it.value().property("song_name").toString();
