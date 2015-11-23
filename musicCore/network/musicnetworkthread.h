@@ -17,7 +17,7 @@
 #define M_NETWORK (MusicSingleton<MusicNetworkThread>::createInstance())
 
 #define NETWORK_DETECT_INTERVAL 5000             // second
-#define NETWORK_REQUEST_ADDRESS "121.40.79.172"  // ip
+#define NETWORK_REQUEST_ADDRESS "www.baidu.com"  // ip
 
 class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
