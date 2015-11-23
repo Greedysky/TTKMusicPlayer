@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>230</height>
+    <width>500</width>
+    <height>260</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>330</width>
-     <height>190</height>
+     <width>460</width>
+     <height>220</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -45,13 +45,13 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>提示框</string>
+    <string>下载窗口</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>328</x>
+     <x>458</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -66,18 +66,261 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>330</width>
-     <height>165</height>
+     <width>460</width>
+     <height>195</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,200)</string>
+    <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
+QLabel{background:transparent;}</string>
    </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>35</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择音质：</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonST">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>35</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+    </property>
+    <property name="text">
+     <string>压缩音质</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonHD">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>60</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+    </property>
+    <property name="text">
+     <string>标准品质</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonSD">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>85</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+    </property>
+    <property name="text">
+     <string>高清品质</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择音质：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="downloadPathEdit">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>120</y>
+      <width>211</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pathChangedButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>120</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:1px;background-color:#80B7F1;color:white;font-size:12px;}</string>
+    </property>
+    <property name="text">
+     <string>更改目录</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="settingButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>120</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:1px;background-color:#80B7F1;color:white;font-size:12px;}</string>
+    </property>
+    <property name="text">
+     <string>下载设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="downloadButton">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>147</y>
+      <width>100</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
+    </property>
+    <property name="text">
+     <string>下载</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="downloadName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="iconHD">
+    <property name="geometry">
+     <rect>
+      <x>175</x>
+      <y>62</y>
+      <width>30</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="iconSD">
+    <property name="geometry">
+     <rect>
+      <x>175</x>
+      <y>87</y>
+      <width>30</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="InformationSD">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>85</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>XXX/XXXXXX/XXXXX</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="InformationHD">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>60</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>XXX/XXXXXX/XXXXX</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="InformationST">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>35</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>XXX/XXXXXX/XXXXX</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label2</zorder>
+   <zorder>downloadName</zorder>
+   <zorder>downloadPathEdit</zorder>
+   <zorder>pathChangedButton</zorder>
+   <zorder>settingButton</zorder>
+   <zorder>downloadButton</zorder>
+   <zorder>radioButtonST</zorder>
+   <zorder>radioButtonHD</zorder>
+   <zorder>radioButtonSD</zorder>
+   <zorder>iconHD</zorder>
+   <zorder>iconSD</zorder>
+   <zorder>InformationSD</zorder>
+   <zorder>InformationHD</zorder>
+   <zorder>InformationST</zorder>
   </widget>
-  <zorder>background</zorder>
-  <zorder>backgroundMask</zorder>
-  <zorder>topTitleName</zorder>
-  <zorder>topTitleCloseButton</zorder>
  </widget>
  <resources/>
  <connections/>
