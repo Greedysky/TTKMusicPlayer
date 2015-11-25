@@ -33,6 +33,7 @@ public:
     void deleteAll();
     void startSearchSong(QueryType type, const QString &text);
     void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
+    void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
     inline int getSongIdIndex() const { return m_musicSongInfo.size() + 1;}
     inline const MusicSongInfomations& getMusicSongInfo(){ return m_musicSongInfo;}
 
@@ -50,9 +51,9 @@ protected:
     QNetworkAccessManager *m_manager;
     QNetworkReply *m_reply;
     MusicSongInfomations m_musicSongInfo;
-    QString m_searchText;
+    QString m_searchText, m_searchQuality;
     QueryType m_currentType;
-    QString m_searchQuality;
+    bool m_queryAllRecords;
 
 };
 

@@ -21,6 +21,7 @@ MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
 {
     m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
+    m_queryAllRecords = false;
     M_CONNECTION->setValue("MusicDownLoadQueryThread", this);
     M_CONNECTION->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
 }
@@ -111,10 +112,8 @@ void MusicDownLoadQueryThread::searchFinshed()
                     for(int j=0; j<urls.count(); ++j)
                     {
                         object = urls[j].toObject();
-                        if( object.value("type_description").toString() == m_searchQuality)
+                        if(m_queryAllRecords == true)
                         {
-                            emit creatSearchedItems(songName, singerName,
-                                                    object.value("duration").toString());
                             MusicSongAttribute songAttr;
                             songAttr.m_url = object.value("url").toString();
                             songAttr.m_size = object.value("size").toString();
@@ -122,12 +121,35 @@ void MusicDownLoadQueryThread::searchFinshed()
                             songAttr.m_bitrate = object.value("bitrate").toInt();
                             musicInfo.m_songAttrs << songAttr;
 
-                            musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                            musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
-                            musicInfo.m_singerName = singerName;
-                            musicInfo.m_songName = songName;
-                            m_musicSongInfo << musicInfo;
-                            break;
+                            if(j == urls.count() - 1) //the last one
+                            {
+                                musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                                musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                                musicInfo.m_singerName = singerName;
+                                musicInfo.m_songName = songName;
+                                m_musicSongInfo << musicInfo;
+                            }
+                        }
+                        else
+                        {
+                            if( object.value("type_description").toString() == m_searchQuality)
+                            {
+                                emit creatSearchedItems(songName, singerName,
+                                                        object.value("duration").toString());
+                                MusicSongAttribute songAttr;
+                                songAttr.m_url = object.value("url").toString();
+                                songAttr.m_size = object.value("size").toString();
+                                songAttr.m_format = object.value("format").toString();
+                                songAttr.m_bitrate = object.value("bitrate").toInt();
+                                musicInfo.m_songAttrs << songAttr;
+
+                                musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                                musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                                musicInfo.m_singerName = singerName;
+                                musicInfo.m_songName = songName;
+                                m_musicSongInfo << musicInfo;
+                                break;
+                            }
                         }
                     }
                 }
