@@ -67,8 +67,8 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/radio/collect")), "");
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/radio/collect")));
     setItem(count - 1, 4, item);
 }
 

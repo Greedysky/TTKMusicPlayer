@@ -114,12 +114,12 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 2, item);
 
-                              item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/autionplay")),"");
-            item->setTextAlignment(Qt::AlignCenter);
+                             item = new QTableWidgetItem;
+            item->setIcon(QIcon(QString::fromUtf8(":/share/autionplay")));
             ui->songlistsTable->setItem(i, 3, item);
 
-                              item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/addtoplaylist")),"");
-            item->setTextAlignment(Qt::AlignCenter);
+                             item = new QTableWidgetItem;
+            item->setIcon(QIcon(QString::fromUtf8(":/image/addtoplaylist")));
             ui->songlistsTable->setItem(i, 4, item);
         }
         else

@@ -75,8 +75,8 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     item->setToolTip(artistname);
     setItem(count - 1, 2, item);
 
-                      item = new QTableWidgetItem(QIcon( randToGetStrength() ), "");
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(randToGetStrength()));
     setItem(count - 1, 3, item);
 
                       item = new QTableWidgetItem(time);
@@ -84,18 +84,16 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 4, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/showMV")), "");
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/share/showMV")));
     setItem(count - 1, 5, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/autionplay")), "");
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/share/autionplay")));
     setItem(count - 1, 6, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/musicdownload")), "");
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/share/musicdownload")));
     setItem(count - 1, 7, item);
 }
 

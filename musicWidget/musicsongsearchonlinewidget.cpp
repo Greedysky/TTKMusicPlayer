@@ -107,12 +107,12 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count - 1, 3, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/image/addtoplaylist")),"");
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/image/addtoplaylist")));
     setItem(count - 1, 4, item);
 
-                      item = new QTableWidgetItem(QIcon(QString::fromUtf8(":/share/musicdownload")),"");
-    item->setTextAlignment(Qt::AlignCenter);
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/share/musicdownload")));
     setItem(count - 1, 5, item);
 }
 
