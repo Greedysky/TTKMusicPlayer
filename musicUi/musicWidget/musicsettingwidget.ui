@@ -1173,6 +1173,9 @@ font-weight:bold;</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QPushButton" name="downloadDirButton">
      <property name="geometry">
@@ -1221,6 +1224,9 @@ font-weight:bold;</string>
        <width>151</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="downloadCacheLabel">

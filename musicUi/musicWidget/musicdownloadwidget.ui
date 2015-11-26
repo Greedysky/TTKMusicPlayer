@@ -169,6 +169,9 @@ QLabel{background:transparent;}</string>
     <property name="styleSheet">
      <string notr="true">QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="pathChangedButton">
     <property name="geometry">

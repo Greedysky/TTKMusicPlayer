@@ -510,12 +510,12 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    QString path;
     QFileDialog dialog;
     dialog.setFileMode(QFileDialog::Directory );
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
+        QString path;
         if(!(path = dialog.directory().absolutePath()).isEmpty())
         {
             index == 0 ? ui->downloadDirEdit->setText(path)

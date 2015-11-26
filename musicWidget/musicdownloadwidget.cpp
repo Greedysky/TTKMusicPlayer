@@ -3,6 +3,9 @@
 #include "musicbgthememanager.h"
 #include "musicuiobject.h"
 #include "musicdownloadquerythread.h"
+#include "musicsettingmanager.h"
+
+#include <QFileDialog>
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -13,10 +16,13 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_downloadThread = new MusicDownLoadQueryThread(this);
+
+    connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()
@@ -30,6 +36,9 @@ void MusicDownloadWidget::initWidget()
     setMusicSTState(false);
     setMusicHDState(false);
     setMusicSDState(false);
+
+    QString path = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
 }
 
 void MusicDownloadWidget::setMusicSTState(bool show)
@@ -98,4 +107,43 @@ void MusicDownloadWidget::queryAllFinished()
             }
         }
     }
+}
+
+void MusicDownloadWidget::downloadDirSelected()
+{
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::Directory );
+    dialog.setViewMode(QFileDialog::Detail);
+    if(dialog.exec())
+    {
+        QString path;
+        if(!(path = dialog.directory().absolutePath()).isEmpty())
+        {
+            M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, path);
+            ui->downloadPathEdit->setText(path);
+        }
+    }
+}
+
+void MusicDownloadWidget::startToDownload()
+{
+    int bitrate = -1;
+    if(ui->radioButtonST->isChecked()) bitrate = 32;
+    else if(ui->radioButtonHD->isChecked()) bitrate = 128;
+    else if(ui->radioButtonSD->isChecked()) bitrate = 320;
+
+    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfo());
+    if(!musicSongInfos.isEmpty())
+    {
+        MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
+        foreach(MusicSongAttribute attr, attrs)
+        {
+            if(attr.m_bitrate == bitrate)
+            {
+//                qDebug() << attr.m_url;
+                break;
+            }
+        }
+    }
+    close();
 }

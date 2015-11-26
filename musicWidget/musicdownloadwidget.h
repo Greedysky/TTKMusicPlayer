@@ -30,6 +30,8 @@ signals:
 public slots:
     virtual int exec();
     void queryAllFinished();
+    void downloadDirSelected();
+    void startToDownload();
 
 protected:
     void initWidget();
