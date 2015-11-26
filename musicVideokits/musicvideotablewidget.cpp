@@ -2,16 +2,16 @@
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
+#include "musictime.h"
 
-#include <time.h>
-#include <QDebug>
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
     setColumnCount(8);
     resizeWindow(1.0f);
     setTransparent(255);
-    qsrand(time(NULL));
+
+    MusicTime::timeSRand();
     M_CONNECTION->setValue("MusicVideoTableWidget", this);
 }
 

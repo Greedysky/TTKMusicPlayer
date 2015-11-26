@@ -1,8 +1,8 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicbgthememanager.h"
 #include "musicregeditmanager.h"
+#include "musictime.h"
 
-#include <time.h>
 #include <QFileInfo>
 
 #if defined Q_OS_WIN
@@ -16,7 +16,8 @@ MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     : QThread(parent)
 {
     MusicRegeditManager().getDesktopWallControlPanel(m_originPath, m_originType);
-    qsrand(time(NULL));
+    MusicTime::timeSRand();
+
     m_run = true;
     m_currentImageIndex = 0;
     m_returnToOrigin = false;
