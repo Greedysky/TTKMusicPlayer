@@ -42,7 +42,7 @@ class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public MusicSongsEnterPlayW
     Q_OBJECT
 public:
     explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
-    ~MusicSongsListPlayWidget();
+    virtual ~MusicSongsListPlayWidget();
 
     void getWidget(QWidget *&one, QWidget *&two) const;
     void insertTimerLabel(const QString &t) const;
@@ -57,6 +57,7 @@ signals:
 public slots:
     void setChangItemName(const QString &name);
     void showMVButtonClicked();
+    void downloadButtonClicked();
 
 protected:
     bool showArtPicture(const QString &name) const;
@@ -64,8 +65,8 @@ protected:
     QLabel *m_artPicture, *m_songName, *m_timeLabel;
     QString m_totalTime;
     MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
-    QPushButton *m_loveButton, *m_deleteButton;
-    QPushButton *m_showMVButton, *m_songShareButton;
+    QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
+    QPushButton *m_downloadButton, *m_songShareButton;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };

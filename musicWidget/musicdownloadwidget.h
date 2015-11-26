@@ -11,6 +11,8 @@
 
 #include "musicabstractmovedialog.h"
 
+class MusicDownLoadQueryThread;
+
 namespace Ui {
 class MusicDownloadWidget;
 }
@@ -22,12 +24,21 @@ public:
     explicit MusicDownloadWidget(QWidget *parent = 0);
     virtual ~MusicDownloadWidget();
 
+    void setSongName(const QString &name);
+
 signals:
 public slots:
     virtual int exec();
+    void queryAllFinished();
 
 protected:
+    void initWidget();
+    void setMusicSTState(bool show);
+    void setMusicHDState(bool show);
+    void setMusicSDState(bool show);
+
     Ui::MusicDownloadWidget *ui;
+    MusicDownLoadQueryThread *m_downloadThread;
 
 };
 

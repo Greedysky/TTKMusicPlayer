@@ -3,6 +3,7 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
+#include "musicdownloadwidget.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -59,6 +60,14 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
+    m_downloadButton = new QPushButton(this);
+    m_downloadButton->setGeometry(170, 35, 23, 23);
+    m_downloadButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
+    m_downloadButton->setIcon(QIcon(":/appTools/buttonmydownl"));
+    m_downloadButton->setIconSize(QSize(23, 23));
+    m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_downloadButton->setToolTip(tr("songDownload"));
+
     m_showMVButton = new QPushButton(m_columnThree);
     m_showMVButton->setGeometry(0, 35, 23, 23);
     m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
@@ -80,6 +89,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
+    connect(m_downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
 
     M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
     M_CONNECTION->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
@@ -95,6 +105,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_loveButton;
     delete m_deleteButton;
     delete m_showMVButton;
+    delete m_downloadButton;
     delete m_songShareButton;
     delete m_columnOne;
     delete m_columnThree;
@@ -161,4 +172,11 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 void MusicSongsListPlayWidget::showMVButtonClicked()
 {
     emit videoButtonClicked(m_songName->text());
+}
+
+void MusicSongsListPlayWidget::downloadButtonClicked()
+{
+    MusicDownloadWidget downloadWidget;
+    downloadWidget.setSongName(m_songName->text());
+    downloadWidget.exec();
 }

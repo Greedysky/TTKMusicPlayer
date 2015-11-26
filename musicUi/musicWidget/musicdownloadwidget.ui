@@ -231,13 +231,16 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>10</y>
-      <width>241</width>
-      <height>21</height>
+      <y>2</y>
+      <width>401</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:22px;font-weight:bold;</string>
+    </property>
     <property name="text">
-     <string>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</string>
+     <string>XXXXXXXXXXXXXXXXXXX</string>
     </property>
    </widget>
    <widget class="QLabel" name="iconHD">
@@ -266,7 +269,7 @@ QLabel{background:transparent;}</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="InformationSD">
+   <widget class="QLabel" name="informationSD">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -279,7 +282,7 @@ QLabel{background:transparent;}</string>
      <string>XXX/XXXXXX/XXXXX</string>
     </property>
    </widget>
-   <widget class="QLabel" name="InformationHD">
+   <widget class="QLabel" name="informationHD">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -292,7 +295,7 @@ QLabel{background:transparent;}</string>
      <string>XXX/XXXXXX/XXXXX</string>
     </property>
    </widget>
-   <widget class="QLabel" name="InformationST">
+   <widget class="QLabel" name="informationST">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -317,9 +320,9 @@ QLabel{background:transparent;}</string>
    <zorder>radioButtonSD</zorder>
    <zorder>iconHD</zorder>
    <zorder>iconSD</zorder>
-   <zorder>InformationSD</zorder>
-   <zorder>InformationHD</zorder>
-   <zorder>InformationST</zorder>
+   <zorder>informationSD</zorder>
+   <zorder>informationHD</zorder>
+   <zorder>informationST</zorder>
   </widget>
  </widget>
  <resources/>
