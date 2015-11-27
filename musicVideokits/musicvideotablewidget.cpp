@@ -133,38 +133,38 @@ void MusicVideoTableWidget::downloadLocalByQuality(int quality)
 
 void MusicVideoTableWidget::downloadLocalMovie(int row, int quality)
 {
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
-    MusicSongInfomation songInfo = musicSongInfos[row];
-    MusicSongAttributes datas = songInfo.m_songAttrs;
-    if(datas.isEmpty())
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicSongInfomation musicSongInfo = musicSongInfos[row];
+    MusicSongAttributes musicSongAttrs = musicSongInfo.m_songAttrs;
+    if(musicSongAttrs.isEmpty())
     {
         return;
     }
 
-    MusicSongAttribute data = datas.first();
+    MusicSongAttribute musicSongAttr = musicSongAttrs.first();
     QString movieDownloadUrl, movieDownloadFormat;
-    if(datas.count() == 1)
+    if(musicSongAttrs.count() == 1)
     {
-        movieDownloadUrl = data.m_url;
-        movieDownloadFormat = data.m_format;
+        movieDownloadUrl = musicSongAttr.m_url;
+        movieDownloadFormat = musicSongAttr.m_format;
     }
     else
     {
-        if(data.m_bitrate == quality)
+        if(musicSongAttr.m_bitrate == quality)
         {
-            movieDownloadUrl = data.m_url;
-            movieDownloadFormat = data.m_format;
+            movieDownloadUrl = musicSongAttr.m_url;
+            movieDownloadFormat = musicSongAttr.m_format;
         }
         else
         {
-            movieDownloadUrl = datas.back().m_url;
-            movieDownloadFormat = datas.back().m_format;
+            movieDownloadUrl = musicSongAttrs.back().m_url;
+            movieDownloadFormat = musicSongAttrs.back().m_format;
         }
     }
 
     MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
-                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(songInfo.m_singerName)
-                                                                    .arg(songInfo.m_songName)
+                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
+                                                                    .arg(musicSongInfo.m_songName)
                                                                     .arg(movieDownloadFormat), Download_Video, this);
     download->startToDownload();
 }
@@ -188,13 +188,13 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     emit mvURLChanged(musicSongInfos[row].m_songAttrs.first().m_url);
 }
 
 void MusicVideoTableWidget::getMusicMvInfo(MusicSongAttributes &data)
 {
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     data = !musicSongInfos.isEmpty() && m_previousClickRow != -1 ?
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicSongAttributes();
 }

@@ -4,7 +4,6 @@
 #include "musicdata2downloadthread.h"
 #include "musicsongdownloadthread.h"
 #include "musicbgthemedownload.h"
-#include "musicmydownloadrecordobject.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
@@ -161,7 +160,7 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0)
     {
         MusicMessageBox message;
@@ -217,11 +216,11 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::Buffing);
     musicDownloadLocal(row);
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    MusicSongAttribute songInfo = musicSongInfo.m_songAttrs.first();
+    MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text(),
-                                     item(row, 3)->text(), songInfo.m_format);
+                                     item(row, 3)->text(), musicSongAttr.m_format);
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
@@ -239,29 +238,15 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
         return;
     }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    MusicSongAttribute songInfo = musicSongInfo.m_songAttrs.first();
+    MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
     QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
-                                             .arg(musicSong).arg(songInfo.m_format);
+                                             .arg(musicSong).arg(musicSongAttr.m_format);
 
-    ////////////////////////////////////////////////
-    MusicDownloadRecord record;
-    MusicMyDownloadRecordObject down(this);
-    if(!down.readDownloadXMLConfig())
-    {
-        return;
-    }
-
-    down.readDownloadConfig( record );
-    record.m_names << musicSong;
-    record.m_paths << QFileInfo(downloadName).absoluteFilePath();
-    record.m_sizes << songInfo.m_size;
-    down.writeDownloadConfig( record );
-    ////////////////////////////////////////////////
-
-    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( songInfo.m_url,
+    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongAttr.m_url,
                                                                      downloadName, Download_Music, this);
     downSong->startToDownload();
 

@@ -87,7 +87,7 @@ void MusicDownLoadQueryThread::searchFinshed()
         }
 #endif
         emit clearAllItems();     ///Clear origin items
-        m_musicSongInfo.clear();  ///Empty the last search to songsInfo
+        m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 #ifdef MUSIC_QT_5
         QJsonObject jsonObject = parseDoucment.object();
         if(jsonObject.contains("data"))
@@ -127,7 +127,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
                                 musicInfo.m_singerName = singerName;
                                 musicInfo.m_songName = songName;
-                                m_musicSongInfo << musicInfo;
+                                m_musicSongInfos << musicInfo;
                             }
                         }
                         else
@@ -147,7 +147,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
                                 musicInfo.m_singerName = singerName;
                                 musicInfo.m_songName = songName;
-                                m_musicSongInfo << musicInfo;
+                                m_musicSongInfos << musicInfo;
                                 break;
                             }
                         }
@@ -174,7 +174,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                         }
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
-                        m_musicSongInfo << musicInfo;
+                        m_musicSongInfos << musicInfo;
                     }
                 }
             }
@@ -255,7 +255,7 @@ void MusicDownLoadQueryThread::searchFinshed()
         ///If there is no search to song_id, is repeated several times in the search
         ///If more than 5 times or no results give up
         static int counter = 5;
-        if(m_musicSongInfo.isEmpty() && counter-- > 0)
+        if(m_musicSongInfos.isEmpty() && counter-- > 0)
         {
             startSearchSong(m_currentType, m_searchText);
         }

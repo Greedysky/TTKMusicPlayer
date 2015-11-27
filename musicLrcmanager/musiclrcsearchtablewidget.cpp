@@ -81,7 +81,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
         message.exec();
         return;
     }
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
 
     MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
                              LRC_DOWNLOAD_AL + m_currentSongName + LRC_FILE, Download_Lrc, this);

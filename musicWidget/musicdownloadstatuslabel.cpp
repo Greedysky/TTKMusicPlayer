@@ -116,7 +116,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         showDownLoadInfoFor(MusicObject::DisConnection);
         return;
     }
-    MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         MusicSongInfomation musicSongInfo = musicSongInfos.first();
