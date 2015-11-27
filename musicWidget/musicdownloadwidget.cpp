@@ -4,6 +4,12 @@
 #include "musicuiobject.h"
 #include "musicdownloadquerythread.h"
 #include "musicsettingmanager.h"
+#include "musicnetworkthread.h"
+#include "musicmydownloadrecordobject.h"
+#include "musicsongdownloadthread.h"
+#include "musictextdownloadthread.h"
+#include "musicdata2downloadthread.h"
+#include "musicbgthemedownload.h"
 
 #include <QFileDialog>
 
@@ -135,12 +141,46 @@ void MusicDownloadWidget::startToDownload()
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfo());
     if(!musicSongInfos.isEmpty())
     {
-        MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
-        foreach(MusicSongAttribute attr, attrs)
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
+        foreach(MusicSongAttribute musicAttr, musicAttrs)
         {
-            if(attr.m_bitrate == bitrate)
+            if(musicAttr.m_bitrate == bitrate)
             {
-//                qDebug() << attr.m_url;
+                if(!M_NETWORK->isOnline())
+                {
+                    return;
+                }
+                QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
+                QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
+                                                         .arg(musicSong).arg(musicAttr.m_format);
+                ////////////////////////////////////////////////
+                MusicDownloadRecord record;
+                MusicMyDownloadRecordObject down(this);
+                if(!down.readDownloadXMLConfig())
+                {
+                    return;
+                }
+
+                down.readDownloadConfig( record );
+                record.m_names << musicSong;
+                record.m_paths << QFileInfo(downloadName).absoluteFilePath();
+                record.m_sizes << musicAttr.m_size;
+                down.writeDownloadConfig( record );
+                ////////////////////////////////////////////////
+
+                MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicAttr.m_url,
+                                                                                 downloadName, Download_Music, this);
+                downSong->startToDownload();
+
+                (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL +
+                                             musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
+                (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
+                                              musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
+
+                ///download big picture
+                new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this);
+
                 break;
             }
         }
