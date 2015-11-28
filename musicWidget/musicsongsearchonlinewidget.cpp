@@ -90,13 +90,13 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     item->setData(AUDITION_ROLE, AUDITION_STOP);
     setItem(count - 1, 0, item);
 
-                      item = new QTableWidgetItem(songname);
+                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 210));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
-                      item = new QTableWidgetItem(artistname);
+                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -220,7 +220,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
     MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
-    QString musicSong = item(row, 2)->text() + " - " + item(row, 1)->text();
+    QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
     QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
                                              .arg(musicSong).arg(musicSongAttr.m_format);
 
@@ -241,7 +241,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(), MusicQuery);
+    download.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicQuery);
     download.exec();
 }
 

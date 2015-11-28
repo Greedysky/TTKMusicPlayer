@@ -91,7 +91,7 @@ void MusicDownloadWidget::setMovieSDState(bool show)
 void MusicDownloadWidget::setSongName(const QString &name, QueryType type)
 {
     initWidget();
-    ui->downloadName->setText(name);
+    ui->downloadName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 200));
     m_downloadThread->setQueryAllRecords(true);
     m_downloadThread->startSearchSong(m_queryType = type, name);
 }
