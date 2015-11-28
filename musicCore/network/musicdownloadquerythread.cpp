@@ -192,7 +192,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                 {
                     it.next();
                     MusicSongInfomation musicInfo;
-                    if(m_currentType != MVQuery)
+                    if(m_currentType != MovieQuery)
                     {
                         QString songId = QString::number(it.value().property("singer_id").toVariant().toULongLong());
                         QString songName = it.value().property("song_name").toString();
@@ -201,10 +201,8 @@ void MusicDownLoadQueryThread::searchFinshed()
                         while(urlIt.hasNext())
                         {
                             urlIt.next();
-                            if( urlIt.value().property("type_description").toString() == m_searchQuality)
+                            if(m_queryAllRecords == true)
                             {
-                                emit creatSearchedItems(songName, singerName,
-                                                        urlIt.value().property("duration").toString());
                                 MusicSongAttribute songAttr;
                                 songAttr.m_url = urlIt.value().property("url").toString();
                                 songAttr.m_size = urlIt.value().property("size").toString();
@@ -212,12 +210,35 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 songAttr.m_bitrate = urlIt.value().property("bitrate").toInt32();
                                 musicInfo.m_songAttrs << songAttr;
 
-                                musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                                musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
-                                musicInfo.m_singerName = singerName;
-                                musicInfo.m_songName = songName;
-                                m_musicSongInfo << musicInfo;
-                                break;
+                                if(!urlIt.hasNext())    //the last one
+                                {
+                                    musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                                    musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                                    musicInfo.m_singerName = singerName;
+                                    musicInfo.m_songName = songName;
+                                    m_musicSongInfos << musicInfo;
+                                }
+                            }
+                            else
+                            {
+                                if( urlIt.value().property("type_description").toString() == m_searchQuality)
+                                {
+                                    emit creatSearchedItems(songName, singerName,
+                                                            urlIt.value().property("duration").toString());
+                                    MusicSongAttribute songAttr;
+                                    songAttr.m_url = urlIt.value().property("url").toString();
+                                    songAttr.m_size = urlIt.value().property("size").toString();
+                                    songAttr.m_format = urlIt.value().property("format").toString();
+                                    songAttr.m_bitrate = urlIt.value().property("bitrate").toInt32();
+                                    musicInfo.m_songAttrs << songAttr;
+
+                                    musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                                    musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                                    musicInfo.m_singerName = singerName;
+                                    musicInfo.m_songName = songName;
+                                    m_musicSongInfos << musicInfo;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -240,13 +261,14 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 songAttr.m_bitrate = bitRate;
                                 songAttr.m_format = urlIt.value().property("suffix").toString();
                                 songAttr.m_url = urlIt.value().property("url").toString();
+                                songAttr.m_size = urlIt.value().property("size").toString();
                                 musicInfo.m_songAttrs << songAttr;
                             }
                             emit creatSearchedItems(songName, singerName,
                                                     urlIt.value().property("duration").toString());
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
-                            m_musicSongInfo << musicInfo;
+                            m_musicSongInfos << musicInfo;
                         }
                     }
                 }
