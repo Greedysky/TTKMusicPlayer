@@ -19,7 +19,7 @@ class QNetworkAccessManager;
 enum QueryType
 {
     MusicQuery,
-    MVQuery,
+    MovieQuery,
     LrcQuery
 };
 

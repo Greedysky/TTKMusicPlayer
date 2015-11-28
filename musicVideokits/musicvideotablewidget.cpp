@@ -28,7 +28,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DisConnection);
         return;
     }
-    m_downLoadManager->startSearchSong(MVQuery, text);
+    m_downLoadManager->startSearchSong(MovieQuery, text);
 }
 
 void MusicVideoTableWidget::clearAllItems()
@@ -136,7 +136,8 @@ void MusicVideoTableWidget::downloadLocalFromControl()
 void MusicVideoTableWidget::downloadLocalMovie(int row)
 {
     MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(), MVQuery);
+    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(),
+                         MovieQuery);
     download.exec();
 }
 

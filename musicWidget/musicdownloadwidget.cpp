@@ -89,7 +89,7 @@ void MusicDownloadWidget::queryAllFinished()
     {
         queryAllFinishedMusic();
     }
-    else if(m_queryType == MVQuery)
+    else if(m_queryType == MovieQuery)
     {
         queryAllFinishedMovie();
     }
@@ -155,7 +155,7 @@ void MusicDownloadWidget::startToDownload()
     {
         startToDownloadMusic();
     }
-    else if(m_queryType == MVQuery)
+    else if(m_queryType == MovieQuery)
     {
         startToDownloadMovie();
     }
