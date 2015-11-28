@@ -1,5 +1,6 @@
 #include "musicvideocontrol.h"
 #include "musicconnectionpool.h"
+#include "musicdownloadwidget.h"
 
 #include <QPushButton>
 #include <QToolButton>
@@ -82,7 +83,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
-    connect(m_downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
+    connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(downloadLocalByControl()));
 
     M_CONNECTION->setValue("MusicVideoControl", this);
     M_CONNECTION->connect("MusicVideoControl", "MusicRightAreaWidget");
@@ -149,13 +150,6 @@ void MusicVideoControl::fullButtonClicked()
     m_fullButton->setText(m_fullButton->text() == tr("NormalMode") ?
                            tr("FullScreenMode") : tr("NormalMode"));
     emit musicVideoFullscreen( m_fullButton->text() == tr("NormalMode") );
-}
-
-void MusicVideoControl::downloadButtonClicked()
-{
-    int quality;
-    quality = m_qualityButton->text() == tr("NormalMV") ? 500 : 750;
-    emit downloadLocalByQuality( quality );
 }
 
 void MusicVideoControl::menuActionTriggered(QAction *action)

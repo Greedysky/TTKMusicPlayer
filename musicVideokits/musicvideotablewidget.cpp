@@ -1,8 +1,8 @@
 #include "musicvideotablewidget.h"
-#include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musictime.h"
+#include "musicdownloadwidget.h"
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -122,53 +122,22 @@ void MusicVideoTableWidget::musicDownloadLocal(int row)
         message.exec();
         return;
     }
-    downloadLocalMovie(row, 500);
+    downloadLocalMovie(row);
 }
 
-void MusicVideoTableWidget::downloadLocalByQuality(int quality)
+void MusicVideoTableWidget::downloadLocalFromControl()
 {
-    if( m_previousClickRow != -1 )
+    if( m_previousClickRow != -1 && currentRow() != -1)
     {
-        downloadLocalMovie(m_previousClickRow, quality);
+        downloadLocalMovie(currentRow());
     }
 }
 
-void MusicVideoTableWidget::downloadLocalMovie(int row, int quality)
+void MusicVideoTableWidget::downloadLocalMovie(int row)
 {
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    MusicSongAttributes musicSongAttrs = musicSongInfo.m_songAttrs;
-    if(musicSongAttrs.isEmpty())
-    {
-        return;
-    }
-
-    MusicSongAttribute musicSongAttr = musicSongAttrs.first();
-    QString movieDownloadUrl, movieDownloadFormat;
-    if(musicSongAttrs.count() == 1)
-    {
-        movieDownloadUrl = musicSongAttr.m_url;
-        movieDownloadFormat = musicSongAttr.m_format;
-    }
-    else
-    {
-        if(musicSongAttr.m_bitrate == quality)
-        {
-            movieDownloadUrl = musicSongAttr.m_url;
-            movieDownloadFormat = musicSongAttr.m_format;
-        }
-        else
-        {
-            movieDownloadUrl = musicSongAttrs.back().m_url;
-            movieDownloadFormat = musicSongAttrs.back().m_format;
-        }
-    }
-
-    MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
-                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
-                                                                    .arg(musicSongInfo.m_songName)
-                                                                    .arg(movieDownloadFormat), Download_Video, this);
-    download->startToDownload();
+    MusicDownloadWidget download;
+    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(), MVQuery);
+    download.exec();
 }
 
 void MusicVideoTableWidget::resizeWindow(float delta)

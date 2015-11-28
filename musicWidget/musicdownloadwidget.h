@@ -39,6 +39,10 @@ protected:
     void setMusicSTState(bool show);
     void setMusicHDState(bool show);
     void setMusicSDState(bool show);
+    void queryAllFinishedMusic();
+    void queryAllFinishedMovie();
+    void startToDownloadMusic();
+    void startToDownloadMovie();
 
     Ui::MusicDownloadWidget *ui;
     MusicDownLoadQueryThread *m_downloadThread;

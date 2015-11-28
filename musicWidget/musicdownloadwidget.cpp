@@ -7,6 +7,7 @@
 #include "musicmydownloadrecordobject.h"
 #include "musicsongdownloadthread.h"
 #include "musictextdownloadthread.h"
+#include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
 
@@ -84,6 +85,18 @@ int MusicDownloadWidget::exec()
 
 void MusicDownloadWidget::queryAllFinished()
 {
+    if(m_queryType == MusicQuery)
+    {
+        queryAllFinishedMusic();
+    }
+    else if(m_queryType == MVQuery)
+    {
+        queryAllFinishedMovie();
+    }
+}
+
+void MusicDownloadWidget::queryAllFinishedMusic()
+{
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
@@ -115,6 +128,11 @@ void MusicDownloadWidget::queryAllFinished()
     }
 }
 
+void MusicDownloadWidget::queryAllFinishedMovie()
+{
+    qDebug() << "MVQuery";
+}
+
 void MusicDownloadWidget::downloadDirSelected()
 {
     QFileDialog dialog;
@@ -132,6 +150,18 @@ void MusicDownloadWidget::downloadDirSelected()
 }
 
 void MusicDownloadWidget::startToDownload()
+{
+    if(m_queryType == MusicQuery)
+    {
+        startToDownloadMusic();
+    }
+    else if(m_queryType == MVQuery)
+    {
+        startToDownloadMovie();
+    }
+}
+
+void MusicDownloadWidget::startToDownloadMusic()
 {
     int bitrate = -1;
     if(ui->radioButtonST->isChecked()) bitrate = 32;
@@ -184,5 +214,42 @@ void MusicDownloadWidget::startToDownload()
             }
         }
     }
-//    close();
+}
+
+void MusicDownloadWidget::startToDownloadMovie()
+{
+    //    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    //    MusicSongInfomation musicSongInfo = musicSongInfos[row];
+    //    MusicSongAttributes musicSongAttrs = musicSongInfo.m_songAttrs;
+    //    if(musicSongAttrs.isEmpty())
+    //    {
+    //        return;
+    //    }
+
+    //    MusicSongAttribute musicSongAttr = musicSongAttrs.first();
+    //    QString movieDownloadUrl, movieDownloadFormat;
+    //    if(musicSongAttrs.count() == 1)
+    //    {
+    //        movieDownloadUrl = musicSongAttr.m_url;
+    //        movieDownloadFormat = musicSongAttr.m_format;
+    //    }
+    //    else
+    //    {
+    //        if(musicSongAttr.m_bitrate == quality)
+    //        {
+    //            movieDownloadUrl = musicSongAttr.m_url;
+    //            movieDownloadFormat = musicSongAttr.m_format;
+    //        }
+    //        else
+    //        {
+    //            movieDownloadUrl = musicSongAttrs.back().m_url;
+    //            movieDownloadFormat = musicSongAttrs.back().m_format;
+    //        }
+    //    }
+
+    //    MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
+    //                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
+    //                                                                    .arg(musicSongInfo.m_songName)
+    //                                                                    .arg(movieDownloadFormat), Download_Video, this);
+    //    download->startToDownload();
 }

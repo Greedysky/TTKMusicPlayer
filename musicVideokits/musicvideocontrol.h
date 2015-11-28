@@ -36,14 +36,13 @@ signals:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
     void getMusicMvInfo(MusicSongAttributes &data);
-    void downloadLocalByQuality(int quality);
+    void downloadLocalByControl();
     void mvURLChanged(const QString &data);
 
 public slots:
     void show();
     void inSideButtonClicked();
     void fullButtonClicked();
-    void downloadButtonClicked();
     void menuActionTriggered(QAction *action);
 
 protected:
