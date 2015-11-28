@@ -170,6 +170,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                             songAttr.m_format = object.value("suffix").toString();
                             songAttr.m_bitrate = object.value("bitRate").toInt();
                             songAttr.m_url = object.value("url").toString();
+                            songAttr.m_size = object.value("size").toString();
                             musicInfo.m_songAttrs << songAttr;
                         }
                         musicInfo.m_singerName = singerName;

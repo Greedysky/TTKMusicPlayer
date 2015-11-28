@@ -39,6 +39,9 @@ protected:
     void setMusicSTState(bool show);
     void setMusicHDState(bool show);
     void setMusicSDState(bool show);
+    void setMovieHDState(bool show);
+    void setMovieSDState(bool show);
+
     void queryAllFinishedMusic();
     void queryAllFinishedMovie();
     void startToDownloadMusic();

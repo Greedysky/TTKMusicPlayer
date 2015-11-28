@@ -25,6 +25,10 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
 
     m_downloadThread = new MusicDownLoadQueryThread(this);
     m_queryType = MusicQuery;
+    ui->iconHD->setPixmap(QPixmap(":/quality/hdQuality").scaled(30, 15));
+    ui->iconSD->setPixmap(QPixmap(":/quality/sdQuality").scaled(30, 15));
+    ui->iconHD_MV->setPixmap(QPixmap(":/quality/hdQuality").scaled(30, 15));
+    ui->iconSD_MV->setPixmap(QPixmap(":/quality/sdQuality").scaled(30, 15));
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
@@ -43,6 +47,8 @@ void MusicDownloadWidget::initWidget()
     setMusicSTState(false);
     setMusicHDState(false);
     setMusicSDState(false);
+    setMovieHDState(false);
+    setMovieSDState(false);
 
     QString path = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
@@ -68,6 +74,20 @@ void MusicDownloadWidget::setMusicSDState(bool show)
     ui->informationSD->setVisible(show);
 }
 
+void MusicDownloadWidget::setMovieHDState(bool show)
+{
+    ui->radioButtonHD_MV->setVisible(show);
+    ui->iconHD_MV->setVisible(show);
+    ui->informationHD_MV->setVisible(show);
+}
+
+void MusicDownloadWidget::setMovieSDState(bool show)
+{
+    ui->radioButtonSD_MV->setVisible(show);
+    ui->iconSD_MV->setVisible(show);
+    ui->informationSD_MV->setVisible(show);
+}
+
 void MusicDownloadWidget::setSongName(const QString &name, QueryType type)
 {
     initWidget();
@@ -87,10 +107,12 @@ void MusicDownloadWidget::queryAllFinished()
 {
     if(m_queryType == MusicQuery)
     {
+        ui->stackedWidget->setCurrentIndex(0);
         queryAllFinishedMusic();
     }
     else if(m_queryType == MovieQuery)
     {
+        ui->stackedWidget->setCurrentIndex(1);
         queryAllFinishedMovie();
     }
 }
@@ -130,7 +152,28 @@ void MusicDownloadWidget::queryAllFinishedMusic()
 
 void MusicDownloadWidget::queryAllFinishedMovie()
 {
-    qDebug() << "MVQuery";
+    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    if(!musicSongInfos.isEmpty())
+    {
+        MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
+        foreach(MusicSongAttribute attr, attrs)
+        {
+            if(attr.m_bitrate == 500)      ///hd
+            {
+                setMovieHDState(true);
+                ui->informationHD_MV->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
+                ui->radioButtonHD_MV->setChecked(true);
+            }
+            else if(attr.m_bitrate == 750) ///sd
+            {
+                setMovieSDState(true);
+                ui->informationSD_MV->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
+                ui->radioButtonSD_MV->setChecked(true);
+            }
+        }
+    }
 }
 
 void MusicDownloadWidget::downloadDirSelected()
@@ -218,38 +261,29 @@ void MusicDownloadWidget::startToDownloadMusic()
 
 void MusicDownloadWidget::startToDownloadMovie()
 {
-    //    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    //    MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    //    MusicSongAttributes musicSongAttrs = musicSongInfo.m_songAttrs;
-    //    if(musicSongAttrs.isEmpty())
-    //    {
-    //        return;
-    //    }
+    int bitrate = -1;
+    if(ui->radioButtonHD_MV->isChecked()) bitrate = 500;
+    else if(ui->radioButtonSD_MV->isChecked()) bitrate = 750;
 
-    //    MusicSongAttribute musicSongAttr = musicSongAttrs.first();
-    //    QString movieDownloadUrl, movieDownloadFormat;
-    //    if(musicSongAttrs.count() == 1)
-    //    {
-    //        movieDownloadUrl = musicSongAttr.m_url;
-    //        movieDownloadFormat = musicSongAttr.m_format;
-    //    }
-    //    else
-    //    {
-    //        if(musicSongAttr.m_bitrate == quality)
-    //        {
-    //            movieDownloadUrl = musicSongAttr.m_url;
-    //            movieDownloadFormat = musicSongAttr.m_format;
-    //        }
-    //        else
-    //        {
-    //            movieDownloadUrl = musicSongAttrs.back().m_url;
-    //            movieDownloadFormat = musicSongAttrs.back().m_format;
-    //        }
-    //    }
-
-    //    MusicDataDownloadThread* download = new MusicDataDownloadThread(movieDownloadUrl,
-    //                                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
-    //                                                                    .arg(musicSongInfo.m_songName)
-    //                                                                    .arg(movieDownloadFormat), Download_Video, this);
-    //    download->startToDownload();
+    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    if(!musicSongInfos.isEmpty())
+    {
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
+        foreach(MusicSongAttribute musicAttr, musicAttrs)
+        {
+            if(musicAttr.m_bitrate == bitrate)
+            {
+                if(!M_NETWORK->isOnline())
+                {
+                    return;
+                }
+                MusicDataDownloadThread* download = new MusicDataDownloadThread(musicAttr.m_url,
+                            QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
+                                                    .arg(musicSongInfo.m_songName).arg(musicAttr.m_format), Download_Video, this);
+                download->startToDownload();
+                break;
+            }
+        }
+    }
 }

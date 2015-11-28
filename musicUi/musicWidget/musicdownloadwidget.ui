@@ -74,76 +74,6 @@
     <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
 QLabel{background:transparent;}</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>35</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>选择音质：</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButtonST">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>35</y>
-      <width>70</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">            QRadioButton{ background-color:transparent; }
-            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
-            QRadioButton::checked { color: rgb(230,115,0); } 
-            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
-    </property>
-    <property name="text">
-     <string>压缩音质</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButtonHD">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>60</y>
-      <width>70</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">            QRadioButton{ background-color:transparent; }
-            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
-            QRadioButton::checked { color: rgb(230,115,0); } 
-            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
-    </property>
-    <property name="text">
-     <string>标准品质</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButtonSD">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>85</y>
-      <width>70</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">            QRadioButton{ background-color:transparent; }
-            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
-            QRadioButton::checked { color: rgb(230,115,0); } 
-            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
-    </property>
-    <property name="text">
-     <string>高清品质</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label2">
     <property name="geometry">
      <rect>
@@ -154,7 +84,7 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="text">
-     <string>选择音质：</string>
+     <string>存储路径：</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="downloadPathEdit">
@@ -246,86 +176,287 @@ QLabel{background:transparent;}</string>
      <string>XXXXXXXXXXXXXXXXXXX</string>
     </property>
    </widget>
-   <widget class="QLabel" name="iconHD">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>175</x>
-      <y>62</y>
-      <width>30</width>
-      <height>15</height>
+      <x>30</x>
+      <y>30</y>
+      <width>401</width>
+      <height>80</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
+    <property name="styleSheet">
+     <string notr="true">background:transparent</string>
     </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="music">
+     <widget class="QLabel" name="musicLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>60</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>选择音质：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="iconHD">
+      <property name="geometry">
+       <rect>
+        <x>145</x>
+        <y>37</y>
+        <width>30</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="iconSD">
+      <property name="geometry">
+       <rect>
+        <x>145</x>
+        <y>62</y>
+        <width>30</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonSD">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>60</y>
+        <width>70</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+      </property>
+      <property name="text">
+       <string>高清品质</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="informationHD">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>35</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXX/XXXXXX/XXXXX</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="informationST">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>10</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXX/XXXXXX/XXXXX</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonST">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>10</y>
+        <width>70</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+      </property>
+      <property name="text">
+       <string>压缩音质</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonHD">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>35</y>
+        <width>70</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+      </property>
+      <property name="text">
+       <string>标准品质</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="informationSD">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>60</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXX/XXXXXX/XXXXX</string>
+      </property>
+     </widget>
+     <zorder>musicLabel</zorder>
+     <zorder>radioButtonSD</zorder>
+     <zorder>informationHD</zorder>
+     <zorder>informationST</zorder>
+     <zorder>radioButtonST</zorder>
+     <zorder>radioButtonHD</zorder>
+     <zorder>informationSD</zorder>
+     <zorder>iconSD</zorder>
+     <zorder>iconHD</zorder>
+    </widget>
+    <widget class="QWidget" name="movie">
+     <widget class="QLabel" name="movieLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>60</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>视频资源：</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="informationSD_MV">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>35</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXX/XXXXXX/XXXXX</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="iconHD_MV">
+      <property name="geometry">
+       <rect>
+        <x>145</x>
+        <y>11</y>
+        <width>30</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="iconSD_MV">
+      <property name="geometry">
+       <rect>
+        <x>145</x>
+        <y>36</y>
+        <width>30</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="informationHD_MV">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>10</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>XXX/XXXXXX/XXXXX</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonHD_MV">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>10</y>
+        <width>70</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+      </property>
+      <property name="text">
+       <string>标准品质</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonSD_MV">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>35</y>
+        <width>70</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">            QRadioButton{ background-color:transparent; }
+            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+            QRadioButton::checked { color: rgb(230,115,0); } 
+            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked);}</string>
+      </property>
+      <property name="text">
+       <string>高清品质</string>
+      </property>
+     </widget>
+     <zorder>movieLabel</zorder>
+     <zorder>informationSD_MV</zorder>
+     <zorder>informationHD_MV</zorder>
+     <zorder>radioButtonHD_MV</zorder>
+     <zorder>radioButtonSD_MV</zorder>
+     <zorder>iconSD_MV</zorder>
+     <zorder>iconHD_MV</zorder>
+    </widget>
    </widget>
-   <widget class="QLabel" name="iconSD">
-    <property name="geometry">
-     <rect>
-      <x>175</x>
-      <y>87</y>
-      <width>30</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="informationSD">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>85</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>XXX/XXXXXX/XXXXX</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="informationHD">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>60</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>XXX/XXXXXX/XXXXX</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="informationST">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>35</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>XXX/XXXXXX/XXXXX</string>
-    </property>
-   </widget>
-   <zorder>label</zorder>
    <zorder>label2</zorder>
    <zorder>downloadName</zorder>
    <zorder>downloadPathEdit</zorder>
    <zorder>pathChangedButton</zorder>
    <zorder>settingButton</zorder>
    <zorder>downloadButton</zorder>
-   <zorder>radioButtonST</zorder>
-   <zorder>radioButtonHD</zorder>
-   <zorder>radioButtonSD</zorder>
-   <zorder>iconHD</zorder>
-   <zorder>iconSD</zorder>
-   <zorder>informationSD</zorder>
-   <zorder>informationHD</zorder>
-   <zorder>informationST</zorder>
+   <zorder>stackedWidget</zorder>
   </widget>
  </widget>
  <resources/>
