@@ -19,8 +19,8 @@ public:
     explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
     virtual ~MusicLrcSearchTableWidget();
 
-    void startSearchQuery(const QString &text);
-    void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text);
+    virtual void musicDownloadLocal(int row);
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
 signals:

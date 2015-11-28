@@ -19,8 +19,8 @@ public:
     explicit MusicVideoTableWidget(QWidget *parent = 0);
     virtual ~MusicVideoTableWidget();
 
-    void startSearchQuery(const QString &text);
-    void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text);
+    virtual void musicDownloadLocal(int row);
     void resizeWindow(float delta);
 
 signals:

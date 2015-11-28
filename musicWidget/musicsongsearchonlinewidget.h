@@ -27,8 +27,8 @@ public:
     explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
     virtual ~MusicSongSearchOnlineTableWidget();
 
-    void startSearchQuery(const QString &text);
-    void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text);
+    virtual void musicDownloadLocal(int row);
 
     void auditionToMusic(int row);
     void auditionToMusicStop(int row);

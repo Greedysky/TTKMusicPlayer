@@ -97,16 +97,18 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
     setItem(count - 1, 7, item);
 }
 
-void MusicVideoTableWidget::listCellClicked(int row,int col)
+void MusicVideoTableWidget::listCellClicked(int row, int col)
 {
     MusicQueryTableWidget::listCellClicked(row, col);
     switch(col)
     {
         case 5:
         case 6:
-            itemDoubleClicked(row, 999);break;
+            itemDoubleClicked(row, 999);
+            break;
         case 7:
-            musicDownloadLocal(row);break;
+            musicDownloadLocal(row);
+            break;
         default:break;
     }
 }

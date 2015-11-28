@@ -8,6 +8,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccoremplayer.h"
+#include "musicdownloadwidget.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -214,35 +215,12 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
         message.exec();
         return;
     }
-    emit showDownLoadInfoFor(MusicObject::Buffing);
-    musicDownloadLocal(row);
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
-    emit muiscSongToPlayListChanged( item(row, 2)->text() + " - " + item(row, 1)->text(),
-                                     item(row, 3)->text(), musicSongAttr.m_format);
-}
-
-void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
-{
-    if(!M_NETWORK->isOnline())
-    {   //no network connection
-        emit showDownLoadInfoFor(MusicObject::DisConnection);
-        return;
-    }
-    if(row < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
-        return;
-    }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
 
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
     MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
-    QString musicSong =  item(row, 2)->text() + " - " + item(row, 1)->text() ;
+    QString musicSong = item(row, 2)->text() + " - " + item(row, 1)->text();
     QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
                                              .arg(musicSong).arg(musicSongAttr.m_format);
 
@@ -254,9 +232,17 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
                                  musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
     (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
                                   musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
-
     ///download big picture
     new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this);
+
+    emit muiscSongToPlayListChanged( musicSong, item(row, 3)->text(), musicSongAttr.m_format);
+}
+
+void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
+{
+    MusicDownloadWidget download;
+    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text());
+    download.exec();
 }
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)

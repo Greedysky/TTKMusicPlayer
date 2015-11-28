@@ -84,7 +84,7 @@ int MusicDownloadWidget::exec()
 
 void MusicDownloadWidget::queryAllFinished()
 {
-    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
@@ -138,7 +138,7 @@ void MusicDownloadWidget::startToDownload()
     else if(ui->radioButtonHD->isChecked()) bitrate = 128;
     else if(ui->radioButtonSD->isChecked()) bitrate = 320;
 
-    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfo());
+    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         MusicSongInfomation musicSongInfo = musicSongInfos.first();
