@@ -233,7 +233,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
                                   musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
     ///download big picture
-    new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this);
+    (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
     emit muiscSongToPlayListChanged( musicSong, item(row, 3)->text(), musicSongAttr.m_format);
 }

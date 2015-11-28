@@ -7,15 +7,8 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
                                            QObject *parent)
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                             BIG_BG_ART_URL.arg(name), TMP_DOWNLOAD, Download_BigBG, this);
-    ///Set search image API
-    connect(download, SIGNAL(musicDownLoadFinished(QString)),
-                      SLOT(downLoadFinished(QString)));
-
     M_CONNECTION->setValue("MusicBgThemeDownload", this);
     M_CONNECTION->connect("MusicBgThemeDownload", "MusicTopAreaWidget");
-    download->startToDownload();
 }
 
 MusicBgThemeDownload::~MusicBgThemeDownload()
@@ -23,7 +16,16 @@ MusicBgThemeDownload::~MusicBgThemeDownload()
     M_CONNECTION->disConnect("MusicBgThemeDownload");
 }
 
-void MusicBgThemeDownload::downLoadFinished(const QString &)
+void MusicBgThemeDownload::startToDownload()
+{
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(
+                             BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD, Download_BigBG, this);
+    ///Set search image API
+    connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(downLoadFinished()));
+    download->startToDownload();
+}
+
+void MusicBgThemeDownload::downLoadFinished()
 {
     QFile file(TMP_DOWNLOAD);
     ///Check if the file exists and can be written
@@ -47,7 +49,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString &)
             M_LOGGER << line << LOG_END;
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
                                     .arg(m_savePath).arg(m_counter++).arg(SKN_FILE), Download_BigBG, this);
-            connect(down, SIGNAL(musicDownLoadFinished(QString)),SLOT(bgDownLoadFinished(QString)));
+            connect(down, SIGNAL(musicDownLoadFinished(QString)), SLOT(bgDownLoadFinished()));
             down->startToDownload();
         }
         line = in.readLine();
@@ -57,7 +59,7 @@ void MusicBgThemeDownload::downLoadFinished(const QString &)
     QFile::remove(TMP_DOWNLOAD);
 }
 
-void MusicBgThemeDownload::bgDownLoadFinished(const QString &)
+void MusicBgThemeDownload::bgDownLoadFinished()
 {
     if( ++m_index >= m_counter)
     {

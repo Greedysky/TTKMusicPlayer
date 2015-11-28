@@ -132,7 +132,8 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
                                       Download_SmlBG, this))->startToDownload();
         ///download big picture
-        new MusicBgThemeDownload( count == 1 ? musicSongInfo.m_singerName : filename, filename, this);
+        (new MusicBgThemeDownload( count == 1 ? musicSongInfo.m_singerName : filename,
+                                   filename, this))->startToDownload();
     }
     else
     {

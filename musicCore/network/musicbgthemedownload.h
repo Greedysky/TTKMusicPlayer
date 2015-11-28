@@ -21,12 +21,14 @@ public:
                                   QObject *parent = 0);
     ~MusicBgThemeDownload();
 
+    void startToDownload();
+
 signals:
     void musicBgDownloadFinished();
 
 public slots:
-    void downLoadFinished(const QString &name);
-    void bgDownLoadFinished(const QString &name);
+    void downLoadFinished();
+    void bgDownLoadFinished();
 
 protected:
     QString m_artName;
