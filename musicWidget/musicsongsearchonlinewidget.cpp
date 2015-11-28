@@ -241,7 +241,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text());
+    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(), MusicQuery);
     download.exec();
 }
 

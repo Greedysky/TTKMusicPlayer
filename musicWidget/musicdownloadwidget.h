@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicabstractmovedialog.h"
+#include "musicdownloadquerythread.h"
 
 class MusicDownLoadQueryThread;
 
@@ -24,7 +25,7 @@ public:
     explicit MusicDownloadWidget(QWidget *parent = 0);
     virtual ~MusicDownloadWidget();
 
-    void setSongName(const QString &name);
+    void setSongName(const QString &name, QueryType type);
 
 signals:
 public slots:
@@ -41,6 +42,7 @@ protected:
 
     Ui::MusicDownloadWidget *ui;
     MusicDownLoadQueryThread *m_downloadThread;
+    QueryType m_queryType;
 
 };
 

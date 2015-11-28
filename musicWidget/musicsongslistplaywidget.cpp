@@ -177,6 +177,6 @@ void MusicSongsListPlayWidget::showMVButtonClicked()
 void MusicSongsListPlayWidget::downloadButtonClicked()
 {
     MusicDownloadWidget downloadWidget;
-    downloadWidget.setSongName(m_songName->text());
+    downloadWidget.setSongName(m_songName->text(), MusicQuery);
     downloadWidget.exec();
 }

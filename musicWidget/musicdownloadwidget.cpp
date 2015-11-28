@@ -2,7 +2,6 @@
 #include "ui_musicdownloadwidget.h"
 #include "musicbgthememanager.h"
 #include "musicuiobject.h"
-#include "musicdownloadquerythread.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicmydownloadrecordobject.h"
@@ -24,6 +23,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_downloadThread = new MusicDownLoadQueryThread(this);
+    m_queryType = MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
@@ -67,12 +67,12 @@ void MusicDownloadWidget::setMusicSDState(bool show)
     ui->informationSD->setVisible(show);
 }
 
-void MusicDownloadWidget::setSongName(const QString &name)
+void MusicDownloadWidget::setSongName(const QString &name, QueryType type)
 {
     initWidget();
     ui->downloadName->setText(name);
     m_downloadThread->setQueryAllRecords(true);
-    m_downloadThread->startSearchSong(MusicQuery, name);
+    m_downloadThread->startSearchSong(m_queryType = type, name);
 }
 
 int MusicDownloadWidget::exec()
@@ -184,5 +184,5 @@ void MusicDownloadWidget::startToDownload()
             }
         }
     }
-    close();
+//    close();
 }
