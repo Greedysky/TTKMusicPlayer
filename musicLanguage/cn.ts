@@ -781,6 +781,90 @@
     </message>
 </context>
 <context>
+    <name>MusicDownloadWidget</name>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="48"/>
+        <source>下载窗口</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="61"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="87"/>
+        <source>存储路径：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="122"/>
+        <source>更改目录</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="141"/>
+        <source>下载设置</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="160"/>
+        <source>下载</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="176"/>
+        <source>XXXXXXXXXXXXXXXXXXX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="205"/>
+        <source>选择音质：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="250"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="441"/>
+        <source>高清品质</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="263"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="276"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="327"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="364"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="403"/>
+        <source>XXX/XXXXXX/XXXXX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="295"/>
+        <source>压缩音质</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="314"/>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="422"/>
+        <source>标准品质</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="351"/>
+        <source>视频资源：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="24"/>
+        <source>Close</source>
+        <translation type="unfinished">关闭</translation>
+    </message>
+</context>
+<context>
     <name>MusicEnhancedWidget</name>
     <message>
         <location filename="../musicWidget/musicenhancedwidget.cpp" line="14"/>
@@ -1827,22 +1911,22 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="68"/>
+        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="67"/>
         <source>Art name is empty!</source>
         <translation>歌手不能为空！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="73"/>
+        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="72"/>
         <source>song name is empty!</source>
         <translation>歌曲名不能为空！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="78"/>
+        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="77"/>
         <source>lrc text is empty!</source>
         <translation>歌词内容不能为空！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="176"/>
+        <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="175"/>
         <source>lrc make finished</source>
         <translation></translation>
     </message>
@@ -1873,42 +1957,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="81"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="68"/>
         <source>歌曲名：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="94"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="81"/>
         <source>搜索</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="140"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="127"/>
         <source>下载</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="153"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="140"/>
         <source>关闭</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="182"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="169"/>
         <source> 暂无所搜到的歌词</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="211"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="198"/>
         <source>歌曲名</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="227"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="214"/>
         <source>艺术家</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="243"/>
+        <location filename="../musicUi/musicLrcmanager/musiclrcsearchwidget.ui" line="230"/>
         <source>时间</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2384,8 +2468,8 @@
     <message>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="283"/>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1151"/>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1293"/>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1446"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1299"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1452"/>
         <source>基本设置</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2561,99 +2645,99 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1187"/>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1213"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1190"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1216"/>
         <source>更改目录</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1200"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1203"/>
         <source>歌词目录</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1236"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1242"/>
         <source>缓存大小设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1249"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1255"/>
         <source>自动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1262"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1268"/>
         <source>手动</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1306"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1312"/>
         <source>全速下载</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1319"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1325"/>
         <source>限速</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1362"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1368"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1375"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1381"/>
         <source>下载</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1388"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1394"/>
         <source>上传</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1401"/>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1414"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1407"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1420"/>
         <source>KB/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1464"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1470"/>
         <source>歌词设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1477"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1483"/>
         <source>常规设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1490"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1496"/>
         <source>热键设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1503"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1509"/>
         <source>桌面歌词</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1516"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1522"/>
         <source>窗口歌词</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1529"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1535"/>
         <source>下载设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1543"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1549"/>
         <source>确认</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1556"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1562"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2674,7 +2758,6 @@
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="168"/>
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="196"/>
         <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="214"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="234"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
@@ -2682,54 +2765,54 @@
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="315"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="292"/>
         <source>&amp;nbsp;find &lt;font color=red&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;搜索到 &lt;font color=red&gt; %1 &lt;/font&gt; 的相关歌曲</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="324"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="301"/>
         <source>&amp;nbsp;find no result</source>
         <translation>&amp;nbsp;没有搜到相关内容</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="336"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="313"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="339"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="316"/>
         <source>Artist</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="342"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="319"/>
         <source>Operator</source>
         <translation>相关操作</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="346"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="383"/>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="400"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="323"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="360"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="377"/>
         <source>Play</source>
         <translation>试听</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="351"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="328"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="356"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="333"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="374"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="351"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="400"/>
+        <location filename="../musicWidget/musicsongsearchonlinewidget.cpp" line="377"/>
         <source>Stop</source>
         <translation>暂停</translation>
     </message>
@@ -2770,22 +2853,27 @@
 <context>
     <name>MusicSongsListPlayWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="53"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="54"/>
         <source>bestlove</source>
         <translation>添加至我的最爱</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="60"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="61"/>
         <source>deleteMusic</source>
         <translation>删除歌曲</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="67"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="69"/>
+        <source>songDownload</source>
+        <translation>下载</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="76"/>
         <source>showMV</source>
         <translation>观看MV</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="74"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="83"/>
         <source>songShare</source>
         <translation>分享</translation>
     </message>
@@ -2888,12 +2976,12 @@
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="239"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="250"/>
         <source>Delete File Mode</source>
         <translation>正在删除文件，请稍候！</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="397"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="415"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
@@ -2903,7 +2991,7 @@
         <translation>添加到我的最爱</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistwidget.cpp" line="231"/>
+        <location filename="../musicWidget/musicsongslistwidget.cpp" line="242"/>
         <source>Are you sure to delete?</source>
         <translation>你确定要删除吗？</translation>
     </message>
@@ -2941,27 +3029,27 @@
         <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="225"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="226"/>
         <source>The origin one can&apos;t delete!</source>
         <translation>系统默认列表不允许删除</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="238"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="239"/>
         <source>The origin one can&apos;t rename!</source>
         <translation>系统默认列表不允许重命名</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="276"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="277"/>
         <source>deleteItem</source>
         <translation>删除列表</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="277"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="278"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="278"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="279"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
@@ -3871,47 +3959,46 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="20"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="73"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="131"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="157"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="165"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="167"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="21"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="74"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="132"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="159"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="161"/>
         <source>NormalMV</source>
         <translation>标清</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="21"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="22"/>
         <source>DownloadMV</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="32"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="33"/>
         <source>InlineMode</source>
         <translation>内嵌模式</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="32"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="33"/>
         <source>PopupMode</source>
         <translation>弹出模式</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="33"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="150"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="34"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="151"/>
         <source>FullScreenMode</source>
         <translation>全屏模式</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="149"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="150"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="151"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="152"/>
         <source>NormalMode</source>
         <translation>普通模式</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="74"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="131"/>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="172"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="75"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="132"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="166"/>
         <source>HdMV</source>
         <translation>高清</translation>
     </message>
