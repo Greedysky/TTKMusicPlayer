@@ -19,7 +19,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     m_previousClickRow = 1;
 
     createItems();
-    setFixedSize(110, 90);
+    setFixedSize(110, 150);
 }
 
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
@@ -29,33 +29,49 @@ MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
 
 void MusicQualityChoiceTableWidget::createItems()
 {
-    setRowCount(3);
+    setRowCount(5);
 
     QTableWidgetItem *item = new QTableWidgetItem(tr("ST"));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(0, 0, item);
 
-                      item = new QTableWidgetItem(tr("HD"));
+                      item = new QTableWidgetItem(tr("SQ"));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(1, 0, item);
 
-                      item = new QTableWidgetItem(tr("SD"));
+                      item = new QTableWidgetItem(tr("HD"));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(2, 0, item);
+
+                      item = new QTableWidgetItem(tr("SD"));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignCenter);
+    setItem(3, 0, item);
+
+                      item = new QTableWidgetItem(tr("CD"));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignCenter);
+    setItem(4, 0, item);
 
                       item = new QTableWidgetItem;
     setItem(0, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/hdQuality"));
     setItem(1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/sdQuality"));
+    item->setIcon(QIcon(":/quality/hdQuality"));
     setItem(2, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/quality/sdQuality"));
+    setItem(3, 1, item);
+
+                      item = new QTableWidgetItem;
+    setItem(4, 1, item);
 
                       item = new QTableWidgetItem;
     item->setData(Qt::DisplayRole, false);
@@ -68,6 +84,14 @@ void MusicQualityChoiceTableWidget::createItems()
                       item = new QTableWidgetItem;
     item->setData(Qt::DisplayRole, false);
     setItem(2, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, false);
+    setItem(3, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(Qt::DisplayRole, false);
+    setItem(4, 2, item);
 }
 
 void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
@@ -85,7 +109,7 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     : QToolButton(parent)
 {
-    setText(tr("HD-text"));
+    setText(tr("SQ-text"));
     setToolTip(tr("Quality Choice"));
     setFixedSize(45, 20);
     initWidget();
@@ -130,14 +154,26 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
             }
         case 1:
             {
-                setText(tr("HD-text"));
-                m_currentQuality = tr("HD");
+                setText(tr("SQ-text"));
+                m_currentQuality = tr("SQ");
                 break;
             }
         case 2:
             {
+                setText(tr("HD-text"));
+                m_currentQuality = tr("HD");
+                break;
+            }
+        case 3:
+            {
                 setText(tr("SD-text"));
                 m_currentQuality = tr("SD");
+                break;
+            }
+        case 4:
+            {
+                setText(tr("CD-text"));
+                m_currentQuality = tr("CD");
                 break;
             }
     }

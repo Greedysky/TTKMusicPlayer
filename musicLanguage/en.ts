@@ -2123,56 +2123,86 @@
     <message>
         <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="34"/>
         <source>ST</source>
-        <translation type="unfinished"></translation>
+        <translation>压缩品质</translation>
     </message>
     <message>
         <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="39"/>
-        <source>HD</source>
-        <translation type="unfinished"></translation>
+        <source>SQ</source>
+        <translation>标准品质</translation>
     </message>
     <message>
         <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="44"/>
+        <source>HD</source>
+        <translation>普高品质</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="49"/>
         <source>SD</source>
-        <translation type="unfinished"></translation>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="54"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
     </message>
 </context>
 <context>
     <name>MusicQualityChoiceWidget</name>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="127"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="151"/>
         <source>ST-text</source>
-        <translation>ST</translation>
+        <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="89"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="113"/>
         <source>Quality Choice</source>
-        <translation type="unfinished"></translation>
+        <translation>品质选择</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="128"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="112"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="157"/>
+        <source>SQ-text</source>
+        <translation>标准</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="152"/>
         <source>ST</source>
-        <translation type="unfinished"></translation>
+        <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="88"/>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="133"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="158"/>
+        <source>SQ</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="163"/>
         <source>HD-text</source>
-        <translation>HD</translation>
+        <translation>高品</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="134"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="164"/>
         <source>HD</source>
-        <translation type="unfinished"></translation>
+        <translation>高品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="139"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="169"/>
         <source>SD-text</source>
-        <translation>SD</translation>
+        <translation>超高</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="140"/>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="170"/>
         <source>SD</source>
-        <translation type="unfinished"></translation>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="175"/>
+        <source>CD-text</source>
+        <translation>无损</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicqualitychoicewidget.cpp" line="176"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
     </message>
 </context>
 <context>
