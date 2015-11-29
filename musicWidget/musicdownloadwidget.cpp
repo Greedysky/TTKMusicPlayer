@@ -12,6 +12,84 @@
 #include "musicbgthemedownload.h"
 
 #include <QFileDialog>
+#include <QLabel>
+
+MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
+    : QWidget(parent)
+{
+    m_infomation = new QLabel(this);
+    m_icon = new QLabel(this);
+    m_text = new QLabel(this);
+
+    m_text->setGeometry(5, 0, 60, 25);
+    m_icon->setGeometry(70, 0, 30, 25);
+    m_infomation->setGeometry(200, 0, 150, 25);
+}
+
+MusicDownloadTableItem::~MusicDownloadTableItem()
+{
+    delete m_infomation;
+    delete m_icon;
+    delete m_text;
+}
+
+void MusicDownloadTableItem::setIcon(const QString &name)
+{
+    m_icon->setPixmap(QPixmap(name));
+}
+
+void MusicDownloadTableItem::setInfomation(const QString &info)
+{
+    m_infomation->setText(info);
+}
+
+void MusicDownloadTableItem::setText(const QString &text)
+{
+    m_text->setText(text);
+}
+
+
+
+MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    setColumnCount(1);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 400);
+    setTransparent(255);
+}
+
+MusicDownloadTableWidget::~MusicDownloadTableWidget()
+{
+    clearAllItems();
+}
+
+void MusicDownloadTableWidget::clearAllItems()
+{
+    while(!m_items.isEmpty())
+    {
+        delete m_items.takeFirst();
+    }
+    MusicAbstractTableWidget::clear();
+    setColumnCount(1);
+}
+
+void MusicDownloadTableWidget::createItem(const QString &type, const QString &info, const QString &icon)
+{
+    int index = rowCount();
+    setRowCount(index + 1);
+    setRowHeight(index, 25);
+    setItem(index, 0, new QTableWidgetItem);
+
+    MusicDownloadTableItem *item = new MusicDownloadTableItem(this);
+    item->setIcon(icon);
+    item->setInfomation(info);
+    item->setText(type);
+    m_items << item;
+
+    setCellWidget(index, 0, item);
+}
+
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -25,10 +103,6 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
 
     m_downloadThread = new MusicDownLoadQueryThread(this);
     m_queryType = MusicQuery;
-    ui->iconHD->setPixmap(QPixmap(":/quality/hdQuality").scaled(30, 15));
-    ui->iconSD->setPixmap(QPixmap(":/quality/sdQuality").scaled(30, 15));
-    ui->iconHD_MV->setPixmap(QPixmap(":/quality/hdQuality").scaled(30, 15));
-    ui->iconSD_MV->setPixmap(QPixmap(":/quality/sdQuality").scaled(30, 15));
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
@@ -44,48 +118,8 @@ MusicDownloadWidget::~MusicDownloadWidget()
 
 void MusicDownloadWidget::initWidget()
 {
-    setMusicSTState(false);
-    setMusicHDState(false);
-    setMusicSDState(false);
-    setMovieHDState(false);
-    setMovieSDState(false);
-
     QString path = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
-}
-
-void MusicDownloadWidget::setMusicSTState(bool show)
-{
-    ui->radioButtonST->setVisible(show);
-    ui->informationST->setVisible(show);
-}
-
-void MusicDownloadWidget::setMusicHDState(bool show)
-{
-    ui->radioButtonHD->setVisible(show);
-    ui->iconHD->setVisible(show);
-    ui->informationHD->setVisible(show);
-}
-
-void MusicDownloadWidget::setMusicSDState(bool show)
-{
-    ui->radioButtonSD->setVisible(show);
-    ui->iconSD->setVisible(show);
-    ui->informationSD->setVisible(show);
-}
-
-void MusicDownloadWidget::setMovieHDState(bool show)
-{
-    ui->radioButtonHD_MV->setVisible(show);
-    ui->iconHD_MV->setVisible(show);
-    ui->informationHD_MV->setVisible(show);
-}
-
-void MusicDownloadWidget::setMovieSDState(bool show)
-{
-    ui->radioButtonSD_MV->setVisible(show);
-    ui->iconSD_MV->setVisible(show);
-    ui->informationSD_MV->setVisible(show);
 }
 
 void MusicDownloadWidget::setSongName(const QString &name, QueryType type)
@@ -107,12 +141,10 @@ void MusicDownloadWidget::queryAllFinished()
 {
     if(m_queryType == MusicQuery)
     {
-        ui->stackedWidget->setCurrentIndex(0);
         queryAllFinishedMusic();
     }
     else if(m_queryType == MovieQuery)
     {
-        ui->stackedWidget->setCurrentIndex(1);
         queryAllFinishedMovie();
     }
 }
@@ -127,24 +159,33 @@ void MusicDownloadWidget::queryAllFinishedMusic()
         {
             if(attr.m_bitrate == 32)         ///st
             {
-                setMusicSTState(true);
-                ui->informationST->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-                ui->radioButtonST->setChecked(true);
+                ui->viewArea->createItem(tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString());
             }
-            else if(attr.m_bitrate == 128)   ///hd
+            else if(attr.m_bitrate == 128)   ///sq
             {
-                setMusicHDState(true);
-                ui->informationHD->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-                ui->radioButtonHD->setChecked(true);
+                ui->viewArea->createItem(tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString());
+            }
+            else if(attr.m_bitrate == 192)   ///hd
+            {
+                ui->viewArea->createItem(tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString(":/quality/hdQuality"));
             }
             else if(attr.m_bitrate == 320)   ///sd
             {
-                setMusicSDState(true);
-                ui->informationSD->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-                ui->radioButtonSD->setChecked(true);
+                ui->viewArea->createItem(tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString(":/quality/sdQuality"));
+            }
+            else if(attr.m_bitrate > 320)   ///cd
+            {
+                ui->viewArea->createItem(tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString());
             }
         }
     }
@@ -160,17 +201,15 @@ void MusicDownloadWidget::queryAllFinishedMovie()
         {
             if(attr.m_bitrate == 500)      ///hd
             {
-                setMovieHDState(true);
-                ui->informationHD_MV->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-                ui->radioButtonHD_MV->setChecked(true);
+                ui->viewArea->createItem(tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString(":/quality/hdQuality"));
             }
             else if(attr.m_bitrate == 750) ///sd
             {
-                setMovieSDState(true);
-                ui->informationSD_MV->setText(QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                        .arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-                ui->radioButtonSD_MV->setChecked(true);
+                ui->viewArea->createItem(tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString(":/quality/sdQuality"));
             }
         }
     }
@@ -207,9 +246,9 @@ void MusicDownloadWidget::startToDownload()
 void MusicDownloadWidget::startToDownloadMusic()
 {
     int bitrate = -1;
-    if(ui->radioButtonST->isChecked()) bitrate = 32;
-    else if(ui->radioButtonHD->isChecked()) bitrate = 128;
-    else if(ui->radioButtonSD->isChecked()) bitrate = 320;
+//    if(ui->radioButtonST->isChecked()) bitrate = 32;
+//    else if(ui->radioButtonHD->isChecked()) bitrate = 128;
+//    else if(ui->radioButtonSD->isChecked()) bitrate = 320;
 
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
@@ -262,8 +301,8 @@ void MusicDownloadWidget::startToDownloadMusic()
 void MusicDownloadWidget::startToDownloadMovie()
 {
     int bitrate = -1;
-    if(ui->radioButtonHD_MV->isChecked()) bitrate = 500;
-    else if(ui->radioButtonSD_MV->isChecked()) bitrate = 750;
+//    if(ui->radioButtonHD_MV->isChecked()) bitrate = 500;
+//    else if(ui->radioButtonSD_MV->isChecked()) bitrate = 750;
 
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())

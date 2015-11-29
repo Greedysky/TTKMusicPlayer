@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicabstractmovedialog.h"
+#include "musicabstracttablewidget.h"
 #include "musicdownloadquerythread.h"
 
 class MusicDownLoadQueryThread;
@@ -17,6 +18,43 @@ class MusicDownLoadQueryThread;
 namespace Ui {
 class MusicDownloadWidget;
 }
+class QLabel;
+
+class MUSIC_WIDGET_EXPORT MusicDownloadTableItem : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicDownloadTableItem(QWidget *parent = 0);
+    ~MusicDownloadTableItem();
+
+    void setIcon(const QString &name);
+    void setInfomation(const QString &info);
+    void setText(const QString &text);
+
+protected:
+    QLabel *m_text, *m_infomation, *m_icon;
+
+};
+
+
+class MUSIC_WIDGET_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicDownloadTableWidget(QWidget *parent = 0);
+    virtual ~MusicDownloadTableWidget();
+
+    void clearAllItems();
+    void createItem(const QString &type, const QString &info, const QString &icon);
+
+public slots:
+    virtual void listCellClicked(int , int ) {}
+
+protected:
+    QList<QObject*> m_items;
+
+};
+
 
 class MUSIC_WIDGET_EXPORT MusicDownloadWidget : public MusicAbstractMoveDialog
 {
@@ -36,11 +74,6 @@ public slots:
 
 protected:
     void initWidget();
-    void setMusicSTState(bool show);
-    void setMusicHDState(bool show);
-    void setMusicSDState(bool show);
-    void setMovieHDState(bool show);
-    void setMovieSDState(bool show);
 
     void queryAllFinishedMusic();
     void queryAllFinishedMovie();
