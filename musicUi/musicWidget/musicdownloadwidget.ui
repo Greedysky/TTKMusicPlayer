@@ -179,11 +179,24 @@ QLabel{background:transparent;}</string>
    <widget class="MusicDownloadTableWidget" name="viewArea">
     <property name="geometry">
      <rect>
-      <x>32</x>
-      <y>30</y>
-      <width>400</width>
+      <x>101</x>
+      <y>33</y>
+      <width>330</width>
       <height>130</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>37</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>资源选择：</string>
     </property>
    </widget>
    <zorder>label2</zorder>
@@ -193,6 +206,7 @@ QLabel{background:transparent;}</string>
    <zorder>settingButton</zorder>
    <zorder>downloadButton</zorder>
    <zorder>viewArea</zorder>
+   <zorder>label1</zorder>
   </widget>
  </widget>
  <customwidgets>

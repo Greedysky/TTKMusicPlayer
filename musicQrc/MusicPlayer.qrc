@@ -41,8 +41,11 @@
     </qresource>
     <qresource prefix="/quality">
         <file alias="bg">../musicResource/quality/background.png</file>
+        <file alias="stQuality">../musicResource/quality/st_quality.png</file>
+        <file alias="sdQuality">../musicResource/quality/sd_quality.png</file>
         <file alias="hdQuality">../musicResource/quality/hd_quality.png</file>
-        <file alias="sdQuality">../musicResource/quality/sq_quality.png</file>
+        <file alias="sqQuality">../musicResource/quality/sq_quality.png</file>
+        <file alias="cdQuality">../musicResource/quality/cd_quality.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="black">../musicResource/color/Black.png</file>

@@ -36,7 +36,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(0, 0, item);
 
-                      item = new QTableWidgetItem(tr("SQ"));
+                      item = new QTableWidgetItem(tr("SD"));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(1, 0, item);
@@ -46,7 +46,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(2, 0, item);
 
-                      item = new QTableWidgetItem(tr("SD"));
+                      item = new QTableWidgetItem(tr("SQ"));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(3, 0, item);
@@ -57,9 +57,11 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(4, 0, item);
 
                       item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/quality/stQuality"));
     setItem(0, 1, item);
 
                       item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/quality/sdQuality"));
     setItem(1, 1, item);
 
                       item = new QTableWidgetItem;
@@ -67,10 +69,11 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/sdQuality"));
+    item->setIcon(QIcon(":/quality/sqQuality"));
     setItem(3, 1, item);
 
                       item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/quality/cdQuality"));
     setItem(4, 1, item);
 
                       item = new QTableWidgetItem;
@@ -109,7 +112,7 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     : QToolButton(parent)
 {
-    setText(tr("SQ-text"));
+    setText(tr("SD-text"));
     setToolTip(tr("Quality Choice"));
     setFixedSize(45, 20);
     initWidget();
@@ -154,8 +157,8 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
             }
         case 1:
             {
-                setText(tr("SQ-text"));
-                m_currentQuality = tr("SQ");
+                setText(tr("SD-text"));
+                m_currentQuality = tr("SD");
                 break;
             }
         case 2:
@@ -166,8 +169,8 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
             }
         case 3:
             {
-                setText(tr("SD-text"));
-                m_currentQuality = tr("SD");
+                setText(tr("SQ-text"));
+                m_currentQuality = tr("SQ");
                 break;
             }
         case 4:
