@@ -828,34 +828,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="102"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="116"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="162"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="176"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="180"/>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="210"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="194"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="224"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="174"/>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="204"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="188"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="218"/>
         <source>HD</source>
-        <translation></translation>
+        <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="168"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="182"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="186"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="200"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>

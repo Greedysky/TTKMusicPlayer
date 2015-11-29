@@ -36,6 +36,7 @@ protected:
 
 };
 
+#define BITRATE_ROLE Qt::UserRole + 1
 
 class MUSIC_WIDGET_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
 {
@@ -45,10 +46,12 @@ public:
     virtual ~MusicDownloadTableWidget();
 
     void clearAllItems();
-    void createItem(const QString &type, const QString &info, const QString &icon);
+    void createItem(int bitrate, const QString &type, const QString &info,
+                    const QString &icon);
+    int getCurrentBitrate();
 
 public slots:
-    virtual void listCellClicked(int , int ) {}
+    virtual void listCellClicked(int , int){}
 
 protected:
     QList<QObject*> m_items;
