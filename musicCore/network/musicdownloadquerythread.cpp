@@ -93,6 +93,7 @@ void MusicDownLoadQueryThread::searchFinshed()
         if(jsonObject.contains("data"))
         {
             QJsonArray array = jsonObject.take("data").toArray();
+
             for(int i=0; i < array.count(); i++ )
             {
                 QJsonValue value = array.at(i);
@@ -108,7 +109,7 @@ void MusicDownLoadQueryThread::searchFinshed()
                     QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                     QString songName = object.take("song_name").toString();
                     QString singerName = object.take("singer_name").toString();
-                    QJsonArray urls = object.take("audition_list").toArray();
+                    QJsonArray urls = object.value("audition_list").toArray();
                     for(int j=0; j<urls.count(); ++j)
                     {
                         object = urls[j].toObject();
@@ -117,8 +118,8 @@ void MusicDownLoadQueryThread::searchFinshed()
                             MusicSongAttribute songAttr;
                             songAttr.m_url = object.value("url").toString();
                             songAttr.m_size = object.value("size").toString();
-                            songAttr.m_format = object.value("format").toString();
-                            songAttr.m_bitrate = object.value("bitrate").toInt();
+                            songAttr.m_format = object.value("suffix").toString();
+                            songAttr.m_bitrate = object.value("bitRate").toInt();
                             musicInfo.m_songAttrs << songAttr;
 
                             if(j == urls.count() - 1) //the last one
@@ -132,15 +133,15 @@ void MusicDownLoadQueryThread::searchFinshed()
                         }
                         else
                         {
-                            if( object.value("type_description").toString() == m_searchQuality)
+                            if( object.value("typeDescription").toString() == m_searchQuality)
                             {
                                 emit creatSearchedItems(songName, singerName,
                                                         object.value("duration").toString());
                                 MusicSongAttribute songAttr;
                                 songAttr.m_url = object.value("url").toString();
                                 songAttr.m_size = object.value("size").toString();
-                                songAttr.m_format = object.value("format").toString();
-                                songAttr.m_bitrate = object.value("bitrate").toInt();
+                                songAttr.m_format = object.value("suffix").toString();
+                                songAttr.m_bitrate = object.value("bitRate").toInt();
                                 musicInfo.m_songAttrs << songAttr;
 
                                 musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
@@ -206,8 +207,8 @@ void MusicDownLoadQueryThread::searchFinshed()
                                 MusicSongAttribute songAttr;
                                 songAttr.m_url = urlIt.value().property("url").toString();
                                 songAttr.m_size = urlIt.value().property("size").toString();
-                                songAttr.m_format = urlIt.value().property("format").toString();
-                                songAttr.m_bitrate = urlIt.value().property("bitrate").toInt32();
+                                songAttr.m_format = urlIt.value().property("suffix").toString();
+                                songAttr.m_bitrate = urlIt.value().property("bitRate").toInt32();
                                 musicInfo.m_songAttrs << songAttr;
 
                                 if(!urlIt.hasNext())    //the last one
@@ -221,15 +222,15 @@ void MusicDownLoadQueryThread::searchFinshed()
                             }
                             else
                             {
-                                if( urlIt.value().property("type_description").toString() == m_searchQuality)
+                                if( urlIt.value().property("typeDescription").toString() == m_searchQuality)
                                 {
                                     emit creatSearchedItems(songName, singerName,
                                                             urlIt.value().property("duration").toString());
                                     MusicSongAttribute songAttr;
                                     songAttr.m_url = urlIt.value().property("url").toString();
                                     songAttr.m_size = urlIt.value().property("size").toString();
-                                    songAttr.m_format = urlIt.value().property("format").toString();
-                                    songAttr.m_bitrate = urlIt.value().property("bitrate").toInt32();
+                                    songAttr.m_format = urlIt.value().property("suffix").toString();
+                                    songAttr.m_bitrate = urlIt.value().property("bitRate").toInt32();
                                     musicInfo.m_songAttrs << songAttr;
 
                                     musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);

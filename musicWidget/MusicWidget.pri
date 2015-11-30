@@ -11,7 +11,6 @@ HEADERS  += \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicabstracttablewidget.h \
     $$PWD/musicquerytablewidget.h \
-    $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicabstractmovedialog.h \
     $$PWD/musicabstractmovewidget.h \
     $$PWD/musicmarqueewidget.h \
@@ -42,7 +41,6 @@ SOURCES += \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicabstracttablewidget.cpp \
     $$PWD/musicquerytablewidget.cpp \
-    $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicabstractmovedialog.cpp \
     $$PWD/musicabstractmovewidget.cpp \
     $$PWD/musicmarqueewidget.cpp \
