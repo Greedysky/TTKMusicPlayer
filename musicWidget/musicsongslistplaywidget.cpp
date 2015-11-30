@@ -186,6 +186,6 @@ void MusicSongsListPlayWidget::downloadButtonClicked()
 void MusicSongsListPlayWidget::sharingButtonClicked()
 {
     MusicSongSharingWidget shareWidget;
-//    shareWidget.setSongName(m_songName->text(), MusicQuery);
+    shareWidget.setSongName(m_songName->text());
     shareWidget.exec();
 }

@@ -72,9 +72,12 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
-QLabel{background:transparent;}</string>
+QLabel{background:transparent;color:#666666;}
+QRadioButton{background:transparent;}
+QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
+QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</string>
    </property>
-   <widget class="QLabel" name="downloadName">
+   <widget class="QLabel" name="sharedName">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -84,7 +87,7 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font-size:22px;font-weight:bold;</string>
+     <string notr="true">QLabel{font-size:22px;font-weight:bold;}</string>
     </property>
     <property name="text">
      <string>XXXXXXXXXXXXXXXXXXX</string>
@@ -99,8 +102,11 @@ QLabel{background:transparent;}</string>
       <height>101</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QTextEdit::hover{ border: 1px solid #AAAAFF;}</string>
+    </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="QRCodeIcon">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -110,13 +116,13 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:red</string>
+     <string notr="true">background:black</string>
     </property>
-    <property name="text">
-     <string>TextLabel</string>
+    <property name="pixmap">
+     <pixmap resource="../../musicQrc/MusicPlayerShare.qrc">:/share/myQRCode</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="sharedNameIcon">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -126,13 +132,10 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:red</string>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
+     <string notr="true">background:black</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="textEditArea">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -141,50 +144,41 @@ QLabel{background:transparent;}</string>
       <height>16</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background:red</string>
-    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>你还可以输入150个字</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>358</x>
       <y>125</y>
-      <width>80</width>
-      <height>16</height>
+      <width>90</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background:red</string>
-    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>扫描分享到微信</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="label2">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>180</y>
-      <width>51</width>
+      <y>173</y>
+      <width>41</width>
       <height>16</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background:red</string>
-    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>分享到</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="QQButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>180</y>
+      <x>135</x>
+      <y>173</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -197,11 +191,11 @@ QLabel{background:transparent;}</string>
       <normaloff>:/usermanager/qq</normaloff>:/usermanager/qq</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="renRButton">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>180</y>
+      <x>185</x>
+      <y>173</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -214,11 +208,11 @@ QLabel{background:transparent;}</string>
       <normaloff>:/usermanager/renren</normaloff>:/usermanager/renren</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_3">
+   <widget class="QRadioButton" name="wechatButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>180</y>
+      <x>235</x>
+      <y>173</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -231,11 +225,11 @@ QLabel{background:transparent;}</string>
       <normaloff>:/usermanager/weixing</normaloff>:/usermanager/weixing</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_4">
+   <widget class="QRadioButton" name="sinaButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>180</y>
+      <x>285</x>
+      <y>173</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -248,7 +242,7 @@ QLabel{background:transparent;}</string>
       <normaloff>:/usermanager/xinlang</normaloff>:/usermanager/xinlang</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="shareButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -257,11 +251,17 @@ QLabel{background:transparent;}</string>
       <height>23</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:3px;background-color:#80B7F1;color:white;font-size:14px;font-weight:bold;}</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>分享</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="cancelButton">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -270,14 +270,22 @@ QLabel{background:transparent;}</string>
       <height>23</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:3px;color:white;font-size:14px;border: 1px solid gray;color:#666666;}</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>取消</string>
     </property>
    </widget>
   </widget>
  </widget>
  <resources>
+  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
   <include location="../../musicQrc/MusicPlayerUser.qrc"/>
+  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
  </resources>
  <connections/>
 </ui>

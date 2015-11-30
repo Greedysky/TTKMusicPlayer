@@ -22,7 +22,7 @@ public:
     explicit MusicSongSharingWidget(QWidget *parent = 0);
     virtual ~MusicSongSharingWidget();
 
-signals:
+    void setSongName(const QString &name);
 
 public slots:
     virtual int exec();

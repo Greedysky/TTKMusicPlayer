@@ -70,7 +70,6 @@ public:
 
     void setSongName(const QString &name, QueryType type);
 
-signals:
 public slots:
     virtual int exec();
     void queryAllFinished();
