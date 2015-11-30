@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
+#include "musicsongsharingwidget.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -90,6 +91,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
     connect(m_downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
+    connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
     M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
     M_CONNECTION->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
@@ -179,4 +181,11 @@ void MusicSongsListPlayWidget::downloadButtonClicked()
     MusicDownloadWidget downloadWidget;
     downloadWidget.setSongName(m_songName->text(), MusicQuery);
     downloadWidget.exec();
+}
+
+void MusicSongsListPlayWidget::sharingButtonClicked()
+{
+    MusicSongSharingWidget shareWidget;
+//    shareWidget.setSongName(m_songName->text(), MusicQuery);
+    shareWidget.exec();
 }

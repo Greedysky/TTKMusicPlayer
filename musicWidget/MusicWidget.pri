@@ -33,7 +33,8 @@ HEADERS  += \
     $$PWD/musicenhancedwidget.h \
     $$PWD/musicprogresswidget.h \
     $$PWD/musicclickedlabel.h \
-    $$PWD/musicdownloadwidget.h
+    $$PWD/musicdownloadwidget.h \
+    $$PWD/musicsongsharingwidget.h
 
 
 SOURCES += \
@@ -63,7 +64,8 @@ SOURCES += \
     $$PWD/musicenhancedwidget.cpp \
     $$PWD/musicprogresswidget.cpp \
     $$PWD/musicclickedlabel.cpp \
-    $$PWD/musicdownloadwidget.cpp
+    $$PWD/musicdownloadwidget.cpp \
+    $$PWD/musicsongsharingwidget.cpp
 
 
 FORMS    += \
@@ -72,4 +74,5 @@ FORMS    += \
     musicUi/musicWidget/musicsettingwidget.ui \
     musicUi/musicWidget/musicbackgroundskindialog.ui \
     musicUi/musicWidget/musicequalizerdialog.ui \
-    musicUi/musicWidget/musicdownloadwidget.ui
+    musicUi/musicWidget/musicdownloadwidget.ui \
+    musicUi/musicWidget/musicsongsharingwidget.ui

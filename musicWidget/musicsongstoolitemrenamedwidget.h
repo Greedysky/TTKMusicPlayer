@@ -11,7 +11,7 @@
 
 #include <QLineEdit>
 #include "musiclibexportglobal.h"
-
+#include <QRadioButton>
 class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT

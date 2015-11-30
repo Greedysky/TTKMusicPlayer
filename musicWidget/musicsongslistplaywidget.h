@@ -58,6 +58,7 @@ public slots:
     void setChangItemName(const QString &name);
     void showMVButtonClicked();
     void downloadButtonClicked();
+    void sharingButtonClicked();
 
 protected:
     bool showArtPicture(const QString &name) const;
