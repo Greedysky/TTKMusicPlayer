@@ -13,6 +13,8 @@
 #include "musicabstracttablewidget.h"
 #include "musicdownloadquerythread.h"
 
+#define ROW_HEIGHT  25
+
 class MusicDownLoadQueryThread;
 
 namespace Ui {

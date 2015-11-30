@@ -21,9 +21,9 @@ MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     m_icon = new QLabel(this);
     m_text = new QLabel(this);
 
-    m_text->setGeometry(0, 0, 60, 25);
-    m_icon->setGeometry(70, 0, 30, 25);
-    m_infomation->setGeometry(170, 0, 150, 25);
+    m_text->setGeometry(0, 0, 60, ROW_HEIGHT);
+    m_icon->setGeometry(70, 0, 30, ROW_HEIGHT);
+    m_infomation->setGeometry(170, 0, 150, ROW_HEIGHT);
 }
 
 MusicDownloadTableItem::~MusicDownloadTableItem()
@@ -78,7 +78,7 @@ void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, cons
 {
     int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, 25);
+    setRowHeight(index, ROW_HEIGHT);
     QTableWidgetItem *it = new QTableWidgetItem;
     it->setData(BITRATE_ROLE, bitrate);
     setItem(index, 0,  it);
@@ -90,6 +90,7 @@ void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, cons
     m_items << item;
 
     setCellWidget(index, 0, item);
+    move(101, 30 + (height() - ROW_HEIGHT*index)/2);
 }
 
 int MusicDownloadTableWidget::getCurrentBitrate()
