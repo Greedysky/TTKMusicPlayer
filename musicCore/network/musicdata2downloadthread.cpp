@@ -69,6 +69,7 @@ void MusicData2DownloadThread::dataGetFinished()
         {
             m_url = sc.property("data").property("singerPic").toString();
 #endif
+            emit data2urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
         }
         else

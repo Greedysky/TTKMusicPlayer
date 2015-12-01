@@ -20,6 +20,9 @@ public:
     void deleteAll();
     virtual void startToDownload();
 
+signals:
+    void data2urlHasChanged(const QString &url);
+
 public slots:
     void dataGetFinished();
     void dataReplyError(QNetworkReply::NetworkError error);

@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicbgthememanager.h"
+#include "musicdata2downloadthread.h"
 
 #include <QDesktopServices>
 
@@ -51,28 +52,43 @@ int MusicSongSharingWidget::exec()
 
 void MusicSongSharingWidget::confirmButtonClicked()
 {
+    QStringList infos = ui->sharedName->text().split('-');
+    if(infos.count() != 0)
+    {
+        ///download art picture
+        MusicData2DownloadThread *down = new MusicData2DownloadThread(
+                    SML_BG_ART_URL.arg(infos.front().trimmed()),
+                    ART_DOWNLOAD_AL + infos.front().trimmed() + SKN_FILE,
+                    Download_SmlBG, this);
+        connect(down, SIGNAL(data2urlHasChanged(QString)), SLOT(data2urlHasChanged(QString)));
+        down->startToDownload();
+    }
+}
+
+void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
+{
     QString url;
     if(ui->qqButton->isChecked())
     {
-        url = QString(QQ_SHARE).arg(ui->textEdit->toPlainText())
+        url = QString(QQ_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl)
                                .arg(ui->sharedName->text()).arg(tr("QMusicPlayer"));
     }
     else if(ui->renrenButton->isChecked())
     {
-        url = QString(RENREN_SHARE).arg(ui->textEdit->toPlainText());
+        url = QString(RENREN_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->qqspaceButton->isChecked())
     {
-        url = QString(QQ_SPACE_SHARE).arg(tr("QMusicPlayer"))
+        url = QString(QQ_SPACE_SHARE).arg(tr("QMusicPlayer")).arg(imageUrl)
                                      .arg(ui->textEdit->toPlainText());
     }
     else if(ui->qqblogButton->isChecked())
     {
-        url = QString(QQ_MICBG_SHARE).arg(ui->textEdit->toPlainText());
+        url = QString(QQ_MICBG_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->sinaButton->isChecked())
     {
-        url = QString(SINA_SHARE).arg(ui->textEdit->toPlainText());
+        url = QString(SINA_SHARE).arg(imageUrl).arg(ui->textEdit->toPlainText());
     }
 
     url.replace('#', "%23");
