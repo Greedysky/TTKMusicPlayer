@@ -102,9 +102,6 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <height>101</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QTextEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QTextEdit::hover{ border: 1px solid #AAAAFF;}</string>
-    </property>
    </widget>
    <widget class="QLabel" name="QRCodeIcon">
     <property name="geometry">
@@ -174,7 +171,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string>分享到</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="QQButton">
+   <widget class="QRadioButton" name="qQButton">
     <property name="geometry">
      <rect>
       <x>135</x>
@@ -284,8 +281,8 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
  </widget>
  <resources>
   <include location="../../musicQrc/MusicPlayerShare.qrc"/>
-  <include location="../../musicQrc/MusicPlayerUser.qrc"/>
   <include location="../../musicQrc/MusicPlayerShare.qrc"/>
+  <include location="../../musicQrc/MusicPlayerUser.qrc"/>
  </resources>
  <connections/>
 </ui>

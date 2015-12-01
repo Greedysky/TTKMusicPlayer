@@ -828,34 +828,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="116"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="117"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="176"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="177"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="194"/>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="224"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="195"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="225"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="188"/>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="218"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="189"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="219"/>
         <source>HD</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="182"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="183"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicdownloadwidget.cpp" line="200"/>
+        <location filename="../musicWidget/musicdownloadwidget.cpp" line="201"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -2844,6 +2844,74 @@
     </message>
 </context>
 <context>
+    <name>MusicSongSharingWidget</name>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="48"/>
+        <source>音乐分享</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="61"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="93"/>
+        <source>XXXXXXXXXXXXXXXXXXX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="145"/>
+        <source>你还可以输入150个字</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="158"/>
+        <source>扫描分享到微信</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="171"/>
+        <source>分享到</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="258"/>
+        <source>分享</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsongsharingwidget.ui" line="277"/>
+        <source>取消</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="15"/>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="39"/>
+        <source>I used to listen music #%1# by QMusicPlayer,</source>
+        <translation>我正在用天天酷音听 #%1#， </translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="40"/>
+        <source>and recommend it to you! (From #QMusicPlayer#)</source>
+        <translation>推荐给你们！（来自#天天酷音#）</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="66"/>
+        <source>You can enter %1 characters</source>
+        <translation>你还能输入%1个字符</translation>
+    </message>
+</context>
+<context>
     <name>MusicSongsListItemInfoWidget</name>
     <message>
         <location filename="../musicUi/musicWidget/musicsongslistiteminfowidget.ui" line="14"/>
@@ -2879,27 +2947,27 @@
 <context>
     <name>MusicSongsListPlayWidget</name>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="54"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="55"/>
         <source>bestlove</source>
         <translation>添加至我的最爱</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="61"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="62"/>
         <source>deleteMusic</source>
         <translation>删除歌曲</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="69"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="70"/>
         <source>songDownload</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="76"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="77"/>
         <source>showMV</source>
         <translation>观看MV</translation>
     </message>
     <message>
-        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="83"/>
+        <location filename="../musicWidget/musicsongslistplaywidget.cpp" line="84"/>
         <source>songShare</source>
         <translation>分享</translation>
     </message>

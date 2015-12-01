@@ -26,6 +26,8 @@ public:
 
 public slots:
     virtual int exec();
+    void textAreaChanged();
+    void confirmButtonClicked();
 
 protected:
     Ui::MusicSongSharingWidget *ui;
