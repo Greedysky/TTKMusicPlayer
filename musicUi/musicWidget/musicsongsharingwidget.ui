@@ -171,7 +171,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string>分享到</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="qQButton">
+   <widget class="QRadioButton" name="qqButton">
     <property name="geometry">
      <rect>
       <x>135</x>
@@ -188,7 +188,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <normaloff>:/usermanager/qq</normaloff>:/usermanager/qq</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="renRButton">
+   <widget class="QRadioButton" name="renrenButton">
     <property name="geometry">
      <rect>
       <x>185</x>
@@ -205,7 +205,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <normaloff>:/usermanager/renren</normaloff>:/usermanager/renren</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="wechatButton">
+   <widget class="QRadioButton" name="qqspaceButton">
     <property name="geometry">
      <rect>
       <x>235</x>
@@ -222,7 +222,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <normaloff>:/usermanager/weixing</normaloff>:/usermanager/weixing</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="sinaButton">
+   <widget class="QRadioButton" name="qqblogButton">
     <property name="geometry">
      <rect>
       <x>285</x>
@@ -275,6 +275,23 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
     </property>
     <property name="text">
      <string>取消</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="sinaButton">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+      <normaloff>:/usermanager/xinlang</normaloff>:/usermanager/xinlang</iconset>
     </property>
    </widget>
   </widget>

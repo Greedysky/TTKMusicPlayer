@@ -4,6 +4,8 @@
 #include "musicobject.h"
 #include "musicbgthememanager.h"
 
+#include <QDesktopServices>
+#include <QDebug>
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicSongSharingWidget)
@@ -14,7 +16,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->qQButton->setChecked(true);
+    ui->qqButton->setChecked(true);
     ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01);
 
     connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
@@ -49,12 +51,32 @@ int MusicSongSharingWidget::exec()
 
 void MusicSongSharingWidget::confirmButtonClicked()
 {
-    int type = -1;
-    if(ui->qQButton->isChecked()) type = 0;
-    else if(ui->renRButton->isChecked()) type = 1;
-    else if(ui->wechatButton->isChecked()) type = 2;
-    else if(ui->sinaButton->isChecked()) type = 3;
+    QString url;
+    if(ui->qqButton->isChecked())
+    {
+        url = QString(QQ_SHARE).arg(ui->textEdit->toPlainText())
+                               .arg(ui->sharedName->text()).arg(tr("QMusicPlayer"));
+    }
+    else if(ui->renrenButton->isChecked())
+    {
+        url = QString(RENREN_SHARE).arg(ui->textEdit->toPlainText());
+    }
+    else if(ui->qqspaceButton->isChecked())
+    {
+        url = QString(QQ_SPACE_SHARE).arg(tr("QMusicPlayer"))
+                                     .arg(ui->textEdit->toPlainText());
+    }
+    else if(ui->qqblogButton->isChecked())
+    {
+        url = QString(QQ_MICBG_SHARE).arg(ui->textEdit->toPlainText());
+    }
+    else if(ui->sinaButton->isChecked())
+    {
+        url = QString(SINA_SHARE).arg(ui->textEdit->toPlainText());
+    }
 
+    url.replace('#', "%23");
+    QDesktopServices::openUrl(QUrl(url));
     close();
 }
 
