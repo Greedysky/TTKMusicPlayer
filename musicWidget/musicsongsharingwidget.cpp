@@ -5,7 +5,7 @@
 #include "musicbgthememanager.h"
 
 #include <QDesktopServices>
-#include <QDebug>
+
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicSongSharingWidget)
