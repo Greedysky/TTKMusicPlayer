@@ -4,7 +4,9 @@
 #include "musicobject.h"
 #include "musicbgthememanager.h"
 #include "musicdata2downloadthread.h"
+#include "musicmessagebox.h"
 
+#include <QTimer>
 #include <QDesktopServices>
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
@@ -58,11 +60,20 @@ void MusicSongSharingWidget::confirmButtonClicked()
         ///download art picture
         MusicData2DownloadThread *down = new MusicData2DownloadThread(
                     SML_BG_ART_URL.arg(infos.front().trimmed()),
-                    ART_DOWNLOAD_AL + infos.front().trimmed() + SKN_FILE,
+                    ART_DOWNLOAD_AL + TMP_DOWNLOAD,
                     Download_SmlBG, this);
-        connect(down, SIGNAL(data2urlHasChanged(QString)), SLOT(data2urlHasChanged(QString)));
+        connect(down, SIGNAL(data2urlHasChanged(QString)),
+                      SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
         down->startToDownload();
     }
+    QTimer::singleShot(5000, this, SLOT(queryUrlTimeout()));
+}
+
+void MusicSongSharingWidget::queryUrlTimeout()
+{
+    MusicMessageBox message;
+    message.setText(tr("Song does not support sharing!"));
+    message.exec();
 }
 
 void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
@@ -93,7 +104,14 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
 
     url.replace('#', "%23");
     QDesktopServices::openUrl(QUrl(url));
-    close();
+    QTimer::singleShot(1000, this, SLOT(close()));
+}
+
+void MusicSongSharingWidget::close()
+{
+    ///remove temp file path
+    QFile::remove(ART_DOWNLOAD_AL + TMP_DOWNLOAD);
+    MusicAbstractMoveDialog::close();
 }
 
 void MusicSongSharingWidget::textAreaChanged()

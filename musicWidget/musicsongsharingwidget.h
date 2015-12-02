@@ -41,6 +41,8 @@ public slots:
     void textAreaChanged();
     void confirmButtonClicked();
     void data2urlHasChanged(const QString &imageUrl);
+    void queryUrlTimeout();
+    void close();
 
 protected:
     Ui::MusicSongSharingWidget *ui;
