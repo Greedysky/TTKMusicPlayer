@@ -99,7 +99,7 @@ void MusicUserRecordWidget::initTabT()
     ui->labelRighT2->hide();
     ui->labelRighT3->hide();
     ui->originPwdEdit_T->setLabel(PwdConfirm, NULL, ui->labelRighT1);
-    ui->newPwdEdit_T->setLabel(Passwd, NULL, ui->labelRighT2);
+    ui->newPwdEdit_T->setLabel(PasswdNew, NULL, ui->labelRighT2);
     ui->newCPwdEdit_T->setLabel(PwdConfirm, NULL, ui->labelRighT3);
     connect(ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
@@ -235,21 +235,21 @@ void MusicUserRecordWidget::checkPwdStrength(int code)
 {
     QString blue = "background:#80B7F1;";
     QString grey = "background:#BFBFBF;";
-    ui->pwdStrengthT1->setStyleSheet(blue);
+
+    ui->pwdStrengthT1->setStyleSheet(code != -1 ? blue : grey);
     ui->pwdStrengthT2->setStyleSheet(grey);
     ui->pwdStrengthT3->setStyleSheet(grey);
 
     switch(code)
     {
-        case 0:
-            break;
-        case 1:
+        case  1:
             ui->pwdStrengthT2->setStyleSheet(blue);
             break;
-        case 2:
+        case  2:
             ui->pwdStrengthT2->setStyleSheet(blue);
             ui->pwdStrengthT3->setStyleSheet(blue);
             break;
+        default: break;
     }
 }
 

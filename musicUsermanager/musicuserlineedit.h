@@ -18,6 +18,7 @@ enum LabelType
 {
     User,
     Passwd,
+    PasswdNew,
     PwdConfirm,
     Mail
 };
@@ -33,14 +34,16 @@ public:
     inline bool getStrStatus() const { return m_strContains;}
 
 signals:
-    //0 weak, 1 middle, 2 strong
+    //-1 empty string, 0 weak, 1 middle, 2 strong
     void checkPwdStrength(int code);
+
+protected slots:
+    void checkPwdStrength();
 
 protected:
     virtual void focusInEvent(QFocusEvent *event);
     virtual void focusOutEvent(QFocusEvent *event);
     void checkTheInput();
-    void checkPwdStrength();
     void showLabel();
     void showLabel(int s, int e);
     void labelCheck(bool check);

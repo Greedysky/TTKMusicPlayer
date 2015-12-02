@@ -35,6 +35,10 @@ void MusicUserLineEdit::setLabel(LabelType ty, QLabel *t, QLabel *s)
     m_tipsLabel = t;
     m_statusLabel = s;
     m_type = ty;
+    if(ty == PasswdNew)
+    {
+        connect(this, SIGNAL(textChanged(QString)), SLOT(checkPwdStrength()));
+    }
 }
 
 void MusicUserLineEdit::labelCheck(bool check)
@@ -73,9 +77,8 @@ void MusicUserLineEdit::checkTheInput()
     {
         case User:
              showLabel(4, 20);
-             break;
+             break;  
         case Passwd:
-             checkPwdStrength();
         case PwdConfirm:
              showLabel(6, 16);
              break;
@@ -87,11 +90,17 @@ void MusicUserLineEdit::checkTheInput()
 
 void MusicUserLineEdit::checkPwdStrength()
 {
+    if(text().isEmpty())
+    {
+        emit checkPwdStrength(-1);
+        return;
+    }
+
     bool onlyNum, onlyChar, onlySp;
     onlyNum = text().contains(QRegExp("[0-9]"));
     onlyChar = text().contains(QRegExp("[a-zA-z]"));;
-    onlySp = text().contains(QRegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~£¡@#"
-                                     "£¤¡­¡­&*£¨£©&mdash;¡ª|{}¡¾¡¿¡®£»£º¡±¡°'¡££¬¡¢£¿]"));
+    onlySp = text().contains(QRegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~£¡@#]"));
+
     if( ( onlyNum && !onlyChar && !onlySp) ||
         (!onlyNum &&  onlyChar && !onlySp) ||
         (!onlyNum && !onlyChar &&  onlySp) ||
