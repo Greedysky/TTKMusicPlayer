@@ -14,19 +14,19 @@
 
 #include "musiclibexportglobal.h"
 
-enum LabelType
-{
-    User,
-    Passwd,
-    PasswdNew,
-    PwdConfirm,
-    Mail
-};
-
 class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
+    enum LabelType
+    {
+        User,
+        Passwd,
+        PasswdNew,
+        PwdConfirm,
+        Mail
+    };
+
     explicit MusicUserLineEdit(QWidget *parent = 0);
 
     void setLabel(LabelType ty, QLabel *t, QLabel *s);

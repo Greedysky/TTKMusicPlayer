@@ -31,34 +31,34 @@ const QColor CL_White  = QColor(255,255,255);
 const QColor CL_Black  = QColor(0,0,0);
 const QColor CL_Mask   = QColor(222,54,4);
 
-enum LrcColorType
-{
-    Origin,
-    Red,
-    Orange,
-    Yellow,
-    Green,
-    Blue,
-    Indigo,
-    Purple,
-    White,
-    Black,
-    Mask
-};
-
-enum LrcSizeTable
-{
-    Smaller = 13,
-    Small = 14,
-    Middle = 15,
-    Big = 16,
-    Bigger = 17
-};
-
 class MUSIC_LRC_EXPORT MusicLRCManager : public QLabel
 {
     Q_OBJECT
 public:
+    enum LrcColorType
+    {
+        Origin,
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Blue,
+        Indigo,
+        Purple,
+        White,
+        Black,
+        Mask
+    };
+
+    enum LrcSizeTable
+    {
+        Smaller = 13,
+        Small = 14,
+        Middle = 15,
+        Big = 16,
+        Bigger = 17
+    };
+
     explicit MusicLRCManager(QWidget *parent = 0);
     virtual ~MusicLRCManager();
 

@@ -16,17 +16,17 @@
 
 class QNetworkAccessManager;
 
-enum QueryType
-{
-    MusicQuery,
-    MovieQuery,
-    LrcQuery
-};
-
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThread : public QObject
 {
     Q_OBJECT
 public:
+    enum QueryType
+    {
+        MusicQuery,
+        MovieQuery,
+        LrcQuery
+    };
+
     explicit MusicDownLoadQueryThread(QObject *parent = 0);
     ~MusicDownLoadQueryThread();
 

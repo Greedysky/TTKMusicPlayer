@@ -99,7 +99,7 @@ void MusicUserLineEdit::checkPwdStrength()
     bool onlyNum, onlyChar, onlySp;
     onlyNum = text().contains(QRegExp("[0-9]"));
     onlyChar = text().contains(QRegExp("[a-zA-z]"));;
-    onlySp = text().contains(QRegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~£¡@#]"));
+    onlySp = text().contains(QRegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~@#]"));
 
     if( ( onlyNum && !onlyChar && !onlySp) ||
         (!onlyNum &&  onlyChar && !onlySp) ||

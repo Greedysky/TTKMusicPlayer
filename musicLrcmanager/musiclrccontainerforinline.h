@@ -36,7 +36,7 @@ public:
     inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
 
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
-    void setLrcSize(LrcSizeTable = Middle) const;
+    void setLrcSize(MusicLRCManager::LrcSizeTable = MusicLRCManager::Middle) const;
     int getLrcSize() const;
 
     void resizeWidth(int width);

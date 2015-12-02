@@ -24,20 +24,21 @@ const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=
 const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
 const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
 
-enum Download_Type
-{
-    Download_Music,
-    Download_Lrc,
-    Download_SmlBG,
-    Download_BigBG,
-    Download_Video,
-    Download_Other
-};
 
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
+    enum Download_Type
+    {
+        Download_Music,
+        Download_Lrc,
+        Download_SmlBG,
+        Download_BigBG,
+        Download_Video,
+        Download_Other
+    };
+
     explicit MusicDownLoadThreadAbstract(const QString &url, const QString &save,
                                          Download_Type type, QObject *parent = 0);
     virtual ~MusicDownLoadThreadAbstract();

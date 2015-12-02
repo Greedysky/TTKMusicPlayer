@@ -19,7 +19,8 @@ class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
     Q_OBJECT
     Q_ENUMS(ConfigType)
 public:
-    enum ConfigType {
+    enum ConfigType
+    {
         Null = -1,
         ScreenSize,
 

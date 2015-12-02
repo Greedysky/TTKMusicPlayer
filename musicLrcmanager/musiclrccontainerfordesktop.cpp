@@ -345,7 +345,7 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     MusicLrcContainer::setSettingParameter();
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
-        m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(
+        m_musicLrcContainer[i]->setLrcFontSize((MusicLRCManager::LrcSizeTable)(
                                                 m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     }
     M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;

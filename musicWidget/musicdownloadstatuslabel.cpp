@@ -103,7 +103,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        ///Start the request query
        m_downloadLrcThread = new MusicDownLoadQueryThread(this);
-       m_downloadLrcThread->startSearchSong(MusicQuery, filename);
+       m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThread::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
     }
@@ -123,14 +123,15 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         QString filename = m_parentWidget->getCurrentFileName();
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl,
-                                 LRC_DOWNLOAD_AL + filename + LRC_FILE, Download_Lrc, this);
+                                 LRC_DOWNLOAD_AL + filename + LRC_FILE,
+                                 MusicDownLoadThreadAbstract::Download_Lrc, this);
         lrc->startToDownload();
 
         int count = filename.split('-').count();
         filename = filename.split('-').front().trimmed();
         ///download art picture
         (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
-                                      Download_SmlBG, this))->startToDownload();
+                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
         ///download big picture
         (new MusicBgThemeDownload( count == 1 ? musicSongInfo.m_singerName : filename,
                                    filename, this))->startToDownload();

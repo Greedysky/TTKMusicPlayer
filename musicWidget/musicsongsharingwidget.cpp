@@ -61,7 +61,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
         MusicData2DownloadThread *down = new MusicData2DownloadThread(
                     SML_BG_ART_URL.arg(infos.front().trimmed()),
                     ART_DOWNLOAD_AL + TMP_DOWNLOAD,
-                    Download_SmlBG, this);
+                    MusicDownLoadThreadAbstract::Download_SmlBG, this);
         connect(down, SIGNAL(data2urlHasChanged(QString)),
                       SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
         down->startToDownload();

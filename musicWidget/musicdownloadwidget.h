@@ -68,7 +68,7 @@ public:
     explicit MusicDownloadWidget(QWidget *parent = 0);
     virtual ~MusicDownloadWidget();
 
-    void setSongName(const QString &name, QueryType type);
+    void setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type);
 
 public slots:
     virtual int exec();
@@ -86,7 +86,7 @@ protected:
 
     Ui::MusicDownloadWidget *ui;
     MusicDownLoadQueryThread *m_downloadThread;
-    QueryType m_queryType;
+    MusicDownLoadQueryThread::QueryType m_queryType;
 
 };
 

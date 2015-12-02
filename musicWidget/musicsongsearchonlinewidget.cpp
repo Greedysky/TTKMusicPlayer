@@ -65,7 +65,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     {
         m_downLoadManager->setSearchQuality(currentQuality);
     }
-    m_downLoadManager->startSearchSong(MusicQuery, m_searchText = text);
+    m_downLoadManager->startSearchSong(MusicDownLoadQueryThread::MusicQuery, m_searchText = text);
 }
 
 void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
@@ -224,14 +224,14 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
                                              .arg(musicSong).arg(musicSongAttr.m_format);
 
-    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongAttr.m_url,
-                                                                     downloadName, Download_Music, this);
+    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongAttr.m_url, downloadName,
+                                                                     MusicDownLoadThreadAbstract::Download_Music, this);
     downSong->startToDownload();
 
-    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL +
-                                 musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
-    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
-                                  musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
+    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
+                                 MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
+    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
+                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
     ///download big picture
     (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
@@ -241,7 +241,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicQuery);
+    download.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicDownLoadQueryThread::MusicQuery);
     download.exec();
 }
 

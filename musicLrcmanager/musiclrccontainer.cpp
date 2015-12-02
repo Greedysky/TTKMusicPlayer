@@ -60,48 +60,48 @@ void MusicLrcContainer::createColorMenu(QMenu &menu)
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 {
     QString text = action->text();
-    if(text == tr("origin")) setLinearGradientColor(Origin);
-    else if (text == tr("origin")) setLinearGradientColor(Red);
-    else if (text == tr("red")) setLinearGradientColor(Orange);
-    else if (text == tr("yellow")) setLinearGradientColor(Yellow);
-    else if (text == tr("green")) setLinearGradientColor(Green);
-    else if (text == tr("blue")) setLinearGradientColor(Blue);
-    else if (text == tr("indigo")) setLinearGradientColor(Indigo);
-    else if (text == tr("purple")) setLinearGradientColor(Purple);
-    else if (text == tr("white")) setLinearGradientColor(White);
-    else if (text == tr("black")) setLinearGradientColor(Black);
+    if(text == tr("origin")) setLinearGradientColor(MusicLRCManager::Origin);
+    else if (text == tr("origin")) setLinearGradientColor(MusicLRCManager::Red);
+    else if (text == tr("red")) setLinearGradientColor(MusicLRCManager::Orange);
+    else if (text == tr("yellow")) setLinearGradientColor(MusicLRCManager::Yellow);
+    else if (text == tr("green")) setLinearGradientColor(MusicLRCManager::Green);
+    else if (text == tr("blue")) setLinearGradientColor(MusicLRCManager::Blue);
+    else if (text == tr("indigo")) setLinearGradientColor(MusicLRCManager::Indigo);
+    else if (text == tr("purple")) setLinearGradientColor(MusicLRCManager::Purple);
+    else if (text == tr("white")) setLinearGradientColor(MusicLRCManager::White);
+    else if (text == tr("black")) setLinearGradientColor(MusicLRCManager::Black);
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(static_cast<LrcColorType>(index));
+    setLinearGradientColor(static_cast<MusicLRCManager::LrcColorType>(index));
 }
 
-void MusicLrcContainer::setLinearGradientColor(LrcColorType lrcColorType) const
+void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const
 {
     for(int i=0; i<m_musicLrcContainer.count(); ++i)
     {
         switch(lrcColorType)
         {
-            case Origin:
+            case MusicLRCManager::Origin:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Origin);break;
-            case Red:
+            case MusicLRCManager::Red:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Red);break;
-            case Orange:
+            case MusicLRCManager::Orange:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Orange);break;
-            case Yellow:
+            case MusicLRCManager::Yellow:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Yellow);break;
-            case Green:
+            case MusicLRCManager::Green:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Green);break;
-            case Blue:
+            case MusicLRCManager::Blue:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Blue);break;
-            case Indigo:
+            case MusicLRCManager::Indigo:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Indigo);break;
-            case Purple:
+            case MusicLRCManager::Purple:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Purple);break;
-            case White:
+            case MusicLRCManager::White:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_White);break;
-            case Black:
+            case MusicLRCManager::Black:
                 m_musicLrcContainer[i]->setLinearGradientColor(CL_Black);break;
             default:break;
         }
@@ -123,11 +123,11 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
         m_musicLrcContainer[i]->setFontFamily(M_SETTING->value(t + "LrcFamilyChoiced").toInt());
         m_musicLrcContainer[i]->setFontType(M_SETTING->value(t + "LrcTypeChoiced").toInt());
         m_musicLrcContainer[i]->setFontTransparent(M_SETTING->value(t + "LrcColorTransChoiced").toInt());
-        m_musicLrcContainer[i]->setLrcFontSize((LrcSizeTable)(M_SETTING->value(t + "LrcSizeChoiced").toInt()));
+        m_musicLrcContainer[i]->setLrcFontSize((MusicLRCManager::LrcSizeTable)(M_SETTING->value(t + "LrcSizeChoiced").toInt()));
     }
     if(M_SETTING->value(t + "LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((LrcColorType)M_SETTING->value(t + "LrcColorChoiced").toInt());
+        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING->value(t + "LrcColorChoiced").toInt());
         setMaskLinearGradientColor();
     }
     else

@@ -112,10 +112,10 @@ void MusicUserDialog::secondStatckWidget()
     ui->registerPwdLine->setValidator(valid);
     ui->registerPwdCLine->setValidator(valid);
 
-    ui->registerUserLine->setLabel(User, ui->registerUserLineR, ui->labelRight);
-    ui->registerMailLine->setLabel(Mail, ui->registerMailLineR, ui->labelRigh_2);
-    ui->registerPwdLine->setLabel(Passwd, ui->registerPwdLineR, ui->labelRigh_3);
-    ui->registerPwdCLine->setLabel(PwdConfirm, ui->registerPwdCLineR, ui->labelRigh_4);
+    ui->registerUserLine->setLabel(MusicUserLineEdit::User, ui->registerUserLineR, ui->labelRight);
+    ui->registerMailLine->setLabel(MusicUserLineEdit::Mail, ui->registerMailLineR, ui->labelRigh_2);
+    ui->registerPwdLine->setLabel(MusicUserLineEdit::Passwd, ui->registerPwdLineR, ui->labelRigh_3);
+    ui->registerPwdCLine->setLabel(MusicUserLineEdit::PwdConfirm, ui->registerPwdCLineR, ui->labelRigh_4);
 }
 
 void MusicUserDialog::thirdStatckWidget()
@@ -138,7 +138,7 @@ void MusicUserDialog::thirdStatckWidget()
     ui->pwdLineEdit->setValidator(valid);
     ui->mailLineEdit->setValidator(valid);
 
-    ui->pwdLineEdit->setLabel(Passwd, ui->pwdLineEditR, ui->labelRigh_5);
+    ui->pwdLineEdit->setLabel(MusicUserLineEdit::Passwd, ui->pwdLineEditR, ui->labelRigh_5);
     ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCode()));
 }

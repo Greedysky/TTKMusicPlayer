@@ -171,14 +171,14 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
     switch(m_currentMode)
     {
         case 0:
-         {
+        {
             m_path << QString("%1%2").arg(TMP_DOWNLOAD).arg(JPG_FILE);
             MusicDataDownloadThread *background = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
-                                                                              m_path[0], Download_BigBG, this);
+                                                      m_path[0], MusicDownLoadThreadAbstract::Download_BigBG, this);
             connect(background, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
             background->startToDownload();
             break;
-         }
+        }
         case 1:
             parameterFinished(); break;
         case 2:

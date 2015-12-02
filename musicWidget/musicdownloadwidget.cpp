@@ -117,7 +117,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_downloadThread = new MusicDownLoadQueryThread(this);
-    m_queryType = MusicQuery;
+    m_queryType = MusicDownLoadQueryThread::MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
@@ -137,7 +137,7 @@ void MusicDownloadWidget::initWidget()
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
 }
 
-void MusicDownloadWidget::setSongName(const QString &name, QueryType type)
+void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type)
 {
     initWidget();
     ui->downloadName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 200));
@@ -154,11 +154,11 @@ int MusicDownloadWidget::exec()
 
 void MusicDownloadWidget::queryAllFinished()
 {
-    if(m_queryType == MusicQuery)
+    if(m_queryType == MusicDownLoadQueryThread::MusicQuery)
     {
         queryAllFinishedMusic();
     }
-    else if(m_queryType == MovieQuery)
+    else if(m_queryType == MusicDownLoadQueryThread::MovieQuery)
     {
         queryAllFinishedMovie();
     }
@@ -248,11 +248,11 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
-    if(m_queryType == MusicQuery)
+    if(m_queryType == MusicDownLoadQueryThread::MusicQuery)
     {
         startToDownloadMusic();
     }
-    else if(m_queryType == MovieQuery)
+    else if(m_queryType == MusicDownLoadQueryThread::MovieQuery)
     {
         startToDownloadMovie();
     }
@@ -292,14 +292,14 @@ void MusicDownloadWidget::startToDownloadMusic()
                 down.writeDownloadConfig( record );
                 ////////////////////////////////////////////////
 
-                MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicAttr.m_url,
-                                                                                 downloadName, Download_Music, this);
+                MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicAttr.m_url, downloadName,
+                                                                                 MusicDownLoadThreadAbstract::Download_Music, this);
                 downSong->startToDownload();
 
-                (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL +
-                                             musicSong + LRC_FILE, Download_Lrc, this))->startToDownload();
-                (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL +
-                                              musicSongInfo.m_singerName + SKN_FILE, Download_SmlBG, this))->startToDownload();
+                (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
+                                             MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
+                (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
+                                              MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
                 ///download big picture
                 (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
@@ -327,7 +327,8 @@ void MusicDownloadWidget::startToDownloadMovie()
                 }
                 MusicDataDownloadThread* download = new MusicDataDownloadThread(musicAttr.m_url,
                             QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
-                                                    .arg(musicSongInfo.m_songName).arg(musicAttr.m_format), Download_Video, this);
+                                                    .arg(musicSongInfo.m_songName).arg(musicAttr.m_format),
+                                                         MusicDownLoadThreadAbstract::Download_Video, this);
                 download->startToDownload();
                 break;
             }

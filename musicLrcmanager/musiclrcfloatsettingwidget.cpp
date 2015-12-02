@@ -109,13 +109,13 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInline* line = static_cast<MusicLrcContainerForInline*>( parent() );
-    line->setLrcSize(static_cast<LrcSizeTable>(line->getLrcSize() + 1));
+    line->setLrcSize(static_cast<MusicLRCManager::LrcSizeTable>(line->getLrcSize() + 1));
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInline* line = static_cast<MusicLrcContainerForInline*>( parent() );
-    line->setLrcSize(static_cast<LrcSizeTable>(line->getLrcSize() - 1));
+    line->setLrcSize(static_cast<MusicLRCManager::LrcSizeTable>(line->getLrcSize() - 1));
 }
 
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()

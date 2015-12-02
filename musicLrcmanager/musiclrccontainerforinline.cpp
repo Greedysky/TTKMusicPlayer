@@ -27,7 +27,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
        m_musicLrcContainer.append(w);
     }
 
-    setLinearGradientColor(Origin);
+    setLinearGradientColor(MusicLRCManager::Origin);
     m_currentLrcIndex = 0;
     m_mouseMovedAt = QPoint(-1, -1);
     m_mousePressedAt = QPoint(-1, -1);
@@ -230,7 +230,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
     }
 }
 
-void MusicLrcContainerForInline::setLrcSize(LrcSizeTable size) const
+void MusicLrcContainerForInline::setLrcSize(MusicLRCManager::LrcSizeTable size) const
 {
     if(size < 13 || size > 17)
     {
@@ -400,11 +400,11 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
 {
     QString text = action->text();
-    if(text == tr("smaller")) setLrcSize(Smaller);
-    else if (text == tr("small")) setLrcSize(Small);
-    else if (text == tr("middle")) setLrcSize(Middle);
-    else if (text == tr("big")) setLrcSize(Big);
-    else if (text == tr("bigger")) setLrcSize(Bigger);
+    if(text == tr("smaller")) setLrcSize(MusicLRCManager::Smaller);
+    else if (text == tr("small")) setLrcSize(MusicLRCManager::Small);
+    else if (text == tr("middle")) setLrcSize(MusicLRCManager::Middle);
+    else if (text == tr("big")) setLrcSize(MusicLRCManager::Big);
+    else if (text == tr("bigger")) setLrcSize(MusicLRCManager::Bigger);
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()

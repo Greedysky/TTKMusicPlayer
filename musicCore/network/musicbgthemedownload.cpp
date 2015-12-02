@@ -19,7 +19,8 @@ MusicBgThemeDownload::~MusicBgThemeDownload()
 void MusicBgThemeDownload::startToDownload()
 {
     MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                             BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD, Download_BigBG, this);
+                             BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD,
+                             MusicDownLoadThreadAbstract::Download_BigBG, this);
     ///Set search image API
     connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(downLoadFinished()));
     download->startToDownload();
@@ -48,7 +49,8 @@ void MusicBgThemeDownload::downLoadFinished()
             line = line.remove("sp");
             M_LOGGER << line << LOG_END;
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
-                                    .arg(m_savePath).arg(m_counter++).arg(SKN_FILE), Download_BigBG, this);
+                                    .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
+                                    MusicDownLoadThreadAbstract::Download_BigBG, this);
             connect(down, SIGNAL(musicDownLoadFinished(QString)), SLOT(bgDownLoadFinished()));
             down->startToDownload();
         }
