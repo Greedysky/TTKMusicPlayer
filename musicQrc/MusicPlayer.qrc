@@ -160,7 +160,6 @@
     </qresource>
     <qresource prefix="/lrc">
         <file alias="more">../musicResource/lrc/more.png</file>
-        <file alias="photo">../musicResource/lrc/photo.png</file>
         <file alias="search">../musicResource/lrc/search.png</file>
         <file alias="update">../musicResource/lrc/update.png</file>
         <file alias="wallpaper">../musicResource/lrc/wallpaper.png</file>

@@ -72,7 +72,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_showMVButton = new QPushButton(m_columnThree);
     m_showMVButton->setGeometry(0, 35, 23, 23);
     m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_showMVButton->setIcon(QIcon(":/share/showMV"));
+    m_showMVButton->setIcon(QIcon(":/share/showMV2"));
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 

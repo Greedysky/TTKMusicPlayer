@@ -25,7 +25,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_search->setIcon(QIcon(":/lrc/search"));
     m_more->setIcon(QIcon(":/lrc/more"));
     m_wallp->setIcon(QIcon(":/lrc/wallpaper"));
-    m_photo->setIcon(QIcon(":/lrc/photo"));
+    m_photo->setIcon(QIcon(":/share/showMV2"));
 
     m_update->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
     m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
