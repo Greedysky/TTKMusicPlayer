@@ -3,6 +3,8 @@
 
 #if defined(Q_CC_MSVC)
 #   pragma warning(disable:4129)
+#elif defined(Q_CC_GNU)
+#   pragma GCC diagnostic ignored "-Wswitch"
 #endif
 
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
@@ -67,7 +69,7 @@ void MusicUserLineEdit::showLabel(int s, int e)
 
 void MusicUserLineEdit::showLabel()
 {
-    QRegExp mailRx("^[0-9a-z][a-z0-9\._-]{1,}@[a-z0-9-]{1,}[a-z0-9]\.[a-z\.]{1,}[a-z]+$");
+    QRegExp mailRx("^[0-9a-z][a-z0-9\\._-]{1,}@[a-z0-9-]{1,}[a-z0-9]\\.[a-z\\.]{1,}[a-z]+$");
     labelCheck(m_mailContains = (text().contains(mailRx)));
 }
 
