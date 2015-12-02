@@ -61,13 +61,11 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowRemote->setIconSize(QSize(18, 18));
     connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(musicSquareRemote()));
 
-    QPixmap minPix  = style()->standardPixmap(QStyle::SP_TitleBarMinButton);
-    ui->minimization->setIcon(QIcon(minPix.scaled(25, 25)));
+    ui->minimization->setIcon(QIcon(QString::fromUtf8(":/image/minimize")));
     ui->minimization->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
     connect(ui->minimization, SIGNAL(clicked()), m_supperClass, SLOT(hide()));
-
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));

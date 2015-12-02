@@ -54,9 +54,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     QToolButton *nextPlay = new QToolButton(widgetContainer);
     m_PlayOrStop = new QToolButton(widgetContainer);
 
-    previousPlay->setIcon(QIcon(QString::fromUtf8(":/desktopTool/previous")));
-    nextPlay->setIcon(QIcon(QString::fromUtf8(":/desktopTool/next")));
-    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(":/desktopTool/play")));
+    previousPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysprivious")));
+    nextPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysnext")));
+    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysplay")));
 
     previousPlay->setIconSize(QSize(40, 40));
     nextPlay->setIconSize(QSize(40, 40));
@@ -111,8 +111,8 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
-    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
-                                                          : ":/desktopTool/play")) );
+    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/contextMenu/sysstop"
+                                                          : ":/contextMenu/sysplay")) );
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()

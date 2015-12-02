@@ -15,6 +15,7 @@
         <file alias="beauty">../musicResource/music_beauty.jpg</file>
         <file alias="windowicon">../musicResource/mymusicplayer.ico</file>
         <file alias="close">../musicResource/music_close.png</file>
+        <file alias="minimize">../musicResource/music_min.png</file>
         <file alias="screentop">../musicResource/music_screen_top.png</file>
         <file alias="searchline">../musicResource/music_search_line.png</file>
         <file alias="windowskin">../musicResource/music_window_skin.png</file>
@@ -125,6 +126,10 @@
         <file alias="location">../musicResource/contextMenu/context_location.png</file>
         <file alias="equalizer">../musicResource/contextMenu/context_eq.png</file>
         <file alias="remote">../musicResource/contextMenu/context_remote.png</file>
+        <file alias="sysprivious">../musicResource/contextMenu/button_privious.png</file>
+        <file alias="sysnext">../musicResource/contextMenu/button_next.png</file>
+        <file alias="sysplay">../musicResource/contextMenu/button_play.png</file>
+        <file alias="sysstop">../musicResource/contextMenu/button_stop.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="favorite">../musicResource/netRadio/button_favorite.png</file>
