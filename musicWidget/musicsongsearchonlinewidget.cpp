@@ -90,13 +90,15 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     item->setData(AUDITION_ROLE, AUDITION_STOP);
     setItem(count - 1, 0, item);
 
-                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 210));
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 210));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
-                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 160));
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);

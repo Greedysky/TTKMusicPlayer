@@ -36,7 +36,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(MusicSong &info)
                 str.elidedText( info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()) );
     ui->artlistValue->setText( musicArt.isEmpty() ? "-" :
                str.elidedText( musicArt, Qt::ElideRight, ui->artlistValue->width()) );
-    ui->sizeValue->setText( str.elidedText( QString::number(MusicTime::fileSzieByte2MByte(
+    ui->sizeValue->setText( str.elidedText( QString::number(MusicTime::fileSizeByte2MByte(
                             info.getMusicSize())).left(4) + "M", Qt::ElideRight, ui->sizeValue->width()) );
     ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" :
             str.elidedText( info.getMusicType(), Qt::ElideRight, ui->typeValue->width()) );
@@ -46,6 +46,6 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(MusicSong &info)
 
     if(!showArtPicture(musicArt) && !showArtPicture(info.getMusicArtistBack()))
     {
-        ui->artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60,60));
+        ui->artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
     }
 }

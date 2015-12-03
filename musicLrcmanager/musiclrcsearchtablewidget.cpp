@@ -50,13 +50,15 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
     item->setData(Qt::DisplayRole, false);
     setItem(count - 1, 0, item);
 
-                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 170));
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 170));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
-                      item = new QTableWidgetItem(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 144));
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 144));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);

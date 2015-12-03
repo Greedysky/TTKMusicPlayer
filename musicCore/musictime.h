@@ -73,11 +73,12 @@ public:
     QString normalTime2Label() const;
     static QString normalTime2Label(qint64 time);
     //////////////////////////////////////////////
-    static QString fileSzie2Label(qint64 size);
+    static QString fileSize2Normal(qint64 size);
+    static QString fileSize2Label(qint64 size);
     // xx KB
-    static qreal fileSzieByte2KByte(qint64 size);
+    static qreal fileSizeByte2KByte(qint64 size);
     // xx MB
-    static qreal fileSzieByte2MByte(qint64 size);
+    static qreal fileSizeByte2MByte(qint64 size);
     //////////////////////////////////////////////
     static quint64 dirSize(const QString &dirName);
     static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);

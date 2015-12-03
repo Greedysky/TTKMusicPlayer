@@ -95,22 +95,26 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
     ui->songlistsTable->setRowCount(fileName.count());//reset row count
     ui->songCountLabel->setText(tr("showSongCount%1").arg(fileName.count()));
 
+    QString var;
     for(int i=0; i<fileName.count(); i++)
     {
         if(m_currentIndex == 0)
         {
-            QTableWidgetItem *item = new QTableWidgetItem(fileName[i].fileName());
-            item->setTextColor(QColor(50, 50, 50));
+            var = fileName[i].fileName();
+            QTableWidgetItem *item = new QTableWidgetItem;
+            item->setText(QFontMetrics(font()).elidedText(var, Qt::ElideRight, 285));
+            item->setToolTip(var);
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             ui->songlistsTable->setItem(i, 0, item);
 
-                              item = new QTableWidgetItem(MusicTime::fileSzie2Label(fileName[i].size()));
-            item->setTextColor(QColor(50, 50, 50));
+                              item = new QTableWidgetItem;
+            item->setText(QFontMetrics(font()).elidedText(MusicTime::fileSize2Label(fileName[i].size()),
+                                                          Qt::ElideRight, 50));
+            item->setToolTip(MusicTime::fileSize2Normal(fileName[i].size()));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 1, item);
 
                               item = new QTableWidgetItem(fileName[i].lastModified().date().toString(Qt::ISODate));
-            item->setTextColor(QColor(50, 50, 50));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 2, item);
 
@@ -124,8 +128,10 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
         }
         else
         {
-            QTableWidgetItem *item = new QTableWidgetItem(fileName[i].absoluteFilePath());
-            item->setTextColor(QColor(50, 50, 50));
+            var = fileName[i].absoluteFilePath();
+            QTableWidgetItem *item = new QTableWidgetItem;
+            item->setText(QFontMetrics(font()).elidedText(var, Qt::ElideRight, 500));
+            item->setToolTip(var);
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             ui->songlistsTable->setItem(i, 0, item);
         }

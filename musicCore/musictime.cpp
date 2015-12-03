@@ -197,19 +197,20 @@ QString MusicTime::normalTime2Label(qint64 time)
     }
 }
 
-QString MusicTime::fileSzie2Label(qint64 size)
+QString MusicTime::fileSize2Normal(qint64 size)
 {
+    QString label = fileSize2Label(size);
     if( size < 1024)
     {
-        return QString("%1 Byte").arg(size);
+        return QString("%1 Byte").arg(label);
     }
     else if( 1024 <= size && size < 1024*1024)
     {
-        return QString("%1 KByte").arg((qint64)(size*1.0/1024*100)/100.0);
+        return QString("%1 KByte").arg(label);
     }
     else if( 1024*1024 <= size && size < 1024*1024*1024)
     {
-        return QString("%1 MByte").arg((qint64)(size*1.0/1024/1024*100)/100.0);
+        return QString("%1 MByte").arg(label);
     }
     else
     {
@@ -217,14 +218,34 @@ QString MusicTime::fileSzie2Label(qint64 size)
     }
 }
 
-qreal MusicTime::fileSzieByte2KByte(qint64 size)
+QString MusicTime::fileSize2Label(qint64 size)
+{
+    if( size < 1024)
+    {
+        return QString("%1").arg(size);
+    }
+    else if( 1024 <= size && size < 1024*1024)
+    {
+        return QString("%1").arg((qint64)(size*1.0/1024*100)/100.0);
+    }
+    else if( 1024*1024 <= size && size < 1024*1024*1024)
+    {
+        return QString("%1").arg((qint64)(size*1.0/1024/1024*100)/100.0);
+    }
+    else
+    {
+        return QString();
+    }
+}
+
+qreal MusicTime::fileSizeByte2KByte(qint64 size)
 {
     return size / 1024.0;
 }
 
-qreal MusicTime::fileSzieByte2MByte(qint64 size)
+qreal MusicTime::fileSizeByte2MByte(qint64 size)
 {
-    return fileSzieByte2KByte(size) / 1024.0;
+    return fileSizeByte2KByte(size) / 1024.0;
 }
 
 quint64 MusicTime::dirSize(const QString &dirName)

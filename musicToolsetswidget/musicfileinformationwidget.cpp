@@ -49,7 +49,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = MusicTime::fileSzie2Label(fin.size()) )
+    ui->fileSizeEdit->setText( (check = MusicTime::fileSize2Normal(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = tag.getAlbum()).isEmpty() ? "-" : check) : "-" );
