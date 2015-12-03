@@ -25,8 +25,8 @@ public:
     void saveImagePath(const QString &path) const;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
 
     QString m_path;
     QPixmap m_showPix;

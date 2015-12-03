@@ -23,7 +23,7 @@ public:
     void createShowPath();
 
 public slots:
-    virtual void listCellClicked(int, int){}
+    virtual void listCellClicked(int, int) override {}
 
 };
 

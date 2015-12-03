@@ -25,9 +25,9 @@ public:
     explicit MusicLrcContainerForInline(QWidget *parent = 0);
     virtual ~MusicLrcContainerForInline();
 
-    virtual void startTimerClock();
-    virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const;
+    virtual void startTimerClock() override;
+    virtual void stopLrcMask() override;
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const override;
     void updateCurrentLrc(qint64 time);
 
     bool transLrcFileToTime(const QString &lrcFileName);
@@ -54,12 +54,12 @@ public slots:
     void lrcCopyClipboard() const;
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void wheelEvent(QWheelEvent *);
-    virtual void paintEvent(QPaintEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
     void changeLrcPostion(const QString &type);
     void initLrc();
 

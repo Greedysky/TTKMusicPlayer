@@ -94,18 +94,18 @@ protected:
     void initWindowSurface();
     void createPlayModeMenu(QMenu &menu);
     void createPlayModeMenuIcon(QMenu &menu);
-    virtual void closeEvent(QCloseEvent *event);
-    virtual void dragEnterEvent(QDragEnterEvent *event);
-    virtual void dragMoveEvent(QDragMoveEvent *event);
-    virtual void dropEvent(QDropEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual void closeEvent(QCloseEvent *event) override;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
-     virtual bool nativeEvent(const QByteArray &, void *, long *);
+     virtual bool nativeEvent(const QByteArray &, void *, long *) override;
 #  else
-     virtual bool winEvent(MSG *message, long *result);
+     virtual bool winEvent(MSG *message, long *result) override;
 #  endif
 #endif
 

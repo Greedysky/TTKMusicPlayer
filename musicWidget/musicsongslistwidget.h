@@ -50,8 +50,8 @@ signals:
                              QStringList &list);
 
 public slots:
-    virtual void listCellEntered(int row, int column);
-    virtual void listCellClicked(int row, int column);
+    virtual void listCellEntered(int row, int column) override;
+    virtual void listCellClicked(int row, int column) override;
     void musicPlayClicked();
     void setDeleteItemAt();
     void setDeleteItemAll();
@@ -68,11 +68,11 @@ public slots:
     void setItemRenameFinished(const QString &name);
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void leaveEvent(QEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     void startToDrag();
 
     int m_playRowIndex, m_dragStartIndex;

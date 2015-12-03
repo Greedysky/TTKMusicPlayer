@@ -23,8 +23,8 @@ public slots:
     void leaveTimeout();
 
 protected:
-    virtual void enterEvent(QEvent *event);
-    virtual void leaveEvent(QEvent *event);
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
     QGraphicsOpacityEffect *m_effect[4];
     QTimer m_enterTimer;
     QTimer m_leaveTimer;

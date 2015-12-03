@@ -19,8 +19,8 @@ public:
     explicit MusicVideoTableWidget(QWidget *parent = 0);
     virtual ~MusicVideoTableWidget();
 
-    virtual void startSearchQuery(const QString &text);
-    virtual void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text) override;
+    virtual void musicDownloadLocal(int row) override;
     void resizeWindow(float delta);
 
 signals:
@@ -37,7 +37,7 @@ public slots:
     void downloadLocalFromControl();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     QString randToGetStrength() const;
     void downloadLocalMovie(int row);
 

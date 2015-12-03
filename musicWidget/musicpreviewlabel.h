@@ -22,7 +22,7 @@ public:
     void setTransparent(int trans) { m_transparent = trans;}
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
     QFont m_font;
     QLinearGradient m_linearGradient;
     QLinearGradient m_maskLinearGradient;

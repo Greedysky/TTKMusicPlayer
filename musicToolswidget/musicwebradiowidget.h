@@ -45,7 +45,7 @@ public slots:
     void show();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event);
+    virtual void closeEvent(QCloseEvent *event) override;
     void clearAllItems();
     Ui::MusicWebRadioWidget *ui;
 

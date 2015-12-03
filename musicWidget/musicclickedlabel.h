@@ -22,7 +22,7 @@ signals:
     void clicked();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
 
 };
 

@@ -21,8 +21,8 @@ public:
     virtual ~MusicLocalSongSearchInlineEdit();
 
 protected:
-    virtual void focusOutEvent(QFocusEvent *event);
-    virtual void enterEvent(QEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
     MusicLocalSongSearchPopWidget *m_popWidget;
 
 };

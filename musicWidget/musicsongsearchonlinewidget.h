@@ -27,8 +27,8 @@ public:
     explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
     virtual ~MusicSongSearchOnlineTableWidget();
 
-    virtual void startSearchQuery(const QString &text);
-    virtual void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text) override;
+    virtual void musicDownloadLocal(int row) override;
 
     void auditionToMusic(int row);
     void auditionToMusicStop(int row);
@@ -50,7 +50,7 @@ public slots:
     void researchQueryByQuality();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     void addSearchMusicToPlayList(int row);
 
     MusicCoreMPlayer *m_audition;

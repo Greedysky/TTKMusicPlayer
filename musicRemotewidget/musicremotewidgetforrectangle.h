@@ -18,7 +18,7 @@ public:
     explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
     virtual ~MusicRemoteWidgetForRectangle();
 
-    virtual void setLabelText(const QString &value);
+    virtual void setLabelText(const QString &value) override;
 
 protected:
     QLabel *m_songNameLabel;

@@ -19,8 +19,8 @@ public:
     explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
     virtual ~MusicLrcSearchTableWidget();
 
-    virtual void startSearchQuery(const QString &text);
-    virtual void musicDownloadLocal(int row);
+    virtual void startSearchQuery(const QString &text) override;
+    virtual void musicDownloadLocal(int row) override;
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
 signals:
@@ -33,7 +33,7 @@ public slots:
     void itemDoubleClicked(int row, int column);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     QString m_currentSongName;
 
 };

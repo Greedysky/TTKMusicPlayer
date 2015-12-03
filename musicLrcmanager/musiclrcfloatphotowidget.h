@@ -43,8 +43,8 @@ public slots:
     void userSelectCheckBoxChecked(int index);
 
 protected:
-    virtual void enterEvent(QEvent *){}
-    virtual void leaveEvent(QEvent *){}
+    virtual void enterEvent(QEvent *) override {}
+    virtual void leaveEvent(QEvent *) override {}
     void showPhoto() const;
 
     QWidget* m_filmBGWidget;

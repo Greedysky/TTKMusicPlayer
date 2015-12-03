@@ -18,7 +18,7 @@ public:
     explicit MusicData2DownloadThread(const QString &url, const QString &save,
                                       Download_Type type, QObject *parent = 0);
     void deleteAll();
-    virtual void startToDownload();
+    virtual void startToDownload() override;
 
 signals:
     void data2urlHasChanged(const QString &url);

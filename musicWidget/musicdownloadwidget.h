@@ -53,7 +53,7 @@ public:
     int getCurrentBitrate();
 
 public slots:
-    virtual void listCellClicked(int , int){}
+    virtual void listCellClicked(int , int) override {}
 
 protected:
     QList<QObject*> m_items;

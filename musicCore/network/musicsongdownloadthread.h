@@ -24,12 +24,12 @@ signals:
     void createDownloadItem(const QString &name, qint64 time);
 
 public slots:
-    virtual void downLoadFinished();
+    virtual void downLoadFinished() override;
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void updateDownloadSpeed();
 
 protected:
-    virtual void startRequest(const QUrl &url);
+    virtual void startRequest(const QUrl &url) override;
     qint64 m_createItemTime;
     qint64 m_hasRecevied, m_currentRecevied;
     QTimer m_timer;

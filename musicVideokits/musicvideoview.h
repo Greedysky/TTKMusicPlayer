@@ -26,8 +26,8 @@ signals:
     void setClick();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseDoubleClickEvent(QMouseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 };
 
@@ -54,9 +54,9 @@ private slots:
     void mediaChanged(const QString &data);
 
 protected:
-    virtual void enterEvent(QEvent *event);
-    virtual void leaveEvent(QEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     bool m_positionChanged;
     MusicViewWidget *m_videoWidget;

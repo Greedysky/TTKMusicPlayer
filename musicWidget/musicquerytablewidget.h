@@ -34,7 +34,7 @@ signals:
     void restartSearchQuery(const QString &name);
 
 public slots:
-    virtual void listCellClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) override;
     virtual void clearAllItems() = 0;
     virtual void creatSearchedItems(const QString &songname,
                                     const QString &artistname,
@@ -44,8 +44,8 @@ public slots:
     void setSelectedAllItems(bool all);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *){}
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *) override {}
     void createContextMenu(QMenu &menu);
     int findActionGroup(QAction *action);
 

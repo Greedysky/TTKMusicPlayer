@@ -36,7 +36,7 @@ public slots:
     void popupUserRecordWidget();
     void resetUserName(const QString &name);
     virtual int exec();
-    virtual void leaveEvent(QEvent *event);
+    virtual void leaveEvent(QEvent *event) override;
 
 protected:
     void createUserTime() const;

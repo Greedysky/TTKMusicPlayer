@@ -32,8 +32,8 @@ public slots:
     void lrcArtBackgroundChanged();
 
 protected:
-    virtual void enterEvent(QEvent *){}
-    virtual void leaveEvent(QEvent *event);
+    virtual void enterEvent(QEvent *) override {}
+    virtual void leaveEvent(QEvent *event) override;
     QPushButton *createPushButton(int index);
 
 };

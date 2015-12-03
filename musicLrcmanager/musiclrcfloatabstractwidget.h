@@ -25,12 +25,12 @@ public:
     inline void setblockAnimation(bool b) { m_blockAnimation = b;}
 
 protected:
-    virtual void enterEvent(QEvent *event);
-    virtual void leaveEvent(QEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *){}
-    virtual void mouseMoveEvent(QMouseEvent *){}
-    virtual void mousePressEvent(QMouseEvent *){}
-    virtual void mouseReleaseEvent(QMouseEvent *){}
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *) override {}
+    virtual void mouseMoveEvent(QMouseEvent *) override {}
+    virtual void mousePressEvent(QMouseEvent *) override {}
+    virtual void mouseReleaseEvent(QMouseEvent *) override {}
     void animationIn();
     void animationOut();
 

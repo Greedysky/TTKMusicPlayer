@@ -17,10 +17,10 @@ class MUSIC_NETWORK_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadA
 public:
     explicit MusicDataDownloadThread(const QString &url, const QString &save,
                                      Download_Type type, QObject *parent = 0);
-    virtual void startToDownload();
+    virtual void startToDownload() override;
 
 public slots:
-    virtual void downLoadFinished();
+    virtual void downLoadFinished() override;
     void downLoadReadyRead();
 
 protected:

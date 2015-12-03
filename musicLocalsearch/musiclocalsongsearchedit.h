@@ -19,8 +19,8 @@ public:
     explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

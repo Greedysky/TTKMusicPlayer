@@ -28,11 +28,11 @@ public:
     ~MusicDownloadQueueCache();
 
     void addImageQueue(const QStringList &url, const QStringList &savePath);
-    virtual void startToDownload();
+    virtual void startToDownload() override;
     void abort();
 
 public slots:
-    virtual void downLoadFinished();
+    virtual void downLoadFinished() override;
     void readyReadSlot();
     void errorSlot(QNetworkReply::NetworkError code);
 

@@ -20,8 +20,8 @@ public:
              const QString &originText, QWidget *parent = 0);
 
 protected:
-    virtual void focusOutEvent(QFocusEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 signals:
     void renameFinished(const QString &text);

@@ -25,10 +25,10 @@ public:
     explicit MusicLrcContainerForDesktop(QWidget *parent = 0);
     virtual ~MusicLrcContainerForDesktop();
 
-    virtual void startTimerClock();
-    virtual void stopLrcMask();
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const;
-    virtual void setSettingParameter();
+    virtual void startTimerClock() override;
+    virtual void stopLrcMask() override;
+    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const override;
+    virtual void setSettingParameter() override;
     void showPlayStatus(bool status) const;
     void initCurrentLrc() const;
     void updateCurrentLrc(const QString &first,
@@ -50,12 +50,12 @@ protected:
     void setButtonTips() const;
     void resizeLrcSizeArea();
     void resizeLrcSizeArea(bool bigger);
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void enterEvent(QEvent *event);
-    virtual void leaveEvent(QEvent *event);
-    virtual void closeEvent(QCloseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
 
     QWidget *m_supperClass, *m_toolBarWidget, *m_desktopWidget;
     QPushButton *m_showMainWindow;

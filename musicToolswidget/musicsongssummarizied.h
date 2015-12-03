@@ -65,7 +65,7 @@ public slots:
 protected:
     void changeItemIcon();
     void clearAllLists();
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QList<MusicSongsListWidget*> m_mainSongLists;
     MusicSongsList m_musicFileNames;

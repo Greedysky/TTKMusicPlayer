@@ -25,7 +25,7 @@ public:
     inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
     int m_gradientFontSize;
     int m_gradientTransparent;
     bool m_centerOnLrc;

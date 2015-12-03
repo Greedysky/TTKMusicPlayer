@@ -30,7 +30,7 @@ signals:
     void setText(const QString &text);
 
 public slots:
-    virtual void listCellClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) override;
 
 };
 
@@ -51,7 +51,7 @@ public slots:
     void clearButtonClicked();
 
 protected:
-    virtual void leaveEvent(QEvent *event);
+    virtual void leaveEvent(QEvent *event) override;
     QString utcTimeToLocal(const QString &time) const;
 
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;

@@ -45,10 +45,10 @@ private slots:
     void close();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
     void region(const QPoint &cursorPoint);
     QPoint m_dragPosition;
     Direction m_direction;

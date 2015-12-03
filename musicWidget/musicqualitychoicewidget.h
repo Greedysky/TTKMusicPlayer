@@ -20,7 +20,7 @@ public:
     virtual ~MusicQualityChoiceTableWidget();
 
 public slots:
-    virtual void listCellClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) override;
     void createItems();
 
 };

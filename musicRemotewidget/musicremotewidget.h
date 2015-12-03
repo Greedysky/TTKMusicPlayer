@@ -27,7 +27,7 @@ public:
 
     void showPlayStatus(bool status) const;
     void setVolumeValue(int index);
-    virtual void setLabelText(const QString &){}
+    virtual void setLabelText(const QString &) {}
 
 signals:
     void musicWindowSignal();
@@ -42,7 +42,7 @@ public slots:
     void musicVolumeChanged(int index);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QPushButton *m_showMainWindow;
     QPushButton *m_PreSongButton;

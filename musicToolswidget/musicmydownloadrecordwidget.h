@@ -39,7 +39,7 @@ public slots:
     void createDownloadItem(const QString &name, qint64 time);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     void createItem(int index, const QString &name, const QString &size, qint64 time);
 
     MusicProgressBarDelegate *m_delegate;

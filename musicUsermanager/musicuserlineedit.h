@@ -41,8 +41,8 @@ protected slots:
     void checkPwdStrength();
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event);
-    virtual void focusOutEvent(QFocusEvent *event);
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
     void checkTheInput();
     void showLabel();
     void showLabel(int s, int e);
