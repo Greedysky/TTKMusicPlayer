@@ -12,6 +12,11 @@
 #include <QItemDelegate>
 #include "musiclibexportglobal.h"
 
+#define MUSIC_CHECK_ROLE Qt::UserRole + 1
+#define MUSIC_QUERY_ROLE Qt::UserRole + 2
+#define MUSIC_PROCS_ROLE Qt::UserRole + 3
+#define MUSIC_AUDIT_ROLE Qt::UserRole + 4
+
 class QCheckBox;
 class QProgressBar;
 

@@ -1,6 +1,7 @@
 #include "musiclrcsearchtablewidget.h"
 #include "musictextdownloadthread.h"
 #include "musicmessagebox.h"
+#include "musicitemdelegate.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -47,7 +48,7 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
                   MusicUIObject::MScrollBarStyle01);
 
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, false);
+    item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;

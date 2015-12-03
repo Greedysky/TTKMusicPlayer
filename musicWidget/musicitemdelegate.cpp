@@ -29,10 +29,12 @@ void MusicCheckBoxDelegate::paint(QPainter *painter,
                                   const QStyleOptionViewItem &option,
                                   const QModelIndex &index) const
 {
+    QItemDelegate::paint(painter, option, index);
+
     painter->save();
     int minSize = qMin(option.rect.width(), option.rect.height());
     m_checkBox->resize(minSize, minSize);
-    m_checkBox->setChecked( index.data(Qt::DisplayRole).toBool() );
+    m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
     painter->translate((option.rect.width() - 16)/2, 0); // top left
     m_checkBox->render(painter, option.rect.topLeft(), QRegion(),
                        QWidget::DrawChildren);
@@ -51,13 +53,12 @@ MusicQueryTableDelegate::~MusicQueryTableDelegate()
 
 }
 
-
 void MusicQueryTableDelegate::paint(QPainter *painter,
                                     const QStyleOptionViewItem &option,
                                     const QModelIndex &index) const
 {
     painter->fillRect(option.rect,
-                      static_cast<Qt::GlobalColor>(index.data(Qt::UserRole + 1).toInt()));
+                      static_cast<Qt::GlobalColor>(index.data(MUSIC_AUDIT_ROLE).toInt()));
     MusicCheckBoxDelegate::paint(painter, option, index);
 }
 
@@ -86,9 +87,11 @@ void MusicProgressBarDelegate::paint(QPainter *painter,
                                      const QStyleOptionViewItem &option,
                                      const QModelIndex &index) const
 {
+    QItemDelegate::paint(painter, option, index);
+
     painter->save();
     m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
-    m_progress->setValue(index.data(Qt::DisplayRole).toInt());
+    m_progress->setValue(index.data(MUSIC_PROCS_ROLE).toInt());
     painter->translate(10, 10);
     m_progress->render(painter, option.rect.topLeft(), QRegion(),
                        QWidget::DrawChildren);

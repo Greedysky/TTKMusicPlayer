@@ -62,18 +62,18 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
 
                       item = new QTableWidgetItem;
     item->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 170));
-    item->setTextColor(QColor(50,50,50));
+    item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( name );
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, 100);
+    item->setData(MUSIC_PROCS_ROLE, 100);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem( size );
     item->setTextAlignment(Qt::AlignCenter);
-    item->setData(Qt::UserRole + 1, time);
+    item->setData(MUSIC_TIMES_ROLE, time);
     setItem(index, 3, item);
 }
 
@@ -170,9 +170,9 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 3);
-        if(it && it->data(Qt::UserRole + 1).toLongLong() == time)
+        if(it && it->data(MUSIC_TIMES_ROLE).toLongLong() == time)
         {
-            item(i, 2)->setData(Qt::DisplayRole, percent);
+            item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
             item(i, 3)->setText( total );
             if(percent == 100)
             {

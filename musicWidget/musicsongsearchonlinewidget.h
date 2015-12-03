@@ -12,7 +12,6 @@
 #include "musicdownloadquerythread.h"
 #include "musicquerytablewidget.h"
 
-#define AUDITION_ROLE Qt::UserRole + 1
 #define AUDITION_PLAY static_cast<int>(Qt::yellow)
 #define AUDITION_STOP static_cast<int>(Qt::transparent)
 

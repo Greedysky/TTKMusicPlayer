@@ -12,6 +12,8 @@
 #include "musicabstracttablewidget.h"
 #include "musicmydownloadrecordobject.h"
 
+#define MUSIC_TIMES_ROLE Qt::UserRole + 1
+
 class MusicProgressBarDelegate;
 
 class MUSIC_TOOL_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget

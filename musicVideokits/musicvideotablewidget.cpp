@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musictime.h"
 #include "musicdownloadwidget.h"
+#include "musicitemdelegate.h"
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -60,7 +61,7 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
                   MusicUIObject::MScrollBarStyle01);
 
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, false);
+    item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem(songname);

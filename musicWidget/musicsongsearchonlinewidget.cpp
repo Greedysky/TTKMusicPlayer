@@ -9,6 +9,7 @@
 #include "musicconnectionpool.h"
 #include "musiccoremplayer.h"
 #include "musicdownloadwidget.h"
+#include "musicitemdelegate.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -86,8 +87,8 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     setRowCount(count = m_downLoadManager->getSongIdIndex());
 
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(Qt::DisplayRole, false);
-    item->setData(AUDITION_ROLE, AUDITION_STOP);
+    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
@@ -132,7 +133,7 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
         default:
             break;
     }
-    emit auditionIsPlaying( item(row, 0)->data(AUDITION_ROLE).toInt() == AUDITION_STOP );
+    emit auditionIsPlaying( item(row, 0)->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP );
 }
 
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -180,9 +181,9 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 
     if(m_previousAuditionRow != -1)
     {
-        item(m_previousAuditionRow, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
+        item(m_previousAuditionRow, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
     }
-    item(m_previousAuditionRow = row, 0)->setData(AUDITION_ROLE, AUDITION_PLAY);
+    item(m_previousAuditionRow = row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_PLAY);
     emit auditionIsPlaying(false);
 }
 
@@ -199,7 +200,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
         message.exec();
         return;
     }
-    item(row, 0)->setData(AUDITION_ROLE, AUDITION_STOP);
+    item(row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
     emit auditionIsPlaying(true);
 }
 

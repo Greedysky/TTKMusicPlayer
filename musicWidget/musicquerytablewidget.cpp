@@ -32,17 +32,17 @@ void MusicQueryTableWidget::listCellClicked(int row, int column)
     if(column == 0)
     {
         QTableWidgetItem *it = item(row, 0);
-        bool status = it->data(Qt::DisplayRole).toBool();
-        it->setData(Qt::DisplayRole, !status);
+        bool status = it->data(MUSIC_CHECK_ROLE).toBool();
+        it->setData(MUSIC_CHECK_ROLE, !status);
     }
     else
     {
         if(m_previousClickRow != -1)
         {
-            item(m_previousClickRow, 0)->setData(Qt::DisplayRole, false);
+            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, false);
         }
         m_previousClickRow = row;
-        item(row, 0)->setData(Qt::DisplayRole, true);
+        item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
     }
 }
 
@@ -50,7 +50,7 @@ void MusicQueryTableWidget::setSelectedAllItems(bool all)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(Qt::DisplayRole, all);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, all);
     }
 }
 
@@ -118,7 +118,7 @@ MIntList MusicQueryTableWidget::getSelectedItems() const
     MIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
-        if(item(i, 0)->data(Qt::DisplayRole) == true)
+        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)
         {
             list << i;
         }
