@@ -148,7 +148,7 @@ namespace MusicUIObject
             QPushButton{border-none;}";
             
     const QString MPushButtonStyle05 = " \
-            QPushButton{background-color:rgb(173,216,230);border:none;}\
+            QPushButton{background-color:rgb(173,216,230);border:none;color:white;}\
             QPushButton::hover{\
             background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
             stop:0 #3BA1E6,stop: 0.5 #3BA1E6,stop: 1.0 #3BA1E6);\
@@ -246,7 +246,7 @@ namespace MusicUIObject
 
     const QString MLineEditStyle03 = " \
             QLineEdit{border-image: url(:/image/searchline); \
-            font-size:15px; color:#BFBFBF;}";
+            font-size:15px; color:#333333;}";
 
 ///Menu
 //////////////////////////////////////////////////////
