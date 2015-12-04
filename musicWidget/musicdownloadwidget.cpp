@@ -137,6 +137,14 @@ void MusicDownloadWidget::initWidget()
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
 }
 
+void MusicDownloadWidget::controlEnable(bool enable)
+{
+    ui->topTitleCloseButton->setEnabled(enable);
+    ui->downloadButton->setEnabled(enable);
+    ui->pathChangedButton->setEnabled(enable);
+    ui->settingButton->setEnabled(enable);
+}
+
 void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type)
 {
     initWidget();
@@ -294,19 +302,13 @@ void MusicDownloadWidget::startToDownloadMusic()
 
                 MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicAttr.m_url, downloadName,
                                                                                  MusicDownLoadThreadAbstract::Download_Music, this);
+                connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(close()));
                 downSong->startToDownload();
-
-                (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
-                                             MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
-                (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
-                                              MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
-                ///download big picture
-                (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
-
                 break;
             }
         }
     }
+    controlEnable(false);
 }
 
 void MusicDownloadWidget::startToDownloadMovie()
@@ -329,9 +331,11 @@ void MusicDownloadWidget::startToDownloadMovie()
                             QString("%1/%2 - %3.%4").arg(MOVIE_DOWNLOAD_AL).arg(musicSongInfo.m_singerName)
                                                     .arg(musicSongInfo.m_songName).arg(musicAttr.m_format),
                                                          MusicDownLoadThreadAbstract::Download_Video, this);
+                connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(close()));
                 download->startToDownload();
                 break;
             }
         }
     }
+    controlEnable(false);
 }

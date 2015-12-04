@@ -78,6 +78,7 @@ public slots:
 
 protected:
     void initWidget();
+    void controlEnable(bool enable);
 
     void queryAllFinishedMusic();
     void queryAllFinishedMovie();
