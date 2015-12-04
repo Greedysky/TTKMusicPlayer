@@ -56,6 +56,8 @@ v2.2.8.6
 界面ui的重新设计。 ---
 密码强度的立即显示。 ---
 
+v2.2.8.8
+
 
 To be repaired or new
 部分文件目录移动至AppData下
