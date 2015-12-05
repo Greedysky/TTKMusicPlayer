@@ -35,7 +35,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
                               SLOT(userComboBoxChanged(QString)));
     connect(ui->userComboBox, SIGNAL(editTextChanged(QString)),
                               SLOT(userEditTextChanged(QString)));
-    m_userComboIndex = ui->userComboBox->currentText();
+    m_userName = ui->userComboBox->currentText();
     readFromUserConfig();
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
@@ -208,7 +208,7 @@ void MusicUserDialog::checkUserLogin()
     QString pwd = ui->passwLineEdit->text();
 
     if(!ui->rememberPwd->isChecked() ||
-       pwd != m_userModel->getUserPWDMD5(m_userComboIndex) )
+       pwd != m_userModel->getUserPWDMD5(m_userName) )
     {
         if( !m_userModel->passwordCheck(user, pwd) )
         {
@@ -319,7 +319,7 @@ void MusicUserDialog::checkUserForgotPasswd()
 void MusicUserDialog::readFromUserSettings()
 {
     int index = 0;
-    if((index = m_record.m_names.indexOf(m_userComboIndex)) != -1)
+    if((index = m_record.m_names.indexOf(m_userName)) != -1)
     {
         ui->automaticLogon->setChecked( !(m_record.m_als[index] == "0") );
         ui->rememberPwd->setChecked( !(m_record.m_rps[index] == "0") );
@@ -330,34 +330,34 @@ void MusicUserDialog::readFromUserSettings()
 void MusicUserDialog::writeToUserSettings()
 {
     int index = 0;
-    if((index = m_record.m_names.indexOf(m_userComboIndex)) != -1)
+    if((index = m_record.m_names.indexOf(m_userName)) != -1)
     {
         m_record.m_als[index] = ui->automaticLogon->isChecked() ? "1" : "0";
         m_record.m_rps[index] = ui->rememberPwd->isChecked() ? "1" : "0";
-        m_record.m_pwds[index] = ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userComboIndex)
+        m_record.m_pwds[index] = ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userName)
                                                               : QString();
     }
     else
     {
-        m_record.m_names << m_userComboIndex;
+        m_record.m_names << m_userName;
         m_record.m_als << (ui->automaticLogon->isChecked() ? "1" : "0");
         m_record.m_rps << (ui->rememberPwd->isChecked() ? "1" : "0");
-        m_record.m_pwds << (ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userComboIndex)
+        m_record.m_pwds << (ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userName)
                                                          : QString() );
     }
 }
 
-void MusicUserDialog::userComboBoxChanged(const QString &index)
+void MusicUserDialog::userComboBoxChanged(const QString &name)
 {
-    m_userComboIndex = index;
+    m_userName = name;
     readFromUserSettings();
 }
 
-void MusicUserDialog::userEditTextChanged(const QString &index)
+void MusicUserDialog::userEditTextChanged(const QString &name)
 {
-    if(m_userModel->getAllUsers().contains(index))
+    if(m_userModel->getAllUsers().contains(name))
     {
-        m_userComboIndex = index;
+        m_userName = name;
         readFromUserSettings();
     }
     else
@@ -371,10 +371,10 @@ void MusicUserDialog::userEditTextChanged(const QString &index)
 void MusicUserDialog::checkToAutoLogin(QString &name, QString &icon)
 {
     if(ui->automaticLogon->isChecked() && ui->rememberPwd->isChecked() &&
-       ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userComboIndex))
+       ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userName))
     {
-        name = m_userComboIndex;
-        icon = m_userModel->getUserIcon(m_userComboIndex);
+        name = m_userName;
+        icon = m_userModel->getUserIcon(m_userName);
     }
 }
 

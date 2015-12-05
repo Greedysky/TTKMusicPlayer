@@ -39,8 +39,8 @@ public slots:
     void userForgotPasswd();
     void checkUserForgotPasswd();
     void changeVerificationCode();
-    void userComboBoxChanged(const QString &index);
-    void userEditTextChanged(const QString &index);
+    void userComboBoxChanged(const QString &name);
+    void userEditTextChanged(const QString &name);
     void buttonClicked(int index);
 
 protected:
@@ -57,7 +57,7 @@ protected:
     Ui::MusicUserDialog *ui;
     MusicUserModel *m_userModel;
     MusicUserRecord m_record;
-    QString m_userComboIndex;
+    QString m_userName;
 
 };
 
