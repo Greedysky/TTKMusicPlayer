@@ -276,7 +276,8 @@ void MusicDownloadWidget::startToDownloadMusic()
         MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
         foreach(MusicSongAttribute musicAttr, musicAttrs)
         {
-            if(musicAttr.m_bitrate == bitrate)
+            if(musicAttr.m_bitrate == bitrate ||
+               musicAttr.m_bitrate > 321)
             {
                 if(!M_NETWORK->isOnline())
                 {

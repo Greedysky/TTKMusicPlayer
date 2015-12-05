@@ -46,7 +46,6 @@ void MusicData2DownloadThread::dataGetFinished()
         return;
     }
 
-    m_dataReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
     if(m_dataReply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_dataReply->readAll();
