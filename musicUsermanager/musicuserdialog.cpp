@@ -7,7 +7,6 @@
 #include "musictime.h"
 
 #include <QValidator>
-#include <QTimer>
 #include <QButtonGroup>
 
 MusicUserDialog::MusicUserDialog(QWidget *parent)
@@ -45,8 +44,6 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     buttonGroup->addButton(ui->useWechatLogin, 2);
     buttonGroup->addButton(ui->useSinaLogin, 3);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-
-    QTimer::singleShot(1, this, SLOT(checkToAutoLogin()));
 }
 
 MusicUserDialog::~MusicUserDialog()
@@ -371,13 +368,13 @@ void MusicUserDialog::userEditTextChanged(const QString &index)
     }
 }
 
-void MusicUserDialog::checkToAutoLogin()
+void MusicUserDialog::checkToAutoLogin(QString &name, QString &icon)
 {
     if(ui->automaticLogon->isChecked() && ui->rememberPwd->isChecked() &&
        ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userComboIndex))
     {
-        emit userLoginSuccess(m_userComboIndex, m_userModel->getUserIcon(m_userComboIndex));
-        close();
+        name = m_userComboIndex;
+        icon = m_userModel->getUserIcon(m_userComboIndex);
     }
 }
 

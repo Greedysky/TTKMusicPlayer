@@ -24,6 +24,8 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     connect(ui->userName, SIGNAL(clicked()), m_userManager, SLOT(exec()));
     connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
                            SLOT(userStateChanged(QString,QString)));
+
+    QTimer::singleShot(1, this, SLOT(checkToAutoLogin()));
 }
 
 MusicUserWindow::~MusicUserWindow()
@@ -127,4 +129,15 @@ void MusicUserWindow::musicUserContextLogin()
         setCurrentIndex(0);
     }
     QTimer::singleShot(1, this, SLOT(musicUserLogin()));
+}
+
+void MusicUserWindow::checkToAutoLogin()
+{
+    MusicUserDialog dialog;
+    QString name, icon;
+    dialog.checkToAutoLogin(name, icon);
+    if(!name.isEmpty())
+    {
+        userStateChanged(name, icon);
+    }
 }

@@ -32,6 +32,7 @@ public slots:
     void musicUserLogin();
     void userStateChanged(const QString &uid, const QString &icon);
     void musicUserContextLogin();
+    void checkToAutoLogin();
 
 protected:
     Ui::MusicUserWindow *ui;

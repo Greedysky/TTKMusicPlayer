@@ -26,6 +26,8 @@ public:
     explicit MusicUserDialog(QWidget *parent = 0);
     ~MusicUserDialog();
 
+    void checkToAutoLogin(QString &name, QString &icon);
+
 signals:
     void userLoginSuccess(const QString &uid, const QString &icon);
 
@@ -39,7 +41,6 @@ public slots:
     void changeVerificationCode();
     void userComboBoxChanged(const QString &index);
     void userEditTextChanged(const QString &index);
-    void checkToAutoLogin();
     void buttonClicked(int index);
 
 protected:
