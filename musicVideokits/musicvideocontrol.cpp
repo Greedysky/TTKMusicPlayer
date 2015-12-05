@@ -5,14 +5,13 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QSlider>
-#include <QHBoxLayout>
+#include <QLabel>
+#include <QBoxLayout>
 #include <QWidgetAction>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle01);
-
     m_timeSlider = new QSlider(Qt::Horizontal,this);
     m_menuButton = new QToolButton(this);
     m_playButton = new QPushButton(this);
@@ -20,6 +19,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_fullButton = new QPushButton(this);
     m_qualityButton = new QPushButton(tr("NormalMV"), this);
     m_downloadButton = new QPushButton(tr("DownloadMV"), this);
+    m_barrageWidget = new QLabel(this);
 
     m_volumnButton = new QToolButton(this);
     m_volumnSlider = new QSlider(Qt::Vertical,this);
@@ -51,19 +51,32 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_popupQuality.setStyleSheet(MusicUIObject::MMenuStyle01);
-    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_timeSlider->setStyleSheet("\
+                QSlider::groove:horizontal{background:#C0C0C0; height:8px;}\
+                QSlider::sub-page:horizontal{background:#F7F66C;}\
+                QSlider::add-page:horizontal{background:#4E4E4E;}\
+                QSlider::handle:horizontal{background:#FFFFFF; width:10px;}"
+                );
     m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
 
-    QHBoxLayout *controlLayout = new QHBoxLayout(this);
-    controlLayout->addWidget(m_menuButton);
-    controlLayout->addWidget(m_playButton);
-    controlLayout->addWidget(m_volumnButton);
-    controlLayout->addWidget(m_timeSlider);
-    controlLayout->addWidget(m_qualityButton);
-    controlLayout->addWidget(m_downloadButton);
-    controlLayout->addWidget(m_inSideButton);
-    controlLayout->addWidget(m_fullButton);
-    setLayout(controlLayout);
+    QVBoxLayout *controlVLayout = new QVBoxLayout(this);
+    controlVLayout->setSpacing(0);
+    controlVLayout->setContentsMargins(0, 0, 0, 0);
+    QWidget *controlBWidget = new QWidget(this);
+    QHBoxLayout *controlBLayout = new QHBoxLayout(controlBWidget);
+    controlBLayout->setContentsMargins(9, 0, 9, 0);
+    controlBLayout->addWidget(m_menuButton);
+    controlBLayout->addWidget(m_playButton);
+    controlBLayout->addWidget(m_volumnButton);
+    controlBLayout->addWidget(m_barrageWidget, 1);
+    controlBLayout->addWidget(m_qualityButton);
+    controlBLayout->addWidget(m_downloadButton);
+    controlBLayout->addWidget(m_inSideButton);
+    controlBLayout->addWidget(m_fullButton);
+    controlBWidget->setLayout(controlBLayout);
+    controlVLayout->addWidget(m_timeSlider);
+    controlVLayout->addWidget(controlBWidget);
+    setLayout(controlVLayout);
 
     QWidgetAction *widgetAction = new QWidgetAction(this);
     widgetAction->setDefaultWidget(m_volumnSlider);
@@ -99,6 +112,7 @@ MusicVideoControl::~MusicVideoControl()
     delete m_menuButton;
     delete m_playButton;
     delete m_volumnButton;
+    delete m_barrageWidget;
     delete m_inSideButton;
     delete m_fullButton;
     delete m_qualityButton;

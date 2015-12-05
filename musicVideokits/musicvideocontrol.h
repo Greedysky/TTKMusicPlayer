@@ -15,6 +15,7 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
+class QLabel;
 class QSlider;
 class QToolButton;
 class QPushButton;
@@ -56,6 +57,7 @@ protected:
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;
     QAction *m_mvNormal, *m_mvHd;
+    QLabel *m_barrageWidget;
 
 };
 
