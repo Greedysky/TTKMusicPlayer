@@ -9,6 +9,10 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     m_process = NULL;
     m_playState = StoppedState;
     m_category = NullCategory;
+    m_currentPos = 0;
+
+    m_timer.setInterval(1000);
+    connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 MusicCoreMPlayer::~MusicCoreMPlayer()
@@ -22,6 +26,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
 
 void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 {
+    m_timer.stop();
     if(m_process)
     {
         m_process->kill();
@@ -78,7 +83,7 @@ void MusicCoreMPlayer::setPosition(qint64 pos)
     {
         return;
     }
-    m_process->write(QString("seek %1").arg(pos).toUtf8());
+    m_process->write(QString("seek %1 2\n").arg(pos).toUtf8());
 }
 
 void MusicCoreMPlayer::setMute(bool mute)
@@ -87,7 +92,7 @@ void MusicCoreMPlayer::setMute(bool mute)
     {
         return;
     }
-    m_process->write(QString("mute %1").arg(mute ? 1 : 0).toUtf8());
+    m_process->write(QString("mute %1\n").arg(mute ? 1 : 0).toUtf8());
 }
 
 void MusicCoreMPlayer::setVolume(int value)
@@ -102,6 +107,7 @@ void MusicCoreMPlayer::setVolume(int value)
 
 void MusicCoreMPlayer::play()
 {
+    m_timer.stop();
     if(!m_process)
     {
         return;
@@ -151,15 +157,14 @@ void MusicCoreMPlayer::dataRecieve()
 
 void MusicCoreMPlayer::positionRecieve()
 {
-    m_process->write("get_time_length\n");
-    m_process->write("get_time_pos\n");
+    m_timer.start();
     while(m_process->canReadLine())
     {
         QByteArray data = m_process->readLine();
         if(data.startsWith("ANS_TIME_POSITION"))
         {
             data.replace(QByteArray("\r\n"), "");
-            emit positionChanged(QString(data).mid(18).toFloat());
+            emit positionChanged(m_currentPos = QString(data).mid(18).toFloat());
         }
     }
 }
@@ -184,9 +189,16 @@ void MusicCoreMPlayer::musicStandardRecieve()
 
 void MusicCoreMPlayer::stop()
 {
+    m_timer.stop();
     if(!m_process)
     {
         return;
     }
     m_process->write("quit\n");
+}
+
+void MusicCoreMPlayer::timeout()
+{
+    m_process->write("get_time_length\n");
+    m_process->write("get_time_pos\n");
 }

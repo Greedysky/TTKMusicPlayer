@@ -39,12 +39,14 @@ signals:
     void getMusicMvInfo(MusicSongAttributes &data);
     void downloadLocalByControl();
     void mvURLChanged(const QString &data);
+    void sliderValueChanged(int value);
 
 public slots:
     void show();
     void inSideButtonClicked();
     void fullButtonClicked();
     void menuActionTriggered(QAction *action);
+    void sliderReleased();
 
 protected:
     void setQualityActionState();

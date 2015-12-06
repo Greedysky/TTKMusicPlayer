@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QObject>
+#include <QTimer>
 #include "musiclibexportglobal.h"
 
 class QProcess;
@@ -64,6 +64,7 @@ private slots:
     void durationRecieve();
     void radioStandardRecieve();
     void musicStandardRecieve();
+    void timeout();
 
 protected:
     void setVideoMedia(const QString &data, int winId);
@@ -73,6 +74,8 @@ protected:
     QProcess *m_process;
     State m_playState;
     Category m_category;
+    QTimer m_timer;
+    int m_currentPos;
 
 };
 
