@@ -24,7 +24,7 @@ public:
     void resizeWindow(float delta);
 
 signals:
-    void mvURLChanged(const QString &data);
+    void mvURLNameChanged(const QString &name, const QString &data);
 
 public slots:
     void listCellClicked(int row, int col);

@@ -33,6 +33,7 @@ public slots:
     void searchButtonClicked();
     void musicResearchButtonSearched(const QString &name);
     void mvURLChanged(const QString &data);
+    void mvURLNameChanged(const QString &name, const QString &data);
 
 protected:
     QWidget *m_topWidget;
