@@ -12,7 +12,7 @@
         <file alias="menu">../musicResource/menu_setting.png</file>
         <file alias="soundmax">../musicResource/sound_max.png</file>
         <file alias="soundmin">../musicResource/sound_min.png</file>
-        <file alias="beauty">../musicResource/music_beauty.jpg</file>
+        <file alias="beauty">../musicResource/music_beauty.png</file>
         <file alias="windowicon">../musicResource/mymusicplayer.ico</file>
         <file alias="close">../musicResource/music_close.png</file>
         <file alias="minimize">../musicResource/music_min.png</file>
