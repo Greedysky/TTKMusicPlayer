@@ -44,9 +44,6 @@ void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
 
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MScrollBarStyle01);
-
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count - 1, 0, item);

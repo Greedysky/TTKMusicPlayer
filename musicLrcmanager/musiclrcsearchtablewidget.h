@@ -27,10 +27,10 @@ signals:
     void lrcDownloadStateChanged(const QString &name);
 
 public slots:
-    void clearAllItems();
+    void clearAllItems() override;
     void creatSearchedItems(const QString &songname,
-                            const QString &artistname, const QString &time);
-    void itemDoubleClicked(int row, int column);
+                            const QString &artistname, const QString &time) override;
+    void itemDoubleClicked(int row, int column) override;
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

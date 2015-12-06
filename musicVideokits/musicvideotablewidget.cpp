@@ -47,8 +47,8 @@ QString MusicVideoTableWidget::randToGetStrength() const
         case 2: return QString::fromUtf8(":/video/video_3");
         case 3: return QString::fromUtf8(":/video/video_4");
         case 4: return QString::fromUtf8(":/video/video_5");
+        default:return QString::fromUtf8(":/video/video_5");
     }
-    return QString::fromUtf8(":/video/video_5");
 }
 
 void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
@@ -57,20 +57,23 @@ void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MScrollBarStyle01);
+    QHeaderView *headerview = horizontalHeader();
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count - 1, 0, item);
 
-                      item = new QTableWidgetItem(songname);
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight,
+                                                  headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
-                      item = new QTableWidgetItem(artistname);
+                      item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight,
+                                                  headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -146,13 +149,24 @@ void MusicVideoTableWidget::resizeWindow(float delta)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30*delta);
-    headerview->resizeSection(1, 175*delta);
-    headerview->resizeSection(2, 151*delta);
+    headerview->resizeSection(1, 200*delta);
+    headerview->resizeSection(2, 126*delta);
     headerview->resizeSection(3, 30*delta);
     headerview->resizeSection(4, 55*delta);
     headerview->resizeSection(5, 24*delta);
     headerview->resizeSection(6, 24*delta);
     headerview->resizeSection(7, 24*delta);
+
+    //resize row
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(QFontMetrics(font()).elidedText(it->toolTip(), Qt::ElideRight,
+                                                    headerview->sectionSize(1) - 5));
+        it = item(i, 2);
+        it->setText(QFontMetrics(font()).elidedText(it->toolTip(), Qt::ElideRight,
+                                                    headerview->sectionSize(2) - 5));
+    }
 }
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
@@ -162,14 +176,14 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    emit mvURLNameChanged(item(row, 2)->text() + " - " + item(row, 1)->text(),
+    emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(),
                           musicSongInfos[row].m_songAttrs.first().m_url);
 }
 
 void MusicVideoTableWidget::getMusicMvInfo(MusicSongAttributes &data)
 {
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    data = !musicSongInfos.isEmpty() && m_previousClickRow != -1 ?
+    data =  (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicSongAttributes();
 }
 
