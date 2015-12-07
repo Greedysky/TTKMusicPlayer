@@ -61,8 +61,9 @@ void MusicProgressWidget::setTitle(const QString &name)
     m_textLabel->setText(name);
 }
 
-void MusicProgressWidget::resizeEvent(QResizeEvent *)
+void MusicProgressWidget::resizeEvent(QResizeEvent *event)
 {
+    QDialog::resizeEvent(event);
     m_progressBar->setGeometry(40, 85, 320, 25);
 }
 
