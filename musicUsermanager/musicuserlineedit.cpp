@@ -12,8 +12,8 @@ MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
 {
     m_mailContains = false;
     m_strContains = false;
-    m_tipsLabel = NULL;
-    m_statusLabel = NULL;
+    m_tipsLabel = nullptr;
+    m_statusLabel = nullptr;
 }
 
 void MusicUserLineEdit::focusInEvent(QFocusEvent *event)

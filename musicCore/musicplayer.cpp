@@ -8,8 +8,8 @@
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
-    m_playlist = NULL;
-    m_music = NULL;
+    m_playlist = nullptr;
+    m_music = nullptr;
     m_state = StoppedState;
     m_musicEnhanced = EnhancedOff;
     m_music = CreateZPlay();

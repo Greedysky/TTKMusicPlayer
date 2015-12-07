@@ -19,7 +19,7 @@
 #include <QButtonGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
-    : MusicQueryTableWidget(parent), m_audition(NULL)
+    : MusicQueryTableWidget(parent), m_audition(nullptr)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -172,7 +172,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
         message.exec();
         return;
     }
-    if(m_audition == NULL)
+    if(m_audition == nullptr)
     {
         m_audition = new MusicCoreMPlayer(this);
     }

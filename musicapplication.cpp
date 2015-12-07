@@ -595,7 +595,7 @@ void MusicApplication::musicPlayItemOnce()
     createPlayModeMenuIcon(m_playModeMenu);
 }
 
-void MusicApplication::musicVolumeNULL()
+void MusicApplication::musicVolumenullptr()
 {
     if(!m_musicPlayer->isMuted())
     {

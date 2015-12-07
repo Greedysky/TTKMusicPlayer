@@ -18,7 +18,7 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 {
     m_queueList << object;
     QObject *to = m_para.value( "MusicDownloadStatusLabel" );
-    if(to != NULL)
+    if(to != nullptr)
     {
         QObject::connect(object, SIGNAL(musicDownLoadFinished(QString)), to,
                                  SLOT(showDownLoadInfoFinished(QString)));
@@ -28,7 +28,7 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 void MusicConnectionPool::connectMusicDownload(QObject *object)
 {
     QObject *to = m_para.value( "MusicMyDownloadRecordWidget" );
-    if(to != NULL && object)
+    if(to != nullptr && object)
     {
         QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,
                                  SLOT(downloadProgressChanged(float, QString, qint64)));
@@ -51,7 +51,7 @@ void MusicConnectionPool::connect(const QString &from,
 {
     QObject *first = m_para.value(from);
     QObject *second = m_para.value(to);
-    if(first == NULL || second == NULL)
+    if(first == nullptr || second == nullptr)
     {
         return;
     }

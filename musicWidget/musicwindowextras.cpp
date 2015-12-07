@@ -10,12 +10,12 @@ MusicWindowExtras::MusicWindowExtras(QObject *parent)
     : QObject(parent)
 {
 #if defined Q_OS_WIN && defined MUSIC_QT_5
-    m_playToolButton = NULL;
-    m_forwardToolButton = NULL;
-    m_backwardToolButton = NULL;
-    m_taskbarProgress = NULL;
-    m_taskbarButton = NULL;
-    m_thumbnailToolBar = NULL;
+    m_playToolButton = nullptr;
+    m_forwardToolButton = nullptr;
+    m_backwardToolButton = nullptr;
+    m_taskbarProgress = nullptr;
+    m_taskbarButton = nullptr;
+    m_thumbnailToolBar = nullptr;
     m_superClass = static_cast<MusicApplication*>(parent);
     disableBlurBehindWindow( QtWin::isCompositionEnabled() );
 #ifdef MUSIC_DEBUG

@@ -115,7 +115,7 @@ qint64 MusicTime::getTimeStamp(Type type) const
 
 void MusicTime::timeSRand()
 {
-    qsrand(time(NULL));
+    qsrand(time(nullptr));
 }
 
 QString MusicTime::msecTime2LabelJustified() const

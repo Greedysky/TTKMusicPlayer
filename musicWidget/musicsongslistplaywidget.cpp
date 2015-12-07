@@ -23,7 +23,7 @@ void MusicSongsEnterPlayWidget::enterEvent(QEvent *event)
 
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
-    : MusicSongsEnterPlayWidget(index, parent), m_renameLine(NULL)
+    : MusicSongsEnterPlayWidget(index, parent), m_renameLine(nullptr)
 {
     m_totalTime = "/00:00";
 
@@ -168,7 +168,7 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
     m_songName->setToolTip(name);
     emit renameFinished(name);
     delete m_renameLine;
-    m_renameLine = NULL;
+    m_renameLine = nullptr;
 }
 
 void MusicSongsListPlayWidget::showMVButtonClicked()

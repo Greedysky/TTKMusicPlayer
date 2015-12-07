@@ -9,7 +9,7 @@
 #include "musicconnectionpool.h"
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
-    : QWidget(parent), m_videoPlayer(NULL)
+    : QWidget(parent), m_videoPlayer(nullptr)
 {
     m_supperClass = parent;
     m_lrcDisplayAll = false;
@@ -327,7 +327,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
     {
         m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
         delete m_videoPlayer;
-        m_videoPlayer = NULL;
+        m_videoPlayer = nullptr;
     }
     m_ui->musicWindowSpace->setVisible(true);
     m_ui->lrcDisplayAllButton->setVisible(false);

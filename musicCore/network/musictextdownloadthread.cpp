@@ -39,7 +39,7 @@ void MusicTextDownLoadThread::startToDownload()
 
 void MusicTextDownLoadThread::downLoadFinished()
 {
-    if(m_reply == NULL)
+    if(m_reply == nullptr)
     {
         return;
     }

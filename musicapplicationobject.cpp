@@ -16,7 +16,7 @@
 #include <QDesktopWidget>
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
-    : QObject(parent), m_mobileDevices(NULL)
+    : QObject(parent), m_mobileDevices(nullptr)
 {
     m_supperClass = static_cast<QWidget*>(parent);
     QWidget *widget = QApplication::desktop();
@@ -121,7 +121,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
                     {
                         M_LOGGER << "USB_remove" << LOG_END;
                         delete m_mobileDevices;
-                        m_mobileDevices = NULL;
+                        m_mobileDevices = nullptr;
                     }
                 }
                 break;

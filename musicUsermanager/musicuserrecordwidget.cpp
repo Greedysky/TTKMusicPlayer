@@ -98,9 +98,9 @@ void MusicUserRecordWidget::initTabT()
     ui->labelRighT1->hide();
     ui->labelRighT2->hide();
     ui->labelRighT3->hide();
-    ui->originPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, NULL, ui->labelRighT1);
-    ui->newPwdEdit_T->setLabel(MusicUserLineEdit::PasswdNew, NULL, ui->labelRighT2);
-    ui->newCPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, NULL, ui->labelRighT3);
+    ui->originPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, nullptr, ui->labelRighT1);
+    ui->newPwdEdit_T->setLabel(MusicUserLineEdit::PasswdNew, nullptr, ui->labelRighT2);
+    ui->newCPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, nullptr, ui->labelRighT3);
     connect(ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
     ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);

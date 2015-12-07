@@ -60,7 +60,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
 
 bool MusicBackgroundListWidget::contains(const QString &name)
 {
-    QListWidgetItem *it = NULL;
+    QListWidgetItem *it = nullptr;
     for(int i=0; i<count(); ++i)
     {
         if((it = item(i)) &&
@@ -74,7 +74,7 @@ bool MusicBackgroundListWidget::contains(const QString &name)
 
 bool MusicBackgroundListWidget::contains(QListWidgetItem *item)
 {
-    QListWidgetItem *it = NULL;
+    QListWidgetItem *it = nullptr;
     for(int i=0; i<count(); ++i)
     {
         if((it = this->item(i)) && it == item)
@@ -87,7 +87,7 @@ bool MusicBackgroundListWidget::contains(QListWidgetItem *item)
 
 int MusicBackgroundListWidget::indexOf(const QString &name)
 {
-    QListWidgetItem *it = NULL;
+    QListWidgetItem *it = nullptr;
     for(int i=0; i<count(); ++i)
     {
         if((it = item(i)) &&
@@ -101,7 +101,7 @@ int MusicBackgroundListWidget::indexOf(const QString &name)
 
 int MusicBackgroundListWidget::indexOf(QListWidgetItem *item)
 {
-    QListWidgetItem *it = NULL;
+    QListWidgetItem *it = nullptr;
     for(int i=0; i<count(); ++i)
     {
         if((it = this->item(i)) && it == item)
@@ -126,7 +126,7 @@ QString MusicBackgroundListWidget::fileHash(const QString &name)
 
 void MusicBackgroundListWidget::recreateItem(const QString &name)
 {
-    QListWidgetItem *it = NULL;
+    QListWidgetItem *it = nullptr;
     for(int i=0; i<count(); ++i)
     {
         if((it = item(i))->data(MUSIC_BG_ROLE).toString().isEmpty())

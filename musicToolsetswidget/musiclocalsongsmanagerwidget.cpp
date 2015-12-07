@@ -13,7 +13,7 @@
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicLocalSongsManagerWidget), m_movie(NULL)
+      ui(new Ui::MusicLocalSongsManagerWidget), m_movie(nullptr)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     ui->setupUi(this);
@@ -215,7 +215,7 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
     M_LOGGER << "stop fetch!" << LOG_END;
     ui->loadingLabel->hide();
     delete m_movie;
-    m_movie = NULL;
+    m_movie = nullptr;
     clearAllItems();
     addAllItems( m_filenames = name );
 }

@@ -10,11 +10,11 @@
 #include "musicqualitychoicewidget.h"
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicLocalSongSearch(NULL), m_qualityChoiceWidget(NULL)
+    : QWidget(parent), m_musicLocalSongSearch(nullptr), m_qualityChoiceWidget(nullptr)
 {
     m_supperClass = parent;
-    m_stackedWidget = NULL;
-    m_musicSpectrumWidget = NULL;
+    m_stackedWidget = nullptr;
+    m_musicSpectrumWidget = nullptr;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -34,7 +34,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
     connect(ui->musicPrivious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeNULL()));
+    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumenullptr()));
     connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
@@ -120,7 +120,7 @@ void MusicLeftAreaWidget::clearSearchedText() const
 
 void MusicLeftAreaWidget::musicSearch()
 {
-    if(m_musicLocalSongSearch == NULL)
+    if(m_musicLocalSongSearch == nullptr)
     {
         m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
     }
@@ -131,7 +131,7 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 {
     m_ui->songsContainer->setCurrentIndex(0);
     delete m_stackedWidget;
-    m_stackedWidget = NULL;
+    m_stackedWidget = nullptr;
 }
 
 void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
@@ -170,7 +170,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 
 void MusicLeftAreaWidget::musicSpectrumWidget()
 {
-    if(m_musicSpectrumWidget == NULL)
+    if(m_musicSpectrumWidget == nullptr)
     {
         m_musicSpectrumWidget = new MusicSpectrumWidget;
     }

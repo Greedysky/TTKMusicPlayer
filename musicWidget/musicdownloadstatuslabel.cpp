@@ -15,7 +15,7 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
 {
     m_parentWidget = static_cast<MusicApplication*>(w);
-    m_downloadLrcThread = NULL;
+    m_downloadLrcThread = nullptr;
 
     M_CONNECTION->setValue("MusicDownloadStatusLabel", this);
     M_CONNECTION->connect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
@@ -99,7 +99,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        if(m_downloadLrcThread)
        {
            delete m_downloadLrcThread;
-           m_downloadLrcThread = NULL;
+           m_downloadLrcThread = nullptr;
        }
        ///Start the request query
        m_downloadLrcThread = new MusicDownLoadQueryThread(this);

@@ -10,7 +10,7 @@
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicTransformWidget), m_movie(NULL)
+      ui(new Ui::MusicTransformWidget), m_movie(nullptr)
 {
     ui->setupUi(this);
     
@@ -160,7 +160,7 @@ void MusicTransformWidget::transformFinish(int)
         setCheckedControl(true);
         ui->loadingLabel->hide();
         delete m_movie;
-        m_movie = NULL;
+        m_movie = nullptr;
     }
 }
 

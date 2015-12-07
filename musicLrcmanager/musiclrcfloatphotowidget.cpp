@@ -136,16 +136,16 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
     m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
 
-    QPixmap nullPix;
-    nullPix.fill(Qt::black);
+    QPixmap nullptrPix;
+    nullptrPix.fill(Qt::black);
     //check show pixmap
     int indexCheck = m_currentIndex * PHOTO_PERLINE;
     m_plane1->setPixmap( (indexCheck + 0) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 0] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullptrPix );
     m_plane2->setPixmap( (indexCheck + 1) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 1] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullptrPix );
     m_plane3->setPixmap( (indexCheck + 2) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 2] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullptrPix );
     //check show radio button
     m_radio1->setChecked( m_selectNum.contains(indexCheck + 0) );
     m_radio2->setChecked( m_selectNum.contains(indexCheck + 1) );

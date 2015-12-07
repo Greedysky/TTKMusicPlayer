@@ -6,7 +6,7 @@
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)
-    : QObject(parent), m_manager(NULL), m_reply(NULL)
+    : QObject(parent), m_manager(nullptr), m_reply(nullptr)
 {
     m_url = url;
     m_savePathName = save;
@@ -31,17 +31,17 @@ void MusicDownLoadThreadAbstract::deleteAll()
     if(m_file)
     {
         delete m_file;
-        m_file = NULL;
+        m_file = nullptr;
     }
     if(m_manager)
     {
         m_manager->deleteLater();;
-        m_manager = NULL;
+        m_manager = nullptr;
     }
     if(m_reply)
     {
         m_reply->deleteLater();
-        m_reply = NULL;
+        m_reply = nullptr;
     }
     deleteLater();
 }

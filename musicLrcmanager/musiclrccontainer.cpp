@@ -6,8 +6,8 @@
 MusicLrcContainer::MusicLrcContainer(QWidget *parent)
     : QWidget(parent)
 {
-    m_musicLrcSearchWidget = NULL;
-    m_makerWidget = NULL;
+    m_musicLrcSearchWidget = nullptr;
+    m_makerWidget = nullptr;
 }
 
 MusicLrcContainer::~MusicLrcContainer()
@@ -31,7 +31,7 @@ void MusicLrcContainer::currentLrcCustom()
 
 void MusicLrcContainer::searchMusicLrcs()
 {
-    if(m_musicLrcSearchWidget == NULL)
+    if(m_musicLrcSearchWidget == nullptr)
     {
         m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
     }
@@ -142,7 +142,7 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
 
 void MusicLrcContainer::theCurrentLrcMaked()
 {
-    if(m_makerWidget == NULL)
+    if(m_makerWidget == nullptr)
     {
         m_makerWidget = new MusicLrcMakerWidget(this);
     }

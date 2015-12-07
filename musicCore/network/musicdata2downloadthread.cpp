@@ -12,7 +12,7 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
                                                    Download_Type type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
-    m_dataReply = NULL;
+    m_dataReply = nullptr;
     m_dataManager = new QNetworkAccessManager(this);
 }
 
@@ -29,12 +29,12 @@ void MusicData2DownloadThread::deleteAll()
     if(m_dataManager)
     {
         m_dataManager->deleteLater();;
-        m_dataManager = NULL;
+        m_dataManager = nullptr;
     }
     if(m_dataReply)
     {
         m_dataReply->deleteLater();
-        m_dataReply = NULL;
+        m_dataReply = nullptr;
     }
     MusicDataDownloadThread::deleteAll();
 }

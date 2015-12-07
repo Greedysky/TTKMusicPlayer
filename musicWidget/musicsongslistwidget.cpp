@@ -13,12 +13,12 @@
 #include <QDesktopServices>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(NULL),
-      m_musicSongsPlayWidget(NULL)
+    : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(nullptr),
+      m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
     m_renameActived = false;
-    m_renameItem = NULL;
+    m_renameItem = nullptr;
     m_playRowIndex = 0;
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
@@ -70,7 +70,7 @@ void MusicSongsListWidget::clearAllItems()
     removeCellWidget(m_playRowIndex, 1);
     removeCellWidget(m_playRowIndex, 2);
     delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = NULL;
+    m_musicSongsPlayWidget = nullptr;
     m_playRowIndex = 0;
     //Remove all the original item
     MusicAbstractTableWidget::clear();
@@ -175,7 +175,7 @@ void MusicSongsListWidget::leaveEvent(QEvent *event)
     QTableWidget::leaveEvent(event);
     listCellEntered(currentRow(), -1);
     delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = NULL;
+    m_musicSongsInfoWidget = nullptr;
 }
 
 void MusicSongsListWidget::startToDrag()
@@ -301,12 +301,12 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 void MusicSongsListWidget::listCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 2);
-    if(it != NULL)
+    if(it != nullptr)
     {
         it->setIcon(QIcon());
         it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
     }
-    if((it = item(row, 2)) != NULL)
+    if((it = item(row, 2)) != nullptr)
     {
         it->setText(QString());
         it->setIcon(QIcon(":/image/musicdelete"));
@@ -314,7 +314,7 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
     bool isCurrentIndex;
     emit isCurrentIndexs(isCurrentIndex);
-    if(isCurrentIndex && (it = item(m_playRowIndex, 2)) != NULL)
+    if(isCurrentIndex && (it = item(m_playRowIndex, 2)) != nullptr)
     {
         it->setText(QString());
         it->setIcon(QIcon());
@@ -322,7 +322,7 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     MusicAbstractTableWidget::listCellEntered(row, column);
 
     //To show music Songs Item information
-    if(m_musicSongsInfoWidget == NULL)
+    if(m_musicSongsInfoWidget == nullptr)
     {
         m_musicSongsInfoWidget = new MusicSongsListItemInfoWidget;
         m_musicSongsInfoWidget->hide();
@@ -355,7 +355,7 @@ void MusicSongsListWidget::stayTimeOut()
 {
     m_timerStay.stop();
     delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = NULL;
+    m_musicSongsInfoWidget = nullptr;
 }
 
 void MusicSongsListWidget::addMusicSongToLovestListAt()
@@ -488,7 +488,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 2, item);
     delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = NULL;
+    m_musicSongsPlayWidget = nullptr;
 }
 
 void MusicSongsListWidget::selectRow(int index)

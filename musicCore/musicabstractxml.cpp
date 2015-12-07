@@ -7,8 +7,8 @@
 MusicAbstractXml::MusicAbstractXml(QObject *parent)
     : QObject(parent)
 {
-    m_file = NULL;
-    m_ddom = NULL;
+    m_file = nullptr;
+    m_ddom = nullptr;
 }
 
 MusicAbstractXml::~MusicAbstractXml()
@@ -31,7 +31,7 @@ bool MusicAbstractXml::readConfig(const QString &type)
     {
         m_file->close();
         delete m_file;
-        m_file = NULL;
+        m_file = nullptr;
         return false;
     }
     return true;

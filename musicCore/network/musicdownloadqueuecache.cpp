@@ -7,7 +7,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const QString &url,
                             const QString &save, Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
-    m_request = NULL;
+    m_request = nullptr;
     m_isDownload = false;
     m_isAbort = false;
 }
@@ -16,7 +16,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const QStringList &url,
                         const QStringList &save, Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(QString(), QString(), type, parent)
 {
-    m_request = NULL;
+    m_request = nullptr;
     m_isDownload = false;
     m_isAbort = false;
     addImageQueue(url, save);
@@ -50,7 +50,7 @@ void MusicDownloadQueueCache::abort()
         m_file->close();
         m_file->remove();
         delete m_reply;
-        m_reply = NULL;
+        m_reply = nullptr;
         m_isAbort = false;
     }
 }
@@ -93,7 +93,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
     {
         m_file->close();
         delete m_file;
-        m_file = NULL;
+        m_file = nullptr;
         return;
     }
     m_request->setUrl(QUrl(url));
@@ -113,7 +113,7 @@ void MusicDownloadQueueCache::downLoadFinished()
     m_file->flush();
     m_file->close();
     m_reply->deleteLater();
-    m_reply = NULL;
+    m_reply = nullptr;
     m_isDownload = false;
     emit musicDownLoadFinished(m_imageQueue.takeFirst().savePath);
 
@@ -133,6 +133,6 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
     if(!m_isAbort)
     {
         m_reply->deleteLater();
-        m_reply = NULL;
+        m_reply = nullptr;
     }
 }

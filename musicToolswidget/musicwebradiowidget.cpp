@@ -8,7 +8,7 @@
 
 MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicWebRadioWidget), m_radio(NULL)
+      ui(new Ui::MusicWebRadioWidget), m_radio(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -79,7 +79,7 @@ void MusicWebRadioWidget::closeEvent(QCloseEvent *event)
 {
     m_timer.stop();
     delete m_radio;
-    m_radio = NULL;
+    m_radio = nullptr;
     QWidget::closeEvent(event);
 }
 

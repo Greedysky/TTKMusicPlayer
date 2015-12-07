@@ -2,7 +2,7 @@
 #include "musicwebradiowidget.h"
 
 MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
-    : QListWidget(parent), m_radioDialog(NULL)
+    : QListWidget(parent), m_radioDialog(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -87,7 +87,7 @@ void MusicWebRadioListView::addListWidgetItem()
 
 void MusicWebRadioListView::itemHasClicked(QListWidgetItem *item)
 {
-    if(m_radioDialog == NULL)
+    if(m_radioDialog == nullptr)
     {
         m_radioDialog = new MusicWebRadioWidget(this);
     }

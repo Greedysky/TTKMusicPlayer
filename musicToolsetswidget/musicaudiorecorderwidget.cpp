@@ -52,21 +52,21 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     ui->stopButton->setEnabled(false);
     ui->playButton->setEnabled(false);
     ui->saveButton->setEnabled(false);
-    m_movie = NULL;
+    m_movie = nullptr;
     m_time = 0;
 
     m_miMaxValue = 0;
     ui->horizontalSlider->setValue(100);
     m_miVolume = 100;
-    m_mpOutputFile = NULL;
-    m_mpAudioInputFile = NULL;
-    m_mpAudioOutputFile = NULL;
+    m_mpOutputFile = nullptr;
+    m_mpAudioInputFile = nullptr;
+    m_mpAudioOutputFile = nullptr;
 
-    m_mpAudioInputSound = NULL;
-    m_mpAudioOutputSound = NULL;
+    m_mpAudioInputSound = nullptr;
+    m_mpAudioOutputSound = nullptr;
 
-    m_mpInputDevSound = NULL;
-    m_mpInputDevSound = NULL;
+    m_mpInputDevSound = nullptr;
+    m_mpInputDevSound = nullptr;
 
     m_mpOutputFile = new QFile(this);
     m_mpOutputFile->setFileName("record.raw");
@@ -98,8 +98,8 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
         return;
     }
 
-    m_mpAudioInputFile = NULL;
-    m_mpAudioOutputFile = NULL;
+    m_mpAudioInputFile = nullptr;
+    m_mpAudioOutputFile = nullptr;
 
     initMonitor();
 }
@@ -160,7 +160,7 @@ void MusicAudioRecorderWidget::onRecordStart()
     ui->saveButton->setEnabled(false);
     m_timer.start(1000);
 
-    if(m_movie == NULL)
+    if(m_movie == nullptr)
     {
         m_movie = new QMovie(":/image/rate", QByteArray(), this);
     }
@@ -181,18 +181,18 @@ void MusicAudioRecorderWidget::onRecordPlay()
 
 void MusicAudioRecorderWidget::onRecordStop()
 {
-    if(m_mpAudioInputFile != NULL)
+    if(m_mpAudioInputFile != nullptr)
     {
         m_mpAudioInputFile->stop();
         delete m_mpAudioInputFile;
-        m_mpAudioInputFile = NULL;
+        m_mpAudioInputFile = nullptr;
     }
 
-    if(m_mpAudioOutputFile != NULL)
+    if(m_mpAudioOutputFile != nullptr)
     {
         m_mpAudioOutputFile->stop();
         delete m_mpAudioOutputFile;
-        m_mpAudioOutputFile = NULL;
+        m_mpAudioOutputFile = nullptr;
     }
 
     m_mpOutputFile->close();
@@ -257,15 +257,15 @@ int MusicAudioRecorderWidget::addWavHeader(char *filename)
     int nFileLen = 0;
     int nSize = sizeof(DestionFileHeader);
 
-    FILE *fp_s = NULL;
-    FILE *fp_d = NULL;
+    FILE *fp_s = nullptr;
+    FILE *fp_d = nullptr;
     fp_s = fopen("record.raw", "rb");
-    if (fp_s == NULL)
+    if (fp_s == nullptr)
     {
         return -1;
     }
     fp_d = fopen(filename, "wb+");
-    if (fp_d == NULL)
+    if (fp_d == nullptr)
     {
         return -2;
     }
@@ -332,7 +332,7 @@ void MusicAudioRecorderWidget::onSliderValueChanged(int value)
 
 void MusicAudioRecorderWidget::onReadMore()
 {
-    //Return if audio input is null
+    //Return if audio input is nullptr
     if(!m_mpAudioInputSound)
     {
         return;

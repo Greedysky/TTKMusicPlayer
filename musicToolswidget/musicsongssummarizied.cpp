@@ -13,7 +13,7 @@
 #include <QLayout>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
-    : QToolBox(parent), m_renameLine(NULL)
+    : QToolBox(parent), m_renameLine(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
@@ -154,7 +154,7 @@ void MusicSongsSummarizied::clearAllLists()
     {
         MusicSongsListWidget *w = m_mainSongLists.takeLast();
         delete w;
-        w = NULL;
+        w = nullptr;
     }
 }
 
@@ -254,7 +254,7 @@ void MusicSongsSummarizied::setChangItemName(const QString &name)
 {
     setItemText(m_renameIndex, name);
     delete m_renameLine;
-    m_renameLine = NULL;
+    m_renameLine = nullptr;
 }
 
 void MusicSongsSummarizied::currentIndexChanged(int)

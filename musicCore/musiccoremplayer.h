@@ -27,7 +27,7 @@ public:
 
     enum Category
     {
-        NullCategory,
+        nullptrCategory,
         MusicCategory,
         RadioCategory,
         VideoCategory

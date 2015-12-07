@@ -11,7 +11,7 @@
 #include "musicconnectionpool.h"
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicbgskin(NULL), m_musicRemoteWidget(NULL)
+    : QWidget(parent), m_musicbgskin(nullptr), m_musicRemoteWidget(nullptr)
 {
     m_supperClass = parent;
     m_msuicUserWindow = new MusicUserWindow(this);
@@ -97,7 +97,7 @@ void MusicTopAreaWidget::setTimerStop()
 
 void MusicTopAreaWidget::musicShowSkinChangedWindow()
 {
-    if(m_musicbgskin == NULL)
+    if(m_musicbgskin == nullptr)
     {
         m_musicbgskin = new MusicBackgroundSkinDialog(this);
     }
@@ -187,7 +187,7 @@ void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
 void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
 {
     MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
-    m_musicRemoteWidget = NULL;
+    m_musicRemoteWidget = nullptr;
     if(type->text() == tr("CircleRemote")) musicCircleRemote();
     else if(type->text() == tr("DiamondRemote")) musicDiamondRemote();
     else if(type->text() == tr("SquareRemote")) musicSquareRemote();
@@ -227,7 +227,7 @@ void MusicTopAreaWidget::setVolumeValue(int value) const
 
 void MusicTopAreaWidget::createRemoteWidget()
 {
-    if(m_musicRemoteWidget == NULL)
+    if(m_musicRemoteWidget == nullptr)
     {
         return;
     }
@@ -246,7 +246,7 @@ void MusicTopAreaWidget::createRemoteWidget()
 void MusicTopAreaWidget::musicDeleteRemote()
 {
     delete m_musicRemoteWidget;
-    m_musicRemoteWidget = NULL;
+    m_musicRemoteWidget = nullptr;
 }
 
 void MusicTopAreaWidget::musicSquareRemote()

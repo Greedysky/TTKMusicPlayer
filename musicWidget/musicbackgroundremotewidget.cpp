@@ -8,7 +8,7 @@
 #include <QDir>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
-    : QWidget(parent), m_downloadQueue(NULL)
+    : QWidget(parent), m_downloadQueue(nullptr)
 {
     m_currentIndex = -1;
     m_group = new QButtonGroup(this);

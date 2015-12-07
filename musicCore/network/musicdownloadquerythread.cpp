@@ -17,7 +17,7 @@
 #include <QFile>
 
 MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
-    : QObject(parent), m_reply(NULL)
+    : QObject(parent), m_reply(nullptr)
 {
     m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
@@ -33,7 +33,7 @@ MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
     if(m_manager)
     {
         m_manager->deleteLater();
-        m_manager = NULL;
+        m_manager = nullptr;
     }
 }
 
@@ -42,7 +42,7 @@ void MusicDownLoadQueryThread::deleteAll()
     if(m_reply)
     {
         m_reply->deleteLater();
-        m_reply = NULL;
+        m_reply = nullptr;
     }
 }
 
@@ -57,7 +57,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     if(m_reply)
     {
         m_reply->deleteLater();
-        m_reply = NULL;
+        m_reply = nullptr;
     }
 
     m_reply = m_manager->get(QNetworkRequest(musicUrl));
@@ -68,7 +68,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
 
 void MusicDownLoadQueryThread::searchFinshed()
 {
-    if(m_reply == NULL)
+    if(m_reply == nullptr)
     {
         return;
     }
