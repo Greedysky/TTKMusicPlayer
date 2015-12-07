@@ -86,7 +86,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>C:/Users/Greedysky/Desktop/QQ截图20151207141349.png</pixmap>
+     <pixmap resource="../../musicQrc/MusicPlayerShare.qrc">:/share/upgradeMain</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -154,7 +154,7 @@
        </rect>
       </property>
       <property name="pixmap">
-       <pixmap>C:/Users/Greedysky/Desktop/QQ截图20151207142116.png</pixmap>
+       <pixmap resource="../../musicQrc/MusicPlayerShare.qrc">:/share/upgrade</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -309,6 +309,9 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
+  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
+ </resources>
  <connections/>
 </ui>

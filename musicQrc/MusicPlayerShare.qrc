@@ -10,5 +10,7 @@
         <file alias="warning">../musicResource/warning.png</file>
         <file alias="myQRCode">../musicResource/myQRCode.png</file>
         <file alias="showMV2">../musicResource/lrc/photo.png</file>
+        <file alias="upgrade">../musicResource/upgrade.png</file>
+        <file alias="upgradeMain">../musicResource/upgradeMain.png</file>
     </qresource>
 </RCC>
