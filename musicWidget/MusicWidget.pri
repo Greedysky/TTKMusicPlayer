@@ -4,20 +4,24 @@
 #
 #-------------------------------------------------
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD \
+               $$PWD/core
                
 HEADERS  += \
-    $$PWD/musicitemdelegate.h \
+    $$PWD/core/musicabstracttablewidget.h \
+    $$PWD/core/musicabstractmovedialog.h \
+    $$PWD/core/musicabstractmovewidget.h \
+    $$PWD/core/musicitemdelegate.h \
+    $$PWD/core/musicmarqueewidget.h \
+    $$PWD/core/musicpreviewlabel.h \
+    $$PWD/core/musicmessagebox.h \
+    $$PWD/core/musicprogresswidget.h \
+    $$PWD/core/musicclickedlabel.h \
     $$PWD/musicdownloadstatuslabel.h \
-    $$PWD/musicabstracttablewidget.h \
     $$PWD/musicquerytablewidget.h \
-    $$PWD/musicabstractmovedialog.h \
-    $$PWD/musicabstractmovewidget.h \
-    $$PWD/musicmarqueewidget.h \
     $$PWD/musicsettingwidget.h \
     $$PWD/musicbackgroundskindialog.h \
     $$PWD/musicsystemtraymenu.h \
-    $$PWD/musicpreviewlabel.h \
     $$PWD/musicequalizerdialog.h \
     $$PWD/musictimersliderwidget.h \
     $$PWD/musicwindowextras.h \
@@ -26,29 +30,29 @@ HEADERS  += \
     $$PWD/musicsongsearchonlinewidget.h \
     $$PWD/musicsongstoolitemrenamedwidget.h \
     $$PWD/musicsongslistplaywidget.h \
-    $$PWD/musicmessagebox.h \
     $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicenhancedwidget.h \
-    $$PWD/musicprogresswidget.h \
-    $$PWD/musicclickedlabel.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicsongsharingwidget.h
 
 
 SOURCES += \
-    $$PWD/musicitemdelegate.cpp \
+    $$PWD/core/musicabstracttablewidget.cpp \
+    $$PWD/core/musicabstractmovedialog.cpp \
+    $$PWD/core/musicabstractmovewidget.cpp \
+    $$PWD/core/musicitemdelegate.cpp \
+    $$PWD/core/musicmarqueewidget.cpp \
+    $$PWD/core/musicpreviewlabel.cpp \
+    $$PWD/core/musicmessagebox.cpp \
+    $$PWD/core/musicprogresswidget.cpp \
+    $$PWD/core/musicclickedlabel.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
-    $$PWD/musicabstracttablewidget.cpp \
     $$PWD/musicquerytablewidget.cpp \
-    $$PWD/musicabstractmovedialog.cpp \
-    $$PWD/musicabstractmovewidget.cpp \
-    $$PWD/musicmarqueewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
     $$PWD/musicbackgroundskindialog.cpp \
     $$PWD/musicsystemtraymenu.cpp \
-    $$PWD/musicpreviewlabel.cpp \
     $$PWD/musicequalizerdialog.cpp \
     $$PWD/musictimersliderwidget.cpp \
     $$PWD/musicwindowextras.cpp \
@@ -57,13 +61,10 @@ SOURCES += \
     $$PWD/musicsongsearchonlinewidget.cpp \
     $$PWD/musicsongstoolitemrenamedwidget.cpp \
     $$PWD/musicsongslistplaywidget.cpp \
-    $$PWD/musicmessagebox.cpp \
     $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicenhancedwidget.cpp \
-    $$PWD/musicprogresswidget.cpp \
-    $$PWD/musicclickedlabel.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicsongsharingwidget.cpp
 
