@@ -151,7 +151,7 @@ namespace MusicObject
 
     enum SpecialEQ
     {
-        EQ_nullptr = -1,
+        EQ_NULL = -1,
         EQ_EchoEffect,
         EQ_MixChannelEffect,
         EQ_ReverseEffect,

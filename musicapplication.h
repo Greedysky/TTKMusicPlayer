@@ -54,7 +54,7 @@ public slots:
     void musicPlayListLoop();
     void musicPlayOneLoop();
     void musicPlayItemOnce();
-    void musicVolumenullptr();
+    void musicVolumeMute();
     void musicVolumeChanged(int volume);
     void musicImportSongs();
     void musicImportSongsOnlyFile();

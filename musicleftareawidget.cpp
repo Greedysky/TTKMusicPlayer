@@ -34,7 +34,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
     connect(ui->musicPrivious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumenullptr()));
+    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));
     connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));

@@ -8,7 +8,7 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
 {
     m_process = nullptr;
     m_playState = StoppedState;
-    m_category = nullptrCategory;
+    m_category = NullCategory;
     m_currentPos = 0;
 
     m_timer.setInterval(1000);
@@ -43,7 +43,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
         case MusicCategory: setMusicMedia(data); break;
         case RadioCategory: setRadioMedia(data); break;
         case VideoCategory: setVideoMedia(data, winId); break;
-        case nullptrCategory: break;
+        case NullCategory: break;
         default: break;
     }
 }
@@ -150,7 +150,7 @@ void MusicCoreMPlayer::dataRecieve()
         case MusicCategory: musicStandardRecieve(); break;
         case RadioCategory: radioStandardRecieve(); break;
         case VideoCategory: positionRecieve(); break;
-        case nullptrCategory: break;
+        case NullCategory: break;
         default: break;
     }
 }
