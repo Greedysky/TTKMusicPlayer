@@ -173,7 +173,7 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicSongsListWidget::leaveEvent(QEvent *event)
 {
     QTableWidget::leaveEvent(event);
-    listCellEntered(currentRow(), -1);
+    listCellEntered(-1, -1);
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;
 }
