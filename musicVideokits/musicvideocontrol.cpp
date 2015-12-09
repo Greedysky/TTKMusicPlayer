@@ -1,18 +1,17 @@
 #include "musicvideocontrol.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
+#include "musicmovinglabelslider.h"
 
 #include <QPushButton>
 #include <QToolButton>
-#include <QSlider>
-#include <QLabel>
 #include <QBoxLayout>
 #include <QWidgetAction>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
 {
-    m_timeSlider = new QSlider(Qt::Horizontal,this);
+    m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_menuButton = new QToolButton(this);
     m_playButton = new QPushButton(this);
     m_inSideButton = new QPushButton(this);
@@ -120,12 +119,12 @@ MusicVideoControl::~MusicVideoControl()
 
 void MusicVideoControl::setValue(qint64 position) const
 {
-    m_timeSlider->setValue(position);
+    m_timeSlider->setValue(position*1000);
 }
 
 void MusicVideoControl::durationChanged(qint64 duration) const
 {
-    m_timeSlider->setRange(0, duration);
+    m_timeSlider->setRange(0, duration*1000);
 }
 
 void MusicVideoControl::setButtonStyle(bool style) const
@@ -145,6 +144,12 @@ void MusicVideoControl::mediaChanged(const QString &url)
             m_qualityButton->setText( (data[i].m_bitrate == 500) ? tr("NormalMV") : tr("HdMV"));
         }
     }
+}
+
+void MusicVideoControl::setFixedSize(int w, int h)
+{
+    QWidget::setFixedSize(w, h);
+    m_timeSlider->setFixedWidth(w);
 }
 
 void MusicVideoControl::show()
@@ -183,7 +188,7 @@ void MusicVideoControl::menuActionTriggered(QAction *action)
 
 void MusicVideoControl::sliderReleased()
 {
-    emit sliderValueChanged(m_timeSlider->value());
+    emit sliderValueChanged(m_timeSlider->value()/1000);
 }
 
 void MusicVideoControl::setQualityActionState()

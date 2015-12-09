@@ -19,6 +19,7 @@ class QLabel;
 class QSlider;
 class QToolButton;
 class QPushButton;
+class MusicMovingLabelSlider;
 
 class MUSIC_VIDEO_EXPORT MusicVideoControl : public QWidget
 {
@@ -32,6 +33,8 @@ public:
     void setButtonStyle(bool style) const;
     void mediaChanged(const QString &url);
     inline bool isPopup() const { return m_widgetPopup;}
+
+    void setFixedSize(int w, int h);
 
 signals:
     void musicVideoSetPopup(bool popup);
@@ -54,7 +57,8 @@ protected:
     bool m_widgetPopup;
     QMenu m_popupVolumn;
     QMenu m_popupQuality;
-    QSlider *m_timeSlider, *m_volumnSlider;
+    MusicMovingLabelSlider *m_timeSlider;
+    QSlider *m_volumnSlider;
     QToolButton *m_menuButton, *m_volumnButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;
