@@ -15,8 +15,8 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-class QSlider;
 class QLabel;
+class MusicMovingLabelSlider;
 
 class MUSIC_WIDGET_EXPORT MusicTimerSliderWidget : public QWidget
 {
@@ -39,11 +39,12 @@ public slots:
 
 protected:
     QLabel *m_label;
-    QSlider *m_slider;
     QTimer m_timer;
     qint64 m_duration;
+    MusicMovingLabelSlider *m_slider;
     int m_picIndex;
     bool m_reverse;
+
 };
 
 #endif // MUSICTIMERSLIDERWIDGET_H

@@ -1,5 +1,6 @@
 #include "musictimersliderwidget.h"
 #include "musicuiobject.h"
+#include "musicmovinglabelslider.h"
 
 #include <qmath.h>
 #include <QLabel>
@@ -16,7 +17,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     m_label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     m_label->hide();
 
-    m_slider = new QSlider(Qt::Horizontal,this);
+    m_slider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_slider->setGeometry(17, 17, 345, 10);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));

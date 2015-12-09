@@ -36,7 +36,8 @@ HEADERS  += \
     $$PWD/musicenhancedwidget.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicsongsharingwidget.h \
-    $$PWD/musicsourceupdatewidget.h
+    $$PWD/musicsourceupdatewidget.h \
+    $$PWD/core/musicmovinglabelslider.h
 
 
 SOURCES += \
@@ -68,7 +69,8 @@ SOURCES += \
     $$PWD/musicenhancedwidget.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicsongsharingwidget.cpp \
-    $$PWD/musicsourceupdatewidget.cpp
+    $$PWD/musicsourceupdatewidget.cpp \
+    $$PWD/core/musicmovinglabelslider.cpp
 
 
 FORMS    += \
