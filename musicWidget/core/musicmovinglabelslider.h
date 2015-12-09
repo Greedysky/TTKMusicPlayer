@@ -28,6 +28,7 @@ protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     QString normalizeTimeLAbel(qint64 time);
+    QPoint limitLableGeometry(int x, int y, int z);
 
     QLabel *m_textLabel;
     Qt::Orientation m_orientation;

@@ -16,8 +16,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation,
     m_orientation = orientation;
     m_textLabel = new QLabel;
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
-    m_textLabel->setGeometry(0, 0, m_orientation == Qt::Vertical ? 20 : 40,
-                                   m_orientation == Qt::Vertical ? 40 : 20);
+    m_textLabel->setGeometry(0, 0, 40, 20);
     m_textLabel->setAlignment(Qt::AlignCenter);
     m_textLabel->setStyleSheet("QLabel{color:#888888; background-color:#FFE6E6; \
                                        border:1px solid gray;}");
@@ -45,40 +44,12 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
 
     if(m_orientation == Qt::Vertical)
     {
-        if( 0 < curPos.y() && curPos.y() < sizePos.height())
-        {
-            changePos.setX(glbPos.y() + curPos.y());
-            changePos.setY(curPos.y());
-        }
-        if(curPos.y() <= 0)
-        {
-            changePos.setX(glbPos.y());
-            changePos.setY(0);
-        }
-        if(curPos.y() >= sizePos.height())
-        {
-            changePos.setX(glbPos.y() + sizePos.height());
-            changePos.setY(sizePos.height());
-        }
+        changePos = limitLableGeometry(curPos.y(), glbPos.y(), sizePos.height());
         m_textLabel->move((glbPos + QPoint(sizePos.width(), 0)).x(), changePos.x());
     }
     else
     {
-        if( 0 < curPos.x() && curPos.x() < sizePos.width())
-        {
-            changePos.setX(glbPos.x() + curPos.x());
-            changePos.setY(curPos.x()*maximum()/sizePos.width());
-        }
-        if(curPos.x() <= 0)
-        {
-            changePos.setX(glbPos.x());
-            changePos.setY(0);
-        }
-        if(curPos.x() >= sizePos.width())
-        {
-            changePos.setX(glbPos.x() + sizePos.width());
-            changePos.setY(maximum());
-        }
+        changePos = limitLableGeometry(curPos.x(), glbPos.x(), sizePos.width());
         m_textLabel->move(changePos.x(), (glbPos - QPoint(0, m_textLabel->height())).y());
     }
     m_textLabel->setText(normalizeTimeLAbel(changePos.y()));
@@ -100,4 +71,25 @@ QString MusicMovingLabelSlider::normalizeTimeLAbel(qint64 time)
 {
     MusicTime t(time, MusicTime::All_Msec);
     return t.toString("mm:ss");
+}
+
+QPoint MusicMovingLabelSlider::limitLableGeometry(int x, int y, int z)
+{
+    QPoint pt;
+    if( 0 < x && x < z)
+    {
+        pt.setX(y + x);
+        pt.setY(x*maximum()/z);
+    }
+    if(x <= 0)
+    {
+        pt.setX(y);
+        pt.setY(0);
+    }
+    if(x >= z)
+    {
+        pt.setX(y + z);
+        pt.setY(maximum());
+    }
+    return pt;
 }
