@@ -9,11 +9,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC OFF)
 
 set(CMAKE_PREFIX_PATH "D:/Qt/Qt5.5.0/5.5/msvc2013")
+
 add_definitions(-MUSIC_LIBRARY)
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(MUSIC_Core_DIR "${MUSIC_DIR}/musicCore")
-set(MUSIC_Network_DIR "${MUSIC_DIR}/musicCore/network")
-set(MUSIC_Core_Widget_DIR "${MUSIC_DIR}/musicWidget")
+set(MUSIC_Widget_DIR "${MUSIC_DIR}/musicWidget")
 set(MUSIC_Ui_DIR "${MUSIC_DIR}/musicUi")
 set(MUSIC_Language_DIR "${MUSIC_DIR}/musicLanguage")
 set(MUSIC_Localsearch_DIR "${MUSIC_DIR}/musicLocalsearch")
@@ -29,7 +29,6 @@ set(MUSIC_Videokits_DIR "${MUSIC_DIR}/musicVideokits")
 
 include_directories(${MUSIC_DIR}) 
 include_directories(${MUSIC_Core_DIR})
-include_directories(${MUSIC_Network_DIR})
 include_directories(${MUSIC_Core_Widget_DIR})
 include_directories(${MUSIC_Localsearch_DIR})
 include_directories(${MUSIC_Lrcmanager_DIR})
@@ -56,14 +55,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(MUSIC_HEADERS
     ${MUSIC_DIR}/*.h
     ${MUSIC_Core_DIR}/*.h
-    ${MUSIC_Network_DIR}/*.h
+    ${MUSIC_Core_DIR}/network/*.h
     ${MUSIC_Core_Widget_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/*.h
+    ${MUSIC_Localsearch_DIR}/core/*.h
     ${MUSIC_Lrcmanager_DIR}/*.h
     ${MUSIC_Remotewidget_DIR}/*.h
     ${MUSIC_Toolsetswidget_DIR}/*.h
+    ${MUSIC_Toolsetswidget_DIR}/core/*.h
     ${MUSIC_Toolswidget_DIR}/*.h
+    ${MUSIC_Toolswidget_DIR}/core/*.h
     ${MUSIC_Usermanager_DIR}/*.h
+    ${MUSIC_Usermanager_DIR}/core/*.h
     ${MUSIC_Videokits_DIR}/*.h
   )
   

@@ -4,22 +4,20 @@ project(MusicCore)
 
 set(MUSIC_Core_HEADERS
     ${MUSIC_Core_DIR}/*.h
-    ${MUSIC_Network_DIR}/*.h
-    ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.h
-    ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.h
-    ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.h
-    ${MUSIC_Usermanager_DIR}/musicuserconfigmanager.h
-    ${MUSIC_Usermanager_DIR}/musicusermodel.h
+    ${MUSIC_Core_DIR}/network/*.h
+    ${MUSIC_Localsearch_DIR}/core/*.h
+    ${MUSIC_Toolswidget_DIR}/core/*.h
+    ${MUSIC_Toolsetswidget_DIR}/core/*.h
+    ${MUSIC_Usermanager_DIR}/core/*.h
   )
 
 set(MUSIC_Core_SOURCES
     ${MUSIC_Core_DIR}/*.cpp
-    ${MUSIC_Network_DIR}/*.cpp
-    ${MUSIC_Localsearch_DIR}/musiclocalsongsearchrecordobject.cpp
-    ${MUSIC_Toolswidget_DIR}/musicmydownloadrecordobject.cpp
-    ${MUSIC_Toolswidget_DIR}/musicwebradiodatebase.cpp
-    ${MUSIC_Usermanager_DIR}/musicuserconfigmanager.cpp
-    ${MUSIC_Usermanager_DIR}/musicusermodel.cpp
+    ${MUSIC_Core_DIR}/network/*.cpp
+    ${MUSIC_Localsearch_DIR}/core/*.cpp
+    ${MUSIC_Toolswidget_DIR}/core/*.cpp
+    ${MUSIC_Toolsetswidget_DIR}/core/*.cpp
+    ${MUSIC_Usermanager_DIR}/core/*.cpp
   )
 
 qt5_wrap_cpp(MUSIC_Core_SOURCES_MOC ${MUSIC_Core_HEADERS})
