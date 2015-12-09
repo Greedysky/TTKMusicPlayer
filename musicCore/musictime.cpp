@@ -118,39 +118,26 @@ void MusicTime::timeSRand()
     qsrand(time(nullptr));
 }
 
-QString MusicTime::msecTime2LabelJustified() const
+QString MusicTime::msecTime2LabelJustified()
 {
-    return QString("%1:%2")
-          .arg(QString::number(m_min).rightJustified(2, '0'))
-          .arg(QString::number(m_sec).rightJustified(2, '0'));
+    return toString("mm:ss");
 }
 
 QString MusicTime::msecTime2LabelJustified(qint64 time)
 {
-    int minute = time / (60 * 1000);
-    int second = time % (60 * 1000);
-    return QString("%1:%2")
-          .arg(QString::number(minute).rightJustified(2, '0'))
-          .arg(QString::number(second / 1000).rightJustified(2, '0'));
+    MusicTime t(time, MusicTime::All_Msec);
+    return t.toString("mm:ss");
 }
 
-QString MusicTime::normalTime2LabelJustified() const
+QString MusicTime::normalTime2LabelJustified()
 {
-    return QString("%1:%2:%3")
-          .arg(QString::number(m_hour).rightJustified(2, '0'))
-          .arg(QString::number(m_min).rightJustified(2, '0'))
-          .arg(QString::number(m_sec).rightJustified(2, '0'));
+    return toString("hh:mm:ss");
 }
 
 QString MusicTime::normalTime2LabelJustified(qint64 time)
 {
-    int hour = time / 3600;
-    int min = (time - hour*3600) / 60;
-    int sec = (time - min*60);
-    return QString("%1:%2:%3")
-          .arg(QString::number(hour).rightJustified(2, '0'))
-          .arg(QString::number(min).rightJustified(2, '0'))
-          .arg(QString::number(sec).rightJustified(2, '0'));
+    MusicTime t(time, MusicTime::All_Msec);
+    return t.toString("hh:mm:ss");
 }
 
 QString MusicTime::normalTime2Label() const

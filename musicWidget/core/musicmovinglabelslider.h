@@ -27,7 +27,6 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
-    QString normalizeTimeLAbel(qint64 time);
     QPoint limitLableGeometry(int x, int y, int z);
 
     QLabel *m_textLabel;

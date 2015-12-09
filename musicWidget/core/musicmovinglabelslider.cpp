@@ -52,7 +52,7 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
         changePos = limitLableGeometry(curPos.x(), glbPos.x(), sizePos.width());
         m_textLabel->move(changePos.x(), (glbPos - QPoint(0, m_textLabel->height())).y());
     }
-    m_textLabel->setText(normalizeTimeLAbel(changePos.y()));
+    m_textLabel->setText(MusicTime::msecTime2LabelJustified(changePos.y()));
 }
 
 void MusicMovingLabelSlider::enterEvent(QEvent *event)
@@ -65,12 +65,6 @@ void MusicMovingLabelSlider::leaveEvent(QEvent *event)
 {
     QSlider::leaveEvent(event);
     m_textLabel->hide();
-}
-
-QString MusicMovingLabelSlider::normalizeTimeLAbel(qint64 time)
-{
-    MusicTime t(time, MusicTime::All_Msec);
-    return t.toString("mm:ss");
 }
 
 QPoint MusicMovingLabelSlider::limitLableGeometry(int x, int y, int z)

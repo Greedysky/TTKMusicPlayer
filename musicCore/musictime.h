@@ -64,10 +64,10 @@ public:
     //////////////////////////////////////////////
     static void timeSRand();
     //////////////////////////////////////////////
-    QString msecTime2LabelJustified() const;
+    QString msecTime2LabelJustified();
     static QString msecTime2LabelJustified(qint64 time);
     // xx:xx:xx
-    QString normalTime2LabelJustified() const;
+    QString normalTime2LabelJustified();
     static QString normalTime2LabelJustified(qint64 time);
     //ss / mm / hh / dd
     QString normalTime2Label() const;
