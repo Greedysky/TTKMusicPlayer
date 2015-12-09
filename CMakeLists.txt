@@ -29,7 +29,7 @@ set(MUSIC_Videokits_DIR "${MUSIC_DIR}/musicVideokits")
 
 include_directories(${MUSIC_DIR}) 
 include_directories(${MUSIC_Core_DIR})
-include_directories(${MUSIC_Core_Widget_DIR})
+include_directories(${MUSIC_Widget_DIR})
 include_directories(${MUSIC_Localsearch_DIR})
 include_directories(${MUSIC_Lrcmanager_DIR})
 include_directories(${MUSIC_Remotewidget_DIR})
@@ -56,7 +56,7 @@ set(MUSIC_HEADERS
     ${MUSIC_DIR}/*.h
     ${MUSIC_Core_DIR}/*.h
     ${MUSIC_Core_DIR}/network/*.h
-    ${MUSIC_Core_Widget_DIR}/*.h
+    ${MUSIC_Widget_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/*.h
     ${MUSIC_Localsearch_DIR}/core/*.h
     ${MUSIC_Lrcmanager_DIR}/*.h
