@@ -7,6 +7,7 @@
 #include "musicremotewidgetforrectangle.h"
 #include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforcircle.h"
+#include "musicremotewidgetforsimplestyle.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 
@@ -192,6 +193,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
     else if(type->text() == tr("DiamondRemote")) musicDiamondRemote();
     else if(type->text() == tr("SquareRemote")) musicSquareRemote();
     else if(type->text() == tr("RectangleRemote")) musicRectangleRemote();
+    else if(type->text() == tr("SimpleStyleRemote")) musicSimpleStyleRemote();
     else
     {
         m_musicRemoteWidget = tempRemote;
@@ -286,6 +288,17 @@ void MusicTopAreaWidget::musicRectangleRemote()
         delete m_musicRemoteWidget;
     }
     m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
+    createRemoteWidget();
+}
+
+void MusicTopAreaWidget::musicSimpleStyleRemote()
+{
+    if(m_musicRemoteWidget)
+    {
+        delete m_musicRemoteWidget;
+    }
+    m_musicRemoteWidget = new MusicRemoteWidgetForSimpleStyle;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
     createRemoteWidget();
 }

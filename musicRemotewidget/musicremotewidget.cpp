@@ -3,6 +3,7 @@
 #include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforrectangle.h"
 #include "musicremotewidgetforsquare.h"
+#include "musicremotewidgetforsimplestyle.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -98,6 +99,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
                 !qobject_cast<MusicRemoteWidgetForSquare*>(this));
     menu.addAction(tr("RectangleRemote"))->setEnabled(
                 !qobject_cast<MusicRemoteWidgetForRectangle*>(this));
+    menu.addAction(tr("SimpleStyleRemote"))->setEnabled(
+                !qobject_cast<MusicRemoteWidgetForSimpleStyle*>(this));
     menu.addAction(tr("DiamondRemote"))->setEnabled(
                 !qobject_cast<MusicRemoteWidgetForDiamond*>(this));
     menu.addAction(tr("quit"), this, SLOT(close()));
