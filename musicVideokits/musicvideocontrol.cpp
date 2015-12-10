@@ -50,12 +50,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_popupQuality.setStyleSheet(MusicUIObject::MMenuStyle01);
-    m_timeSlider->setStyleSheet("\
-                QSlider::groove:horizontal{background:#C0C0C0; height:8px;}\
-                QSlider::sub-page:horizontal{background:#F7F66C;}\
-                QSlider::add-page:horizontal{background:#4E4E4E;}\
-                QSlider::handle:horizontal{background:#FFFFFF; width:10px;}"
-                );
+    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
     m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
 
     QVBoxLayout *controlVLayout = new QVBoxLayout(this);

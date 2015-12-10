@@ -315,22 +315,13 @@ namespace MusicUIObject
             background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,  \
             stop: 0 #5DCCFF, stop: 1 #1874CD);  \
             border: 0px solid #777;  width: 10px;border-radius: 2px;} \
-            QSlider::handle:vertical:hover{ image:url(:/image/shadow);border:none;} ";
+            QSlider::handle:vertical:hover{ image:url(:/image/shadow);border:none;}";
 
     const QString MSliderStyle04 = "\
-            QSlider::groove:horizontal{ border: 1px solid #4A708B;\
-            background: #C0C0C0;height: 5px;border-radius: 1px;\
-            padding-left:-1px;padding-right:-1px;}\
-            QSlider::sub-page:horizontal{background-color:rgba(0,0,0,150)}\
-            QSlider::add-page:horizontal{background-color:white;\
-            border: 0px solid #777;height: 10px;border-radius: 2px;}\
-            QSlider::handle:horizontal{\
-            background-color:rgba(0,0,0,150);\
-            width: 11px;margin-top: -3px;\
-            margin-bottom: -3px;border-radius: 5px;}\
-            QSlider::handle:horizontal:hover{\
-            background-color:rgba(0,0,0,150);\
-            width: 11px;margin-top: -3px;margin-bottom: -3px;border-radius: 5px;}";
+            QSlider::groove:horizontal{background:#C0C0C0; height:8px;}\
+            QSlider::sub-page:horizontal{background:#F7F66C;}\
+            QSlider::add-page:horizontal{background:#4E4E4E;}\
+            QSlider::handle:horizontal{background:#FFFFFF; width:10px;}";
 
     const QString MSliderStyle05 = "\
             QSlider::add-page:Horizontal{background-color: rgb(87, 97, 106);height:4px;}\

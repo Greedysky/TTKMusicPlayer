@@ -59,7 +59,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     volumnLayout->setSpacing(1);
     m_volumeLabel = new QLabel(m_volumeWidget);
     m_volumeLabel->setStyleSheet(MusicUIObject::MCustomStyle26);
-    m_volumeLabel->setFixedSize(QSize(20, 20));
+    m_volumeLabel->setFixedSize(QSize(20, 15));
     m_volumeSlider = new QSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
