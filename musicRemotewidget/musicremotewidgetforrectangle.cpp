@@ -23,7 +23,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0, 0, 0, 155);}");
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
-    mhbox->setContentsMargins(0, 0, 0, 0);
+    mhbox->setContentsMargins(5, 0, 5, 0);
     mhbox->setSpacing(0);
     m_songNameLabel = new MusicMarqueeWidget(this);
     mhbox->addWidget(m_songNameLabel);
@@ -53,5 +53,5 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(QFontMetrics(font()).elidedText(value,
-                             Qt::ElideRight, 200));
+                             Qt::ElideRight, 350));
 }

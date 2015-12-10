@@ -44,5 +44,5 @@ MusicRemoteWidgetForSimpleStyle::~MusicRemoteWidgetForSimpleStyle()
 void MusicRemoteWidgetForSimpleStyle::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(QFontMetrics(font()).elidedText(value,
-                             Qt::ElideRight, 140));
+                             Qt::ElideRight, 350));
 }
