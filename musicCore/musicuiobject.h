@@ -352,10 +352,10 @@ namespace MusicUIObject
             QTextEdit{ border: 1px solid gray;} \
             QTextEdit::hover{ border: 1px solid #AAAAFF;}";
            
-///Label
+///Widget
 //////////////////////////////////////////////////////
-    const QString MLabelStyle01 = " \
-            QLabel{ background:rgba(255,255,255,50); color:white; font-weight:bold; }";
+    const QString MWidgetStyle01 = " \
+            QWidget{ background:rgba(255,255,255,50); color:white; font-weight:bold; }";
 
 ///ProgressBar
 //////////////////////////////////////////////////////

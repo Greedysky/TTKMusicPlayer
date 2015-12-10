@@ -11,6 +11,8 @@
 
 #include "musicremotewidget.h"
 
+class MusicMarqueeWidget;
+
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
@@ -21,7 +23,7 @@ public:
     virtual void setLabelText(const QString &value) override;
 
 protected:
-    QLabel *m_songNameLabel;
+    MusicMarqueeWidget *m_songNameLabel;
     QWidget *m_toolWidget;
 
 };

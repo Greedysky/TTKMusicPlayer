@@ -1,5 +1,6 @@
 #include "musicremotewidgetforrectangle.h"
 #include "musicsettingmanager.h"
+#include "musicmarqueewidget.h"
 
 MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
@@ -24,9 +25,9 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(0, 0, 0, 0);
     mhbox->setSpacing(0);
-    m_songNameLabel = new QLabel(this);
+    m_songNameLabel = new MusicMarqueeWidget(this);
     mhbox->addWidget(m_songNameLabel);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("toolWidget");
