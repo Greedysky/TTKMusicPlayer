@@ -5,14 +5,10 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 230, 70);
+    setAttribute(Qt::WA_TranslucentBackground);
 
     QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
     move( windowSize.width() - width() - 150, height() + 70);
-
-    setAutoFillBackground(true);
-    QPalette pal = palette();
-    pal.setColor(QPalette::Background, QColor(255, 0, 0, 10));
-    setPalette(pal);
     
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5, 5, 5, 2);
@@ -23,7 +19,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
+    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0, 0, 0, 155);}");
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(0, 0, 0, 0);
@@ -33,6 +29,8 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_songNameLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
 
     m_toolWidget = new QWidget(this);
+    m_toolWidget->setObjectName("toolWidget");
+    m_toolWidget->setStyleSheet("#toolWidget{background-color:rgba(0, 0, 0, 100);}");
     vbox->addWidget(m_toolWidget);
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
@@ -43,6 +41,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     hbox->addWidget(m_NextSongButton);
     hbox->addWidget(m_volumeWidget);
     hbox->addWidget(m_SettingButton);
+    m_toolWidget->setLayout(hbox);
 }
 
 MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
