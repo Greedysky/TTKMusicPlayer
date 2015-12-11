@@ -18,7 +18,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
 
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0, 0, 0, 100);}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
     m_songNameLabel = new MusicMarqueeWidget(this);
     m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);

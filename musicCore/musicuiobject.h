@@ -41,7 +41,7 @@ namespace MusicUIObject
             background:rgb(250,231,191);color:rgb(160,99,11);";
 
     const QString MCustomStyle09 = "\
-            background-color:rgba(0,0,0,155);";
+            background-color:rgba(0, 0, 0, 50);";
 
     const QString MCustomStyle10 = "\
             border: 1px solid #555555;background-color:rgba(0,0,0,40);";
@@ -181,7 +181,7 @@ namespace MusicUIObject
             QPushButton{font-size:17px; font-weight:bold; color:#BFBFBF;}";
 
     const QString MPushButtonStyle12 = MPushButtonStyle01 + "\
-            QPushButton{background-color:rgba(0,0,0,125);border-none;}";
+            QPushButton{background-color:rgba(0, 0, 0, 50);border-none;}";
 
     const QString MPushButtonStyle13 = MPushButtonStyle01 + MPushButtonStyle03 + "\
             QPushButton::hover{border:none;}";

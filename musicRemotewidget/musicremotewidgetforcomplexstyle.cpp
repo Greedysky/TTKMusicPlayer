@@ -4,7 +4,7 @@
 MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
-    setGeometry(200, 200, 320, 120);
+    setGeometry(200, 200, 320, 110);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
@@ -52,7 +52,7 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0, 0, 0, 50);}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
 }
 

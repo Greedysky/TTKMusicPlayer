@@ -20,7 +20,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{background-color:rgba(0, 0, 0, 155);}");
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(5, 0, 5, 0);
@@ -31,7 +31,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("toolWidget");
-    m_toolWidget->setStyleSheet("#toolWidget{background-color:rgba(0, 0, 0, 100);}");
+    m_toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle09 + "}");
     vbox->addWidget(m_toolWidget);
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
