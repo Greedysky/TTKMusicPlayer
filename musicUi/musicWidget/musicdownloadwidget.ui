@@ -201,12 +201,12 @@ QLabel{background:transparent;}</string>
    </widget>
    <zorder>label2</zorder>
    <zorder>downloadName</zorder>
-   <zorder>downloadPathEdit</zorder>
-   <zorder>pathChangedButton</zorder>
-   <zorder>settingButton</zorder>
-   <zorder>downloadButton</zorder>
    <zorder>viewArea</zorder>
    <zorder>label1</zorder>
+   <zorder>pathChangedButton</zorder>
+   <zorder>settingButton</zorder>
+   <zorder>downloadPathEdit</zorder>
+   <zorder>downloadButton</zorder>
   </widget>
  </widget>
  <customwidgets>

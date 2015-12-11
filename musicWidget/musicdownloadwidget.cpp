@@ -10,6 +10,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
+#include "musicmessagebox.h"
 
 #include <QFileDialog>
 #include <QLabel>
@@ -133,6 +134,7 @@ MusicDownloadWidget::~MusicDownloadWidget()
 
 void MusicDownloadWidget::initWidget()
 {
+    controlEnable(true);
     QString path = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
 }
@@ -269,6 +271,13 @@ void MusicDownloadWidget::startToDownload()
 void MusicDownloadWidget::startToDownloadMusic()
 {
     int bitrate = ui->viewArea->getCurrentBitrate();
+    if(bitrate == -1)
+    {
+        MusicMessageBox message(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
@@ -315,6 +324,13 @@ void MusicDownloadWidget::startToDownloadMusic()
 void MusicDownloadWidget::startToDownloadMovie()
 {
     int bitrate = ui->viewArea->getCurrentBitrate();
+    if(bitrate == -1)
+    {
+        MusicMessageBox message(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
