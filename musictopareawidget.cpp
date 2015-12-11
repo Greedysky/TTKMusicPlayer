@@ -8,6 +8,7 @@
 #include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforcircle.h"
 #include "musicremotewidgetforsimplestyle.h"
+#include "musicremotewidgetforcomplexstyle.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 
@@ -194,6 +195,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
     else if(type->text() == tr("SquareRemote")) musicSquareRemote();
     else if(type->text() == tr("RectangleRemote")) musicRectangleRemote();
     else if(type->text() == tr("SimpleStyleRemote")) musicSimpleStyleRemote();
+    else if(type->text() == tr("ComplexStyleRemote")) musicComplexStyleRemote();
     else
     {
         m_musicRemoteWidget = tempRemote;
@@ -288,7 +290,7 @@ void MusicTopAreaWidget::musicRectangleRemote()
         delete m_musicRemoteWidget;
     }
     m_musicRemoteWidget = new MusicRemoteWidgetForRectangle;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
 
@@ -299,6 +301,17 @@ void MusicTopAreaWidget::musicSimpleStyleRemote()
         delete m_musicRemoteWidget;
     }
     m_musicRemoteWidget = new MusicRemoteWidgetForSimpleStyle;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text().split('=').back().trimmed());
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    createRemoteWidget();
+}
+
+void MusicTopAreaWidget::musicComplexStyleRemote()
+{
+    if(m_musicRemoteWidget)
+    {
+        delete m_musicRemoteWidget;
+    }
+    m_musicRemoteWidget = new MusicRemoteWidgetForComplexStyle;
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }

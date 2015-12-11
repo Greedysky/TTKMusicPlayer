@@ -51,11 +51,13 @@ public slots:
     void musicBackgroundSkinChanged(const QString &filename);
     void musicBackgroundChanged();
     void musicBgThemeDownloadFinished();
+
     void musicCircleRemote();
     void musicDiamondRemote();
     void musicSquareRemote();
     void musicRectangleRemote();
     void musicSimpleStyleRemote();
+    void musicComplexStyleRemote();
     void musicDeleteRemote();
     //This is a slot by MusicRemoteWidget's signal emit
     void musicVolumeChangedFromRemote(int value);

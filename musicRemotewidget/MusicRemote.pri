@@ -12,7 +12,8 @@ HEADERS  += \
     $$PWD/musicremotewidgetforrectangle.h \
     $$PWD/musicremotewidgetfordiamond.h \
     $$PWD/musicremotewidgetforcircle.h \
-    $$PWD/musicremotewidgetforsimplestyle.h
+    $$PWD/musicremotewidgetforsimplestyle.h \
+    $$PWD/musicremotewidgetforcomplexstyle.h
 
 
 SOURCES += \
@@ -21,4 +22,5 @@ SOURCES += \
     $$PWD/musicremotewidgetforrectangle.cpp \
     $$PWD/musicremotewidgetfordiamond.cpp \
     $$PWD/musicremotewidgetforcircle.cpp \
-    $$PWD/musicremotewidgetforsimplestyle.cpp
+    $$PWD/musicremotewidgetforsimplestyle.cpp \
+    $$PWD/musicremotewidgetforcomplexstyle.cpp
