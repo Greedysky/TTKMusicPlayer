@@ -149,11 +149,3 @@ void MusicLrcContainer::theCurrentLrcMaked()
     m_makerWidget->setCurrentSongName(m_currentSongName);
     m_makerWidget->show();
 }
-
-void MusicLrcContainer::setCurrentPosition(qint64 pos) const
-{
-    if(m_makerWidget)
-    {
-        m_makerWidget->setCurrentPosition(pos);
-    }
-}

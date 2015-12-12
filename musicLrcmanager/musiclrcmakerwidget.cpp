@@ -5,6 +5,7 @@
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
+#include "musicconnectionpool.h"
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -13,9 +14,8 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
 
-    ui->lrcTextEdit->setFontPointSize(15);
-    ui->lrcTextEdit->setFontWeight(QFont::Bold);
-    ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
+    ui->lrcTextEdit->setFontPointSize(11);
+    ui->lrcTextEdit->setAlignment(Qt::AlignLeft);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -27,7 +27,8 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
-    ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
+    ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 + \
+                                    MusicUIObject::MScrollBarStyle01 );
 
     ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle05);
     ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle05);
@@ -43,6 +44,13 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_position = 0;
     m_currentLine = 0;
 
+    M_CONNECTION->setValue("MusicLrcMakerWidget", this);
+    M_CONNECTION->connect("MusicPlayer", "MusicLrcMakerWidget");
+}
+
+MusicLrcMakerWidget::~MusicLrcMakerWidget()
+{
+    M_CONNECTION->disConnect("MusicLrcMakerWidget");
 }
 
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
@@ -55,6 +63,11 @@ void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
         ui->songNameEdit->setText(ls.back().trimmed());
         ui->artNameEdit->setText(ls.front().trimmed());
     }
+}
+
+void MusicLrcMakerWidget::setCurrentPosition(qint64 pos)
+{
+    m_position = pos;
 }
 
 void MusicLrcMakerWidget::makeButtonClicked()
@@ -102,11 +115,14 @@ void MusicLrcMakerWidget::saveButtonClicked()
                 .arg(ui->authorNameEdit->text()));
         foreach(QString var, m_plainText)
         {
-            array.append(var);
-            array.append("\n");
+            array.append(var + "\n");
         }
         m_file.write(array);
         m_file.close();
+
+        MusicMessageBox message;
+        message.setText(tr("save file finished"));
+        message.exec();
     }
 }
 
@@ -116,14 +132,7 @@ void MusicLrcMakerWidget::reviewButtonClicked()
     m_plainText.clear();
     ui->makeButton->setEnabled(true);
     setControlEnable(true);
-    ui->artNameEdit->clear();
-    ui->songNameEdit->clear();
-    ui->authorNameEdit->clear();
     ui->lrcTextEdit->clear();
-    ui->introductionTextEdit->clear();
-    ui->lrcTextEdit->setFontPointSize(15);
-    ui->lrcTextEdit->setFontWeight(QFont::Bold);
-    ui->lrcTextEdit->setAlignment(Qt::AlignCenter);
 }
 
 void MusicLrcMakerWidget::setControlEnable(bool enable) const
@@ -150,20 +159,13 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
         if(m_plainText.count() > m_currentLine)
         {
             m_plainText[m_currentLine++].insert(0, translateTimeString(m_position) );
-
-            QList<QTextEdit::ExtraSelection> extraSelections;
-
-            QTextEdit::ExtraSelection selection;
-            selection.format.setBackground(QColor(Qt::yellow));
-            selection.format.setProperty(QTextFormat::FullWidthSelection, true);
-            selection.cursor = ui->lrcTextEdit->textCursor();
-            selection.cursor.clearSelection();
-            extraSelections.append(selection);
-            ui->lrcTextEdit->setExtraSelections(extraSelections);
-
             QTextCursor cursor = ui->lrcTextEdit->textCursor();
             if(!cursor.atEnd())
             {
+                QTextBlockFormat textBlockFormat = cursor.blockFormat();
+                textBlockFormat.setBottomMargin(5);
+                cursor.setBlockFormat(textBlockFormat);
+                cursor.select(QTextCursor::LineUnderCursor);
                 cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
                 ui->lrcTextEdit->setTextCursor(cursor);
             }

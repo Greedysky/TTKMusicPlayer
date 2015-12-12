@@ -31,7 +31,6 @@ public:
     virtual void setSettingParameter();
     void setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const;
     inline void setCurrentSongName(const QString &name) { m_currentSongName = name;}
-    void setCurrentPosition(qint64 pos) const;
 
 signals:
     void theCurrentLrcUpdated();

@@ -144,7 +144,6 @@ bool MusicRightAreaWidget::checkSettingParameterValue() const
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
 {
-    m_ui->musiclrccontainerforinline->setCurrentPosition(current);
     //Direct access to the audio file is the total time, in milliseconds
     MIntStringMap lrcContainer(m_ui->musiclrccontainerforinline->getLrcContainer());
     //The corresponding access to current time lyrics

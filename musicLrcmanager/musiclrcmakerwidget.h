@@ -20,11 +20,12 @@ class MUSIC_LRC_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
     Q_OBJECT
 public:
     explicit MusicLrcMakerWidget(QWidget *parent = 0);
-    void setCurrentSongName(const QString &name);
-    inline void setCurrentPosition(qint64 pos) { m_position = pos;}
+    virtual ~MusicLrcMakerWidget();
 
-signals:
+    void setCurrentSongName(const QString &name);
+
 public slots:
+    void setCurrentPosition(qint64 pos) ;
     void makeButtonClicked();
     void saveButtonClicked();
     void reviewButtonClicked();

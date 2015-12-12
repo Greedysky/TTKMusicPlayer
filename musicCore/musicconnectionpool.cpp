@@ -62,6 +62,12 @@ void MusicConnectionPool::connect(const QString &from,
                                 SLOT(setSpectrum(HWND,int,int)));
     }
 
+    if(from == "MusicPlayer" && to == "MusicLrcMakerWidget" )
+    {
+        QObject::connect(first, SIGNAL(positionChanged(qint64)), second,
+                                SLOT(setCurrentPosition(qint64)));
+    }
+
     if( (from == "MusicLocalSongsManagerWidget" && to == "MusicApplication") ||
         (from == "MusicMyDownloadRecordWidget" && to == "MusicApplication") )
     {

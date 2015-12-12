@@ -20,7 +20,7 @@ class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicLrcFloatAbstractWidget
     Q_OBJECT
 public:
     explicit MusicLrcFloatWidget(QWidget *parent = 0);
-    ~MusicLrcFloatWidget();
+    virtual ~MusicLrcFloatWidget();
 
     void resizeWidth(int width);
 
