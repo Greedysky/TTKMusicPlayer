@@ -15,7 +15,7 @@
 class MUSIC_CORE_EXPORT MusicRegeditManager
 {
 public:
-    MusicRegeditManager();
+    MusicRegeditManager() = default;
 
     void setMusicRegeditAssociateFileIcon();
     void setDesktopWallAutoStart(bool state);

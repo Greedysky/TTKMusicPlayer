@@ -18,7 +18,7 @@ class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
     Q_OBJECT
 public:
     explicit MusicPlaylist(QObject *parent = 0);
-    ~MusicPlaylist();
+    ~MusicPlaylist() = default;
 
     MusicObject::SongPlayType playbackMode() const;
     void setPlaybackMode(MusicObject::SongPlayType mode);

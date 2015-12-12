@@ -8,11 +8,6 @@ MusicEqualizer::MusicEqualizer(ZPlay *parent)
     init();
 }
 
-MusicEqualizer::~MusicEqualizer()
-{
-
-}
-
 void MusicEqualizer::init()
 {
     m_fSideCut = 0;

@@ -4,11 +4,6 @@
 #include <QStringList>
 #include <QApplication>
 
-MusicRegeditManager::MusicRegeditManager()
-{
-
-}
-
 void MusicRegeditManager::setDesktopWallAutoStart(bool state)
 {
     const QString REG_RUN = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";

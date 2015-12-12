@@ -19,7 +19,7 @@ class MUSIC_CORE_EXPORT MusicEqualizer
 {
 public:
     explicit MusicEqualizer(ZPlay *parent);
-    ~MusicEqualizer();
+    ~MusicEqualizer() = default;
 
     void setEqEffect(const MIntList &hz);
     void setEnaleEffect(bool enale);

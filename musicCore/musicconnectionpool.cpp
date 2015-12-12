@@ -9,11 +9,6 @@ MusicConnectionPool::MusicConnectionPool()
 
 }
 
-MusicConnectionPool::~MusicConnectionPool()
-{
-
-}
-
 void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 {
     m_queueList << object;

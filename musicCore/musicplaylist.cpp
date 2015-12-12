@@ -9,11 +9,6 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
     m_playbackMode = MusicObject::MC_PlayOrder;
 }
 
-MusicPlaylist::~MusicPlaylist()
-{
-
-}
-
 MusicObject::SongPlayType MusicPlaylist::playbackMode() const
 {
     return m_playbackMode;
