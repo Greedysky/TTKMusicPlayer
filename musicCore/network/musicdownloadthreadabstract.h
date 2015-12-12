@@ -39,8 +39,8 @@ public:
         Download_Other
     };
 
-    explicit MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                         Download_Type type, QObject *parent = 0);
+    MusicDownLoadThreadAbstract(const QString &url, const QString &save,
+                                Download_Type type, QObject *parent = 0);
     virtual ~MusicDownLoadThreadAbstract();
 
     void deleteAll();

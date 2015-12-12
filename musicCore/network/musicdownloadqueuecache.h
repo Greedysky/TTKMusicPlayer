@@ -21,10 +21,10 @@ class MUSIC_NETWORK_EXPORT MusicDownloadQueueCache : public MusicDownLoadThreadA
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadQueueCache(const QString &url, const QString &save,
-                                     Download_Type type, QObject *parent = 0);
-    explicit MusicDownloadQueueCache(const QStringList &url, const QStringList &save,
-                                     Download_Type type, QObject *parent = 0);
+    MusicDownloadQueueCache(const QString &url, const QString &save,
+                            Download_Type type, QObject *parent = 0);
+    MusicDownloadQueueCache(const QStringList &url, const QStringList &save,
+                            Download_Type type, QObject *parent = 0);
     ~MusicDownloadQueueCache();
 
     void addImageQueue(const QStringList &url, const QStringList &savePath);

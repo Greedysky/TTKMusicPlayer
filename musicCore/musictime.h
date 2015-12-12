@@ -21,7 +21,7 @@ public:
         All_Sec
     };
 
-    explicit MusicTime();
+    MusicTime();
     MusicTime(qint64 value, Type type);
     MusicTime(int day, int hour, int min, int sec, int msec);
     ~MusicTime();

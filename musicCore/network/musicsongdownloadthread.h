@@ -16,8 +16,8 @@ class MUSIC_NETWORK_EXPORT MusicSongDownloadThread : public MusicDataDownloadThr
 {
     Q_OBJECT
 public:
-    explicit MusicSongDownloadThread(const QString &url, const QString &save,
-                                     Download_Type type, QObject *parent = 0);
+    MusicSongDownloadThread(const QString &url, const QString &save,
+                            Download_Type type, QObject *parent = 0);
 
 signals:
     void downloadProgressChanged(float percent, const QString &total, qint64 time);

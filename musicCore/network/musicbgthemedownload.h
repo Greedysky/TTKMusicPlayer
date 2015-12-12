@@ -17,8 +17,8 @@ class MUSIC_NETWORK_EXPORT MusicBgThemeDownload : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicBgThemeDownload(const QString &name, const QString &save,
-                                  QObject *parent = 0);
+    MusicBgThemeDownload(const QString &name, const QString &save,
+                         QObject *parent = 0);
     ~MusicBgThemeDownload();
 
     void startToDownload();
