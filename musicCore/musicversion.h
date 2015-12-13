@@ -9,10 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2015.12.04
-#define QMUSICPLAYER_VERSION_STR "Version 2.2.8.6"
+//update time 2015.12.13
+#define QMUSICPLAYER_VERSION_STR "Version 2.2.8.8"
 
-#define QMUSICPLAYER_VERSION  0x02280
+#define QMUSICPLAYER_VERSION  0x02288
 
 #define QMUSICPLAYER_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
