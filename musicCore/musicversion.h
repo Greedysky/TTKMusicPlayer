@@ -10,7 +10,7 @@
    =================================================*/
 
 //update time 2015.12.13
-#define QMUSICPLAYER_VERSION_STR "Version 2.2.8.8"
+#define QMUSICPLAYER_VERSION_STR "2.2.8.8"
 
 #define QMUSICPLAYER_VERSION  0x02288
 
