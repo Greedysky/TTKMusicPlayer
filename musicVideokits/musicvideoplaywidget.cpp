@@ -51,6 +51,16 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     topLayout->addStretch();
     topLayout->addWidget(m_searchEdit);
     topLayout->addWidget(m_searchButton);
+
+    if(popup)
+    {
+        QPushButton *closeButton = new QPushButton(this);
+        closeButton->setToolTip(tr("Close"));
+        closeButton->setIcon(QIcon(":/image/close"));
+        closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+        closeButton->setIconSize(QSize(18, 18));
+        topLayout->addWidget(closeButton);
+    }
     m_topWidget->setLayout(topLayout);
     m_topWidget->setFixedHeight(40);
 
