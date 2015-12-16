@@ -26,6 +26,7 @@ public:
     ~MusicVideoPlayWidget();
 
     void resizeWindow(bool resize);
+    void setObjectToClose(QObject *object);
 
 public slots:
     void backButtonClicked();
@@ -38,9 +39,8 @@ public slots:
 protected:
     QWidget *m_topWidget;
     QLabel *m_textLabel;
-    QPushButton *m_backButton;
-    QPushButton *m_afterButton;
-    QPushButton *m_searchButton;
+    QPushButton *m_backButton, *m_afterButton;
+    QPushButton *m_searchButton, *m_closeButton;
     QStackedWidget *m_stackedWidget;
     MusicVideoView *m_videoView;
     MusicVideoTableWidget *m_videoTable;

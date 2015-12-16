@@ -236,6 +236,12 @@ void MusicRightAreaWidget::setWindowLockedChanged()
     m_musiclrcfordesktop->setWindowLockedChanged();
 }
 
+void MusicRightAreaWidget::deleteVideoWidget()
+{
+    delete m_videoPlayer;
+    m_videoPlayer = nullptr;
+}
+
 void MusicRightAreaWidget::musicSearchButtonSearched()
 {
     QString searchedQString = m_ui->musicSongSearchLine->text().trimmed();
@@ -316,8 +322,9 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         {
             return;
         }
-        delete m_videoPlayer;
+        deleteVideoWidget();
         m_videoPlayer = new MusicVideoPlayWidget(false);
+        m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->blockMoveOption(true);
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
         m_ui->SurfaceStackedWidget->setCurrentIndex(3);
@@ -325,8 +332,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
     else if(m_videoPlayer)
     {
         m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
-        delete m_videoPlayer;
-        m_videoPlayer = nullptr;
+        deleteVideoWidget();
     }
     m_ui->musicWindowSpace->setVisible(true);
     m_ui->lrcDisplayAllButton->setVisible(false);
@@ -362,6 +368,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         musicButtonStyleClear();
         m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
         m_videoPlayer = new MusicVideoPlayWidget(true);
+        m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->show();
     }
     else

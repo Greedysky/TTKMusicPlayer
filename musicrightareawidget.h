@@ -53,6 +53,7 @@ signals:
     void lockDesktopLrc(bool lock);
 
 public slots:
+    void deleteVideoWidget();
     void setDestopLrcVisible(bool v) const;
     void setWindowLockedChanged();
     void musicSearchButtonSearched();

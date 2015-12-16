@@ -11,7 +11,7 @@
 #include <QStackedWidget>
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
-    : MusicAbstractMoveWidget(parent)
+    : MusicAbstractMoveWidget(parent), m_closeButton(nullptr)
 {
     if(popup)
     {
@@ -54,12 +54,12 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 
     if(popup)
     {
-        QPushButton *closeButton = new QPushButton(this);
-        closeButton->setToolTip(tr("Close"));
-        closeButton->setIcon(QIcon(":/image/close"));
-        closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-        closeButton->setIconSize(QSize(18, 18));
-        topLayout->addWidget(closeButton);
+        m_closeButton = new QPushButton(this);
+        m_closeButton->setToolTip(tr("Close"));
+        m_closeButton->setIcon(QIcon(":/image/close"));
+        m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+        m_closeButton->setIconSize(QSize(18, 18));
+        topLayout->addWidget(m_closeButton);
     }
     m_topWidget->setLayout(topLayout);
     m_topWidget->setFixedHeight(40);
@@ -88,6 +88,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 
 MusicVideoPlayWidget::~MusicVideoPlayWidget()
 {
+    delete m_closeButton;
     delete m_backButton;
     delete m_textLabel;
     delete m_searchEdit;
@@ -95,6 +96,14 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_topWidget;
     delete m_videoView;
     delete m_stackedWidget;
+}
+
+void MusicVideoPlayWidget::setObjectToClose(QObject *object)
+{
+    if(m_closeButton)
+    {
+        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(deleteVideoWidget()));
+    }
 }
 
 void MusicVideoPlayWidget::resizeWindow(bool resize)
