@@ -1,12 +1,12 @@
 #include "musicbarragewidget.h"
 
-musicBarrageWidget::musicBarrageWidget(QWidget *parent)
+MusicBarrageWidget::MusicBarrageWidget(QWidget *parent)
     : QWidget(parent)
 {
 
 }
 
-musicBarrageWidget::~musicBarrageWidget()
+MusicBarrageWidget::~MusicBarrageWidget()
 {
 
 }

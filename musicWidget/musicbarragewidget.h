@@ -12,12 +12,12 @@
 #include "musiclibexportglobal.h"
 #include <QWidget>
 
-class musicBarrageWidget : public QWidget
+class MusicBarrageWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit musicBarrageWidget(QWidget *parent = 0);
-    ~musicBarrageWidget();
+    explicit MusicBarrageWidget(QWidget *parent = 0);
+    ~MusicBarrageWidget();
 
 signals:
 
