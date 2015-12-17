@@ -26,12 +26,12 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     musicSongsFileName();
 
     M_CONNECTION->setValue("MusicMyDownloadRecordWidget", this);
-    M_CONNECTION->connect("MusicMyDownloadRecordWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicMyDownloadRecordWidget", "MusicApplication");
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
-    M_CONNECTION->disConnect("MusicMyDownloadRecordWidget");
+    M_CONNECTION->poolDisConnect("MusicMyDownloadRecordWidget");
     delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordObject xml;

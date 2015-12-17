@@ -45,12 +45,12 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_currentLine = 0;
 
     M_CONNECTION->setValue("MusicLrcMakerWidget", this);
-    M_CONNECTION->connect("MusicPlayer", "MusicLrcMakerWidget");
+    M_CONNECTION->poolConnect("MusicPlayer", "MusicLrcMakerWidget");
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
-    M_CONNECTION->disConnect("MusicLrcMakerWidget");
+    M_CONNECTION->poolDisConnect("MusicLrcMakerWidget");
 }
 
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)

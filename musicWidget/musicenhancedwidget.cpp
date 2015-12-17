@@ -19,7 +19,7 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
 
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
-    M_CONNECTION->disConnect("MusicEnhancedWidget");
+    M_CONNECTION->poolDisConnect("MusicEnhancedWidget");
     delete m_caseButton;
     delete m_Button1;
     delete m_Button2;

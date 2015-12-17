@@ -33,8 +33,8 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 
     m_setWindowToTop = false;
     M_CONNECTION->setValue("MusicApplicationObject", this);
-    M_CONNECTION->connect("MusicApplicationObject", "MusicApplication");
-    M_CONNECTION->connect("MusicApplicationObject", "MusicEnhancedWidget");
+    M_CONNECTION->poolConnect("MusicApplicationObject", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicApplicationObject", "MusicEnhancedWidget");
 
     musicToolSetsParameter();
 }

@@ -121,7 +121,7 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     setEnabled(false);
 
     M_CONNECTION->setValue("MusicQualityChoiceTableWidget", this);
-    M_CONNECTION->connect("MusicSongSearchOnlineTableWidget",
+    M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget",
                           "MusicQualityChoiceTableWidget");
 }
 

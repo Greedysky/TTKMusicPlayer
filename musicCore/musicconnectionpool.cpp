@@ -4,7 +4,7 @@
 #include "musicobject.h"
 
 MusicConnectionPool::MusicConnectionPool()
-    : QObject(0)
+    : QObject(nullptr)
 {
 
 }
@@ -41,8 +41,7 @@ void MusicConnectionPool::removeNetworkMultiValue(QObject *object)
     }
 }
 
-void MusicConnectionPool::connect(const QString &from,
-                                  const QString &to)
+void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 {
     QObject *first = m_para.value(from);
     QObject *second = m_para.value(to);
@@ -161,7 +160,17 @@ void MusicConnectionPool::connect(const QString &from,
 
 }
 
-void MusicConnectionPool::disConnect(const QString &name)
+void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)
+{
+
+}
+
+void MusicConnectionPool::poolDisConnect(const QString &name)
 {
     m_para.take(name);
+}
+
+void MusicConnectionPool::poolDisConnect(const QObject *object)
+{
+
 }

@@ -20,7 +20,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
                        SLOT(getParameterSetting()));
 
     M_CONNECTION->setValue("MusicRightAreaWidget", this);
-    M_CONNECTION->connect("MusicSongSearchOnlineTableWidget",
+    M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget",
                           "MusicRightAreaWidget");
 }
 

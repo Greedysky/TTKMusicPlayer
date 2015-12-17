@@ -94,12 +94,12 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
     M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
-    M_CONNECTION->connect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
+    M_CONNECTION->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_CONNECTION->disConnect("MusicSongsListPlayWidget");
+    M_CONNECTION->poolDisConnect("MusicSongsListPlayWidget");
     delete m_renameLine;
     delete m_artPicture;
     delete m_songName;

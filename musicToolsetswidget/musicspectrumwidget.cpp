@@ -17,12 +17,12 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     connect(&m_timer,SIGNAL(timeout()),SLOT(timeout()));
 
     M_CONNECTION->setValue("MusicSpectrumWidget", this);
-    M_CONNECTION->connect("MusicSpectrumWidget", "MusicPlayer");
+    M_CONNECTION->poolConnect("MusicSpectrumWidget", "MusicPlayer");
 }
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-    M_CONNECTION->disConnect("MusicSpectrumWidget");
+    M_CONNECTION->poolDisConnect("MusicSpectrumWidget");
 }
 
 void MusicSpectrumWidget::timeout()

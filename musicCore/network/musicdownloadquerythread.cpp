@@ -23,12 +23,12 @@ MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
     m_manager = new QNetworkAccessManager(this);
     m_queryAllRecords = false;
     M_CONNECTION->setValue("MusicDownLoadQueryThread", this);
-    M_CONNECTION->connect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
+    M_CONNECTION->poolConnect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
 {
-    M_CONNECTION->disConnect("MusicDownLoadQueryThread");
+    M_CONNECTION->poolDisConnect("MusicDownLoadQueryThread");
     deleteAll();///The release of all the objects
     if(m_manager)
     {

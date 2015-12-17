@@ -26,12 +26,12 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
     addListWidgetItem();
     M_CONNECTION->setValue("MusicToolSetsWidget", this);
-    M_CONNECTION->connect("MusicToolSetsWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicApplication");
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    M_CONNECTION->disConnect("MusicToolSetsWidget");
+    M_CONNECTION->poolDisConnect("MusicToolSetsWidget");
     delete m_wallpaper;
     delete m_musicSpectrumWidget;
     if(m_process)

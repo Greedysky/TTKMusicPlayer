@@ -18,7 +18,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_CONNECTION->disConnect("MusicVideoTableWidget");
+    M_CONNECTION->poolDisConnect("MusicVideoTableWidget");
     clearAllItems();
 }
 

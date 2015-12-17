@@ -41,12 +41,12 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     setControlEnable(false);
 
     M_CONNECTION->setValue("MusicEqualizerDialog", this);
-    M_CONNECTION->connect("MusicEqualizerDialog", "MusicPlayer");
+    M_CONNECTION->poolConnect("MusicEqualizerDialog", "MusicPlayer");
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_CONNECTION->disConnect("MusicEqualizerDialog");
+    M_CONNECTION->poolDisConnect("MusicEqualizerDialog");
     writeEqInformation();
     delete m_signalMapper;
     delete ui;

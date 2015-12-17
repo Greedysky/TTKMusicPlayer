@@ -8,12 +8,12 @@ MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &s
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
     M_CONNECTION->setValue("MusicBgThemeDownload", this);
-    M_CONNECTION->connect("MusicBgThemeDownload", "MusicTopAreaWidget");
+    M_CONNECTION->poolConnect("MusicBgThemeDownload", "MusicTopAreaWidget");
 }
 
 MusicBgThemeDownload::~MusicBgThemeDownload()
 {
-    M_CONNECTION->disConnect("MusicBgThemeDownload");
+    M_CONNECTION->poolDisConnect("MusicBgThemeDownload");
 }
 
 void MusicBgThemeDownload::startToDownload()
