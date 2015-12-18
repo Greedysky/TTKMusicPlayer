@@ -8,7 +8,6 @@
 #ifdef Q_OS_WIN
 #   include <windows.h>
 #endif
-#include <QDebug>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)
