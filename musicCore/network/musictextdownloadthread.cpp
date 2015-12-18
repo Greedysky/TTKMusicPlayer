@@ -22,11 +22,14 @@ void MusicTextDownLoadThread::startToDownload()
     {
         if( m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) )
         {
+            m_timer.start(1000);
             m_manager = new QNetworkAccessManager(this);
             m_reply = m_manager->get( QNetworkRequest(QUrl(m_url)));
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                              SLOT(replyError(QNetworkReply::NetworkError)) );
+            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)),
+                             SLOT(downloadProgress(qint64, qint64)));
         }
         else
         {
@@ -43,6 +46,8 @@ void MusicTextDownLoadThread::downLoadFinished()
     {
         return;
     }
+    m_timer.stop();
+
     ///Get all the data obtained by request
     QByteArray bytes = m_reply->readAll();
     if(!bytes.contains("\"code\":2"))

@@ -162,7 +162,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 
 void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)
 {
-
+    QObject::connect(from, SIGNAL(sender()), to, SLOT(receiver()));
 }
 
 void MusicConnectionPool::poolDisConnect(const QString &name)

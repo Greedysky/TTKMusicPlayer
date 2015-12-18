@@ -18,10 +18,12 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 
 void MusicData2DownloadThread::startToDownload()
 {
+    m_timer.start(1000);
     m_dataReply = m_dataManager->get( QNetworkRequest(m_url));
     connect(m_dataReply, SIGNAL(finished()), SLOT(dataGetFinished()));
     connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
                          SLOT(dataReplyError(QNetworkReply::NetworkError)) );
+    connect(m_dataReply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
 }
 
 void MusicData2DownloadThread::deleteAll()
@@ -46,6 +48,7 @@ void MusicData2DownloadThread::dataGetFinished()
         return;
     }
 
+    m_timer.stop();
     if(m_dataReply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_dataReply->readAll();

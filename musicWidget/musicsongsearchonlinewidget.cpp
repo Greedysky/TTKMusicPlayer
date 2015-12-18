@@ -2,7 +2,6 @@
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
-#include "musicsongdownloadthread.h"
 #include "musicbgthemedownload.h"
 #include "musiclocalsongsearchrecordobject.h"
 #include "musicmessagebox.h"
@@ -227,7 +226,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
                                              .arg(musicSong).arg(musicSongAttr.m_format);
 
-    MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicSongAttr.m_url, downloadName,
+    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
     downSong->startToDownload();
 

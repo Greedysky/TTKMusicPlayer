@@ -5,7 +5,6 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicmydownloadrecordobject.h"
-#include "musicsongdownloadthread.h"
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
@@ -310,7 +309,7 @@ void MusicDownloadWidget::startToDownloadMusic()
                 down.writeDownloadConfig( record );
                 ////////////////////////////////////////////////
 
-                MusicSongDownloadThread *downSong = new MusicSongDownloadThread( musicAttr.m_url, downloadName,
+                MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, downloadName,
                                                                                  MusicDownLoadThreadAbstract::Download_Music, this);
                 connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(close()));
                 downSong->startToDownload();

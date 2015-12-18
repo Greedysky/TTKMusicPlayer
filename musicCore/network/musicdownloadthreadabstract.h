@@ -11,6 +11,7 @@
 
 #include <QNetworkReply>
 #include <QFile>
+#include <QTimer>
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
@@ -51,15 +52,18 @@ signals:
 
 public slots:
     virtual void downLoadFinished() = 0;
+    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void replyError(QNetworkReply::NetworkError error);
+    void updateDownloadSpeed();
 
 protected:
     QNetworkAccessManager *m_manager;
     QNetworkReply* m_reply;
     QFile *m_file;
-    QString m_url;
-    QString m_savePathName;
+    QString m_url, m_savePathName;
     Download_Type m_downloadType;
+    qint64 m_hasRecevied, m_currentRecevied;
+    QTimer m_timer;
 
 };
 

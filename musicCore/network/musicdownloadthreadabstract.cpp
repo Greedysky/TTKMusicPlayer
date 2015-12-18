@@ -1,8 +1,14 @@
 #include "musicdownloadthreadabstract.h"
 #include "musicconnectionpool.h"
+#include "musicsettingmanager.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
+#include <QThread>
+#ifdef Q_OS_WIN
+#   include <windows.h>
+#endif
+#include <QDebug>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)
@@ -11,6 +17,8 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     m_url = url;
     m_savePathName = save;
     m_downloadType = type;
+    m_hasRecevied = -1;
+    m_currentRecevied = -1;
 
     if(QFile::exists(save))
     {
@@ -19,6 +27,8 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     m_file = new QFile(save, this);
 
     M_CONNECTION->setNetworkMultiValue(this);
+    m_timer.setInterval(1000);
+    connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
@@ -50,4 +60,35 @@ void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
 {
     emit musicDownLoadFinished("The file create failed");
     deleteAll();
+}
+
+void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+{
+    Q_UNUSED(bytesTotal);
+    m_currentRecevied = bytesReceived;
+}
+
+void MusicDownLoadThreadAbstract::updateDownloadSpeed()
+{
+    int delta = m_currentRecevied - m_hasRecevied;
+    qDebug() << delta;
+    //////////////////////////////////////
+    ///limit speed
+//    if(M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
+//    {
+//        int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
+//        if(limitValue != 0 && delta > limitValue*1024)
+//        {
+//#if defined Q_OS_WIN
+//#   ifdef MUSIC_QT_5
+//      QThread::msleep(1000 - limitValue*1024*1000/delta);
+//#   else
+//      ::Sleep(1000 - limitValue*1024*1000/delta);
+//#   endif
+//#endif
+//            delta = limitValue*1024;
+//        }
+//    }
+    //////////////////////////////////////
+    m_hasRecevied = m_currentRecevied;
 }
