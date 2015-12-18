@@ -172,5 +172,16 @@ void MusicConnectionPool::poolDisConnect(const QString &name)
 
 void MusicConnectionPool::poolDisConnect(const QObject *object)
 {
-
+    QMapIterator<QString, QObject*> i(m_para);
+    QString key;
+    while(i.hasNext())
+    {
+        i.next();
+        if(i.value() == object)
+        {
+            key = i.key();
+            break;
+        }
+    }
+    poolDisConnect(key);
 }
