@@ -71,24 +71,23 @@ void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 
 void MusicDownLoadThreadAbstract::updateDownloadSpeed()
 {
     int delta = m_currentRecevied - m_hasRecevied;
-    qDebug() << delta;
     //////////////////////////////////////
     ///limit speed
-//    if(M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
-//    {
-//        int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
-//        if(limitValue != 0 && delta > limitValue*1024)
-//        {
-//#if defined Q_OS_WIN
-//#   ifdef MUSIC_QT_5
-//      QThread::msleep(1000 - limitValue*1024*1000/delta);
-//#   else
-//      ::Sleep(1000 - limitValue*1024*1000/delta);
-//#   endif
-//#endif
-//            delta = limitValue*1024;
-//        }
-//    }
+    if(M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
+    {
+        int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
+        if(limitValue != 0 && delta > limitValue*1024)
+        {
+#if defined Q_OS_WIN
+#   ifdef MUSIC_QT_5
+            QThread::msleep(1000 - limitValue*1024*1000/delta);
+#   else
+            ::Sleep(1000 - limitValue*1024*1000/delta);
+#   endif
+#endif
+            delta = limitValue*1024;
+        }
+    }
     //////////////////////////////////////
     m_hasRecevied = m_currentRecevied;
 }

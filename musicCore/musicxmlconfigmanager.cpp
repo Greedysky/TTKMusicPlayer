@@ -150,8 +150,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     int downloadCacheLimit = M_SETTING->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt();
     int downloadCacheSize = M_SETTING->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt();
     int downloadLimit = M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt();
-    int downloadDLoadLimit = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
-    int downloadULoadLimit = M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toInt();
+    QString downloadDLoadLimit = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString();
+    QString downloadULoadLimit = M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString();
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
@@ -347,9 +347,9 @@ void MusicXMLConfigManager::readOtherLoadConfig() const
     M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadLimit").toInt());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadDLoadLimit").toInt());
+                     readXmlAttributeByTagNameValue("downloadDLoadLimit"));
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadULoadLimit").toInt());
+                     readXmlAttributeByTagNameValue("downloadULoadLimit"));
 
     M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced,
                      readXmlAttributeByTagNameValue("fileAssociation"));

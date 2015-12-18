@@ -269,8 +269,13 @@ void MusicSettingWidget::initControllerParameter()
     ui->downloadSpinBox->setValue(M_SETTING->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
     M_SETTING->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
                      ui->downloadCacheAutoRadioBox->click() : ui->downloadCacheManRadioBox->click();
-    ui->downloadLimitSpeedComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt());
-    ui->uploadLimitSpeedComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toInt());
+#ifdef MUSIC_QT_5
+    ui->downloadLimitSpeedComboBox->setCurrentText(M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    ui->uploadLimitSpeedComboBox->setCurrentText(M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+#else
+    setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+#endif
     M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
     ///////////////////////////////////////////////////////////////////////////
@@ -327,8 +332,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadCacheLimitChoiced, ui->downloadCacheAutoRadioBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DownloadCacheSizeChoiced, ui->downloadSpinBox->value());
     M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced, ui->downloadFullRadioBox->isChecked());
-    M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentIndex());
-    M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentIndex());
+    M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
+    M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
 
     M_NETWORK->setBlockNetWork( ui->closeNetWorkCheckBox->isChecked() );
     M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced, ui->setDefaultPlayerCheckBox->isChecked());
@@ -423,6 +428,22 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     key == Inline ? m_lrcSelectedFg = QColor(222, 54, 4) : m_DlrcSelectedFg = QColor(222, 54, 4);
     key == Inline ? m_lrcSelectedBg = color : m_DlrcSelectedBg = color;
     key == Inline ? showInlineLrcDemo(-1) : showDesktopLrcDemo(-1);
+}
+
+void MusicSettingWidget::setComboboxText(QComboBox *object, const QString &text)
+{
+    if(object->isEditable())
+    {
+        object->setEditText(text);
+    }
+    else
+    {
+        const int i = object->findText(text);
+        if (i > -1)
+        {
+            object->setCurrentIndex(i);
+        }
+    }
 }
 
 void MusicSettingWidget::lrcTransparentValue(Type key, int index) const
