@@ -90,7 +90,6 @@ void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, cons
     m_items << item;
 
     setCellWidget(index, 0, item);
-    move(101, 30 + (height() - ROW_HEIGHT*index)/2);
 }
 
 int MusicDownloadTableWidget::getCurrentBitrate()
@@ -211,8 +210,13 @@ void MusicDownloadWidget::queryAllFinishedMusic()
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/cdQuality"));
             }
+            else
+            {
+                break;
+            }
         }
     }
+    resizeWindow();
 }
 
 void MusicDownloadWidget::queryAllFinishedMovie()
@@ -235,8 +239,44 @@ void MusicDownloadWidget::queryAllFinishedMovie()
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sqQuality"));
             }
+            else
+            {
+                break;
+            }
         }
     }
+    resizeWindow();
+}
+
+void MusicDownloadWidget::resizeWindow()
+{
+    int delta = ui->viewArea->rowCount();
+    delta = (delta == 0) ? 0 : (delta - 1)*ROW_HEIGHT;
+
+    setFixedHeightWidget(this, delta);
+    setFixedHeightWidget(ui->backgroundMask, delta);
+    setFixedHeightWidget(ui->background, delta);
+    setFixedHeightWidget(ui->viewArea, delta);
+
+    setMoveWidget(ui->label2, delta);
+    setMoveWidget(ui->downloadPathEdit, delta);
+    setMoveWidget(ui->pathChangedButton, delta);
+    setMoveWidget(ui->settingButton, delta);
+    setMoveWidget(ui->downloadButton, delta);
+
+    QPixmap pix(M_BG_MANAGER->getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+}
+
+void MusicDownloadWidget::setFixedHeightWidget(QWidget *w, int height)
+{
+    w->setFixedHeight(w->height() + height);
+}
+
+void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
+{
+    QRect rect = w->geometry();
+    w->move(rect.x(), rect.y() + pos);
 }
 
 void MusicDownloadWidget::downloadDirSelected()

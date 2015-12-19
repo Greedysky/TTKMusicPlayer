@@ -79,6 +79,9 @@ public slots:
 protected:
     void initWidget();
     void controlEnable(bool enable);
+    void resizeWindow();
+    void setFixedHeightWidget(QWidget *w, int height);
+    void setMoveWidget(QWidget *w, int pos);
 
     void queryAllFinishedMusic();
     void queryAllFinishedMovie();
