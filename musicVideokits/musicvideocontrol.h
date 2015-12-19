@@ -53,16 +53,18 @@ public slots:
 
 protected:
     void setQualityActionState();
+    QString findMVUrlByBitrate(int bitrate);
+    int findMVBitrateByUrl(const QString &url);
+    bool findExsitByBitrate(int bitrate);
 
     bool m_widgetPopup;
-    QMenu m_popupVolumn;
-    QMenu m_popupQuality;
+    QMenu m_popupVolumn, m_popupQuality;
     MusicMovingLabelSlider *m_timeSlider;
     QSlider *m_volumnSlider;
     QToolButton *m_menuButton, *m_volumnButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;
-    QAction *m_mvNormal, *m_mvHd;
+    QAction *m_mvSd, *m_mvHd, *m_mvSq;
     QLabel *m_barrageWidget;
 
 };

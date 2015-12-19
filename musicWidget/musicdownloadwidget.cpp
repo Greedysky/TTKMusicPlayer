@@ -13,6 +13,7 @@
 
 #include <QFileDialog>
 #include <QLabel>
+#include <QDebug>
 
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
@@ -227,15 +228,21 @@ void MusicDownloadWidget::queryAllFinishedMovie()
         MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
         foreach(MusicSongAttribute attr, attrs)
         {
-            if(attr.m_bitrate == 500)      ///hd
+            if(attr.m_bitrate == 500)       ///hd
             {
-                ui->viewArea->createItem(500, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                                         .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
+                                         QString(":/quality/sdQuality"));
+            }
+            else if(attr.m_bitrate == 750)  ///sq
+            {
+                ui->viewArea->createItem(750, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/hdQuality"));
             }
-            else if(attr.m_bitrate == 750) ///sq
+            else if(attr.m_bitrate == 1000) ///cd
             {
-                ui->viewArea->createItem(750, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(1000, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sqQuality"));
             }

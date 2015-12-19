@@ -6,7 +6,6 @@
 #include <QMouseEvent>
 #include <QTimer>
 
-
 MusicViewWidget::MusicViewWidget(QWidget *parent)
     : QWidget(parent)
 {

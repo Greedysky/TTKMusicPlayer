@@ -78,8 +78,9 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumnButton->setMenu(&m_popupVolumn);
     m_volumnButton->setPopupMode(QToolButton::InstantPopup);
 
-    m_mvNormal = m_popupQuality.addAction(tr("NormalMV"));
+    m_mvSd = m_popupQuality.addAction(tr("SdMV"));
     m_mvHd = m_popupQuality.addAction(tr("HdMV"));
+    m_mvSq = m_popupQuality.addAction(tr("SqMV"));
     connect(&m_popupQuality, SIGNAL(triggered(QAction*)), SLOT(menuActionTriggered(QAction*)));
     m_qualityButton->setMenu(&m_popupQuality);
 
@@ -129,15 +130,12 @@ void MusicVideoControl::setButtonStyle(bool style) const
 
 void MusicVideoControl::mediaChanged(const QString &url)
 {
-    MusicSongAttributes data;
-    emit getMusicMvInfo(data);
-
-    for(int i=0; i<data.count(); ++i)
+    switch(findMVBitrateByUrl(url))
     {
-        if(data[i].m_url == url)
-        {
-            m_qualityButton->setText( (data[i].m_bitrate == 500) ? tr("NormalMV") : tr("HdMV"));
-        }
+        case 500:   m_qualityButton->setText(tr("SdMV")); break;
+        case 750:   m_qualityButton->setText(tr("HdMV")); break;
+        case 1000:  m_qualityButton->setText(tr("SqMV")); break;
+        default: break;
     }
 }
 
@@ -167,17 +165,20 @@ void MusicVideoControl::fullButtonClicked()
 
 void MusicVideoControl::menuActionTriggered(QAction *action)
 {
-    MusicSongAttributes data;
-    emit getMusicMvInfo(data);
-    if(action->text() == tr("NormalMV"))
+    if(action->text() == tr("SdMV"))
     {
-        m_qualityButton->setText(tr("NormalMV"));
-        emit mvURLChanged((data.first().m_bitrate == 500) ? data.first().m_url : data.last().m_url);
+        m_qualityButton->setText(tr("SdMV"));
+        emit mvURLChanged( findMVUrlByBitrate(500) );
     }
-    else
+    else if(action->text() == tr("HdMV"))
     {
         m_qualityButton->setText(tr("HdMV"));
-        emit mvURLChanged((data.first().m_bitrate == 750) ? data.first().m_url : data.last().m_url);
+        emit mvURLChanged( findMVUrlByBitrate(750) );
+    }
+    else if(action->text() == tr("SqMV"))
+    {
+        m_qualityButton->setText(tr("SqMV"));
+        emit mvURLChanged( findMVUrlByBitrate(1000) );
     }
 }
 
@@ -186,23 +187,57 @@ void MusicVideoControl::sliderReleased()
     emit sliderValueChanged(m_timeSlider->value()/1000);
 }
 
+QString MusicVideoControl::findMVUrlByBitrate(int bitrate)
+{
+    MusicSongAttributes data;
+    emit getMusicMvInfo(data);
+    foreach(MusicSongAttribute attr, data)
+    {
+        if(attr.m_bitrate == bitrate)
+        {
+            return attr.m_url;
+        }
+    }
+    return QString();
+}
+
+int MusicVideoControl::findMVBitrateByUrl(const QString &url)
+{
+    MusicSongAttributes data;
+    emit getMusicMvInfo(data);
+    foreach(MusicSongAttribute attr, data)
+    {
+        if(attr.m_url == url)
+        {
+            return attr.m_bitrate;
+        }
+    }
+    return 0;
+}
+
+bool MusicVideoControl::findExsitByBitrate(int bitrate)
+{
+    MusicSongAttributes data;
+    emit getMusicMvInfo(data);
+    foreach(MusicSongAttribute attr, data)
+    {
+        if(attr.m_bitrate == bitrate)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void MusicVideoControl::setQualityActionState()
 {
     MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
-    m_mvNormal->setEnabled(true);
-    m_mvHd->setEnabled(true);
-    m_downloadButton->setEnabled(true);
+    m_mvSd->setEnabled( findExsitByBitrate(500) );
+    m_mvHd->setEnabled( findExsitByBitrate(750) );
+    m_mvSq->setEnabled( findExsitByBitrate(1000) );
 
-    if(data.isEmpty())
-    {
-        m_mvNormal->setEnabled(false);
-        m_mvHd->setEnabled(false);
-        m_downloadButton->setEnabled(false);
-    }
-    else if(data.count() == 1)
-    {
-        data.first().m_bitrate == 500 ? m_mvHd->setEnabled(false) : m_mvNormal->setEnabled(false);
-    }
+    m_downloadButton->setEnabled( m_mvSd->isEnabled() || m_mvHd->isEnabled() ||
+                                  m_mvSq->isEnabled() );
 }
