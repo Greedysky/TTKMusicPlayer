@@ -40,7 +40,7 @@ public slots:
     void itemCellOnClick(int row, int col);
     void itemDoubleClicked(int row, int col);
     void setSongNamePath(const QFileInfoList &name);
-    void filterIndexChanged();
+    void filterScanChanged(int index);
     void musicSearchIndexChanged(int row, int col);
 
     void setShowlistButton();
@@ -53,6 +53,8 @@ protected:
     void addAllItems(const QFileInfoList &name);
     void addDrivesList();
     void itemsSelected();
+    bool filterIndexChanged();
+    bool filterIndexCustChanged();
 
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;

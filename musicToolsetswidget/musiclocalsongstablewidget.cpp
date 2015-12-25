@@ -23,7 +23,7 @@ void MusicLocalSongsTableWidget::createShowlist()
 {
     clearShowlist();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 290);
+    headerview->resizeSection(0, 315);
     headerview->resizeSection(1, 55);
     headerview->resizeSection(2, 105);
     headerview->resizeSection(3, 26);
@@ -34,5 +34,5 @@ void MusicLocalSongsTableWidget::createShowPath()
 {
     clearShowPath();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 503);
+    headerview->resizeSection(0, 528);
 }

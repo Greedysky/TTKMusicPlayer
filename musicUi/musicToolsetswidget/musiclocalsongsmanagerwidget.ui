@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
-    <height>472</height>
+    <width>700</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>635</width>
-     <height>432</height>
+     <width>660</width>
+     <height>440</height>
     </rect>
    </property>
    <property name="text">
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>634</x>
+     <x>659</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -64,7 +64,7 @@
      <x>20</x>
      <y>45</y>
      <width>125</width>
-     <height>406</height>
+     <height>415</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -134,8 +134,8 @@
     <rect>
      <x>145</x>
      <y>80</y>
-     <width>510</width>
-     <height>371</height>
+     <width>535</width>
+     <height>380</height>
     </rect>
    </property>
   </widget>
@@ -144,7 +144,7 @@
     <rect>
      <x>145</x>
      <y>45</y>
-     <width>509</width>
+     <width>535</width>
      <height>36</height>
     </rect>
    </property>
@@ -161,7 +161,7 @@
    <widget class="QToolButton" name="auditionButton">
     <property name="geometry">
      <rect>
-      <x>75</x>
+      <x>70</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -171,7 +171,7 @@
    <widget class="QToolButton" name="addButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>95</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -181,9 +181,9 @@
    <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>126</x>
       <y>5</y>
-      <width>191</width>
+      <width>165</width>
       <height>25</height>
      </rect>
     </property>
@@ -194,9 +194,9 @@
    <widget class="QPushButton" name="scanButton">
     <property name="geometry">
      <rect>
-      <x>353</x>
+      <x>320</x>
       <y>5</y>
-      <width>65</width>
+      <width>60</width>
       <height>25</height>
      </rect>
     </property>
@@ -207,7 +207,7 @@
    <widget class="QPushButton" name="searchLineLabel">
     <property name="geometry">
      <rect>
-      <x>321</x>
+      <x>291</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -220,7 +220,7 @@
    <widget class="QComboBox" name="filterComboBox">
     <property name="geometry">
      <rect>
-      <x>422</x>
+      <x>445</x>
       <y>6</y>
       <width>83</width>
       <height>23</height>
@@ -232,13 +232,26 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>510</width>
+      <width>536</width>
       <height>40</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background:rgba(255,255,255,150)</string>
     </property>
+    <widget class="QPushButton" name="scanCustButton">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>5</y>
+       <width>60</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自扫</string>
+     </property>
+    </widget>
    </widget>
    <zorder>backgroundMask2</zorder>
    <zorder>allSelectedcheckBox</zorder>
@@ -252,7 +265,7 @@
   <widget class="QLabel" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>300</x>
      <y>240</y>
      <width>220</width>
      <height>19</height>
