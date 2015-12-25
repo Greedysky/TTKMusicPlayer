@@ -2,6 +2,7 @@
 #include "ui_musictransformwidget.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
+#include "musicplayer.h"
 
 #include <QFileDialog>
 #include <QProcess>
@@ -89,24 +90,19 @@ void MusicTransformWidget::initInputPath()
     else
     {
         QFileDialog dialog(this);
-        dialog.setFileMode(QFileDialog::Directory );
+        dialog.setFileMode(QFileDialog::Directory);
         dialog.setViewMode(QFileDialog::Detail);
         if(dialog.exec())
         {
             path = dialog.directory().absolutePath();
-            QList<QFileInfo> file(dialog.directory().entryInfoList());
-            for(int i=0; i<file.count(); ++i)
+            foreach(QFileInfo var, getFileList(path))
             {
-                if(file[i].isFile())
+                if(MusicPlayer::supportFormatsString().contains(var.suffix()))
                 {
-                   m_path << file[i].absoluteFilePath();
+                    m_path << var.absoluteFilePath();
+                    ui->listWidget->addItem(QFontMetrics(font()).elidedText(var.absoluteFilePath(),
+                                                                            Qt::ElideLeft, 385));
                 }
-            }
-
-            for(int i=0; i<m_path.count(); ++i)
-            {
-                ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
-                                                                        Qt::ElideLeft, 215));
             }
         }
     }
@@ -115,6 +111,21 @@ void MusicTransformWidget::initInputPath()
     {
         ui->inputLineEdit->setText(path);
     }
+}
+
+QFileInfoList MusicTransformWidget::getFileList(const QString &path)
+{
+    QDir dir(path);
+
+    QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    for(int i = 0; i < folderList.size(); ++i)
+    {
+        QString childPath = folderList[i].absoluteFilePath();
+        fileList.append( getFileList(childPath) );
+    }
+    return fileList;
 }
 
 void MusicTransformWidget::initOutputPath()
@@ -148,7 +159,7 @@ void MusicTransformWidget::transformFinish(int)
         for(int i=0; i<m_path.count(); ++i)
         {
             ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
-                                                                    Qt::ElideLeft, 215));
+                                                                    Qt::ElideLeft, 385));
         }
         if(!processTransform(MAKE_TRANSFORM_AL))
         {

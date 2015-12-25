@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>515</width>
-    <height>399</height>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>20</x>
      <y>20</y>
      <width>475</width>
-     <height>359</height>
+     <height>364</height>
     </rect>
    </property>
    <property name="text">
@@ -55,25 +55,12 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>363</y>
-     <width>455</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="inputLineEdit">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>72</y>
-     <width>310</width>
+     <x>104</x>
+     <y>65</y>
+     <width>331</width>
      <height>20</height>
     </rect>
    </property>
@@ -82,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>72</y>
+     <y>65</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -94,9 +81,9 @@
   <widget class="QLineEdit" name="outputLineEdit">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>105</y>
-     <width>310</width>
+     <x>104</x>
+     <y>95</y>
+     <width>331</width>
      <height>20</height>
     </rect>
    </property>
@@ -105,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>105</y>
+     <y>95</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -114,33 +101,13 @@
     <string>输出路径</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="formatCombo">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>150</y>
-     <width>101</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="kbpsCombo">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>190</y>
-     <width>101</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="inputButton">
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>72</y>
+     <y>65</y>
      <width>31</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -151,105 +118,20 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>105</y>
+     <y>95</y>
      <width>31</width>
-     <height>23</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
     <string>...</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>150</y>
-     <width>51</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>转换格式</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>190</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>比特率(kbps)</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>230</y>
-     <width>51</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>频率(Hz)</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="msCombo">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>270</y>
-     <width>101</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="hzCombo">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>230</y>
-     <width>101</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>270</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>声道设置(M/S)</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="transformButton">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>325</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>立即转换</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="loadingLabel">
    <property name="geometry">
     <rect>
      <x>57</x>
-     <y>337</y>
+     <y>345</y>
      <width>220</width>
      <height>19</height>
     </rect>
@@ -258,26 +140,13 @@
     <string/>
    </property>
   </widget>
-  <widget class="QCheckBox" name="folderBox">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>300</y>
-     <width>181</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>添加输入目录(用于批量转换)</string>
-   </property>
-  </widget>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>140</y>
-     <width>236</width>
-     <height>191</height>
+     <y>220</y>
+     <width>420</width>
+     <height>111</height>
     </rect>
    </property>
   </widget>
@@ -287,36 +156,154 @@
      <x>20</x>
      <y>45</y>
      <width>475</width>
-     <height>334</height>
+     <height>339</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="formatCombo">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>150</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>175</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>比特率(kbps)</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="hzCombo">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>150</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="kbpsCombo">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>175</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>150</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>频率(Hz)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>175</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>声道设置(M/S)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>150</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>转换格式</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="msCombo">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>175</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="transformButton">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>340</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>立即转换</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="folderBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>181</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>添加输入目录(用于批量转换)</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>line_2</zorder>
   <zorder>inputLineEdit</zorder>
   <zorder>label</zorder>
   <zorder>outputLineEdit</zorder>
   <zorder>label_2</zorder>
-  <zorder>formatCombo</zorder>
-  <zorder>kbpsCombo</zorder>
   <zorder>inputButton</zorder>
   <zorder>outputButton</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>msCombo</zorder>
-  <zorder>hzCombo</zorder>
-  <zorder>label_6</zorder>
-  <zorder>transformButton</zorder>
   <zorder>loadingLabel</zorder>
-  <zorder>folderBox</zorder>
   <zorder>listWidget</zorder>
+  <zorder>formatCombo</zorder>
+  <zorder>label_4</zorder>
+  <zorder>hzCombo</zorder>
+  <zorder>kbpsCombo</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_3</zorder>
+  <zorder>msCombo</zorder>
+  <zorder>transformButton</zorder>
+  <zorder>transformButton</zorder>
+  <zorder>folderBox</zorder>
  </widget>
  <resources/>
  <connections/>

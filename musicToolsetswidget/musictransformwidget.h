@@ -45,6 +45,7 @@ protected:
     QString getTransformSongName() const;
     Ui::MusicTransformWidget *ui;
 
+    QFileInfoList getFileList(const QString &path);
     void initControlParameter() const;
     bool processTransform(const QString &para) const;
     void setCheckedControl(bool enable) const;
