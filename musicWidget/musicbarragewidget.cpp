@@ -35,13 +35,69 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
     m_parentClass = static_cast<QWidget*>(parent);
-
-    createLabel();
-    createAnimation();
-
+    m_barrageState = false;
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
+{
+    deleteItems();
+}
+
+void MusicBarrageWidget::start()
+{
+    if(m_barrageState)
+    {
+        for(int i=0; i<m_labels.count(); i++)
+        {
+            m_labels[i]->show();
+            m_animations[i]->start();
+        }
+    }
+}
+
+void MusicBarrageWidget::pause()
+{
+    if(m_barrageState)
+    {
+        for(int i=0; i<m_labels.count(); i++)
+        {
+            m_labels[i]->hide();
+            m_animations[i]->pause();
+        }
+    }
+}
+
+void MusicBarrageWidget::stop()
+{
+    for(int i=0; i<m_labels.count(); i++)
+    {
+        m_labels[i]->hide();
+        m_animations[i]->stop();
+    }
+}
+
+void MusicBarrageWidget::barrageStateChanged(bool on)
+{
+    m_barrageState = on;
+    if(m_barrageState)
+    {
+        deleteItems();
+        createLabel();
+        createAnimation();
+        start();
+    }
+    else
+    {
+        stop();
+    }
+}
+
+void MusicBarrageWidget::setSize(const QSize &size)
+{
+    m_parentSize = size;
+}
+
+void MusicBarrageWidget::deleteItems()
 {
     while(!m_labels.isEmpty())
     {
@@ -50,48 +106,12 @@ MusicBarrageWidget::~MusicBarrageWidget()
     }
 }
 
-void MusicBarrageWidget::start()
-{
-    for(int i=0; i<NUMBER; i++)
-    {
-        m_labels[i]->show();
-        m_animations[i]->start();
-    }
-}
-
-void MusicBarrageWidget::pause()
-{
-    for(int i=0; i<NUMBER; i++)
-    {
-        m_labels[i]->hide();
-        m_animations[i]->pause();
-    }
-}
-
-void MusicBarrageWidget::stop()
-{
-    for(int i=0; i<NUMBER; i++)
-    {
-        m_labels[i]->hide();
-        m_animations[i]->stop();
-    }
-}
-
-void MusicBarrageWidget::setSize(const QSize &size)
-{
-    m_parentSize = size;
-    for(int i=0; i<NUMBER; i++)
-    {
-        m_animations[i]->setStartValue(QPoint(0, 100 + i*100));
-        m_animations[i]->setEndValue(QPoint(size.width(), 100+ i*100));
-    }
-}
-
 void MusicBarrageWidget::createLabel()
 {
     for(int i=0; i<NUMBER; i++)
     {
         QLabel *label = new QLabel(m_parentClass);
+        label->setStyleSheet("color:white;");
         label->setText("test");
         label->hide();
         m_labels << label;
@@ -100,9 +120,11 @@ void MusicBarrageWidget::createLabel()
 
 void MusicBarrageWidget::createAnimation()
 {
-    for(int i=0; i<NUMBER; i++)
+    for(int i=0; i<m_labels.count(); i++)
     {
         MusicBarrageAnimation *anim = new MusicBarrageAnimation(m_labels[i], "pos");
+        anim->setStartValue(QPoint(0, 100 + i*100));
+        anim->setEndValue(QPoint(m_parentSize.width(), 100+ i*100));
         m_animations << anim;
     }
 }

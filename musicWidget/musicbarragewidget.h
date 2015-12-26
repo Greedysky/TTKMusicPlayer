@@ -15,7 +15,7 @@
 
 #define NUMBER 2
 
-class MusicBarrageAnimation : public QPropertyAnimation
+class MUSIC_WIDGET_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
 public:
@@ -32,7 +32,7 @@ protected:
 };
 
 
-class MusicBarrageWidget : public QObject
+class MUSIC_WIDGET_EXPORT MusicBarrageWidget : public QObject
 {
     Q_OBJECT
 public:
@@ -43,6 +43,7 @@ public:
     void pause();
     void stop();
 
+    void barrageStateChanged(bool on);
     void setSize(const QSize &size);
 
 signals:
@@ -50,6 +51,7 @@ signals:
 public slots:
 
 protected:
+    void deleteItems();
     void createLabel();
     void createAnimation();
 
@@ -57,6 +59,7 @@ protected:
     QSize m_parentSize;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
+    bool m_barrageState;
 
 };
 

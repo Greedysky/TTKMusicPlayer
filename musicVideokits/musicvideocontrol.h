@@ -43,6 +43,7 @@ signals:
     void downloadLocalByControl();
     void mvURLChanged(const QString &data);
     void sliderValueChanged(int value);
+    void pushBarrageChanged(bool on);
 
 public slots:
     void show();
@@ -50,12 +51,14 @@ public slots:
     void fullButtonClicked();
     void menuActionTriggered(QAction *action);
     void sliderReleased();
+    void pushBarrageClicked();
 
 protected:
     void setQualityActionState();
     QString findMVUrlByBitrate(int bitrate);
     int findMVBitrateByUrl(const QString &url);
     bool findExsitByBitrate(int bitrate);
+    QWidget* createBarrageWidget();
 
     bool m_widgetPopup;
     QMenu m_popupVolumn, m_popupQuality;
@@ -65,7 +68,9 @@ protected:
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;
     QAction *m_mvSd, *m_mvHd, *m_mvSq;
-    QLabel *m_barrageWidget;
+
+    QPushButton *m_pushBarrage;
+    bool m_pushBarrageOn;
 
 };
 

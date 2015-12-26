@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QBoxLayout>
+#include <QLineEdit>
 #include <QWidgetAction>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
@@ -18,7 +19,6 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_fullButton = new QPushButton(this);
     m_qualityButton = new QPushButton(tr("NormalMV"), this);
     m_downloadButton = new QPushButton(tr("DownloadMV"), this);
-    m_barrageWidget = new QLabel(this);
 
     m_volumnButton = new QToolButton(this);
     m_volumnSlider = new QSlider(Qt::Vertical,this);
@@ -62,7 +62,9 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     controlBLayout->addWidget(m_menuButton);
     controlBLayout->addWidget(m_playButton);
     controlBLayout->addWidget(m_volumnButton);
-    controlBLayout->addWidget(m_barrageWidget, 1);
+    controlBLayout->addStretch(1);
+    controlBLayout->addWidget(createBarrageWidget(), 15);
+    controlBLayout->addStretch(1);
     controlBLayout->addWidget(m_qualityButton);
     controlBLayout->addWidget(m_downloadButton);
     controlBLayout->addWidget(m_inSideButton);
@@ -86,6 +88,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     connect(m_timeSlider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
     connect(this, SIGNAL(sliderValueChanged(int)), parent, SLOT(setPosition(int)));
+    connect(this, SIGNAL(pushBarrageChanged(bool)), parent, SLOT(pushBarrageChanged(bool)));
     connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumnChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
@@ -106,7 +109,6 @@ MusicVideoControl::~MusicVideoControl()
     delete m_menuButton;
     delete m_playButton;
     delete m_volumnButton;
-    delete m_barrageWidget;
     delete m_inSideButton;
     delete m_fullButton;
     delete m_qualityButton;
@@ -187,6 +189,26 @@ void MusicVideoControl::sliderReleased()
     emit sliderValueChanged(m_timeSlider->value()/1000);
 }
 
+void MusicVideoControl::pushBarrageClicked()
+{
+    m_pushBarrage->setIcon(QIcon(m_pushBarrageOn ? ":/equalizer/on" : ":/equalizer/off"));
+    emit pushBarrageChanged(m_pushBarrageOn);
+    m_pushBarrageOn = !m_pushBarrageOn;
+}
+
+void MusicVideoControl::setQualityActionState()
+{
+    MusicSongAttributes data;
+    emit getMusicMvInfo(data);
+
+    m_mvSd->setEnabled( findExsitByBitrate(500) );
+    m_mvHd->setEnabled( findExsitByBitrate(750) );
+    m_mvSq->setEnabled( findExsitByBitrate(1000) );
+
+    m_downloadButton->setEnabled( m_mvSd->isEnabled() || m_mvHd->isEnabled() ||
+                                  m_mvSq->isEnabled() );
+}
+
 QString MusicVideoControl::findMVUrlByBitrate(int bitrate)
 {
     MusicSongAttributes data;
@@ -229,15 +251,28 @@ bool MusicVideoControl::findExsitByBitrate(int bitrate)
     return false;
 }
 
-void MusicVideoControl::setQualityActionState()
+QWidget* MusicVideoControl::createBarrageWidget()
 {
-    MusicSongAttributes data;
-    emit getMusicMvInfo(data);
+    QWidget *barrageWidget = new QWidget(this);
+    m_pushBarrageOn = false;
 
-    m_mvSd->setEnabled( findExsitByBitrate(500) );
-    m_mvHd->setEnabled( findExsitByBitrate(750) );
-    m_mvSq->setEnabled( findExsitByBitrate(1000) );
+    QHBoxLayout *barrageLayout = new QHBoxLayout(barrageWidget);
+    barrageLayout->setContentsMargins(0, 0, 0, 0);
+    QLineEdit *lineEditBarrage = new QLineEdit(barrageWidget);
+    lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle01 + \
+                                   "QLineEdit{color:white;}");
+    QLabel *labelBarrage = new QLabel(barrageWidget);
+    labelBarrage->setStyleSheet("color:white;");
+    labelBarrage->setText(tr("openBarrage"));
+    m_pushBarrage = new QPushButton(barrageWidget);
+    m_pushBarrage->setIconSize(QSize(40, 25));
+    pushBarrageClicked();
+    connect(m_pushBarrage, SIGNAL(clicked()), SLOT(pushBarrageClicked()));
 
-    m_downloadButton->setEnabled( m_mvSd->isEnabled() || m_mvHd->isEnabled() ||
-                                  m_mvSq->isEnabled() );
+    barrageLayout->addWidget(lineEditBarrage);
+    barrageLayout->addWidget(labelBarrage);
+    barrageLayout->addWidget(m_pushBarrage);
+    barrageWidget->setLayout(barrageLayout);
+
+    return barrageWidget;
 }

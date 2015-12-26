@@ -172,3 +172,8 @@ void MusicVideoView::mediaChanged(const QString &data)
 {
     m_videoControl->mediaChanged(data);
 }
+
+void MusicVideoView::pushBarrageChanged(bool on)
+{
+    m_barrageCore->barrageStateChanged(on);
+}

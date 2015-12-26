@@ -13,7 +13,6 @@
 
 #include <QFileDialog>
 #include <QLabel>
-#include <QDebug>
 
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)

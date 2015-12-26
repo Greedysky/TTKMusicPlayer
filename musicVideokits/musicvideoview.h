@@ -53,6 +53,7 @@ private slots:
     void setPosition(int position);
     void volumnChanged(int volumn);
     void mediaChanged(const QString &data);
+    void pushBarrageChanged(bool on);
 
 protected:
     virtual void enterEvent(QEvent *event) override;
