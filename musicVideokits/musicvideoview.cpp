@@ -2,6 +2,7 @@
 #include "musicvideocontrol.h"
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
+#include "musicbarragewidget.h"
 
 #include <QMouseEvent>
 #include <QTimer>
@@ -39,6 +40,8 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
+    m_barrageCore = new MusicBarrageWidget(this);
+
     connect(m_videoWidget, SIGNAL(setClick()), SLOT(play()));
     connect(m_videoWidget, SIGNAL(setFullScreen()), SLOT(setFullScreen()));
 
@@ -47,6 +50,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_videoControl->hide();
 
     resizeWindow(false, QSize(-1, -1));
+
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
@@ -54,6 +58,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
 
 MusicVideoView::~MusicVideoView()
 {
+    delete m_barrageCore;
     delete m_mediaPlayer;
     delete m_videoControl;
     delete m_videoWidget;
@@ -83,19 +88,21 @@ void MusicVideoView::setMedia(const QString &data)
     QTimer::singleShot(5*1000, this, SLOT(stop()));
 }
 
-void MusicVideoView::resizeWindow(bool resize, QSize size)
+void MusicVideoView::resizeWindow(bool resize, const QSize &size)
 {
     if(resize)
     {
         m_videoWidget->resize(QSize(size.width() - 20, size.height()*0.8));
         m_videoControl->setFixedSize( size.width(), 40);
         m_videoControl->move(0, size.height() - 40 - 50);
+        m_barrageCore->setSize(size);
     }
     else
     {
         m_videoWidget->setGeometry(10, 40, 505, 325);
         m_videoControl->setFixedSize( 520, 40 );
         m_videoControl->move(0, 370);
+        m_barrageCore->setSize(QSize(505, 325));
     }
 }
 
@@ -114,9 +121,11 @@ void MusicVideoView::play()
     {
         case MusicCoreMPlayer::PlayingState:
             m_videoControl->setButtonStyle(false);
+            m_barrageCore->start();
             break;
         case MusicCoreMPlayer::PausedState:
             m_videoControl->setButtonStyle(true);
+            m_barrageCore->pause();
             break;
         default: break;
     }
@@ -127,6 +136,7 @@ void MusicVideoView::stop()
     if(!m_positionChanged)
     {
         m_mediaPlayer->stop();
+        m_barrageCore->stop();
         MusicMessageBox message;
         message.setText(tr("Session time out, try again!"));
         message.exec();

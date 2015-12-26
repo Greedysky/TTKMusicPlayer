@@ -14,6 +14,7 @@
 
 class MusicVideoControl;
 class MusicCoreMPlayer;
+class MusicBarrageWidget;
 
 class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
 {
@@ -39,7 +40,7 @@ public:
     ~MusicVideoView();
 
     void setMedia(const QString &data);
-    void resizeWindow(bool resize, QSize size);
+    void resizeWindow(bool resize, const QSize &size);
 
 public slots:
     void play();
@@ -62,6 +63,7 @@ protected:
     MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicVideoControl *m_videoControl;
+    MusicBarrageWidget *m_barrageCore;
 
 };
 

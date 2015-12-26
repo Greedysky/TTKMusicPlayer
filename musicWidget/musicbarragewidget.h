@@ -10,20 +10,53 @@
    =================================================*/
 
 #include "musiclibexportglobal.h"
-#include <QWidget>
+#include <QPropertyAnimation>
+#include <QLabel>
 
-class MusicBarrageWidget : public QWidget
+#define NUMBER 2
+
+class MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
 public:
-    explicit MusicBarrageWidget(QWidget *parent = 0);
+    explicit MusicBarrageAnimation(QObject *parent = 0);
+    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
+    ~MusicBarrageAnimation() = default;
+
+public slots:
+    void animationFinished();
+
+protected:
+    void init();
+
+};
+
+
+class MusicBarrageWidget : public QObject
+{
+    Q_OBJECT
+public:
+    explicit MusicBarrageWidget(QObject *parent = 0);
     ~MusicBarrageWidget();
+
+    void start();
+    void pause();
+    void stop();
+
+    void setSize(const QSize &size);
 
 signals:
 
 public slots:
 
 protected:
+    void createLabel();
+    void createAnimation();
+
+    QWidget *m_parentClass;
+    QSize m_parentSize;
+    QList<QLabel*> m_labels;
+    QList<MusicBarrageAnimation*> m_animations;
 
 };
 
