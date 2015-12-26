@@ -11,6 +11,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
+#include <Qpainter>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(nullptr),
@@ -23,6 +24,13 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
     m_mouseMoved = false;
+
+#ifndef MUSIC_QT_5
+    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
+                  MusicUIObject::MScrollBarStyle01 + \
+                  MusicUIObject::MLineEditStyle02 + \
+                  "QTableWidget{background:rgba(0, 0, 0, 255)}");
+#endif
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
@@ -176,6 +184,18 @@ void MusicSongsListWidget::leaveEvent(QEvent *event)
     listCellEntered(-1, -1);
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;
+}
+
+void MusicSongsListWidget::paintEvent(QPaintEvent *event)
+{
+#ifndef MUSIC_QT_5
+    QWidget *w = viewport();
+    QPainter painter(w);
+//    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, 80));
+    painter.end();
+#endif
+    MusicAbstractTableWidget::paintEvent(event);
 }
 
 void MusicSongsListWidget::startToDrag()

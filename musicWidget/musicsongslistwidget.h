@@ -72,6 +72,7 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     void startToDrag();
 
