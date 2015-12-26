@@ -731,6 +731,10 @@ void MusicApplication::musicPlayIndex(int row, int)
 
 void MusicApplication::musicPlayAnyTimeAt(int posValue)
 {
+    if(m_musicPlayer->state() != MusicPlayer::PlayingState)
+    {
+        return;
+    }
     //Drag the progress indicator to rewind or fast-forward through the current song
     m_musicPlayer->setPosition( posValue);
     //Set lrc corrent to show
