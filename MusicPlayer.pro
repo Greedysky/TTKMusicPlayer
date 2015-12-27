@@ -25,8 +25,10 @@ win32{
     QT   += winextras
         msvc{
             LIBS += -L"./MPlugins" -llibzplay
-            #support on windows XP
-            QMAKE_LFLAGS_WINDOWS += /SUBSYSTEM:WINDOWS,5.01
+            !contains(QMAKE_TARGET.arch, x86_64){
+                 #support on windows XP
+                 QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+            }
         }
 
         gcc{
