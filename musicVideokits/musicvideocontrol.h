@@ -59,9 +59,11 @@ protected:
     int findMVBitrateByUrl(const QString &url);
     bool findExsitByBitrate(int bitrate);
     QWidget* createBarrageWidget();
+    QPushButton* createBarrageSizeButton(int index);
+    QPushButton* createBarrageColorButton(int index);
 
     bool m_widgetPopup;
-    QMenu m_popupVolumn, m_popupQuality;
+    QMenu m_popupVolumn, m_popupQuality, m_popupBarrage;
     MusicMovingLabelSlider *m_timeSlider;
     QSlider *m_volumnSlider;
     QToolButton *m_menuButton, *m_volumnButton;

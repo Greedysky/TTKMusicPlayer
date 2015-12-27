@@ -11,5 +11,6 @@
         <file alias="video_3">../musicResource/video/video_3.png</file>
         <file alias="video_4">../musicResource/video/video_4.png</file>
         <file alias="video_5">../musicResource/video/video_5.png</file>
+        <file alias="barrageStyle">../musicResource/video/barrageStyle.png</file>
     </qresource>
 </RCC>

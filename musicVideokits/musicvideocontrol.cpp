@@ -256,8 +256,53 @@ QWidget* MusicVideoControl::createBarrageWidget()
     QWidget *barrageWidget = new QWidget(this);
     m_pushBarrageOn = false;
 
+    ///////////////////////////////////////////
+    QWidgetAction *widgetAction = new QWidgetAction(barrageWidget);
+    QWidget *barrageSettingWidget = new QWidget(barrageWidget);
+    QVBoxLayout *settingLayout = new QVBoxLayout(barrageSettingWidget);
+
+    QWidget *fontSizeWidget = new QWidget(barrageSettingWidget);
+    QHBoxLayout *fontSizeLayout = new QHBoxLayout(fontSizeWidget);
+    fontSizeLayout->setContentsMargins(0, 0, 0, 0);
+    fontSizeLayout->setSpacing(0);
+    QLabel *fontSizeLabel = new QLabel(tr("Size"), this);
+    fontSizeLayout->addWidget(fontSizeLabel);
+    fontSizeLayout->addWidget(createBarrageSizeButton(1));
+    fontSizeLayout->addWidget(createBarrageSizeButton(2));
+    fontSizeLayout->addWidget(createBarrageSizeButton(3));
+    fontSizeWidget->setLayout(fontSizeLayout);
+
+    QWidget *backgroundWidget = new QWidget(barrageSettingWidget);
+    QHBoxLayout *backgroundLayout = new QHBoxLayout(backgroundWidget);
+    backgroundLayout->setContentsMargins(0, 0, 0, 0);
+    backgroundLayout->setSpacing(0);
+    QLabel *backgroundLabel = new QLabel(tr("BgColor"), this);
+    backgroundLayout->addWidget(backgroundLabel);
+    backgroundLayout->addWidget(createBarrageColorButton(1));
+    backgroundLayout->addWidget(createBarrageColorButton(2));
+    backgroundLayout->addWidget(createBarrageColorButton(3));
+    backgroundLayout->addWidget(createBarrageColorButton(4));
+    backgroundLayout->addWidget(createBarrageColorButton(5));
+    backgroundLayout->addWidget(createBarrageColorButton(6));
+    backgroundLayout->addWidget(createBarrageColorButton(7));
+    backgroundWidget->setLayout(backgroundLayout);
+
+    settingLayout->addWidget(fontSizeWidget);
+    settingLayout->addWidget(backgroundWidget);
+    barrageSettingWidget->setLayout(settingLayout);
+
+    widgetAction->setDefaultWidget(barrageSettingWidget);
+    m_popupBarrage.addAction(widgetAction);
+    ///////////////////////////////////////////
+
     QHBoxLayout *barrageLayout = new QHBoxLayout(barrageWidget);
     barrageLayout->setContentsMargins(0, 0, 0, 0);
+
+    QToolButton *menuBarrage = new QToolButton(barrageWidget);
+    menuBarrage->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    menuBarrage->setIcon(QIcon(":/video/barrageStyle"));
+    menuBarrage->setMenu(&m_popupBarrage);
+    menuBarrage->setPopupMode(QToolButton::InstantPopup);
     QLineEdit *lineEditBarrage = new QLineEdit(barrageWidget);
     lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle01 + \
                                    "QLineEdit{color:white;}");
@@ -269,10 +314,43 @@ QWidget* MusicVideoControl::createBarrageWidget()
     pushBarrageClicked();
     connect(m_pushBarrage, SIGNAL(clicked()), SLOT(pushBarrageClicked()));
 
+    barrageLayout->addWidget(menuBarrage);
     barrageLayout->addWidget(lineEditBarrage);
     barrageLayout->addWidget(labelBarrage);
     barrageLayout->addWidget(m_pushBarrage);
     barrageWidget->setLayout(barrageLayout);
 
     return barrageWidget;
+}
+
+QPushButton* MusicVideoControl::createBarrageSizeButton(int index)
+{
+    QPushButton *button = new QPushButton(this);
+    switch(index)
+    {
+        case 1: button->setText(tr("S")); break;
+        case 2: button->setText(tr("M")); break;
+        case 3: button->setText(tr("G")); break;
+    }
+    button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    button->setCursor(QCursor(Qt::PointingHandCursor));
+    return button;
+}
+
+QPushButton* MusicVideoControl::createBarrageColorButton(int index)
+{
+    QPushButton *button = new QPushButton(this);
+    switch(index)
+    {
+        case 1: button->setIcon(QIcon(":/color/white")); break;
+        case 2: button->setIcon(QIcon(":/color/red")); break;
+        case 3: button->setIcon(QIcon(":/color/orange")); break;
+        case 4: button->setIcon(QIcon(":/color/yellow")); break;
+        case 5: button->setIcon(QIcon(":/color/green")); break;
+        case 6: button->setIcon(QIcon(":/color/blue")); break;
+        case 7: button->setIcon(QIcon(":/color/purple")); break;
+    }
+    button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    button->setCursor(QCursor(Qt::PointingHandCursor));
+    return button;
 }
