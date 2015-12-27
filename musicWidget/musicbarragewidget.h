@@ -10,10 +10,11 @@
    =================================================*/
 
 #include "musiclibexportglobal.h"
+
 #include <QPropertyAnimation>
 #include <QLabel>
 
-#define NUMBER 2
+#define NUMBER 5
 
 class MUSIC_WIDGET_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
@@ -23,11 +24,14 @@ public:
     MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
     ~MusicBarrageAnimation() = default;
 
+    void setSize(const QSize &size);
+
 public slots:
     void animationFinished();
 
 protected:
     void init();
+    QSize m_parentSize;
 
 };
 
@@ -46,9 +50,8 @@ public:
     void barrageStateChanged(bool on);
     void setSize(const QSize &size);
 
-signals:
-
-public slots:
+    void setLabelBackground(const QColor &color);
+    void setLabelTextSize(int size);
 
 protected:
     void deleteItems();
@@ -56,10 +59,10 @@ protected:
     void createAnimation();
 
     QWidget *m_parentClass;
-    QSize m_parentSize;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
     bool m_barrageState;
+    QSize m_parentSize;
 
 };
 
