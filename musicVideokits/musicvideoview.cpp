@@ -47,6 +47,10 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
 
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
+    connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
+    connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
+    connect(m_videoControl, SIGNAL(barrageSizeButtonChanged(int)), SLOT(barrageSizeButtonChanged(int)));
+    connect(m_videoControl, SIGNAL(barrageColorButtonChanged(QColor)), SLOT(barrageColorButtonChanged(QColor)));
     m_videoControl->hide();
 
     resizeWindow(false, QSize(-1, -1));
@@ -95,14 +99,14 @@ void MusicVideoView::resizeWindow(bool resize, const QSize &size)
         m_videoWidget->resize(QSize(size.width() - 20, size.height()*0.8));
         m_videoControl->setFixedSize( size.width(), 40);
         m_videoControl->move(0, size.height() - 40 - 50);
-        m_barrageCore->setSize(size);
+        m_barrageCore->setSize(m_videoWidget->size());
     }
     else
     {
         m_videoWidget->setGeometry(10, 40, 505, 325);
         m_videoControl->setFixedSize( 520, 40 );
         m_videoControl->move(0, 370);
-        m_barrageCore->setSize(QSize(505, 325));
+        m_barrageCore->setSize(m_videoWidget->size());
     }
 }
 
@@ -176,4 +180,14 @@ void MusicVideoView::mediaChanged(const QString &data)
 void MusicVideoView::pushBarrageChanged(bool on)
 {
     m_barrageCore->barrageStateChanged(on);
+}
+
+void MusicVideoView::barrageSizeButtonChanged(int size)
+{
+    m_barrageCore->setLabelTextSize(size);
+}
+
+void MusicVideoView::barrageColorButtonChanged(const QColor &color)
+{
+    m_barrageCore->setLabelBackground(color);
 }

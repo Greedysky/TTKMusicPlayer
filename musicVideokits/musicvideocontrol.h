@@ -43,7 +43,10 @@ signals:
     void downloadLocalByControl();
     void mvURLChanged(const QString &data);
     void sliderValueChanged(int value);
+
     void pushBarrageChanged(bool on);
+    void barrageSizeButtonChanged(int size);
+    void barrageColorButtonChanged(const QColor &color);
 
 public slots:
     void show();
@@ -51,7 +54,10 @@ public slots:
     void fullButtonClicked();
     void menuActionTriggered(QAction *action);
     void sliderReleased();
+
     void pushBarrageClicked();
+    void barrageSizeButtonClicked(int index);
+    void barrageColorButtonClicked(int index);
 
 protected:
     void setQualityActionState();

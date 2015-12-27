@@ -8,6 +8,7 @@
 #include <QBoxLayout>
 #include <QLineEdit>
 #include <QWidgetAction>
+#include <QButtonGroup>
 
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
@@ -87,8 +88,6 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_qualityButton->setMenu(&m_popupQuality);
 
     connect(m_timeSlider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
-    connect(this, SIGNAL(sliderValueChanged(int)), parent, SLOT(setPosition(int)));
-    connect(this, SIGNAL(pushBarrageChanged(bool)), parent, SLOT(pushBarrageChanged(bool)));
     connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumnChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
@@ -196,6 +195,35 @@ void MusicVideoControl::pushBarrageClicked()
     m_pushBarrageOn = !m_pushBarrageOn;
 }
 
+void MusicVideoControl::barrageSizeButtonClicked(int index)
+{
+    int size = 10;
+    switch(index)
+    {
+        case 1: size = 15; break;
+        case 2: size = 20; break;
+        case 3: size = 30; break;
+    }
+    emit barrageSizeButtonChanged(size);
+}
+
+void MusicVideoControl::barrageColorButtonClicked(int index)
+{
+    QColor color(0, 0, 0);
+    switch(index)
+    {
+        case 1: color = QColor(255, 255, 255); break;
+        case 2: color = QColor(255, 0, 0); break;
+        case 3: color = QColor(255, 165, 0); break;
+        case 4: color = QColor(255, 255, 0); break;
+        case 5: color = QColor(0, 255, 0); break;
+        case 6: color = QColor(0, 0, 255);  break;
+        case 7: color = QColor(160, 32, 240); break;
+        case 8: color = QColor(0, 0, 0); break;
+    }
+    emit barrageColorButtonChanged(color);
+}
+
 void MusicVideoControl::setQualityActionState()
 {
     MusicSongAttributes data;
@@ -264,28 +292,37 @@ QWidget* MusicVideoControl::createBarrageWidget()
     QWidget *fontSizeWidget = new QWidget(barrageSettingWidget);
     QHBoxLayout *fontSizeLayout = new QHBoxLayout(fontSizeWidget);
     fontSizeLayout->setContentsMargins(0, 0, 0, 0);
-    fontSizeLayout->setSpacing(0);
     QLabel *fontSizeLabel = new QLabel(tr("Size"), this);
+
+    QButtonGroup *fontSizeButtonGroup = new QButtonGroup(fontSizeWidget);
     fontSizeLayout->addWidget(fontSizeLabel);
-    fontSizeLayout->addWidget(createBarrageSizeButton(1));
-    fontSizeLayout->addWidget(createBarrageSizeButton(2));
-    fontSizeLayout->addWidget(createBarrageSizeButton(3));
+    for(int i=1; i<=3; ++i)
+    {
+        QPushButton *button = createBarrageSizeButton(i);
+        fontSizeButtonGroup->addButton(button, i);
+        fontSizeLayout->addStretch(1);
+        fontSizeLayout->addWidget(button);
+    }
+    fontSizeLayout->addStretch(1);
     fontSizeWidget->setLayout(fontSizeLayout);
+    connect(fontSizeButtonGroup, SIGNAL(buttonClicked(int)), SLOT(barrageSizeButtonClicked(int)));
 
     QWidget *backgroundWidget = new QWidget(barrageSettingWidget);
     QHBoxLayout *backgroundLayout = new QHBoxLayout(backgroundWidget);
     backgroundLayout->setContentsMargins(0, 0, 0, 0);
-    backgroundLayout->setSpacing(0);
+    backgroundLayout->setSpacing(5);
     QLabel *backgroundLabel = new QLabel(tr("BgColor"), this);
+
+    QButtonGroup *backgroundButtonGroup = new QButtonGroup(backgroundWidget);
     backgroundLayout->addWidget(backgroundLabel);
-    backgroundLayout->addWidget(createBarrageColorButton(1));
-    backgroundLayout->addWidget(createBarrageColorButton(2));
-    backgroundLayout->addWidget(createBarrageColorButton(3));
-    backgroundLayout->addWidget(createBarrageColorButton(4));
-    backgroundLayout->addWidget(createBarrageColorButton(5));
-    backgroundLayout->addWidget(createBarrageColorButton(6));
-    backgroundLayout->addWidget(createBarrageColorButton(7));
+    for(int i=1; i<=8; ++i)
+    {
+        QPushButton *button = createBarrageColorButton(i);
+        backgroundButtonGroup->addButton(button, i);
+        backgroundLayout->addWidget(button);
+    }
     backgroundWidget->setLayout(backgroundLayout);
+    connect(backgroundButtonGroup, SIGNAL(buttonClicked(int)), SLOT(barrageColorButtonClicked(int)));
 
     settingLayout->addWidget(fontSizeWidget);
     settingLayout->addWidget(backgroundWidget);
@@ -332,6 +369,7 @@ QPushButton* MusicVideoControl::createBarrageSizeButton(int index)
         case 2: button->setText(tr("M")); break;
         case 3: button->setText(tr("G")); break;
     }
+    button->setFixedSize(25, 15);
     button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     return button;
@@ -349,7 +387,9 @@ QPushButton* MusicVideoControl::createBarrageColorButton(int index)
         case 5: button->setIcon(QIcon(":/color/green")); break;
         case 6: button->setIcon(QIcon(":/color/blue")); break;
         case 7: button->setIcon(QIcon(":/color/purple")); break;
+        case 8: button->setIcon(QIcon(":/color/black")); break;
     }
+    button->setFixedSize(15, 15);
     button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     return button;

@@ -116,10 +116,9 @@ void MusicBarrageWidget::setLabelBackground(const QColor &color)
     for(int i=0; i<m_labels.count(); i++)
     {
         QLabel *label = m_labels[i];
-        label->setAutoFillBackground(true);
-        QPalette Pal(label->palette());
-        Pal.setColor(QPalette::Background, color);
-        label->setPalette(Pal);
+        QString colorString = QString("QLabel{background-color:rgb(%1,%2,%3);}")
+                .arg(color.red()).arg(color.green()).arg(color.blue());
+        label->setStyleSheet(label->styleSheet() + colorString);
     }
 }
 
@@ -131,6 +130,8 @@ void MusicBarrageWidget::setLabelTextSize(int size)
         QFont f = label->font();
         f.setPointSize(size);
         label->setFont(f);
+        label->resize(QFontMetrics(f).width(label->text()),
+                      QFontMetrics(f).height());
     }
 }
 
