@@ -48,6 +48,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
+    connect(m_videoControl, SIGNAL(addBarrageChanged(QString)), SLOT(addBarrageChanged(QString)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
     connect(m_videoControl, SIGNAL(barrageSizeButtonChanged(int)), SLOT(barrageSizeButtonChanged(int)));
     connect(m_videoControl, SIGNAL(barrageColorButtonChanged(QColor)), SLOT(barrageColorButtonChanged(QColor)));
@@ -175,6 +176,11 @@ void MusicVideoView::volumnChanged(int volumn)
 void MusicVideoView::mediaChanged(const QString &data)
 {
     m_videoControl->mediaChanged(data);
+}
+
+void MusicVideoView::addBarrageChanged(const QString &string)
+{
+    m_barrageCore->addBarrage(string);
 }
 
 void MusicVideoView::pushBarrageChanged(bool on)

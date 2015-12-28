@@ -13,6 +13,7 @@
 
 #include <QPropertyAnimation>
 #include <QLabel>
+#include <QLineEdit>
 
 #define NUMBER 5
 
@@ -52,6 +53,7 @@ public:
 
     void setLabelBackground(const QColor &color);
     void setLabelTextSize(int size);
+    void addBarrage(const QString &string);
 
 protected:
     void deleteItems();
@@ -63,6 +65,8 @@ protected:
     QList<MusicBarrageAnimation*> m_animations;
     bool m_barrageState;
     QSize m_parentSize;
+    int m_fontSize;
+    QColor m_backgroundColor;
 
 };
 

@@ -46,6 +46,8 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
 {
     m_parentClass = static_cast<QWidget*>(parent);
     m_barrageState = false;
+    m_fontSize = 10;
+    m_backgroundColor = QColor(0, 0, 0);
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
@@ -113,6 +115,7 @@ void MusicBarrageWidget::setSize(const QSize &size)
 
 void MusicBarrageWidget::setLabelBackground(const QColor &color)
 {
+    m_backgroundColor = color;
     for(int i=0; i<m_labels.count(); i++)
     {
         QLabel *label = m_labels[i];
@@ -124,6 +127,7 @@ void MusicBarrageWidget::setLabelBackground(const QColor &color)
 
 void MusicBarrageWidget::setLabelTextSize(int size)
 {
+    m_fontSize = size;
     for(int i=0; i<m_labels.count(); i++)
     {
         QLabel *label = m_labels[i];
@@ -132,6 +136,40 @@ void MusicBarrageWidget::setLabelTextSize(int size)
         label->setFont(f);
         label->resize(QFontMetrics(f).width(label->text()),
                       QFontMetrics(f).height());
+    }
+}
+
+void MusicBarrageWidget::addBarrage(const QString &string)
+{
+    MusicTime::timeSRand();
+    QLabel *label = new QLabel(m_parentClass);
+    QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
+            .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
+    label->setStyleSheet(color);
+    label->setText(string);
+
+    QFont f = label->font();
+    f.setPointSize(m_fontSize);
+    label->setFont(f);
+    label->resize(QFontMetrics(f).width(label->text()),
+                  QFontMetrics(f).height());
+
+    color = QString("QLabel{background-color:rgb(%1,%2,%3);}")
+            .arg(m_backgroundColor.red()).arg(m_backgroundColor.green())
+            .arg(m_backgroundColor.blue());
+    label->setStyleSheet(label->styleSheet() + color);
+
+    label->hide();
+    m_labels << label;
+
+    MusicBarrageAnimation *anim = new MusicBarrageAnimation(label, "pos");
+    anim->setSize(m_parentSize);
+    m_animations << anim;
+
+    if(m_barrageState)
+    {
+        label->show();
+        anim->start();
     }
 }
 

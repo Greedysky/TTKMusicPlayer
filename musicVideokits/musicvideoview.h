@@ -54,6 +54,7 @@ private slots:
     void volumnChanged(int volumn);
     void mediaChanged(const QString &data);
 
+    void addBarrageChanged(const QString &string);
     void pushBarrageChanged(bool on);
     void barrageSizeButtonChanged(int size);
     void barrageColorButtonChanged(const QColor &color);

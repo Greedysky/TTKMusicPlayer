@@ -2,6 +2,7 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicmovinglabelslider.h"
+#include "musiclocalsongsearchedit.h"
 
 #include <QPushButton>
 #include <QToolButton>
@@ -340,9 +341,12 @@ QWidget* MusicVideoControl::createBarrageWidget()
     menuBarrage->setIcon(QIcon(":/video/barrageStyle"));
     menuBarrage->setMenu(&m_popupBarrage);
     menuBarrage->setPopupMode(QToolButton::InstantPopup);
-    QLineEdit *lineEditBarrage = new QLineEdit(barrageWidget);
+    MusicLocalSongSearchEdit *lineEditBarrage = new MusicLocalSongSearchEdit(barrageWidget);
+    lineEditBarrage->addFilterText("222222222222222");
     lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle01 + \
                                    "QLineEdit{color:white;}");
+    connect(lineEditBarrage, SIGNAL(enterFinished(QString)), SIGNAL(addBarrageChanged(QString)));
+
     QLabel *labelBarrage = new QLabel(barrageWidget);
     labelBarrage->setStyleSheet("color:white;");
     labelBarrage->setText(tr("openBarrage"));

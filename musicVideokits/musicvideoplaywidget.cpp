@@ -83,6 +83,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
                           SLOT(mvURLNameChanged(QString,QString)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)),
                           SLOT(musicResearchButtonSearched(QString)));
+    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(musicResearchButtonSearched(QString)));
 
 }
 

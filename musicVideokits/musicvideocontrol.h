@@ -44,6 +44,7 @@ signals:
     void mvURLChanged(const QString &data);
     void sliderValueChanged(int value);
 
+    void addBarrageChanged(const QString &string);
     void pushBarrageChanged(bool on);
     void barrageSizeButtonChanged(int size);
     void barrageColorButtonChanged(const QColor &color);
