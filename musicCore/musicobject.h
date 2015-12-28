@@ -50,31 +50,33 @@
 #define MUSICSEARCH        "music_2.dll"
 #define DARABASEPATH       "musicuser_1.dll"
 #define USERPATH           "musicuser_2.dll"
+#define BARRAGEPATH        "musicbarrage"
 #define DATABASETYPE       "QSQLITE"
 
 ///////////////////////////////////////
-#define LRC_DOWNLOAD_AL    MusicObject::getAppDir() + "MLrc/"
-#define MUSIC_DOWNLOAD_AL  MusicObject::getAppDir() + "Music/"
-#define MOVIE_DOWNLOAD_AL  MusicObject::getAppDir() + "Movie/"
-#define THEME_DOWNLOAD_AL  MusicObject::getAppDir() + "MTheme/"
-#define DATA_CACHED_AL     MusicObject::getAppDir() + "MCached/"
-#define ART_DOWNLOAD_AL    MusicObject::getAppDir() + "MArt/"
-#define TRANS_PLUGINS_AL   MusicObject::getAppDir() + "MPlugins/"
-#define ART_BG_AL          MusicObject::getAppDir() + "MArt/background/"
-#define TR_LANGUAGE_AL     MusicObject::getAppDir() + "MLanguage/"
-#define TMP_DOWNLOAD_AL    MusicObject::getAppDir() + "temporary"
+#define LRC_DOWNLOAD_AL    MusicObject::getAppDir() + LRC_DOWNLOAD
+#define MUSIC_DOWNLOAD_AL  MusicObject::getAppDir() + MUSIC_DOWNLOAD
+#define MOVIE_DOWNLOAD_AL  MusicObject::getAppDir() + MOVIE_DOWNLOAD
+#define THEME_DOWNLOAD_AL  MusicObject::getAppDir() + THEME_DOWNLOAD
+#define DATA_CACHED_AL     MusicObject::getAppDir() + DATA_CACHED
+#define ART_DOWNLOAD_AL    MusicObject::getAppDir() + ART_DOWNLOAD
+#define TRANS_PLUGINS_AL   MusicObject::getAppDir() + TRANS_PLUGINS
+#define ART_BG_AL          MusicObject::getAppDir() + ART_BG
+#define TR_LANGUAGE_AL     MusicObject::getAppDir() + TR_LANGUAGE
+#define TMP_DOWNLOAD_AL    MusicObject::getAppDir() + TMP_DOWNLOAD
 
-#define MAKE_TRANSFORM_AL  MusicObject::getAppDir() + "MPlugins/avconv.dll"
-#define MAKE_RING_AL       MusicObject::getAppDir() + "MPlugins/avring.dll"
-#define MAKE_PLAYER_AL     MusicObject::getAppDir() + "MPlugins/avplayer.dll"
+#define MAKE_TRANSFORM_AL  MusicObject::getAppDir() + MAKE_TRANSFORM
+#define MAKE_RING_AL       MusicObject::getAppDir() + MAKE_RING
+#define MAKE_PLAYER_AL     MusicObject::getAppDir() + MAKE_PLAYER
 
-#define COFIGPATH_AL       MusicObject::getAppDir() + "musicconfig.xml"
-#define NETDADIOPATH_AL    MusicObject::getAppDir() + "musicradio.dll"
-#define MUSICPATH_AL       MusicObject::getAppDir() + "music.dll"
-#define DOWNLOADINFO_AL    MusicObject::getAppDir() + "music_1.dll"
-#define MUSICSEARCH_AL     MusicObject::getAppDir() + "music_2.dll"
-#define DARABASEPATH_AL    MusicObject::getAppDir() + "musicuser_1.dll"
-#define USERPATH_AL        MusicObject::getAppDir() + "musicuser_2.dll"
+#define COFIGPATH_AL       MusicObject::getAppDir() + COFIGPATH
+#define NETDADIOPATH_AL    MusicObject::getAppDir() + NETDADIOPATH
+#define MUSICPATH_AL       MusicObject::getAppDir() + MUSICPATH
+#define DOWNLOADINFO_AL    MusicObject::getAppDir() + DOWNLOADINFO
+#define MUSICSEARCH_AL     MusicObject::getAppDir() + MUSICSEARCH
+#define DARABASEPATH_AL    MusicObject::getAppDir() + DARABASEPATH
+#define USERPATH_AL        MusicObject::getAppDir() + USERPATH
+#define BARRAGEPATH_AL     MusicObject::getAppDir() + BARRAGEPATH
 
 ///////////////////////////////////////
 #define USERID             20
@@ -82,7 +84,7 @@
 #define EMAIL              20
 #define USERNAME           20
 #define LOGINTIME          20
-
+///////////////////////////////////////
 
 typedef signed char        MInt8;         /* 8 bit signed */
 typedef unsigned char      MUint8;        /* 8 bit unsigned */
@@ -93,9 +95,11 @@ typedef unsigned int       MUint32;       /* 32 bit unsigned */
 typedef long long          MInt64;        /* 64 bit signed */
 typedef unsigned long long MUint64;       /* 64 bit unsigned */
 
+
 typedef double             MDouble;       /* double */
 typedef float              MFloat;        /* float */
 typedef bool               MBool;         /* bool */
+
 
 typedef QList<QStringList>                 MStringLists;      /* stringlists */
 typedef QList<int>                         MIntList;          /* intlist */
@@ -111,6 +115,7 @@ typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsM
 typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
 typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
 
+
 typedef struct MusicSongAttribute
 {
     int m_bitrate;
@@ -119,6 +124,7 @@ typedef struct MusicSongAttribute
     QString m_size;
 }MusicSongAttribute;
 typedef QList<MusicSongAttribute> MusicSongAttributes;
+
 
 typedef struct MusicSongInfomation
 {
@@ -129,6 +135,7 @@ typedef struct MusicSongInfomation
     QString m_songName;
 }MusicSongInfomation;
 typedef QList<MusicSongInfomation> MusicSongInfomations;
+
 
 namespace MusicObject
 {
