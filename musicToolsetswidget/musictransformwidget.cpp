@@ -120,10 +120,9 @@ QFileInfoList MusicTransformWidget::getFileList(const QString &path)
     QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
-    for(int i = 0; i < folderList.size(); ++i)
+    foreach(QFileInfo fileInfo, folderList)
     {
-        QString childPath = folderList[i].absoluteFilePath();
-        fileList.append( getFileList(childPath) );
+        fileList.append( getFileList(fileInfo.absoluteFilePath()) );
     }
     return fileList;
 }
@@ -156,10 +155,9 @@ void MusicTransformWidget::transformFinish(int)
     ui->listWidget->clear();
     if(!m_path.isEmpty())
     {
-        for(int i=0; i<m_path.count(); ++i)
+        foreach(QString path, m_path)
         {
-            ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path[i],
-                                                                    Qt::ElideLeft, 385));
+            ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, 385));
         }
         if(!processTransform(MAKE_TRANSFORM_AL))
         {

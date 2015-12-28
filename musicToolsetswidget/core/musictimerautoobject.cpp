@@ -116,28 +116,31 @@ void MusicTimerAutoObject::setShutdown()
     bool isWind64 = systemIs64bit();
     QString item;
     QStringList lists = QProcess::systemEnvironment();
-    for(int i=0; i<lists.count(); ++i)
+    foreach(QString var, lists)
     {
-        item = lists[i].toUpper();
+        item = var.toUpper();
         if(item.startsWith("PATH="))
         {
             lists = item.split(';');
-            for(int j=0; j<lists.count(); ++j)
+            foreach(QString var, lists)
             {
-                item = lists[j];
-                if(item.contains("\\WINDOWS\\SYSTEM32"))
+                if(var.contains("\\WINDOWS\\SYSTEM32"))
                 {   ///x86 or x64
+                    item = var;
                     M_LOGGER << "x86_x64" << item << LOG_END;
                     break;
                 }
-                if(isWind64 && item.contains("\\WINDOWS\\SYSWOW64"))
+                if(isWind64 && var.contains("\\WINDOWS\\SYSWOW64"))
                 {   ///x64
+                    item = var;
                     M_LOGGER << "x64" << item << LOG_END;
                     break;
                 }
             }
+            break;
         }
     }
+
     QString program = item + "\\shutdown.exe";
     (new QProcess(this))->start(program, QStringList() << "-s" << "-t" << "1");
     M_LOGGER << "shutdown now" << LOG_END;

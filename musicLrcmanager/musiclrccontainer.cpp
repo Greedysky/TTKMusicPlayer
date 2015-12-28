@@ -79,30 +79,30 @@ void MusicLrcContainer::changeCurrentLrcColor(int index)
 
 void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const
 {
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
         switch(lrcColorType)
         {
             case MusicLRCManager::Origin:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Origin);break;
+                manager->setLinearGradientColor(CL_Origin);break;
             case MusicLRCManager::Red:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Red);break;
+                manager->setLinearGradientColor(CL_Red);break;
             case MusicLRCManager::Orange:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Orange);break;
+                manager->setLinearGradientColor(CL_Orange);break;
             case MusicLRCManager::Yellow:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Yellow);break;
+                manager->setLinearGradientColor(CL_Yellow);break;
             case MusicLRCManager::Green:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Green);break;
+                manager->setLinearGradientColor(CL_Green);break;
             case MusicLRCManager::Blue:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Blue);break;
+                manager->setLinearGradientColor(CL_Blue);break;
             case MusicLRCManager::Indigo:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Indigo);break;
+                manager->setLinearGradientColor(CL_Indigo);break;
             case MusicLRCManager::Purple:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Purple);break;
+                manager->setLinearGradientColor(CL_Purple);break;
             case MusicLRCManager::White:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_White);break;
+                manager->setLinearGradientColor(CL_White);break;
             case MusicLRCManager::Black:
-                m_musicLrcContainer[i]->setLinearGradientColor(CL_Black);break;
+                manager->setLinearGradientColor(CL_Black);break;
             default:break;
         }
     }
@@ -118,12 +118,12 @@ void MusicLrcContainer::setSettingParameter()
 
 void MusicLrcContainer::setSettingParameter(const QString &t) const
 {
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        m_musicLrcContainer[i]->setFontFamily(M_SETTING->value(t + "LrcFamilyChoiced").toInt());
-        m_musicLrcContainer[i]->setFontType(M_SETTING->value(t + "LrcTypeChoiced").toInt());
-        m_musicLrcContainer[i]->setFontTransparent(M_SETTING->value(t + "LrcColorTransChoiced").toInt());
-        m_musicLrcContainer[i]->setLrcFontSize((MusicLRCManager::LrcSizeTable)(M_SETTING->value(t + "LrcSizeChoiced").toInt()));
+        manager->setFontFamily(M_SETTING->value(t + "LrcFamilyChoiced").toInt());
+        manager->setFontType(M_SETTING->value(t + "LrcTypeChoiced").toInt());
+        manager->setFontTransparent(M_SETTING->value(t + "LrcColorTransChoiced").toInt());
+        manager->setLrcFontSize((MusicLRCManager::LrcSizeTable)(M_SETTING->value(t + "LrcSizeChoiced").toInt()));
     }
     if(M_SETTING->value(t + "LrcColorChoiced").toInt() != -1)
     {
@@ -132,9 +132,9 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
     }
     else
     {
-        for(int i=0; i<m_musicLrcContainer.count(); ++i)
+        foreach(MusicLRCManager *manager, m_musicLrcContainer)
         {
-            m_musicLrcContainer[i]->setLinearGradientColor(M_SETTING->value(t + "LrcBgColorChoiced").value<QColor>());
+            manager->setLinearGradientColor(M_SETTING->value(t + "LrcBgColorChoiced").value<QColor>());
         }
         setMaskLinearGradientColor(M_SETTING->value(t + "LrcFgColorChoiced").value<QColor>());
     }

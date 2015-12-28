@@ -112,27 +112,27 @@ void MusicBarrageWidget::barrageStateChanged(bool on)
 void MusicBarrageWidget::setSize(const QSize &size)
 {
     m_parentSize = size;
-    for(int i=0; i<m_labels.count(); i++)
+    foreach(MusicBarrageAnimation *anima, m_animations)
     {
-        m_animations[i]->setSize(size);
+        anima->setSize(size);
     }
 }
 
 void MusicBarrageWidget::setLabelBackground(const QColor &color)
 {
     m_backgroundColor = color;
-    for(int i=0; i<m_labels.count(); i++)
+    foreach(QLabel *label, m_labels)
     {
-        setLabelBackground(m_labels[i]);
+        setLabelBackground(label);
     }
 }
 
 void MusicBarrageWidget::setLabelTextSize(int size)
 {
     m_fontSize = size;
-    for(int i=0; i<m_labels.count(); i++)
+    foreach(QLabel *label, m_labels)
     {
-        setLabelTextSize(m_labels[i]);
+        setLabelTextSize(label);
     }
 }
 
@@ -165,8 +165,9 @@ void MusicBarrageWidget::deleteItems()
 void MusicBarrageWidget::createLabel()
 {
     MusicTime::timeSRand();
-    for(int i=0; i<m_barrageLists.count(); i++)
+    foreach(QString str, m_barrageLists)
     {
+        Q_UNUSED(str);
         QLabel *label = new QLabel(m_parentClass);
         createLabel(label);
     }
@@ -184,9 +185,9 @@ void MusicBarrageWidget::createLabel(QLabel *label)
 
 void MusicBarrageWidget::createAnimation()
 {
-    for(int i=0; i<m_labels.count(); i++)
+    foreach(QLabel *label, m_labels)
     {
-        createAnimation(m_labels[i]);
+        createAnimation(label);
     }
 }
 

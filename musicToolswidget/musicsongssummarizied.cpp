@@ -72,9 +72,9 @@ void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
 void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIndexs)
 {
     MusicSongs songs;
-    for(int i=0; i<fileIndexs.count(); ++i)
+    foreach(int index, fileIndexs)
     {
-        songs << m_musicFileNames[currentIndex()][fileIndexs[i]];
+        songs << m_musicFileNames[currentIndex()][index];
     }
     m_mainSongLists[currentIndex()]->clearAllItems();
     m_mainSongLists[currentIndex()]->updateSongsFileName(songs);
@@ -101,10 +101,9 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
 {
     QStringList list;
-    MusicSongs songs = m_musicFileNames[index];
-    for(int i=0; i<songs.count(); ++i)
+    foreach(MusicSong song, m_musicFileNames[index])
     {
-        list << songs[i].getMusicName();
+        list << song.getMusicName();
     }
     return list;
 }
@@ -112,10 +111,9 @@ QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
 QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
 {
     QStringList list;
-    MusicSongs songs = m_musicFileNames[index];
-    for(int i=0; i<songs.count(); ++i)
+    foreach(MusicSong song, m_musicFileNames[index])
     {
-        list << songs[i].getMusicPath();
+        list << song.getMusicPath();
     }
     return list;
 }

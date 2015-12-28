@@ -341,7 +341,10 @@ void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
         MIntStringMapIt it(m_lrcContainer);
         for(int i=0; i<m_currentLrcIndex + 1; ++i)
         {
-            if(it.hasNext()) it.next();
+            if(it.hasNext())
+            {
+                it.next();
+            }
         }
         emit updateCurrentTime(it.key());
     }

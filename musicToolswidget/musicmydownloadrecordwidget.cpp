@@ -112,11 +112,13 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
     {
        return;
     }
+
     MIntSet deletedRow; //if selected multi rows
-    for(int i=0; i<selectedItems().count(); ++i)
+    foreach(QTableWidgetItem *item, selectedItems())
     {
-        deletedRow.insert(selectedItems()[i]->row());
+        deletedRow.insert(item->row());
     }
+
     MIntList deleteList = deletedRow.toList();
     qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)

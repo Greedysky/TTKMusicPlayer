@@ -243,15 +243,16 @@ quint64 MusicTime::dirSize(const QString &dirName)
         QDir dir(dirName);
         QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
                                                QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        for(int i = 0; i < list.size(); ++i)
+        foreach(QFileInfo fileInfo, list)
         {
-            QFileInfo fileInfo = list.at(i);
             if(fileInfo.isDir())
             {
                 size += dirSize(fileInfo.absoluteFilePath());
             }
             else
+            {
                 size += fileInfo.size();
+            }
         }
     }
     return size;
@@ -264,11 +265,11 @@ void MusicTime::checkCacheSize(quint64 cacheSize, bool disabled, const QString &
         quint64 size = dirSize( path );
         if( size > cacheSize)
         {
-            QFileInfoList fileList = QDir(path).entryInfoList(QDir::Dirs|QDir::NoDotAndDotDot);
-            for(int i=0; i<fileList.count(); ++i)
+            QFileInfoList fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+            foreach(QFileInfo fileInfo, fileList)
             {
-                size -= fileList[i].size();
-                QFile::remove(fileList[i].absoluteFilePath());
+                size -= fileInfo.size();
+                QFile::remove(fileInfo.absoluteFilePath());
                 if(size <= cacheSize)
                 {
                     break;

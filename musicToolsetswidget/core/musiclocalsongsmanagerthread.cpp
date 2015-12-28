@@ -16,9 +16,9 @@ MusicLocalSongsManagerThread::~MusicLocalSongsManagerThread()
 void MusicLocalSongsManagerThread::run()
 {
     QFileInfoList list;
-    for(int i=0; i<m_path.count(); ++i)
+    foreach(QString path, m_path)
     {
-        list << findFile(m_path[i]);
+        list << findFile(path);
     }
 
     ///The name and path search ended when sending the corresponding
@@ -49,14 +49,14 @@ QFileInfoList MusicLocalSongsManagerThread::findFile(const QString &path)
     {
         return QFileInfoList();
     }
+
     QFileInfoList fileList = dir.entryInfoList(MusicPlayer::supportFormatsFilterString(),
                                                QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 
-    for(int i=0; i<folderList.size(); ++i)
+    foreach(QFileInfo folder, folderList)
     {
-        QString childPath = folderList[i].absoluteFilePath();
-        fileList.append( findFile(childPath) );
+        fileList.append( findFile(folder.absoluteFilePath()) );
     }
     return fileList;
 }

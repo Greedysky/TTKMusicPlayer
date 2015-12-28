@@ -117,14 +117,14 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             ui->songlistsTable->setItem(i, 0, item);
 
-                              item = new QTableWidgetItem;
+                             item = new QTableWidgetItem;
             item->setText(QFontMetrics(font()).elidedText(MusicTime::fileSize2Label(fileName[i].size()),
                                                           Qt::ElideRight, 50));
             item->setToolTip(MusicTime::fileSize2Normal(fileName[i].size()));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 1, item);
 
-                              item = new QTableWidgetItem(fileName[i].lastModified().date().toString(Qt::ISODate));
+                             item = new QTableWidgetItem(fileName[i].lastModified().date().toString(Qt::ISODate));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 2, item);
 
@@ -153,9 +153,9 @@ void MusicLocalSongsManagerWidget::addDrivesList()
     QStringList names;
     names << tr("Overall");
     QFileInfoList drives = QDir::drives();
-    for(int i=0; i<drives.count(); ++i)
+    foreach(QFileInfo driver, drives)
     {
-       names<<drives[i].absoluteDir().absolutePath();
+       names << driver.absoluteDir().absolutePath();
     }
     ui->filterComboBox->addItems(names);
 }
@@ -216,9 +216,9 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
     {
         QStringList names;
         QFileInfoList drives = QDir::drives();
-        for(int i=0; i<drives.count(); ++i)
+        foreach(QFileInfo driver, drives)
         {
-           names<<drives[i].absoluteDir().absolutePath();
+           names << driver.absoluteDir().absolutePath();
         }
         m_thread->setFindFilePath(names);
     }
@@ -258,17 +258,16 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 void MusicLocalSongsManagerWidget::itemsSelected()
 {
     MIntSet auditionRow; //if selected multi rows
-    for(int i=0; i<ui->songlistsTable->selectedItems().count(); ++i)
+    foreach(QTableWidgetItem *item, ui->songlistsTable->selectedItems())
     {
         if(!m_searchfileListCache.isEmpty())
         {
             int count = ui->searchLineEdit->text().trimmed().count();
-            auditionRow.insert(m_searchfileListCache.value(count)
-                              [ui->songlistsTable->selectedItems()[i]->row()]);
+            auditionRow.insert(m_searchfileListCache.value(count)[item->row()]);
         }
         else
         {
-            auditionRow.insert(ui->songlistsTable->selectedItems()[i]->row());
+            auditionRow.insert(item->row());
         }
     }
     ui->searchLineEdit->clear();
@@ -276,10 +275,11 @@ void MusicLocalSongsManagerWidget::itemsSelected()
 
     MIntList auditionList = auditionRow.toList();
     qSort(auditionList);
+
     QStringList names;
-    for(int i=0; i<auditionList.count(); ++i)
+    foreach(int index, auditionList)
     {
-        names << m_filenames[auditionList[i]].absoluteFilePath();
+        names << m_filenames[index].absoluteFilePath();
     }
 
     emit addSongToPlay(names);
@@ -370,9 +370,9 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
     clearAllItems();
 
     QFileInfoList names;
-    for(int i=0; i<searchResult.count(); ++i)
+    foreach(int index, searchResult)
     {
-        names.append(m_filenames[searchResult[i]]);
+        names.append(m_filenames[index]);
     }
     addAllItems(names);
 }

@@ -206,10 +206,10 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool bigger)
 {
     m_geometry.setY(bigger ? m_geometry.y() + 1 : m_geometry.y() - 1);
     setSelfGeometry();
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setLrcFontSize(bigger ? ++m_currentLrcFontSize
-                                                                                               : --m_currentLrcFontSize);
+        static_cast<MusicLRCManagerForDesktop*>(manager)->setLrcFontSize(bigger ? ++m_currentLrcFontSize
+                                                                                : --m_currentLrcFontSize);
     }
     m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
     resizeLrcSizeArea();
@@ -218,17 +218,17 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool bigger)
 
 void MusicLrcContainerForDesktop::stopLrcMask()
 {
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        m_musicLrcContainer[i]->stopLrcMask();
+        manager->stopLrcMask();
     }
 }
 
 void MusicLrcContainerForDesktop::setMaskLinearGradientColor(QColor color) const
 {
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        m_musicLrcContainer[i]->setMaskLinearGradientColor(color);
+        manager->setMaskLinearGradientColor(color);
     }
 }
 
@@ -294,9 +294,9 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
 {
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[i])->setSelfGeometry(m_geometry.x(), m_geometry.y());
+        static_cast<MusicLRCManagerForDesktop*>(manager)->setSelfGeometry(m_geometry.x(), m_geometry.y());
     }
 }
 
@@ -343,10 +343,10 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 void MusicLrcContainerForDesktop::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
-    for(int i=0; i<m_musicLrcContainer.count(); ++i)
+    foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        m_musicLrcContainer[i]->setLrcFontSize((MusicLRCManager::LrcSizeTable)(
-                                                m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
+        manager->setLrcFontSize((MusicLRCManager::LrcSizeTable)(
+                                 m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     }
     M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
     QRect rect = M_SETTING->value(MusicSettingManager::DLrcGeometryChoiced).toRect();

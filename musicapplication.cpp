@@ -670,11 +670,11 @@ void MusicApplication::musicImportSongsOnlyDir()
     {
         QList<QFileInfo> file(dialog.directory().entryInfoList());
         QStringList fileList;
-        for(int i=0; i<file.count(); ++i)
+        foreach(QFileInfo info, file)
         {
-            if(file[i].isFile())
+            if( MusicPlayer::supportFormatsString().contains(info.suffix().toLower()) )
             {
-               fileList << file[i].absoluteFilePath();
+               fileList << info.absoluteFilePath();
             }
         }
         musicImportSongsSettingPath(fileList);
@@ -683,6 +683,11 @@ void MusicApplication::musicImportSongsOnlyDir()
 
 void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
 {
+    if(path.isEmpty())
+    {
+        return;
+    }
+
     m_musicSongTree->importOtherMusicSongs(path);//append in songsList
     if(m_currentMusicSongTreeIndex == 0)
     {

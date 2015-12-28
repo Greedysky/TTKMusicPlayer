@@ -55,24 +55,25 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
 //    }
 
     //Class B
-
-    for(int i=0; i<musics[0].count(); ++i)
+    foreach(MusicSong song, musics[0])
     {
         writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << musics[0][i].getMusicName() << musics[0][i].getMusicPlayCount()
-                                                   << musics[0][i].getMusicTime(), musics[0][i].getMusicPath());
+                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
+                                                   << song.getMusicTime(), song.getMusicPath());
     }
-    for(int i=0; i<musics[1].count(); ++i)
+
+    foreach(MusicSong song, musics[1])
     {
         writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << musics[1][i].getMusicName() << musics[1][i].getMusicPlayCount()
-                                                   << musics[1][i].getMusicTime(), musics[1][i].getMusicPath());
+                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
+                                                   << song.getMusicTime(), song.getMusicPath());
     }
-    for(int i=0; i<musics[2].count(); ++i)
+
+    foreach(MusicSong song, musics[2])
     {
         writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << musics[2][i].getMusicName() << musics[2][i].getMusicPlayCount()
-                                                   << musics[2][i].getMusicTime(), musics[2][i].getMusicPath());
+                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
+                                                   << song.getMusicTime(), song.getMusicPath());
     }
 
     //Write to file

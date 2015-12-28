@@ -54,11 +54,11 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 {
     QList<QFileInfo> file(QDir(THEME_DOWNLOAD_AL)
                          .entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
-    for(int i=0; i<file.count(); ++i)
+    foreach(QFileInfo info, file)
     {
-        QString fileName = file[i].fileName();
+        QString fileName = info.fileName();
         fileName.chop(4);
-        ui->themeListWidget->createItem(fileName, file[i].filePath() );
+        ui->themeListWidget->createItem(fileName, info.filePath() );
     }
 }
 

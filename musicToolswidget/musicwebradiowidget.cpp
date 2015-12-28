@@ -139,16 +139,11 @@ void MusicWebRadioWidget::updateRadioList(const QString &category)
     ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRadioNames(category);
-    for(int i=0; i<rnames.count(); ++i)
+    foreach(QString name, rnames)
     {
-        if(fnames.contains(rnames[i]))
-        {
-            ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, rnames[i]));
-        }
-        else
-        {
-            ui->listWidget->addItem(new QListWidgetItem(*m_discollecticon, rnames[i]));
-        }
+        ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
+                                                    ? *m_collecticon
+                                                    : *m_discollecticon, name));
     }
 }
 
@@ -158,16 +153,11 @@ void MusicWebRadioWidget::updateRecentList()
     ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRecentNames();
-    for(int i=0; i<rnames.count(); ++i)
+    foreach(QString name, rnames)
     {
-        if(fnames.contains(rnames[i]))
-        {
-            ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, rnames[i]));
-        }
-        else
-        {
-            ui->listWidget->addItem(new QListWidgetItem(*m_discollecticon, rnames[i]));
-        }
+        ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
+                                                    ? *m_collecticon
+                                                    : *m_discollecticon, name));
     }
 }
 
@@ -175,10 +165,9 @@ void MusicWebRadioWidget::updateFavouriteList()
 {
     clearAllItems();
     ui->listWidget->clear();
-    QStringList fnames = m_database->getFavouriteNames();
-    for(int i=0; i<fnames.count(); ++i)
+    foreach(QString name, m_database->getFavouriteNames())
     {
-        ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, fnames[i]));
+        ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, name));
     }
 }
 
