@@ -18,9 +18,19 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 public:
     explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
 
+    void addFilterText(const QString &text);
+
+signals:
+    void enterFinished(const QString &text);
+
 protected:
     virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+
+    QString m_filterText;
 
 };
 

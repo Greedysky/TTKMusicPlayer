@@ -88,6 +88,8 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(musicSetting()));
     connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
+    connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
+                 SLOT(musicResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
 }
 
