@@ -56,7 +56,11 @@ public:
 protected:
     void deleteItems();
     void createLabel();
+    void createLabel(QLabel *label);
     void createAnimation();
+    void createAnimation(QLabel *label);
+    void setLabelBackground(QLabel *label);
+    void setLabelTextSize(QLabel *label);
     void readBarrage();
     void writeBarrage();
 

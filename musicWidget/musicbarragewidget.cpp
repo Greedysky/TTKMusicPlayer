@@ -3,7 +3,7 @@
 #include "musicobject.h"
 
 #include <QFile>
-#include <QDebug>
+
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     : QPropertyAnimation(parent)
 {
@@ -123,10 +123,7 @@ void MusicBarrageWidget::setLabelBackground(const QColor &color)
     m_backgroundColor = color;
     for(int i=0; i<m_labels.count(); i++)
     {
-        QLabel *label = m_labels[i];
-        QString colorString = QString("QLabel{background-color:rgb(%1,%2,%3);}")
-                .arg(color.red()).arg(color.green()).arg(color.blue());
-        label->setStyleSheet(label->styleSheet() + colorString);
+        setLabelBackground(m_labels[i]);
     }
 }
 
@@ -135,12 +132,7 @@ void MusicBarrageWidget::setLabelTextSize(int size)
     m_fontSize = size;
     for(int i=0; i<m_labels.count(); i++)
     {
-        QLabel *label = m_labels[i];
-        QFont f = label->font();
-        f.setPointSize(size);
-        label->setFont(f);
-        label->resize(QFontMetrics(f).width(label->text()),
-                      QFontMetrics(f).height());
+        setLabelTextSize(m_labels[i]);
     }
 }
 
@@ -148,34 +140,16 @@ void MusicBarrageWidget::addBarrage(const QString &string)
 {
     MusicTime::timeSRand();
     QLabel *label = new QLabel(m_parentClass);
-    QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
-            .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
-    label->setStyleSheet(color);
+    createLabel(label);
+    createAnimation(label);
+    setLabelBackground(label);
+    setLabelTextSize(label);
     label->setText(string);
-    m_barrageLists << string;
-
-    QFont f = label->font();
-    f.setPointSize(m_fontSize);
-    label->setFont(f);
-    label->resize(QFontMetrics(f).width(label->text()),
-                  QFontMetrics(f).height());
-
-    color = QString("QLabel{background-color:rgb(%1,%2,%3);}")
-            .arg(m_backgroundColor.red()).arg(m_backgroundColor.green())
-            .arg(m_backgroundColor.blue());
-    label->setStyleSheet(label->styleSheet() + color);
-
-    label->hide();
-    m_labels << label;
-
-    MusicBarrageAnimation *anim = new MusicBarrageAnimation(label, "pos");
-    anim->setSize(m_parentSize);
-    m_animations << anim;
 
     if(m_barrageState)
     {
         label->show();
-        anim->start();
+        m_animations.last()->start();
     }
 }
 
@@ -194,23 +168,50 @@ void MusicBarrageWidget::createLabel()
     for(int i=0; i<m_barrageLists.count(); i++)
     {
         QLabel *label = new QLabel(m_parentClass);
-        QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
-                .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
-        label->setStyleSheet(color);
-        label->setText(m_barrageLists[qrand()%m_barrageLists.count()]);
-        label->hide();
-        m_labels << label;
+        createLabel(label);
     }
+}
+
+void MusicBarrageWidget::createLabel(QLabel *label)
+{
+    QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
+            .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
+    label->setStyleSheet(color);
+    label->setText(m_barrageLists[qrand()%m_barrageLists.count()]);
+    label->hide();
+    m_labels << label;
 }
 
 void MusicBarrageWidget::createAnimation()
 {
     for(int i=0; i<m_labels.count(); i++)
     {
-        MusicBarrageAnimation *anim = new MusicBarrageAnimation(m_labels[i], "pos");
-        anim->setSize(m_parentSize);
-        m_animations << anim;
+        createAnimation(m_labels[i]);
     }
+}
+
+void MusicBarrageWidget::createAnimation(QLabel *label)
+{
+    MusicBarrageAnimation *anim = new MusicBarrageAnimation(label, "pos");
+    anim->setSize(m_parentSize);
+    m_animations << anim;
+}
+
+void MusicBarrageWidget::setLabelBackground(QLabel *label)
+{
+    QString colorString = QString("QLabel{background-color:rgb(%1,%2,%3);}")
+            .arg(m_backgroundColor.red()).arg(m_backgroundColor.green())
+            .arg(m_backgroundColor.blue());
+    label->setStyleSheet(label->styleSheet() + colorString);
+}
+
+void MusicBarrageWidget::setLabelTextSize(QLabel *label)
+{
+    QFont ft = label->font();
+    ft.setPointSize(m_fontSize);
+    label->setFont(ft);
+    QFontMetrics ftMcs(ft);
+    label->resize(ftMcs.width(label->text()), ftMcs.height());
 }
 
 void MusicBarrageWidget::readBarrage()
