@@ -15,8 +15,6 @@
 #include <QLabel>
 #include <QLineEdit>
 
-#define NUMBER 5
-
 class MUSIC_WIDGET_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
@@ -59,14 +57,17 @@ protected:
     void deleteItems();
     void createLabel();
     void createAnimation();
+    void readBarrage();
+    void writeBarrage();
 
     QWidget *m_parentClass;
-    QList<QLabel*> m_labels;
-    QList<MusicBarrageAnimation*> m_animations;
     bool m_barrageState;
     QSize m_parentSize;
     int m_fontSize;
     QColor m_backgroundColor;
+    QList<QLabel*> m_labels;
+    QList<MusicBarrageAnimation*> m_animations;
+    QStringList m_barrageLists;
 
 };
 
