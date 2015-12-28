@@ -1344,33 +1344,32 @@
 <context>
     <name>MusicLocalSongSearchEdit</name>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="9"/>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="16"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="11"/>
         <source>please input search text</source>
         <translation>Please Input Search Text</translation>
     </message>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="28"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="49"/>
         <source>Shear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="29"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="50"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="30"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="51"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="31"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="52"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="33"/>
+        <location filename="../musicLocalsearch/musiclocalsongsearchedit.cpp" line="54"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2323,8 +2322,8 @@
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../musicrightareawidget.cpp" line="250"/>
-        <location filename="../musicrightareawidget.cpp" line="261"/>
+        <location filename="../musicrightareawidget.cpp" line="252"/>
+        <location filename="../musicrightareawidget.cpp" line="263"/>
         <source>please input search text</source>
         <translation>Please Input Search Words!</translation>
     </message>
@@ -4213,33 +4212,33 @@
 <context>
     <name>MusicVideoControl</name>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="20"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="22"/>
         <source>NormalMV</source>
         <translation>SD</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="21"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="23"/>
         <source>DownloadMV</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="32"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="34"/>
         <source>InlineMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="32"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="34"/>
         <source>PopupMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="33"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="35"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="164"/>
         <source>FullScreenMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="83"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="85"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="137"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="170"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="172"/>
@@ -4247,7 +4246,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="85"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="87"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="139"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="180"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="182"/>
@@ -4262,12 +4261,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="266"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="296"/>
+        <source>Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="315"/>
+        <source>BgColor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="345"/>
+        <source>just one barrage!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="352"/>
         <source>openBarrage</source>
         <translation>Barrage</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="84"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="372"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="373"/>
+        <source>M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="374"/>
+        <source>G</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="86"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="138"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="175"/>
         <location filename="../musicVideokits/musicvideocontrol.cpp" line="177"/>
@@ -4294,7 +4323,7 @@
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../musicVideokits/musicvideoview.cpp" line="141"/>
+        <location filename="../musicVideokits/musicvideoview.cpp" line="146"/>
         <source>Session time out, try again!</source>
         <translation type="unfinished"></translation>
     </message>

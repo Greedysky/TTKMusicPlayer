@@ -342,7 +342,7 @@ QWidget* MusicVideoControl::createBarrageWidget()
     menuBarrage->setMenu(&m_popupBarrage);
     menuBarrage->setPopupMode(QToolButton::InstantPopup);
     MusicLocalSongSearchEdit *lineEditBarrage = new MusicLocalSongSearchEdit(barrageWidget);
-    lineEditBarrage->addFilterText("222222222222222");
+    lineEditBarrage->addFilterText(tr("just one barrage!"));
     lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle01 + \
                                    "QLineEdit{color:white;}");
     connect(lineEditBarrage, SIGNAL(enterFinished(QString)), SIGNAL(addBarrageChanged(QString)));
