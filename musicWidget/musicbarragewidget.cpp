@@ -48,7 +48,7 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
 {
     m_parentClass = static_cast<QWidget*>(parent);
     m_barrageState = false;
-    m_fontSize = 10;
+    m_fontSize = 15;
     m_backgroundColor = QColor(0, 0, 0);
 
     readBarrage();
@@ -96,11 +96,12 @@ void MusicBarrageWidget::stop()
 void MusicBarrageWidget::barrageStateChanged(bool on)
 {
     m_barrageState = on;
-    if(m_barrageState)
+    if(m_barrageState && !m_barrageLists.isEmpty())
     {
         deleteItems();
         createLabel();
         createAnimation();
+        setLabelTextSize(m_fontSize);
         start();
     }
     else
@@ -144,12 +145,19 @@ void MusicBarrageWidget::addBarrage(const QString &string)
     createAnimation(label);
     setLabelBackground(label);
     setLabelTextSize(label);
+
+    m_barrageLists << string;
     label->setText(string);
 
     if(m_barrageState)
     {
-        label->show();
-        m_animations.last()->start();
+        if(m_labels.count() == 1)
+        {
+            deleteItems();
+            createLabel();
+            createAnimation();
+        }
+        start();
     }
 }
 
@@ -178,7 +186,10 @@ void MusicBarrageWidget::createLabel(QLabel *label)
     QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
             .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
     label->setStyleSheet(color);
-    label->setText(m_barrageLists[qrand()%m_barrageLists.count()]);
+    if(!m_barrageLists.isEmpty())
+    {
+        label->setText(m_barrageLists[qrand()%m_barrageLists.count()]);
+    }
     label->hide();
     m_labels << label;
 }
