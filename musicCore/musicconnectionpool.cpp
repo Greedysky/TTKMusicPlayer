@@ -1,7 +1,7 @@
 #include "musicconnectionpool.h"
+#include "musicobject.h"
 
 #include <QWidget>
-#include "musicobject.h"
 
 MusicConnectionPool::MusicConnectionPool()
     : QObject(nullptr)

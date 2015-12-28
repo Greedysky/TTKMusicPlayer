@@ -51,5 +51,5 @@ void MusicNetworkThread::timerOut()
     connect(m_client, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
                       SLOT(socketStateChanged(QAbstractSocket::SocketState)));
     m_client->connectToHost(NETWORK_REQUEST_ADDRESS, 443, QIODevice::ReadOnly);
-    M_LOGGER << "Connect state: " << m_networkState << LOG_END;
+    M_LOGGER << "Connect state: " << !m_networkState << LOG_END;
 }
