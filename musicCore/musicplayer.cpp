@@ -124,9 +124,11 @@ void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
     {
+        m_state = StoppedState;
         return;
     }
 
+    m_state = PlayingState;
     TStreamStatus status;
     m_music->GetStatus(&status);///Get the current state of play
     if(m_currentMedia == m_playlist->currentMediaString() && status.fPause)
@@ -141,6 +143,7 @@ void MusicPlayer::play()
     ///The current playback path
     if(m_music->OpenFileW(m_currentMedia.toStdWString().c_str(), sfAutodetect) == 0)
     {
+        m_state = StoppedState;
         M_LOGGER << "Error1." << m_music->GetError() << LOG_END;
         return;
     }
@@ -149,7 +152,7 @@ void MusicPlayer::play()
     ///Every second emits a signal change information
     emit positionChanged(0);
     emit durationChanged( duration() );
-    m_state = PlayingState;
+
     if(m_music->Play() == 0)
     {
         M_LOGGER << "Error2." << m_music->GetError() << LOG_END;
