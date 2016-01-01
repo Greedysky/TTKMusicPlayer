@@ -130,13 +130,13 @@
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="180"/>
-        <location filename="../musicapplication.cpp" line="701"/>
+        <location filename="../musicapplication.cpp" line="706"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="181"/>
-        <location filename="../musicapplication.cpp" line="702"/>
+        <location filename="../musicapplication.cpp" line="707"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
@@ -161,7 +161,7 @@
         <translation>录音设置</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="704"/>
+        <location filename="../musicapplication.cpp" line="709"/>
         <source>dragAnddrop</source>
         <translation>支持歌曲文件的拖拽</translation>
     </message>
@@ -1688,104 +1688,104 @@
         <translation> --- 歌词文件内容错误！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="357"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="360"/>
         <source>changColorMenu</source>
         <translation>歌词颜色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="358"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="361"/>
         <source>changeLrcSize</source>
         <translation>歌词大小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="362"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="365"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="363"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="366"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="383"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
         <source>artbgon</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="382"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="383"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="385"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
         <source>artbgoff</source>
         <translation>关闭写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="364"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="367"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="371"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="403"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="406"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="372"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="404"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="375"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="407"/>
         <source>small</source>
         <translation>小号</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="373"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="405"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="376"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="408"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="406"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="377"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="409"/>
         <source>big</source>
         <translation>大号</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="375"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="407"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="378"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="410"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="379"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="382"/>
         <source>custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="384"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="385"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="387"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
         <source>lrcoff</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="385"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
         <source>lrcon</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
         <source>artbgupload</source>
         <translation>上传歌手写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="392"/>
         <source>copyToClip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="391"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="394"/>
         <source>showLrcFile</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="395"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="398"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>
@@ -2122,7 +2122,7 @@
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicmydownloadrecordwidget.cpp" line="154"/>
+        <location filename="../musicToolswidget/musicmydownloadrecordwidget.cpp" line="156"/>
         <source>The origin one does not exsit!</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
@@ -2754,7 +2754,7 @@
     <message>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1399"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">中</translation>
     </message>
     <message>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1412"/>
@@ -3174,37 +3174,37 @@
         <translation>正在导入文件，请稍候！</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="190"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="188"/>
         <source>newSongItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="204"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="202"/>
         <source>add music to lovest list done!</source>
         <translation>添加到我的最爱完成！</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="226"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="224"/>
         <source>The origin one can&apos;t delete!</source>
         <translation>系统默认列表不允许删除</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="239"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="237"/>
         <source>The origin one can&apos;t rename!</source>
         <translation>系统默认列表不允许重命名</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="277"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="275"/>
         <source>deleteItem</source>
         <translation>删除列表</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="278"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="276"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="279"/>
+        <location filename="../musicToolswidget/musicsongssummarizied.cpp" line="277"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
@@ -3706,12 +3706,12 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="183"/>
+        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="181"/>
         <source>the input is empty!</source>
         <translation>输入路径不能为空！</translation>
     </message>
     <message>
-        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="194"/>
+        <location filename="../musicToolsetswidget/musictransformwidget.cpp" line="192"/>
         <source>the out is empty!</source>
         <translation>输出路径不能为空！</translation>
     </message>
