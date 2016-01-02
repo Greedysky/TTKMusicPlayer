@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2016.1.1
+//update time 2016.01.01
 #define QMUSICPLAYER_VERSION_STR "2.2.8.9"
 
 #define QMUSICPLAYER_VERSION  0x02289
