@@ -167,7 +167,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     m_ui->background->setPixmap(afterDeal);
 }
 
-void MusicTopAreaWidget::slMusicBgThemeDownloadFinished()
+void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
     if(m_ui->SurfaceStackedWidget->currentIndex() == 2  &&
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )

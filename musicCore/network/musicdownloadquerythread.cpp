@@ -61,19 +61,19 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
     }
 
     m_reply = m_manager->get(QNetworkRequest(musicUrl));
-    connect(m_reply, SIGNAL(finished()), SLOT(slSearchFinshed()) );
+    connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(slReplyError(QNetworkReply::NetworkError)) );
+                     SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryThread::slSearchFinshed()
+void MusicDownLoadQueryThread::searchFinshed()
 {
     if(m_reply == nullptr)
     {
         return;
     }
 
-    emit sgClearAllItems();     ///Clear origin items
+    emit clearAllItems();     ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -157,7 +157,7 @@ void MusicDownLoadQueryThread::slSearchFinshed()
                     {
                         if(!m_queryAllRecords)
                         {
-                            emit sgCreatSearchedItems(songName, singerName, duration);
+                            emit creatSearchedItems(songName, singerName, duration);
                         }
                         musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
@@ -183,7 +183,7 @@ void MusicDownLoadQueryThread::slSearchFinshed()
                             songAttr.m_size = object.value("size").toString();
                             musicInfo.m_songAttrs << songAttr;
                         }
-                        emit sgCreatSearchedItems(songName, singerName, object.value("duration").toString());
+                        emit creatSearchedItems(songName, singerName, object.value("duration").toString());
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
                         m_musicSongInfos << musicInfo;
@@ -258,7 +258,7 @@ void MusicDownLoadQueryThread::slSearchFinshed()
                         {
                             if(!m_queryAllRecords)
                             {
-                                emit sgCreatSearchedItems(songName, singerName, duration);
+                                emit creatSearchedItems(songName, singerName, duration);
                             }
                             musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                             musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
@@ -289,7 +289,7 @@ void MusicDownLoadQueryThread::slSearchFinshed()
                                 songAttr.m_size = mvUrlIt.value().property("size").toString();
                                 musicInfo.m_songAttrs << songAttr;
                             }
-                            emit sgCreatSearchedItems(songName, singerName,
+                            emit creatSearchedItems(songName, singerName,
                                                     mvUrlIt.value().property("duration").toString());
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
@@ -312,10 +312,10 @@ void MusicDownLoadQueryThread::slSearchFinshed()
             M_LOGGER << "not find the song_Id" << LOG_END;
         }
     }
-    emit sgResolvedSuccess();
+    emit resolvedSuccess();
 }
 
-void MusicDownLoadQueryThread::slReplyError(QNetworkReply::NetworkError)
+void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)
 {
     M_LOGGER << "Abnormal network connection" << LOG_END;
     deleteAll();

@@ -51,10 +51,10 @@ signals:
     void musicDownLoadFinished(const QString &name);
 
 public slots:
-    virtual void slDownLoadFinished() = 0;
-    virtual void slDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
-    void slReplyError(QNetworkReply::NetworkError error);
-    void slUpdateDownloadSpeed();
+    virtual void downLoadFinished() = 0;
+    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void replyError(QNetworkReply::NetworkError error);
+    void updateDownloadSpeed();
 
 protected:
     QNetworkAccessManager *m_manager;

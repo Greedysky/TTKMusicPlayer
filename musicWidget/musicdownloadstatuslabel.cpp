@@ -60,7 +60,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
     m_movieLabel->clear();
 }
 
-void MusicDownloadStatusLabel::slNetworkConnectionStateChanged(bool state)
+void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
     state ? showDownLoadInfoFinished( QString() )
           : showDownLoadInfoFor(MusicObject::DisConnection);
@@ -104,7 +104,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        ///Start the request query
        m_downloadLrcThread = new MusicDownLoadQueryThread(this);
        m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThread::MusicQuery, filename);
-       connect(m_downloadLrcThread, SIGNAL(sgResolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
+       connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
     }
 }

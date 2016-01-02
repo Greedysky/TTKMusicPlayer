@@ -27,9 +27,9 @@ signals:
     void lrcDownloadStateChanged(const QString &name);
 
 public slots:
-    void slClearAllItems() override;
-    void slCreatSearchedItems(const QString &songname,
-                              const QString &artistname, const QString &time) override;
+    void clearAllItems() override;
+    void creatSearchedItems(const QString &songname,
+                            const QString &artistname, const QString &time) override;
     void itemDoubleClicked(int row, int column) override;
 
 protected:

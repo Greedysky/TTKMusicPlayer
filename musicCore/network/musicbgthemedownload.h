@@ -24,11 +24,11 @@ public:
     void startToDownload();
 
 signals:
-    void sgMusicBgDownloadFinished();
+    void musicBgDownloadFinished();
 
 public slots:
-    void slDownLoadFinished();
-    void slBgDownLoadFinished();
+    void downLoadFinished();
+    void bgDownLoadFinished();
 
 protected:
     QString m_artName;

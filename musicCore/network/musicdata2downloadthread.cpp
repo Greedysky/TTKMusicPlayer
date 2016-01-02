@@ -20,10 +20,10 @@ void MusicData2DownloadThread::startToDownload()
 {
     m_timer.start(1000);
     m_dataReply = m_dataManager->get( QNetworkRequest(m_url));
-    connect(m_dataReply, SIGNAL(finished()), SLOT(slDataGetFinished()));
+    connect(m_dataReply, SIGNAL(finished()), SLOT(dataGetFinished()));
     connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
-                         SLOT(slDataReplyError(QNetworkReply::NetworkError)) );
-    connect(m_dataReply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(slDownloadProgress(qint64, qint64)));
+                         SLOT(dataReplyError(QNetworkReply::NetworkError)) );
+    connect(m_dataReply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
 }
 
 void MusicData2DownloadThread::deleteAll()
@@ -41,7 +41,7 @@ void MusicData2DownloadThread::deleteAll()
     MusicDataDownloadThread::deleteAll();
 }
 
-void MusicData2DownloadThread::slDataGetFinished()
+void MusicData2DownloadThread::dataGetFinished()
 {
     if(!m_dataReply)
     {
@@ -71,7 +71,7 @@ void MusicData2DownloadThread::slDataGetFinished()
         {
             m_url = sc.property("data").property("singerPic").toString();
 #endif
-            emit sgData2urlHasChanged(m_url);
+            emit data2urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
         }
         else
@@ -81,7 +81,7 @@ void MusicData2DownloadThread::slDataGetFinished()
     }
 }
 
-void MusicData2DownloadThread::slDataReplyError(QNetworkReply::NetworkError)
+void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
 {
     emit musicDownLoadFinished("The data2 create failed");
     deleteAll();
