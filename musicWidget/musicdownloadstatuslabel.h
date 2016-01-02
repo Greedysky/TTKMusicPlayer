@@ -32,7 +32,7 @@ public slots:
     ///This is a slot by MusicSongSearchOnlineWidget's signal emit
     void showDownLoadInfoFor(MusicObject::DownLoadType type);
     void showDownLoadInfoFinished(const QString &type);
-    void networkConnectionStateChanged(bool state);
+    void slNetworkConnectionStateChanged(bool state);
 
 protected:
     MusicApplication *m_parentWidget;

@@ -22,11 +22,11 @@ void MusicBgThemeDownload::startToDownload()
                              BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD,
                              MusicDownLoadThreadAbstract::Download_BigBG, this);
     ///Set search image API
-    connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(downLoadFinished()));
+    connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(slDownLoadFinished()));
     download->startToDownload();
 }
 
-void MusicBgThemeDownload::downLoadFinished()
+void MusicBgThemeDownload::slDownLoadFinished()
 {
     QFile file(TMP_DOWNLOAD);
     ///Check if the file exists and can be written
@@ -51,7 +51,7 @@ void MusicBgThemeDownload::downLoadFinished()
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
                                     .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
                                     MusicDownLoadThreadAbstract::Download_BigBG, this);
-            connect(down, SIGNAL(musicDownLoadFinished(QString)), SLOT(bgDownLoadFinished()));
+            connect(down, SIGNAL(musicDownLoadFinished(QString)), SLOT(slBgDownLoadFinished()));
             down->startToDownload();
         }
         line = in.readLine();
@@ -61,12 +61,12 @@ void MusicBgThemeDownload::downLoadFinished()
     QFile::remove(TMP_DOWNLOAD);
 }
 
-void MusicBgThemeDownload::bgDownLoadFinished()
+void MusicBgThemeDownload::slBgDownLoadFinished()
 {
     if( ++m_index >= m_counter)
     {
         M_BG_MANAGER->setArtName( m_artName );
-        emit musicBgDownloadFinished();
+        emit sgMusicBgDownloadFinished();
         deleteLater();
     }
 }

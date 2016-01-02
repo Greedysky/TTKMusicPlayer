@@ -28,10 +28,10 @@ signals:
 
 public slots:
     void listCellClicked(int row, int col) override;
-    void clearAllItems() override;
-    void creatSearchedItems(const QString &songname,
-                            const QString &artistname,
-                            const QString &time) override;
+    void slClearAllItems() override;
+    void slCreatSearchedItems(const QString &songname,
+                              const QString &artistname,
+                              const QString &time) override;
     void itemDoubleClicked(int row, int column) override;
     void getMusicMvInfo(MusicSongAttributes &data);
     void downloadLocalFromControl();

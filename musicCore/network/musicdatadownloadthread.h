@@ -20,13 +20,13 @@ public:
     virtual void startToDownload() override;
 
 signals:
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
-    void createDownloadItem(const QString &name, qint64 time);
+    void sgDownloadProgressChanged(float percent, const QString &total, qint64 time);
+    void sgCreateDownloadItem(const QString &name, qint64 time);
 
 public slots:
-    virtual void downLoadFinished() override;
-    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
-    void downLoadReadyRead();
+    virtual void slDownLoadFinished() override;
+    virtual void slDownloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
+    void slDownLoadReadyRead();
 
 protected:
     virtual void startRequest(const QUrl &url);

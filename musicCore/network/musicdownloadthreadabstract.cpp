@@ -27,7 +27,7 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
 
     M_CONNECTION->setNetworkMultiValue(this);
     m_timer.setInterval(1000);
-    connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(slUpdateDownloadSpeed()));
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
@@ -55,19 +55,19 @@ void MusicDownLoadThreadAbstract::deleteAll()
     deleteLater();
 }
 
-void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
+void MusicDownLoadThreadAbstract::slReplyError(QNetworkReply::NetworkError)
 {
     emit musicDownLoadFinished("The file create failed");
     deleteAll();
 }
 
-void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+void MusicDownLoadThreadAbstract::slDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     Q_UNUSED(bytesTotal);
     m_currentRecevied = bytesReceived;
 }
 
-void MusicDownLoadThreadAbstract::updateDownloadSpeed()
+void MusicDownLoadThreadAbstract::slUpdateDownloadSpeed()
 {
     int delta = m_currentRecevied - m_hasRecevied;
     //////////////////////////////////////

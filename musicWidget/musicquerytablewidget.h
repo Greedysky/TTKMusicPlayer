@@ -35,10 +35,10 @@ signals:
 
 public slots:
     virtual void listCellClicked(int row, int column) override;
-    virtual void clearAllItems() = 0;
-    virtual void creatSearchedItems(const QString &songname,
-                                    const QString &artistname,
-                                    const QString &time) = 0;
+    virtual void slClearAllItems() = 0;
+    virtual void slCreatSearchedItems(const QString &songname,
+                                      const QString &artistname,
+                                      const QString &time) = 0;
     virtual void itemDoubleClicked(int row, int column) = 0;
     virtual void actionGroupClick(QAction *action);
     void setSelectedAllItems(bool all);

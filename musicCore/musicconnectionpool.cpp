@@ -25,10 +25,10 @@ void MusicConnectionPool::connectMusicDownload(QObject *object)
     QObject *to = m_para.value( "MusicMyDownloadRecordWidget" );
     if(to != nullptr && object)
     {
-        QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,
-                                 SLOT(downloadProgressChanged(float, QString, qint64)));
-        QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to,
-                                 SLOT(createDownloadItem(QString, qint64)));
+        QObject::connect(object, SIGNAL(sgDownloadProgressChanged(float, QString, qint64)), to,
+                                 SLOT(slDownloadProgressChanged(float, QString, qint64)));
+        QObject::connect(object, SIGNAL(sgCreateDownloadItem(QString, qint64)), to,
+                                 SLOT(slCreateDownloadItem(QString, qint64)));
     }
 }
 
@@ -100,8 +100,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 
     if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )
     {
-        QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
-                                SLOT(musicBgThemeDownloadFinished()));
+        QObject::connect(first, SIGNAL(sgMusicBgDownloadFinished()), second,
+                                SLOT(slMusicBgThemeDownloadFinished()));
     }
 
     if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" )
@@ -118,8 +118,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 
     if(from == "MusicNetworkThread" && to == "MusicDownloadStatusLabel" )
     {
-        QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
-                                SLOT(networkConnectionStateChanged(bool)));
+        QObject::connect(first, SIGNAL(sgNetworkConnectionStateChanged(bool)), second,
+                                SLOT(slNetworkConnectionStateChanged(bool)));
     }
 
     if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )

@@ -25,11 +25,11 @@ void MusicTextDownLoadThread::startToDownload()
             m_timer.start(1000);
             m_manager = new QNetworkAccessManager(this);
             m_reply = m_manager->get( QNetworkRequest(QUrl(m_url)));
-            connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+            connect(m_reply, SIGNAL(finished()), SLOT(slDownLoadFinished()));
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                             SLOT(replyError(QNetworkReply::NetworkError)) );
+                             SLOT(slReplyError(QNetworkReply::NetworkError)) );
             connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)),
-                             SLOT(downloadProgress(qint64, qint64)));
+                             SLOT(slDownloadProgress(qint64, qint64)));
         }
         else
         {
@@ -40,7 +40,7 @@ void MusicTextDownLoadThread::startToDownload()
     }
 }
 
-void MusicTextDownLoadThread::downLoadFinished()
+void MusicTextDownLoadThread::slDownLoadFinished()
 {
     if(m_reply == nullptr)
     {

@@ -40,7 +40,7 @@ public slots:
     virtual int exec();
     void textAreaChanged();
     void confirmButtonClicked();
-    void data2urlHasChanged(const QString &imageUrl);
+    void slData2urlHasChanged(const QString &imageUrl);
     void queryUrlTimeout();
     void close();
 
