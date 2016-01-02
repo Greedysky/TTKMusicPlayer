@@ -21,11 +21,11 @@ public:
     virtual void startToDownload() override;
 
 signals:
-    void data2urlHasChanged(const QString &url);
+    void sgData2urlHasChanged(const QString &url);
 
 public slots:
-    void dataGetFinished();
-    void dataReplyError(QNetworkReply::NetworkError error);
+    void slDataGetFinished();
+    void slDataReplyError(QNetworkReply::NetworkError error);
 
 protected:
     QNetworkAccessManager *m_dataManager;

@@ -167,7 +167,7 @@ void MusicMyDownloadRecordWidget::musicPlay()
     emit addSongToPlay(QStringList(m_musicRecord.m_paths[currentRow()]));
 }
 
-void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
+void MusicMyDownloadRecordWidget::slDownloadProgressChanged(float percent, const QString &total, qint64 time)
 {
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
@@ -185,7 +185,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
     }
 }
 
-void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64 time)
+void MusicMyDownloadRecordWidget::slCreateDownloadItem(const QString &name, qint64 time)
 {
     setRowCount( rowCount()  + 1);
     QString musicName = name;

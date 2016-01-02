@@ -28,12 +28,12 @@ public:
     inline bool isOnline() const {return m_networkState;}
 
 signals:
-    void networkConnectionStateChanged(bool state);
+    void sgNetworkConnectionStateChanged(bool state);
     //default status is true, means connected network
 
 public slots:
-    void socketStateChanged(QAbstractSocket::SocketState socketState);
-    void timerOut();
+    void slSocketStateChanged(QAbstractSocket::SocketState socketState);
+    void slTimerOut();
 
 private:
     QTimer m_timer;

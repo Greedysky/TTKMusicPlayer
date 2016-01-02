@@ -20,7 +20,7 @@ public:
     virtual void startToDownload() override;
 
 public slots:
-    virtual void downLoadFinished() override;
+    virtual void slDownLoadFinished() override;
 
 };
 #endif // MUSICTEXTDOWNLOADTHREAD_H

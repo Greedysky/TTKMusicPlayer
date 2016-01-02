@@ -100,13 +100,13 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
 
     m_request->setUrl(QUrl(url));
     m_reply = m_manager->get(*m_request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(readyRead()), SLOT(readyReadSlot()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(errorSlot(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(finished()), SLOT(slDownLoadFinished()));
+    connect(m_reply, SIGNAL(readyRead()), SLOT(slReadyReadSlot()));
+    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(slDownloadProgress(qint64, qint64)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(slErrorSlot(QNetworkReply::NetworkError)));
 }
 
-void MusicDownloadQueueCache::downLoadFinished()
+void MusicDownloadQueueCache::slDownLoadFinished()
 {
     if(m_isAbort)
     {
@@ -124,13 +124,13 @@ void MusicDownloadQueueCache::downLoadFinished()
     startOrderImageQueue();
 }
 
-void MusicDownloadQueueCache::readyReadSlot()
+void MusicDownloadQueueCache::slReadyReadSlot()
 {
     m_file->write(m_reply->readAll());
     m_file->flush();
 }
 
-void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
+void MusicDownloadQueueCache::slErrorSlot(QNetworkReply::NetworkError code)
 {
     M_LOGGER << "QNetworkReply::NetworkError : " << code <<m_reply->errorString() << LOG_END;
     m_file->flush();

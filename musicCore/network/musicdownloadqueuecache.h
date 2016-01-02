@@ -32,9 +32,9 @@ public:
     void abort();
 
 public slots:
-    virtual void downLoadFinished() override;
-    void readyReadSlot();
-    void errorSlot(QNetworkReply::NetworkError code);
+    virtual void slDownLoadFinished() override;
+    void slReadyReadSlot();
+    void slErrorSlot(QNetworkReply::NetworkError code);
 
 protected:
     void startDownload(const QString &url);

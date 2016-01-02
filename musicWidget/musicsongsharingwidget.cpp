@@ -62,8 +62,8 @@ void MusicSongSharingWidget::confirmButtonClicked()
                     SML_BG_ART_URL.arg(infos.front().trimmed()),
                     ART_DOWNLOAD_AL + TMP_DOWNLOAD,
                     MusicDownLoadThreadAbstract::Download_SmlBG, this);
-        connect(down, SIGNAL(data2urlHasChanged(QString)),
-                      SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
+        connect(down, SIGNAL(sgData2urlHasChanged(QString)),
+                      SLOT(slData2urlHasChanged(QString)), Qt::QueuedConnection);
         down->startToDownload();
     }
     QTimer::singleShot(5000, this, SLOT(queryUrlTimeout()));
@@ -76,7 +76,7 @@ void MusicSongSharingWidget::queryUrlTimeout()
     message.exec();
 }
 
-void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
+void MusicSongSharingWidget::slData2urlHasChanged(const QString &imageUrl)
 {
     QString url;
     if(ui->qqButton->isChecked())

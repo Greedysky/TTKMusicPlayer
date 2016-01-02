@@ -37,7 +37,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
     delete m_audition;
-    clearAllItems();
+    slClearAllItems();
 }
 
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
@@ -73,14 +73,14 @@ void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
     startSearchQuery(m_searchText);
 }
 
-void MusicSongSearchOnlineTableWidget::clearAllItems()
+void MusicSongSearchOnlineTableWidget::slClearAllItems()
 {
     MusicAbstractTableWidget::clear();
     setColumnCount(6);
 }
 
-void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songname,
-                               const QString &artistname, const QString &time)
+void MusicSongSearchOnlineTableWidget::slCreatSearchedItems(const QString &songname,
+                                 const QString &artistname, const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());

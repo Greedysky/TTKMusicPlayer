@@ -50,7 +50,7 @@ public slots:
     void musicBgTransparentChanged(int index);
     void musicBackgroundSkinChanged(const QString &filename);
     void musicBackgroundChanged();
-    void musicBgThemeDownloadFinished();
+    void slMusicBgThemeDownloadFinished();
 
     void musicCircleRemote();
     void musicDiamondRemote();
