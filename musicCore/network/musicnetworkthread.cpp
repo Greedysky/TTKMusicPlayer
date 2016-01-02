@@ -7,7 +7,7 @@ MusicNetworkThread::MusicNetworkThread()
 {
     M_CONNECTION->setValue("MusicNetworkThread", this);
     m_client = nullptr;
-    connect(&m_timer, SIGNAL(timeout()), SLOT(timerOut()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(slTimerOut()));
     m_timer.start(NETWORK_DETECT_INTERVAL);
 }
 
@@ -29,7 +29,7 @@ void MusicNetworkThread::setBlockNetWork(int block)
     M_SETTING->setValue(MusicSettingManager::CloseNetWorkChoiced, block);
 }
 
-void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketState)
+void MusicNetworkThread::slSocketStateChanged(QAbstractSocket::SocketState socketState)
 {
     if(socketState == QAbstractSocket::UnconnectedState ||
        socketState == QAbstractSocket::ConnectedState)
@@ -40,16 +40,16 @@ void MusicNetworkThread::socketStateChanged(QAbstractSocket::SocketState socketS
         {
             return;
         }
-        emit networkConnectionStateChanged(m_networkState = m_blockNetWork ? false : state);
+        emit sgNetworkConnectionStateChanged(m_networkState = m_blockNetWork ? false : state);
     }
 }
 
-void MusicNetworkThread::timerOut()
+void MusicNetworkThread::slTimerOut()
 {
     delete m_client;
     m_client = new QTcpSocket;
     connect(m_client, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-                      SLOT(socketStateChanged(QAbstractSocket::SocketState)));
+                      SLOT(slSocketStateChanged(QAbstractSocket::SocketState)));
     m_client->connectToHost(NETWORK_REQUEST_ADDRESS, 443, QIODevice::ReadOnly);
     M_LOGGER << "Connect state: " << !m_networkState << LOG_END;
 }

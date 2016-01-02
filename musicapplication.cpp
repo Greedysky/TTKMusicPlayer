@@ -45,7 +45,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget->setupUi(ui);
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTree, SLOT(setTransparent(int)));
     connect(m_topAreaWidget, SIGNAL(musicSearchButtonClicked()), m_rightAreaWidget, SLOT(musicSearchButtonSearched()));
-    connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
+    connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(slMusicBgThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));
     connect(m_bottomAreaWidget, SIGNAL(setShowDesktopLrc(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
     connect(m_bottomAreaWidget, SIGNAL(setWindowLockedChanged()), m_rightAreaWidget, SLOT(setWindowLockedChanged()));
@@ -464,7 +464,7 @@ void MusicApplication::showCurrentSong(int index)
         m_topAreaWidget->setLabelText(name);
         //display current ArtTheme pic
         M_BG_MANAGER->setArtName(getCurrentFileName());
-        m_topAreaWidget->musicBgThemeDownloadFinished();
+        m_topAreaWidget->slMusicBgThemeDownloadFinished();
     }
     else
     {
@@ -501,7 +501,7 @@ void MusicApplication::musicKey()
         ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
         m_playControl = false;
         m_musicPlayer->play();
-        m_topAreaWidget->musicBgThemeDownloadFinished();
+        m_topAreaWidget->slMusicBgThemeDownloadFinished();
         m_rightAreaWidget->startTimerClock();
     }
     else
@@ -828,7 +828,7 @@ void MusicApplication::musicSearchIndexChanged(int, int index)
 void MusicApplication::musicLoadCurrentSongLrc()
 {
     //display current ArtTheme pic
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->slMusicBgThemeDownloadFinished();
     //Loading the current song lrc
     if(m_musicList->currentIndex() == -1)
     {
@@ -908,7 +908,7 @@ void MusicApplication::addSongToPlayList(const QStringList &item)
 void MusicApplication::musicWindowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->slMusicBgThemeDownloadFinished();
 }
 
 void MusicApplication::musicEnhancedMusicChanged(int type)

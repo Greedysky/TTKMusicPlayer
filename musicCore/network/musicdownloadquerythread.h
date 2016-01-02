@@ -38,14 +38,14 @@ public:
     inline const MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
 
 signals:
-    void resolvedSuccess();
-    void clearAllItems();
-    void creatSearchedItems(const QString &songname,
-                            const QString &artistname, const QString &time);
+    void sgResolvedSuccess();
+    void sgClearAllItems();
+    void sgCreatSearchedItems(const QString &songname,
+                              const QString &artistname, const QString &time);
 
 public slots:
-    void searchFinshed();
-    void replyError(QNetworkReply::NetworkError error);
+    void slSearchFinshed();
+    void slReplyError(QNetworkReply::NetworkError error);
 
 protected:
     QNetworkAccessManager *m_manager;

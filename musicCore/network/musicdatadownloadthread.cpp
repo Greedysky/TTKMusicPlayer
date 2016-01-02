@@ -30,21 +30,21 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
 {
     m_timer.start(1000);
     m_reply = m_manager->get( QNetworkRequest(url));
-    connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(finished()), this, SLOT(slDownLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
-    connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
+                     SLOT(slReplyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(readyRead()),this, SLOT(slDownLoadReadyRead()));
+    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(slDownloadProgress(qint64, qint64)));
     /// only download music data can that show progress
     if(m_downloadType == Download_Music)
     {
         M_CONNECTION->connectMusicDownload(this);
         m_createItemTime = QDateTime::currentMSecsSinceEpoch();
-        emit createDownloadItem(m_savePathName, m_createItemTime);
+        emit sgCreateDownloadItem(m_savePathName, m_createItemTime);
     }
 }
 
-void MusicDataDownloadThread::downLoadFinished()
+void MusicDataDownloadThread::slDownLoadFinished()
 {
     if(!m_file)
     {
@@ -75,7 +75,7 @@ void MusicDataDownloadThread::downLoadFinished()
     }
 }
 
-void MusicDataDownloadThread::downLoadReadyRead()
+void MusicDataDownloadThread::slDownLoadReadyRead()
 {
     if(m_file)
     {
@@ -83,14 +83,14 @@ void MusicDataDownloadThread::downLoadReadyRead()
     }
 }
 
-void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+void MusicDataDownloadThread::slDownloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    MusicDownLoadThreadAbstract::downloadProgress(bytesReceived, bytesTotal);
+    MusicDownLoadThreadAbstract::slDownloadProgress(bytesReceived, bytesTotal);
     /// only download music data can that show progress
     if(m_downloadType == Download_Music)
     {
         QString total = QString::number(bytesTotal*1.0/1024/1024);
         total = total.left(total.indexOf(".") + 3) + "M";
-        emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
+        emit sgDownloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
     }
 }

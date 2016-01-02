@@ -19,7 +19,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
     M_CONNECTION->poolDisConnect("MusicVideoTableWidget");
-    clearAllItems();
+    slClearAllItems();
 }
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
@@ -32,7 +32,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThread::MovieQuery, text);
 }
 
-void MusicVideoTableWidget::clearAllItems()
+void MusicVideoTableWidget::slClearAllItems()
 {
     MusicAbstractTableWidget::clear();
     setColumnCount(8);
@@ -51,7 +51,7 @@ QString MusicVideoTableWidget::randToGetStrength() const
     }
 }
 
-void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
+void MusicVideoTableWidget::slCreatSearchedItems(const QString &songname,
                                                const QString &artistname,
                                                const QString &time)
 {
