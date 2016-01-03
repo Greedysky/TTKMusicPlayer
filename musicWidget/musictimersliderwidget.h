@@ -30,9 +30,7 @@ public:
     void setRange(int min, int max);
     void setObject(QObject *object) const;
 
-signals:
-
-public slots:
+public Q_SLOTS:
     void sliderMovedAt(int pos) const;
     void setSliderStyleByType(int type);
     void timeout();

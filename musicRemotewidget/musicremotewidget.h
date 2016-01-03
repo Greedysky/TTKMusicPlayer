@@ -29,7 +29,7 @@ public:
     void setVolumeValue(int index);
     virtual void setLabelText(const QString &) {}
 
-signals:
+Q_SIGNALS:
     void musicWindowSignal();
     void musicKeySignal();
     void musicPlayPriviousSignal();
@@ -38,7 +38,7 @@ signals:
     void musicSettingSignal();
     void musicRemoteTypeChanged(QAction *type);
 
-public slots:
+public Q_SLOTS:
     void musicVolumeChanged(int index);
 
 protected:

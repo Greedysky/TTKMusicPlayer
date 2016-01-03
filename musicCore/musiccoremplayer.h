@@ -44,7 +44,7 @@ public:
 
     inline State state() { return m_playState;}
 
-signals:
+Q_SIGNALS:
     void positionChanged(qint64 position);
     void durationChanged(qint64 duration);
     void volumnChanged(int volumn);
@@ -54,11 +54,11 @@ signals:
     void radioChanged();
     void musicChanged();
 
-public slots:
+public Q_SLOTS:
     void play();
     void stop();
 
-private slots:
+private Q_SLOTS:
     void dataRecieve();
     void positionRecieve();
     void durationRecieve();

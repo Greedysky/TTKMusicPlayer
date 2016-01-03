@@ -27,10 +27,10 @@ public:
 
     void setSongStringList(const QStringList &list);
 
-signals:
+Q_SIGNALS:
     void timerParameterChanged();
 
-public slots:
+public Q_SLOTS:
     void changeFirstWidget();
     void changeSecondWidget();
     void changeThreeWidget();

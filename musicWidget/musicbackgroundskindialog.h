@@ -28,10 +28,10 @@ public:
     void updateBackground();
     int getListBgSkinAlpha() const;
 
-signals:
+Q_SIGNALS:
     void currentTextChanged(const QString &text);
 
-public slots:
+public Q_SLOTS:
     void changeToMySkin();
     void changeToNetSkin();
     void showPaletteDialog();

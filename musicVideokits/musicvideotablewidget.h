@@ -23,10 +23,10 @@ public:
     virtual void musicDownloadLocal(int row) override;
     void resizeWindow(float delta);
 
-signals:
+Q_SIGNALS:
     void mvURLNameChanged(const QString &name, const QString &data);
 
-public slots:
+public Q_SLOTS:
     void listCellClicked(int row, int col) override;
     void clearAllItems() override;
     void creatSearchedItems(const QString &songname,

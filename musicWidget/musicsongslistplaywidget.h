@@ -27,7 +27,7 @@ public:
     inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
     inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
 
-signals:
+Q_SIGNALS:
     void enterChanged(int row, int column);
 
 protected:
@@ -50,11 +50,11 @@ public:
     void setItemRename();
     bool getItemRenameState() { return m_renameLine != nullptr;}
 
-signals:
+Q_SIGNALS:
     void renameFinished(const QString &text);
     void videoButtonClicked(const QString &text);
 
-public slots:
+public Q_SLOTS:
     void setChangItemName(const QString &name);
     void showMVButtonClicked();
     void downloadButtonClicked();

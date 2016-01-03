@@ -72,9 +72,9 @@ public:
     void setFontType(int type);
     inline void setFontTransparent(int t) { m_transparent = t;}
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void setTimeOut();
     void setText(const QString &str);
 

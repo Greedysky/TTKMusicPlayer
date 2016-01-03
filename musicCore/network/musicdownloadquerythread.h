@@ -37,13 +37,13 @@ public:
     inline int getSongIdIndex() const { return m_musicSongInfos.size() + 1;}
     inline const MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
 
-signals:
+Q_SIGNALS:
     void resolvedSuccess();
     void clearAllItems();
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time);
 
-public slots:
+public Q_SLOTS:
     void searchFinshed();
     void replyError(QNetworkReply::NetworkError error);
 

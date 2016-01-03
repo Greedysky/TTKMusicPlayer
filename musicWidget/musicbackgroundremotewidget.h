@@ -25,10 +25,10 @@ public:
     explicit MusicBackgroundRemoteWidget(QWidget *parent = 0);
     ~MusicBackgroundRemoteWidget();
 
-signals:
+Q_SIGNALS:
     void showCustomSkin(const QString &path);
 
-public slots:
+public Q_SLOTS:
     void buttonClicked(int index);
     void itemUserClicked(QListWidgetItem *item);
 

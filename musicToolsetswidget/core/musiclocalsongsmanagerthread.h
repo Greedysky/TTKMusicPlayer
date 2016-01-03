@@ -25,10 +25,10 @@ public:
     void setFindFilePath(const QStringList &path);
     void stopAndQuitThread();
 
-signals:
+Q_SIGNALS:
     void setSongNamePath(const QFileInfoList &name);
 
-public slots:
+public Q_SLOTS:
     void start();
     void run();
 

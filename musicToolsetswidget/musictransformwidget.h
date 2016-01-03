@@ -31,9 +31,9 @@ public:
     explicit MusicTransformWidget(QWidget *parent = 0);
     virtual ~MusicTransformWidget();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void initInputPath();
     void initOutputPath();
     void startTransform();

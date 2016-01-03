@@ -18,7 +18,7 @@ class MUSIC_LRC_EXPORT MusicClickedLabel : public QLabel
 public:
     explicit MusicClickedLabel(QWidget *parent = 0);
 
-signals:
+Q_SIGNALS:
     void clicked();
 
 protected:

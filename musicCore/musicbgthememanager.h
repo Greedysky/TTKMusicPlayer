@@ -33,7 +33,7 @@ public:
     void setMBackground(const QString &path) { m_MBackground = path;}
     QString getMBackground() const {return m_MBackground;}
 
-signals:
+Q_SIGNALS:
     void artHasChanged();
     void userSelectIndexChanged();
 

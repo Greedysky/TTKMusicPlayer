@@ -26,7 +26,7 @@ public:
 
     void setTitle(const QString &name);
 
-public slots:
+public Q_SLOTS:
     void show();
 
 protected:

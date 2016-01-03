@@ -30,7 +30,7 @@ public:
     explicit MusicWebRadioWidget(QWidget *parent = 0);
     virtual ~MusicWebRadioWidget();
 
-public slots:
+public Q_SLOTS:
     void radioPlay();
     void radioStop();
     void radioVolume(int num);

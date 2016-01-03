@@ -28,10 +28,10 @@ public:
 
     void checkToAutoLogin(QString &name, QString &icon);
 
-signals:
+Q_SIGNALS:
     void userLoginSuccess(const QString &uid, const QString &icon);
 
-public slots:
+public Q_SLOTS:
     void userLogin();
     void checkUserLogin();
     void registerUser();

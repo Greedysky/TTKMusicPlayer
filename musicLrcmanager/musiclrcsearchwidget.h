@@ -22,7 +22,7 @@ public:
     explicit MusicLrcSearchWidget(QWidget *parent = 0);
     virtual ~MusicLrcSearchWidget();
 
-public slots:
+public Q_SLOTS:
     void lrcSearchButtonClicked() const;
     void lrcSearchDownloadClicked();
     void lrcDownloadStateChanged(const QString &string);

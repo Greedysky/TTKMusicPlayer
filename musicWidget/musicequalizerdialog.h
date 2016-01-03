@@ -28,12 +28,12 @@ public:
     explicit MusicEqualizerDialog(QWidget *parent = 0);
     virtual ~MusicEqualizerDialog();
 
-signals:
+Q_SIGNALS:
     void setEqEffect(const MIntList &effect);
     void setEnaleEffect(bool enable);
     void setSpEqEffect(MusicObject::SpecialEQ eq);
 
-public slots:
+public Q_SLOTS:
     void setEqEnable();
     void resetEq();
     void verticalSliderChanged(int index);

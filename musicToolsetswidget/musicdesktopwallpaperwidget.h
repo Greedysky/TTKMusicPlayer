@@ -24,8 +24,8 @@ public:
     explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
     ~MusicDesktopWallpaperWidget();
 
-signals:
-public slots:
+Q_SIGNALS:
+public Q_SLOTS:
     void netRadioButtonPressed();
     void localRadioButtonPressed();
     void playRadioButtonPressed();

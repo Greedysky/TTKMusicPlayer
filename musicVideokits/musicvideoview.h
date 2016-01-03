@@ -22,7 +22,7 @@ class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
 public:
     explicit MusicViewWidget(QWidget *parent = 0);
 
-signals:
+Q_SIGNALS:
     void setFullScreen();
     void setClick();
 
@@ -42,11 +42,11 @@ public:
     void setMedia(const QString &data);
     void resizeWindow(bool resize, const QSize &size);
 
-public slots:
+public Q_SLOTS:
     void play();
     void setFullScreen();
 
-private slots:
+private Q_SLOTS:
     void stop();
     void positionChanged(qint64 position);
     void durationChanged(qint64 duration);

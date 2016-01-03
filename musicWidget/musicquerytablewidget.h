@@ -29,11 +29,11 @@ public:
     virtual void musicDownloadLocal(int row) = 0;
     MIntList getSelectedItems() const;
 
-signals:
+Q_SIGNALS:
     void showDownLoadInfoFor(MusicObject::DownLoadType type);
     void restartSearchQuery(const QString &name);
 
-public slots:
+public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     virtual void clearAllItems() = 0;
     virtual void creatSearchedItems(const QString &songname,

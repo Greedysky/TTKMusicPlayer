@@ -28,7 +28,7 @@ public:
     void resizeWindow(bool resize);
     void setObjectToClose(QObject *object);
 
-public slots:
+public Q_SLOTS:
     void backButtonClicked();
     void afterButtonClicked();
     void searchButtonClicked();

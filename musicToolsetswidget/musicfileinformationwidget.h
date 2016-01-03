@@ -26,7 +26,7 @@ public:
 
     void setFileInformation(const QString &name);
 
-public slots:
+public Q_SLOTS:
     void musicOpenFileDir();
     virtual int exec();
 

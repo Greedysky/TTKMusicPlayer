@@ -39,11 +39,11 @@ public:
     void setLabelText(const QString &name) const;
     void setVolumeValue(int value) const;
 
-signals:
+Q_SIGNALS:
     void setTransparent(int index);
     void musicSearchButtonClicked();
 
-public slots:
+public Q_SLOTS:
     void musicShowSkinChangedWindow();
     void musicUserContextLogin();
     void musicBgTransparentChanged();

@@ -33,11 +33,11 @@ public:
     inline bool getMailStatus() const { return m_mailContains;}
     inline bool getStrStatus() const { return m_strContains;}
 
-signals:
+Q_SIGNALS:
     //-1 empty string, 0 weak, 1 middle, 2 strong
     void checkPwdStrength(int code);
 
-protected slots:
+protected Q_SLOTS:
     void checkPwdStrength();
 
 protected:

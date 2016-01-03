@@ -46,13 +46,13 @@ public:
     void musicCheckHasLrcAlready() const;
     void showSettingWidget() const;
 
-signals:
+Q_SIGNALS:
     void updateBgThemeDownload();
     void updateBackgroundTheme();
     void desktopLrcClosed();
     void lockDesktopLrc(bool lock);
 
-public slots:
+public Q_SLOTS:
     void deleteVideoWidget();
     void setDestopLrcVisible(bool v) const;
     void setWindowLockedChanged();

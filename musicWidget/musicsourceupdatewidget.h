@@ -22,9 +22,9 @@ public:
     explicit MusicSourceUpdateWidget(QWidget *parent = 0);
     virtual ~MusicSourceUpdateWidget();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     virtual int exec();
     void upgradeButtonClicked();
 

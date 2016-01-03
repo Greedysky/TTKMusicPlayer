@@ -41,11 +41,11 @@ public:
 
     void resizeWidth(int width);
 
-signals:
+Q_SIGNALS:
     void updateCurrentTime(qint64 time);
     void theArtBgHasChanged();
 
-public slots:
+public Q_SLOTS:
     void lrcSizeChanged(QAction *action) const;
     void theArtBgChanged();
     void theArtBgUploaded();

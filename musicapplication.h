@@ -40,7 +40,7 @@ public:
     void musicLoadCurrentSongLrc();
     void musicImportSongsSettingPath(const QStringList &path);
 
-public slots:
+public Q_SLOTS:
     void quitWindowClose();
     void positionChanged(qint64 position);
     void durationChanged(qint64 duration);

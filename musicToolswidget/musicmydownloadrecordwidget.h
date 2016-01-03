@@ -26,10 +26,10 @@ public:
     void musicSongsFileName();
     void clearAllItems();
 
-signals:
+Q_SIGNALS:
     void addSongToPlay(const QStringList &list);
 
-public slots:
+public Q_SLOTS:
     void musicPlay();
     void setDeleteItemAt();
     void setDeleteItemAll();

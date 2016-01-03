@@ -33,11 +33,11 @@ public:
     void initCurrentLrc() const;
     void updateCurrentLrc(const QString &first,
                           const QString &second, qint64 time);
-signals:
+Q_SIGNALS:
     void desktopLrcClosed();
     void setWindowLockedChanged(bool lock);
 
-public slots:
+public Q_SLOTS:
     void setWindowLockedChanged();
     void setLrcBigerChanged();
     void setLrcSmallerChanged();

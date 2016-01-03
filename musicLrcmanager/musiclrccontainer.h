@@ -32,12 +32,12 @@ public:
     void setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const;
     inline void setCurrentSongName(const QString &name) { m_currentSongName = name;}
 
-signals:
+Q_SIGNALS:
     void theCurrentLrcUpdated();
     void changeCurrentLrcColorCustom();
     void changeCurrentLrcColorSetting();
 
-public slots:
+public Q_SLOTS:
     void currentLrcCustom();
     void changeCurrentLrcColor(QAction *action);
     void changeCurrentLrcColor(int index);

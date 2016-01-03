@@ -26,10 +26,10 @@ public:
     void clearAllItems();
     void createItems(int index, const QString &name, const QString &time);
 
-signals:
+Q_SIGNALS:
     void setText(const QString &text);
 
-public slots:
+public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
 
 };
@@ -44,10 +44,10 @@ public:
 
     void createItems();
 
-signals:
+Q_SIGNALS:
     void setText(const QString &text);
 
-public slots:
+public Q_SLOTS:
     void clearButtonClicked();
 
 protected:

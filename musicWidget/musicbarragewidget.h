@@ -25,7 +25,7 @@ public:
 
     void setSize(const QSize &size);
 
-public slots:
+public Q_SLOTS:
     void animationFinished();
 
 protected:

@@ -24,7 +24,7 @@ public:
 
     void clear();
 
-public slots:
+public Q_SLOTS:
     virtual void listCellEntered(int row, int column);
     virtual void listCellClicked(int row, int column) = 0;
 

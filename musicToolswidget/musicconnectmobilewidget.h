@@ -21,7 +21,7 @@ public:
     explicit MusicConnectMobileWidget(QWidget *parent = 0);
     ~MusicConnectMobileWidget();
 
-public slots:
+public Q_SLOTS:
     void changeStatckedWidgetFirst();
     void changeStatckedWidgetSecond();
     void changeStatckedWidgetThird();

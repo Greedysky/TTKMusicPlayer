@@ -47,7 +47,7 @@ public:
     void deleteAll();
     virtual void startToDownload() = 0;
 
-signals:
+Q_SIGNALS:
     void musicDownLoadFinished(const QString &name);
 
 public slots:

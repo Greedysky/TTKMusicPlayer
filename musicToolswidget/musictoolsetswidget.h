@@ -24,10 +24,10 @@ public:
     explicit MusicToolSetsWidget(QWidget *parent = 0);
     ~MusicToolSetsWidget();
 
-signals:
+Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
 
-public slots:
+public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
 
 protected:

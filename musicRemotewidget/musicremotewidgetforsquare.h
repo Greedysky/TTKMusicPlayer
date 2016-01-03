@@ -18,7 +18,7 @@ public:
     explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
     virtual ~MusicRemoteWidgetForSquare();
 
-public slots:
+public Q_SLOTS:
     void enterTimeout();
     void leaveTimeout();
 

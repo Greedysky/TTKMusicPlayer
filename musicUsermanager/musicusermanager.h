@@ -28,10 +28,10 @@ public:
 
     void setUserUID(const QString &uid);
 
-signals:
+Q_SIGNALS:
     void userStateChanged(const QString &uid, const QString &icon);
 
-public slots:
+public Q_SLOTS:
     void musicUserLogoff();
     void popupUserRecordWidget();
     void resetUserName(const QString &name);

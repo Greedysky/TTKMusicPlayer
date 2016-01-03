@@ -23,10 +23,10 @@ protected:
     virtual void focusOutEvent(QFocusEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-signals:
+Q_SIGNALS:
     void renameFinished(const QString &text);
 
-public slots:
+public Q_SLOTS:
     void renameFinished()
     {
         emit renameFinished(text());

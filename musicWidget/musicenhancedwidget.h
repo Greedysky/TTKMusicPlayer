@@ -19,10 +19,10 @@ public:
     explicit MusicEnhancedWidget(QWidget *parent = 0);
     ~MusicEnhancedWidget();
 
-signals:
+Q_SIGNALS:
     void enhancedMusicChanged(int type);
 
-public slots:
+public Q_SLOTS:
     void setEnhancedMusicConfig(int type);
 
 protected:

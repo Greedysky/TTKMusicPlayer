@@ -31,7 +31,7 @@ public:
     QString getSearchedText() const;
     void clearSearchedText() const;
 
-public slots:
+public Q_SLOTS:
     void musicSearch();
     void musicSpectrumWidget();
     void musicStackedSongListWidgetChanged();

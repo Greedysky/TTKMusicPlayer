@@ -68,7 +68,7 @@ public:
     static QStringList supportFormatsFilterString();
     static QStringList supportFormatsFilterDialogString();
 
-signals:
+Q_SIGNALS:
     void stateChanged(MusicPlayer::State newState);
 
     void durationChanged(qint64 duration);
@@ -77,7 +77,7 @@ signals:
     void volumeChanged(int volume);
     void mutedChanged(bool muted);
 
-public slots:
+public Q_SLOTS:
     void play();
     void pause();
     void stop();
@@ -90,7 +90,7 @@ public slots:
     void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
 #endif
 
-private slots:
+private Q_SLOTS:
     void setTimeOut();
     void removeCurrentMedia();
 

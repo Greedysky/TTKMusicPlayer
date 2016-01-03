@@ -52,7 +52,7 @@ public:
                     const QString &icon);
     int getCurrentBitrate();
 
-public slots:
+public Q_SLOTS:
     virtual void listCellClicked(int , int) override {}
 
 protected:
@@ -70,7 +70,7 @@ public:
 
     void setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type);
 
-public slots:
+public Q_SLOTS:
     virtual int exec();
     void queryAllFinished();
     void downloadDirSelected();

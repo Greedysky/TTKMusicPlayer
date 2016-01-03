@@ -50,9 +50,9 @@ public:
     explicit MusicAudioRecorderWidget(QWidget *parent = 0);
     virtual ~MusicAudioRecorderWidget();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void onRecordStart();
     void onRecordStop();
     void onRecordPlay();

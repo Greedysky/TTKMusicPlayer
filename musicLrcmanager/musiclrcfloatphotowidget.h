@@ -29,7 +29,7 @@ public:
 
     void resizeWidth(int width);
 
-public slots:
+public Q_SLOTS:
     void show();
     void close();
     void parentClose() { QLabel::close(); }

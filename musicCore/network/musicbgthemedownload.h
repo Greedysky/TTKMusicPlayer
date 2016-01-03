@@ -23,10 +23,10 @@ public:
 
     void startToDownload();
 
-signals:
+Q_SIGNALS:
     void musicBgDownloadFinished();
 
-public slots:
+public Q_SLOTS:
     void downLoadFinished();
     void bgDownLoadFinished();
 

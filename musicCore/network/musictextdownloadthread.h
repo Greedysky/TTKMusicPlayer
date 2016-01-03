@@ -19,7 +19,7 @@ public:
                             Download_Type type, QObject *parent = 0);
     virtual void startToDownload() override;
 
-public slots:
+public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 };

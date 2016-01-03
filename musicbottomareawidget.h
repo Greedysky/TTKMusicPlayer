@@ -49,11 +49,11 @@ public:
 #endif
     void setWindowConcise();
 
-signals:
+Q_SIGNALS:
     void setShowDesktopLrc(bool show);
     void setWindowLockedChanged();
 
-public slots:
+public Q_SLOTS:
     void lockDesktopLrc(bool lock);
     void desktopLrcClosed();
     void iconActivated(QSystemTrayIcon::ActivationReason);

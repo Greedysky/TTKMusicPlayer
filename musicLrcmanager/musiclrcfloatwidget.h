@@ -24,7 +24,7 @@ public:
 
     void resizeWidth(int width);
 
-public slots:
+public Q_SLOTS:
     void showFloatSettingWidget();
     void closeFloatSettingWidget();
 

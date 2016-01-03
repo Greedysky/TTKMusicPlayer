@@ -19,7 +19,7 @@ public:
     explicit MusicQualityChoiceTableWidget(QWidget *parent = 0);
     virtual ~MusicQualityChoiceTableWidget();
 
-public slots:
+public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     void createItems();
 
@@ -35,10 +35,10 @@ public:
     explicit MusicQualityChoiceWidget(QWidget *parent = 0);
     ~MusicQualityChoiceWidget();
 
-signals:
+Q_SIGNALS:
     void researchQueryByQuality();
 
-public slots:
+public Q_SLOTS:
     void listCellClicked(int row);
     void getQualityString(QString &string);
 

@@ -34,7 +34,7 @@ public:
     void disableBlurBehindWindow(bool enable);
     inline bool isDisableBlurBehindWindow() const
                 { return m_disableBlurBehindWindow; }
-signals:
+Q_SIGNALS:
 
 protected:
 #if defined Q_OS_WIN && defined MUSIC_QT_5

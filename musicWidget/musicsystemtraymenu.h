@@ -27,11 +27,11 @@ public:
     void showDesktopLrc(const QString &show) const;
     void showPlayStatus(bool status) const;
 
-signals:
+Q_SIGNALS:
     void setShowDesktopLrc(bool status);
     void setWindowLockedChanged();
 
-public slots:
+public Q_SLOTS:
     void showDesktopLrc();
     void lockDesktopLrc(bool lock);
 

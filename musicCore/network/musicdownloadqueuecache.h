@@ -31,7 +31,7 @@ public:
     virtual void startToDownload() override;
     void abort();
 
-public slots:
+public Q_SLOTS:
     virtual void downLoadFinished() override;
     void readyReadSlot();
     void errorSlot(QNetworkReply::NetworkError code);

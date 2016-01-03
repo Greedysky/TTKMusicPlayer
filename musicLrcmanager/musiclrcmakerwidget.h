@@ -24,7 +24,7 @@ public:
 
     void setCurrentSongName(const QString &name);
 
-public slots:
+public Q_SLOTS:
     void setCurrentPosition(qint64 pos) ;
     void makeButtonClicked();
     void saveButtonClicked();

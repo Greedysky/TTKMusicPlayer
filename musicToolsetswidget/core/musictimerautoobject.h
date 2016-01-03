@@ -24,11 +24,11 @@ public:
 
     void runTimerAutoConfig();
 
-signals:
+Q_SIGNALS:
     void setPlaySong(int index);
     void setStopSong();
 
-public slots:
+public Q_SLOTS:
     void timeout();
 
 protected:

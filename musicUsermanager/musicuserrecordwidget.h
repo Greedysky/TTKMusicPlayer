@@ -27,11 +27,11 @@ public:
 
     void setUserModel(MusicUserModel *model, const QString &uid);
 
-signals:
+Q_SIGNALS:
     void resetUserName(const QString &name);
     void userIconChanged(const QString &uid, const QString &icon);
 
-public slots:
+public Q_SLOTS:
     void cityComboBoxIndexChanged(const QString &city);
     void confirmButtonClickedF();
     void openFileButtonClickedS();

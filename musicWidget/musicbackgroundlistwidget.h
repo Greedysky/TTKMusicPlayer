@@ -37,7 +37,7 @@ public:
 
     QString fileHash(const QString &name);
 
-public slots:
+public Q_SLOTS:
     void recreateItem(const QString &name);
 
 };

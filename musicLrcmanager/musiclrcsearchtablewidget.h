@@ -23,10 +23,10 @@ public:
     virtual void musicDownloadLocal(int row) override;
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
-signals:
+Q_SIGNALS:
     void lrcDownloadStateChanged(const QString &name);
 
-public slots:
+public Q_SLOTS:
     void clearAllItems() override;
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time) override;

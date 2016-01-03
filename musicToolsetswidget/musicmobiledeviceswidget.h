@@ -22,9 +22,9 @@ public:
     explicit MusicMobileDevicesWidget(QWidget *parent = 0);
     ~MusicMobileDevicesWidget();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void showMobileManager();
 
 protected:

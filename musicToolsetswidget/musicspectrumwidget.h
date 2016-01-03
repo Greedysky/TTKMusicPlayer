@@ -34,13 +34,13 @@ public:
     explicit MusicSpectrumWidget(QWidget *parent = 0);
     virtual ~MusicSpectrumWidget();
 
-signals:
+Q_SIGNALS:
     void setSpectrum(HWND wnd, int w, int h, int x = 0, int y = 0);
 
-public slots:
+public Q_SLOTS:
     void show();
 
-private slots:
+private Q_SLOTS:
     void timeout();
     void close();
 

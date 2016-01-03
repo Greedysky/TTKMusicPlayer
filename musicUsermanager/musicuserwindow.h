@@ -26,9 +26,9 @@ public:
     explicit MusicUserWindow(QWidget *parent = 0);
     ~MusicUserWindow();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void musicUserLogin();
     void userStateChanged(const QString &uid, const QString &icon);
     void musicUserContextLogin();

@@ -23,7 +23,7 @@ public:
     void setParamters(const MStriantMap &p);
     void stopAndQuitThread();
 
-public slots:
+public Q_SLOTS:
     void start();
     void run();
 

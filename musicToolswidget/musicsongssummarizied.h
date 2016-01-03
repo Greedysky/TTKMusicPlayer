@@ -40,13 +40,13 @@ public:
     void setTimerLabel(const QString &time) const;
     void setPlaybackMode(MusicObject::SongPlayType mode) const;
 
-signals:
+Q_SIGNALS:
     void deleteItemAt(MIntList list);
     void updatePlayLists(const QString &list);
     void showCurrentSong(int index);
     void updateMediaLists(const QStringList &list, int index);
 
-public slots:
+public Q_SLOTS:
     void addNewItem();
     void deleteItem();
     void changItemName();

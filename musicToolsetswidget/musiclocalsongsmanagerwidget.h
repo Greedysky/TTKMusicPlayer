@@ -30,10 +30,10 @@ public:
     explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
     virtual ~MusicLocalSongsManagerWidget();
 
-signals:
+Q_SIGNALS:
     void addSongToPlay(const QStringList &names);
 
-public slots:
+public Q_SLOTS:
     void selectedAllItems(bool check);
     void auditionButtonClick();
     void addButtonClick();

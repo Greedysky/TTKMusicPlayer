@@ -26,7 +26,7 @@ public:
     void musicCheckHasLrcAlready();
     bool checkSettingParameterValue() const;
 
-public slots:
+public Q_SLOTS:
     void musicHaveNoLrcAlready();
     /////////////////////////////////////////////
     ///This is a slot by MusicSongSearchOnlineWidget's signal emit

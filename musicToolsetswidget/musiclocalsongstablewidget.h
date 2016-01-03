@@ -22,7 +22,7 @@ public:
     void createShowlist();
     void createShowPath();
 
-public slots:
+public Q_SLOTS:
     virtual void listCellClicked(int, int) override {}
 
 };

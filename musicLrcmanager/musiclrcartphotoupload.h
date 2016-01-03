@@ -21,7 +21,7 @@ class MUSIC_LRC_EXPORT MusicLrcArtPhotoUpload : public MusicAbstractMoveDialog
 public:
     explicit MusicLrcArtPhotoUpload(QWidget *parent = 0);
 
-public slots:
+public Q_SLOTS:
     void selectButtonClicked();
     void uploadButtonClicked();
     virtual int exec();

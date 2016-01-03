@@ -32,13 +32,13 @@ public:
     void auditionToMusic(int row);
     void auditionToMusicStop(int row);
 
-signals:
+Q_SIGNALS:
     void muiscSongToPlayListChanged(const QString &name, const QString &size,
                                     const QString &format);
     void auditionIsPlaying(bool play);
     void getQualityString(QString &string);
 
-public slots:
+public Q_SLOTS:
     void listCellClicked(int row, int column) override;
     void clearAllItems() override;
     void creatSearchedItems(const QString &songname,
@@ -71,7 +71,7 @@ public:
 
     void startSearchQuery(const QString &name) const;
 
-public slots:
+public Q_SLOTS:
     void buttonClicked(int index);
     void auditionIsPlaying(bool play);
 

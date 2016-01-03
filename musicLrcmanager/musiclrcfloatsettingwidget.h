@@ -21,10 +21,10 @@ public:
 
     void resizeWidth(int width);
 
-signals:
+Q_SIGNALS:
     void widgetClose();
 
-public slots:
+public Q_SLOTS:
     void show();
     void lrcSizeUpChanged();
     void lrcSizeLowChanged();

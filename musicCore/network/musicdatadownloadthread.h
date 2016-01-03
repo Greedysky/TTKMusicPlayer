@@ -19,11 +19,11 @@ public:
                             Download_Type type, QObject *parent = 0);
     virtual void startToDownload() override;
 
-signals:
+Q_SIGNALS:
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     void createDownloadItem(const QString &name, qint64 time);
 
-public slots:
+public Q_SLOTS:
     virtual void downLoadFinished() override;
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
     void downLoadReadyRead();

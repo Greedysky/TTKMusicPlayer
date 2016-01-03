@@ -20,7 +20,7 @@ public:
 
     void addFilterText(const QString &text);
 
-signals:
+Q_SIGNALS:
     void enterFinished(const QString &text);
 
 protected:

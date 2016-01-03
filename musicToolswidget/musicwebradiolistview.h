@@ -22,9 +22,9 @@ public:
     explicit MusicWebRadioListView(QWidget *parent = 0);
     ~MusicWebRadioListView();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
 
 protected:

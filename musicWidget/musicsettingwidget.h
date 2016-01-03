@@ -34,10 +34,10 @@ public:
 
     void initControllerParameter();
 
-signals:
+Q_SIGNALS:
     void parameterSettingChanged();
 
-public slots:
+public Q_SLOTS:
     void downloadGroupCached(int index);
     void downloadGroupSpeedLimit(int index);
     void downloadDirSelected(int index);

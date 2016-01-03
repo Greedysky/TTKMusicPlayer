@@ -36,12 +36,12 @@ public:
     bool removeMedia(int pos);
     bool removeMedia(int start, int end);
 
-signals:
+Q_SIGNALS:
     void currentIndexChanged(int index);
     void playbackModeChanged(MusicObject::SongPlayType mode);
     void removeCurrentMedia();
 
-public slots:
+public Q_SLOTS:
     void setCurrentIndex(int index = -2);
     void appendMedia(const QString &content);
     void appendMedia(const QStringList &items);

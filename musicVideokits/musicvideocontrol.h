@@ -36,7 +36,7 @@ public:
 
     void setFixedSize(int w, int h);
 
-signals:
+Q_SIGNALS:
     void musicVideoSetPopup(bool popup);
     void musicVideoFullscreen(bool full);
     void getMusicMvInfo(MusicSongAttributes &data);
@@ -49,7 +49,7 @@ signals:
     void barrageSizeButtonChanged(int size);
     void barrageColorButtonChanged(const QColor &color);
 
-public slots:
+public Q_SLOTS:
     void show();
     void inSideButtonClicked();
     void fullButtonClicked();

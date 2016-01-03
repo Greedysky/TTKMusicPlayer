@@ -36,7 +36,7 @@ public:
 
     void setSongName(const QString &name);
 
-public slots:
+public Q_SLOTS:
     virtual int exec();
     void textAreaChanged();
     void confirmButtonClicked();

@@ -28,7 +28,7 @@ public:
     void setTitle(const QString &text) const;
     void setText(const QString &text) const;
 
-public slots:
+public Q_SLOTS:
     void buttonClicked(int index);
     virtual int exec();
 

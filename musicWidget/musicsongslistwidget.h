@@ -34,7 +34,7 @@ public:
     void setTimerLabel(const QString &t) const;
     void replacePlayWidgetRow();
 
-signals:
+Q_SIGNALS:
     void musicPlayOrder();
     void musicPlayRandom();
     void musicPlayListLoop();
@@ -49,7 +49,7 @@ signals:
     void getMusicIndexSwaped(int before, int after, int play,
                              QStringList &list);
 
-public slots:
+public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
     virtual void listCellClicked(int row, int column) override;
     void musicPlayClicked();

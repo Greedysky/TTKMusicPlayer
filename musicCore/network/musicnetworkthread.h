@@ -27,11 +27,11 @@ public:
     void setBlockNetWork(int block);
     inline bool isOnline() const {return m_networkState;}
 
-signals:
+Q_SIGNALS:
     void networkConnectionStateChanged(bool state);
     //default status is true, means connected network
 
-public slots:
+public Q_SLOTS:
     void socketStateChanged(QAbstractSocket::SocketState socketState);
     void timerOut();
 

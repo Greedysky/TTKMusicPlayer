@@ -38,11 +38,11 @@ public:
     void windowStartAnimationOpacity();
     void windowCloseAnimationOpacity();
 
-signals:
+Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
     void enhancedMusicChanged(int type);
 
-public slots:
+public Q_SLOTS:
     void musicAboutUs();
     void musicAudioRecorder();
     void musicTimerWidget();
