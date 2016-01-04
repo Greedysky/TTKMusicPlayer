@@ -101,8 +101,8 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 
 void MusicLrcFloatPhotoWidget::resizeWidth(int width)
 {
-    m_rectIn = QRect(0 + width/2, 500, 115, 105);
-    m_rectOut = QRect(0 + width/2, 300, 522, 180);
+    m_rectIn = QRect(width/2, 500, 115, 105);
+    m_rectOut = QRect(width/2, 300, 542, 180);
     setGeometry(m_rectOut);
 }
 

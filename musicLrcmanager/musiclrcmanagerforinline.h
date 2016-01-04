@@ -10,7 +10,8 @@
    =================================================*/
 
 #include "musiclrcmanager.h"
-#define LRC_PER_WIDTH 522
+
+#define LRC_PER_WIDTH 542
 
 class MUSIC_LRC_EXPORT MusicLRCManagerForInline : public MusicLRCManager
 {
