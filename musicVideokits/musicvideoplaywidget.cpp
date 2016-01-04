@@ -15,7 +15,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 {
     if(popup)
     {
-        resize(525, 455);
+        resize(541, 460);
     }
 
     QVBoxLayout *layout = new QVBoxLayout(this);
