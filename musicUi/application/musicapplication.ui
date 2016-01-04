@@ -163,9 +163,9 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>138</y>
+     <y>144</y>
      <width>331</width>
-     <height>461</height>
+     <height>455</height>
     </rect>
    </property>
   </widget>
@@ -316,9 +316,9 @@
   <widget class="QStackedWidget" name="SurfaceStackedWidget">
    <property name="geometry">
     <rect>
-     <x>410</x>
+     <x>390</x>
      <y>144</y>
-     <width>521</width>
+     <width>541</width>
      <height>455</height>
     </rect>
    </property>
@@ -327,7 +327,7 @@
    </property>
    <widget class="QLabel" name="showPicture">
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/image/beauty);</string>
+     <string notr="true">border-image:url(:/image/beauty)</string>
     </property>
    </widget>
    <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
