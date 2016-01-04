@@ -23,8 +23,8 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 215);
-    headerview->resizeSection(2, 166);
+    headerview->resizeSection(1, 225);
+    headerview->resizeSection(2, 176);
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
@@ -91,14 +91,14 @@ void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songnam
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 210));
+    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 220));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 160));
+    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 170));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -320,20 +320,20 @@ void MusicSongSearchOnlineWidget::createToolWidget()
     Label2->setGeometry(310, 40, 60, 20);
     QLabel *Label3 = new QLabel(tr("Operator"), this);
     Label3->setStyleSheet(MusicUIObject::MCustomStyle18);
-    Label3->setGeometry(435, 40, 60, 20);
+    Label3->setGeometry(450, 40, 60, 20);
 
     m_playButton = new QPushButton(tr("Play"), this);
-    m_playButton->setGeometry(295, 5, 70, 20);
+    m_playButton->setGeometry(315, 5, 70, 20);
     m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
-    addButton->setGeometry(370, 5, 70, 20);
+    addButton->setGeometry(390, 5, 70, 20);
     addButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
-    downloadButton->setGeometry(445, 5, 70, 20);
+    downloadButton->setGeometry(465, 5, 70, 20);
     downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 

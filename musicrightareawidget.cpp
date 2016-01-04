@@ -391,9 +391,9 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     m_lrcDisplayAll = !m_lrcDisplayAll;
     m_ui->songsContainer->setHidden(m_lrcDisplayAll);
     m_ui->lrcDisplayAllButton->move(m_lrcDisplayAll ? 61 : 392, 320);
-    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 410, 138,
-                                            m_lrcDisplayAll ? 871: 521, 461);
-    m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 350 : 0);
+    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 390, 144,
+                                            m_lrcDisplayAll ? 871: 541, 455);
+    m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 330 : 0);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor"
                                                              : ":/lrc/lrcDisplayAll"));
 }
