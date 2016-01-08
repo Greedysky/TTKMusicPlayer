@@ -88,7 +88,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(&m_popupQuality, SIGNAL(triggered(QAction*)), SLOT(menuActionTriggered(QAction*)));
     m_qualityButton->setMenu(&m_popupQuality);
 
-    connect(m_timeSlider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
+    connect(m_timeSlider, SIGNAL(sliderReleasedAt(int)), SIGNAL(sliderValueChanged(int)));
     connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumnChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
@@ -182,11 +182,6 @@ void MusicVideoControl::menuActionTriggered(QAction *action)
         m_qualityButton->setText(tr("SqMV"));
         emit mvURLChanged( findMVUrlByBitrate(1000) );
     }
-}
-
-void MusicVideoControl::sliderReleased()
-{
-    emit sliderValueChanged(m_timeSlider->value()/1000);
 }
 
 void MusicVideoControl::pushBarrageClicked()

@@ -20,11 +20,18 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation,
     m_textLabel->setAlignment(Qt::AlignCenter);
     m_textLabel->setStyleSheet("QLabel{color:#888888; background-color:#FFE6E6; \
                                        border:1px solid gray;}");
+
+    connect(this, SIGNAL(sliderReleased()), SLOT(sliderReleasedChanged()));
 }
 
 MusicMovingLabelSlider::~MusicMovingLabelSlider()
 {
     delete m_textLabel;
+}
+
+void MusicMovingLabelSlider::sliderReleasedChanged()
+{
+    emit sliderReleasedAt( value() );
 }
 
 void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)

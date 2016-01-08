@@ -54,7 +54,6 @@ public Q_SLOTS:
     void inSideButtonClicked();
     void fullButtonClicked();
     void menuActionTriggered(QAction *action);
-    void sliderReleased();
 
     void pushBarrageClicked();
     void barrageSizeButtonClicked(int index);

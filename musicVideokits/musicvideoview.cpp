@@ -165,7 +165,7 @@ void MusicVideoView::durationChanged(qint64 duration)
 
 void MusicVideoView::setPosition(int position)
 {
-    m_mediaPlayer->setPosition(position);
+    m_mediaPlayer->setPosition(position/1000);
 }
 
 void MusicVideoView::volumnChanged(int volumn)

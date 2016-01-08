@@ -22,6 +22,12 @@ public:
                                     QWidget *parent = 0);
     ~MusicMovingLabelSlider();
 
+Q_SIGNALS:
+    void sliderReleasedAt(int pos);
+
+private Q_SLOTS:
+    void sliderReleasedChanged();
+
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

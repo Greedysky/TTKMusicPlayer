@@ -31,7 +31,7 @@ void MusicTimerSliderWidget::setObject(QObject *object) const
 {
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
-    connect(m_slider, SIGNAL(sliderMoved(int)), object, SLOT(musicPlayAnyTimeAt(int)));
+    connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(musicPlayAnyTimeAt(int)));
 }
 
 MusicTimerSliderWidget::~MusicTimerSliderWidget()
