@@ -27,7 +27,3 @@ SOURCES += \
     $$PWD/core/musicwebradiodatebase.cpp \
     $$PWD/core/musicmydownloadrecordobject.cpp \
     $$PWD/musicconnectmobilewidget.cpp
-
-
-FORMS    += \
-    musicUi/musicToolswidget/musicwebradiowidget.ui

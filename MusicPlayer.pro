@@ -60,6 +60,7 @@ include(musicLrcmanager/MusicLrc.pri)
 include(musicRemotewidget/MusicRemote.pri)
 include(musicToolsetswidget/MusicToolsSets.pri)
 include(musicToolswidget/MusicToolsWidget.pri)
+include(musicUi/MusicUi.pri)
 include(musicUsermanager/MusicUser.pri)
 include(musicVideokits/MusicVideo.pri)
 
@@ -81,10 +82,6 @@ HEADERS  += \
     musicrightareawidget.h \
     musicbottomareawidget.h \
     musicapplicationobject.h
-
-
-FORMS    += \
-    musicUi/application/musicapplication.ui
 
 
 RESOURCES += \

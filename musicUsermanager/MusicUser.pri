@@ -26,12 +26,6 @@ SOURCES += \
     $$PWD/core/musicuserconfigmanager.cpp \
     $$PWD/musicuserrecordwidget.cpp
     
-    
-FORMS    += \
-    musicUi/musicUsermanager/musicuserdialog.ui \
-    musicUi/musicUsermanager/musicuserwindow.ui \
-    musicUi/musicUsermanager/musicusermanager.ui \
-    musicUi/musicUsermanager/musicuserrecordwidget.ui
 
 RESOURCES += \
     musicQrc/MusicPlayerShare.qrc \

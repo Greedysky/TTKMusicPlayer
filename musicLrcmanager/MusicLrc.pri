@@ -40,9 +40,3 @@ SOURCES += \
     $$PWD/musiclrcfloatsettingwidget.cpp \
     $$PWD/musiclrcfloatphotowidget.cpp \
     $$PWD/musiclrcmakerwidget.cpp
-
-
-FORMS    += \
-    musicUi/musicLrcmanager/musiclrcsearchwidget.ui \
-    musicUi/musicLrcmanager/musiclrcartphotoupload.ui \
-    musicUi/musicLrcmanager/musiclrcmakerwidget.ui

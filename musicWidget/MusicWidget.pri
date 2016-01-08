@@ -73,15 +73,3 @@ SOURCES += \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/core/musicmovinglabelslider.cpp \
     $$PWD/musicbarragewidget.cpp
-
-
-FORMS    += \
-    musicUi/musicWidget/musicmessagebox.ui \
-    musicUi/musicWidget/musicsongslistiteminfowidget.ui \
-    musicUi/musicWidget/musicsettingwidget.ui \
-    musicUi/musicWidget/musicbackgroundskindialog.ui \
-    musicUi/musicWidget/musicequalizerdialog.ui \
-    musicUi/musicWidget/musicdownloadwidget.ui \
-    musicUi/musicWidget/musicsongsharingwidget.ui \
-    musicUi/musicWidget/musicsourceupdatewidget.ui
-

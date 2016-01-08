@@ -37,12 +37,3 @@ SOURCES += \
     $$PWD/core/musiclocalsongsmanagerthread.cpp \
     $$PWD/core/musicsongtag.cpp \
     $$PWD/musiclocalsongstablewidget.cpp
-
-
-FORMS    += \
-    musicUi/musicToolsetswidget/musicaudiorecorderwidget.ui \
-    musicUi/musicToolsetswidget/musictimerwidget.ui \
-    musicUi/musicToolsetswidget/musiclocalsongsmanagerwidget.ui \
-    musicUi/musicToolsetswidget/musictransformwidget.ui \
-    musicUi/musicToolsetswidget/musicfileinformationwidget.ui \
-    musicUi/musicToolsetswidget/musicdesktopwallpaperwidget.ui
