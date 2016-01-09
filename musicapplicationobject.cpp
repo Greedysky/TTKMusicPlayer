@@ -1,6 +1,8 @@
 #include "musicapplicationobject.h"
-#include <Windows.h>
-#include <Dbt.h>
+#ifdef Q_OS_WIN
+# include <Windows.h>
+# include <Dbt.h>
+#endif
 #include "musicmobiledeviceswidget.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
