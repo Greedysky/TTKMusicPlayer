@@ -54,7 +54,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
-        m_musicLrcContainer[i]->setText(".........");
+        m_musicLrcContainer[i]->setText( QString() );
     }
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -119,11 +119,11 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
     {
-        m_currentShowLrcContainer << ".........";
+        m_currentShowLrcContainer << QString();
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, ".........");
+       m_lrcContainer.insert(0, QString());
     }
 
     MIntStringMapIt it(m_lrcContainer);
@@ -134,7 +134,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
     {
-        m_currentShowLrcContainer << " ";
+        m_currentShowLrcContainer << QString();
     }
     return true;
 }
@@ -253,7 +253,7 @@ void MusicLrcContainerForInline::initLrc()
 {
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
-        m_musicLrcContainer[i]->setText(".........");
+        m_musicLrcContainer[i]->setText( QString() );
     }
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
 }
