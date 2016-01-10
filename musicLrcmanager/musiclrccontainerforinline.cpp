@@ -357,19 +357,29 @@ void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    QMenu changColorMenu(tr("changColorMenu"),this);
-    QMenu changeLrcSize(tr("changeLrcSize"),this);
+    QMenu changColorMenu(tr("changColorMenu"), this);
+    QMenu changeLrcSize(tr("changeLrcSize"), this);
+    QMenu changeLrcTimeFast(tr("changeLrcTimeFast"), this);
+    QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), this);
+
     changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     changeLrcSize.setStyleSheet(MusicUIObject::MMenuStyle02);
+    changeLrcTimeFast.setStyleSheet(MusicUIObject::MMenuStyle02);
+    changeLrcTimeSlow.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
+    menu.addMenu(&changeLrcTimeFast)->setEnabled(!m_lrcContainer.isEmpty());
+    menu.addMenu(&changeLrcTimeSlow)->setEnabled(!m_lrcContainer.isEmpty());
+    menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(!m_lrcContainer.isEmpty());
     menu.addSeparator();
 
+    //////////////////////////////////////////////////
     QActionGroup *group = new QActionGroup(this);
     group->addAction(changeLrcSize.addAction(tr("smaller")));
     group->addAction(changeLrcSize.addAction(tr("small")));
@@ -382,6 +392,23 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     changeLrcSize.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
+    //////////////////////////////////////////////////
+    QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast0.5s")));
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast1s")));
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast2s")));
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")));
+    connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+
+    //////////////////////////////////////////////////
+    QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")));
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow1s")));
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow2s")));
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")));
+    connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
+
+    //////////////////////////////////////////////////
     QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
     m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theShowLrcChanged()));
@@ -408,6 +435,24 @@ void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
     else if (text == tr("middle")) setLrcSize(MusicLRCManager::Middle);
     else if (text == tr("big")) setLrcSize(MusicLRCManager::Big);
     else if (text == tr("bigger")) setLrcSize(MusicLRCManager::Bigger);
+}
+
+void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action) const
+{
+    QString text = action->text();
+    if(text == tr("lrcTimeFast0.5s")) ;
+    else if(text == tr("lrcTimeFast1s")) ;
+    else if(text == tr("lrcTimeFast2s")) ;
+    else if(text == tr("lrcTimeFast5s")) ;
+    else if(text == tr("lrcTimeSlow0.5s")) ;
+    else if(text == tr("lrcTimeSlow1s")) ;
+    else if(text == tr("lrcTimeSlow2s")) ;
+    else if(text == tr("lrcTimeSlow5s")) ;
+}
+
+void MusicLrcContainerForInline::revertLrcTimeSpeed()
+{
+
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()

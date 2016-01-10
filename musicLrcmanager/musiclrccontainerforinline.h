@@ -47,6 +47,8 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void lrcSizeChanged(QAction *action) const;
+    void lrcTimeSpeedChanged(QAction *action) const;
+    void revertLrcTimeSpeed();
     void theArtBgChanged();
     void theArtBgUploaded();
     void theShowLrcChanged();
