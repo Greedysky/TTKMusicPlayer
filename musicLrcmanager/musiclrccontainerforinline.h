@@ -63,6 +63,7 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     void changeLrcPostion(const QString &type);
+    void revertLrcTimeSpeed(qint64 pos);
     void initLrc();
 
     QPoint m_mousePressedAt;
@@ -71,6 +72,7 @@ protected:
     bool m_showArtBackground;
     bool m_showInlineLrc;
     int m_currentLrcIndex;
+    qint64 m_changeSpeedValue;
     QVBoxLayout *m_vBoxLayout;
     QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;

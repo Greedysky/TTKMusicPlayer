@@ -34,6 +34,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
     m_showInlineLrc = true;
+    m_changeSpeedValue = 0;
 
     initLrc();
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
@@ -451,6 +452,8 @@ void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
     else if(text == tr("lrcTimeSlow2s")) timeValue = 2000;
     else if(text == tr("lrcTimeSlow5s")) timeValue = 5000;
 
+    m_changeSpeedValue += timeValue;
+
     MIntStringMapIt it(m_lrcContainer);
     MIntStringMap copy;
     while(it.hasNext())
@@ -459,11 +462,31 @@ void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
         copy.insert(it.key() + timeValue, it.value());
     }
     m_lrcContainer = copy;
+
+    revertLrcTimeSpeed( timeValue );
 }
 
 void MusicLrcContainerForInline::revertLrcTimeSpeed()
 {
+    if(m_changeSpeedValue == 0)
+    {
+        return;
+    }
+    revertLrcTimeSpeed( -m_changeSpeedValue );
+}
 
+void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
+{
+    MIntStringMapIt it(m_lrcContainer);
+    MIntStringMap copy;
+    while(it.hasNext())
+    {
+        it.next();
+        copy.insert(it.key() + pos, it.value());
+    }
+    m_lrcContainer = copy;
+
+    pos > 0 ? (--m_currentLrcIndex < 0 ? 0 : m_currentLrcIndex) : ++m_currentLrcIndex;
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()
