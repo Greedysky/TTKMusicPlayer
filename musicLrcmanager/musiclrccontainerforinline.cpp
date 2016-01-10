@@ -374,9 +374,10 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
-    menu.addMenu(&changeLrcTimeFast)->setEnabled(!m_lrcContainer.isEmpty());
-    menu.addMenu(&changeLrcTimeSlow)->setEnabled(!m_lrcContainer.isEmpty());
-    menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(!m_lrcContainer.isEmpty());
+    bool hasLrcContainer = !m_lrcContainer.isEmpty();
+    menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
+    menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
+    menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
     //////////////////////////////////////////////////
@@ -437,17 +438,27 @@ void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
     else if (text == tr("bigger")) setLrcSize(MusicLRCManager::Bigger);
 }
 
-void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action) const
+void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
 {
     QString text = action->text();
-    if(text == tr("lrcTimeFast0.5s")) ;
-    else if(text == tr("lrcTimeFast1s")) ;
-    else if(text == tr("lrcTimeFast2s")) ;
-    else if(text == tr("lrcTimeFast5s")) ;
-    else if(text == tr("lrcTimeSlow0.5s")) ;
-    else if(text == tr("lrcTimeSlow1s")) ;
-    else if(text == tr("lrcTimeSlow2s")) ;
-    else if(text == tr("lrcTimeSlow5s")) ;
+    int timeValue = 0;
+    if(text == tr("lrcTimeFast0.5s")) timeValue = -500;
+    else if(text == tr("lrcTimeFast1s")) timeValue = -1000;
+    else if(text == tr("lrcTimeFast2s")) timeValue = -2000;
+    else if(text == tr("lrcTimeFast5s")) timeValue = -5000;
+    else if(text == tr("lrcTimeSlow0.5s")) timeValue = 500;
+    else if(text == tr("lrcTimeSlow1s")) timeValue = 1000;
+    else if(text == tr("lrcTimeSlow2s")) timeValue = 2000;
+    else if(text == tr("lrcTimeSlow5s")) timeValue = 5000;
+
+    MIntStringMapIt it(m_lrcContainer);
+    MIntStringMap copy;
+    while(it.hasNext())
+    {
+        it.next();
+        copy.insert(it.key() + timeValue, it.value());
+    }
+    m_lrcContainer = copy;
 }
 
 void MusicLrcContainerForInline::revertLrcTimeSpeed()
