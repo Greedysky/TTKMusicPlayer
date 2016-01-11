@@ -166,217 +166,217 @@
         <translation>支持歌曲文件的拖拽</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="598"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="598"/>
         <source>00:00</source>
         <translation>00:00</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="859"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="862"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="859"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="862"/>
         <source>顺序播放</source>
         <translation>順序播放</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="185"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="185"/>
         <source>当前无正在播放的歌曲</source>
         <translation>當前無正在播放的歌曲</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="14"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="14"/>
         <source>天天酷音</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="349"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="349"/>
         <source>音乐</source>
         <translation>音樂</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="365"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="365"/>
         <source>歌词</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="397"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="397"/>
         <source>首页</source>
         <translation>首頁</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="582"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="582"/>
         <source>视频</source>
         <translation>視頻</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="614"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="614"/>
         <source>/00:00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="739"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="739"/>
         <source>关于天天酷音(&amp;A)</source>
         <translation>關於天天酷音(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="742"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="742"/>
         <source>关于天天酷音</source>
         <translation>關於天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="745"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="745"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="754"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="754"/>
         <source>退出(&amp;Q)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="757"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="757"/>
         <source>退出</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="760"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="760"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="769"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="769"/>
         <source>导入本地歌曲(&amp;I)</source>
         <translation>導入本地歌曲(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="772"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="772"/>
         <source>添加歌曲</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="775"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="775"/>
         <source>Ctrl+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="784"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="784"/>
         <source>上一曲(&amp;P)</source>
         <translation>上壹曲(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="787"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="787"/>
         <source>上一曲</source>
         <translation>上壹曲</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="790"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="790"/>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="799"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="799"/>
         <source>下一曲(&amp;N)</source>
         <translation>下壹曲(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="802"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="802"/>
         <source>下一曲</source>
         <translation>下壹曲(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="805"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="805"/>
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="814"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="817"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="814"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="817"/>
         <source>播放/暂停</source>
         <translation>播放/暫停</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="820"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="820"/>
         <source>Ctrl+B</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="829"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="829"/>
         <source>音量(&amp;+)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="832"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="832"/>
         <source>增加音量</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="835"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="835"/>
         <source>Ctrl+Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="844"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="844"/>
         <source>音量(&amp;-)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="847"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="847"/>
         <source>降低音量</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="850"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="850"/>
         <source>Ctrl+Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="865"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="865"/>
         <source>Alt+1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="874"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="877"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="874"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="877"/>
         <source>随机播放</source>
         <translation>隨機播放</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="880"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="880"/>
         <source>Alt+2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="889"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="892"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="889"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="892"/>
         <source>单曲循环</source>
         <translation>單曲循環</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="895"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="895"/>
         <source>Alt+3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="904"/>
-        <location filename="../musicUi/application/musicapplication.ui" line="907"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="904"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="907"/>
         <source>列表循环</source>
         <translation>列表循環</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="910"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="910"/>
         <source>Alt+4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="919"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="919"/>
         <source>设置(&amp;S)</source>
         <translation>設置(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="922"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="922"/>
         <source>设置</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../musicUi/application/musicapplication.ui" line="925"/>
+        <location filename="../musicUi/musicApplication/musicapplication.ui" line="925"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
@@ -384,17 +384,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="137"/>
+        <location filename="../musicapplicationobject.cpp" line="139"/>
         <source>QMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="138"/>
+        <location filename="../musicapplicationobject.cpp" line="140"/>
         <source>Directed By Greedysky</source>
         <translation>Greedysky 工作室出品</translation>
     </message>
     <message>
-        <location filename="../musicapplicationobject.cpp" line="179"/>
+        <location filename="../musicapplicationobject.cpp" line="181"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation>打開均衡器將關閉神奇音效，是否繼續？</translation>
     </message>
@@ -1672,120 +1672,183 @@
 <context>
     <name>MusicLrcContainerForInline</name>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="66"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="258"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="67"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="259"/>
         <source>noCurrentSongPlay</source>
         <translation> --- 當前沒有正在播放的歌曲</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="61"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="62"/>
         <source>unFoundLrc</source>
         <translation> --- 未找到歌詞文件！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="113"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="114"/>
         <source>lrcFileError</source>
         <translation> --- 歌詞文件內容錯誤！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="360"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="361"/>
         <source>changColorMenu</source>
         <translation>歌詞顏色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="361"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="362"/>
         <source>changeLrcSize</source>
         <translation>歌詞大小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="365"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="372"/>
         <source>searchLrcs</source>
         <translation>搜索歌詞</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="366"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="373"/>
         <source>updateLrc</source>
         <translation>更新歌詞</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="415"/>
         <source>artbgon</source>
         <translation>打開寫真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="385"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="414"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="415"/>
         <source>artbgoff</source>
         <translation>關閉寫真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="367"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="363"/>
+        <source>changeLrcTimeFast</source>
+        <translation>歌詞提前</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="364"/>
+        <source>changeLrcTimeSlow</source>
+        <translation>歌詞延後</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
         <source>makeLrc</source>
         <translation>歌詞制作</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="406"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="381"/>
+        <source>revert</source>
+        <translation>還原歌詞改變</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="435"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="375"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="407"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="387"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="436"/>
         <source>small</source>
         <translation>小號</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="376"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="408"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="437"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="377"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="409"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="438"/>
         <source>big</source>
         <translation>大號</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="378"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="410"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="390"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="439"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="382"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="394"/>
         <source>custom</source>
         <translation>自定義</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="387"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="399"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="446"/>
+        <source>lrcTimeFast0.5s</source>
+        <translation>提前0.5秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="400"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="447"/>
+        <source>lrcTimeFast1s</source>
+        <translation>提前1秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="401"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="448"/>
+        <source>lrcTimeFast2s</source>
+        <translation>提前2秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="402"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="449"/>
+        <source>lrcTimeFast5s</source>
+        <translation>提前5秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="407"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="450"/>
+        <source>lrcTimeSlow0.5s</source>
+        <translation>延後0.5秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="408"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="451"/>
+        <source>lrcTimeSlow1s</source>
+        <translation>延後1秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="409"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="452"/>
+        <source>lrcTimeSlow2s</source>
+        <translation>延後2秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="410"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="453"/>
+        <source>lrcTimeSlow5s</source>
+        <translation>延後5秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="416"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
         <source>lrcoff</source>
         <translation>關閉歌詞</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
         <source>lrcon</source>
         <translation>打開歌詞</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="418"/>
         <source>artbgupload</source>
         <translation>上傳歌手寫真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="392"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="421"/>
         <source>copyToClip</source>
         <translation>復制到剪切板</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="394"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="423"/>
         <source>showLrcFile</source>
         <translation>遊覽歌詞文件</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="398"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="427"/>
         <source>customSetting</source>
         <translation>設置</translation>
     </message>
@@ -4253,37 +4316,37 @@
         <translation>普通模式</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="296"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="291"/>
         <source>Size</source>
         <translation>字號</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="315"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="310"/>
         <source>BgColor</source>
         <translation>背景</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="345"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="340"/>
         <source>just one barrage!</source>
         <translation>嘿,騷年!來壹發!</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="352"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="347"/>
         <source>openBarrage</source>
         <translation>彈幕</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="372"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="367"/>
         <source>S</source>
         <translation>小</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="373"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="368"/>
         <source>M</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../musicVideokits/musicvideocontrol.cpp" line="374"/>
+        <location filename="../musicVideokits/musicvideocontrol.cpp" line="369"/>
         <source>G</source>
         <translation>大</translation>
     </message>
