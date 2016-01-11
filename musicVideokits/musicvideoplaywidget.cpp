@@ -115,10 +115,10 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     else
     {
-        setGeometry(250, 150, 525, 455);
+        setGeometry(250, 150, 541, 460);
     }
     m_videoView->resizeWindow(resize, size());
-    m_videoTable->resizeWindow(size().width() / 525.0);
+    m_videoTable->resizeWindow(size().width() / 541.0);
 }
 
 void MusicVideoPlayWidget::backButtonClicked()
