@@ -15,8 +15,6 @@
 
 #define ROW_HEIGHT  25
 
-class MusicDownLoadQuerySingleThread;
-
 namespace Ui {
 class MusicDownloadWidget;
 }
@@ -89,7 +87,7 @@ protected:
     void startToDownloadMovie();
 
     Ui::MusicDownloadWidget *ui;
-    MusicDownLoadQuerySingleThread *m_downloadThread;
+    MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
 
 };

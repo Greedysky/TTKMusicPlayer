@@ -36,7 +36,7 @@ public Q_SLOTS:
 
 protected:
     MusicApplication *m_parentWidget;
-    MusicDownLoadQuerySingleThread *m_downloadLrcThread;
+    MusicDownLoadQueryThreadAbstract *m_downloadLrcThread;
     QLabel *m_movieLabel;
 
 };

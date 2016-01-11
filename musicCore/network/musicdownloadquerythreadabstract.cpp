@@ -1,5 +1,4 @@
 #include "musicdownloadquerythreadabstract.h"
-#include "musicconnectionpool.h"
 
 MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *parent)
     : QObject(parent), m_reply(nullptr)
@@ -7,13 +6,10 @@ MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *pare
     m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
     m_queryAllRecords = false;
-    M_CONNECTION->setValue("MusicDownLoadQueryThread", this);
-    M_CONNECTION->poolConnect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownLoadQueryThreadAbstract::~MusicDownLoadQueryThreadAbstract()
 {
-    M_CONNECTION->poolDisConnect("MusicDownLoadQueryThread");
     deleteAll();///The release of all the objects
     if(m_manager)
     {

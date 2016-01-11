@@ -10,8 +10,8 @@
    =================================================*/
 
 #include "musicabstracttablewidget.h"
-#include "musicdownloadquerysinglethread.h"
 #include "musicnetworkthread.h"
+#include "musicdownloadquerysinglethread.h"
 
 #include <QMenu>
 
@@ -50,7 +50,7 @@ protected:
     int findActionGroup(QAction *action);
 
     QActionGroup *m_actionGroup;
-    MusicDownLoadQuerySingleThread *m_downLoadManager;
+    MusicDownLoadQueryThreadAbstract *m_downLoadManager;
     MusicQueryTableDelegate *m_checkBoxDelegate;
 
 };
