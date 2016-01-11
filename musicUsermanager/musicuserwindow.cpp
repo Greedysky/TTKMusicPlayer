@@ -30,9 +30,9 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
 
 MusicUserWindow::~MusicUserWindow()
 {
-    disConnectDatabase();
     delete m_userManager;
     delete ui;
+    disConnectDatabase();
 }
 
 bool MusicUserWindow::disConnectDatabase()

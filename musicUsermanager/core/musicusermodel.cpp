@@ -72,8 +72,7 @@ bool MusicUserModel::updateRecordData(const QString &uid, const QVariantMap &dat
         }
     }
 
-    submitAll();
-    return true;
+    return submitAll();
 }
 
 bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
