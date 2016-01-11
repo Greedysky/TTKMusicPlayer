@@ -126,7 +126,6 @@ void MusicXMLConfigManager::writeXMLConfig()
     int equalizerEnableChoiced = M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
     QString equalizerValueChoiced = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString();
     int equalizerIndexChoiced = M_SETTING->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
-    int sEqualizerIndexChoiced = M_SETTING->value(MusicSettingManager::SequalizerIndexChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int timeAutoIndexChoiced = M_SETTING->value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
@@ -151,6 +150,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int downloadCacheLimit = M_SETTING->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt();
     int downloadCacheSize = M_SETTING->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt();
     int downloadLimit = M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt();
+    int downloadServer = M_SETTING->value(MusicSettingManager::DownloadServerChoiced).toInt();
     QString downloadDLoadLimit = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString();
     QString downloadULoadLimit = M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString();
     ///////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,6 @@ void MusicXMLConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////
     writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
     writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
-    writeDomElement(equalizer, "sEqualizerIndex", "value", sEqualizerIndexChoiced);
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
 
     ///////////////////////////////////////////////
@@ -249,6 +248,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(downloads, "downloadCacheLimit", "value", downloadCacheLimit);
     writeDomElement(downloads, "downloadCacheSize", "value", downloadCacheSize);
     writeDomElement(downloads, "downloadLimit", "value", downloadLimit);
+    writeDomElement(downloads, "downloadServer", "value", downloadServer);
     writeDomElement(downloads, "downloadDLoadLimit", "value", downloadDLoadLimit);
     writeDomElement(downloads, "downloadULoadLimit", "value", downloadULoadLimit);
     //Write to file
@@ -347,6 +347,8 @@ void MusicXMLConfigManager::readOtherLoadConfig() const
                      readXmlAttributeByTagNameValue("downloadCacheSize").toInt());
     M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadLimit").toInt());
+    M_SETTING->setValue(MusicSettingManager::DownloadServerChoiced,
+                     readXmlAttributeByTagNameValue("downloadServer").toInt());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadDLoadLimit"));
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced,

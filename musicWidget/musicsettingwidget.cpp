@@ -166,9 +166,9 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->downloadServerComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
     ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -182,6 +182,17 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
+    ui->downloadServerComboBox->addItem(tr("wangyiMusic"));
+    ui->downloadServerComboBox->addItem(tr("dianxinMusic"));
+    ui->downloadServerComboBox->addItem(tr("qqMusic"));
+    ui->downloadServerComboBox->addItem(tr("xiamiMusic"));
+    ui->downloadServerComboBox->addItem(tr("ttpodMusic"));
+    ui->downloadServerComboBox->addItem(tr("baiduMusic"));
+    ui->downloadServerComboBox->addItem(tr("kuwoMusic"));
+    ui->downloadServerComboBox->addItem(tr("kuhouMusic"));
+    ui->downloadServerComboBox->addItem(tr("duomiMusic"));
+
+    /////////////////////////////////////////////////////////////
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(ui->downloadCacheAutoRadioBox, 0);
     buttonGroup->addButton(ui->downloadCacheManRadioBox, 1);
@@ -199,7 +210,6 @@ void MusicSettingWidget::initDownloadWidget()
 
     ui->downloadCacheAutoRadioBox->click();
     ui->downloadFullRadioBox->click();
-
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -282,6 +292,7 @@ void MusicSettingWidget::initControllerParameter()
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
     ///////////////////////////////////////////////////////////////////////////
 
+    ui->downloadServerComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DownloadServerChoiced).toInt());
     ui->closeNetWorkCheckBox->setChecked(M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
     ui->setDefaultPlayerCheckBox->setChecked(M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt());
     if(ui->setDefaultPlayerCheckBox->isChecked())
@@ -334,6 +345,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadCacheLimitChoiced, ui->downloadCacheAutoRadioBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DownloadCacheSizeChoiced, ui->downloadSpinBox->value());
     M_SETTING->setValue(MusicSettingManager::DownloadLimitChoiced, ui->downloadFullRadioBox->isChecked());
+    M_SETTING->setValue(MusicSettingManager::DownloadServerChoiced, ui->downloadServerComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
 

@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -1390,7 +1390,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>225</x>
-       <y>150</y>
+       <y>151</y>
        <width>16</width>
        <height>16</height>
       </rect>

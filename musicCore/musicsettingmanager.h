@@ -62,7 +62,6 @@ public:
         EqualizerEnableChoiced,
         EqualizerValueChoiced,
         EqualizerIndexChoiced,
-        SequalizerIndexChoiced,
 
         TimerAutoIndexChoiced,
         TimerAutoPlayChoiced,
@@ -85,6 +84,7 @@ public:
         DownloadCacheLimitChoiced,
         DownloadCacheSizeChoiced,
         DownloadLimitChoiced,
+        DownloadServerChoiced,
         DownloadDLoadLimitChoiced,
         DownloadULoadLimitChoiced
 
