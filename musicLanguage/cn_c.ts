@@ -795,6 +795,29 @@
     </message>
 </context>
 <context>
+    <name>MusicDownLoadQueryMultipleThread</name>
+    <message>
+        <location filename="../musicCore/network/musicdownloadquerymultiplethread.cpp" line="144"/>
+        <source>SD</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/network/musicdownloadquerymultiplethread.cpp" line="146"/>
+        <source>HD</source>
+        <translation>高品质</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/network/musicdownloadquerymultiplethread.cpp" line="148"/>
+        <source>SQ</source>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../musicCore/network/musicdownloadquerymultiplethread.cpp" line="150"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
+    </message>
+</context>
+<context>
     <name>MusicDownloadWidget</name>
     <message>
         <location filename="../musicUi/musicWidget/musicdownloadwidget.ui" line="14"/>
@@ -2540,6 +2563,51 @@
         <translation>偏大二號</translation>
     </message>
     <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="185"/>
+        <source>wangyiMusic</source>
+        <translation>網易雲音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="186"/>
+        <source>dianxinMusic</source>
+        <translation>電信愛音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="187"/>
+        <source>qqMusic</source>
+        <translation>騰訊音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="188"/>
+        <source>xiamiMusic</source>
+        <translation>蝦米音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="189"/>
+        <source>ttpodMusic</source>
+        <translation>天天動聽</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="190"/>
+        <source>baiduMusic</source>
+        <translation>百度音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="191"/>
+        <source>kuwoMusic</source>
+        <translation>酷我音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="192"/>
+        <source>kuhouMusic</source>
+        <translation>酷狗音樂</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsettingwidget.cpp" line="193"/>
+        <source>duomiMusic</source>
+        <translation>多米音樂</translation>
+    </message>
+    <message>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="14"/>
         <source>MusicSettingWidget</source>
         <translation type="unfinished"></translation>
@@ -2598,7 +2666,7 @@
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="314"/>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1182"/>
         <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1330"/>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1496"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1519"/>
         <source>基本设置</source>
         <translation>基本設置</translation>
     </message>
@@ -2841,42 +2909,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1514"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1477"/>
+        <source>数据服务器的选择</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1537"/>
         <source>歌词设置</source>
         <translation>歌詞設置</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1527"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1550"/>
         <source>常规设置</source>
         <translation>常規設置</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1540"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1563"/>
         <source>热键设置</source>
         <translation>熱鍵設置</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1553"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1576"/>
         <source>桌面歌词</source>
         <translation type="unfinished">桌面歌詞</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1566"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1589"/>
         <source>窗口歌词</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1579"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1602"/>
         <source>下载设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1593"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1616"/>
         <source>确认</source>
         <translation>確認</translation>
     </message>
     <message>
-        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1606"/>
+        <location filename="../musicUi/musicWidget/musicsettingwidget.ui" line="1629"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4026,17 +4099,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="49"/>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="55"/>
         <source>Modifies</source>
         <translation>修改資料</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="50"/>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="56"/>
         <source>Switches</source>
         <translation>切換賬號</translation>
     </message>
     <message>
-        <location filename="../musicUsermanager/musicusermanager.cpp" line="51"/>
+        <location filename="../musicUsermanager/musicusermanager.cpp" line="57"/>
         <source>Spacing</source>
         <translation>音樂空間</translation>
     </message>
