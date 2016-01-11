@@ -6,7 +6,7 @@
 #include "musicuserrecordwidget.h"
 
 #include <QMenu>
-#include <QDebug>
+
 MusicUserManager::MusicUserManager(QWidget *parent)
      : QDialog(parent),
        ui(new Ui::MusicUserManager)
@@ -29,7 +29,7 @@ MusicUserManager::~MusicUserManager()
     {
         m_userModel->updateUser(m_currentUserUID, "", "", ui->username->text(),
                                 QString::number(m_userModel->getUserLogTime(m_currentUserUID)
-                                .toLongLong() + m_time.elapsed()/1000 ));
+                                .toLongLong() + m_time.elapsed()/(1000*30) ));
     }
     delete m_userModel;
     delete ui;
@@ -63,7 +63,7 @@ void MusicUserManager::musicUserLogoff()
 {
     m_userModel->updateUser(m_currentUserUID, "", "", ui->username->text(),
                             QString::number(m_userModel->getUserLogTime(m_currentUserUID)
-                            .toLongLong() + m_time.elapsed()/1000 ));
+                            .toLongLong() + m_time.elapsed()/(1000*30) ));
 
     MusicUserConfigManager xml;
     if(!xml.readUserXMLConfig())
