@@ -3,7 +3,6 @@
 MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *parent)
     : QObject(parent), m_reply(nullptr)
 {
-    m_searchQuality = "标准品质";
     m_manager = new QNetworkAccessManager(this);
     m_queryAllRecords = false;
 }

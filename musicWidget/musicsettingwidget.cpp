@@ -166,6 +166,8 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->downloadServerComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
     ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
