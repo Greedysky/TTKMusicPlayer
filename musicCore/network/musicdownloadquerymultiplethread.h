@@ -23,6 +23,11 @@ public:
 public Q_SLOTS:
     virtual void searchFinshed() override;
 
+protected:
+    QString getCurrentURL() const;
+    void readFromMusicSongAttribute(MusicSongInfomation &info, const QString &size,
+                                    int bit, const QString &url);
+
 };
 
 #endif // MUSICDOWNLOADQUERYMULTIPLETHREAD_H

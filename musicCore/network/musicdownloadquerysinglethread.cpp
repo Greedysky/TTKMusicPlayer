@@ -52,7 +52,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         return;
     }
 
-    emit clearAllItems();     ///Clear origin items
+    emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
     if(m_reply->error() == QNetworkReply::NoError)
