@@ -115,8 +115,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_downloadThread = new MusicDownLoadQueryThread(this);
-    m_queryType = MusicDownLoadQueryThread::MusicQuery;
+    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+    m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
@@ -145,7 +145,7 @@ void MusicDownloadWidget::controlEnable(bool enable)
     ui->settingButton->setEnabled(enable);
 }
 
-void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type)
+void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)
 {
     initWidget();
     ui->downloadName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 200));
@@ -162,11 +162,11 @@ int MusicDownloadWidget::exec()
 
 void MusicDownloadWidget::queryAllFinished()
 {
-    if(m_queryType == MusicDownLoadQueryThread::MusicQuery)
+    if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
         queryAllFinishedMusic();
     }
-    else if(m_queryType == MusicDownLoadQueryThread::MovieQuery)
+    else if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
     {
         queryAllFinishedMovie();
     }
@@ -303,11 +303,11 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
-    if(m_queryType == MusicDownLoadQueryThread::MusicQuery)
+    if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
         startToDownloadMusic();
     }
-    else if(m_queryType == MusicDownLoadQueryThread::MovieQuery)
+    else if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
     {
         startToDownloadMovie();
     }

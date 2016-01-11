@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYTHREAD_H
-#define MUSICDOWNLOADQUERYTHREAD_H
+#ifndef MUSICDOWNLOADQUERYTHREADABSTRACT_H
+#define MUSICDOWNLOADQUERYTHREADABSTRACT_H
 
 /* =================================================
  * This file is part of the Music Player project
@@ -16,7 +16,7 @@
 
 class QNetworkAccessManager;
 
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
@@ -27,11 +27,11 @@ public:
         LrcQuery
     };
 
-    explicit MusicDownLoadQueryThread(QObject *parent = 0);
-    ~MusicDownLoadQueryThread();
+    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
+    ~MusicDownLoadQueryThreadAbstract();
 
     void deleteAll();
-    void startSearchSong(QueryType type, const QString &text);
+    virtual void startSearchSong(QueryType type, const QString &text) = 0;
     void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
     inline int getSongIdIndex() const { return m_musicSongInfos.size() + 1;}
@@ -44,7 +44,7 @@ Q_SIGNALS:
                             const QString &artistname, const QString &time);
 
 public Q_SLOTS:
-    void searchFinshed();
+    virtual void searchFinshed() = 0;
     void replyError(QNetworkReply::NetworkError error);
 
 protected:
@@ -57,4 +57,4 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADQUERYTHREAD_H
+#endif // MUSICDOWNLOADQUERYTHREADABSTRACT_H

@@ -102,8 +102,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
            m_downloadLrcThread = nullptr;
        }
        ///Start the request query
-       m_downloadLrcThread = new MusicDownLoadQueryThread(this);
-       m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThread::MusicQuery, filename);
+       m_downloadLrcThread = new MusicDownLoadQuerySingleThread(this);
+       m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
     }

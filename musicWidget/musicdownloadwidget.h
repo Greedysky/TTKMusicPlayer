@@ -11,11 +11,11 @@
 
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
-#include "musicdownloadquerythread.h"
+#include "musicdownloadquerysinglethread.h"
 
 #define ROW_HEIGHT  25
 
-class MusicDownLoadQueryThread;
+class MusicDownLoadQuerySingleThread;
 
 namespace Ui {
 class MusicDownloadWidget;
@@ -68,7 +68,7 @@ public:
     explicit MusicDownloadWidget(QWidget *parent = 0);
     virtual ~MusicDownloadWidget();
 
-    void setSongName(const QString &name, MusicDownLoadQueryThread::QueryType type);
+    void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
 
 public Q_SLOTS:
     virtual int exec();
@@ -89,8 +89,8 @@ protected:
     void startToDownloadMovie();
 
     Ui::MusicDownloadWidget *ui;
-    MusicDownLoadQueryThread *m_downloadThread;
-    MusicDownLoadQueryThread::QueryType m_queryType;
+    MusicDownLoadQuerySingleThread *m_downloadThread;
+    MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
 
 };
 

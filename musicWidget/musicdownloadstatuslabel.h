@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadquerythread.h"
+#include "musicdownloadquerysinglethread.h"
 #include "musiclibexportglobal.h"
 
 class QLabel;
@@ -36,7 +36,7 @@ public Q_SLOTS:
 
 protected:
     MusicApplication *m_parentWidget;
-    MusicDownLoadQueryThread *m_downloadLrcThread;
+    MusicDownLoadQuerySingleThread *m_downloadLrcThread;
     QLabel *m_movieLabel;
 
 };

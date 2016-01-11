@@ -65,7 +65,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     {
         m_downLoadManager->setSearchQuality(currentQuality);
     }
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThread::MusicQuery, m_searchText = text);
+    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, m_searchText = text);
 }
 
 void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
@@ -243,7 +243,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicDownLoadQueryThread::MusicQuery);
+    download.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicDownLoadQueryThreadAbstract::MusicQuery);
     download.exec();
 }
 

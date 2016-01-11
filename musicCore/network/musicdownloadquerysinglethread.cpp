@@ -1,5 +1,4 @@
-#include "musicdownloadquerythread.h"
-#include "musicconnectionpool.h"
+#include "musicdownloadquerysinglethread.h"
 #include "musicdownloadthreadabstract.h"
 
 #ifdef MUSIC_QT_5
@@ -14,39 +13,19 @@
 #endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
-#include <QFile>
 
-MusicDownLoadQueryThread::MusicDownLoadQueryThread(QObject *parent)
-    : QObject(parent), m_reply(nullptr)
+MusicDownLoadQuerySingleThread::MusicDownLoadQuerySingleThread(QObject *parent)
+    : MusicDownLoadQueryThreadAbstract(parent)
 {
-    m_searchQuality = "标准品质";
-    m_manager = new QNetworkAccessManager(this);
-    m_queryAllRecords = false;
-    M_CONNECTION->setValue("MusicDownLoadQueryThread", this);
-    M_CONNECTION->poolConnect("MusicDownLoadQueryThread", "MusicDownloadStatusLabel");
+
 }
 
-MusicDownLoadQueryThread::~MusicDownLoadQueryThread()
+MusicDownLoadQuerySingleThread::~MusicDownLoadQuerySingleThread()
 {
-    M_CONNECTION->poolDisConnect("MusicDownLoadQueryThread");
-    deleteAll();///The release of all the objects
-    if(m_manager)
-    {
-        m_manager->deleteLater();
-        m_manager = nullptr;
-    }
+
 }
 
-void MusicDownLoadQueryThread::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}
-
-void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QString &text)
 {
     m_searchText = text.trimmed();
     m_currentType = type;
@@ -66,7 +45,7 @@ void MusicDownLoadQueryThread::startSearchSong(QueryType type, const QString &te
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryThread::searchFinshed()
+void MusicDownLoadQuerySingleThread::searchFinshed()
 {
     if(m_reply == nullptr)
     {
@@ -313,10 +292,4 @@ void MusicDownLoadQueryThread::searchFinshed()
         }
     }
     emit resolvedSuccess();
-}
-
-void MusicDownLoadQueryThread::replyError(QNetworkReply::NetworkError)
-{
-    M_LOGGER << "Abnormal network connection" << LOG_END;
-    deleteAll();
 }

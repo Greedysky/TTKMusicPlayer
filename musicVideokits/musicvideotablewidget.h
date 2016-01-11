@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadquerythread.h"
+#include "musicdownloadquerythreadabstract.h"
 #include "musicquerytablewidget.h"
 
 class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryTableWidget

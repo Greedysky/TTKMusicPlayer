@@ -7,7 +7,7 @@
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    m_downLoadManager = new MusicDownLoadQueryThread(this);
+    m_downLoadManager = new MusicDownLoadQuerySingleThread(this);
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
     connect(m_downLoadManager, SIGNAL(creatSearchedItems(QString,QString,QString)),
                                SLOT(creatSearchedItems(QString,QString,QString)));

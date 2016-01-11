@@ -29,7 +29,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
     m_currentSongName = text;
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThread::LrcQuery, text);
+    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
 void MusicLrcSearchTableWidget::clearAllItems()
