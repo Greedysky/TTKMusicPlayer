@@ -12,12 +12,36 @@
 #include "musicabstractmovedialog.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
+#include "musicabstracttablewidget.h"
 
 class QComboBox;
 
 namespace Ui {
 class MusicSettingWidget;
 }
+
+
+class MUSIC_WIDGET_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicFunctionTableWidget(QWidget *parent = 0);
+    virtual ~MusicFunctionTableWidget();
+
+    void addFunctionItems(int index, const QStringList &icon, const QStringList &path);
+
+Q_SIGNALS:
+    void currentIndexChanged(int index);
+
+public Q_SLOTS:
+    virtual void listCellClicked(int row, int column) override;
+
+protected:
+    virtual void leaveEvent(QEvent *event) override;
+
+    int m_listIndex;
+};
+
 
 class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
@@ -70,10 +94,8 @@ protected:
     void setComboboxText(QComboBox *object, const QString &text);
 
     Ui::MusicSettingWidget *ui;
-    QColor m_lrcSelectedFg;
-    QColor m_lrcSelectedBg;
-    QColor m_DlrcSelectedFg;
-    QColor m_DlrcSelectedBg;
+    QColor m_lrcSelectedFg, m_lrcSelectedBg;
+    QColor m_DlrcSelectedFg, m_DlrcSelectedBg;
 
 };
 

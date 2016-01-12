@@ -9,6 +9,55 @@
 #include <QButtonGroup>
 #include <QStyledItemDelegate>
 
+MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 20);
+    headerview->resizeSection(1, 20);
+    headerview->resizeSection(2, 85);
+
+    setRowCount(3);
+    m_listIndex = 0;
+}
+
+MusicFunctionTableWidget::~MusicFunctionTableWidget()
+{
+
+}
+
+void MusicFunctionTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    emit currentIndexChanged(row + m_listIndex);
+}
+
+void MusicFunctionTableWidget::leaveEvent(QEvent *event)
+{
+    QTableWidget::leaveEvent(event);
+    listCellEntered(-1, -1);
+}
+
+void MusicFunctionTableWidget::addFunctionItems(int index, const QStringList &icon, const QStringList &path)
+{
+    m_listIndex = index;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *item = nullptr;
+        setItem(i, 0, item = new QTableWidgetItem());
+
+                      item = new QTableWidgetItem(QIcon(icon[i]), QString());
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(i, 1, item);
+
+                      item = new QTableWidgetItem(path[i]);
+        item->setTextColor(QColor(80, 80, 80));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 2, item);
+    }
+}
+
+
 MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicSettingWidget)
@@ -23,29 +72,23 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ////////////////////////////////////////////////
-    ui->normalSetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->hotKeySetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->downloadSetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->inlineLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->desktopLrcButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->normalFunTableWidget->setRowCount(3);
+    ui->normalFunTableWidget->addFunctionItems(0,
+        QStringList() << ":/contextMenu/setting" << ":/contextMenu/funckeyboard" << ":/contextMenu/funcdownload",
+        QStringList() << "1" << "2" << "3");
+    ui->lrcFunTableWidget->setRowCount(2);
+    ui->lrcFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount(),
+        QStringList() << ":/contextMenu/lrc" << ":/contextMenu/funcdesktopLrc",
+        QStringList() << "1" << "2");
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-
-    ui->normalSetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->hotKeySetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->downloadSetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->desktopLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->inlineLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(ui->normalSetButton, 0);
-    group->addButton(ui->hotKeySetButton, 1);
-    group->addButton(ui->desktopLrcButton, 2);
-    group->addButton(ui->inlineLrcButton, 3);
-    group->addButton(ui->downloadSetButton, 4);
-    connect(group, SIGNAL(buttonClicked(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->lrcFunTableWidget, SLOT(clearSelection()));
+    connect(ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->normalFunTableWidget, SLOT(clearSelection()));
     connect(ui->confirmButton, SIGNAL(clicked()), SLOT(commitTheResults()));
     connect(ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 

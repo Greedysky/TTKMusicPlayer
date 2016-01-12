@@ -130,6 +130,9 @@
         <file alias="sysnext">../musicResource/contextMenu/button_next.png</file>
         <file alias="sysplay">../musicResource/contextMenu/button_play.png</file>
         <file alias="sysstop">../musicResource/contextMenu/button_stop.png</file>
+        <file alias="funckeyboard">../musicResource/contextMenu/function_keyboard.png</file>
+        <file alias="funcdesktopLrc">../musicResource/contextMenu/function_desktopLrc.png</file>
+        <file alias="funcdownload">../musicResource/contextMenu/function_download.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="favorite">../musicResource/netRadio/button_favorite.png</file>
