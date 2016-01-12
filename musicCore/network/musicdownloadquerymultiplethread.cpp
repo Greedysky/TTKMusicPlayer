@@ -80,7 +80,7 @@ void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicSongInfom
         QString lastString = list.last();
         MusicSongAttribute songAttr;
         songAttr.m_url = url;
-        songAttr.m_size = size;
+        songAttr.m_size = size.isEmpty() ? "- " : size;
 
         list = lastString.split(".");
         if(list.isEmpty())
@@ -88,7 +88,12 @@ void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicSongInfom
             return;
         }
 
-        songAttr.m_format = list.last();
+        lastString = list.last();
+        if(lastString.contains("?"))
+        {
+            lastString = lastString.split("?").front();
+        }
+        songAttr.m_format = lastString;
         songAttr.m_bitrate = bit;
         info.m_songAttrs << songAttr;
     }
