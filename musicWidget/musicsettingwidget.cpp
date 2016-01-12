@@ -75,11 +75,11 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->normalFunTableWidget->setRowCount(3);
     ui->normalFunTableWidget->addFunctionItems(0,
         QStringList() << ":/contextMenu/setting" << ":/contextMenu/funckeyboard" << ":/contextMenu/funcdownload",
-        QStringList() << "1" << "2" << "3");
+        QStringList() << tr("Normal") << tr("Hotkey") << tr("Dwonload"));
     ui->lrcFunTableWidget->setRowCount(2);
     ui->lrcFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/lrc" << ":/contextMenu/funcdesktopLrc",
-        QStringList() << "1" << "2");
+        QStringList() << tr("Desktop") << tr("Inline"));
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));

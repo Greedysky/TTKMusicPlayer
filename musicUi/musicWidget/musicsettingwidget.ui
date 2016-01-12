@@ -862,13 +862,13 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>225</x>
-       <y>151</y>
-       <width>16</width>
+       <y>153</y>
+       <width>21</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>M</string>
+      <string>(M)</string>
      </property>
     </widget>
     <widget class="QLabel" name="downloadLimitSpeedLabel">
