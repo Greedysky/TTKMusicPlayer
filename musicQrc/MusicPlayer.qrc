@@ -212,4 +212,15 @@
         <file alias="wireless">../musicResource/appTools/music_wireless.png</file>
         <file alias="wired_con">../musicResource/appTools/music_wired_con.png</file>
     </qresource>
+    <qresource prefix="/server">
+        <file alias="aiyinyue">../musicResource/server/aiyinyue.png</file>
+        <file alias="baidu">../musicResource/server/baidu.png</file>
+        <file alias="duomi">../musicResource/server/duomi.png</file>
+        <file alias="kugou">../musicResource/server/kugou.png</file>
+        <file alias="kuwo">../musicResource/server/kuwo.png</file>
+        <file alias="qq">../musicResource/server/qq.png</file>
+        <file alias="ttdongting">../musicResource/server/ttdongting.png</file>
+        <file alias="wangyiyun">../musicResource/server/wangyiyun.png</file>
+        <file alias="xiami">../musicResource/server/xiami.png</file>
+    </qresource>
 </RCC>

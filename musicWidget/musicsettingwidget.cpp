@@ -182,15 +182,15 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
-    ui->downloadServerComboBox->addItem(tr("wangyiMusic"));
-    ui->downloadServerComboBox->addItem(tr("dianxinMusic"));
-    ui->downloadServerComboBox->addItem(tr("qqMusic"));
-    ui->downloadServerComboBox->addItem(tr("xiamiMusic"));
-    ui->downloadServerComboBox->addItem(tr("ttpodMusic"));
-    ui->downloadServerComboBox->addItem(tr("baiduMusic"));
-    ui->downloadServerComboBox->addItem(tr("kuwoMusic"));
-    ui->downloadServerComboBox->addItem(tr("kuhouMusic"));
-    ui->downloadServerComboBox->addItem(tr("duomiMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/wangyiyun"), tr("wangyiMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/aiyinyue"), tr("dianxinMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/qq"), tr("qqMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/xiami"), tr("xiamiMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/ttdongting"), tr("ttpodMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/baidu"), tr("baiduMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/kuwo"), tr("kuwoMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/kugou"), tr("kuhouMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/duomi"), tr("duomiMusic"));
 
     /////////////////////////////////////////////////////////////
     QButtonGroup *buttonGroup = new QButtonGroup(this);
