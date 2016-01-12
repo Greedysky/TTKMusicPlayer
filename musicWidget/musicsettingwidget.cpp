@@ -7,6 +7,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QButtonGroup>
+#include <QStyledItemDelegate>
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -56,7 +57,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->languageComboBox->setItemDelegate(new QStyledItemDelegate(ui->languageComboBox));
+    ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->languageComboBox->addItems(QStringList() << tr("0") << tr("1") << tr("2"));
     ////////////////////////////////////////////////
@@ -77,13 +79,17 @@ MusicSettingWidget::~MusicSettingWidget()
 
 void MusicSettingWidget::initInlineLrcWidget()
 {
-    ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(ui->fontComboBox));
+    ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontSizeComboBox->setItemDelegate(new QStyledItemDelegate(ui->fontSizeComboBox));
+    ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 );
+    ui->fontTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->fontTypeComboBox));
+    ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->fontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(ui->fontDefaultColorComboBox));
+    ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->fontSizeComboBox->addItems(QStringList() << tr("smaller") << tr("small")
@@ -117,13 +123,17 @@ void MusicSettingWidget::initInlineLrcWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
-    ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(ui->DfontComboBox));
+    ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->DfontSizeComboBox->setItemDelegate(new QStyledItemDelegate(ui->DfontSizeComboBox));
+    ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->DfontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->DfontTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->DfontTypeComboBox));
+    ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->DfontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->DfontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(ui->DfontDefaultColorComboBox));
+    ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     ui->DfontSizeComboBox->addItems(QStringList() << tr("smaller3") << tr("smaller2") << tr("smaller") << tr("small3")
@@ -166,11 +176,15 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+
+    ui->downloadServerComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->downloadServerComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->downloadLimitSpeedComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadLimitSpeedComboBox));
+    ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->uploadLimitSpeedComboBox->setItemDelegate(new QStyledItemDelegate(ui->uploadLimitSpeedComboBox));
+    ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     ui->downloadSpinBox->setRange(1024, 5*1024);

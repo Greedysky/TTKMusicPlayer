@@ -11,6 +11,7 @@
 #include <QMovie>
 #include <QFileDialog>
 #include <QButtonGroup>
+#include <QStyledItemDelegate>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -50,7 +51,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->filterComboBox->setItemDelegate(new QStyledItemDelegate(ui->filterComboBox));
+    ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);

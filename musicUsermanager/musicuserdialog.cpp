@@ -8,6 +8,7 @@
 
 #include <QValidator>
 #include <QButtonGroup>
+#include <QStyledItemDelegate>
 
 MusicUserDialog::MusicUserDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -72,7 +73,8 @@ void MusicUserDialog::writeToUserConfig()
 
 void MusicUserDialog::firstStatckWidget()
 {
-    ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->userComboBox->setItemDelegate(new QStyledItemDelegate(ui->userComboBox));
+    ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->userComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);

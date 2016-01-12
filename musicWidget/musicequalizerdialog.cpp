@@ -7,6 +7,7 @@
 
 #include <QSignalMapper>
 #include <QButtonGroup>
+#include <QStyledItemDelegate>
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -25,7 +26,8 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     init();
 
-    ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->eqChoice->setItemDelegate(new QStyledItemDelegate(ui->eqChoice));
+    ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->eqChoice->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->eqChoice->addItems(QStringList() << tr("Custom") << tr("Default") << tr("Classical")
                   << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")

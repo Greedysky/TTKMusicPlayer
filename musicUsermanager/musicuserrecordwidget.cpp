@@ -7,6 +7,7 @@
 
 #include <QFileDialog>
 #include <QCryptographicHash>
+#include <QStyledItemDelegate>
 
 MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -40,8 +41,10 @@ void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &u
 void MusicUserRecordWidget::initTabF()
 {
     QString uid = ui->userIDLabel_F->text();
-    ui->cityComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01);
-    ui->countryComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->cityComboBox_F->setItemDelegate(new QStyledItemDelegate(ui->cityComboBox_F));
+    ui->cityComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->countryComboBox_F->setItemDelegate(new QStyledItemDelegate(ui->countryComboBox_F));
+    ui->countryComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->signatureEdit_F->setStyleSheet(MusicUIObject::MTextEditStyle01);

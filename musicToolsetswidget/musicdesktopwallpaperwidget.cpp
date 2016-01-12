@@ -8,6 +8,7 @@
 #include "musicregeditmanager.h"
 
 #include <QFileDialog>
+#include <QStyledItemDelegate>
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -62,17 +63,23 @@ void MusicDesktopWallpaperWidget::initWidgetStyle() const
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureEffect->setItemDelegate(new QStyledItemDelegate(ui->pictureEffect));
+    ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureFunc->setItemDelegate(new QStyledItemDelegate(ui->pictureFunc));
+    ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->pictureType->setItemDelegate(new QStyledItemDelegate(ui->pictureType));
+    ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->pictureType->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeH->setItemDelegate(new QStyledItemDelegate(ui->timeH));
+    ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->timeH->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeM->setItemDelegate(new QStyledItemDelegate(ui->timeM));
+    ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->timeM->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->timeS->setItemDelegate(new QStyledItemDelegate(ui->timeS));
+    ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->timeS->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->openWithstart->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->recoveryWallpaper->setStyleSheet(MusicUIObject::MCheckBoxStyle01);

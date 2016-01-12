@@ -5,6 +5,8 @@
 #include "musicbgthememanager.h"
 #include "musicconnectionpool.h"
 
+#include <QStyledItemDelegate>
+
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicTimerWidget)
@@ -176,15 +178,20 @@ void MusicTimerWidget::initFirstWidget()
     ui->plistComboBox->addItem(tr("defualt"));
     ui->noSetRadioButton1->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->setRadioButton1->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->hourComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->hourComboBox1->setItemDelegate(new QStyledItemDelegate(ui->hourComboBox1));
+    ui->hourComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->hourComboBox1->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->secComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->secComboBox1->setItemDelegate(new QStyledItemDelegate(ui->secComboBox1));
+    ui->secComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->secComboBox1->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->repeatComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->repeatComboBox1->setItemDelegate(new QStyledItemDelegate(ui->repeatComboBox1));
+    ui->repeatComboBox1->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->repeatComboBox1->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->plistComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->plistComboBox->setItemDelegate(new QStyledItemDelegate(ui->plistComboBox));
+    ui->plistComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->plistComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->psongComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->psongComboBox->setItemDelegate(new QStyledItemDelegate(ui->psongComboBox));
+    ui->psongComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->psongComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     connect(ui->noSetRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlFalse1()));
     connect(ui->setRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlTrue1()));
@@ -197,11 +204,14 @@ void MusicTimerWidget::initSecondWidget()
     ui->repeatComboBox2->addItems(m_repeat);
     ui->noSetRadioButton2->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->setRadioButton2->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->hourComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->hourComboBox2->setItemDelegate(new QStyledItemDelegate(ui->hourComboBox2));
+    ui->hourComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->hourComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->secComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->secComboBox2->setItemDelegate(new QStyledItemDelegate(ui->secComboBox2));
+    ui->secComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->secComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->repeatComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->repeatComboBox2->setItemDelegate(new QStyledItemDelegate(ui->repeatComboBox2));
+    ui->repeatComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->repeatComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     connect(ui->noSetRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlFalse2()));
     connect(ui->setRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlTrue2()));
@@ -214,11 +224,14 @@ void MusicTimerWidget::initThreeWidget()
     ui->repeatComboBox3->addItems(m_repeat);
     ui->noSetRadioButton3->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->setRadioButton3->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->hourComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->hourComboBox3->setItemDelegate(new QStyledItemDelegate(ui->hourComboBox3));
+    ui->hourComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->hourComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->secComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->secComboBox3->setItemDelegate(new QStyledItemDelegate(ui->secComboBox3));
+    ui->secComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->secComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->repeatComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->repeatComboBox3->setItemDelegate(new QStyledItemDelegate(ui->repeatComboBox3));
+    ui->repeatComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->repeatComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     connect(ui->noSetRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlFalse3()));
     connect(ui->setRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlTrue3()));

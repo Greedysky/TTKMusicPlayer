@@ -363,6 +363,11 @@ namespace MusicUIObject
             QProgressBar{ border:none; background:rgb(210, 225, 240); text-align:center;}\
             QProgressBar::chunk{ background:rgb(60, 140, 220);}";
 
+///ItemView
+//////////////////////////////////////////////////////
+    const QString MItemView01 = " \
+            QAbstractItemView::item { height: 20px; }";
+
 }
 
 #endif // MUSICUIOBJECT_H

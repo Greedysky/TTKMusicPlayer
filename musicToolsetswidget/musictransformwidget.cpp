@@ -8,6 +8,7 @@
 #include <QProcess>
 #include <QMovie>
 #include <QSound>
+#include <QStyledItemDelegate>
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -24,13 +25,17 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->formatCombo->setItemDelegate(new QStyledItemDelegate(ui->formatCombo));
+    ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->kbpsCombo->setItemDelegate(new QStyledItemDelegate(ui->kbpsCombo));
+    ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->hzCombo->setItemDelegate(new QStyledItemDelegate(ui->hzCombo));
+    ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01);
+    ui->msCombo->setItemDelegate(new QStyledItemDelegate(ui->msCombo));
+    ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
