@@ -111,6 +111,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
+#ifdef MUSIC_QT_5
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
@@ -191,6 +192,80 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
                 m_musicSongInfos << musicInfo;
             }
         }
+#else
+        QScriptEngine engine;
+        QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
+        if(sc.isArray())
+        {
+            QScriptValueIterator it(sc.property("data"));
+            while(it.hasNext())
+            {
+                it.next();
+                MusicSongInfomation musicInfo;
+                if(m_currentType != MovieQuery)
+                {
+                    QString songName = it.value().property("SongName").toString();
+                    QString singerName = it.value().property("Artist").toString();
+                    QString duration = it.value().property("Length").toString();
+                    QString size = it.value().property("Size").toString();
+
+                    if(m_queryAllRecords)
+                    {
+                        readFromMusicSongAttribute(musicInfo, size, 1000, it.value().property("FlacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, 1000, it.value().property("AacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, 320, it.value().property("SqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, 192, it.value().property("HqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, 128, it.value().property("LqUrl").toString());
+                    }
+                    else
+                    {
+                        if(m_searchQuality == tr("SD"))
+                            readFromMusicSongAttribute(musicInfo, size, 128, it.value().property("LqUrl").toString());
+                        else if(m_searchQuality == tr("HD"))
+                            readFromMusicSongAttribute(musicInfo, size, 192, it.value().property("HqUrl").toString());
+                        else if(m_searchQuality == tr("SQ"))
+                            readFromMusicSongAttribute(musicInfo, size, 320, it.value().property("SqUrl").toString());
+                        else if(m_searchQuality == tr("CD"))
+                        {
+                            readFromMusicSongAttribute(musicInfo, size, 1000, it.value().property("FlacUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, 1000, it.value().property("AacUrl").toString());
+                        }
+                    }
+                    if(musicInfo.m_songAttrs.isEmpty())
+                    {
+                        continue;
+                    }
+                    emit creatSearchedItems(songName, singerName, duration);
+
+                    musicInfo.m_songName = songName;
+                    musicInfo.m_singerName = singerName;
+                    musicInfo.m_lrcUrl = it.value().property("LrcUrl").toString();
+                    musicInfo.m_smallPicUrl = it.value().property("PicUrl").toString();
+                    m_musicSongInfos << musicInfo;
+                }
+                else
+                {
+                    QString songName = it.value().property("SongName").toString();
+                    QString singerName = it.value().property("Artist").toString();
+                    QString duration = it.value().property("Length").toString();
+                    QString size = it.value().property("Size").toString();
+
+                    readFromMusicSongAttribute(musicInfo, size, 750, it.value().property("MvUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, 500, it.value().property("VideoUrl").toString());
+
+                    if(musicInfo.m_songAttrs.isEmpty())
+                    {
+                        continue;
+                    }
+                    emit creatSearchedItems(songName, singerName, duration);
+
+                    musicInfo.m_songName = songName;
+                    musicInfo.m_singerName = singerName;
+                    m_musicSongInfos << musicInfo;
+                }
+            }
+        }
+#endif
         ///If there is no search to song_id, is repeated several times in the search
         ///If more than 5 times or no results give up
         static int counter = 5;
