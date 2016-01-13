@@ -12,7 +12,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-#include <QDebug>
+
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
