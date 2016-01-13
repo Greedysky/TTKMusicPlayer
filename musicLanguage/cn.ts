@@ -1550,67 +1550,67 @@
 <context>
     <name>MusicLrcContainer</name>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="45"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="63"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="46"/>
         <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="64"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="65"/>
         <source>origin</source>
         <translation>原色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="46"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="65"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="47"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="66"/>
         <source>red</source>
         <translation>红色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="47"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="48"/>
         <source>orange</source>
         <translation>橘色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="48"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="66"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="49"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="67"/>
         <source>yellow</source>
         <translation>黄色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="49"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="67"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="50"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="68"/>
         <source>green</source>
         <translation>绿色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="50"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="68"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="51"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="69"/>
         <source>blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="51"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="69"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="52"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="70"/>
         <source>indigo</source>
         <translation>靛色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="52"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="70"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="53"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="71"/>
         <source>purple</source>
         <translation>紫色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="53"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="71"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="54"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="72"/>
         <source>white</source>
         <translation>白色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="54"/>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="72"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="55"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="73"/>
         <source>black</source>
         <translation>黑色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="57"/>
+        <location filename="../musicLrcmanager/musiclrccontainer.cpp" line="58"/>
         <source>custom</source>
         <translation>自定义</translation>
     </message>
@@ -1699,185 +1699,195 @@
 <context>
     <name>MusicLrcContainerForInline</name>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="67"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="259"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="68"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="261"/>
         <source>noCurrentSongPlay</source>
         <translation> --- 当前没有正在播放的歌曲</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="62"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="63"/>
         <source>unFoundLrc</source>
         <translation> --- 未找到歌词文件！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="114"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="115"/>
         <source>lrcFileError</source>
         <translation> --- 歌词文件内容错误！</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="361"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="363"/>
         <source>changColorMenu</source>
         <translation>歌词颜色</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="362"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="364"/>
         <source>changeLrcSize</source>
         <translation>歌词大小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="372"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="373"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="375"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="415"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
         <source>artbgon</source>
         <translation>打开写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="414"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="415"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="416"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
         <source>artbgoff</source>
         <translation>关闭写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="363"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="365"/>
         <source>changeLrcTimeFast</source>
         <translation>歌词提前</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="364"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="366"/>
         <source>changeLrcTimeSlow</source>
         <translation>歌词延后</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="374"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="376"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="381"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="383"/>
         <source>revert</source>
         <translation>还原歌词改变</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="386"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="435"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="437"/>
         <source>smaller</source>
         <translation>偏小</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="387"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="436"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="438"/>
         <source>small</source>
         <translation>小号</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="388"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="437"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="390"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="439"/>
         <source>middle</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="389"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="438"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="391"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="440"/>
         <source>big</source>
         <translation>大号</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="390"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="439"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="392"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="441"/>
         <source>bigger</source>
         <translation>偏大</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="394"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="396"/>
         <source>custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="399"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="446"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="401"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="448"/>
         <source>lrcTimeFast0.5s</source>
         <translation>提前0.5秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="400"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="447"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="402"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="449"/>
         <source>lrcTimeFast1s</source>
         <translation>提前1秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="401"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="448"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="403"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="450"/>
         <source>lrcTimeFast2s</source>
         <translation>提前2秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="402"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="449"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="404"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="451"/>
         <source>lrcTimeFast5s</source>
         <translation>提前5秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="407"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="450"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="409"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="452"/>
         <source>lrcTimeSlow0.5s</source>
         <translation>延后0.5秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="408"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="451"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="410"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="453"/>
         <source>lrcTimeSlow1s</source>
         <translation>延后1秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="409"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="452"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="411"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="454"/>
         <source>lrcTimeSlow2s</source>
         <translation>延后2秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="410"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="453"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="412"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="455"/>
         <source>lrcTimeSlow5s</source>
         <translation>延后5秒</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="416"/>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="418"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="419"/>
         <source>lrcoff</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="417"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="419"/>
         <source>lrcon</source>
         <translation>打开歌词</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="418"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="420"/>
         <source>artbgupload</source>
         <translation>上传歌手写真</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="421"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="423"/>
         <source>copyToClip</source>
         <translation>复制到剪切板</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="423"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="425"/>
         <source>showLrcFile</source>
         <translation>游览歌词文件</translation>
     </message>
     <message>
-        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="427"/>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="429"/>
         <source>customSetting</source>
         <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="495"/>
+        <source>before%1s</source>
+        <translation>提前%1秒</translation>
+    </message>
+    <message>
+        <location filename="../musicLrcmanager/musiclrccontainerforinline.cpp" line="491"/>
+        <source>after%1s</source>
+        <translation>延后%1秒</translation>
     </message>
 </context>
 <context>
@@ -2408,8 +2418,8 @@
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../musicrightareawidget.cpp" line="252"/>
-        <location filename="../musicrightareawidget.cpp" line="263"/>
+        <location filename="../musicrightareawidget.cpp" line="253"/>
+        <location filename="../musicrightareawidget.cpp" line="264"/>
         <source>please input search text</source>
         <translation>请输入搜索内容</translation>
     </message>
