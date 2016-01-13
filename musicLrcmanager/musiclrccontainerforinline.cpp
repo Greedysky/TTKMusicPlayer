@@ -12,7 +12,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-
+#include <QDebug>
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -495,6 +495,10 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
         str = tr("after") + QString::number(-m_changeSpeedValue/1000.0);
     }
     toast->setText(str);
+    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
+    int x = globalPoint.x() + (width() - toast->width())/2;
+    int y = globalPoint.y() + height() - toast->height() - 20;
+    toast->move(x, y);
     toast->show();
     /////////////////////////////////////////////////////////
 }

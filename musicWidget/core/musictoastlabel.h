@@ -11,7 +11,6 @@
 
 #include <QLabel>
 #include <QTimer>
-#include <QFont>
 #include "musiclibexportglobal.h"
 
 class MUSIC_LRC_EXPORT MusicToastLabel : public QLabel

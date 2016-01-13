@@ -7,6 +7,7 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setAttribute(Qt::WA_DeleteOnClose);
+    setStyleSheet("background:#F9D982; color:white;");
 
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
