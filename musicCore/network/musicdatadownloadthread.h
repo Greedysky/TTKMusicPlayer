@@ -2,7 +2,7 @@
 #define MUSICDATADOWNLOADTHREAD_H
 
 /* =================================================
- * This file is part of the Music Player project
+ * This file is part of the TTK Music Player project
  * Copyright (c) 2014 - 2016 Greedysky Studio
  * All rights reserved!
  * Redistribution and use of the source code or any derivative
