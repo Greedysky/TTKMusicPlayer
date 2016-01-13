@@ -8,6 +8,7 @@ MusicLrcContainer::MusicLrcContainer(QWidget *parent)
 {
     m_musicLrcSearchWidget = nullptr;
     m_makerWidget = nullptr;
+    m_currentTime = 0;
 }
 
 MusicLrcContainer::~MusicLrcContainer()

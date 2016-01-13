@@ -32,7 +32,7 @@ public:
 
     bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
-    void setSongSpeedAndSlow(qint64 time);
+    qint64 setSongSpeedAndSlow(qint64 time);
     inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
 
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}

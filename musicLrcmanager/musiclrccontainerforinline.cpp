@@ -11,7 +11,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-
+#include <QDebug>
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -160,7 +160,7 @@ void MusicLrcContainerForInline::stopLrcMask()
     m_musicLrcContainer[CURRENT_LRC_PAINT]->stopLrcMask();
 }
 
-void MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
+qint64 MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
 {
     QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime;
@@ -190,6 +190,7 @@ void MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
             break;
         }
     }
+    return time;
 }
 
 void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
@@ -453,16 +454,6 @@ void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
     else if(text == tr("lrcTimeSlow5s")) timeValue = 5000;
 
     m_changeSpeedValue += timeValue;
-
-    MIntStringMapIt it(m_lrcContainer);
-    MIntStringMap copy;
-    while(it.hasNext())
-    {
-        it.next();
-        copy.insert(it.key() + timeValue, it.value());
-    }
-    m_lrcContainer = copy;
-
     revertLrcTimeSpeed( timeValue );
 }
 
@@ -473,6 +464,7 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed()
         return;
     }
     revertLrcTimeSpeed( -m_changeSpeedValue );
+    m_changeSpeedValue = 0;
 }
 
 void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
@@ -486,7 +478,8 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     }
     m_lrcContainer = copy;
 
-    pos > 0 ? (--m_currentLrcIndex < 0 ? 0 : m_currentLrcIndex) : ++m_currentLrcIndex;
+    qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
+    updateCurrentLrc(beforeTime);
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()
