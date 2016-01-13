@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     MusicObject::checkTheDirectoryExist();
     if(!MusicObject::checkTheFileExist())
     {
-        MusicMessageBox(QObject::tr("QMusicPlayer"),
+        MusicMessageBox(QObject::tr("TTKMusicPlayer"),
                         QObject::tr("Lack of necessary component files!")
                         ).exec();
         return -1;
@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
 
     ///////////////////////////////////////////////////////
     M_LOGGERS("MusicApplication Begin");
-    QCoreApplication::setOrganizationName("QMusicPlayer");
-    QCoreApplication::setOrganizationDomain("QMusicPlayer.com");
-    QCoreApplication::setApplicationName("QMusicPlayer");
+    QCoreApplication::setOrganizationName("TTKMusicPlayer");
+    QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
+    QCoreApplication::setApplicationName("TTKMusicPlayer");
 
     //detect the current network state
     M_NETWORK->start();

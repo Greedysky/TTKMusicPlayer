@@ -136,7 +136,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
 void MusicApplicationObject::musicAboutUs()
 {
     MusicMessageBox message;
-    message.setText(tr("QMusicPlayer") + QString("\n\n") +
+    message.setText(tr("TTK Music Player") + QString("\n\n") +
                     tr("Directed By Greedysky") +
                     QString("\nCopyright© 2014-2016") +
                     QString("\nMail:Greedysky@163.com"));

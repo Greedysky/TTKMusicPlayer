@@ -40,7 +40,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("QMusicPlayer");
+    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     //Class A
     QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", musics[0].count());
     QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", musics[1].count());
@@ -51,7 +51,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
 //    {
 //        QDomElement extend = m_ddom->createElement("extend" + QString::number(i - 2));
 //        extend.setAttribute("count",fileNamesList[i].count());
-//        QMusicPlayer.appendChild(extend);
+//        TTKMusicPlayer.appendChild(extend);
 //    }
 
     //Class B
@@ -162,7 +162,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("QMusicPlayer");
+    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     //Class A
     QDomElement music = writeDom(musicPlayer, "music");
     QDomElement settings = writeDom(musicPlayer, "settings");

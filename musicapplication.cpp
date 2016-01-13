@@ -120,7 +120,7 @@ void MusicApplication::closeEvent(QCloseEvent *event)
     {
        hide();
        m_bottomAreaWidget->showMessage(tr("Prompt"),
-                                       tr("QMusicPlayer will run in the background"));
+                                       tr("TTKMusicPlayer will run in the background"));
     }
     else
     {

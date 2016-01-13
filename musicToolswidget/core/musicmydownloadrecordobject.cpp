@@ -14,7 +14,7 @@ void MusicMyDownloadRecordObject::writeDownloadConfig(const MusicDownloadRecord 
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("QMusicPlayer");
+    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "download");
 
     for(int i=0; i<record.m_names.count(); ++i)

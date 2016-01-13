@@ -166,7 +166,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
     if(m_currentTime == -1)
     {
-        m_musicLrcContainer[0]->setText(tr("welcome use QMusicPlayer"));
+        m_musicLrcContainer[0]->setText(tr("welcome use TTKMusicPlayer"));
         m_musicLrcContainer[0]->setGeometry(0, 20,
                                             static_cast<MusicLRCManagerForDesktop*>(m_musicLrcContainer[0])->x(),
                                             m_geometry.y());

@@ -41,8 +41,8 @@ void MusicSongSharingWidget::setSongName(const QString &name)
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
                                   ? path : ":/share/defaultArt").scaled(50, 50));
 
-    ui->textEdit->setText(tr("I used to listen music #%1# by QMusicPlayer,").arg(name) +
-                          tr("and recommend it to you! (From #QMusicPlayer#)"));
+    ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) +
+                          tr("and recommend it to you! (From #TTKMusicPlayer#)"));
 }
 
 int MusicSongSharingWidget::exec()
@@ -82,7 +82,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
     if(ui->qqButton->isChecked())
     {
         url = QString(QQ_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl)
-                               .arg(ui->sharedName->text()).arg(tr("QMusicPlayer"));
+                               .arg(ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(ui->renrenButton->isChecked())
     {
@@ -90,7 +90,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
     }
     else if(ui->qqspaceButton->isChecked())
     {
-        url = QString(QQ_SPACE_SHARE).arg(tr("QMusicPlayer")).arg(imageUrl)
+        url = QString(QQ_SPACE_SHARE).arg(tr("TTKMusicPlayer")).arg(imageUrl)
                                      .arg(ui->textEdit->toPlainText());
     }
     else if(ui->qqblogButton->isChecked())

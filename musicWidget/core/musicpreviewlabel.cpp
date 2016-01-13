@@ -33,15 +33,15 @@ void MusicPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setFont(m_font);
-    painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, "This is QMusicPlayer");
+    painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
 
     painter.setPen(QColor(0, 0, 0, 200));
-    painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, "This is QMusicPlayer");
+    painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
 
     painter.setPen(QPen(m_linearGradient, 0));
-    painter.drawText(1, 1, rect().width(), rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is QMusicPlayer");
+    painter.drawText(1, 1, rect().width(), rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
 
     painter.setPen(QPen(m_maskLinearGradient, 0));
-    painter.drawText(1, 1, 60, rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is QMusicPlayer");
+    painter.drawText(1, 1, 60, rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
     painter.end();
 }
