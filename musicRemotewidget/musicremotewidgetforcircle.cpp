@@ -14,7 +14,7 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_showMainWindow->setIconSize(QSize(40, 40));
+    m_showMainWindow->setIconSize(QSize(30, 30));
     m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
     QGridLayout* grid = new QGridLayout(this);
@@ -35,7 +35,7 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     mainWidgetLayout->addWidget(m_showMainWindow);
     mainWidgetLayout->setAlignment(m_showMainWindow, Qt::AlignCenter);
     mainWidgetLayout->addWidget(m_volumeWidget);
-    m_showMainWindow->setFixedSize(30, 40);
+    m_showMainWindow->setFixedSize(30, 30);
 
 }
 

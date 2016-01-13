@@ -14,7 +14,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    m_showMainWindow->setIconSize(QSize(40, 40));
+    m_showMainWindow->setIconSize(QSize(30, 30));
     m_PreSongButton->setIconSize(QSize(30, 30));
     m_NextSongButton->setIconSize(QSize(30, 30));
     m_PlayButton->setIconSize(QSize(30, 30));
@@ -49,7 +49,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     mainWidgetLayout->addWidget(m_showMainWindow);
     mainWidgetLayout->setAlignment(m_showMainWindow, Qt::AlignCenter);
     mainWidgetLayout->addWidget(m_volumeWidget);
-    m_showMainWindow->setFixedSize(30, 40);
+    m_showMainWindow->setFixedSize(30, 30);
 
     m_interval = 0.0f;
     for(int i=0; i<4; ++i)
