@@ -13,7 +13,7 @@ equals(QT_MAJOR_VERSION, 5){
 QT       += widgets multimediawidgets
 }
 
-TARGET = MusicPlayer
+TARGET = TTKMusicPlayer
 #TARGET = MusicCore
 
 TEMPLATE = app
@@ -88,5 +88,7 @@ RESOURCES += \
     musicQrc/MusicPlayerShare.qrc \
     musicQrc/MusicPlayer.qrc \
 
-RC_FILE = \
-    MusicPlayer.rc
+win32{
+    RC_FILE = \
+        TTKMusicPlayer.rc
+}
