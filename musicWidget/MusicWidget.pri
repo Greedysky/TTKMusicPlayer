@@ -17,6 +17,8 @@ HEADERS  += \
     $$PWD/core/musicmessagebox.h \
     $$PWD/core/musicprogresswidget.h \
     $$PWD/core/musicclickedlabel.h \
+    $$PWD/core/musicmovinglabelslider.h \
+    $$PWD/core/musictoastlabel.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -37,7 +39,6 @@ HEADERS  += \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
-    $$PWD/core/musicmovinglabelslider.h \
     $$PWD/musicbarragewidget.h
 
 
@@ -51,6 +52,8 @@ SOURCES += \
     $$PWD/core/musicmessagebox.cpp \
     $$PWD/core/musicprogresswidget.cpp \
     $$PWD/core/musicclickedlabel.cpp \
+    $$PWD/core/musicmovinglabelslider.cpp \
+    $$PWD/core/musictoastlabel.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
@@ -71,5 +74,4 @@ SOURCES += \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
-    $$PWD/core/musicmovinglabelslider.cpp \
     $$PWD/musicbarragewidget.cpp

@@ -66,8 +66,7 @@ protected:
     void revertLrcTimeSpeed(qint64 pos);
     void initLrc();
 
-    QPoint m_mousePressedAt;
-    QPoint m_mouseMovedAt;
+    QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed;
     bool m_showArtBackground;
     bool m_showInlineLrc;

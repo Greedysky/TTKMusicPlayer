@@ -3,6 +3,7 @@
 #include "musiclrcartphotoupload.h"
 #include "musiclrcfloatwidget.h"
 #include "musicuiobject.h"
+#include "musictoastlabel.h"
 
 #include <QUrl>
 #include <QVBoxLayout>
@@ -11,7 +12,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-#include <QDebug>
+
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -480,6 +481,22 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
 
     qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
     updateCurrentLrc(beforeTime);
+
+    /////////////////////////////////////////////////////////
+    MusicToastLabel *toast = new MusicToastLabel(this);
+    toast->setFontSize(15);
+    QString str;
+    if(m_changeSpeedValue >= 0)
+    {
+        str = tr("before") + QString::number(m_changeSpeedValue/1000.0);
+    }
+    else
+    {
+        str = tr("after") + QString::number(-m_changeSpeedValue/1000.0);
+    }
+    toast->setText(str);
+    toast->show();
+    /////////////////////////////////////////////////////////
 }
 
 void MusicLrcContainerForInline::theArtBgChanged()
