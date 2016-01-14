@@ -55,9 +55,19 @@ void MusicMessageBox::setTitle(const QString &text) const
     ui->topTitleName->setText(text);
 }
 
+QString MusicMessageBox::title() const
+{
+    return ui->topTitleName->text();
+}
+
 void MusicMessageBox::setText(const QString &text) const
 {
     ui->textLabel->setText(text);
+}
+
+QString MusicMessageBox::text() const
+{
+    return ui->textLabel->text();
 }
 
 void MusicMessageBox::buttonClicked(int index)

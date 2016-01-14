@@ -26,7 +26,10 @@ public:
     virtual ~MusicMessageBox();
 
     void setTitle(const QString &text) const;
+    QString title() const;
+
     void setText(const QString &text) const;
+    QString text() const;
 
 public Q_SLOTS:
     void buttonClicked(int index);
