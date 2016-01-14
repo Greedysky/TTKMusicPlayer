@@ -67,7 +67,7 @@ protected:
     void revertLrcTimeSpeed(qint64 pos);
     void createNoLrcCurrentInfo();
     void showNoLrcCurrentInfo();
-    void initLrc();
+    void initLrc(const QString &str);
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed;

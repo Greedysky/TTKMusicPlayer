@@ -12,7 +12,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-
+#include <QDebug>
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -38,7 +38,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_changeSpeedValue = 0;
 
     createNoLrcCurrentInfo();
-    initLrc();
+    initLrc(tr("noCurrentSongPlay"));
 
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
@@ -276,17 +276,19 @@ void MusicLrcContainerForInline::showNoLrcCurrentInfo()
     QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
     int w = me.width(m_noLrcCurrentInfo->text());
     int h = me.height();
+
+    ///there is a bug when playing not click the lrc widget
     m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 30)/2, w, h);
     m_noLrcCurrentInfo->show();
 }
 
-void MusicLrcContainerForInline::initLrc()
+void MusicLrcContainerForInline::initLrc(const QString &str)
 {
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
+    m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(str);
 }
 
 void MusicLrcContainerForInline::resizeWidth(int width)
@@ -297,11 +299,15 @@ void MusicLrcContainerForInline::resizeWidth(int width)
         m_lrcFloatWidget->resizeWidth(width);
     }
 
-    if(m_lrcContainer.isEmpty() || m_currentLrcIndex == 0)
+    if(m_lrcContainer.isEmpty())
     {
-        initLrc();
+        initLrc(tr("unFoundLrc"));
+        showNoLrcCurrentInfo();
     }
-    showNoLrcCurrentInfo();
+    else if(m_currentTime != 0 && m_currentLrcIndex == 0)
+    {
+        initLrc(tr("noCurrentSongPlay"));
+    }
 }
 
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
