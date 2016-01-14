@@ -925,6 +925,18 @@
     <string>Ctrl+S</string>
    </property>
   </action>
+  <action name="action_ItemOnce">
+   <property name="icon">
+    <iconset resource="../../musicQrc/MusicPlayer.qrc">
+     <normaloff>:/image/playonce</normaloff>:/image/playonce</iconset>
+   </property>
+   <property name="text">
+    <string>单曲播放</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+5</string>
+   </property>
+  </action>
   <zorder>background</zorder>
   <zorder>musicPrivious</zorder>
   <zorder>musicNext</zorder>

@@ -78,6 +78,7 @@ void MusicBottomAreaWidget::createToolPopupMenu()
     m_toolPopupMenu.addAction(m_ui->action_RandomPlay);
     m_toolPopupMenu.addAction(m_ui->action_SingleCycle);
     m_toolPopupMenu.addAction(m_ui->action_ListCycle);
+    m_toolPopupMenu.addAction(m_ui->action_ItemOnce);
     m_toolPopupMenu.addSeparator();
     m_toolPopupMenu.addAction(m_ui->action_VolumeSub);
     m_toolPopupMenu.addAction(m_ui->action_VolumePlus);
@@ -124,6 +125,7 @@ void MusicBottomAreaWidget::createMenuActions() const
     connect(m_ui->action_RandomPlay, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayRandom()));
     connect(m_ui->action_SingleCycle, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayOneLoop()));
     connect(m_ui->action_ListCycle, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayListLoop()));
+    connect(m_ui->action_ItemOnce, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayItemOnce()));
 }
 
 void MusicBottomAreaWidget::createSystemTrayIcon()

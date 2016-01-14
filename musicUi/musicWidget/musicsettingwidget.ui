@@ -593,7 +593,7 @@ font-weight:bold;</string>
       <string notr="true">background:white;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>Alt + 1/2/3/4</string>
+      <string>Alt + 1/2/3/4/5</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
