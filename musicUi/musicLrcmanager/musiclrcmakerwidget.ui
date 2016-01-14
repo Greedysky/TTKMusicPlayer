@@ -212,14 +212,14 @@
   <widget class="QLabel" name="llrcIntroductionLabel">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>80</x>
      <y>58</y>
-     <width>251</width>
-     <height>16</height>
+     <width>381</width>
+     <height>15</height>
     </rect>
    </property>
    <property name="text">
-    <string>请输入着正确的歌词文本，否则会制作失败！</string>
+    <string>请输入着正确的歌词文本，否则会制作失败！跟着节奏按A键开始记录！</string>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">

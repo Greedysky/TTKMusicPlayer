@@ -2054,7 +2054,7 @@
     <message>
         <location filename="../musicLrcmanager/musiclrcmakerwidget.cpp" line="177"/>
         <source>lrc make finished</source>
-        <translation></translation>
+        <translation>歌词制作完成！</translation>
     </message>
 </context>
 <context>
