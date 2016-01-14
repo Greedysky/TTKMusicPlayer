@@ -22,6 +22,9 @@ public:
     explicit MusicAbstractMoveDialog(QWidget *parent = 0);
     virtual ~MusicAbstractMoveDialog();
 
+    inline void drawWindowShadow(bool show) { m_showShadow = show;}
+    inline void blockMoveOption(bool block) { m_moveOption = block;}
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -29,6 +32,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     QPoint m_pressAt;
+    bool m_moveOption, m_showShadow;
     bool m_leftButtonPress;
 
 };

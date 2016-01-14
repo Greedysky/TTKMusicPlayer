@@ -9,8 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define WIDTH_S  20
-#define HEIGHT_S 20
+#define WIDTH  20
+#define HEIGHT 20
 
 #include <QWidget>
 #include <QMouseEvent>
@@ -33,9 +33,8 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     QPoint m_pressAt;
-    bool m_moveOption;
+    bool m_moveOption, m_showShadow;
     bool m_leftButtonPress;
-    bool m_showShadow;
 
 };
 
