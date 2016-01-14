@@ -9,14 +9,15 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QBoxLayout>
 #include "musiclrccontainer.h"
 
 #define MIN_LRCCONTAIN_COUNT 9
 #define CURRENT_LRC_PAINT 4
 
-class QVBoxLayout;
 class MusicLRCManagerForInline;
 class MusicLrcFloatWidget;
+class MusicClickedLabel;
 
 class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
@@ -64,6 +65,8 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
     void changeLrcPostion(const QString &type);
     void revertLrcTimeSpeed(qint64 pos);
+    void createNoLrcCurrentInfo();
+    void showNoLrcCurrentInfo();
     void initLrc();
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
@@ -77,6 +80,7 @@ protected:
     QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
     MusicLrcFloatWidget *m_lrcFloatWidget;
+    MusicClickedLabel *m_noLrcCurrentInfo;
 
 };
 

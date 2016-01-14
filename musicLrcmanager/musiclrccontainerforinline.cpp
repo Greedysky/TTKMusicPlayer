@@ -4,9 +4,9 @@
 #include "musiclrcfloatwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
+#include "musicclickedlabel.h"
 
 #include <QUrl>
-#include <QVBoxLayout>
 #include <QPainter>
 #include <QDesktopServices>
 #include <QClipboard>
@@ -37,7 +37,9 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_showInlineLrc = true;
     m_changeSpeedValue = 0;
 
+    createNoLrcCurrentInfo();
     initLrc();
+
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
@@ -46,6 +48,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
     delete m_lrcFloatWidget;
+    delete m_noLrcCurrentInfo;
 }
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
@@ -61,11 +64,13 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     if(!file.open(QIODevice::ReadOnly))
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("unFoundLrc"));
+        showNoLrcCurrentInfo();
         return false;
     }
     else
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
+        showNoLrcCurrentInfo();
     }
 
     QString getAllText = QString(file.readAll());
@@ -252,6 +257,29 @@ int MusicLrcContainerForInline::getLrcSize() const
     return M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
+void MusicLrcContainerForInline::createNoLrcCurrentInfo()
+{
+    m_noLrcCurrentInfo = new MusicClickedLabel(this);
+    QFont f = m_noLrcCurrentInfo->font();
+    f.setPointSize(15);
+    f.setUnderline(true);
+    m_noLrcCurrentInfo->setStyleSheet("color:rgb(244, 244, 244)");
+    m_noLrcCurrentInfo->setFont(f);
+    m_noLrcCurrentInfo->setText(tr("makeLrc"));
+
+    connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(theCurrentLrcMaked()));
+    m_noLrcCurrentInfo->hide();
+}
+
+void MusicLrcContainerForInline::showNoLrcCurrentInfo()
+{
+    QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
+    int w = me.width(m_noLrcCurrentInfo->text());
+    int h = me.height();
+    m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 30)/2, w, h);
+    m_noLrcCurrentInfo->show();
+}
+
 void MusicLrcContainerForInline::initLrc()
 {
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
@@ -273,6 +301,7 @@ void MusicLrcContainerForInline::resizeWidth(int width)
     {
         initLrc();
     }
+    showNoLrcCurrentInfo();
 }
 
 void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
