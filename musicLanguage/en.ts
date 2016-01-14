@@ -9,11 +9,6 @@
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="123"/>
-        <source>QMusicPlayer will run in the background</source>
-        <translation>MusicPlayer Will Run In The Background</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="183"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
@@ -22,6 +17,11 @@
         <location filename="../musicapplication.cpp" line="175"/>
         <source>logout</source>
         <translation>Login</translation>
+    </message>
+    <message>
+        <location filename="../musicapplication.cpp" line="123"/>
+        <source>TTKMusicPlayer will run in the background</source>
+        <translation>TTKMusicPlayer Will Run In The Background</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="163"/>
@@ -385,8 +385,8 @@
     <name>MusicApplicationObject</name>
     <message>
         <location filename="../musicapplicationobject.cpp" line="139"/>
-        <source>QMusicPlayer</source>
-        <translation>QMusicPlayer</translation>
+        <source>TTK Music Player</source>
+        <translation>TTKMusicPlayer</translation>
     </message>
     <message>
         <location filename="../musicapplicationobject.cpp" line="140"/>
@@ -612,8 +612,8 @@
     </message>
     <message>
         <location filename="../musicbottomareawidget.cpp" line="133"/>
-        <source>QMusicPlayer</source>
-        <translation>QMusicPlayer</translation>
+        <source>TTKMusicPlayer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1672,8 +1672,8 @@
     </message>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="169"/>
-        <source>welcome use QMusicPlayer</source>
-        <translation>Welcome Use QMusicPlayer!</translation>
+        <source>welcome use TTKMusicPlayer</source>
+        <translation>Welcome To Use TTKMusicPlayer!</translation>
     </message>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="325"/>
@@ -3097,24 +3097,24 @@
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="44"/>
-        <source>I used to listen music #%1# by QMusicPlayer,</source>
+        <source>I used to listen music #%1# by TTKMusicPlayer,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="45"/>
-        <source>and recommend it to you! (From #QMusicPlayer#)</source>
+        <source>and recommend it to you! (From #TTKMusicPlayer#)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="85"/>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="93"/>
+        <source>TTKMusicPlayer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="75"/>
         <source>Song does not support sharing!</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="85"/>
-        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="93"/>
-        <source>QMusicPlayer</source>
-        <translation type="unfinished">QMusicPlayer</translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="122"/>
@@ -4608,18 +4608,18 @@
     </message>
     <message>
         <location filename="../musicCore/musicregeditmanager.cpp" line="85"/>
-        <source>user QMusicPlayer play</source>
-        <translation>Use QMusicPlayer Play</translation>
+        <source>user TTKMusicPlayer play</source>
+        <translation>Use TTKMusicPlayer Play</translation>
     </message>
     <message>
         <location filename="../musicCore/musicregeditmanager.cpp" line="94"/>
-        <source>add QMusicPlayer playList</source>
-        <translation>Add To QMusicPlayer PlayList</translation>
+        <source>add TTKMusicPlayer playList</source>
+        <translation>Add To TTKMusicPlayer PlayList</translation>
     </message>
     <message>
         <location filename="../musicapplicationmain.cpp" line="30"/>
-        <source>QMusicPlayer</source>
-        <translation type="unfinished">QMusicPlayer</translation>
+        <source>TTKMusicPlayer</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../musicapplicationmain.cpp" line="31"/>

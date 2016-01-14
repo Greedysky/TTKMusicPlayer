@@ -9,11 +9,6 @@
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../musicapplication.cpp" line="123"/>
-        <source>QMusicPlayer will run in the background</source>
-        <translation>天天酷音將在後臺運行</translation>
-    </message>
-    <message>
         <location filename="../musicapplication.cpp" line="183"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
@@ -22,6 +17,11 @@
         <location filename="../musicapplication.cpp" line="175"/>
         <source>logout</source>
         <translation>登錄</translation>
+    </message>
+    <message>
+        <location filename="../musicapplication.cpp" line="123"/>
+        <source>TTKMusicPlayer will run in the background</source>
+        <translation>天天酷音將在後臺運行</translation>
     </message>
     <message>
         <location filename="../musicapplication.cpp" line="163"/>
@@ -385,7 +385,7 @@
     <name>MusicApplicationObject</name>
     <message>
         <location filename="../musicapplicationobject.cpp" line="139"/>
-        <source>QMusicPlayer</source>
+        <source>TTK Music Player</source>
         <translation>天天酷音</translation>
     </message>
     <message>
@@ -612,7 +612,7 @@
     </message>
     <message>
         <location filename="../musicbottomareawidget.cpp" line="133"/>
-        <source>QMusicPlayer</source>
+        <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
 </context>
@@ -1672,7 +1672,7 @@
     </message>
     <message>
         <location filename="../musicLrcmanager/musiclrccontainerfordesktop.cpp" line="169"/>
-        <source>welcome use QMusicPlayer</source>
+        <source>welcome use TTKMusicPlayer</source>
         <translation>歡迎使用天天酷音!</translation>
     </message>
     <message>
@@ -3097,24 +3097,24 @@
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="44"/>
-        <source>I used to listen music #%1# by QMusicPlayer,</source>
+        <source>I used to listen music #%1# by TTKMusicPlayer,</source>
         <translation>我正在用天天酷音聽 #%1#， </translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="45"/>
-        <source>and recommend it to you! (From #QMusicPlayer#)</source>
+        <source>and recommend it to you! (From #TTKMusicPlayer#)</source>
         <translation>推薦給妳們！（来自#天天酷音#）</translation>
+    </message>
+    <message>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="85"/>
+        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="93"/>
+        <source>TTKMusicPlayer</source>
+        <translation>天天酷音</translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="75"/>
         <source>Song does not support sharing!</source>
         <translation>該歌曲暫時不支持分享！</translation>
-    </message>
-    <message>
-        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="85"/>
-        <location filename="../musicWidget/musicsongsharingwidget.cpp" line="93"/>
-        <source>QMusicPlayer</source>
-        <translation>天天酷音</translation>
     </message>
     <message>
         <location filename="../musicWidget/musicsongsharingwidget.cpp" line="122"/>
@@ -4608,17 +4608,17 @@
     </message>
     <message>
         <location filename="../musicCore/musicregeditmanager.cpp" line="85"/>
-        <source>user QMusicPlayer play</source>
+        <source>user TTKMusicPlayer play</source>
         <translation>使用 天天酷音播放器 播放</translation>
     </message>
     <message>
         <location filename="../musicCore/musicregeditmanager.cpp" line="94"/>
-        <source>add QMusicPlayer playList</source>
+        <source>add TTKMusicPlayer playList</source>
         <translation>添加到 天天酷音 播放列表中</translation>
     </message>
     <message>
         <location filename="../musicapplicationmain.cpp" line="30"/>
-        <source>QMusicPlayer</source>
+        <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
