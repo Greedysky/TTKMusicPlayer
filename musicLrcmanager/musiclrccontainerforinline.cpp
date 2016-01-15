@@ -12,7 +12,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-#include <QDebug>
+
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -70,7 +70,6 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     else
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
-        showNoLrcCurrentInfo();
     }
 
     QString getAllText = QString(file.readAll());
@@ -118,9 +117,11 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     if (m_lrcContainer.isEmpty())
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("lrcFileError"));
+        showNoLrcCurrentInfo();
         return false;
     }
 
+    m_noLrcCurrentInfo->hide(); ///hide error make lrc widget
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
 

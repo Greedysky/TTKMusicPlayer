@@ -34,7 +34,7 @@ public:
     bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
     qint64 setSongSpeedAndSlow(qint64 time);
-    inline MIntStringMap& getLrcContainer() {return m_lrcContainer;}
+    inline const MIntStringMap& getLrcContainer() {return m_lrcContainer;}
 
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
     void setLrcSize(MusicLRCManager::LrcSizeTable = MusicLRCManager::Middle) const;
