@@ -1,7 +1,7 @@
 *.user
-QMusicPlayer.uxf
-MusicPlayer.aps
+TTKMusicplayer.aps
 build-MusicPlayer-*/
+build-TTKMusicplayer-*/
 *.*-pre1
 *.user.*
 *.autosave
