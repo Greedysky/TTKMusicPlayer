@@ -186,12 +186,12 @@ namespace MusicObject
     static QString getAppDir()
     {
         QString path = QApplication::applicationDirPath();
-#ifdef QT_DEBUG
-        path.chop(5);
-        return path;
-#else
+//#ifdef QT_DEBUG
+//        path.chop(5);
+//        return path;
+//#else
         return path + "/";
-#endif
+//#endif
     }
 
     static void checkTheDirectoryExist()
