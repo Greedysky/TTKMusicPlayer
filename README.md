@@ -65,10 +65,10 @@ MV
 ![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/7.png?raw=true)
 
 Video Barrage
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/9.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/8.png?raw=true)
 
 Magic Music
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/8.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/9.png?raw=true)
 
 Copyright
 -------
