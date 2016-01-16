@@ -7,7 +7,7 @@
 TARGET = ../../bin/MusicCore
 TEMPLATE = lib
 
-CONFIG += TTK_BUID_LIB
+CONFIG += TTK_BUILD_LIB
 
 INCLUDEPATH += $$PWD
 

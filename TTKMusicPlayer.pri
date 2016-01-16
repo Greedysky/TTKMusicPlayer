@@ -52,7 +52,7 @@ win32{
 
 DEFINES += MUSIC_LIBRARY
 
-contains(CONFIG, TTK_BUID_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
   include(TTKMusicPlayer/musicUi/MusicUi.pri)
 }
 include(TTKMusicPlayer/musicCore/MusicCore.pri)

@@ -7,7 +7,7 @@
 INCLUDEPATH += $$PWD \
                $$PWD/core
 
-!contains(CONFIG, TTK_MSVC_LIK){
+!contains(CONFIG, TTK_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musicaudiorecorderwidget.h \
@@ -25,7 +25,7 @@ HEADERS  += \
 
 }
 
-contains(CONFIG, TTK_BUID_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
     $$PWD/musicaudiorecorderwidget.cpp \

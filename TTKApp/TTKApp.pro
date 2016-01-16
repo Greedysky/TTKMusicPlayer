@@ -9,13 +9,13 @@ TARGET = ../../bin/TTKMusicPlayer
 TEMPLATE = app
 LIBS += -L../bin -lMusicCore
 
-contains(CONFIG, TTK_BUID_LIB){
-    CONFIG -= TTK_BUID_LIB
+contains(CONFIG, TTK_BUILD_LIB){
+    CONFIG -= TTK_BUILD_LIB
 }
 win32{
-    CONFIG += TTK_MSVC_LIK
+    CONFIG += TTK_MSVC_LINK_NEED
     msvc{
-        CONFIG -= TTK_MSVC_LIK
+        CONFIG -= TTK_MSVC_LINK_NEED
     }
 }
 
@@ -25,7 +25,7 @@ TRANSLATIONS += musicLanguage/cn.ts \
 
 
 INCLUDEPATH += ../TTKMusicPlayer
-!contains(CONFIG, TTK_MSVC_LIK){
+!contains(CONFIG, TTK_MSVC_LINK_NEED){
 HEADERS  += \
     ../TTKMusicPlayer/musicapplication.h \
     ../TTKMusicPlayer/musicleftareawidget.h \
