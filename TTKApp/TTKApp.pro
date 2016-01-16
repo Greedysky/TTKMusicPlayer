@@ -19,9 +19,9 @@ win32{
     }
 }
 
-TRANSLATIONS += musicLanguage/cn.ts \
-                musicLanguage/cn_c.ts \
-                musicLanguage/en.ts
+TRANSLATIONS += ../TTKLanguage/cn.ts \
+                ../TTKLanguage/cn_c.ts \
+                ../TTKLanguage/en.ts
 
 
 INCLUDEPATH += ../TTKMusicPlayer
@@ -38,7 +38,8 @@ HEADERS  += \
 
 include(../TTKMusicPlayer.pri)
 
-SOURCES += musicapplicationmain.cpp
+SOURCES += \
+    musicapplicationmain.cpp
 
 win32{
     RC_FILE = TTKApp.rc
