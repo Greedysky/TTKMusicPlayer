@@ -5,4 +5,4 @@
 #-------------------------------------------------
 
 TEMPLATE = subdirs
-SUBDIRS = TTKMusicPlayer
+SUBDIRS = TTKMusicPlayer TTKApp

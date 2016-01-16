@@ -5,14 +5,17 @@
 #-------------------------------------------------
 
 INCLUDEPATH += $$PWD
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musicvideocontrol.h \
     $$PWD/musicvideoview.h \
     $$PWD/musicvideotablewidget.h \
     $$PWD/musicvideoplaywidget.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musicvideocontrol.cpp \
     $$PWD/musicvideoview.cpp \
@@ -22,3 +25,5 @@ SOURCES += \
 
 RESOURCES += \
     musicQrc/MusicPlayerVedio.qrc
+
+}

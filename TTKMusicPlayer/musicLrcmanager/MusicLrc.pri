@@ -5,7 +5,8 @@
 #-------------------------------------------------
 
 INCLUDEPATH += $$PWD
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musiclrcmanager.h \
     $$PWD/musiclrcmanagerfordesktop.h \
@@ -23,7 +24,9 @@ HEADERS  += \
     $$PWD/musiclrcfloatphotowidget.h \
     $$PWD/musiclrcmakerwidget.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musiclrcmanager.cpp \
     $$PWD/musiclrcmanagerfordesktop.cpp \
@@ -40,3 +43,5 @@ SOURCES += \
     $$PWD/musiclrcfloatsettingwidget.cpp \
     $$PWD/musiclrcfloatphotowidget.cpp \
     $$PWD/musiclrcmakerwidget.cpp
+
+}

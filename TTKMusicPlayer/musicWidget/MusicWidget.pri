@@ -6,7 +6,8 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/core
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/core/musicabstracttablewidget.h \
     $$PWD/core/musicabstractmovedialog.h \
@@ -41,7 +42,9 @@ HEADERS  += \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicbarragewidget.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/core/musicabstracttablewidget.cpp \
     $$PWD/core/musicabstractmovedialog.cpp \
@@ -75,3 +78,5 @@ SOURCES += \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicbarragewidget.cpp
+
+}

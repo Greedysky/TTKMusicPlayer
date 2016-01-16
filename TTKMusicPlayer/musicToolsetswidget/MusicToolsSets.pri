@@ -6,7 +6,8 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/core
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musicaudiorecorderwidget.h \
@@ -22,7 +23,9 @@ HEADERS  += \
     $$PWD/core/musicsongtag.h \
     $$PWD/musiclocalsongstablewidget.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
     $$PWD/musicaudiorecorderwidget.cpp \
@@ -37,3 +40,5 @@ SOURCES += \
     $$PWD/core/musiclocalsongsmanagerthread.cpp \
     $$PWD/core/musicsongtag.cpp \
     $$PWD/musiclocalsongstablewidget.cpp
+
+}

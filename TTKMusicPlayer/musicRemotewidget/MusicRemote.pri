@@ -5,7 +5,8 @@
 #-------------------------------------------------
 
 INCLUDEPATH += $$PWD
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musicremotewidget.h \
     $$PWD/musicremotewidgetforsquare.h \
@@ -15,7 +16,9 @@ HEADERS  += \
     $$PWD/musicremotewidgetforsimplestyle.h \
     $$PWD/musicremotewidgetforcomplexstyle.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musicremotewidget.cpp \
     $$PWD/musicremotewidgetforsquare.cpp \
@@ -24,3 +27,5 @@ SOURCES += \
     $$PWD/musicremotewidgetforcircle.cpp \
     $$PWD/musicremotewidgetforsimplestyle.cpp \
     $$PWD/musicremotewidgetforcomplexstyle.cpp
+
+}

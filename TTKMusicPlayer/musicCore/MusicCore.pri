@@ -6,7 +6,8 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/network
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musiclogger.h \
     $$PWD/musiclibexportglobal.h \
@@ -38,7 +39,9 @@ HEADERS  += \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/network/musicdownloadthreadabstract.cpp \
     $$PWD/network/musicdata2downloadthread.cpp \
@@ -61,3 +64,5 @@ SOURCES += \
     $$PWD/musicregeditmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsong.cpp
+
+}

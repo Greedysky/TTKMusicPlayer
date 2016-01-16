@@ -4,36 +4,17 @@
 #
 #-------------------------------------------------
 
-TARGET = ../../bin/TTKMusicPlayer
-#TARGET = MusicCore
+TARGET = ../../bin/MusicCore
+TEMPLATE = lib
 
-TEMPLATE = app
-#LIBS += -L"./" -lMusicCore
-#TEMPLATE = lib
-
+CONFIG += TTK_BUID_LIB
 
 INCLUDEPATH += $$PWD
 
-TRANSLATIONS += musicLanguage/cn.ts \
-                musicLanguage/cn_c.ts \
-                musicLanguage/en.ts
-
 include(../TTKMusicPlayer.pri)
 
-include(musicCore/MusicCore.pri)
-include(musicWidget/MusicWidget.pri)
-include(musicLocalsearch/MusicLocalSearch.pri)
-include(musicLrcmanager/MusicLrc.pri)
-include(musicRemotewidget/MusicRemote.pri)
-include(musicToolsetswidget/MusicToolsSets.pri)
-include(musicToolswidget/MusicToolsWidget.pri)
-include(musicUi/MusicUi.pri)
-include(musicUsermanager/MusicUser.pri)
-include(musicVideokits/MusicVideo.pri)
-
-
 SOURCES += \
-    musicapplicationmain.cpp\
+#    musicapplicationmain.cpp\
     musicapplication.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
@@ -53,9 +34,4 @@ HEADERS  += \
 
 RESOURCES += \
     musicQrc/MusicPlayerShare.qrc \
-    musicQrc/MusicPlayer.qrc \
-
-win32{
-    RC_FILE = \
-        TTKMusicPlayer.rc
-}
+    musicQrc/MusicPlayer.qrc

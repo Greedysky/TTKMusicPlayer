@@ -6,7 +6,8 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/core
-               
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musicusermanager.h \
     $$PWD/musicuserdialog.h \
@@ -16,7 +17,9 @@ HEADERS  += \
     $$PWD/core/musicuserconfigmanager.h \
     $$PWD/musicuserrecordwidget.h
     
-    
+}
+
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musicusermanager.cpp \
     $$PWD/musicuserdialog.cpp \
@@ -29,4 +32,6 @@ SOURCES += \
 
 RESOURCES += \
     musicQrc/MusicPlayerShare.qrc \
-    musicQrc/MusicPlayerUser.qrc \
+    musicQrc/MusicPlayerUser.qrc
+
+}

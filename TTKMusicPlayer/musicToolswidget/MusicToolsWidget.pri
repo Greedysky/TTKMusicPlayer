@@ -6,7 +6,8 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/core
-    
+
+!contains(CONFIG, TTK_MSVC_LIK){
 HEADERS  += \
     $$PWD/musicsongssummarizied.h \
     $$PWD/musictoolsetswidget.h \
@@ -17,7 +18,9 @@ HEADERS  += \
     $$PWD/core/musicmydownloadrecordobject.h \
     $$PWD/musicconnectmobilewidget.h
 
+}
 
+contains(CONFIG, TTK_BUID_LIB){
 SOURCES += \
     $$PWD/musicsongssummarizied.cpp \
     $$PWD/musictoolsetswidget.cpp \
@@ -27,3 +30,5 @@ SOURCES += \
     $$PWD/core/musicwebradiodatebase.cpp \
     $$PWD/core/musicmydownloadrecordobject.cpp \
     $$PWD/musicconnectmobilewidget.cpp
+
+}
