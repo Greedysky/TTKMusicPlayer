@@ -31,7 +31,11 @@ unix:{
     system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
 }
 win32:{
+    output = $$OUT_PWD/bin/MLanguage
+    output = $$replace(output, /, \\)
+    !exists($$output):system(md $$output)
+
     system(for /r %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
     system(for /r %i in (*.qm) do ren %i *.ln)
-    system(for /r %i in (*.ln) do move /y %i $$OUT_PWD/bin/MLanguage)
+    system(for /r %i in (*.ln) do move /y %i $$output)
 }
