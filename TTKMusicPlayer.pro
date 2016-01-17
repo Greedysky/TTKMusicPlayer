@@ -7,6 +7,10 @@
 TEMPLATE = subdirs
 SUBDIRS = TTKMusicPlayer TTKApp
 
+TRANSLATIONS += TTKLanguage/cn.ts \
+                TTKLanguage/cn_c.ts \
+                TTKLanguage/en.ts
+
 ##update translation
 unix:exists($$[QT_INSTALL_BINS]/lrelease){
 LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease

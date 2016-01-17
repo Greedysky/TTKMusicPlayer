@@ -19,11 +19,6 @@ win32{
     }
 }
 
-TRANSLATIONS += ../TTKLanguage/cn.ts \
-                ../TTKLanguage/cn_c.ts \
-                ../TTKLanguage/en.ts
-
-
 INCLUDEPATH += ../TTKMusicPlayer
 !contains(CONFIG, TTK_MSVC_LINK_NEED){
 HEADERS  += \
