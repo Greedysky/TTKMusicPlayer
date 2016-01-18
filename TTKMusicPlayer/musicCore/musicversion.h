@@ -10,11 +10,11 @@
    =================================================*/
 
 //update time 2016.01.18
-#define QMUSICPLAYER_VERSION_STR "2.2.9.0"
+#define TTKMUSIC_VERSION_STR "2.2.9.0"
 
-#define QMUSICPLAYER_VERSION  0x02290
-0
-#define QMUSICPLAYER_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
+#define TTKMUSIC_VERSION 0x02290
+
+#define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
 
 #endif // MUSICVERSION

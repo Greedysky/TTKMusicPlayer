@@ -209,7 +209,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
-    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + QMUSICPLAYER_VERSION_STR, m_object, SLOT(musicAboutUs()));
+    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + TTKMUSIC_VERSION_STR, m_object, SLOT(musicAboutUs()));
 
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/quit"), tr("quit"), this, SLOT(quitWindowClose()));

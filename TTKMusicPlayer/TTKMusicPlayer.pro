@@ -14,7 +14,6 @@ INCLUDEPATH += $$PWD
 include(../TTKMusicPlayer.pri)
 
 SOURCES += \
-#    musicapplicationmain.cpp\
     musicapplication.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
