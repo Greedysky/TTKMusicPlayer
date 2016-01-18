@@ -12,7 +12,6 @@
 #include "musicsingleton.h"
 
 #include <QTimer>
-#include <QTcpSocket>
 
 #define M_NETWORK (MusicSingleton<MusicNetworkThread>::createInstance())
 
@@ -32,12 +31,10 @@ Q_SIGNALS:
     //default status is true, means connected network
 
 public Q_SLOTS:
-    void socketStateChanged(QAbstractSocket::SocketState socketState);
     void timerOut();
 
 private:
     QTimer m_timer;
-    QTcpSocket *m_client;
     bool m_networkState;
     bool m_blockNetWork;
 
