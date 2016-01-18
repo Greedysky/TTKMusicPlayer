@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include "musiclibexportglobal.h"
@@ -34,12 +33,9 @@ public:
     void setLabelText(const QString &name) const;
 
     void setSystemCloseConfig(const QString &status);
-    void setSystemCloseConfig(bool status)
-            { m_systemCloseConfig = status;}
-    bool getSystemCloseConfig()
-            { return m_systemCloseConfig;}
-    bool systemTrayIsVisible()
-            { return m_systemTray->isVisible();}
+    void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
+    bool getSystemCloseConfig() { return m_systemCloseConfig;}
+    bool systemTrayIsVisible() { return m_systemTray->isVisible();}
     void showMessage(const QString &title, const QString &text);
     void setVolumeValue(int value) const;
 
