@@ -132,8 +132,17 @@ void MusicSongsSummarizied::setTimerLabel(const QString &time) const
 void MusicSongsSummarizied::setTransparent(int alpha)
 {
     alpha = alpha*2.55;
+    foreach(MusicSongsListWidget *item, m_mainSongLists)
+    {
+        item->setTransparent(alpha);
+        item->update();
+    }
+
+    alpha += 40;
     setStyleSheet(MusicUIObject::MToolBoxStyle01 + \
-                  QString("QToolBox::tab{background-color:rgba(255,255,255,%1);}").arg(alpha) );
+                  QString("QToolBox::tab{background-color:rgba(255,255,255,%1);}")
+                  .arg(alpha > 255 ? 255 : alpha) );
+
 }
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)

@@ -24,7 +24,7 @@ public:
     explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
     virtual ~MusicBackgroundSkinDialog();
 
-    void setCurrentBgTheme(const QString &theme, int alpha, int alphaR);
+    void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     void updateBackground();
     int getListBgSkinAlpha() const;
 

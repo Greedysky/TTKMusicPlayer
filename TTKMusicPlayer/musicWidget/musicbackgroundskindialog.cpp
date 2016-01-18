@@ -32,7 +32,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(ui->bgTransparentSlider, SIGNAL(valueChanged(int)), parent,
                                      SLOT(musicBgTransparentChanged(int)));
     connect(ui->bgTransparentSliderR, SIGNAL(valueChanged(int)), parent,
-                                      SIGNAL(setTransparent(int)));
+                                      SLOT(musicPlayListTransparent(int)));
     connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),
                                  SLOT(itemUserClicked(QListWidgetItem*)));
     connect(ui->remoteWidget, SIGNAL(showCustomSkin(QString)), SLOT(showCustomSkin(QString)));
@@ -62,12 +62,12 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     }
 }
 
-void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int alphaR)
+void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int listAlpha)
 {
     ui->themeListWidget->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
     ui->bgTransparentSlider->setValue(alpha);
-    ui->bgTransparentSliderR->setValue(alphaR);
+    ui->bgTransparentSliderR->setValue(listAlpha);
 }
 
 void MusicBackgroundSkinDialog::updateBackground()

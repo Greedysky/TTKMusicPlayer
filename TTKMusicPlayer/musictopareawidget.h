@@ -51,6 +51,7 @@ public Q_SLOTS:
     void musicBackgroundSkinChanged(const QString &filename);
     void musicBackgroundChanged();
     void musicBgThemeDownloadFinished();
+    void musicPlayListTransparent(int index);
 
     void musicCircleRemote();
     void musicDiamondRemote();

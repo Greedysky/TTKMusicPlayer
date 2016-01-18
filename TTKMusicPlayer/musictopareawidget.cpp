@@ -181,6 +181,11 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
     }
 }
 
+void MusicTopAreaWidget::musicPlayListTransparent(int index)
+{
+    emit setTransparent(m_listAlpha = index);
+}
+
 void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
 {
     m_ui->musicSoundSlider->setValue(value);

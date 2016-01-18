@@ -31,6 +31,7 @@ public:
 
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
+    inline void setTransparent(int transparent) { m_transparent = transparent;}
     void setTimerLabel(const QString &t) const;
     void replacePlayWidgetRow();
 
@@ -46,8 +47,7 @@ Q_SIGNALS:
     void isCurrentIndexs(bool &state);
     void deleteItemAt(const MIntList &index, bool fileRemove);
     void musicSongToLovestListAt(int row);
-    void getMusicIndexSwaped(int before, int after, int play,
-                             QStringList &list);
+    void getMusicIndexSwaped(int before, int after, int play, QStringList &list);
 
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
@@ -76,6 +76,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     void startToDrag();
 
+    int m_transparent;
     int m_playRowIndex, m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;

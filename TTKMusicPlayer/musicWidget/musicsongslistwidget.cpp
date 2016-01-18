@@ -24,7 +24,9 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
     m_mouseMoved = false;
+    m_transparent = 0;
 
+    MusicAbstractTableWidget::setTransparent(0);
 #ifndef MUSIC_QT_5
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
@@ -188,13 +190,11 @@ void MusicSongsListWidget::leaveEvent(QEvent *event)
 
 void MusicSongsListWidget::paintEvent(QPaintEvent *event)
 {
-#ifndef MUSIC_QT_5
     QWidget *w = viewport();
     QPainter painter(w);
-//    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, 80));
+    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, m_transparent));
     painter.end();
-#endif
+
     MusicAbstractTableWidget::paintEvent(event);
 }
 
