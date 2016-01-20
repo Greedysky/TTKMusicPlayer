@@ -31,12 +31,11 @@ Q_SIGNALS:
     //default status is true, means connected network
 
 public Q_SLOTS:
-    void timerOut();
+    void networkStateChanged();
 
 private:
     QTimer m_timer;
     bool m_networkState;
-    bool m_blockNetWork;
 
     MusicNetworkThread();
     ~MusicNetworkThread();
