@@ -3,15 +3,14 @@
 #include "musictimerwidget.h"
 #include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
-#include "musicspectrumwidget.h"
 #include "musicdesktopwallpaperwidget.h"
 #include "musicconnectionpool.h"
 
 #include <QProcess>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
-    : QListWidget(parent), m_musicSpectrumWidget(nullptr),
-      m_wallpaper(nullptr), m_process(nullptr)
+    : QListWidget(parent), m_wallpaper(nullptr),
+      m_process(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -33,7 +32,6 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 {
     M_CONNECTION->poolDisConnect("MusicToolSetsWidget");
     delete m_wallpaper;
-    delete m_musicSpectrumWidget;
     if(m_process)
     {
         m_process->kill();
@@ -75,10 +73,6 @@ void MusicToolSetsWidget::addListWidgetItem()
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/transform")
                                                 ,tr("transform"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/spectrum")
-                                                ,tr("spectrum"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/wallpaper")
@@ -161,13 +155,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             MusicTransformWidget(this).exec();
             break;
         case 5:
-           {
-                delete m_musicSpectrumWidget;
-                m_musicSpectrumWidget = new MusicSpectrumWidget;
-                m_musicSpectrumWidget->show();
-                break;
-           }
-        case 6:
            {
                 delete m_wallpaper;
                 m_wallpaper = new MusicDesktopWallpaperWidget(this);

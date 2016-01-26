@@ -50,12 +50,6 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         return;
     }
 
-    if(from == "MusicSpectrumWidget" && to == "MusicPlayer" )
-    {
-        QObject::connect(first, SIGNAL(setSpectrum(HWND,int,int)), second,
-                                SLOT(setSpectrum(HWND,int,int)));
-    }
-
     if(from == "MusicPlayer" && to == "MusicLrcMakerWidget" )
     {
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second,

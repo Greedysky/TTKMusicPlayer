@@ -4,7 +4,6 @@
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiolistview.h"
-#include "musicspectrumwidget.h"
 #include "musiclocalsongsearch.h"
 #include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
@@ -14,7 +13,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_supperClass = parent;
     m_stackedWidget = nullptr;
-    m_musicSpectrumWidget = nullptr;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -22,7 +20,6 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
     delete m_qualityChoiceWidget;
     delete m_musicLocalSongSearch;
     delete m_stackedWidget;
-    delete m_musicSpectrumWidget;
 }
 
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -166,13 +163,4 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setCurrentIndex(1);
-}
-
-void MusicLeftAreaWidget::musicSpectrumWidget()
-{
-    if(m_musicSpectrumWidget == nullptr)
-    {
-        m_musicSpectrumWidget = new MusicSpectrumWidget;
-    }
-    m_musicSpectrumWidget->show();
 }

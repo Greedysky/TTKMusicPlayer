@@ -21,97 +21,93 @@ public:
     /////////////////////////////////////////////
     inline QString getArtist() const
     {
-        return QString::fromWCharArray(m_tagInfo.Artist);
+return QString();
     }
 
     inline QString getTitle() const
     {
-        return QString::fromWCharArray(m_tagInfo.Title);
+return QString();
     }
 
     inline QString getAlbum() const
     {
-        return QString::fromWCharArray(m_tagInfo.Album);
+return QString();
     }
 
     inline QString getComment() const
     {
-        return QString::fromWCharArray(m_tagInfo.Comment);
+return QString();
     }
 
     inline QString getYear() const
     {
-        return QString::fromWCharArray(m_tagInfo.Year);
+return QString();
     }
 
     inline QString getTrackNum() const
     {
-        return QString::fromWCharArray(m_tagInfo.TrackNum);
+return QString();
     }
 
     inline QString getGenre() const
     {
-        return QString::fromWCharArray(m_tagInfo.Genre);
+return QString();
     }
 
     inline QString getAlbumArtist() const
     {
-        return QString::fromWCharArray(m_tagInfo.AlbumArtist);
+return QString();
     }
 
     inline QString getComposer() const
     {
-        return QString::fromWCharArray(m_tagInfo.Composer);
+return QString();
     }
 
     inline QString getOriginalArtist() const
     {
-        return QString::fromWCharArray(m_tagInfo.OriginalArtist);
+return QString();
     }
 
     inline QString getCopyright() const
     {
-        return QString::fromWCharArray(m_tagInfo.Copyright);
+return QString();
     }
 
     inline QString getURL() const
     {
-        return QString::fromWCharArray(m_tagInfo.URL);
+return QString();
     }
 
     inline QString getEncoder() const
     {
-        return QString::fromWCharArray(m_tagInfo.Encoder);
+return QString();
     }
 
     inline QString getPublisher() const
     {
-        return QString::fromWCharArray(m_tagInfo.Publisher);
+return QString();
     }
 
     inline uint getBPM() const
     {
-        return m_tagInfo.BPM;
+        return 0;
     }
 
-    inline TID3PictureW getPicture() const
-    {
-        return m_tagInfo.Picture;
-    }
     /////////////////////////////////////////////
     inline int getSamplingRate() const
     {
-        return m_pInfo.SamplingRate;
+        return 0;
     }
 
     inline int getChannelNumber() const
     {
-        return m_pInfo.ChannelNumber;
+        return 0;
     }
 
     inline int getVBR() const
     {
-        return m_pInfo.VBR;
+        return 0;
     }
 
     inline QString getVBRString() const
@@ -121,33 +117,24 @@ public:
 
     inline int getBitrate() const
     {
-        return m_pInfo.Bitrate;
-    }
-
-    inline TStreamTime getLength() const
-    {
-        return m_pInfo.Length;
+        return 0;
     }
 
     inline QString getLengthString() const
     {
-        return QString("%1:%2:%3")
-    //           .arg(QString::number(m_pInfo.Length.hms.hour).rightJustified(2,'0'))
-               .arg(QString::number(m_pInfo.Length.hms.minute).rightJustified(2,'0'))
-               .arg(QString::number(m_pInfo.Length.hms.second).rightJustified(2,'0'))
-               .arg(QString::number(m_pInfo.Length.hms.millisecond));
+return QString();
     }
 
     inline QString getDescription() const
     {
-        return QString::fromWCharArray(m_pInfo.Description);
+        return QString();
     }
     /////////////////////////////////////////////
 
 protected:
-    ZPlay *m_player;
-    TID3InfoExW m_tagInfo;
-    TStreamInfoW m_pInfo;
+//    ZPlay *m_player;
+//    TID3InfoExW m_tagInfo;
+//    TStreamInfoW m_pInfo;
 
 };
 

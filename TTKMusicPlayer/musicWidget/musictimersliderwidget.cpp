@@ -63,13 +63,16 @@ void MusicTimerSliderWidget::setValue(qint64 value) const
 
 void MusicTimerSliderWidget::setRange(int min, int max)
 {
-    m_duration = max;
     m_slider->setRange(min, max);
 }
 
 void MusicTimerSliderWidget::sliderMovedAt(int pos) const
 {
-    m_label->move(5 + ceil(pos * 338 / m_duration), 5);
+    int max = m_slider->maximum();
+    if(max != 0)
+    {
+        m_label->move(5 + ceil(pos * 338 / max), 5);
+    }
 }
 
 void MusicTimerSliderWidget::timeout()

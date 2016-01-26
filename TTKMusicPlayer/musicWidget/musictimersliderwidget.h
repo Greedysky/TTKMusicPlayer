@@ -38,7 +38,6 @@ public Q_SLOTS:
 protected:
     QLabel *m_label;
     QTimer m_timer;
-    qint64 m_duration;
     MusicMovingLabelSlider *m_slider;
     int m_picIndex;
     bool m_reverse;

@@ -28,9 +28,7 @@ HEADERS  += \
     $$PWD/musicxmlconfigmanager.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
-    $$PWD/musicequalizer.h \
     $$PWD/musicabstractxml.h \
-    $$PWD/musiclibzplay.h \
     $$PWD/musicbgthememanager.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
@@ -56,7 +54,6 @@ SOURCES += \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
-    $$PWD/musicequalizer.cpp \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicxmlconfigmanager.cpp \
     $$PWD/musicbgthememanager.cpp \

@@ -9,9 +9,11 @@ QT       += core gui xml sql
 equals(QT_MAJOR_VERSION, 4){
 QT       += multimedia network script
 CONFIG   += gcc
+include(TTKExtra/Qt4/qmmp.pri)
 }
 equals(QT_MAJOR_VERSION, 5){
 QT       += widgets multimediawidgets
+include(TTKExtra/Qt5/qmmp.pri)
 }
 
 
@@ -25,7 +27,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
     QT  += winextras
         msvc{
-            LIBS += -L"../bin/MPlugins" -llibzplay
+            LIBS += -L../bin -lqmmp1
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
                  QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
@@ -33,7 +35,7 @@ win32{
         }
 
         gcc{
-            LIBS += ../bin/MPlugins/libzplay.a
+            LIBS += -L../bin -lqmmp1
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -42,7 +44,7 @@ win32{
 
     equals(QT_MAJOR_VERSION, 4){
         gcc{
-            LIBS += ../bin/MPlugins/libzplay.a
+            LIBS += -L../bin -lqmmp0
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch

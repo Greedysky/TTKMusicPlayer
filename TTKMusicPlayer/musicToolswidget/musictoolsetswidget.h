@@ -14,7 +14,6 @@
 #include "musiclibexportglobal.h"
 
 class QProcess;
-class MusicSpectrumWidget;
 class MusicDesktopWallpaperWidget;
 
 class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public QListWidget
@@ -35,7 +34,6 @@ protected:
     void clearAllItems();
     void addListWidgetItem();
 
-    MusicSpectrumWidget *m_musicSpectrumWidget;
     MusicDesktopWallpaperWidget *m_wallpaper;
     QProcess *m_process;
 

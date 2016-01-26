@@ -10,7 +10,8 @@
    =================================================*/
 
 #include <QTimer>
-#include "musicequalizer.h"
+#include "musicobject.h"
+#include "musiclibexportglobal.h"
 
 #ifdef Q_OS_WIN
 #   include <Windows.h>
@@ -19,7 +20,7 @@
 #   endif
 #endif
 
-class QMediaPlayer;
+class SoundCore;
 class MusicPlaylist;
 
 class MUSIC_CORE_EXPORT MusicPlayer : public QObject
@@ -84,11 +85,7 @@ public Q_SLOTS:
 
     void setEqEffect(const MIntList &hz);
     void setEnaleEffect(bool enable);
-    void setSpEqEffect(MusicObject::SpecialEQ eq);
     void setEqInformation();
-#ifdef Q_OS_WIN
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
-#endif
 
 private Q_SLOTS:
     void setTimeOut();
@@ -97,15 +94,13 @@ private Q_SLOTS:
 protected:
     void setMusicEnhancedCase();
 
-    MusicEqualizer *m_equalizer;
     MusicPlaylist *m_playlist;
     State m_state;
-    ZPlay *m_music;
+    SoundCore *m_music;
     QTimer m_timer;
     QString m_currentMedia;
     Enhanced m_musicEnhanced;
 
-    int m_currentVolumn;
     float m_posOnCircle;
 
 };

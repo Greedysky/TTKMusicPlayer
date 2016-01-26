@@ -15,7 +15,6 @@ HEADERS  += \
     $$PWD/musiclocalsongsmanagerwidget.h \
     $$PWD/musictransformwidget.h \
     $$PWD/musicfileinformationwidget.h \
-    $$PWD/musicspectrumwidget.h \
     $$PWD/musicdesktopwallpaperwidget.h \
     $$PWD/core/musicdesktopwallpaperthread.h \
     $$PWD/core/musictimerautoobject.h \
@@ -33,7 +32,6 @@ SOURCES += \
     $$PWD/musiclocalsongsmanagerwidget.cpp \
     $$PWD/musictransformwidget.cpp \
     $$PWD/musicfileinformationwidget.cpp \
-    $$PWD/musicspectrumwidget.cpp \
     $$PWD/musicdesktopwallpaperwidget.cpp \
     $$PWD/core/musicdesktopwallpaperthread.cpp \
     $$PWD/core/musictimerautoobject.cpp \
