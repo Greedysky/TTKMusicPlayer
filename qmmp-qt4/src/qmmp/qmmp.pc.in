@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@CMAKE_INSTALL_PREFIX@/@LIB_DIR@
+includedir=@CMAKE_INSTALL_PREFIX@/include
+
+Name: qmmp
+Description: qmmp core library
+Version: @QMMP_VERSION@
+Requires: QtCore QtGui
+Libs: -L${libdir} -lqmmp
+Cflags: -I${includedir}
