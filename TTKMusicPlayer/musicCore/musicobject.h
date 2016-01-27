@@ -156,24 +156,6 @@ namespace MusicObject
         MC_PlayOnce
     };
 
-    enum SpecialEQ
-    {
-        EQ_NULL = -1,
-        EQ_EchoEffect,
-        EQ_MixChannelEffect,
-        EQ_ReverseEffect,
-        EQ_SideCutEffect,
-        EQ_CenterCutEffect,
-        EQ_RateUpEffect,
-        EQ_RateDownEffect,
-        EQ_PitchUpEffect,
-        EQ_PitchDownEffect,
-        EQ_TempoUpEffect,
-        EQ_TempoDownEffect,
-        EQ_FadeOutEffect,
-        EQ_FadeInEffect
-    };
-
     static void dirIsExist(const QString& name)
     {
         QDir dir;

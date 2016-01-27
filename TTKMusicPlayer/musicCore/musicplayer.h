@@ -101,6 +101,7 @@ protected:
     QString m_currentMedia;
     Enhanced m_musicEnhanced;
 
+    int m_volumeMusic3D;
     float m_posOnCircle;
 
 };

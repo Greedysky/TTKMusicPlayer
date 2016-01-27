@@ -6,7 +6,6 @@
 #include "musicconnectionpool.h"
 
 #include <QSignalMapper>
-#include <QButtonGroup>
 #include <QStyledItemDelegate>
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
@@ -73,43 +72,7 @@ void MusicEqualizerDialog::init()
     connect(ui->showEqButton, SIGNAL(clicked()), SLOT(setEqEnable()));
     connect(ui->resetButton, SIGNAL(clicked()), SLOT(resetEq()));
     ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_3->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_4->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_5->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_6->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_7->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_8->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_9->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_10->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_11->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->funcButton_12->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
-    ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_2->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));
-
-    QButtonGroup *checkGroup = new QButtonGroup(this);
-    checkGroup->addButton(ui->checkBox_2, 0);
-    checkGroup->addButton(ui->checkBox_3, 1);
-    checkGroup->addButton(ui->checkBox, 2);
-    checkGroup->setExclusive(false);
-    connect(checkGroup, SIGNAL(buttonClicked(int)), SLOT(setMixedEffect(int)));
-
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(ui->funcButton_3, 0);
-    buttonGroup->addButton(ui->funcButton_4, 1);
-    buttonGroup->addButton(ui->funcButton_5, 2);
-    buttonGroup->addButton(ui->funcButton_6, 3);
-    buttonGroup->addButton(ui->funcButton_7, 4);
-    buttonGroup->addButton(ui->funcButton_8, 5);
-    buttonGroup->addButton(ui->funcButton_9, 6);
-    buttonGroup->addButton(ui->funcButton_10, 7);
-    buttonGroup->addButton(ui->funcButton_11, 8);
-    buttonGroup->addButton(ui->funcButton_12, 9);
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setEqualizerEffect(int)));
 }
 
 void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
@@ -180,7 +143,7 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
 
 void MusicEqualizerDialog::emitParameter()
 {
-    emit setEqEffect(MIntList() << ui->verticalSlider1->value()
+    emit setEqEffect(MIntList() << ui->bwVerticalSlider->value() << ui->verticalSlider1->value()
                      << ui->verticalSlider2->value() << ui->verticalSlider3->value()
                      << ui->verticalSlider4->value() << ui->verticalSlider5->value()
                      << ui->verticalSlider6->value() << ui->verticalSlider7->value()
@@ -195,7 +158,10 @@ void MusicEqualizerDialog::setEqEnable()
     ui->showEqButton->setIcon(QIcon(!m_eable ? ":/equalizer/off" : ":/equalizer/on"));
 
     setControlEnable(!m_eable);
-    emitParameter();
+    if(m_eable)
+    {
+        emitParameter();
+    }
 }
 
 void MusicEqualizerDialog::setControlEnable(bool) const
@@ -273,65 +239,6 @@ void MusicEqualizerDialog::eqChoiceIndexChanged(int index)
         ui->verticalSlider10->setValue(m_equalizeValue[index + 9]);
     }
     m_eqChoiceSelected = false;
-}
-
-void MusicEqualizerDialog::setMixedEffect(int index)
-{
-    m_eable = true;
-    setEqEnable();
-    switch(index)
-    {
-        case 0:
-            emit setSpEqEffect(MusicObject::EQ_EchoEffect);
-            break;
-        case 1:
-            emit setSpEqEffect(MusicObject::EQ_MixChannelEffect);
-            break;
-        case 2:
-            emit setSpEqEffect(MusicObject::EQ_ReverseEffect);
-            break;
-        default: break;
-    }
-}
-
-void MusicEqualizerDialog::setEqualizerEffect(int index)
-{
-    m_eable = true;
-    setEqEnable();
-    switch(index)
-    {
-        case 0:
-            emit setSpEqEffect(MusicObject::EQ_SideCutEffect);
-            break;
-        case 1:
-            emit setSpEqEffect(MusicObject::EQ_CenterCutEffect);
-            break;
-        case 2:
-            emit setSpEqEffect(MusicObject::EQ_RateDownEffect);
-            break;
-        case 3:
-            emit setSpEqEffect(MusicObject::EQ_FadeOutEffect);
-            break;
-        case 4:
-            emit setSpEqEffect(MusicObject::EQ_FadeInEffect);
-            break;
-        case 5:
-            emit setSpEqEffect(MusicObject::EQ_RateUpEffect);
-            break;
-        case 6:
-            emit setSpEqEffect(MusicObject::EQ_TempoUpEffect);
-            break;
-        case 7:
-            emit setSpEqEffect(MusicObject::EQ_TempoDownEffect);
-            break;
-        case 8:
-            emit setSpEqEffect(MusicObject::EQ_PitchDownEffect);
-            break;
-        case 9:
-            emit setSpEqEffect(MusicObject::EQ_PitchUpEffect);
-            break;
-        default:break;
-    }
 }
 
 int MusicEqualizerDialog::exec()

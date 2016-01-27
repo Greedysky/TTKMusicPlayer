@@ -31,15 +31,12 @@ public:
 Q_SIGNALS:
     void setEqEffect(const MIntList &effect);
     void setEnaleEffect(bool enable);
-    void setSpEqEffect(MusicObject::SpecialEQ eq);
 
 public Q_SLOTS:
     void setEqEnable();
     void resetEq();
     void verticalSliderChanged(int index);
     void eqChoiceIndexChanged(int index);
-    void setMixedEffect(int index);
-    void setEqualizerEffect(int index);
     virtual int exec();
 
 protected:
