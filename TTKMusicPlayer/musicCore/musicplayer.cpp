@@ -172,11 +172,13 @@ void MusicPlayer::setPosition(qint64 position)
 
 void MusicPlayer::setVolume(int volume)
 {
+    m_volumeMusic3D = volume;
     m_music->setVolume(volume);
 }
 
 void MusicPlayer::setMuted(bool muted)
 {
+    m_volumeMusic3D = muted ? 0 : m_music->volume();
     m_music->setMuted(muted);
 }
 
@@ -190,7 +192,7 @@ void MusicPlayer::setTimeOut()
 {
     emit positionChanged( position() );
 
-    if(m_musicEnhanced == Music3D)
+    if(m_musicEnhanced == Music3D && !m_music->isMuted())
     {
         ///3D music settings
         setEnaleEffect(false);
