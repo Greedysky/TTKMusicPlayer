@@ -90,6 +90,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void setTimeOut();
     void removeCurrentMedia();
+    void getCurrentDuration();
 
 protected:
     void setMusicEnhancedCase();

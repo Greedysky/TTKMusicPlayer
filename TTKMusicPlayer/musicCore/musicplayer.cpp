@@ -5,7 +5,7 @@
 #include "soundcore.h"
 
 #include <qmath.h>
-#include <QDebug>
+
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
@@ -127,7 +127,7 @@ void MusicPlayer::play()
     m_timer.start(1000);
     ///Every second emits a signal change information
     emit positionChanged(0);
-    emit durationChanged( duration() );
+    getCurrentDuration();
 
     ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
@@ -254,6 +254,18 @@ void MusicPlayer::removeCurrentMedia()
     }
 }
 
+void MusicPlayer::getCurrentDuration()
+{
+    if(duration() == 0)
+    {
+        QTimer::singleShot(500, this, SLOT(getCurrentDuration()));
+    }
+    else
+    {
+        emit durationChanged( duration() );
+    }
+}
+
 void MusicPlayer::setEqEffect(const MIntList &hz)
 {
     if(hz.count() != 11)
@@ -289,10 +301,10 @@ void MusicPlayer::setEqInformation()
         if(eqValue.count() == 11)
         {
             MIntList hz;
-            hz<<eqValue[0].toInt()<<eqValue[1].toInt()<<eqValue[2].toInt()
-              <<eqValue[3].toInt()<<eqValue[4].toInt()<<eqValue[5].toInt()
-              <<eqValue[6].toInt()<<eqValue[7].toInt()<<eqValue[8].toInt()
-              <<eqValue[9].toInt()<<eqValue[10].toInt();
+            hz << eqValue[0].toInt() << eqValue[1].toInt() << eqValue[2].toInt()
+               << eqValue[3].toInt() << eqValue[4].toInt() << eqValue[5].toInt()
+               << eqValue[6].toInt() << eqValue[7].toInt() << eqValue[8].toInt()
+               << eqValue[9].toInt() << eqValue[10].toInt();
             setEqEffect(hz);
         }
     }

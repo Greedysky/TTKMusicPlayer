@@ -439,7 +439,6 @@ void MusicApplication::positionChanged(qint64 position)
 
 void MusicApplication::durationChanged(qint64 duration)
 {
-    qDebug() << duration;
     //Show the current play total time
     ui->musicTimeWidget->setRange(0, duration);
     ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
