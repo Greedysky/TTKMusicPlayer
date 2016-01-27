@@ -8,7 +8,7 @@
 
 Usage
 ----
-The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt.
+The music player use of qmmp core libzplay( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt5.5.0 for windows-mingw 32bit
  * The above tests are based on the windows7 64bit!
