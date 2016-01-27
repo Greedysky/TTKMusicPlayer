@@ -10,7 +10,6 @@ Usage
 ----
 The music player use of  libzplay(http://sourceforge.net/projects/libzplay) library based on Qt.
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt5.5.0 for windows-msvc 2013 32bit
  * Qt develop version be tested on Qt5.5.0 for windows-mingw 32bit
  * The above tests are based on the windows7 64bit!
 
@@ -23,9 +22,21 @@ TTKMusicPlayer is free software licensed under the term of GPL v2. If you use TT
 Features
 -------
 TTKMusicPlayer can meet your most demands
- * Support for multiple music formats (mp3, mp2, mp1, wav, ogg, flac, ac3, aac, oga, pcm).
- * 
-Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
+ * Support for multiple music formats.
+ * MusePack File(*.mpc)
+ * WavPack File(*.wv)
+ * Ogg Vorbis File(*.ogg)
+ * PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
+ * CUE File(*.cue)
+ * MPEG File(*.mp1 *.mp2 *.mp3 *.wav)
+ * Game File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
+ * FLAC File(*.flac *.oga)
+ * Monkey's Audio File(*.ape)
+ * FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
+ * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm 
+                *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r
+                *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
+ * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
  * 
 Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
