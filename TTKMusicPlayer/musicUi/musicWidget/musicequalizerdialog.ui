@@ -71,7 +71,7 @@
   <widget class="QSlider" name="verticalSlider3">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>210</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -84,7 +84,7 @@
   <widget class="QSlider" name="verticalSlider4">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>250</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -97,7 +97,7 @@
   <widget class="QSlider" name="verticalSlider5">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>290</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -110,7 +110,7 @@
   <widget class="QSlider" name="verticalSlider2">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>170</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -123,7 +123,7 @@
   <widget class="QSlider" name="verticalSlider7">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>370</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -136,7 +136,7 @@
   <widget class="QSlider" name="verticalSlider6">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>330</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -149,7 +149,7 @@
   <widget class="QSlider" name="verticalSlider8">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>410</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -162,7 +162,7 @@
   <widget class="QSlider" name="verticalSlider9">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>450</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -175,7 +175,7 @@
   <widget class="QSlider" name="verticalSlider10">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>490</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -188,7 +188,7 @@
   <widget class="QSlider" name="verticalSlider1">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>130</x>
      <y>110</y>
      <width>19</width>
      <height>211</height>
@@ -280,23 +280,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_3">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_4">
-   <property name="geometry">
-    <rect>
-     <x>135</x>
+     <x>160</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -312,23 +296,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_5">
    <property name="geometry">
     <rect>
-     <x>155</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_6">
-   <property name="geometry">
-    <rect>
-     <x>165</x>
+     <x>200</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -344,23 +312,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_7">
    <property name="geometry">
     <rect>
-     <x>185</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_8">
-   <property name="geometry">
-    <rect>
-     <x>195</x>
+     <x>240</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -376,23 +328,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_9">
    <property name="geometry">
     <rect>
-     <x>215</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_10">
-   <property name="geometry">
-    <rect>
-     <x>225</x>
+     <x>280</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -408,23 +344,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_11">
    <property name="geometry">
     <rect>
-     <x>245</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_12">
-   <property name="geometry">
-    <rect>
-     <x>255</x>
+     <x>320</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -440,23 +360,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_13">
    <property name="geometry">
     <rect>
-     <x>275</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_14">
-   <property name="geometry">
-    <rect>
-     <x>285</x>
+     <x>360</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -472,39 +376,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_15">
    <property name="geometry">
     <rect>
-     <x>305</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_16">
-   <property name="geometry">
-    <rect>
-     <x>315</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_17">
-   <property name="geometry">
-    <rect>
-     <x>335</x>
+     <x>400</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -520,23 +392,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_18">
    <property name="geometry">
     <rect>
-     <x>345</x>
-     <y>105</y>
-     <width>5</width>
-     <height>220</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#3d91ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:6pt; font-weight:600; text-decoration: underline; color:#2587ff;&quot;&gt;-&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="showPerArea_19">
-   <property name="geometry">
-    <rect>
-     <x>365</x>
+     <x>440</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -552,7 +408,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_20">
    <property name="geometry">
     <rect>
-     <x>375</x>
+     <x>480</x>
      <y>105</y>
      <width>5</width>
      <height>220</height>
@@ -568,7 +424,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_21">
    <property name="geometry">
     <rect>
-     <x>75</x>
+     <x>80</x>
      <y>84</y>
      <width>30</width>
      <height>261</height>
@@ -584,7 +440,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_22">
    <property name="geometry">
     <rect>
-     <x>112</x>
+     <x>130</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -600,7 +456,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_23">
    <property name="geometry">
     <rect>
-     <x>141</x>
+     <x>170</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -616,7 +472,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_24">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>210</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -632,7 +488,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_25">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>250</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -648,7 +504,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_26">
    <property name="geometry">
     <rect>
-     <x>231</x>
+     <x>290</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -664,7 +520,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_27">
    <property name="geometry">
     <rect>
-     <x>262</x>
+     <x>330</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -680,7 +536,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_28">
    <property name="geometry">
     <rect>
-     <x>292</x>
+     <x>370</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -696,7 +552,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_29">
    <property name="geometry">
     <rect>
-     <x>322</x>
+     <x>410</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -712,7 +568,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_30">
    <property name="geometry">
     <rect>
-     <x>352</x>
+     <x>450</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -728,7 +584,7 @@ font-weight:bold;
   <widget class="QLabel" name="showPerArea_31">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>490</x>
      <y>325</y>
      <width>20</width>
      <height>20</height>
@@ -775,22 +631,13 @@ font-weight:bold;
   <zorder>eqChoice</zorder>
   <zorder>showPerArea_2</zorder>
   <zorder>showPerArea_3</zorder>
-  <zorder>showPerArea_4</zorder>
   <zorder>showPerArea_5</zorder>
-  <zorder>showPerArea_6</zorder>
   <zorder>showPerArea_7</zorder>
-  <zorder>showPerArea_8</zorder>
   <zorder>showPerArea_9</zorder>
-  <zorder>showPerArea_10</zorder>
   <zorder>showPerArea_11</zorder>
-  <zorder>showPerArea_12</zorder>
   <zorder>showPerArea_13</zorder>
-  <zorder>showPerArea_14</zorder>
   <zorder>showPerArea_15</zorder>
-  <zorder>showPerArea_16</zorder>
-  <zorder>showPerArea_17</zorder>
   <zorder>showPerArea_18</zorder>
-  <zorder>showPerArea_19</zorder>
   <zorder>showPerArea_20</zorder>
   <zorder>showPerArea_21</zorder>
   <zorder>showPerArea_22</zorder>
