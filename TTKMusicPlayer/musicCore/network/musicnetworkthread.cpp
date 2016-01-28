@@ -3,7 +3,6 @@
 #include "musicsettingmanager.h"
 
 #include <QHostInfo>
-#include <QDebug>
 
 MusicNetworkThread::MusicNetworkThread()
     : QObject(0), m_networkState(true)

@@ -3,11 +3,9 @@
 #include "metadatamanager.h"
 #include "inputsource.h"
 
-#include <QDebug>
-
 MusicSongTag::MusicSongTag()
 {
-
+    MetaDataManager::instance();
 }
 
 MusicSongTag::~MusicSongTag()
@@ -17,8 +15,6 @@ MusicSongTag::~MusicSongTag()
 
 bool MusicSongTag::readFile(const QString &file)
 {
-    MetaDataManager::instance();
-
     InputSource *input = InputSource::create(file);
 
     if(input == nullptr || !input->initialize())

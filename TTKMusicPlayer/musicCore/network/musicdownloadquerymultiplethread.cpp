@@ -14,7 +14,6 @@
 #endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
-#include <QDebug>
 
 MusicDownLoadQueryMultipleThread::MusicDownLoadQueryMultipleThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
