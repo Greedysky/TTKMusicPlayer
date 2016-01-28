@@ -59,15 +59,15 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     ui->fileYearEdit->setText( state ? ((check = tag.getYear()).isEmpty() ? "-" : check) : "-" );
     ui->fileTimeEdit->setText( state ? ((check = tag.getLengthString()).isEmpty() ? "-" : check) : "-" );
 
-    ui->BitrateEdit->setText( state ? ((check = QString::number(tag.getBitrate()) )
+    ui->BitrateEdit->setText( state ? ((check = (tag.getBitrate()))
                               .isEmpty() ? "-" : check) : "-" );
-    ui->ChannelNumberEdit->setText( state ? ((check = QString::number(tag.getChannelNumber()) )
+    ui->CopyrightEdit->setText( state ? ((check = tag.getCopyright())
                                     .isEmpty() ? "-" : check) : "-" );
-    ui->SamplingRateEdit->setText( state ? ((check = QString::number(tag.getSamplingRate()) )
+    ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate())
                                    .isEmpty() ? "-" : check) : "-" );
     ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
-    ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(tag.getDescription())
-                                   .arg(tag.getVBRString())).isEmpty() ? "-" : check) : "-" );
+    ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(tag.getFormat())
+                                   .arg(tag.getMode())).isEmpty() ? "-" : check) : "-" );
 }
 
 int MusicFileInformationWidget::exec()

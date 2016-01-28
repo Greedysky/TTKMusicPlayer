@@ -14,6 +14,31 @@
 class MUSIC_CORE_EXPORT MusicSongTag
 {
 public:
+    enum MusicTag
+    {
+        TAG_UNKNOWN = -1,
+        TAG_TITLE = 0,   /*!< Title */
+        TAG_ARTIST,      /*!< Artist  */
+        TAG_ALBUMARTIST, /*!< Album artist  */
+        TAG_ALBUM,       /*!< Album */
+        TAG_COMMENT,     /*!< Comment */
+        TAG_GENRE,       /*!< Genre */
+        TAG_COMPOSER,    /*!< Composer */
+        TAG_YEAR,        /*!< Year */
+        TAG_TRACK,       /*!< Track number */
+        TAG_DISCNUMBER,  /*!< Disc number */
+        TAG_URL,         /*!< Stream url or local file path */
+        TAG_LENGTH,      /*!< Length */
+        TAG_Format,      /*!< Format */
+        TAG_SampleRate,  /*!< Sample rate */
+        TAG_Mode,        /*!< Mode */
+        TAG_Bitrate,     /*!< Bitrate */
+        TAG_Protection,  /*!< Protection */
+        TAG_Original,    /*!< Original */
+        TAG_Copyright,   /*!< Copyright */
+        TAG_Description  /*!< Description */
+    };
+
     MusicSongTag();
     ~MusicSongTag();
 
@@ -21,120 +46,98 @@ public:
     /////////////////////////////////////////////
     inline QString getArtist() const
     {
-return QString();
+        return m_parameters[TAG_ARTIST];
     }
 
     inline QString getTitle() const
     {
-return QString();
+        return m_parameters[TAG_TITLE];
     }
 
     inline QString getAlbum() const
     {
-return QString();
+        return m_parameters[TAG_ALBUM];
     }
 
     inline QString getComment() const
     {
-return QString();
+        return m_parameters[TAG_COMMENT];
     }
 
     inline QString getYear() const
     {
-return QString();
+        return m_parameters[TAG_YEAR];
     }
 
     inline QString getTrackNum() const
     {
-return QString();
+        return m_parameters[TAG_TRACK];
     }
 
     inline QString getGenre() const
     {
-return QString();
+        return m_parameters[TAG_GENRE];
     }
 
     inline QString getAlbumArtist() const
     {
-return QString();
+        return m_parameters[TAG_ALBUMARTIST];
     }
 
     inline QString getComposer() const
     {
-return QString();
-    }
-
-    inline QString getOriginalArtist() const
-    {
-return QString();
+        return m_parameters[TAG_COMPOSER];
     }
 
     inline QString getCopyright() const
     {
-return QString();
+        return m_parameters[TAG_Copyright];
     }
 
     inline QString getURL() const
     {
-return QString();
-    }
-
-    inline QString getEncoder() const
-    {
-return QString();
-    }
-
-    inline QString getPublisher() const
-    {
-return QString();
-    }
-
-    inline uint getBPM() const
-    {
-        return 0;
+        return m_parameters[TAG_URL];
     }
 
     /////////////////////////////////////////////
-    inline int getSamplingRate() const
+    inline QString getSamplingRate() const
     {
-        return 0;
+        return m_parameters[TAG_SampleRate];
     }
 
-    inline int getChannelNumber() const
+    inline QString getFormat() const
     {
-        return 0;
+        return m_parameters[TAG_Format];
     }
 
-    inline int getVBR() const
+    inline QString getMode() const
     {
-        return 0;
+        return m_parameters[TAG_Mode];
     }
 
-    inline QString getVBRString() const
+    inline QString getProtection() const
     {
-        return getVBR() ? "VBR" : "CBR";
+        return m_parameters[TAG_Protection];
     }
 
-    inline int getBitrate() const
+    inline QString getBitrate() const
     {
-        return 0;
+        return m_parameters[TAG_Bitrate];
     }
 
     inline QString getLengthString() const
     {
-return QString();
+        return m_parameters[TAG_LENGTH];
     }
 
     inline QString getDescription() const
     {
-        return QString();
+        return m_parameters[TAG_Description];
     }
     /////////////////////////////////////////////
 
 protected:
-//    ZPlay *m_player;
-//    TID3InfoExW m_tagInfo;
-//    TStreamInfoW m_pInfo;
+    QMap<MusicTag, QString> m_parameters;
 
 };
 

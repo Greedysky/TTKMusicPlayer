@@ -357,7 +357,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>音轨:</string>
+    <string>版权:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="SamplingRateEdit">
@@ -373,7 +373,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="ChannelNumberEdit">
+  <widget class="QLineEdit" name="CopyrightEdit">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -547,7 +547,7 @@
   <zorder>TrackNumEdit</zorder>
   <zorder>label_12</zorder>
   <zorder>SamplingRateEdit</zorder>
-  <zorder>ChannelNumberEdit</zorder>
+  <zorder>CopyrightEdit</zorder>
   <zorder>fileYearEdit</zorder>
   <zorder>label_13</zorder>
   <zorder>label_14</zorder>
