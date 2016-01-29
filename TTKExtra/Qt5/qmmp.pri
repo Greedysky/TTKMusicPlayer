@@ -19,6 +19,7 @@ HEADERS += \
     $$PWD/fileinfo.h \
     $$PWD/metadatamodel.h \
     $$PWD/tagmodel.h \
+    $$PWD/tagreadandwrite.h \
     $$PWD/abstractengine.h \
     $$PWD/qmmpaudioengine_p.h \
     $$PWD/audioparameters.h \
