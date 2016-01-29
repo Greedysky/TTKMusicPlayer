@@ -90,9 +90,11 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     MusicSongTag tag;
     for(int i=0; i<filelist.count(); ++i)
     {
-        tag.readFile(filelist[i]);
-        QString time(tag.getLengthString());
-        m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
+        if(tag.readFile(filelist[i]));
+        {
+            QString time(tag.getLengthString());
+            m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
+        }
         progress.setValue(i + 1);
     }
     m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);

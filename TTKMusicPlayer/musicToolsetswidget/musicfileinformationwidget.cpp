@@ -61,7 +61,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     ui->BitrateEdit->setText( state ? ((check = (tag.getBitrate()))
                               .isEmpty() ? "-" : check) : "-" );
-    ui->CopyrightEdit->setText( state ? ((check = tag.getCopyright())
+    ui->ChannelEdit->setText( state ? ((check = tag.getChannel())
                                     .isEmpty() ? "-" : check) : "-" );
     ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate())
                                    .isEmpty() ? "-" : check) : "-" );

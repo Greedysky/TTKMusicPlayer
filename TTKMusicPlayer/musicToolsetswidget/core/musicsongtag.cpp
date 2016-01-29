@@ -1,68 +1,107 @@
 #include "musicsongtag.h"
 #include "musictime.h"
-#include "metadatamanager.h"
-#include "inputsource.h"
 
 MusicSongTag::MusicSongTag()
 {
-    MetaDataManager::instance();
+    m_tag = nullptr;
 }
 
 MusicSongTag::~MusicSongTag()
 {
-    MetaDataManager::destroy();
+    delete m_tag;
 }
 
 bool MusicSongTag::readFile(const QString &file)
 {
-    InputSource *input = InputSource::create(file);
-
-    if(input == nullptr || !input->initialize())
+    delete m_tag;
+    m_tag = new TagReadAndWrite(file);
+    if(!m_tag->readFile())
     {
         return false;
     }
 
-    QList<FileInfo*> infos = MetaDataManager::instance()->createPlayList(file);
-    MetaDataModel *model = MetaDataManager::instance()->createMetaDataModel(file);
-    if(!infos.isEmpty())
-    {
-        FileInfo* info = infos.first();
-        m_parameters[TAG_LENGTH] = MusicTime::msecTime2LabelJustified(info->length()*1000);
-        QMapIterator<Qmmp::MetaData, QString> mapIt(info->metaData());
-        while(mapIt.hasNext())
-        {
-            mapIt.next();
-            m_parameters[static_cast<MusicTag>(mapIt.key())] = mapIt.value();
-        }
-    }
-    if(model)
-    {
-        QHash<QString, QString> audioProperties = model->audioProperties();
-        QHash<QString, QString> description = model->descriptions();
-        QHashIterator<QString, QString> audioIt(audioProperties);
-        while(audioIt.hasNext())
-        {
-            audioIt.next();
-            QString key = audioIt.key();
-            if(key == "Format")
-                m_parameters[TAG_Format] = audioIt.value();
-            else if(key == "Sample rate")
-                m_parameters[TAG_SampleRate] = audioIt.value();
-            else if(key == "Mode")
-                m_parameters[TAG_Mode] = audioIt.value();
-            else if(key == "Bitrate")
-                m_parameters[TAG_Bitrate] = audioIt.value();
-            else if(key == "Protection")
-                m_parameters[TAG_Protection] = audioIt.value();
-            else if(key == "Original")
-                m_parameters[TAG_Original] = audioIt.value();
-            else if(key == "Copyright")
-                m_parameters[TAG_Copyright] = audioIt.value();
-        }
-        if(!description.isEmpty())
-        {
-            m_parameters[TAG_Description] = description[description.keys().first()];
-        }
-    }
+    m_parameters = m_tag->getMusicTags();
     return true;
+}
+
+QString MusicSongTag::getArtist() const
+{
+    return m_parameters[TagReadAndWrite::TAG_ARTIST];
+}
+
+QString MusicSongTag::getTitle() const
+{
+    return m_parameters[TagReadAndWrite::TAG_TITLE];
+}
+
+QString MusicSongTag::getAlbum() const
+{
+    return m_parameters[TagReadAndWrite::TAG_ALBUM];
+}
+
+QString MusicSongTag::getComment() const
+{
+    return m_parameters[TagReadAndWrite::TAG_COMMENT];
+}
+
+QString MusicSongTag::getYear() const
+{
+    return m_parameters[TagReadAndWrite::TAG_YEAR];
+}
+
+QString MusicSongTag::getTrackNum() const
+{
+    return m_parameters[TagReadAndWrite::TAG_TRACK];
+}
+
+QString MusicSongTag::getGenre() const
+{
+    return m_parameters[TagReadAndWrite::TAG_GENRE];
+}
+
+QString MusicSongTag::getAlbumArtist() const
+{
+    return m_parameters[TagReadAndWrite::TAG_ALBUMARTIST];
+}
+
+QString MusicSongTag::getComposer() const
+{
+    return m_parameters[TagReadAndWrite::TAG_COMPOSER];
+}
+
+QString MusicSongTag::getChannel() const
+{
+    return m_parameters[TagReadAndWrite::TAG_CHANNEL];
+}
+
+QString MusicSongTag::getURL() const
+{
+    return m_parameters[TagReadAndWrite::TAG_URL];
+}
+
+/////////////////////////////////////////////
+QString MusicSongTag::getSamplingRate() const
+{
+    return m_parameters[TagReadAndWrite::TAG_SAMPLERATE];
+}
+
+QString MusicSongTag::getFormat() const
+{
+    return m_parameters[TagReadAndWrite::TAG_FORMAT];
+}
+
+QString MusicSongTag::getMode() const
+{
+    return m_parameters[TagReadAndWrite::TAG_MODE];
+}
+
+QString MusicSongTag::getBitrate() const
+{
+    return m_parameters[TagReadAndWrite::TAG_BITRATE];
+}
+
+QString MusicSongTag::getLengthString() const
+{
+    return MusicTime::msecTime2LabelJustified(
+           m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
 }

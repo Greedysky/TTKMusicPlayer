@@ -13,11 +13,8 @@
 #include "musicobject.h"
 #include "musiclibexportglobal.h"
 
-#ifdef Q_OS_WIN
-#   include <Windows.h>
-#   ifdef Q_CC_GNU
-#     pragma GCC diagnostic ignored "-Wswitch"
-#   endif
+#ifdef Q_CC_GNU
+#  pragma GCC diagnostic ignored "-Wswitch"
 #endif
 
 class SoundCore;
