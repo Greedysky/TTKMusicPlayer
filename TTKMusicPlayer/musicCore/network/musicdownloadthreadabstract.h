@@ -60,7 +60,7 @@ public:
 Q_SIGNALS:
     void musicDownLoadFinished(const QString &name);
 
-public slots:
+public Q_SLOTS:
     virtual void downLoadFinished() = 0;
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void replyError(QNetworkReply::NetworkError error);
