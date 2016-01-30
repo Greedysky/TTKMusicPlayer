@@ -191,7 +191,7 @@
     <string>歌手信息:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileArtistEdit">
+  <widget class="MusicModifyLineEdit" name="fileArtistEdit">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -204,7 +204,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileTitleEdit">
+  <widget class="MusicModifyLineEdit" name="fileTitleEdit">
    <property name="geometry">
     <rect>
      <x>105</x>
@@ -243,7 +243,7 @@
     <string>专辑信息:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileAlbumEdit">
+  <widget class="MusicModifyLineEdit" name="fileAlbumEdit">
    <property name="geometry">
     <rect>
      <x>105</x>
@@ -269,7 +269,7 @@
     <string>长度:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileTimeEdit">
+  <widget class="MusicModifyLineEdit" name="fileTimeEdit">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -295,7 +295,7 @@
     <string>流派:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileGenreEdit">
+  <widget class="MusicModifyLineEdit" name="fileGenreEdit">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -386,7 +386,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="fileYearEdit">
+  <widget class="MusicModifyLineEdit" name="fileYearEdit">
    <property name="geometry">
     <rect>
      <x>105</x>
@@ -558,6 +558,13 @@
   <zorder>descriptionEdit</zorder>
   <zorder>line_4</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicModifyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>musicfileinformationwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

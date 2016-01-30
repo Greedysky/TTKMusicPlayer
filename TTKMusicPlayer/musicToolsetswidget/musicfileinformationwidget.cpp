@@ -9,6 +9,30 @@
 #include <QUrl>
 #include <QDesktopServices>
 
+MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
+    : QLineEdit(parent)
+{
+
+}
+
+MusicModifyLineEdit::~MusicModifyLineEdit()
+{
+
+}
+
+void MusicModifyLineEdit::leaveEvent(QEvent *event)
+{
+    QLineEdit::leaveEvent(event);
+    setReadOnly(true);
+}
+
+void MusicModifyLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    QLineEdit::mouseDoubleClickEvent(event);
+    setReadOnly(false);
+}
+
+
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicFileInformationWidget)

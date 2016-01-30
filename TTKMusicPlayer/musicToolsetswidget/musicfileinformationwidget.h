@@ -10,12 +10,26 @@
    =================================================*/
 
 #include <QDialog>
+#include <QLineEdit>
 #include <QMouseEvent>
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicFileInformationWidget;
 }
+
+class MUSIC_TOOLSET_EXPORT MusicModifyLineEdit : public QLineEdit
+{
+public:
+    explicit MusicModifyLineEdit(QWidget *parent = 0);
+    virtual ~MusicModifyLineEdit();
+
+protected:
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+
+};
+
 
 class MUSIC_TOOLSET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
 {
