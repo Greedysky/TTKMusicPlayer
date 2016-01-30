@@ -32,6 +32,14 @@ public:
     QString getChannel() const;
     QString getURL() const;
     /////////////////////////////////////////////
+    void setArtist(const QString &artist);
+    void setTitle(const QString &title);
+    void setAlbum(const QString &album);
+    void setComment(const QString &comment);
+    void setYear(const QString &year);
+    void setTrackNum(const QString &track);
+    void setGenre(const QString &genre);
+    /////////////////////////////////////////////
     QString getSamplingRate() const;
     QString getFormat() const;
     QString getMode() const;

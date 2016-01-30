@@ -20,13 +20,20 @@ class MusicFileInformationWidget;
 
 class MUSIC_TOOLSET_EXPORT MusicModifyLineEdit : public QLineEdit
 {
+    Q_OBJECT
 public:
     explicit MusicModifyLineEdit(QWidget *parent = 0);
     virtual ~MusicModifyLineEdit();
 
+    bool getTextEdited() const { return m_isTextEdited;}
+
+private Q_SLOTS:
+    void isTextEdited();
+
 protected:
     virtual void leaveEvent(QEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    bool m_isTextEdited;
 
 };
 
@@ -45,6 +52,8 @@ public Q_SLOTS:
     virtual int exec();
 
 protected:
+    void saveModifyData();
+
     Ui::MusicFileInformationWidget *ui;
     QString m_path;
 

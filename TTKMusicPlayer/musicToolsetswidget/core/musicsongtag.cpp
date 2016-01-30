@@ -80,6 +80,42 @@ QString MusicSongTag::getURL() const
 }
 
 /////////////////////////////////////////////
+void MusicSongTag::setArtist(const QString &artist)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_ARTIST, artist);
+}
+
+void MusicSongTag::setTitle(const QString &title)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_TITLE, title);
+}
+
+void MusicSongTag::setAlbum(const QString &album)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_ALBUM, album);
+}
+
+void MusicSongTag::setComment(const QString &comment)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_COMMENT, comment);
+}
+
+void MusicSongTag::setYear(const QString &year)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_YEAR, year);
+}
+
+void MusicSongTag::setTrackNum(const QString &track)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_TRACK, track);
+}
+
+void MusicSongTag::setGenre(const QString &genre)
+{
+    m_tag->writeMusicTag(TagReadAndWrite::TAG_GENRE, genre);
+}
+
+/////////////////////////////////////////////
 QString MusicSongTag::getSamplingRate() const
 {
     return m_parameters[TagReadAndWrite::TAG_SAMPLERATE];

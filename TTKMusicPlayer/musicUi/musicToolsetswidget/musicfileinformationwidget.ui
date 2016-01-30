@@ -269,7 +269,7 @@
     <string>长度:</string>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileTimeEdit">
+  <widget class="QLineEdit" name="fileTimeEdit">
    <property name="geometry">
     <rect>
      <x>330</x>

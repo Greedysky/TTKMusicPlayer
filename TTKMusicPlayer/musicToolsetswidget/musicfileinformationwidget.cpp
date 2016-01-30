@@ -12,12 +12,18 @@
 MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-
+    m_isTextEdited = false;
+    connect(this, SIGNAL(textEdited(QString)), SLOT(isTextEdited()));
 }
 
 MusicModifyLineEdit::~MusicModifyLineEdit()
 {
 
+}
+
+void MusicModifyLineEdit::isTextEdited()
+{
+    m_isTextEdited = true;
 }
 
 void MusicModifyLineEdit::leaveEvent(QEvent *event)
@@ -52,6 +58,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
 {
+    saveModifyData();
     delete ui;
 }
 
@@ -92,6 +99,30 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(tag.getFormat())
                                    .arg(tag.getMode())).isEmpty() ? "-" : check) : "-" );
+}
+
+void MusicFileInformationWidget::saveModifyData()
+{
+    MusicSongTag tag;
+    if(!tag.readFile(m_path))
+    {
+        return;
+    }
+
+    QString value = ui->fileAlbumEdit->text().trimmed();
+    if(value != "-" && ui->fileAlbumEdit->getTextEdited()) tag.setAlbum(value);
+
+    value = ui->fileArtistEdit->text().trimmed();
+    if(value != "-" && ui->fileArtistEdit->getTextEdited()) tag.setArtist(value);
+
+    value = ui->fileGenreEdit->text().trimmed();
+    if(value != "-" && ui->fileGenreEdit->getTextEdited()) tag.setGenre(value);
+
+    value = ui->fileTitleEdit->text().trimmed();
+    if(value != "-" && ui->fileTitleEdit->getTextEdited()) tag.setTitle(value);
+
+    value = ui->fileYearEdit->text().trimmed();
+    if(value != "-" && ui->fileYearEdit->getTextEdited()) tag.setYear(value);
 }
 
 int MusicFileInformationWidget::exec()
