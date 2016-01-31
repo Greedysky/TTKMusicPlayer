@@ -11,6 +11,7 @@
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
+#include <QDebug>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(nullptr)
@@ -95,6 +96,11 @@ void MusicSongsSummarizied::searchFileListCache(int index, const QString &text)
     m_searchFileListIndex = text.count();
     m_searchfileListCache.insert(index, searchResult);
     setMusicSongsSearchedFileName(searchResult);
+
+    if(index == 0)
+    {
+        m_searchfileListCache.clear();
+    }
 }
 
 bool MusicSongsSummarizied::searchFileListEmpty() const
