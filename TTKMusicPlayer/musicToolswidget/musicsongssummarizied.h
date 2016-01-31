@@ -63,6 +63,7 @@ public Q_SLOTS:
     void setDeleteItemAt(const MIntList &del, bool fileRemove);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
     void isCurrentIndexs(bool &state);
+    void isSearchFileListEmpty(bool &empty);
     void setChangItemName(const QString &name);
     void setTransparent(int alpha);
     void setMusicPlayCount(int index);

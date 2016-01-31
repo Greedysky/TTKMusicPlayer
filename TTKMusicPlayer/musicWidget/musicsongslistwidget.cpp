@@ -92,8 +92,11 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
+
+    bool empty;
+    emit isSearchFileListEmpty(empty);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()));
+    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
 
     rightClickMenu.addMenu(&musicPlaybackMode);
@@ -120,13 +123,13 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()));
     musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
-    rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()));
-    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()));
+    rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addSeparator();
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
-    rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()));
-    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
     rightClickMenu.exec(QCursor::pos());
     //Menu location for the current mouse position
     event->accept();
@@ -200,7 +203,9 @@ void MusicSongsListWidget::paintEvent(QPaintEvent *event)
 
 void MusicSongsListWidget::startToDrag()
 {
-    if(m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
+    bool empty;
+    emit isSearchFileListEmpty(empty);
+    if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
         QStringList list;
         int start = m_dragStartIndex;
@@ -428,7 +433,7 @@ void MusicSongsListWidget::musicOpenFileDir()
         return;
     }
 
-    QString path = !m_musicSongs->isEmpty() ?m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
     if(!QDesktopServices::openUrl(QUrl(QFileInfo(path).absolutePath(), QUrl::TolerantMode)))
     {
         MusicMessageBox message;
@@ -466,6 +471,7 @@ void MusicSongsListWidget::musicFileInformation()
     {
         return;
     }
+
 
     MusicFileInformationWidget file(this);
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();

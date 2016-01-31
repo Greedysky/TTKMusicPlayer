@@ -42,6 +42,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         connect(m_mainSongLists[i], SIGNAL(musicAddNewFiles()), parent, SLOT(musicImportSongsOnlyFile()));
         connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
         connect(m_mainSongLists[i], SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
+        connect(m_mainSongLists[i], SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
         connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
         connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
@@ -103,7 +104,12 @@ bool MusicSongsSummarizied::searchFileListEmpty() const
 
 int MusicSongsSummarizied::getsearchFileListIndex(int row)
 {
-    return row >= 0 ? m_searchfileListCache.value(m_searchFileListIndex)[row] : -1;
+    MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
+    if(row >= list.count())
+    {
+        return -1;
+    }
+    return row >= 0 ? list[row] : -1;
 }
 
 int MusicSongsSummarizied::getsearchFileListIndexAndClear(int row)
@@ -201,22 +207,11 @@ void MusicSongsSummarizied::clearAllLists()
     }
 }
 
-void MusicSongsSummarizied::setDeleteItemAt(const MIntList &del, bool fileRemove)
+void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemove)
 {
-    if(del.count() == 0)
+    if(index.count() == 0)
     {
         return;
-    }
-
-    MIntList index = del;
-    if(!searchFileListEmpty())
-    {
-        index.clear();
-        foreach(int row, del)
-        {
-            index << getsearchFileListIndex(row);
-        }
-        getsearchFileListIndexAndClear(-1);
     }
 
     for(int i=index.count()-1; i>=0; --i)
@@ -385,6 +380,11 @@ void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play,
 void MusicSongsSummarizied::isCurrentIndexs(bool &state)
 {
     state = ( currentIndex() == m_currentIndexs );
+}
+
+void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
+{
+    empty = searchFileListEmpty();
 }
 
 void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)
