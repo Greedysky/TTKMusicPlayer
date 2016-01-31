@@ -26,6 +26,9 @@ public:
     QString getSearchedText() const;
     void clearSearchedText() const;
 
+public Q_SLOTS:
+    bool close();
+
 private:
     QLabel *m_showIcon;
     MusicLocalSongSearchEdit *m_searchLine;

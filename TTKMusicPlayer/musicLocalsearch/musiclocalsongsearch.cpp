@@ -40,6 +40,12 @@ MusicLocalSongSearch::~MusicLocalSongSearch()
     delete m_closeButton;
 }
 
+bool MusicLocalSongSearch::close()
+{
+    clearSearchedText();
+    return QDialog::close();
+}
+
 QString MusicLocalSongSearch::getSearchedText() const
 {
     return m_searchLine->text();
