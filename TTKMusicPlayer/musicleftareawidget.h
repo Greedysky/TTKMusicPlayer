@@ -28,7 +28,6 @@ public:
 
     void setupUi(Ui::MusicApplication* ui);
     QString getSearchedText() const;
-    void clearSearchedText() const;
 
 public Q_SLOTS:
     void musicSearch();
@@ -37,6 +36,7 @@ public Q_SLOTS:
     void musicStackedRadioWidgetChanged();
     void musicStackedMyDownWidgetChanged();
     void musicStackedMobileWidgetChanged();
+    void clearSearchedText();
 
 protected:
     QWidget *m_supperClass;

@@ -28,6 +28,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     layout()->setSpacing(0);
     changeItemIcon();
     m_currentIndexs = 0;
+    m_searchFileListIndex = -1;
+    m_renameIndex = -1;
 
     for(int i=0; i<3; ++i)
     {
@@ -89,6 +91,7 @@ void MusicSongsSummarizied::searchFileListCache(int index, const QString &text)
     {
         searchResult << j;
     }
+    m_searchFileListIndex = text.count();
     m_searchfileListCache.insert(index, searchResult);
     setMusicSongsSearchedFileName(searchResult);
 }
@@ -98,11 +101,17 @@ bool MusicSongsSummarizied::searchFileListEmpty() const
     return m_searchfileListCache.isEmpty();
 }
 
-int MusicSongsSummarizied::getsearchFileListIndex(int index, int row)
+int MusicSongsSummarizied::getsearchFileListIndex(int row)
 {
-    int id = m_searchfileListCache.value(index)[row];
+    return row >= 0 ? m_searchfileListCache.value(m_searchFileListIndex)[row] : -1;
+}
+
+int MusicSongsSummarizied::getsearchFileListIndexAndClear(int row)
+{
+    row = getsearchFileListIndex(row);
     m_searchfileListCache.clear();
-    return id;
+    emit clearSearchText();
+    return row;
 }
 
 void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
@@ -192,13 +201,25 @@ void MusicSongsSummarizied::clearAllLists()
     }
 }
 
-void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemove)
+void MusicSongsSummarizied::setDeleteItemAt(const MIntList &del, bool fileRemove)
 {
-    if(index.count() == 0)
+    if(del.count() == 0)
     {
         return;
     }
-    for(int i=index.count() - 1; i>=0; --i)
+
+    MIntList index = del;
+    if(!searchFileListEmpty())
+    {
+        index.clear();
+        foreach(int row, del)
+        {
+            index << getsearchFileListIndex(row);
+        }
+        getsearchFileListIndexAndClear(-1);
+    }
+
+    for(int i=index.count()-1; i>=0; --i)
     {
         MusicSong song = m_musicFileNames[currentIndex()].takeAt(index[i]);
         if(fileRemove)
@@ -227,6 +248,11 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
+    if(!searchFileListEmpty())
+    {
+        row = getsearchFileListIndex(row);
+    }
+
     MusicSong song = m_musicFileNames[currentIndex()][row];
     m_musicFileNames[1] << song;
     m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);

@@ -30,7 +30,8 @@ public:
     void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
     void searchFileListCache(int index, const QString &text);
     bool searchFileListEmpty() const;
-    int getsearchFileListIndex(int index, int row);
+    int getsearchFileListIndex(int row);
+    int getsearchFileListIndexAndClear(int row);
     void importOtherMusicSongs(const QStringList &filelist);
 
     QStringList getMusicSongsFileName(int index) const;
@@ -48,6 +49,7 @@ Q_SIGNALS:
     void updatePlayLists(const QString &list);
     void showCurrentSong(int index);
     void updateMediaLists(const QStringList &list, int index);
+    void clearSearchText();
 
 public Q_SLOTS:
     void addNewItem();
@@ -58,7 +60,7 @@ public Q_SLOTS:
     void addMusicSongToLovestListAt(int row);
     void addNetMusicSongToList(const QString &name, const QString &time,
                                const QString &format);
-    void setDeleteItemAt(const MIntList &index, bool fileRemove);
+    void setDeleteItemAt(const MIntList &del, bool fileRemove);
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
     void isCurrentIndexs(bool &state);
     void setChangItemName(const QString &name);
@@ -72,6 +74,7 @@ protected:
 
     int m_currentIndexs;
     int m_renameIndex;
+    int m_searchFileListIndex;
     MIntsListMap m_searchfileListCache;
     MusicSongsList m_musicFileNames;
     QList<MusicSongsListWidget*> m_mainSongLists;

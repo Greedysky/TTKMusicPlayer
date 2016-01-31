@@ -110,9 +110,9 @@ QString MusicLeftAreaWidget::getSearchedText() const
     return m_musicLocalSongSearch->getSearchedText();
 }
 
-void MusicLeftAreaWidget::clearSearchedText() const
+void MusicLeftAreaWidget::clearSearchedText()
 {
-    m_musicLocalSongSearch->clearSearchedText();
+    m_musicLocalSongSearch->close();
 }
 
 void MusicLeftAreaWidget::musicSearch()
