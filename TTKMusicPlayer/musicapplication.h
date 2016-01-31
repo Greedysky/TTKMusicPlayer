@@ -117,7 +117,6 @@ private:
     bool m_playControl;
     int m_currentMusicSongTreeIndex;
     QMenu m_playModeMenu;
-    MIntsListMap m_searchfileListCache;
 
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;

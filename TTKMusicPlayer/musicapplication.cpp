@@ -719,12 +719,11 @@ void MusicApplication::musicPlayIndex(int row, int)
         m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
         m_musicSongTree->currentMusicSongTreeIndexChanged(m_currentMusicSongTreeIndex);
     }
-    if(!m_searchfileListCache.isEmpty())
+    if(!m_musicSongTree->searchFileListEmpty())
     {
         int count = m_leftAreaWidget->getSearchedText().count();
-        row = m_searchfileListCache.value(count)[row];
+        row = m_musicSongTree->getsearchFileListIndex(count, row);
         m_leftAreaWidget->clearSearchedText();
-        m_searchfileListCache.clear();
     }
 
     m_musicList->setCurrentIndex(row);
@@ -813,15 +812,7 @@ void MusicApplication::getParameterSetting()
 
 void MusicApplication::musicSearchIndexChanged(int, int index)
 {
-    MIntList searchResult;
-    QStringList searchedSongs(m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex()));
-    for(int j=0; j<searchedSongs.count(); ++j)
-    if(searchedSongs[j].contains(m_leftAreaWidget->getSearchedText(), Qt::CaseInsensitive))
-    {
-        searchResult << j;
-    }
-    m_searchfileListCache.insert(index, searchResult);
-    m_musicSongTree->setMusicSongsSearchedFileName(searchResult);
+    m_musicSongTree->searchFileListCache(index, m_leftAreaWidget->getSearchedText());
 }
 
 void MusicApplication::musicLoadCurrentSongLrc()

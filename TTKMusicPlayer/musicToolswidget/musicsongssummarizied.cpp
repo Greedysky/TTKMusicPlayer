@@ -80,6 +80,31 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIn
     m_mainSongLists[currentIndex()]->updateSongsFileName(songs);
 }
 
+void MusicSongsSummarizied::searchFileListCache(int index, const QString &text)
+{
+    MIntList searchResult;
+    QStringList searchedSongs(getMusicSongsFileName(currentIndex()));
+    for(int j=0; j<searchedSongs.count(); ++j)
+    if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
+    {
+        searchResult << j;
+    }
+    m_searchfileListCache.insert(index, searchResult);
+    setMusicSongsSearchedFileName(searchResult);
+}
+
+bool MusicSongsSummarizied::searchFileListEmpty() const
+{
+    return m_searchfileListCache.isEmpty();
+}
+
+int MusicSongsSummarizied::getsearchFileListIndex(int index, int row)
+{
+    int id = m_searchfileListCache.value(index)[row];
+    m_searchfileListCache.clear();
+    return id;
+}
+
 void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
     MusicProgressWidget progress;

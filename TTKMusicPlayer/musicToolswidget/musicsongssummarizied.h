@@ -28,6 +28,9 @@ public:
 
     void setMusicLists(const MusicSongsList &names);
     void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
+    void searchFileListCache(int index, const QString &text);
+    bool searchFileListEmpty() const;
+    int getsearchFileListIndex(int index, int row);
     void importOtherMusicSongs(const QStringList &filelist);
 
     QStringList getMusicSongsFileName(int index) const;
@@ -67,10 +70,11 @@ protected:
     void clearAllLists();
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    QList<MusicSongsListWidget*> m_mainSongLists;
-    MusicSongsList m_musicFileNames;
     int m_currentIndexs;
     int m_renameIndex;
+    MIntsListMap m_searchfileListCache;
+    MusicSongsList m_musicFileNames;
+    QList<MusicSongsListWidget*> m_mainSongLists;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };
