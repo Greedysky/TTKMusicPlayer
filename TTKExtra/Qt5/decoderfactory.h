@@ -111,17 +111,7 @@ public:
      * Shows settings dialog.
      * @param parent Parent widget.
      */
-    virtual void showSettings(QWidget *parent) = 0;
-    /*!
-     * Shows about dialog.
-     * @param parent Parent widget.
-     */
-    virtual void showAbout(QWidget *parent) = 0;
-    /*!
-     * Creates QTranslator object of the system locale. Should return 0 if translation doesn't exist.
-     * @param parent Parent object.
-     */
-    virtual QTranslator *createTranslator(QObject *parent) = 0;
+
 };
 
 Q_DECLARE_INTERFACE(DecoderFactory, "DecoderFactory/1.0")
