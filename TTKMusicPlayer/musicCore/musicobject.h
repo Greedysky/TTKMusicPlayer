@@ -30,7 +30,7 @@
 #define THEME_DOWNLOAD     "MTheme/"
 #define DATA_CACHED        "MCached/"
 #define ART_DOWNLOAD       "MArt/"
-#define TRANS_PLUGINS      "MPlugins/"
+#define TRANS_PLUGINS      "plugins/"
 #define ART_BG             "MArt/background/"
 #define TR_LANGUAGE        "MLanguage/"
 #define TMP_DOWNLOAD       "temporary"
@@ -39,9 +39,9 @@
 #define JPG_FILE           ".jpg"
 #define LRC_FILE           ".lrc"
 
-#define MAKE_TRANSFORM     "MPlugins/avconv.dll"
-#define MAKE_RING          "MPlugins/avring.dll"
-#define MAKE_PLAYER        "MPlugins/avplayer.dll"
+#define MAKE_TRANSFORM     "plugins/avconv.dll"
+#define MAKE_RING          "plugins/avring.dll"
+#define MAKE_PLAYER        "plugins/avplayer.dll"
 
 #define COFIGPATH          "musicconfig.xml"
 #define NETDADIOPATH       "musicradio.dll"
