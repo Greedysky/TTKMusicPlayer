@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QGraphicsView>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicVideoControl;
 class MusicCoreMPlayer;

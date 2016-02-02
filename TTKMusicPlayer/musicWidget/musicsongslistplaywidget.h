@@ -14,7 +14,7 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QMenu>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicSongsToolItemRenamedWidget;
 

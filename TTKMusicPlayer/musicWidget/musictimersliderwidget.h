@@ -13,7 +13,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 class MusicMovingLabelSlider;

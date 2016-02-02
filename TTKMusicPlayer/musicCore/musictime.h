@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QDataStream>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_CORE_EXPORT MusicTime
 {

@@ -11,7 +11,7 @@
 
 #include <QStringList>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
 {

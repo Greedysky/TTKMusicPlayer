@@ -11,7 +11,7 @@
 
 #include <QtSql/QSqlTableModel>
 #include <QtSql/QSqlQuery>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_USER_EXPORT MusicUserModel : public QSqlTableModel
 {

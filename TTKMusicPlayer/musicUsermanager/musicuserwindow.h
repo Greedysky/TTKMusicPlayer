@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QStackedWidget>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicUserDialog;
 class MusicUserManager;

@@ -11,7 +11,7 @@
 
 #include <QMenu>
 #include <QSystemTrayIcon>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;

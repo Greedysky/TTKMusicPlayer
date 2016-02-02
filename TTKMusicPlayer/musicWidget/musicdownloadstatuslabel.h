@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicdownloadquerysinglethread.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 class MusicApplication;

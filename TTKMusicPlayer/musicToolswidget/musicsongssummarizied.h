@@ -12,7 +12,7 @@
 #include <QToolBox>
 #include <QContextMenuEvent>
 #include "musicsong.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 #include "musicobject.h"
 
 class MusicSongsListWidget;

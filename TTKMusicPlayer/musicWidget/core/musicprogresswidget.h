@@ -13,7 +13,7 @@
 #define HEIGHT 20
 
 #include <QProgressDialog>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 

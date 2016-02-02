@@ -1,5 +1,5 @@
-#ifndef MUSICLIBEXPORTGLOBAL_H
-#define MUSICLIBEXPORTGLOBAL_H
+#ifndef MUSICGLOBALDEFINE_H
+#define MUSICGLOBALDEFINE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,12 +11,13 @@
 
 #include <QtCore/qglobal.h>
 
-#define MUSIC_EXPORT
+///load logger
+#include "musiclogger.h"
 
 #ifdef QT_DEBUG
 #   define MUSIC_DEBUG
 #endif
-
+//////////////////////////////////////
 #ifdef MUSIC_LIBRARY
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
@@ -30,7 +31,16 @@
 #  define MUSIC_VIDEO
 #  define MUSIC_GUI
 #endif
+//////////////////////////////////////
+#define MUSIC_CAST
+//////////////////////////////////////
 
+
+//////////////////////////////////////
+///exoprt
+///
+///
+#define MUSIC_EXPORT
 
 #ifdef MUSIC_GUI
 #  ifdef MUSIC_EXPORT
@@ -40,7 +50,6 @@
 #  endif
 #endif
 
-
 #ifdef MUSIC_NETWORK
 #  ifdef MUSIC_EXPORT
 #    define MUSIC_NETWORK_EXPORT Q_DECL_EXPORT
@@ -48,7 +57,6 @@
 #    define MUSIC_NETWORK_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
 
 #ifdef MUSIC_CORE
 #  ifdef MUSIC_EXPORT
@@ -58,7 +66,6 @@
 #  endif
 #endif
 
-
 #ifdef MUSIC_WIDGET
 #  ifdef MUSIC_EXPORT
 #    define MUSIC_WIDGET_EXPORT Q_DECL_EXPORT
@@ -66,7 +73,6 @@
 #    define MUSIC_WIDGET_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
 
 #ifdef MUSIC_SEARCH
 #  ifdef MUSIC_EXPORT
@@ -76,7 +82,6 @@
 #  endif
 #endif
 
-
 #ifdef MUSIC_LRC
 #  ifdef MUSIC_EXPORT
 #    define MUSIC_LRC_EXPORT Q_DECL_EXPORT
@@ -84,7 +89,6 @@
 #    define MUSIC_LRC_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
 
 #ifdef MUSIC_REMOTE
 #  ifdef MUSIC_EXPORT
@@ -94,7 +98,6 @@
 #  endif
 #endif
 
-
 #ifdef MUSIC_TOOL
 #  ifdef MUSIC_EXPORT
 #    define MUSIC_TOOL_EXPORT Q_DECL_EXPORT
@@ -102,7 +105,6 @@
 #    define MUSIC_TOOL_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
 
 #ifdef MUSIC_TOOLSET
 #  ifdef MUSIC_EXPORT
@@ -112,7 +114,6 @@
 #  endif
 #endif
 
-
 #ifdef MUSIC_USER
 #  ifdef MUSIC_EXPORT
 #    define MUSIC_USER_EXPORT Q_DECL_EXPORT
@@ -120,7 +121,6 @@
 #    define MUSIC_USER_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
 
 #ifdef MUSIC_VIDEO
 #  ifdef MUSIC_EXPORT
@@ -130,7 +130,33 @@
 #  endif
 #endif
 
-///load logger
-#include "musiclogger.h"
 
-#endif // MUSICLIBEXPORTGLOBAL_H
+//////////////////////////////////////
+///cast
+///
+#ifdef MUSIC_CAST
+#  define MSconst_cast(x,y) (const_cast< x >(y))
+#else
+#  define MSconst_cast(x,y) ((x)(y))
+#endif
+
+#ifdef MUSIC_CAST
+#  define MSdynamic_cast(x,y) (dynamic_cast< x >(y))
+#else
+#  define MSdynamic_cast(x,y) ((x)(y))
+#endif
+
+#ifdef MUSIC_CAST
+#  define MSreinterpret_cast(x,y) (reinterpret_cast< x >(y))
+#else
+#  define MSreinterpret_cast(x,y) ((x)(y))
+#endif
+
+#ifdef MUSIC_CAST
+#  define MSstatic_cast(x,y) (static_cast< x >(y))
+#else
+#  define MSstatic_cast(x,y) ((x)(y))
+#endif
+
+
+#endif // MUSICGLOBALDEFINE_H

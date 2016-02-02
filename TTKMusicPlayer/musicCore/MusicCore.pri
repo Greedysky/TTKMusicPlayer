@@ -10,7 +10,6 @@ INCLUDEPATH += $$PWD \
 !contains(CONFIG, TTK_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musiclogger.h \
-    $$PWD/musiclibexportglobal.h \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
     $$PWD/network/musicdownloadthreadabstract.h \
@@ -23,6 +22,7 @@ HEADERS  += \
     $$PWD/network/musicdownloadquerythreadabstract.h \
     $$PWD/network/musicdownloadquerysinglethread.h \
     $$PWD/network/musicdownloadquerymultiplethread.h \
+    $$PWD/musicglobaldefine.h \
     $$PWD/musicversion.h \
     $$PWD/musictime.h \
     $$PWD/musicxmlconfigmanager.h \
@@ -36,7 +36,6 @@ HEADERS  += \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h
-
 }
 
 contains(CONFIG, TTK_BUILD_LIB){

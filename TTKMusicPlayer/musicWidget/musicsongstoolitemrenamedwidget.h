@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QLineEdit>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {

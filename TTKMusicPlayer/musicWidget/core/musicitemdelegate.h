@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QItemDelegate>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #define MUSIC_CHECK_ROLE Qt::UserRole + 1
 #define MUSIC_QUERY_ROLE Qt::UserRole + 2

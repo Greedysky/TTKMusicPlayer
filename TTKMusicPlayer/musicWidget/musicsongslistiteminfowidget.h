@@ -11,7 +11,7 @@
 
 #include <QWidget>
 #include "musicsong.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 namespace Ui {
 class MusicSongsListItemInfoWidget;

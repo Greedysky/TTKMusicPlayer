@@ -14,7 +14,7 @@
 
 #include <QListWidget>
 #include "musicuiobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QListWidget
 {

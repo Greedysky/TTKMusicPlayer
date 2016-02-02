@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "tagreadandwrite.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_CORE_EXPORT MusicSongTag
 {

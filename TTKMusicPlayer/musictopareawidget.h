@@ -11,7 +11,7 @@
 
 #include <QWidget>
 #include <QTimer>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicUserWindow;
 class MusicRemoteWidget;

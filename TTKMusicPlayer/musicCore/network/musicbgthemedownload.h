@@ -11,7 +11,7 @@
 
 #include <QObject>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_NETWORK_EXPORT MusicBgThemeDownload : public QObject
 {

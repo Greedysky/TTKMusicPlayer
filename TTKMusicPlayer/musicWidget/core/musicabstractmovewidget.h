@@ -14,7 +14,7 @@
 
 #include <QWidget>
 #include <QMouseEvent>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicAbstractMoveWidget : public QWidget
 {

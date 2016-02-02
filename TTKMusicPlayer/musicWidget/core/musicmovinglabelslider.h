@@ -11,7 +11,7 @@
 
 #include <QSlider>
 #include <QLabel>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public QSlider
 {

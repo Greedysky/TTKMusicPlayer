@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QToolButton>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicEnhancedWidget : public QToolButton
 {

@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QTimer>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QProcess;
 

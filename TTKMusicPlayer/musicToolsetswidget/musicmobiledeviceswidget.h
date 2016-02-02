@@ -11,7 +11,7 @@
 
 #include <QLabel>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QToolButton;
 

@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QDialog>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 class QToolButton;

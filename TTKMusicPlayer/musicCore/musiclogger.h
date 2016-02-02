@@ -12,7 +12,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")

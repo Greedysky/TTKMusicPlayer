@@ -13,7 +13,7 @@
 #define HEIGHT 20
 
 #include <QDialog>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_WIDGET_EXPORT MusicAbstractMoveDialog : public QDialog
 {

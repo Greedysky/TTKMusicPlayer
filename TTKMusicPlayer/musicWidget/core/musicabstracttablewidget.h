@@ -11,7 +11,7 @@
 
 #include <QTableWidget>
 #include <QHeaderView>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
 

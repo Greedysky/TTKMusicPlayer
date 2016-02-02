@@ -15,7 +15,7 @@
 #include <QTimer>
 #include <QAction>
 #include <QPainter>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #define LRC_PER_TIME 30
 

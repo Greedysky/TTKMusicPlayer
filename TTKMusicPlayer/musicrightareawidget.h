@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QWidget>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicVideoPlayWidget;
 class MusicSettingWidget;

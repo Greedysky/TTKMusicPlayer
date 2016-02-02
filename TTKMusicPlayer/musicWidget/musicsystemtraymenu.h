@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QMenu>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 class QWidgetAction;

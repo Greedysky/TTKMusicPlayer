@@ -11,7 +11,7 @@
 
 #include <QMutex>
 #include <QScopedPointer>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 template <typename T>
 class MUSIC_CORE_EXPORT MusicSingleton

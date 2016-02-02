@@ -11,7 +11,7 @@
 
 #include <QListWidget>
 #include "musicuiobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QProcess;
 class MusicDesktopWallpaperWidget;

@@ -13,7 +13,7 @@
 #include <QTextStream>
 #include <QFile>
 
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 #include "musicsong.h"
 #include "musicobject.h"
 

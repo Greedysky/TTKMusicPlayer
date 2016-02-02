@@ -11,7 +11,7 @@
 
 #include <QListWidget>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicWebRadioWidget;
 

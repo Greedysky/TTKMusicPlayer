@@ -11,7 +11,7 @@
 
 #include <QObject>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #if defined Q_OS_WIN && defined MUSIC_QT_5
 class MusicApplication;

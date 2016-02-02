@@ -13,7 +13,7 @@
 #include <QWidget>
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class QLabel;
 class QSlider;

@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QWidget>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #define PIX_HEIGHT 16
 #define PIX_WIDTH  16

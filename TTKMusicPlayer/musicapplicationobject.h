@@ -12,7 +12,7 @@
 #include <QMimeData>
 #include <QFileDialog>
 #include "musicobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;

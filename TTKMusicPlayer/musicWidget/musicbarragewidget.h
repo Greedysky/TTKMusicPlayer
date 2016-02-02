@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 #include <QPropertyAnimation>
 #include <QLabel>

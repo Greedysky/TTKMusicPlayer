@@ -13,7 +13,7 @@
 #include <QPropertyAnimation>
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_LRC_EXPORT MusicLrcFloatAbstractWidget : public QLabel
 {

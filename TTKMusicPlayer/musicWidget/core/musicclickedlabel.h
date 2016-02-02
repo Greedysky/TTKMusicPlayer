@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QLabel>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_LRC_EXPORT MusicClickedLabel : public QLabel
 {

@@ -12,7 +12,7 @@
 #include <QThread>
 #include <QStringList>
 #include <QFileInfoList>
-#include "musiclibexportglobal.h"
+#include "musicglobaldefine.h"
 
 class MUSIC_CORE_EXPORT MusicLocalSongsManagerThread : public QThread
 {
