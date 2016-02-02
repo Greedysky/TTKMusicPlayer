@@ -137,8 +137,7 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     {
         if(tag.readFile(filelist[i]))
         {
-            QString time(tag.getLengthString());
-            m_musicFileNames[0] << MusicSong(filelist[i], 0, time.left(time.lastIndexOf(':')), QString());
+            m_musicFileNames[0] << MusicSong(filelist[i], 0, tag.getLengthString(), QString());
         }
         progress.setValue(i + 1);
     }
