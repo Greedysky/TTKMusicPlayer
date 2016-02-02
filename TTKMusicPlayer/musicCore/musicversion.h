@@ -1,5 +1,5 @@
-#ifndef MUSICVERSION
-#define MUSICVERSION
+#ifndef MUSICVERSION_H
+#define MUSICVERSION_H
 
 /* =================================================
  * This file is part of the TTK Music Player project

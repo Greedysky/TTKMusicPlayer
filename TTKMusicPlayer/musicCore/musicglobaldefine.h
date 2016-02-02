@@ -11,9 +11,6 @@
 
 #include <QtCore/qglobal.h>
 
-///load logger
-#include "musiclogger.h"
-
 #ifdef QT_DEBUG
 #   define MUSIC_DEBUG
 #endif
@@ -160,5 +157,8 @@
 #  define MStatic_cast(x,y) ((x)(y))
 #endif
 
+//////////////////////////////////////
+///load logger
+#include "musiclogger.h"
 
 #endif // MUSICGLOBALDEFINE_H

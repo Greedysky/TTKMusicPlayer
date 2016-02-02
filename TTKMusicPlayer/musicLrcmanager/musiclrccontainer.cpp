@@ -75,7 +75,7 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(MStatic_cast(MusicLRCManager::LrcColorType>, index);
+    setLinearGradientColor(MStatic_cast(MusicLRCManager::LrcColorType, index));
 }
 
 void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const
