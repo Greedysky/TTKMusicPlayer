@@ -14,7 +14,7 @@
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
 {
-    m_parentWidget = static_cast<MusicApplication*>(w);
+    m_parentWidget = MStatic_cast(MusicApplication*, w);
     m_downloadLrcThread = nullptr;
 
     M_CONNECTION->setValue("MusicDownloadStatusLabel", this);

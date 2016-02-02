@@ -902,7 +902,7 @@ void MusicApplication::musicWindowConciseChanged()
 
 void MusicApplication::musicEnhancedMusicChanged(int type)
 {
-    m_musicPlayer->setMusicEnhanced(static_cast<MusicPlayer::Enhanced>(type));
+    m_musicPlayer->setMusicEnhanced(MStatic_cast(MusicPlayer::Enhanced, type));
 }
 
 void MusicApplication::getCurrentPlayList(QStringList &list)

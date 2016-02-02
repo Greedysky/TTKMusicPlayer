@@ -46,7 +46,7 @@ void MusicBarrageAnimation::init()
 MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
-    m_parentClass = static_cast<QWidget*>(parent);
+    m_parentClass = MStatic_cast(QWidget*, parent);
     m_barrageState = false;
     m_fontSize = 15;
     m_backgroundColor = QColor(0, 0, 0);

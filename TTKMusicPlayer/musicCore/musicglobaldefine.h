@@ -32,7 +32,9 @@
 #  define MUSIC_GUI
 #endif
 //////////////////////////////////////
-#define MUSIC_CAST
+#ifdef __cplusplus
+#  define MUSIC_CAST
+#endif
 //////////////////////////////////////
 
 
@@ -135,27 +137,27 @@
 ///cast
 ///
 #ifdef MUSIC_CAST
-#  define MSconst_cast(x,y) (const_cast< x >(y))
+#  define MConst_cast(x,y) (const_cast< x >(y))
 #else
-#  define MSconst_cast(x,y) ((x)(y))
+#  define MConst_cast(x,y) ((x)(y))
 #endif
 
 #ifdef MUSIC_CAST
-#  define MSdynamic_cast(x,y) (dynamic_cast< x >(y))
+#  define MDynamic_cast(x,y) (dynamic_cast< x >(y))
 #else
-#  define MSdynamic_cast(x,y) ((x)(y))
+#  define MDynamic_cast(x,y) ((x)(y))
 #endif
 
 #ifdef MUSIC_CAST
-#  define MSreinterpret_cast(x,y) (reinterpret_cast< x >(y))
+#  define MReinterpret_cast(x,y) (reinterpret_cast< x >(y))
 #else
-#  define MSreinterpret_cast(x,y) ((x)(y))
+#  define MReinterpret_cast(x,y) ((x)(y))
 #endif
 
 #ifdef MUSIC_CAST
-#  define MSstatic_cast(x,y) (static_cast< x >(y))
+#  define MStatic_cast(x,y) (static_cast< x >(y))
 #else
-#  define MSstatic_cast(x,y) ((x)(y))
+#  define MStatic_cast(x,y) ((x)(y))
 #endif
 
 

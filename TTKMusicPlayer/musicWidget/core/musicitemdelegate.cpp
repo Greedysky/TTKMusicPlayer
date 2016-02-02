@@ -58,7 +58,7 @@ void MusicQueryTableDelegate::paint(QPainter *painter,
                                     const QModelIndex &index) const
 {
     painter->fillRect(option.rect,
-                      static_cast<Qt::GlobalColor>(index.data(MUSIC_AUDIT_ROLE).toInt()));
+                      MStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
     MusicCheckBoxDelegate::paint(painter, option, index);
 }
 

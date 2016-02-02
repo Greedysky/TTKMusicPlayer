@@ -47,7 +47,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
 void MusicLocalSongSearchPopTableWidget::listCellClicked(int row, int)
 {
     emit setText( item(row, 0)->text() );
-    QWidget *widget = static_cast<QWidget*>(parent());
+    QWidget *widget = MStatic_cast(QWidget*, parent());
     widget->lower();
     widget->hide();
 }

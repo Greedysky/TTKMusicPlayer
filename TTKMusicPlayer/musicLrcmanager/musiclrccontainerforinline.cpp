@@ -214,7 +214,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
 
         for(int i=1; i<= MIN_LRCCONTAIN_COUNT; ++i)
         {
-            MusicLRCManagerForInline *w = static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i-1]);
+            MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i-1]);
             w->setCenterOnLrc(true);
             if(i == 1 || i == 9)
             {
@@ -296,7 +296,7 @@ void MusicLrcContainerForInline::resizeWidth(int width)
 {
     for(int i=0; i< MIN_LRCCONTAIN_COUNT; ++i)
     {
-        static_cast<MusicLRCManagerForInline*>(m_musicLrcContainer[i])->setLrcPerWidth(width);
+        MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(width);
         m_lrcFloatWidget->resizeWidth(width);
     }
 

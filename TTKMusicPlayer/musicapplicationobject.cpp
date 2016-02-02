@@ -20,7 +20,7 @@
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(nullptr)
 {
-    m_supperClass = static_cast<QWidget*>(parent);
+    m_supperClass = MStatic_cast(QWidget*, parent);
     QWidget *widget = QApplication::desktop();
     m_supperClass->move( (widget->width() - m_supperClass->width())/2,
                          (widget->height() - m_supperClass->height())/2 );
@@ -81,7 +81,7 @@ void MusicApplicationObject::windowCloseAnimationOpacity()
 void MusicApplicationObject::nativeEvent(const QByteArray &,
                                          void *message, long *)
 {
-    MSG* msg = reinterpret_cast<MSG*>(message);
+    MSG* msg = MReinterpret_cast(MSG*, message);
 #  else
 void MusicApplicationObject::winEvent(MSG *msg, long *)
 {

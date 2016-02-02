@@ -12,8 +12,8 @@
 #include "musicdownloadquerythreadabstract.h"
 #include "musicquerytablewidget.h"
 
-#define AUDITION_PLAY static_cast<int>(Qt::yellow)
-#define AUDITION_STOP static_cast<int>(Qt::transparent)
+#define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
+#define AUDITION_STOP MStatic_cast(int, Qt::transparent)
 
 class MusicCoreMPlayer;
 class MusicDataDownloadThread;

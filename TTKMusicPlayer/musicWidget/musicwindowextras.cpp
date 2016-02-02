@@ -16,7 +16,7 @@ MusicWindowExtras::MusicWindowExtras(QObject *parent)
     m_taskbarProgress = nullptr;
     m_taskbarButton = nullptr;
     m_thumbnailToolBar = nullptr;
-    m_superClass = static_cast<MusicApplication*>(parent);
+    m_superClass = MStatic_cast(MusicApplication*, parent);
     disableBlurBehindWindow( QtWin::isCompositionEnabled() );
 #ifdef MUSIC_DEBUG
     createJumpList();
