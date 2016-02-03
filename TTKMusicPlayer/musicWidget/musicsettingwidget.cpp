@@ -294,13 +294,13 @@ void MusicSettingWidget::initControllerParameter()
     ui->fontComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcFamilyChoiced).toInt());
     ui->fontSizeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
     ui->fontTypeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcTypeChoiced).toInt());
+    ui->fontDefaultColorComboBox->setCurrentIndex(-1);
     if(M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
     {
         ui->fontDefaultColorComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt());
     }
     else
     {
-        ui->fontDefaultColorComboBox->setCurrentIndex(-1);
         QPixmap pixmap(16, 16);
         pixmap.fill(m_lrcSelectedFg = M_SETTING->value(MusicSettingManager::LrcFgColorChoiced).value<QColor>());
         ui->playedPushButton->setIcon(QIcon(pixmap));
@@ -315,13 +315,13 @@ void MusicSettingWidget::initControllerParameter()
     ui->DfontComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
     ui->DfontSizeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
     ui->DfontTypeComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcTypeChoiced).toInt());
+    ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
     if(M_SETTING->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
     {
         ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::DLrcColorChoiced).toInt());
     }
     else
     {
-        ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
         QPixmap pixmap(16, 16);
         pixmap.fill(m_DlrcSelectedFg = M_SETTING->value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>());
         ui->DplayedPushButton->setIcon(QIcon(pixmap));

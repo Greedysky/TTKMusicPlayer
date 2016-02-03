@@ -29,6 +29,7 @@ public:
     virtual void startTimerClock() override;
     virtual void stopLrcMask() override;
     virtual void setMaskLinearGradientColor(QColor = CL_Mask) const override;
+    virtual void setSettingParameter();
     void updateCurrentLrc(qint64 time);
 
     bool transLrcFileToTime(const QString &lrcFileName);
@@ -68,6 +69,8 @@ protected:
     void createNoLrcCurrentInfo();
     void showNoLrcCurrentInfo();
     void initLrc(const QString &str);
+    void setItemStyleSheet();
+    void setItemStyleSheet(int index, int size, int transparent);
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed;

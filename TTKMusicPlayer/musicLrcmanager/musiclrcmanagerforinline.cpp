@@ -9,7 +9,7 @@ MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent)
     m_speedLeve = 40;
     m_geometry.setY(35);
     m_gradientFontSize = 0;
-    m_gradientTransparent = 0;
+    m_gradientTransparent = 100;
     m_centerOnLrc = false;
 }
 
@@ -32,8 +32,8 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
         m_intervalCount -= m_lrcMaskWidthInterval;
     }
     //Draw the underlying text, such as shadow, will make the effect more clearly, and more texture
-    ttplus = 2*(m_transparent - m_gradientTransparent);
-    painter.setPen(QColor(0, 0, 0, ttplus = (ttplus < 0) ? 0 : ttplus));
+    ttplus = 2.55*m_gradientTransparent;
+    painter.setPen(QColor(0, 0, 0, ttplus));
 
     if((ttplus = (m_lrcPerWidth - m_geometry.x()) / 2.0) < 0)
         painter.drawText(m_intervalCount + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());

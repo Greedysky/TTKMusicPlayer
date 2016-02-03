@@ -157,6 +157,46 @@ void MusicLrcContainerForInline::setMaskLinearGradientColor(QColor color) const
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setMaskLinearGradientColor(color);
 }
 
+void MusicLrcContainerForInline::setSettingParameter()
+{
+    MusicLrcContainer::setSettingParameter();
+    setItemStyleSheet();
+}
+
+void MusicLrcContainerForInline::setItemStyleSheet()
+{
+    for(int i=0; i< MIN_LRCCONTAIN_COUNT; ++i)
+    {
+        if(i == 0 || i == 8) setItemStyleSheet(i, 4, 90);
+        else if(i == 1 || i == 7) setItemStyleSheet(i, 3, 60);
+        else if(i == 2 || i == 3 || i == 5 || i == 6) setItemStyleSheet(i, 2, 20);
+        else setItemStyleSheet(i, 0, 0);
+    }
+}
+
+void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int transparent)
+{
+    MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[index]);
+    w->setCenterOnLrc(index != CURRENT_LRC_PAINT);
+    w->setFontSize(size);
+
+    int value = M_SETTING->value("LrcColorTransChoiced").toInt() - transparent;
+    value = (value < 0) ? 0 : value;
+    value = (value > 100) ? 100 : value;
+    w->setFontTransparent(value);
+    w->setTransparent(value);
+    if(M_SETTING->value("LrcColorChoiced").toInt() != -1)
+    {
+        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING->value("LrcColorChoiced").toInt());
+        setMaskLinearGradientColor();
+    }
+    else
+    {
+        w->setLinearGradientColor(M_SETTING->value("LrcBgColorChoiced").value<QColor>());
+        setMaskLinearGradientColor(M_SETTING->value("LrcFgColorChoiced").value<QColor>());
+    }
+}
+
 void MusicLrcContainerForInline::startTimerClock()
 {
     m_musicLrcContainer[CURRENT_LRC_PAINT]->startTimerClock();
@@ -212,30 +252,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
         ++m_currentLrcIndex;
         m_musicLrcContainer[CURRENT_LRC_PAINT]->startLrcMask(time);
 
-        for(int i=1; i<= MIN_LRCCONTAIN_COUNT; ++i)
-        {
-            MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i-1]);
-            w->setCenterOnLrc(true);
-            if(i == 1 || i == 9)
-            {
-                w->setFontSize(3);
-                w->setTransparent(220);
-            }
-            else if(i == 2 || i == 8)
-            {
-                w->setFontSize(2);
-                w->setTransparent(105);
-            }
-            else if(i == 3 || i == 4 || i == 6 || i == 7)
-            {
-                w->setFontSize(1);
-                w->setTransparent(45);
-            }
-            else
-            {
-                w->setCenterOnLrc(false);
-            }
-        }
+        setItemStyleSheet();
     }
 }
 
