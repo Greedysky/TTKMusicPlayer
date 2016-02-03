@@ -12,8 +12,8 @@
 #include <QBoxLayout>
 #include "musiclrccontainer.h"
 
-#define MIN_LRCCONTAIN_COUNT 9
-#define CURRENT_LRC_PAINT 4
+#define MIN_LRCCONTAIN_COUNT 11
+#define CURRENT_LRC_PAINT 5
 
 class MusicLRCManagerForInline;
 class MusicLrcFloatWidget;

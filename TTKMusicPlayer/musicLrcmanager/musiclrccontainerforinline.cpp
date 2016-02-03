@@ -167,9 +167,11 @@ void MusicLrcContainerForInline::setItemStyleSheet()
 {
     for(int i=0; i< MIN_LRCCONTAIN_COUNT; ++i)
     {
-        if(i == 0 || i == 8) setItemStyleSheet(i, 4, 90);
-        else if(i == 1 || i == 7) setItemStyleSheet(i, 3, 60);
-        else if(i == 2 || i == 3 || i == 5 || i == 6) setItemStyleSheet(i, 2, 20);
+        if(i == 0 || i == 10) setItemStyleSheet(i, 5, 90);
+        else if(i == 1 || i == 9) setItemStyleSheet(i, 4, 80);
+        else if(i == 2 || i == 8) setItemStyleSheet(i, 3, 60);
+        else if(i == 3 || i == 7) setItemStyleSheet(i, 2, 40);
+        else if(i == 4 || i == 6) setItemStyleSheet(i, 1, 20);
         else setItemStyleSheet(i, 0, 0);
     }
 }
