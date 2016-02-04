@@ -2,7 +2,7 @@
 #include "musicuiobject.h"
 #include "ui_musicuserdialog.h"
 #include "musicuserlineedit.h"
-#include "musicuserModel.h"
+#include "musicusermodel.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 

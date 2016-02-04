@@ -1,5 +1,5 @@
 #include "musicsongssummarizied.h"
-#include "musicsongsListwidget.h"
+#include "musicsongslistwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"

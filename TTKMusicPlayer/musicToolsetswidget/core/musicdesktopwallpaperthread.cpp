@@ -15,8 +15,10 @@
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     : QThread(parent)
 {
+#if defined Q_OS_WIN
     MusicRegeditManager().getDesktopWallControlPanel(m_originPath, m_originType);
     MusicTime::timeSRand();
+#endif
 
     m_run = true;
     m_currentImageIndex = 0;
@@ -88,8 +90,13 @@ void MusicDesktopWallpaperThread::stopAndQuitThread()
 
 void MusicDesktopWallpaperThread::setWallpaper(const QString &path, int type) const
 {
+#if defined Q_OS_WIN
     MusicRegeditManager().setDesktopWallControlPanel(path, type);
     SystemParametersInfo(SPI_SETDESKWALLPAPER, 0,
                          (TCHAR*)path.toStdWString().c_str(),
                          SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+#else
+    Q_UNUSED(path)
+    Q_UNUSED(type)
+#endif
 }

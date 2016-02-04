@@ -50,11 +50,13 @@ MusicApplicationObject::~MusicApplicationObject()
 
 void MusicApplicationObject::getParameterSetting()
 {
+#ifdef Q_OS_WIN
     if(M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt())
     {
         MusicRegeditManager regeditManager;
         regeditManager.setMusicRegeditAssociateFileIcon();
     }
+#endif
 }
 
 void MusicApplicationObject::windowStartAnimationOpacity()

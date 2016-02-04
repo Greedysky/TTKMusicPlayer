@@ -51,6 +51,21 @@ win32{
     }
 }
 
+
+unix : !mac{
+    QMAKE_CXXFLAGS += -std=c++11
+    QMAKE_CXXFLAGS += -Wunused-function
+    QMAKE_CXXFLAGS += -Wswitch
+    equals(QT_MAJOR_VERSION, 5){
+        LIBS += -L../bin -lqmmp1
+    }
+
+    equals(QT_MAJOR_VERSION, 4){
+        LIBS += -L../bin -lqmmp1
+    }
+}
+
+
 DEFINES += MUSIC_LIBRARY
 
 contains(CONFIG, TTK_BUILD_LIB){

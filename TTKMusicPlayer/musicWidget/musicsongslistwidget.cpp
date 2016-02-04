@@ -11,7 +11,7 @@
 #include <QTimer>
 #include <QProcess>
 #include <QDesktopServices>
-#include <Qpainter>
+#include <QPainter>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(nullptr),

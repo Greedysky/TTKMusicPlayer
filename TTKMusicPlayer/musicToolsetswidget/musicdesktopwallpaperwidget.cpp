@@ -225,7 +225,11 @@ void MusicDesktopWallpaperWidget::cancelButtonPressed()
 
 void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
 {
+#if defined Q_OS_WIN
     MusicRegeditManager().setDesktopWallAutoStart(autoStart);
+#else
+    Q_UNUSED(autoStart)
+#endif
 }
 
 void MusicDesktopWallpaperWidget::show()
