@@ -36,6 +36,7 @@ public Q_SLOTS:
     void musicStackedRadioWidgetChanged();
     void musicStackedMyDownWidgetChanged();
     void musicStackedMobileWidgetChanged();
+    void musicSpectrumWidget();
     void clearSearchedText();
 
 protected:

@@ -7,6 +7,9 @@
 #include "musiclocalsongsearch.h"
 #include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
+///qmmp incldue
+#include "visual.h"
+///
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicLocalSongSearch(nullptr), m_qualityChoiceWidget(nullptr)
@@ -103,6 +106,16 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_radio->setToolTip(tr("musicRadio"));
     ui->musicButton_tools->setToolTip(tr("musicTools"));
     ui->musicButton_mobile->setToolTip(tr("musicMobile"));
+}
+
+void MusicLeftAreaWidget::musicSpectrumWidget()
+{
+    Visual::initialize(m_supperClass);
+    QList<VisualFactory*> facts = Visual::factories();
+    if(!facts.isEmpty())
+    {
+        Visual::setEnabled(facts.first());
+    }
 }
 
 QString MusicLeftAreaWidget::getSearchedText() const
