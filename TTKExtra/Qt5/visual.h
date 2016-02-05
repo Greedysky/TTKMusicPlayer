@@ -108,7 +108,7 @@ public:
      * @param factory Visual plugin factory.
      * @param parent Parent widget.
      */
-    static void showSettings(VisualFactory *factory, QWidget *parent);
+
 
 signals:
     /*!

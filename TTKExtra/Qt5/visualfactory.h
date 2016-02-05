@@ -20,7 +20,7 @@
 
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
-
+#include <QObject>
 class QObject;
 class QWidget;
 class QTranslator;
@@ -70,17 +70,7 @@ public:
      * @param parent Parent widget.
      * @return Configuration dialog pointer.
      */
-    virtual QDialog *createConfigDialog(QWidget *parent) = 0;
-    /*!
-     * Shows about dialog.
-     * @param parent Parent widget.
-     */
-    virtual void showAbout(QWidget *parent) = 0;
-    /*!
-     * Creates QTranslator object of the system locale. Should return \b 0 if translation doesn't exist.
-     * @param parent Parent object.
-     */
-    virtual QTranslator *createTranslator(QObject *parent) = 0;
+
 };
 
 Q_DECLARE_INTERFACE(VisualFactory, "VisualFactory/1.0")
