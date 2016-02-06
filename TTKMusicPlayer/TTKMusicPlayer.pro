@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-TARGET = ../../bin/MusicCore
+win32:TARGET = ../../bin/MusicCore
+unix:TARGET = ../lib/MusicCore
 TEMPLATE = lib
 
 CONFIG += TTK_BUILD_LIB

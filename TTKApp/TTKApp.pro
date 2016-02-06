@@ -4,10 +4,16 @@
 #
 #-------------------------------------------------
 
-
-TARGET = ../../bin/TTKMusicPlayer
 TEMPLATE = app
-LIBS += -L../bin -lMusicCore
+win32{
+  TARGET = ../../bin/TTKMusicPlayer
+  LIBS += -L../bin -lMusicCore
+}
+unix{
+  TARGET = ../lib/TTKMusicPlayer
+  LIBS += -L./lib -lMusicCore
+}
+
 
 contains(CONFIG, TTK_BUILD_LIB){
     CONFIG -= TTK_BUILD_LIB
