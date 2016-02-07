@@ -193,7 +193,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->windowClose->setGeometry(con ? 370 : 937, 27, 25, 25);
     m_ui->resizeWindowLabel->setGeometry(con ? 380 : 950, 620, 15, 15);
     m_ui->musicWindowSpace->setGeometry(con ? 310 : 380, 20, con ? 100 : 590, con ? 38 : 45);
-    m_ui->lrcDisplayAllButton->setHidden(con);
+    m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
     m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout"
                                                                   : ":/image/concisein")));
     m_musicWindowExtras->disableBlurBehindWindow( !con );
