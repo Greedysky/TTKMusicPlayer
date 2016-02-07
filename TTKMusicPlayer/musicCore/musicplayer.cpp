@@ -90,7 +90,11 @@ QStringList MusicPlayer::supportFormatsString()
                         << "amf" << "ams" << "dbm" << "dmf" << "dsm" << "far" << "mdl" << "med" << "mtm"
                         << "okt" << "ptm" << "stm" << "ult" << "umx" << "mt2" << "psm" << "mdz" << "s3z"
                         << "xmz" << "itz" << "mdr" << "s3r" << "xmr" << "itr" << "dgz" << "s3gz" << "xmgz"
-                        << "itgz" << "opus" << "aac" << "mid";
+                        << "itgz" << "opus"
+#ifndef Q_OS_WIN
+                        << "sid" << "mus" << "str" << "prg" << "P00"
+#endif
+                        << "aac";
 }
 
 QStringList MusicPlayer::supportFormatsFilterString()
@@ -103,7 +107,11 @@ QStringList MusicPlayer::supportFormatsFilterString()
                         << "*.amf" << "*.ams" << "*.dbm" << "*.dmf" << "*.dsm" << "*.far" << "*.mdl" << "*.med" << "*.mtm"
                         << "*.okt" << "*.ptm" << "*.stm" << "*.ult" << "*.umx" << "*.mt2" << "*.psm" << "*.mdz" << "*.s3z"
                         << "*.xmz" << "*.itz" << "*.mdr" << "*.s3r" << "*.xmr" << "*.itr" << "*.dgz" << "*.s3gz" << "*.xmgz"
-                        << "*.itgz" << "*.opus" << "*.aac" << "*.mid";
+                        << "*.itgz" << "*.opus"
+#ifndef Q_OS_WIN
+                        << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00"
+#endif
+                        << "*.aac";
 }
 
 QStringList MusicPlayer::supportFormatsFilterDialogString()
@@ -113,7 +121,10 @@ QStringList MusicPlayer::supportFormatsFilterDialogString()
                         << "CUE File(*.cue)" << "MPEG File(*.mp1 *.mp2 *.mp3 *.wav)"
                         << "Game File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)"
                         << "FLAC File(*.flac *.oga)" << "Monkey's Audio File(*.ape)"
-                        << "Ogg Opus File(*.opus)" << "ADTS AAC File(*.aac)" << "Midi File(*.mid)"
+                        << "Ogg Opus File(*.opus)" << "ADTS AAC File(*.aac)"
+#ifndef Q_OS_WIN
+                        << "SID File(*.sid *.mus *.str *.prg *.P00)"
+#endif
                         << "FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)"
                         << "ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm "
                            "*.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr "
