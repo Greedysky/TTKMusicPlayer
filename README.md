@@ -10,8 +10,9 @@ Usage
 ----
 The music player use of qmmp core ( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt5.5.0 for windows-mingw 32bit
- * The above tests are based on the windows7 64bit!
+ * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.x for windows-mingw 32bit
+ * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
 
 # For Developers
 
@@ -23,12 +24,12 @@ Features
 -------
 TTKMusicPlayer can meet your most demands
  * Support for multiple music formats.
+ * SID File(*.sid *.mus *.str *.prg *.P00) on linux
  * MusePack File(*.mpc)
  * WavPack File(*.wv)
  * Ogg Vorbis File(*.ogg)
  * Ogg Opus File(*.opus)
  * ADTS AAC File(*.aac)
- * Midi File(*.mid)
  * PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
  * CUE File(*.cue)
  * MPEG File(*.mp1 *.mp2 *.mp3 *.wav)
