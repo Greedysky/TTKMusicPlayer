@@ -7,7 +7,7 @@
 QT       += core gui xml sql
 
 equals(QT_MAJOR_VERSION, 4){
-QT       += multimedia network script
+QT       += network script
 CONFIG   += gcc
 include(TTKExtra/Qt4/qmmp.pri)
 }
@@ -21,10 +21,9 @@ MOC_DIR = ./.build/moc/
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-
 win32{
     equals(QT_MAJOR_VERSION, 5){
-    QT  += winextras
+        QT  += winextras
         msvc{
             LIBS += -L../bin -lqmmp1
             !contains(QMAKE_TARGET.arch, x86_64){
@@ -42,6 +41,7 @@ win32{
     }
 
     equals(QT_MAJOR_VERSION, 4){
+        QT  += multimedia
         gcc{
             LIBS += -L../bin -lqmmp0
             QMAKE_CXXFLAGS += -std=c++11
@@ -52,6 +52,12 @@ win32{
 }
 
 unix : !mac{
+    equals(QT_MAJOR_VERSION, 4){
+        QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit \
+                                              -I/usr/include/QtMobility
+        LIBS += -lQtMultimediaKit
+    }
+
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
     QMAKE_CXXFLAGS += -Wswitch
