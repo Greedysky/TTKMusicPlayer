@@ -51,6 +51,7 @@ SOURCES += \
     $$PWD/network/musicdownloadquerythreadabstract.cpp \
     $$PWD/network/musicdownloadquerysinglethread.cpp \
     $$PWD/network/musicdownloadquerymultiplethread.cpp \
+    $$PWD/musicutils.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
