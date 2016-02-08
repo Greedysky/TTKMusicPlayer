@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 
 #include <QProcess>
+#include <QTimer>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     : QListWidget(parent), m_wallpaper(nullptr),
@@ -18,12 +19,17 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
+#ifdef Q_OS_WIN
     setSpacing(20);
+    addListWidgetItem();
+#else
+    setSpacing(19);
+    QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
+#endif
     setTransparent(50);
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
 
-    addListWidgetItem();
     M_CONNECTION->setValue("MusicToolSetsWidget", this);
     M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicApplication");
 }
@@ -129,6 +135,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             break;
         case 2:
            {
+#ifdef Q_OS_WIN
                 if(!QFile(MAKE_RING_AL).exists())
                 {
                     return;
@@ -140,6 +147,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 }
                 m_process = new QProcess(this);
                 m_process->start(MAKE_RING_AL);
+#endif
                 break;
            }
         case 3:
@@ -156,9 +164,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             break;
         case 5:
            {
+#ifdef Q_OS_WIN
                 delete m_wallpaper;
                 m_wallpaper = new MusicDesktopWallpaperWidget(this);
                 m_wallpaper->show();
+#endif
            }
     }
 }

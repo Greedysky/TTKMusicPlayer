@@ -120,7 +120,11 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
 
     QMenu musicToolMenu(tr("musicTool"), &rightClickMenu);
-    musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()));
+    musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()))
+#ifdef Q_OS_UNIX
+    ->setEnabled(false);
+#endif
+    ;
     musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
     rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()))->setEnabled(empty);

@@ -298,7 +298,11 @@ void MusicLrcContainerForInline::showNoLrcCurrentInfo()
     int h = me.height();
 
     ///there is a bug when playing not click the lrc widget
+#ifdef Q_OS_WIN
     m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 30)/2, w, h);
+#else
+    m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 50)/2, w, h);
+#endif
     m_noLrcCurrentInfo->show();
 }
 

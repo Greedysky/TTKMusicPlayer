@@ -9,7 +9,11 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 {
     setFrameShape(QFrame::NoFrame); //Set No Border
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
+#ifdef Q_OS_WIN
     setIconSize(QSize(100, 80));
+#else
+    setIconSize(QSize(89, 80));
+#endif
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
 }

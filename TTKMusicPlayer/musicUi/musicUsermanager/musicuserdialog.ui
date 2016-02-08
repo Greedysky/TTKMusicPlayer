@@ -499,7 +499,7 @@
       <rect>
        <x>30</x>
        <y>265</y>
-       <width>111</width>
+       <width>125</width>
        <height>16</height>
       </rect>
      </property>
@@ -670,9 +670,9 @@
     <widget class="QLabel" name="pwdLineEditR">
      <property name="geometry">
       <rect>
-       <x>105</x>
+       <x>100</x>
        <y>130</y>
-       <width>165</width>
+       <width>170</width>
        <height>20</height>
       </rect>
      </property>

@@ -26,11 +26,11 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
+    void addListWidgetItem();
 
 protected:
     void setTransparent(int angle);
     void clearAllItems();
-    void addListWidgetItem();
 
     MusicWebRadioWidget *m_radioDialog;
 

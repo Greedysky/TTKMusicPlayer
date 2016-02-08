@@ -27,6 +27,7 @@ public Q_SLOTS:
     void changeStatckedWidgetThird();
 
 protected:
+    virtual void paintEvent(QPaintEvent *event) override;
     void initFirstWidget();
     void initSecondWidget();
     void initThirdWidget();

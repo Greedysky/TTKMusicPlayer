@@ -4,6 +4,7 @@
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QPainter>
 
 MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     : QWidget(parent)
@@ -24,6 +25,15 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
 MusicConnectMobileWidget::~MusicConnectMobileWidget()
 {
     delete m_stackedWidget;
+}
+
+void MusicConnectMobileWidget::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, 50));
+    painter.end();
+
+    QWidget::paintEvent(event);
 }
 
 void MusicConnectMobileWidget::initFirstWidget()

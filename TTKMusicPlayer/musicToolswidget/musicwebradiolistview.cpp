@@ -1,6 +1,8 @@
 #include "musicwebradiolistview.h"
 #include "musicwebradiowidget.h"
 
+#include <QTimer>
+
 MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
     : QListWidget(parent), m_radioDialog(nullptr)
 {
@@ -10,12 +12,16 @@ MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    setSpacing(20);
     setTransparent(50);
+#ifdef Q_OS_WIN
+    setSpacing(20);
+    addListWidgetItem();
+#else
+    setSpacing(19);
+    QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
+#endif
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
-
-    addListWidgetItem();
 }
 
 MusicWebRadioListView::~MusicWebRadioListView()

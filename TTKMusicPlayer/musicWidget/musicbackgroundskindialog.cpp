@@ -2,6 +2,7 @@
 #include "ui_musicbackgroundskindialog.h"
 #include "musicobject.h"
 #include "musicbgthememanager.h"
+#include "musicutils.h"
 
 #include <QFileDialog>
 #include <QColorDialog>
@@ -11,7 +12,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
       ui(new Ui::MusicBackgroundSkinDialog)
 {
     ui->setupUi(this);
-
 
     ui->showPerArea->setWordWrap(true);
     ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
@@ -26,7 +26,10 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-
+#ifdef Q_OS_UNIX
+    ui->showPerArea->setText("100%\n\n\n\n\n\n\n\n\n\n 50%\n\n\n\n\n\n\n\n\n\n 0%");
+    MusicUtils::setLabelFont(ui->showPerArea, 7);
+#endif
     addThemeListWidgetItem();
 
     connect(ui->bgTransparentSlider, SIGNAL(valueChanged(int)), parent,
