@@ -32,7 +32,10 @@ else{
 }
 
 unix:{
+    output = $$OUT_PWD/lib/MLanguage
     system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
+    system(find . -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
+    system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
 win32:{
     output = $$OUT_PWD/bin/MLanguage

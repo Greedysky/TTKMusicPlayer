@@ -212,9 +212,9 @@
   <widget class="QLabel" name="llrcIntroductionLabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>65</x>
      <y>58</y>
-     <width>381</width>
+     <width>400</width>
      <height>15</height>
     </rect>
    </property>
