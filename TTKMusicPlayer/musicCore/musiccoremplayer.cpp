@@ -53,7 +53,11 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-wid";
     arguments << QString::number(winId);
+#ifdef Q_OS_WIN
     arguments << "-vo" << "direct3d" << data;
+#else
+    arguments << "-vo" << "x11" << data;
+#endif
     emit mediaChanged(data);
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);

@@ -9,6 +9,9 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QStackedWidget>
+#ifdef Q_OS_UNIX
+#include <QDesktopWidget>
+#endif
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_closeButton(nullptr)
@@ -115,10 +118,24 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     else
     {
+        showNormal();
         setGeometry(250, 150, 541, 460);
     }
-    m_videoView->resizeWindow(resize, size());
-    m_videoTable->resizeWindow(size().width() / 541.0);
+    QSize s =  size();
+#ifdef Q_OS_UNIX
+    QDesktopWidget* desktopWidget = QApplication::desktop();
+    if(desktopWidget && desktopWidget->screen())
+    {
+        s = desktopWidget->screen()->size();
+    }
+    else
+    {
+        s = QSize(541, 460);
+        showNormal();
+    }
+#endif
+    m_videoView->resizeWindow(resize, s);
+    m_videoTable->resizeWindow(s.width() / 541.0);
 }
 
 void MusicVideoPlayWidget::backButtonClicked()
