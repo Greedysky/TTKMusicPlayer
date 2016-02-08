@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicbgthememanager.h"
 #include "musicconnectionpool.h"
+#include "musicutils.h"
 
 #include <QSignalMapper>
 #include <QStyledItemDelegate>
@@ -73,6 +74,19 @@ void MusicEqualizerDialog::init()
     connect(ui->resetButton, SIGNAL(clicked()), SLOT(resetEq()));
     ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
+#ifdef Q_OS_UNIX
+    MusicUtils::setLabelFont(ui->showPerArea_21, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_22, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_23, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_24, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_25, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_26, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_27, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_28, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_29, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_30, 9);
+    MusicUtils::setLabelFont(ui->showPerArea_31, 9);
+#endif
 }
 
 void MusicEqualizerDialog::initSlider(QSlider *slider, int index)

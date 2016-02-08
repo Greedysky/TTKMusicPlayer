@@ -172,7 +172,7 @@
       <rect>
        <x>40</x>
        <y>110</y>
-       <width>70</width>
+       <width>90</width>
        <height>15</height>
       </rect>
      </property>
@@ -185,7 +185,7 @@
       <rect>
        <x>130</x>
        <y>110</y>
-       <width>70</width>
+       <width>90</width>
        <height>15</height>
       </rect>
      </property>
@@ -211,7 +211,7 @@
       <rect>
        <x>30</x>
        <y>145</y>
-       <width>111</width>
+       <width>115</width>
        <height>20</height>
       </rect>
      </property>
@@ -222,7 +222,7 @@
     <widget class="QPushButton" name="useTencentLogin">
      <property name="geometry">
       <rect>
-       <x>142</x>
+       <x>152</x>
        <y>148</y>
        <width>16</width>
        <height>16</height>
@@ -244,7 +244,7 @@
     <widget class="QPushButton" name="useRenrenLogin">
      <property name="geometry">
       <rect>
-       <x>164</x>
+       <x>174</x>
        <y>148</y>
        <width>16</width>
        <height>16</height>
@@ -266,7 +266,7 @@
     <widget class="QPushButton" name="useWechatLogin">
      <property name="geometry">
       <rect>
-       <x>186</x>
+       <x>196</x>
        <y>148</y>
        <width>16</width>
        <height>16</height>
@@ -288,7 +288,7 @@
     <widget class="QPushButton" name="useSinaLogin">
      <property name="geometry">
       <rect>
-       <x>208</x>
+       <x>218</x>
        <y>148</y>
        <width>16</width>
        <height>16</height>

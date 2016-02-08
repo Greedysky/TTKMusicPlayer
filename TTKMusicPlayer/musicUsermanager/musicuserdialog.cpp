@@ -5,6 +5,7 @@
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
+#include "musicutils.h"
 
 #include <QValidator>
 #include <QButtonGroup>

@@ -12,6 +12,7 @@
 #include <QDialog>
 #include <QMouseEvent>
 #include <QTimer>
+#include <QDir>
 
 #include "musicobject.h"
 #include "musicuiobject.h"

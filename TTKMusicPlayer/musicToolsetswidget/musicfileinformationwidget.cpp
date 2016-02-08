@@ -1,7 +1,7 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
 #include "musicuiobject.h"
-#include "musictime.h"
+#include "musicutils.h"
 #include "musicsongtag.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
@@ -80,7 +80,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = MusicTime::fileSize2Normal(fin.size()) )
+    ui->fileSizeEdit->setText( (check = MusicUtils::fileSize2Normal(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = tag.getAlbum()).isEmpty() ? "-" : check) : "-" );

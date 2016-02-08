@@ -2,7 +2,7 @@
 #include "ui_musicsongslistiteminfowidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musictime.h"
+#include "musicutils.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : QWidget(parent),
@@ -36,7 +36,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(MusicSong &info)
                 str.elidedText( info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()) );
     ui->artlistValue->setText( musicArt.isEmpty() ? "-" :
                str.elidedText( musicArt, Qt::ElideRight, ui->artlistValue->width()) );
-    ui->sizeValue->setText( str.elidedText( QString::number(MusicTime::fileSizeByte2MByte(
+    ui->sizeValue->setText( str.elidedText( QString::number(MusicUtils::fileSizeByte2MByte(
                             info.getMusicSize())).left(4) + "M", Qt::ElideRight, ui->sizeValue->width()) );
     ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" :
             str.elidedText( info.getMusicType(), Qt::ElideRight, ui->typeValue->width()) );

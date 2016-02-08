@@ -104,7 +104,7 @@ font-weight:bold;;</string>
       <rect>
        <x>200</x>
        <y>50</y>
-       <width>140</width>
+       <width>191</width>
        <height>20</height>
       </rect>
      </property>
@@ -117,7 +117,7 @@ font-weight:bold;;</string>
       <rect>
        <x>200</x>
        <y>80</y>
-       <width>140</width>
+       <width>191</width>
        <height>20</height>
       </rect>
      </property>
@@ -229,7 +229,7 @@ font-weight:bold;;</string>
       <rect>
        <x>40</x>
        <y>140</y>
-       <width>221</width>
+       <width>321</width>
        <height>20</height>
       </rect>
      </property>
@@ -242,7 +242,7 @@ font-weight:bold;;</string>
       <rect>
        <x>40</x>
        <y>170</y>
-       <width>221</width>
+       <width>301</width>
        <height>20</height>
       </rect>
      </property>

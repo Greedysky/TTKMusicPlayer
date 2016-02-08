@@ -1,9 +1,8 @@
 #include "musicapplication.h"
-#include "musicobject.h"
+#include "musicutils.h"
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
 #include "musiclogger.h"
-#include "musictime.h"
 #include "musicmessagebox.h"
 
 #include <QApplication>
@@ -23,9 +22,14 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForTr(codec);
 #endif
+#ifdef Q_OS_UNIX
+    QFont font;
+    font.setPixelSize(13);
+    qApp->setFont(font);
+#endif
 
-    MusicObject::checkTheDirectoryExist();
-    if(!MusicObject::checkTheFileExist())
+    MusicUtils::checkTheDirectoryExist();
+    if(!MusicUtils::checkTheFileExist())
     {
         MusicMessageBox(QObject::tr("TTKMusicPlayer"),
                         QObject::tr("Lack of necessary component files!")
@@ -46,10 +50,10 @@ int main(int argc, char *argv[])
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
     QTranslator translator;
-    translator.load(MusicObject::getLanguageName(xml->readLanguageIndex()));
+    translator.load(MusicUtils::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
-    MusicTime::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
+    MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
                               xml->readDownloadCacheLimit(), MUSIC_DOWNLOAD_AL);
     M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;

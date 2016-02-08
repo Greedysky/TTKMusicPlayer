@@ -156,15 +156,6 @@ namespace MusicObject
         MC_PlayOnce
     };
 
-    static void dirIsExist(const QString& name)
-    {
-        QDir dir;
-        if(!dir.exists(name))
-        {
-            dir.mkdir(name);
-        }
-    }
-
     static QString getAppDir()
     {
         QString path = QApplication::applicationDirPath();
@@ -175,43 +166,6 @@ namespace MusicObject
         return path + "/";
 //#endif
     }
-
-    static void checkTheDirectoryExist()
-    {
-        dirIsExist(getAppDir() + LRC_DOWNLOAD);
-        dirIsExist(getAppDir() + MUSIC_DOWNLOAD);
-        dirIsExist(getAppDir() + MOVIE_DOWNLOAD);
-        dirIsExist(getAppDir() + DATA_CACHED);
-        dirIsExist(getAppDir() + THEME_DOWNLOAD);
-        dirIsExist(getAppDir() + ART_DOWNLOAD);
-        dirIsExist(getAppDir() + TRANS_PLUGINS);
-        dirIsExist(getAppDir() + ART_BG);
-        dirIsExist(getAppDir() + TR_LANGUAGE);
-    }
-
-    static bool checkTheFileExist()
-    {
-        return QFile::exists(getAppDir() + DOWNLOADINFO) &&
-               QFile::exists(getAppDir() + DARABASEPATH) &&
-               QFile::exists(getAppDir() + USERPATH) &&
-               QFile::exists(getAppDir() + COFIGPATH) &&
-               QFile::exists(getAppDir() + MUSICPATH) &&
-               QFile::exists(getAppDir() + MUSICSEARCH) &&
-               QFile::exists(getAppDir() + NETDADIOPATH);
-    }
-
-    static QString getLanguageName(int index)
-    {
-        QString lan(getAppDir() + TR_LANGUAGE);
-        switch(index)
-        {
-            case 0 : return lan.append("cn.ln");
-            case 1 : return lan.append("cn_c.ln");
-            case 2 : return lan.append("en.ln");
-            default: return QString();
-        }
-    }
-
 }
 
 #endif // MUSICOBJECT_H
