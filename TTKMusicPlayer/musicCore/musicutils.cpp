@@ -103,7 +103,7 @@ qreal MusicUtils::fileSizeByte2MByte(qint64 size)
     return fileSizeByte2KByte(size) / 1024.0;
 }
 
-quint64  MusicUtils::dirSize(const QString &dirName)
+quint64 MusicUtils::dirSize(const QString &dirName)
 {
     quint64 size = 0;
     if(QFileInfo(dirName).isDir())
@@ -126,7 +126,7 @@ quint64  MusicUtils::dirSize(const QString &dirName)
     return size;
 }
 
-void  MusicUtils::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
+void MusicUtils::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
 {
     if(disabled)
     {

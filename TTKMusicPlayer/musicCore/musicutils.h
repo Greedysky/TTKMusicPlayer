@@ -3,26 +3,32 @@
 
 #include <QWidget>
 #include "musicobject.h"
+#include "musicglobaldefine.h"
 
-namespace MusicUtils
+class MUSIC_CORE_EXPORT MusicUtils
 {
-    void dirIsExist(const QString& name);
-    void checkTheDirectoryExist();
-    bool checkTheFileExist();
+public:
+    MusicUtils(){}
 
-    QString getLanguageName(int index);
+    static void dirIsExist(const QString& name);
+    static void checkTheDirectoryExist();
+    static bool checkTheFileExist();
 
-    void setLabelFont(QWidget *widget, int size);
+    static QString getLanguageName(int index);
 
-    QString fileSize2Label(qint64 size);
-    QString fileSize2Normal(qint64 size);
+    static void setLabelFont(QWidget *widget, int size);
 
-    qreal fileSizeByte2KByte(qint64 size);
-    qreal fileSizeByte2MByte(qint64 size);
+    static QString fileSize2Label(qint64 size);
+    static QString fileSize2Normal(qint64 size);
 
-    quint64 dirSize(const QString &dirName);
-    void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+    static qreal fileSizeByte2KByte(qint64 size);
+    static qreal fileSizeByte2MByte(qint64 size);
 
-}
+    static quint64 dirSize(const QString &dirName);
+    static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+
+};
+
+
 #endif // MUSICUTILS
 
