@@ -31,6 +31,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(ui->closeButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->label_checkBox, SIGNAL(clicked(bool)), ui->tableWidget,
                                 SLOT(setSelectedAllItems(bool)));
+    connect(ui->tableWidget, SIGNAL(resolvedSuccess()), SLOT(lrcSearchFinished()));
     connect(ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)),
                              SLOT(lrcDownloadStateChanged(QString)));
     connect(ui->tableWidget, SIGNAL(restartSearchQuery(QString)),
@@ -47,6 +48,11 @@ void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
     ui->songSearchEdit->setText(name);
     ui->tableWidget->setCurrentSongName(name);
     lrcSearchButtonClicked();
+}
+
+void MusicLrcSearchWidget::lrcSearchFinished() const
+{
+    ui->stateLabel->setText(tr("lrc is searching finished!"));
 }
 
 void MusicLrcSearchWidget::lrcSearchButtonClicked() const

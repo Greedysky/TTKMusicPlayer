@@ -23,6 +23,7 @@ public:
     virtual ~MusicLrcSearchWidget();
 
 public Q_SLOTS:
+    void lrcSearchFinished() const;
     void lrcSearchButtonClicked() const;
     void lrcSearchDownloadClicked();
     void lrcDownloadStateChanged(const QString &string);

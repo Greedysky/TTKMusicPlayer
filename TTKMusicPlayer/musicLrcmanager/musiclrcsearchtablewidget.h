@@ -23,6 +23,7 @@ public:
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
 Q_SIGNALS:
+    void resolvedSuccess();
     void lrcDownloadStateChanged(const QString &name);
 
 public Q_SLOTS:

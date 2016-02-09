@@ -9,11 +9,12 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 175);
-    headerview->resizeSection(2, 148);
-    headerview->resizeSection(3, 50);
+    headerview->resizeSection(1, 225);
+    headerview->resizeSection(2, 193);
+    headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
     setTransparent(255);
+    connect(m_downLoadManager, SIGNAL(resolvedSuccess()), SIGNAL(resolvedSuccess()));
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
