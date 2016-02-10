@@ -91,7 +91,6 @@ protected:
     void lcrColorValue(Type key, QString type, QPushButton *obj);
     void lrcColorByDefault(Type key, int index);
     void lrcTransparentValue(Type key, int index) const;
-    void setComboboxText(QComboBox *object, const QString &text);
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg, m_lrcSelectedBg;

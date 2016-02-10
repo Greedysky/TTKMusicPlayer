@@ -2,6 +2,7 @@
 #include "ui_musicsettingwidget.h"
 #include "musicbgthememanager.h"
 #include "musicnetworkthread.h"
+#include "musicutils.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -342,8 +343,8 @@ void MusicSettingWidget::initControllerParameter()
     ui->downloadLimitSpeedComboBox->setCurrentText(M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
     ui->uploadLimitSpeedComboBox->setCurrentText(M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #else
-    setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+    MusicUtils::setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    MusicUtils::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #endif
     M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
@@ -499,22 +500,6 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     key == Inline ? m_lrcSelectedFg = QColor(222, 54, 4) : m_DlrcSelectedFg = QColor(222, 54, 4);
     key == Inline ? m_lrcSelectedBg = color : m_DlrcSelectedBg = color;
     key == Inline ? showInlineLrcDemo(-1) : showDesktopLrcDemo(-1);
-}
-
-void MusicSettingWidget::setComboboxText(QComboBox *object, const QString &text)
-{
-    if(object->isEditable())
-    {
-        object->setEditText(text);
-    }
-    else
-    {
-        const int i = object->findText(text);
-        if (i > -1)
-        {
-            object->setCurrentIndex(i);
-        }
-    }
 }
 
 void MusicSettingWidget::lrcTransparentValue(Type key, int index) const

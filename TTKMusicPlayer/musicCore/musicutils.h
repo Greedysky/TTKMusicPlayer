@@ -1,7 +1,8 @@
 #ifndef MUSICUTILS
 #define MUSICUTILS
 
-#include <QWidget>
+class QComboBox;
+
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
@@ -17,6 +18,7 @@ public:
     static QString getLanguageName(int index);
 
     static void setLabelFont(QWidget *widget, int size);
+    static void setComboboxText(QComboBox *object, const QString &text);
 
     static QString fileSize2Label(qint64 size);
     static QString fileSize2Normal(qint64 size);

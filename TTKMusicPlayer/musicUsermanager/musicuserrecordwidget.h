@@ -44,7 +44,6 @@ protected:
     void initTabF();
     void initTabS();
     void initTabT();
-    void setComboboxText(QComboBox *object, const QString &text);
 
     Ui::MusicUserRecordWidget *ui;
     MusicUserModel *m_userModel;

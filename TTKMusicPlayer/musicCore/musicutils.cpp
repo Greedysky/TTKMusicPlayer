@@ -1,5 +1,7 @@
 #include "musicutils.h"
 
+#include <QComboBox>
+
 void MusicUtils::dirIsExist(const QString& name)
 {
     QDir dir;
@@ -50,6 +52,22 @@ void MusicUtils::setLabelFont(QWidget *widget, int size)
     QFont font = widget->font();
     font.setPointSize(size);
     widget->setFont(font);
+}
+
+void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
+{
+    if(object->isEditable())
+    {
+        object->setEditText(text);
+    }
+    else
+    {
+        const int i = object->findText(text);
+        if (i > -1)
+        {
+            object->setCurrentIndex(i);
+        }
+    }
 }
 
 QString MusicUtils::fileSize2Label(qint64 size)
