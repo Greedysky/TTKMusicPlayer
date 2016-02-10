@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
+#include "musicutils.h"
 
 #include <QFileDialog>
 #include <QCryptographicHash>
@@ -14,6 +15,11 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
       ui(new Ui::MusicUserRecordWidget)
 {
     ui->setupUi(this);
+
+#ifdef Q_OS_UNIX
+    MusicUtils::setLabelFont(ui->label_5T, 9);
+    MusicUtils::setLabelFont(ui->label_6T, 9);
+#endif
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

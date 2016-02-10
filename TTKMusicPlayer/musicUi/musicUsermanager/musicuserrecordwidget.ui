@@ -98,7 +98,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -286,7 +286,7 @@ QTabBar::tab:selected {
        <rect>
         <x>90</x>
         <y>153</y>
-        <width>30</width>
+        <width>40</width>
         <height>15</height>
        </rect>
       </property>
@@ -299,7 +299,7 @@ QTabBar::tab:selected {
        <rect>
         <x>135</x>
         <y>153</y>
-        <width>30</width>
+        <width>40</width>
         <height>15</height>
        </rect>
       </property>
@@ -361,7 +361,7 @@ QTabBar::tab:selected {
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>140</width>
+        <width>241</width>
         <height>20</height>
        </rect>
       </property>
@@ -377,7 +377,7 @@ QTabBar::tab:selected {
        <rect>
         <x>40</x>
         <y>45</y>
-        <width>340</width>
+        <width>461</width>
         <height>20</height>
        </rect>
       </property>
@@ -751,7 +751,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>50</x>
         <y>20</y>
-        <width>391</width>
+        <width>415</width>
         <height>31</height>
        </rect>
       </property>
@@ -790,7 +790,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>50</x>
         <y>130</y>
-        <width>391</width>
+        <width>415</width>
         <height>31</height>
        </rect>
       </property>
@@ -816,7 +816,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>50</x>
         <y>240</y>
-        <width>321</width>
+        <width>415</width>
         <height>31</height>
        </rect>
       </property>
