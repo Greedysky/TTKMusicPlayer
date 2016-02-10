@@ -14,19 +14,19 @@ unix{
   LIBS += -L./lib -lMusicCore
 }
 
-
 contains(CONFIG, TTK_BUILD_LIB){
     CONFIG -= TTK_BUILD_LIB
 }
+
+CONFIG += TTK_NO_MSVC_LINK_NEED
 win32{
-    CONFIG += TTK_MSVC_LINK_NEED
     msvc{
-        CONFIG -= TTK_MSVC_LINK_NEED
+        CONFIG -= TTK_NO_MSVC_LINK_NEED
     }
 }
 
 INCLUDEPATH += ../TTKMusicPlayer
-!contains(CONFIG, TTK_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     ../TTKMusicPlayer/musicapplication.h \
     ../TTKMusicPlayer/musicleftareawidget.h \
@@ -38,6 +38,7 @@ HEADERS  += \
 }
 
 include(../TTKMusicPlayer.pri)
+VERSION += $$TTKMusicPlayer
 
 SOURCES += \
     musicapplicationmain.cpp

@@ -13,6 +13,7 @@ CONFIG += TTK_BUILD_LIB
 INCLUDEPATH += $$PWD
 
 include(../TTKMusicPlayer.pri)
+VERSION += $$TTKMusicPlayer
 
 SOURCES += \
     musicapplication.cpp \

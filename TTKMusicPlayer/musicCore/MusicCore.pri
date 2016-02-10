@@ -7,7 +7,7 @@
 INCLUDEPATH += $$PWD \
                $$PWD/network
 
-!contains(CONFIG, TTK_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/network/musicdownloadthreadabstract.h \
     $$PWD/network/musicdata2downloadthread.h \

@@ -64,6 +64,7 @@ unix : !mac{
     LIBS += -L../lib -lqmmp
 }
 
+TTKMusicPlayer = 2.2.9.1
 
 DEFINES += MUSIC_LIBRARY
 

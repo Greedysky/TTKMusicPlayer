@@ -7,7 +7,7 @@
 INCLUDEPATH += $$PWD \
                $$PWD/core
 
-!contains(CONFIG, TTK_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicusermanager.h \
     $$PWD/musicuserdialog.h \
