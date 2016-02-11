@@ -187,15 +187,14 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 void MusicBottomAreaWidget::setWindowConcise()
 {
     bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-    m_supperClass->resize( con ? 400 : 990, m_supperClass->height());
-    m_ui->musicWindowConcise->setGeometry(con ? 315 : 848, 27, 25, 25);
-    m_ui->minimization->setGeometry(con ? 345 : 909, 27, 25, 25);
-    m_ui->windowClose->setGeometry(con ? 370 : 937, 27, 25, 25);
-    m_ui->resizeWindowLabel->setGeometry(con ? 380 : 950, 620, 15, 15);
-    m_ui->musicWindowSpace->setGeometry(con ? 310 : 380, 20, con ? 100 : 590, con ? 38 : 45);
+    m_supperClass->resize( con ? 390 : 990, m_supperClass->height());
+    m_ui->musicWindowConcise->setGeometry(con ? 305 : 848, 27, 25, 25);
+    m_ui->minimization->setGeometry(con ? 335 : 909, 27, 25, 25);
+    m_ui->windowClose->setGeometry(con ? 360 : 937, 27, 25, 25);
+    m_ui->resizeWindowLabel->setGeometry(con ? 370 : 950, 620, 15, 15);
+    m_ui->musicWindowSpace->setGeometry(con ? 300 : 380, 20, con ? 100 : 590, con ? 38 : 45);
     m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
-    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout"
-                                                                  : ":/image/concisein")));
+    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
     m_musicWindowExtras->disableBlurBehindWindow( !con );
 }
 
