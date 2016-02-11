@@ -38,7 +38,7 @@ HEADERS  += \
 }
 
 include(../TTKMusicPlayer.pri)
-VERSION += $$TTKMusicPlayer
+unix:VERSION += $$TTKMusicPlayer
 
 SOURCES += \
     musicapplicationmain.cpp
