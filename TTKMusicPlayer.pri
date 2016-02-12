@@ -51,10 +51,10 @@ win32{
     }
 }
 
-unix : !mac{
+unix:!mac{
     equals(QT_MAJOR_VERSION, 4){
         QMAKE_CXXFLAGS += -I/usr/include/QtMultimediaKit \
-                                              -I/usr/include/QtMobility
+                          -I/usr/include/QtMobility
         LIBS += -lQtMultimediaKit
     }
 

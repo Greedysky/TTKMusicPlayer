@@ -1,5 +1,5 @@
-#ifndef MUSICUTILS
-#define MUSICUTILS
+#ifndef MUSICUTILS_H
+#define MUSICUTILS_H
 
 class QComboBox;
 
