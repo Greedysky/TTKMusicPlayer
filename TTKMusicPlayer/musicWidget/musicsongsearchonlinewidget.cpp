@@ -232,8 +232,13 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 
     (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
+#ifndef USE_MULTIPLE_QUERY
     (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
                                   MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
+#else
+    (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
+                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
+#endif
     ///download big picture
     (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 

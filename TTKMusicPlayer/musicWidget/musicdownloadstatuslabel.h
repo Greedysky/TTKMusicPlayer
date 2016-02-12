@@ -9,7 +9,11 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadquerysinglethread.h"
+#ifndef USE_MULTIPLE_QUERY
+#  include "musicdownloadquerysinglethread.h"
+#else
+#  include "musicdownloadquerymultiplethread.h"
+#endif
 #include "musicglobaldefine.h"
 
 class QLabel;

@@ -115,7 +115,11 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+#ifndef USE_MULTIPLE_QUERY
+       m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+#else
+       m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
+#endif
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));

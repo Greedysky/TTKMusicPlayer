@@ -11,7 +11,11 @@
 
 #include "musicabstracttablewidget.h"
 #include "musicnetworkthread.h"
-#include "musicdownloadquerysinglethread.h"
+#ifndef USE_MULTIPLE_QUERY
+#  include "musicdownloadquerysinglethread.h"
+#else
+#  include "musicdownloadquerymultiplethread.h"
+#endif
 
 #include <QMenu>
 

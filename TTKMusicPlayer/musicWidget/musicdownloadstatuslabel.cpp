@@ -102,7 +102,11 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
            m_downloadLrcThread = nullptr;
        }
        ///Start the request query
+#ifndef USE_MULTIPLE_QUERY
        m_downloadLrcThread = new MusicDownLoadQuerySingleThread(this);
+#else
+       m_downloadLrcThread = new MusicDownLoadQueryMultipleThread(this);
+#endif
        m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
@@ -130,8 +134,13 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         int count = filename.split('-').count();
         filename = filename.split('-').front().trimmed();
         ///download art picture
+#ifndef USE_MULTIPLE_QUERY
         (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
+#else
+        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
+                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
+#endif
         ///download big picture
         (new MusicBgThemeDownload( count == 1 ? musicSongInfo.m_singerName : filename,
                                    filename, this))->startToDownload();

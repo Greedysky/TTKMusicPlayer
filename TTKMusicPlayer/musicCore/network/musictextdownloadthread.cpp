@@ -50,6 +50,7 @@ void MusicTextDownLoadThread::downLoadFinished()
 
     ///Get all the data obtained by request
     QByteArray bytes = m_reply->readAll();
+#ifndef USE_MULTIPLE_QUERY
     if(!bytes.contains("\"code\":2"))
     {
 #ifdef MUSIC_QT_5
@@ -97,6 +98,21 @@ void MusicTextDownLoadThread::downLoadFinished()
         m_file->remove();
         m_file->close();
     }
+#else
+    if(!bytes.isEmpty())
+    {
+        m_file->write(QString(bytes).remove("\r").toUtf8());
+        m_file->flush();
+        m_file->close();
+        M_LOGGER << "text download has finished!" << LOG_END;
+    }
+    else
+    {
+        M_LOGGER << "text download file error!" << LOG_END;
+        m_file->remove();
+        m_file->close();
+    }
+#endif
 
     emit musicDownLoadFinished("Lrc");
     deleteAll();

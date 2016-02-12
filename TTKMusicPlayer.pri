@@ -67,6 +67,7 @@ unix:!mac{
 TTKMusicPlayer = 2.2.9.1
 
 DEFINES += MUSIC_LIBRARY
+DEFINES += USE_MULTIPLE_QUERY
 
 contains(CONFIG, TTK_BUILD_LIB){
   include(TTKMusicPlayer/musicUi/MusicUi.pri)

@@ -18,7 +18,7 @@
 MusicDownLoadQueryMultipleThread::MusicDownLoadQueryMultipleThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-
+    m_searchQuality = "标准品质";
 }
 
 MusicDownLoadQueryMultipleThread::~MusicDownLoadQueryMultipleThread()
