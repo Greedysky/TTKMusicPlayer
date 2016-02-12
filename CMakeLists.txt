@@ -35,8 +35,7 @@ include_directories(${MUSIC_Usermanager_DIR}/core)
 include_directories(${MUSIC_Videokits_DIR}) 
 include_directories(${MUSIC_Widget_DIR})
 include_directories(${MUSIC_Widget_DIR}/core)
-# qmmp include
-include_directories(${MUSIC_DIR}/TTKExtra/Qt5)
+
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
@@ -73,7 +72,9 @@ else()
 
     set(QT_USE_QTCORE ON)
     set(QT_USE_QTGUI ON)
-    set(QT_USE_QTMULTIMEDIA ON)
+    if(WIN32)
+      set(QT_USE_QTMULTIMEDIA ON)
+    endif()
     set(QT_USE_QTXML ON)
     set(QT_USE_QTNETWORK ON)
     set(QT_USE_QTSQL ON)
@@ -119,6 +120,18 @@ FIND_LIBRARY(QMMP_LIBRARY
   NAMES qmmp1
   PATHS ${LIBRARY_OUTPUT_PATH}
 )
+
+# qmmp include
+if(TTK_QT_VERSION VERSION_GREATER "4")
+  include_directories(${MUSIC_DIR}/TTKExtra/Qt5)
+else()
+  include_directories(${MUSIC_DIR}/TTKExtra/Qt4)
+  if(UNIX)
+    include_directories(/usr/include/QtMultimediaKit)
+    include_directories(/usr/include/QtMobility)
+  endif()
+endif()
+
 
 add_subdirectory(TTKMusicPlayer)
 add_subdirectory(TTKApp)
