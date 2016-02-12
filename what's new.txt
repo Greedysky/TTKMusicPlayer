@@ -97,6 +97,7 @@ v2.2.9.1
 v2.2.9.2
 调整搜索歌词界面ui。
 修复linux下产生链接库名不正确。
+更新CMakeLists。
 
 
 To be repaired or new
