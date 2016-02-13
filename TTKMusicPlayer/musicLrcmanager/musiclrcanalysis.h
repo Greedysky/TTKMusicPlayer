@@ -26,6 +26,23 @@ public:
         OpenFileFail,
         LrcEmpty
     };
+    enum LrcFormat
+    {
+        Type01,//[xx:xx.xxx]
+        Type02,//[xx:xx.xx]
+        Type03,//[xx:xx.x]
+        Type04,//[xx:xx:xxx]
+        Type05,//[xx:xx:xx]
+        Type06,//[xx:xx:x]
+        Type07,//[xx:xx]
+        Type08,//[xx.xx.xxx]
+        Type09,//[xx.xx.xx]
+        Type10,//[xx.xx.x]
+        Type11,//[xx.xx:xxx]
+        Type12,//[xx.xx:xx]
+        Type13,//[xx.xx:x]
+        Type14 //[xx.xx]
+    };
 
     explicit MusicLrcAnalysis(QObject *parent = 0);
     ~MusicLrcAnalysis();
@@ -48,6 +65,15 @@ public:
     QString getAllLrcs() const;
 
 protected:
+    void matchLrcLine(const QString &oneLine);
+    void matchLrcLine(const QString &oneLine, const QString &cap,
+                      const QString &first, const QString &second);
+    void matchLrcLine(const QString &oneLine, QString cap,
+                      const QString &splite);
+    void matchLrcLine(const QString &oneLine, const QString &cap,
+                      const QString &first, const QString &second,
+                      const QString &third);
+
     int m_currentLrcIndex;
     QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;
