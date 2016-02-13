@@ -12,12 +12,10 @@
 #include <QBoxLayout>
 #include "musiclrccontainer.h"
 
-#define MIN_LRCCONTAIN_COUNT 11
-#define CURRENT_LRC_PAINT 5
-
 class MusicLRCManagerForInline;
 class MusicLrcFloatWidget;
 class MusicClickedLabel;
+class MusicLrcAnalysis;
 
 class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
@@ -35,7 +33,7 @@ public:
     bool transLrcFileToTime(const QString &lrcFileName);
     QString text() const;
     qint64 setSongSpeedAndSlow(qint64 time);
-    inline const MIntStringMap& getLrcContainer() {return m_lrcContainer;}
+    bool findText(qint64 total, QString &pre, QString &last, qint64 &interval) const;
 
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
     void setLrcSize(MusicLRCManager::LrcSizeTable = MusicLRCManager::Middle) const;
@@ -76,14 +74,11 @@ protected:
     bool m_mouseLeftPressed;
     bool m_showArtBackground;
     bool m_showInlineLrc;
-    int m_currentLrcIndex;
     qint64 m_changeSpeedValue;
     QVBoxLayout *m_vBoxLayout;
-    QStringList m_currentShowLrcContainer;
-    QString m_currentLrcFileName;
-    MIntStringMap m_lrcContainer;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
+    MusicLrcAnalysis *m_lrcAnalysis;
 
 };
 

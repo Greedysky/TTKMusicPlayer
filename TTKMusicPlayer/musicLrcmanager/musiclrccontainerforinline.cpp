@@ -5,6 +5,7 @@
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
+#include "musiclrcanalysis.h"
 
 #include <QUrl>
 #include <QPainter>
@@ -29,7 +30,6 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     }
 
     setLinearGradientColor(MusicLRCManager::Origin);
-    m_currentLrcIndex = 0;
     m_mouseMovedAt = QPoint(-1, -1);
     m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;
@@ -40,6 +40,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     createNoLrcCurrentInfo();
     initLrc(tr("noCurrentSongPlay"));
 
+    m_lrcAnalysis = new MusicLrcAnalysis(this);
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
@@ -47,23 +48,27 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
+    delete m_lrcAnalysis;
     delete m_lrcFloatWidget;
     delete m_noLrcCurrentInfo;
 }
 
 bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
 {
-    m_lrcContainer.clear();///Clear the original map
-    m_currentShowLrcContainer.clear();///Clear the original lrc
-    QFile file(m_currentLrcFileName = lrcFileName); ///Open the lyrics file
-
+    MusicLrcAnalysis::State state = m_lrcAnalysis->transLrcFileToTime(lrcFileName);
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    if(!file.open(QIODevice::ReadOnly))
+    if(state == MusicLrcAnalysis::OpenFileFail)
     {
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("unFoundLrc"));
+        showNoLrcCurrentInfo();
+        return false;
+    }
+    if(state == MusicLrcAnalysis::LrcEmpty)
+    {
+        m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("lrcFileError"));
         showNoLrcCurrentInfo();
         return false;
     }
@@ -72,103 +77,7 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
         m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("noCurrentSongPlay"));
     }
 
-    QString getAllText = QString(file.readAll());
-    file.close();
-    //The lyrics by line into the lyrics list
-    QStringList lines = getAllText.split("\n");
-
-    QRegExp reg1("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
-    QRegExp reg2("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
-    QRegExp reg3("\\[\\d{2}:\\d{2}\\]");
-    foreach(QString oneLine, lines)
-    {
-        int type = -1;
-        QRegExp regex;
-        if(oneLine.contains(reg1))
-        {
-            type = 0;
-            regex = reg1;
-        }
-        else if(oneLine.contains(reg2))
-        {
-            type = 1;
-            regex = reg2;
-        }
-        else
-        {
-            type = 2;
-            regex = reg3;
-        }
-
-        QString temp = oneLine;
-        temp.replace(regex, QString());
-        int pos = regex.indexIn(oneLine, 0);
-
-        while(pos != -1)
-        {   //That match
-            QString cap = regex.cap(0);
-            //Return zeroth expression matching the content
-            //The time tag into the time value, in milliseconds
-            QRegExp regexp;
-            regexp.setPattern("\\d{2}(?=:)");
-            regexp.indexIn(cap);
-            int minute = regexp.cap(0).toInt();
-            regexp.setPattern("\\d{2}(?=\\.)");
-            regexp.indexIn(cap);
-            int second = regexp.cap(0).toInt();
-            int millisecond = 0;
-            if(type == 0)
-            {
-                regexp.setPattern("\\d{2}(?=\\])");
-            }
-            else if(type == 1)
-            {
-                regexp.setPattern("\\d{3}(?=\\])");
-            }
-            regexp.indexIn(cap);
-            millisecond = regexp.cap(0).toInt();
-            if(type == 2)
-            {
-                millisecond = 0;
-            }
-            qint64 totalTime = minute * 60000 + second * 1000 + millisecond * 10;
-            //Insert into lrcContainer
-            m_lrcContainer.insert(totalTime, temp);
-            pos += regex.matchedLength();
-            pos = regex.indexIn(oneLine, pos);//Matching all
-        }
-    }
-    //If the lrcContainer is empty
-    if (m_lrcContainer.isEmpty())
-    {
-        m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(tr("lrcFileError"));
-        showNoLrcCurrentInfo();
-        return false;
-    }
-
     m_noLrcCurrentInfo->hide(); ///hide error make lrc widget
-    m_currentShowLrcContainer.clear();
-    m_currentLrcIndex = 0;
-
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
-    {
-        m_currentShowLrcContainer << QString();
-    }
-    if(m_lrcContainer.find(0) == m_lrcContainer.end())
-    {
-       m_lrcContainer.insert(0, QString());
-    }
-
-    MIntStringMapIt it(m_lrcContainer);
-    while(it.hasNext())
-    {
-        it.next();
-        m_currentShowLrcContainer << it.value();
-    }
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
-    {
-        m_currentShowLrcContainer << QString();
-    }
     return true;
 }
 
@@ -236,47 +145,23 @@ void MusicLrcContainerForInline::stopLrcMask()
 
 qint64 MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
 {
-    QList<qint64> keys(m_lrcContainer.keys());
-    qint64 beforeTime;
-    if(!keys.isEmpty())
-    {
-        beforeTime = keys[0];
-    }
-    for(int i=1; i<keys.count(); ++i)
-    {
-        qint64 afterTime = keys[i];
-        if(beforeTime <= time && time <= afterTime)
-        {
-            time = afterTime;
-            break;
-        }
-        beforeTime = afterTime;
-    }
+    return m_lrcAnalysis->setSongSpeedAndSlow(time);
+}
 
-    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
-    {
-        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
-        {
-            if((m_currentLrcIndex = i - CURRENT_LRC_PAINT - 1) < 0 )
-            {
-                m_currentLrcIndex = 0;
-            }
-            break;
-        }
-    }
-    return time;
+bool MusicLrcContainerForInline::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
+{
+    return m_lrcAnalysis->findText(m_currentTime, total, pre, last, interval);
 }
 
 void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
 {
-    if(!m_lrcContainer.isEmpty() &&
-        m_currentLrcIndex + MIN_LRCCONTAIN_COUNT <= m_currentShowLrcContainer.count())
+    if(m_lrcAnalysis->valid())
     {
         for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
         {
-            m_musicLrcContainer[i]->setText(m_currentShowLrcContainer[m_currentLrcIndex + i]);
+            m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
         }
-        ++m_currentLrcIndex;
+        m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() + 1);
         m_musicLrcContainer[CURRENT_LRC_PAINT]->startLrcMask(time);
 
         setItemStyleSheet();
@@ -348,12 +233,12 @@ void MusicLrcContainerForInline::resizeWidth(int width)
         m_lrcFloatWidget->resizeWidth(width);
     }
 
-    if(m_lrcContainer.isEmpty())
+    if(m_lrcAnalysis->isEmpty())
     {
         initLrc(tr("unFoundLrc"));
         showNoLrcCurrentInfo();
     }
-    else if(m_currentTime != 0 && m_currentLrcIndex == 0)
+    else if(m_currentTime != 0 && m_lrcAnalysis->getCurrentIndex() == 0)
     {
         initLrc(tr("noCurrentSongPlay"));
     }
@@ -409,36 +294,28 @@ void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
 
 void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
 {
-    int level = m_currentLrcIndex;
+    int index = m_lrcAnalysis->getCurrentIndex();
+    int level = index;
     if(type == "mouse")
     {
-        m_currentLrcIndex += (m_mousePressedAt.y() - m_mouseMovedAt.y()) / 35;
+        index += (m_mousePressedAt.y() - m_mouseMovedAt.y()) / 35;
     }
     else
     {
-        type.toInt() < 0 ? --m_currentLrcIndex : ++m_currentLrcIndex;
+        type.toInt() < 0 ? --index : ++index;
     }
 
-    if(m_currentLrcIndex < 0)
+    if(index < 0)
     {
-        m_currentLrcIndex = 0;
+        index = 0;
     }
-    if(m_currentLrcIndex + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
+
+    qint64 time = m_lrcAnalysis->findTime(index);
+    if(time != -1)
     {
-        MIntStringMapIt it(m_lrcContainer);
-        for(int i=0; i<m_currentLrcIndex + 1; ++i)
-        {
-            if(it.hasNext())
-            {
-                it.next();
-            }
-        }
-        emit updateCurrentTime(it.key());
+        emit updateCurrentTime(time);
     }
-    else
-    {
-        m_currentLrcIndex = level;
-    }
+    m_lrcAnalysis->setCurrentIndex(time != -1 ? index : level);
 }
 
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
@@ -461,7 +338,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
-    bool hasLrcContainer = !m_lrcContainer.isEmpty();
+    bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
     menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
     menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
@@ -503,7 +380,9 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     m_showInlineLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
     menu.addSeparator();
-    bool fileCheck = !m_currentLrcFileName.isEmpty() && QFile::exists(m_currentLrcFileName);
+
+    QString fileName = m_lrcAnalysis->getCurrentFileName();
+    bool fileCheck = !fileName.isEmpty() && QFile::exists(fileName);
     QAction *copyToClipAc = menu.addAction(tr("copyToClip"),this,SLOT(lrcCopyClipboard()));
     copyToClipAc->setEnabled( fileCheck );
     QAction *showLrcFileAc = menu.addAction(tr("showLrcFile"),this,SLOT(lrcOpenFileDir()));
@@ -554,15 +433,7 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed()
 
 void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
 {
-    MIntStringMapIt it(m_lrcContainer);
-    MIntStringMap copy;
-    while(it.hasNext())
-    {
-        it.next();
-        copy.insert(it.key() + pos, it.value());
-    }
-    m_lrcContainer = copy;
-
+    m_lrcAnalysis->revertLrcTime(pos);
     qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
     updateCurrentLrc(beforeTime);
 
@@ -612,16 +483,11 @@ void MusicLrcContainerForInline::theShowLrcChanged()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    QDesktopServices::openUrl(QUrl(QFileInfo(m_currentLrcFileName).absolutePath(), QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absolutePath(), QUrl::TolerantMode));
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
-    QString clipString;
-    foreach(QString s, m_lrcContainer.values())
-    {
-        clipString.append(s);
-    }
-    clipBoard->setText(clipString);
+    clipBoard->setText(m_lrcAnalysis->getAllLrcs());
 }

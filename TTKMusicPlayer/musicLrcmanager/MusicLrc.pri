@@ -22,7 +22,8 @@ HEADERS  += \
     $$PWD/musiclrcfloatabstractwidget.h \
     $$PWD/musiclrcfloatsettingwidget.h \
     $$PWD/musiclrcfloatphotowidget.h \
-    $$PWD/musiclrcmakerwidget.h
+    $$PWD/musiclrcmakerwidget.h \
+    $$PWD/musiclrcanalysis.h
 
 }
 
@@ -42,6 +43,7 @@ SOURCES += \
     $$PWD/musiclrcfloatabstractwidget.cpp \
     $$PWD/musiclrcfloatsettingwidget.cpp \
     $$PWD/musiclrcfloatphotowidget.cpp \
-    $$PWD/musiclrcmakerwidget.cpp
+    $$PWD/musiclrcmakerwidget.cpp \
+    $$PWD/musiclrcanalysis.cpp
 
 }
