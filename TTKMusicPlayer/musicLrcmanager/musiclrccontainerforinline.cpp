@@ -76,24 +76,37 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
     file.close();
     //The lyrics by line into the lyrics list
     QStringList lines = getAllText.split("\n");
-    //This is the time the label format[00:05.54]
-    //Regular expressionsd {2} Said matching 2 numbers
-    QRegExp reg("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+
+    QRegExp reg1("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+    QRegExp reg2("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
+    QRegExp reg3("\\[\\d{2}:\\d{2}\\]");
     foreach(QString oneLine, lines)
     {
+        int type = -1;
+        QRegExp regex;
+        if(oneLine.contains(reg1))
+        {
+            type = 0;
+            regex = reg1;
+        }
+        else if(oneLine.contains(reg2))
+        {
+            type = 1;
+            regex = reg2;
+        }
+        else
+        {
+            type = 2;
+            regex = reg3;
+        }
+
         QString temp = oneLine;
-        temp.replace(reg, "");
-        /*Replace the regular expression matching in place with the empty
-        string, then we get the lyrics text,And then get all the time the
-        label in the current row, and separately with lyrics text into QMap
-        IndexIn () to return to the first matching position, if the return
-        is -1, said no match,Under normal circumstances, POS should be
-        followed is corresponding to the lyrics file
-        */
-        int pos = reg.indexIn(oneLine, 0);
+        temp.replace(regex, QString());
+        int pos = regex.indexIn(oneLine, 0);
+
         while(pos != -1)
-        { //That match
-            QString cap = reg.cap(0);
+        {   //That match
+            QString cap = regex.cap(0);
             //Return zeroth expression matching the content
             //The time tag into the time value, in milliseconds
             QRegExp regexp;
@@ -103,14 +116,26 @@ bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
             regexp.setPattern("\\d{2}(?=\\.)");
             regexp.indexIn(cap);
             int second = regexp.cap(0).toInt();
-            regexp.setPattern("\\d{2}(?=\\])");
+            int millisecond = 0;
+            if(type == 0)
+            {
+                regexp.setPattern("\\d{2}(?=\\])");
+            }
+            else if(type == 1)
+            {
+                regexp.setPattern("\\d{3}(?=\\])");
+            }
             regexp.indexIn(cap);
-            int millisecond = regexp.cap(0).toInt();
+            millisecond = regexp.cap(0).toInt();
+            if(type == 2)
+            {
+                millisecond = 0;
+            }
             qint64 totalTime = minute * 60000 + second * 1000 + millisecond * 10;
             //Insert into lrcContainer
             m_lrcContainer.insert(totalTime, temp);
-            pos += reg.matchedLength();
-            pos = reg.indexIn(oneLine, pos);//Matching all
+            pos += regex.matchedLength();
+            pos = regex.indexIn(oneLine, pos);//Matching all
         }
     }
     //If the lrcContainer is empty
