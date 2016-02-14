@@ -116,7 +116,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string notr="true">background:black</string>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../musicQrc/MusicPlayerShare.qrc">:/share/myQRCode</pixmap>
+     <pixmap resource="../../../TTKQrc/MusicPlayerShare.qrc">:/share/myQRCode</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="sharedNameIcon">
@@ -184,7 +184,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
       <normaloff>:/usermanager/qq</normaloff>:/usermanager/qq</iconset>
     </property>
    </widget>
@@ -201,7 +201,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
       <normaloff>:/usermanager/renren</normaloff>:/usermanager/renren</iconset>
     </property>
    </widget>
@@ -218,7 +218,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
       <normaloff>:/usermanager/qqspace</normaloff>:/usermanager/qqspace</iconset>
     </property>
    </widget>
@@ -235,7 +235,7 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
       <normaloff>:/usermanager/qqblog</normaloff>:/usermanager/qqblog</iconset>
     </property>
    </widget>
@@ -290,16 +290,16 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../musicQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
       <normaloff>:/usermanager/xinlang</normaloff>:/usermanager/xinlang</iconset>
     </property>
    </widget>
   </widget>
  </widget>
  <resources>
-  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
-  <include location="../../musicQrc/MusicPlayerShare.qrc"/>
-  <include location="../../musicQrc/MusicPlayerUser.qrc"/>
+  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
+  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
+  <include location="../../../TTKQrc/MusicPlayerUser.qrc"/>
  </resources>
  <connections/>
 </ui>

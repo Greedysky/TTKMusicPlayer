@@ -22,8 +22,4 @@ SOURCES += \
     $$PWD/musicvideotablewidget.cpp \
     $$PWD/musicvideoplaywidget.cpp
 
-
-RESOURCES += \
-    musicQrc/MusicPlayerVedio.qrc
-
 }

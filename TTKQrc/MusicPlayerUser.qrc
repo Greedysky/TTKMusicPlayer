@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/usermanager">
+        <file alias="qq">../TTKResource/usermanager/qq-icon.png</file>
+        <file alias="right">../TTKResource/usermanager/right-icon.png</file>
+        <file alias="renren">../TTKResource/usermanager/renren-icon.png</file>
+        <file alias="weixing">../TTKResource/usermanager/weixing-icon.png</file>
+        <file alias="xinlang">../TTKResource/usermanager/xinlang-icon.png</file>
+        <file alias="qqspace">../TTKResource/usermanager/qq-space.png</file>
+        <file alias="qqblog">../TTKResource/usermanager/qqblog-icon.png</file>
+        <file alias="downarrow">../TTKResource/usermanager/thin-down-arrow.png</file>
+        <file alias="uparrow">../TTKResource/usermanager/thin-up-arrow.png</file>
+        <file alias="vCode">../TTKResource/usermanager/verificationCode.png</file>
+        <file alias="topLabel">../TTKResource/usermanager/topLabel.png</file>
+        <file alias="settings">../TTKResource/usermanager/settings.png</file>
+    </qresource>
+</RCC>

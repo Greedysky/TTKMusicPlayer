@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 TEMPLATE = subdirs
-SUBDIRS = TTKMusicPlayer TTKApp
+SUBDIRS = TTKCore TTKApp
 
 TRANSLATIONS += TTKLanguage/cn.ts \
                 TTKLanguage/cn_c.ts \

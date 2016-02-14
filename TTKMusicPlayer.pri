@@ -70,14 +70,14 @@ DEFINES += MUSIC_LIBRARY
 DEFINES += USE_MULTIPLE_QUERY
 
 contains(CONFIG, TTK_BUILD_LIB){
-  include(TTKMusicPlayer/musicUi/MusicUi.pri)
+  include(TTKCore/musicUi/MusicUi.pri)
 }
-include(TTKMusicPlayer/musicCore/MusicCore.pri)
-include(TTKMusicPlayer/musicWidget/MusicWidget.pri)
-include(TTKMusicPlayer/musicLocalsearch/MusicLocalSearch.pri)
-include(TTKMusicPlayer/musicLrcmanager/MusicLrc.pri)
-include(TTKMusicPlayer/musicRemotewidget/MusicRemote.pri)
-include(TTKMusicPlayer/musicToolsetswidget/MusicToolsSets.pri)
-include(TTKMusicPlayer/musicToolswidget/MusicToolsWidget.pri)
-include(TTKMusicPlayer/musicUsermanager/MusicUser.pri)
-include(TTKMusicPlayer/musicVideokits/MusicVideo.pri)
+include(TTKCore/musicCore/MusicCore.pri)
+include(TTKCore/musicWidget/MusicWidget.pri)
+include(TTKCore/musicLocalsearch/MusicLocalSearch.pri)
+include(TTKCore/musicLrcmanager/MusicLrc.pri)
+include(TTKCore/musicRemotewidget/MusicRemote.pri)
+include(TTKCore/musicToolsetswidget/MusicToolsSets.pri)
+include(TTKCore/musicToolswidget/MusicToolsWidget.pri)
+include(TTKCore/musicUsermanager/MusicUser.pri)
+include(TTKCore/musicVideokits/MusicVideo.pri)

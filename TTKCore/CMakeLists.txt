@@ -45,6 +45,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.h
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordobject.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerforinline.h
@@ -165,6 +166,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.cpp
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordobject.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerforinline.cpp

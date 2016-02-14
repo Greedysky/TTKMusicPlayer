@@ -28,10 +28,5 @@ SOURCES += \
     $$PWD/core/musicusermodel.cpp \
     $$PWD/core/musicuserconfigmanager.cpp \
     $$PWD/musicuserrecordwidget.cpp
-    
-
-RESOURCES += \
-    musicQrc/MusicPlayerShare.qrc \
-    musicQrc/MusicPlayerUser.qrc
 
 }

@@ -28,12 +28,12 @@ win32{
 INCLUDEPATH += ../TTKMusicPlayer
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    ../TTKMusicPlayer/musicapplication.h \
-    ../TTKMusicPlayer/musicleftareawidget.h \
-    ../TTKMusicPlayer/musictopareawidget.h \
-    ../TTKMusicPlayer/musicrightareawidget.h \
-    ../TTKMusicPlayer/musicbottomareawidget.h \
-    ../TTKMusicPlayer/musicapplicationobject.h
+    ../TTKCore/musicapplication.h \
+    ../TTKCore/musicleftareawidget.h \
+    ../TTKCore/musictopareawidget.h \
+    ../TTKCore/musicrightareawidget.h \
+    ../TTKCore/musicbottomareawidget.h \
+    ../TTKCore/musicapplicationobject.h
 
 }
 

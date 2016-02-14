@@ -34,5 +34,7 @@ HEADERS  += \
 
 
 RESOURCES += \
-    musicQrc/MusicPlayerShare.qrc \
-    musicQrc/MusicPlayer.qrc
+    ../TTKQrc/MusicPlayerShare.qrc \
+    ../TTKQrc/MusicPlayer.qrc \
+    ../TTKQrc/MusicPlayerUser.qrc \
+    ../TTKQrc/MusicPlayerVedio.qrc
