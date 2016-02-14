@@ -57,8 +57,11 @@ void MusicTimerSliderWidget::setPlayState(bool state)
 
 void MusicTimerSliderWidget::setValue(qint64 value) const
 {
-    sliderMovedAt(value);
-    m_slider->setValue(value);
+    if(!m_slider->isMoving())
+    {
+        sliderMovedAt(value);
+        m_slider->setValue(value);
+    }
 }
 
 void MusicTimerSliderWidget::setRange(int min, int max)

@@ -13,6 +13,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation,
 {
     setMouseTracking(true);
 
+    m_isMoving = false;
     m_orientation = orientation;
     m_textLabel = new QLabel;
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
@@ -21,6 +22,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation,
     m_textLabel->setStyleSheet("QLabel{color:#888888; background-color:#FFE6E6; \
                                        border:1px solid gray;}");
 
+    connect(this, SIGNAL(sliderMoved(int)), SLOT(sliderMovedChanged()));
     connect(this, SIGNAL(sliderReleased()), SLOT(sliderReleasedChanged()));
 }
 
@@ -29,8 +31,22 @@ MusicMovingLabelSlider::~MusicMovingLabelSlider()
     delete m_textLabel;
 }
 
+void MusicMovingLabelSlider::setValue(int value)
+{
+    if(!m_isMoving)
+    {
+        QSlider::setValue(value);
+    }
+}
+
+void MusicMovingLabelSlider::sliderMovedChanged()
+{
+    m_isMoving = true;
+}
+
 void MusicMovingLabelSlider::sliderReleasedChanged()
 {
+    m_isMoving = false;
     emit sliderReleasedAt( value() );
 }
 

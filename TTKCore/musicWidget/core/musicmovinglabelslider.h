@@ -22,10 +22,17 @@ public:
                                     QWidget *parent = 0);
     ~MusicMovingLabelSlider();
 
+    inline bool isMoving() const { return m_isMoving;}
+    inline void setMoving(bool m) { m_isMoving = m;}
+
 Q_SIGNALS:
     void sliderReleasedAt(int pos);
 
+public Q_SLOTS:
+    void setValue(int value);
+
 private Q_SLOTS:
+    void sliderMovedChanged();
     void sliderReleasedChanged();
 
 protected:
@@ -35,6 +42,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
     QPoint limitLableGeometry(int x, int y, int z);
 
+    bool m_isMoving;
     QLabel *m_textLabel;
     Qt::Orientation m_orientation;
 
