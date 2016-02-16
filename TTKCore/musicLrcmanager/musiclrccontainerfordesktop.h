@@ -31,8 +31,8 @@ public:
     virtual void setSettingParameter() override;
     void showPlayStatus(bool status) const;
     void initCurrentLrc() const;
-    void updateCurrentLrc(const QString &first,
-                          const QString &second, qint64 time);
+    void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
+
 Q_SIGNALS:
     void desktopLrcClosed();
     void setWindowLockedChanged(bool lock);
@@ -65,11 +65,9 @@ protected:
     QToolButton *m_toolLrcBigerButton, *m_toolLrcSmallerButton;
     QToolButton *m_toolUpdateLrcButton;
 
-    QPoint m_offset;
+    QPoint m_offset, m_geometry;
     bool m_windowLocked, m_reverse;
     int m_currentLrcFontSize;
-    qint64 m_currentTime;
-    QPoint m_geometry;
 
 };
 

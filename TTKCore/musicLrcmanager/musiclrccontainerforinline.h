@@ -12,7 +12,6 @@
 #include <QBoxLayout>
 #include "musiclrccontainer.h"
 
-class MusicLRCManagerForInline;
 class MusicLrcFloatWidget;
 class MusicClickedLabel;
 class MusicLrcAnalysis;

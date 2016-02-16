@@ -160,6 +160,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
             {
                 m_ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
             }
+            m_musiclrcfordesktop->setCurrentTime(intervalTime);
             m_musiclrcfordesktop->updateCurrentLrc(currentLrc, laterLrc, intervalTime);
         }
     }

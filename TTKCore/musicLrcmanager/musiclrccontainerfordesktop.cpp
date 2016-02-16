@@ -10,8 +10,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     : MusicLrcContainer(parent)
 {
     m_supperClass = parent;
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint |
-                   Qt::WindowStaysOnTopHint );
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true);
 
@@ -31,7 +30,6 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     m_desktopWidget->setGeometry(0, TOOLBAR_HEIGHT, m_geometry.x(), 2*m_geometry.y());
     setSelfGeometry();
 
-    m_currentTime = -1;
     m_reverse = false;
     m_windowLocked = false;
 
@@ -164,7 +162,7 @@ void MusicLrcContainerForDesktop::startTimerClock()
 
 void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
-    if(m_currentTime == -1)
+    if(m_currentTime == 0)
     {
         m_musicLrcContainer[0]->setText(tr("welcome use TTKMusicPlayer"));
         m_musicLrcContainer[0]->setGeometry(0, 20,
@@ -174,10 +172,8 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
     }
 }
 
-void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first,
-                                                   const QString &second, qint64 time)
+void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
-    m_currentTime = time;
     m_reverse = !m_reverse;
     MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[m_reverse])->resetOrigin();
     m_musicLrcContainer[ m_reverse]->stopLrcMask();
@@ -206,12 +202,14 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool bigger)
 {
     m_geometry.setY(bigger ? m_geometry.y() + 1 : m_geometry.y() - 1);
     setSelfGeometry();
+
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
         MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(bigger ? ++m_currentLrcFontSize
-                                                                                : --m_currentLrcFontSize);
+                                                                                 : --m_currentLrcFontSize);
     }
     m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
+
     resizeLrcSizeArea();
     M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
 }
@@ -246,9 +244,9 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     QWidget::mouseMoveEvent(event);
     if(!m_windowLocked && (event->buttons() & Qt::LeftButton) )
     {
-       setCursor(Qt::CrossCursor);
-       move(event->globalPos() - m_offset);
-       M_SETTING->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
+        setCursor(Qt::CrossCursor);
+        move(event->globalPos() - m_offset);
+        M_SETTING->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
     }
 }
 
@@ -345,10 +343,10 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     MusicLrcContainer::setSettingParameter();
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        manager->setLrcFontSize((MusicLRCManager::LrcSizeTable)(
-                                 m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
+        m_currentLrcFontSize = M_SETTING->value(MusicSettingManager::DLrcSizeChoiced).toInt();
+        manager->setLrcFontSize(MStatic_cast(MusicLRCManager::LrcSizeTable, m_currentLrcFontSize));
     }
-    M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1 ? m_windowLocked = true : m_windowLocked = false;
+    m_windowLocked = M_SETTING->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
     QRect rect = M_SETTING->value(MusicSettingManager::DLrcGeometryChoiced).toRect();
     if(!rect.isEmpty())
     {
