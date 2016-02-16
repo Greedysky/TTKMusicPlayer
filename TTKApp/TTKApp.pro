@@ -25,7 +25,8 @@ win32{
     }
 }
 
-INCLUDEPATH += ../TTKMusicPlayer
+INCLUDEPATH += ../TTKCore
+
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     ../TTKCore/musicapplication.h \
