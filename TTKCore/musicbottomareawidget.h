@@ -11,6 +11,7 @@
 
 #include <QMenu>
 #include <QSystemTrayIcon>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 class MusicSystemTrayMenu;
@@ -39,7 +40,7 @@ public:
     void showMessage(const QString &title, const QString &text);
     void setVolumeValue(int value) const;
 
-#if defined MUSIC_DEBUG && defined Q_OS_WIN
+#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_QT_5
     void setValue(int value) const;
     void setRange(int min, int max) const;
 #endif
