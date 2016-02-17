@@ -2,7 +2,19 @@ cmake_minimum_required(VERSION 2.8.11)
 
 ADD_DEFINITIONS(-DMUSIC_LIBRARY)
 
+# Find includes in the build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Turn on automatic invocation of the MOC
+set(CMAKE_AUTOMOC OFF)
+# Add a compiler flag
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -pthread -fopenmp -Wall")
+# Build Type
+set(CMAKE_BUILD_TYPE Release CACHE STRING "set build type to Release")  
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug)
+
+
 set(TTK_USE_MULTIPLE_QUERY "0" CACHE STRING "Use multiple query")
+set_property(CACHE TTK_USE_MULTIPLE_QUERY PROPERTY STRINGS 0 1)
 if(TTK_USE_MULTIPLE_QUERY VERSION_EQUAL "1")
   message(STATUS "Expected value for TTK use multiple query")
   ADD_DEFINITIONS(-DUSE_MULTIPLE_QUERY)
@@ -52,12 +64,21 @@ SET(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
 
 set(TTK_QT_VERSION "0" CACHE STRING "Expected Qt version")
-mark_as_advanced(TTK_QT_VERSION)
 set_property(CACHE TTK_QT_VERSION PROPERTY STRINGS 4 5)
 
 if(NOT (TTK_QT_VERSION VERSION_EQUAL "4" OR TTK_QT_VERSION VERSION_EQUAL "5"))
   message(FATAL_ERROR "Expected value for TTK_QT_VERSION is either '4' or '5'")
 endif()
+
+set(CMAKE_PREFIX_PATH ${QT_INSTALL_DIR} CACHE PATH "Qt install path")
+
+FIND_PROGRAM(QT_QMAKE_EXECUTABLE qmake ${QT_INSTALL_BINS})
+IF(QT_QMAKE_EXECUTABLE)
+  MESSAGE(STATUS "Found qmake executable: " ${QT_QMAKE_EXECUTABLE})
+ELSE()
+  MESSAGE(FATAL_ERROR "Could NOT find qmake executable")
+ENDIF()
+
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
   find_package(Qt5Core REQUIRED)
@@ -104,30 +125,18 @@ else()
 endif()
 
 
-FIND_PROGRAM(QT_QMAKE_EXECUTABLE qmake ${QT_INSTALL_BINS})
-IF(QT_QMAKE_EXECUTABLE)
-  MESSAGE(STATUS "Found qmake executable: " ${QT_QMAKE_EXECUTABLE})
-ELSE(QT_QMAKE_EXECUTABLE)
-  MESSAGE(FATAL_ERROR "Could NOT find qmake executable")
-ENDIF(QT_QMAKE_EXECUTABLE)
-
 FIND_PROGRAM(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 IF(QT_LRELEASE_EXECUTABLE)
   MESSAGE(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
   if(WIN32)
     execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
+  else(UNIX)
+    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/linux.sh ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
   endif()
-ELSE(QT_LRELEASE_EXECUTABLE)
+ELSE()
   MESSAGE(FATAL_ERROR "Could NOT find lrelease executable")
-ENDIF(QT_LRELEASE_EXECUTABLE)
+ENDIF()
 
-# Find includes in the build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Turn on automatic invocation of the MOC
-set(CMAKE_AUTOMOC OFF)
-# Add a compiler flag
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -pthread -fopenmp -Wall")
-set(CMAKE_BUILD_TYPE Release CACHE STRING "set build type to Release")  
 
 FIND_LIBRARY(QMMP_LIBRARY
   NAMES qmmp1
