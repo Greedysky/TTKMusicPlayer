@@ -8,14 +8,14 @@ if(COMMAND cmake_policy)
     cmake_policy(SET CMP0005 OLD)
 endif(COMMAND cmake_policy)
 
-ADD_DEFINITIONS(-DQT_NO_DEBUG)
-ADD_DEFINITIONS(-DQT_THREAD)
+add_definitions(-DQT_NO_DEBUG)
+add_definitions(-DQT_THREAD)
 
 set(MUSIC_APP_SOURCES
   musicapplicationmain.cpp
 )
 
-ADD_EXECUTABLE(${TARGET_NAME} TTKApp.rc ${MUSIC_APP_SOURCES})
+add_executable(${TARGET_NAME} TTKApp.rc ${MUSIC_APP_SOURCES})
 add_dependencies(${TARGET_NAME} MusicCore)
 if(TTK_QT_VERSION VERSION_GREATER "4")
   if(WIN32)

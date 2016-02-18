@@ -8,8 +8,8 @@ if(COMMAND cmake_policy)
     cmake_policy(SET CMP0005 OLD)
 endif(COMMAND cmake_policy)
 
-ADD_DEFINITIONS(-DQT_NO_DEBUG)
-ADD_DEFINITIONS(-DQT_THREAD)
+add_definitions(-DQT_NO_DEBUG)
+add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.h
@@ -293,7 +293,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
 
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC_DIR}/MusicPlayer.qrc ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc)
 
-  ADD_LIBRARY(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   if(WIN32)
     target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY})
   else()
@@ -305,7 +305,7 @@ else()
 
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC_DIR}/MusicPlayer.qrc ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc)
 
-  ADD_LIBRARY(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   if(WIN32)
     target_link_libraries(${TARGET_NAME} ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
   else(UNIX)

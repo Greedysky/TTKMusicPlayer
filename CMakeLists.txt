@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-ADD_DEFINITIONS(-DMUSIC_LIBRARY)
+add_definitions(-DMUSIC_LIBRARY)
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -13,11 +13,11 @@ set(CMAKE_BUILD_TYPE Release CACHE STRING "set build type to Release")
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug)
 
 
-set(TTK_USE_MULTIPLE_QUERY "0" CACHE STRING "Use multiple query")
-set_property(CACHE TTK_USE_MULTIPLE_QUERY PROPERTY STRINGS 0 1)
-if(TTK_USE_MULTIPLE_QUERY VERSION_EQUAL "1")
+set(TTK_USE_MULTIPLE_QUERY "false" CACHE STRING "Use multiple query")
+set_property(CACHE TTK_USE_MULTIPLE_QUERY PROPERTY STRINGS false true)
+if(TTK_USE_MULTIPLE_QUERY VERSION_EQUAL "true")
   message(STATUS "Expected value for TTK use multiple query")
-  ADD_DEFINITIONS(-DUSE_MULTIPLE_QUERY)
+  add_definitions(-DUSE_MULTIPLE_QUERY)
 else()
   message(STATUS "Unexpected value for TTK use multiple query")
 endif()
@@ -60,8 +60,8 @@ include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGET_DIR}/core)
 
 
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
-SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
 
 set(TTK_QT_VERSION "0" CACHE STRING "Expected Qt version")
 set_property(CACHE TTK_QT_VERSION PROPERTY STRINGS 4 5)
@@ -72,12 +72,12 @@ endif()
 
 set(CMAKE_PREFIX_PATH ${QT_INSTALL_DIR} CACHE PATH "Qt install path")
 
-FIND_PROGRAM(QT_QMAKE_EXECUTABLE qmake ${QT_INSTALL_BINS})
-IF(QT_QMAKE_EXECUTABLE)
-  MESSAGE(STATUS "Found qmake executable: " ${QT_QMAKE_EXECUTABLE})
-ELSE()
-  MESSAGE(FATAL_ERROR "Could NOT find qmake executable")
-ENDIF()
+find_program(QT_QMAKE_EXECUTABLE qmake ${QT_INSTALL_BINS})
+if(QT_QMAKE_EXECUTABLE)
+  message(STATUS "Found qmake executable: " ${QT_QMAKE_EXECUTABLE})
+else()
+  message(FATAL_ERROR "Could NOT find qmake executable")
+endif()
 
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -125,20 +125,20 @@ else()
 endif()
 
 
-FIND_PROGRAM(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
-IF(QT_LRELEASE_EXECUTABLE)
-  MESSAGE(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
+find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
+if(QT_LRELEASE_EXECUTABLE)
+  message(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
   if(WIN32)
     execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
   else(UNIX)
     execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/linux.sh ${QT_LRELEASE_EXECUTABLE} ${MUSIC_DIR} ${EXECUTABLE_OUTPUT_PATH})
   endif()
-ELSE()
-  MESSAGE(FATAL_ERROR "Could NOT find lrelease executable")
-ENDIF()
+else()
+  message(FATAL_ERROR "Could NOT find lrelease executable")
+endif()
 
 
-FIND_LIBRARY(QMMP_LIBRARY
+find_library(QMMP_LIBRARY
   NAMES qmmp1
   PATHS ${LIBRARY_OUTPUT_PATH}
 )
