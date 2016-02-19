@@ -124,7 +124,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
     QString customSkinPath =  QFileDialog::getOpenFileName(
-                              this, "", "./", "Images (*.png *.bmp *.jpg)");
+                              this, QString(), "./", "Images (*.png *.bmp *.jpg)");
     if(customSkinPath.isEmpty())
     {
         return;

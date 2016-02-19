@@ -27,7 +27,7 @@ MusicUserManager::~MusicUserManager()
 {
     if(!m_currentUserUID.isEmpty())
     {
-        m_userModel->updateUser(m_currentUserUID, "", "", ui->username->text(),
+        m_userModel->updateUser(m_currentUserUID, QString(), QString(), ui->username->text(),
                                 QString::number(m_userModel->getUserLogTime(m_currentUserUID)
                                 .toLongLong() + m_time.elapsed()/(1000*30) ));
     }
@@ -61,7 +61,7 @@ void MusicUserManager::createButtonPopMenu()
 
 void MusicUserManager::musicUserLogoff()
 {
-    m_userModel->updateUser(m_currentUserUID, "", "", ui->username->text(),
+    m_userModel->updateUser(m_currentUserUID, QString(), QString(), ui->username->text(),
                             QString::number(m_userModel->getUserLogTime(m_currentUserUID)
                             .toLongLong() + m_time.elapsed()/(1000*30) ));
 

@@ -145,7 +145,7 @@ void MusicUserRecordWidget::confirmButtonClickedF()
 void MusicUserRecordWidget::openFileButtonClickedS()
 {
     QString path =  QFileDialog::getOpenFileName(
-                              this, "", "./", "Images (*.png *.bmp *.jpg)");
+                              this, QString(), "./", "Images (*.png *.bmp *.jpg)");
     if(path.isEmpty())
     {
         return;

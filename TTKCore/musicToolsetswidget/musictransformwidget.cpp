@@ -83,7 +83,7 @@ void MusicTransformWidget::initInputPath()
     QString path;
     if(!ui->folderBox->isChecked())
     {
-        path =  QFileDialog::getOpenFileName( this, "" , "./",
+        path =  QFileDialog::getOpenFileName( this, QString(), "./",
                 "Files (*.mp3 *.wav *.wma *.ogg *.flac *.ac3 *.aac)");
         if(path.isEmpty())
         {
@@ -134,7 +134,7 @@ QFileInfoList MusicTransformWidget::getFileList(const QString &path)
 
 void MusicTransformWidget::initOutputPath()
 {
-    QString path =  QFileDialog::getExistingDirectory(this, "" , "./");
+    QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
         ui->outputLineEdit->setText(path);

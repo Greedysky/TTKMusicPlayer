@@ -221,7 +221,7 @@ void MusicUserDialog::checkUserLogin()
             return;
         }
     }
-    if( user.trimmed() == "" || pwd.trimmed() == "" )
+    if( user.trimmed().isEmpty() || pwd.trimmed().isEmpty() )
     {
         MusicMessageBox message;
         message.setText(tr("You entered is incorrect"));
@@ -282,7 +282,7 @@ void MusicUserDialog::checkUserForgotPasswd()
 {
      QString user = ui->userLineEdit->text();
      QString mail = ui->mailLineEdit->text();
-     if( user.trimmed() == "" || mail.trimmed() == "" )
+     if( user.trimmed().isEmpty() || mail.trimmed().isEmpty() )
      {
          MusicMessageBox message;
          message.setText(tr("You entered is incorrect"));
@@ -310,7 +310,7 @@ void MusicUserDialog::checkUserForgotPasswd()
          message.exec();
          return;
      }
-     if( m_userModel->updateUser(user, ui->pwdLineEdit->text(), mail, "", "") )
+     if( m_userModel->updateUser(user, ui->pwdLineEdit->text(), mail, QString(), QString()))
      {
          MusicMessageBox message;
          message.setText(tr("Change password successfully"));

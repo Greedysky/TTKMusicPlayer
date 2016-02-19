@@ -139,7 +139,7 @@ void MusicCoreMPlayer::durationRecieve()
         QByteArray data = m_process->readLine();
         if(data.startsWith("ANS_LENGTH"))
         {
-            data.replace(QByteArray("\r\n"), "");
+            data.replace(QByteArray("\r\n"), QByteArray(""));
             disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(durationRecieve()));
             emit durationChanged(QString(data).mid(11).toFloat());
             return;
@@ -167,7 +167,7 @@ void MusicCoreMPlayer::positionRecieve()
         QByteArray data = m_process->readLine();
         if(data.startsWith("ANS_TIME_POSITION"))
         {
-            data.replace(QByteArray("\r\n"), "");
+            data.replace(QByteArray("\r\n"), QByteArray(""));
             emit positionChanged(m_currentPos = QString(data).mid(18).toFloat());
         }
     }

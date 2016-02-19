@@ -42,7 +42,7 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
 void MusicLrcArtPhotoUpload::selectButtonClicked()
 {
     QString picPath = QFileDialog::getOpenFileName(
-                      this, "", "./", "Images (*.png *.bmp *.jpg)");
+                      this, QString(), "./", "Images (*.png *.bmp *.jpg)");
     if(picPath.isEmpty())
     {
         return;
