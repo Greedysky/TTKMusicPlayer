@@ -99,6 +99,7 @@ v2.2.9.2
 修复linux下产生链接库名不正确。
 更新CMakeLists。
 优化拖动进度条。
+修复部分bug。
 
 
 To be repaired or new
