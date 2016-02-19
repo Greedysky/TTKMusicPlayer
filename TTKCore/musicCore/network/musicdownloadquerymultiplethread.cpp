@@ -196,7 +196,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
         QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
         if(sc.isArray())
         {
-            QScriptValueIterator it(sc.property("data"));
+            QScriptValueIterator it(sc);
             while(it.hasNext())
             {
                 it.next();
