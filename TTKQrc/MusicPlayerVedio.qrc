@@ -11,6 +11,6 @@
         <file alias="video_3">../TTKResource/video/video_3.png</file>
         <file alias="video_4">../TTKResource/video/video_4.png</file>
         <file alias="video_5">../TTKResource/video/video_5.png</file>
-        <file alias="barrageStyle">../TTKResource/video/barrageStyle.png</file>
+        <file alias="barrageStyle">../TTKResource/video/video_barrage_style.png</file>
     </qresource>
 </RCC>
