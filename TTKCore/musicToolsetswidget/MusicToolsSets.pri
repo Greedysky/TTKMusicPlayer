@@ -21,7 +21,8 @@ HEADERS  += \
     $$PWD/core/musiclocalsongsmanagerthread.h \
     $$PWD/core/musicsongtag.h \
     $$PWD/musiclocalsongstablewidget.h \
-    $$PWD/musicspeedmeter.h
+    $$PWD/musicspeedmeter.h \
+    $$PWD/musicnetworktestwidget.h
 
 }
 
@@ -39,6 +40,7 @@ SOURCES += \
     $$PWD/core/musiclocalsongsmanagerthread.cpp \
     $$PWD/core/musicsongtag.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
-    $$PWD/musicspeedmeter.cpp
+    $$PWD/musicspeedmeter.cpp \
+    $$PWD/musicnetworktestwidget.cpp
 
 }
