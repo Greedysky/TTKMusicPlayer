@@ -30,6 +30,7 @@ TTKMusicPlayer can meet your most demands
  * Ogg Vorbis File(*.ogg)
  * Ogg Opus File(*.opus)
  * ADTS AAC File(*.aac)
+ * MIDI File(*.mid)
  * PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)
  * CUE File(*.cue)
  * MPEG File(*.mp1 *.mp2 *.mp3 *.wav)
