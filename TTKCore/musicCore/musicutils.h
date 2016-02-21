@@ -30,6 +30,7 @@ public:
 
     static QString fileSize2Label(qint64 size);
     static QString fileSize2Normal(qint64 size);
+    static QString fileSpeed2Normal(qint64 size);
 
     static qreal fileSizeByte2KByte(qint64 size);
     static qreal fileSizeByte2MByte(qint64 size);

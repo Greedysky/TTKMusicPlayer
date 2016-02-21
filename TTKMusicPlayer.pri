@@ -22,6 +22,7 @@ OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
 win32{
+    LIBS += -lIphlpapi
     equals(QT_MAJOR_VERSION, 5){
         QT  += winextras
         msvc{

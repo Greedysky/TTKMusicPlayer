@@ -1,14 +1,51 @@
 #include "musicnetworktestwidget.h"
 #include "ui_musicnetworktestwidget.h"
+#include "musicbgthememanager.h"
+#include "musicuiobject.h"
+#include "musicnetworktestthread.h"
+#include "musicutils.h"
 
 MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
-    : QWidget(parent),
+    : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicNetworkTestWidget)
 {
     ui->setupUi(this);
+
+    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+
+    m_totalUp = 0;
+    m_totalDown = 0;
+
+    m_thead = new MusicNetworkTestThread(this);
+    connect(m_thead, SIGNAL(networkData(long,long)), SLOT(networkData(long,long)));
+    m_thead->start();
 }
 
 MusicNetworkTestWidget::~MusicNetworkTestWidget()
 {
+    m_thead->stopAndQuitThread();
+    delete m_thead;
     delete ui;
+}
+
+void MusicNetworkTestWidget::networkData(long upload, long download)
+{
+    m_totalUp += upload;
+    m_totalDown += download;
+
+    ui->uploadSpeedValue->setText(MusicUtils::fileSpeed2Normal(upload));
+    ui->downloadSpeedValue->setText(MusicUtils::fileSpeed2Normal(download));
+    ui->uploadAllSpeedValue->setText(MusicUtils::fileSpeed2Normal(m_totalUp));
+    ui->downloadAllSpeedValue->setText(MusicUtils::fileSpeed2Normal(m_totalDown));
+}
+
+int MusicNetworkTestWidget::exec()
+{
+    QPixmap pix(M_BG_MANAGER->getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicAbstractMoveDialog::exec();
 }

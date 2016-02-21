@@ -111,6 +111,27 @@ QString MusicUtils::fileSize2Normal(qint64 size)
     }
 }
 
+QString MusicUtils::fileSpeed2Normal(qint64 size)
+{
+    QString label = fileSize2Label(size);
+    if( size < 1024)
+    {
+        return QString("%1 B/s").arg(label);
+    }
+    else if( 1024 <= size && size < 1024*1024)
+    {
+        return QString("%1 KB/s").arg(label);
+    }
+    else if( 1024*1024 <= size && size < 1024*1024*1024)
+    {
+        return QString("%1 MByte").arg(label);
+    }
+    else
+    {
+        return QString();
+    }
+}
+
 qreal MusicUtils::fileSizeByte2KByte(qint64 size)
 {
     return size / 1024.0;

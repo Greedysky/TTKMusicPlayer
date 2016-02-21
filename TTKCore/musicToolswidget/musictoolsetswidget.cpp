@@ -5,6 +5,7 @@
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
 #include "musicconnectionpool.h"
+#include "musicnetworktestwidget.h"
 
 #include <QProcess>
 #include <QTimer>
@@ -163,12 +164,22 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             MusicTransformWidget(this).exec();
             break;
         case 5:
-           {
+            {
 #ifdef Q_OS_WIN
                 delete m_wallpaper;
                 m_wallpaper = new MusicDesktopWallpaperWidget(this);
                 m_wallpaper->show();
 #endif
-           }
+                break;
+            }
+        case 12:
+            {
+#ifdef Q_OS_WIN
+                MusicNetworkTestWidget(this).exec();
+#endif
+                break;
+            }
+        default:
+            break;
     }
 }
