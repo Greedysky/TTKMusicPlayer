@@ -70,19 +70,23 @@ void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
     }
 }
 
-QString MusicUtils::fileSize2Label(qint64 size)
+QString MusicUtils::size2Number(qint64 size)
 {
-    if( size < 1024)
+    if( size < pow(1024, 1))
     {
         return QString("%1").arg(size);
     }
-    else if( 1024 <= size && size < 1024*1024)
+    else if( pow(1024, 1) <= size && size < pow(1024, 2))
     {
-        return QString("%1").arg((qint64)(size*1.0/1024*100)/100.0);
+        return QString("%1").arg((qint64)(size*1.0/pow(1024, 1)*100)/100.0);
     }
-    else if( 1024*1024 <= size && size < 1024*1024*1024)
+    else if( pow(1024, 2) <= size && size < pow(1024, 3))
     {
-        return QString("%1").arg((qint64)(size*1.0/1024/1024*100)/100.0);
+        return QString("%1").arg((qint64)(size*1.0/pow(1024, 2)*100)/100.0);
+    }
+    else if( pow(1024, 3) <= size && size < pow(1024, 4))
+    {
+        return QString("%1").arg((qint64)(size*1.0/pow(1024, 3)*100)/100.0);
     }
     else
     {
@@ -90,20 +94,24 @@ QString MusicUtils::fileSize2Label(qint64 size)
     }
 }
 
-QString MusicUtils::fileSize2Normal(qint64 size)
+QString MusicUtils::size2Label(qint64 size)
 {
-    QString label = fileSize2Label(size);
-    if( size < 1024)
+    QString label = size2Number(size);
+    if( size < pow(1024, 1))
     {
         return QString("%1 Byte").arg(label);
     }
-    else if( 1024 <= size && size < 1024*1024)
+    else if( pow(1024, 1) <= size && size < pow(1024, 2))
     {
         return QString("%1 KByte").arg(label);
     }
-    else if( 1024*1024 <= size && size < 1024*1024*1024)
+    else if( pow(1024, 2) <= size && size < pow(1024, 3))
     {
         return QString("%1 MByte").arg(label);
+    }
+    else if( pow(1024, 3) <= size && size < pow(1024, 4))
+    {
+        return QString("%1 TByte").arg(label);
     }
     else
     {
@@ -111,20 +119,24 @@ QString MusicUtils::fileSize2Normal(qint64 size)
     }
 }
 
-QString MusicUtils::fileSpeed2Normal(qint64 size)
+QString MusicUtils::speed2Label(qint64 size)
 {
-    QString label = fileSize2Label(size);
-    if( size < 1024)
+    QString label = size2Number(size);
+    if( size < pow(1024, 1))
     {
         return QString("%1 B/s").arg(label);
     }
-    else if( 1024 <= size && size < 1024*1024)
+    else if( pow(1024, 1) <= size && size < pow(1024, 2))
     {
         return QString("%1 KB/s").arg(label);
     }
-    else if( 1024*1024 <= size && size < 1024*1024*1024)
+    else if( pow(1024, 2) <= size && size < pow(1024, 3))
     {
         return QString("%1 MByte").arg(label);
+    }
+    else if( pow(1024, 2) <= size && size < pow(1024, 4))
+    {
+        return QString("%1 TByte").arg(label);
     }
     else
     {
@@ -132,14 +144,19 @@ QString MusicUtils::fileSpeed2Normal(qint64 size)
     }
 }
 
-qreal MusicUtils::fileSizeByte2KByte(qint64 size)
+qreal MusicUtils::sizeByte2KByte(qint64 size)
 {
     return size / 1024.0;
 }
 
-qreal MusicUtils::fileSizeByte2MByte(qint64 size)
+qreal MusicUtils::sizeByte2MByte(qint64 size)
 {
-    return fileSizeByte2KByte(size) / 1024.0;
+    return sizeByte2KByte(size) / 1024.0;
+}
+
+qreal MusicUtils::sizeByte2TByte(qint64 size)
+{
+    return sizeByte2MByte(size) / 1024.0;
 }
 
 quint64 MusicUtils::dirSize(const QString &dirName)

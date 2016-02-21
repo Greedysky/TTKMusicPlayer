@@ -120,9 +120,9 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
             ui->songlistsTable->setItem(i, 0, item);
 
                              item = new QTableWidgetItem;
-            item->setText(QFontMetrics(font()).elidedText(MusicUtils::fileSize2Label(fileName[i].size()),
+            item->setText(QFontMetrics(font()).elidedText(MusicUtils::size2Number(fileName[i].size()),
                                                           Qt::ElideRight, 50));
-            item->setToolTip(MusicUtils::fileSize2Normal(fileName[i].size()));
+            item->setToolTip(MusicUtils::size2Label(fileName[i].size()));
             item->setTextAlignment(Qt::AlignCenter);
             ui->songlistsTable->setItem(i, 1, item);
 

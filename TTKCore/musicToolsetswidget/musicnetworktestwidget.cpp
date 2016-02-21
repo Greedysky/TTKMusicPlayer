@@ -37,10 +37,10 @@ void MusicNetworkTestWidget::networkData(long upload, long download)
     m_totalUp += upload;
     m_totalDown += download;
 
-    ui->uploadSpeedValue->setText(MusicUtils::fileSpeed2Normal(upload));
-    ui->downloadSpeedValue->setText(MusicUtils::fileSpeed2Normal(download));
-    ui->uploadAllSpeedValue->setText(MusicUtils::fileSpeed2Normal(m_totalUp));
-    ui->downloadAllSpeedValue->setText(MusicUtils::fileSpeed2Normal(m_totalDown));
+    ui->uploadSpeedValue->setText(MusicUtils::speed2Label(upload));
+    ui->downloadSpeedValue->setText(MusicUtils::speed2Label(download));
+    ui->uploadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalUp));
+    ui->downloadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalDown));
 }
 
 int MusicNetworkTestWidget::exec()

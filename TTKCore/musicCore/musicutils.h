@@ -28,12 +28,14 @@ public:
     static void setLabelFont(QWidget *widget, int size);
     static void setComboboxText(QComboBox *object, const QString &text);
 
-    static QString fileSize2Label(qint64 size);
-    static QString fileSize2Normal(qint64 size);
-    static QString fileSpeed2Normal(qint64 size);
+    static QString size2Number(qint64 size);
+    static QString size2Label(qint64 size);
 
-    static qreal fileSizeByte2KByte(qint64 size);
-    static qreal fileSizeByte2MByte(qint64 size);
+    static QString speed2Label(qint64 size);
+
+    static qreal sizeByte2KByte(qint64 size);
+    static qreal sizeByte2MByte(qint64 size);
+    static qreal sizeByte2TByte(qint64 size);
 
     static quint64 dirSize(const QString &dirName);
     static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
