@@ -90,7 +90,7 @@ QStringList MusicPlayer::supportFormatsString()
                         << "amf" << "ams" << "dbm" << "dmf" << "dsm" << "far" << "mdl" << "med" << "mtm"
                         << "okt" << "ptm" << "stm" << "ult" << "umx" << "mt2" << "psm" << "mdz" << "s3z"
                         << "xmz" << "itz" << "mdr" << "s3r" << "xmr" << "itr" << "dgz" << "s3gz" << "xmgz"
-                        << "itgz" << "opus"
+                        << "itgz" << "opus" << "mid"
 #ifndef Q_OS_WIN
                         << "sid" << "mus" << "str" << "prg" << "P00"
 #endif
@@ -107,7 +107,7 @@ QStringList MusicPlayer::supportFormatsFilterString()
                         << "*.amf" << "*.ams" << "*.dbm" << "*.dmf" << "*.dsm" << "*.far" << "*.mdl" << "*.med" << "*.mtm"
                         << "*.okt" << "*.ptm" << "*.stm" << "*.ult" << "*.umx" << "*.mt2" << "*.psm" << "*.mdz" << "*.s3z"
                         << "*.xmz" << "*.itz" << "*.mdr" << "*.s3r" << "*.xmr" << "*.itr" << "*.dgz" << "*.s3gz" << "*.xmgz"
-                        << "*.itgz" << "*.opus"
+                        << "*.itgz" << "*.opus" << "*.mid"
 #ifndef Q_OS_WIN
                         << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00"
 #endif
@@ -121,7 +121,7 @@ QStringList MusicPlayer::supportFormatsFilterDialogString()
                         << "CUE File(*.cue)" << "MPEG File(*.mp1 *.mp2 *.mp3 *.wav)"
                         << "Game File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)"
                         << "FLAC File(*.flac *.oga)" << "Monkey's Audio File(*.ape)"
-                        << "Ogg Opus File(*.opus)" << "ADTS AAC File(*.aac)"
+                        << "Ogg Opus File(*.opus)" << "ADTS AAC File(*.aac)" << "MIDI File(*.mid)"
 #ifndef Q_OS_WIN
                         << "SID File(*.sid *.mus *.str *.prg *.P00)"
 #endif

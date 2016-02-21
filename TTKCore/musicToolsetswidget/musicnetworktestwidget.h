@@ -27,10 +27,13 @@ public:
 
 public Q_SLOTS:
     virtual int exec();
+
+private Q_SLOTS:
     void networkData(long upload, long download);
+    void suspensionOpen();
+    void networkTestStart();
 
 protected:
-
     Ui::MusicNetworkTestWidget *ui;
     MusicNetworkTestThread *m_thead;
     long m_totalUp, m_totalDown;

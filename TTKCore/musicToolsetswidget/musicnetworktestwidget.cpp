@@ -20,6 +20,13 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     m_totalUp = 0;
     m_totalDown = 0;
 
+    ui->suspensionButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->suspensionButton->setCursor(QCursor((Qt::PointingHandCursor)));
+    ui->testButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->testButton->setCursor(QCursor((Qt::PointingHandCursor)));
+    connect(ui->suspensionButton, SIGNAL(clicked()), SLOT(suspensionOpen()));
+    connect(ui->testButton, SIGNAL(clicked()), SLOT(networkTestStart()));
+
     m_thead = new MusicNetworkTestThread(this);
     connect(m_thead, SIGNAL(networkData(long,long)), SLOT(networkData(long,long)));
     m_thead->start();
@@ -41,6 +48,16 @@ void MusicNetworkTestWidget::networkData(long upload, long download)
     ui->downloadSpeedValue->setText(MusicUtils::speed2Label(download));
     ui->uploadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalUp));
     ui->downloadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalDown));
+}
+
+void MusicNetworkTestWidget::suspensionOpen()
+{
+
+}
+
+void MusicNetworkTestWidget::networkTestStart()
+{
+
 }
 
 int MusicNetworkTestWidget::exec()

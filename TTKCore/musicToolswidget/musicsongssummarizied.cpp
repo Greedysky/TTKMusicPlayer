@@ -11,7 +11,7 @@
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
-
+#include <QDebug>
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(nullptr)
 {
@@ -135,10 +135,8 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     MusicSongTag tag;
     for(int i=0; i<filelist.count(); ++i)
     {
-        if(tag.readFile(filelist[i]))
-        {
-            m_musicFileNames[0] << MusicSong(filelist[i], 0, tag.getLengthString(), QString());
-        }
+        QString time = tag.readFile(filelist[i]) ? tag.getLengthString() : "-";
+        m_musicFileNames[0] << MusicSong(filelist[i], 0, time, QString());
         progress.setValue(i + 1);
     }
     m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
