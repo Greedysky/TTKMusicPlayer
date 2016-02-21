@@ -1,4 +1,4 @@
-#include "MusicSpeedMeter.h"
+#include "musicspeedmeter.h"
 
 MusicSpeedMeter::MusicSpeedMeter(QWidget *parent)
     : QWidget(parent)
