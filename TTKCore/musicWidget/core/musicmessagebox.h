@@ -34,6 +34,7 @@ public:
 public Q_SLOTS:
     void buttonClicked(int index);
     virtual int exec();
+    void show();
 
 protected:
     Ui::MusicMessageBox *ui;

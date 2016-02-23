@@ -88,3 +88,10 @@ int MusicMessageBox::exec()
     MusicAbstractMoveDialog::exec();
     return m_status;
 }
+
+void MusicMessageBox::show()
+{
+    QPixmap pix(M_BG_MANAGER->getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    MusicAbstractMoveDialog::show();
+}
