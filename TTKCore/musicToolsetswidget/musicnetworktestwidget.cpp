@@ -89,6 +89,7 @@ void MusicNetworkTestWidget::networkTestStart()
 
 void MusicNetworkTestWidget::networkTestStop()
 {
+    m_testAverage = 0;
     delete m_testDownload;
     m_testDownload = NULL;
     m_testTimer.stop();
