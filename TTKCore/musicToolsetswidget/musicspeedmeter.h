@@ -26,9 +26,12 @@ public:
     explicit MusicSpeedMeter(QWidget *parent = 0);
 
     void setValue(qreal value);
+    qreal value() const { return m_value;}
     void setRatio(qreal value);
+    qreal ratio() const { return m_ratio;}
     void setAnimating(bool enable);
-    bool isAnimating() const;
+    bool isAnimating() const { return m_bAnimating;}
+
 
 private slots:
     void updateGraph();

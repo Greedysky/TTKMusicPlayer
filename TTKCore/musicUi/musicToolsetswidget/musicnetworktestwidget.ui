@@ -80,8 +80,6 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>downloadAllSpeedLabel</zorder>
-   <zorder>downloadAllSpeedValue</zorder>
   </widget>
   <widget class="MusicSpeedMeter" name="speedWidget" native="true">
    <property name="geometry">
@@ -261,8 +259,8 @@
   <zorder>downloadSpeedValue</zorder>
   <zorder>uploadAllSpeedValue</zorder>
   <zorder>uploadAllSpeedLabel</zorder>
-  <zorder>downloadAllSpeedValue</zorder>
   <zorder>downloadAllSpeedLabel</zorder>
+  <zorder>downloadAllSpeedValue</zorder>
  </widget>
  <customwidgets>
   <customwidget>

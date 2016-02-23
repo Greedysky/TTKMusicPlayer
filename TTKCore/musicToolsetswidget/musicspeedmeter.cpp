@@ -33,11 +33,6 @@ void MusicSpeedMeter::setAnimating(bool enable)
     update();
 }
 
-bool MusicSpeedMeter::isAnimating() const
-{
-    return m_bAnimating;
-}
-
 void MusicSpeedMeter::updateGraph()
 {
     if(m_bReverse)

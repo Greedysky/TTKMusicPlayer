@@ -12,7 +12,14 @@
 #include "musicglobaldefine.h"
 #include "musicabstractmovedialog.h"
 
+#include <QTimer>
+
 class MusicNetworkTestThread;
+class MusicDataDownloadThread;
+
+const QString testUrl = "http://mirrors.ustc.edu.cn/qtproject/archive/qt/5.5/5.5.1/"
+                        "qt-opensource-windows-x86-mingw492-5.5.1.exe";
+const QString testName = "tempCache.tt";
 
 namespace Ui {
 class MusicNetworkTestWidget;
@@ -29,14 +36,17 @@ public Q_SLOTS:
     virtual int exec();
 
 private Q_SLOTS:
-    void networkData(long upload, long download);
+    void networkData(ulong upload, ulong download);
     void suspensionOpen();
     void networkTestStart();
+    void networkTestStop();
 
 protected:
     Ui::MusicNetworkTestWidget *ui;
+    QTimer m_testTimer;
+    ulong m_testAverage, m_totalUp, m_totalDown;
     MusicNetworkTestThread *m_thead;
-    long m_totalUp, m_totalDown;
+    MusicDataDownloadThread *m_testDownload;
 
 };
 

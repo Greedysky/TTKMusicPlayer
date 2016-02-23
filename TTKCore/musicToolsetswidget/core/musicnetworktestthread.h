@@ -21,7 +21,7 @@ public:
     void stopAndQuitThread();
 
 Q_SIGNALS:
-    void networkData(long upload, long download);
+    void networkData(ulong upload, ulong download);
 
 public Q_SLOTS:
     void start();
