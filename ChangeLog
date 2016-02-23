@@ -100,6 +100,7 @@ v2.2.9.2
 更新CMakeLists。
 优化拖动进度条。
 修复部分bug。
+增加网速检测模块。
 
 
 To be repaired or new
@@ -110,3 +111,4 @@ To be repaired or new
 歌词显示编码问题。
 内嵌歌词的动画跳动。
 无歌词时提示歌词制作部分显示错位。
+添加百度FM频道。
