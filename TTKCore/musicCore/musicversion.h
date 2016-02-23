@@ -12,6 +12,11 @@
 //update time 2016.02.09
 #define TTKMUSIC_VERSION_STR "2.2.9.1"
 
+#define TTKMUSIC_MAJOR_VERSION 2
+#define TTKMUSIC_MIDLE_VERSION 2
+#define TTKMUSIC_MINOR_VERSION 9
+#define TTKMUSIC_PATCH_VERSION 1
+
 #define TTKMUSIC_VERSION 0x02291
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
