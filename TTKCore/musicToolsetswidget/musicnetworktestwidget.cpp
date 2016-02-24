@@ -6,10 +6,13 @@
 #include "musicutils.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
+#include "musicnetworksuspensionwidget.h"
+
+#include <QActionGroup>
 
 MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicNetworkTestWidget), m_thead(nullptr), m_testDownload(nullptr)
+      ui(new Ui::MusicNetworkTestWidget), m_thread(nullptr), m_testDownload(nullptr)
 {
     ui->setupUi(this);
 
@@ -27,14 +30,18 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
 
     ui->suspensionButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->suspensionButton->setCursor(QCursor((Qt::PointingHandCursor)));
+    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->settingButton->setCursor(QCursor((Qt::PointingHandCursor)));
     ui->testButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->testButton->setCursor(QCursor((Qt::PointingHandCursor)));
     connect(ui->suspensionButton, SIGNAL(clicked()), SLOT(suspensionOpen()));
     connect(ui->testButton, SIGNAL(clicked()), SLOT(networkTestStart()));
 
-    m_thead = new MusicNetworkTestThread(this);
-    connect(m_thead, SIGNAL(networkData(ulong,ulong)), SLOT(networkData(ulong,ulong)));
-    m_thead->start();
+    m_thread = new MusicNetworkTestThread(this);
+    connect(m_thread, SIGNAL(networkData(ulong,ulong)), SLOT(networkData(ulong,ulong)));
+    m_thread->start();
+
+    settingButton();
 
     m_testTimer.setInterval(5*1000);
     connect(&m_testTimer, SIGNAL(timeout()), SLOT(networkTestStop()));
@@ -42,17 +49,34 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
 
 MusicNetworkTestWidget::~MusicNetworkTestWidget()
 {
+    delete m_actionGroup;
     m_testTimer.stop();
-    m_thead->stopAndQuitThread();
-    delete m_thead;
+    m_thread->stopAndQuitThread();
+    delete m_thread;
     delete m_testDownload;
     delete ui;
 }
 
+void MusicNetworkTestWidget::settingButton()
+{
+    m_actionGroup = new QActionGroup(this);
+    QMenu *menu = new QMenu(this);
+    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    QStringList list = m_thread->getNewtworkNames();
+    foreach(QString var, list)
+    {
+        m_actionGroup->addAction(menu->addAction(var));
+    }
+
+    ui->settingButton->setMenu(menu);
+    connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionTriggered(QAction*)));
+}
+
 void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
 {
-    m_totalUp += upload/5;
-    m_totalDown += download/5;
+    m_totalUp += upload;
+    m_totalDown += download;
 
     ui->uploadSpeedValue->setText(MusicUtils::speed2Label(upload));
     ui->downloadSpeedValue->setText(MusicUtils::speed2Label(download));
@@ -61,7 +85,7 @@ void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
 
     if(m_testTimer.isActive())
     {
-        int value = MusicUtils::sizeByte2KByte(download/5);
+        int value = MusicUtils::sizeByte2KByte(download);
         if(value > 100*ui->speedWidget->ratio())
         {
             value = 100*ui->speedWidget->ratio();
@@ -73,7 +97,7 @@ void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
 
 void MusicNetworkTestWidget::suspensionOpen()
 {
-
+//    (new MusicNetworkSuspensionWidget())->show();
 }
 
 void MusicNetworkTestWidget::networkTestStart()
@@ -87,9 +111,31 @@ void MusicNetworkTestWidget::networkTestStart()
     m_testTimer.start();
 }
 
+void MusicNetworkTestWidget::actionTriggered(QAction *action)
+{
+    if(action->icon().isNull())
+    {
+        action->setIcon(QIcon(":/share/selected"));
+    }
+    else
+    {
+        action->setIcon(QIcon());
+    }
+
+    QStringList selected;
+    QList<QAction*> actions = m_actionGroup->actions();
+    foreach(QAction *action, actions)
+    {
+        if(!action->icon().isNull())
+        {
+            selected << action->text();
+        }
+    }
+    m_thread->setAvailableNewtworkNames(selected);
+}
+
 void MusicNetworkTestWidget::networkTestStop()
 {
-    m_testAverage = 0;
     delete m_testDownload;
     m_testDownload = NULL;
     m_testTimer.stop();
@@ -100,6 +146,7 @@ void MusicNetworkTestWidget::networkTestStop()
     MusicMessageBox message(this);
     message.setText(tr("Average is %1 kb/s").arg(m_testAverage/5));
     message.exec();
+    m_testAverage = 0;
 }
 
 int MusicNetworkTestWidget::exec()

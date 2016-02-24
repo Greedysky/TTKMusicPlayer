@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QThread>
+#include <QStringList>
 #include "musicglobaldefine.h"
 
 class MUSIC_CORE_EXPORT MusicNetworkTestThread : public QThread
@@ -19,6 +20,8 @@ public:
     explicit MusicNetworkTestThread(QObject *parent = 0);
 
     void stopAndQuitThread();
+    void setAvailableNewtworkNames(const QStringList &names);
+    QStringList getNewtworkNames();
 
 Q_SIGNALS:
     void networkData(ulong upload, ulong download);
@@ -29,6 +32,7 @@ public Q_SLOTS:
 
 protected:
     bool m_run;
+    QStringList m_names;
 
 };
 

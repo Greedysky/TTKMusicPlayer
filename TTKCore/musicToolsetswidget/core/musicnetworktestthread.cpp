@@ -28,6 +28,44 @@ void MusicNetworkTestThread::stopAndQuitThread()
     quit();
 }
 
+void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
+{
+    m_names = names;
+}
+
+QStringList MusicNetworkTestThread::getNewtworkNames()
+{
+    QStringList names;
+#ifdef Q_OS_WIN
+    PMIB_IFTABLE m_pTable = NULL;
+    DWORD m_dwAdapters = 0;
+    ULONG uRetCode = GetIfTable(m_pTable, &m_dwAdapters, TRUE);
+    if(uRetCode == ERROR_NOT_SUPPORTED)
+    {
+        return names;
+    }
+
+    if (uRetCode == ERROR_INSUFFICIENT_BUFFER)
+    {
+        m_pTable = (PMIB_IFTABLE)new BYTE[65535];
+    }
+
+    GetIfTable(m_pTable, &m_dwAdapters, TRUE);
+    for(UINT i = 0; i < m_pTable->dwNumEntries; i++)
+    {
+        MIB_IFROW Row = m_pTable->table[i];
+        std::string s(MReinterpret_cast(char const*, Row.bDescr));
+        QString qs = QString::fromStdString(s);
+        if(Row.dwType == 71 && !names.contains(qs))
+        {
+            names << QString::fromStdString(s);
+        }
+    }
+    delete[] m_pTable;
+#endif
+    return names;
+}
+
 void MusicNetworkTestThread::start()
 {
     m_run = true;
@@ -60,11 +98,15 @@ void MusicNetworkTestThread::run()
         DWORD dwInOctets = 0;
         DWORD dwOutOctets = 0;
 
-        for (UINT i = 0; i < m_pTable->dwNumEntries; i++)
+        for(UINT i = 0; i < m_pTable->dwNumEntries; i++)
         {
             MIB_IFROW Row = m_pTable->table[i];
-            dwInOctets += Row.dwInOctets;
-            dwOutOctets += Row.dwOutOctets;
+            std::string s(MReinterpret_cast(char const*, Row.bDescr));
+            if(Row.dwType == 71 && m_names.contains(QString::fromStdString(s)))
+            {
+                dwInOctets += Row.dwInOctets;
+                dwOutOctets += Row.dwOutOctets;
+            }
         }
 
         dwBandIn = dwInOctets - dwLastIn;

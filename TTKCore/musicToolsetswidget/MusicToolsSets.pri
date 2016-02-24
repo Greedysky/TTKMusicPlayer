@@ -23,7 +23,8 @@ HEADERS  += \
     $$PWD/core/musicnetworktestthread.h \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicspeedmeter.h \
-    $$PWD/musicnetworktestwidget.h
+    $$PWD/musicnetworktestwidget.h \
+    $$PWD/musicnetworksuspensionwidget.h
 
 }
 
@@ -43,6 +44,7 @@ SOURCES += \
     $$PWD/core/musicnetworktestthread.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicspeedmeter.cpp \
-    $$PWD/musicnetworktestwidget.cpp
+    $$PWD/musicnetworktestwidget.cpp \
+    $$PWD/musicnetworksuspensionwidget.cpp
 
 }

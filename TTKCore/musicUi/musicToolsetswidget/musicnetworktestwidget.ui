@@ -245,6 +245,19 @@
     <string>总下行:</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="settingButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>210</y>
+     <width>75</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>网卡设置</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -261,6 +274,7 @@
   <zorder>uploadAllSpeedLabel</zorder>
   <zorder>downloadAllSpeedLabel</zorder>
   <zorder>downloadAllSpeedValue</zorder>
+  <zorder>settingButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

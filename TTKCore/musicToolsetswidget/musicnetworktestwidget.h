@@ -14,6 +14,7 @@
 
 #include <QTimer>
 
+class QActionGroup;
 class MusicNetworkTestThread;
 class MusicDataDownloadThread;
 
@@ -40,13 +41,17 @@ private Q_SLOTS:
     void suspensionOpen();
     void networkTestStart();
     void networkTestStop();
+    void actionTriggered(QAction *action);
 
 protected:
+    void settingButton();
+
     Ui::MusicNetworkTestWidget *ui;
     QTimer m_testTimer;
     ulong m_testAverage, m_totalUp, m_totalDown;
-    MusicNetworkTestThread *m_thead;
+    MusicNetworkTestThread *m_thread;
     MusicDataDownloadThread *m_testDownload;
+    QActionGroup *m_actionGroup;
 
 };
 
