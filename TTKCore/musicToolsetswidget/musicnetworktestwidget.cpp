@@ -8,11 +8,13 @@
 #include "musicmessagebox.h"
 #include "musicnetworksuspensionwidget.h"
 
+#include <QMenu>
 #include <QActionGroup>
 
 MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicNetworkTestWidget), m_thread(nullptr), m_testDownload(nullptr)
+      ui(new Ui::MusicNetworkTestWidget), m_thread(nullptr), m_testDownload(nullptr),
+      m_suspension(nullptr)
 {
     ui->setupUi(this);
 
@@ -97,7 +99,10 @@ void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
 
 void MusicNetworkTestWidget::suspensionOpen()
 {
-//    (new MusicNetworkSuspensionWidget())->show();
+    delete m_suspension;
+    m_suspension = new MusicNetworkSuspensionWidget;
+    m_suspension->setAvailableNewtworkNames(m_thread->getAvailableNewtworkNames());
+    m_suspension->show();
 }
 
 void MusicNetworkTestWidget::networkTestStart()
@@ -132,6 +137,10 @@ void MusicNetworkTestWidget::actionTriggered(QAction *action)
         }
     }
     m_thread->setAvailableNewtworkNames(selected);
+    if(m_suspension)
+    {
+        m_suspension->setAvailableNewtworkNames(selected);
+    }
 }
 
 void MusicNetworkTestWidget::networkTestStop()

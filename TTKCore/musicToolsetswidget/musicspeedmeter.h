@@ -32,8 +32,7 @@ public:
     void setAnimating(bool enable);
     bool isAnimating() const { return m_bAnimating;}
 
-
-private slots:
+private Q_SLOTS:
     void updateGraph();
 
 protected:

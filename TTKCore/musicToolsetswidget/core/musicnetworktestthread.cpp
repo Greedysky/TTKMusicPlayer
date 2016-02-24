@@ -33,7 +33,12 @@ void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
     m_names = names;
 }
 
-QStringList MusicNetworkTestThread::getNewtworkNames()
+QStringList MusicNetworkTestThread::getAvailableNewtworkNames() const
+{
+    return m_names;
+}
+
+QStringList MusicNetworkTestThread::getNewtworkNames() const
 {
     QStringList names;
 #ifdef Q_OS_WIN

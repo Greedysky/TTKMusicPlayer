@@ -17,6 +17,7 @@
 class QActionGroup;
 class MusicNetworkTestThread;
 class MusicDataDownloadThread;
+class MusicNetworkSuspensionWidget;
 
 const QString testUrl = "http://mirrors.ustc.edu.cn/qtproject/archive/qt/5.5/5.5.1/"
                         "qt-opensource-windows-x86-mingw492-5.5.1.exe";
@@ -51,6 +52,7 @@ protected:
     ulong m_testAverage, m_totalUp, m_totalDown;
     MusicNetworkTestThread *m_thread;
     MusicDataDownloadThread *m_testDownload;
+    MusicNetworkSuspensionWidget *m_suspension;
     QActionGroup *m_actionGroup;
 
 };

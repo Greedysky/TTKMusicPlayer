@@ -94,6 +94,16 @@ QString MusicUtils::size2Number(qint64 size)
     }
 }
 
+QString MusicUtils::size2NumberInt(qint64 size)
+{
+    QString label = size2Number(size);
+    if(label.contains("."))
+    {
+        label = label.split(".").front();
+    }
+    return label;
+}
+
 QString MusicUtils::size2Label(qint64 size)
 {
     QString label = size2Number(size);
@@ -121,7 +131,16 @@ QString MusicUtils::size2Label(qint64 size)
 
 QString MusicUtils::speed2Label(qint64 size)
 {
-    QString label = size2Number(size);
+    return speed2LabelFromLabel(size, size2Number(size));
+}
+
+QString MusicUtils::speed2LabelInt(qint64 size)
+{
+    return speed2LabelFromLabel(size, size2NumberInt(size));
+}
+
+QString MusicUtils::speed2LabelFromLabel(qint64 size, const QString &label)
+{
     if( size < pow(1024, 1))
     {
         return QString("%1 B/s").arg(label);
@@ -132,11 +151,11 @@ QString MusicUtils::speed2Label(qint64 size)
     }
     else if( pow(1024, 2) <= size && size < pow(1024, 3))
     {
-        return QString("%1 MByte").arg(label);
+        return QString("%1 MB/s").arg(label);
     }
     else if( pow(1024, 2) <= size && size < pow(1024, 4))
     {
-        return QString("%1 TByte").arg(label);
+        return QString("%1 TB/s").arg(label);
     }
     else
     {

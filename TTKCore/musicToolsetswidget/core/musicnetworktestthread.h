@@ -21,7 +21,8 @@ public:
 
     void stopAndQuitThread();
     void setAvailableNewtworkNames(const QStringList &names);
-    QStringList getNewtworkNames();
+    QStringList getAvailableNewtworkNames() const;
+    QStringList getNewtworkNames() const;
 
 Q_SIGNALS:
     void networkData(ulong upload, ulong download);

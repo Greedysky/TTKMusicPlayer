@@ -29,9 +29,11 @@ public:
     static void setComboboxText(QComboBox *object, const QString &text);
 
     static QString size2Number(qint64 size);
+    static QString size2NumberInt(qint64 size);
     static QString size2Label(qint64 size);
 
     static QString speed2Label(qint64 size);
+    static QString speed2LabelInt(qint64 size);
 
     static qreal sizeByte2KByte(qint64 size);
     static qreal sizeByte2MByte(qint64 size);
@@ -39,6 +41,9 @@ public:
 
     static quint64 dirSize(const QString &dirName);
     static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+
+private:
+    static QString speed2LabelFromLabel(qint64 size, const QString &label);
 
 };
 
