@@ -11,8 +11,7 @@
 #include <QTimer>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
-    : QListWidget(parent), m_wallpaper(nullptr),
-      m_process(nullptr)
+    : QListWidget(parent), m_process(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -38,7 +37,6 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
     M_CONNECTION->poolDisConnect("MusicToolSetsWidget");
-    delete m_wallpaper;
     if(m_process)
     {
         m_process->kill();
@@ -166,16 +164,14 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 5:
             {
 #ifdef Q_OS_WIN
-                delete m_wallpaper;
-                m_wallpaper = new MusicDesktopWallpaperWidget(this);
-                m_wallpaper->show();
+                (new MusicDesktopWallpaperWidget(this))->show();
 #endif
                 break;
             }
         case 12:
             {
 #ifdef Q_OS_WIN
-                MusicNetworkTestWidget(this).exec();
+                (new MusicNetworkTestWidget(this))->show();
 #endif
                 break;
             }

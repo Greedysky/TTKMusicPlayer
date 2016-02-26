@@ -15,7 +15,9 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
       ui(new Ui::MusicDesktopWallpaperWidget)
 {
     ui->setupUi(this);
-    setAttribute(Qt::WA_TranslucentBackground, true);
+
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_TranslucentBackground);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);

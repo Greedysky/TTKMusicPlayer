@@ -12,11 +12,14 @@
 #include <QActionGroup>
 
 MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicNetworkTestWidget), m_thread(nullptr), m_testDownload(nullptr),
       m_suspension(nullptr)
 {
     ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_TranslucentBackground);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -158,9 +161,9 @@ void MusicNetworkTestWidget::networkTestStop()
     m_testAverage = 0;
 }
 
-int MusicNetworkTestWidget::exec()
+void MusicNetworkTestWidget::show()
 {
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicAbstractMoveDialog::exec();
+    return MusicAbstractMoveWidget::show();
 }

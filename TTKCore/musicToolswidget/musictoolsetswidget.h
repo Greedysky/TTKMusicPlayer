@@ -14,7 +14,6 @@
 #include "musicglobaldefine.h"
 
 class QProcess;
-class MusicDesktopWallpaperWidget;
 
 class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public QListWidget
 {
@@ -34,7 +33,6 @@ protected:
     void setTransparent(int angle);
     void clearAllItems();
 
-    MusicDesktopWallpaperWidget *m_wallpaper;
     QProcess *m_process;
 
 };

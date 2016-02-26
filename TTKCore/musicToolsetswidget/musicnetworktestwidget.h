@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicglobaldefine.h"
-#include "musicabstractmovedialog.h"
+#include "musicabstractmovewidget.h"
 
 #include <QTimer>
 
@@ -27,7 +27,7 @@ namespace Ui {
 class MusicNetworkTestWidget;
 }
 
-class MUSIC_TOOLSET_EXPORT MusicNetworkTestWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicNetworkTestWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -35,7 +35,7 @@ public:
     ~MusicNetworkTestWidget();
 
 public Q_SLOTS:
-    virtual int exec();
+    void show();
 
 private Q_SLOTS:
     void networkData(ulong upload, ulong download);
