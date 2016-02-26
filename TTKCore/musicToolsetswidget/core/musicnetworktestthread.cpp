@@ -1,5 +1,7 @@
 #include "musicnetworktestthread.h"
+#include "musicobject.h"
 
+#include <QProcess>
 #ifdef Q_OS_WIN
 # ifdef Q_CC_MINGW
 #   include <winsock2.h>
@@ -10,12 +12,29 @@
 # if defined Q_CC_MSVC
 #   pragma comment(lib, "Iphlpapi.lib")
 # endif
+#elif defined Q_OS_UNIX
+# include <ifaddrs.h>
+# include <arpa/inet.h>
 #endif
 
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
     : QThread(parent)
 {
     m_run = false;
+    m_process = nullptr;
+#ifdef Q_OS_UNIX
+    setAvailableNewtworkNames(QStringList("eth0"));
+#endif
+}
+
+MusicNetworkTestThread::~MusicNetworkTestThread()
+{
+    if(m_process)
+    {
+        m_process->kill();
+    }
+    delete m_process;
+    stopAndQuitThread();
 }
 
 void MusicNetworkTestThread::stopAndQuitThread()
@@ -31,6 +50,24 @@ void MusicNetworkTestThread::stopAndQuitThread()
 void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
 {
     m_names = names;
+#ifdef Q_OS_UNIX
+    if(m_names.isEmpty())
+    {
+        return;
+    }
+
+    if(m_process)
+    {
+        m_process->kill();
+        delete m_process;
+    }
+    m_process = new QProcess(this);
+    m_process->setProcessChannelMode(QProcess::MergedChannels);
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(outputRecieved()));
+    QStringList arguments;
+    arguments << m_names.first() << "1";
+    m_process->start(MAKE_NETS_AL, arguments);
+#endif
 }
 
 QStringList MusicNetworkTestThread::getAvailableNewtworkNames() const
@@ -67,8 +104,40 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
         }
     }
     delete[] m_pTable;
+#elif defined Q_OS_UNIX
+    struct ifaddrs *ifa = NULL, *ifList;
+    if (getifaddrs(&ifList) < 0)
+    {
+        return QStringList();
+    }
+
+    for (ifa = ifList; ifa != NULL; ifa = ifa->ifa_next)
+    {
+        if(ifa->ifa_addr->sa_family == AF_INET)
+        {
+            names << QString(ifa->ifa_name);
+        }
+    }
+    freeifaddrs(ifList);
 #endif
     return names;
+}
+
+void MusicNetworkTestThread::outputRecieved()
+{
+    while(m_process->canReadLine())
+    {
+        QByteArray datas = m_process->readLine();
+        QStringList lists = QString(datas).split("|");
+        ulong upload = 0,  download = 0;
+
+        if(lists.count() == 3)
+        {
+            download= lists[1].trimmed().toULong();
+            upload  = lists[2].trimmed().toULong();
+        }
+        emit networkData(upload, download);
+    }
 }
 
 void MusicNetworkTestThread::start()

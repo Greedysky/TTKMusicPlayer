@@ -23,6 +23,7 @@ MusicNetworkSuspensionWidget::MusicNetworkSuspensionWidget(QWidget *parent)
     {
         move(10, 10);
     }
+    m_upload = m_download = "0B/s";
 
     drawWindowShadow(false);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -39,7 +40,6 @@ MusicNetworkSuspensionWidget::MusicNetworkSuspensionWidget(QWidget *parent)
 MusicNetworkSuspensionWidget::~MusicNetworkSuspensionWidget()
 {
     delete m_actionGroup;
-    m_thread->stopAndQuitThread();
     delete m_thread;
 }
 

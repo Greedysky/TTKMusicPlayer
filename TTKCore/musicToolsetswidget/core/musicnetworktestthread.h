@@ -13,11 +13,14 @@
 #include <QStringList>
 #include "musicglobaldefine.h"
 
+class QProcess;
+
 class MUSIC_CORE_EXPORT MusicNetworkTestThread : public QThread
 {
     Q_OBJECT
 public:
     explicit MusicNetworkTestThread(QObject *parent = 0);
+    ~MusicNetworkTestThread();
 
     void stopAndQuitThread();
     void setAvailableNewtworkNames(const QStringList &names);
@@ -31,9 +34,13 @@ public Q_SLOTS:
     void start();
     void run();
 
+private Q_SLOTS:
+    void outputRecieved();
+
 protected:
     bool m_run;
     QStringList m_names;
+    QProcess *m_process ;
 
 };
 

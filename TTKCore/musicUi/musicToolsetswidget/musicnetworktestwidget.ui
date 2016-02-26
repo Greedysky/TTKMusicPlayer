@@ -104,7 +104,7 @@
     <string notr="true">color:orange</string>
    </property>
    <property name="text">
-    <string>200Kbp/s</string>
+    <string>0Kbp/s</string>
    </property>
   </widget>
   <widget class="QPushButton" name="suspensionButton">
@@ -178,7 +178,7 @@
     <string notr="true">color:orange</string>
    </property>
    <property name="text">
-    <string>200Kbp/s</string>
+    <string>0Kbp/s</string>
    </property>
   </widget>
   <widget class="QLabel" name="uploadAllSpeedValue">
@@ -194,7 +194,7 @@
     <string notr="true">color:orange</string>
    </property>
    <property name="text">
-    <string>200Kbp/s</string>
+    <string>0Kbp/s</string>
    </property>
   </widget>
   <widget class="QLabel" name="uploadAllSpeedLabel">
@@ -226,7 +226,7 @@
     <string notr="true">color:orange</string>
    </property>
    <property name="text">
-    <string>200Kbp/s</string>
+    <string>0Kbp/s</string>
    </property>
   </widget>
   <widget class="QLabel" name="downloadAllSpeedLabel">

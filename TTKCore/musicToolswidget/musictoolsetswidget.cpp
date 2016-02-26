@@ -170,9 +170,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 12:
             {
-#ifdef Q_OS_WIN
                 (new MusicNetworkTestWidget(this))->show();
-#endif
                 break;
             }
         default:

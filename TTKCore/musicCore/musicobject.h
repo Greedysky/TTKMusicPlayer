@@ -42,6 +42,9 @@
 #define MAKE_TRANSFORM     "MPlugins/avconv.dll"
 #define MAKE_RING          "MPlugins/avring.dll"
 #define MAKE_PLAYER        "MPlugins/avplayer.dll"
+#ifdef Q_OS_UNIX
+#define MAKE_NETS          "MPlugins/nets.dll"
+#endif
 
 #define COFIGPATH          "musicconfig.xml"
 #define NETDADIOPATH       "musicradio.dll"
@@ -68,6 +71,9 @@
 #define MAKE_TRANSFORM_AL  MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_RING_AL       MusicObject::getAppDir() + MAKE_RING
 #define MAKE_PLAYER_AL     MusicObject::getAppDir() + MAKE_PLAYER
+#ifdef Q_OS_UNIX
+#define MAKE_NETS_AL       MusicObject::getAppDir() + MAKE_NETS
+#endif
 
 #define COFIGPATH_AL       MusicObject::getAppDir() + COFIGPATH
 #define NETDADIOPATH_AL    MusicObject::getAppDir() + NETDADIOPATH

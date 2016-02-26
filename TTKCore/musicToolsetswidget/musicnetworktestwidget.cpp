@@ -56,7 +56,6 @@ MusicNetworkTestWidget::~MusicNetworkTestWidget()
 {
     delete m_actionGroup;
     m_testTimer.stop();
-    m_thread->stopAndQuitThread();
     delete m_thread;
     delete m_testDownload;
     delete ui;
