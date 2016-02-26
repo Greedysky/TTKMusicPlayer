@@ -79,7 +79,11 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
@@ -200,7 +204,11 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
@@ -269,6 +277,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicdesktopwallpaperwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicfileinformationwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musiclocalsongsmanagerwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworktestwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictimerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictransformwidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebradiowidget.ui
@@ -286,29 +295,36 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicWidget/musicsourceupdatewidget.ui
 )
 
+SET(MUSIC_QRC
+    ${MUSIC_QRC_DIR}/MusicPlayer.qrc
+    ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc
+    ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc
+    ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc
+)
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
 
-  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC_DIR}/MusicPlayer.qrc ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc)
+  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  if(WIN32)
-    target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY})
-  else()
-    target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets ${QMMP_LIBRARY})
+  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} -lIphlpapi)
+  if(UNIX)
+    list(REMOVE_ITEM QT5_LIBS Qt5::WinExtras -lIphlpapi)
   endif()
+  target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
 else()
   QT4_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
 
-  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC_DIR}/MusicPlayer.qrc ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc)
+  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  if(WIN32)
-    target_link_libraries(${TARGET_NAME} ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
-  else(UNIX)
-    target_link_libraries(${TARGET_NAME} ${QMMP_LIBRARY} -lQtMultimediaKit ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
+  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi)
+  if(UNIX)
+    list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi)
+    list(APPEND QT4_LIBS -lQtMultimediaKit)
   endif()
+  target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
 endif()
