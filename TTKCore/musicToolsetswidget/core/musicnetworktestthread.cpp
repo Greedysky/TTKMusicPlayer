@@ -56,11 +56,7 @@ void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
         return;
     }
 
-    if(m_process)
-    {
-        m_process->kill();
-        delete m_process;
-    }
+    delete m_process;
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(outputRecieved()));

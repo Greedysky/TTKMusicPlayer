@@ -128,10 +128,17 @@ void MusicNetworkSuspensionWidget::actionTriggered(QAction *action)
     QList<QAction*> actions = m_actionGroup->actions();
     foreach(QAction *action, actions)
     {
+#if defined Q_OS_WIN
         if(!action->icon().isNull())
         {
             selected << action->text();
         }
     }
+#elif defined Q_OS_UNIX
+        action->setIcon(QIcon());
+    }
+    action->setIcon(QIcon(":/share/selected"));
+    selected << action->text();
+#endif
     m_thread->setAvailableNewtworkNames(selected);
 }
