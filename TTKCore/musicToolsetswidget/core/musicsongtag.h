@@ -48,6 +48,8 @@ public:
     /////////////////////////////////////////////
 
 protected:
+    bool readOtherTaglibNotSupport(const QString &path);
+
     TagReadAndWrite *m_tag;
     QMap<TagReadAndWrite::MusicTag, QString> m_parameters;
 
