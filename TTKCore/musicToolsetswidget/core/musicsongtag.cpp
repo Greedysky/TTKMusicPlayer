@@ -1,11 +1,12 @@
 #include "musicsongtag.h"
 #include "musictime.h"
+#include <QStringList>
+#include <QPluginLoader>
+#include <QFileInfo>
 ///qmmp incldue
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 ///
-#include <QPluginLoader>
-#include <QFileInfo>
 
 MusicSongTag::MusicSongTag()
 {
@@ -53,7 +54,11 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
 #endif
     }
 
-    model = qobject_cast<DecoderFactory*>(loader.instance())->createMetaDataModel(path);
+    QObject *obj = loader.instance();
+    if(obj)
+    {
+        model = qobject_cast<DecoderFactory*>(loader.instance())->createMetaDataModel(path);
+    }
     if(model != NULL)
     {
         QHash<QString, QString> datas = model->audioProperties();
