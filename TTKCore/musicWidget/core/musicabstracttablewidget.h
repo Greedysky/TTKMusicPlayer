@@ -11,9 +11,11 @@
 
 #include <QTableWidget>
 #include <QHeaderView>
+
 #include "musicglobaldefine.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
+#include "musicutils.h"
 
 class MUSIC_WIDGET_EXPORT MusicAbstractTableWidget : public QTableWidget
 {
@@ -29,7 +31,6 @@ public Q_SLOTS:
     virtual void listCellClicked(int row, int column) = 0;
 
 protected:
-    void setTransparent(int angle);
     void setRowColor(int row, const QColor &color) const;
 
     QColor m_defaultBkColor;

@@ -10,7 +10,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
 {
     setColumnCount(8);
     resizeWindow(1.0f);
-    setTransparent(255);
+    MusicUtils::setTransparent(this, 255);
 
     MusicTime::timeSRand();
     M_CONNECTION->setValue("MusicVideoTableWidget", this);

@@ -29,7 +29,6 @@ public Q_SLOTS:
     void addListWidgetItem();
 
 protected:
-    void setTransparent(int angle);
     void clearAllItems();
 
     MusicWebRadioWidget *m_radioDialog;

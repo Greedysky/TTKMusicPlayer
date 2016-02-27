@@ -54,6 +54,13 @@ void MusicUtils::setLabelFont(QWidget *widget, int size)
     widget->setFont(font);
 }
 
+void MusicUtils::setTransparent(QWidget *widget, int alpha)
+{
+    QPalette pal = widget->palette();
+    pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
+    widget->setPalette(pal);
+}
+
 void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
 {
     if(object->isEditable())

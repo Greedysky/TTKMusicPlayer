@@ -26,7 +26,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_mouseMoved = false;
     m_transparent = 0;
 
-    MusicAbstractTableWidget::setTransparent(0);
+    MusicUtils::setTransparent(this, 0);
 #ifndef MUSIC_QT_5
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \

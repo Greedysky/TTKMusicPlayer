@@ -6,6 +6,7 @@
 #include "musicdesktopwallpaperwidget.h"
 #include "musicconnectionpool.h"
 #include "musicnetworktestwidget.h"
+#include "musicutils.h"
 
 #include <QProcess>
 #include <QTimer>
@@ -26,7 +27,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setSpacing(19);
     QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
 #endif
-    setTransparent(50);
+    MusicUtils::setTransparent(this, 50);
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
 
@@ -43,14 +44,6 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     }
     delete m_process;
     clearAllItems();
-}
-
-void MusicToolSetsWidget::setTransparent(int angle)
-{
-    QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255, 255, 255, angle)));
-    setPalette(pal);
-    repaint();
 }
 
 void MusicToolSetsWidget::clearAllItems()

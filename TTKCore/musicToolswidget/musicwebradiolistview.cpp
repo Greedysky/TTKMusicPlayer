@@ -1,5 +1,6 @@
 #include "musicwebradiolistview.h"
 #include "musicwebradiowidget.h"
+#include "musicutils.h"
 
 #include <QTimer>
 
@@ -12,7 +13,7 @@ MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    setTransparent(50);
+    MusicUtils::setTransparent(this, 50);
 #ifdef Q_OS_WIN
     setSpacing(20);
     addListWidgetItem();
@@ -28,14 +29,6 @@ MusicWebRadioListView::~MusicWebRadioListView()
 {
     delete m_radioDialog;
     clearAllItems();
-}
-
-void MusicWebRadioListView::setTransparent(int angle)
-{
-    QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(255, 255, 255, angle)));
-    setPalette(pal);
-    repaint();
 }
 
 void MusicWebRadioListView::clearAllItems()

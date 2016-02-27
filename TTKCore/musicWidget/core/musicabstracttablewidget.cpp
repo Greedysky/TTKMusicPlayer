@@ -33,7 +33,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
-    setTransparent(50);
+    MusicUtils::setTransparent(this, 50);
     m_previousColorRow = -1;
     m_previousClickRow = -1;
     m_defaultBkColor = QColor(255, 255, 255, 0);
@@ -51,13 +51,6 @@ void MusicAbstractTableWidget::clear()
 {
     clearContents();
     setRowCount(0);
-}
-
-void MusicAbstractTableWidget::setTransparent(int angle)
-{
-    QPalette pal = palette();
-    pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, angle)));
-    setPalette(pal);
 }
 
 void MusicAbstractTableWidget::listCellEntered(int row, int column)

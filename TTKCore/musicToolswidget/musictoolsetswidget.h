@@ -30,7 +30,6 @@ public Q_SLOTS:
     void addListWidgetItem();
 
 protected:
-    void setTransparent(int angle);
     void clearAllItems();
 
     QProcess *m_process;

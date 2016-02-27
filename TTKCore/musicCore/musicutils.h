@@ -26,6 +26,7 @@ public:
     static QString getLanguageName(int index);
 
     static void setLabelFont(QWidget *widget, int size);
+    static void setTransparent(QWidget *widget, int alpha);
     static void setComboboxText(QComboBox *object, const QString &text);
 
     static QString size2Number(qint64 size);

@@ -56,7 +56,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
     setColumnCount(1);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
-    setTransparent(255);
+    MusicUtils::setTransparent(this, 255);
 }
 
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
