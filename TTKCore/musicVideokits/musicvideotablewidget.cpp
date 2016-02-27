@@ -139,10 +139,10 @@ void MusicVideoTableWidget::downloadLocalFromControl()
 
 void MusicVideoTableWidget::downloadLocalMovie(int row)
 {
-    MusicDownloadWidget download;
-    download.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(),
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(),
                          MusicDownLoadQueryThreadAbstract::MovieQuery);
-    download.exec();
+    download->show();
 }
 
 void MusicVideoTableWidget::resizeWindow(float delta)

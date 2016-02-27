@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstractmovedialog.h"
+#include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
 #ifndef USE_MULTIPLE_QUERY
 #  include "musicdownloadquerysinglethread.h"
@@ -63,7 +63,7 @@ protected:
 };
 
 
-class MUSIC_WIDGET_EXPORT MusicDownloadWidget : public MusicAbstractMoveDialog
+class MUSIC_WIDGET_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -73,7 +73,7 @@ public:
     void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
 
 public Q_SLOTS:
-    virtual int exec();
+    void show();
     void queryAllFinished();
     void downloadDirSelected();
     void startToDownload();

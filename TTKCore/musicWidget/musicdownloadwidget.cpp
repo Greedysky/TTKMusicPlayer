@@ -106,7 +106,7 @@ int MusicDownloadTableWidget::getCurrentBitrate()
 
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicDownloadWidget)
 {
     ui->setupUi(this);
@@ -115,6 +115,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_TranslucentBackground);
 #ifndef USE_MULTIPLE_QUERY
        m_downloadThread = new MusicDownLoadQuerySingleThread(this);
 #else
@@ -157,11 +159,11 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
     m_downloadThread->startSearchSong(m_queryType = type, name);
 }
 
-int MusicDownloadWidget::exec()
+void MusicDownloadWidget::show()
 {
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
-    return MusicAbstractMoveDialog::exec();
+    return MusicAbstractMoveWidget::show();
 }
 
 void MusicDownloadWidget::queryAllFinished()
