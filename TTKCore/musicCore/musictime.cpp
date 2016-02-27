@@ -92,11 +92,17 @@ bool MusicTime::isValid() const
              m_msec == 0);
 }
 
-void MusicTime::fromString(const QString &s, const QString &format)
+MusicTime MusicTime::fromString(const QString &s, const QString &format)
 {
-    QTime t;
-    t.fromString(s, format);
-    setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
+    MusicTime musicTime;
+    QTime t = QTime::fromString(s, format);
+    musicTime.setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
+    return musicTime;
+}
+
+QString MusicTime::toString(qint64 value, Type type, const QString &format)
+{
+    return MusicTime(value, type).toString(format);
 }
 
 QString MusicTime::toString(const QString &format)

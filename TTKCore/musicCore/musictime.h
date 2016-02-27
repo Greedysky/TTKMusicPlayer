@@ -44,7 +44,8 @@ public:
     int getSecond() const {return m_sec;}
     int getMillionSecond() const {return m_msec;}
 
-    void fromString(const QString &s, const QString &format);
+    static MusicTime fromString(const QString &s, const QString &format);
+    static QString toString(qint64 value, Type type, const QString &format);
     QString toString(const QString &format);
 //    h	the hour without a leading zero (0 to 23 or 1 to 12 if AM/PM display)
 //    hh	the hour with a leading zero (00 to 23 or 01 to 12 if AM/PM display)

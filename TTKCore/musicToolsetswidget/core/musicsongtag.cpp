@@ -57,8 +57,7 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     if(model != NULL)
     {
         QHash<QString, QString> datas = model->audioProperties();
-        MusicTime t;
-        t.fromString(datas.value("Length"), QString("m:ss"));
+        MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));
         m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t.toString("mm:ss"));
         m_parameters.insert(TagReadAndWrite::TAG_SAMPLERATE, datas.value("Sample rate"));
         m_parameters.insert(TagReadAndWrite::TAG_BITRATE, datas.value("Bitrate"));
