@@ -453,19 +453,11 @@ void MusicApplication::durationChanged(qint64 duration)
 
 void MusicApplication::showCurrentSong(int index)
 {
+    QString name;
     if( index > -1 ) //The list to end
     {
-        m_musicSongTree->selectRow(index);      
-        QString name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex())[index];
-        ui->showCurrentSong->setText( name );
-        //Show the current play song information
-        M_BG_MANAGER->clearArtName();
-        m_rightAreaWidget->musicCheckHasLrcAlready();
-        m_bottomAreaWidget->setLabelText(name);
-        m_topAreaWidget->setLabelText(name);
-        //display current ArtTheme pic
-        M_BG_MANAGER->setArtName(getCurrentFileName());
-        m_topAreaWidget->musicBgThemeDownloadFinished();
+        m_musicSongTree->selectRow(index);
+        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex())[index];
     }
     else
     {
@@ -477,7 +469,21 @@ void MusicApplication::showCurrentSong(int index)
         m_bottomAreaWidget->showPlayStatus(m_playControl);
         m_rightAreaWidget->showPlayStatus(m_playControl);
         m_topAreaWidget->showPlayStatus(m_playControl);
+        ui->musicTimeWidget->setPlayState(m_playControl);
+
+        durationChanged(0);
+        positionChanged(0);
+        m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
+    ui->showCurrentSong->setText(name);
+    //Show the current play song information
+    M_BG_MANAGER->clearArtName();
+    m_rightAreaWidget->musicCheckHasLrcAlready();
+    m_bottomAreaWidget->setLabelText(name);
+    m_topAreaWidget->setLabelText(name);
+    //display current ArtTheme pic
+    M_BG_MANAGER->setArtName(getCurrentFileName());
+    m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 
 void MusicApplication::stateChanged()

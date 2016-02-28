@@ -45,7 +45,7 @@ public Q_SLOTS:
     void positionChanged(qint64 position);
     void durationChanged(qint64 duration);
     void stateChanged();
-    void showCurrentSong(int);
+    void showCurrentSong(int index);
     void musicKey();
     void musicPlayPrivious();
     void musicPlayNext();

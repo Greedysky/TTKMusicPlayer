@@ -191,6 +191,10 @@ void MusicSongsSummarizied::setTransparent(int alpha)
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
+    if(index < 0)
+    {
+        return;
+    }
     MusicSongs *songs = &m_musicFileNames[m_currentIndexs];
     if(!songs->isEmpty())
     {
@@ -394,7 +398,10 @@ void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
 
 void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)
 {
-    m_mainSongLists[m_currentIndexs]->replacePlayWidgetRow();
+    if(!m_musicFileNames[m_currentIndexs].isEmpty())
+    {
+        m_mainSongLists[m_currentIndexs]->replacePlayWidgetRow();
+    }
     m_currentIndexs = index;
 }
 
