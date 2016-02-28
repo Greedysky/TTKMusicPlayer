@@ -48,6 +48,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
     }
 
+    connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     connect(m_mainSongLists[0], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
     connect(m_mainSongLists[2], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
@@ -278,7 +279,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     }
     ///when download finished just play it at once
     QToolBox::setCurrentIndex(2);
-    emit m_mainSongLists[2]->cellDoubleClicked(m_musicFileNames[2].count() - 1, 0);
+    emit musicPlayIndex(m_musicFileNames[2].count() - 1, 0);
 }
 
 void MusicSongsSummarizied::deleteItem()

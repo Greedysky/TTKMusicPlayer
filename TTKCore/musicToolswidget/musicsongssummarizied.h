@@ -50,6 +50,7 @@ Q_SIGNALS:
     void showCurrentSong(int index);
     void updateMediaLists(const QStringList &list, int index);
     void clearSearchText();
+    void musicPlayIndex(int row, int col);
 
 public Q_SLOTS:
     void addNewItem();
