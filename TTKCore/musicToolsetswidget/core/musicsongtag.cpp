@@ -1,11 +1,14 @@
 #include "musicsongtag.h"
 #include "musictime.h"
+#include "musicobject.h"
+
 #include <QStringList>
 #include <QPluginLoader>
 #include <QFileInfo>
 ///qmmp incldue
 #include "decoderfactory.h"
 #include "metadatamodel.h"
+#include "decoder.h"
 ///
 
 MusicSongTag::MusicSongTag()
@@ -34,44 +37,65 @@ bool MusicSongTag::readFile(const QString &file)
 bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
 {
     QPluginLoader loader;
-    MetaDataModel *model = NULL;
     QString suffix = QFileInfo(path).suffix().toLower();
 
     if(suffix == "aac")
     {
 #ifdef Q_OS_WIN
+#  ifdef MUSIC_QT_5
         loader.setFileName("plugins/Input/aac.dll");
+#  else
+        loader.setFileName("../bin/plugins/Input/aac.dll");
+#  endif
 #elif defined Q_OS_UNIX
+#  ifdef MUSIC_QT_5
         loader.setFileName("qmmp/Input/aac.dll");
+#  else
+        loader.setFileName("../lib/qmmp/Input/aac.dll");
+#  endif
 #endif
     }
     else if(suffix == "mid")
     {
 #ifdef Q_OS_WIN
+#  ifdef MUSIC_QT_5
         loader.setFileName("plugins/Input/wildmidi.dll");
+#  else
+        loader.setFileName("../bin/plugins/Input/wildmidi.dll");
+#  endif
 #elif defined Q_OS_UNIX
+#  ifdef MUSIC_QT_5
         loader.setFileName("qmmp/Input/wildmidi.dll");
+#  else
+        loader.setFileName("../lib/qmmp/Input/wildmidi.dll");
+#  endif
 #endif
     }
 
     QObject *obj = loader.instance();
-    if(obj)
+    DecoderFactory *decoderfac = NULL;
+    if(obj && (decoderfac = qobject_cast<DecoderFactory*>( obj )) )
     {
-        model = qobject_cast<DecoderFactory*>(loader.instance())->createMetaDataModel(path);
+        MetaDataModel *model = decoderfac->createMetaDataModel(path);
+        if(model != NULL)
+        {
+            QHash<QString, QString> datas = model->audioProperties();
+            MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));
+            QString ts = QString::number(t.getTimeStamp(MusicTime::All_Msec));
+            m_parameters.insert(TagReadAndWrite::TAG_LENGTH, ts);
+            m_parameters.insert(TagReadAndWrite::TAG_SAMPLERATE, datas.value("Sample rate"));
+            m_parameters.insert(TagReadAndWrite::TAG_BITRATE, datas.value("Bitrate"));
+        }
+
+        QList<FileInfo*> infos(decoderfac->createPlayList(path, true, 0));
+        if(!infos.isEmpty())
+        {
+            QString t = QString::number(infos.first()->length()*1000);
+            m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t);
+        }
     }
-    if(model != NULL)
-    {
-        QHash<QString, QString> datas = model->audioProperties();
-        MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));
-        m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t.toString("mm:ss"));
-        m_parameters.insert(TagReadAndWrite::TAG_SAMPLERATE, datas.value("Sample rate"));
-        m_parameters.insert(TagReadAndWrite::TAG_BITRATE, datas.value("Bitrate"));
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+
+    return !m_parameters.isEmpty();
 }
 
 QString MusicSongTag::getArtist() const
