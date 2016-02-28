@@ -23,7 +23,17 @@ public:
         m_para[type] = object;
     }
 
-    inline QObject* value(QString type) const
+    inline QObject* value(const QString &type) const
+    {
+        return m_para[type];
+    }
+
+    inline const QObject* operator[](const QString &type) const
+    {
+        return value(type);
+    }
+
+    inline QObject* &operator[](const QString &type)
     {
         return m_para[type];
     }
