@@ -15,27 +15,66 @@
 #define M_BG_MANAGER (MusicSingleton<MusicBgThemeManager>::createInstance())
 #define MAX_INDEX 5
 
+/*! @brief The class of the manager of dealing with artist pictures.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
 {
     Q_OBJECT
 public:
     void setArtName(const QString &name);
+    /*!
+     * Set current artist name.
+     */
     void clearArtName();
+    /*!
+     * Remove current artist name.
+     */
 
     inline int getArtPhotoCount() const { return m_photos.count(); }
+    /*!
+     * Get artist photo count.
+     */
     QString getArtPhotoPath();
+    /*!
+     * Get artist photo path.
+     */
     QString getArtPhotoPathByIndex(int index = -1) const;
+    /*!
+     * Get artist photo path by given index.
+     */
 
     QStringList getArtPhotoPaths() const;
+    /*!
+     * Get artist photo path list.
+     */
     void setArtPhotoPaths(const QStringList &list);
+    /*!
+     * Set artist photo path by given path list.
+     */
     void setUserSelectArtIndex(int index);
+    /*!
+     * Set user select current index.
+     */
 
     void setMBackground(const QString &path) { m_MBackground = path;}
+    /*!
+     * Set artist background picture by path.
+     */
     QString getMBackground() const {return m_MBackground;}
+    /*!
+     * Get artist background picture path.
+     */
 
 Q_SIGNALS:
     void artHasChanged();
+    /*!
+     * New art has been set emit.
+     */
     void userSelectIndexChanged();
+    /*!
+     * User selected index changed emit.
+     */
 
 protected:
     MusicBgThemeManager();

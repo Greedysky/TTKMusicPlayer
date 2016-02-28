@@ -16,36 +16,77 @@
 
 class QNetworkAccessManager;
 
+/*! @brief The class to abstract query download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
     enum QueryType
     {
-        MusicQuery,
-        MovieQuery,
-        LrcQuery
+        MusicQuery, ///*query music*/
+        MovieQuery, ///*query movie*/
+        LrcQuery    ///*query lrc*/
     };
 
     explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicDownLoadQueryThreadAbstract();
 
     void deleteAll();
+    /*!
+     * Release the network object.
+     */
     virtual void startSearchSong(QueryType type, const QString &text) = 0;
+    /*!
+     * Start to search data from name and type.
+     * Subclass should implement this function.
+     */
     void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
+    /*!
+     * Set search data quality.
+     */
     void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    /*!
+     * Set wheather query all quality of records.
+     */
     inline int getSongIdIndex() const { return m_musicSongInfos.size() + 1;}
+    /*!
+     * Return the current song container size.
+     */
     inline const MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
+    /*!
+     * Return the current song container.
+     */
 
 Q_SIGNALS:
     void resolvedSuccess();
+    /*!
+     * Query data finished.
+     */
     void clearAllItems();
+    /*!
+     * Clear all items before the new query start.
+     */
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time);
+    /*!
+     * Create the current items by song name\ artist name and time.
+     */
 
 public Q_SLOTS:
     virtual void searchFinshed() = 0;
+    /*!
+     * Download data from net finished.
+     * Subclass should implement this function.
+     */
     void replyError(QNetworkReply::NetworkError error);
+    /*!
+     * Download reply error.
+     */
 
 protected:
     QNetworkAccessManager *m_manager;

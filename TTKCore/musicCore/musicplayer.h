@@ -20,77 +20,176 @@
 class SoundCore;
 class MusicPlaylist;
 
+/*! @brief The class of the music player.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 {
     Q_OBJECT
 public:
     enum State
     {
-        StoppedState,
-        PlayingState,
-        PausedState
+        StoppedState,   ///*stop state*/
+        PlayingState,   ///*play state*/
+        PausedState     ///*pause state*/
     };
 
     enum Enhanced
     {
-        EnhancedOff,
-        Music3D,
-        MusicVocal,
-        MusicNICAM,
-        MusicSubwoofer
+        EnhancedOff,    ///*enhanced off, no any effect*/
+        Music3D,        ///*3d music effect*/
+        MusicVocal,     ///*vocal music effect*/
+        MusicNICAM,     ///*nicam music effect*/
+        MusicSubwoofer  ///*subwoofer music effect*/
     };
 
     explicit MusicPlayer(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicPlayer();
 
     State state() const;
+    /*!
+     * Get current player state.
+     */
     void setPlaylist(MusicPlaylist *playlist);
+    /*!
+     * Set current play list.
+     */
     MusicPlaylist *playlist() const;
+    /*!
+     * Get current play list.
+     */
 
     qint64 duration() const;
+    /*!
+     * Get current player duration.
+     */
     qint64 position() const;
+    /*!
+     * Get current player postion.
+     */
 
     void playNext();
+    /*!
+     * Set current player to next music.
+     */
     void playPrivious();
+    /*!
+     * Set current player to privious music.
+     */
 
     int volume() const;
+    /*!
+     * Set current player volume.
+     */
     void setVolume(int volume);
+    /*!
+     * Get current player volume.
+     */
     bool isMuted() const;
+    /*!
+     * Get current player mute state.
+     */
     void setMuted(bool muted);
+    /*!
+     * Set current player mute or not.
+     */
     void setPosition(qint64 position);
+    /*!
+     * Set current play pos.
+     */
 
     void setMusicEnhanced(Enhanced type);
+    /*!
+     * Set current music enhanced effect.
+     */
     Enhanced getMusicEnhanced() const;
+    /*!
+     * Get current music enhanced effect.
+     */
 
     static QStringList supportFormatsString();
+    /*!
+     * Get player supported formats.
+     */
     static QStringList supportFormatsFilterString();
+    /*!
+     * Get player supported formats filter.
+     */
     static QStringList supportFormatsFilterDialogString();
+    /*!
+     * Get player supported formats filter dialog.
+     */
 
 Q_SIGNALS:
     void stateChanged(MusicPlayer::State newState);
-
+    /*!
+     * Current state changed.
+     */
     void durationChanged(qint64 duration);
+    /*!
+     * Current duration changed.
+     */
     void positionChanged(qint64 position);
-
+    /*!
+     * Current position changed.
+     */
     void volumeChanged(int volume);
+    /*!
+     * Current volumn changed.
+     */
     void mutedChanged(bool muted);
+    /*!
+     * Current mute state changed.
+     */
 
 public Q_SLOTS:
     void play();
+    /*!
+     * Player to play.
+     */
     void pause();
+    /*!
+     * Player to pause.
+     */
     void stop();
-
+    /*!
+     * Player to stop.
+     */
     void setEqEffect(const MIntList &hz);
+    /*!
+     * Set current equalizer effect.
+     */
     void setEnaleEffect(bool enable);
+    /*!
+     * Set enable to set current equalizer effect.
+     */
     void setEqInformation();
+    /*!
+     * Read equalizer effect from config file.
+     */
 
 private Q_SLOTS:
     void setTimeOut();
+    /*!
+     * Player one second time out.
+     */
     void removeCurrentMedia();
+    /*!
+     * Remove current music media data.
+     */
     void getCurrentDuration();
+    /*!
+     * Get current duration by time out.
+     */
 
 protected:
     void setMusicEnhancedCase();
+    /*!
+     * Set current music enhanced effect option.
+     */
 
     MusicPlaylist *m_playlist;
     State m_state;

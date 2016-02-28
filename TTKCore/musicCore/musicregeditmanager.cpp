@@ -35,14 +35,14 @@ void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
           << "mp2" << "mp3" << "oga" << "ogg";
     for(int i=0; i<types.count(); ++i)
     {
-        if(!currentNodeHasExsit(types[i]))
+        if(!currentNodeHasExist(types[i]))
         {
             createMusicRegedit(types[i], i + 1);
         }
     }
 }
 
-bool MusicRegeditManager::currentNodeHasExsit(const QString &key)
+bool MusicRegeditManager::currentNodeHasExist(const QString &key)
 {
     bool state = false;
     QString keyX = "HKEY_CLASSES_ROOT\\." + key;

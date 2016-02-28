@@ -11,21 +11,42 @@
 
 #include "musicdatadownloadthread.h"
 
+/*! @brief The class of downloading the type of data2.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicData2DownloadThread : public MusicDataDownloadThread
 {
     Q_OBJECT
 public:
     MusicData2DownloadThread(const QString &url, const QString &save,
                              Download_Type type, QObject *parent = 0);
+    /*!
+     * Object contsructor provide download URL\ save local path and download type.
+     */
     void deleteAll();
+    /*!
+     * Release the network object.
+     */
     virtual void startToDownload() override;
+    /*!
+     * Start to download data.
+     */
 
 Q_SIGNALS:
     void data2urlHasChanged(const QString &url);
+    /*!
+     * Emit data2 download finished.
+     */
 
 public Q_SLOTS:
     void dataGetFinished();
+    /*!
+     * Data2 reply finished.
+     */
     void dataReplyError(QNetworkReply::NetworkError error);
+    /*!
+     * Download reply error.
+     */
 
 protected:
     QNetworkAccessManager *m_dataManager;

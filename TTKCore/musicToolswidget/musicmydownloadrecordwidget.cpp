@@ -153,7 +153,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
                                   QUrl::TolerantMode)))
     {
         MusicMessageBox message;
-        message.setText(tr("The origin one does not exsit!"));
+        message.setText(tr("The origin one does not exist!"));
         message.exec();
     }
 }

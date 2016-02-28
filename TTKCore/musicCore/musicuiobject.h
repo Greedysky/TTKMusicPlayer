@@ -11,6 +11,9 @@
 
 #include <QObject>
 
+/*! @brief The namespace of the application ui object.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicUIObject
 {
 ///Custom

@@ -11,16 +11,28 @@
 
 #include "musicdownloadthreadabstract.h"
 
+/*! @brief The class of downloading the type of txt.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicTextDownLoadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
     MusicTextDownLoadThread(const QString &url, const QString &save,
                             Download_Type type, QObject *parent = 0);
+    /*!
+     * Object contsructor provide download URL\ save local path and download type.
+     */
     virtual void startToDownload() override;
+    /*!
+     * Start to download data.
+     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() override;
+    /*!
+     * Download data from net finished.
+     */
 
 };
 #endif // MUSICTEXTDOWNLOADTHREAD_H

@@ -13,32 +13,65 @@
 
 typedef struct DownloadData
 {
-    QString url;
-    QString savePath;
+    QString url;        ///*download url*/
+    QString savePath;   ///*save local path*/
 }DownloadData;
 
+/*! @brief The class to download data from cache queue.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicDownloadQueueCache : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
     MusicDownloadQueueCache(const QString &url, const QString &save,
                             Download_Type type, QObject *parent = 0);
+    /*!
+     * Object contsructor provide download URL\ save local path and download type.
+     */
     MusicDownloadQueueCache(const QStringList &url, const QStringList &save,
                             Download_Type type, QObject *parent = 0);
+    /*!
+     * Object contsructor provide download URLs\ save local paths and download type.
+     */
     ~MusicDownloadQueueCache();
 
     void addImageQueue(const QStringList &url, const QStringList &savePath);
+    /*!
+     * Add image download url and save path to download queue.
+     */
     virtual void startToDownload() override;
+    /*!
+     * Start to download data.
+     */
     void abort();
+    /*!
+     * Abort current download thread.
+     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() override;
+    /*!
+     * Download data from net finished.
+     */
     void readyReadSlot();
+    /*!
+     * Download received data ready.
+     */
     void errorSlot(QNetworkReply::NetworkError code);
+    /*!
+     * Download reply error.
+     */
 
 protected:
     void startDownload(const QString &url);
+    /*!
+     * Start to download data from url.
+     */
     void startOrderImageQueue();
+    /*!
+     * Start to download data in order.
+     */
 
     bool m_isDownload;
     bool m_isAbort;

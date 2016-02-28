@@ -17,11 +17,11 @@ MusicAbstractXml::~MusicAbstractXml()
     delete m_ddom;
 }
 
-bool MusicAbstractXml::readConfig(const QString &type)
+bool MusicAbstractXml::readConfig(const QString &name)
 {
     delete m_file;
     delete m_ddom;
-    m_file = new QFile( type );
+    m_file = new QFile( name );
     m_ddom = new QDomDocument;
     if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text) )
     {
@@ -37,11 +37,11 @@ bool MusicAbstractXml::readConfig(const QString &type)
     return true;
 }
 
-bool MusicAbstractXml::writeConfig(const QString &type)
+bool MusicAbstractXml::writeConfig(const QString &name)
 {
     delete m_file;
     delete m_ddom;
-    m_file = new QFile( type );
+    m_file = new QFile( name );
     m_ddom = new QDomDocument;
     if( !m_file->open(QFile::WriteOnly | QFile::Text) )
     {

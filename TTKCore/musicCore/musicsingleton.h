@@ -14,6 +14,9 @@
 #include "musicglobaldefine.h"
 
 template <typename T>
+/*! @brief The class of the singleton base.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicSingleton
 {
 public:

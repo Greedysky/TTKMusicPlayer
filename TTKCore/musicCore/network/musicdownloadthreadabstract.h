@@ -35,36 +35,64 @@ const QString MUSIC_REQUERY_KW = "http://api.musicuu.com/music/search/kw/%1/1?fo
 const QString MUSIC_REQUERY_KG = "http://api.musicuu.com/music/search/kg/%1/1?format=json"; //kuhouMusic
 const QString MUSIC_REQUERY_DM = "http://api.musicuu.com/music/search/dm/%1/1?format=json"; //duomiMusic
 
-
+/*! @brief The class of abstract downloading data.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
     enum Download_Type
     {
-        Download_Music,
-        Download_Lrc,
-        Download_SmlBG,
-        Download_BigBG,
-        Download_Video,
-        Download_Other
+        Download_Music, ///*type of dwonlaod music*/
+        Download_Lrc,   ///*type of dwonlaod lrc*/
+        Download_SmlBG, ///*type of dwonlaod small background*/
+        Download_BigBG, ///*type of dwonlaod big background*/
+        Download_Video, ///*type of dwonlaod video*/
+        Download_Other  ///*type of dwonlaod other user mod*/
     };
 
     MusicDownLoadThreadAbstract(const QString &url, const QString &save,
                                 Download_Type type, QObject *parent = 0);
+    /*!
+     * Object contsructor provide download URL\ save local path and download type.
+     */
     virtual ~MusicDownLoadThreadAbstract();
 
     void deleteAll();
+    /*!
+     * Release the network object.
+     */
     virtual void startToDownload() = 0;
+    /*!
+     * Start to download data.
+     * Subclass should implement this function.
+     */
 
 Q_SIGNALS:
     void musicDownLoadFinished(const QString &name);
+    /*!
+     * Data download is finished, get the type of download type.
+     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() = 0;
+    /*!
+     * Download data from net finished.
+     * Subclass should implement this function.
+     */
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    /*!
+     * Get download received and total data.
+     */
     void replyError(QNetworkReply::NetworkError error);
+    /*!
+     * Download reply error.
+     */
     void updateDownloadSpeed();
+    /*!
+     * Updata download speed due the user mod the net speed limited.
+     */
 
 protected:
     QNetworkAccessManager *m_manager;

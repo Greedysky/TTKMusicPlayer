@@ -18,20 +18,38 @@
 #define NETWORK_DETECT_INTERVAL 5000             // second
 #define NETWORK_REQUEST_ADDRESS "www.baidu.com"  // ip
 
+/*! @brief The class of thread to check current network.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
 public:
     void start();
+    /*!
+     * Strat thread now.
+     */
     void setBlockNetWork(int block);
+    /*!
+     * Set flag wheather to block current network.
+     */
     inline bool isOnline() const {return m_networkState;}
+    /*!
+     * Check current network is on.
+     */
 
 Q_SIGNALS:
     void networkConnectionStateChanged(bool state);
-    //default status is true, means connected network
+    /*!
+     * Network connection state changed.
+     * default status is true, means connected network.
+     */
 
 public Q_SLOTS:
     void networkStateChanged();
+    /*!
+     * Network connection state changed.
+     */
 
 private:
     QTimer m_timer;

@@ -12,21 +12,43 @@
 #include <QObject>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the windows regedit manager.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicRegeditManager
 {
 public:
     MusicRegeditManager() = default;
+    /*!
+     * Object contsructor.
+     */
 
     void setMusicRegeditAssociateFileIcon();
+    /*!
+     * Set music regedit associate file icon.
+     */
     void setDesktopWallAutoStart(bool state);
-    void getDesktopWallControlPanel(QString &originPath,
-                                    int &originType);
-    void setDesktopWallControlPanel(const QString &originPath,
-                                    int originType);
+    /*!
+     * Set desktop wall auto start.
+     */
+    void getDesktopWallControlPanel(QString &originPath, int &originType);
+    /*!
+     * Get desktop wall control panel.
+     */
+    void setDesktopWallControlPanel(const QString &originPath, int originType);
+    /*!
+     * Set desktop wall control panel.
+     */
 
 protected:
-    bool currentNodeHasExsit(const QString &key);
+    bool currentNodeHasExist(const QString &key);
+    /*!
+     * Check current regedit item has exist.
+     */
     void createMusicRegedit(const QString &key, int index);
+    /*!
+     * Create music regedit item.
+     */
 
 };
 

@@ -26,6 +26,9 @@
     #define M_LOGGERS(str)
 #endif
 
+/*! @brief The class of the application logger.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicLogger
 {
 public:
@@ -87,6 +90,9 @@ private:
         m_stream << QString().rightJustified(70, '=') << endl;
 #endif
     }
+    /*!
+     * Object contsructor.
+     */
 
     ~MusicLogger()
     {
@@ -105,6 +111,9 @@ private:
 #endif
         return *this;
     }
+    /*!
+     * Output debug data into local file.
+     */
 
     QTextStream m_stream;
     QString m_streamString;

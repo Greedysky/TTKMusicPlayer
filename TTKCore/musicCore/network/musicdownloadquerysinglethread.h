@@ -11,17 +11,29 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
+/*! @brief The class to single query download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_NETWORK_EXPORT MusicDownLoadQuerySingleThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
     explicit MusicDownLoadQuerySingleThread(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicDownLoadQuerySingleThread();
 
     virtual void startSearchSong(QueryType type, const QString &text) override;
+    /*!
+     * Start to Search data from name and type.
+     */
 
 public Q_SLOTS:
     virtual void searchFinshed() override;
+    /*!
+     * Download data from net finished.
+     */
 
 };
 

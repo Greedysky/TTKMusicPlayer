@@ -142,35 +142,31 @@ typedef struct MusicSongInfomation
 }MusicSongInfomation;
 typedef QList<MusicSongInfomation> MusicSongInfomations;
 
-
+/*! @brief The namespace of the application object.
+ * @author Greedysky <greedysky@163.com>
+ */
 namespace MusicObject
 {
     enum DownLoadType
     {
-        DisConnection,
-        DownLoading,
-        Buffing,
-        Waiting
+        DisConnection,  ///*network disable*/
+        DownLoading,    ///*network download*/
+        Buffing,        ///*network buffing*/
+        Waiting         ///*network waiting*/
     };
 
     enum SongPlayType
     {
-        MC_PlayOrder = 1,
-        MC_PlayRandom,
-        MC_PlayListLoop,
-        MC_PlayOneLoop,
-        MC_PlayOnce
+        MC_PlayOrder = 1,   ///*play order*/
+        MC_PlayRandom,      ///*play random*/
+        MC_PlayListLoop,    ///*play list loop*/
+        MC_PlayOneLoop,     ///*play single loop*/
+        MC_PlayOnce         ///*play just once*/
     };
 
     static QString getAppDir()
     {
-        QString path = QApplication::applicationDirPath();
-//#ifdef QT_DEBUG
-//        path.chop(5);
-//        return path;
-//#else
-        return path + "/";
-//#endif
+        return QApplication::applicationDirPath() + "/";
     }
 }
 
