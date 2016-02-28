@@ -272,6 +272,9 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     {
         emit updatePlayLists(path);
     }
+    ///when download finished just play it at once
+    QToolBox::setCurrentIndex(2);
+    emit m_mainSongLists[2]->cellDoubleClicked(m_musicFileNames[2].count() - 1, 0);
 }
 
 void MusicSongsSummarizied::deleteItem()

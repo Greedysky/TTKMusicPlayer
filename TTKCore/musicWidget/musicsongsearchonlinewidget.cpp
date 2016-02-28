@@ -73,6 +73,15 @@ void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
     startSearchQuery(m_searchText);
 }
 
+void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
+{
+    if(m_downloadDatas.count() == 3)
+    {
+        emit muiscSongToPlayListChanged(m_downloadDatas[0], m_downloadDatas[1], m_downloadDatas[2]);
+    }
+    m_downloadDatas.clear();
+}
+
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
     MusicAbstractTableWidget::clear();
@@ -228,6 +237,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
+    connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
 
     (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
@@ -242,7 +252,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     ///download big picture
     (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
-    emit muiscSongToPlayListChanged( musicSong, item(row, 3)->text(), musicSongAttr.m_format);
+    m_downloadDatas.clear();
+    m_downloadDatas << musicSong << item(row, 3)->text() << musicSongAttr.m_format;
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)

@@ -47,6 +47,7 @@ public Q_SLOTS:
     void itemDoubleClicked(int row, int column) override;
     void actionGroupClick(QAction *action) override;
     void researchQueryByQuality();
+    void searchDataDwonloadFinished();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -55,6 +56,7 @@ protected:
     MusicCoreMPlayer *m_audition;
     int m_previousAuditionRow;
     QString m_searchText;
+    QStringList m_downloadDatas;
 
 };
 
@@ -77,6 +79,7 @@ public Q_SLOTS:
 
 protected:
     void createToolWidget();
+
     QLabel *m_textLabel;
     QPushButton *m_playButton;
     MusicSongSearchOnlineTableWidget *m_searchTableWidget;
