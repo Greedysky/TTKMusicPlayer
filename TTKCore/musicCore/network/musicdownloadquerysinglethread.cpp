@@ -136,7 +136,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                     {
                         if(!m_queryAllRecords)
                         {
-                            emit creatSearchedItems(songName, singerName, duration);
+                            emit createSearchedItems(songName, singerName, duration);
                         }
                         musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
@@ -162,7 +162,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                             songAttr.m_size = object.value("size").toString();
                             musicInfo.m_songAttrs << songAttr;
                         }
-                        emit creatSearchedItems(songName, singerName, object.value("duration").toString());
+                        emit createSearchedItems(songName, singerName, object.value("duration").toString());
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
                         m_musicSongInfos << musicInfo;
@@ -237,7 +237,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                         {
                             if(!m_queryAllRecords)
                             {
-                                emit creatSearchedItems(songName, singerName, duration);
+                                emit createSearchedItems(songName, singerName, duration);
                             }
                             musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
                             musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
@@ -268,7 +268,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                                 songAttr.m_size = mvUrlIt.value().property("size").toString();
                                 musicInfo.m_songAttrs << songAttr;
                             }
-                            emit creatSearchedItems(songName, singerName,
+                            emit createSearchedItems(songName, singerName,
                                                     mvUrlIt.value().property("duration").toString());
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;

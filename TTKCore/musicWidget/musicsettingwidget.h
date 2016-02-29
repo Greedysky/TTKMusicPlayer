@@ -20,68 +20,151 @@ namespace Ui {
 class MusicSettingWidget;
 }
 
-
+/*! @brief The class of the list table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicFunctionTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicFunctionTableWidget();
 
     void addFunctionItems(int index, const QStringList &icon, const QStringList &path);
+    /*!
+     * Add table list items by index and icons and paths.
+     */
 
 Q_SIGNALS:
     void currentIndexChanged(int index);
+    /*!
+     * Current list index changed.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
 
 protected:
     virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     int m_listIndex;
 };
 
 
+/*! @brief The class of the setting parameters widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     enum Type
     {
-        Inline,
-        Desktop
+        Inline, ///*lrc inline type*/
+        Desktop ///*lrc desktop type*/
     };
 
     explicit MusicSettingWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSettingWidget();
 
     void initControllerParameter();
+    /*!
+     * Init controller parameter to widget.
+     */
 
 Q_SIGNALS:
     void parameterSettingChanged();
+    /*!
+     * Parameters setting changed emit.
+     */
 
 public Q_SLOTS:
     void downloadGroupCached(int index);
+    /*!
+     * Set enable or disable download cache.
+     */
     void downloadGroupSpeedLimit(int index);
+    /*!
+     * Set enable or disable download speed limit.
+     */
     void downloadDirSelected(int index);
+    /*!
+     * Set select download dir or lrc dir.
+     */
     void changeInlineLrcWidget();
+    /*!
+     * Change to inline lrc widget.
+     */
     void changeDesktopLrcWidget();
+    /*!
+     * Change to desktop lrc widget.
+     */
     void commitTheResults();
+    /*!
+     * Save the change results.
+     */
 
     void inlineLrcFgChanged();
+    /*!
+     * Inline lrc foreground change.
+     */
     void inlineLrcBgChanged();
+    /*!
+     * Inline lrc background change.
+     */
     void defaultLrcColorChanged(int index);
+    /*!
+     * Default lrc color change by index.
+     */
     void inlineLrcTransChanged(int index);
-    void showInlineLrcDemo(int index);
+    /*!
+     * Inline lrc transparent changed by index.
+     */
+    void showInlineLrcDemo();
+    /*!
+     * Show inline lrc preview.
+     */
     void resetInlineParameter();
+    /*!
+     * Reset inline parameter.
+     */
 
     void desktopFgChanged();
+    /*!
+     * Desktop lrc foreground change.
+     */
     void desktopBgChanged();
+    /*!
+     * Desktop lrc background change.
+     */
     void defaultDesktopLrcColorChanged(int index);
+    /*!
+     * Default desktop lrc color change by index.
+     */
     void desktopLrcTransChanged(int index);
-    void showDesktopLrcDemo(int index);
+    /*!
+     * Desktop lrc transparent changed by index.
+     */
+    void showDesktopLrcDemo();
+    /*!
+     * Show desktop lrc preview.
+     */
     void resetDesktopParameter();
+    /*!
+     * Reset desktop parameter.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -89,11 +172,29 @@ public Q_SLOTS:
 
 protected:
     void initInlineLrcWidget();
+    /*!
+     * Init inline lrc stack widget.
+     */
     void initDesktopLrcWidget();
+    /*!
+     * Init desktop lrc stack widget.
+     */
     void initDownloadWidget();
-    void lcrColorValue(Type key, QString type, QPushButton *obj);
+    /*!
+     * Init download stack widget.
+     */
+    void lcrColorValue(Type key, const QString &type, QPushButton *obj);
+    /*!
+     * Set lrc color value by type and value type.
+     */
     void lrcColorByDefault(Type key, int index);
-    void lrcTransparentValue(Type key, int index) const;
+    /*!
+     * Set lrc default color by type and index.
+     */
+    void lrcTransparentValue(Type key, int value) const;
+    /*!
+     * Set lrc transparent by type and value.
+     */
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg, m_lrcSelectedBg;

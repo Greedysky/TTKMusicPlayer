@@ -162,7 +162,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
                 {
                     continue;
                 }
-                emit creatSearchedItems(songName, singerName, duration);
+                emit createSearchedItems(songName, singerName, duration);
 
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
@@ -184,7 +184,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
                 {
                     continue;
                 }
-                emit creatSearchedItems(songName, singerName, duration);
+                emit createSearchedItems(songName, singerName, duration);
 
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
@@ -234,7 +234,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
                     {
                         continue;
                     }
-                    emit creatSearchedItems(songName, singerName, duration);
+                    emit createSearchedItems(songName, singerName, duration);
 
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
@@ -256,7 +256,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
                     {
                         continue;
                     }
-                    emit creatSearchedItems(songName, singerName, duration);
+                    emit createSearchedItems(songName, singerName, duration);
 
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;

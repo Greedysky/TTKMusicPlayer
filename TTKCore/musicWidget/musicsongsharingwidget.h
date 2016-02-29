@@ -27,14 +27,23 @@ namespace Ui {
 class MusicSongSharingWidget;
 }
 
+/*! @brief The class of the song share widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     explicit MusicSongSharingWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSongSharingWidget();
 
     void setSongName(const QString &name);
+    /*!
+     * Set current name to share.
+     */
 
 public Q_SLOTS:
     virtual int exec();
@@ -42,10 +51,25 @@ public Q_SLOTS:
      * Override exec function.
      */
     void textAreaChanged();
+    /*!
+     * User custom the current share text.
+     */
     void confirmButtonClicked();
+    /*!
+     * Confirm button clicked.
+     */
     void data2urlHasChanged(const QString &imageUrl);
+    /*!
+     * Data2 download finished and send to shared on web.
+     */
     void queryUrlTimeout();
+    /*!
+     * Query url time out, that means share failed.
+     */
     void close();
+    /*!
+     * Override close function.
+     */
 
 protected:
     Ui::MusicSongSharingWidget *ui;

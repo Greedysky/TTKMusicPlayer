@@ -51,9 +51,9 @@ QString MusicVideoTableWidget::randToGetStrength() const
     }
 }
 
-void MusicVideoTableWidget::creatSearchedItems(const QString &songname,
-                                               const QString &artistname,
-                                               const QString &time)
+void MusicVideoTableWidget::createSearchedItems(const QString &songname,
+                                                const QString &artistname,
+                                                const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());

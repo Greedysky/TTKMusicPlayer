@@ -19,7 +19,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_downloadQueue = new MusicDownloadQueueCache(QStringList(), QStringList(),
                             MusicDownLoadThreadAbstract::Download_BigBG, this);
     connect(m_downloadQueue, SIGNAL(musicDownLoadFinished(QString)), m_listWidget,
-                             SLOT(recreateItem(QString)));
+                             SLOT(reCreateItem(QString)));
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()

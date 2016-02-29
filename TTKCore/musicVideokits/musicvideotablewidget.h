@@ -20,7 +20,13 @@ public:
     virtual ~MusicVideoTableWidget();
 
     virtual void startSearchQuery(const QString &text) override;
+    /*!
+     * Start search query by text.
+     */
     virtual void musicDownloadLocal(int row) override;
+    /*!
+     * Data download to local file.
+     */
     void resizeWindow(float delta);
 
 Q_SIGNALS:
@@ -32,10 +38,16 @@ public Q_SLOTS:
     /*!
      * Clear All Items.
      */
-    void creatSearchedItems(const QString &songname,
-                            const QString &artistname,
-                            const QString &time) override;
+    void createSearchedItems(const QString &songname,
+                             const QString &artistname,
+                             const QString &time) override;
+    /*!
+     * Create searched items.
+     */
     void itemDoubleClicked(int row, int column) override;
+    /*!
+     * Item has double clicked.
+     */
     void getMusicMvInfo(MusicSongAttributes &data);
     void downloadLocalFromControl();
 

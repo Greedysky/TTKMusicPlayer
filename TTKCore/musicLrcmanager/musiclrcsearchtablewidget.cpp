@@ -39,8 +39,8 @@ void MusicLrcSearchTableWidget::clearAllItems()
     setColumnCount(5);
 }
 
-void MusicLrcSearchTableWidget::creatSearchedItems(const QString &songname,
-                        const QString &artistname, const QString &time)
+void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
+                         const QString &artistname, const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());

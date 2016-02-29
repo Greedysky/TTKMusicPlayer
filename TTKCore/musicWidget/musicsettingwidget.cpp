@@ -142,9 +142,9 @@ void MusicSettingWidget::initInlineLrcWidget()
     ui->fontDefaultColorComboBox->addItems(QStringList() << tr("origin") << tr("red") << tr("orange")
                                                 << tr("yellow") << tr("green") << tr("blue") << tr("indigo")
                                                 << tr("purple") << tr("white") << tr("black"));
-    connect(ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo(int)));
-    connect(ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo(int)));
-    connect(ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo(int)));
+    connect(ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
+    connect(ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
+    connect(ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
 
     ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
@@ -438,7 +438,7 @@ void MusicSettingWidget::desktopBgChanged()
     lcrColorValue(Desktop, "DLRCBGCOLORCHOICED", ui->DnoPlayedPushButton);
 }
 
-void MusicSettingWidget::lcrColorValue(Type key, QString type, QPushButton *obj)
+void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QPushButton *obj)
 {
     key == Inline ? ui->fontDefaultColorComboBox->setCurrentIndex(-1)
                   : ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
@@ -454,7 +454,7 @@ void MusicSettingWidget::lcrColorValue(Type key, QString type, QPushButton *obj)
         if(type == "LRCFGCOLORCHOICED") m_lrcSelectedFg = color;
         if(type == "LRCBGCOLORCHOICED") m_lrcSelectedBg = color;
     }
-    key == Inline ? showInlineLrcDemo(-1) : showDesktopLrcDemo(-1);
+    key == Inline ? showInlineLrcDemo() : showDesktopLrcDemo();
 }
 
 void MusicSettingWidget::defaultDesktopLrcColorChanged(int index)
@@ -499,18 +499,18 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
 
     key == Inline ? m_lrcSelectedFg = QColor(222, 54, 4) : m_DlrcSelectedFg = QColor(222, 54, 4);
     key == Inline ? m_lrcSelectedBg = color : m_DlrcSelectedBg = color;
-    key == Inline ? showInlineLrcDemo(-1) : showDesktopLrcDemo(-1);
+    key == Inline ? showInlineLrcDemo() : showDesktopLrcDemo();
 }
 
-void MusicSettingWidget::lrcTransparentValue(Type key, int index) const
+void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
 {
     MusicPreviewLabel* label;
     QColor fcolor = key == Inline ? m_lrcSelectedFg : m_DlrcSelectedFg;
     QColor bcolor = key == Inline ? m_lrcSelectedBg : m_DlrcSelectedBg;
-    fcolor.setAlpha(2.55*index);
-    bcolor.setAlpha(2.55*index);
+    fcolor.setAlpha(2.55*value);
+    bcolor.setAlpha(2.55*value);
     key == Inline ? label = ui->showLabel : label = ui->DshowLabel;
-    label->setTransparent(2.55*index);
+    label->setTransparent(2.55*value);
     label->setLinearGradient(fcolor, bcolor);
     label->update();
 }
@@ -525,7 +525,7 @@ void MusicSettingWidget::desktopLrcTransChanged(int index)
     lrcTransparentValue(Desktop, index);
 }
 
-void MusicSettingWidget::showInlineLrcDemo(int)
+void MusicSettingWidget::showInlineLrcDemo()
 {
     QStringList para;
     para << ui->fontComboBox->currentText()
@@ -537,7 +537,7 @@ void MusicSettingWidget::showInlineLrcDemo(int)
     ui->showLabel->update();
 }
 
-void MusicSettingWidget::showDesktopLrcDemo(int)
+void MusicSettingWidget::showDesktopLrcDemo()
 {
     QStringList para;
     para << ui->DfontComboBox->currentText()

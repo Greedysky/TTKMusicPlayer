@@ -35,7 +35,13 @@ public Q_SLOTS:
      * Override show function.
      */
     void close();
+    /*!
+     * Override close function.
+     */
     void parentClose() { QLabel::close(); }
+    /*!
+     * Close current widget.
+     */
     void confirmButtonClicked();
     void photoPrevious();
     void photoNext();

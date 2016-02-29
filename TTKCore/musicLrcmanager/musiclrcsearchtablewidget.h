@@ -19,7 +19,13 @@ public:
     virtual ~MusicLrcSearchTableWidget();
 
     virtual void startSearchQuery(const QString &text) override;
+    /*!
+     * Start search query by text.
+     */
     virtual void musicDownloadLocal(int row) override;
+    /*!
+     * Data download to local file.
+     */
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
 
 Q_SIGNALS:
@@ -31,9 +37,15 @@ public Q_SLOTS:
     /*!
      * Clear All Items.
      */
-    void creatSearchedItems(const QString &songname,
-                            const QString &artistname, const QString &time) override;
+    void createSearchedItems(const QString &songname,
+                             const QString &artistname, const QString &time) override;
+    /*!
+     * Create searched items.
+     */
     void itemDoubleClicked(int row, int column) override;
+    /*!
+     * Item has double clicked.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

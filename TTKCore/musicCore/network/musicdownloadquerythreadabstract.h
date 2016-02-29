@@ -71,8 +71,8 @@ Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
      */
-    void creatSearchedItems(const QString &songname,
-                            const QString &artistname, const QString &time);
+    void createSearchedItems(const QString &songname,
+                             const QString &artistname, const QString &time);
     /*!
      * Create the current items by song name\ artist name and time.
      */

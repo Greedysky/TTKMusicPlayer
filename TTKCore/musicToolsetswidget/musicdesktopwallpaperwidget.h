@@ -41,6 +41,9 @@ public Q_SLOTS:
 
 protected:
     void initWidgetStyle() const;
+    /*!
+     * Create all widget style in layout.
+     */
     void initParameters() const;
     void findFiles(const QString &path);
     void setAutoStart(bool autoStart) const;

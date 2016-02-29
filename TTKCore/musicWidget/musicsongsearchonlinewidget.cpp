@@ -88,8 +88,8 @@ void MusicSongSearchOnlineTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongSearchOnlineTableWidget::creatSearchedItems(const QString &songname,
-                               const QString &artistname, const QString &time)
+void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songname,
+                                const QString &artistname, const QString &time)
 {
     int count;
     setRowCount(count = m_downLoadManager->getSongIdIndex());

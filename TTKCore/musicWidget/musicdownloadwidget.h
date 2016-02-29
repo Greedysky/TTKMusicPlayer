@@ -24,16 +24,31 @@ class MusicDownloadWidget;
 }
 class QLabel;
 
+/*! @brief The class of the download table item.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicDownloadTableItem : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicDownloadTableItem(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicDownloadTableItem();
 
     void setIcon(const QString &name);
+    /*!
+     * Set current item icon.
+     */
     void setInfomation(const QString &info);
+    /*!
+     * Set current item other infomation(size\type\time).
+     */
     void setText(const QString &text);
+    /*!
+     * Set current item text name.
+     */
 
 protected:
     QLabel *m_text, *m_infomation, *m_icon;
@@ -42,11 +57,17 @@ protected:
 
 #define BITRATE_ROLE Qt::UserRole + 1
 
+/*! @brief The class of the download table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicDownloadTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicDownloadTableWidget();
 
     void clearAllItems();
@@ -55,25 +76,42 @@ public:
      */
     void createItem(int bitrate, const QString &type, const QString &info,
                     const QString &icon);
+    /*!
+     * Create current itrm by given bitrate\type\icon\otherinfo.
+     */
     int getCurrentBitrate();
+    /*!
+     * Get current bitrate from item.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int , int) override {}
+    /*!
+     * Table widget list cell click.
+     */
 
 protected:
     QList<QObject*> m_items;
 
 };
 
-
+/*! @brief The class of the download widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicDownloadWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicDownloadWidget();
 
     void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
+    /*!
+     * Set current name to search and download musics.
+     */
 
 public Q_SLOTS:
     void show();
@@ -81,20 +119,56 @@ public Q_SLOTS:
      * Override show function.
      */
     void queryAllFinished();
+    /*!
+     * Query all quality musics is finished.
+     */
     void downloadDirSelected();
+    /*!
+     * Change data download save path.
+     */
     void startToDownload();
+    /*!
+     * Start to download music data.
+     */
 
 protected:
     void initWidget();
+    /*!
+     * Create all widget in layout.
+     */
     void controlEnable(bool enable);
+    /*!
+     * Enable or disable control state.
+     */
     void resizeWindow();
+    /*!
+     * Automatically adjust the height according to searched items.
+     */
     void setFixedHeightWidget(QWidget *w, int height);
+    /*!
+     * Set widget fixed height.
+     */
     void setMoveWidget(QWidget *w, int pos);
+    /*!
+     * Set widget moved into given pos.
+     */
 
     void queryAllFinishedMusic();
+    /*!
+     * Query all quality that musics is finished.
+     */
     void queryAllFinishedMovie();
+    /*!
+     * Query all quality that movies is finished.
+     */
     void startToDownloadMusic();
+    /*!
+     * Strat to download music.
+     */
     void startToDownloadMovie();
+    /*!
+     * Strat to download movie.
+     */
 
     Ui::MusicDownloadWidget *ui;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
