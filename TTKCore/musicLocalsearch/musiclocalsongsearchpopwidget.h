@@ -16,43 +16,82 @@
 
 class QPushButton;
 
+/*! @brief The class of the search popup table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLocalSongSearchPopTableWidget();
 
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
     void createItems(int index, const QString &name, const QString &time);
+    /*!
+     * Create popup table item by index and name and time.
+     */
 
 Q_SIGNALS:
     void setText(const QString &text);
+    /*!
+     * User click the current item, emit the current text.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
 
 };
 
 
+/*! @brief The class of the search history Config.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicLocalSongSearchPopWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicLocalSongSearchPopWidget();
 
     void createItems();
+    /*!
+     * Create popup search history table items.
+     */
 
 Q_SIGNALS:
     void setText(const QString &text);
+    /*!
+     * User click the current item, emit the current text.
+     */
 
 public Q_SLOTS:
     void clearButtonClicked();
+    /*!
+     * Clear the search history.
+     */
 
 protected:
     virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     QString utcTimeToLocal(const QString &time) const;
+    /*!
+     * Transform utc time to local time before.
+     */
 
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;
     QPushButton *m_clearButton;

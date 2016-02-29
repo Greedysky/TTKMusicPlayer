@@ -23,10 +23,17 @@ public:
     inline void setLrcPerWidth(int width){ m_lrcPerWidth = width + LRC_PER_WIDTH;}
     inline void setFontSize(int size) { m_gradientFontSize = size;}
     inline void setTransparent(int tran) { m_gradientTransparent = tran;}
+    /*!
+     * Set current transparent.
+     */
     inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     int m_gradientFontSize;
     int m_gradientTransparent;
     bool m_centerOnLrc;

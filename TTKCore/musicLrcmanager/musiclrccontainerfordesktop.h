@@ -56,6 +56,9 @@ protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     QWidget *m_supperClass, *m_toolBarWidget, *m_desktopWidget;
     QPushButton *m_showMainWindow;

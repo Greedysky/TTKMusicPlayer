@@ -27,6 +27,9 @@ public:
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 };
 

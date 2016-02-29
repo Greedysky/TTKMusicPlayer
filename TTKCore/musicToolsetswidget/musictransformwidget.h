@@ -41,6 +41,9 @@ public Q_SLOTS:
     void transformFinish(int index);
     void folderBoxChecked(bool check);
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     QString getTransformSongName() const;

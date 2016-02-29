@@ -67,12 +67,18 @@ public Q_SLOTS:
     void isSearchFileListEmpty(bool &empty);
     void setChangItemName(const QString &name);
     void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
     void setMusicPlayCount(int index);
 
 protected:
     void changeItemIcon();
     void clearAllLists();
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     int m_currentIndexs;
     int m_renameIndex;

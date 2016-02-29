@@ -19,10 +19,6 @@ public:
     MusicSongsToolItemRenamedWidget(int offset, const QString &originText,
                                     QWidget *parent = 0);
 
-protected:
-    virtual void focusOutEvent(QFocusEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
 Q_SIGNALS:
     void renameFinished(const QString &text);
 
@@ -31,6 +27,13 @@ public Q_SLOTS:
     {
         emit renameFinished(text());
     }
+
+protected:
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 };
 

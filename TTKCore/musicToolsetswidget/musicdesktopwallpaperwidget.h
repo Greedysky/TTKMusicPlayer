@@ -35,6 +35,9 @@ public Q_SLOTS:
     void cancelButtonPressed();
     void parameterFinished();
     void show();
+    /*!
+     * Override show function.
+     */
 
 protected:
     void initWidgetStyle() const;

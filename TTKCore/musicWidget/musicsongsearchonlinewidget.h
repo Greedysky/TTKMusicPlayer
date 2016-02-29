@@ -41,6 +41,9 @@ Q_SIGNALS:
 public Q_SLOTS:
     void listCellClicked(int row, int column) override;
     void clearAllItems() override;
+    /*!
+     * Clear All Items.
+     */
     void creatSearchedItems(const QString &songname,
                             const QString &artistname,
                             const QString &time) override;
@@ -51,6 +54,9 @@ public Q_SLOTS:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void addSearchMusicToPlayList(int row);
 
     MusicCoreMPlayer *m_audition;

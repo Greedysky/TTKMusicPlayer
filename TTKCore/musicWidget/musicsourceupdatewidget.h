@@ -23,9 +23,11 @@ public:
     virtual ~MusicSourceUpdateWidget();
 
 Q_SIGNALS:
-
 public Q_SLOTS:
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
     void upgradeButtonClicked();
 
 protected:

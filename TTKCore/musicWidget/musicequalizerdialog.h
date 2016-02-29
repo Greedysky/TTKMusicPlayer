@@ -38,6 +38,9 @@ public Q_SLOTS:
     void verticalSliderChanged(int index);
     void eqChoiceIndexChanged(int index);
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void init();

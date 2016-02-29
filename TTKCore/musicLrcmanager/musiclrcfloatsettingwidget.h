@@ -26,6 +26,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void show();
+    /*!
+     * Override show function.
+     */
     void lrcSizeUpChanged();
     void lrcSizeLowChanged();
     void lrcMusicBackgroundChanged();
@@ -34,6 +37,10 @@ public Q_SLOTS:
 protected:
     virtual void enterEvent(QEvent *) override {}
     virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QPushButton *createPushButton(int index);
 
 };

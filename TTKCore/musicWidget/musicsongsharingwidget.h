@@ -38,6 +38,9 @@ public:
 
 public Q_SLOTS:
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
     void textAreaChanged();
     void confirmButtonClicked();
     void data2urlHasChanged(const QString &imageUrl);

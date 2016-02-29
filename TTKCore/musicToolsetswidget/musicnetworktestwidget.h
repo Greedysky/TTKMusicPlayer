@@ -36,6 +36,9 @@ public:
 
 public Q_SLOTS:
     void show();
+    /*!
+     * Override show function.
+     */
 
 private Q_SLOTS:
     void networkData(ulong upload, ulong download);

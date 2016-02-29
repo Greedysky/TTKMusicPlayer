@@ -13,7 +13,7 @@
 #include <QColor>
 #include "musicabstractxml.h"
 
-/*! @brief The namespace of the XML Config Manager.
+/*! @brief The class of the XML Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml

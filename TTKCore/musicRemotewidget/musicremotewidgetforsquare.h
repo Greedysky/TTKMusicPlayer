@@ -25,6 +25,10 @@ public Q_SLOTS:
 protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QGraphicsOpacityEffect *m_effect[4];
     QTimer m_enterTimer;
     QTimer m_leaveTimer;

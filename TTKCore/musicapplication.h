@@ -108,6 +108,9 @@ protected:
      virtual bool winEvent(MSG *message, long *result) override;
 #  endif
 #endif
+    /*!
+     * Override the widget event.
+     */
 
     void readXMLConfigFromText();
     void writeXMLConfigToText();

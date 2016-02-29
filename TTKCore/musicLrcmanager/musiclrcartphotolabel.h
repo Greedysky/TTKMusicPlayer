@@ -27,6 +27,9 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     QString m_path;
     QPixmap m_showPix;

@@ -42,6 +42,9 @@ public Q_SLOTS:
     void setEnabledControlFalse3();
     void setEnabledControlTrue3();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     Ui::MusicTimerWidget *ui;

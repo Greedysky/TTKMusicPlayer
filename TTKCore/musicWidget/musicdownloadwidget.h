@@ -50,6 +50,9 @@ public:
     virtual ~MusicDownloadTableWidget();
 
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
     void createItem(int bitrate, const QString &type, const QString &info,
                     const QString &icon);
     int getCurrentBitrate();
@@ -74,6 +77,9 @@ public:
 
 public Q_SLOTS:
     void show();
+    /*!
+     * Override show function.
+     */
     void queryAllFinished();
     void downloadDirSelected();
     void startToDownload();

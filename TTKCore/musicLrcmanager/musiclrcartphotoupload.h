@@ -25,6 +25,9 @@ public Q_SLOTS:
     void selectButtonClicked();
     void uploadButtonClicked();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     Ui::MusicLrcArtPhotoUpload *ui;

@@ -36,9 +36,15 @@ public Q_SLOTS:
     void popupUserRecordWidget();
     void resetUserName(const QString &name);
     virtual int exec();
-    virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override exec function.
+     */
 
 protected:
+    virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createUserTime() const;
     void createButtonPopMenu();
 

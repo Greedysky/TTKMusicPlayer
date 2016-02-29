@@ -63,6 +63,9 @@ public Q_SLOTS:
     void onTimeOut();
     void onTimerout();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     int addWavHeader(char *filename);

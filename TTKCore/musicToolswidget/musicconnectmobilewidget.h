@@ -28,6 +28,9 @@ public Q_SLOTS:
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void initFirstWidget();
     void initSecondWidget();
     void initThirdWidget();

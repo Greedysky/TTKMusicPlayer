@@ -43,6 +43,9 @@ public Q_SLOTS:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     QPushButton *m_showMainWindow;
     QPushButton *m_PreSongButton;

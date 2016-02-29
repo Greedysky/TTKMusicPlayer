@@ -30,10 +30,16 @@ public Q_SLOTS:
     void saveButtonClicked();
     void reviewButtonClicked();
     void show();
+    /*!
+     * Override show function.
+     */
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void setControlEnable(bool enable) const;
     QString translateTimeString(qint64 time);
     Ui::MusicLrcMakerWidget *ui;

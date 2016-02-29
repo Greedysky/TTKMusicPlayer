@@ -51,6 +51,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void show();
+    /*!
+     * Override show function.
+     */
     void inSideButtonClicked();
     void fullButtonClicked();
     void menuActionTriggered(QAction *action);

@@ -31,6 +31,9 @@ public Q_SLOTS:
 
 protected:
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
 
     QProcess *m_process;
 

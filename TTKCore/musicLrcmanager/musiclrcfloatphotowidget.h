@@ -31,6 +31,9 @@ public:
 
 public Q_SLOTS:
     void show();
+    /*!
+     * Override show function.
+     */
     void close();
     void parentClose() { QLabel::close(); }
     void confirmButtonClicked();
@@ -45,6 +48,9 @@ public Q_SLOTS:
 protected:
     virtual void enterEvent(QEvent *) override {}
     virtual void leaveEvent(QEvent *) override {}
+    /*!
+     * Override the widget event.
+     */
     void showPhoto() const;
 
     QWidget* m_filmBGWidget;

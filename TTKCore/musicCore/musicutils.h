@@ -14,7 +14,7 @@ class QComboBox;
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils object.
+/*! @brief The class of the utils object.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_CORE_EXPORT MusicUtils

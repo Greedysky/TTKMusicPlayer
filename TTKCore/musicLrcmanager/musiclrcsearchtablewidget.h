@@ -28,12 +28,19 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void clearAllItems() override;
+    /*!
+     * Clear All Items.
+     */
     void creatSearchedItems(const QString &songname,
                             const QString &artistname, const QString &time) override;
     void itemDoubleClicked(int row, int column) override;
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QString m_currentSongName;
 
 };

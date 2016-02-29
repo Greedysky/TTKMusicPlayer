@@ -46,10 +46,16 @@ public Q_SLOTS:
     void setShowlistButton();
     void setShowPathButton();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     Ui::MusicLocalSongsManagerWidget *ui;
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
     void addAllItems(const QFileInfoList &name);
     void addDrivesList();
     void itemsSelected();

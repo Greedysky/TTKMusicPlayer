@@ -61,6 +61,9 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void changeLrcPostion(const QString &type);
     void revertLrcTimeSpeed(qint64 pos);
     void createNoLrcCurrentInfo();

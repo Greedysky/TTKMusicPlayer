@@ -30,6 +30,9 @@ public Q_SLOTS:
 
 protected:
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
 
     MusicWebRadioWidget *m_radioDialog;
 

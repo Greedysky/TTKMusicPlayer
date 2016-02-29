@@ -83,6 +83,9 @@ public Q_SLOTS:
     void showDesktopLrcDemo(int index);
     void resetDesktopParameter();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void initInlineLrcWidget();

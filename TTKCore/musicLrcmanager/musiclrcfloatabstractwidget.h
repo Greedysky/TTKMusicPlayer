@@ -31,6 +31,9 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mousePressEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
+    /*!
+     * Override the widget event.
+     */
     void animationIn();
     void animationOut();
 

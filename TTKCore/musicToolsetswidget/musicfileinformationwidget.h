@@ -33,6 +33,10 @@ private Q_SLOTS:
 protected:
     virtual void leaveEvent(QEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     bool m_isTextEdited;
 
 };
@@ -50,6 +54,9 @@ public:
 public Q_SLOTS:
     void musicOpenFileDir();
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void saveModifyData();

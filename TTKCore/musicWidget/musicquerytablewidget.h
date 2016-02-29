@@ -40,6 +40,10 @@ Q_SIGNALS:
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     virtual void clearAllItems() = 0;
+    /*!
+     * Clear All Items.
+     * Subclass should implement this function.
+     */
     virtual void creatSearchedItems(const QString &songname,
                                     const QString &artistname,
                                     const QString &time) = 0;
@@ -50,6 +54,9 @@ public Q_SLOTS:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override {}
+    /*!
+     * Override the widget event.
+     */
     void createContextMenu(QMenu &menu);
     int findActionGroup(QAction *action);
 

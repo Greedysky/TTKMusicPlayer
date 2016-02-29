@@ -43,10 +43,19 @@ public Q_SLOTS:
     void radioColletButton();
     void radioDiscolletButton();
     void show();
+    /*!
+     * Override show function.
+     */
 
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
     Ui::MusicWebRadioWidget *ui;
 
     int m_timerCount;

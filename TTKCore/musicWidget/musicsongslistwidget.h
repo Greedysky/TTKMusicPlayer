@@ -28,6 +28,9 @@ public:
     void setSongsFileName(MusicSongs *songs);
     void updateSongsFileName(const MusicSongs &songs);
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
 
     void selectRow(int index);
     inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
@@ -75,6 +78,9 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void startToDrag();
 
     int m_transparent;

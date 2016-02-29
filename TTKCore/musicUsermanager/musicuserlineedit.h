@@ -43,6 +43,9 @@ protected Q_SLOTS:
 protected:
     virtual void focusInEvent(QFocusEvent *event) override;
     virtual void focusOutEvent(QFocusEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void checkTheInput();
     void showLabel();
     void showLabel(int s, int e);

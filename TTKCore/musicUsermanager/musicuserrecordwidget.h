@@ -39,6 +39,9 @@ public Q_SLOTS:
     void confirmButtonClickedT();
     void checkPwdStrength(int code);
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void initTabF();

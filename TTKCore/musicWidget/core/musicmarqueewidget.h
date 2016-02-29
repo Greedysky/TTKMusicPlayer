@@ -12,21 +12,39 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the marquee widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicMarqueeWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicMarqueeWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void setText(const QString &newText);
+    /*!
+     * Set marquee text.
+     */
     inline QString text() const { return m_myText; }
+    /*!
+     * Get marquee text.
+     */
     QSize sizeHint() const;
+    /*!
+     * Override size hint.
+     */
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void showEvent(QShowEvent *event);
-    void hideEvent(QHideEvent *event);
-    void timerEvent(QTimerEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
+    virtual void timerEvent(QTimerEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 private:
     QString m_myText;

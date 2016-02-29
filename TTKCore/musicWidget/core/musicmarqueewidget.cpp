@@ -10,8 +10,8 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
 
 void MusicMarqueeWidget::setText(const QString &newText)
 {
-    m_myText = newText.leftJustified(fontMetrics().width(newText) >= width()
-                                     ? 45 : 25, ' ');
+    int length = fontMetrics().width(newText) >= width() ? 45 : 25;
+    m_myText = newText.leftJustified(length, ' ');
     update();
     updateGeometry();
 }

@@ -25,6 +25,9 @@ public:
 
     void musicSongsFileName();
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
 
 Q_SIGNALS:
     void addSongToPlay(const QStringList &list);
@@ -42,6 +45,9 @@ public Q_SLOTS:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createItem(int index, const QString &name, const QString &size, qint64 time);
 
     MusicProgressBarDelegate *m_delegate;

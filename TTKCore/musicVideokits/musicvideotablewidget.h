@@ -29,6 +29,9 @@ Q_SIGNALS:
 public Q_SLOTS:
     void listCellClicked(int row, int col) override;
     void clearAllItems() override;
+    /*!
+     * Clear All Items.
+     */
     void creatSearchedItems(const QString &songname,
                             const QString &artistname,
                             const QString &time) override;
@@ -38,6 +41,9 @@ public Q_SLOTS:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     QString randToGetStrength() const;
     void downloadLocalMovie(int row);
 

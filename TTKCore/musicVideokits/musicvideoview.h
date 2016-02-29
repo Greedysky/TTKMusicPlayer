@@ -63,6 +63,9 @@ protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     bool m_positionChanged;
     MusicViewWidget *m_videoWidget;

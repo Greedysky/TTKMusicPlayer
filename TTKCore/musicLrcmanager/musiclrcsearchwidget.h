@@ -29,6 +29,9 @@ public Q_SLOTS:
     void lrcDownloadStateChanged(const QString &string);
     void setCurrentSongName(const QString &name) const;
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     Ui::MusicLrcSearchWidget *ui;

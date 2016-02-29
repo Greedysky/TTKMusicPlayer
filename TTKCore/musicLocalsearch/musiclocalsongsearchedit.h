@@ -12,16 +12,28 @@
 #include <QLineEdit>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the local search line edit widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void addFilterText(const QString &text);
+    /*!
+     * Add new text input.
+     */
 
 Q_SIGNALS:
     void enterFinished(const QString &text);
+    /*!
+     * User input the enter key emit.
+     */
 
 protected:
     virtual void focusInEvent(QFocusEvent *event) override;
@@ -29,6 +41,9 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     QString m_filterText;
 

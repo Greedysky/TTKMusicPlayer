@@ -39,6 +39,9 @@ public Q_SLOTS:
     void showCustomSkin(const QString &path);
     void itemUserClicked(QListWidgetItem *item);
     virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void addThemeListWidgetItem();

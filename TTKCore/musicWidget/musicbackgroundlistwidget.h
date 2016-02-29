@@ -25,6 +25,9 @@ public:
 
     void setCurrentItemName(const QString &name);
     void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
 
     void createItem(const QString &name, const QString &path);
     void createItem(const QString &name, const QIcon &icon);

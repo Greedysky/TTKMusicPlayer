@@ -30,6 +30,9 @@ private Q_SLOTS:
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     MusicNetworkTestThread *m_thread;
     QString m_upload, m_download;

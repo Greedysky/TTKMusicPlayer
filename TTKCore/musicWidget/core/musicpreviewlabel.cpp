@@ -22,6 +22,7 @@ void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor &bg)
 
 void MusicPreviewLabel::setParameter(const QStringList &para)
 {
+    Q_ASSERT(para.count() == 3);
     m_font.setFamily(para[0]);
     m_font.setPointSize(para[1].toInt() + 13);
     int type = para[2].toInt();

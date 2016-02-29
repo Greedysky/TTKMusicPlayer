@@ -37,6 +37,9 @@ private Q_SLOTS:
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
+    /*!
+     * Override the widget event.
+     */
     QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
