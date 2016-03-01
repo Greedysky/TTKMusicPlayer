@@ -42,13 +42,25 @@ public:
     void currentMusicSongTreeIndexChanged(int index);
     void selectRow(int index);
     void setTimerLabel(const QString &time) const;
+    /*!
+     * Update item time label time.
+     */
     void setPlaybackMode(MusicObject::SongPlayType mode) const;
 
 Q_SIGNALS:
     void deleteItemAt(MIntList list);
+    /*!
+     * Delete items from indexs if in current stack widget.
+     */
     void updatePlayLists(const QString &list);
+    /*!
+     * Update music song to lovest if in current stack widget.
+     */
     void showCurrentSong(int index);
     void updateMediaLists(const QStringList &list, int index);
+    /*!
+     * Update swap the current play index if in current stack widget.
+     */
     void clearSearchText();
     void musicPlayIndex(int row, int col);
 
@@ -59,12 +71,27 @@ public Q_SLOTS:
     void setCurrentIndex();
     void currentIndexChanged(int index);
     void addMusicSongToLovestListAt(int row);
+    /*!
+     * Add music song to lovest list by row.
+     */
     void addNetMusicSongToList(const QString &name, const QString &time,
                                const QString &format);
     void setDeleteItemAt(const MIntList &del, bool fileRemove);
+    /*!
+     * Delete items from indexs and check remove file or not.
+     */
     void setMusicIndexSwaped(int before, int after, int play, QStringList &list);
+    /*!
+     * Swap the current play index when user drag and drop.
+     */
     void isCurrentIndexs(bool &state);
+    /*!
+     * Check is current play stack widget.
+     */
     void isSearchFileListEmpty(bool &empty);
+    /*!
+     * Check current list is searched or not.
+     */
     void setChangItemName(const QString &name);
     void setTransparent(int alpha);
     /*!

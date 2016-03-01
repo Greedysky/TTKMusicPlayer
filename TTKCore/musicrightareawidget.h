@@ -32,6 +32,9 @@ public:
     void stopLrcMask() const;
     void startTimerClock() const;
     void showPlayStatus(bool status) const;
+    /*!
+     * Set current play state button.
+     */
     void setDestopLrcVisible(const QString &status) const;
     bool getDestopLrcVisible() const;
     void setInlineLrcVisible(const QString &status) const;
@@ -56,6 +59,9 @@ public Q_SLOTS:
     void deleteVideoWidget();
     void setDestopLrcVisible(bool v) const;
     void setWindowLockedChanged();
+    /*!
+     * Lock current desktop lrc state changed.
+     */
     void musicSearchButtonSearched();
     void musicResearchButtonSearched(const QString &name);
     void musicIndexWidgetButtonSearched();

@@ -16,27 +16,57 @@ class QLabel;
 class QWidgetAction;
 class QToolButton;
 
+/*! @brief The class of the system tray menu widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
 public:
     MusicSystemTrayMenu(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicSystemTrayMenu();
 
     void setLabelText(const QString &text) const;
+    /*!
+     * Set tray menu song text.
+     */
     void showDesktopLrc(const QString &show) const;
+    /*!
+     * Set show or not desktop lrc.
+     */
     void showPlayStatus(bool status) const;
+    /*!
+     * Set current play state button.
+     */
 
 Q_SIGNALS:
     void setShowDesktopLrc(bool status);
+    /*!
+     * Set show desktop lrc state changed.
+     */
     void setWindowLockedChanged();
+    /*!
+     * Lock current desktop lrc state changed.
+     */
 
 public Q_SLOTS:
     void showDesktopLrc();
+    /*!
+     * Set show desktop lrc.
+     */
     void lockDesktopLrc(bool lock);
+    /*!
+     * Lock current desktop lrc or not.
+     */
 
 protected:
     void createPlayWidgetActions();
+    /*!
+     * Create play widget actions.
+     */
 
     QWidgetAction *m_widgetAction;
     QLabel *m_showText;

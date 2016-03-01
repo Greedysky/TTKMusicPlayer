@@ -36,8 +36,17 @@ public:
 
     void setTimerStop();
     void showPlayStatus(bool status);
+    /*!
+     * Set current play state button.
+     */
     void setLabelText(const QString &name) const;
+    /*!
+     * Set current song text.
+     */
     void setVolumeValue(int value) const;
+    /*!
+     * Set current volume value by index.
+     */
 
 Q_SIGNALS:
     void setTransparent(int index);

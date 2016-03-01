@@ -14,7 +14,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
 #endif
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
     connect(m_downLoadManager, SIGNAL(createSearchedItems(QString,QString,QString)),
-                               SLOT(creaetSearchedItems(QString,QString,QString)));
+                               SLOT(creaeteSearchedItems(QString,QString,QString)));
 
     m_checkBoxDelegate = new MusicQueryTableDelegate(this);
     setItemDelegateForColumn(0, m_checkBoxDelegate);

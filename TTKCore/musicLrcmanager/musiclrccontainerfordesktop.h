@@ -30,15 +30,24 @@ public:
     virtual void setMaskLinearGradientColor(QColor = CL_Mask) const override;
     virtual void setSettingParameter() override;
     void showPlayStatus(bool status) const;
+    /*!
+     * Set current play state button.
+     */
     void initCurrentLrc() const;
     void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
 
 Q_SIGNALS:
     void desktopLrcClosed();
     void setWindowLockedChanged(bool lock);
+    /*!
+     * Lock current desktop lrc state changed.
+     */
 
 public Q_SLOTS:
     void setWindowLockedChanged();
+    /*!
+     * Lock current desktop lrc state changed.
+     */
     void setLrcBigerChanged();
     void setLrcSmallerChanged();
 

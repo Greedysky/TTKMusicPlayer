@@ -11,16 +11,28 @@
 
 #include "musicremotewidget.h"
 
+/*! @brief The class of the desktop square remote widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
     explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicRemoteWidgetForSquare();
 
 public Q_SLOTS:
     void enterTimeout();
+    /*!
+     * Mouse enter the geometry time out.
+     */
     void leaveTimeout();
+    /*!
+     * Mouse leave the geometry time out.
+     */
 
 protected:
     virtual void enterEvent(QEvent *event) override;

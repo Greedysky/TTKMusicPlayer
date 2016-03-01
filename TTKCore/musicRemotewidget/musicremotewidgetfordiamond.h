@@ -11,11 +11,17 @@
 
 #include "musicremotewidget.h"
 
+/*! @brief The class of the desktop diamond remote widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForDiamond : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
     explicit MusicRemoteWidgetForDiamond(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;

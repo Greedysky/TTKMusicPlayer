@@ -12,21 +12,33 @@
 #include <QLineEdit>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the song tool item rename widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
 public:
     MusicSongsToolItemRenamedWidget(int offset, const QString &originText,
                                     QWidget *parent = 0);
+    /*!
+     * Object contsructor by index and origin name.
+     */
 
 Q_SIGNALS:
     void renameFinished(const QString &text);
+    /*!
+     * Tool rename is finished it emit.
+     */
 
 public Q_SLOTS:
     void renameFinished()
     {
         emit renameFinished(text());
     }
+    /*!
+     * Tool rename is finished.
+     */
 
 protected:
     virtual void focusOutEvent(QFocusEvent *event) override;

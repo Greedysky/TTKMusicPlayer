@@ -396,15 +396,6 @@ void MusicSongsListWidget::addMusicSongToLovestListAt()
     emit musicSongToLovestListAt(currentRow());
 }
 
-void MusicSongsListWidget::addPlaySongToLovestListAt()
-{
-    if(rowCount() == 0 || m_playRowIndex < 0)
-    {
-        return;
-    }
-    emit musicSongToLovestListAt(m_playRowIndex);
-}
-
 void MusicSongsListWidget::setChangSongName()
 {
     if(rowCount() == 0 || currentRow() < 0 ||

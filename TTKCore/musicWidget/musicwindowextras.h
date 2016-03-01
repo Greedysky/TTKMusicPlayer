@@ -21,26 +21,56 @@ class QWinThumbnailToolBar;
 class QWinThumbnailToolButton;
 #endif
 
+/*! @brief The class of the windows extras.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
 public:
     explicit MusicWindowExtras(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicWindowExtras();
 
     void showPlayStatus(bool status) const;
+    /*!
+     * Set current play state button.
+     */
     void setValue(int value) const;
+    /*!
+     * Set current value.
+     */
     void setRange(int start, int end) const;
+    /*!
+     * Set current range from start to end.
+     */
     void disableBlurBehindWindow(bool enable);
-    inline bool isDisableBlurBehindWindow() const
-                { return m_disableBlurBehindWindow; }
+    /*!
+     * Enable or disable blur behind window.
+     */
+    inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
+    /*!
+     * Get blur behind window state.
+     */
+
 Q_SIGNALS:
 
 protected:
 #if defined Q_OS_WIN && defined MUSIC_QT_5
     void createJumpList() const;
+    /*!
+     * Create jump list.
+     */
     void createTaskbar();
+    /*!
+     * Create taskbar.
+     */
     void createThumbnailToolBar();
+    /*!
+     * Create thumbnail toolBar.
+     */
 
     MusicApplication *m_superClass;
     QWinTaskbarButton *m_taskbarButton;

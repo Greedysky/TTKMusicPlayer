@@ -15,11 +15,17 @@ namespace Ui {
 class MusicSourceUpdateWidget;
 }
 
+/*! @brief The class of the application upgrade widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     explicit MusicSourceUpdateWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSourceUpdateWidget();
 
 Q_SIGNALS:
@@ -29,6 +35,9 @@ public Q_SLOTS:
      * Override exec function.
      */
     void upgradeButtonClicked();
+    /*!
+     * Upgrade button clicked.
+     */
 
 protected:
     Ui::MusicSourceUpdateWidget *ui;

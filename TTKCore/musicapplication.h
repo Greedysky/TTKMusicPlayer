@@ -50,10 +50,25 @@ public Q_SLOTS:
     void musicPlayPrivious();
     void musicPlayNext();
     void musicPlayOrder();
+    /*!
+     * Set current play mdoe to order.
+     */
     void musicPlayRandom();
+    /*!
+     * Set current play mdoe to random.
+     */
     void musicPlayListLoop();
+    /*!
+     * Set current play mdoe to list loop.
+     */
     void musicPlayOneLoop();
+    /*!
+     * Set current play mdoe to single loop.
+     */
     void musicPlayItemOnce();
+    /*!
+     * Set current play mdoe to just once.
+     */
     void musicVolumeMute();
     void musicVolumeChanged(int volume);
     void musicImportSongs();

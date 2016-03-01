@@ -59,7 +59,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
         m_currentShowLrcContainer << QString();
     }
 
-    return Null;
+    return OpenFileSuccess;
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)

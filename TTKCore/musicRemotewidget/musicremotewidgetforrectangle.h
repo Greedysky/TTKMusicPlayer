@@ -13,14 +13,23 @@
 
 class MusicMarqueeWidget;
 
+/*! @brief The class of the desktop rectangle remote widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
     explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicRemoteWidgetForRectangle();
 
     virtual void setLabelText(const QString &value) override;
+    /*!
+     * Set current song text.
+     */
 
 protected:
     MusicMarqueeWidget *m_songNameLabel;

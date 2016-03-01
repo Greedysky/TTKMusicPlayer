@@ -31,7 +31,13 @@ public:
     void setupUi(Ui::MusicApplication* ui);
     void setDestopLrcVisible(const QString &status) const;
     void showPlayStatus(bool status) const;
+    /*!
+     * Set current play state button.
+     */
     void setLabelText(const QString &name) const;
+    /*!
+     * Set current song text.
+     */
 
     void setSystemCloseConfig(const QString &status);
     void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
@@ -39,6 +45,9 @@ public:
     bool systemTrayIsVisible() { return m_systemTray->isVisible();}
     void showMessage(const QString &title, const QString &text);
     void setVolumeValue(int value) const;
+    /*!
+     * Set current volume value by index.
+     */
 
 #if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_QT_5
     void setValue(int value) const;
@@ -49,6 +58,9 @@ public:
 Q_SIGNALS:
     void setShowDesktopLrc(bool show);
     void setWindowLockedChanged();
+    /*!
+     * Lock current desktop lrc state changed.
+     */
 
 public Q_SLOTS:
     void lockDesktopLrc(bool lock);
