@@ -1,13 +1,13 @@
-#include "musiclocalsongsearchrecordobject.h"
+#include "musiclocalsongsearchrecordconfigmanager.h"
 
-MusicLocalSongSearchRecordObject::MusicLocalSongSearchRecordObject(QObject *parent)
+MusicLocalSongSearchRecordConfigManager::MusicLocalSongSearchRecordConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
 
-void MusicLocalSongSearchRecordObject::writeSearchConfig(const MusicSearchRecord &record)
+void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecord &record)
 {
     if( !writeConfig( MUSICSEARCH_AL ) )
     {
@@ -30,7 +30,7 @@ void MusicLocalSongSearchRecordObject::writeSearchConfig(const MusicSearchRecord
     m_ddom->save(out, 4);
 }
 
-void MusicLocalSongSearchRecordObject::readSearchConfig(MusicSearchRecord &record)
+void MusicLocalSongSearchRecordConfigManager::readSearchConfig(MusicSearchRecord &record)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
     QStringList names, times;

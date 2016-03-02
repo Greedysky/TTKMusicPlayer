@@ -1,5 +1,5 @@
 #include "musiclocalsongsearchpopwidget.h"
-#include "musiclocalsongsearchrecordobject.h"
+#include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musictime.h"
 
 #include <QVBoxLayout>
@@ -82,7 +82,7 @@ MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
 void MusicLocalSongSearchPopWidget::createItems()
 {
     m_popTableWidget->clearAllItems();
-    MusicLocalSongSearchRecordObject search(this);
+    MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
         return;
@@ -109,7 +109,7 @@ QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 
 void MusicLocalSongSearchPopWidget::clearButtonClicked()
 {
-    MusicLocalSongSearchRecordObject search(this);
+    MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
         return;

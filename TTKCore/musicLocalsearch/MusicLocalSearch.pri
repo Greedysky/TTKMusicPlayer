@@ -13,7 +13,7 @@ HEADERS  += \
     $$PWD/musiclocalsongsearchedit.h \
     $$PWD/musiclocalsongsearchinlineedit.h \
     $$PWD/musiclocalsongsearchpopwidget.h \
-    $$PWD/core/musiclocalsongsearchrecordobject.h
+    $$PWD/core/musiclocalsongsearchrecordconfigmanager.h
 
 }
 
@@ -23,6 +23,6 @@ SOURCES += \
     $$PWD/musiclocalsongsearchedit.cpp \
     $$PWD/musiclocalsongsearchinlineedit.cpp \
     $$PWD/musiclocalsongsearchpopwidget.cpp \
-    $$PWD/core/musiclocalsongsearchrecordobject.cpp
+    $$PWD/core/musiclocalsongsearchrecordconfigmanager.cpp
 
 }

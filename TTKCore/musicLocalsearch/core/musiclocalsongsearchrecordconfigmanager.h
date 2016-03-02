@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHRECORDOBJECT_H
-#define MUSICLOCALSONGSEARCHRECORDOBJECT_H
+#ifndef MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H
+#define MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,11 +20,11 @@ typedef struct MusicSearchRecord
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordObject : public MusicAbstractXml
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchRecordObject(QObject *parent = 0);
+    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -44,4 +44,4 @@ public:
 
 };
 
-#endif // MUSICLOCALSONGSEARCHRECORDOBJECT_H
+#endif // MUSICLOCALSONGSEARCHRECORDCONFIGMANAGER_H

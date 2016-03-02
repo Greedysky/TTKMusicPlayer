@@ -1,5 +1,5 @@
-#ifndef MUSICMYDOWNLOADRECORDOBJECT_H
-#define MUSICMYDOWNLOADRECORDOBJECT_H
+#ifndef MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
+#define MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -18,10 +18,13 @@ typedef struct MusicDownloadRecord
     QStringList m_sizes;
 }MusicDownloadRecord;
 
-class MUSIC_TOOL_EXPORT MusicMyDownloadRecordObject : public MusicAbstractXml
+/*! @brief The class of the download record manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicMyDownloadRecordConfigManager : public MusicAbstractXml
 {
 public:
-    explicit MusicMyDownloadRecordObject(QObject *parent = 0);
+    explicit MusicMyDownloadRecordConfigManager(QObject *parent = 0);
 
     inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_AL); }
     void writeDownloadConfig(const MusicDownloadRecord &record);
@@ -29,4 +32,4 @@ public:
 
 };
 
-#endif // MUSICMYDOWNLOADRECORDOBJECT_H
+#endif // MUSICMYDOWNLOADRECORDCONFIGMANAGER_H

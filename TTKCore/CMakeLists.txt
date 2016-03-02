@@ -44,7 +44,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.h
-    ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordobject.h
+    ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
@@ -90,7 +90,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiolistview.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiowidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebradiodatebase.h
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordobject.h
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
     ${MUSIC_USERMANAGER_DIR}/musicusermanager.h
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.h
@@ -169,7 +169,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.cpp
-    ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordobject.cpp
+    ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
@@ -215,7 +215,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiowidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebradiodatebase.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordobject.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.cpp
     ${MUSIC_USERMANAGER_DIR}/musicusermanager.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.cpp

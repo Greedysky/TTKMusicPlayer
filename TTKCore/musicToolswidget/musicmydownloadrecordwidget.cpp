@@ -34,13 +34,13 @@ MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
     M_CONNECTION->poolDisConnect("MusicMyDownloadRecordWidget");
     delete m_delegate;
     clearAllItems();
-    MusicMyDownloadRecordObject xml;
+    MusicMyDownloadRecordConfigManager xml;
     xml.writeDownloadConfig(m_musicRecord);
 }
 
 void MusicMyDownloadRecordWidget::musicSongsFileName()
 {
-    MusicMyDownloadRecordObject xml;
+    MusicMyDownloadRecordConfigManager xml;
     if(!xml.readDownloadXMLConfig())
     {
         return;

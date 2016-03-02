@@ -3,7 +3,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
 #include "musicbgthemedownload.h"
-#include "musiclocalsongsearchrecordobject.h"
+#include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccoremplayer.h"
@@ -49,7 +49,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     }
     ////////////////////////////////////////////////
     MusicSearchRecord record;
-    MusicLocalSongSearchRecordObject search(this);
+    MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
         return;

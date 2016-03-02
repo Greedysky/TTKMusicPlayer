@@ -4,7 +4,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
-#include "musicmydownloadrecordobject.h"
+#include "musicmydownloadrecordconfigmanager.h"
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
@@ -348,7 +348,7 @@ void MusicDownloadWidget::startToDownloadMusic()
                                                          .arg(musicSong).arg(musicAttr.m_format);
                 ////////////////////////////////////////////////
                 MusicDownloadRecord record;
-                MusicMyDownloadRecordObject down(this);
+                MusicMyDownloadRecordConfigManager down(this);
                 if(!down.readDownloadXMLConfig())
                 {
                     return;

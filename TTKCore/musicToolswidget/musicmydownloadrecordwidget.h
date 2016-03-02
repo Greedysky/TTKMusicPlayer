@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicabstracttablewidget.h"
-#include "musicmydownloadrecordobject.h"
+#include "musicmydownloadrecordconfigmanager.h"
 
 #define MUSIC_TIMES_ROLE Qt::UserRole + 1
 
