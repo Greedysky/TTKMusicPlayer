@@ -91,7 +91,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
-                 SLOT(musicResearchButtonSearched(QString)));
+                 SLOT(videoResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
 }
 
@@ -243,7 +243,7 @@ void MusicRightAreaWidget::musicSearchButtonSearched()
     }
 }
 
-void MusicRightAreaWidget::musicResearchButtonSearched(const QString &name)
+void MusicRightAreaWidget::videoResearchButtonSearched(const QString &name)
 {
     m_ui->musicSongSearchLine->setText(name);
     musicSearchButtonSearched();
@@ -336,7 +336,7 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
     musicVideoWidgetButtonSearched();
     if(m_videoPlayer)
     {
-        m_videoPlayer->musicResearchButtonSearched(name);
+        m_videoPlayer->videoResearchButtonSearched(name);
     }
 }
 

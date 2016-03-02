@@ -55,6 +55,9 @@ Q_SIGNALS:
 public Q_SLOTS:
     void musicShowSkinChangedWindow();
     void musicUserContextLogin();
+    /*!
+     * Send user to login.
+     */
     void musicBgTransparentChanged();
     void musicBgTransparentChanged(int index);
     void musicBackgroundSkinChanged(const QString &filename);

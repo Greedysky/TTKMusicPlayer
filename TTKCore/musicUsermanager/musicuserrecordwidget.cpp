@@ -121,7 +121,7 @@ void MusicUserRecordWidget::initTabT()
 
 void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)
 {
-    QStringList country = m_userModel->getAllCounties(city);
+    QStringList country = m_userModel->getAllCountries(city);
     ui->countryComboBox_F->clear();
     ui->countryComboBox_F->addItems(country);
 }

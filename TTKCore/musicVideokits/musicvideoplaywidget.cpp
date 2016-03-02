@@ -85,8 +85,8 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     connect(m_videoTable, SIGNAL(mvURLNameChanged(QString,QString)),
                           SLOT(mvURLNameChanged(QString,QString)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)),
-                          SLOT(musicResearchButtonSearched(QString)));
-    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(musicResearchButtonSearched(QString)));
+                          SLOT(videoResearchButtonSearched(QString)));
+    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
 }
 
@@ -150,10 +150,10 @@ void MusicVideoPlayWidget::afterButtonClicked()
 
 void MusicVideoPlayWidget::searchButtonClicked()
 {
-    musicResearchButtonSearched(m_searchEdit->text().trimmed());
+    videoResearchButtonSearched(m_searchEdit->text().trimmed());
 }
 
-void MusicVideoPlayWidget::musicResearchButtonSearched(const QString &name)
+void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     m_searchEdit->setText(name);
     m_stackedWidget->setCurrentIndex(1);

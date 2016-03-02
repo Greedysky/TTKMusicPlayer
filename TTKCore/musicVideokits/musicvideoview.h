@@ -16,48 +16,111 @@ class MusicVideoControl;
 class MusicCoreMPlayer;
 class MusicBarrageWidget;
 
+/*! @brief The class of the video show widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicViewWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
 Q_SIGNALS:
     void setFullScreen();
+    /*!
+     * Widget double clicked.
+     */
     void setClick();
+    /*!
+     * Widget clicked.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 };
 
+/*! @brief The class of the video view widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
     explicit MusicVideoView(bool popup, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicVideoView();
 
     void setMedia(const QString &data);
+    /*!
+     * Set video play data.
+     */
     void resizeWindow(bool resize, const QSize &size);
+    /*!
+     * Resize widget size or not.
+     */
 
 public Q_SLOTS:
     void play();
+    /*!
+     * Player to play.
+     */
     void setFullScreen();
+    /*!
+     * Set widget to fullScreen.
+     */
 
 private Q_SLOTS:
     void stop();
+    /*!
+     * Player to stop.
+     */
     void positionChanged(qint64 position);
+    /*!
+     * Current position changed.
+     */
     void durationChanged(qint64 duration);
+    /*!
+     * Current duration changed.
+     */
     void setPosition(int position);
+    /*!
+     * Set current play pos.
+     */
     void volumnChanged(int volumn);
+    /*!
+     * Current volumn changed.
+     */
     void mediaChanged(const QString &data);
+    /*!
+     * Current media changed.
+     */
 
     void addBarrageChanged(const QString &string);
+    /*!
+     * Add barrage text to mv.
+     */
     void pushBarrageChanged(bool on);
+    /*!
+     * Open barrage on or not.
+     */
     void barrageSizeButtonChanged(int size);
+    /*!
+     * Change barrage size button clicked by size.
+     */
     void barrageColorButtonChanged(const QColor &color);
+    /*!
+     * Change barrage color button clicked by color.
+     */
 
 protected:
     virtual void enterEvent(QEvent *event) override;

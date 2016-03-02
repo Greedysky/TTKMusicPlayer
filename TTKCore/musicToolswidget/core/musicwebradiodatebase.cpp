@@ -41,7 +41,7 @@ bool MusicWebRadioDatabase::connectDatabase() const
         }
         if( !data.isValid() )
         {
-            throw QString("The database has not a vaild driver!");
+            throw QString("The database has not a valid driver!");
         }
         if (!data.isOpen() && !data.open() )
         {

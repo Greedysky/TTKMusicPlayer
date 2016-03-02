@@ -179,7 +179,7 @@ QStringList MusicUserModel::getAllCities()
     return cities.toList();
 }
 
-QStringList MusicUserModel::getAllCounties(const QString &city)
+QStringList MusicUserModel::getAllCountries(const QString &city)
 {
     setTable("MusicCountry");
     setFilter(QString("CITYNAME='%1'").arg(city));

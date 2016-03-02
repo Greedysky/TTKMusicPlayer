@@ -85,13 +85,13 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_mvSd = m_popupQuality.addAction(tr("SdMV"));
     m_mvHd = m_popupQuality.addAction(tr("HdMV"));
     m_mvSq = m_popupQuality.addAction(tr("SqMV"));
-    connect(&m_popupQuality, SIGNAL(triggered(QAction*)), SLOT(menuActionTriggered(QAction*)));
+    connect(&m_popupQuality, SIGNAL(triggered(QAction*)), SLOT(movieQualityChoiced(QAction*)));
     m_qualityButton->setMenu(&m_popupQuality);
 
     connect(m_timeSlider, SIGNAL(sliderReleasedAt(int)), SIGNAL(sliderValueChanged(int)));
     connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumnChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
-    connect(m_inSideButton, SIGNAL(clicked()), SLOT(inSideButtonClicked()));
+    connect(m_inSideButton, SIGNAL(clicked()), SLOT(insideButtonClicked()));
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
     connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(downloadLocalByControl()));
 
@@ -153,7 +153,7 @@ void MusicVideoControl::show()
     setQualityActionState();
 }
 
-void MusicVideoControl::inSideButtonClicked()
+void MusicVideoControl::insideButtonClicked()
 {
     emit musicVideoSetPopup( !m_widgetPopup );
 }
@@ -165,7 +165,7 @@ void MusicVideoControl::fullButtonClicked()
     emit musicVideoFullscreen( m_fullButton->text() == tr("NormalMode") );
 }
 
-void MusicVideoControl::menuActionTriggered(QAction *action)
+void MusicVideoControl::movieQualityChoiced(QAction *action)
 {
     if(action->text() == tr("SdMV"))
     {
@@ -225,9 +225,9 @@ void MusicVideoControl::setQualityActionState()
     MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
-    m_mvSd->setEnabled( findExsitByBitrate(500) );
-    m_mvHd->setEnabled( findExsitByBitrate(750) );
-    m_mvSq->setEnabled( findExsitByBitrate(1000) );
+    m_mvSd->setEnabled( findExistByBitrate(500) );
+    m_mvHd->setEnabled( findExistByBitrate(750) );
+    m_mvSq->setEnabled( findExistByBitrate(1000) );
 
     m_downloadButton->setEnabled( m_mvSd->isEnabled() || m_mvHd->isEnabled() ||
                                   m_mvSq->isEnabled() );
@@ -261,7 +261,7 @@ int MusicVideoControl::findMVBitrateByUrl(const QString &url)
     return 0;
 }
 
-bool MusicVideoControl::findExsitByBitrate(int bitrate)
+bool MusicVideoControl::findExistByBitrate(int bitrate)
 {
     MusicSongAttributes data;
     emit getMusicMvInfo(data);

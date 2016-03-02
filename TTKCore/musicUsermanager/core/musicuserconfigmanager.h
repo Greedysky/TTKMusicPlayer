@@ -19,15 +19,29 @@ typedef struct MusicUserRecord
     QStringList m_pwds;
 }MusicUserRecord;
 
+/*! @brief The class of the user config manager.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
 public:
     explicit MusicUserConfigManager(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
-    //UserXMLConfig
     inline bool readUserXMLConfig(){ return readConfig(USERPATH_AL); }
+    /*!
+     * Read user datas from xml file by given name.
+     */
     void writeUserXMLConfig(const MusicUserRecord &record);
+    /*!
+     * Write user datas into xml file.
+     */
     void readUserConfig(MusicUserRecord &record);
+    /*!
+     * Read user datas into xml file.
+     */
 
 };
 

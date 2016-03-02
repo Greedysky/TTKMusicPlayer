@@ -19,26 +19,50 @@ namespace Ui {
 class MusicUserWindow;
 }
 
+/*! @brief The class of the user window.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
 {
     Q_OBJECT
 public:
     explicit MusicUserWindow(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicUserWindow();
 
 Q_SIGNALS:
 
 public Q_SLOTS:
     void musicUserLogin();
+    /*!
+     * User widget button clicked.
+     */
     void userStateChanged(const QString &uid, const QString &icon);
+    /*!
+     * User login state changed.
+     */
     void musicUserContextLogin();
+    /*!
+     * Send user to login.
+     */
     void checkToAutoLogin();
+    /*!
+     * Check current user to login auto automatic.
+     */
 
 protected:
-    Ui::MusicUserWindow *ui;
     bool connectDatabase();
+    /*!
+     * Connect to database.
+     */
     bool disConnectDatabase();
+    /*!
+     * Disconnect to database.
+     */
 
+    Ui::MusicUserWindow *ui;
     MusicUserManager *m_userManager;
 
 };

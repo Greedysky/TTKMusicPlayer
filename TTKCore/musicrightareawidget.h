@@ -63,7 +63,7 @@ public Q_SLOTS:
      * Lock current desktop lrc state changed.
      */
     void musicSearchButtonSearched();
-    void musicResearchButtonSearched(const QString &name);
+    void videoResearchButtonSearched(const QString &name);
     void musicIndexWidgetButtonSearched();
     void musicSearchWidgetButtonSearched();
     void musicLrcWidgetButtonSearched();
@@ -71,7 +71,13 @@ public Q_SLOTS:
     void musicVideoWidgetButtonSearched();
     void musicVideoButtonSearched(const QString &name);
     void musicVideoSetPopup(bool popup);
+    /*!
+     * Set video widget popop or not.
+     */
     void musicVideoFullscreen(bool full);
+    /*!
+     * Set video widget fullScreen or not.
+     */
     void musicLrcDisplayAllButtonClicked();
 
 protected:
