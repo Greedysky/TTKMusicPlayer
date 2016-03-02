@@ -13,20 +13,35 @@
 
 #define LRC_PER_WIDTH 542
 
+/*! @brief The class of the inline lrc manager.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLRCManagerForInline : public MusicLRCManager
 {
     Q_OBJECT
 public:
     explicit MusicLRCManagerForInline(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLRCManagerForInline();
 
     inline void setLrcPerWidth(int width){ m_lrcPerWidth = width + LRC_PER_WIDTH;}
+    /*!
+     * Set lrc per width.
+     */
     inline void setFontSize(int size) { m_gradientFontSize = size;}
+    /*!
+     * Set adjust font size.
+     */
     inline void setTransparent(int tran) { m_gradientTransparent = tran;}
     /*!
-     * Set current transparent.
+     * Set adjust transparent by value.
      */
     inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
+    /*!
+     * Set center current lrc on or not.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;

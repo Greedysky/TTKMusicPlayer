@@ -28,6 +28,11 @@ int MusicLRCManagerForDesktop::x() const
     return m_geometry.x();
 }
 
+int MusicLRCManagerForDesktop::y() const
+{
+    return m_geometry.y();
+}
+
 void MusicLRCManagerForDesktop::resetOrigin()
 {
     m_intervalCount = 0.0f;

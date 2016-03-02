@@ -15,23 +15,37 @@ class QPushButton;
 class MusicLrcFloatPhotoWidget;
 class MusicLrcFloatSettingWidget;
 
+/*! @brief The class of the lrc float widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicLrcFloatAbstractWidget
 {
     Q_OBJECT
 public:
     explicit MusicLrcFloatWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLrcFloatWidget();
 
-    void resizeWidth(int width);
+    virtual void resizeWidth(int width) override;
+    /*!
+     * Resize width bound by given width.
+     */
 
 public Q_SLOTS:
     void showFloatSettingWidget();
+    /*!
+     * Show float setting widget.
+     */
     void closeFloatSettingWidget();
+    /*!
+     * Close float setting widget.
+     */
 
 protected:
-    int m_valueX;
-    QPushButton *m_more,*m_update,*m_search;
-    QPushButton *m_wallp,*m_photo;
+    QPushButton *m_more, *m_update, *m_search;
+    QPushButton *m_wallp, *m_photo;
     MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
     MusicLrcFloatSettingWidget *m_floatSettingWidget;
 

@@ -16,43 +16,117 @@ class MusicLrcFloatWidget;
 class MusicClickedLabel;
 class MusicLrcAnalysis;
 
+/*! @brief The class of the inline lrc container.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
     Q_OBJECT
 public:
     explicit MusicLrcContainerForInline(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLrcContainerForInline();
 
     virtual void startTimerClock() override;
+    /*!
+     * Start timer clock to draw lrc.
+     */
     virtual void stopLrcMask() override;
+    /*!
+     * Stop timer clock to draw lrc.
+     */
     virtual void setMaskLinearGradientColor(QColor = CL_Mask) const override;
+    /*!
+     * Set mask linear gradient color.
+     */
     virtual void setSettingParameter();
-    void updateCurrentLrc(qint64 time);
+    /*!
+     * Set setting parameter.
+     */
 
+    void updateCurrentLrc(qint64 time);
+    /*!
+     * Update current lrc by given time.
+     */
     bool transLrcFileToTime(const QString &lrcFileName);
+    /*!
+     * Analysis lrc file to map return the state.
+     */
     QString text() const;
+    /*!
+     * Get current lrc text in middle.
+     */
     qint64 setSongSpeedAndSlow(qint64 time);
+    /*!
+     * Set song speed and slow by given time, return new time.
+     */
     bool findText(qint64 total, QString &pre, QString &last, qint64 &interval) const;
+    /*!
+     * Get current lrc and next lrc in container by current time.
+     */
 
     inline bool artBackgroundIsShow() const {return m_showArtBackground;}
+    /*!
+     * Get state of background is artist shown.
+     */
     void setLrcSize(MusicLRCManager::LrcSizeTable = MusicLRCManager::Middle) const;
+    /*!
+     * Set current lrc size.
+     */
     int getLrcSize() const;
-
+    /*!
+     * Get current lrc size.
+     */
     void resizeWidth(int width);
+    /*!
+     * Resize width bound by given width.
+     */
 
 Q_SIGNALS:
     void updateCurrentTime(qint64 time);
+    /*!
+     * Update current play time when user adjust the progress.
+     */
     void theArtBgHasChanged();
+    /*!
+     * The art background state has changed emit.
+     */
 
 public Q_SLOTS:
     void lrcSizeChanged(QAction *action) const;
+    /*!
+     * Set current lrc size by action.
+     */
     void lrcTimeSpeedChanged(QAction *action);
+    /*!
+     * Set lrc time speed changed by action.
+     */
     void revertLrcTimeSpeed();
+    /*!
+     * Revert lrc time speed.
+     */
     void theArtBgChanged();
+    /*!
+     * The art background state has changed.
+     */
     void theArtBgUploaded();
+    /*!
+     * The art background has uploaded.
+     */
     void theShowLrcChanged();
+    /*!
+     * Show current lrc state changed.
+     */
     void lrcOpenFileDir() const;
+    /*!
+     * Open current lrc file location.
+     */
     void lrcCopyClipboard() const;
+    /*!
+     * Copy all lrcs to clipboard.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -65,12 +139,33 @@ protected:
      * Override the widget event.
      */
     void changeLrcPostion(const QString &type);
+    /*!
+     * Change lrc postion by diff type mouse or wheel.
+     */
     void revertLrcTimeSpeed(qint64 pos);
+    /*!
+     * Revert lrc time speed by pos.
+     */
     void createNoLrcCurrentInfo();
+    /*!
+     * Create no lrc current information.
+     */
     void showNoLrcCurrentInfo();
-    void initLrc(const QString &str);
+    /*!
+     * Show no lrc current information.
+     */
+    void initCurrentLrc(const QString &str);
+    /*!
+     * Init current lrc when the first show.
+     */
     void setItemStyleSheet();
+    /*!
+     * Set per lrc line style sheet.
+     */
     void setItemStyleSheet(int index, int size, int transparent);
+    /*!
+     * Set per lrc line style sheet by index and size and transparent.
+     */
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed;

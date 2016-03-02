@@ -71,7 +71,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
 
     m_toolLrcBigerButton = new QToolButton(m_toolBarWidget);
     m_toolLrcBigerButton->setGeometry(200, 0, 30, TOOLBAR_HEIGHT);
-    connect(m_toolLrcBigerButton, SIGNAL(clicked()), SLOT(setLrcBigerChanged()));
+    connect(m_toolLrcBigerButton, SIGNAL(clicked()), SLOT(setLrcBiggerChanged()));
 
     m_toolLrcSmallerButton = new QToolButton(m_toolBarWidget);
     m_toolLrcSmallerButton->setGeometry(230, 0, 30, TOOLBAR_HEIGHT);
@@ -198,14 +198,14 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea()
     m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
 }
 
-void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool bigger)
+void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
 {
-    m_geometry.setY(bigger ? m_geometry.y() + 1 : m_geometry.y() - 1);
+    m_geometry.setY(resize ? m_geometry.y() + 1 : m_geometry.y() - 1);
     setSelfGeometry();
 
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(bigger ? ++m_currentLrcFontSize
+        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(resize ? ++m_currentLrcFontSize
                                                                                  : --m_currentLrcFontSize);
     }
     m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
@@ -298,7 +298,7 @@ void MusicLrcContainerForDesktop::setSelfGeometry() const
     }
 }
 
-void MusicLrcContainerForDesktop::setLrcBigerChanged()
+void MusicLrcContainerForDesktop::setLrcBiggerChanged()
 {
     if(m_currentLrcFontSize > 35)
     {

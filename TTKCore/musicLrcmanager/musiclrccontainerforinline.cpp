@@ -38,7 +38,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_changeSpeedValue = 0;
 
     createNoLrcCurrentInfo();
-    initLrc(tr("noCurrentSongPlay"));
+    initCurrentLrc(tr("noCurrentSongPlay"));
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
@@ -216,7 +216,7 @@ void MusicLrcContainerForInline::showNoLrcCurrentInfo()
     m_noLrcCurrentInfo->show();
 }
 
-void MusicLrcContainerForInline::initLrc(const QString &str)
+void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
 {
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
@@ -235,12 +235,12 @@ void MusicLrcContainerForInline::resizeWidth(int width)
 
     if(m_lrcAnalysis->isEmpty())
     {
-        initLrc(tr("unFoundLrc"));
+        initCurrentLrc(tr("unFoundLrc"));
         showNoLrcCurrentInfo();
     }
     else if(m_currentTime != 0 && m_lrcAnalysis->getCurrentIndex() == 0)
     {
-        initLrc(tr("noCurrentSongPlay"));
+        initCurrentLrc(tr("noCurrentSongPlay"));
     }
 }
 

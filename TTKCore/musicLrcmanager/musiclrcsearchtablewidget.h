@@ -11,11 +11,17 @@
 
 #include "musicquerytablewidget.h"
 
+/*! @brief The class of the lrc search table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLrcSearchTableWidget();
 
     virtual void startSearchQuery(const QString &text) override;
@@ -27,10 +33,19 @@ public:
      * Data download to local file.
      */
     inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
+    /*!
+     * Set current song name.
+     */
 
 Q_SIGNALS:
     void resolvedSuccess();
+    /*!
+     * Lrc search state is finished.
+     */
     void lrcDownloadStateChanged(const QString &name);
+    /*!
+     * Lrc download state is finished.
+     */
 
 public Q_SLOTS:
     void clearAllItems() override;

@@ -20,14 +20,23 @@ class QPushButton;
 class QCheckBox;
 class MusicClickedLabel;
 
+/*! @brief The class of the lrc photo float widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicLrcFloatAbstractWidget
 {
     Q_OBJECT
 public:
     explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLrcFloatPhotoWidget();
 
-    void resizeWidth(int width);
+    virtual void resizeWidth(int width) override;
+    /*!
+     * Resize width bound by given width.
+     */
 
 public Q_SLOTS:
     void show();
@@ -43,13 +52,37 @@ public Q_SLOTS:
      * Close current widget.
      */
     void confirmButtonClicked();
+    /*!
+     * Confirm button clicked that show selected artist pics.
+     */
     void photoPrevious();
+    /*!
+     * To selected previous artist pic.
+     */
     void photoNext();
+    /*!
+     * To selected next artist pic.
+     */
     void artHasChanged();
+    /*!
+     * Update current artist pic.
+     */
     void sendUserSelectArtBg1();
+    /*!
+     * User selected the first plane pic.
+     */
     void sendUserSelectArtBg2();
+    /*!
+     * User selected the second plane pic.
+     */
     void sendUserSelectArtBg3();
+    /*!
+     * User selected the third plane pic.
+     */
     void userSelectCheckBoxChecked(int index);
+    /*!
+     * User select check box checked by index.
+     */
 
 protected:
     virtual void enterEvent(QEvent *) override {}
@@ -58,6 +91,9 @@ protected:
      * Override the widget event.
      */
     void showPhoto() const;
+    /*!
+     * Show all artist pics in displaying.
+     */
 
     QWidget* m_filmBGWidget;
     QCheckBox* m_checkBox;

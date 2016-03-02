@@ -15,15 +15,27 @@ namespace Ui {
 class MusicLrcArtPhotoUpload;
 }
 
+/*! @brief The class of the lrc art photo upload.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_LRC_EXPORT MusicLrcArtPhotoUpload : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     explicit MusicLrcArtPhotoUpload(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
 public Q_SLOTS:
     void selectButtonClicked();
+    /*!
+     * Select button clicked.
+     */
     void uploadButtonClicked();
+    /*!
+     * Upload button clicked.
+     */
     virtual int exec();
     /*!
      * Override exec function.

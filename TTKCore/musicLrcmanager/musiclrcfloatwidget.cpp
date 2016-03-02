@@ -77,11 +77,11 @@ void MusicLrcFloatWidget::showFloatSettingWidget()
 {
     animationOut();
     m_floatSettingWidget->show();
-    setblockAnimation(true);
+    setBlockAnimation(true);
 }
 
 void MusicLrcFloatWidget::closeFloatSettingWidget()
 {
     m_floatSettingWidget->close();
-    setblockAnimation(false);
+    setBlockAnimation(false);
 }
