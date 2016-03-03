@@ -28,7 +28,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumeSlider->setValue(100);
 
     m_playButton->setIcon(QIcon(":/video/play"));
-    m_volumeButton->setIcon(QIcon(":/video/volumn"));
+    m_volumeButton->setIcon(QIcon(":/video/volume"));
     m_menuButton->setIcon(QIcon(":/video/menu"));
 
     m_inSideButton->setText(popup ? tr("InlineMode") : tr("PopupMode"));
