@@ -103,7 +103,7 @@ void MusicWindowExtras::createThumbnailToolBar()
     m_playToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
     m_playToolButton->setToolTip(tr("Play"));
     m_playToolButton->setIcon(m_superClass->style()->standardIcon(QStyle::SP_MediaPlay));
-    connect(m_playToolButton, SIGNAL(clicked()), m_superClass, SLOT(musicKey()));
+    connect(m_playToolButton, SIGNAL(clicked()), m_superClass, SLOT(musicStatePlay()));
 
     m_forwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
     m_forwardToolButton->setToolTip(tr("Privious"));

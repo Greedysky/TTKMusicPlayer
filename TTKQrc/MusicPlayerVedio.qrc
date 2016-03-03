@@ -2,7 +2,7 @@
     <qresource prefix="/video">
         <file alias="play">../TTKResource/video/video_play.png</file>
         <file alias="pause">../TTKResource/video/video_pause.png</file>
-        <file alias="volumn">../TTKResource/video/video_volumn.png</file>
+        <file alias="volume">../TTKResource/video/video_volume.png</file>
         <file alias="menu">../TTKResource/video/video_menu.png</file>
         <file alias="back">../TTKResource/video/video_goback.png</file>
         <file alias="after">../TTKResource/video/video_goafter.png</file>

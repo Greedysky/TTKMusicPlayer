@@ -88,7 +88,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrivious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
-    connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicKey()));
+    connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
 }
 
 void MusicSystemTrayMenu::setLabelText(const QString &text) const

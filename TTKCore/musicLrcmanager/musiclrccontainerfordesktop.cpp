@@ -93,7 +93,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolPlayButton->setGeometry(80, 0, 30, TOOLBAR_HEIGHT);
     connect(m_toolPreSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(m_toolNextSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
-    connect(m_toolPlayButton, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
+    connect(m_toolPlayButton, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
     connect(m_showMainWindow, SIGNAL(clicked()), m_supperClass, SLOT(showNormal()));
 
     setButtonIcon();

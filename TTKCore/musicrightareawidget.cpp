@@ -91,7 +91,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), m_supperClass,
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
-                 SLOT(videoResearchButtonSearched(QString)));
+                 SLOT(songResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
 }
 
@@ -131,6 +131,11 @@ bool MusicRightAreaWidget::getDestopLrcVisible() const
 void MusicRightAreaWidget::setInlineLrcVisible(const QString &status) const
 {
     m_ui->musiclrccontainerforinline->setVisible(status == "true" ? true : false);
+}
+
+bool MusicRightAreaWidget::getInlineLrcVisible() const
+{
+    m_ui->musiclrccontainerforinline->isVisible();
 }
 
 void MusicRightAreaWidget::setSettingParameter() const
@@ -243,7 +248,7 @@ void MusicRightAreaWidget::musicSearchButtonSearched()
     }
 }
 
-void MusicRightAreaWidget::videoResearchButtonSearched(const QString &name)
+void MusicRightAreaWidget::songResearchButtonSearched(const QString &name)
 {
     m_ui->musicSongSearchLine->setText(name);
     musicSearchButtonSearched();

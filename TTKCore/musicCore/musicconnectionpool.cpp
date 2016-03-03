@@ -105,7 +105,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicRightAreaWidget" )
     {
         QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
-                                SLOT(videoResearchButtonSearched(QString)));
+                                SLOT(songResearchButtonSearched(QString)));
     }
 
     if(from == "MusicNetworkThread" && to == "MusicDownloadStatusLabel" )

@@ -31,7 +31,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
 
-    connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicKey()));
+    connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
     connect(ui->musicPrivious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
     connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));

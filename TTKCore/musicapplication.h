@@ -28,27 +28,69 @@ namespace Ui {
 class MusicApplication;
 }
 
+/*! @brief The class of the app main widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicApplication(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicApplication();
 
     QString getCurrentFileName() const;
+    /*!
+     * Get current file name.
+     */
     bool checkMusicListCurrentIndex() const;
+    /*!
+     * Check current list index is -1 or not.
+     */
     void musicLoadCurrentSongLrc();
+    /*!
+     * Load current song lrc.
+     */
     void musicImportSongsSettingPath(const QStringList &path);
+    /*!
+     * Import music datas into container.
+     */
 
 public Q_SLOTS:
     void quitWindowClose();
+    /*!
+     * Application window close.
+     */
     void positionChanged(qint64 position);
+    /*!
+     * Set current player position.
+     */
     void durationChanged(qint64 duration);
+    /*!
+     * Set current player duration.
+     */
     void stateChanged();
+    /*!
+     * Current state changed.
+     */
     void showCurrentSong(int index);
-    void musicKey();
+    /*!
+     * Show current song some information.
+     */
+    void musicStatePlay();
+    /*!
+     * Set current player to play or not.
+     */
     void musicPlayPrivious();
+    /*!
+     * Set current player to play privious.
+     */
     void musicPlayNext();
+    /*!
+     * Set current player to play next.
+     */
     void musicPlayOrder();
     /*!
      * Set current play mdoe to order.
@@ -70,34 +112,94 @@ public Q_SLOTS:
      * Set current play mdoe to just once.
      */
     void musicVolumeMute();
+    /*!
+     * Set current play volume to 0.
+     */
     void musicVolumeChanged(int volume);
+    /*!
+     * Current play volume changed.
+     */
     void musicImportSongs();
+    /*!
+     * Import music songs.
+     */
     void musicImportSongsOnlyFile();
+    /*!
+     * Import music songs by file.
+     */
     void musicImportSongsOnlyDir();
+    /*!
+     * Import music songs by dir.
+     */
     void musicPlayIndex(int row, int col);
+    /*!
+     * Set current row index music to play.
+     */
     void musicPlayAnyTimeAt(int posValue);
+    /*!
+     * Set song speed and slow by given pos.
+     */
     void musicActionVolumeSub();
+    /*!
+     * Set current player volume down.
+     */
     void musicActionVolumePlus();
+    /*!
+     * Set current player volume up.
+     */
     void musicSetting();
+    /*!
+     * Show setting widget.
+     */
     void musicCurrentPlayLocation();
+    /*!
+     * Show current play index.
+     */
     void musicAddSongToLovestListAt();
+    /*!
+     * Add music song to lovest list by row.
+     */
     void musicWindowConciseChanged();
+    /*!
+     * Set window concise.
+     */
     void musicEnhancedMusicChanged(int type);
+    /*!
+     * Set current music enhanced effect by type.
+     */
     void musicImportPlay();
+    /*!
+     * Import outside song to play list and play.
+     */
     /////////////////////////////////////////////
-    //This is a slot by MusicLocalSongSearch's signal emit
+    ///This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int row, int col);
+    /*!
+     * Search file from list.
+     */
     /////////////////////////////////////////////
-    //This is a slot by MusicSettingWidget's signal emit
+    ///This is a slot by MusicSettingWidget's signal emit
     void getParameterSetting();
+    /*!
+     * Get settings parameters.
+     */
     /////////////////////////////////////////////
-    //This is a slot by MusicSongsSummarizied's signal emit
+    ///This is a slot by MusicSongsSummarizied's signal emit
     void setDeleteItemAt(const MIntList &index);
+    /*!
+     * Delete items from indexs.
+     */
     /////////////////////////////////////////////
-    //This is a slot by MusicInlineLrcContainer's signal emit
+    ///This is a slot by MusicInlineLrcContainer's signal emit
     void musicCurrentLrcUpdated();
+    /*!
+     * The current lrc should update, emit it.
+     */
     void updateCurrentTime(qint64 pos);
-    //This is a slot by MusicTimerAutoObject's signal emit
+    /*!
+     * Update current play time when user adjust the progress.
+     */
+    ///This is a slot by MusicTimerAutoObject's signal emit
     void setPlaySongChanged(int index);
     /*!
      * Set current song to play in play list.
@@ -107,7 +209,7 @@ public Q_SLOTS:
      * Set current song to stop in play list.
      */
     /////////////////////////////////////////////
-    //This is a slot by MusicLeftAreaWidget's signal emit
+    ///This is a slot by MusicLeftAreaWidget's signal emit
     void addSongToPlayList(const QStringList &item);
     /*!
      * Add current selected song to play lists.
@@ -118,9 +220,6 @@ public Q_SLOTS:
      */
 
 protected:
-    void initWindowSurface();
-    void createPlayModeMenu(QMenu &menu);
-    void createPlayModeMenuIcon(QMenu &menu);
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
@@ -130,17 +229,35 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
-     virtual bool nativeEvent(const QByteArray &, void *, long *) override;
+    virtual bool nativeEvent(const QByteArray &, void *, long *) override;
 #  else
-     virtual bool winEvent(MSG *message, long *result) override;
+    virtual bool winEvent(MSG *message, long *result) override;
 #  endif
 #endif
     /*!
      * Override the widget event.
      */
 
+    void initWindowSurface();
+    /*!
+     * Init window surface widget interface.
+     */
+    void createPlayModeMenu(QMenu &menu);
+    /*!
+     * Create play mode menu.
+     */
+    void createPlayModeMenuIcon(QMenu &menu);
+    /*!
+     * Create play mode menu's icon.
+     */
     void readXMLConfigFromText();
+    /*!
+     * Read XML config from text.
+     */
     void writeXMLConfigToText();
+    /*!
+     * Write XML config to text.
+     */
 
 private:
     Ui::MusicApplication *ui;

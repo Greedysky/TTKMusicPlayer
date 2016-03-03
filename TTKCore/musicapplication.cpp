@@ -83,6 +83,19 @@ MusicApplication::MusicApplication(QWidget *parent)
     readXMLConfigFromText();
 }
 
+MusicApplication::~MusicApplication()
+{
+    delete m_musicPlayer;
+    delete m_musicList;
+    delete m_musicSongTree;
+    delete m_bottomAreaWidget;
+    delete m_topAreaWidget;
+    delete m_rightAreaWidget;
+    delete m_leftAreaWidget;
+    delete m_object;
+    delete ui;
+}
+
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
@@ -98,19 +111,6 @@ bool MusicApplication::winEvent(MSG *message, long *result)
 }
 #  endif
 #endif
-
-MusicApplication::~MusicApplication()
-{
-    delete m_musicPlayer;
-    delete m_musicList;
-    delete m_musicSongTree;
-    delete m_bottomAreaWidget;
-    delete m_topAreaWidget;
-    delete m_rightAreaWidget;
-    delete m_leftAreaWidget;
-    delete m_object;
-    delete ui;
-}
 
 void MusicApplication::closeEvent(QCloseEvent *event)
 {
@@ -227,7 +227,7 @@ void MusicApplication::keyReleaseEvent(QKeyEvent *event)
     QWidget::keyReleaseEvent(event);
     if(event->key() == Qt::Key_Space)
     {
-        musicKey();
+        musicStatePlay();
     }
 }
 
@@ -345,7 +345,7 @@ void MusicApplication::readXMLConfigFromText()
     if(key == "true")
     {
         m_playControl = true;
-        musicKey();
+        musicStatePlay();
     }
     m_bottomAreaWidget->showPlayStatus(m_playControl);
     m_rightAreaWidget->showPlayStatus(m_playControl);
@@ -497,7 +497,7 @@ void MusicApplication::musicImportPlay()
     musicPlayIndex(m_musicList->mediaCount() - 1, 0);
 }
 
-void MusicApplication::musicKey()
+void MusicApplication::musicStatePlay()
 {
     if(m_musicList->isEmpty())
     {
@@ -540,7 +540,7 @@ void MusicApplication::musicPlayPrivious()
         m_musicPlayer->playPrivious();
     }
     m_playControl = true;
-    this->musicKey();
+    musicStatePlay();
     m_playControl = false;
 }
 
@@ -559,7 +559,7 @@ void MusicApplication::musicPlayNext()
         m_musicPlayer->playNext();
     }
     m_playControl = true;
-    this->musicKey();
+    musicStatePlay();
     m_playControl = false;
 }
 
@@ -725,16 +725,16 @@ void MusicApplication::musicPlayIndex(int row, int)
         m_musicList->clear();
         m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
         m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
-        m_musicSongTree->currentMusicSongTreeIndexChanged(m_currentMusicSongTreeIndex);
+        m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
     }
     if(!m_musicSongTree->searchFileListEmpty())
     {
-        row = m_musicSongTree->getsearchFileListIndexAndClear(row);
+        row = m_musicSongTree->getSearchFileListIndexAndClear(row);
     }
 
     m_musicList->setCurrentIndex(row);
     m_playControl = true;
-    musicKey();
+    musicStatePlay();
     m_playControl = false;
 }
 
@@ -749,7 +749,7 @@ void MusicApplication::musicPlayAnyTimeAt(int posValue)
     {
         bool s = m_playControl;
         m_playControl = false;
-        musicKey();
+        musicStatePlay();
         m_playControl = s;
     }
 }
@@ -801,7 +801,7 @@ void MusicApplication::setDeleteItemAt(const MIntList &index)
     m_musicList->setCurrentIndex(oldIndex);
     //The corresponding item is deleted from the QMediaPlaylist
     m_playControl = true;
-    musicKey();
+    musicStatePlay();
     m_playControl = false;
 }
 
@@ -892,7 +892,7 @@ void MusicApplication::setPlaySongChanged(int index)
 void MusicApplication::setStopSongChanged()
 {
     m_playControl = false;
-    musicKey();
+    musicStatePlay();
 }
 
 void MusicApplication::addSongToPlayList(const QStringList &item)

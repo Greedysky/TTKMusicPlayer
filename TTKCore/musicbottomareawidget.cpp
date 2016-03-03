@@ -117,7 +117,7 @@ void MusicBottomAreaWidget::createMenuActions() const
     connect(m_ui->action_Setting, SIGNAL(triggered()), m_supperClass, SLOT(musicSetting()));
     connect(m_ui->action_Quit, SIGNAL(triggered()), m_supperClass, SLOT(quitWindowClose()));
     connect(m_ui->action_Next, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayNext()));
-    connect(m_ui->action_Play, SIGNAL(triggered()), m_supperClass, SLOT(musicKey()));
+    connect(m_ui->action_Play, SIGNAL(triggered()), m_supperClass, SLOT(musicStatePlay()));
     connect(m_ui->action_Privious, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayPrivious()));
     connect(m_ui->action_VolumeSub, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumeSub()));
     connect(m_ui->action_VolumePlus, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumePlus()));

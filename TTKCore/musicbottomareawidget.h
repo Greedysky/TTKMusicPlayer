@@ -21,15 +21,27 @@ namespace Ui {
     class MusicApplication;
 }
 
+/*! @brief The class of the app bottom area widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_GUI_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicBottomAreaWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicBottomAreaWidget();
 
     void setupUi(Ui::MusicApplication* ui);
+    /*!
+     * Set up app ui.
+     */
     void setDestopLrcVisible(const QString &status) const;
+    /*!
+     * Set destop lrc visible by string.
+     */
     void showPlayStatus(bool status) const;
     /*!
      * Set current play state button.
@@ -40,10 +52,25 @@ public:
      */
 
     void setSystemCloseConfig(const QString &status);
+    /*!
+     * Set system close config by string.
+     */
     void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
+    /*!
+     * Set system close config or not.
+     */
     bool getSystemCloseConfig() { return m_systemCloseConfig;}
+    /*!
+     * Get system close config state.
+     */
     bool systemTrayIsVisible() { return m_systemTray->isVisible();}
+    /*!
+     * Get system tray visible state.
+     */
     void showMessage(const QString &title, const QString &text);
+    /*!
+     * Set system tray message show title and context.
+     */
     void setVolumeValue(int value) const;
     /*!
      * Set current volume value by index.
@@ -51,12 +78,24 @@ public:
 
 #if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_QT_5
     void setValue(int value) const;
+    /*!
+     * Set current value.
+     */
     void setRange(int min, int max) const;
+    /*!
+     * Set current range from start to end.
+     */
 #endif
     void setWindowConcise();
+    /*!
+     * Set window concise.
+     */
 
 Q_SIGNALS:
     void setShowDesktopLrc(bool show);
+    /*!
+     * Set show desktop lrc state changed emit.
+     */
     void setWindowLockedChanged();
     /*!
      * Lock current desktop lrc state changed.
@@ -64,13 +103,31 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void lockDesktopLrc(bool lock);
+    /*!
+     * Lock or not current desktop lrc.
+     */
     void desktopLrcClosed();
+    /*!
+     * Set desktop lrc close state.
+     */
     void iconActivated(QSystemTrayIcon::ActivationReason);
+    /*!
+     * System tray icon activate.
+     */
 
 protected:
     void createToolPopupMenu();
+    /*!
+     * Create toolk popup menu.
+     */
     void createSystemTrayIcon();
+    /*!
+     * Create system tray icon.
+     */
     void createMenuActions() const;
+    /*!
+     * Create menu actions.
+     */
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;

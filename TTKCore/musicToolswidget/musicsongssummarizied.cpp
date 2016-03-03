@@ -108,7 +108,7 @@ bool MusicSongsSummarizied::searchFileListEmpty() const
     return m_searchfileListCache.isEmpty();
 }
 
-int MusicSongsSummarizied::getsearchFileListIndex(int row)
+int MusicSongsSummarizied::getSearchFileListIndex(int row)
 {
     MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
     if(row >= list.count())
@@ -118,9 +118,9 @@ int MusicSongsSummarizied::getsearchFileListIndex(int row)
     return row >= 0 ? list[row] : -1;
 }
 
-int MusicSongsSummarizied::getsearchFileListIndexAndClear(int row)
+int MusicSongsSummarizied::getSearchFileListIndexAndClear(int row)
 {
-    row = getsearchFileListIndex(row);
+    row = getSearchFileListIndex(row);
     m_searchfileListCache.clear();
     emit clearSearchText();
     return row;
@@ -252,7 +252,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
     if(!searchFileListEmpty())
     {
-        row = getsearchFileListIndex(row);
+        row = getSearchFileListIndex(row);
     }
 
     MusicSong song = m_musicFileNames[currentIndex()][row];
@@ -397,7 +397,7 @@ void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
     empty = searchFileListEmpty();
 }
 
-void MusicSongsSummarizied::currentMusicSongTreeIndexChanged(int index)
+void MusicSongsSummarizied::setCurrentMusicSongTreeIndex(int index)
 {
     if(!m_musicFileNames[m_currentIndexs].isEmpty())
     {

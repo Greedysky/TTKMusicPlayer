@@ -163,10 +163,10 @@ protected:
      */
 
     bool m_widgetPopup;
-    QMenu m_popupVolumn, m_popupQuality, m_popupBarrage;
+    QMenu m_popupVolume, m_popupQuality, m_popupBarrage;
     MusicMovingLabelSlider *m_timeSlider;
-    QSlider *m_volumnSlider;
-    QToolButton *m_menuButton, *m_volumnButton;
+    QSlider *m_volumeSlider;
+    QToolButton *m_menuButton, *m_volumeButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;
     QAction *m_mvSd, *m_mvHd, *m_mvSq;

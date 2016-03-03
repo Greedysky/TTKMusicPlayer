@@ -163,10 +163,10 @@ void MusicPlayer::play()
 
     ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
-    int volumn = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
-    if(volumn != -1)
+    int volume = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
+    if(volume != -1)
     {
-        setVolume(volumn);
+        setVolume(volume);
     }
     ////////////////////////////////////////////////
 }

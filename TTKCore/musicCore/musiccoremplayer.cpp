@@ -105,7 +105,7 @@ void MusicCoreMPlayer::setVolume(int value)
     {
         return;
     }
-    emit volumnChanged(value);
+    emit volumeChanged(value);
     m_process->write(QString("volume %1 1\n").arg(value).toUtf8());
 }
 

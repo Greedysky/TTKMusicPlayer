@@ -73,9 +73,9 @@ Q_SIGNALS:
     /*!
      * Current duration changed.
      */
-    void volumnChanged(int volumn);
+    void volumeChanged(int volume);
     /*!
-     * Current volumn changed.
+     * Current volume changed.
      */
     void mediaChanged(const QString &data);
     /*!

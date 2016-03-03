@@ -96,9 +96,9 @@ private Q_SLOTS:
     /*!
      * Set current play pos.
      */
-    void volumnChanged(int volumn);
+    void volumeChanged(int volume);
     /*!
-     * Current volumn changed.
+     * Current volume changed.
      */
     void mediaChanged(const QString &data);
     /*!

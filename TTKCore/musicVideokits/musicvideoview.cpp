@@ -168,9 +168,9 @@ void MusicVideoView::setPosition(int position)
     m_mediaPlayer->setPosition(position/1000);
 }
 
-void MusicVideoView::volumnChanged(int volumn)
+void MusicVideoView::volumeChanged(int volume)
 {
-    m_mediaPlayer->setVolume(volumn);
+    m_mediaPlayer->setVolume(volume);
 }
 
 void MusicVideoView::mediaChanged(const QString &data)

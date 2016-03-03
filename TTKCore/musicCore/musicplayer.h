@@ -138,7 +138,7 @@ Q_SIGNALS:
      */
     void volumeChanged(int volume);
     /*!
-     * Current volumn changed.
+     * Current volume changed.
      */
     void mutedChanged(bool muted);
     /*!

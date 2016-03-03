@@ -107,7 +107,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QSlider" name="volumnSlider">
+  <widget class="QSlider" name="volumeSlider">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -206,7 +206,7 @@
   <zorder>listWidget</zorder>
   <zorder>movieLabel</zorder>
   <zorder>playButton</zorder>
-  <zorder>volumnSlider</zorder>
+  <zorder>volumeSlider</zorder>
   <zorder>stopButton</zorder>
   <zorder>colletButton</zorder>
   <zorder>discolletButton</zorder>

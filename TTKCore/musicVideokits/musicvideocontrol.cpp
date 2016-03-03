@@ -22,13 +22,13 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_qualityButton = new QPushButton(tr("NormalMV"), this);
     m_downloadButton = new QPushButton(tr("DownloadMV"), this);
 
-    m_volumnButton = new QToolButton(this);
-    m_volumnSlider = new QSlider(Qt::Vertical,this);
-    m_volumnSlider->setRange(0, 100);
-    m_volumnSlider->setValue(100);
+    m_volumeButton = new QToolButton(this);
+    m_volumeSlider = new QSlider(Qt::Vertical,this);
+    m_volumeSlider->setRange(0, 100);
+    m_volumeSlider->setValue(100);
 
     m_playButton->setIcon(QIcon(":/video/play"));
-    m_volumnButton->setIcon(QIcon(":/video/volumn"));
+    m_volumeButton->setIcon(QIcon(":/video/volumn"));
     m_menuButton->setIcon(QIcon(":/video/menu"));
 
     m_inSideButton->setText(popup ? tr("InlineMode") : tr("PopupMode"));
@@ -41,19 +41,19 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_volumnButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_timeSlider->setCursor(QCursor(Qt::PointingHandCursor));
-    m_volumnSlider->setCursor(QCursor(Qt::PointingHandCursor));
+    m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_inSideButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_fullButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_qualityButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_popupVolumn.setStyleSheet(MusicUIObject::MMenuStyle01);
+    m_popupVolume.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_popupQuality.setStyleSheet(MusicUIObject::MMenuStyle01);
     m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
-    m_volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
 
     QVBoxLayout *controlVLayout = new QVBoxLayout(this);
     controlVLayout->setSpacing(0);
@@ -63,7 +63,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     controlBLayout->setContentsMargins(9, 0, 9, 0);
     controlBLayout->addWidget(m_menuButton);
     controlBLayout->addWidget(m_playButton);
-    controlBLayout->addWidget(m_volumnButton);
+    controlBLayout->addWidget(m_volumeButton);
     controlBLayout->addStretch(1);
     controlBLayout->addWidget(createBarrageWidget(), 15);
     controlBLayout->addStretch(1);
@@ -77,10 +77,10 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     setLayout(controlVLayout);
 
     QWidgetAction *widgetAction = new QWidgetAction(this);
-    widgetAction->setDefaultWidget(m_volumnSlider);
-    m_popupVolumn.addAction(widgetAction);
-    m_volumnButton->setMenu(&m_popupVolumn);
-    m_volumnButton->setPopupMode(QToolButton::InstantPopup);
+    widgetAction->setDefaultWidget(m_volumeSlider);
+    m_popupVolume.addAction(widgetAction);
+    m_volumeButton->setMenu(&m_popupVolume);
+    m_volumeButton->setPopupMode(QToolButton::InstantPopup);
 
     m_mvSd = m_popupQuality.addAction(tr("SdMV"));
     m_mvHd = m_popupQuality.addAction(tr("HdMV"));
@@ -89,7 +89,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_qualityButton->setMenu(&m_popupQuality);
 
     connect(m_timeSlider, SIGNAL(sliderReleasedAt(int)), SIGNAL(sliderValueChanged(int)));
-    connect(m_volumnSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumnChanged(int)));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent, SLOT(volumeChanged(int)));
     connect(m_playButton, SIGNAL(clicked()), parent, SLOT(play()));
     connect(m_inSideButton, SIGNAL(clicked()), SLOT(insideButtonClicked()));
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
@@ -104,11 +104,11 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 MusicVideoControl::~MusicVideoControl()
 {
     M_CONNECTION->poolDisConnect("MusicVideoControl");
-    delete m_volumnSlider;
+    delete m_volumeSlider;
     delete m_timeSlider;
     delete m_menuButton;
     delete m_playButton;
-    delete m_volumnButton;
+    delete m_volumeButton;
     delete m_inSideButton;
     delete m_fullButton;
     delete m_qualityButton;

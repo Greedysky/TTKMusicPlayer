@@ -42,13 +42,13 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
     ui->stopButton->setToolTip(tr("Stop"));
     ui->colletButton->setToolTip(tr("Colletion"));
     ui->discolletButton->setToolTip(tr("Discolletion"));
-    ui->volumnSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->volumnSlider->setRange(0, 100);
-    ui->volumnSlider->setValue(100);
+    ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    ui->volumeSlider->setRange(0, 100);
+    ui->volumeSlider->setValue(100);
 
     connect(ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(ui->stopButton, SIGNAL(clicked()), SLOT(radioStop()));
-    connect(ui->volumnSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
+    connect(ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
     connect(ui->colletButton, SIGNAL(clicked()), SLOT(radioColletButton()));
     connect(ui->discolletButton, SIGNAL(clicked()), SLOT(radioDiscolletButton()));
 
@@ -105,7 +105,7 @@ void MusicWebRadioWidget::radioPlay()
     m_radio = new MusicCoreMPlayer(this);
     connect(m_radio, SIGNAL(radioChanged()), SLOT(radioStandardOutput()));
     m_radio->setMedia(MusicCoreMPlayer::RadioCategory, m_radioUrl, -1);
-    m_radio->setVolume(ui->volumnSlider->value());
+    m_radio->setVolume(ui->volumeSlider->value());
 
     ui->stateLabel->setText(tr("Connecting..."));
     m_timer.start(100);
