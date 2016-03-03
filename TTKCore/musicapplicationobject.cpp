@@ -12,6 +12,7 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicregeditmanager.h"
+#include "musicmobiledevicesthread.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -32,6 +33,13 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
                                  SLOT(setPlaySongChanged(int)));
     connect(m_musicTimerAutoObj, SIGNAL(setStopSong()), parent,
                                  SLOT(setStopSongChanged()));
+#ifdef Q_OS_UNIX
+    m_mobileDevicesLinux = new MusicMobileDevicesThread(this);
+    connect(m_mobileDevicesLinux, SIGNAL(devicesChanged(bool)), SLOT(musicDevicesLinuxChanged(bool)));
+    m_mobileDevicesLinux->start();
+#elif defined Q_OS_WIN
+    m_mobileDevicesLinux = nullptr;
+#endif
 
     m_setWindowToTop = false;
     M_CONNECTION->setValue("MusicApplicationObject", this);
@@ -43,6 +51,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 
 MusicApplicationObject::~MusicApplicationObject()
 {
+    delete m_mobileDevicesLinux;
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;
     delete m_animation;
@@ -189,4 +198,15 @@ void MusicApplicationObject::musicSetEqualizer()
     }
     MusicEqualizerDialog eq;
     eq.exec();
+}
+
+void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
+{
+    delete m_mobileDevices;
+    m_mobileDevices = nullptr;
+    if(state)
+    {
+        m_mobileDevices = new MusicMobileDevicesWidget;
+        m_mobileDevices->show();
+    }
 }

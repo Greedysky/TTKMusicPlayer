@@ -80,6 +80,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
@@ -205,6 +206,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp

@@ -107,8 +107,8 @@ bool MusicTimerAutoObject::systemIs64bit() const
     {
         isWin64 = false;
     }
-#else Q_OS_UNIX
-    isWin64 = (sizeof(int) == 8);
+#elif defined Q_OS_UNIX
+    isWin64 = QProcess::execute("uname", QStringList() << "-p");
 #endif
     return isWin64;
 }
@@ -146,7 +146,7 @@ void MusicTimerAutoObject::setShutdown()
 
     QString program = item + "\\shutdown.exe";
     QProcess::execute(program, QStringList() << "-s" << "-t" << "1");
-#else Q_OS_UNIX
+#elif defined Q_OS_UNIX
     QProcess::execute("shutdown", QStringList() << "now");
 #endif
     M_LOGGER << "shutdown now" << LOG_END;

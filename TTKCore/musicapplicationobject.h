@@ -16,6 +16,7 @@
 
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
+class MusicMobileDevicesThread;
 class QPropertyAnimation;
 
 /*! @brief The class of the app object widget.
@@ -97,6 +98,10 @@ public Q_SLOTS:
     /*!
      * Show set equalizer widget.
      */
+    void musicDevicesLinuxChanged(bool state);
+    /*!
+     * Detect mobile devices on linux.
+     */
 
 protected:
     bool m_setWindowToTop;
@@ -104,6 +109,7 @@ protected:
     QWidget *m_supperClass;
     MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDevices;
+    MusicMobileDevicesThread *m_mobileDevicesLinux;
 
 };
 
