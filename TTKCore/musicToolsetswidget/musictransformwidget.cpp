@@ -48,10 +48,10 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     connect(ui->inputButton, SIGNAL(clicked()), SLOT(initInputPath()));
     connect(ui->outputButton, SIGNAL(clicked()), SLOT(initOutputPath()));
     connect(ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
-    connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish(int)));
+    connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish()));
 
     ui->folderBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    connect(ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked(bool)));
+    connect(ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
     initControlParameter();
 
 }
@@ -153,7 +153,7 @@ QString MusicTransformWidget::getTransformSongName() const
     return str;
 }
 
-void MusicTransformWidget::transformFinish(int)
+void MusicTransformWidget::transformFinish()
 {
     QSound::play("sound.wav");
     m_path.removeAt(0);
@@ -232,7 +232,7 @@ void MusicTransformWidget::startTransform()
     setCheckedControl(false);
 }
 
-void MusicTransformWidget::folderBoxChecked(bool)
+void MusicTransformWidget::folderBoxChecked()
 {
     ui->inputLineEdit->clear();
     ui->listWidget->clear();

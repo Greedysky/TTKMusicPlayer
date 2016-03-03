@@ -25,10 +25,22 @@ class MUSIC_TOOL_EXPORT MusicMyDownloadRecordConfigManager : public MusicAbstrac
 {
 public:
     explicit MusicMyDownloadRecordConfigManager(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_AL); }
+    /*!
+     * Read history download datas from xml file by given name.
+     */
     void writeDownloadConfig(const MusicDownloadRecord &record);
+    /*!
+     * Write history download datas into xml file.
+     */
     void readDownloadConfig(MusicDownloadRecord &record);
+    /*!
+     * Read history download datas into xml file.
+     */
 
 };
 

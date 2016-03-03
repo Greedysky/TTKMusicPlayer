@@ -17,23 +17,53 @@ namespace Ui {
 class MusicDesktopWallpaperWidget;
 }
 
+/*! @brief The class of the desktop wallpaper widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicDesktopWallpaperWidget();
 
 Q_SIGNALS:
 public Q_SLOTS:
     void netRadioButtonPressed();
+    /*!
+     * Net button clicked.
+     */
     void localRadioButtonPressed();
+    /*!
+     * Local button clicked.
+     */
     void playRadioButtonPressed();
+    /*!
+     * Play button clicked.
+     */
     void viewButtonPressed();
+    /*!
+     * Find local file button clicked.
+     */
     void confirmButtonPressed();
+    /*!
+     * Confirm button clicked to start show wallpaper.
+     */
     void stopButtonPressed();
+    /*!
+     * Stop show wallpaper.
+     */
     void cancelButtonPressed();
+    /*!
+     * Close current widget.
+     */
     void parameterFinished();
+    /*!
+     * Set parameters.
+     */
     void show();
     /*!
      * Override show function.
@@ -45,13 +75,22 @@ protected:
      * Create all widget style in layout.
      */
     void initParameters() const;
+    /*!
+     * Init parameters.
+     */
     void findFiles(const QString &path);
+    /*!
+     * Find current dir files.
+     */
     void setAutoStart(bool autoStart) const;
+    /*!
+     * Set auto thread to show wallpaper.
+     */
 
     Ui::MusicDesktopWallpaperWidget *ui;
-    MusicDesktopWallpaperThread *m_wallThread;
-    QStringList m_path;
     int m_currentMode;
+    QStringList m_path;
+    MusicDesktopWallpaperThread *m_wallThread;
 
 };
 

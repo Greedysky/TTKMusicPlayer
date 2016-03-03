@@ -98,12 +98,24 @@ public Q_SLOTS:
     void musicCurrentLrcUpdated();
     void updateCurrentTime(qint64 pos);
     //This is a slot by MusicTimerAutoObject's signal emit
-    void setPlaySongChanged(int);
+    void setPlaySongChanged(int index);
+    /*!
+     * Set current song to play in play list.
+     */
     void setStopSongChanged();
+    /*!
+     * Set current song to stop in play list.
+     */
     /////////////////////////////////////////////
     //This is a slot by MusicLeftAreaWidget's signal emit
     void addSongToPlayList(const QStringList &item);
+    /*!
+     * Add current selected song to play lists.
+     */
     void getCurrentPlayList(QStringList &list);
+    /*!
+     * Get current play lists.
+     */
 
 protected:
     void initWindowSurface();

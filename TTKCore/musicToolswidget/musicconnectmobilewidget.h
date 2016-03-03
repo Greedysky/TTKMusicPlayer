@@ -14,17 +14,32 @@
 
 class QStackedWidget;
 
+/*! @brief The class of the connect mobile widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOL_EXPORT MusicConnectMobileWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicConnectMobileWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicConnectMobileWidget();
 
 public Q_SLOTS:
     void changeStatckedWidgetFirst();
+    /*!
+     * Change to main widget.
+     */
     void changeStatckedWidgetSecond();
+    /*!
+     * Change to wireless widget.
+     */
     void changeStatckedWidgetThird();
+    /*!
+     * Change to wire widget.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
@@ -32,8 +47,17 @@ protected:
      * Override the widget event.
      */
     void initFirstWidget();
+    /*!
+     * Init main widget.
+     */
     void initSecondWidget();
+    /*!
+     * Init connect to wireless widget.
+     */
     void initThirdWidget();
+    /*!
+     * Init connect to wire widget.
+     */
 
     QStackedWidget *m_stackedWidget;
 

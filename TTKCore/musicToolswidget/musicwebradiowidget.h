@@ -23,25 +23,64 @@ namespace Ui {
 class MusicWebRadioWidget;
 }
 
+/*! @brief The class of the web radio widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOL_EXPORT MusicWebRadioWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicWebRadioWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicWebRadioWidget();
 
 public Q_SLOTS:
     void radioPlay();
+    /*!
+     * Set radio to play.
+     */
     void radioStop();
+    /*!
+     * Set radio to stop.
+     */
     void radioVolume(int num);
+    /*!
+     * Set radio volume.
+     */
     void timeout();
+    /*!
+     * Set time out to show gif effect.
+     */
     void updateRadioList(const QString &category);
+    /*!
+     * Update radio list by given category.
+     */
     void updateRecentList();
+    /*!
+     * Update radio recent list.
+     */
     void updateFavouriteList();
+    /*!
+     * Update favourite list.
+     */
     void itemHasDoubleClicked(QListWidgetItem *item);
+    /*!
+     * Radio list item has double clicked.
+     */
     void radioStandardOutput();
+    /*!
+     * Radio standard output changed.
+     */
     void radioColletButton();
+    /*!
+     * Current radio item has collet.
+     */
     void radioDiscolletButton();
+    /*!
+     * Current radio item has discollet.
+     */
     void show();
     /*!
      * Override show function.
@@ -56,8 +95,8 @@ protected:
     /*!
      * Clear All Items.
      */
-    Ui::MusicWebRadioWidget *ui;
 
+    Ui::MusicWebRadioWidget *ui;
     int m_timerCount;
     MusicCoreMPlayer *m_radio;
     QTimer m_timer;

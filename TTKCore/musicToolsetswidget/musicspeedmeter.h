@@ -19,21 +19,48 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the speed meter widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicSpeedMeter : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicSpeedMeter(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void setValue(qreal value);
+    /*!
+     * Set meter value.
+     */
     qreal value() const { return m_value;}
+    /*!
+     * Get meter value.
+     */
     void setRatio(qreal value);
+    /*!
+     * Set meter ratio.
+     */
     qreal ratio() const { return m_ratio;}
+    /*!
+     * Get meter ratio.
+     */
     void setAnimating(bool enable);
+    /*!
+     * Set meter animation.
+     */
     bool isAnimating() const { return m_bAnimating;}
+    /*!
+     * Get meter animation.
+     */
 
 private Q_SLOTS:
     void updateGraph();
+    /*!
+     * Update graph path.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
@@ -41,19 +68,55 @@ protected:
      * Override the widget event.
      */
     QSize sizeHint() const;
+    /*!
+     * Override the sizeHint function.
+     */
     QSize minimumSizeHint() const;
+    /*!
+     * Override the minimumSizeHint function.
+     */
 
 private:
     void initVariables();
+    /*!
+     * Init variablesn.
+     */
     void resetVariables();
+    /*!
+     * Reset variables.
+     */
     void drawOuterCircle(QPainter* painter);
+    /*!
+     * Draw outer circle.
+     */
     void drawInnerCircle(QPainter* painter);
+    /*!
+     * Draw inner circle.
+     */
     void drawMark(QPainter* painter);
+    /*!
+     * Draw mark.
+     */
     void drawCoverCircle(QPainter* painter);
+    /*!
+     * Draw cover circle.
+     */
     void drawColorPie(QPainter* painter);
+    /*!
+     * Draw color pie.
+     */
     void drawIndicator(QPainter* painter);
+    /*!
+     * Draw indicator.
+     */
     void drawCoverBall(QPainter* painter);
+    /*!
+     * Draw cover ball.
+     */
     void drawTextRect(QPainter* painter);
+    /*!
+     * Draw text rect.
+     */
 
     qreal m_outerRadius, m_innerRadius;
     qreal m_coverCircleRadius, m_colorCircleRadius;

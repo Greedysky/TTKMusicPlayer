@@ -15,27 +15,57 @@
 
 class QProcess;
 
+/*! @brief The class of the network test thread.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicNetworkTestThread : public QThread
 {
     Q_OBJECT
 public:
     explicit MusicNetworkTestThread(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicNetworkTestThread();
 
     void stopAndQuitThread();
+    /*!
+     * Stop and quit current thread.
+     */
     void setAvailableNewtworkNames(const QStringList &names);
+    /*!
+     * Set available newtwork names.
+     */
     QStringList getAvailableNewtworkNames() const;
+    /*!
+     * Get available newtwork names.
+     */
     QStringList getNewtworkNames() const;
+    /*!
+     * Get newtwork names.
+     */
 
 Q_SIGNALS:
     void networkData(ulong upload, ulong download);
+    /*!
+     * Send current upload and download speed data.
+     */
 
 public Q_SLOTS:
     void start();
+    /*!
+     * Strat thread now.
+     */
     void run();
+    /*!
+     * Thread run now.
+     */
 
 private Q_SLOTS:
     void outputRecieved();
+    /*!
+     * Get output recieved data on linux network.
+     */
 
 protected:
     bool m_run;

@@ -11,19 +11,40 @@
 
 #include "musicabstracttablewidget.h"
 
+/*! @brief The class of the lcal songs table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicLocalSongsTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicLocalSongsTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void clearShowlist();
+    /*!
+     * Clear show list.
+     */
     void clearShowPath();
+    /*!
+     * Clear show path.
+     */
     void createShowlist();
+    /*!
+     * Create show list.
+     */
     void createShowPath();
+    /*!
+     * Create show path.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int, int) override {}
+    /*!
+     * Table widget list cell click.
+     */
 
 };
 

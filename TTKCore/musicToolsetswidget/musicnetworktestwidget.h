@@ -27,11 +27,17 @@ namespace Ui {
 class MusicNetworkTestWidget;
 }
 
+/*! @brief The class of the network test widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicNetworkTestWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicNetworkTestWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicNetworkTestWidget();
 
 public Q_SLOTS:
@@ -42,13 +48,31 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void networkData(ulong upload, ulong download);
+    /*!
+     * Get current upload and download speed data.
+     */
     void suspensionOpen();
+    /*!
+     * Open suspension widget.
+     */
     void networkTestStart();
+    /*!
+     * Network test start.
+     */
     void networkTestStop();
+    /*!
+     * Network test stop.
+     */
     void actionTriggered(QAction *action);
+    /*!
+     * Select diff network interface action.
+     */
 
 protected:
     void settingButton();
+    /*!
+     * Set button popup menu.
+     */
 
     Ui::MusicNetworkTestWidget *ui;
     QTimer m_testTimer;

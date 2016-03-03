@@ -63,7 +63,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     buttonGroup->addButton(ui->scanCustButton, 1);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(filterScanChanged(int)));
 
-
     connect(ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
     connect(ui->songlistsTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));

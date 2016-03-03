@@ -25,21 +25,42 @@ namespace Ui {
 class MusicTransformWidget;
 }
 
+/*! @brief The class of the transform widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     explicit MusicTransformWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicTransformWidget();
 
 Q_SIGNALS:
 
 public Q_SLOTS:
     void initInputPath();
+    /*!
+     * Selected input path.
+     */
     void initOutputPath();
+    /*!
+     * Selected out path.
+     */
     void startTransform();
-    void transformFinish(int index);
-    void folderBoxChecked(bool check);
+    /*!
+     * Start to transform.
+     */
+    void transformFinish();
+    /*!
+     * Transform finished.
+     */
+    void folderBoxChecked();
+    /*!
+     * Input is dir not file.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -47,13 +68,27 @@ public Q_SLOTS:
 
 protected:
     QString getTransformSongName() const;
-    Ui::MusicTransformWidget *ui;
-
+    /*!
+     * Get transform song name.
+     */
     QFileInfoList getFileList(const QString &path);
+    /*!
+     * If input is dir just get all files in this dir.
+     */
     void initControlParameter() const;
+    /*!
+     * Init control parameter.
+     */
     bool processTransform(const QString &para) const;
+    /*!
+     * Start a process to transform.
+     */
     void setCheckedControl(bool enable) const;
+    /*!
+     * Set control enable false when it begin.
+     */
 
+    Ui::MusicTransformWidget *ui;
     QProcess *m_process;
     QMovie *m_movie;
     QStringList m_path;

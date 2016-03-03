@@ -14,18 +14,33 @@
 class QActionGroup;
 class MusicNetworkTestThread;
 
+/*! @brief The class of the network suspension widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicNetworkSuspensionWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicNetworkSuspensionWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicNetworkSuspensionWidget();
 
     void setAvailableNewtworkNames(const QStringList &names);
+    /*!
+     * Set available newtwork names.
+     */
 
 private Q_SLOTS:
     void networkData(ulong upload, ulong download);
+    /*!
+     * Send current upload and download speed data.
+     */
     void actionTriggered(QAction *action);
+    /*!
+     * Select diff network interface action.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

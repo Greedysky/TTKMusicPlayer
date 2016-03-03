@@ -13,22 +13,43 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the desktop wallpaper thread.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicDesktopWallpaperThread : public QThread
 {
     Q_OBJECT
 public:
     explicit MusicDesktopWallpaperThread(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicDesktopWallpaperThread();
 
     void setParamters(const MStriantMap &p);
+    /*!
+     * Set paramters(Time\Type\Func\Close).
+     */
     void stopAndQuitThread();
+    /*!
+     * Stop and quit current thread.
+     */
 
 public Q_SLOTS:
     void start();
+    /*!
+     * Strat thread now.
+     */
     void run();
+    /*!
+     * Thread run now.
+     */
 
 protected:
     void setWallpaper(const QString &path, int type) const;
+    /*!
+     * Set desktop wallpaper.
+     */
 
     bool m_run;
     bool m_returnToOrigin;

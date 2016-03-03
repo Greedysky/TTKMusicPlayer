@@ -40,6 +40,9 @@ public:
 
 Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
+    /*!
+     * Get current play lists.
+     */
     void enhancedMusicChanged(int type);
 
 public Q_SLOTS:
@@ -48,6 +51,9 @@ public Q_SLOTS:
     void musicTimerWidget();
     void musicSetWindowToTop();
     void musicToolSetsParameter();
+    /*!
+     * Timer parameter changed.
+     */
     void musicSetEqualizer();
 
 protected:

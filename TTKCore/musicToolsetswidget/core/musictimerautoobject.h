@@ -15,25 +15,49 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the time auto run.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
 public:
     explicit MusicTimerAutoObject(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicTimerAutoObject();
 
     void runTimerAutoConfig();
+    /*!
+     * Run time auto from local file config.
+     */
 
 Q_SIGNALS:
     void setPlaySong(int index);
+    /*!
+     * Set current song to play in play list.
+     */
     void setStopSong();
+    /*!
+     * Set current song to stop in play list.
+     */
 
 public Q_SLOTS:
     void timeout();
+    /*!
+     * Check current state by one minute.
+     */
 
 protected:
     bool systemIs64bit() const;
+    /*!
+     * Check current system is 64 bit or not.
+     */
     void setShutdown();
+    /*!
+     * Set current system to shutdown.
+     */
 
     QTimer m_timer;
     int m_hour;

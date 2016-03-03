@@ -15,17 +15,26 @@
 
 class QToolButton;
 
+/*! @brief The class of the mobile devices widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicMobileDevicesWidget : public QLabel
 {
     Q_OBJECT
 public:
     explicit MusicMobileDevicesWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicMobileDevicesWidget();
 
 Q_SIGNALS:
 
 public Q_SLOTS:
     void showMobileManager();
+    /*!
+     * Show mobile manager widget.
+     */
 
 protected:
     QToolButton *m_closeButton;

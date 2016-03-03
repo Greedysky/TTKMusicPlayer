@@ -18,17 +18,29 @@ namespace Ui {
 class MusicFileInformationWidget;
 }
 
+/*! @brief The class of the modify lineEdit.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicModifyLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     explicit MusicModifyLineEdit(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicModifyLineEdit();
 
     bool getTextEdited() const { return m_isTextEdited;}
+    /*!
+     * Get text edit state.
+     */
 
 private Q_SLOTS:
     void isTextEdited();
+    /*!
+     * Current text edit state changed.
+     */
 
 protected:
     virtual void leaveEvent(QEvent *event) override;
@@ -42,17 +54,29 @@ protected:
 };
 
 
+/*! @brief The class of the file information widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOLSET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
     explicit MusicFileInformationWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicFileInformationWidget();
 
     void setFileInformation(const QString &name);
+    /*!
+     * Set music file song path name.
+     */
 
 public Q_SLOTS:
     void musicOpenFileDir();
+    /*!
+     * Open the music at local path.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -60,6 +84,9 @@ public Q_SLOTS:
 
 protected:
     void saveModifyData();
+    /*!
+     * Save modify data to local file.
+     */
 
     Ui::MusicFileInformationWidget *ui;
     QString m_path;

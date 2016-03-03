@@ -18,7 +18,7 @@ MusicTimerAutoObject::MusicTimerAutoObject(QObject *parent)
 
 MusicTimerAutoObject::~MusicTimerAutoObject()
 {
-
+    m_timer.stop();
 }
 
 void MusicTimerAutoObject::runTimerAutoConfig()
@@ -113,6 +113,7 @@ bool MusicTimerAutoObject::systemIs64bit() const
 
 void MusicTimerAutoObject::setShutdown()
 {
+#ifdef Q_OS_WIN
     bool isWind64 = systemIs64bit();
     QString item;
     QStringList lists = QProcess::systemEnvironment();
@@ -144,4 +145,5 @@ void MusicTimerAutoObject::setShutdown()
     QString program = item + "\\shutdown.exe";
     (new QProcess(this))->start(program, QStringList() << "-s" << "-t" << "1");
     M_LOGGER << "shutdown now" << LOG_END;
+#endif
 }

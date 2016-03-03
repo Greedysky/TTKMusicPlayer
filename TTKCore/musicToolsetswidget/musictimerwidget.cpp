@@ -6,6 +6,7 @@
 #include "musicconnectionpool.h"
 
 #include <QStyledItemDelegate>
+#include <QButtonGroup>
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -48,6 +49,21 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     initThreeWidget();
     initParemeter();
 
+    QButtonGroup *group1 = new QButtonGroup(this);
+    group1->addButton(ui->noSetRadioButton1, 0);
+    group1->addButton(ui->setRadioButton1, 1);
+    connect(group1, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+
+    QButtonGroup *group2 = new QButtonGroup(this);
+    group2->addButton(ui->noSetRadioButton2, 2);
+    group2->addButton(ui->setRadioButton2, 3);
+    connect(group2, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+
+    QButtonGroup *group3 = new QButtonGroup(this);
+    group3->addButton(ui->noSetRadioButton3, 4);
+    group3->addButton(ui->setRadioButton3, 5);
+    connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+
     M_CONNECTION->setValue("MusicTimerWidget", this);
     M_CONNECTION->poolConnect("MusicTimerWidget", "MusicApplicationObject");
     M_CONNECTION->poolConnect("MusicTimerWidget", "MusicApplication");
@@ -64,7 +80,7 @@ void MusicTimerWidget::initParemeter()
     if(M_SETTING->value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 1)
     {
         ui->noSetRadioButton1->setChecked(true);
-        setEnabledControlFalse1();
+        setEnabledFirstControl(false);
     }
     else
     {
@@ -78,7 +94,7 @@ void MusicTimerWidget::initParemeter()
     if(M_SETTING->value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 1)
     {
         ui->noSetRadioButton2->setChecked(true);
-        setEnabledControlFalse2();
+        setEnabledSecondControl(false);
     }
     else
     {
@@ -91,7 +107,7 @@ void MusicTimerWidget::initParemeter()
     if(M_SETTING->value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 1)
     {
         ui->noSetRadioButton3->setChecked(true);
-        setEnabledControlFalse3();
+        setEnabledThreeControl(false);
     }
     else
     {
@@ -193,8 +209,6 @@ void MusicTimerWidget::initFirstWidget()
     ui->psongComboBox->setItemDelegate(new QStyledItemDelegate(ui->psongComboBox));
     ui->psongComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->psongComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlFalse1()));
-    connect(ui->setRadioButton1, SIGNAL(clicked()), SLOT(setEnabledControlTrue1()));
 }
 
 void MusicTimerWidget::initSecondWidget()
@@ -213,8 +227,6 @@ void MusicTimerWidget::initSecondWidget()
     ui->repeatComboBox2->setItemDelegate(new QStyledItemDelegate(ui->repeatComboBox2));
     ui->repeatComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->repeatComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlFalse2()));
-    connect(ui->setRadioButton2, SIGNAL(clicked()), SLOT(setEnabledControlTrue2()));
 }
 
 void MusicTimerWidget::initThreeWidget()
@@ -233,8 +245,6 @@ void MusicTimerWidget::initThreeWidget()
     ui->repeatComboBox3->setItemDelegate(new QStyledItemDelegate(ui->repeatComboBox3));
     ui->repeatComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->repeatComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    connect(ui->noSetRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlFalse3()));
-    connect(ui->setRadioButton3, SIGNAL(clicked()), SLOT(setEnabledControlTrue3()));
 }
 
 void MusicTimerWidget::commitTheResults()
@@ -244,50 +254,41 @@ void MusicTimerWidget::commitTheResults()
     close();
 }
 
-void MusicTimerWidget::setEnabledControlFalse1()
+void MusicTimerWidget::buttonClicked(int index)
 {
-    ui->hourComboBox1->setEnabled(false);
-    ui->secComboBox1->setEnabled(false);
-    ui->repeatComboBox1->setEnabled(false);
-    ui->plistComboBox->setEnabled(false);
-    ui->psongComboBox->setEnabled(false);
+    switch(index)
+    {
+        case 0: setEnabledFirstControl(false); break;
+        case 1: setEnabledFirstControl(true); break;
+        case 2: setEnabledSecondControl(false); break;
+        case 3: setEnabledSecondControl(true); break;
+        case 4: setEnabledThreeControl(false); break;
+        case 5: setEnabledThreeControl(true); break;
+        default: break;
+    }
 }
 
-void MusicTimerWidget::setEnabledControlTrue1()
+void MusicTimerWidget::setEnabledFirstControl(bool enable)
 {
-    ui->hourComboBox1->setEnabled(true);
-    ui->secComboBox1->setEnabled(true);
-    ui->repeatComboBox1->setEnabled(true);
-    ui->plistComboBox->setEnabled(true);
-    ui->psongComboBox->setEnabled(true);
+    ui->hourComboBox1->setEnabled(enable);
+    ui->secComboBox1->setEnabled(enable);
+    ui->repeatComboBox1->setEnabled(enable);
+    ui->plistComboBox->setEnabled(enable);
+    ui->psongComboBox->setEnabled(enable);
 }
 
-void MusicTimerWidget::setEnabledControlFalse2()
+void MusicTimerWidget::setEnabledSecondControl(bool enable)
 {
-    ui->hourComboBox2->setEnabled(false);
-    ui->secComboBox2->setEnabled(false);
-    ui->repeatComboBox2->setEnabled(false);
+    ui->hourComboBox2->setEnabled(enable);
+    ui->secComboBox2->setEnabled(enable);
+    ui->repeatComboBox2->setEnabled(enable);
 }
 
-void MusicTimerWidget::setEnabledControlTrue2()
+void MusicTimerWidget::setEnabledThreeControl(bool enable)
 {
-    ui->hourComboBox2->setEnabled(true);
-    ui->secComboBox2->setEnabled(true);
-    ui->repeatComboBox2->setEnabled(true);
-}
-
-void MusicTimerWidget::setEnabledControlFalse3()
-{
-    ui->hourComboBox3->setEnabled(false);
-    ui->secComboBox3->setEnabled(false);
-    ui->repeatComboBox3->setEnabled(false);
-}
-
-void MusicTimerWidget::setEnabledControlTrue3()
-{
-    ui->hourComboBox3->setEnabled(true);
-    ui->secComboBox3->setEnabled(true);
-    ui->repeatComboBox3->setEnabled(true);
+    ui->hourComboBox3->setEnabled(enable);
+    ui->secComboBox3->setEnabled(enable);
+    ui->repeatComboBox3->setEnabled(enable);
 }
 
 int MusicTimerWidget::exec()

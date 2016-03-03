@@ -15,19 +15,34 @@
 
 class QProcess;
 
+/*! @brief The class of the tool sets widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public QListWidget
 {
     Q_OBJECT
 public:
     explicit MusicToolSetsWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicToolSetsWidget();
 
 Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
+    /*!
+     * Get current play lists.
+     */
 
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
+    /*!
+     * Tool sets list item has clicked.
+     */
     void addListWidgetItem();
+    /*!
+     * Add tool sets list into list widget.
+     */
 
 protected:
     void clearAllItems();

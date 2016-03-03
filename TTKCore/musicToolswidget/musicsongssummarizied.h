@@ -19,11 +19,17 @@ class MusicSongsListWidget;
 class QTableWidgetItem;
 class MusicSongsToolItemRenamedWidget;
 
+/*! @brief The class of the songs summarizied widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_TOOL_EXPORT MusicSongsSummarizied : public QToolBox
 {
     Q_OBJECT
 public:
     explicit MusicSongsSummarizied(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSongsSummarizied();
 
     void setMusicLists(const MusicSongsList &names);

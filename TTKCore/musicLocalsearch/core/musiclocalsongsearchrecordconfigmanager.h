@@ -31,15 +31,15 @@ public:
 
     inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_AL); }
     /*!
-     * Read music search datas from xml file by given name.
+     * Read history search datas from xml file by given name.
      */
     void writeSearchConfig(const MusicSearchRecord &record);
     /*!
-     * Write music search datas into xml file.
+     * Write history search datas into xml file.
      */
     void readSearchConfig(MusicSearchRecord &record);
     /*!
-     * Read music search datas into xml file.
+     * Read history search datas into xml file.
      */
 
 };
