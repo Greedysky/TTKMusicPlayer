@@ -453,6 +453,7 @@ void MusicApplication::durationChanged(qint64 duration)
 
 void MusicApplication::showCurrentSong(int index)
 {
+    qDebug() << index;
     QString name;
     if( index > -1 ) //The list to end
     {
@@ -893,12 +894,6 @@ void MusicApplication::setStopSongChanged()
 {
     m_playControl = false;
     musicStatePlay();
-}
-
-void MusicApplication::addSongToPlayList(const QStringList &item)
-{
-    musicImportSongsSettingPath(item);
-    musicPlayIndex(m_musicList->mediaCount() - 1, 0);
 }
 
 void MusicApplication::musicWindowConciseChanged()

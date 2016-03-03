@@ -282,6 +282,26 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     emit musicPlayIndex(m_musicFileNames[2].count() - 1, 0);
 }
 
+void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
+{
+    if(items.isEmpty())
+    {
+        return;
+    }
+
+    importOtherMusicSongs(items);
+    if(m_currentIndexs == 0)
+    {
+        foreach(QString var, items)
+        {
+            emit updatePlayLists(var);
+        }
+    }
+    /// just play it at once
+    QToolBox::setCurrentIndex(0);
+    emit musicPlayIndex(m_musicFileNames[0].count() - 1, 0);
+}
+
 void MusicSongsSummarizied::deleteItem()
 {
     int index = currentIndex();

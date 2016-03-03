@@ -56,8 +56,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(setCurrentPosition(qint64)));
     }
 
-    if( (from == "MusicLocalSongsManagerWidget" && to == "MusicApplication") ||
-        (from == "MusicMyDownloadRecordWidget" && to == "MusicApplication") )
+    if( (from == "MusicLocalSongsManagerWidget" && to == "MusicSongsSummarizied") ||
+        (from == "MusicMyDownloadRecordWidget" && to == "MusicSongsSummarizied") )
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second,
                                 SLOT(addSongToPlayList(QStringList)));

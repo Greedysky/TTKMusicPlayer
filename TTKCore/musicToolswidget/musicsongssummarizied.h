@@ -151,6 +151,10 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
+    void addSongToPlayList(const QStringList &item);
+    /*!
+     * Add current selected song to play lists.
+     */
     void setDeleteItemAt(const MIntList &del, bool fileRemove);
     /*!
      * Delete items from indexs and check remove file or not.

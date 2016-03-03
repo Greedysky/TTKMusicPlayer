@@ -26,7 +26,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     musicSongsFileName();
 
     M_CONNECTION->setValue("MusicMyDownloadRecordWidget", this);
-    M_CONNECTION->poolConnect("MusicMyDownloadRecordWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicMyDownloadRecordWidget", "MusicSongsSummarizied");
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()

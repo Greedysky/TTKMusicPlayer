@@ -210,10 +210,6 @@ public Q_SLOTS:
      */
     /////////////////////////////////////////////
     ///This is a slot by MusicLeftAreaWidget's signal emit
-    void addSongToPlayList(const QStringList &item);
-    /*!
-     * Add current selected song to play lists.
-     */
     void getCurrentPlayList(QStringList &list);
     /*!
      * Get current play lists.

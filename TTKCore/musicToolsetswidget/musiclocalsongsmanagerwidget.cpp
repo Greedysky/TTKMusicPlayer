@@ -82,7 +82,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
                       SLOT(setSongNamePath(QFileInfoList)));
 
     M_CONNECTION->setValue("MusicLocalSongsManagerWidget", this);
-    M_CONNECTION->poolConnect("MusicLocalSongsManagerWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicLocalSongsManagerWidget", "MusicSongsSummarizied");
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
