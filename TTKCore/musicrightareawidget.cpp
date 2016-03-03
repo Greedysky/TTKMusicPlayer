@@ -135,7 +135,7 @@ void MusicRightAreaWidget::setInlineLrcVisible(const QString &status) const
 
 bool MusicRightAreaWidget::getInlineLrcVisible() const
 {
-    m_ui->musiclrccontainerforinline->isVisible();
+    return m_ui->musiclrccontainerforinline->isVisible();
 }
 
 void MusicRightAreaWidget::setSettingParameter() const
