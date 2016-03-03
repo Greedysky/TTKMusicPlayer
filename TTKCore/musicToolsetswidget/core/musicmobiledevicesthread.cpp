@@ -5,7 +5,6 @@
 #   include <linux/netlink.h>
 #   include <unistd.h>
 #endif
-#include <QDebug>
 
 MusicMobileDevicesThread::MusicMobileDevicesThread(QObject *parent)
     :   QThread(parent)
