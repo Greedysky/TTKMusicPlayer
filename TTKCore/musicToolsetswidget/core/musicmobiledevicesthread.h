@@ -49,7 +49,11 @@ public Q_SLOTS:
      */
 
 protected:
-    int initHotplugSock();
+    int initHotPlugSock();
+    /*!
+     * Init hot plug sock.
+     */
+
     bool m_run;
 
 };

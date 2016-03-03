@@ -5,8 +5,8 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QThread>
-#ifdef Q_OS_UNIX
-#   include <unistd.h>
+#if defined Q_OS_UNIX || defined Q_CC_MINGW
+# include <unistd.h>
 #endif
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
@@ -77,9 +77,9 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
         int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*1024)
         {
-#if defined Q_OS_WIN
+#if defined Q_OS_WIN && MUSIC_QT_5
             QThread::msleep(1000 - limitValue*1024*1000/delta);
-#elif defined Q_OS_UNIX
+#else
             usleep( (1000 - limitValue*1024*1000/delta)*1000 );
 #endif
             delta = limitValue*1024;

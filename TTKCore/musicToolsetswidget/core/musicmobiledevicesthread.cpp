@@ -26,7 +26,7 @@ void MusicMobileDevicesThread::stopAndQuitThread()
     quit();
 }
 
-int MusicMobileDevicesThread::initHotplugSock()
+int MusicMobileDevicesThread::initHotPlugSock()
 {
 #ifdef Q_OS_UNIX
     const int buffersize = 1024;
@@ -63,7 +63,7 @@ void MusicMobileDevicesThread::start()
 
 void MusicMobileDevicesThread::run()
 {
-    int init = initHotplugSock();
+    int init = initHotPlugSock();
     if(init == -1)
     {
         return;
