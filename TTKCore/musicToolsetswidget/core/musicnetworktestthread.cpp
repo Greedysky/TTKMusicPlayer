@@ -9,9 +9,6 @@
 # include <windows.h>
 # include <cstdio>
 # include <iphlpapi.h>
-# if defined Q_CC_MSVC
-#   pragma comment(lib, "Iphlpapi.lib")
-# endif
 #elif defined Q_OS_UNIX
 # include <ifaddrs.h>
 # include <arpa/inet.h>
