@@ -453,7 +453,6 @@ void MusicApplication::durationChanged(qint64 duration)
 
 void MusicApplication::showCurrentSong(int index)
 {
-    qDebug() << index;
     QString name;
     if( index > -1 ) //The list to end
     {

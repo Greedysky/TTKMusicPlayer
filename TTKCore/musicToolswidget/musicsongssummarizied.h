@@ -151,7 +151,7 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
-    void addSongToPlayList(const QStringList &item);
+    void addSongToPlayList(const QStringList &items);
     /*!
      * Add current selected song to play lists.
      */
