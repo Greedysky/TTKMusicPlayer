@@ -77,7 +77,7 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
         int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*1024)
         {
-#if defined Q_OS_WIN && MUSIC_QT_5
+#if defined Q_OS_WIN && defined MUSIC_QT_5
             QThread::msleep(1000 - limitValue*1024*1000/delta);
 #else
             usleep( (1000 - limitValue*1024*1000/delta)*1000 );
