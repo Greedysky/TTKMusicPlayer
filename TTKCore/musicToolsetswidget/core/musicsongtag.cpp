@@ -10,7 +10,7 @@
 #include "metadatamodel.h"
 #include "decoder.h"
 ///
-#include <QDebug>
+
 MusicSongTag::MusicSongTag()
 {
     m_tag = nullptr;
