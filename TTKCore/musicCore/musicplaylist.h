@@ -90,10 +90,6 @@ Q_SIGNALS:
     /*!
      * Current play mode changed emit.
      */
-    void removeCurrentMedia();
-    /*!
-     * Remove current music media data.
-     */
 
 public Q_SLOTS:
     void setCurrentIndex(int index = -2);

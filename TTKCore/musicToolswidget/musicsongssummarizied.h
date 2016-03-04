@@ -96,7 +96,7 @@ public:
      */
 
 Q_SIGNALS:
-    void deleteItemAt(MIntList list);
+    void deleteItemAt(const MIntList &list, bool remove);
     /*!
      * Delete items from indexs if in current stack widget.
      */

@@ -170,15 +170,15 @@ public Q_SLOTS:
     /*!
      * Read equalizer effect from config file.
      */
+    void removeCurrentMedia();
+    /*!
+     * Remove current music media data.
+     */
 
 private Q_SLOTS:
     void setTimeOut();
     /*!
      * Player one second time out.
-     */
-    void removeCurrentMedia();
-    /*!
-     * Remove current music media data.
      */
     void getCurrentDuration();
     /*!

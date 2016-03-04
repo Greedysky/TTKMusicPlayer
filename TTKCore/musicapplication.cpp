@@ -71,7 +71,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), m_musicSongTree, SLOT(setMusicPlayCount(int)));
 
-    connect(m_musicSongTree, SIGNAL(deleteItemAt(MIntList)), SLOT(setDeleteItemAt(MIntList)));
+    connect(m_musicSongTree, SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
     connect(m_musicSongTree, SIGNAL(clearSearchText()), m_leftAreaWidget, SLOT(clearSearchedText()));
     connect(m_musicSongTree, SIGNAL(updatePlayLists(QString)), m_musicList, SLOT(appendMedia(QString)));
     connect(m_musicSongTree, SIGNAL(updateMediaLists(QStringList, int)), m_musicList, SLOT(updateMediaLists(QStringList, int)));
@@ -771,38 +771,53 @@ void MusicApplication::musicCurrentPlayLocation()
     m_musicSongTree->selectRow(m_musicList->currentIndex());
 }
 
-void MusicApplication::setDeleteItemAt(const MIntList &index)
+void MusicApplication::setDeleteItemAt(const MIntList &index, bool remove)
 {
     if(index.isEmpty())
     {
         return;
     }
 
-    bool contains = false;
+    QString prePlayName = m_musicList->currentMediaString();
+    bool contains = false; ///the play one is delete list
     int oldIndex = m_musicList->currentIndex();
+    ///check if delete one that the play one
+    if(index.count() == 1 && index.first() == oldIndex)
+    {
+        contains = true;
+    }
+    ///other ways
     for(int i=index.count() - 1; i>=0; --i)
     {
         m_musicList->removeMedia(index[i]);
-        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])
+        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i-1])
         {
             oldIndex -= i;
             contains = true;
         }
     }
+
     if(!contains && m_musicList->currentIndex() > index[0])
     {
         oldIndex -= index.count();
     }
-    if( oldIndex == m_musicList->mediaCount())  //Play index error correction
+    if( oldIndex == m_musicList->mediaCount()) ///Play index error correction
     {
         --oldIndex;
     }
-
     m_musicList->setCurrentIndex(oldIndex);
-    //The corresponding item is deleted from the QMediaPlaylist
-    m_playControl = true;
-    musicStatePlay();
-    m_playControl = false;
+
+    if(contains)
+    {
+        //The corresponding item is deleted from the QMediaPlaylist
+        m_playControl = true;
+        musicStatePlay();
+        m_playControl = false;
+        if(remove)
+        {
+            QFile::remove(prePlayName);
+        }
+    }
 }
 
 void MusicApplication::getParameterSetting()

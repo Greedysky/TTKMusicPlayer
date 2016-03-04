@@ -231,7 +231,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemo
     }
     if(currentIndex() == m_currentIndexs)
     {
-        emit deleteItemAt(index);
+        emit deleteItemAt(index, fileRemove);
     }
 }
 

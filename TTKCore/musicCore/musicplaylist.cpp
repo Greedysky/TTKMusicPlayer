@@ -106,7 +106,6 @@ bool MusicPlaylist::removeMedia(int pos)
         return false;
     }
     m_mediaList.removeAt(pos);
-    emit removeCurrentMedia();
     return true;
 }
 
