@@ -10,7 +10,7 @@
 #include "metadatamodel.h"
 #include "decoder.h"
 ///
-
+#include <QDebug>
 MusicSongTag::MusicSongTag()
 {
     m_tag = nullptr;
@@ -41,35 +41,18 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
 
     if(suffix == "aac")
     {
-#ifdef Q_OS_WIN
-#  ifdef MUSIC_QT_5
-        loader.setFileName("plugins/Input/aac.dll");
-#  else
-        loader.setFileName("../bin/plugins/Input/aac.dll");
-#  endif
-#elif defined Q_OS_UNIX
-#  ifdef MUSIC_QT_5
-        loader.setFileName("qmmp/Input/aac.dll");
-#  else
-        loader.setFileName("../lib/qmmp/Input/aac.dll");
-#  endif
-#endif
+        QString path = getNotSupportedPluginPath("aac");
+        loader.setFileName(path);
     }
     else if(suffix == "mid")
     {
-#ifdef Q_OS_WIN
-#  ifdef MUSIC_QT_5
-        loader.setFileName("plugins/Input/wildmidi.dll");
-#  else
-        loader.setFileName("../bin/plugins/Input/wildmidi.dll");
-#  endif
-#elif defined Q_OS_UNIX
-#  ifdef MUSIC_QT_5
-        loader.setFileName("qmmp/Input/wildmidi.dll");
-#  else
-        loader.setFileName("../lib/qmmp/Input/wildmidi.dll");
-#  endif
-#endif
+        QString path = getNotSupportedPluginPath("wildmidi");
+        loader.setFileName(path);
+    }
+    else if(suffix == "mp2")
+    {
+        QString path = getNotSupportedPluginPath("ffmpeg");
+        loader.setFileName(path);
     }
 
     QObject *obj = loader.instance();
@@ -96,6 +79,25 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     }
 
     return !m_parameters.isEmpty();
+}
+
+QString MusicSongTag::getNotSupportedPluginPath(const QString &format)
+{
+    QString path;
+#ifdef Q_OS_WIN
+#  ifdef MUSIC_QT_5
+    path = QString("plugins/Input/%1.dll").arg(format);
+#  else
+    path = QString("../bin/plugins/Input/%1.dll").arg(format);
+#  endif
+#elif defined Q_OS_UNIX
+#  ifdef MUSIC_QT_5
+    path = QString("qmmp/Input/%1.dll").arg(format);
+#  else
+    path = QString("../lib/qmmp/Input/%1.dll").arg(format);
+#  endif
+#endif
+    return path;
 }
 
 QString MusicSongTag::getArtist() const
