@@ -394,17 +394,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="141"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="150"/>
         <source>TTK Music Player</source>
         <translation>TTKMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="142"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="151"/>
         <source>Directed By Greedysky</source>
         <translation>Directed By Greedysky</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="183"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="192"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -896,7 +896,7 @@
     </message>
     <message>
         <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="327"/>
-        <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="380"/>
+        <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="396"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4486,114 +4486,127 @@
     </message>
 </context>
 <context>
-    <name>MusicWebRadioListView</name>
+    <name>MusicWebEntainRadioListView</name>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="42"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="42"/>
         <source>guowai</source>
         <translation>Internation</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="46"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="46"/>
         <source>jiaotong</source>
         <translation>Traffic</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="50"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="50"/>
         <source>jingji</source>
         <translation>Economic</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="54"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="54"/>
         <source>music</source>
         <translation>Musics</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="58"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="58"/>
         <source>news</source>
         <translation>News</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="62"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="62"/>
         <source>quyi</source>
         <translation>QuYi</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="66"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="66"/>
         <source>shenghuo</source>
         <translation>Lifes</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="70"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="70"/>
         <source>sports</source>
         <translation>Sports</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="74"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="74"/>
         <source>zhongyang</source>
         <translation>CCTV</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="78"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="78"/>
         <source>favorite</source>
         <translation>Favorite</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="82"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="82"/>
         <source>latest</source>
         <translation>Latest</translation>
     </message>
 </context>
 <context>
-    <name>MusicWebRadioWidget</name>
+    <name>MusicWebEntainRadioWidget</name>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="14"/>
-        <source>MusicWebRadioWidget</source>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="14"/>
+        <source>MusicWebEntainRadioWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="42"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="42"/>
         <source>网络电台播放窗口</source>
         <translation>Net Radio</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="55"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="55"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="172"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="172"/>
         <source>音量</source>
         <translation>Vol.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="19"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="19"/>
         <source>Close</source>
-        <translation>Close</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="41"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="41"/>
         <source>Play</source>
-        <translation>Play</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="42"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="42"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="43"/>
         <source>Colletion</source>
         <translation>Colletion</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="44"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="44"/>
         <source>Discolletion</source>
         <translation>Discolletion</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="110"/>
         <source>Connecting...</source>
         <translation>Connecting...</translation>
+    </message>
+</context>
+<context>
+    <name>MusicWebRadioToolWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolswidget/musicwebradiotoolwidget.cpp" line="22"/>
+        <source>entertainmentRadio</source>
+        <translation>Entain-Radio</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolswidget/musicwebradiotoolwidget.cpp" line="23"/>
+        <source>musicRadio</source>
+        <translation>Music-Radio</translation>
     </message>
 </context>
 <context>

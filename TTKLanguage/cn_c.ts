@@ -394,17 +394,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="141"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="150"/>
         <source>TTK Music Player</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="142"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="151"/>
         <source>Directed By Greedysky</source>
         <translation>Greedysky 工作室出品</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="183"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="192"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation>打開均衡器將關閉神奇音效，是否繼續？</translation>
     </message>
@@ -896,7 +896,7 @@
     </message>
     <message>
         <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="327"/>
-        <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="380"/>
+        <location filename="../TTKCore/musicWidget/musicdownloadwidget.cpp" line="396"/>
         <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
@@ -3316,7 +3316,7 @@
     <message>
         <location filename="../TTKCore/musicWidget/musicsongslistwidget.cpp" line="435"/>
         <source>The origin one does not exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>您所指定的文件已被移動或者不存在！</translation>
     </message>
     <message>
         <source>The origin one does not exsit!</source>
@@ -4490,114 +4490,127 @@
     </message>
 </context>
 <context>
-    <name>MusicWebRadioListView</name>
+    <name>MusicWebEntainRadioListView</name>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="42"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="42"/>
         <source>guowai</source>
         <translation>國際頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="46"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="46"/>
         <source>jiaotong</source>
         <translation>交通頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="50"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="50"/>
         <source>jingji</source>
         <translation>經濟頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="54"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="54"/>
         <source>music</source>
         <translation>音樂頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="58"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="58"/>
         <source>news</source>
         <translation>新聞頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="62"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="62"/>
         <source>quyi</source>
         <translation>曲藝頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="66"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="66"/>
         <source>shenghuo</source>
         <translation>生活頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="70"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="70"/>
         <source>sports</source>
         <translation>體育頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="74"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="74"/>
         <source>zhongyang</source>
         <translation>中央頻道</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="78"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="78"/>
         <source>favorite</source>
         <translation>頻道收藏</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiolistview.cpp" line="82"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiolistview.cpp" line="82"/>
         <source>latest</source>
         <translation>最近播放</translation>
     </message>
 </context>
 <context>
-    <name>MusicWebRadioWidget</name>
+    <name>MusicWebEntainRadioWidget</name>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="14"/>
-        <source>MusicWebRadioWidget</source>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="14"/>
+        <source>MusicWebEntainRadioWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="42"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="42"/>
         <source>网络电台播放窗口</source>
         <translation>網絡電臺播放窗口</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="55"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="55"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebradiowidget.ui" line="172"/>
+        <location filename="../TTKCore/musicUi/musicToolswidget/musicwebentainradiowidget.ui" line="172"/>
         <source>音量</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="19"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="19"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="41"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="41"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="42"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="42"/>
         <source>Stop</source>
         <translation>暫停</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="43"/>
         <source>Colletion</source>
         <translation>添加至收藏</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="44"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="44"/>
         <source>Discolletion</source>
         <translation>從收藏中移除</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicwebradiowidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicToolswidget/musicwebentainradiowidget.cpp" line="110"/>
         <source>Connecting...</source>
         <translation>連接頻道中...</translation>
+    </message>
+</context>
+<context>
+    <name>MusicWebRadioToolWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolswidget/musicwebradiotoolwidget.cpp" line="22"/>
+        <source>entertainmentRadio</source>
+        <translation>娛樂電臺</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolswidget/musicwebradiotoolwidget.cpp" line="23"/>
+        <source>musicRadio</source>
+        <translation>音樂電臺</translation>
     </message>
 </context>
 <context>
