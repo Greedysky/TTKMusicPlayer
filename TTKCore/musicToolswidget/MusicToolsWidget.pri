@@ -16,7 +16,8 @@ HEADERS  += \
     $$PWD/musicwebradiowidget.h \
     $$PWD/core/musicwebradiodatebase.h \
     $$PWD/core/musicmydownloadrecordconfigmanager.h \
-    $$PWD/musicconnectmobilewidget.h
+    $$PWD/musicconnectmobilewidget.h \
+    $$PWD/musicwebradiotoolwidget.h
 
 }
 
@@ -29,6 +30,7 @@ SOURCES += \
     $$PWD/musicwebradiowidget.cpp \
     $$PWD/core/musicwebradiodatebase.cpp \
     $$PWD/core/musicmydownloadrecordconfigmanager.cpp \
-    $$PWD/musicconnectmobilewidget.cpp
+    $$PWD/musicconnectmobilewidget.cpp \
+    $$PWD/musicwebradiotoolwidget.cpp
 
 }

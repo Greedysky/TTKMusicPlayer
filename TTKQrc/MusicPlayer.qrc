@@ -152,6 +152,8 @@
         <file alias="radiopng2">../TTKResource/netRadio/right_top_1.png</file>
         <file alias="radiopng3">../TTKResource/netRadio/right_top_2.png</file>
         <file alias="radiopng4">../TTKResource/netRadio/right_top_3.png</file>
+        <file alias="toolOn">../TTKResource/netRadio/button_tool_on.png</file>
+        <file alias="toolOff">../TTKResource/netRadio/button_tool_off.png</file>
     </qresource>
     <qresource prefix="/slidergif">
         <file alias="0">../TTKResource/sliderGif/0.png</file>

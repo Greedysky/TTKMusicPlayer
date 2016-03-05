@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
-#include "musicwebradiolistview.h"
+#include "musicwebradiotoolwidget.h"
 #include "musiclocalsongsearch.h"
 #include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
@@ -172,7 +172,7 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
 void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 {
     delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioListView(this);
+    m_stackedWidget = new MusicWebRadioToolWidget(this);
 
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setCurrentIndex(1);
