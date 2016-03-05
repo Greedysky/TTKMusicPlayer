@@ -1,14 +1,14 @@
-#include "musicwebradiowidget.h"
-#include "ui_musicwebradiowidget.h"
-#include "musicwebradiodatebase.h"
+#include "musicwebentainradiowidget.h"
+#include "ui_musicwebentainradiowidget.h"
+#include "musicwebentainradiodatebase.h"
 #include "musicbgthememanager.h"
 #include "musiccoremplayer.h"
 
 #include <QProcess>
 
-MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
+MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicWebRadioWidget), m_radio(nullptr)
+      ui(new Ui::MusicWebEntainRadioWidget), m_radio(nullptr)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -19,7 +19,7 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_database = new MusicWebRadioDatabase;
+    m_database = new MusicWebEntainRadioDatabase;
     m_database->connectDatabase();
 
     ui->playButton->setIcon(QIcon(":/image/play"));
@@ -63,7 +63,7 @@ MusicWebRadioWidget::MusicWebRadioWidget(QWidget *parent)
 
 }
 
-MusicWebRadioWidget::~MusicWebRadioWidget()
+MusicWebEntainRadioWidget::~MusicWebEntainRadioWidget()
 {
     clearAllItems();
     m_timer.stop();
@@ -75,7 +75,7 @@ MusicWebRadioWidget::~MusicWebRadioWidget()
     delete ui;
 }
 
-void MusicWebRadioWidget::closeEvent(QCloseEvent *event)
+void MusicWebEntainRadioWidget::closeEvent(QCloseEvent *event)
 {
     m_timer.stop();
     delete m_radio;
@@ -83,7 +83,7 @@ void MusicWebRadioWidget::closeEvent(QCloseEvent *event)
     QWidget::closeEvent(event);
 }
 
-void MusicWebRadioWidget::timeout()
+void MusicWebEntainRadioWidget::timeout()
 {
     ++m_timerCount;
     ui->movieLabel->setPixmap(QPixmap(":/radio/radiopng" +
@@ -94,7 +94,7 @@ void MusicWebRadioWidget::timeout()
     }
 }
 
-void MusicWebRadioWidget::radioPlay()
+void MusicWebEntainRadioWidget::radioPlay()
 {
     if(m_radioUrl.isEmpty())
     {
@@ -111,7 +111,7 @@ void MusicWebRadioWidget::radioPlay()
     m_timer.start(100);
 }
 
-void MusicWebRadioWidget::radioStop()
+void MusicWebEntainRadioWidget::radioStop()
 {
     if(m_radio)
     {
@@ -120,7 +120,7 @@ void MusicWebRadioWidget::radioStop()
     }
 }
 
-void MusicWebRadioWidget::radioVolume(int num)
+void MusicWebEntainRadioWidget::radioVolume(int num)
 {
     if(m_radio)
     {
@@ -128,12 +128,12 @@ void MusicWebRadioWidget::radioVolume(int num)
     }
 }
 
-void MusicWebRadioWidget::clearAllItems()
+void MusicWebEntainRadioWidget::clearAllItems()
 {
     ui->listWidget->clear();
 }
 
-void MusicWebRadioWidget::updateRadioList(const QString &category)
+void MusicWebEntainRadioWidget::updateRadioList(const QString &category)
 {
     clearAllItems();
     ui->listWidget->clear();
@@ -147,7 +147,7 @@ void MusicWebRadioWidget::updateRadioList(const QString &category)
     }
 }
 
-void MusicWebRadioWidget::updateRecentList()
+void MusicWebEntainRadioWidget::updateRecentList()
 {
     clearAllItems();
     ui->listWidget->clear();
@@ -161,7 +161,7 @@ void MusicWebRadioWidget::updateRecentList()
     }
 }
 
-void MusicWebRadioWidget::updateFavouriteList()
+void MusicWebEntainRadioWidget::updateFavouriteList()
 {
     clearAllItems();
     ui->listWidget->clear();
@@ -171,19 +171,19 @@ void MusicWebRadioWidget::updateFavouriteList()
     }
 }
 
-void MusicWebRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
+void MusicWebEntainRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
 {
     m_radioUrl = m_database->getRadioUrl(m_currentRadioName = item->text().trimmed());
     radioPlay();
 }
 
-void MusicWebRadioWidget::radioStandardOutput()
+void MusicWebEntainRadioWidget::radioStandardOutput()
 {
     ui->stateLabel->setText(m_currentRadioName);
     m_database->radioRecentPlay(m_currentRadioName);
 }
 
-void MusicWebRadioWidget::radioColletButton()
+void MusicWebEntainRadioWidget::radioColletButton()
 {
     QListWidgetItem* lItem = ui->listWidget->currentItem();
     if(!lItem)
@@ -194,7 +194,7 @@ void MusicWebRadioWidget::radioColletButton()
     m_database->radioCollection(lItem->text());
 }
 
-void MusicWebRadioWidget::radioDiscolletButton()
+void MusicWebEntainRadioWidget::radioDiscolletButton()
 {
     QListWidgetItem* lItem = ui->listWidget->currentItem();
     if(!lItem)
@@ -205,7 +205,7 @@ void MusicWebRadioWidget::radioDiscolletButton()
     m_database->radioDiscollection(lItem->text());
 }
 
-void MusicWebRadioWidget::show()
+void MusicWebEntainRadioWidget::show()
 {
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));

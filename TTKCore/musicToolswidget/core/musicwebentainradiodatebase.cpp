@@ -1,16 +1,16 @@
-#include "musicwebradiodatebase.h"
+#include "musicwebentainradiodatebase.h"
 
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QDateTime>
 #include <QVariant>
 
-MusicWebRadioDatabase::MusicWebRadioDatabase()
+MusicWebEntainRadioDatabase::MusicWebEntainRadioDatabase()
 {
 
 }
 
-bool MusicWebRadioDatabase::disConnectDatabase() const
+bool MusicWebEntainRadioDatabase::disConnectDatabase() const
 {
     QString connectionName;
     {
@@ -29,7 +29,7 @@ bool MusicWebRadioDatabase::disConnectDatabase() const
     return true;
 }
 
-bool MusicWebRadioDatabase::connectDatabase() const
+bool MusicWebEntainRadioDatabase::connectDatabase() const
 {
     try
     {
@@ -73,7 +73,7 @@ bool MusicWebRadioDatabase::connectDatabase() const
     return true;
 }
 
-QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName) const
+QString MusicWebEntainRadioDatabase::getRadioUrl(const QString &channelName) const
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     query.exec("select * from channel");
@@ -87,7 +87,7 @@ QString MusicWebRadioDatabase::getRadioUrl(const QString &channelName) const
     return QString();
 }
 
-QStringList MusicWebRadioDatabase::getRadioNames(const QString &category) const
+QStringList MusicWebEntainRadioDatabase::getRadioNames(const QString &category) const
 {
     QStringList channelNames;
     QSqlQuery query(QString("select * from channel where category='%1'").arg(category),
@@ -99,7 +99,7 @@ QStringList MusicWebRadioDatabase::getRadioNames(const QString &category) const
     return channelNames;
 }
 
-QStringList MusicWebRadioDatabase::getRecords(const QString& filter) const
+QStringList MusicWebEntainRadioDatabase::getRecords(const QString& filter) const
 {
     QStringList channelNames;
     QSqlQuery query(filter, QSqlDatabase::database("radio-data"));
@@ -115,17 +115,17 @@ QStringList MusicWebRadioDatabase::getRecords(const QString& filter) const
     return channelNames;
 }
 
-QStringList MusicWebRadioDatabase::getRecentNames() const
+QStringList MusicWebEntainRadioDatabase::getRecentNames() const
 {
     return getRecords("select * from recently order by time DESC");
 }
 
-QStringList MusicWebRadioDatabase::getFavouriteNames() const
+QStringList MusicWebEntainRadioDatabase::getFavouriteNames() const
 {
     return getRecords("select * from collect");
 }
 
-void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName) const
+void MusicWebEntainRadioDatabase::radioRecentPlay(const QString &channelName) const
 {
     QSqlQuery query(QSqlDatabase::database("radio-data"));
     QSqlQuery queryC(QSqlDatabase::database("radio-data"));
@@ -156,7 +156,7 @@ void MusicWebRadioDatabase::radioRecentPlay(const QString &channelName) const
     }
 }
 
-void MusicWebRadioDatabase::radioCollection(const QString &name) const
+void MusicWebEntainRadioDatabase::radioCollection(const QString &name) const
 {
     QSqlQuery query(QString("select * from channel where channel_name='%1'").arg(name),
                              QSqlDatabase::database("radio-data"));
@@ -176,7 +176,7 @@ void MusicWebRadioDatabase::radioCollection(const QString &name) const
     }
 }
 
-void MusicWebRadioDatabase::radioDiscollection(const QString &name) const
+void MusicWebEntainRadioDatabase::radioDiscollection(const QString &name) const
 {
     QSqlQuery query(QString("select * from channel where channel_name='%1'").arg(name),
                              QSqlDatabase::database("radio-data"));

@@ -1,10 +1,10 @@
-#include "musicwebradiolistview.h"
-#include "musicwebradiowidget.h"
+#include "musicwebentainradiolistview.h"
+#include "musicwebentainradiowidget.h"
 #include "musicutils.h"
 
 #include <QTimer>
 
-MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
+MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     : QListWidget(parent), m_radioDialog(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -25,18 +25,18 @@ MusicWebRadioListView::MusicWebRadioListView(QWidget *parent)
                   SLOT(itemHasClicked(QListWidgetItem*)));
 }
 
-MusicWebRadioListView::~MusicWebRadioListView()
+MusicWebEntainRadioListView::~MusicWebEntainRadioListView()
 {
     delete m_radioDialog;
     clearAllItems();
 }
 
-void MusicWebRadioListView::clearAllItems()
+void MusicWebEntainRadioListView::clearAllItems()
 {
     clear();
 }
 
-void MusicWebRadioListView::addListWidgetItem()
+void MusicWebEntainRadioListView::addListWidgetItem()
 {
     QListWidgetItem *item = new QListWidgetItem(QIcon(":/radio/guowai")
                                                 ,tr("guowai"), this);
@@ -84,11 +84,11 @@ void MusicWebRadioListView::addListWidgetItem()
     addItem(item10);
 }
 
-void MusicWebRadioListView::itemHasClicked(QListWidgetItem *item)
+void MusicWebEntainRadioListView::itemHasClicked(QListWidgetItem *item)
 {
     if(m_radioDialog == nullptr)
     {
-        m_radioDialog = new MusicWebRadioWidget(this);
+        m_radioDialog = new MusicWebEntainRadioWidget(this);
     }
     switch(row(item))
     {

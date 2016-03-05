@@ -12,12 +12,12 @@ HEADERS  += \
     $$PWD/musicsongssummarizied.h \
     $$PWD/musictoolsetswidget.h \
     $$PWD/musicmydownloadrecordwidget.h \
-    $$PWD/musicwebradiolistview.h \
-    $$PWD/musicwebradiowidget.h \
-    $$PWD/core/musicwebradiodatebase.h \
     $$PWD/core/musicmydownloadrecordconfigmanager.h \
+    $$PWD/core/musicwebentainradiodatebase.h \
     $$PWD/musicconnectmobilewidget.h \
-    $$PWD/musicwebradiotoolwidget.h
+    $$PWD/musicwebradiotoolwidget.h \
+    $$PWD/musicwebentainradiowidget.h \
+    $$PWD/musicwebentainradiolistview.h
 
 }
 
@@ -26,11 +26,11 @@ SOURCES += \
     $$PWD/musicsongssummarizied.cpp \
     $$PWD/musictoolsetswidget.cpp \
     $$PWD/musicmydownloadrecordwidget.cpp \
-    $$PWD/musicwebradiolistview.cpp \
-    $$PWD/musicwebradiowidget.cpp \
-    $$PWD/core/musicwebradiodatebase.cpp \
     $$PWD/core/musicmydownloadrecordconfigmanager.cpp \
+    $$PWD/core/musicwebentainradiodatebase.cpp \
     $$PWD/musicconnectmobilewidget.cpp \
-    $$PWD/musicwebradiotoolwidget.cpp
+    $$PWD/musicwebradiotoolwidget.cpp \
+    $$PWD/musicwebentainradiowidget.cpp \
+    $$PWD/musicwebentainradiolistview.cpp
 
 }

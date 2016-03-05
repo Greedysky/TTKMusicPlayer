@@ -1,5 +1,5 @@
-#ifndef MUSICWEBRADIOWIDGET_H
-#define MUSICWEBRADIOWIDGET_H
+#ifndef MUSICWEBENTAINRADIOWIDGET_H
+#define MUSICWEBENTAINRADIOWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -17,24 +17,24 @@
 
 class QListWidgetItem;
 class MusicCoreMPlayer;
-class MusicWebRadioDatabase;
+class MusicWebEntainRadioDatabase;
 
 namespace Ui {
-class MusicWebRadioWidget;
+class MusicWebEntainRadioWidget;
 }
 
-/*! @brief The class of the web radio widget.
+/*! @brief The class of the web entain radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebRadioWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOL_EXPORT MusicWebEntainRadioWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicWebRadioWidget(QWidget *parent = 0);
+    explicit MusicWebEntainRadioWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicWebRadioWidget();
+    virtual ~MusicWebEntainRadioWidget();
 
 public Q_SLOTS:
     void radioPlay();
@@ -96,14 +96,14 @@ protected:
      * Clear All Items.
      */
 
-    Ui::MusicWebRadioWidget *ui;
+    Ui::MusicWebEntainRadioWidget *ui;
     int m_timerCount;
     MusicCoreMPlayer *m_radio;
     QTimer m_timer;
     QString m_radioUrl, m_currentRadioName;
     QIcon *m_collecticon, *m_discollecticon;
-    MusicWebRadioDatabase *m_database;
+    MusicWebEntainRadioDatabase *m_database;
 
 };
 
-#endif // MUSICWEBRADIOWIDGET_H
+#endif // MUSICWEBENTAINRADIOWIDGET_H

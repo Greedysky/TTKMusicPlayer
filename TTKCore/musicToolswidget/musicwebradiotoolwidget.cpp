@@ -1,5 +1,5 @@
 #include "musicwebradiotoolwidget.h"
-#include "musicwebradiolistview.h"
+#include "musicwebentainradiolistview.h"
 #include "musicutils.h"
 
 #include <QBoxLayout>
@@ -37,7 +37,7 @@ MusicWebRadioToolWidget::MusicWebRadioToolWidget(QWidget *parent)
     QWidget *ww = new QWidget(this);
     ww->setStyleSheet("background:rgba(255,255,255,50);");
 
-    m_musicWebRadioListView = new MusicWebRadioListView(this);
+    m_musicWebRadioListView = new MusicWebEntainRadioListView(this);
     m_stackedWidget->addWidget(m_musicWebRadioListView);
     m_stackedWidget->addWidget(ww);
     m_stackedWidget->setCurrentIndex(0);

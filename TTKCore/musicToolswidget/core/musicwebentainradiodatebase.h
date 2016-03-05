@@ -1,5 +1,5 @@
-#ifndef MUSICWEBRADDATEBASE_H
-#define MUSICWEBRADDATEBASE_H
+#ifndef MUSICWEBENTAINRADIODATEBASE_H
+#define MUSICWEBENTAINRADIODATEBASE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,13 +12,13 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the web radio database.
+/*! @brief The class of the web entain radio database.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebRadioDatabase
+class MUSIC_TOOL_EXPORT MusicWebEntainRadioDatabase
 {
 public:
-    MusicWebRadioDatabase();
+    MusicWebEntainRadioDatabase();
     /*!
      * Object contsructor.
      */
@@ -68,4 +68,4 @@ protected:
 
 };
 
-#endif // MUSICWEBRADDATEBASE_H
+#endif // MUSICWEBENTAINRADIODATEBASE_H

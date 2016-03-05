@@ -16,7 +16,7 @@ FORMS    += \
     $$PWD/musicToolsetswidget/musictimerwidget.ui \
     $$PWD/musicToolsetswidget/musictransformwidget.ui \
     $$PWD/musicToolsetswidget/musicnetworktestwidget.ui \
-    $$PWD/musicToolswidget/musicwebradiowidget.ui \
+    $$PWD/musicToolswidget/musicwebentainradiowidget.ui \
     $$PWD/musicUsermanager/musicuserdialog.ui \
     $$PWD/musicUsermanager/musicusermanager.ui \
     $$PWD/musicUsermanager/musicuserrecordwidget.ui \
