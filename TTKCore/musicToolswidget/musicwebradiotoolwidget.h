@@ -14,6 +14,7 @@
 #include "musicglobaldefine.h"
 
 class MusicWebEntainRadioListView;
+class MusicWebMusicRadioListView;
 
 /*! @brief The class of the web radio tool widget.
  * @author Greedysky <greedysky@163.com>
@@ -37,7 +38,8 @@ private Q_SLOTS:
 protected:
     QStackedWidget *m_stackedWidget;
     QPushButton *m_netRadioButton1,*m_netRadioButton2;
-    MusicWebEntainRadioListView *m_musicWebRadioListView;
+    MusicWebMusicRadioListView *m_musicRadioListView;
+    MusicWebEntainRadioListView *m_entainRadioListView;
 
 };
 

@@ -14,6 +14,7 @@ MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
     MusicUtils::setTransparent(this, 50);
+
 #ifdef Q_OS_WIN
     setSpacing(20);
     addListWidgetItem();
@@ -21,8 +22,7 @@ MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     setSpacing(19);
     QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
 #endif
-    connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
-                  SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }
 
 MusicWebEntainRadioListView::~MusicWebEntainRadioListView()

@@ -1,5 +1,5 @@
-#ifndef MUSICWEBENTAINRADIOLISTVIEW_H
-#define MUSICWEBENTAINRADIOLISTVIEW_H
+#ifndef MUSICWEBMUSICRADIOLISTVIEW_H
+#define MUSICWEBMUSICRADIOLISTVIEW_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -10,23 +10,19 @@
    =================================================*/
 
 #include <QListWidget>
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
-class MusicWebEntainRadioWidget;
-
-/*! @brief The class of the web entain radio widget.
+/*! @brief The class of the web music radio list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebEntainRadioListView : public QListWidget
+class MUSIC_TOOL_EXPORT MusicWebMusicRadioListView : public QListWidget
 {
     Q_OBJECT
 public:
-    explicit MusicWebEntainRadioListView(QWidget *parent = 0);
+    explicit MusicWebMusicRadioListView(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicWebEntainRadioListView();
 
 Q_SIGNALS:
 public Q_SLOTS:
@@ -40,13 +36,8 @@ public Q_SLOTS:
      */
 
 protected:
-    void clearAllItems();
-    /*!
-     * Clear All Items.
-     */
 
-    MusicWebEntainRadioWidget *m_radioDialog;
 
 };
 
-#endif // MUSICWEBENTAINRADIOLISTVIEW_H
+#endif // MUSICWEBMUSICRADIOLISTVIEW_H

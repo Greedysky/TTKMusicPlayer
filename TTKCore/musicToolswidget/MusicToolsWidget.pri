@@ -17,7 +17,8 @@ HEADERS  += \
     $$PWD/musicconnectmobilewidget.h \
     $$PWD/musicwebradiotoolwidget.h \
     $$PWD/musicwebentainradiowidget.h \
-    $$PWD/musicwebentainradiolistview.h
+    $$PWD/musicwebentainradiolistview.h \
+    $$PWD/musicwebmusicradiolistview.h
 
 }
 
@@ -31,6 +32,7 @@ SOURCES += \
     $$PWD/musicconnectmobilewidget.cpp \
     $$PWD/musicwebradiotoolwidget.cpp \
     $$PWD/musicwebentainradiowidget.cpp \
-    $$PWD/musicwebentainradiolistview.cpp
+    $$PWD/musicwebentainradiolistview.cpp \
+    $$PWD/musicwebmusicradiolistview.cpp
 
 }
