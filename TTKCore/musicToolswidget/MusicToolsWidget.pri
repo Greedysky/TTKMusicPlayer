@@ -18,7 +18,8 @@ HEADERS  += \
     $$PWD/musicwebradiotoolwidget.h \
     $$PWD/musicwebentainradiowidget.h \
     $$PWD/musicwebentainradiolistview.h \
-    $$PWD/musicwebmusicradiolistview.h
+    $$PWD/musicwebmusicradiolistview.h  \
+    $$PWD/musicwebmusicradiowidget.h
 
 }
 
@@ -33,6 +34,7 @@ SOURCES += \
     $$PWD/musicwebradiotoolwidget.cpp \
     $$PWD/musicwebentainradiowidget.cpp \
     $$PWD/musicwebentainradiolistview.cpp \
-    $$PWD/musicwebmusicradiolistview.cpp
+    $$PWD/musicwebmusicradiolistview.cpp \
+    $$PWD/musicwebmusicradiowidget.cpp
 
 }

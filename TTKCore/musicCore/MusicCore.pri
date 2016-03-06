@@ -19,6 +19,10 @@ HEADERS  += \
     $$PWD/network/musicdownloadquerythreadabstract.h \
     $$PWD/network/musicdownloadquerysinglethread.h \
     $$PWD/network/musicdownloadquerymultiplethread.h \
+    $$PWD/network/musicradiochannelthread.h \
+    $$PWD/network/musicradioplaylistthread.h \
+    $$PWD/network/musicradiosongsthread.h \
+    $$PWD/network/musicradiothreadabstract.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
@@ -51,6 +55,10 @@ SOURCES += \
     $$PWD/network/musicdownloadquerythreadabstract.cpp \
     $$PWD/network/musicdownloadquerysinglethread.cpp \
     $$PWD/network/musicdownloadquerymultiplethread.cpp \
+    $$PWD/network/musicradiochannelthread.cpp \
+    $$PWD/network/musicradioplaylistthread.cpp \
+    $$PWD/network/musicradiosongsthread.cpp \
+    $$PWD/network/musicradiothreadabstract.cpp \
     $$PWD/musicutils.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \

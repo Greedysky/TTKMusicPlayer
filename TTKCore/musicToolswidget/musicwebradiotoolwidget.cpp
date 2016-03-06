@@ -69,6 +69,7 @@ void MusicWebRadioToolWidget::buttonClicked(int index)
     {
         m_netRadioButton1->setStyleSheet(off);
         m_netRadioButton2->setStyleSheet(on);
+        m_musicRadioListView->initListItems();
     }
     m_stackedWidget->setCurrentIndex(index);
 }

@@ -278,4 +278,5 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
         }
     }
     emit resolvedSuccess();
+    deleteAll();
 }

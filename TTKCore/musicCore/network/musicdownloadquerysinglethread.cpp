@@ -292,4 +292,5 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         }
     }
     emit resolvedSuccess();
+    deleteAll();
 }

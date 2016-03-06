@@ -12,6 +12,9 @@
 #include <QListWidget>
 #include "musicglobaldefine.h"
 
+class MusicRadioChannelThread;
+class MusicWebMusicRadioWidget;
+
 /*! @brief The class of the web music radio list widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -23,8 +26,13 @@ public:
     /*!
      * Object contsructor.
      */
+    ~MusicWebMusicRadioListView();
 
-Q_SIGNALS:
+    void initListItems();
+    /*!
+     * To init list items.
+     */
+
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
     /*!
@@ -36,7 +44,8 @@ public Q_SLOTS:
      */
 
 protected:
-
+    MusicRadioChannelThread *m_getChannelThread;
+    MusicWebMusicRadioWidget *m_musicRadio;
 
 };
 
