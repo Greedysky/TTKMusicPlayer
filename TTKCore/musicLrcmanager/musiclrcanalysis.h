@@ -87,6 +87,10 @@ public:
     /*!
      * Check current container is empty or not.
      */
+    int count() const;
+    /*!
+     * Check current container count.
+     */
     QString getText(int index) const;
     /*!
      * Get current lrc text by index.

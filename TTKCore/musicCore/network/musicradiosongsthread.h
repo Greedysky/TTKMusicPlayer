@@ -11,18 +11,16 @@
 
 #include "musicradiothreadabstract.h"
 
-typedef struct SongInfo
+typedef struct SongRadioInfo
 {
-    QString m_songRealLink;
+    QString m_songUrl;
     QString m_songName;
     QString m_artistName;
-    QString m_songPicSmall;
-    QString m_songPicRadio;
+    QString m_songPicUrl;
     QString m_albumName;
-    QString m_lrcLink;
-    QString m_size;
-}SongInfo;
-typedef QList<SongInfo> SongInfos;
+    QString m_lrcUrl;
+}SongRadioInfo;
+typedef QList<SongRadioInfo> SongRadioInfos;
 
 /*! @brief The class of music radio thread of song info.
  * @author Greedysky <greedysky@163.com>
@@ -42,7 +40,7 @@ public:
     /*!
      * Start to download data.
      */
-    SongInfo getMusicSongInfo();
+    SongRadioInfo getMusicSongInfo();
     /*!
      * Get music song information.
      */
@@ -54,7 +52,7 @@ public Q_SLOTS:
      */
 
 protected:
-    SongInfo m_songInfo;
+    SongRadioInfo m_songInfo;
 
 };
 

@@ -89,9 +89,9 @@ Q_SIGNALS:
     /*!
      * Current media is radio changed.
      */
-    void musicChanged();
+    void finished();
     /*!
-     * Current media is music changed.
+     * Current media is radio changed.
      */
 
 public Q_SLOTS:

@@ -316,9 +316,19 @@ bool MusicLrcAnalysis::isEmpty() const
     return m_lrcContainer.isEmpty();
 }
 
+int MusicLrcAnalysis::count() const
+{
+    return m_lrcContainer.count();
+}
+
 QString MusicLrcAnalysis::getText(int index) const
 {
-    return m_currentShowLrcContainer[m_currentLrcIndex + index];
+    index = m_currentLrcIndex + index;
+    if(m_currentShowLrcContainer.count() <= index)
+    {
+        index = m_currentShowLrcContainer.count() - 1;
+    }
+    return m_currentShowLrcContainer[index];
 }
 
 bool MusicLrcAnalysis::findText(qint64 current, qint64 total,

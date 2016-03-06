@@ -58,7 +58,7 @@
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>65</x>
      <y>230</y>
      <width>31</width>
      <height>31</height>
@@ -73,7 +73,7 @@
     <rect>
      <x>80</x>
      <y>277</y>
-     <width>100</width>
+     <width>120</width>
      <height>20</height>
     </rect>
    </property>
@@ -106,19 +106,15 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>playButton</zorder>
   </widget>
   <widget class="QLabel" name="lrcLabel">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>70</y>
-     <width>200</width>
-     <height>220</height>
+     <x>209</x>
+     <y>50</y>
+     <width>270</width>
+     <height>290</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
    </property>
   </widget>
   <widget class="QLabel" name="artistLabel">
@@ -131,13 +127,13 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>108</x>
      <y>230</y>
      <width>31</width>
      <height>31</height>
@@ -150,7 +146,7 @@
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>150</x>
      <y>230</y>
      <width>31</width>
      <height>31</height>
@@ -158,6 +154,35 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="positionLabel">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>300</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:20px;font-weight:bold;color:white</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="durationLabel">
+   <property name="geometry">
+    <rect>
+     <x>125</x>
+     <y>300</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size:15px;font-weight:bold;color:white;</string>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -171,6 +196,8 @@
   <zorder>artistLabel</zorder>
   <zorder>previousButton</zorder>
   <zorder>nextButton</zorder>
+  <zorder>positionLabel</zorder>
+  <zorder>durationLabel</zorder>
  </widget>
  <resources/>
  <connections/>

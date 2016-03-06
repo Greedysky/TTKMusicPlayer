@@ -5,8 +5,10 @@
 #include "musicbgthememanager.h"
 #include "musicradioplaylistthread.h"
 #include "musicradiosongsthread.h"
-
-#include <QDebug>
+#include "musictextdownloadthread.h"
+#include "musicdatadownloadthread.h"
+#include "musiclrcanalysis.h"
+#include "musictime.h"
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -18,15 +20,13 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
 
     m_currentPlayListIndex = 0;
     m_isPlaying = false;
+    m_analysis = new MusicLrcAnalysis(this);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-
-    ui->lrcLabel->setStyleSheet("background:#545432");
-    ui->artistLabel->setStyleSheet("background:#545432");
 
     ui->playButton->setIcon(QIcon(":/image/stop"));
     ui->previousButton->setIcon(QIcon(":/image/previous"));
@@ -56,6 +56,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
 
 MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
 {
+    delete m_analysis;
     delete m_radio;
     delete m_songsThread;
     delete m_playListThread;
@@ -178,20 +179,123 @@ void MusicWebMusicRadioWidget::getSongInfoFinished()
 
 void MusicWebMusicRadioWidget::startToPlay()
 {
-    SongInfo info;
+    SongRadioInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
-    if(info.m_songRealLink.isEmpty())
+    if(info.m_songUrl.isEmpty())
     {
         return;
     }
 
     delete m_radio;
     m_radio = new MusicCoreMPlayer(this);
-    m_radio->setMedia(MusicCoreMPlayer::RadioCategory, info.m_songRealLink, -1);
+//    connect(m_radio, SIGNAL(finished()), SLOT(radioNext()));
+    connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl, -1);
     m_radio->setVolume(ui->volumeSlider->value());
+
+    QString name = LRC_DOWNLOAD_AL + info.m_artistName + " - " + info.m_songName + LRC_FILE;
+    if(!QFile::exists(name))
+    {
+        MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
+                                 MusicDownLoadThreadAbstract::Download_Lrc, this);
+        connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)), SLOT(lrcDownloadStateChanged()));
+        lrcDownload->startToDownload();
+    }
+    else
+    {
+        lrcDownloadStateChanged();
+    }
+    m_analysis->transLrcFileToTime(name);
+
+    name = ART_DOWNLOAD_AL + info.m_artistName + SKN_FILE;
+    if(!QFile::exists(name))
+    {
+        MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_songPicUrl, name,
+                                 MusicDownLoadThreadAbstract::Download_SmlBG, this);
+        connect(picDwonload, SIGNAL(musicDownLoadFinished(QString)), SLOT(picDownloadStateChanged()));
+        picDwonload->startToDownload();
+    }
+    else
+    {
+        picDownloadStateChanged();
+    }
+}
+
+void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
+{
+    SongRadioInfo info;
+    if(m_songsThread)
+    {
+        info = m_songsThread->getMusicSongInfo();
+    }
+    if(info.m_songUrl.isEmpty())
+    {
+        return;
+    }
+
+    QString name = info.m_artistName + " - " + info.m_songName;
+    QString path = LRC_DOWNLOAD_AL + name + LRC_FILE;
+    ui->artistLabel->setText(path);
+}
+
+void MusicWebMusicRadioWidget::picDownloadStateChanged()
+{
+    SongRadioInfo info;
+    if(m_songsThread)
+    {
+        info = m_songsThread->getMusicSongInfo();
+    }
+    if(info.m_songUrl.isEmpty())
+    {
+        return;
+    }
+
+    QString path = ART_DOWNLOAD_AL + info.m_artistName + SKN_FILE;
+    ui->artistLabel->setPixmap(QPixmap(path));
+}
+
+void MusicWebMusicRadioWidget::positionChanged(qint64 position)
+{
+    if(!m_radio)
+    {
+        return;
+    }
+    ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*1000)));
+
+    if(m_analysis->isEmpty())
+    {
+        return;
+    }
+    int index = m_analysis->getCurrentIndex();
+    qint64 time = m_analysis->findTime(index);
+    if(time < position*1000 && time != -1)
+    {
+        QString lrc;
+        for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
+        {
+            if(i == CURRENT_LRC_PAINT)
+                lrc += QString("<p style='font-weight:600;' align='center'>");
+            else
+                lrc += QString("<p align='center'>");
+            lrc += m_analysis->getText(i);
+            lrc += QString("</p>");
+        }
+        ui->lrcLabel->setText(lrc);
+        m_analysis->setCurrentIndex(++index);
+    }
+}
+
+void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
+{
+    if(!m_radio)
+    {
+        return;
+    }
+    ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*1000)));
 }
 
 void MusicWebMusicRadioWidget::show()

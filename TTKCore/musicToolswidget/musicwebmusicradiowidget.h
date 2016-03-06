@@ -12,6 +12,7 @@
 #include "musicabstractmovewidget.h"
 
 class QNetworkCookieJar;
+class MusicLrcAnalysis;
 class MusicCoreMPlayer;
 class MusicRadioSongsThread;
 class MusicRadioPlayListThread;
@@ -67,6 +68,16 @@ public Q_SLOTS:
     /*!
      * Get song information finished.
      */
+    void lrcDownloadStateChanged();
+    void picDownloadStateChanged();
+    void positionChanged(qint64 position);
+    /*!
+     * Current position changed.
+     */
+    void durationChanged(qint64 duration);
+    /*!
+     * Current duration changed.
+     */
     void show();
     /*!
      * Override show function.
@@ -85,6 +96,7 @@ protected:
     Ui::MusicWebMusicRadioWidget *ui;
     int m_currentPlayListIndex;
     bool m_isPlaying;
+    MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_radio;
     MusicRadioPlayListThread *m_playListThread;
     MusicRadioSongsThread *m_songsThread;

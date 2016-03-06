@@ -36,7 +36,7 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
 
 }
 
-SongInfo MusicRadioSongsThread::getMusicSongInfo()
+SongRadioInfo MusicRadioSongsThread::getMusicSongInfo()
 {
     return m_songInfo;
 }
@@ -70,13 +70,12 @@ void MusicRadioSongsThread::downLoadFinished()
                 }
                 QJsonObject object = value.toObject();
 
-                m_songInfo.m_songRealLink = object.value("songLink").toString();
+                m_songInfo.m_songUrl = object.value("songLink").toString();
                 m_songInfo.m_songName = object.value("songName").toString();
                 m_songInfo.m_artistName = object.value("artistName").toString();
-                m_songInfo.m_songPicSmall = object.value("songPicSmall").toString();
-                m_songInfo.m_songPicRadio = object.value("songPicRadio").toString();
+                m_songInfo.m_songPicUrl = object.value("songPicRadio").toString();
                 m_songInfo.m_albumName = object.value("albumName").toString();
-                m_songInfo.m_lrcLink = object.value("lrcLink").toString();
+                m_songInfo.m_lrcUrl = "http://musicdata.baidu.com" + object.value("lrcLink").toString();
             }
         }
     }

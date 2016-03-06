@@ -37,6 +37,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     m_category = type;
     m_playState = StoppedState;
     m_process = new QProcess(this);
+    connect(m_process, SIGNAL(finished(int)), SIGNAL(finished()));
 
     switch(m_category)
     {
@@ -68,17 +69,22 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 
 void MusicCoreMPlayer::setMusicMedia(const QString &data)
 {
+    emit mediaChanged(data);
+
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_AL, arguments);
 }
 
 void MusicCoreMPlayer::setRadioMedia(const QString &data)
 {
+    emit mediaChanged(data);
+
     QStringList arguments;
     arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
-    m_process->start(MAKE_PLAYER_AL, arguments);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
+    m_process->start(MAKE_PLAYER_AL, arguments);
 }
 
 void MusicCoreMPlayer::setPosition(qint64 pos)
@@ -188,7 +194,21 @@ void MusicCoreMPlayer::radioStandardRecieve()
 
 void MusicCoreMPlayer::musicStandardRecieve()
 {
-    emit musicChanged();
+    m_timer.start();
+    while(m_process->canReadLine())
+    {
+        QString message(m_process->readLine());
+        if(message.startsWith("ANS_LENGTH"))
+        {
+            message.replace(QByteArray("\r\n"), QByteArray(""));
+            emit durationChanged(QString(message).mid(11).toFloat());
+        }
+        if(message.startsWith("ANS_TIME_POSITION"))
+        {
+            message.replace(QByteArray("\r\n"), QByteArray(""));
+            emit positionChanged(m_currentPos = QString(message).mid(18).toFloat());
+        }
+    }
 }
 
 void MusicCoreMPlayer::stop()
