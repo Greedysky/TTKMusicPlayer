@@ -69,7 +69,13 @@ public Q_SLOTS:
      * Get song information finished.
      */
     void lrcDownloadStateChanged();
+    /*!
+     * Lrc download state changed.
+     */
     void picDownloadStateChanged();
+    /*!
+     * Small pic download state changed.
+     */
     void positionChanged(qint64 position);
     /*!
      * Current position changed.

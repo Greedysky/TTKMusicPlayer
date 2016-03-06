@@ -55,6 +55,10 @@ public:
     /*!
      * Set Combobox text.
      */
+    static QPixmap pixmapToRound(const QPixmap &src, int ratio);
+    /*!
+     * Set pixmap to round by ratio.
+     */
 
     static QString size2Number(qint64 size);
     /*!

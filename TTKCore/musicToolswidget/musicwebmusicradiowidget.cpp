@@ -9,6 +9,7 @@
 #include "musicdatadownloadthread.h"
 #include "musiclrcanalysis.h"
 #include "musictime.h"
+#include "musicutils.h"
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -255,7 +256,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     }
 
     QString path = ART_DOWNLOAD_AL + info.m_artistName + SKN_FILE;
-    ui->artistLabel->setPixmap(QPixmap(path));
+    ui->artistLabel->setPixmap(MusicUtils::pixmapToRound(QPixmap(path), 150));
 }
 
 void MusicWebMusicRadioWidget::positionChanged(qint64 position)

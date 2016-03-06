@@ -1,6 +1,8 @@
 #include "musicutils.h"
 
 #include <QComboBox>
+#include <QBitmap>
+#include <QPainter>
 
 void MusicUtils::dirIsExist(const QString& name)
 {
@@ -75,6 +77,26 @@ void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
             object->setCurrentIndex(i);
         }
     }
+}
+
+QPixmap MusicUtils::pixmapToRound(const QPixmap &src, int ratio)
+{
+    if(src.isNull())
+    {
+        return QPixmap();
+    }
+
+    QSize size(ratio, ratio);
+    QBitmap mask(size);
+    QPainter painter(&mask);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
+    painter.setBrush(QColor(0, 0, 0));
+    painter.drawRoundedRect(0, 0, size.width(), size.height(), 99, 99);
+
+    QPixmap image = src.scaled(size);
+    image.setMask(mask);
+    return image;
 }
 
 QString MusicUtils::size2Number(qint64 size)

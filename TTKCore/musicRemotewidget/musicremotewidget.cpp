@@ -6,22 +6,11 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 
-#include <QBitmap>
-#include <QPainter>
-
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
 {
     setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);
     drawWindowShadow(false);
-
-    QBitmap bmp(size());
-    bmp.fill();
-    QPainter p(&bmp);
-    p.setPen(Qt::NoPen);
-    p.setBrush(Qt::black);
-    p.drawRoundedRect(bmp.rect(), 4, 4);
-    setMask(bmp);
 
     setMouseTracking(true);
 
