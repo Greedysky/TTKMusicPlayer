@@ -12,6 +12,7 @@
 #include "musicabstractmovewidget.h"
 
 class QNetworkCookieJar;
+class MusicCoreMPlayer;
 class MusicRadioSongsThread;
 class MusicRadioPlayListThread;
 
@@ -42,6 +43,22 @@ public:
      */
 
 public Q_SLOTS:
+    void radioPlay();
+    /*!
+     * Set radio to play.
+     */
+    void radioPrevious();
+    /*!
+     * Set radio to previous.
+     */
+    void radioNext();
+    /*!
+     * Set radio to next.
+     */
+    void radioVolume(int num);
+    /*!
+     * Set radio volume.
+     */
     void getPlayListFinished();
     /*!
      * Get playList finished.
@@ -56,7 +73,19 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+    void startToPlay();
+    /*!
+     * Start to play music radio.
+     */
+
     Ui::MusicWebMusicRadioWidget *ui;
+    int m_currentPlayListIndex;
+    bool m_isPlaying;
+    MusicCoreMPlayer *m_radio;
     MusicRadioPlayListThread *m_playListThread;
     MusicRadioSongsThread *m_songsThread;
     QStringList m_playListIds;
