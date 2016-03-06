@@ -20,6 +20,13 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+
+    ui->lrcLabel->setStyleSheet("background:#545432");
+    ui->artistLabel->setStyleSheet("background:#545432");
+
+    ui->playButton->setIcon(QIcon(":/image/play"));
+    ui->previousButton->setIcon(QIcon(":/image/previous"));
+    ui->nextButton->setIcon(QIcon(":/image/next"));
 }
 
 MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()

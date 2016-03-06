@@ -62,7 +62,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QToolButton" name="musicPrivious">
+  <widget class="QToolButton" name="musicPrevious">
    <property name="geometry">
     <rect>
      <x>114</x>
@@ -775,10 +775,10 @@
     <string>Ctrl+I</string>
    </property>
   </action>
-  <action name="action_Privious">
+  <action name="action_Previous">
    <property name="icon">
     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
-     <normaloff>:/image/privious</normaloff>:/image/privious</iconset>
+     <normaloff>:/image/previous</normaloff>:/image/previous</iconset>
    </property>
    <property name="text">
     <string>上一曲(&amp;P)</string>
@@ -938,7 +938,7 @@
    </property>
   </action>
   <zorder>background</zorder>
-  <zorder>musicPrivious</zorder>
+  <zorder>musicPrevious</zorder>
   <zorder>musicNext</zorder>
   <zorder>musicKey</zorder>
   <zorder>musicSound</zorder>

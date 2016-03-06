@@ -40,7 +40,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_PlayButton->setIcon(QIcon(":/desktopTool/play"));
     m_SettingButton->setIcon(QIcon(":/desktopTool/setting"));
     m_showMainWindow->setToolTip(tr("showMainWindow"));
-    m_PreSongButton->setToolTip(tr("Privious"));
+    m_PreSongButton->setToolTip(tr("Previous"));
     m_NextSongButton->setToolTip(tr("Next"));
     m_PlayButton->setToolTip(tr("Play"));
     m_SettingButton->setToolTip(tr("showSetting"));
@@ -51,7 +51,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_SettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_showMainWindow, SIGNAL(clicked()), SIGNAL(musicWindowSignal()));
     connect(m_PlayButton, SIGNAL(clicked()), SIGNAL(musicKeySignal()));
-    connect(m_PreSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPriviousSignal()));
+    connect(m_PreSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPreviousSignal()));
     connect(m_NextSongButton, SIGNAL(clicked()), SIGNAL(musicPlayNextSignal()));
     connect(m_SettingButton, SIGNAL(clicked()), SIGNAL(musicSettingSignal()));
 

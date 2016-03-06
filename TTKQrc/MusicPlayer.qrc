@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/image">
-        <file alias="privious">../TTKResource/music_button_privious.png</file>
+        <file alias="previous">../TTKResource/music_button_previous.png</file>
         <file alias="next">../TTKResource/music_button_next.png</file>
         <file alias="play">../TTKResource/music_button_play.png</file>
         <file alias="stop">../TTKResource/music_button_stop.png</file>
@@ -126,7 +126,7 @@
         <file alias="location">../TTKResource/contextMenu/context_location.png</file>
         <file alias="equalizer">../TTKResource/contextMenu/context_eq.png</file>
         <file alias="remote">../TTKResource/contextMenu/context_remote.png</file>
-        <file alias="sysprivious">../TTKResource/contextMenu/context_button_privious.png</file>
+        <file alias="sysprevious">../TTKResource/contextMenu/context_button_previous.png</file>
         <file alias="sysnext">../TTKResource/contextMenu/context_button_next.png</file>
         <file alias="sysplay">../TTKResource/contextMenu/context_button_play.png</file>
         <file alias="sysstop">../TTKResource/contextMenu/context_button_stop.png</file>

@@ -54,7 +54,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     QToolButton *nextPlay = new QToolButton(widgetContainer);
     m_PlayOrStop = new QToolButton(widgetContainer);
 
-    previousPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysprivious")));
+    previousPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysprevious")));
     nextPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysnext")));
     m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysplay")));
 
@@ -70,7 +70,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
     m_PlayOrStop->setCursor(QCursor(Qt::PointingHandCursor));
 
-    previousPlay->setToolTip(tr("Privious"));
+    previousPlay->setToolTip(tr("Previous"));
     nextPlay->setToolTip(tr("Next"));
     m_PlayOrStop->setToolTip(tr("Play"));
 
@@ -86,7 +86,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     widgetActionContainer->setLayout(vbox);
     m_widgetAction->setDefaultWidget(widgetActionContainer);
 
-    connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrivious()));
+    connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrevious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
     connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
 }

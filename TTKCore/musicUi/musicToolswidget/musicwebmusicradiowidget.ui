@@ -31,7 +31,7 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>111</width>
+     <width>121</width>
      <height>25</height>
     </rect>
    </property>
@@ -55,50 +55,11 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>335</y>
-     <width>455</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="listWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>161</y>
-     <width>455</width>
-     <height>161</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="movieLabel">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>55</y>
-     <width>455</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>122</y>
+     <x>50</x>
+     <y>230</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -110,9 +71,9 @@
   <widget class="QSlider" name="volumeSlider">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>130</y>
-     <width>211</width>
+     <x>80</x>
+     <y>277</y>
+     <width>100</width>
      <height>20</height>
     </rect>
    </property>
@@ -120,69 +81,17 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="stopButton">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>122</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="colletButton">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>122</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="discolletButton">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>122</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>235</x>
-     <y>130</y>
+     <x>50</x>
+     <y>280</y>
      <width>31</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>音量</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="stateLabel">
-   <property name="geometry">
-    <rect>
-     <x>35</x>
-     <y>60</y>
-     <width>141</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -197,21 +106,71 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <zorder>playButton</zorder>
+  </widget>
+  <widget class="QLabel" name="lrcLabel">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>70</y>
+     <width>200</width>
+     <height>220</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="artistLabel">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>70</y>
+     <width>150</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previousButton">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>230</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="nextButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>230</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>line_2</zorder>
-  <zorder>listWidget</zorder>
-  <zorder>movieLabel</zorder>
   <zorder>playButton</zorder>
   <zorder>volumeSlider</zorder>
-  <zorder>stopButton</zorder>
-  <zorder>colletButton</zorder>
-  <zorder>discolletButton</zorder>
   <zorder>label_2</zorder>
-  <zorder>stateLabel</zorder>
+  <zorder>lrcLabel</zorder>
+  <zorder>artistLabel</zorder>
+  <zorder>previousButton</zorder>
+  <zorder>nextButton</zorder>
  </widget>
  <resources/>
  <connections/>

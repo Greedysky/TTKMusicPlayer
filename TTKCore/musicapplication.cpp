@@ -525,7 +525,7 @@ void MusicApplication::musicStatePlay()
     ui->musicTimeWidget->setPlayState(m_playControl);
 }
 
-void MusicApplication::musicPlayPrivious()
+void MusicApplication::musicPlayPrevious()
 {
     if(m_musicList->isEmpty())
     {
@@ -537,7 +537,7 @@ void MusicApplication::musicPlayPrivious()
     }
     else
     {
-        m_musicPlayer->playPrivious();
+        m_musicPlayer->playPrevious();
     }
     m_playControl = true;
     musicStatePlay();
@@ -719,7 +719,7 @@ void MusicApplication::musicImportSongs()
 
 void MusicApplication::musicPlayIndex(int row, int)
 {
-    m_musicPlayer->stop();//stop playing the privious song
+    m_musicPlayer->stop();//stop playing the previous song
     if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex())
     {
         m_musicList->clear();

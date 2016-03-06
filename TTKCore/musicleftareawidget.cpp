@@ -32,7 +32,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
 
     connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
-    connect(ui->musicPrivious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(ui->musicPrevious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
     connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));
     connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
@@ -47,7 +47,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
                                      SLOT(setSliderStyleByType(int)));
 
-    ui->musicPrivious->setIcon(QIcon(QString::fromUtf8(":/image/privious")));
+    ui->musicPrevious->setIcon(QIcon(QString::fromUtf8(":/image/previous")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
@@ -58,7 +58,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/appTools/buttontools")));
     ui->musicButton_mobile->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmobile")));
 
-    ui->musicPrivious->setIconSize(QSize(45, 45));
+    ui->musicPrevious->setIconSize(QSize(45, 45));
     ui->musicNext->setIconSize(QSize(45, 45));
     ui->musicKey->setIconSize(QSize(45, 45));
     ui->musicBestLove->setIconSize(QSize(25, 25));
@@ -71,7 +71,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPlayMode->setIconSize(QSize(25, 25));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->musicPrivious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicPrevious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle06);
@@ -84,7 +84,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04);
 
-    ui->musicPrivious->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicNext->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
@@ -95,7 +95,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->musicKey->setToolTip(tr("Play"));
-    ui->musicPrivious->setToolTip(tr("Privious"));
+    ui->musicPrevious->setToolTip(tr("Previous"));
     ui->musicNext->setToolTip(tr("Next"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
     ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));

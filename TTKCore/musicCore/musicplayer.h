@@ -75,9 +75,9 @@ public:
     /*!
      * Set current player to next music.
      */
-    void playPrivious();
+    void playPrevious();
     /*!
-     * Set current player to privious music.
+     * Set current player to previous music.
      */
 
     int volume() const;

@@ -70,7 +70,7 @@ void MusicBottomAreaWidget::createToolPopupMenu()
     m_toolPopupMenu.addAction(m_ui->action_Setting);
 
     m_toolPopupMenu.addSeparator();
-    m_toolPopupMenu.addAction(m_ui->action_Privious);
+    m_toolPopupMenu.addAction(m_ui->action_Previous);
     m_toolPopupMenu.addAction(m_ui->action_Play);
     m_toolPopupMenu.addAction(m_ui->action_Next);
     m_toolPopupMenu.addSeparator();
@@ -118,7 +118,7 @@ void MusicBottomAreaWidget::createMenuActions() const
     connect(m_ui->action_Quit, SIGNAL(triggered()), m_supperClass, SLOT(quitWindowClose()));
     connect(m_ui->action_Next, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayNext()));
     connect(m_ui->action_Play, SIGNAL(triggered()), m_supperClass, SLOT(musicStatePlay()));
-    connect(m_ui->action_Privious, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_ui->action_Previous, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(m_ui->action_VolumeSub, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumeSub()));
     connect(m_ui->action_VolumePlus, SIGNAL(triggered()), m_supperClass, SLOT(musicActionVolumePlus()));
     connect(m_ui->action_OrderPlay, SIGNAL(triggered()), m_supperClass, SLOT(musicPlayOrder()));

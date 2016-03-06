@@ -106,9 +106,9 @@ void MusicWindowExtras::createThumbnailToolBar()
     connect(m_playToolButton, SIGNAL(clicked()), m_superClass, SLOT(musicStatePlay()));
 
     m_forwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
-    m_forwardToolButton->setToolTip(tr("Privious"));
+    m_forwardToolButton->setToolTip(tr("Previous"));
     m_forwardToolButton->setIcon(m_superClass->style()->standardIcon(QStyle::SP_MediaSeekBackward));
-    connect(m_forwardToolButton, SIGNAL(clicked()), m_superClass, SLOT(musicPlayPrivious()));
+    connect(m_forwardToolButton, SIGNAL(clicked()), m_superClass, SLOT(musicPlayPrevious()));
 
     m_backwardToolButton = new QWinThumbnailToolButton(m_thumbnailToolBar);
     m_backwardToolButton->setToolTip(tr("Next"));

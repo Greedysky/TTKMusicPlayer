@@ -91,7 +91,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolNextSongButton->setGeometry(110, 0, 30, TOOLBAR_HEIGHT);
     m_toolPlayButton = new QToolButton(m_toolBarWidget);
     m_toolPlayButton->setGeometry(80, 0, 30, TOOLBAR_HEIGHT);
-    connect(m_toolPreSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_toolPreSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(m_toolNextSongButton, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
     connect(m_toolPlayButton, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
     connect(m_showMainWindow, SIGNAL(clicked()), m_supperClass, SLOT(showNormal()));
@@ -148,7 +148,7 @@ void MusicLrcContainerForDesktop::setButtonTips() const
     m_toolLrcBigerButton->setToolTip(tr("lrcBiger"));
     m_toolLrcSmallerButton->setToolTip(tr("lrcSmaller"));
     m_toolUpdateLrcButton->setToolTip(tr("updateLrc"));
-    m_toolPreSongButton->setToolTip(tr("Privious"));
+    m_toolPreSongButton->setToolTip(tr("Previous"));
     m_toolNextSongButton->setToolTip(tr("Next"));
     m_toolPlayButton->setToolTip(tr("Play"));
     m_toolSettingButton->setToolTip(tr("Setting"));

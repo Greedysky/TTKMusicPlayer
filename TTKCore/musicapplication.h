@@ -83,9 +83,9 @@ public Q_SLOTS:
     /*!
      * Set current player to play or not.
      */
-    void musicPlayPrivious();
+    void musicPlayPrevious();
     /*!
-     * Set current player to play privious.
+     * Set current player to play previous.
      */
     void musicPlayNext();
     /*!

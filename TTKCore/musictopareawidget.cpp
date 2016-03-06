@@ -243,7 +243,7 @@ void MusicTopAreaWidget::createRemoteWidget()
     m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSoundSlider->value());
     connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), m_supperClass, SLOT(showNormal()));
-    connect(m_musicRemoteWidget, SIGNAL(musicPlayPriviousSignal()), m_supperClass, SLOT(musicPlayPrivious()));
+    connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousSignal()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));
     connect(m_musicRemoteWidget, SIGNAL(musicKeySignal()), m_supperClass, SLOT(musicStatePlay()));
     connect(m_musicRemoteWidget, SIGNAL(musicSettingSignal()), m_supperClass, SLOT(musicSetting()));

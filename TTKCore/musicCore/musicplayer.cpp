@@ -176,7 +176,7 @@ void MusicPlayer::playNext()
     m_playlist->setCurrentIndex((++index >= m_playlist->mediaCount()) ? 0 : index);
 }
 
-void MusicPlayer::playPrivious()
+void MusicPlayer::playPrevious()
 {
     int index = m_playlist->currentIndex();
     m_playlist->setCurrentIndex((--index < 0) ? 0 : index );

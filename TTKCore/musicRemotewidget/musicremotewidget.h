@@ -53,9 +53,9 @@ Q_SIGNALS:
     /*!
      * Set current play state.
      */
-    void musicPlayPriviousSignal();
+    void musicPlayPreviousSignal();
     /*!
-     * Set current play to privious.
+     * Set current play to previous.
      */
     void musicPlayNextSignal();
     /*!
