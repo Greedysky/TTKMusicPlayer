@@ -210,7 +210,6 @@ void MusicWebMusicRadioWidget::startToPlay()
     {
         lrcDownloadStateChanged();
     }
-    m_analysis->transLrcFileToTime(name);
 
     name = ART_DOWNLOAD_AL + info.m_artistName + SKN_FILE;
     if(!QFile::exists(name))
@@ -239,8 +238,7 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
     }
 
     QString name = info.m_artistName + " - " + info.m_songName;
-    QString path = LRC_DOWNLOAD_AL + name + LRC_FILE;
-    ui->artistLabel->setText(path);
+    m_analysis->transLrcFileToTime(LRC_DOWNLOAD_AL + name + LRC_FILE);
 }
 
 void MusicWebMusicRadioWidget::picDownloadStateChanged()
@@ -256,7 +254,9 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     }
 
     QString path = ART_DOWNLOAD_AL + info.m_artistName + SKN_FILE;
-    ui->artistLabel->setPixmap(MusicUtils::pixmapToRound(QPixmap(path), 150));
+    QPixmap pix(path);
+    pix = MusicUtils::pixmapToRound(pix, 150);
+    ui->artistLabel->setPixmap(pix);
 }
 
 void MusicWebMusicRadioWidget::positionChanged(qint64 position)
@@ -288,6 +288,11 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
         ui->lrcLabel->setText(lrc);
         m_analysis->setCurrentIndex(++index);
     }
+
+    QPixmap pix = *ui->artistLabel->pixmap();
+    QTransform transform;
+    transform.rotate(90);
+    ui->artistLabel->setPixmap(pix.transformed(transform, Qt::SmoothTransformation));
 }
 
 void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
