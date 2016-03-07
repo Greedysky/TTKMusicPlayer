@@ -1,9 +1,15 @@
 #include "musicradioplaylistthread.h"
 
-#include <QJsonParseError>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
+#ifdef MUSIC_QT_5
+#   include <QJsonParseError>
+#   include <QJsonDocument>
+#   include <QJsonObject>
+#   include <QJsonArray>
+#else
+#   include <QtScript/QScriptEngine>
+#   include <QtScript/QScriptValue>
+#   include <QtScript/QScriptValueIterator>
+#endif
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -42,32 +48,59 @@ QStringList MusicRadioPlayListThread::getMusicPlayList()
 
 void MusicRadioPlayListThread::downLoadFinished()
 {
-    QByteArray bytes = m_reply->readAll();
-
-    QJsonParseError jsonError;
-    QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-    ///Put the data into Json
-    if(jsonError.error != QJsonParseError::NoError ||
-       !parseDoucment.isObject())
+    if(m_reply == nullptr)
     {
-        deleteAll();
-        return ;
+        return;
     }
 
-    m_playList.clear();
-    QJsonObject jsonObject = parseDoucment.object();
-    if(jsonObject.contains("list"))
+    if(m_reply->error() == QNetworkReply::NoError)
     {
-        QJsonArray array = jsonObject.value("list").toArray();
-        foreach(QJsonValue value, array)
+        QByteArray bytes = m_reply->readAll();
+        m_playList.clear();
+#ifdef MUSIC_QT_5
+        QJsonParseError jsonError;
+        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
+        ///Put the data into Json
+        if(jsonError.error != QJsonParseError::NoError ||
+           !parseDoucment.isObject())
         {
-            if(!value.isObject())
-            {
-               continue;
-            }
-            QJsonObject object = value.toObject();
-            m_playList << QString::number(object.value("id").toInt());
+            deleteAll();
+            return ;
         }
+
+        QJsonObject jsonObject = parseDoucment.object();
+        if(jsonObject.contains("list"))
+        {
+            QJsonArray array = jsonObject.value("list").toArray();
+            foreach(QJsonValue value, array)
+            {
+                if(!value.isObject())
+                {
+                   continue;
+                }
+                QJsonObject object = value.toObject();
+                m_playList << QString::number(object.value("id").toInt());
+            }
+        }
+#else
+        QScriptEngine engine;
+        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
+        if(sc.property("list").isArray())
+        {
+            QScriptValueIterator it(sc.property("list"));
+            while(it.hasNext())
+            {
+                it.next();
+                QScriptValue value = it.value();
+                if(value.isNull())
+                {
+                    continue;
+                }
+
+                m_playList << QString::number(value.property("id").toInt32());
+            }
+        }
+#endif
     }
     emit networkReplyFinished("query finished!");
     deleteAll();

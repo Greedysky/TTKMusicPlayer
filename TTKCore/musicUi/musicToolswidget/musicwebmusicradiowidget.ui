@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>65</x>
-     <y>230</y>
+     <y>245</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -72,7 +72,7 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>277</y>
+     <y>287</y>
      <width>120</width>
      <height>20</height>
     </rect>
@@ -85,7 +85,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>280</y>
+     <y>290</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -121,7 +121,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>70</y>
+     <y>85</y>
      <width>150</width>
      <height>150</height>
     </rect>
@@ -134,7 +134,7 @@
    <property name="geometry">
     <rect>
      <x>108</x>
-     <y>230</y>
+     <y>245</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -147,7 +147,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>230</y>
+     <y>245</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -160,7 +160,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>300</y>
+     <y>310</y>
      <width>75</width>
      <height>30</height>
     </rect>
@@ -176,13 +176,23 @@
    <property name="geometry">
     <rect>
      <x>125</x>
-     <y>300</y>
+     <y>310</y>
      <width>75</width>
      <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font-size:15px;font-weight:bold;color:white;</string>
+   </property>
+  </widget>
+  <widget class="MusicMarqueeWidget" name="titleWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>50</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -198,7 +208,16 @@
   <zorder>nextButton</zorder>
   <zorder>positionLabel</zorder>
   <zorder>durationLabel</zorder>
+  <zorder>titleWidget</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicMarqueeWidget</class>
+   <extends>QWidget</extends>
+   <header>musicmarqueewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

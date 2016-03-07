@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QStringList>
 #include "musicradiothreadabstract.h"
 
 /*! @brief The class of music radio thread of playlist.
