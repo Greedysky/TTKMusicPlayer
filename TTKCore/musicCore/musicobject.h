@@ -18,8 +18,11 @@
 #  pragma GCC diagnostic ignored "-Wunused-function"
 #endif
 
-#if QT_VERSION > QT_VERSION_CHECK(5,0,0)
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 #  define MUSIC_QT_5
+#  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
+#    define MUSIC_WINEXTRAS
+#  endif
 #endif
 
 

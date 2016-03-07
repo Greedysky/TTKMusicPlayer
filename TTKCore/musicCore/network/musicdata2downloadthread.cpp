@@ -61,7 +61,7 @@ void MusicData2DownloadThread::dataGetFinished()
         }
 
         QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.value("code").toInt() == 1)
+        if(jsonObject.value("code").toVariant().toInt() == 1)
         {
             m_url = jsonObject.value("data").toObject().value("singerPic").toString();
 #else

@@ -79,7 +79,7 @@ void MusicRadioPlayListThread::downLoadFinished()
                    continue;
                 }
                 QJsonObject object = value.toObject();
-                m_playList << QString::number(object.value("id").toInt());
+                m_playList << QString::number(object.value("id").toVariant().toInt());
             }
         }
 #else

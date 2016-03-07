@@ -13,7 +13,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#if defined Q_OS_WIN && defined MUSIC_QT_5
+#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
 class MusicApplication;
 class QWinTaskbarButton;
 class QWinTaskbarProgress;
@@ -55,10 +55,8 @@ public:
      * Get blur behind window state.
      */
 
-Q_SIGNALS:
-
 protected:
-#if defined Q_OS_WIN && defined MUSIC_QT_5
+#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
     void createJumpList() const;
     /*!
      * Create jump list.

@@ -99,7 +99,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                             songAttr.m_url = urlObject.value("url").toString();
                             songAttr.m_size = urlObject.value("size").toString();
                             songAttr.m_format = urlObject.value("suffix").toString();
-                            songAttr.m_bitrate = urlObject.value("bitRate").toInt();
+                            songAttr.m_bitrate = urlObject.value("bitRate").toVariant().toInt();
                             musicInfo.m_songAttrs << songAttr;
                             ////set duration
                             duration = urlObject.value("duration").toString();
@@ -121,7 +121,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                             songAttr.m_url = urlObject.value("url").toString();
                             songAttr.m_size = urlObject.value("size").toString();
                             songAttr.m_format = urlObject.value("suffix").toString();
-                            songAttr.m_bitrate = urlObject.value("bitRate").toInt();
+                            songAttr.m_bitrate = urlObject.value("bitRate").toVariant().toInt();
                             musicInfo.m_songAttrs << songAttr;
                             ////set duration
                             duration = urlObject.value("duration").toString();
@@ -157,7 +157,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                             object = url.toObject();
                             MusicSongAttribute songAttr;
                             songAttr.m_format = object.value("suffix").toString();
-                            songAttr.m_bitrate = object.value("bitRate").toInt();
+                            songAttr.m_bitrate = object.value("bitRate").toVariant().toInt();
                             songAttr.m_url = object.value("url").toString();
                             songAttr.m_size = object.value("size").toString();
                             musicInfo.m_songAttrs << songAttr;
