@@ -19,7 +19,7 @@ class MUSIC_NETWORK_EXPORT MusicRadioPlayListThread : public MusicRadioThreadAbs
 {
     Q_OBJECT
 public:
-    explicit MusicRadioPlayListThread(QObject *parent = 0, QNetworkCookieJar *cookie = NULL);
+    explicit MusicRadioPlayListThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
     /*!
      * Object contsructor.
      */

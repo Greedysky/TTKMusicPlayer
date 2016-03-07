@@ -72,7 +72,7 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
 {
     QStringList names;
 #ifdef Q_OS_WIN
-    PMIB_IFTABLE m_pTable = NULL;
+    PMIB_IFTABLE m_pTable = nullptr;
     DWORD m_dwAdapters = 0;
     ULONG uRetCode = GetIfTable(m_pTable, &m_dwAdapters, TRUE);
     if(uRetCode == ERROR_NOT_SUPPORTED)
@@ -98,13 +98,13 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
     }
     delete[] m_pTable;
 #elif defined Q_OS_UNIX
-    struct ifaddrs *ifa = NULL, *ifList;
+    struct ifaddrs *ifa = nullptr, *ifList;
     if (getifaddrs(&ifList) < 0)
     {
         return QStringList();
     }
 
-    for (ifa = ifList; ifa != NULL; ifa = ifa->ifa_next)
+    for (ifa = ifList; ifa != nullptr; ifa = ifa->ifa_next)
     {
         if(ifa->ifa_addr->sa_family == AF_INET)
         {
@@ -142,7 +142,7 @@ void MusicNetworkTestThread::start()
 void MusicNetworkTestThread::run()
 {
 #ifdef Q_OS_WIN
-    PMIB_IFTABLE m_pTable = NULL;
+    PMIB_IFTABLE m_pTable = nullptr;
     DWORD m_dwAdapters = 0;
     ULONG uRetCode = GetIfTable(m_pTable, &m_dwAdapters, TRUE);
     if(uRetCode == ERROR_NOT_SUPPORTED)

@@ -373,15 +373,15 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
 {
     m_lrcDisplayAll = !m_lrcDisplayAll;
     m_ui->songsContainer->setHidden(m_lrcDisplayAll);
+
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
     lrcDisplayAllAnimation->setStartValue(QPoint(m_lrcDisplayAll ? 392 : 61, 320));
     lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 392, 320));
     lrcDisplayAllAnimation->start();
 //    m_ui->lrcDisplayAllButton->move(m_lrcDisplayAll ? 61 : 392, 320);
-    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 390, 144,
-                                            m_lrcDisplayAll ? 871: 541, 455);
+    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 390, 144, m_lrcDisplayAll ? 871: 541, 455);
     m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 330 : 0);
-    m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor"
-                                                             : ":/lrc/lrcDisplayAll"));
+    m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));
+    m_ui->musicWindowConcise->setEnabled(!m_lrcDisplayAll);
 }

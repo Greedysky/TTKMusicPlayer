@@ -56,11 +56,11 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     }
 
     QObject *obj = loader.instance();
-    DecoderFactory *decoderfac = NULL;
+    DecoderFactory *decoderfac = nullptr;
     if(obj && (decoderfac = qobject_cast<DecoderFactory*>( obj )) )
     {
         MetaDataModel *model = decoderfac->createMetaDataModel(path);
-        if(model != NULL)
+        if(model != nullptr)
         {
             QHash<QString, QString> datas = model->audioProperties();
             MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));

@@ -155,7 +155,7 @@ void MusicNetworkTestWidget::actionTriggered(QAction *action)
 void MusicNetworkTestWidget::networkTestStop()
 {
     delete m_testDownload;
-    m_testDownload = NULL;
+    m_testDownload = nullptr;
     m_testTimer.stop();
     ///remove temp file
     QFile::remove(testName);
