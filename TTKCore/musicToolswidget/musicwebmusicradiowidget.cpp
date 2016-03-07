@@ -11,7 +11,6 @@
 #include "musictime.h"
 #include "musicutils.h"
 
-#include <QDebug>
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicWebMusicRadioWidget), m_radio(nullptr), m_playListThread(nullptr),

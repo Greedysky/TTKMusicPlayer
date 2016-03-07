@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QNetworkReply>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 const QString channelUrl = "http://fm.baidu.com/dev/api/?tn=channellist";
