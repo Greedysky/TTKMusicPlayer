@@ -37,6 +37,8 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    ui->musiclrccontainerforinline->resize(ui->SurfaceStackedWidget->size());
+
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
 
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));

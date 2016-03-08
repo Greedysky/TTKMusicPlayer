@@ -203,16 +203,12 @@ void MusicLrcContainerForInline::createNoLrcCurrentInfo()
 
 void MusicLrcContainerForInline::showNoLrcCurrentInfo()
 {
+    QRect rect = m_musicLrcContainer[CURRENT_LRC_PAINT + 1]->geometry();
     QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
     int w = me.width(m_noLrcCurrentInfo->text());
     int h = me.height();
 
-    ///there is a bug when playing not click the lrc widget
-#ifdef Q_OS_WIN
-    m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 30)/2, w, h);
-#else
-    m_noLrcCurrentInfo->setGeometry((width() - w)/2, (height() - h + 50)/2, w, h);
-#endif
+    m_noLrcCurrentInfo->setGeometry((rect.width() - w)/2, rect.y(), w, h);
     m_noLrcCurrentInfo->show();
 }
 
