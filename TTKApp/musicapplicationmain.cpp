@@ -31,6 +31,11 @@ int main(int argc, char *argv[])
     MusicUtils::checkTheDirectoryExist();
     if(!MusicUtils::checkTheFileExist())
     {
+        M_LOGGERS("Load Translation");
+        QTranslator translator;
+        translator.load(MusicUtils::getLanguageName(0));
+        a.installTranslator(&translator);
+
         MusicMessageBox(QObject::tr("TTKMusicPlayer"),
                         QObject::tr("Lack of necessary component files!")
                         ).exec();
