@@ -197,6 +197,7 @@ protected:
     QTimer m_timer;
     QString m_currentMedia;
     Enhanced m_musicEnhanced;
+    qint64 m_duration;
 
     int m_volumeMusic3D;
     float m_posOnCircle;

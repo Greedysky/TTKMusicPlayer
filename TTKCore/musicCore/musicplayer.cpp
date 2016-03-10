@@ -17,6 +17,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_music = new SoundCore(this);
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
+    m_duration = 0;
 
     setEnaleEffect(false);
 
@@ -286,13 +287,14 @@ void MusicPlayer::removeCurrentMedia()
 
 void MusicPlayer::getCurrentDuration()
 {
-    if(duration() == 0)
+    qint64 dur = duration();
+    if(dur == 0 || m_duration == dur)
     {
-        QTimer::singleShot(500, this, SLOT(getCurrentDuration()));
+        QTimer::singleShot(50, this, SLOT(getCurrentDuration()));
     }
     else
-    {
-        emit durationChanged( duration() );
+    {  
+        emit durationChanged( m_duration = dur );
     }
 }
 
