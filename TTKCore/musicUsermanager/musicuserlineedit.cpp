@@ -6,7 +6,7 @@
 #elif defined(Q_CC_GNU)
 #   pragma GCC diagnostic ignored "-Wswitch"
 #endif
-#include <QDebug>
+
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
