@@ -6,7 +6,7 @@
 #elif defined(Q_CC_GNU)
 #   pragma GCC diagnostic ignored "-Wswitch"
 #endif
-
+#include <QDebug>
 MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
@@ -69,7 +69,7 @@ void MusicUserLineEdit::showLabel(int s, int e)
 
 void MusicUserLineEdit::showLabel()
 {
-    QRegExp mailRx("([a-zA-Z0-9][\\w-\\.]*)*[a-z0-9A-Z]@[a-z0-9A-Z][a-z0-9A-Z-]*[a-z0-9A-Z]\\.[a-zA-Z]{2,})");
+    QRegExp mailRx("([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)");
     labelCheck(m_mailContains = (text().contains(mailRx)));
 }
 
