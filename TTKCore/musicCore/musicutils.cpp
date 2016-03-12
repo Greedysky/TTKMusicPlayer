@@ -3,6 +3,7 @@
 #include <QComboBox>
 #include <QBitmap>
 #include <QPainter>
+#include <QUrl>
 #include <QDesktopServices>
 #ifdef Q_OS_WIN
 #include <Windows.h>
