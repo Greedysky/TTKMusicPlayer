@@ -12,6 +12,7 @@
 #include <QListWidget>
 #include "musicglobaldefine.h"
 
+class QNetworkCookieJar;
 class MusicRadioChannelThread;
 class MusicWebMusicRadioWidget;
 
@@ -44,6 +45,7 @@ public Q_SLOTS:
      */
 
 protected:
+    QNetworkCookieJar *m_cookJar;
     MusicRadioChannelThread *m_getChannelThread;
     MusicWebMusicRadioWidget *m_musicRadio;
 

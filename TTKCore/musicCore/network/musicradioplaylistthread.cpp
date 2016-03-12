@@ -34,6 +34,7 @@ void MusicRadioPlayListThread::startToDownload(const QString &id)
     if(m_cookJar)
     {
         m_manager->setCookieJar(m_cookJar);
+        m_cookJar->setParent(nullptr);
     }
     m_reply = m_manager->get(networkRequest);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

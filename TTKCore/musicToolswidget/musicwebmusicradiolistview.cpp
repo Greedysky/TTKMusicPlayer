@@ -4,6 +4,8 @@
 #include "musicutils.h"
 #include "musicuiobject.h"
 
+#include <QNetworkCookieJar>
+
 MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     : QListWidget(parent), m_getChannelThread(nullptr), m_musicRadio(nullptr)
 {
@@ -14,6 +16,7 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     setMovement(QListView::Static);
     MusicUtils::setTransparent(this, 50);
 
+    m_cookJar = new QNetworkCookieJar;
 #ifdef Q_OS_WIN
     setSpacing(20);
 #else
@@ -26,6 +29,7 @@ MusicWebMusicRadioListView::~MusicWebMusicRadioListView()
 {
     delete m_getChannelThread;
     delete m_musicRadio;
+    delete m_cookJar;
 }
 
 void MusicWebMusicRadioListView::initListItems()
@@ -33,7 +37,7 @@ void MusicWebMusicRadioListView::initListItems()
     if(count() == 0)
     {
         delete m_getChannelThread;
-        m_getChannelThread = new MusicRadioChannelThread(this);
+        m_getChannelThread = new MusicRadioChannelThread(this, m_cookJar);
         connect(m_getChannelThread, SIGNAL(networkReplyFinished(QString)), SLOT(addListWidgetItem()));
         m_getChannelThread->startToDownload(QString());
     }
@@ -57,7 +61,7 @@ void MusicWebMusicRadioListView::itemHasClicked(QListWidgetItem *item)
     if(m_musicRadio == nullptr)
     {
         m_musicRadio = new MusicWebMusicRadioWidget(this);
-        m_musicRadio->setNetworkCookie(nullptr);
+        m_musicRadio->setNetworkCookie(m_cookJar);
     }
 
     if(!channels.isEmpty())
