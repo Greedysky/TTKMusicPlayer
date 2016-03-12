@@ -22,6 +22,10 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.h
     ${MUSIC_CORE_DIR}/network/musicdownloadquerysinglethread.h
     ${MUSIC_CORE_DIR}/network/musicdownloadquerymultiplethread.h
+    ${MUSIC_CORE_DIR}/network/musicradiochannelthread.h
+    ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.h
+    ${MUSIC_CORE_DIR}/network/musicradiosongsthread.h
+    ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.h
     ${MUSIC_CORE_DIR}/musiclogger.h
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicuiobject.h
@@ -88,11 +92,14 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiolistview.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiowidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.h
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.h
     ${MUSIC_USERMANAGER_DIR}/musicusermanager.h
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.h
     ${MUSIC_USERMANAGER_DIR}/musicuserlineedit.h
@@ -155,6 +162,10 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadquerysinglethread.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadquerymultiplethread.cpp
+    ${MUSIC_CORE_DIR}/network/musicradiochannelthread.cpp
+    ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.cpp
+    ${MUSIC_CORE_DIR}/network/musicradiosongsthread.cpp
+    ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.cpp
     ${MUSIC_CORE_DIR}/musicutils.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
@@ -214,11 +225,14 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiolistview.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiowidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebradiodatebase.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
     ${MUSIC_USERMANAGER_DIR}/musicusermanager.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserlineedit.cpp
@@ -282,7 +296,8 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworktestwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictimerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictransformwidget.ui
-    ${MUSIC_UI_DIR}/musicToolswidget/musicwebradiowidget.ui
+    ${MUSIC_UI_DIR}/musicToolswidget/musicwebentainradiowidget.ui
+    ${MUSIC_UI_DIR}/musicToolswidget/musicwebmusicradiowidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserdialog.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicusermanager.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserrecordwidget.ui
