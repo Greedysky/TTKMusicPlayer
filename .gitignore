@@ -1,7 +1,12 @@
 *.user
-TTKMusicplayer.aps
+*.user.*
+*.aps
 build-TTKMusicplayer-*/
 *.*-pre1
-*.user.*
 *.autosave
 *.*~
+*.uxf
+*.txt
+Thumbs.db
+ehthumbs.db
+Desktop.ini
