@@ -6,10 +6,9 @@
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
+#include "musicutils.h"
 
-#include <QUrl>
 #include <QPainter>
-#include <QDesktopServices>
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
@@ -479,7 +478,7 @@ void MusicLrcContainerForInline::theShowLrcChanged()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    QDesktopServices::openUrl(QUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absolutePath(), QUrl::TolerantMode));
+    MusicUtils::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const

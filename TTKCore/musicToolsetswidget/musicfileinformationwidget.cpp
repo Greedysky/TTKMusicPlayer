@@ -6,9 +6,6 @@
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
 
-#include <QUrl>
-#include <QDesktopServices>
-
 MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
@@ -64,7 +61,7 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
 
 void MusicFileInformationWidget::musicOpenFileDir()
 {
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_path).absolutePath(), QUrl::TolerantMode)))
+    if(!MusicUtils::openUrl(QFileInfo(m_path).absoluteFilePath()))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

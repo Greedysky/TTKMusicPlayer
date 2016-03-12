@@ -3,8 +3,6 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 
-#include <QUrl>
-#include <QDesktopServices>
 #include <QContextMenuEvent>
 #include <QMenu>
 
@@ -149,8 +147,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absolutePath(),
-                                  QUrl::TolerantMode)))
+    if(!MusicUtils::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath()))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

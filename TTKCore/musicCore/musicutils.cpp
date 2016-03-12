@@ -3,6 +3,11 @@
 #include <QComboBox>
 #include <QBitmap>
 #include <QPainter>
+#include <QDesktopServices>
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#include <shellapi.h>
+#endif
 
 void MusicUtils::dirIsExist(const QString& name)
 {
@@ -249,4 +254,22 @@ void MusicUtils::checkCacheSize(quint64 cacheSize, bool disabled, const QString 
             }
         }
     }
+}
+
+bool MusicUtils::openUrl(const QString &path)
+{
+#ifdef Q_OS_WIN
+    if(path.isEmpty())
+    {
+        return false;
+    }
+
+    QString p = path;
+    p.replace('/', "\\");
+    p = " /select," + p;
+    HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", p.toLocal8Bit().constData(), NULL, true);
+    return (int)value >= 32;
+#else
+    return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
+#endif
 }

@@ -103,6 +103,11 @@ public:
      * Check given dir size is bigger than given size.
      */
 
+    static bool openUrl(const QString &path);
+    /*!
+     * Open file from local by path.
+     */
+
 private:
     static QString speed2LabelFromLabel(qint64 size, const QString &label);
     /*!

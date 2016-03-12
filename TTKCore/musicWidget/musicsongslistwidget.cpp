@@ -5,12 +5,12 @@
 #include "musicfileinformationwidget.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
+#include "musicutils.h"
 
 #include <QUrl>
 #include <QAction>
 #include <QTimer>
 #include <QProcess>
-#include <QDesktopServices>
 #include <QPainter>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
@@ -429,7 +429,7 @@ void MusicSongsListWidget::musicOpenFileDir()
     }
 
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(!QDesktopServices::openUrl(QUrl(QFileInfo(path).absolutePath(), QUrl::TolerantMode)))
+    if(!MusicUtils::openUrl(QFileInfo(path).absoluteFilePath()))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
