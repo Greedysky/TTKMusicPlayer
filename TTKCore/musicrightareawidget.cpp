@@ -47,13 +47,13 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicSearchBackButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->musicSearchBackButton->setIconSize(QSize(25, 25));
+    ui->musicSearchBackButton->setIconSize(QSize(20, 20));
     ui->musicSearchBackButton->setIcon(QIcon(QString::fromUtf8(":/image/back")));
 //    connect(ui->musicSearchBackButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->musicSearchRefreshButton->setIconSize(QSize(25, 25));
+    ui->musicSearchRefreshButton->setIconSize(QSize(20, 20));
     ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
     connect(ui->musicSearchRefreshButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
@@ -281,7 +281,7 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     //Show lrc display widget
     m_ui->SurfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
-    m_ui->musicWindowSpace->setVisible(false);
+//    m_ui->musicWindowSpace->setVisible(false);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(":/lrc/lrcDisplayAll"));
     m_ui->lrcDisplayAllButton->setVisible(true);
     emit updateBgThemeDownload();
@@ -321,7 +321,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
         deleteVideoWidget();
     }
-    m_ui->musicWindowSpace->setVisible(true);
+//    m_ui->musicWindowSpace->setVisible(true);
     m_ui->lrcDisplayAllButton->setVisible(false);
     if(m_lrcDisplayAll)
     {

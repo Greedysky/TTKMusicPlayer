@@ -234,7 +234,7 @@ void MusicApplication::keyReleaseEvent(QKeyEvent *event)
 void MusicApplication::initWindowSurface()
 {
     connect(ui->action_About, SIGNAL(triggered()), m_object, SLOT(musicAboutUs()));
-    connect(ui->musicSearch, SIGNAL(clicked()), m_leftAreaWidget, SLOT(musicSearch()));
+//    connect(ui->musicSearch, SIGNAL(clicked()), m_leftAreaWidget, SLOT(musicSearch()));
     connect(ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
     ui->musicPlayMode->setMenu(&m_playModeMenu);
     ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
