@@ -116,17 +116,9 @@ public Q_SLOTS:
      */
 
 protected:
-    void createToolPopupMenu();
-    /*!
-     * Create toolk popup menu.
-     */
     void createSystemTrayIcon();
     /*!
      * Create system tray icon.
-     */
-    void createMenuActions() const;
-    /*!
-     * Create menu actions.
      */
 
     QWidget *m_supperClass;

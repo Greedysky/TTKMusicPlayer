@@ -281,7 +281,6 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     //Show lrc display widget
     m_ui->SurfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
-//    m_ui->musicWindowSpace->setVisible(false);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(":/lrc/lrcDisplayAll"));
     m_ui->lrcDisplayAllButton->setVisible(true);
     emit updateBgThemeDownload();
@@ -321,7 +320,6 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
         deleteVideoWidget();
     }
-//    m_ui->musicWindowSpace->setVisible(true);
     m_ui->lrcDisplayAllButton->setVisible(false);
     if(m_lrcDisplayAll)
     {
