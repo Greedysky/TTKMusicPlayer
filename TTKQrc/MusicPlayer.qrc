@@ -16,7 +16,6 @@
         <file alias="windowicon">../TTKResource/music_player_logo.ico</file>
         <file alias="close">../TTKResource/music_close.png</file>
         <file alias="minimize">../TTKResource/music_min.png</file>
-        <file alias="screentop">../TTKResource/music_screen_top.png</file>
         <file alias="searchline">../TTKResource/music_search_line.png</file>
         <file alias="windowskin">../TTKResource/music_window_skin.png</file>
         <file alias="windowremote">../TTKResource/music_window_remote.png</file>
@@ -203,8 +202,6 @@
         <file alias="iconSubwoofer">../TTKResource/enhance/enhance_icon_subwoofer.png</file>
     </qresource>
     <qresource prefix="/appTools">
-        <file alias="import">../TTKResource/appTools/music_importSong.png</file>
-        <file alias="setting">../TTKResource/appTools/music_setting.png</file>
         <file alias="location">../TTKResource/appTools/music_location.png</file>
         <file alias="search">../TTKResource/appTools/music_searching.png</file>
         <file alias="buttoncloud">../TTKResource/appTools/music_button_cloud.png</file>

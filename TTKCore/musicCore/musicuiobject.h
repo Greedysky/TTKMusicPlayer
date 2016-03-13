@@ -196,7 +196,7 @@ namespace MusicUIObject
             QPushButton{text-align:left;color:white;}";
            
     const QString MPushButtonStyle16 = MPushButtonStyle07 + "\
-            QPushButton{ image:url(':/lrc/shadow');}";
+            QPushButton{ border-image:url(':/quality/bg');}";
 
     const QString MPushButtonStyle17 = MPushButtonStyle06 + "\
             QPushButton{ color: #3BA1E6;}";

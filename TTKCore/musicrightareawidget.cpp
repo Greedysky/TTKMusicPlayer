@@ -37,6 +37,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    m_ui->musicWindowConcise->setEnabled(false);
     ui->musiclrccontainerforinline->resize(ui->SurfaceStackedWidget->size());
 
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);
@@ -376,11 +377,11 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
 
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(m_lrcDisplayAll ? 392 : 61, 320));
-    lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 392, 320));
+    lrcDisplayAllAnimation->setStartValue(QPoint(m_lrcDisplayAll ? 392 : 61, 300));
+    lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 392, 300));
     lrcDisplayAllAnimation->start();
 //    m_ui->lrcDisplayAllButton->move(m_lrcDisplayAll ? 61 : 392, 320);
-    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 390, 144, m_lrcDisplayAll ? 871: 541, 455);
+    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 390, 100, m_lrcDisplayAll ? 871: 541, 455);
     m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 330 : 0);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));
     m_ui->musicWindowConcise->setEnabled(!m_lrcDisplayAll);
