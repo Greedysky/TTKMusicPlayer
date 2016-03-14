@@ -37,7 +37,6 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    m_ui->musicWindowConcise->setEnabled(false);
     ui->musiclrccontainerforinline->resize(ui->SurfaceStackedWidget->size());
 
     m_downloadStatusLabel->setMovieLabel(m_ui->showDownloadGif);

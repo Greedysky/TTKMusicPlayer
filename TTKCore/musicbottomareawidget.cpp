@@ -113,10 +113,27 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->musicWindowConcise->setGeometry(con ? 305 : 848, 27, 25, 25);
     m_ui->minimization->setGeometry(con ? 335 : 909, 27, 25, 25);
     m_ui->windowClose->setGeometry(con ? 360 : 937, 27, 25, 25);
-    m_ui->resizeWindowLabel->setGeometry(con ? 370 : 950, 620, 15, 15);
-//    m_ui->musicWindowSpace->setGeometry(con ? 300 : 380, 20, con ? 100 : 590, con ? 38 : 45);
-    m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
     m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
+    m_ui->musicSongSearchLine->setVisible( !con );
+    m_ui->resizeWindowLabel->setVisible( !con );
+    ////////////////////////////////////////////////////////////
+    m_ui->songsContainer->resize(331, con ? 460 : 490);
+    m_ui->musicPrevious->setGeometry(con ? 35 : 64, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicKey->setGeometry(con ? 65 : 127, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicNext->setGeometry(con ? 95 : 190, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicTimeWidget->move(con ? 15 : 230, 573);
+    m_ui->verticalLayoutWidget->move(con ? 30 : 245, 563);
+    m_ui->showCurrentSong->move(con ? 85 : 300, 558);
+    m_ui->playCurrentTime->move(con ? 307 : 522, 568);
+    m_ui->playTotalTime->move(con ? 342 : 556, 568);
+    m_ui->musicBestLove->move(con ? 140 : 628, con ? 535 : 578);
+    m_ui->musicPlayMode->move(con ? 162 : 660, con ? 532 : 575);
+    m_ui->musicDesktopLrc->move(con ? 190 : 700, con ? 538 : 580);
+    m_ui->musicEnhancedButton->move(con ? 210 : 730, con ? 535 : 578);
+    m_ui->musicSound->move(con ? 260 : 805, con ? 535 : 578);
+    m_ui->musicSoundSlider->move(con ? 280 : 830, con ? 535 : 579);
+    ////////////////////////////////////////////////////////////
+    m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
 }
 
