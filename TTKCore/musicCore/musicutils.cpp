@@ -85,6 +85,17 @@ void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
     }
 }
 
+void MusicUtils::widgetToRound(QWidget *w, int ratioX, int ratioY)
+{
+    QBitmap mask(w->size());
+    QPainter painter(&mask);
+    painter.fillRect(w->rect(), Qt::white);
+    painter.setBrush(QColor(0, 0, 0));
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawRoundedRect(w->rect(), ratioX, ratioY);
+    w->setMask(mask);
+}
+
 QPixmap MusicUtils::pixmapToRound(const QPixmap &src, int ratio)
 {
     if(src.isNull())

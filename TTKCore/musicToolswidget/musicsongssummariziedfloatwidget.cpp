@@ -1,5 +1,6 @@
 #include "musicsongssummariziedfloatwidget.h"
 #include "musicuiobject.h"
+#include "musicutils.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -13,15 +14,9 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setObjectName("MainWidget");
     setStyleSheet("#MainWidget{background:rgba(0, 0, 0, 60);}");
-    resize(60, 25);
 
-    QBitmap objBitmap(size());
-    QPainter painter(&objBitmap);
-    painter.fillRect(rect(), Qt::white);
-    painter.setBrush(QColor(0,0,0));
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawRoundedRect(rect(), 10, 10);
-    setMask(objBitmap);
+    resize(60, 25);
+    MusicUtils::widgetToRound(this, 10, 10);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
