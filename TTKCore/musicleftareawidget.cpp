@@ -7,6 +7,7 @@
 #include "musiclocalsongsearch.h"
 #include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
+#include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"
 ///
@@ -16,6 +17,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_supperClass = parent;
     m_stackedWidget = nullptr;
+    M_CONNECTION->setValue("MusicLeftAreaWidget", this);
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()

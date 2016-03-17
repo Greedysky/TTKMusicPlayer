@@ -1,6 +1,7 @@
 #include "musicsongssummariziedfloatwidget.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+#include "musicconnectionpool.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -34,6 +35,8 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     searchButton->setIconSize(QSize(20, 20));
     searchButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));
+    connect(searchButton, SIGNAL(clicked()), SIGNAL(musicSearch()));
 
     m_currentAnimationValue = 1;
     m_timer.setInterval(3*1000);
@@ -43,11 +46,15 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     m_animation->setDuration(1000);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
+    M_CONNECTION->setValue("MusicSongsSummariziedFloatWidget", this);
+    M_CONNECTION->poolConnect("MusicSongsSummariziedFloatWidget", "MusicLeftAreaWidget");
+    M_CONNECTION->poolConnect("MusicSongsSummariziedFloatWidget", "MusicApplication");
     m_timer.start();
 }
 
 MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
 {
+    M_CONNECTION->poolDisConnect("MusicSongsSummariziedFloatWidget");
     delete m_animation;
 }
 
