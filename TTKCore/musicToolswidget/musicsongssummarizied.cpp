@@ -11,6 +11,20 @@
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
+#include <QDebug>
+
+MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *parent)
+    : QLabel(parent)
+{
+    setGeometry(0, 0, 100, 50);
+    setStyleSheet("background:#564123");
+}
+
+MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
+{
+
+}
+
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : QToolBox(parent), m_renameLine(nullptr)
@@ -197,10 +211,10 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
         return;
     }
     MusicSongs *songs = &m_musicFileNames[m_currentIndexs];
-    if(!songs->isEmpty())
+    if(!songs->isEmpty() && index < songs->count())
     {
-        int countNumber = (*songs)[index].getMusicPlayCount();
-        (*songs)[index].setMusicPlayCount(++countNumber);
+        MusicSong song = (*songs)[index];
+        song.setMusicPlayCount( song.getMusicPlayCount() + 1);
     }
 }
 
@@ -429,6 +443,7 @@ void MusicSongsSummarizied::setCurrentMusicSongTreeIndex(int index)
 void MusicSongsSummarizied::setCurrentIndex()
 {
     QStringList keyList = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    qDebug() << keyList;
     m_currentIndexs = keyList[1].toInt();
     int index = keyList[2].toInt();
     QToolBox::setCurrentIndex(index);
