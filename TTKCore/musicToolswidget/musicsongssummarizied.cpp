@@ -7,27 +7,14 @@
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicprogresswidget.h"
+#include "musicsongssummariziedfloatwidget.h"
 
 #include <QScrollBar>
 #include <QTableWidgetItem>
 #include <QLayout>
-#include <QDebug>
-
-MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *parent)
-    : QLabel(parent)
-{
-    setGeometry(0, 0, 100, 50);
-    setStyleSheet("background:#564123");
-}
-
-MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
-{
-
-}
-
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
-    : QToolBox(parent), m_renameLine(nullptr)
+    : QToolBox(parent), m_renameLine(nullptr), m_floatWidget(nullptr)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setStyleSheet(MusicUIObject::MToolBoxStyle01);
@@ -76,6 +63,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 MusicSongsSummarizied::~MusicSongsSummarizied()
 {
     clearAllLists();
+    delete m_renameLine;
+    delete m_floatWidget;
 }
 
 void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
@@ -216,6 +205,12 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
         MusicSong song = (*songs)[index];
         song.setMusicPlayCount( song.getMusicPlayCount() + 1);
     }
+}
+
+void MusicSongsSummarizied::deleteFloatWidget()
+{
+    delete m_floatWidget;
+    m_floatWidget = nullptr;
 }
 
 void MusicSongsSummarizied::clearAllLists()
@@ -369,8 +364,21 @@ void MusicSongsSummarizied::currentIndexChanged(int)
     }
 }
 
+void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
+{
+    QToolBox::wheelEvent(event);
+    if(m_floatWidget == nullptr)
+    {
+        m_floatWidget = new MusicSongsSummariziedFloatWidget;
+        connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
+        m_floatWidget->setGeometry(this);
+        m_floatWidget->show();
+    }
+}
+
 void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
+    QToolBox::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(QIcon(":/contextMenu/delete"), tr("deleteItem"), this, SLOT(deleteItem()));
@@ -443,7 +451,10 @@ void MusicSongsSummarizied::setCurrentMusicSongTreeIndex(int index)
 void MusicSongsSummarizied::setCurrentIndex()
 {
     QStringList keyList = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    qDebug() << keyList;
+    if(keyList.count() != 3)
+    {
+        return;
+    }
     m_currentIndexs = keyList[1].toInt();
     int index = keyList[2].toInt();
     QToolBox::setCurrentIndex(index);

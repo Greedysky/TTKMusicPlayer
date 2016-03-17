@@ -9,32 +9,16 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QLabel>
 #include <QToolBox>
 #include <QContextMenuEvent>
 #include "musicsong.h"
 #include "musicglobaldefine.h"
 #include "musicobject.h"
 
-class MusicSongsListWidget;
 class QTableWidgetItem;
+class MusicSongsListWidget;
 class MusicSongsToolItemRenamedWidget;
-
-/*! @brief The class of the songs summarizied float function widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOL_EXPORT MusicSongsSummariziedFloatWidget : public QLabel
-{
-    Q_OBJECT
-public:
-    explicit MusicSongsSummariziedFloatWidget(QWidget *parent = 0);
-    /*!
-     * Object contsructor.
-     */
-    virtual ~MusicSongsSummariziedFloatWidget();
-
-};
-
+class MusicSongsSummariziedFloatWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -200,6 +184,10 @@ public Q_SLOTS:
     /*!
      * Set current music song play count by given song index.
      */
+    void deleteFloatWidget();
+    /*!
+     * Delete the float function widget.
+     */
 
 protected:
     void changeItemIcon();
@@ -210,6 +198,7 @@ protected:
     /*!
      * Delete all objects.
      */
+    virtual void wheelEvent(QWheelEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
@@ -222,6 +211,7 @@ protected:
     MusicSongsList m_musicFileNames;
     QList<MusicSongsListWidget*> m_mainSongLists;
     MusicSongsToolItemRenamedWidget *m_renameLine;
+    MusicSongsSummariziedFloatWidget *m_floatWidget;
 
 };
 

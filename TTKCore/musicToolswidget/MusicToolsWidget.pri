@@ -10,6 +10,7 @@ INCLUDEPATH += $$PWD \
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicsongssummarizied.h \
+    $$PWD/musicsongssummariziedfloatwidget.h \
     $$PWD/musictoolsetswidget.h \
     $$PWD/musicmydownloadrecordwidget.h \
     $$PWD/core/musicmydownloadrecordconfigmanager.h \
@@ -26,6 +27,7 @@ HEADERS  += \
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicsongssummarizied.cpp \
+    $$PWD/musicsongssummariziedfloatwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \
     $$PWD/musicmydownloadrecordwidget.cpp \
     $$PWD/core/musicmydownloadrecordconfigmanager.cpp \
