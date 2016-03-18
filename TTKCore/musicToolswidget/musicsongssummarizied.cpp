@@ -202,8 +202,8 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
     MusicSongs *songs = &m_musicFileNames[m_currentIndexs];
     if(!songs->isEmpty() && index < songs->count())
     {
-        MusicSong song = (*songs)[index];
-        song.setMusicPlayCount( song.getMusicPlayCount() + 1);
+        MusicSong *song = &(*songs)[index];
+        song->setMusicPlayCount( song->getMusicPlayCount() + 1);
     }
 }
 
