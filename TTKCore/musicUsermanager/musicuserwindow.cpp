@@ -35,6 +35,11 @@ MusicUserWindow::~MusicUserWindow()
     disConnectDatabase();
 }
 
+bool MusicUserWindow::isUserLogin() const
+{
+    return currentIndex() == 1;
+}
+
 bool MusicUserWindow::disConnectDatabase()
 {
     QString connectionName;
@@ -127,6 +132,7 @@ void MusicUserWindow::musicUserContextLogin()
     if(currentIndex() == 1)
     {
         setCurrentIndex(0);
+        return;
     }
     QTimer::singleShot(1, this, SLOT(musicUserLogin()));
 }

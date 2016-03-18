@@ -92,6 +92,11 @@ int MusicTopAreaWidget::getListBgSkinAlpha()
     return m_listAlpha;
 }
 
+bool MusicTopAreaWidget::getUserLoginState() const
+{
+    return m_msuicUserWindow->isUserLogin();
+}
+
 void MusicTopAreaWidget::setTimerStop()
 {
     m_pictureCarouselTimer.stop();

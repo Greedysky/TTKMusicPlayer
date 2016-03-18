@@ -32,7 +32,10 @@ public:
      */
     ~MusicUserWindow();
 
-Q_SIGNALS:
+    bool isUserLogin() const;
+    /*!
+     * Check if the user is login now.
+     */
 
 public Q_SLOTS:
     void musicUserLogin();

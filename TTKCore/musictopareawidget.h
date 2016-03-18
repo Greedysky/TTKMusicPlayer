@@ -38,6 +38,7 @@ public:
     /*!
      * Set up app ui.
      */
+
     void setParameters(const QString &skin, int alpha, int alphaR);
     /*!
      * Set background skin and alpha and list alpha parameter.
@@ -53,6 +54,11 @@ public:
     int getListBgSkinAlpha();
     /*!
      * Get list background skin alpha.
+     */
+
+    bool getUserLoginState() const;
+    /*!
+     * Check if the user is login now.
      */
 
     void setTimerStop();

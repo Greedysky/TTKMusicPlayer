@@ -173,7 +173,8 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/login"), tr("logout"), m_topAreaWidget, SLOT(musicUserContextLogin()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),
+                             m_topAreaWidget, SLOT(musicUserContextLogin()));
     rightClickMenu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
