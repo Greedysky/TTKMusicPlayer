@@ -41,7 +41,7 @@ void MusicLocalSongSearchEdit::focusOutEvent(QFocusEvent *event)
 
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
 {
-    QLineEdit::contextMenuEvent(event);
+    Q_UNUSED(event);
 
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
