@@ -7,21 +7,21 @@
 #include "musicmessagebox.h"
 
 #include <QTimer>
-
+#include <QDebug>
 MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent),
      ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
-    ui->userName->setStyleSheet(MusicUIObject::MPushButtonStyle11);
-    ui->userLogin->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->userName->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle11);
+    ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
 
     connectDatabase();
 
     m_userManager = new MusicUserManager(this);
-    connect(ui->userLogin, SIGNAL(clicked()), SLOT(musicUserLogin()));
-    connect(ui->userName, SIGNAL(clicked()), m_userManager, SLOT(exec()));
+    connect(ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
+    connect(ui->userNameL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
     connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
                            SLOT(userStateChanged(QString,QString)));
 
@@ -106,15 +106,17 @@ bool MusicUserWindow::connectDatabase()
 
 void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 {
-    ui->userName->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
     if(uid.isEmpty())
     {
+        ui->userIconU->setPixmap(QPixmap(":/image/windowicon").scaled(ui->userIconU->size()));
+        ui->userNameU->setText(QFontMetrics(font()).elidedText(tr("L|R"), Qt::ElideRight, 44));
         setCurrentIndex(0);
     }
     else
     {
         m_userManager->setUserUID(uid);
-        ui->userIcon->setPixmap(QPixmap(icon).scaled(ui->userIcon->size()));
+        ui->userIconL->setPixmap(QPixmap(icon).scaled(ui->userIconL->size()));
+        ui->userNameL->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
         setCurrentIndex(1);
     }
 }
@@ -131,7 +133,7 @@ void MusicUserWindow::musicUserContextLogin()
 {
     if(currentIndex() == 1)
     {
-        setCurrentIndex(0);
+        userStateChanged(QString(), QString());
         return;
     }
     QTimer::singleShot(1, this, SLOT(musicUserLogin()));
@@ -142,8 +144,5 @@ void MusicUserWindow::checkToAutoLogin()
     MusicUserDialog dialog;
     QString name, icon;
     dialog.checkToAutoLogin(name, icon);
-    if(!name.isEmpty())
-    {
-        userStateChanged(name, icon);
-    }
+    userStateChanged(name, icon);
 }

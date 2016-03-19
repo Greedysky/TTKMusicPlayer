@@ -16,27 +16,25 @@
   <property name="currentIndex">
    <number>0</number>
   </property>
-  <widget class="QWidget" name="one">
-   <widget class="QPushButton" name="userLogin">
+  <widget class="QWidget" name="loginWidget">
+   <widget class="QPushButton" name="userNameU">
     <property name="geometry">
      <rect>
-      <x>28</x>
-      <y>2</y>
-      <width>45</width>
-      <height>25</height>
+      <x>30</x>
+      <y>0</y>
+      <width>71</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton{font-size:17px; border-none; color:#FFFFFF;background-color:transparent;}
+     <string notr="true">QPushButton{font-size:13px; border-none; color:#FFFFFF;background-color:transparent;}
 QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
     </property>
     <property name="text">
-     <string>登录</string>
+     <string/>
     </property>
    </widget>
-  </widget>
-  <widget class="QWidget" name="two">
-   <widget class="QLabel" name="userIcon">
+   <widget class="QLabel" name="userIconU">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -49,7 +47,22 @@ QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="userName">
+  </widget>
+  <widget class="QWidget" name="loginedWidget">
+   <widget class="QLabel" name="userIconL">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="userNameL">
     <property name="geometry">
      <rect>
       <x>30</x>
