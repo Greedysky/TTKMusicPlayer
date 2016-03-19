@@ -109,7 +109,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
     if(uid.isEmpty())
     {
         ui->userIconU->setPixmap(QPixmap(":/image/windowicon").scaled(ui->userIconU->size()));
-        ui->userNameU->setText(QFontMetrics(font()).elidedText(tr("L|R"), Qt::ElideRight, 44));
+        ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
     }
     else
