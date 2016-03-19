@@ -12,7 +12,6 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicLocalSongSearch;
 class MusicQualityChoiceWidget;
 
 namespace Ui {
@@ -36,16 +35,8 @@ public:
     /*!
      * Set up app ui.
      */
-    QString getSearchedText() const;
-    /*!
-     * Get the search text that the user searched.
-     */
 
 public Q_SLOTS:
-    void musicSearch();
-    /*!
-     * Show searched text widget.
-     */
     void musicStackedSongListWidgetChanged();
     /*!
      * Change to song list widget.
@@ -70,16 +61,11 @@ public Q_SLOTS:
     /*!
      * Show spectrum widget.
      */
-    void clearSearchedText();
-    /*!
-     * Clear current search lineedit text.
-     */
 
 protected:
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     QWidget *m_stackedWidget;
-    MusicLocalSongSearch *m_musicLocalSongSearch;
     MusicQualityChoiceWidget *m_qualityChoiceWidget;
 
 };

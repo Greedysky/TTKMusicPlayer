@@ -4,26 +4,22 @@
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiotoolwidget.h"
-#include "musiclocalsongsearch.h"
 #include "musicconnectmobilewidget.h"
 #include "musicqualitychoicewidget.h"
-#include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"
 ///
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicLocalSongSearch(nullptr), m_qualityChoiceWidget(nullptr)
+    : QWidget(parent), m_qualityChoiceWidget(nullptr)
 {
     m_supperClass = parent;
     m_stackedWidget = nullptr;
-    M_CONNECTION->setValue("MusicLeftAreaWidget", this);
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
     delete m_qualityChoiceWidget;
-    delete m_musicLocalSongSearch;
     delete m_stackedWidget;
 }
 
@@ -118,25 +114,6 @@ void MusicLeftAreaWidget::musicSpectrumWidget()
     {
         Visual::setEnabled(facts.first());
     }
-}
-
-QString MusicLeftAreaWidget::getSearchedText() const
-{
-    return m_musicLocalSongSearch->getSearchedText();
-}
-
-void MusicLeftAreaWidget::clearSearchedText()
-{
-    m_musicLocalSongSearch->close();
-}
-
-void MusicLeftAreaWidget::musicSearch()
-{
-    if(m_musicLocalSongSearch == nullptr)
-    {
-        m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
-    }
-    m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()

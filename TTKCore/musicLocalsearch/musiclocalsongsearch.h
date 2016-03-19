@@ -46,8 +46,8 @@ public Q_SLOTS:
 
 private:
     QLabel *m_showIcon;
-    MusicLocalSongSearchEdit *m_searchLine;
     QToolButton *m_closeButton;
+    MusicLocalSongSearchEdit *m_searchLine;
 
 };
 

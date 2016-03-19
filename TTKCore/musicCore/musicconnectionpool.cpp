@@ -150,7 +150,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(downloadLocalFromControl()));
     }
 
-    if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicLeftAreaWidget" )
+    if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicBottomAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicSearch()), second,
                                 SLOT(musicSearch()));

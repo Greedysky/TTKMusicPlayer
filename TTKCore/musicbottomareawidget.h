@@ -16,6 +16,7 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
+class MusicLocalSongSearch;
 
 namespace Ui {
     class MusicApplication;
@@ -91,6 +92,11 @@ public:
      * Set window concise.
      */
 
+    QString getSearchedText() const;
+    /*!
+     * Get the search text that the user searched.
+     */
+
 Q_SIGNALS:
     void setShowDesktopLrc(bool show);
     /*!
@@ -102,6 +108,14 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void musicSearch();
+    /*!
+     * Show searched text widget.
+     */
+    void clearSearchedText();
+    /*!
+     * Clear current search lineedit text.
+     */
     void lockDesktopLrc(bool lock);
     /*!
      * Lock or not current desktop lrc.
@@ -132,6 +146,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
+    MusicLocalSongSearch *m_musicLocalSongSearch;
 
 };
 

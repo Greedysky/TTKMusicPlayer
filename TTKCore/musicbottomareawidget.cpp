@@ -3,11 +3,13 @@
 #include "musicuiobject.h"
 #include "musicsystemtraymenu.h"
 #include "musicwindowextras.h"
+#include "musicconnectionpool.h"
+#include "musiclocalsongsearch.h"
 
 #include <QShortcut>
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_musicLocalSongSearch(nullptr)
 {
     m_supperClass = parent;
     m_systemCloseConfig = false;//Control the mode to exit
@@ -16,6 +18,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemShortcut();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
+    M_CONNECTION->setValue("MusicBottomAreaWidget", this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -23,6 +26,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
+    delete m_musicLocalSongSearch;
 }
 
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -155,6 +159,31 @@ void MusicBottomAreaWidget::setWindowConcise()
     ////////////////////////////////////////////////////////////
     m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
+    ////////////////////////////////////////////////////////////
+    if(m_musicLocalSongSearch)
+    {
+        m_musicLocalSongSearch->move(60, con ? 490 : 520);
+    }
+}
+
+QString MusicBottomAreaWidget::getSearchedText() const
+{
+    return m_musicLocalSongSearch->getSearchedText();
+}
+
+void MusicBottomAreaWidget::clearSearchedText()
+{
+    m_musicLocalSongSearch->close();
+}
+
+void MusicBottomAreaWidget::musicSearch()
+{
+    if(m_musicLocalSongSearch == nullptr)
+    {
+        m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
+        m_musicLocalSongSearch->move(60, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 490 : 520);
+    }
+    m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

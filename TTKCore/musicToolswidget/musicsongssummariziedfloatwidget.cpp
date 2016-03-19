@@ -47,7 +47,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
     M_CONNECTION->setValue("MusicSongsSummariziedFloatWidget", this);
-    M_CONNECTION->poolConnect("MusicSongsSummariziedFloatWidget", "MusicLeftAreaWidget");
+    M_CONNECTION->poolConnect("MusicSongsSummariziedFloatWidget", "MusicBottomAreaWidget");
     M_CONNECTION->poolConnect("MusicSongsSummariziedFloatWidget", "MusicApplication");
     m_timer.start();
 }
