@@ -20,9 +20,9 @@
 
 #ifndef OUTPUTFACTORY_H
 #define OUTPUTFACTORY_H
+
 #include <QObject>
 
-class QObject;
 class QString;
 class QIODevice;
 class QWidget;
@@ -34,7 +34,7 @@ class Output;
 /*! @brief Helper class to store output plugin properies.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class OutputProperties
+class Q_DECL_EXPORT OutputProperties
 {
 public:
     /*!
@@ -53,7 +53,7 @@ public:
 /*! @brief %Output plugin interface (output factory).
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class OutputFactory
+class Q_DECL_EXPORT OutputFactory
 {
 public:
     /*!

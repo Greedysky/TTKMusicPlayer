@@ -30,7 +30,7 @@ class Effect;
 /*! @brief Helper class to store effect plugin properties.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class EffectProperties
+class Q_DECL_EXPORT EffectProperties
 {
 public:
     /*!
@@ -60,7 +60,7 @@ public:
 /*! @brief Effect plugin interface (effect factory).
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class EffectFactory
+class Q_DECL_EXPORT EffectFactory
 {
 public:
     /*!

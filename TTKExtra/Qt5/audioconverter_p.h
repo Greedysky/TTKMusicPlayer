@@ -26,7 +26,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class AudioConverter : public Effect
+class Q_DECL_EXPORT AudioConverter : public Effect
 {
 public:
     AudioConverter();

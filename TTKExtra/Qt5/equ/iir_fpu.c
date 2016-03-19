@@ -33,6 +33,11 @@
 #include "iir_fpu.h"
 #include "iir.h"
 
+#ifdef _MSC_VER
+# define __attribute__(X)
+# pragma pack(4)
+#endif
+
 static sXYData data_history[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
 static sXYData data_history2[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
 float gain[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
@@ -59,7 +64,7 @@ void clean_history()
   di = 0;
 }
 
-__inline__ int iir(void * d, int length, int nch)
+int iir(void * d, int length, int nch)
 {
 //  FTZ_ON;
   short *data = (short *) d;
@@ -222,7 +227,7 @@ __inline__ int iir(void * d, int length, int nch)
   return length;
 }
 
-__inline__ int iir32(void * d, int length, int nch)
+int iir32(void * d, int length, int nch)
 {
 //  FTZ_ON;
   int *data = (int *) d;
@@ -378,7 +383,7 @@ __inline__ int iir32(void * d, int length, int nch)
   return length;
 }
 
-__inline__ int iir24(void * d, int length, int nch)
+int iir24(void * d, int length, int nch)
 {
     int *data = (int *) d;
     int samples = (length >> 2);

@@ -26,7 +26,7 @@
 /*! @brief The VolumeSettings structure stores volume levels
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-struct VolumeSettings
+struct Q_DECL_EXPORT VolumeSettings
 {
     /*!
      * Constructor
@@ -44,7 +44,7 @@ struct VolumeSettings
 /*! @brief The Volume class provides asbtract volume interface
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class Volume : public QObject
+class Q_DECL_EXPORT Volume : public QObject
 {
     Q_OBJECT
 public:

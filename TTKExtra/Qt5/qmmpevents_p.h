@@ -35,7 +35,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class StateChangedEvent : public QEvent
+class Q_DECL_EXPORT StateChangedEvent : public QEvent
 {
 public:
     StateChangedEvent(Qmmp::State currentState, Qmmp::State previousState);
@@ -53,7 +53,7 @@ private:
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class MetaDataChangedEvent : public QEvent
+class Q_DECL_EXPORT MetaDataChangedEvent : public QEvent
 {
 public:
     MetaDataChangedEvent(const QMap<Qmmp::MetaData, QString> &metaData);
@@ -74,7 +74,7 @@ private:
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class StreamInfoChangedEvent : public QEvent
+class Q_DECL_EXPORT StreamInfoChangedEvent : public QEvent
 {
 public:
     StreamInfoChangedEvent(const QHash<QString, QString> &info);

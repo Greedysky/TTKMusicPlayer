@@ -30,7 +30,7 @@
 /*! @brief The StateHandler class allows one to track information about playback progress.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class StateHandler : public QObject
+class Q_DECL_EXPORT StateHandler : public QObject
 {
     Q_OBJECT
 public:

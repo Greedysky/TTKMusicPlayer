@@ -35,7 +35,7 @@ class QmmpPluginCache;
 /*! @brief The InputSource class provides the base interface class of transports.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class InputSource : public QObject
+class Q_DECL_EXPORT InputSource : public QObject
 {
 Q_OBJECT
 public:

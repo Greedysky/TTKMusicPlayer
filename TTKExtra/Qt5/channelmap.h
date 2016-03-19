@@ -24,7 +24,7 @@
 #include <QList>
 #include "qmmp.h"
 
-class ChannelMap : public QList<Qmmp::ChannelPosition>
+class Q_DECL_EXPORT ChannelMap : public QList<Qmmp::ChannelPosition>
 {
 public:
     ChannelMap();

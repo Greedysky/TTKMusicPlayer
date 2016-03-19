@@ -33,7 +33,7 @@
 /*! @brief The Qmmp class stores global settings and enums.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class Qmmp
+class Q_DECL_EXPORT Qmmp
 {
 public:
     /*!

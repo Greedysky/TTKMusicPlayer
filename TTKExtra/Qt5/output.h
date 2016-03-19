@@ -22,7 +22,7 @@ class QmmpPluginCache;
  * @author Brad Hughes <bhughes@trolltech.com>
  * @author Ilya Kotov <forkotov@hotmail.ru>
  */
-class Output
+class Q_DECL_EXPORT Output
 {
 public:
     /*!

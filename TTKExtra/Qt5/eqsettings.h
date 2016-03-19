@@ -20,11 +20,13 @@
 
 #ifndef EQSETTINGS_H
 #define EQSETTINGS_H
+
 #include <QObject>
+
 /*! @brief The EqSettings class helps to work with equalizer settings.
      * @author Ilya Kotov <forkotov02@hotmail.ru>
      */
-class EqSettings
+class Q_DECL_EXPORT EqSettings
 {
 public:
     /*!

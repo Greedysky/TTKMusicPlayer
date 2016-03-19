@@ -4,7 +4,7 @@
 #include <QMap>
 #include <QString>
 
-class TagReadAndWrite
+class Q_DECL_EXPORT TagReadAndWrite
 {
 public:
     enum MusicTag

@@ -31,7 +31,7 @@
 /*! @brief The MetaDataModel is the base interface class of metadata access.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class MetaDataModel : public QObject
+class Q_DECL_EXPORT MetaDataModel : public QObject
 {
 Q_OBJECT
 public:

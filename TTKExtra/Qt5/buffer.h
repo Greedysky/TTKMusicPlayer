@@ -7,12 +7,14 @@
 #ifndef   __buffer_h
 #define   __buffer_h
 
+#include <QObject>
+
 #define QMMP_BLOCK_FRAMES 512
 
 /*! @brief Audio buffer class.
  * @author Brad Hughes <bhughes@trolltech.com>
  */
-class Buffer
+class Q_DECL_EXPORT Buffer
 {
 public:
     /*!

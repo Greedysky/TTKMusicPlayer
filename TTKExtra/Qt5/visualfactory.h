@@ -20,8 +20,9 @@
 
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
+
 #include <QObject>
-class QObject;
+
 class QWidget;
 class QTranslator;
 class QDialog;
@@ -30,7 +31,7 @@ class Visual;
 /*! @brief Helper class to store visual plugin properies.
  *  @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class VisualProperties
+class Q_DECL_EXPORT VisualProperties
 {
 public:
     /*!
@@ -49,7 +50,7 @@ public:
 /*! @brief %Visual plugin interface (visual factory).
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class VisualFactory
+class Q_DECL_EXPORT VisualFactory
 {
 public:
     /*!

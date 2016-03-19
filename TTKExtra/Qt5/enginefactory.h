@@ -21,7 +21,8 @@
 #ifndef EMGINEFACTORY_H
 #define EMGINEFACTORY_H
 
-class QObject;
+#include <QObject>
+
 class QString;
 class QIODevice;
 class QWidget;
@@ -34,7 +35,7 @@ class AbstractEngine;
 /*! @brief Helper class to store custom audio engine properies.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class EngineProperties
+class Q_DECL_EXPORT EngineProperties
 {
 public:
     /*!
@@ -57,7 +58,7 @@ public:
 /*! @brief Engine plugin interface.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class EngineFactory
+class Q_DECL_EXPORT EngineFactory
 {
 public:
     /*!

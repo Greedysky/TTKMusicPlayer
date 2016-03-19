@@ -34,7 +34,7 @@ class InputSourceFactory;
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class QmmpPluginCache
+class Q_DECL_EXPORT QmmpPluginCache
 {
 public:
     QmmpPluginCache(const QString &file, QSettings *settings);

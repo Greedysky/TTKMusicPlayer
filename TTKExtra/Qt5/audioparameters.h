@@ -28,7 +28,7 @@
 /*! @brief The AudioParameters class keeps information about audio settings.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class AudioParameters
+class Q_DECL_EXPORT AudioParameters
 {
 public:
     /*!

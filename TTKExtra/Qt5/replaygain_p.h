@@ -30,7 +30,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class ReplayGain
+class Q_DECL_EXPORT ReplayGain
 {
 public:
     ReplayGain();

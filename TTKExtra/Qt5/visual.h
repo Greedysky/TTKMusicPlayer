@@ -33,7 +33,7 @@ class VisualFactory;
 /*! @brief The Visual class provides the base interface class of visualizations.
  *  @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class Visual : public QWidget
+class Q_DECL_EXPORT Visual : public QWidget
 {
     Q_OBJECT
 public:

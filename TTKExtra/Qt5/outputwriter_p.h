@@ -37,7 +37,7 @@ class Effect;
     @brief Output thread.
     @author Ilya Kotov <forkotov02@hotmail.ru>
 */
-class OutputWriter : public QThread
+class Q_DECL_EXPORT OutputWriter : public QThread
 {
     Q_OBJECT
 public:

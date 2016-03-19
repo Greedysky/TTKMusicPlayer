@@ -40,7 +40,7 @@ class QmmpSettings;
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class QmmpAudioEngine : public AbstractEngine
+class Q_DECL_EXPORT QmmpAudioEngine : public AbstractEngine
 {
 Q_OBJECT
 public:
