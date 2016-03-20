@@ -13,12 +13,12 @@ MusicRoundAnimationLabel::MusicRoundAnimationLabel(QWidget *parent)
 
 MusicRoundAnimationLabel::~MusicRoundAnimationLabel()
 {
-    m_timer.stop();
+    stop();
 }
 
 void MusicRoundAnimationLabel::setPixmap(const QPixmap &pix)
 {
-    stop();
+    m_pixmap = pix;
 }
 
 void MusicRoundAnimationLabel::setInterval(int value)
