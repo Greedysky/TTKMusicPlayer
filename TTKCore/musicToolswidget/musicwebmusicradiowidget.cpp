@@ -23,6 +23,11 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
 
+    m_autoNextTimer.setInterval(3*1000);
+    connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
+    connect(ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
+    connect(ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -57,6 +62,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
 
 MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
 {
+    m_autoNextTimer.stop();
     delete m_analysis;
     delete m_radio;
     delete m_songsThread;
@@ -192,7 +198,6 @@ void MusicWebMusicRadioWidget::startToPlay()
 
     delete m_radio;
     m_radio = new MusicCoreMPlayer(this);
-//    connect(m_radio, SIGNAL(finished()), SLOT(radioNext()));
     connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl, -1);
@@ -260,7 +265,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     {
         pix.load(":/share/defaultArt");
     }
-    pix = MusicUtils::pixmapToRound(pix, 150);
+    pix = MusicUtils::pixmapToRound(pix, QSize(150, 150), 100, 100);
     ui->artistLabel->setPixmap(pix);
     ui->artistLabel->start();
 }
@@ -271,6 +276,9 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
     {
         return;
     }
+
+    m_autoNextTimer.stop();
+    m_autoNextTimer.start();
     ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*1000)));
 
     if(m_analysis->isEmpty())
@@ -287,9 +295,13 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
         for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
         {
             if(i == CURRENT_LRC_PAINT)
+            {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
+            }
             else
+            {
                 lrc += QString("<p align='center'>");
+            }
             lrc += m_analysis->getText(i);
             lrc += QString("</p>");
         }

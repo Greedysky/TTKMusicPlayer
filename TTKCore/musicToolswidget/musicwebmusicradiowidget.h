@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QTimer>
 #include "musicabstractmovewidget.h"
 
 class QNetworkCookieJar;
@@ -102,6 +103,7 @@ protected:
     Ui::MusicWebMusicRadioWidget *ui;
     int m_currentPlayListIndex;
     bool m_isPlaying;
+    QTimer m_autoNextTimer;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_radio;
     MusicRadioPlayListThread *m_playListThread;

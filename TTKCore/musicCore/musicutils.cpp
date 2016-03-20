@@ -85,34 +85,36 @@ void MusicUtils::setComboboxText(QComboBox *object, const QString &text)
     }
 }
 
-void MusicUtils::widgetToRound(QWidget *w, int ratioX, int ratioY)
+QBitmap MusicUtils::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
 {
-    QBitmap mask(w->size());
+    QBitmap mask(rect.size());
     QPainter painter(&mask);
-    painter.fillRect(w->rect(), Qt::white);
+    painter.fillRect(rect, Qt::white);
     painter.setBrush(QColor(0, 0, 0));
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawRoundedRect(w->rect(), ratioX, ratioY);
-    w->setMask(mask);
+    painter.drawRoundedRect(rect, ratioX, ratioY);
+    return mask;
 }
 
-QPixmap MusicUtils::pixmapToRound(const QPixmap &src, int ratio)
+void MusicUtils::widgetToRound(QWidget *w, int ratioX, int ratioY)
+{
+    w->setMask( getBitmapMask(w->rect(), ratioX, ratioY) );
+}
+
+QPixmap MusicUtils::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
+{
+    return pixmapToRound(src, QRect(QPoint(0, 0), size), ratioX, ratioY);
+}
+
+QPixmap MusicUtils::pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY)
 {
     if(src.isNull())
     {
         return QPixmap();
     }
 
-    QSize size(ratio, ratio);
-    QBitmap mask(size);
-    QPainter painter(&mask);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.fillRect(0, 0, size.width(), size.height(), Qt::white);
-    painter.setBrush(QColor(0, 0, 0));
-    painter.drawRoundedRect(0, 0, size.width(), size.height(), 99, 99);
-
-    QPixmap image = src.scaled(size);
-    image.setMask(mask);
+    QPixmap image = src.scaled(rect.size());
+    image.setMask( getBitmapMask(rect, ratioX, ratioY) );
     return image;
 }
 

@@ -37,6 +37,14 @@ public:
     /*!
      * Check the related file is exist.
      */
+    static quint64 dirSize(const QString &dirName);
+    /*!
+     * Get given dir size.
+     */
+    static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+    /*!
+     * Check given dir size is bigger than given size.
+     */
 
     static QString getLanguageName(int index);
     /*!
@@ -59,7 +67,11 @@ public:
     /*!
      * Set widget to round by ratioX and ratioY.
      */
-    static QPixmap pixmapToRound(const QPixmap &src, int ratio);
+    static QPixmap pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY);
+    /*!
+     * Set pixmap to round by ratio.
+     */
+    static QPixmap pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY);
     /*!
      * Set pixmap to round by ratio.
      */
@@ -98,15 +110,6 @@ public:
      * Transform value to tb entity.
      */
 
-    static quint64 dirSize(const QString &dirName);
-    /*!
-     * Get given dir size.
-     */
-    static void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
-    /*!
-     * Check given dir size is bigger than given size.
-     */
-
     static bool openUrl(const QString &path);
     /*!
      * Open file from local by path.
@@ -116,6 +119,10 @@ private:
     static QString speed2LabelFromLabel(qint64 size, const QString &label);
     /*!
      * Transform value to speed value base.
+     */
+    static QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
+    /*!
+     * Get bitmap mask from rect.
      */
 
 };
