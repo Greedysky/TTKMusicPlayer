@@ -262,6 +262,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     }
     pix = MusicUtils::pixmapToRound(pix, 150);
     ui->artistLabel->setPixmap(pix);
+    ui->artistLabel->start();
 }
 
 void MusicWebMusicRadioWidget::positionChanged(qint64 position)
@@ -271,11 +272,6 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
         return;
     }
     ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*1000)));
-
-    QPixmap pix = *ui->artistLabel->pixmap();
-    QTransform transform;
-    transform.rotate(90);
-    ui->artistLabel->setPixmap(pix.transformed(transform, Qt::SmoothTransformation));
 
     if(m_analysis->isEmpty())
     {

@@ -12,11 +12,11 @@
 
 TEMPLATE = app
 win32{
-  TARGET = -L../../bin/TTKMusicPlayer
+  TARGET = ../../bin/TTKMusicPlayer
   LIBS += -L../bin -lMusicCore
 }
 unix{
-  TARGET = -L../lib/TTKMusicPlayer
+  TARGET = ../lib/TTKMusicPlayer
   LIBS += -L./lib -lMusicCore
 }
 

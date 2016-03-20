@@ -117,7 +117,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="artistLabel">
+  <widget class="MusicRoundAnimationLabel" name="artistLabel">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -125,9 +125,6 @@
      <width>150</width>
      <height>150</height>
     </rect>
-   </property>
-   <property name="text">
-    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="previousButton">
@@ -215,6 +212,12 @@
    <class>MusicMarqueeWidget</class>
    <extends>QWidget</extends>
    <header>musicmarqueewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicRoundAnimationLabel</class>
+   <extends>QWidget</extends>
+   <header>musicroundanimationlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
