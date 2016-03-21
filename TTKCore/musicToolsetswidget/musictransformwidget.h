@@ -9,14 +9,11 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QDialog>
-#include <QMouseEvent>
-#include <QTimer>
-#include <QDir>
-
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicabstractmovedialog.h"
+
+#define LINE_WIDTH 380
 
 class QMovie;
 class QProcess;
@@ -32,13 +29,16 @@ class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
+    enum TransformType
+    {
+        Music,  ///*Music category*/
+        Lrc,    ///*Lrc category*/
+    };
     explicit MusicTransformWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
     virtual ~MusicTransformWidget();
-
-Q_SIGNALS:
 
 public Q_SLOTS:
     void initInputPath();
@@ -60,6 +60,10 @@ public Q_SLOTS:
     void folderBoxChecked();
     /*!
      * Input is dir not file.
+     */
+    void krc2lrcBoxChecked(bool check);
+    /*!
+     * Transform krc file to lrc file.
      */
     virtual int exec();
     /*!
@@ -83,7 +87,11 @@ protected:
     /*!
      * Start a process to transform.
      */
-    void setCheckedControl(bool enable) const;
+    void setMusicCheckedControl(bool enable);
+    /*!
+     * Set music control enable or false when trans lrc.
+     */
+    void setCheckedControl(bool enable);
     /*!
      * Set control enable false when it begin.
      */
@@ -92,6 +100,7 @@ protected:
     QProcess *m_process;
     QMovie *m_movie;
     QStringList m_path;
+    TransformType m_currentType;
 
 };
 

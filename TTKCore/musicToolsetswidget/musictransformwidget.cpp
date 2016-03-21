@@ -2,12 +2,11 @@
 #include "ui_musictransformwidget.h"
 #include "musicbgthememanager.h"
 #include "musicmessagebox.h"
-#include "musicplayer.h"
 
-#include <QFileDialog>
-#include <QProcess>
 #include <QMovie>
 #include <QSound>
+#include <QProcess>
+#include <QFileDialog>
 #include <QStyledItemDelegate>
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
@@ -52,6 +51,10 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     ui->folderBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     connect(ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
+    ui->krc2lrcBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    connect(ui->krc2lrcBox, SIGNAL(clicked(bool)), SLOT(krc2lrcBoxChecked(bool)));
+
+    m_currentType = Music;
     initControlParameter();
 
 }
@@ -81,15 +84,26 @@ void MusicTransformWidget::initControlParameter() const
 void MusicTransformWidget::initInputPath()
 {
     QString path;
+    QStringList supportedFormat;
+    (m_currentType == Music) ? supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac"
+                             : supportedFormat << "krc";
     if(!ui->folderBox->isChecked())
     {
-        path =  QFileDialog::getOpenFileName( this, QString(), "./",
-                "Files (*.mp3 *.wav *.wma *.ogg *.flac *.ac3 *.aac)");
-        if(path.isEmpty())
+        QString filter = "Files (";
+        for(int i=0; i<supportedFormat.count(); ++i)
+        {
+            filter += QString("*.%1 ").arg(supportedFormat[i]);
+        }
+        filter = filter.trimmed() + ")";
+
+        path = QFileDialog::getOpenFileName( this, QString(), "./", filter);
+        if(path.isEmpty() || m_path.contains(path))
         {
             return;
         }
-        ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, 215));
+
+        ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, LINE_WIDTH));
+        ui->listWidget->setToolTip(path);
         m_path << path;
     }
     else
@@ -102,11 +116,11 @@ void MusicTransformWidget::initInputPath()
             path = dialog.directory().absolutePath();
             foreach(QFileInfo var, getFileList(path))
             {
-                if(MusicPlayer::supportFormatsString().contains(var.suffix()))
+                if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {
                     m_path << var.absoluteFilePath();
-                    ui->listWidget->addItem(QFontMetrics(font()).elidedText(var.absoluteFilePath(),
-                                                                            Qt::ElideLeft, 385));
+                    ui->listWidget->addItem(QFontMetrics(font()).elidedText(m_path.last(), Qt::ElideLeft, LINE_WIDTH));
+                    ui->listWidget->setToolTip(m_path.last());
                 }
             }
         }
@@ -148,7 +162,9 @@ QString MusicTransformWidget::getTransformSongName() const
         return QString();
     }
     QString str = m_path[0];
+#ifdef Q_OS_WIN
     str.replace("\\", "/");
+#endif
     str = str.split('/').back().split('.').front();
     return str;
 }
@@ -158,13 +174,15 @@ void MusicTransformWidget::transformFinish()
     QSound::play("sound.wav");
     m_path.removeAt(0);
     ui->listWidget->clear();
+
     if(!m_path.isEmpty())
     {
         foreach(QString path, m_path)
         {
-            ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, 385));
+            ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, LINE_WIDTH));
+            ui->listWidget->setToolTip(path);
         }
-        if(!processTransform(MAKE_TRANSFORM_AL))
+        if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_AL : MAKE_KRC2LRC_AL))
         {
             return;
         }
@@ -172,6 +190,11 @@ void MusicTransformWidget::transformFinish()
     else
     {
         setCheckedControl(true);
+        if(m_currentType == Lrc)
+        {
+            setMusicCheckedControl(false);
+        }
+        ui->inputLineEdit->clear();
         ui->loadingLabel->hide();
         delete m_movie;
         m_movie = nullptr;
@@ -199,29 +222,38 @@ bool MusicTransformWidget::processTransform(const QString &para) const
         return false;
     }
 
-    if(ui->formatCombo->currentText() == "OGG")
+    if(m_currentType == Music)
     {
-        ui->msCombo->setCurrentIndex(1);
+        if(ui->formatCombo->currentText() == "OGG")
+        {
+            ui->msCombo->setCurrentIndex(1);
+        }
+
+        M_LOGGER << ui->formatCombo->currentText()
+                 << ui->kbpsCombo->currentText()
+                 << ui->hzCombo->currentText()
+                 << QString::number(ui->msCombo->currentIndex() + 1);
+
+        m_process->start(para, QStringList() << "-i" << in << "-y"
+                         << "-ab" << ui->kbpsCombo->currentText() + "k"
+                         << "-ar" << ui->hzCombo->currentText()
+                         << "-ac" << QString::number(ui->msCombo->currentIndex() + 1)
+                         << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
+                            .arg(ui->formatCombo->currentText().toLower()) );
+    }
+    else
+    {
+        m_process->start(para, QStringList() << in <<
+                         QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
     }
 
-    M_LOGGER << ui->formatCombo->currentText()
-             << ui->kbpsCombo->currentText()
-             << ui->hzCombo->currentText()
-             << QString::number(ui->msCombo->currentIndex() + 1);
-
-    m_process->start(para, QStringList() << "-i" << in << "-y"
-                     << "-ab" << ui->kbpsCombo->currentText() + "k"
-                     << "-ar" << ui->hzCombo->currentText()
-                     << "-ac" << QString::number(ui->msCombo->currentIndex() + 1)
-                     << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
-                        .arg(ui->formatCombo->currentText().toLower()) );
     return true;
 }
 
 void MusicTransformWidget::startTransform()
 {
-    if(!QFile(MAKE_TRANSFORM_AL).exists() ||
-       !processTransform(MAKE_TRANSFORM_AL))
+    QString func = (m_currentType == Music) ? MAKE_TRANSFORM_AL : MAKE_KRC2LRC_AL;
+    if(!QFile(func).exists() || !processTransform(func))
     {
         return;
     }
@@ -239,17 +271,30 @@ void MusicTransformWidget::folderBoxChecked()
     m_path.clear();
 }
 
-void MusicTransformWidget::setCheckedControl(bool enable) const
+void MusicTransformWidget::krc2lrcBoxChecked(bool check)
 {
-    ui->inputButton->setEnabled(enable);
-    ui->inputLineEdit->setEnabled(enable);
-    ui->outputButton->setEnabled(enable);
-    ui->outputLineEdit->setEnabled(enable);
+    m_currentType = check ? Lrc : Music;
+    folderBoxChecked();
+    setMusicCheckedControl(!check);
+}
+
+void MusicTransformWidget::setMusicCheckedControl(bool enable)
+{
     ui->formatCombo->setEnabled(enable);
     ui->kbpsCombo->setEnabled(enable);
     ui->hzCombo->setEnabled(enable);
     ui->msCombo->setEnabled(enable);
+}
+
+void MusicTransformWidget::setCheckedControl(bool enable)
+{
+    setMusicCheckedControl(enable);
+    ui->inputButton->setEnabled(enable);
+    ui->inputLineEdit->setEnabled(enable);
+    ui->outputButton->setEnabled(enable);
+    ui->outputLineEdit->setEnabled(enable);
     ui->folderBox->setEnabled(enable);
+    ui->krc2lrcBox->setEnabled(enable);
     ui->transformButton->setEnabled(enable);
 }
 
