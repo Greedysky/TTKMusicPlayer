@@ -243,6 +243,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
     }
     else
     {
+        M_LOGGER << para << in << out;
         m_process->start(para, QStringList() << in <<
                          QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
     }
