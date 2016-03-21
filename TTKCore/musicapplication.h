@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>
+#include <QCloseEvent>
 #include "musicabstractmovewidget.h"
 #include "musicobject.h"
 
@@ -221,8 +221,6 @@ protected:
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
     virtual bool nativeEvent(const QByteArray &, void *, long *) override;

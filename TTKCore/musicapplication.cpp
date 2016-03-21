@@ -156,7 +156,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
         suffix = QFileInfo(url.toLocalFile()).suffix();
         if( sfx.contains(suffix.toLower()) )
         {
-            fileList<<url.toLocalFile();
+            fileList << url.toLocalFile();
         }
         else
         {
@@ -216,20 +216,6 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/quit"), tr("quit"), this, SLOT(quitWindowClose()));
     rightClickMenu.exec(QCursor::pos());
-}
-
-void MusicApplication::keyPressEvent(QKeyEvent *event)
-{
-    QWidget::keyPressEvent(event);
-}
-
-void MusicApplication::keyReleaseEvent(QKeyEvent *event)
-{
-    QWidget::keyReleaseEvent(event);
-    if(event->key() == Qt::Key_Space)
-    {
-        musicStatePlay();
-    }
 }
 
 void MusicApplication::initWindowSurface()
