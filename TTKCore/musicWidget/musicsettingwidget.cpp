@@ -274,8 +274,7 @@ void MusicSettingWidget::initControllerParameter()
 {
     //Set init parameter
     ui->autoPlayCheckBox->setChecked(M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toBool());
-    ui->backPlayCheckBox->setChecked(M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced)
-               .toStringList().first().toInt() );
+    ui->backPlayCheckBox->setChecked(M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList().first().toInt());
     if(!M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool())
     {
         ui->minimumRadioBox->setChecked(true);
@@ -376,7 +375,7 @@ void MusicSettingWidget::commitTheResults()
     QStringList list = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     list[0] = QString::number(ui->backPlayCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
-    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, ui->quitRadioBox->isChecked() ? "true" : "false");
+    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, ui->quitRadioBox->isChecked());
 
     M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced, ui->showInlineCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, ui->showDesktopCheckBox->isChecked());

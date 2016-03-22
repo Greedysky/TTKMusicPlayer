@@ -293,15 +293,15 @@ void MusicApplication::readXMLConfigFromText()
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown
-    key = xml.readShowInlineLrc();
-    M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced, key);
-    m_rightAreaWidget->setInlineLrcVisible(key);
+    value = xml.readShowInlineLrc();
+    M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced, value);
+    m_rightAreaWidget->setInlineLrcVisible(value);
     //////////////////////////////////////////////////////////////
     //Set the desktop lrc should be shown
-    key = xml.readShowDesktopLrc();
-    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, key);
-    m_bottomAreaWidget->setDestopLrcVisible(key);
-    m_rightAreaWidget->setDestopLrcVisible(key);
+    value = xml.readShowDesktopLrc();
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
+    m_bottomAreaWidget->setDestopLrcVisible(value);
+    m_rightAreaWidget->setDestopLrcVisible(value);
     //////////////////////////////////////////////////////////////
     //Set the current background color
     //Set the current alpha value
@@ -325,9 +325,9 @@ void MusicApplication::readXMLConfigFromText()
     }
     //////////////////////////////////////////////////////////////
     //Configure automatic playback
-    key = xml.readSystemAutoPlayConfig();
-    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced, key);
-    if(key == "true")
+    value = xml.readSystemAutoPlayConfig();
+    M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced, value);
+    if(value == true)
     {
         m_playControl = true;
         musicStatePlay();
@@ -336,9 +336,9 @@ void MusicApplication::readXMLConfigFromText()
     m_rightAreaWidget->showPlayStatus(m_playControl);
     //////////////////////////////////////////////////////////////
     //When the configuration is close to the direct exit
-    key = xml.readSystemCloseConfig();
-    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, key);
-    m_bottomAreaWidget->setSystemCloseConfig(key);
+    value = xml.readSystemCloseConfig();
+    M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, value);
+    m_bottomAreaWidget->setSystemCloseConfig(value);
     //////////////////////////////////////////////////////////////
     //Set the lrc color the user set
     M_SETTING->setValue(MusicSettingManager::LrcColorChoiced, xml.readShowLrcColor());
@@ -812,7 +812,7 @@ void MusicApplication::getParameterSetting()
     bool config = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool();
     m_bottomAreaWidget->setSystemCloseConfig(config);
          config = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
-    m_bottomAreaWidget->setDestopLrcVisible(config ? "true" : "false" );
+    m_bottomAreaWidget->setDestopLrcVisible(config);
     //This attribute is effective immediately.
 }
 

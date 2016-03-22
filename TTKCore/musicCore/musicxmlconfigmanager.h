@@ -54,8 +54,8 @@ public:
     /*!
      * Read Music Play Volume Config.
      */
-    inline QString readSystemCloseConfig() const
-    { return readXmlAttributeByTagNameValue("closeEvent"); }
+    inline int readSystemCloseConfig() const
+    { return readXmlAttributeByTagNameValue("closeEvent").toInt(); }
     /*!
      * Read System Close Config.
      */
@@ -64,8 +64,8 @@ public:
     /*!
      * Read Close Network Config.
      */
-    inline QString readSystemAutoPlayConfig() const
-    { return readXmlAttributeByTagNameValue("autoPlay"); }
+    inline int readSystemAutoPlayConfig() const
+    { return readXmlAttributeByTagNameValue("autoPlay").toInt(); }
     /*!
      * Read System Auto Play Config.
      */
@@ -89,13 +89,13 @@ public:
     /*!
      * Read Background List Transparent Config.
      */
-    inline QString readShowInlineLrc() const
-    { return readXmlAttributeByTagNameValue("showInlineLrc"); }
+    inline int readShowInlineLrc() const
+    { return readXmlAttributeByTagNameValue("showInlineLrc").toInt(); }
     /*!
      * Read Show Inline Lrc Config.
      */
-    inline QString readShowDesktopLrc() const
-    { return readXmlAttributeByTagNameValue("showDesktopLrc"); }
+    inline int readShowDesktopLrc() const
+    { return readXmlAttributeByTagNameValue("showDesktopLrc").toInt(); }
     /*!
      * Read Music Show Desktop Lrc Config.
      */

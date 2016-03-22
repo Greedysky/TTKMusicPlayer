@@ -90,7 +90,7 @@ void MusicBottomAreaWidget::createSystemShortcut()
     connect(new QShortcut(Qt::ALT + Qt::Key_5, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayItemOnce()));
 }
 
-void MusicBottomAreaWidget::setDestopLrcVisible(const QString& status) const
+void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 {
     m_systemTrayMenu->showDesktopLrc(status);
 }
@@ -194,6 +194,6 @@ void MusicBottomAreaWidget::lockDesktopLrc(bool lock)
 void MusicBottomAreaWidget::desktopLrcClosed()
 {
     m_ui->musicDesktopLrc->setChecked(false);
-    m_systemTrayMenu->showDesktopLrc("false");
+    m_systemTrayMenu->showDesktopLrc(false);
     M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
 }

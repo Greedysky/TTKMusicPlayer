@@ -39,7 +39,7 @@ public:
     /*!
      * Set up app ui.
      */
-    void setDestopLrcVisible(const QString &status) const;
+    void setDestopLrcVisible(bool status) const;
     /*!
      * Set destop lrc visible by string.
      */

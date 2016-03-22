@@ -129,9 +129,9 @@ bool MusicRightAreaWidget::getDestopLrcVisible() const
     return m_musiclrcfordesktop->isVisible();
 }
 
-void MusicRightAreaWidget::setInlineLrcVisible(const QString &status) const
+void MusicRightAreaWidget::setInlineLrcVisible(bool status) const
 {
-    m_ui->musiclrccontainerforinline->setVisible(status == "true" ? true : false);
+    m_ui->musiclrccontainerforinline->setVisible(status);
 }
 
 bool MusicRightAreaWidget::getInlineLrcVisible() const
@@ -209,12 +209,12 @@ void MusicRightAreaWidget::getParameterSetting() const
     m_ui->musicDesktopLrc->setChecked(config);
 }
 
-void MusicRightAreaWidget::setDestopLrcVisible(bool v) const
+void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
 {
-    m_ui->musicDesktopLrc->setChecked(v);
-    m_musiclrcfordesktop->setVisible(v);
+    m_ui->musicDesktopLrc->setChecked(visible);
+    m_musiclrcfordesktop->setVisible(visible);
     m_musiclrcfordesktop->initCurrentLrc();
-    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, v);
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, visible);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()

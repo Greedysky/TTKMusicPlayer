@@ -98,10 +98,10 @@ void MusicSystemTrayMenu::setLabelText(const QString &text) const
     m_showText->setToolTip(text);
 }
 
-void MusicSystemTrayMenu::showDesktopLrc(const QString &show) const
+void MusicSystemTrayMenu::showDesktopLrc(bool show) const
 {
-    m_showLrcAction->setText((show == "true") ? tr("hideDeskLrc") : tr("showDeskLrc"));
-    m_lockLrcAction->setEnabled((show == "true") ? true : false);
+    m_showLrcAction->setText( show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    m_lockLrcAction->setEnabled( show );
 }
 
 void MusicSystemTrayMenu::lockDesktopLrc(bool lock)

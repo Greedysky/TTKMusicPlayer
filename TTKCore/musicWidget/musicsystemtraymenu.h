@@ -33,7 +33,7 @@ public:
     /*!
      * Set tray menu song text.
      */
-    void showDesktopLrc(const QString &show) const;
+    void showDesktopLrc(bool show) const;
     /*!
      * Set show or not desktop lrc.
      */

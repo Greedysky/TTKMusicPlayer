@@ -87,10 +87,10 @@ void MusicXMLConfigManager::writeXMLConfig()
     int volumeChoiced = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
-    QString autoPlayChoiced = M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toString();
+    int autoPlayChoiced = M_SETTING->value(MusicSettingManager::AutoPlayChoiced).toInt();
     int enhancedMusicChoiced = M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     int languageIndexChoiced = M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
-    QString closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toString();
+    int closeEventChoiced = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toInt();
     QStringList lastPlayIndexChoiced = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     int closeNetWorkChoiced = M_SETTING->value(MusicSettingManager::CloseNetWorkChoiced).toInt();
     int fileAssociationChoiced = M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt();
@@ -101,8 +101,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     QString bgListTransparentChoiced = M_SETTING->value(MusicSettingManager::BgListTransparentChoiced).toString();
 
     ///////////////////////////////////////////////////////////////////////////
-    QString showInlineLrcChoiced = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toString();
-    QString showDesktopLrcChoiced = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toString();
+    int showInlineLrcChoiced = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toInt();
+    int showDesktopLrcChoiced = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toInt();
     int lrcColorChoiced = M_SETTING->value(MusicSettingManager::LrcColorChoiced).toInt();
     int lrcSizeChoiced = M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
     int lrcTypeChoiced = M_SETTING->value(MusicSettingManager::LrcTypeChoiced).toInt();

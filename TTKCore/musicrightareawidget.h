@@ -58,7 +58,7 @@ public:
     /*!
      * Get destop lrc visible state.
      */
-    void setInlineLrcVisible(const QString &status) const;
+    void setInlineLrcVisible(bool status) const;
     /*!
      * Set inline lrc visible by string.
      */
@@ -123,7 +123,7 @@ public Q_SLOTS:
     /*!
      * Delete current video player widget.
      */
-    void setDestopLrcVisible(bool v) const;
+    void setDestopLrcVisible(bool visible) const;
     /*!
      * Set destop lrc visible or invisible.
      */
