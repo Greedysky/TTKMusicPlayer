@@ -162,7 +162,6 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>krc2lrcBox</zorder>
   </widget>
   <widget class="QComboBox" name="formatCombo">
    <property name="geometry">
