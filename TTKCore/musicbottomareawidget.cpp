@@ -108,11 +108,6 @@ void MusicBottomAreaWidget::setLabelText(const QString &name) const
     m_systemTrayMenu->setLabelText(name);
 }
 
-void MusicBottomAreaWidget::setSystemCloseConfig(const QString &status)
-{
-    m_systemCloseConfig = (status == "true") ? true : false;
-}
-
 void MusicBottomAreaWidget::showMessage(const QString &title, const QString &text)
 {
     m_systemTray->showMessage(title, text);

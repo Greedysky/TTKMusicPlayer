@@ -47,7 +47,7 @@ bool MusicPlaylist::isEmpty() const
 bool MusicPlaylist::clear()
 {
     m_mediaList.clear();
-    return isEmpty() ? true : false;
+    return isEmpty();
 }
 
 void MusicPlaylist::updateMediaLists(const QStringList &list, int index)

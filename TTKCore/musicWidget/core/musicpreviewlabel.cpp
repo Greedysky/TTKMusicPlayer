@@ -26,8 +26,8 @@ void MusicPreviewLabel::setParameter(const QStringList &para)
     m_font.setFamily(para[0]);
     m_font.setPointSize(para[1].toInt() + 13);
     int type = para[2].toInt();
-    m_font.setBold( (type == 1 || type == 3) ? true : false );
-    m_font.setItalic( (type == 2 || type == 3) ? true : false );
+    m_font.setBold( (type == 1 || type == 3) );
+    m_font.setItalic( (type == 2 || type == 3) );
 }
 
 void MusicPreviewLabel::paintEvent(QPaintEvent *)

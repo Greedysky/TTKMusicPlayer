@@ -847,7 +847,7 @@ QString MusicApplication::getCurrentFileName() const
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
-    return (m_musicList->currentIndex() == -1) ? true : false;
+    return (m_musicList->currentIndex() == -1);
 }
 
 void MusicApplication::musicCurrentLrcUpdated()

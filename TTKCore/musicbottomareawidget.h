@@ -52,10 +52,6 @@ public:
      * Set current song text.
      */
 
-    void setSystemCloseConfig(const QString &status);
-    /*!
-     * Set system close config by string.
-     */
     void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
     /*!
      * Set system close config or not.

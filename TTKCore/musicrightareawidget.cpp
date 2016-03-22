@@ -119,11 +119,6 @@ void MusicRightAreaWidget::showPlayStatus(bool status) const
     m_musiclrcfordesktop->showPlayStatus(status);
 }
 
-void MusicRightAreaWidget::setDestopLrcVisible(const QString &status) const
-{
-    setDestopLrcVisible( status == "true" ? true : false);
-}
-
 bool MusicRightAreaWidget::getDestopLrcVisible() const
 {
     return m_musiclrcfordesktop->isVisible();
@@ -148,8 +143,7 @@ void MusicRightAreaWidget::setSettingParameter() const
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
     return ( M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() )
-             ? true : false;
+             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const

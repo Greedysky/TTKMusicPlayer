@@ -50,10 +50,6 @@ public:
     /*!
      * Set current play state button.
      */
-    void setDestopLrcVisible(const QString &status) const;
-    /*!
-     * Set destop lrc visible by string.
-     */
     bool getDestopLrcVisible() const;
     /*!
      * Get destop lrc visible state.
