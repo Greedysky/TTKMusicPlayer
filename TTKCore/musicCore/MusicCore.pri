@@ -46,7 +46,9 @@ HEADERS  += \
     $$PWD/musicregeditmanager.h \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
-    $$PWD/musicsong.h
+    $$PWD/musicsong.h \
+    $$PWD/musiccryptographichash.h
+
 }
 
 contains(CONFIG, TTK_BUILD_LIB){
@@ -75,6 +77,7 @@ SOURCES += \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
-    $$PWD/musicsong.cpp
+    $$PWD/musicsong.cpp \
+    $$PWD/musiccryptographichash.cpp
 
 }
