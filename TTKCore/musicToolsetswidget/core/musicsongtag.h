@@ -15,7 +15,7 @@
 /*! @brief The class of the music song tag.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSongTag
+class MUSIC_TOOLSET_EXPORT MusicSongTag
 {
 public:
     MusicSongTag();

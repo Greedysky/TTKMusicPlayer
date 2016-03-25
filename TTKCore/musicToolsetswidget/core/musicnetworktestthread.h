@@ -18,7 +18,7 @@ class QProcess;
 /*! @brief The class of the network test thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicNetworkTestThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public QThread
 {
     Q_OBJECT
 public:

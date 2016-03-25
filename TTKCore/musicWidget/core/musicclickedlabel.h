@@ -15,7 +15,7 @@
 /*! @brief The class of the label widget that can click.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicClickedLabel : public QLabel
+class MUSIC_WIDGET_EXPORT MusicClickedLabel : public QLabel
 {
     Q_OBJECT
 public:

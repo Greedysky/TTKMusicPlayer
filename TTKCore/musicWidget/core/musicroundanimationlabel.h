@@ -16,7 +16,7 @@
 /*! @brief The class of the round animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicRoundAnimationLabel : public QWidget
+class MUSIC_WIDGET_EXPORT MusicRoundAnimationLabel : public QWidget
 {
     Q_OBJECT
 public:

@@ -17,7 +17,7 @@
 /*! @brief The class of the mobile devices thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicMobileDevicesThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicMobileDevicesThread : public QThread
 {
     Q_OBJECT
 public:

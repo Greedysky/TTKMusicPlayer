@@ -16,7 +16,7 @@
 /*! @brief The class of the toast widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicToastLabel : public QLabel
+class MUSIC_WIDGET_EXPORT MusicToastLabel : public QLabel
 {
     Q_OBJECT
 public:
