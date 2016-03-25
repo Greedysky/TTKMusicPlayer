@@ -139,7 +139,6 @@ void MusicUserDialog::thirdStatckWidget()
     ui->mailLineEdit->setValidator(valid);
 
     ui->pwdLineEdit->setLabel(MusicUserLineEdit::Passwd, ui->pwdLineEditR, ui->labelRigh_5);
-    ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCode()));
 }
 

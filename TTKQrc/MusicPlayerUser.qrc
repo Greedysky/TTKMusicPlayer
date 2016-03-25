@@ -9,7 +9,6 @@
         <file alias="qqblog">../TTKResource/usermanager/qqblog-icon.png</file>
         <file alias="downarrow">../TTKResource/usermanager/thin-down-arrow.png</file>
         <file alias="uparrow">../TTKResource/usermanager/thin-up-arrow.png</file>
-        <file alias="vCode">../TTKResource/usermanager/verificationCode.png</file>
         <file alias="topLabel">../TTKResource/usermanager/topLabel.png</file>
         <file alias="settings">../TTKResource/usermanager/settings.png</file>
     </qresource>

@@ -176,9 +176,7 @@ namespace MusicUIObject
             QPushButton{ border:none;color: #3333FF;} \
             QPushButton::hover{ color: #7777FF;}";
 
-    const QString MPushButtonStyle10 = " \
-            QPushButton{border-image:url(:/usermanager/vCode); \
-            font-size:30px;font-weight:bold;color:gray}";
+//    const QString MPushButtonStyle10 = "";
 
     const QString MPushButtonStyle11 = MPushButtonStyle04 + " \
             QPushButton{font-size:17px; font-weight:bold; color:#BFBFBF;}";
