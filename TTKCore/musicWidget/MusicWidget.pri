@@ -27,6 +27,7 @@ HEADERS  += \
     $$PWD/core/musicmovinglabelslider.h \
     $$PWD/core/musictoastlabel.h \
     $$PWD/core/musicroundanimationlabel.h \
+    $$PWD/core/musiccodearea.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -65,6 +66,7 @@ SOURCES += \
     $$PWD/core/musicmovinglabelslider.cpp \
     $$PWD/core/musictoastlabel.cpp \
     $$PWD/core/musicroundanimationlabel.cpp \
+    $$PWD/core/musiccodearea.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
