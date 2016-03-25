@@ -18,23 +18,56 @@ class MUSIC_WIDGET_EXPORT MusicCodeArea : public MusicClickedLabel
 {
     Q_OBJECT
 public:
-    MusicCodeArea(QWidget *parent = 0);
+    explicit MusicCodeArea(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicCodeArea();
 
 	void replaceCodePic();
+    /*!
+     * Render the verify code picture.
+     */
     inline QString getCheckCode() const { return m_sCode; }
+    /*!
+     * Get the verify code string.
+     */
 
     void setCodeCount(int nCount);
+    /*!
+     * Set the verify code count length.
+     */
     inline int getCodeCount() const { return m_nCodeCount; }
+    /*!
+     * Get the verify code count length.
+     */
 
     void setNoisyPointCount(int nCount);
+    /*!
+     * Set the noisy point count.
+     */
     inline int getNoisyPointCount() const { return m_nNoisyPointCount; }
+    /*!
+     * Get the noisy point count.
+     */
 
 protected:
     void drawOutline(QPainter &painter);
+    /*!
+     * Draw outline pie.
+     */
     void drawNoisyPoint(QPainter &painter);
+    /*!
+     * Draw noisy point.
+     */
     void drawConversion(QPainter &painter);
-    void paintEvent(QPaintEvent *event);
+    /*!
+     * Draw conversion.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     int m_nNoisyPointCount, m_nConverseRotate;
     int m_nConverseScale, m_nCodeCount;

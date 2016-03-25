@@ -73,7 +73,7 @@ void MusicCodeArea::paintEvent(QPaintEvent *event)
 {
     MusicClickedLabel::paintEvent(event);
     QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.fillRect(event->rect(), QBrush(Qt::white));
 
     painter.translate(0, 0);
