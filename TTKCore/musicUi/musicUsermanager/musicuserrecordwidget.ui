@@ -718,7 +718,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="verificationCode">
+     <widget class="MusicCodeArea" name="verificationCode">
       <property name="geometry">
        <rect>
         <x>220</x>
@@ -726,15 +726,6 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
         <width>91</width>
         <height>31</height>
        </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string/>
       </property>
      </widget>
     </widget>
@@ -911,6 +902,12 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
    <class>MusicUserLineEdit</class>
    <extends>QLineEdit</extends>
    <header>musicuserlineedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicCodeArea</class>
+   <extends>QLabel</extends>
+   <header>musiccodearea.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

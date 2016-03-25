@@ -24,7 +24,7 @@ public:
      */
     ~MusicCodeArea();
 
-	void replaceCodePic();
+    void renderPicture();
     /*!
      * Render the verify code picture.
      */

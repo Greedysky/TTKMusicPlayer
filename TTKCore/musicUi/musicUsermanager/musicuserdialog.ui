@@ -696,7 +696,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="verificationCode">
+    <widget class="MusicCodeArea" name="verificationCode">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -704,15 +704,6 @@
        <width>91</width>
        <height>31</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
     <widget class="QLineEdit" name="verificationCodeEdit">
@@ -775,6 +766,12 @@
    <class>MusicUserLineEdit</class>
    <extends>QLineEdit</extends>
    <header>musicuserlineedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicCodeArea</class>
+   <extends>QLabel</extends>
+   <header>musiccodearea.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -14,10 +14,10 @@ MusicCodeArea::MusicCodeArea(QWidget *parent)
 {
     MusicTime::timeSRand();
     m_slCodeRange << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9"
-        "a" << "b" << "c" << "d" << "e" << "f" << "g" << "h" << "i" << "j" << "k" << "l" << "m" << "n"
-        "o" << "p" << "q" << "r" << "s" << "t" << "u" << "v" << "w" << "x" << "y" << "z"
-        "A" << "B" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N"
-        "O" << "P" << "Q" << "R" << "S" << "T" << "U" << "V" << "W" << "X" << "Y" << "Z";
+       "a" << "b" << "c" << "d" << "e" << "f" << "g" << "h" << "i" << "j" << "k" << "l" << "m" << "n"
+       "o" << "p" << "q" << "r" << "s" << "t" << "u" << "v" << "w" << "x" << "y" << "z"
+       "A" << "B" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N"
+       "O" << "P" << "Q" << "R" << "S" << "T" << "U" << "V" << "W" << "X" << "Y" << "Z";
 
     m_lCodeColor << Qt::darkRed << Qt::darkGreen << Qt::darkBlue << Qt::darkCyan
                  << Qt::darkMagenta << Qt::darkYellow << Qt::darkGray;
@@ -33,12 +33,12 @@ MusicCodeArea::~MusicCodeArea()
 
 }
 
-void MusicCodeArea::replaceCodePic()
+void MusicCodeArea::renderPicture()
 {
     QStringList number;
     for(int i=0; i<m_nCodeCount; i++)
     {
-        number << m_slCodeRange[qrand() % 62];
+        number << m_slCodeRange[qrand() % m_slCodeRange.count()];
     }
 
     m_sCode.clear();
@@ -46,7 +46,7 @@ void MusicCodeArea::replaceCodePic()
 
     QFont font;
     font.setBold(true);
-    font.setPixelSize(20);
+    font.setPixelSize(25);
 
     for(int i=0; i<m_nCodeCount; i++)
     {
@@ -83,7 +83,7 @@ void MusicCodeArea::paintEvent(QPaintEvent *event)
     for(int i=0; i<m_lCodePic.size(); i++)
     {
         drawConversion(painter);
-        painter.fillPath(m_lCodePic[i], QBrush(m_lCodeColor[qrand() % 7]));
+        painter.fillPath(m_lCodePic[i], QBrush(m_lCodeColor[qrand() % m_lCodeColor.count()]));
         painter.translate(10, 0);
     }
     painter.restore();

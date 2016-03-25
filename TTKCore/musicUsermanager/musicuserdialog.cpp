@@ -177,7 +177,9 @@ void MusicUserDialog::clearOriginData()
 
 void MusicUserDialog::changeVerificationCode()
 {
-    ui->verificationCode->setText(QString::number(qrand()).leftJustified(5, '0'));
+    ui->verificationCode->setCodeCount(6);
+    ui->verificationCode->setNoisyPointCount(100);
+    ui->verificationCode->renderPicture();
 }
 
 void MusicUserDialog::userLogin()
@@ -303,7 +305,7 @@ void MusicUserDialog::checkUserForgotPasswd()
          message.exec();
          return;
      }
-     if( ui->verificationCode->text() != ui->verificationCodeEdit->text().trimmed() )
+     if( ui->verificationCode->getCheckCode() != ui->verificationCodeEdit->text().trimmed() )
      {
          MusicMessageBox message;
          message.setText(tr("You verificationCode is incorrect"));

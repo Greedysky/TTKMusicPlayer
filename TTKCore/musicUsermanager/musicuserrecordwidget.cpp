@@ -112,10 +112,8 @@ void MusicUserRecordWidget::initTabT()
     ui->newCPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, nullptr, ui->labelRighT3);
     connect(ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
-    ui->verificationCode->setStyleSheet(MusicUIObject::MPushButtonStyle10);
-    connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
     changeVerificationCodeT();
-
+    connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
     connect(ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
 }
 
@@ -170,7 +168,9 @@ void MusicUserRecordWidget::openFileButtonClickedS()
 
 void MusicUserRecordWidget::changeVerificationCodeT()
 {
-    ui->verificationCode->setText(QString::number(qrand()).leftJustified(5, '0'));
+    ui->verificationCode->setCodeCount(6);
+    ui->verificationCode->setNoisyPointCount(100);
+    ui->verificationCode->renderPicture();
 }
 
 void MusicUserRecordWidget::confirmButtonClickedT()
@@ -180,7 +180,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
         ui->newPwdEdit_T->getStrStatus() &&
         ui->newCPwdEdit_T->getStrStatus() )
     {
-        if(ui->verificationCode->text() != ui->verificationCodeEdit_T->text().trimmed())
+        if(ui->verificationCode->getCheckCode() != ui->verificationCodeEdit_T->text().trimmed())
         {
             MusicMessageBox message;
             message.setText(tr("You verificationCode is incorrect"));
