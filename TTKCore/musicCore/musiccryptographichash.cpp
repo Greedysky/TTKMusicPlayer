@@ -35,7 +35,7 @@ QString MusicCryptographicHash::decrypt(const QString &data, const QString &key,
 
 std::string MusicCryptographicHash::xxteaEncrypt(std::string data, std::string key)
 {
-    data = QString(data.c_str()).toUtf8().toStdString();
+    data = QString(QString(data.c_str()).toUtf8()).toStdString();
     unsigned char date_uchar[1024];
     strcpy((char*)date_uchar,(const char *)data.c_str());
     unsigned char key_uchar[1024];
