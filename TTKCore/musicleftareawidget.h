@@ -37,6 +37,10 @@ public:
      */
 
 public Q_SLOTS:
+    void musicDownloadSongToLocal();
+    /*!
+     * To download music data from net to load.
+     */
     void musicStackedSongListWidgetChanged();
     /*!
      * Change to song list widget.

@@ -554,7 +554,7 @@
   <widget class="QToolButton" name="musicPlayMode">
    <property name="geometry">
     <rect>
-     <x>660</x>
+     <x>655</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
@@ -567,7 +567,7 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>700</x>
+     <x>725</x>
      <y>580</y>
      <width>15</width>
      <height>15</height>
@@ -586,7 +586,7 @@
   <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>755</x>
      <y>578</y>
      <width>50</width>
      <height>20</height>
@@ -596,9 +596,9 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>830</x>
+     <x>850</x>
      <y>579</y>
-     <width>100</width>
+     <width>80</width>
      <height>16</height>
     </rect>
    </property>
@@ -609,7 +609,7 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>805</x>
+     <x>825</x>
      <y>578</y>
      <width>18</width>
      <height>18</height>
@@ -617,6 +617,22 @@
    </property>
    <property name="styleSheet">
     <string notr="true">border-image: url(:/image/soundmax);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="musicDownload">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>575</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -662,6 +678,7 @@
   <zorder>musicEnhancedButton</zorder>
   <zorder>musicSoundSlider</zorder>
   <zorder>musicSound</zorder>
+  <zorder>musicDownload</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

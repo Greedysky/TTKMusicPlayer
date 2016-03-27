@@ -1,6 +1,7 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
+#include "musicdownloadwidget.h"
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiotoolwidget.h"
@@ -35,6 +36,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));
     connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
+    connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
     connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
     connect(ui->musicButton_tools, SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
     connect(ui->musicButton_radio, SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
@@ -49,6 +51,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
+    ui->musicDownload->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
     ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/appTools/buttoncloud")));
     ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
     ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonplaylist")));
@@ -67,6 +70,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_tools->setIconSize(QSize(35, 35));
     ui->musicButton_mobile->setIconSize(QSize(35, 35));
     ui->musicPlayMode->setIconSize(QSize(25, 25));
+    ui->musicDownload->setIconSize(QSize(25, 25));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->musicPrevious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -81,6 +85,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    ui->musicDownload->setStyleSheet(MusicUIObject::MToolButtonStyle04);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -90,12 +95,14 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicDownload->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->musicKey->setToolTip(tr("Play"));
     ui->musicPrevious->setToolTip(tr("Previous"));
     ui->musicNext->setToolTip(tr("Next"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
+    ui->musicDownload->setToolTip(tr("download"));
     ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));
     ui->musicPlayMode->setToolTip(tr("playMode"));
     ui->musicButton_cloud->setToolTip(tr("musicCloud"));
@@ -114,6 +121,13 @@ void MusicLeftAreaWidget::musicSpectrumWidget()
     {
         Visual::setEnabled(facts.first());
     }
+}
+
+void MusicLeftAreaWidget::musicDownloadSongToLocal()
+{
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(m_ui->showCurrentSong->text(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
