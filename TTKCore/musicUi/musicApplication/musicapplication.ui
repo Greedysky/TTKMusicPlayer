@@ -173,7 +173,7 @@
    </property>
    <widget class="QLabel" name="showPicture">
     <property name="styleSheet">
-     <string notr="true">border-image:url(:/image/beauty)</string>
+     <string notr="true">border-image:url(:/image/mian)</string>
     </property>
    </widget>
    <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>

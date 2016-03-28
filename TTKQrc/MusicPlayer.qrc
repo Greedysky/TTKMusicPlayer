@@ -12,7 +12,7 @@
         <file alias="menu">../TTKResource/music_menu_setting.png</file>
         <file alias="soundmax">../TTKResource/music_sound_max.png</file>
         <file alias="soundmin">../TTKResource/music_sound_min.png</file>
-        <file alias="beauty">../TTKResource/music_beauty.png</file>
+        <file alias="mian">../TTKResource/music_mian.png</file>
         <file alias="windowicon">../TTKResource/music_player_logo.ico</file>
         <file alias="close">../TTKResource/music_close.png</file>
         <file alias="minimize">../TTKResource/music_min.png</file>
@@ -206,6 +206,7 @@
         <file alias="search">../TTKResource/appTools/music_searching.png</file>
         <file alias="buttoncloud">../TTKResource/appTools/music_button_cloud.png</file>
         <file alias="buttonmydownl">../TTKResource/appTools/music_button_mydownl.png</file>
+        <file alias="buttonmydownfn">../TTKResource/appTools/music_button_mydownl_fn.png</file>
         <file alias="buttonplaylist">../TTKResource/appTools/music_button_playlist.png</file>
         <file alias="buttonradio">../TTKResource/appTools/music_button_radio.png</file>
         <file alias="buttontools">../TTKResource/appTools/music_button_tools.png</file>
