@@ -126,7 +126,7 @@ void MusicLeftAreaWidget::musicSpectrumWidget()
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_ui->showCurrentSong->text(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }
 
