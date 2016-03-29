@@ -5,6 +5,7 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsongsharingwidget.h"
+#include "musicsettingmanager.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -64,7 +65,8 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_downloadButton = new QPushButton(this);
     m_downloadButton->setGeometry(170, 35, 23, 23);
     m_downloadButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_downloadButton->setIcon(QIcon(":/appTools/buttonmydownl"));
+    m_downloadButton->setIcon(QIcon(M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool()
+                                    ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
     m_downloadButton->setIconSize(QSize(23, 23));
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_downloadButton->setToolTip(tr("songDownload"));

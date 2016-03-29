@@ -30,6 +30,7 @@ FORMS    += \
     $$PWD/musicUsermanager/musicuserwindow.ui \
     $$PWD/musicWidget/musicbackgroundskindialog.ui \
     $$PWD/musicWidget/musicdownloadwidget.ui \
+    $$PWD/musicWidget/musicdownloadresetwidget.ui \
     $$PWD/musicWidget/musicequalizerdialog.ui \
     $$PWD/musicWidget/musicmessagebox.ui \
     $$PWD/musicWidget/musicsettingwidget.ui \

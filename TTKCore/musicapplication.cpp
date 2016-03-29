@@ -441,8 +441,14 @@ void MusicApplication::showCurrentSong(int index)
     QString name;
     if( index > -1 ) //The list to end
     {
-        m_musicSongTree->selectRow(index);
         name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex())[index];
+        ///detecting whether the file has been downloaded
+        bool exist = QFile::exists(QString("%1/%2.%3").arg(M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
+                                .arg(name).arg(m_musicSongTree->getMusicLists()[m_musicSongTree->currentIndex()][index].getMusicType()));
+        M_SETTING->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
+        ui->musicDownload->setIcon(QIcon(exist ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
+        //////////////////////////////////////////
+        m_musicSongTree->selectRow(index);
     }
     else
     {

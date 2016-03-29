@@ -309,6 +309,7 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
+    hide(); ///hide download widget
     if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
         startToDownloadMusic();
