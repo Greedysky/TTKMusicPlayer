@@ -83,6 +83,7 @@ public:
         TimerAutoShutdownRepeatChoiced, ///*Timer Auto Shutdown Repeat Parameter*/
 
         DownloadMusicExistChoiced,      ///*Download Music song exist Parameter*/
+        DownloadMusicExistPathChoiced,  ///*Download Music song exist path Parameter*/
         DownloadMusicPathDirChoiced,    ///*Download Music Path Dir Parameter*/
         DownloadLrcPathDirChoiced,      ///*Download Lrc Path Dir Parameter*/
         DownloadCacheLimitChoiced,      ///*Download Cache Limit Parameter*/

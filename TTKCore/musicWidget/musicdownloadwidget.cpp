@@ -110,6 +110,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
       ui(new Ui::MusicDownloadWidget)
 {
     ui->setupUi(this);
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

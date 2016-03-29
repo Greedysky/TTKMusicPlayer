@@ -1,26 +1,67 @@
-#include "ui_musicdownloadresetwidget.h"
+﻿#include "ui_musicdownloadresetwidget.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
+#include "musicbgthememanager.h"
+#include "musicutils.h"
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicDownloadResetWidget)
 {
     ui->setupUi(this);
+
+    m_parentClass = parent;
+
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_TranslucentBackground);
 
+    connect(ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
+    connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
+    connect(ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
 {
     delete ui;
+}
+
+void MusicDownloadResetWidget::setSongName(const QString &name)
+{
+    m_currentName = name;
+}
+
+void MusicDownloadResetWidget::show()
+{
+    QPixmap pix(M_BG_MANAGER->getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicAbstractMoveWidget::show();
+}
+
+void MusicDownloadResetWidget::restartToDownload()
+{
+    MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
+    download->setSongName(m_currentName, MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+
+    close();
+}
+
+void MusicDownloadResetWidget::openDetailInfo()
+{
+    close();
+}
+
+void MusicDownloadResetWidget::openFileLocation()
+{
+    MusicUtils::openUrl(M_SETTING->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString());
+    close();
 }
 
 
@@ -38,6 +79,7 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQuer
         if(exist)
         {
             MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parentClass);
+            resetWidget->setSongName(name);
             resetWidget->show();
             return;
         }

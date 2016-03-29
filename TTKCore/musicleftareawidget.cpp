@@ -1,7 +1,7 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
-#include "musicdownloadwidget.h"
+#include "musicdownloadmgmtwidget.h"
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiotoolwidget.h"
@@ -125,9 +125,8 @@ void MusicLeftAreaWidget::musicSpectrumWidget()
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
-    download->show();
+    MusicDownloadMgmtWidget mgmt(this);
+    mgmt.setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()

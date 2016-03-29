@@ -16,24 +16,62 @@ namespace Ui{
 class MusicDownloadResetWidget;
 }
 
+/*! @brief The class of the download file exist widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
     explicit MusicDownloadResetWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicDownloadResetWidget();
+
+    void setSongName(const QString &name);
+    /*!
+     * Set current name to search and download musics.
+     */
+
+public Q_SLOTS:
+    void show();
+    /*!
+     * Override show function.
+     */
+    void restartToDownload();
+    /*!
+     * Restart to dwonload music data.
+     */
+    void openDetailInfo();
+    /*!
+     * Open file details information by song.
+     */
+    void openFileLocation();
+    /*!
+     * Open file location in dir.
+     */
 
 protected:
     Ui::MusicDownloadResetWidget* ui;
 
+    QWidget *m_parentClass;
+    QString m_currentName;
+
 };
 
 
+/*! @brief The class of the download manager widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicDownloadMgmtWidget : public QObject
 {
     Q_OBJECT
 public:
     explicit MusicDownloadMgmtWidget(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
     /*!
