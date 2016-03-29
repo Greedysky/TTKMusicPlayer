@@ -34,6 +34,12 @@ public:
      * Set current name to search and download musics.
      */
 
+Q_SIGNALS:
+    void openStackedDownloadWidget();
+    /*!
+     * To open stacked download widget once.
+     */
+
 public Q_SLOTS:
     void show();
     /*!

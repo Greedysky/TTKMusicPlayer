@@ -162,6 +162,12 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(musicCurrentPlayLocation()));
     }
 
+    if(from == "MusicDownloadResetWidget" && to == "MusicLeftAreaWidget" )
+    {
+        QObject::connect(first, SIGNAL(openStackedDownloadWidget()), second,
+                                SLOT(musicStackedMyDownWidgetChanged()));
+    }
+
 }
 
 void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)

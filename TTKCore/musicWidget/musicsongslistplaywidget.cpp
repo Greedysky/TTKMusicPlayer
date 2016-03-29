@@ -3,7 +3,7 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
-#include "musicdownloadwidget.h"
+#include "musicdownloadmgmtwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicsettingmanager.h"
 
@@ -180,9 +180,8 @@ void MusicSongsListPlayWidget::showMVButtonClicked()
 
 void MusicSongsListPlayWidget::downloadButtonClicked()
 {
-    MusicDownloadWidget *downloadWidget = new MusicDownloadWidget(this);
-    downloadWidget->setSongName(m_songName->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
-    downloadWidget->show();
+    MusicDownloadMgmtWidget mgmt(this);
+    mgmt.setSongName(m_songName->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
 }
 
 void MusicSongsListPlayWidget::sharingButtonClicked()

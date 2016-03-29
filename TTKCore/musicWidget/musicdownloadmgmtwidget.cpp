@@ -1,5 +1,6 @@
 ﻿#include "ui_musicdownloadresetwidget.h"
 #include "musicdownloadmgmtwidget.h"
+#include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
 #include "musicbgthememanager.h"
@@ -25,10 +26,14 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
     connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
+
+    M_CONNECTION->setValue("MusicDownloadResetWidget", this);
+    M_CONNECTION->poolConnect("MusicDownloadResetWidget", "MusicLeftAreaWidget");
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
 {
+    M_CONNECTION->poolDisConnect("MusicDownloadResetWidget");
     delete ui;
 }
 
@@ -56,6 +61,7 @@ void MusicDownloadResetWidget::restartToDownload()
 void MusicDownloadResetWidget::openDetailInfo()
 {
     close();
+    emit openStackedDownloadWidget();
 }
 
 void MusicDownloadResetWidget::openFileLocation()

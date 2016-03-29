@@ -2,7 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musictime.h"
-#include "musicdownloadwidget.h"
+#include "musicdownloadmgmtwidget.h"
 #include "musicitemdelegate.h"
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
@@ -139,10 +139,9 @@ void MusicVideoTableWidget::downloadLocalFromControl()
 
 void MusicVideoTableWidget::downloadLocalMovie(int row)
 {
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(),
-                         MusicDownLoadQueryThreadAbstract::MovieQuery);
-    download->show();
+    MusicDownloadMgmtWidget mgmt(this);
+    mgmt.setSongName(item(row, 2)->text() + " - " + item(row, 1)->text(),
+                     MusicDownLoadQueryThreadAbstract::MovieQuery);
 }
 
 void MusicVideoTableWidget::resizeWindow(float delta)
@@ -183,7 +182,7 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
 void MusicVideoTableWidget::getMusicMvInfo(MusicSongAttributes &data)
 {
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    data =  (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
+    data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicSongAttributes();
 }
 
