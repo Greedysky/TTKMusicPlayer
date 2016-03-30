@@ -105,6 +105,7 @@ public:
     /*!
      * Get music playcount.
      */
+    bool operator== (const MusicSong &other) const;
 
 protected:
     QString m_musicName, m_musicPath, m_musicType, m_musicTime;

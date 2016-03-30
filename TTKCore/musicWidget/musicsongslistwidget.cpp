@@ -112,8 +112,6 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/share/selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/love"), tr("addToLove"), this, SLOT(addMusicSongToLovestListAt()));
-
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));

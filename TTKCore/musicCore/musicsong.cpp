@@ -61,3 +61,8 @@ QString MusicSong::getMusicArtistBack() const
 {
     return m_musicName.split('-').back().trimmed();
 }
+
+bool MusicSong::operator== (const MusicSong &other) const
+{
+    return m_musicPath == other.getMusicPath();
+}

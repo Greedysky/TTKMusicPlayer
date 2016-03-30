@@ -37,6 +37,7 @@ public:
         LastPlayIndexChoiced,           ///*Last Play Index Parameter*/
         CloseNetWorkChoiced,            ///*Close NetWork Parameter*/
         FileAssociationChoiced,         ///*File Association Parameter*/
+        MuiscSongLovedChoiced,          ///*Muisc song has loved Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
