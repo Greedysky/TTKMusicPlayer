@@ -51,7 +51,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(214, 35, 23, 23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_loveButton->setIcon(QIcon(":/image/bestlove"));
+    m_loveButton->setIcon(QIcon(":/image/loveOn"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
 

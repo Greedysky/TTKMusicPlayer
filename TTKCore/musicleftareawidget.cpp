@@ -52,7 +52,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPrevious->setIcon(QIcon(QString::fromUtf8(":/image/previous")));
     ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
-    ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/bestlove")));
+    ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/loveOn")));
     ui->musicDownload->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
     ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/appTools/buttoncloud")));
     ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));

@@ -21,7 +21,8 @@
         <file alias="windowremote">../TTKResource/music_window_remote.png</file>
         <file alias="arrowup">../TTKResource/music_arrow_1.png</file>
         <file alias="arrowdown">../TTKResource/music_arrow_2.png</file>
-        <file alias="bestlove">../TTKResource/music_best_love.png</file>
+        <file alias="loveOn">../TTKResource/music_best_love.png</file>
+        <file alias="loveOff">../TTKResource/music_best_unlove.png</file>
         <file alias="shadow">../TTKResource/music_shadow.png</file>
         <file alias="musicdelete">../TTKResource/music_delete.png</file>
         <file alias="searchlocalfile">../TTKResource/music_searchLocalFile.png</file>
