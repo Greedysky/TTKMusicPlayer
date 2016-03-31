@@ -55,86 +55,73 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second,
                                 SLOT(setCurrentPosition(qint64)));
     }
-
-    if( (from == "MusicLocalSongsManagerWidget" && to == "MusicSongsSummarizied") ||
-        (from == "MusicMyDownloadRecordWidget" && to == "MusicSongsSummarizied") )
+    else if( (from == "MusicLocalSongsManagerWidget" && to == "MusicSongsSummarizied") ||
+             (from == "MusicMyDownloadRecordWidget" && to == "MusicSongsSummarizied") )
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second,
                                 SLOT(addSongToPlayList(QStringList)));
     }
-
-    if(from == "MusicTimerWidget" && to == "MusicApplicationObject" )
+    else if(from == "MusicTimerWidget" && to == "MusicApplicationObject" )
     {
         QObject::connect(first, SIGNAL(timerParameterChanged()), second,
                                 SLOT(musicToolSetsParameter()));
     }
-
-    if( (from == "MusicToolSetsWidget" && to == "MusicApplication") ||
+    else if( (from == "MusicToolSetsWidget" && to == "MusicApplication") ||
         (from == "MusicApplicationObject" && to == "MusicApplication") )
     {
         QObject::connect(first, SIGNAL(getCurrentPlayList(QStringList&)), second,
                                 SLOT(getCurrentPlayList(QStringList&)));
     }
-
-    if(from == "MusicEqualizerDialog" && to == "MusicPlayer" )
+    else if(from == "MusicEqualizerDialog" && to == "MusicPlayer" )
     {
         QObject::connect(first, SIGNAL(setEqEffect(MIntList)), second,
                                 SLOT(setEqEffect(MIntList)));
         QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second,
                                 SLOT(setEnaleEffect(bool)));
     }
-
-    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicDownloadStatusLabel" )
+    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicDownloadStatusLabel" )
     {
         QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadType)), second,
                                 SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
     }
-
-    if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )
+    else if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
                                 SLOT(musicBgThemeDownloadFinished()));
     }
-
-    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" )
+    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" )
     {
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString)));
     }
-
-    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicRightAreaWidget" )
+    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicRightAreaWidget" )
     {
         QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
                                 SLOT(songResearchButtonSearched(QString)));
     }
-
-    if(from == "MusicNetworkThread" && to == "MusicDownloadStatusLabel" )
+    else if(from == "MusicNetworkThread" && to == "MusicDownloadStatusLabel" )
     {
         QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
                                 SLOT(networkConnectionStateChanged(bool)));
     }
-
-    if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )
+    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )
     {
         QObject::connect(first, SIGNAL(getQualityString(QString&)), second,
                                 SLOT(getQualityString(QString&)));
         QObject::connect(second, SIGNAL(researchQueryByQuality()), first,
                                  SLOT(researchQueryByQuality()));
     }
-
-    if(from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget" )
+    else if(from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget" )
     {
         QObject::connect(first, SIGNAL(videoButtonClicked(QString)), second,
                                 SLOT(musicVideoButtonSearched(QString)));
     }
-
-    if(from == "MusicSongsListPlayWidget" && to == "MusicApplication" )
+    else if(from == "MusicSongsListPlayWidget" && to == "MusicApplication" )
     {
         QObject::connect(first, SIGNAL(currentLoveStateChanged()), second,
                                 SLOT(musicAddSongToLovestListAt()));
     }
-
-    if(from == "MusicLeftAreaWidget" && to == "MusicSongsListPlayWidget" )
+    else if(from == "MusicLeftAreaWidget" && to == "MusicSongsListPlayWidget" )
     {
         QObject::connect(second, SIGNAL(currentDownloadStateChanged()), first,
                                 SLOT(musicDownloadSongToLocal()));
@@ -143,42 +130,36 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(currentDownloadStateChanged()), second,
                                 SLOT(currentDownloadStateClicked()));
     }
-
-    if(from == "MusicVideoControl" && to == "MusicRightAreaWidget" )
+    else if(from == "MusicVideoControl" && to == "MusicRightAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicVideoSetPopup(bool)), second,
                                 SLOT(musicVideoSetPopup(bool)));
         QObject::connect(first, SIGNAL(musicVideoFullscreen(bool)), second,
                                 SLOT(musicVideoFullscreen(bool)));
     }
-
-    if(from == "MusicApplicationObject" && to == "MusicEnhancedWidget" )
+    else if(from == "MusicApplicationObject" && to == "MusicEnhancedWidget" )
     {
         QObject::connect(first, SIGNAL(enhancedMusicChanged(int)), second,
                                 SLOT(setEnhancedMusicConfig(int)));
     }
-
-    if(from == "MusicVideoControl" && to == "MusicVideoTableWidget" )
+    else if(from == "MusicVideoControl" && to == "MusicVideoTableWidget" )
     {
         QObject::connect(first, SIGNAL(getMusicMvInfo(MusicSongAttributes&)), second,
                                 SLOT(getMusicMvInfo(MusicSongAttributes&)));
         QObject::connect(first, SIGNAL(downloadLocalByControl()), second,
                                 SLOT(downloadLocalFromControl()));
     }
-
-    if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicBottomAreaWidget" )
+    else if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicBottomAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicSearch()), second,
                                 SLOT(musicSearch()));
     }
-
-    if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicApplication" )
+    else if(from == "MusicSongsSummariziedFloatWidget" && to == "MusicApplication" )
     {
         QObject::connect(first, SIGNAL(musicCurrentPlayLocation()), second,
                                 SLOT(musicCurrentPlayLocation()));
     }
-
-    if(from == "MusicDownloadResetWidget" && to == "MusicLeftAreaWidget" )
+    else if(from == "MusicDownloadResetWidget" && to == "MusicLeftAreaWidget" )
     {
         QObject::connect(first, SIGNAL(openStackedDownloadWidget()), second,
                                 SLOT(musicStackedMyDownWidgetChanged()));
