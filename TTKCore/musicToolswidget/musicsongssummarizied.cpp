@@ -51,9 +51,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
-    connect(m_mainSongLists[0], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
-    connect(m_mainSongLists[2], SIGNAL(musicSongToLovestListAt(int)), SLOT(addMusicSongToLovestListAt(int)));
-
     connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged(int)));
 
     M_CONNECTION->setValue("MusicSongsSummarizied", this);
@@ -259,15 +256,6 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    if(!searchFileListEmpty())
-    {
-        row = getSearchFileListIndex(row);
-        if(row == -1)
-        {
-            return;
-        }
-    }
-
     MusicSong song = m_musicFileNames[currentIndex()][row];
     m_musicFileNames[1] << song;
     m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
@@ -279,15 +267,6 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 {
-    if(!searchFileListEmpty())
-    {
-        row = getSearchFileListIndex(row);
-        if(row == -1)
-        {
-            return;
-        }
-    }
-
     MusicSong song = m_musicFileNames[currentIndex()][row];
     if(m_musicFileNames[1].removeOne(song))
     {

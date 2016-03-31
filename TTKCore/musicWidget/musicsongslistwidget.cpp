@@ -385,15 +385,6 @@ void MusicSongsListWidget::stayTimeOut()
     m_musicSongsInfoWidget = nullptr;
 }
 
-void MusicSongsListWidget::addMusicSongToLovestListAt()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-    emit musicSongToLovestListAt(currentRow());
-}
-
 void MusicSongsListWidget::setChangSongName()
 {
     if(rowCount() == 0 || currentRow() < 0 ||

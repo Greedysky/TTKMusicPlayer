@@ -107,10 +107,6 @@ Q_SIGNALS:
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void musicSongToLovestListAt(int row);
-    /*!
-     * Add music song to lovest list by row.
-     */
     void getMusicIndexSwaped(int before, int after, int play, QStringList &list);
     /*!
      * Swap the current play index when user drag and drop.
@@ -148,10 +144,6 @@ public Q_SLOTS:
     void stayTimeOut();
     /*!
      * Hide play item information widget.
-     */
-    void addMusicSongToLovestListAt();
-    /*!
-     * Add music song to lovest list.
      */
     void setChangSongName();
     /*!
