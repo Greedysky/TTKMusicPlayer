@@ -113,6 +113,12 @@ public:
      * Set current name to search and download musics.
      */
 
+Q_SIGNALS:
+    void dataDownloadChanged();
+    /*!
+     * Data download changed.
+     */
+
 public Q_SLOTS:
     void show();
     /*!
@@ -129,6 +135,10 @@ public Q_SLOTS:
     void startToDownload();
     /*!
      * Start to download music data.
+     */
+    void dataDownloadFinished();
+    /*!
+     * Data download is finished.
      */
 
 protected:

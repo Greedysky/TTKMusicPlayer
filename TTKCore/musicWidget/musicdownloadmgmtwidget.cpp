@@ -91,6 +91,11 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQuer
         }
     }
     MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
+    if(parent()->metaObject()->indexOfMethod("musicDownloadSongFinished()") != -1)
+    {
+        connect(download, SIGNAL(dataDownloadChanged()), parent(),
+                          SLOT(musicDownloadSongFinished()));
+    }
     download->setSongName(name, type);
     download->show();
 }

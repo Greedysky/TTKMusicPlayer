@@ -321,6 +321,12 @@ void MusicDownloadWidget::startToDownload()
     }
 }
 
+void MusicDownloadWidget::dataDownloadFinished()
+{
+    emit dataDownloadChanged();
+    close();
+}
+
 void MusicDownloadWidget::startToDownloadMusic()
 {
     int bitrate = ui->viewArea->getCurrentBitrate();
@@ -381,7 +387,7 @@ void MusicDownloadWidget::startToDownloadMusic()
                 ////////////////////////////////////////////////
                 MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, downloadName,
                                                                                  MusicDownLoadThreadAbstract::Download_Music, this);
-                connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(close()));
+                connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(dataDownloadFinished()));
                 downSong->startToDownload();
                 break;
             }
@@ -436,7 +442,7 @@ void MusicDownloadWidget::startToDownloadMovie()
                 ////////////////////////////////////////////////
                 MusicDataDownloadThread* download = new MusicDataDownloadThread(musicAttr.m_url, downloadName,
                                                                                 MusicDownLoadThreadAbstract::Download_Video, this);
-                connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(close()));
+                connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
                 break;
             }

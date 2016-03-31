@@ -55,6 +55,10 @@ public Q_SLOTS:
     /*!
      * To download music data from net to load.
      */
+    void musicDownloadSongFinished();
+    /*!
+     * To download music data from net finished.
+     */
     void musicStackedSongListWidgetChanged();
     /*!
      * Change to song list widget.

@@ -129,7 +129,10 @@ void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
     mgmt.setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+}
 
+void MusicLeftAreaWidget::musicDownloadSongFinished()
+{
     bool state = !M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
     if(state)
     {
