@@ -264,7 +264,7 @@ unsigned char *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_
     n = len << 2;
     if (include_length) {
         m = data[len - 1];
-        if ((m < n - 7) || (m > n - 4)) return NULL;
+        if ((m < n - 7) || (m > n - 4)) return nullptr;
         n = m;
     }
     result = (unsigned char *)malloc(n + 1);
