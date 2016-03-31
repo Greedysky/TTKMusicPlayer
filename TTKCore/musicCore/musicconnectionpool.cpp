@@ -128,6 +128,22 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(musicVideoButtonSearched(QString)));
     }
 
+    if(from == "MusicSongsListPlayWidget" && to == "MusicApplication" )
+    {
+        QObject::connect(first, SIGNAL(currentLoveStateChanged()), second,
+                                SLOT(musicAddSongToLovestListAt()));
+    }
+
+    if(from == "MusicLeftAreaWidget" && to == "MusicSongsListPlayWidget" )
+    {
+        QObject::connect(second, SIGNAL(currentDownloadStateChanged()), first,
+                                SLOT(musicDownloadSongToLocal()));
+        QObject::connect(first, SIGNAL(currentLoveStateChanged()), second,
+                                SLOT(currentLoveStateClicked()));
+        QObject::connect(first, SIGNAL(currentDownloadStateChanged()), second,
+                                SLOT(currentDownloadStateClicked()));
+    }
+
     if(from == "MusicVideoControl" && to == "MusicRightAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicVideoSetPopup(bool)), second,

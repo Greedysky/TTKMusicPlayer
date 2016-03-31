@@ -1,9 +1,9 @@
 #include "musicsongslistplaywidget.h"
 #include "musicsongtag.h"
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
-#include "musicdownloadmgmtwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicsettingmanager.h"
 
@@ -51,10 +51,9 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_loveButton = new QPushButton(this);
     m_loveButton->setGeometry(214, 35, 23, 23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_loveButton->setIcon(QIcon(M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool()
-                                ? ":/image/loveOn" : ":/image/loveOff"));
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
+    currentLoveStateClicked();
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(235, 35, 23, 23);
@@ -66,11 +65,10 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_downloadButton = new QPushButton(this);
     m_downloadButton->setGeometry(170, 35, 23, 23);
     m_downloadButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_downloadButton->setIcon(QIcon(M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool()
-                                    ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
     m_downloadButton->setIconSize(QSize(23, 23));
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_downloadButton->setToolTip(tr("songDownload"));
+    currentDownloadStateClicked();
 
     m_showMVButton = new QPushButton(m_columnThree);
     m_showMVButton->setGeometry(0, 35, 23, 23);
@@ -86,18 +84,20 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_songShareButton->setToolTip(tr("songShare"));
 
-    connect(m_loveButton, SIGNAL(clicked()), parent, SLOT(addMusicSongToLovestListAt()));
+    connect(m_loveButton, SIGNAL(clicked()), SIGNAL(currentLoveStateChanged()));
+    connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(currentDownloadStateChanged()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
     connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
-    connect(m_downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
     M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
     M_CONNECTION->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
+    M_CONNECTION->poolConnect("MusicSongsListPlayWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicLeftAreaWidget", "MusicSongsListPlayWidget");
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
@@ -179,15 +179,21 @@ void MusicSongsListPlayWidget::showMVButtonClicked()
     emit videoButtonClicked(m_songName->text());
 }
 
-void MusicSongsListPlayWidget::downloadButtonClicked()
-{
-    MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(m_songName->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
-}
-
 void MusicSongsListPlayWidget::sharingButtonClicked()
 {
     MusicSongSharingWidget shareWidget;
     shareWidget.setSongName(m_songName->text());
     shareWidget.exec();
+}
+
+void MusicSongsListPlayWidget::currentLoveStateClicked()
+{
+    bool state = M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    m_loveButton->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
+}
+
+void MusicSongsListPlayWidget::currentDownloadStateClicked()
+{
+    bool state = M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+    m_downloadButton->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
 }

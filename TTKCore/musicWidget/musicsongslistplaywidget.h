@@ -99,6 +99,14 @@ Q_SIGNALS:
     /*!
      * Video button clicked it emit.
      */
+    void currentLoveStateChanged();
+    /*!
+     * Current music love icon state changed.
+     */
+    void currentDownloadStateChanged();
+    /*!
+     * Current music download icon state changed.
+     */
 
 public Q_SLOTS:
     void setChangItemName(const QString &name);
@@ -109,13 +117,17 @@ public Q_SLOTS:
     /*!
      * Show video button clicked.
      */
-    void downloadButtonClicked();
-    /*!
-     * Download music button clicked.
-     */
     void sharingButtonClicked();
     /*!
      * Sharing music button clicked.
+     */
+    void currentLoveStateClicked();
+    /*!
+     * Reset current music love icon state.
+     */
+    void currentDownloadStateClicked();
+    /*!
+     * Reset current music download icon state.
      */
 
 protected:

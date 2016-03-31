@@ -891,6 +891,7 @@ void MusicApplication::musicAddSongToLovestListAt()
     {
         return;
     }
+    m_leftAreaWidget->musictLoveStateClicked();
     m_musicSongTree->addMusicSongToLovestListAt(index);
 }
 

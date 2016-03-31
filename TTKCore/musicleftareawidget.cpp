@@ -129,6 +129,22 @@ void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
     mgmt.setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+
+    bool state = !M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+    if(state)
+    {
+        m_ui->musicDownload->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
+        M_SETTING->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
+        emit currentDownloadStateChanged();
+    }
+}
+
+void MusicLeftAreaWidget::musictLoveStateClicked()
+{
+    bool state = !M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    m_ui->musicBestLove->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
+    M_SETTING->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
+    emit currentLoveStateChanged();
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
