@@ -147,6 +147,10 @@ public Q_SLOTS:
     /*!
      * Add music song to lovest list by row.
      */
+    void removeMusicSongToLovestListAt(int row);
+    /*!
+     * Remove music song to lovest list by row.
+     */
     void addNetMusicSongToList(const QString &name, const QString &time,
                                const QString &format);
     /*!

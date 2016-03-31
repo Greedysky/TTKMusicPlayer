@@ -891,8 +891,14 @@ void MusicApplication::musicAddSongToLovestListAt()
     {
         return;
     }
+
     m_leftAreaWidget->musictLoveStateClicked();
-    m_musicSongTree->addMusicSongToLovestListAt(index);
+    bool state = M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
+
+    MusicMessageBox message;
+    message.setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
+    message.exec();
 }
 
 void MusicApplication::setPlaySongChanged(int index)

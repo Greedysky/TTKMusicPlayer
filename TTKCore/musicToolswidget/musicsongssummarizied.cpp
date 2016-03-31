@@ -262,6 +262,10 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
     if(!searchFileListEmpty())
     {
         row = getSearchFileListIndex(row);
+        if(row == -1)
+        {
+            return;
+        }
     }
 
     MusicSong song = m_musicFileNames[currentIndex()][row];
@@ -271,9 +275,25 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
     {
         emit updatePlayLists(song.getMusicPath());
     }
-    MusicMessageBox message;
-    message.setText(tr("add music to lovest list done!"));
-    message.exec();
+}
+
+void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
+{
+    if(!searchFileListEmpty())
+    {
+        row = getSearchFileListIndex(row);
+        if(row == -1)
+        {
+            return;
+        }
+    }
+
+    MusicSong song = m_musicFileNames[currentIndex()][row];
+    if(m_musicFileNames[1].removeOne(song))
+    {
+        m_mainSongLists[1]->clearAllItems();
+        m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
+    }
 }
 
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time,

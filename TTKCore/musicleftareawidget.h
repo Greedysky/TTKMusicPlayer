@@ -35,6 +35,10 @@ public:
     /*!
      * Set up app ui.
      */
+    void musictLoveStateClicked();
+    /*!
+     * Reset current music love icon state.
+     */
 
 Q_SIGNALS:
     void currentLoveStateChanged();
@@ -47,10 +51,6 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void musictLoveStateClicked();
-    /*!
-     * Reset current music love icon state.
-     */
     void musicDownloadSongToLocal();
     /*!
      * To download music data from net to load.
