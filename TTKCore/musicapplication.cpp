@@ -251,7 +251,6 @@ void MusicApplication::readXMLConfigFromText()
 {
     MusicXMLConfigManager xml;
     int value;
-    QString key;
     if(!xml.readMusicXMLConfig())//open music file
     {
         return;
