@@ -44,6 +44,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicsingleton.h
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
+    ${MUSIC_CORE_DIR}/musiccryptographichash.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
@@ -90,6 +91,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.h
@@ -122,6 +124,8 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.h
     ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.h
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.h
+    ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.h
+    ${MUSIC_WIDGET_DIR}/core/musiccodearea.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
@@ -140,6 +144,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
+    ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.h
@@ -177,6 +182,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musicregeditmanager.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
+    ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
@@ -223,6 +229,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.cpp
@@ -255,6 +262,8 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.cpp
     ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.cpp
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.cpp
+    ${MUSIC_WIDGET_DIR}/core/musiccodearea.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
@@ -273,6 +282,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.cpp
@@ -303,6 +313,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserrecordwidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserwindow.ui
     ${MUSIC_UI_DIR}/musicWidget/musicbackgroundskindialog.ui
+    ${MUSIC_UI_DIR}/musicWidget/musicdownloadresetwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicdownloadwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicequalizerdialog.ui
     ${MUSIC_UI_DIR}/musicWidget/musicmessagebox.ui
