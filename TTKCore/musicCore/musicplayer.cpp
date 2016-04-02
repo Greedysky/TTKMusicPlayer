@@ -6,7 +6,7 @@
 #include "soundcore.h"
 ///
 #include <qmath.h>
-
+#include <QDebug>
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
@@ -18,6 +18,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
     m_duration = 0;
+    m_tryTimes = 0;
 
     setEnaleEffect(false);
 
@@ -156,6 +157,7 @@ void MusicPlayer::play()
         return;
     }
 
+    m_tryTimes = 0;
     m_timer.start(1000);
     ///Every second emits a signal change information
     emit positionChanged(0);
@@ -288,12 +290,12 @@ void MusicPlayer::removeCurrentMedia()
 void MusicPlayer::getCurrentDuration()
 {
     qint64 dur = duration();
-    if(dur == 0 || m_duration == dur)
+    if( (dur == 0 || m_duration == dur) && m_tryTimes++ < 10 )
     {
         QTimer::singleShot(50, this, SLOT(getCurrentDuration()));
     }
     else
-    {  
+    {
         emit durationChanged( m_duration = dur );
     }
 }

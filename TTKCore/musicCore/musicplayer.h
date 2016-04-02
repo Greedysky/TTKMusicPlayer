@@ -199,6 +199,7 @@ protected:
     Enhanced m_musicEnhanced;
     qint64 m_duration;
 
+    int m_tryTimes;
     int m_volumeMusic3D;
     float m_posOnCircle;
 
