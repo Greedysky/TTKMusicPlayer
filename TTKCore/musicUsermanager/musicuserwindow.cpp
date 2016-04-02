@@ -7,7 +7,7 @@
 #include "musicmessagebox.h"
 
 #include <QTimer>
-#include <QDebug>
+
 MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent),
      ui(new Ui::MusicUserWindow)
