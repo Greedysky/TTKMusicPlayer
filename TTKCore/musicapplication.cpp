@@ -885,8 +885,7 @@ void MusicApplication::updateCurrentTime(qint64 pos)
 void MusicApplication::musicAddSongToLovestListAt()
 {
     int index = m_musicList->currentIndex();
-    if(m_musicList->isEmpty() || index < 0 || m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex() ||
-       m_musicSongTree->currentIndex() == 1)
+    if(m_musicList->isEmpty() || index < 0)
     {
         return;
     }
@@ -894,6 +893,11 @@ void MusicApplication::musicAddSongToLovestListAt()
     m_leftAreaWidget->musictLoveStateClicked();
     bool state = M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
     state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
+
+    if(m_currentMusicSongTreeIndex == 1)
+    {
+        setDeleteItemAt(MIntList() << index, false);
+    }
 
     MusicMessageBox message;
     message.setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));

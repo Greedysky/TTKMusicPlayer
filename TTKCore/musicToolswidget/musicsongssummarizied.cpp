@@ -256,7 +256,7 @@ void MusicSongsSummarizied::addNewItem()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    MusicSong song = m_musicFileNames[currentIndex()][row];
+    MusicSong song = m_musicFileNames[m_currentIndexs][row];
     m_musicFileNames[1] << song;
     m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
     if(m_currentIndexs == 1)
@@ -267,7 +267,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 {
-    MusicSong song = m_musicFileNames[currentIndex()][row];
+    MusicSong song = m_musicFileNames[m_currentIndexs][row];
     if(m_musicFileNames[1].removeOne(song))
     {
         m_mainSongLists[1]->clearAllItems();
