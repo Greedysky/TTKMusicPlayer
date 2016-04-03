@@ -91,6 +91,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void clearFunctionTableSelection();
+    /*!
+     * Clear all function tables selection.
+     */
     void downloadGroupCached(int index);
     /*!
      * Set enable or disable download cache.
@@ -171,6 +175,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void initNormalSettingWidget();
+    /*!
+     * Init normal setting stack widget.
+     */
     void initInlineLrcWidget();
     /*!
      * Init inline lrc stack widget.
@@ -182,6 +190,14 @@ protected:
     void initDownloadWidget();
     /*!
      * Init download stack widget.
+     */
+    void initSoundEffectWidget();
+    /*!
+     * Init sound effect stack widget.
+     */
+    void initNetworkWidget();
+    /*!
+     * Init network stack widget.
      */
     void lcrColorValue(Type key, const QString &type, QPushButton *obj);
     /*!

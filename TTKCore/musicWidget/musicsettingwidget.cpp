@@ -31,6 +31,7 @@ void MusicFunctionTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(column);
     emit currentIndexChanged(row + m_listIndex);
+    selectRow( currentRow() );
 }
 
 void MusicFunctionTableWidget::leaveEvent(QEvent *event)
@@ -81,19 +82,41 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->lrcFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/lrc" << ":/contextMenu/funcdesktopLrc",
         QStringList() << tr("Desktop") << tr("Inline"));
+    ui->supperFunTableWidget->setRowCount(2);
+    ui->supperFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount() + ui->lrcFunTableWidget->rowCount(),
+        QStringList() << ":/contextMenu/equalizer" << ":/contextMenu/remote",
+        QStringList() << tr("Equalizer") << tr("NetWork"));
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     connect(ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
-    connect(ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->lrcFunTableWidget, SLOT(clearSelection()));
+    connect(ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
     connect(ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
-    connect(ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->normalFunTableWidget, SLOT(clearSelection()));
+    connect(ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
+    connect(ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
     connect(ui->confirmButton, SIGNAL(clicked()), SLOT(commitTheResults()));
     connect(ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 
     ////////////////////////////////////////////////
+    initNormalSettingWidget();
+    initInlineLrcWidget();
+    initDesktopLrcWidget();
+    initDownloadWidget();
+    initSoundEffectWidget();
+    initNetworkWidget();
+    ////////////////////////////////////////////////
+}
+
+MusicSettingWidget::~MusicSettingWidget()
+{
+    delete ui;
+}
+
+void MusicSettingWidget::initNormalSettingWidget()
+{
     ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->minimumRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
@@ -105,24 +128,11 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->languageComboBox->addItems(QStringList() << tr("0") << tr("1") << tr("2"));
-    ////////////////////////////////////////////////
-    ui->showInlineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-
-    ////////////////////////////////////////////////
-    initInlineLrcWidget();
-    initDesktopLrcWidget();
-    initDownloadWidget();
-    ////////////////////////////////////////////////
-}
-
-MusicSettingWidget::~MusicSettingWidget()
-{
-    delete ui;
 }
 
 void MusicSettingWidget::initInlineLrcWidget()
 {
+    ui->showInlineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(ui->fontComboBox));
     ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -167,6 +177,7 @@ void MusicSettingWidget::initInlineLrcWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
+    ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(ui->DfontComboBox));
     ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -268,6 +279,56 @@ void MusicSettingWidget::initDownloadWidget()
 
     ui->downloadCacheAutoRadioBox->click();
     ui->downloadFullRadioBox->click();
+}
+
+void MusicSettingWidget::initSoundEffectWidget()
+{
+    ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    ui->bs2bCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->crossfadeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->stereoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+}
+
+void MusicSettingWidget::initNetworkWidget()
+{
+    ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->proxyIpComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyIpComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyIpComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->proxyPortComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyPortComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyPortComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->proxyUsernameComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyUsernameComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyUsernameComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->proxyPwdComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyPwdComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyPwdComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    ui->proxyAreaComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->proxyAreaComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->proxyAreaComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    ui->netConnectionTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
+    ui->netConnectionTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    ui->netConnectionTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->netConnectionTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->netConnectionTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->netConnectionWayTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->netConnectionWayTestButton->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -571,6 +632,13 @@ int MusicSettingWidget::exec()
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicSettingWidget::clearFunctionTableSelection()
+{
+    ui->normalFunTableWidget->clearSelection();
+    ui->lrcFunTableWidget->clearSelection();
+    ui->supperFunTableWidget->clearSelection();
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)
