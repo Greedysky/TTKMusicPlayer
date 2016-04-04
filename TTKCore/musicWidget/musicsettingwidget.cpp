@@ -462,6 +462,10 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
 
+    if(!applyNetworkProxy())
+    {
+        return;
+    }
 
     emit parameterSettingChanged();
     close();
@@ -666,7 +670,7 @@ void MusicSettingWidget::setNetworkProxyControl(int enable)
     ui->proxyPwdEdit->setEnabled(enable != 2);
 }
 
-void MusicSettingWidget::testNetworkProxy()
+bool MusicSettingWidget::setNetworkProxyByType(int type)
 {
     MusicNetworkProxy proxy;
     connect(&proxy, SIGNAL(testProxyStateChanged(bool)), SLOT(testProxyStateChanged(bool)));
@@ -677,7 +681,7 @@ void MusicSettingWidget::testNetworkProxy()
         MusicMessageBox message;
         message.setText(tr("proxy hostname is empty"));
         message.exec();
-        return;
+        return false;
     }
     proxy.setHostName(value);
     value = ui->proxyPortEdit->text().trimmed();
@@ -686,13 +690,36 @@ void MusicSettingWidget::testNetworkProxy()
         MusicMessageBox message;
         message.setText(tr("proxy port is empty"));
         message.exec();
-        return;
+        return false;
     }
     proxy.setPort(value.toInt());
 
     proxy.setUser(ui->proxyUsernameEdit->text().trimmed());
     proxy.setPassword(ui->proxyPwdEdit->text().trimmed());
-    proxy.testProxy();
+
+    if(type == 0)
+    {
+        proxy.testProxy();
+    }
+    else if(type == 1)
+    {
+        proxy.applyProxy();
+    }
+    return true;
+}
+
+void MusicSettingWidget::testNetworkProxy()
+{
+    setNetworkProxyByType(0);
+}
+
+bool MusicSettingWidget::applyNetworkProxy()
+{
+    if(ui->proxyTypeComboBox->currentIndex() != 2)
+    {
+        return setNetworkProxyByType(1);
+    }
+    return true;
 }
 
 void MusicSettingWidget::testProxyStateChanged(bool state)

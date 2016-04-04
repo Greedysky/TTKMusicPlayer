@@ -233,6 +233,14 @@ protected:
     /*!
      * Set lrc transparent by type and value.
      */
+    bool applyNetworkProxy();
+    /*!
+     * Apply current proxy available.
+     */
+    bool setNetworkProxyByType(int type);
+    /*!
+     * Set network proxy by type.
+     */
 
     Ui::MusicSettingWidget *ui;
     QColor m_lrcSelectedFg, m_lrcSelectedBg;
