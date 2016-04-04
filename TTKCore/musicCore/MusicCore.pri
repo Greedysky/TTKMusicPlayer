@@ -22,6 +22,7 @@ HEADERS  += \
     $$PWD/network/musicbgthemedownload.h \
     $$PWD/network/musicnetworkthread.h \
     $$PWD/network/musicnetworkproxy.h \
+    $$PWD/network/musicnetworkoperator.h \
     $$PWD/network/musicdownloadqueuecache.h \
     $$PWD/network/musicdownloadquerythreadabstract.h \
     $$PWD/network/musicdownloadquerysinglethread.h \
@@ -61,6 +62,7 @@ SOURCES += \
     $$PWD/network/musicbgthemedownload.cpp \
     $$PWD/network/musicnetworkthread.cpp \
     $$PWD/network/musicnetworkproxy.cpp \
+    $$PWD/network/musicnetworkoperator.cpp \
     $$PWD/network/musicdownloadqueuecache.cpp \
     $$PWD/network/musicdownloadquerythreadabstract.cpp \
     $$PWD/network/musicdownloadquerysinglethread.cpp \

@@ -181,6 +181,8 @@ public Q_SLOTS:
      */
     void testNetworkProxy();
     void testProxyStateChanged(bool state);
+    void testNetworkConnection();
+    void testNetworkConnectionStateChanged(const QString &name);
 
 protected:
     void initNormalSettingWidget();

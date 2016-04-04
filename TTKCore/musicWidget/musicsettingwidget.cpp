@@ -4,6 +4,7 @@
 #include "musicnetworkthread.h"
 #include "musicutils.h"
 #include "musicnetworkproxy.h"
+#include "musicnetworkoperator.h"
 #include "musicmessagebox.h"
 
 #include <QFontDatabase>
@@ -306,21 +307,16 @@ void MusicSettingWidget::initNetworkWidget()
     ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    ui->netConnectionTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->netConnectionTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->netConnectionTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-
     ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->netConnectionTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->netConnectionTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->netConnectionWayTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->netConnectionWayTestButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->netConnectionTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") << tr("NoProxy") <<
-                         tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
+    ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") <<
+                 tr("NoProxy") << tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
 
     connect(ui->proxyTypeTestButton, SIGNAL(clicked()), SLOT(testNetworkProxy()));
+    connect(ui->netConnectionTypeButton, SIGNAL(clicked()), SLOT(testNetworkConnection()));
     connect(ui->proxyTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(setNetworkProxyControl(int)));
     setNetworkProxyControl(2);
     ui->proxyTypeComboBox->setCurrentIndex(2);
@@ -668,7 +664,6 @@ void MusicSettingWidget::setNetworkProxyControl(int enable)
     ui->proxyPortEdit->setEnabled(enable != 2);
     ui->proxyUsernameEdit->setEnabled(enable != 2);
     ui->proxyPwdEdit->setEnabled(enable != 2);
-    ui->proxyAreaEdit->setEnabled(enable != 2);
 }
 
 void MusicSettingWidget::testNetworkProxy()
@@ -703,4 +698,17 @@ void MusicSettingWidget::testNetworkProxy()
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
     qDebug() << state;
+}
+
+void MusicSettingWidget::testNetworkConnection()
+{
+    MusicNetworkOperator *netOpr = new MusicNetworkOperator(this);
+    connect(netOpr, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
+    netOpr->startToOperator();
+}
+
+void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
+{
+    ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
+    ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
 }
