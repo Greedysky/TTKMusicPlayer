@@ -180,9 +180,21 @@ public Q_SLOTS:
      * Set network proxy control enabled or not.
      */
     void testNetworkProxy();
+    /*!
+     * Test current proxy available.
+     */
     void testProxyStateChanged(bool state);
+    /*!
+     * Test current proxy available changed.
+     */
     void testNetworkConnection();
+    /*!
+     * Test current network connection available.
+     */
     void testNetworkConnectionStateChanged(const QString &name);
+    /*!
+     * Test current network connection available changed.
+     */
 
 protected:
     void initNormalSettingWidget();

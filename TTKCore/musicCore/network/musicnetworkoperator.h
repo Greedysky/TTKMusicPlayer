@@ -3,10 +3,7 @@
 
 #include "musicglobaldefine.h"
 
-#define IP_DOWNLOAD "ip_tmp"
-const QString IP_CHECK_URL = "http://1212.ip138.com/ic.asp";
-
-/*! @brief The class of downloading art background image.
+/*! @brief The class of music network operator.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicNetworkOperator : public QObject
@@ -14,6 +11,9 @@ class MUSIC_NETWORK_EXPORT MusicNetworkOperator : public QObject
     Q_OBJECT
 public:
     explicit MusicNetworkOperator(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicNetworkOperator();
 
     void startToOperator();

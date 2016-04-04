@@ -697,7 +697,9 @@ void MusicSettingWidget::testNetworkProxy()
 
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
-    qDebug() << state;
+    MusicMessageBox message;
+    message.setText(state ? tr("Test Successed!") : tr("Test Failed!") );
+    message.exec();
 }
 
 void MusicSettingWidget::testNetworkConnection()
@@ -709,6 +711,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
 {
+    M_LOGGERS(name);
     ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
     ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
 }

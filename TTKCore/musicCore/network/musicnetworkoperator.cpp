@@ -1,6 +1,9 @@
 #include "musicnetworkoperator.h"
 #include "musicdatadownloadthread.h"
 
+#define IP_DOWNLOAD "ip_tmp"
+const QString IP_CHECK_URL = "http://1212.ip138.com/ic.asp";
+
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
 {
