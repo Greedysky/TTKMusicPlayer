@@ -1663,6 +1663,9 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="seven">
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{font-size:14px;color:#AAAAFF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+    </property>
     <widget class="QLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
@@ -1749,7 +1752,7 @@ font-weight:bold;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="proxyIpComboBox">
+    <widget class="QLineEdit" name="proxyIpEdit">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -1775,7 +1778,7 @@ font-weight:bold;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="proxyPortComboBox">
+    <widget class="QLineEdit" name="proxyPortEdit">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -1801,7 +1804,7 @@ font-weight:bold;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="proxyUsernameComboBox">
+    <widget class="QLineEdit" name="proxyUsernameEdit">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -1827,7 +1830,7 @@ font-weight:bold;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="proxyPwdComboBox">
+    <widget class="QLineEdit" name="proxyPwdEdit">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -1837,7 +1840,7 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="proxyAreaComboBox">
+    <widget class="QLineEdit" name="proxyAreaEdit">
      <property name="geometry">
       <rect>
        <x>90</x>

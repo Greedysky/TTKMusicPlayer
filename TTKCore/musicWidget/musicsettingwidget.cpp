@@ -303,21 +303,6 @@ void MusicSettingWidget::initNetworkWidget()
     ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
     ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->proxyIpComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->proxyIpComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->proxyIpComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->proxyPortComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->proxyPortComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->proxyPortComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->proxyUsernameComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->proxyUsernameComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->proxyUsernameComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->proxyPwdComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->proxyPwdComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->proxyPwdComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->proxyAreaComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
-    ui->proxyAreaComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->proxyAreaComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     ui->netConnectionTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
     ui->netConnectionTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
@@ -329,6 +314,12 @@ void MusicSettingWidget::initNetworkWidget()
     ui->netConnectionTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->netConnectionWayTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->netConnectionWayTestButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+    ui->proxyTypeComboBox->addItems(QStringList() << tr("NoProxy") << tr("DefaultProxy") << tr("Socks5Proxy") <<
+                         tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
+
+    connect(ui->proxyTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(setNetworkProxyControl(int)));
+    setNetworkProxyControl(0);
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -437,26 +428,30 @@ void MusicSettingWidget::commitTheResults()
     list[0] = QString::number(ui->backPlayCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
     M_SETTING->setValue(MusicSettingManager::CloseEventChoiced, ui->quitRadioBox->isChecked());
+    M_NETWORK->setBlockNetWork( ui->closeNetWorkCheckBox->isChecked() );
+    M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced, ui->setDefaultPlayerCheckBox->isChecked());
+    if(ui->setDefaultPlayerCheckBox->isChecked())
+    {
+        ui->setDefaultPlayerCheckBox->setEnabled(false);
+    }
 
     M_SETTING->setValue(MusicSettingManager::ShowInlineLrcChoiced, ui->showInlineCheckBox->isChecked());
-    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, ui->showDesktopCheckBox->isChecked());
-
     M_SETTING->setValue(MusicSettingManager::LrcColorChoiced, ui->fontDefaultColorComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::LrcFamilyChoiced, ui->fontComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::LrcSizeChoiced, ui->fontSizeComboBox->currentIndex() + 13);
     M_SETTING->setValue(MusicSettingManager::LrcTypeChoiced, ui->fontTypeComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::LrcColorTransChoiced, ui->transparentSlider->value());
+    M_SETTING->setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
+    M_SETTING->setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
 
+    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, ui->showDesktopCheckBox->isChecked());
     M_SETTING->setValue(MusicSettingManager::DLrcColorChoiced, ui->DfontDefaultColorComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DLrcFamilyChoiced, ui->DfontComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DLrcSizeChoiced, ui->DfontSizeComboBox->currentIndex() + 24);
     M_SETTING->setValue(MusicSettingManager::DLrcTypeChoiced, ui->DfontTypeComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DLrcColorTransChoiced, ui->DtransparentSlider->value());
-
     M_SETTING->setValue(MusicSettingManager::DLrcFgColorChoiced, m_DlrcSelectedFg);
     M_SETTING->setValue(MusicSettingManager::DLrcBgColorChoiced, m_DlrcSelectedBg);
-    M_SETTING->setValue(MusicSettingManager::LrcFgColorChoiced, m_lrcSelectedFg);
-    M_SETTING->setValue(MusicSettingManager::LrcBgColorChoiced, m_lrcSelectedBg);
 
     M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, ui->downloadDirEdit->text());
     M_SETTING->setValue(MusicSettingManager::DownloadLrcPathDirChoiced, ui->downloadLrcDirEdit->text());
@@ -467,12 +462,6 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
 
-    M_NETWORK->setBlockNetWork( ui->closeNetWorkCheckBox->isChecked() );
-    M_SETTING->setValue(MusicSettingManager::FileAssociationChoiced, ui->setDefaultPlayerCheckBox->isChecked());
-    if(ui->setDefaultPlayerCheckBox->isChecked())
-    {
-        ui->setDefaultPlayerCheckBox->setEnabled(false);
-    }
 
     emit parameterSettingChanged();
     close();
@@ -666,4 +655,14 @@ void MusicSettingWidget::downloadDirSelected(int index)
                        : ui->downloadLrcDirEdit->setText(path);
         }
     }
+}
+
+void MusicSettingWidget::setNetworkProxyControl(int enable)
+{
+    ui->proxyTypeTestButton->setEnabled(enable);
+    ui->proxyIpEdit->setEnabled(enable);
+    ui->proxyPortEdit->setEnabled(enable);
+    ui->proxyUsernameEdit->setEnabled(enable);
+    ui->proxyPwdEdit->setEnabled(enable);
+    ui->proxyAreaEdit->setEnabled(enable);
 }

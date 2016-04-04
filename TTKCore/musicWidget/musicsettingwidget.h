@@ -95,18 +95,6 @@ public Q_SLOTS:
     /*!
      * Clear all function tables selection.
      */
-    void downloadGroupCached(int index);
-    /*!
-     * Set enable or disable download cache.
-     */
-    void downloadGroupSpeedLimit(int index);
-    /*!
-     * Set enable or disable download speed limit.
-     */
-    void downloadDirSelected(int index);
-    /*!
-     * Set select download dir or lrc dir.
-     */
     void changeInlineLrcWidget();
     /*!
      * Change to inline lrc widget.
@@ -118,6 +106,10 @@ public Q_SLOTS:
     void commitTheResults();
     /*!
      * Save the change results.
+     */
+    virtual int exec();
+    /*!
+     * Override exec function.
      */
 
     void inlineLrcFgChanged();
@@ -169,9 +161,23 @@ public Q_SLOTS:
     /*!
      * Reset desktop parameter.
      */
-    virtual int exec();
+
+    void downloadGroupCached(int index);
     /*!
-     * Override exec function.
+     * Set enable or disable download cache.
+     */
+    void downloadGroupSpeedLimit(int index);
+    /*!
+     * Set enable or disable download speed limit.
+     */
+    void downloadDirSelected(int index);
+    /*!
+     * Set select download dir or lrc dir.
+     */
+
+    void setNetworkProxyControl(int enable);
+    /*!
+     * Set network proxy control enabled or not.
      */
 
 protected:
