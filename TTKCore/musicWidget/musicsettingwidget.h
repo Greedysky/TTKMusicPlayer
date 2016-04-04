@@ -179,6 +179,8 @@ public Q_SLOTS:
     /*!
      * Set network proxy control enabled or not.
      */
+    void testNetworkProxy();
+    void testProxyStateChanged(bool state);
 
 protected:
     void initNormalSettingWidget();

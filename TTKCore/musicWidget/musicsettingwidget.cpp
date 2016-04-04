@@ -3,6 +3,8 @@
 #include "musicbgthememanager.h"
 #include "musicnetworkthread.h"
 #include "musicutils.h"
+#include "musicnetworkproxy.h"
+#include "musicmessagebox.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -315,11 +317,13 @@ void MusicSettingWidget::initNetworkWidget()
     ui->netConnectionWayTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->netConnectionWayTestButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->proxyTypeComboBox->addItems(QStringList() << tr("NoProxy") << tr("DefaultProxy") << tr("Socks5Proxy") <<
+    ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") << tr("NoProxy") <<
                          tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
 
+    connect(ui->proxyTypeTestButton, SIGNAL(clicked()), SLOT(testNetworkProxy()));
     connect(ui->proxyTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(setNetworkProxyControl(int)));
-    setNetworkProxyControl(0);
+    setNetworkProxyControl(2);
+    ui->proxyTypeComboBox->setCurrentIndex(2);
 }
 
 void MusicSettingWidget::initControllerParameter()
@@ -659,10 +663,44 @@ void MusicSettingWidget::downloadDirSelected(int index)
 
 void MusicSettingWidget::setNetworkProxyControl(int enable)
 {
-    ui->proxyTypeTestButton->setEnabled(enable);
-    ui->proxyIpEdit->setEnabled(enable);
-    ui->proxyPortEdit->setEnabled(enable);
-    ui->proxyUsernameEdit->setEnabled(enable);
-    ui->proxyPwdEdit->setEnabled(enable);
-    ui->proxyAreaEdit->setEnabled(enable);
+    ui->proxyTypeTestButton->setEnabled(enable != 2);
+    ui->proxyIpEdit->setEnabled(enable != 2);
+    ui->proxyPortEdit->setEnabled(enable != 2);
+    ui->proxyUsernameEdit->setEnabled(enable != 2);
+    ui->proxyPwdEdit->setEnabled(enable != 2);
+    ui->proxyAreaEdit->setEnabled(enable != 2);
+}
+
+void MusicSettingWidget::testNetworkProxy()
+{
+    MusicNetworkProxy proxy;
+    connect(&proxy, SIGNAL(testProxyStateChanged(bool)), SLOT(testProxyStateChanged(bool)));
+    proxy.setType(ui->proxyTypeComboBox->currentIndex());
+    QString value = ui->proxyIpEdit->text().trimmed();
+    if(value.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("proxy hostname is empty"));
+        message.exec();
+        return;
+    }
+    proxy.setHostName(value);
+    value = ui->proxyPortEdit->text().trimmed();
+    if(value.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("proxy port is empty"));
+        message.exec();
+        return;
+    }
+    proxy.setPort(value.toInt());
+
+    proxy.setUser(ui->proxyUsernameEdit->text().trimmed());
+    proxy.setPassword(ui->proxyPwdEdit->text().trimmed());
+    proxy.testProxy();
+}
+
+void MusicSettingWidget::testProxyStateChanged(bool state)
+{
+    qDebug() << state;
 }
