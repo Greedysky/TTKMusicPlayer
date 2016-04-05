@@ -75,7 +75,12 @@ public:
      * Shows settings dialog.
      * @param parent Parent widget.
      */
-
+    virtual void showSettings(QWidget *parent) = 0;
+    /*!
+     * Shows about dialog.
+     * @param parent Parent widget.
+     */
+     
 };
 
 Q_DECLARE_INTERFACE(EffectFactory, "EffectFactory/1.0");
