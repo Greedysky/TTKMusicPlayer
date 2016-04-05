@@ -196,6 +196,9 @@ public Q_SLOTS:
      * Test current network connection available changed.
      */
 
+    void soundEffectCheckBoxChanged();
+    void soundEffectValueChanged(int index);
+
 protected:
     void initNormalSettingWidget();
     /*!

@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -1599,9 +1599,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="crossfadeCheckBox">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>230</x>
        <y>190</y>
-       <width>191</width>
+       <width>110</width>
        <height>20</height>
       </rect>
      </property>
@@ -1626,7 +1626,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>220</y>
+       <y>225</y>
        <width>100</width>
        <height>20</height>
       </rect>
@@ -1639,7 +1639,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>250</y>
+       <y>260</y>
        <width>80</width>
        <height>25</height>
       </rect>
@@ -1652,13 +1652,52 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>250</y>
+       <y>260</y>
        <width>80</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
       <string>设置音效插件</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bs2bButton">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>187</y>
+       <width>35</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>调整</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="crossfadeButton">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>187</y>
+       <width>35</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>调整</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stereoButton">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>222</y>
+       <width>35</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>调整</string>
      </property>
     </widget>
    </widget>

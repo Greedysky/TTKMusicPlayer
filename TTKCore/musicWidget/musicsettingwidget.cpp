@@ -6,6 +6,10 @@
 #include "musicnetworkproxy.h"
 #include "musicnetworkoperator.h"
 #include "musicmessagebox.h"
+///qmmp incldue
+#include "effect.h"
+#include "effectfactory.h"
+///
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -299,6 +303,26 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    ui->bs2bButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->bs2bButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->crossfadeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->crossfadeButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->stereoButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->stereoButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+
+    ui->bs2bButton->setEnabled(false);
+    ui->crossfadeButton->setEnabled(false);
+    ui->stereoButton->setEnabled(false);
+
+    connect(ui->bs2bCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
+    connect(ui->crossfadeCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
+    connect(ui->stereoCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(ui->bs2bButton, 0);
+    buttonGroup->addButton(ui->crossfadeButton, 1);
+    buttonGroup->addButton(ui->stereoButton, 2);
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(soundEffectValueChanged(int)));
 }
 
 void MusicSettingWidget::initNetworkWidget()
@@ -741,4 +765,52 @@ void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
     M_LOGGERS(name);
     ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
     ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
+}
+
+void MusicSettingWidget::soundEffectCheckBoxChanged()
+{
+    ui->bs2bButton->setEnabled(ui->bs2bCheckBox->isChecked());
+    ui->crossfadeButton->setEnabled(ui->crossfadeCheckBox->isChecked());
+    ui->stereoButton->setEnabled(ui->stereoCheckBox->isChecked());
+
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        Effect::setEnabled(factory, false);
+    }
+
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().name.contains("BS2B") && ui->bs2bCheckBox->isChecked())
+        {
+            Effect::setEnabled(factory, true);
+        }
+        else if(factory->properties().name.contains("Crossfade") && ui->crossfadeCheckBox->isChecked())
+        {
+            Effect::setEnabled(factory, true);
+        }
+        else if(factory->properties().name.contains("Stereo") && ui->stereoCheckBox->isChecked())
+        {
+            Effect::setEnabled(factory, true);
+        }
+    }
+}
+
+void MusicSettingWidget::soundEffectValueChanged(int index)
+{
+    QString pulgin;
+    switch(index)
+    {
+        case 0: pulgin = "BS2B"; break;
+        case 1: pulgin = "Crossfade"; break;
+        case 2: pulgin = "Stereo"; break;
+        default: break;
+    }
+
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().name.contains(pulgin))
+        {
+            factory->showSettings(this);
+        }
+    }
 }
