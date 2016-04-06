@@ -297,6 +297,8 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->bs2bCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->crossfadeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->stereoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->ladspaCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->samplerateCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
@@ -309,19 +311,29 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->crossfadeButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->stereoButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->stereoButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->ladspaButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->ladspaButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->samplerateButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->samplerateButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
 
     ui->bs2bButton->setEnabled(false);
     ui->crossfadeButton->setEnabled(false);
     ui->stereoButton->setEnabled(false);
+    ui->ladspaButton->setEnabled(false);
+    ui->samplerateButton->setEnabled(false);
 
     connect(ui->bs2bCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
     connect(ui->crossfadeCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
     connect(ui->stereoCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
+    connect(ui->ladspaCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
+    connect(ui->samplerateCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(ui->bs2bButton, 0);
     buttonGroup->addButton(ui->crossfadeButton, 1);
     buttonGroup->addButton(ui->stereoButton, 2);
+    buttonGroup->addButton(ui->ladspaButton, 3);
+    buttonGroup->addButton(ui->samplerateButton, 4);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(soundEffectValueChanged(int)));
 }
 
@@ -772,6 +784,8 @@ void MusicSettingWidget::soundEffectCheckBoxChanged()
     ui->bs2bButton->setEnabled(ui->bs2bCheckBox->isChecked());
     ui->crossfadeButton->setEnabled(ui->crossfadeCheckBox->isChecked());
     ui->stereoButton->setEnabled(ui->stereoCheckBox->isChecked());
+    ui->ladspaButton->setEnabled(ui->ladspaCheckBox->isChecked());
+    ui->samplerateButton->setEnabled(ui->samplerateCheckBox->isChecked());
 
     foreach(EffectFactory *factory, Effect::factories())
     {
@@ -792,23 +806,33 @@ void MusicSettingWidget::soundEffectCheckBoxChanged()
         {
             Effect::setEnabled(factory, true);
         }
+        else if(factory->properties().name.contains("LADSPA") && ui->ladspaCheckBox->isChecked())
+        {
+            Effect::setEnabled(factory, true);
+        }
+        else if(factory->properties().name.contains("SRC") && ui->samplerateCheckBox->isChecked())
+        {
+            Effect::setEnabled(factory, true);
+        }
     }
 }
 
 void MusicSettingWidget::soundEffectValueChanged(int index)
 {
-    QString pulgin;
+    QString plugin;
     switch(index)
     {
-        case 0: pulgin = "BS2B"; break;
-        case 1: pulgin = "Crossfade"; break;
-        case 2: pulgin = "Stereo"; break;
+        case 0: plugin = "BS2B"; break;
+        case 1: plugin = "Crossfade"; break;
+        case 2: plugin = "Stereo"; break;
+        case 3: plugin = "LADSPA"; break;
+        case 4: plugin = "SRC"; break;
         default: break;
     }
 
     foreach(EffectFactory *factory, Effect::factories())
     {
-        if(factory->properties().name.contains(pulgin))
+        if(factory->properties().name.contains(plugin))
         {
             factory->showSettings(this);
         }
