@@ -92,7 +92,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
         QStringList() << tr("Desktop") << tr("Inline"));
     ui->supperFunTableWidget->setRowCount(2);
     ui->supperFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount() + ui->lrcFunTableWidget->rowCount(),
-        QStringList() << ":/contextMenu/equalizer" << ":/contextMenu/remote",
+        QStringList() << ":/contextMenu/equalizer" << ":/contextMenu/network",
         QStringList() << tr("Equalizer") << tr("NetWork"));
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);

@@ -133,6 +133,7 @@
         <file alias="funckeyboard">../TTKResource/contextMenu/context_function_keyboard.png</file>
         <file alias="funcdesktopLrc">../TTKResource/contextMenu/context_function_desktopLrc.png</file>
         <file alias="funcdownload">../TTKResource/contextMenu/context_function_download.png</file>
+        <file alias="network">../TTKResource/contextMenu/context_network.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="favorite">../TTKResource/netRadio/button_favorite.png</file>
