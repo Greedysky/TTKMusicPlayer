@@ -335,6 +335,13 @@ void MusicSettingWidget::initSoundEffectWidget()
     buttonGroup->addButton(ui->ladspaButton, 3);
     buttonGroup->addButton(ui->samplerateButton, 4);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(soundEffectValueChanged(int)));
+
+#ifdef Q_OS_WIN
+    ui->ladspaCheckBox->hide();
+    ui->samplerateCheckBox->hide();
+    ui->ladspaButton->hide();
+    ui->samplerateButton->hide();
+#endif
 }
 
 void MusicSettingWidget::initNetworkWidget()

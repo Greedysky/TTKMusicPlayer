@@ -197,7 +197,13 @@ public Q_SLOTS:
      */
 
     void soundEffectCheckBoxChanged();
+    /*!
+     * Sound effect checkBox changed.
+     */
     void soundEffectValueChanged(int index);
+    /*!
+     * Sound effect button value changed.
+     */
 
 protected:
     void initNormalSettingWidget();
