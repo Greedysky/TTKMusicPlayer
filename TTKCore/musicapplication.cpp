@@ -197,7 +197,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"), tr("Equalizer"), m_object, SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"), m_object, SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"), m_object, SLOT(musicTimerWidget()));
     rightClickMenu.addAction(tr("ShowingSpectrum"), m_leftAreaWidget, SLOT(musicSpectrumWidget()));
@@ -827,6 +827,11 @@ void MusicApplication::getParameterSetting()
          config = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     m_bottomAreaWidget->setDestopLrcVisible(config);
     //This attribute is effective immediately.
+}
+
+void MusicApplication::musicSetEqualizer()
+{
+    m_object->musicSetEqualizer();
 }
 
 void MusicApplication::musicSearchIndexChanged(int, int index)

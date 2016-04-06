@@ -89,6 +89,10 @@ Q_SIGNALS:
     /*!
      * Parameters setting changed emit.
      */
+    void soundEqualizerClicked();
+    /*!
+     * Sound equalizer button clicked.
+     */
 
 public Q_SLOTS:
     void clearFunctionTableSelection();

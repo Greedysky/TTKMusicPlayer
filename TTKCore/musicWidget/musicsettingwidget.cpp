@@ -15,6 +15,7 @@
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QButtonGroup>
+#include <QAudioDeviceInfo>
 #include <QStyledItemDelegate>
 
 MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
@@ -293,6 +294,10 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
     ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    foreach(QAudioDeviceInfo info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
+    {
+        ui->outputTypeComboBox->addItem(info.deviceName());
+    }
 
     ui->bs2bCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->crossfadeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -322,6 +327,7 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->ladspaButton->setEnabled(false);
     ui->samplerateButton->setEnabled(false);
 
+    connect(ui->equalizerButton, SIGNAL(clicked()), SIGNAL(soundEqualizerClicked()));
     connect(ui->bs2bCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
     connect(ui->crossfadeCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
     connect(ui->stereoCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));

@@ -62,6 +62,10 @@ public:
     /*!
      * Window close animation opacity.
      */
+    void musicSetEqualizer();
+    /*!
+     * Show set equalizer widget.
+     */
 
 Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
@@ -93,10 +97,6 @@ public Q_SLOTS:
     void musicToolSetsParameter();
     /*!
      * Timer parameter changed.
-     */
-    void musicSetEqualizer();
-    /*!
-     * Show set equalizer widget.
      */
     void musicDevicesLinuxChanged(bool state);
     /*!
