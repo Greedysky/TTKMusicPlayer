@@ -25,15 +25,15 @@ const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
 const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
 
 //mulity query
-const QString MUSIC_REQUERY_WY = "http://api.musicuu.com/music/search/wy/%1/1?format=json"; //wangyiMusic
-const QString MUSIC_REQUERY_DX = "http://api.musicuu.com/music/search/dx/%1/1?format=json"; //dianxinMusic
-const QString MUSIC_REQUERY_QQ = "http://api.musicuu.com/music/search/qq/%1/1?format=json"; //qqMusic
-const QString MUSIC_REQUERY_XM = "http://api.musicuu.com/music/search/xm/%1/1?format=json"; //xiamiMusic
-const QString MUSIC_REQUERY_TT = "http://api.musicuu.com/music/search/tt/%1/1?format=json"; //ttpodMusic
-const QString MUSIC_REQUERY_BD = "http://api.musicuu.com/music/search/bd/%1/1?format=json"; //baiduMusic
-const QString MUSIC_REQUERY_KW = "http://api.musicuu.com/music/search/kw/%1/1?format=json"; //kuwoMusic
-const QString MUSIC_REQUERY_KG = "http://api.musicuu.com/music/search/kg/%1/1?format=json"; //kuhouMusic
-const QString MUSIC_REQUERY_DM = "http://api.musicuu.com/music/search/dm/%1/1?format=json"; //duomiMusic
+const QString MUSIC_REQUERY_WY = "http://yyfm.xyz/search/wy/%1?p=1&f=json&sign=yyfm"; //wangyiMusic
+const QString MUSIC_REQUERY_DX = "http://yyfm.xyz/search/dx/%1?p=1&f=json&sign=yyfm"; //dianxinMusic
+const QString MUSIC_REQUERY_QQ = "http://yyfm.xyz/search/qq/%1?p=1&f=json&sign=yyfm"; //qqMusic
+const QString MUSIC_REQUERY_XM = "http://yyfm.xyz/search/xm/%1?p=1&f=json&sign=yyfm"; //xiamiMusic
+const QString MUSIC_REQUERY_TT = "http://yyfm.xyz/search/tt/%1?p=1&f=json&sign=yyfm"; //ttpodMusic
+const QString MUSIC_REQUERY_BD = "http://yyfm.xyz/search/bd/%1?p=1&f=json&sign=yyfm"; //baiduMusic
+const QString MUSIC_REQUERY_KW = "http://yyfm.xyz/search/kw/%1?p=1&f=json&sign=yyfm"; //kuwoMusic
+const QString MUSIC_REQUERY_KG = "http://yyfm.xyz/search/kg/%1?p=1&f=json&sign=yyfm"; //kuhouMusic
+const QString MUSIC_REQUERY_DM = "http://yyfm.xyz/search/dm/%1?p=1&f=json&sign=yyfm"; //duomiMusic
 
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>
