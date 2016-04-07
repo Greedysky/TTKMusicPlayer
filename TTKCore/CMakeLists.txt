@@ -16,8 +16,10 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.h
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.h
     ${MUSIC_CORE_DIR}/network/musictextdownloadthread.h
-    ${MUSIC_CORE_DIR}/network/musicbgthemedownload.h
+    ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.h
     ${MUSIC_CORE_DIR}/network/musicnetworkthread.h
+    ${MUSIC_CORE_DIR}/network/musicnetworkproxy.h
+    ${MUSIC_CORE_DIR}/network/musicnetworkoperator.h
     ${MUSIC_CORE_DIR}/network/musicdownloadqueuecache.h
     ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.h
     ${MUSIC_CORE_DIR}/network/musicdownloadquerysinglethread.h
@@ -37,7 +39,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicplayer.h
     ${MUSIC_CORE_DIR}/musicplaylist.h
     ${MUSIC_CORE_DIR}/musicabstractxml.h
-    ${MUSIC_CORE_DIR}/musicbgthememanager.h
+    ${MUSIC_CORE_DIR}/musicbackgroundmanager.h
     ${MUSIC_CORE_DIR}/musicsettingmanager.h
     ${MUSIC_CORE_DIR}/musicconnectionpool.h
     ${MUSIC_CORE_DIR}/musicregeditmanager.h
@@ -161,8 +163,10 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musictextdownloadthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicbgthemedownload.cpp
+    ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.cpp
     ${MUSIC_CORE_DIR}/network/musicnetworkthread.cpp
+    ${MUSIC_CORE_DIR}/network/musicnetworkproxy.cpp
+    ${MUSIC_CORE_DIR}/network/musicnetworkoperator.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadqueuecache.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadquerysinglethread.cpp
@@ -177,7 +181,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musicplaylist.cpp
     ${MUSIC_CORE_DIR}/musicabstractxml.cpp
     ${MUSIC_CORE_DIR}/musicxmlconfigmanager.cpp
-    ${MUSIC_CORE_DIR}/musicbgthememanager.cpp
+    ${MUSIC_CORE_DIR}/musicbackgroundmanager.cpp
     ${MUSIC_CORE_DIR}/musicconnectionpool.cpp
     ${MUSIC_CORE_DIR}/musicregeditmanager.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
