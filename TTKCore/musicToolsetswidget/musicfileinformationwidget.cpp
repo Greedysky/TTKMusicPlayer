@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicsongtag.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)

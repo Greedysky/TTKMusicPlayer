@@ -2,7 +2,7 @@
 #include "ui_musiclrcmakerwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicconnectionpool.h"

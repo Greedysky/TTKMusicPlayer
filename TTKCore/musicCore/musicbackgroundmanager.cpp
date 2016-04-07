@@ -1,16 +1,16 @@
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 
-MusicBgThemeManager::MusicBgThemeManager()
+MusicBackgroundManager::MusicBackgroundManager()
 {
     m_currentIndex = 0;
 }
 
-void MusicBgThemeManager::clearArtName()
+void MusicBackgroundManager::clearArtName()
 {
     m_currentArtName.clear();
 }
 
-void MusicBgThemeManager::setArtName(const QString &name)
+void MusicBackgroundManager::setArtName(const QString &name)
 {
     QString sName = name.split('-').front().trimmed();
     if(!m_currentArtName.isEmpty() && m_currentArtName != sName)
@@ -30,7 +30,7 @@ void MusicBgThemeManager::setArtName(const QString &name)
     emit artHasChanged();
 }
 
-QString MusicBgThemeManager::getArtPhotoPath()
+QString MusicBackgroundManager::getArtPhotoPath()
 {
     if(!m_photos.isEmpty())
     {
@@ -43,7 +43,7 @@ QString MusicBgThemeManager::getArtPhotoPath()
     }
 }
 
-QString MusicBgThemeManager::getArtPhotoPathByIndex(int index) const
+QString MusicBackgroundManager::getArtPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() || m_photos.isEmpty())
     {
@@ -54,17 +54,17 @@ QString MusicBgThemeManager::getArtPhotoPathByIndex(int index) const
                          : m_photos[index];
 }
 
-QStringList MusicBgThemeManager::getArtPhotoPaths() const
+QStringList MusicBackgroundManager::getArtPhotoPaths() const
 {
     return m_photos;
 }
 
-void MusicBgThemeManager::setArtPhotoPaths(const QStringList &list)
+void MusicBackgroundManager::setArtPhotoPaths(const QStringList &list)
 {
     m_photos = list;
 }
 
-void MusicBgThemeManager::setUserSelectArtIndex(int index)
+void MusicBackgroundManager::setUserSelectArtIndex(int index)
 {
     m_currentIndex = index;
     emit userSelectIndexChanged();

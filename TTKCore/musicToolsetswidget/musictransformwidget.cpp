@@ -1,6 +1,6 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 #include <QMovie>

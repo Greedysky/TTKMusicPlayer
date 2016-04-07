@@ -2,7 +2,7 @@
 #include "ui_musicsongsharingwidget.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicdata2downloadthread.h"
 #include "musicmessagebox.h"
 

@@ -2,7 +2,7 @@
 #include "ui_musicwebmusicradiowidget.h"
 #include "musiccoremplayer.h"
 #include "musicuiobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicradioplaylistthread.h"
 #include "musicradiosongsthread.h"
 #include "musictextdownloadthread.h"

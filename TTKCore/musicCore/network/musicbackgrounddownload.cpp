@@ -1,22 +1,22 @@
-#include "musicbgthemedownload.h"
+#include "musicbackgrounddownload.h"
 #include "musicdatadownloadthread.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 
-MusicBgThemeDownload::MusicBgThemeDownload(const QString &name, const QString &save,
+MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
                                            QObject *parent)
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
-    M_CONNECTION->setValue("MusicBgThemeDownload", this);
-    M_CONNECTION->poolConnect("MusicBgThemeDownload", "MusicTopAreaWidget");
+    M_CONNECTION->setValue("MusicBackgroundDownload", this);
+    M_CONNECTION->poolConnect("MusicBackgroundDownload", "MusicTopAreaWidget");
 }
 
-MusicBgThemeDownload::~MusicBgThemeDownload()
+MusicBackgroundDownload::~MusicBackgroundDownload()
 {
-    M_CONNECTION->poolDisConnect("MusicBgThemeDownload");
+    M_CONNECTION->poolDisConnect("MusicBackgroundDownload");
 }
 
-void MusicBgThemeDownload::startToDownload()
+void MusicBackgroundDownload::startToDownload()
 {
     MusicDataDownloadThread *download = new MusicDataDownloadThread(
                              BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD,
@@ -26,7 +26,7 @@ void MusicBgThemeDownload::startToDownload()
     download->startToDownload();
 }
 
-void MusicBgThemeDownload::downLoadFinished()
+void MusicBackgroundDownload::downLoadFinished()
 {
     QFile file(TMP_DOWNLOAD);
     ///Check if the file exists and can be written
@@ -61,7 +61,7 @@ void MusicBgThemeDownload::downLoadFinished()
     QFile::remove(TMP_DOWNLOAD);
 }
 
-void MusicBgThemeDownload::bgDownLoadFinished()
+void MusicBackgroundDownload::bgDownLoadFinished()
 {
     if( ++m_index >= m_counter)
     {

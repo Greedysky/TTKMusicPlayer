@@ -1,5 +1,5 @@
-#ifndef MUSICBGTHEMEMANAGER_H
-#define MUSICBGTHEMEMANAGER_H
+#ifndef MUSICBACKGROUNDMANAGER_H
+#define MUSICBACKGROUNDMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,13 +12,13 @@
 #include "musicobject.h"
 #include "musicsingleton.h"
 
-#define M_BG_MANAGER (MusicSingleton<MusicBgThemeManager>::createInstance())
+#define M_BG_MANAGER (MusicSingleton<MusicBackgroundManager>::createInstance())
 #define MAX_INDEX 5
 
 /*! @brief The class of the manager of dealing with artist pictures.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicBgThemeManager : public QObject
+class MUSIC_CORE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
 public:
@@ -77,15 +77,15 @@ Q_SIGNALS:
      */
 
 protected:
-    MusicBgThemeManager();
-    ~MusicBgThemeManager() = default;
+    MusicBackgroundManager();
+    ~MusicBackgroundManager() = default;
 
     QString m_currentArtName;
     QString m_MBackground;
     QStringList m_photos;
     int m_currentIndex;
 
-    DECLARE_SINGLETON_CLASS(MusicBgThemeManager)
+    DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };
 
-#endif // MUSICBGTHEMEMANAGER_H
+#endif // MUSICBACKGROUNDMANAGER_H

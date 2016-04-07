@@ -3,7 +3,7 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicuiobject.h"
 #include "musicdatadownloadthread.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicregeditmanager.h"
 

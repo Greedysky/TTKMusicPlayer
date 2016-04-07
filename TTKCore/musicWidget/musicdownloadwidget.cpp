@@ -1,6 +1,6 @@
 #include "musicdownloadwidget.h"
 #include "ui_musicdownloadwidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
@@ -8,7 +8,7 @@
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
-#include "musicbgthemedownload.h"
+#include "musicbackgrounddownload.h"
 #include "musicmessagebox.h"
 
 #include <QFileDialog>

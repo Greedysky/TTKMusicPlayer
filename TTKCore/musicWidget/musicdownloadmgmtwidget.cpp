@@ -3,7 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicutils.h"
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)

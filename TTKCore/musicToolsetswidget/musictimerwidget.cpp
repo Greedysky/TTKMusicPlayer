@@ -2,7 +2,7 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 
 #include <QStyledItemDelegate>

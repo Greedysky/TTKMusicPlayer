@@ -2,7 +2,7 @@
 #include "ui_musiclocalsongsmanagerwidget.h"
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"

@@ -2,7 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicuserwindow.h"
 #include "musicbackgroundskindialog.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforrectangle.h"
 #include "musicremotewidgetfordiamond.h"

@@ -5,7 +5,7 @@
 #include "musicxmlconfigmanager.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
 #include "musicversion.h"
 #include "musicuiobject.h"

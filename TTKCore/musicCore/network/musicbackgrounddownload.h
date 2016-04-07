@@ -1,5 +1,5 @@
-#ifndef MUSICBGTHEMESLIDE_H
-#define MUSICBGTHEMESLIDE_H
+#ifndef MUSICBACKGROUNDDOWNLOAD_H
+#define MUSICBACKGROUNDDOWNLOAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -16,16 +16,16 @@
 /*! @brief The class of downloading art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBgThemeDownload : public QObject
+class MUSIC_NETWORK_EXPORT MusicBackgroundDownload : public QObject
 {
     Q_OBJECT
 public:
-    MusicBgThemeDownload(const QString &name, const QString &save,
+    MusicBackgroundDownload(const QString &name, const QString &save,
                          QObject *parent = 0);
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    ~MusicBgThemeDownload();
+    ~MusicBackgroundDownload();
 
     void startToDownload();
     /*!
@@ -56,4 +56,4 @@ protected:
 
 };
 
-#endif // MUSICBGTHEMESLIDE_H
+#endif // MUSICBACKGROUNDDOWNLOAD_H

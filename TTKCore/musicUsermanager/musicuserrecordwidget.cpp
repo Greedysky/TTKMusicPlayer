@@ -1,6 +1,6 @@
 #include "musicuserrecordwidget.h"
 #include "ui_musicuserrecordwidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicusermodel.h"
 #include "musicmessagebox.h"

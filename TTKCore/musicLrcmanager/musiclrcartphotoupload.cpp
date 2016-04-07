@@ -2,7 +2,7 @@
 #include "ui_musiclrcartphotoupload.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 #include <QFileDialog>

@@ -1,6 +1,6 @@
 #include "musicsettingwidget.h"
 #include "ui_musicsettingwidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicnetworkthread.h"
 #include "musicutils.h"
 #include "musicnetworkproxy.h"

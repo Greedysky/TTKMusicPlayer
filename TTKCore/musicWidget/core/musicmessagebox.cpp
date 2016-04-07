@@ -1,6 +1,6 @@
 #include "musicmessagebox.h"
 #include "ui_musicmessagebox.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 
 #include <QButtonGroup>

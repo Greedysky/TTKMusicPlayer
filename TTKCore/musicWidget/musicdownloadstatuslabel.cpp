@@ -3,7 +3,7 @@
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
-#include "musicbgthemedownload.h"
+#include "musicbackgrounddownload.h"
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
@@ -141,7 +141,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #endif
         ///download big picture
-        (new MusicBgThemeDownload( count == 1 ? musicSongInfo.m_singerName : filename,
+        (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : filename,
                                    filename, this))->startToDownload();
     }
     else

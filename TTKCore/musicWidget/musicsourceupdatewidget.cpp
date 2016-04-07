@@ -1,6 +1,6 @@
 #include "musicsourceupdatewidget.h"
 #include "ui_musicsourceupdatewidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)

@@ -1,5 +1,5 @@
 #include "musiclrcfloatphotowidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicclickedlabel.h"
 
 #include <qmath.h>

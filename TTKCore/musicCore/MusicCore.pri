@@ -19,10 +19,10 @@ HEADERS  += \
     $$PWD/network/musicdata2downloadthread.h \
     $$PWD/network/musicdatadownloadthread.h \
     $$PWD/network/musictextdownloadthread.h \
-    $$PWD/network/musicbgthemedownload.h \
     $$PWD/network/musicnetworkthread.h \
     $$PWD/network/musicnetworkproxy.h \
     $$PWD/network/musicnetworkoperator.h \
+    $$PWD/network/musicbackgrounddownload.h \
     $$PWD/network/musicdownloadqueuecache.h \
     $$PWD/network/musicdownloadquerythreadabstract.h \
     $$PWD/network/musicdownloadquerysinglethread.h \
@@ -42,14 +42,14 @@ HEADERS  += \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
     $$PWD/musicabstractxml.h \
-    $$PWD/musicbgthememanager.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicregeditmanager.h \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
-    $$PWD/musiccryptographichash.h
+    $$PWD/musiccryptographichash.h \
+    $$PWD/musicbackgroundmanager.h
 
 }
 
@@ -59,10 +59,10 @@ SOURCES += \
     $$PWD/network/musicdata2downloadthread.cpp \
     $$PWD/network/musicdatadownloadthread.cpp \
     $$PWD/network/musictextdownloadthread.cpp \
-    $$PWD/network/musicbgthemedownload.cpp \
     $$PWD/network/musicnetworkthread.cpp \
     $$PWD/network/musicnetworkproxy.cpp \
     $$PWD/network/musicnetworkoperator.cpp \
+    $$PWD/network/musicbackgrounddownload.cpp \
     $$PWD/network/musicdownloadqueuecache.cpp \
     $$PWD/network/musicdownloadquerythreadabstract.cpp \
     $$PWD/network/musicdownloadquerysinglethread.cpp \
@@ -77,11 +77,11 @@ SOURCES += \
     $$PWD/musicplaylist.cpp \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicxmlconfigmanager.cpp \
-    $$PWD/musicbgthememanager.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsong.cpp \
-    $$PWD/musiccryptographichash.cpp
+    $$PWD/musiccryptographichash.cpp \
+    $$PWD/musicbackgroundmanager.cpp
 
 }

@@ -1,5 +1,5 @@
 #include "musicdesktopwallpaperthread.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicregeditmanager.h"
 #include "musictime.h"
 

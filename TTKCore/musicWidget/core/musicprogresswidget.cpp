@@ -1,5 +1,5 @@
 #include "musicprogresswidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 
 #include <QPainter>

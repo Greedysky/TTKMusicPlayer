@@ -1,7 +1,7 @@
 #include "musicbackgroundskindialog.h"
 #include "ui_musicbackgroundskindialog.h"
 #include "musicobject.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicutils.h"
 
 #include <QFileDialog>

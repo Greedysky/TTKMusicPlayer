@@ -2,7 +2,7 @@
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicdata2downloadthread.h"
-#include "musicbgthemedownload.h"
+#include "musicbackgrounddownload.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
@@ -250,7 +250,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #endif
     ///download big picture
-    (new MusicBgThemeDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
+    (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
     m_downloadDatas.clear();
     m_downloadDatas << musicSong << item(row, 3)->text() << musicSongAttr.m_format;

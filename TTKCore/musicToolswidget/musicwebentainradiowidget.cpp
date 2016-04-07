@@ -1,7 +1,7 @@
 #include "musicwebentainradiowidget.h"
 #include "ui_musicwebentainradiowidget.h"
 #include "musicwebentainradiodatebase.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musiccoremplayer.h"
 
 #include <QProcess>

@@ -84,7 +84,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadType)), second,
                                 SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
     }
-    else if(from == "MusicBgThemeDownload" && to == "MusicTopAreaWidget" )
+    else if(from == "MusicBackgroundDownload" && to == "MusicTopAreaWidget" )
     {
         QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
                                 SLOT(musicBgThemeDownloadFinished()));

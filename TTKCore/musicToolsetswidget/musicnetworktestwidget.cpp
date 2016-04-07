@@ -1,6 +1,6 @@
 #include "musicnetworktestwidget.h"
 #include "ui_musicnetworktestwidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicnetworktestthread.h"
 #include "musicutils.h"

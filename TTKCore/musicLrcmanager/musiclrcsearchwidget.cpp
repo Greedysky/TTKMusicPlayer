@@ -2,7 +2,7 @@
 #include "ui_musiclrcsearchwidget.h"
 #include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
-#include "musicbgthememanager.h"
+#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
