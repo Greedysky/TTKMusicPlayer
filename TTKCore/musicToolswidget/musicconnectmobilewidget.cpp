@@ -1,4 +1,5 @@
 #include "musicconnectmobilewidget.h"
+#include "musicconnecttransferwidget.h"
 
 #include <QStackedWidget>
 #include <QBoxLayout>
@@ -93,12 +94,20 @@ void MusicConnectMobileWidget::initSecondWidget()
     QLabel *label2 = new QLabel(tr("android phone open usb debug"), secondWidget);
     label2->setStyleSheet("font-size:15px");
 
+    QPushButton *openButton = new QPushButton(tr("transfer"), secondWidget);
+    openButton->setStyleSheet("QPushButton{border-radius:2px;background:rgba(0,0,0,50);}");
+    openButton->setFixedSize(80, 40);
+    openButton->setCursor(Qt::PointingHandCursor);
+    connect(openButton, SIGNAL(clicked(bool)), SLOT(openTransferFilesWidget()));
+
     vBox->addWidget(backButton);
     vBox->addStretch(4);
     vBox->addWidget(pixLabel, 0, Qt::AlignCenter);
     vBox->addWidget(label1, 0, Qt::AlignCenter);
     vBox->addWidget(label2, 0, Qt::AlignCenter);
-    vBox->addStretch(5);
+    vBox->addStretch(2);
+    vBox->addWidget(openButton, 0, Qt::AlignCenter);
+    vBox->addStretch(3);
 
     secondWidget->setLayout(vBox);
 
@@ -137,4 +146,10 @@ void MusicConnectMobileWidget::changeStatckedWidgetSecond()
 void MusicConnectMobileWidget::changeStatckedWidgetThird()
 {
     m_stackedWidget->setCurrentIndex(2);
+}
+
+void MusicConnectMobileWidget::openTransferFilesWidget()
+{
+    MusicConnectTransferWidget w;
+    w.exec();
 }

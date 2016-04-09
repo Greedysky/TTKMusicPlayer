@@ -27,7 +27,7 @@ public:
      */
     ~MusicConnectMobileWidget();
 
-public Q_SLOTS:
+private Q_SLOTS:
     void changeStatckedWidgetFirst();
     /*!
      * Change to main widget.
@@ -39,6 +39,10 @@ public Q_SLOTS:
     void changeStatckedWidgetThird();
     /*!
      * Change to wire widget.
+     */
+    void openTransferFilesWidget();
+    /*!
+     * Open transfer files widget.
      */
 
 protected:

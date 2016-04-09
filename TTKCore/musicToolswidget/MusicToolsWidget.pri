@@ -22,6 +22,7 @@ HEADERS  += \
     $$PWD/core/musicmydownloadrecordconfigmanager.h \
     $$PWD/core/musicwebentainradiodatebase.h \
     $$PWD/musicconnectmobilewidget.h \
+    $$PWD/musicconnecttransferwidget.h \
     $$PWD/musicwebradiotoolwidget.h \
     $$PWD/musicwebentainradiowidget.h \
     $$PWD/musicwebentainradiolistview.h \
@@ -39,6 +40,7 @@ SOURCES += \
     $$PWD/core/musicmydownloadrecordconfigmanager.cpp \
     $$PWD/core/musicwebentainradiodatebase.cpp \
     $$PWD/musicconnectmobilewidget.cpp \
+    $$PWD/musicconnecttransferwidget.cpp \
     $$PWD/musicwebradiotoolwidget.cpp \
     $$PWD/musicwebentainradiowidget.cpp \
     $$PWD/musicwebentainradiolistview.cpp \
