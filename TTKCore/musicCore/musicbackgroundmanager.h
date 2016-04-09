@@ -57,11 +57,11 @@ public:
      * Set user select current index.
      */
 
-    void setMBackground(const QString &path) { m_MBackground = path;}
+    void setMBackground(const QString &path) { m_background = path;}
     /*!
      * Set artist background picture by path.
      */
-    QString getMBackground() const {return m_MBackground;}
+    QString getMBackground() const {return m_background;}
     /*!
      * Get artist background picture path.
      */
@@ -81,7 +81,7 @@ protected:
     ~MusicBackgroundManager() = default;
 
     QString m_currentArtName;
-    QString m_MBackground;
+    QString m_background;
     QStringList m_photos;
     int m_currentIndex;
 
