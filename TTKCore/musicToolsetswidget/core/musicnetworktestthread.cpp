@@ -93,7 +93,7 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
         QString qs = QString::fromStdString(s);
         if((Row.dwType == 71 || Row.dwType == 6) && !names.contains(qs))
         {
-            names << QString::fromStdString(s);
+            names << qs;
         }
     }
     delete[] m_pTable;
