@@ -6,6 +6,7 @@
 #include "musicdesktopwallpaperwidget.h"
 #include "musicconnectionpool.h"
 #include "musicnetworktestwidget.h"
+#include "musicconnecttransferwidget.h"
 #include "musicutils.h"
 
 #include <QProcess>
@@ -123,8 +124,10 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 break;
            }
         case 1:
-            MusicAudioRecorderWidget(this).exec();
-            break;
+            {
+                MusicAudioRecorderWidget(this).exec();
+                break;
+            }
         case 2:
            {
 #ifdef Q_OS_WIN
@@ -152,13 +155,20 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 break;
             }
         case 4:
-            MusicTransformWidget(this).exec();
-            break;
+            {
+                MusicTransformWidget(this).exec();
+                break;
+            }
         case 5:
             {
 #ifdef Q_OS_WIN
                 (new MusicDesktopWallpaperWidget(this))->show();
 #endif
+                break;
+            }
+        case 10:
+            {
+                MusicConnectTransferWidget(this).exec();
                 break;
             }
         case 12:

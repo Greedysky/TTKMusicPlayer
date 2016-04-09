@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>379</height>
+    <width>655</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>475</width>
-     <height>339</height>
+     <width>615</width>
+     <height>369</height>
     </rect>
    </property>
    <property name="text">
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>473</x>
+     <x>613</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -60,13 +60,26 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>475</width>
-     <height>314</height>
+     <width>615</width>
+     <height>344</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <widget class="QWidget" name="backgroundMask_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>114</x>
+      <y>0</y>
+      <width>361</width>
+      <height>344</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(255,255,255,50)</string>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
