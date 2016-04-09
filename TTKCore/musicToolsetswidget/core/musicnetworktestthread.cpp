@@ -91,7 +91,7 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
         MIB_IFROW Row = m_pTable->table[i];
         std::string s(MReinterpret_cast(char const*, Row.bDescr));
         QString qs = QString::fromStdString(s);
-        if(Row.dwType == 71 && !names.contains(qs))
+        if((Row.dwType == 71 || Row.dwType == 6) && !names.contains(qs))
         {
             names << QString::fromStdString(s);
         }
