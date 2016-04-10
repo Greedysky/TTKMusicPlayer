@@ -59,7 +59,32 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
     MusicSongsList songs;
     QStringList names;
     emit getMusicLists(songs, names);
-    qDebug() << index << songs[index].count();
+    if(index >= songs.count())
+    {
+        return;
+    }
+
+    ui->playListTableWidget->clear();
+    ui->playListTableWidget->setRowCount(songs[index].count());
+    for(int i=0; i<songs[index].count(); ++i)
+    {
+        MusicSong song = songs[index][i];
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setData(MUSIC_CHECK_ROLE, false);
+        ui->playListTableWidget->setItem(i, 0, item);
+
+                          item = new QTableWidgetItem;
+        item->setText(QFontMetrics(font()).elidedText(song.getMusicName(), Qt::ElideRight, 280));
+        item->setToolTip(song.getMusicPath());
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        ui->playListTableWidget->setItem(i, 1, item);
+
+                item = new QTableWidgetItem;
+        item->setText(QFontMetrics(font()).elidedText(song.getMusicTime(), Qt::ElideRight, 40));
+        item->setToolTip(song.getMusicTime());
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        ui->playListTableWidget->setItem(i, 2, item);
+    }
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -67,13 +92,13 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
     if(!check)
     {
         ui->allSelectedcheckBox->setText(tr("allselected"));
-//        ui->songlistsTable->clearSelection();
-//        ui->songlistsTable->setCurrentIndex(QModelIndex());
+        ui->playListTableWidget->clearSelection();
+        ui->playListTableWidget->setCurrentIndex(QModelIndex());
     }
     else
     {
         ui->allSelectedcheckBox->setText(tr("allcanceled"));
-//        ui->songlistsTable->selectAll();
+        ui->playListTableWidget->selectAll();
     }
 }
 

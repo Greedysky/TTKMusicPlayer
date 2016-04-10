@@ -24,6 +24,9 @@ class MUSIC_TOOL_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDia
     Q_OBJECT
 public:
     explicit MusicConnectTransferWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicConnectTransferWidget();
 
 Q_SIGNALS:
@@ -48,7 +51,9 @@ public Q_SLOTS:
 
 protected:
     void initColumns();
-
+    /*!
+     * Create the left button column
+     */
     Ui::MusicConnectTransferWidget *ui;
 
 };

@@ -97,7 +97,7 @@
       <rect>
        <x>24</x>
        <y>10</y>
-       <width>81</width>
+       <width>95</width>
        <height>16</height>
       </rect>
      </property>
@@ -115,7 +115,7 @@
       <string notr="true">border-image: url(:/share/searchlineleft);</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="playListTableWidget">
+    <widget class="MusicConnectTransferTableWidget" name="playListTableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -132,6 +132,13 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicConnectTransferTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicconnecttransfertablewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
