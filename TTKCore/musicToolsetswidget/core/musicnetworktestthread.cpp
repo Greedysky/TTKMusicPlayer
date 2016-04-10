@@ -169,7 +169,8 @@ void MusicNetworkTestThread::run()
         {
             MIB_IFROW Row = m_pTable->table[i];
             std::string s(MReinterpret_cast(char const*, Row.bDescr));
-            if(Row.dwType == 71 && m_names.contains(QString::fromStdString(s)))
+            if( (Row.dwType == 71 || Row.dwType == 6) &&
+                m_names.contains(QString::fromStdString(s)))
             {
                 dwInOctets += Row.dwInOctets;
                 dwOutOctets += Row.dwOutOctets;
