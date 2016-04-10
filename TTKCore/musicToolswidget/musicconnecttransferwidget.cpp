@@ -25,6 +25,9 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
+    ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     M_CONNECTION->setValue("MusicConnectTransferWidget", this);
     M_CONNECTION->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
 }
@@ -89,6 +92,11 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
+    for(int i=0; i<ui->playListTableWidget->rowCount(); ++i)
+    {
+        ui->playListTableWidget->item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
+    }
+
     if(!check)
     {
         ui->allSelectedcheckBox->setText(tr("allselected"));

@@ -39,6 +39,7 @@
         <file alias="imagetrans">../TTKResource/music_image_transparent.png</file>
         <file alias="resizeWindow">../TTKResource/music_resizeWindow.png</file>
         <file alias="noneImage">../TTKResource/music_noneImage.png</file>
+        <file alias="usb">../TTKResource/music_mobile_usb.png</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="bg">../TTKResource/quality/background.png</file>
