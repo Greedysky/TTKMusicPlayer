@@ -97,7 +97,11 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 
 void MusicLocalSongsManagerWidget::clearAllItems()
 {
-    //Remove all the original item
+    ///Remove all the original item
+    if(ui->allSelectedcheckBox->isChecked())
+    {
+        ui->allSelectedcheckBox->click();
+    }
     m_currentIndex == 0 ? ui->songlistsTable->clearShowlist() : ui->songlistsTable->clearShowPath();
 }
 

@@ -80,6 +80,10 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 
     m_currentIndex = index;
     ui->playListTableWidget->clear();
+    if(ui->allSelectedcheckBox->isChecked())
+    {
+        ui->allSelectedcheckBox->click();
+    }
     ui->playListTableWidget->setRowCount(songs[index].count());
     for(int i=0; i<songs[index].count(); ++i)
     {
