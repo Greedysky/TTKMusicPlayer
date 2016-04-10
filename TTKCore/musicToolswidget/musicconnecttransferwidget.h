@@ -44,6 +44,10 @@ public Q_SLOTS:
     /*!
      * Select all items.
      */
+    void startToTransferFiles();
+    /*!
+     * Start to transfer files.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -55,6 +59,7 @@ protected:
      * Create the left button column
      */
     Ui::MusicConnectTransferWidget *ui;
+    int m_currentIndex;
 
 };
 

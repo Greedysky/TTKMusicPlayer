@@ -4,8 +4,11 @@
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
+#include "musicmessagebox.h"
+#include "musicprogresswidget.h"
 
 #include <QDebug>
+#include <QFile>
 #include <QPushButton>
 #include <QButtonGroup>
 
@@ -14,6 +17,8 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
       ui(new Ui::MusicConnectTransferWidget)
 {
     ui->setupUi(this);
+
+    m_currentIndex = -1;
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -28,6 +33,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     M_CONNECTION->setValue("MusicConnectTransferWidget", this);
     M_CONNECTION->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
@@ -59,6 +65,7 @@ void MusicConnectTransferWidget::initColumns()
 
     QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     ui->textLabel->setText(QString("( %1 )").arg(path));
+    ui->transferButton->setEnabled( !path.isEmpty() );
 }
 
 void MusicConnectTransferWidget::currentPlayListSelected(int index)
@@ -71,6 +78,7 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
         return;
     }
 
+    m_currentIndex = index;
     ui->playListTableWidget->clear();
     ui->playListTableWidget->setRowCount(songs[index].count());
     for(int i=0; i<songs[index].count(); ++i)
@@ -112,6 +120,48 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
         ui->allSelectedcheckBox->setText(tr("allcanceled"));
         ui->playListTableWidget->selectAll();
     }
+}
+
+void MusicConnectTransferWidget::startToTransferFiles()
+{
+    MIntList list(ui->playListTableWidget->getSelectedItems());
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
+        return;
+    }
+
+    MusicSongsList songs;
+    QStringList names;
+    emit getMusicLists(songs, names);
+    if(m_currentIndex == -1 || m_currentIndex >= songs.count())
+    {
+        return;
+    }
+
+    names.clear();
+    MusicSongs song = songs[m_currentIndex];
+    QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    foreach(int index, list)
+    {
+        names << song[index].getMusicPath();
+    }
+
+    MusicProgressWidget progress;
+    progress.show();
+    progress.setTitle(tr("Copy File Mode"));
+    progress.setRange(0, names.count());
+    for(int i=0; i<names.count(); ++i)
+    {
+        QString last = names[i].split("/").last();
+        QFile::copy(names[i], path + "/" + last);
+        progress.setValue(i);
+    }
+
+    ui->allSelectedcheckBox->setChecked(false);
+    ui->playListTableWidget->clearSelection();
 }
 
 int MusicConnectTransferWidget::exec()

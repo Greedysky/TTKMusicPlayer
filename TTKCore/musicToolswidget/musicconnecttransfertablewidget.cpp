@@ -42,3 +42,16 @@ void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
         item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
     }
 }
+
+MIntList MusicConnectTransferTableWidget::getSelectedItems() const
+{
+    MIntList list;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)
+        {
+            list << i;
+        }
+    }
+    return list;
+}

@@ -293,8 +293,7 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
         itemsSelected();
         return;
     }
-    if(ui->songlistsTable->rowCount() <= 0 ||
-       ui->songlistsTable->currentRow() < 0 )
+    if(ui->songlistsTable->rowCount() <= 0 || ui->songlistsTable->currentRow() < 0 )
     {
         MusicMessageBox message;
         message.setText(tr("please select one item"));
@@ -312,8 +311,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
         itemsSelected();
         return;
     }
-    if(ui->songlistsTable->rowCount() <= 0 ||
-       ui->songlistsTable->currentRow() < 0 )
+    if(ui->songlistsTable->rowCount() <= 0 || ui->songlistsTable->currentRow() < 0 )
     {
         MusicMessageBox message;
         message.setText(tr("please select one item"));

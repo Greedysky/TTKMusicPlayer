@@ -17,6 +17,11 @@ public:
      */
     virtual ~MusicConnectTransferTableWidget();
 
+    MIntList getSelectedItems() const;
+    /*!
+     * Get selected items.
+     */
+
 public Q_SLOTS:
     virtual void listCellClicked(int row, int col) override;
     /*!
