@@ -118,8 +118,10 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
                                 break;
                             unitmask = unitmask >> 1;
                         }
+                        QString dev((char)(i + 'A'));
                         M_LOGGER << "USB_Arrived and The USBDisk is: "
-                                 << (char)(i + 'A') << LOG_END;
+                                 << dev << LOG_END;
+                        M_SETTING->setValue(MusicSettingManager::MobileDevicePathChoiced, dev + ":/");
                         delete m_mobileDevices;
                         m_mobileDevices = new MusicMobileDevicesWidget;
                         m_mobileDevices->show();
@@ -133,6 +135,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
                     if (lpdbv -> dbcv_flags == 0)
                     {
                         M_LOGGER << "USB_remove" << LOG_END;
+                        M_SETTING->setValue(MusicSettingManager::MobileDevicePathChoiced, QString());
                         delete m_mobileDevices;
                         m_mobileDevices = nullptr;
                     }

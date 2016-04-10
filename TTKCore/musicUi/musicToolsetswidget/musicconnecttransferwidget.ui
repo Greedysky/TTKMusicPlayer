@@ -130,7 +130,7 @@ QLabel{background:transparent;}</string>
    <widget class="QLabel" name="iconLabel">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>510</x>
       <y>50</y>
       <width>72</width>
       <height>72</height>
@@ -145,9 +145,12 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>500</x>
       <y>125</y>
-      <width>100</width>
+      <width>95</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="transferButton">

@@ -38,6 +38,7 @@ public:
         CloseNetWorkChoiced,            ///*Close NetWork Parameter*/
         FileAssociationChoiced,         ///*File Association Parameter*/
         MuiscSongLovedChoiced,          ///*Muisc song has loved Parameter*/
+        MobileDevicePathChoiced,        ///*Set Mobile Device Path Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/

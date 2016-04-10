@@ -3,6 +3,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
+#include "musicsettingmanager.h"
 
 #include <QDebug>
 #include <QPushButton>
@@ -55,6 +56,9 @@ void MusicConnectTransferWidget::initColumns()
         button->setGeometry(32, 100 + 50*i, 90, 25);
         group->addButton(button, i);
     }
+
+    QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    ui->textLabel->setText(QString("( %1 )").arg(path));
 }
 
 void MusicConnectTransferWidget::currentPlayListSelected(int index)
