@@ -210,6 +210,15 @@ void MusicSongsSummarizied::deleteFloatWidget()
     m_floatWidget = nullptr;
 }
 
+void MusicSongsSummarizied::getMusicLists(MusicSongsList &songs, QStringList &names)
+{
+    songs = m_musicFileNames;
+    for(int i=0; i<count(); ++i)
+    {
+        names << itemText(i);
+    }
+}
+
 void MusicSongsSummarizied::clearAllLists()
 {
     while(!m_mainSongLists.isEmpty())

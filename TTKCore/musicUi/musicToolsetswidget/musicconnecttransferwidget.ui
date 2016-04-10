@@ -67,7 +67,7 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <widget class="QWidget" name="backgroundMask_2" native="true">
+   <widget class="QWidget" name="playListWidget" native="true">
     <property name="geometry">
      <rect>
       <x>114</x>
@@ -79,6 +79,52 @@
     <property name="styleSheet">
      <string notr="true">background:rgba(255,255,255,50)</string>
     </property>
+    <widget class="QLineEdit" name="searchLineEdit">
+     <property name="geometry">
+      <rect>
+       <x>135</x>
+       <y>5</y>
+       <width>165</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/image/searchline);color:#6495ED;</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="allSelectedcheckBox">
+     <property name="geometry">
+      <rect>
+       <x>24</x>
+       <y>10</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="searchLineLabel">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>5</y>
+       <width>25</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/share/searchlineleft);</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="playListTableWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>361</width>
+       <height>300</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <zorder>background</zorder>

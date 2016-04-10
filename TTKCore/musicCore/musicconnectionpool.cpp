@@ -1,5 +1,6 @@
 #include "musicconnectionpool.h"
 #include "musicobject.h"
+#include "musicsong.h"
 
 #include <QWidget>
 
@@ -163,6 +164,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(openStackedDownloadWidget()), second,
                                 SLOT(musicStackedMyDownWidgetChanged()));
+    }
+    else if(from == "MusicConnectTransferWidget" && to == "MusicSongsSummarizied" )
+    {
+        QObject::connect(first, SIGNAL(getMusicLists(MusicSongsList&,QStringList&)), second,
+                                SLOT(getMusicLists(MusicSongsList&,QStringList&)));
     }
 
 }

@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsong.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
@@ -25,13 +26,29 @@ public:
     explicit MusicConnectTransferWidget(QWidget *parent = 0);
     virtual ~MusicConnectTransferWidget();
 
+Q_SIGNALS:
+    void getMusicLists(MusicSongsList &songs, QStringList &names);
+    /*!
+     * Get music datas from container.
+     */
+
 public Q_SLOTS:
+    void currentPlayListSelected(int index);
+    /*!
+     * Current playList selected.
+     */
+    void selectedAllItems(bool check);
+    /*!
+     * Select all items.
+     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
+    void initColumns();
+
     Ui::MusicConnectTransferWidget *ui;
 
 };

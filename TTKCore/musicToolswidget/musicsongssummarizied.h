@@ -192,6 +192,10 @@ public Q_SLOTS:
     /*!
      * Delete the float function widget.
      */
+    void getMusicLists(MusicSongsList &songs, QStringList &names);
+    /*!
+     * Get music datas from container.
+     */
 
 protected:
     void changeItemIcon();
