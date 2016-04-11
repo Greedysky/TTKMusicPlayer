@@ -1,4 +1,5 @@
 #include "musicregeditmanager.h"
+#include "musicplayer.h"
 
 #include <QSettings>
 #include <QStringList>
@@ -30,9 +31,7 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
-    QStringList types;
-    types << "pmc" << "wav" << "aac" << "ac3" << "flac" << "mp1"
-          << "mp2" << "mp3" << "oga" << "ogg";
+    QStringList types = MusicPlayer::supportFormatsString();
     for(int i=0; i<types.count(); ++i)
     {
         if(!currentNodeHasExist(types[i]))
