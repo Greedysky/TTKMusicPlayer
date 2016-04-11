@@ -156,7 +156,7 @@ QLabel{background:transparent;}</string>
    <widget class="QPushButton" name="transferButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>508</x>
       <y>190</y>
       <width>80</width>
       <height>25</height>

@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicsong.h"
+#include "musicobject.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
@@ -48,6 +49,10 @@ public Q_SLOTS:
     /*!
      * Start to transfer files.
      */
+    void musicSearchIndexChanged(int row, int col);
+    /*!
+     * Search file from list.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -58,8 +63,15 @@ protected:
     /*!
      * Create the left button column
      */
+    void createAllItems(const MusicSongs &songs);
+    /*!
+     * Create all items.
+     */
+
     Ui::MusicConnectTransferWidget *ui;
     int m_currentIndex;
+    MusicSongs m_currentSongs;
+    MIntsListMap m_searchfileListCache;
 
 };
 

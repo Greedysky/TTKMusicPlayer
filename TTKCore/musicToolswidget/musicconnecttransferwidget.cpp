@@ -7,7 +7,6 @@
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 
-#include <QDebug>
 #include <QFile>
 #include <QPushButton>
 #include <QButtonGroup>
@@ -35,6 +34,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
+    connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
     M_CONNECTION->setValue("MusicConnectTransferWidget", this);
     M_CONNECTION->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
 }
@@ -68,26 +68,17 @@ void MusicConnectTransferWidget::initColumns()
     ui->transferButton->setEnabled( !path.isEmpty() );
 }
 
-void MusicConnectTransferWidget::currentPlayListSelected(int index)
+void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 {
-    MusicSongsList songs;
-    QStringList names;
-    emit getMusicLists(songs, names);
-    if(index >= songs.count())
-    {
-        return;
-    }
-
-    m_currentIndex = index;
     ui->playListTableWidget->clear();
     if(ui->allSelectedcheckBox->isChecked())
     {
         ui->allSelectedcheckBox->click();
     }
-    ui->playListTableWidget->setRowCount(songs[index].count());
-    for(int i=0; i<songs[index].count(); ++i)
+    ui->playListTableWidget->setRowCount(songs.count());
+    for(int i=0; i<songs.count(); ++i)
     {
-        MusicSong song = songs[index][i];
+        MusicSong song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         ui->playListTableWidget->setItem(i, 0, item);
@@ -104,6 +95,22 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         ui->playListTableWidget->setItem(i, 2, item);
     }
+}
+
+void MusicConnectTransferWidget::currentPlayListSelected(int index)
+{
+    MusicSongsList songs;
+    QStringList names;
+    emit getMusicLists(songs, names);
+    if(index >= songs.count())
+    {
+        return;
+    }
+
+    m_searchfileListCache.clear();
+    ui->searchLineEdit->clear();
+    m_currentSongs = songs[m_currentIndex = index];
+    createAllItems(m_currentSongs);
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -137,20 +144,21 @@ void MusicConnectTransferWidget::startToTransferFiles()
         return;
     }
 
-    MusicSongsList songs;
-    QStringList names;
-    emit getMusicLists(songs, names);
-    if(m_currentIndex == -1 || m_currentIndex >= songs.count())
+    if(m_currentIndex == -1 || m_currentIndex > m_currentSongs.count())
     {
         return;
     }
 
-    names.clear();
-    MusicSongs song = songs[m_currentIndex];
+    QStringList names;
     QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     foreach(int index, list)
     {
-        names << song[index].getMusicPath();
+        if(!m_searchfileListCache.isEmpty())
+        {
+            int count = ui->searchLineEdit->text().trimmed().count();
+            index = m_searchfileListCache.value(count)[index];
+        }
+        names << m_currentSongs[index].getMusicPath();
     }
 
     MusicProgressWidget progress;
@@ -159,13 +167,32 @@ void MusicConnectTransferWidget::startToTransferFiles()
     progress.setRange(0, names.count());
     for(int i=0; i<names.count(); ++i)
     {
-        QString last = names[i].split("/").last();
-        QFile::copy(names[i], path + "/" + last);
+        QFile::copy(names[i], QString("%1/%2").arg(path).arg(names[i].split("/").last()));
         progress.setValue(i);
     }
 
     ui->allSelectedcheckBox->setChecked(false);
     ui->playListTableWidget->clearSelection();
+}
+
+void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
+{
+    MIntList searchResult;
+    for(int j=0; j<m_currentSongs.count(); ++j)
+    {
+        if(m_currentSongs[j].getMusicName().contains(ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        {
+            searchResult << j;
+        }
+    }
+    m_searchfileListCache.insert(index, searchResult);
+
+    MusicSongs songs;
+    foreach(int index, searchResult)
+    {
+        songs.append(m_currentSongs[index]);
+    }
+    createAllItems(songs);
 }
 
 int MusicConnectTransferWidget::exec()

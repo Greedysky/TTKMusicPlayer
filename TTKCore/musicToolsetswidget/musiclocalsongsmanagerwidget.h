@@ -117,10 +117,10 @@ protected:
 
     Ui::MusicLocalSongsManagerWidget *ui;
     int m_currentIndex;
+    QMovie *m_movie;
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;
     MIntsListMap m_searchfileListCache;
-    QMovie *m_movie;
 
 };
 
