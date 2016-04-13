@@ -202,7 +202,12 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("TimingSettings"), m_object, SLOT(musicTimerWidget()));
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
     spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
-    spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()));
+    spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
+#if !defined Q_OS_WIN || defined MUSIC_QT_5
+    false);
+#else
+    true);
+#endif
     rightClickMenu.addMenu(&spectrumControl);
     rightClickMenu.addSeparator();
 
