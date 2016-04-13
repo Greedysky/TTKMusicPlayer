@@ -103,13 +103,8 @@
         <file alias="spectrum">../TTKResource/tools/spectrum.png</file>
         <file alias="wallpaper">../TTKResource/tools/wallpaper.png</file>
         <file alias="phone">../TTKResource/tools/phone.png</file>
-        <file alias="vip">../TTKResource/tools/vip.png</file>
-        <file alias="live">../TTKResource/tools/live.png</file>
-        <file alias="ktv">../TTKResource/tools/ktv.png</file>
         <file alias="speed">../TTKResource/tools/speed.png</file>
-        <file alias="game">../TTKResource/tools/game.png</file>
-        <file alias="lottery">../TTKResource/tools/lottery.png</file>
-        <file alias="radio">../TTKResource/tools/radio.png</file>
+        <file alias="gain">../TTKResource/tools/gain.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="about">../TTKResource/contextMenu/context_about.png</file>

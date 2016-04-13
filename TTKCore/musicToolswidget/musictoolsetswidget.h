@@ -33,6 +33,10 @@ Q_SIGNALS:
     /*!
      * Get current play lists.
      */
+    void showSpectrumWidget();
+    /*!
+     * Show dpectrum widget dialog.
+     */
 
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);

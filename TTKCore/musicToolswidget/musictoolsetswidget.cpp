@@ -34,6 +34,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
     M_CONNECTION->setValue("MusicToolSetsWidget", this);
     M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicApplication");
+    M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicLeftAreaWidget");
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
@@ -74,40 +75,24 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("transform"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/spectrum")
+                                                ,tr("spectrum"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/wallpaper")
                                                 ,tr("wallpaper"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/ktv")
-                                                    ,tr("ktv"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/live")
-                                                ,tr("live"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/game")
-                                                ,tr("game"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lottery")
-                                                ,tr("lottery"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/phone")
                                                 ,tr("phone"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/radio")
-                                                ,tr("radio"), this);
-    item->setSizeHint(QSize(80, 90));
-    addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/speed")
                                                 ,tr("speed"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/vip")
-                                                ,tr("vip"), this);
+                     item = new QListWidgetItem(QIcon(":/tools/gain")
+                                                ,tr("gain"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
 
@@ -119,8 +104,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
            {
-                MusicLocalSongsManagerWidget local(this);
-                local.exec();
+                MusicLocalSongsManagerWidget(this).exec();
                 break;
            }
         case 1:
@@ -161,19 +145,28 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
+                emit showSpectrumWidget();
+                break;
+            }
+        case 6:
+            {
 #ifdef Q_OS_WIN
                 (new MusicDesktopWallpaperWidget(this))->show();
 #endif
                 break;
             }
-        case 10:
+        case 7:
             {
                 MusicConnectTransferWidget(this).exec();
                 break;
             }
-        case 12:
+        case 8:
             {
                 (new MusicNetworkTestWidget(this))->show();
+                break;
+            }
+        case 9:
+            {
                 break;
             }
         default:

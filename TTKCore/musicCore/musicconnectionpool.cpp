@@ -73,6 +73,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(getCurrentPlayList(QStringList&)), second,
                                 SLOT(getCurrentPlayList(QStringList&)));
     }
+    else if(from == "MusicToolSetsWidget" && to == "MusicLeftAreaWidget" )
+    {
+        QObject::connect(first, SIGNAL(showSpectrumWidget()), second,
+                                SLOT(musicAnalyzerSpectrumWidget()));
+    }
     else if(from == "MusicEqualizerDialog" && to == "MusicPlayer" )
     {
         QObject::connect(first, SIGNAL(setEqEffect(MIntList)), second,
