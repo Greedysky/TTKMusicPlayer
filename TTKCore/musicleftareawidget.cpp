@@ -10,6 +10,7 @@
 #include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"
+#include "visualfactory.h"
 ///
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
@@ -115,13 +116,27 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setToolTip(tr("musicMobile"));
 }
 
-void MusicLeftAreaWidget::musicSpectrumWidget()
+void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
 {
     Visual::initialize(m_supperClass);
-    QList<VisualFactory*> facts = Visual::factories();
-    if(!facts.isEmpty())
+    foreach(VisualFactory *v, Visual::factories())
     {
-        Visual::setEnabled(facts.first());
+        if(v->properties().shortName.contains("analyzer"))
+        {
+            Visual::setEnabled(v);
+        }
+    }
+}
+
+void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
+{
+    Visual::initialize(m_supperClass);
+    foreach(VisualFactory *v, Visual::factories())
+    {
+        if(v->properties().shortName.contains("projectm"))
+        {
+            Visual::setEnabled(v);
+        }
     }
 }
 

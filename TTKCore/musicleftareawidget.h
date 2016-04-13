@@ -79,9 +79,13 @@ public Q_SLOTS:
     /*!
      * Change to mobile widget.
      */
-    void musicSpectrumWidget();
+    void musicAnalyzerSpectrumWidget();
     /*!
-     * Show spectrum widget.
+     * Show analyzer spectrum widget.
+     */
+    void musicProjectMSpectrumWidget();
+    /*!
+     * Show projectM spectrum widget.
      */
 
 protected:
