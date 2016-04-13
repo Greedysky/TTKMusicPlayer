@@ -70,10 +70,10 @@ bool MusicUserWindow::connectDatabase()
         }
         else
         {
-            data = QSqlDatabase::addDatabase(DATABASETYPE, "user-data");
+            data = QSqlDatabase::addDatabase(SQLITE_DATABASE, "user-data");
         }
         data.setDatabaseName(DARABASEPATH_AL);
-        if( !data.isDriverAvailable(DATABASETYPE) )
+        if( !data.isDriverAvailable(SQLITE_DATABASE) )
         {
             throw QString("The driver name is not available!");
         }

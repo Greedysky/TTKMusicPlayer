@@ -40,14 +40,19 @@
 
 #define SKN_FILE           ".skn"
 #define JPG_FILE           ".jpg"
+#define BMP_FILE           ".bmp"
+#define PNG_FILE           ".png"
 #define LRC_FILE           ".lrc"
+#define KRC_FILE           ".krc"
+#define MP3_FILE           ".mp3"
 
 #define MAKE_TRANSFORM     "MPlugins/avconv.dll"
 #define MAKE_KRC2LRC       "MPlugins/avk2l.dll"
 #define MAKE_RING          "MPlugins/avring.dll"
 #define MAKE_PLAYER        "MPlugins/avplayer.dll"
+#define MAKE_GAIN          "MPlugins/avgain.dll"
 #ifdef Q_OS_UNIX
-#define MAKE_NETS          "MPlugins/nets.dll"
+#define MAKE_NETS          "MPlugins/avnets.dll"
 #endif
 
 #define COFIGPATH          "musicconfig.xml"
@@ -58,7 +63,10 @@
 #define DARABASEPATH       "musicuser_1.dll"
 #define USERPATH           "musicuser_2.dll"
 #define BARRAGEPATH        "musicbarrage"
-#define DATABASETYPE       "QSQLITE"
+
+#define SQLITE_DATABASE    "QSQLITE"
+#define MYSQL_DATABASE     "QMYSQL"
+#define OCI_DATABASE       "QOCI"
 
 ///////////////////////////////////////
 #define LRC_DOWNLOAD_AL    MusicObject::getAppDir() + LRC_DOWNLOAD
@@ -76,6 +84,7 @@
 #define MAKE_KRC2LRC_AL    MusicObject::getAppDir() + MAKE_KRC2LRC
 #define MAKE_RING_AL       MusicObject::getAppDir() + MAKE_RING
 #define MAKE_PLAYER_AL     MusicObject::getAppDir() + MAKE_PLAYER
+#define MAKE_GAIN_AL       MusicObject::getAppDir() + MAKE_GAIN
 #ifdef Q_OS_UNIX
 #define MAKE_NETS_AL       MusicObject::getAppDir() + MAKE_NETS
 #endif
@@ -105,7 +114,6 @@ typedef int                MInt32;        /* 32 bit signed */
 typedef unsigned int       MUint32;       /* 32 bit unsigned */
 typedef long long          MInt64;        /* 64 bit signed */
 typedef unsigned long long MUint64;       /* 64 bit unsigned */
-
 
 typedef double             MDouble;       /* double */
 typedef float              MFloat;        /* float */
