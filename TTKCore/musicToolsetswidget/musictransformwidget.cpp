@@ -260,7 +260,7 @@ void MusicTransformWidget::startTransform()
     }
     ///////////////////////////////////////////////////////////
     ui->loadingLabel->show();
-    ui->loadingLabel->setMovie(m_movie = new QMovie(":/image/loading", QByteArray(), this));
+    ui->loadingLabel->setMovie(m_movie = new QMovie(":/toolSets/loading", QByteArray(), this));
     m_movie->start();
     setCheckedControl(false);
 }

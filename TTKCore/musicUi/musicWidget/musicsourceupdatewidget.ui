@@ -86,7 +86,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../TTKQrc/MusicPlayerShare.qrc">:/share/upgradeMain</pixmap>
+     <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/upgradeMain</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -154,7 +154,7 @@
        </rect>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../TTKQrc/MusicPlayerShare.qrc">:/share/upgrade</pixmap>
+       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/upgrade</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -310,8 +310,7 @@
   <zorder>topTitleCloseButton</zorder>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
+  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

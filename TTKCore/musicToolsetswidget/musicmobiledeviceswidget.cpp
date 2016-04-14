@@ -14,7 +14,7 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
 
     QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 246, windowSize.height() - 169, 246, 169);
-    setPixmap(QPixmap(":/image/mobile"));
+    setPixmap(QPixmap(":/toolSets/mobile"));
 
     m_closeButton = new QToolButton(this);
     m_closeButton->setIcon(QIcon(":/share/searchclosed"));

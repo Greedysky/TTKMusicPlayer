@@ -162,7 +162,7 @@ void MusicAudioRecorderWidget::onRecordStart()
 
     if(m_movie == nullptr)
     {
-        m_movie = new QMovie(":/image/rate", QByteArray(), this);
+        m_movie = new QMovie(":/toolSets/rate", QByteArray(), this);
     }
     ui->timer_2->setMovie(m_movie);
     m_movie->start();

@@ -137,7 +137,7 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/image/usb</pixmap>
+     <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/usb</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="textLabel">

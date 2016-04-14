@@ -8,9 +8,7 @@
         <file alias="autionplay">../TTKResource/music_autionPlay.png</file>
         <file alias="searchlineleft">../TTKResource/music_search_line_left.png</file>
         <file alias="warning">../TTKResource/music_warning.png</file>
-        <file alias="myQRCode">../TTKResource/music_myQRCode.png</file>
+        <file alias="myQRCode">../TTKResource/toolSets/ts_myQRCode.png</file>
         <file alias="showMV2">../TTKResource/lrc/lrc_photo.png</file>
-        <file alias="upgrade">../TTKResource/music_upgrade.png</file>
-        <file alias="upgradeMain">../TTKResource/music_upgradeMain.png</file>
     </qresource>
 </RCC>
