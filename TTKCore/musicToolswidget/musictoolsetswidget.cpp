@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicnetworktestwidget.h"
 #include "musicconnecttransferwidget.h"
+#include "musicvolumegainwidget.h"
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
@@ -171,6 +172,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 9:
             {
+                MusicVolumeGainWidget(this).exec();
                 break;
             }
         default:

@@ -11,6 +11,10 @@
 
 #include "musicabstractmovedialog.h"
 
+namespace Ui {
+class MusicVolumeGainWidget;
+}
+
 /*! @brief The class of the volume gain widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -21,9 +25,15 @@ public:
     explicit MusicVolumeGainWidget(QWidget *parent = 0);
     virtual ~MusicVolumeGainWidget();
 
-signals:
+public Q_SLOTS:
+    virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
-public slots:
+protected:
+    Ui::MusicVolumeGainWidget *ui;
+
 };
 
 #endif // MUSICVOLUMEGAINWIDGET_H
