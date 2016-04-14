@@ -439,6 +439,9 @@ void MusicSongsListWidget::musicMakeRingWidget()
 {
     if(!QFile(MAKE_RING_AL).exists())
     {
+        MusicMessageBox message;
+        message.setText(tr("Lack of plugin file!"));
+        message.exec();
         return;
     }
     (new QProcess(this))->start(MAKE_RING_AL);
