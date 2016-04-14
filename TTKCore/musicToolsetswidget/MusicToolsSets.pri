@@ -31,7 +31,8 @@ HEADERS  += \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicspeedmeter.h \
     $$PWD/musicnetworktestwidget.h \
-    $$PWD/musicnetworksuspensionwidget.h
+    $$PWD/musicnetworksuspensionwidget.h \
+    $$PWD/musicvolumegainwidget.h
 
 }
 
@@ -53,6 +54,7 @@ SOURCES += \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicspeedmeter.cpp \
     $$PWD/musicnetworktestwidget.cpp \
-    $$PWD/musicnetworksuspensionwidget.cpp
+    $$PWD/musicnetworksuspensionwidget.cpp \
+    $$PWD/musicvolumegainwidget.cpp
 
 }
