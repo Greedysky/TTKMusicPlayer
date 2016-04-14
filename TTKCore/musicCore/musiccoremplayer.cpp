@@ -1,5 +1,6 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
+#include "musiclogger.h"
 
 #include <QProcess>
 
@@ -32,6 +33,11 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
         m_process->kill();
         delete m_process;
         m_process = nullptr;
+    }
+    if(!QFile::exists(MAKE_PLAYER_AL))
+    {
+        M_LOGGERS(tr("Lack of plugin file!"));
+        return;
     }
 
     m_category = type;

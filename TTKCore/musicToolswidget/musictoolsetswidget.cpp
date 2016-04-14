@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicnetworktestwidget.h"
 #include "musicconnecttransferwidget.h"
+#include "musicmessagebox.h"
 #include "musicutils.h"
 
 #include <QProcess>
@@ -117,6 +118,9 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 #ifdef Q_OS_WIN
                 if(!QFile(MAKE_RING_AL).exists())
                 {
+                    MusicMessageBox message;
+                    message.setText(tr("Lack of plugin file!"));
+                    message.exec();
                     return;
                 }
                 if(m_process)

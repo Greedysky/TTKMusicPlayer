@@ -301,6 +301,14 @@ void MusicTransformWidget::setCheckedControl(bool enable)
 
 int MusicTransformWidget::exec()
 {
+    if(!QFile::exists(MAKE_TRANSFORM_AL) || !QFile::exists(MAKE_KRC2LRC_AL))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Lack of plugin file!"));
+        message.exec();
+        return -1;
+    }
+
     QPixmap pix(M_BG_MANAGER->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
