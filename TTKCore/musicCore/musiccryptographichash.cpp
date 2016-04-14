@@ -43,6 +43,7 @@ std::string MusicCryptographicHash::xxteaEncrypt(std::string data, std::string k
     xxtea_uint s[1];
     unsigned char * encrypt = xxteaEncrypt(date_uchar,strlen((const char *)date_uchar),key_uchar,strlen((const char *)key_uchar),s);
     std::string encoded = base64Encode(encrypt,s[0]);
+    free(encrypt);
     return encoded;
 }
 
@@ -66,6 +67,7 @@ std::string MusicCryptographicHash::xxteaDecrypt(std::string data,  std::string 
     }
     std::string result = (char *)encrypt;
     result = QString::fromUtf8(result.c_str()).toStdString();
+    free(encrypt);
     return result;
 }
 
