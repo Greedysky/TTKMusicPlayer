@@ -231,5 +231,7 @@
         <file alias="gainAddFiles">../TTKResource/toolSets/ts_gainAddFiles.png</file>
         <file alias="gainRmFile">../TTKResource/toolSets/ts_gainRmFile.png</file>
         <file alias="gainRmFiles">../TTKResource/toolSets/ts_gainRmFiles.png</file>
+        <file alias="analysis">../TTKResource/toolSets/ts_analysis.png</file>
+        <file alias="apply">../TTKResource/toolSets/ts_analysis_apply.png</file>
     </qresource>
 </RCC>

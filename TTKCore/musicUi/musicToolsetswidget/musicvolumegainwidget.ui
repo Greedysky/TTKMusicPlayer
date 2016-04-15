@@ -68,7 +68,7 @@
     <string notr="true">QWidget{background:rgba(255,255,255,150);}
 QLabel{background:transparent;}</string>
    </property>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QToolButton" name="addFileButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -78,10 +78,10 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QToolButton" name="addFilesButton">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -90,11 +90,8 @@ QLabel{background:transparent;}</string>
       <height>50</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QToolButton" name="analysisButton">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -103,11 +100,8 @@ QLabel{background:transparent;}</string>
       <height>50</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QToolButton" name="applyButton">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -116,11 +110,8 @@ QLabel{background:transparent;}</string>
       <height>50</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QToolButton" name="rmFileButton">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -129,11 +120,8 @@ QLabel{background:transparent;}</string>
       <height>50</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QToolButton" name="rmFilesButton">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -141,9 +129,6 @@ QLabel{background:transparent;}</string>
       <width>50</width>
       <height>50</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
@@ -266,8 +251,6 @@ QProgressBar::chunk {
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
- <resources>
-  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
