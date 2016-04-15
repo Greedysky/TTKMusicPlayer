@@ -144,9 +144,9 @@ QLabel{background:transparent;}</string>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>79</x>
       <y>320</y>
-      <width>580</width>
+      <width>520</width>
       <height>20</height>
      </rect>
     </property>
@@ -161,7 +161,7 @@ QProgressBar::chunk {
 }</string>
     </property>
     <property name="value">
-     <number>24</number>
+     <number>0</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -170,9 +170,9 @@ QProgressBar::chunk {
    <widget class="QProgressBar" name="progressBar_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>79</x>
       <y>345</y>
-      <width>580</width>
+      <width>520</width>
       <height>20</height>
      </rect>
     </property>
@@ -187,7 +187,7 @@ QProgressBar::chunk {
 }</string>
     </property>
     <property name="value">
-     <number>24</number>
+     <number>0</number>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -221,7 +221,7 @@ QProgressBar::chunk {
       <string>对象 &quot;标准化/最大化&quot; 音量:</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="volumeLineEdit">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -229,6 +229,9 @@ QProgressBar::chunk {
        <width>51</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="text">
+      <string>105</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -244,6 +247,32 @@ QProgressBar::chunk {
       <string>db  (默认为 89db)</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>文件进度</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>345</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>全部进度</string>
+    </property>
    </widget>
   </widget>
   <zorder>background</zorder>
