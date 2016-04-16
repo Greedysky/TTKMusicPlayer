@@ -82,6 +82,10 @@ public Q_SLOTS:
     /*!
      * Show about us widget.
      */
+    void musicVersionUpdate();
+    /*!
+     * Show version update widget.
+     */
     void musicAudioRecorder();
     /*!
      * Show audio recorder widget.

@@ -13,6 +13,7 @@
 #include "musicsettingmanager.h"
 #include "musicregeditmanager.h"
 #include "musicmobiledevicesthread.h"
+#include "musicsourceupdatewidget.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -155,6 +156,11 @@ void MusicApplicationObject::musicAboutUs()
                     QString("\nCopyright© 2014-2016") +
                     QString("\nMail:Greedysky@163.com"));
     message.exec();
+}
+
+void MusicApplicationObject::musicVersionUpdate()
+{
+    MusicSourceUpdateWidget().exec();
 }
 
 void MusicApplicationObject::musicAudioRecorder()
