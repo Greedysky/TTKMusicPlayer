@@ -25,15 +25,15 @@ const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
 const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
 
 //mulity query
-const QString MUSIC_REQUERY_WY = "http://yyfm.xyz/search/wy/%1?p=1&f=json&sign=yyfm"; //wangyiMusic
-const QString MUSIC_REQUERY_DX = "http://yyfm.xyz/search/dx/%1?p=1&f=json&sign=yyfm"; //dianxinMusic
-const QString MUSIC_REQUERY_QQ = "http://yyfm.xyz/search/qq/%1?p=1&f=json&sign=yyfm"; //qqMusic
-const QString MUSIC_REQUERY_XM = "http://yyfm.xyz/search/xm/%1?p=1&f=json&sign=yyfm"; //xiamiMusic
-const QString MUSIC_REQUERY_TT = "http://yyfm.xyz/search/tt/%1?p=1&f=json&sign=yyfm"; //ttpodMusic
-const QString MUSIC_REQUERY_BD = "http://yyfm.xyz/search/bd/%1?p=1&f=json&sign=yyfm"; //baiduMusic
-const QString MUSIC_REQUERY_KW = "http://yyfm.xyz/search/kw/%1?p=1&f=json&sign=yyfm"; //kuwoMusic
-const QString MUSIC_REQUERY_KG = "http://yyfm.xyz/search/kg/%1?p=1&f=json&sign=yyfm"; //kuhouMusic
-const QString MUSIC_REQUERY_DM = "http://yyfm.xyz/search/dm/%1?p=1&f=json&sign=yyfm"; //duomiMusic
+const QString MUSIC_REQUERY_WY = "http://yyfm.xyz/search/wy/%1?p=1&f=json&sign=yyfmxyz"; //wangyiMusic
+const QString MUSIC_REQUERY_DX = "http://yyfm.xyz/search/dx/%1?p=1&f=json&sign=yyfmxyz"; //dianxinMusic
+const QString MUSIC_REQUERY_QQ = "http://yyfm.xyz/search/qq/%1?p=1&f=json&sign=yyfmxyz"; //qqMusic
+const QString MUSIC_REQUERY_XM = "http://yyfm.xyz/search/xm/%1?p=1&f=json&sign=yyfmxyz"; //xiamiMusic
+const QString MUSIC_REQUERY_TT = "http://yyfm.xyz/search/tt/%1?p=1&f=json&sign=yyfmxyz"; //ttpodMusic
+const QString MUSIC_REQUERY_BD = "http://yyfm.xyz/search/bd/%1?p=1&f=json&sign=yyfmxyz"; //baiduMusic
+const QString MUSIC_REQUERY_KW = "http://yyfm.xyz/search/kw/%1?p=1&f=json&sign=yyfmxyz"; //kuwoMusic
+const QString MUSIC_REQUERY_KG = "http://yyfm.xyz/search/kg/%1?p=1&f=json&sign=yyfmxyz"; //kuhouMusic
+const QString MUSIC_REQUERY_DM = "http://yyfm.xyz/search/dm/%1?p=1&f=json&sign=yyfmxyz"; //duomiMusic
 
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>

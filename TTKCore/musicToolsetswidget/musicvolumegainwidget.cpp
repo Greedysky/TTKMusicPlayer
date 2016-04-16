@@ -88,9 +88,10 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
     }
 
     qDebug() << m_paths[m_currentIndex];
-    qDebug() << track.toDouble() << album.toDouble();
-    qDebug() << (track.toDouble() - ui->volumeLineEdit->text().toDouble());
-    qDebug() << (album.toDouble() - ui->volumeLineEdit->text().toDouble());
+    qDebug() << (89 - track.toDouble()) << (89 - album.toDouble());
+    qDebug() << (ui->volumeLineEdit->text().toDouble() - 89 + track.toDouble());
+    qDebug() << (ui->volumeLineEdit->text().toDouble() - 89 + album.toDouble());
+    emit createItemFinished();
 }
 
 void MusicVolumeGainWidget::addFileButtonClicked()
@@ -106,12 +107,10 @@ void MusicVolumeGainWidget::addFileButtonClicked()
         for(int i=orcount; i<m_paths.count(); ++i)
         {
             m_currentIndex = i;
-            qDebug() << "Ddsdf";
-//            MusicSemaphoreEventLoop loop;
-//            connect(this, SIGNAL(createItemFinished()), &loop, SLOT(quit()));
+            MusicSemaphoreEventLoop loop;
+            connect(this, SIGNAL(createItemFinished()), &loop, SLOT(quit()));
             m_process->start(MAKE_GAIN_AL, QStringList() << m_paths[i]);
-//            loop.exec();
-            qDebug() << "Dd";
+            loop.exec();
         }
     }
 }
@@ -128,7 +127,13 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
         {
             if( QString("mp3").contains(info.suffix().toLower()) )
             {
+                m_currentIndex = m_paths.count();
                 m_paths << info.absoluteFilePath();
+
+                MusicSemaphoreEventLoop loop;
+                connect(this, SIGNAL(createItemFinished()), &loop, SLOT(quit()));
+                m_process->start(MAKE_GAIN_AL, QStringList() << m_paths.last());
+                loop.exec();
             }
         }
     }

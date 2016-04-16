@@ -12,7 +12,7 @@
 #include <QMutexLocker>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the windows regedit manager.
+/*! @brief The class of the semaphore event loop.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_CORE_EXPORT MusicSemaphoreEventLoop : public QObject
@@ -20,15 +20,30 @@ class MUSIC_CORE_EXPORT MusicSemaphoreEventLoop : public QObject
     Q_OBJECT
 public:
     explicit MusicSemaphoreEventLoop(QObject* parent = 0);
-
+    /*!
+     * Object contsructor.
+     */
+     
     inline void setSemaphore(int sem) { m_semaphore = sem;}
+    /*!
+     * Set semaphore.
+     */
     inline int semaphore() const { return m_semaphore;}
-
+    /*!
+     * Get semaphore.
+     */
+     
     void exec();
-
+    /*!
+     * Start the thread to mutex locked.
+     */
+     
 public slots:
     void quit();
-
+    /*!
+     * Stop the thread to mutex unlocked.
+     */
+     
 private:
     QMutex m_mutex;
     volatile int m_semaphore;
