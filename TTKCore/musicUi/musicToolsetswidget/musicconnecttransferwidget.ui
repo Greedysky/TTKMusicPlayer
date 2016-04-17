@@ -126,6 +126,24 @@ QLabel{background:transparent;}</string>
       </rect>
      </property>
     </widget>
+    <widget class="QLabel" name="functionBottomLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>361</width>
+       <height>304</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(255,255,255)</string>
+     </property>
+    </widget>
+    <zorder>searchLineEdit</zorder>
+    <zorder>allSelectedcheckBox</zorder>
+    <zorder>searchLineLabel</zorder>
+    <zorder>functionBottomLabel</zorder>
+    <zorder>playListTableWidget</zorder>
    </widget>
    <widget class="QLabel" name="iconLabel">
     <property name="geometry">

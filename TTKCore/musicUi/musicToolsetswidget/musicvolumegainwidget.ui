@@ -131,13 +131,13 @@ QLabel{background:transparent;}</string>
      </rect>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="MusicVolumeGainTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>115</y>
+      <y>140</y>
       <width>580</width>
-      <height>190</height>
+      <height>170</height>
      </rect>
     </property>
    </widget>
@@ -167,7 +167,7 @@ QProgressBar::chunk {
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar_2">
+   <widget class="QProgressBar" name="progressBarAll">
     <property name="geometry">
      <rect>
       <x>79</x>
@@ -274,12 +274,115 @@ QProgressBar::chunk {
      <string>全部进度</string>
     </property>
    </widget>
+   <widget class="QLabel" name="functionBottomLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>115</y>
+      <width>580</width>
+      <height>195</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(255,255,255)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>115</y>
+      <width>30</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>路径</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>345</x>
+      <y>115</y>
+      <width>55</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>音轨音量</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>115</y>
+      <width>55</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>音轨增益</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>115</y>
+      <width>55</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>专辑增益</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>465</x>
+      <y>115</y>
+      <width>55</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>专辑音量</string>
+    </property>
+   </widget>
+   <zorder>addFileButton</zorder>
+   <zorder>addFilesButton</zorder>
+   <zorder>analysisButton</zorder>
+   <zorder>applyButton</zorder>
+   <zorder>rmFileButton</zorder>
+   <zorder>rmFilesButton</zorder>
+   <zorder>progressBar</zorder>
+   <zorder>progressBarAll</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>functionBottomLabel</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
+   <zorder>label_9</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicVolumeGainTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">musicvolumegainwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

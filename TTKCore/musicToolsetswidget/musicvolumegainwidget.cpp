@@ -9,8 +9,33 @@
 #include <QProcess>
 #include <QFileDialog>
 
+#define CONSTDEFAULT 89
 #define TRACKDB "Recommended \"Track\" dB change:"
 #define ALBUMDB "Recommended \"Album\" dB change for all files:"
+
+MusicVolumeGainTableWidget::MusicVolumeGainTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    setColumnCount(5);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 332);
+    headerview->resizeSection(1, 60);
+    headerview->resizeSection(2, 60);
+    headerview->resizeSection(3, 60);
+    headerview->resizeSection(4, 60);
+}
+
+MusicVolumeGainTableWidget::~MusicVolumeGainTableWidget()
+{
+
+}
+
+void MusicVolumeGainTableWidget::listCellClicked(int row, int col)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(col);
+}
+
 
 MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -65,13 +90,15 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     m_currentIndex = -1;
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
-    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(readyReadStandardOutput()));
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
 
     connect(ui->addFileButton, SIGNAL(clicked()), SLOT(addFileButtonClicked()));
     connect(ui->addFilesButton, SIGNAL(clicked()), SLOT(addFilesButtonClicked()));
     connect(ui->rmFileButton, SIGNAL(clicked()), SLOT(rmFileButtonClicked()));
     connect(ui->rmFilesButton, SIGNAL(clicked()), SLOT(rmFilesButtonClicked()));
-
+    connect(ui->analysisButton, SIGNAL(clicked()), SLOT(analysisButtonClicked()));
+    connect(ui->applyButton, SIGNAL(clicked()), SLOT(applyButtonClicked()));
+    connect(ui->volumeLineEdit, SIGNAL(textChanged(QString)), SLOT(volumeLineTextChanged(QString)));
 }
 
 MusicVolumeGainWidget::~MusicVolumeGainWidget()
@@ -87,11 +114,44 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
         return;
     }
 
-    qDebug() << m_paths[m_currentIndex];
-    qDebug() << (89 - track.toDouble()) << (89 - album.toDouble());
-    qDebug() << (ui->volumeLineEdit->text().toDouble() - 89 + track.toDouble());
-    qDebug() << (ui->volumeLineEdit->text().toDouble() - 89 + album.toDouble());
-    emit createItemFinished();
+    int row = ui->tableWidget->rowCount();
+    ui->tableWidget->setRowCount(row + 1);
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setText(QFontMetrics(font()).elidedText(m_paths[m_currentIndex], Qt::ElideRight, 320));
+    item->setToolTip(m_paths[m_currentIndex]);
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->tableWidget->setItem(row, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(QString::number(CONSTDEFAULT - track.toDouble()));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->tableWidget->setItem(row, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - CONSTDEFAULT + track.toDouble()));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->tableWidget->setItem(row, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(QString::number(CONSTDEFAULT - album.toDouble()));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->tableWidget->setItem(row, 3, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - CONSTDEFAULT + album.toDouble()));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->tableWidget->setItem(row, 4, item);
+}
+
+void MusicVolumeGainWidget::setControlEnable(bool enable)
+{
+    ui->addFileButton->setEnabled(enable);
+    ui->addFilesButton->setEnabled(enable);
+    ui->rmFileButton->setEnabled(enable);
+    ui->rmFilesButton->setEnabled(enable);
+    ui->analysisButton->setEnabled(enable);
+    ui->applyButton->setEnabled(enable);
 }
 
 void MusicVolumeGainWidget::addFileButtonClicked()
@@ -102,16 +162,24 @@ void MusicVolumeGainWidget::addFileButtonClicked()
     dialog.setNameFilters( QStringList() << "All File(*.*)" << "MP3 File(*.mp3)" );
     if(dialog.exec())
     {
+        setControlEnable(false);
         int orcount = m_paths.count();
-        m_paths << dialog.selectedFiles();
+        foreach(QString path, dialog.selectedFiles())
+        {
+            if(!m_paths.contains(path))
+            {
+                m_paths << path;
+            }
+        }
         for(int i=orcount; i<m_paths.count(); ++i)
         {
             m_currentIndex = i;
             MusicSemaphoreEventLoop loop;
-            connect(this, SIGNAL(createItemFinished()), &loop, SLOT(quit()));
+            connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
             m_process->start(MAKE_GAIN_AL, QStringList() << m_paths[i]);
             loop.exec();
         }
+        setControlEnable(true);
     }
 }
 
@@ -122,34 +190,91 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
+        setControlEnable(false);
         QList<QFileInfo> file(dialog.directory().entryInfoList());
         foreach(QFileInfo info, file)
         {
-            if( QString("mp3").contains(info.suffix().toLower()) )
+            if( QString("mp3").contains(info.suffix().toLower()) &&
+                !m_paths.contains(info.absoluteFilePath()) )
             {
                 m_currentIndex = m_paths.count();
                 m_paths << info.absoluteFilePath();
 
                 MusicSemaphoreEventLoop loop;
-                connect(this, SIGNAL(createItemFinished()), &loop, SLOT(quit()));
+                connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
                 m_process->start(MAKE_GAIN_AL, QStringList() << m_paths.last());
                 loop.exec();
             }
         }
+        setControlEnable(true);
     }
 }
 
 void MusicVolumeGainWidget::rmFileButtonClicked()
 {
-
+    int row = ui->tableWidget->currentRow();
+    if(row < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
+        return;
+    }
+    ui->tableWidget->removeRow(row);
 }
 
 void MusicVolumeGainWidget::rmFilesButtonClicked()
 {
-
+    m_paths.clear();
+    ui->tableWidget->clear();
+    m_currentIndex = -1;
 }
 
-void MusicVolumeGainWidget::readyReadStandardOutput()
+void MusicVolumeGainWidget::analysisButtonClicked()
+{
+    ///do nothing here
+}
+
+void MusicVolumeGainWidget::applyButtonClicked()
+{
+    disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(analysisOutput()));
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(applyOutput()));
+
+    setControlEnable(false);
+    ui->progressBarAll->setRange(0, ui->tableWidget->rowCount());
+    for(int i=0; i<ui->tableWidget->rowCount(); ++i)
+    {
+        MusicSemaphoreEventLoop loop;
+        connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
+        m_process->start(MAKE_GAIN_AL, QStringList() << "-g" <<
+                         ui->tableWidget->item(i, 2)->text() << m_paths[i]);
+        ui->progressBarAll->setValue(i + 1);
+        loop.exec();
+    }
+    setControlEnable(true);
+    rmFilesButtonClicked();
+
+    disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(applyOutput()));
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
+
+    MusicMessageBox message;
+    message.setText(tr("Music gain finished!"));
+    message.exec();
+}
+
+void MusicVolumeGainWidget::volumeLineTextChanged(const QString &text)
+{
+    double d = text.toDouble();
+    for(int i=0; i<ui->tableWidget->rowCount(); ++i)
+    {
+        QString v = ui->tableWidget->item(i, 1)->text();
+        ui->tableWidget->item(i, 2)->setText(QString::number(d - v.toDouble()));
+                v = ui->tableWidget->item(i, 3)->text();
+        ui->tableWidget->item(i, 4)->setText(QString::number(d - v.toDouble()));
+    }
+}
+
+void MusicVolumeGainWidget::analysisOutput()
 {
     QString track, album;
     while(m_process->canReadLine())
@@ -175,6 +300,26 @@ void MusicVolumeGainWidget::readyReadStandardOutput()
     }
 }
 
+void MusicVolumeGainWidget::applyOutput()
+{
+    while(m_process->canReadLine())
+    {
+        QByteArray data = m_process->readLine();
+        if(data.contains("Applying gain change"))
+        {
+            ui->progressBar->setValue(40);
+        }
+        else if(data.contains("done"))
+        {
+            ui->progressBar->setValue(100);
+        }
+        else
+        {
+            ui->progressBar->setValue(80);
+        }
+    }
+}
+
 int MusicVolumeGainWidget::exec()
 {
     if(!QFile::exists(MAKE_GAIN_AL))
@@ -189,4 +334,3 @@ int MusicVolumeGainWidget::exec()
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }
-
