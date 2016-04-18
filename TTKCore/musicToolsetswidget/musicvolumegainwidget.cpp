@@ -9,9 +9,9 @@
 #include <QProcess>
 #include <QFileDialog>
 
-#define CONSTDEFAULT 89
-#define TRACKDB "Recommended \"Track\" dB change:"
-#define ALBUMDB "Recommended \"Album\" dB change for all files:"
+#define GAIN_DEFAULT 89
+#define GAIN_TRACKDB "Recommended \"Track\" dB change:"
+#define GAIN_ALBUMDB "Recommended \"Album\" dB change for all files:"
 
 MusicVolumeGainTableWidget::MusicVolumeGainTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -124,22 +124,22 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
     ui->tableWidget->setItem(row, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QString::number(CONSTDEFAULT - track.toDouble()));
+    item->setText(QString::number(GAIN_DEFAULT - track.toDouble()));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ui->tableWidget->setItem(row, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - CONSTDEFAULT + track.toDouble()));
+    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - GAIN_DEFAULT + track.toDouble()));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ui->tableWidget->setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QString::number(CONSTDEFAULT - album.toDouble()));
+    item->setText(QString::number(GAIN_DEFAULT - album.toDouble()));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ui->tableWidget->setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - CONSTDEFAULT + album.toDouble()));
+    item->setText(QString::number(ui->volumeLineEdit->text().toDouble() - GAIN_DEFAULT + album.toDouble()));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ui->tableWidget->setItem(row, 4, item);
 }
@@ -237,6 +237,14 @@ void MusicVolumeGainWidget::analysisButtonClicked()
 
 void MusicVolumeGainWidget::applyButtonClicked()
 {
+    if(m_paths.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Music gain list is empty!"));
+        message.exec();
+        return;
+    }
+
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(analysisOutput()));
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(applyOutput()));
 
@@ -280,15 +288,15 @@ void MusicVolumeGainWidget::analysisOutput()
     while(m_process->canReadLine())
     {
         QByteArray data = m_process->readLine();
-        if(data.contains( TRACKDB ))
+        if(data.contains( GAIN_TRACKDB ))
         {
-            data.replace(TRACKDB, QByteArray());
+            data.replace(GAIN_TRACKDB, QByteArray());
             data.replace("\r\n", QByteArray());
             track = QString(data.trimmed());
         }
-        if(data.contains( ALBUMDB ))
+        if(data.contains( GAIN_ALBUMDB ))
         {
-            data.replace(ALBUMDB, QByteArray());
+            data.replace(GAIN_ALBUMDB, QByteArray());
             data.replace("\r\n", QByteArray());
             album = QString(data.trimmed());
         }
