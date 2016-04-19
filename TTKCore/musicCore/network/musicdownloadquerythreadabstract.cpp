@@ -28,6 +28,6 @@ void MusicDownLoadQueryThreadAbstract::deleteAll()
 
 void MusicDownLoadQueryThreadAbstract::replyError(QNetworkReply::NetworkError)
 {
-    M_LOGGER << "Abnormal network connection" << LOG_END;
+    M_LOGGER_ERROR("Abnormal network connection");
     deleteAll();
 }

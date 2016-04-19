@@ -167,7 +167,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 
 void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 {
-    M_LOGGER << "start fetch!" << LOG_END;
+    M_LOGGER_INFO("start fetch!");
     m_thread->stopAndQuitThread();
 
     if(index == 0)
@@ -252,7 +252,7 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
 
 void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 {
-    M_LOGGER << "stop fetch!" << LOG_END;
+    M_LOGGER_INFO("stop fetch!");
     ui->loadingLabel->hide();
     delete m_movie;
     m_movie = nullptr;

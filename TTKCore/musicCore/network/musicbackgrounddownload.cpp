@@ -47,7 +47,8 @@ void MusicBackgroundDownload::downLoadFinished()
             line.remove(0, 1);
             line.remove(line.length() - 1, 1);
             line = line.remove("sp");
-            M_LOGGER << line << LOG_END;
+
+            M_LOGGER_ERROR(line);
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
                                     .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
                                     MusicDownLoadThreadAbstract::Download_BigBG, this);

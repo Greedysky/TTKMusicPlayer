@@ -171,7 +171,7 @@ void MusicLrcContainerForInline::setLrcSize(MusicLRCManager::LrcSizeTable size) 
 {
     if(size < 13 || size > 17)
     {
-        M_LOGGER << "set lrc size error!" << LOG_END;
+        M_LOGGER_ERROR("set lrc size error!");
         return;
     }
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)

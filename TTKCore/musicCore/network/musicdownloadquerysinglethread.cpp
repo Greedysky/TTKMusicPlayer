@@ -311,7 +311,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         }
         else
         {
-            M_LOGGER << "not find the song_Id" << LOG_END;
+            M_LOGGER_ERROR("not find the song_Id");
         }
     }
     emit resolvedSuccess();

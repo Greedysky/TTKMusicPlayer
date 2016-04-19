@@ -79,21 +79,21 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
     if(!info.isFormatSupported(m_mFormatFile))
     {
-        M_LOGGERS("input default mFormatFile not supported try to use nearest");
+        M_LOGGER_WARN("input default mFormatFile not supported try to use nearest");
         m_mFormatFile = info.nearestFormat(m_mFormatFile);
     }
     QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
     if(!info1.isFormatSupported(m_mFormatFile))
     {
-        M_LOGGERS("output default mFormatFile not supported - trying to use nearest");
+        M_LOGGER_WARN("output default mFormatFile not supported - trying to use nearest");
         //           mFormatFile = info.nearestFormat(mFormatSound);
-        M_LOGGERS("output no support input mFormatFile.");
+        M_LOGGER_WARN("output no support input mFormatFile.");
         return;
     }
     if(m_mFormatFile.sampleSize() != 16)
     {
-        M_LOGGER << "audio device doesn't support 16 bit support %d bit samples, example cannot run"
-                 << m_mFormatFile.sampleSize() << LOG_END;
+        M_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1")
+                      .arg(m_mFormatFile.sampleSize()));
         m_mpAudioInputFile = 0;
         return;
     }

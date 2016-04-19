@@ -36,7 +36,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     }
     if(!QFile::exists(MAKE_PLAYER_AL))
     {
-        M_LOGGERS(tr("Lack of plugin file!"));
+        M_LOGGER_ERROR(tr("Lack of plugin file!"));
         return;
     }
 

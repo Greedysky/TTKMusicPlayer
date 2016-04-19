@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     MusicUtils::checkTheDirectoryExist();
     if(!MusicUtils::checkTheFileExist())
     {
-        M_LOGGERS("Load Translation");
+        M_LOGGER_INFO("Load Translation");
         QTranslator translator;
         translator.load(MusicUtils::getLanguageName(0));
         a.installTranslator(&translator);
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     }//check file error!
 
     ///////////////////////////////////////////////////////
-    M_LOGGERS("MusicApplication Begin");
+    M_LOGGER_INFO("MusicApplication Begin");
     QCoreApplication::setOrganizationName("TTKMusicPlayer");
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     //detect the current network state
     M_NETWORK->start();
 
-    M_LOGGERS("Load Translation");
+    M_LOGGER_INFO("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
     QTranslator translator;
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
                               xml->readDownloadCacheLimit(), MUSIC_DOWNLOAD_AL);
     M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
-    M_LOGGERS("End load translation");
+    M_LOGGER_INFO("End load translation");
 
     MusicApplication w;
     w.show();

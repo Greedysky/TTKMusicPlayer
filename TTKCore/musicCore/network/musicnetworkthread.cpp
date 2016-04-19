@@ -19,7 +19,7 @@ MusicNetworkThread::~MusicNetworkThread()
 
 void MusicNetworkThread::start()
 {
-    M_LOGGERS("Load NetworkThread");
+    M_LOGGER_INFO("Load NetworkThread");
 }
 
 void MusicNetworkThread::setBlockNetWork(int block)

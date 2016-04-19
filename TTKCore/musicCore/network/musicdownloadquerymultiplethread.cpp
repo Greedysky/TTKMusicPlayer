@@ -280,7 +280,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
         }
         else
         {
-            M_LOGGER << "not find the song" << LOG_END;
+            M_LOGGER_ERROR("not find the song");
         }
     }
     emit resolvedSuccess();

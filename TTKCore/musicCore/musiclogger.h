@@ -19,11 +19,26 @@
 #define LOG_END  QString("log::npos")
 
 #define M_LOGGER (*MusicLogger::createInstance())
+#define M_MESSAGE(str, msg) \
+{ \
+    M_LOGGER.setLevel(msg); \
+    M_LOGGER << str << LOG_END;\
+}
 
 #ifdef MUSIC_DEBUG
-    #define M_LOGGERS(str) M_LOGGER << str << LOG_END
+    #define M_LOGGER_INFO(str)  M_MESSAGE(str, "[Info]")
+    #define M_LOGGER_DEBUG(str) M_MESSAGE(str, "[Debug]")
+    #define M_LOGGER_WARN(str)  M_MESSAGE(str, "[Warn]")
+    #define M_LOGGER_TRACE(str) M_MESSAGE(str, "[Trace]")
+    #define M_LOGGER_ERROR(str) M_MESSAGE(str, "[Error]")
+    #define M_LOGGER_FATAL(str) M_MESSAGE(str, "[Fatal]")
 #else
-    #define M_LOGGERS(str)
+    #define M_LOGGER_INFO(str)
+    #define M_LOGGER_DEBUG(str)
+    #define M_LOGGER_WARN(str)
+    #define M_LOGGER_TRACE(str)
+    #define M_LOGGER_ERROR(str)
+    #define M_LOGGER_FATAL(str)
 #endif
 
 /*! @brief The class of the application logger.
@@ -36,6 +51,15 @@ public:
     {
         static MusicLogger obj;
         return &obj;
+    }
+
+    inline void setLevel(const QString &level)
+    {
+        m_levelType = level;
+    }
+    inline QString level() const
+    {
+        return m_levelType;
     }
 
     inline MusicLogger &operator <<(bool t)
@@ -88,6 +112,7 @@ private:
         m_file.open(QIODevice::WriteOnly | QIODevice::Append);
         m_stream.setDevice(&m_file);
         m_stream << QString().rightJustified(70, '=') << endl;
+        m_levelType = "[Info]";
 #endif
     }
     /*!
@@ -105,7 +130,7 @@ private:
     MusicLogger &debugData(const T &data)
     {
 #ifdef MUSIC_DEBUG
-        m_streamString.append( QString("%1 ").arg(data) );
+        m_streamString.append( QString("%1 %2 ").arg(m_levelType).arg(data) );
 #else
         Q_UNUSED(data);
 #endif
@@ -117,6 +142,7 @@ private:
 
     QTextStream m_stream;
     QString m_streamString;
+    QString m_levelType;
     QFile m_file;
 
 };
