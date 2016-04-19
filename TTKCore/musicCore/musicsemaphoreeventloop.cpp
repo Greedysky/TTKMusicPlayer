@@ -2,6 +2,9 @@
 
 #include <QThread>
 #include <QApplication>
+#if defined Q_OS_UNIX || defined Q_CC_MINGW
+# include <unistd.h>
+#endif
 
 MusicSemaphoreEventLoop::MusicSemaphoreEventLoop(QObject* parent)
     : QObject(parent), m_semaphore(0)
@@ -16,7 +19,11 @@ void MusicSemaphoreEventLoop::exec()
     while(m_semaphore)
     {
         QApplication::processEvents();
+#if defined Q_OS_WIN && defined MUSIC_QT_5
         QThread::msleep(100);
+#else
+        usleep(100*1000);
+#endif
     }
 }
 
