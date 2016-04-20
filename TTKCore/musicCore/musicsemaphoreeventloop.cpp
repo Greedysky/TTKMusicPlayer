@@ -16,7 +16,7 @@ void MusicSemaphoreEventLoop::exec()
 {
     QMutexLocker locker(&m_mutex);
     --m_semaphore;
-    while(m_semaphore)
+    while(m_semaphore < 0)
     {
         QApplication::processEvents();
 #if defined Q_OS_WIN && defined MUSIC_QT_5
