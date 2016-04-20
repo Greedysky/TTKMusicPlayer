@@ -56,31 +56,34 @@ Screenshots
 ----
 
 Index
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/1.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/1.jpg?raw=true)
 
 Search
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/2.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/2.jpg?raw=true)
 
 Lrc
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/3.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/3.jpg?raw=true)
 
 Desktop-lrc
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/4.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/4.jpg?raw=true)
 
 Remote Controller
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/5.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/5.jpg?raw=true)
 
 Lrc Display Expand
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/6.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/6.jpg?raw=true)
 
 MV
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/7.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/7.jpg?raw=true)
 
 Video Barrage
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/8.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/8.jpg?raw=true)
 
 Magic Music
-![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/9.png?raw=true)
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/9.jpg?raw=true)
+
+App Narrow
+![Rungholt](https://github.com/Greedysky/TTKMusicPlayer/blob/plugins/10.jpg?raw=true)
 
 Copyright
 -------
