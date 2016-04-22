@@ -47,6 +47,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
     ${MUSIC_CORE_DIR}/musiccryptographichash.h
+    ${MUSIC_CORE_DIR}/musicsemaphoreeventloop.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
@@ -92,6 +93,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
@@ -99,6 +101,8 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.h
@@ -187,6 +191,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
     ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
+    ${MUSIC_CORE_DIR}/musicsemaphoreeventloop.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
@@ -232,6 +237,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
@@ -239,6 +245,8 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransferwidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.cpp
@@ -310,6 +318,8 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworktestwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictimerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictransformwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicvolumegainwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicconnecttransferwidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebentainradiowidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebmusicradiowidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserdialog.ui
