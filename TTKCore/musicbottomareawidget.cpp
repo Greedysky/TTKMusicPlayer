@@ -145,14 +145,14 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->showCurrentSong->move(con ? 85 : 300, 558);
     m_ui->playCurrentTime->move(con ? 307 : 522, 568);
     m_ui->playTotalTime->move(con ? 342 : 556, 568);
-    m_ui->musicBestLove->move(con ? 140 : 625, con ? 535 : 578);
-    m_ui->musicPlayMode->move(con ? 162 : 655, con ? 532 : 575);
-    m_ui->musicDownload->move(con ? 186 : 690, con ? 532 : 575);
-    m_ui->musicDesktopLrc->move(con ? 212 : 725, con ? 538 : 580);
-    m_ui->musicEnhancedButton->move(con ? 230 : 755, con ? 535 : 578);
+    m_ui->musicBestLove->move(con ? 180 : 625, con ? 535 : 578);
+    m_ui->musicPlayMode->move(con ? 202 : 655, con ? 532 : 575);
+    m_ui->musicDownload->move(con ? 226 : 690, con ? 532 : 575);
+    m_ui->musicDesktopLrc->move(con ? 252 : 725, con ? 534 : 577);
     m_ui->musicSound->move(con ? 280 : 825, con ? 535 : 578);
     m_ui->musicSoundSlider->move(con ? 300 : 850, con ? 535 : 579);
     ////////////////////////////////////////////////////////////
+    m_ui->musicEnhancedButton->setVisible( !con );
     m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
     ////////////////////////////////////////////////////////////
