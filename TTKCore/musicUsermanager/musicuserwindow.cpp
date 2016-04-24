@@ -5,6 +5,7 @@
 #include "musicusermodel.h"
 #include "musicusermanager.h"
 #include "musicmessagebox.h"
+#include "musicutils.h"
 
 #include <QTimer>
 
@@ -108,14 +109,16 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 {
     if(uid.isEmpty())
     {
-        ui->userIconU->setPixmap(QPixmap(":/image/windowicon").scaled(ui->userIconU->size()));
+        QSize size = ui->userIconU->size();
+        ui->userIconU->setPixmap(MusicUtils::pixmapToRound(QPixmap(":/image/windowicon"), size, size.width()/2, size.height()/2));
         ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
     }
     else
     {
+        QSize size = ui->userIconL->size();
         m_userManager->setUserUID(uid);
-        ui->userIconL->setPixmap(QPixmap(icon).scaled(ui->userIconL->size()));
+        ui->userIconL->setPixmap(MusicUtils::pixmapToRound(icon, size, size.width()/2, size.height()/2));
         ui->userNameL->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
         setCurrentIndex(1);
     }
