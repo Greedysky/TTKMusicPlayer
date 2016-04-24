@@ -148,7 +148,6 @@ protected:
     State m_playState;
     Category m_category;
     QTimer m_timer;
-    int m_currentPos;
 
 };
 

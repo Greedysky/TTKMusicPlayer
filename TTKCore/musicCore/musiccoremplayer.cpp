@@ -10,7 +10,6 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     m_process = nullptr;
     m_playState = StoppedState;
     m_category = NullCategory;
-    m_currentPos = 0;
 
     m_timer.setInterval(1000);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
@@ -180,7 +179,7 @@ void MusicCoreMPlayer::positionRecieve()
         if(data.startsWith("ANS_TIME_POSITION"))
         {
             data.replace(QByteArray("\r\n"), QByteArray(""));
-            emit positionChanged(m_currentPos = QString(data).mid(18).toFloat());
+            emit positionChanged(QString(data).mid(18).toFloat());
         }
     }
 }
@@ -212,7 +211,7 @@ void MusicCoreMPlayer::musicStandardRecieve()
         if(message.startsWith("ANS_TIME_POSITION"))
         {
             message.replace(QByteArray("\r\n"), QByteArray(""));
-            emit positionChanged(m_currentPos = QString(message).mid(18).toFloat());
+            emit positionChanged(QString(message).mid(18).toFloat());
         }
     }
 }
