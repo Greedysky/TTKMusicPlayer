@@ -87,8 +87,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04);
-    ui->musicDownload->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MToolButtonStyle03);
+    ui->musicDownload->setStyleSheet(MusicUIObject::MToolButtonStyle03);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
