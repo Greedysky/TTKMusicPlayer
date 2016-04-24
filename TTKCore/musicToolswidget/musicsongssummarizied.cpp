@@ -219,6 +219,11 @@ void MusicSongsSummarizied::getMusicLists(MusicSongsList &songs, QStringList &na
     }
 }
 
+void MusicSongsSummarizied::updateCurrentArtist()
+{
+    m_mainSongLists[m_currentIndexs]->updateCurrentArtist();
+}
+
 void MusicSongsSummarizied::clearAllLists()
 {
     while(!m_mainSongLists.isEmpty())

@@ -474,6 +474,14 @@ void MusicSongsListWidget::setTimerLabel(const QString &t) const
     }
 }
 
+void MusicSongsListWidget::updateCurrentArtist()
+{
+    if(m_musicSongsPlayWidget)
+    {
+        m_musicSongsPlayWidget->updateCurrentArtist();
+    }
+}
+
 void MusicSongsListWidget::replacePlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)

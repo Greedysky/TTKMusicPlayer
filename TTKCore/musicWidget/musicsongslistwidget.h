@@ -60,6 +60,10 @@ public:
     /*!
      * Update item time label time.
      */
+    void updateCurrentArtist();
+    /*!
+     * Update current artist when it download finished.
+     */
     void replacePlayWidgetRow();
     /*!
      * Replace current play widget row.

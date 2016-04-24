@@ -127,6 +127,16 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
     m_timeLabel->setText(t + m_totalTime);
 }
 
+void MusicSongsListPlayWidget::updateCurrentArtist()
+{
+    QString name = m_songName->text();
+    if(!showArtPicture(name.split('-').front().trimmed()) &&
+       !showArtPicture(name.split('-').back().trimmed()) )
+    {
+        m_artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
+    }
+}
+
 bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 {
     QPixmap originPath(QString(ART_DOWNLOAD_AL + name + SKN_FILE));
@@ -138,7 +148,7 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
     return false;
 }
 
-void MusicSongsListPlayWidget::setParameter(const QString &name,const QString &path)
+void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path)
 {
     MusicSongTag tag;
     if(tag.readFile(path))

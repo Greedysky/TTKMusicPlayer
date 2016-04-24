@@ -877,6 +877,11 @@ bool MusicApplication::checkMusicListCurrentIndex() const
     return (m_musicList->currentIndex() == -1);
 }
 
+void MusicApplication::updateCurrentArtist()
+{
+    m_musicSongTree->updateCurrentArtist();
+}
+
 void MusicApplication::musicCurrentLrcUpdated()
 {
     QString filename = getCurrentFileName();

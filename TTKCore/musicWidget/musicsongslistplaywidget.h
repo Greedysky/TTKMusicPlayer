@@ -77,6 +77,10 @@ public:
     /*!
      * Update item time label time.
      */
+    void updateCurrentArtist();
+    /*!
+     * Update current artist when it download finished.
+     */
     void setParameter(const QString &name, const QString &path);
     /*!
      * Update item artist label by name.

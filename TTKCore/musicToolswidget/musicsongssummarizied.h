@@ -196,6 +196,10 @@ public Q_SLOTS:
     /*!
      * Get music datas from container.
      */
+    void updateCurrentArtist();
+    /*!
+     * Update current artist when it download finished.
+     */
 
 protected:
     void changeItemIcon();

@@ -57,6 +57,10 @@ public:
     /*!
      * Import music datas into container.
      */
+    void updateCurrentArtist();
+    /*!
+     * Update current artist when it download finished.
+     */
 
 public Q_SLOTS:
     void quitWindowClose();

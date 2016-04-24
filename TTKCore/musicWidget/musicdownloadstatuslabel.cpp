@@ -57,6 +57,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
     {
         m_parentWidget->musicLoadCurrentSongLrc();
     }
+    m_parentWidget->updateCurrentArtist();
     m_movieLabel->clear();
 }
 

@@ -5,7 +5,6 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 
-#include <QDebug>
 #include <QProcess>
 #include <QFileDialog>
 
