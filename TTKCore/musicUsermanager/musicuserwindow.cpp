@@ -136,7 +136,7 @@ void MusicUserWindow::musicUserContextLogin()
 {
     if(currentIndex() == 1)
     {
-        userStateChanged(QString(), QString());
+        m_userManager->musicUserLogoff();
         return;
     }
     QTimer::singleShot(1, this, SLOT(musicUserLogin()));
