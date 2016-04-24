@@ -162,6 +162,7 @@ namespace MusicObject
 {
     enum DownLoadType
     {
+        Null,           ///*network null*/
         DisConnection,  ///*network disable*/
         DownLoading,    ///*network download*/
         Buffing,        ///*network buffing*/

@@ -12,6 +12,12 @@ MusicSemaphoreEventLoop::MusicSemaphoreEventLoop(QObject* parent)
 
 }
 
+MusicSemaphoreEventLoop::MusicSemaphoreEventLoop(int sem, QObject* parent)
+    : MusicSemaphoreEventLoop(parent), m_semaphore(sem)
+{
+
+}
+
 void MusicSemaphoreEventLoop::exec()
 {
     QMutexLocker locker(&m_mutex);

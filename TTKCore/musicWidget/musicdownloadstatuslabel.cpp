@@ -43,11 +43,14 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType typ
             break;
         case MusicObject::Waiting:
             break;
+            stringType = ":/download/buffing";
+        case MusicObject::Null:
+            break;
         default:
             break;
     }
     ///Start up the information for show download - message;
-    m_movieLabel->setPixmap( QPixmap(stringType) );
+    !stringType.isEmpty() ? m_movieLabel->setPixmap( QPixmap(stringType) ) : m_movieLabel->clear();
 }
 
 void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
@@ -63,8 +66,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
-    state ? showDownLoadInfoFinished( QString() )
-          : showDownLoadInfoFor(MusicObject::DisConnection);
+    showDownLoadInfoFor(state ? MusicObject::Null : MusicObject::DisConnection);
 }
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue() const

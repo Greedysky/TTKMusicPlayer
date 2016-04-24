@@ -23,7 +23,11 @@ public:
     /*!
      * Object contsructor.
      */
-     
+    explicit MusicSemaphoreEventLoop(int sem, QObject* parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
     inline void setSemaphore(int sem) { m_semaphore = sem;}
     /*!
      * Set semaphore.
