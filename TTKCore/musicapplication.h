@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MUSICAPPLICATION_H
+#define MUSICAPPLICATION_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -278,4 +278,4 @@ private:
 
 };
 
-#endif // MAINWINDOW_H
+#endif // MUSICAPPLICATION_H

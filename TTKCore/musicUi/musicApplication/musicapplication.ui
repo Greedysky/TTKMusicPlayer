@@ -567,7 +567,7 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>725</x>
+     <x>747</x>
      <y>577</y>
      <width>20</width>
      <height>20</height>
@@ -586,7 +586,7 @@
   <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
-     <x>755</x>
+     <x>775</x>
      <y>578</y>
      <width>50</width>
      <height>20</height>
@@ -596,9 +596,9 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>850</x>
+     <x>865</x>
      <y>579</y>
-     <width>80</width>
+     <width>65</width>
      <height>16</height>
     </rect>
    </property>
@@ -609,7 +609,7 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>825</x>
+     <x>840</x>
      <y>578</y>
      <width>18</width>
      <height>18</height>
@@ -625,7 +625,23 @@
   <widget class="QToolButton" name="musicDownload">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>685</x>
+     <y>575</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="musicSimilarFound">
+   <property name="geometry">
+    <rect>
+     <x>715</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
@@ -679,6 +695,7 @@
   <zorder>musicSoundSlider</zorder>
   <zorder>musicSound</zorder>
   <zorder>musicDownload</zorder>
+  <zorder>musicSimilarFound</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

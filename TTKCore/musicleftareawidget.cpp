@@ -55,6 +55,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
     ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/loveOff")));
     ui->musicDownload->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
+    ui->musicSimilarFound->setIcon(QIcon(QString::fromUtf8(":/appTools/similar")));
     ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/appTools/buttoncloud")));
     ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
     ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonplaylist")));
@@ -74,6 +75,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setIconSize(QSize(35, 35));
     ui->musicPlayMode->setIconSize(QSize(25, 25));
     ui->musicDownload->setIconSize(QSize(25, 25));
+    ui->musicSimilarFound->setIconSize(QSize(20, 20));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->musicPrevious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -89,6 +91,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MToolButtonStyle03);
     ui->musicDownload->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicSimilarFound->setStyleSheet(MusicUIObject::MToolButtonStyle03);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -99,6 +102,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicDownload->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicSimilarFound->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->musicKey->setToolTip(tr("Play"));
@@ -106,6 +110,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setToolTip(tr("Next"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
     ui->musicDownload->setToolTip(tr("download"));
+    ui->musicSimilarFound->setToolTip(tr("similar"));
     ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));
     ui->musicPlayMode->setToolTip(tr("playMode"));
     ui->musicButton_cloud->setToolTip(tr("musicCloud"));

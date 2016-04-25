@@ -209,6 +209,7 @@
         <file alias="wired">../TTKResource/appTools/music_wired.png</file>
         <file alias="wireless">../TTKResource/appTools/music_wireless.png</file>
         <file alias="wired_con">../TTKResource/appTools/music_wired_con.png</file>
+        <file alias="similar">../TTKResource/appTools/music_button_similar.png</file>
     </qresource>
     <qresource prefix="/server">
         <file alias="aiyinyue">../TTKResource/server/server_aiyinyue.png</file>
