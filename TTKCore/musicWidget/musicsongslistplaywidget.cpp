@@ -28,16 +28,16 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 {
     m_totalTime = "/00:00";
 
-    m_artPicture = new QLabel(this);
-    m_artPicture->setFixedSize(60, 60);
-    m_artPicture->setAttribute(Qt::WA_TranslucentBackground);
-    m_artPicture->setGeometry(0, 0, 60, 60);
+    m_artPictureLabel = new QLabel(this);
+    m_artPictureLabel->setFixedSize(60, 60);
+    m_artPictureLabel->setAttribute(Qt::WA_TranslucentBackground);
+    m_artPictureLabel->setGeometry(0, 0, 60, 60);
 
-    m_songName = new QLabel(this);
-    m_songName->setFixedSize(202, 25);
-    m_songName->setAttribute(Qt::WA_TranslucentBackground);
-    m_songName->setStyleSheet(MusicUIObject::MCustomStyle11);
-    m_songName->setGeometry(65, 5, 182, 25);
+    m_songNameLabel = new QLabel(this);
+    m_songNameLabel->setFixedSize(202, 25);
+    m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+    m_songNameLabel->setGeometry(65, 5, 182, 25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
@@ -104,8 +104,8 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
     M_CONNECTION->poolDisConnect("MusicSongsListPlayWidget");
     delete m_renameLine;
-    delete m_artPicture;
-    delete m_songName;
+    delete m_artPictureLabel;
+    delete m_songNameLabel;
     delete m_timeLabel;
     delete m_loveButton;
     delete m_deleteButton;
@@ -129,11 +129,11 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
 {
-    QString name = m_songName->text();
+    QString name = m_songNameLabel->toolTip();
     if(!showArtPicture(name.split('-').front().trimmed()) &&
        !showArtPicture(name.split('-').back().trimmed()) )
     {
-        m_artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
+        m_artPictureLabel->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
     }
 }
 
@@ -142,7 +142,7 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
     QPixmap originPath(QString(ART_DOWNLOAD_AL + name + SKN_FILE));
     if(!originPath.isNull())
     {
-        m_artPicture->setPixmap(originPath.scaled(60, 60));
+        m_artPictureLabel->setPixmap(originPath.scaled(60, 60));
         return true;
     }
     return false;
@@ -155,20 +155,20 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     {
         m_totalTime = "/" + tag.getLengthString();
     }
-    m_songName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 180));
-    m_songName->setToolTip(name);
+    m_songNameLabel->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 180));
+    m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
     if(!showArtPicture(name.split('-').front().trimmed()) &&
        !showArtPicture(name.split('-').back().trimmed()) )
     {
-        m_artPicture->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
+        m_artPictureLabel->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
     }
 }
 
 void MusicSongsListPlayWidget::setItemRename()
 {
-    m_renameLine = new MusicSongsToolItemRenamedWidget(0, m_songName->text(), this);
+    m_renameLine = new MusicSongsToolItemRenamedWidget(0, m_songNameLabel->toolTip(), this);
     connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
     m_renameLine->setFixedSize(182, 25);
     m_renameLine->setGeometry(65, 5, 182, 25);
@@ -177,8 +177,8 @@ void MusicSongsListPlayWidget::setItemRename()
 
 void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
-    m_songName->setText(name);
-    m_songName->setToolTip(name);
+    m_songNameLabel->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 180));
+    m_songNameLabel->setToolTip(name);
     emit renameFinished(name);
     delete m_renameLine;
     m_renameLine = nullptr;
@@ -186,13 +186,13 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 
 void MusicSongsListPlayWidget::showMVButtonClicked()
 {
-    emit videoButtonClicked(m_songName->text());
+    emit videoButtonClicked(m_songNameLabel->toolTip());
 }
 
 void MusicSongsListPlayWidget::sharingButtonClicked()
 {
     MusicSongSharingWidget shareWidget;
-    shareWidget.setSongName(m_songName->text());
+    shareWidget.setSongName(m_songNameLabel->toolTip());
     shareWidget.exec();
 }
 

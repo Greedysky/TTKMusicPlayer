@@ -13,7 +13,6 @@
 #include <QPushButton>
 #include <QToolButton>
 #include <QLabel>
-#include <QMenu>
 #include "musicglobaldefine.h"
 
 class MusicSongsToolItemRenamedWidget;
@@ -140,8 +139,8 @@ protected:
      * Show artist small picture, if no exsit there is default pic.
      */
 
-    QLabel *m_artPicture, *m_songName, *m_timeLabel;
     QString m_totalTime;
+    QLabel *m_artPictureLabel, *m_songNameLabel, *m_timeLabel;
     MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_songShareButton;
