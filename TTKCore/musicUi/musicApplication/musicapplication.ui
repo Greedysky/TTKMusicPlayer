@@ -625,7 +625,7 @@
   <widget class="QToolButton" name="musicDownload">
    <property name="geometry">
     <rect>
-     <x>685</x>
+     <x>715</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
@@ -641,7 +641,7 @@
   <widget class="QToolButton" name="musicSimilarFound">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>685</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>

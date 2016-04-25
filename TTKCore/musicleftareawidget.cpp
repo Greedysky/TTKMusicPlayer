@@ -75,7 +75,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setIconSize(QSize(35, 35));
     ui->musicPlayMode->setIconSize(QSize(25, 25));
     ui->musicDownload->setIconSize(QSize(25, 25));
-    ui->musicSimilarFound->setIconSize(QSize(20, 20));
+    ui->musicSimilarFound->setIconSize(QSize(25, 20));
 
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->musicPrevious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
