@@ -13,9 +13,9 @@ MusicSemaphoreEventLoop::MusicSemaphoreEventLoop(QObject* parent)
 }
 
 MusicSemaphoreEventLoop::MusicSemaphoreEventLoop(int sem, QObject* parent)
-    : MusicSemaphoreEventLoop(parent), m_semaphore(sem)
+    : MusicSemaphoreEventLoop(parent)
 {
-
+    m_semaphore = sem;
 }
 
 void MusicSemaphoreEventLoop::exec()
