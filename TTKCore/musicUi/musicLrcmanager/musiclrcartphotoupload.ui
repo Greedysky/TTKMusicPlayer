@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>455</width>
+    <width>500</width>
     <height>360</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>415</width>
+     <width>460</width>
      <height>320</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>415</x>
+     <x>460</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -73,7 +73,7 @@
     <rect>
      <x>80</x>
      <y>62</y>
-     <width>150</width>
+     <width>170</width>
      <height>20</height>
     </rect>
    </property>
@@ -83,7 +83,7 @@
     <rect>
      <x>22</x>
      <y>305</y>
-     <width>411</width>
+     <width>456</width>
      <height>30</height>
     </rect>
    </property>
@@ -100,7 +100,7 @@
   <widget class="QPushButton" name="uploadButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>140</x>
      <y>300</y>
      <width>75</width>
      <height>23</height>
@@ -113,7 +113,7 @@
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>280</x>
      <y>300</y>
      <width>75</width>
      <height>23</height>
@@ -128,7 +128,7 @@
     <rect>
      <x>60</x>
      <y>100</y>
-     <width>341</width>
+     <width>385</width>
      <height>191</height>
     </rect>
    </property>
@@ -136,7 +136,7 @@
   <widget class="QPushButton" name="selectButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>200</x>
      <y>160</y>
      <width>121</width>
      <height>23</height>
@@ -149,7 +149,7 @@
   <widget class="QLabel" name="introduceLabel">
    <property name="geometry">
     <rect>
-     <x>137</x>
+     <x>160</x>
      <y>190</y>
      <width>191</width>
      <height>20</height>
@@ -167,7 +167,7 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>415</width>
+     <width>460</width>
      <height>295</height>
     </rect>
    </property>
