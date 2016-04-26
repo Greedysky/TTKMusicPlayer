@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>480</x>
+     <x>478</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -352,14 +352,6 @@ QProgressBar::chunk {
   <zorder>topTitleCloseButton</zorder>
   <zorder>groupBox_2</zorder>
   <zorder>groupBox</zorder>
-  <zorder>label_3</zorder>
-  <zorder>horizontalSlider</zorder>
-  <zorder>label_2</zorder>
-  <zorder>progress</zorder>
-  <zorder>label_3</zorder>
-  <zorder>horizontalSlider</zorder>
-  <zorder>progress</zorder>
-  <zorder>label_2</zorder>
   <zorder>horizontalSlider</zorder>
   <zorder>label_3</zorder>
   <zorder>progress</zorder>
