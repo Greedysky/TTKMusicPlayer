@@ -147,7 +147,7 @@ QLabel{background:transparent;}</string>
       <x>180</x>
       <y>100</y>
       <width>100</width>
-      <height>40</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="cursor">

@@ -14,6 +14,7 @@ FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcmanager/musiclrcartphotoupload.ui \
     $$PWD/musicLrcmanager/musiclrcmakerwidget.ui \
+    $$PWD/musicLrcmanager/musiclrcerrorwidget.ui \
     $$PWD/musicLrcmanager/musiclrcsearchwidget.ui \
     $$PWD/musicToolsetswidget/musicaudiorecorderwidget.ui \
     $$PWD/musicToolsetswidget/musicdesktopwallpaperwidget.ui \

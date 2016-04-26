@@ -1,6 +1,7 @@
 #include "musiclrccontainer.h"
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
+
 #include <QActionGroup>
 
 MusicLrcContainer::MusicLrcContainer(QWidget *parent)

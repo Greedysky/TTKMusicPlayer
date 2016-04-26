@@ -127,6 +127,10 @@ public Q_SLOTS:
     /*!
      * Copy all lrcs to clipboard.
      */
+    void theCurrentLrcError();
+    /*!
+     * Show making error lrcs widget.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

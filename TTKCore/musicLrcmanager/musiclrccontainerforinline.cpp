@@ -2,6 +2,7 @@
 #include "musiclrcmanagerforinline.h"
 #include "musiclrcartphotoupload.h"
 #include "musiclrcfloatwidget.h"
+#include "musiclrcerrorwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
@@ -330,6 +331,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
+    menu.addAction(tr("errorLrc"), this, SLOT(theCurrentLrcError()));
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
@@ -485,4 +487,9 @@ void MusicLrcContainerForInline::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
     clipBoard->setText(m_lrcAnalysis->getAllLrcs());
+}
+
+void MusicLrcContainerForInline::theCurrentLrcError()
+{
+    MusicLrcErrorWidget(this).exec();
 }
