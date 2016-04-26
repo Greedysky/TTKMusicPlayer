@@ -31,6 +31,7 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     ui->radioButton1->setChecked(true);
     connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
 
+    ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->pushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->pushButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 

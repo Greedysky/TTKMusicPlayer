@@ -118,6 +118,10 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
 
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_TranslucentBackground);
+
+    ui->pathChangedButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
 #ifndef USE_MULTIPLE_QUERY
        m_downloadThread = new MusicDownLoadQuerySingleThread(this);
 #else

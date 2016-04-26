@@ -38,9 +38,9 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     ui->previousButton->setIcon(QIcon(":/image/previous"));
     ui->nextButton->setIcon(QIcon(":/image/next"));
 
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->previousButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->nextButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->previousButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->nextButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
 
     ui->playButton->setIconSize(QSize(31, 31));
     ui->previousButton->setIconSize(QSize(31, 31));

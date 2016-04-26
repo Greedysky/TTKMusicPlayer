@@ -22,10 +22,10 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
 #ifdef Q_OS_UNIX
     ui->showPerArea->setText("100%\n\n\n\n\n\n\n\n\n\n 50%\n\n\n\n\n\n\n\n\n\n 0%");
     MusicUtils::setLabelFont(ui->showPerArea, 7);

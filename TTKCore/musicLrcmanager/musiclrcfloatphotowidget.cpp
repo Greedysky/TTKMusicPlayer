@@ -42,12 +42,12 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_confirmButton = new QPushButton(tr("Confirm"),this);
     m_confirmButton->setGeometry(340, 130, 70, 20);
-    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_cancelButton = new QPushButton(tr("Close"), this);
     m_cancelButton->setGeometry(420, 130, 70, 20);
-    m_cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    m_cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     m_cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);

@@ -33,11 +33,11 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     ui->speedWidget->setAnimating(false);
     ui->speedWidget->setRatio(50);
 
-    ui->suspensionButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->suspensionButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->suspensionButton->setCursor(QCursor((Qt::PointingHandCursor)));
-    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->settingButton->setCursor(QCursor((Qt::PointingHandCursor)));
-    ui->testButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->testButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->testButton->setCursor(QCursor((Qt::PointingHandCursor)));
     connect(ui->suspensionButton, SIGNAL(clicked()), SLOT(suspensionOpen()));
     connect(ui->testButton, SIGNAL(clicked()), SLOT(networkTestStart()));

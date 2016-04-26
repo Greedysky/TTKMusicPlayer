@@ -30,7 +30,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
@@ -57,7 +57,7 @@ void MusicConnectTransferWidget::initColumns()
     {
         QPushButton *button = new QPushButton(QString("%1(%2)")
                                               .arg(names[i]).arg(songs[i].count()), this);
-        button->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+        button->setStyleSheet(MusicUIObject::MPushButtonStyle08);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setGeometry(32, 100 + 50*i, 90, 25);
         group->addButton(button, i);

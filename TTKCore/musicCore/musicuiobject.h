@@ -151,11 +151,7 @@ namespace MusicUIObject
             QPushButton{border-none;}";
             
     const QString MPushButtonStyle05 = " \
-            QPushButton{background-color:rgb(173,216,230);border:none;color:white;}\
-            QPushButton::hover{\
-            background:qlineargradient(x1:0,y1:0,x2:0,y2:1,\
-            stop:0 #3BA1E6,stop: 0.5 #3BA1E6,stop: 1.0 #3BA1E6);\
-            border:none;}";
+            QPushButton{border-radius:3px; background-color:#80B7F1; color:white;}";
 
     const QString MPushButtonStyle06 = " \
             QPushButton{border-style: outset;  \
@@ -169,14 +165,15 @@ namespace MusicUIObject
             QPushButton::hover{ background:rgba(255,255,255,50); border:none;}";
 
     const QString MPushButtonStyle08 = " \
-            QPushButton{ border: 1px solid gray;background:#DDDDDD;}\
+            QPushButton{ border: 1px solid gray;background:#EEEEEE;}\
             QPushButton::hover{ border: 2px solid #AAAAFF;}";
 
     const QString MPushButtonStyle09 = " \
             QPushButton{ border:none;color: #3333FF;} \
             QPushButton::hover{ color: #7777FF;}";
 
-//    const QString MPushButtonStyle10 = "";
+    const QString MPushButtonStyle10 = MPushButtonStyle05 + " \
+            QPushButton{ font-size:17px; font-weight:bold; }";
 
     const QString MPushButtonStyle11 = MPushButtonStyle04 + " \
             QPushButton{font-size:17px; font-weight:bold; color:#BFBFBF;}";

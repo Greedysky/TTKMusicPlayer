@@ -424,10 +424,10 @@
   <widget class="QPushButton" name="confirm">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>320</y>
+     <x>240</x>
+     <y>317</y>
      <width>60</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -437,10 +437,10 @@
   <widget class="QPushButton" name="cancel">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>320</y>
+     <x>350</x>
+     <y>317</y>
      <width>60</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">

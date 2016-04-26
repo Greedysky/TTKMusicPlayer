@@ -449,7 +449,7 @@ void MusicApplication::showCurrentSong(int index)
     QString name;
     if( index > -1 ) //The list to end
     {
-        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex())[index];
+        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex())[index];
         ///detecting whether the file has been downloaded
         QString path = QString("%1/%2.%3").arg(M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
                      .arg(name).arg(m_musicSongTree->getMusicLists()[m_musicSongTree->currentIndex()][index].getMusicType());

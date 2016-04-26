@@ -86,9 +86,6 @@ QLabel{background:transparent;}</string>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;}</string>
-    </property>
     <property name="text">
      <string>查看详情</string>
     </property>
@@ -121,9 +118,6 @@ QLabel{background:transparent;}</string>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;}</string>
-    </property>
     <property name="text">
      <string>重新下载</string>
     </property>
@@ -139,9 +133,6 @@ QLabel{background:transparent;}</string>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;}</string>
     </property>
     <property name="text">
      <string>打开目录</string>

@@ -49,13 +49,13 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->scanCustButton->setStyleSheet("QPushButton{ background:transparent;}"
                                       "QPushButton::hover{ border:1px solid #000000;}");
 
-    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->filterComboBox->setItemDelegate(new QStyledItemDelegate(ui->filterComboBox));
     ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

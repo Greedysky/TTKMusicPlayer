@@ -26,10 +26,10 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     ui->stopButton->setIcon(QIcon(":/image/stop"));
     ui->colletButton->setIcon(QIcon(":/radio/collect"));
     ui->discolletButton->setIcon(QIcon(":/radio/discollect"));
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->colletButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->discolletButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->colletButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->discolletButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->playButton->setIconSize(QSize(31, 31));
     ui->stopButton->setIconSize(QSize(31, 31));
     ui->colletButton->setIconSize(QSize(31, 31));
