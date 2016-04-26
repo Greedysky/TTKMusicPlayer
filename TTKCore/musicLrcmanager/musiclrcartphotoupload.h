@@ -26,6 +26,7 @@ public:
     /*!
      * Object contsructor.
      */
+    virtual ~MusicLrcArtPhotoUpload();
 
 public Q_SLOTS:
     void selectButtonClicked();

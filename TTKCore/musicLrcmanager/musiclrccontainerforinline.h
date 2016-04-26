@@ -115,10 +115,6 @@ public Q_SLOTS:
     /*!
      * The art background has uploaded.
      */
-    void theShowLrcChanged();
-    /*!
-     * Show current lrc state changed.
-     */
     void lrcOpenFileDir() const;
     /*!
      * Open current lrc file location.
@@ -130,6 +126,10 @@ public Q_SLOTS:
     void theCurrentLrcError();
     /*!
      * Show making error lrcs widget.
+     */
+    void showLocalLinkWidget();
+    /*!
+     * Show local link widget.
      */
 
 protected:
@@ -172,9 +172,7 @@ protected:
      */
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
-    bool m_mouseLeftPressed;
-    bool m_showArtBackground;
-    bool m_showInlineLrc;
+    bool m_mouseLeftPressed, m_showArtBackground;
     qint64 m_changeSpeedValue;
     QVBoxLayout *m_vBoxLayout;
     MusicLrcFloatWidget *m_lrcFloatWidget;

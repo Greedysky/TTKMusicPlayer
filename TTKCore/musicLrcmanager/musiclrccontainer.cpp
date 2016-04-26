@@ -7,6 +7,7 @@
 MusicLrcContainer::MusicLrcContainer(QWidget *parent)
     : QWidget(parent)
 {
+    m_linkLocalLrc = true;
     m_musicLrcSearchWidget = nullptr;
     m_makerWidget = nullptr;
     m_currentTime = 0;
@@ -150,4 +151,13 @@ void MusicLrcContainer::theCurrentLrcMaked()
     }
     m_makerWidget->setCurrentSongName(m_currentSongName);
     m_makerWidget->show();
+}
+
+void MusicLrcContainer::theLinkLrcChanged()
+{
+    m_linkLocalLrc = !m_linkLocalLrc;
+    foreach(MusicLRCManager *w, m_musicLrcContainer)
+    {
+        w->setVisible( m_linkLocalLrc );
+    }
 }

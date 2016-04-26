@@ -327,6 +327,9 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
     menu.addSeparator();
+
+    QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
+    m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addAction(tr("hide"), this, SLOT(close()));
     menu.addAction(QIcon(":/contextMenu/lock"), tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
     menu.addMenu(&changColorMenu);

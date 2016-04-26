@@ -39,6 +39,11 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     connect(ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
 }
 
+MusicLrcArtPhotoUpload::~MusicLrcArtPhotoUpload()
+{
+    delete ui;
+}
+
 void MusicLrcArtPhotoUpload::selectButtonClicked()
 {
     QString picPath = QFileDialog::getOpenFileName(

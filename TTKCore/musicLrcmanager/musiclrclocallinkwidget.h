@@ -23,7 +23,16 @@ class MUSIC_LRC_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
     Q_OBJECT
 public:
     explicit MusicLrcLocalLinkWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicLrcLocalLinkWidget();
+
+public Q_SLOTS:
+    virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     Ui::MusicLrcLocalLinkWidget *ui;

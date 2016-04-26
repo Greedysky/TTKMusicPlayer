@@ -3,6 +3,7 @@
 #include "musiclrcartphotoupload.h"
 #include "musiclrcfloatwidget.h"
 #include "musiclrcerrorwidget.h"
+#include "musiclrclocallinkwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
@@ -34,7 +35,6 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
-    m_showInlineLrc = true;
     m_changeSpeedValue = 0;
 
     createNoLrcCurrentInfo();
@@ -321,11 +321,13 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     QMenu changeLrcSize(tr("changeLrcSize"), this);
     QMenu changeLrcTimeFast(tr("changeLrcTimeFast"), this);
     QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), this);
+    QMenu changeLrcLinkMenu(tr("lrcLinkMenu"), this);
 
     changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     changeLrcSize.setStyleSheet(MusicUIObject::MMenuStyle02);
     changeLrcTimeFast.setStyleSheet(MusicUIObject::MMenuStyle02);
     changeLrcTimeSlow.setStyleSheet(MusicUIObject::MMenuStyle02);
+    changeLrcLinkMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
@@ -373,17 +375,19 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     //////////////////////////////////////////////////
     QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
     m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
-    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theShowLrcChanged()));
-    m_showInlineLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
+    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theLinkLrcChanged()));
+    m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
     menu.addSeparator();
 
     QString fileName = m_lrcAnalysis->getCurrentFileName();
     bool fileCheck = !fileName.isEmpty() && QFile::exists(fileName);
-    QAction *copyToClipAc = menu.addAction(tr("copyToClip"),this,SLOT(lrcCopyClipboard()));
-    copyToClipAc->setEnabled( fileCheck );
-    QAction *showLrcFileAc = menu.addAction(tr("showLrcFile"),this,SLOT(lrcOpenFileDir()));
-    showLrcFileAc->setEnabled( fileCheck );
+    changeLrcLinkMenu.addAction(tr("localLink"), this, SLOT(showLocalLinkWidget()));
+    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
+    m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
+    menu.addMenu(&changeLrcLinkMenu);
+    menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled( fileCheck );
+    menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled( fileCheck );
 
     menu.addSeparator();
     menu.addAction(tr("customSetting"),this,SLOT(currentLrcCustom()));
@@ -463,19 +467,9 @@ void MusicLrcContainerForInline::theArtBgChanged()
 
 void MusicLrcContainerForInline::theArtBgUploaded()
 {
-    MusicLrcArtPhotoUpload artDialog(this);
-    artDialog.exec();
+    MusicLrcArtPhotoUpload(this).exec();
     m_showArtBackground = true;
     emit theArtBgHasChanged();
-}
-
-void MusicLrcContainerForInline::theShowLrcChanged()
-{
-    m_showInlineLrc = !m_showInlineLrc;
-    foreach(MusicLRCManager *w, m_musicLrcContainer)
-    {
-        w->setVisible( m_showInlineLrc );
-    }
 }
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
@@ -492,4 +486,9 @@ void MusicLrcContainerForInline::lrcCopyClipboard() const
 void MusicLrcContainerForInline::theCurrentLrcError()
 {
     MusicLrcErrorWidget(this).exec();
+}
+
+void MusicLrcContainerForInline::showLocalLinkWidget()
+{
+    MusicLrcLocalLinkWidget(this).exec();
 }

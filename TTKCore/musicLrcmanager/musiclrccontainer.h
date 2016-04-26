@@ -99,6 +99,10 @@ public Q_SLOTS:
     /*!
      * Show making lrcs widget.
      */
+    void theLinkLrcChanged();
+    /*!
+     * Link current lrc state changed.
+     */
 
 protected:
     void createColorMenu(QMenu &menu);
@@ -114,6 +118,7 @@ protected:
      * Set setting parameter by diff type.
      */
 
+    bool m_linkLocalLrc;
     qint64 m_currentTime;
     QString m_currentSongName, m_containerType;
     QList<MusicLRCManager*> m_musicLrcContainer;
