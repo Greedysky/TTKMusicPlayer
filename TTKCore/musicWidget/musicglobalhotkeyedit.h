@@ -12,15 +12,24 @@
 #include <QLineEdit>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the global hotKey lineEdit.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
 {
     Q_OBJECT
 public:
     explicit MusicGlobalHotKeyEdit(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicGlobalHotKeyEdit();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
+    /*!
+     * Override the widget event.
+     */
 
 };
 

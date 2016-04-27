@@ -6,6 +6,7 @@
 #include "musicnetworkproxy.h"
 #include "musicnetworkoperator.h"
 #include "musicmessagebox.h"
+#include "musicglobalhotkey.h"
 ///qmmp incldue
 #include "effect.h"
 #include "effectfactory.h"
@@ -136,6 +137,9 @@ void MusicSettingWidget::initNormalSettingWidget()
     ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->languageComboBox->addItems(QStringList() << tr("0") << tr("1") << tr("2"));
+
+    ui->globalHotkeyBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    connect(ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
 }
 
 void MusicSettingWidget::initInlineLrcWidget()
@@ -386,6 +390,7 @@ void MusicSettingWidget::initControllerParameter()
     }
     ui->languageComboBox->setCurrentIndex(M_SETTING->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
+    globalHotkeyBoxChanged(ui->globalHotkeyBox->isChecked());
     ////////////////////////////////////////////////
     //Set init parameter
     ui->showInlineCheckBox->setChecked(M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
@@ -459,6 +464,17 @@ void MusicSettingWidget::initControllerParameter()
     }
 }
 
+void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
+{
+    ui->item_S2->setEnabled(state);
+    ui->item_S4->setEnabled(state);
+    ui->item_S6->setEnabled(state);
+    ui->item_S8->setEnabled(state);
+    ui->item_S10->setEnabled(state);
+    ui->item_S12->setEnabled(state);
+    ui->item_S14->setEnabled(state);
+}
+
 void MusicSettingWidget::changeInlineLrcWidget()
 {
     ui->stackedWidget->setCurrentIndex(2);
@@ -510,6 +526,15 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING->setValue(MusicSettingManager::DownloadServerChoiced, ui->downloadServerComboBox->currentIndex());
     M_SETTING->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
+
+    M_HOTKEY->setHotKey(0, ui->item_S2->text());
+    M_HOTKEY->setHotKey(1, ui->item_S4->text());
+    M_HOTKEY->setHotKey(2, ui->item_S6->text());
+    M_HOTKEY->setHotKey(3, ui->item_S8->text());
+    M_HOTKEY->setHotKey(4, ui->item_S10->text());
+    M_HOTKEY->setHotKey(5, ui->item_S12->text());
+    M_HOTKEY->setHotKey(6, ui->item_S14->text());
+    M_HOTKEY->enabledAll(ui->globalHotkeyBox->isChecked());
 
     if(!applyNetworkProxy())
     {

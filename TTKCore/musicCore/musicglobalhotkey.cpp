@@ -1,21 +1,9 @@
 #include "musicglobalhotkey.h"
 #include "qxtglobalshortcut.h"
 
-#include <QDebug>
-
-MusicGlobalHotKey::MusicGlobalHotKey()
-{
-
-}
-
-MusicGlobalHotKey::~MusicGlobalHotKey()
-{
-
-}
-
 void MusicGlobalHotKey::connectParentObject(QObject *object)
 {
-    for(int i=0; i<8; ++i)
+    for(int i=0; i<7; ++i)
     {
         m_hotkeys << (new QxtGlobalShortcut(object));
     }
@@ -27,7 +15,20 @@ void MusicGlobalHotKey::connectParentObject(QObject *object)
     connect(m_hotkeys[4], SIGNAL(activated()), object, SLOT(musicActionVolumeSub()));
     connect(m_hotkeys[5], SIGNAL(activated()), object, SLOT(musicSetting()));
     connect(m_hotkeys[6], SIGNAL(activated()), object, SLOT(musicImportSongs()));
-    connect(m_hotkeys[7], SIGNAL(activated()), object, SLOT(musicPlayOrder()));
+
+    setDefaultKey();
+}
+
+void MusicGlobalHotKey::setDefaultKey()
+{
+    QStringList keys;
+    keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
+         << "Ctrl+Down" << "Ctrl+S" << "Ctrl+I";
+    for(int i=0; i<m_hotkeys.count(); ++i)
+    {
+        setHotKey(i, keys[i]);
+        setEnabled(i, false);
+    }
 }
 
 void MusicGlobalHotKey::setHotKey(int index, const QString &key)

@@ -23,20 +23,52 @@ class MUSIC_CORE_EXPORT MusicGlobalHotKey : public QObject
     Q_OBJECT
 public:
     void connectParentObject(QObject *object);
+    /*!
+     * To connect parent slot object.
+     */
 
     void setHotKey(int index, const QString &key);
+    /*!
+     * Set hotKey by given index and string key.
+     */
     void setHotKey(int index, int key);
+    /*!
+     * Set hotKey by given index and virtual key.
+     */
     QString hotKey(int index);
+    /*!
+     * Get the string key by given hotKey index.
+     */
 
     void setEnabled(int index, bool enabled);
+    /*!
+     * Enable or disable the hotkey by index.
+     */
     bool enabled(int index);
+    /*!
+     * check the given hotkey is enabled or not.
+     */
     void enabledAll(bool enabled);
+    /*!
+     * Enable or disable all hotkeys.
+     */
 
     QString toString(int key, int modifiers);
+    /*!
+     * Mapping the virtual key to string key.
+     */
 
 protected:
-    MusicGlobalHotKey();
-    ~MusicGlobalHotKey();
+    MusicGlobalHotKey(){}
+    /*!
+     * Object contsructor.
+     */
+    ~MusicGlobalHotKey(){}
+
+    void setDefaultKey();
+    /*!
+     * Set default key.
+     */
 
     QList<QxtGlobalShortcut*> m_hotkeys;
 

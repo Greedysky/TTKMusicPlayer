@@ -99,6 +99,10 @@ public Q_SLOTS:
     /*!
      * Clear all function tables selection.
      */
+    void globalHotkeyBoxChanged(bool state);
+    /*!
+     * Set global hotkey box changed.
+     */
     void changeInlineLrcWidget();
     /*!
      * Change to inline lrc widget.
@@ -106,14 +110,6 @@ public Q_SLOTS:
     void changeDesktopLrcWidget();
     /*!
      * Change to desktop lrc widget.
-     */
-    void commitTheResults();
-    /*!
-     * Save the change results.
-     */
-    virtual int exec();
-    /*!
-     * Override exec function.
      */
 
     void inlineLrcFgChanged();
@@ -207,6 +203,15 @@ public Q_SLOTS:
     void soundEffectValueChanged(int index);
     /*!
      * Sound effect button value changed.
+     */
+
+    void commitTheResults();
+    /*!
+     * Save the change results.
+     */
+    virtual int exec();
+    /*!
+     * Override exec function.
      */
 
 protected:

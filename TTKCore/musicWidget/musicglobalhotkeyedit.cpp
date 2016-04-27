@@ -1,7 +1,6 @@
 #include "musicglobalhotkeyedit.h"
 #include "musicglobalhotkey.h"
 
-#include <QDebug>
 #include <QKeyEvent>
 
 MusicGlobalHotKeyEdit::MusicGlobalHotKeyEdit(QWidget *parent)
