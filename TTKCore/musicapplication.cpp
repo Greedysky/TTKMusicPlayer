@@ -17,6 +17,7 @@
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
 #include "musicconnectionpool.h"
+#include "musicglobalhotkey.h"
 
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -79,6 +80,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     ui->lrcDisplayAllButton->hide();
     ui->SurfaceStackedWidget->setCurrentIndex(0);
     ui->musicTimeWidget->setObject(this);
+    M_HOTKEY->connectParentObject(this);
 
     readXMLConfigFromText();
 }

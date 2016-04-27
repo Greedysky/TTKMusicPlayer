@@ -11,10 +11,14 @@
 # =================================================
 
 INCLUDEPATH += $$PWD \
-               $$PWD/network
+               $$PWD/network \
+               $$PWD/qxtglobalshortcut
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
+    $$PWD/qxtglobalshortcut/qxtglobal.h \
+    $$PWD/qxtglobalshortcut/qxtglobalshortcut.h \
+    $$PWD/qxtglobalshortcut/qxtglobalshortcut_p.h \
     $$PWD/network/musicdownloadthreadabstract.h \
     $$PWD/network/musicdata2downloadthread.h \
     $$PWD/network/musicdatadownloadthread.h \
@@ -36,6 +40,7 @@ HEADERS  += \
     $$PWD/musicuiobject.h \
     $$PWD/musicutils.h \
     $$PWD/musicglobaldefine.h \
+    $$PWD/musicglobalhotkey.h \
     $$PWD/musicversion.h \
     $$PWD/musictime.h \
     $$PWD/musicxmlconfigmanager.h \
@@ -55,7 +60,11 @@ HEADERS  += \
 }
 
 contains(CONFIG, TTK_BUILD_LIB){
+win32:SOURCES += $$PWD/qxtglobalshortcut/qxtglobalshortcut_win.cpp
+unix:SOURCES += $$PWD/qxtglobalshortcut/qxtglobalshortcut_x11.cpp
+mac:SOURCES += $$PWD/qxtglobalshortcut/qxtglobalshortcut_mac.cpp
 SOURCES += \
+    $$PWD/qxtglobalshortcut/qxtglobalshortcut.cpp \
     $$PWD/network/musicdownloadthreadabstract.cpp \
     $$PWD/network/musicdata2downloadthread.cpp \
     $$PWD/network/musicdatadownloadthread.cpp \
@@ -73,6 +82,7 @@ SOURCES += \
     $$PWD/network/musicradiosongsthread.cpp \
     $$PWD/network/musicradiothreadabstract.cpp \
     $$PWD/musicutils.cpp \
+    $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \

@@ -130,10 +130,6 @@ protected:
     /*!
      * Create system tray icon.
      */
-    void createSystemShortcut();
-    /*!
-     * Create system short cut.
-     */
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;

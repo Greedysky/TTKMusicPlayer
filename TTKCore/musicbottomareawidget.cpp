@@ -6,8 +6,6 @@
 #include "musicconnectionpool.h"
 #include "musiclocalsongsearch.h"
 
-#include <QShortcut>
-
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicLocalSongSearch(nullptr)
 {
@@ -15,7 +13,6 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     m_systemCloseConfig = false;//Control the mode to exit
 
     createSystemTrayIcon();
-    createSystemShortcut();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
     M_CONNECTION->setValue("MusicBottomAreaWidget", this);
@@ -72,22 +69,6 @@ void MusicBottomAreaWidget::createSystemTrayIcon()
     m_systemTray->show();
     connect(m_systemTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
                           SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
-}
-
-void MusicBottomAreaWidget::createSystemShortcut()
-{
-    connect(new QShortcut(Qt::CTRL + Qt::Key_B, this), SIGNAL(activated()), m_supperClass, SLOT(musicStatePlay()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_Left, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayPrevious()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_Right, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayNext()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_Up, this), SIGNAL(activated()), m_supperClass, SLOT(musicActionVolumePlus()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_Down, this), SIGNAL(activated()), m_supperClass, SLOT(musicActionVolumeSub()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_S, this), SIGNAL(activated()), m_supperClass, SLOT(musicSetting()));
-    connect(new QShortcut(Qt::CTRL + Qt::Key_I, this), SIGNAL(activated()), m_supperClass, SLOT(musicImportSongs()));
-    connect(new QShortcut(Qt::ALT + Qt::Key_1, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayOrder()));
-    connect(new QShortcut(Qt::ALT + Qt::Key_2, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayRandom()));
-    connect(new QShortcut(Qt::ALT + Qt::Key_3, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayOneLoop()));
-    connect(new QShortcut(Qt::ALT + Qt::Key_4, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayListLoop()));
-    connect(new QShortcut(Qt::ALT + Qt::Key_5, this), SIGNAL(activated()), m_supperClass, SLOT(musicPlayItemOnce()));
 }
 
 void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const

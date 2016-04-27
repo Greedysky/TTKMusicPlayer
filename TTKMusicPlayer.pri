@@ -35,7 +35,7 @@ QT_VER_MINOR = $$member(QT_VER_STRING, 1)
 QT_VER_PATCH = $$member(QT_VER_STRING, 2)
 
 win32{
-    LIBS += -lIphlpapi
+    LIBS += -lIphlpapi -luser32
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 2):QT  += winextras
         msvc{
