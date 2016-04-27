@@ -1,6 +1,8 @@
 #include "musicglobalhotkey.h"
 #include "qxtglobalshortcut.h"
 
+#include <QStringList>
+
 void MusicGlobalHotKey::connectParentObject(QObject *object)
 {
     for(int i=0; i<7; ++i)
