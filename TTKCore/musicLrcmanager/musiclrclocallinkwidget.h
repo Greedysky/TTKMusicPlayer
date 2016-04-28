@@ -28,6 +28,11 @@ public:
      */
     virtual ~MusicLrcLocalLinkWidget();
 
+    void setCurrentSongName(const QString &name);
+    /*!
+     * Set current song name.
+     */
+
 public Q_SLOTS:
     virtual int exec();
     /*!

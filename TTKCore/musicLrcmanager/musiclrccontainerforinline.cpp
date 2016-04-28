@@ -490,5 +490,7 @@ void MusicLrcContainerForInline::theCurrentLrcError()
 
 void MusicLrcContainerForInline::showLocalLinkWidget()
 {
-    MusicLrcLocalLinkWidget(this).exec();
+    MusicLrcLocalLinkWidget w(this);
+    w.setCurrentSongName(m_currentSongName);
+    w.exec();
 }

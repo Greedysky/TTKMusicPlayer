@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>345</height>
+    <height>305</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>20</x>
      <y>20</y>
      <width>460</width>
-     <height>305</height>
+     <height>265</height>
     </rect>
    </property>
    <property name="text">
@@ -31,7 +31,7 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>91</width>
+     <width>110</width>
      <height>25</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>歌词报错</string>
+    <string>本地关联</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
@@ -61,25 +61,12 @@
      <x>20</x>
      <y>45</y>
      <width>460</width>
-     <height>280</height>
+     <height>240</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <widget class="QRadioButton" name="radioButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>12</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>模糊匹配</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -94,7 +81,7 @@
     <string>歌词标题</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="titleEdit">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -108,10 +95,78 @@
    <property name="geometry">
     <rect>
      <x>35</x>
-     <y>150</y>
-     <width>301</width>
-     <height>141</height>
+     <y>110</y>
+     <width>340</width>
+     <height>151</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:#FFFFFF</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="localSearchButton">
+   <property name="geometry">
+    <rect>
+     <x>386</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>本地搜索</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previewButton">
+   <property name="geometry">
+    <rect>
+     <x>386</x>
+     <y>150</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="commitButton">
+   <property name="geometry">
+    <rect>
+     <x>386</x>
+     <y>235</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="fuzzyButton">
+   <property name="geometry">
+    <rect>
+     <x>386</x>
+     <y>56</y>
+     <width>75</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>模糊匹配</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>88</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>从以下文件中选择一个进行管理</string>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -119,8 +174,13 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>label</zorder>
-  <zorder>lineEdit</zorder>
+  <zorder>titleEdit</zorder>
   <zorder>widget</zorder>
+  <zorder>localSearchButton</zorder>
+  <zorder>previewButton</zorder>
+  <zorder>commitButton</zorder>
+  <zorder>fuzzyButton</zorder>
+  <zorder>label_2</zorder>
  </widget>
  <resources/>
  <connections/>

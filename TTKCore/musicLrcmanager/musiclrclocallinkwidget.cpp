@@ -15,11 +15,21 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    ui->fuzzyButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->localSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->commitButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->previewButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->titleEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
     delete ui;
+}
+
+void MusicLrcLocalLinkWidget::setCurrentSongName(const QString& name)
+{
+    ui->titleEdit->setText(name);
 }
 
 int MusicLrcLocalLinkWidget::exec()
