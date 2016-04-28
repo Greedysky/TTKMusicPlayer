@@ -72,6 +72,9 @@ unix:!mac{
                           -I/usr/include/QtMobility
         LIBS += -lQtMultimediaKit
     }
+    equals(QT_MAJOR_VERSION, 5){
+        QT  += x11extras
+    }
 
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function

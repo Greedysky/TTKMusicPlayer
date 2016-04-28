@@ -5,7 +5,7 @@
 #   include <linux/netlink.h>
 #   include <unistd.h>
 #endif
-
+#include <QDebug>
 MusicMobileDevicesThread::MusicMobileDevicesThread(QObject *parent)
     :   QThread(parent)
 {
@@ -78,6 +78,7 @@ void MusicMobileDevicesThread::run()
 
         if(str.indexOf("add@/devices") == 0)
         {
+            qDebug() << str;
             emit devicesChanged(true);
         }
         if(str.indexOf("remove@/devices") == 0)
