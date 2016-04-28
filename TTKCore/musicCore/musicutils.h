@@ -115,6 +115,23 @@ public:
      * Open file from local by path.
      */
 
+    static QString toUnicode(const char *chars, const char *format = "GBK");
+    /*!
+     * Set string to unicode string by format.
+     */
+    static QString toUnicode(const QByteArray &chars, const char *format = "GBK");
+    /*!
+     * Set string to unicode string by format.
+     */
+    static QByteArray fromUnicode(const QString &chars, const char *format = "GBK");
+    /*!
+     * Set string from unicode string by format.
+     */
+    static void setLocalCodec(const char *format = "utf-8");
+    /*!
+     * Set local codec by format.
+     */
+
 private:
     static QString speed2LabelFromLabel(qint64 size, const QString &label);
     /*!

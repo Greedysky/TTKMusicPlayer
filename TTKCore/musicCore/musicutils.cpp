@@ -5,12 +5,13 @@
 #include <QPainter>
 #include <QUrl>
 #include <QDesktopServices>
+#include <QTextCodec>
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <shellapi.h>
 #endif
 
-void MusicUtils::dirIsExist(const QString& name)
+void MusicUtils::dirIsExist(const QString &name)
 {
     QDir dir;
     if(!dir.exists(name))
@@ -21,31 +22,31 @@ void MusicUtils::dirIsExist(const QString& name)
 
 void MusicUtils::checkTheDirectoryExist()
 {
-    dirIsExist(MusicObject::getAppDir() + LRC_DOWNLOAD);
-    dirIsExist(MusicObject::getAppDir() + MUSIC_DOWNLOAD);
-    dirIsExist(MusicObject::getAppDir() + MOVIE_DOWNLOAD);
-    dirIsExist(MusicObject::getAppDir() + DATA_CACHED);
-    dirIsExist(MusicObject::getAppDir() + THEME_DOWNLOAD);
-    dirIsExist(MusicObject::getAppDir() + ART_DOWNLOAD);
-    dirIsExist(MusicObject::getAppDir() + TRANS_PLUGINS);
-    dirIsExist(MusicObject::getAppDir() + ART_BG);
-    dirIsExist(MusicObject::getAppDir() + TR_LANGUAGE);
+    dirIsExist(LRC_DOWNLOAD_AL);
+    dirIsExist(MUSIC_DOWNLOAD_AL);
+    dirIsExist(MOVIE_DOWNLOAD_AL);
+    dirIsExist(DATA_CACHED_AL);
+    dirIsExist(THEME_DOWNLOAD_AL);
+    dirIsExist(ART_DOWNLOAD_AL);
+    dirIsExist(TRANS_PLUGINS_AL);
+    dirIsExist(ART_BG_AL);
+    dirIsExist(TR_LANGUAGE_AL);
 }
 
 bool MusicUtils::checkTheFileExist()
 {
-    return QFile::exists(MusicObject::getAppDir() + DOWNLOADINFO) &&
-           QFile::exists(MusicObject::getAppDir() + DARABASEPATH) &&
-           QFile::exists(MusicObject::getAppDir() + USERPATH) &&
-           QFile::exists(MusicObject::getAppDir() + COFIGPATH) &&
-           QFile::exists(MusicObject::getAppDir() + MUSICPATH) &&
-           QFile::exists(MusicObject::getAppDir() + MUSICSEARCH) &&
-           QFile::exists(MusicObject::getAppDir() + NETDADIOPATH);
+    return QFile::exists(DOWNLOADINFO_AL) &&
+           QFile::exists(DARABASEPATH_AL) &&
+           QFile::exists(USERPATH_AL) &&
+           QFile::exists(COFIGPATH_AL) &&
+           QFile::exists(MUSICPATH_AL) &&
+           QFile::exists(MUSICSEARCH_AL) &&
+           QFile::exists(NETDADIOPATH_AL);
 }
 
 QString MusicUtils::getLanguageName(int index)
 {
-    QString lan(MusicObject::getAppDir() + TR_LANGUAGE);
+    QString lan(TR_LANGUAGE_AL);
     switch(index)
     {
         case 0 : return lan.append("cn.ln");
@@ -285,5 +286,33 @@ bool MusicUtils::openUrl(const QString &path)
     return (int)value >= 32;
 #else
     return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
+#endif
+}
+
+QString MusicUtils::toUnicode(const char *chars, const char *format)
+{
+    QTextCodec *codec = QTextCodec::codecForName(format);
+    return codec->toUnicode(chars);
+}
+
+QString MusicUtils::toUnicode(const QByteArray &chars, const char *format)
+{
+    QTextCodec *codec = QTextCodec::codecForName(format);
+    return codec->toUnicode(chars);
+}
+
+QByteArray MusicUtils::fromUnicode(const QString &chars, const char *format)
+{
+    QTextCodec *codec = QTextCodec::codecForName(format);
+    return codec->fromUnicode(chars);
+}
+
+void MusicUtils::setLocalCodec(const char *format)
+{
+    QTextCodec *codec = QTextCodec::codecForName(format);
+    QTextCodec::setCodecForLocale(codec);
+#ifndef MUSIC_QT_5
+    QTextCodec::setCodecForCStrings(codec);
+    QTextCodec::setCodecForTr(codec);
 #endif
 }

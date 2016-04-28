@@ -7,9 +7,6 @@
 
 #include <QApplication>
 #include <QTranslator>
-#ifndef MUSIC_QT_5
-#  include <QTextCodec>
-#endif
 //#include <vld.h>
 
 int main(int argc, char *argv[])
@@ -17,10 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 #ifndef MUSIC_QT_5
-    QTextCodec *codec = QTextCodec::codecForName("utf-8");
-    QTextCodec::setCodecForLocale(codec);
-    QTextCodec::setCodecForCStrings(codec);
-    QTextCodec::setCodecForTr(codec);
+    MusicUtils::setLocalCodec();
 #endif
 #ifdef Q_OS_UNIX
     QFont font;
