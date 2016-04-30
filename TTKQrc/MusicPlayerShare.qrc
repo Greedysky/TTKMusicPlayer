@@ -10,5 +10,6 @@
         <file alias="warning">../TTKResource/music_warning.png</file>
         <file alias="myQRCode">../TTKResource/toolSets/ts_myQRCode.png</file>
         <file alias="showMV2">../TTKResource/lrc/lrc_photo.png</file>
+        <file alias="noSimilar">../TTKResource/music_no_similar_found.png</file>
     </qresource>
 </RCC>

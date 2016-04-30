@@ -50,7 +50,8 @@ HEADERS  += \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicbarragewidget.h \
-    $$PWD/musicglobalhotkeyedit.h
+    $$PWD/musicglobalhotkeyedit.h \
+    $$PWD/musicsimilarfoundwidget.h
 
 }
 
@@ -91,6 +92,7 @@ SOURCES += \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicbarragewidget.cpp \
-    $$PWD/musicglobalhotkeyedit.cpp
+    $$PWD/musicglobalhotkeyedit.cpp \
+    $$PWD/musicsimilarfoundwidget.cpp
 
 }

@@ -16,6 +16,7 @@ class MusicVideoPlayWidget;
 class MusicSettingWidget;
 class MusicDownloadStatusLabel;
 class MusicLrcContainerForDesktop;
+class MusicSimilarFoundWidget;
 
 namespace Ui {
     class MusicApplication;
@@ -151,6 +152,10 @@ public Q_SLOTS:
     /*!
      * Research button clicked.
      */
+    void musicSimilarFoundButtonSearched();
+    /*!
+     * Similar music found button clicked.
+     */
     void musicVideoWidgetButtonSearched();
     /*!
      * Change to video player widget.
@@ -189,6 +194,7 @@ protected:
     MusicLrcContainerForDesktop *m_musiclrcfordesktop;
     MusicDownloadStatusLabel *m_downloadStatusLabel;
     MusicVideoPlayWidget *m_videoPlayer;
+    MusicSimilarFoundWidget *m_similarFoundWidget;
 
 };
 

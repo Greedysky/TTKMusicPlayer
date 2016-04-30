@@ -7,11 +7,12 @@
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
+#include "musicsimilarfoundwidget.h"
 
 #include <QPropertyAnimation>
 
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
-    : QWidget(parent), m_videoPlayer(nullptr)
+    : QWidget(parent), m_videoPlayer(nullptr), m_similarFoundWidget(nullptr)
 {
     m_supperClass = parent;
     m_lrcDisplayAll = false;
@@ -31,6 +32,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_setting;
     delete m_videoPlayer;
+    delete m_similarFoundWidget;
     delete m_downloadStatusLabel;
     delete m_musiclrcfordesktop;
 }
@@ -96,6 +98,8 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
+    connect(ui->musicSimilarFound, SIGNAL(clicked()), SLOT(musicSimilarFoundButtonSearched()));
+
 }
 
 void MusicRightAreaWidget::stopLrcMask() const
@@ -295,6 +299,17 @@ void MusicRightAreaWidget::musicSearchRefreshButtonRefreshed()
     musicSearchButtonSearched();
 }
 
+void MusicRightAreaWidget::musicSimilarFoundButtonSearched()
+{
+    musicButtonStyleClear();
+
+    createVideoWidget(false);
+    m_similarFoundWidget = new MusicSimilarFoundWidget(this);
+    m_ui->SurfaceStackedWidget->addWidget(m_similarFoundWidget);
+    m_ui->SurfaceStackedWidget->setCurrentWidget(m_similarFoundWidget);
+    m_similarFoundWidget->setSongName(m_ui->showCurrentSong->text().trimmed());
+}
+
 void MusicRightAreaWidget::createVideoWidget(bool create)
 {
     if(create)
@@ -308,18 +323,27 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->blockMoveOption(true);
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
-        m_ui->SurfaceStackedWidget->setCurrentIndex(3);
+        m_ui->SurfaceStackedWidget->setCurrentWidget(m_videoPlayer);
     }
     else if(m_videoPlayer)
     {
         m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
         deleteVideoWidget();
     }
+    ////////////////////////////////////////////////////////////
+    if(m_similarFoundWidget)
+    {
+        m_ui->SurfaceStackedWidget->removeWidget(m_similarFoundWidget);
+        delete m_similarFoundWidget;
+        m_similarFoundWidget = nullptr;
+    }
+    ////////////////////////////////////////////////////////////
     m_ui->lrcDisplayAllButton->setVisible(false);
     if(m_lrcDisplayAll)
     {
         musicLrcDisplayAllButtonClicked();
     }
+    ////////////////////////////////////////////////////////////
     emit updateBackgroundTheme();
 }
 
