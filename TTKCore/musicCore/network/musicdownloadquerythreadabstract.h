@@ -45,13 +45,29 @@ public:
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
-    void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
+    inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     /*!
      * Set search data quality.
      */
-    void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    inline QString getSearchQuality() const { return m_searchQuality;}
+    /*!
+     * Get search data quality.
+     */
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
     /*!
      * Set wheather query all quality of records.
+     */
+    inline bool getQueryAllRecords() const { return m_queryAllRecords;}
+    /*!
+     * Get query all records flag.
+     */
+    inline QueryType getQueryType() const { return m_currentType;}
+    /*!
+     * Return the current song query type.
+     */
+    inline QString getSearchedText() const { return m_searchText;}
+    /*!
+     * Return the current song name.
      */
     inline int getSongIdIndex() const { return m_musicSongInfos.size() + 1;}
     /*!
