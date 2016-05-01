@@ -51,7 +51,7 @@ public:
      */
 
 Q_SIGNALS:
-    void muiscSongToPlayListChanged(const QString &name, const QString &size,
+    void muiscSongToPlayListChanged(const QString &name, const QString &time,
                                     const QString &format);
     /*!
      * Add current network music to download to local.
@@ -110,7 +110,7 @@ protected:
     MusicCoreMPlayer *m_audition;
     int m_previousAuditionRow;
     QString m_searchText;
-    QStringList m_downloadDatas;
+    DownloadData m_downloadData;
 
 };
 

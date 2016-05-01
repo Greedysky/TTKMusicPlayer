@@ -16,6 +16,26 @@
 
 class QNetworkAccessManager;
 
+typedef struct DownloadData{
+    QString m_songName;
+    QString m_songUrl;
+    QString m_time;
+    QString m_format;
+
+    void clear()
+    {
+        m_songName.clear();
+        m_songUrl.clear();
+        m_time.clear();
+        m_format.clear();
+    }
+
+    bool isValid()
+    {
+        return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
+    }
+}DownloadData;
+
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */

@@ -173,6 +173,11 @@ void MusicDownloadWidget::show()
 
 void MusicDownloadWidget::queryAllFinished()
 {
+    if(!M_NETWORK->isOnline())
+    {
+        return;
+    }
+
     if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
         queryAllFinishedMusic();

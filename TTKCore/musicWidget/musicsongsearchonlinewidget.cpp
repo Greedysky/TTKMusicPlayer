@@ -75,11 +75,11 @@ void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
 
 void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
 {
-    if(m_downloadDatas.count() == 3)
+    if(m_downloadData.isValid())
     {
-        emit muiscSongToPlayListChanged(m_downloadDatas[0], m_downloadDatas[1], m_downloadDatas[2]);
+        emit muiscSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format);
     }
-    m_downloadDatas.clear();
+    m_downloadData.clear();
 }
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
@@ -252,8 +252,10 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     ///download big picture
     (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
-    m_downloadDatas.clear();
-    m_downloadDatas << musicSong << item(row, 3)->text() << musicSongAttr.m_format;
+    m_downloadData.clear();
+    m_downloadData.m_songName = musicSong;
+    m_downloadData.m_time =  item(row, 3)->text();
+    m_downloadData.m_format = musicSongAttr.m_format;
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
