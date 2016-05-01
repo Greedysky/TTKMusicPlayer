@@ -453,14 +453,15 @@ void MusicApplication::showCurrentSong(int index)
     {
         name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex())[index];
         ///detecting whether the file has been downloaded
+
         QString path = QString("%1/%2.%3").arg(M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
-                     .arg(name).arg(m_musicSongTree->getMusicLists()[m_musicSongTree->currentIndex()][index].getMusicType());
+                     .arg(name).arg(m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()][index].getMusicType());
         bool exist = QFile::exists(path);
         M_SETTING->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
         M_SETTING->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
         ui->musicDownload->setIcon(QIcon(exist ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
         //////////////////////////////////////////
-        exist = m_musicSongTree->getMusicLists()[1].contains(m_musicSongTree->getMusicLists()[m_musicSongTree->currentIndex()][index]);
+        exist = m_musicSongTree->getMusicLists()[1].contains(m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()][index]);
         M_SETTING->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
         ui->musicBestLove->setIcon(QIcon(exist ? ":/image/loveOn" : ":/image/loveOff"));
         //////////////////////////////////////////

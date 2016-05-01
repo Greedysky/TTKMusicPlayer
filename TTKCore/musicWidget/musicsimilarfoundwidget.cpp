@@ -90,17 +90,17 @@ void MusicSimilarFoundWidget::createLabels()
     grid->setSpacing(15);
 
     QLabel *firstLabel = new QLabel(m_mainWindow);
-    firstLabel->setText(QString("Like '<font color=blue> %1 </font>' also like this").arg(songName));
+    firstLabel->setText(tr("Like '<font color=blue> %1 </font>' also like this").arg(songName));
     grid->addWidget(firstLabel, index++, 0, 1, 5);
     ////////////////////////////////////////////////////////////////////////////
-    QCheckBox *allCheckBox = new QCheckBox("all", m_mainWindow);
-    QPushButton *playButton = new QPushButton("play", m_mainWindow);
+    QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
+    QPushButton *playButton = new QPushButton(tr("play"), m_mainWindow);
     playButton->setFixedSize(55, 25);
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *addButton = new QPushButton("add", m_mainWindow);
+    QPushButton *addButton = new QPushButton(tr("add"), m_mainWindow);
     addButton->setFixedSize(55, 25);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *downloadButton = new QPushButton("download", m_mainWindow);
+    QPushButton *downloadButton = new QPushButton(tr("download"), m_mainWindow);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     grid->addWidget(allCheckBox, index, 0);
@@ -133,8 +133,9 @@ void MusicSimilarFoundWidget::createLabels()
         index++;
     }
     ////////////////////////////////////////////////////////////////////////////
+    songName = songName.split("-").front();
     QLabel *secondLabel = new QLabel(m_mainWindow);
-    secondLabel->setText(QString("Other '<font color=blue> %1 </font>' things").arg(songName));
+    secondLabel->setText(tr("Other '<font color=blue> %1 </font>' things").arg(songName));
     grid->addWidget(secondLabel, index++, 0, 1, 5);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(m_mainWindow);
@@ -150,9 +151,9 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel1, index, 0, 1, 2);
     grid->addWidget(picLabel2, index, 3, 1, 2);
     grid->addWidget(picLabel3, index++, 6, 1, 2);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index, 0, 1, 2);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index, 3, 1, 2);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index++, 6, 1, 2);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
 
     m_mainWindow->layout()->addWidget(function);
 }
