@@ -152,6 +152,7 @@ typedef struct MusicSongInfomation
     QString m_smallPicUrl;
     QString m_singerName;
     QString m_songName;
+    QString m_timeLength;
 }MusicSongInfomation;
 typedef QList<MusicSongInfomation> MusicSongInfomations;
 

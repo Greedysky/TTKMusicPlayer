@@ -10,10 +10,13 @@
    =================================================*/
 
 #include <QLabel>
-#include "musicglobaldefine.h"
+#ifndef USE_MULTIPLE_QUERY
+#  include "musicdownloadquerysinglethread.h"
+#else
+#  include "musicdownloadquerymultiplethread.h"
+#endif
 
 class QCheckBox;
-class MusicDownLoadQueryThreadAbstract;
 
 /*! @brief The class of similar music found widget.
  * @author Greedysky <greedysky@163.com>
@@ -42,9 +45,13 @@ public Q_SLOTS:
     void addButtonClicked();
 
 protected:
+    void createLabels();
+    QList<int> foundCheckedItem();
+
     QWidget *m_mainWindow;
     QLabel *m_statusLabel;
     QList<QCheckBox*> m_checkBoxs;
+    QList<DownloadData*> m_likeDownloadDatas;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };

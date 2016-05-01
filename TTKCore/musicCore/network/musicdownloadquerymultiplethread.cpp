@@ -166,6 +166,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
+                musicInfo.m_timeLength = duration;
                 musicInfo.m_lrcUrl = object.take("LrcUrl").toString();
                 musicInfo.m_smallPicUrl = object.take("PicUrl").toString();
                 m_musicSongInfos << musicInfo;
@@ -188,6 +189,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
+                musicInfo.m_timeLength = duration;
                 m_musicSongInfos << musicInfo;
             }
         }
@@ -244,6 +246,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
+                    musicInfo.m_timeLength = duration;
                     musicInfo.m_lrcUrl = value.property("LrcUrl").toString();
                     musicInfo.m_smallPicUrl = value.property("PicUrl").toString();
                     m_musicSongInfos << musicInfo;
@@ -266,6 +269,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
+                    musicInfo.m_timeLength = duration;
                     m_musicSongInfos << musicInfo;
                 }
             }

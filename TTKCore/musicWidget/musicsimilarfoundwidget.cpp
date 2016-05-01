@@ -1,10 +1,5 @@
 #include "musicsimilarfoundwidget.h"
 #include "musicuiobject.h"
-#ifndef USE_MULTIPLE_QUERY
-#  include "musicdownloadquerysinglethread.h"
-#else
-#  include "musicdownloadquerymultiplethread.h"
-#endif
 
 #include <QBoxLayout>
 #include <QGridLayout>
@@ -39,6 +34,10 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
+    while(!m_likeDownloadDatas.isEmpty())
+    {
+        delete m_likeDownloadDatas.takeLast();
+    }
     delete m_downloadThread;
     delete m_statusLabel;
     delete m_mainWindow;
@@ -61,70 +60,114 @@ void MusicSimilarFoundWidget::queryAllFinished()
     {
         delete m_statusLabel;
         m_statusLabel = nullptr;
-        int index = 0;
-        QString songName = m_downloadThread->getSearchedText();
 
-        QWidget *function = new QWidget(m_mainWindow);
-        function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle05);
-        QGridLayout *grid = new QGridLayout(function);
-        grid->setSpacing(15);
-
-        QLabel *firstLabel = new QLabel(m_mainWindow);
-        firstLabel->setText(QString("Like '<font color=blue> %1 </font>' also like this").arg(songName));
-        grid->addWidget(firstLabel, index++, 0, 1, 5);
-        ////////////////////////////////////////////////////////////////////////////
-        QCheckBox *allCheckBox = new QCheckBox("all", m_mainWindow);
-        QPushButton *playButton = new QPushButton("play", m_mainWindow);
-        playButton->setFixedSize(55, 25);
-        playButton->setCursor(QCursor(Qt::PointingHandCursor));
-        QPushButton *addButton = new QPushButton("add", m_mainWindow);
-        addButton->setFixedSize(55, 25);
-        addButton->setCursor(QCursor(Qt::PointingHandCursor));
-        QPushButton *downloadButton = new QPushButton("download", m_mainWindow);
-        downloadButton->setFixedSize(55, 25);
-        downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
-        grid->addWidget(allCheckBox, index, 0);
-        grid->addWidget(playButton, index, 5);
-        grid->addWidget(addButton, index, 6);
-        grid->addWidget(downloadButton, index++, 7);
-        connect(allCheckBox, SIGNAL(clicked(bool)), SLOT(selectAllItems(bool)));
-        connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
-        connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
-        connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
-        ////////////////////////////////////////////////////////////////////////////
-        for(int i=0; i<4; ++i)
+        foreach(MusicSongInfomation info, musicSongInfos)
         {
-            for(int j=0; j<5; j+=4)
+            DownloadData *data = new DownloadData;
+            data->m_songName = info.m_songName;
+            data->m_time = info.m_timeLength;
+            if(!info.m_songAttrs.isEmpty())
             {
-                QCheckBox *box = new QCheckBox(m_mainWindow);
-                m_checkBoxs << box;
-                grid->addWidget(box, index, j);
-                grid->addWidget(new QLabel("TTTT5555555555TTTTT", m_mainWindow), index, j + 1, 1, 2, Qt::AlignLeft);
-                grid->addWidget(new QLabel("05:01", m_mainWindow), index, j + 3);
+                MusicSongAttribute atrr = info.m_songAttrs.first();
+                data->m_songUrl = atrr.m_url;
+                data->m_format = atrr.m_format;
             }
-            index++;
+            m_likeDownloadDatas <<data;
         }
 
-        QLabel *secondLabel = new QLabel(m_mainWindow);
-        secondLabel->setText(QString("Other '<font color=blue> %1 </font>' things").arg(songName));
-        grid->addWidget(secondLabel, index++, 0, 1, 5);
-
-        if(songName.contains("-"))
-        {
-            for(int i=0; i<4; ++i)
-            {
-                for(int j=0; j<5; j+=4)
-                {
-                    grid->addWidget(new QCheckBox(m_mainWindow), index, j);
-                    grid->addWidget(new QLabel("TTTT5555555555TTTTT", m_mainWindow), index, j + 1, 1, 2, Qt::AlignLeft);
-                    grid->addWidget(new QLabel("05:01", m_mainWindow), index, j + 3);
-                }
-                index++;
-            }
-        }
-
-        m_mainWindow->layout()->addWidget(function);
+        createLabels();
     }
+}
+
+void MusicSimilarFoundWidget::createLabels()
+{
+    QString songName = m_downloadThread->getSearchedText();
+    int index = 0;
+
+    QWidget *function = new QWidget(m_mainWindow);
+    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle05);
+    QGridLayout *grid = new QGridLayout(function);
+    grid->setSpacing(15);
+
+    QLabel *firstLabel = new QLabel(m_mainWindow);
+    firstLabel->setText(QString("Like '<font color=blue> %1 </font>' also like this").arg(songName));
+    grid->addWidget(firstLabel, index++, 0, 1, 5);
+    ////////////////////////////////////////////////////////////////////////////
+    QCheckBox *allCheckBox = new QCheckBox("all", m_mainWindow);
+    QPushButton *playButton = new QPushButton("play", m_mainWindow);
+    playButton->setFixedSize(55, 25);
+    playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QPushButton *addButton = new QPushButton("add", m_mainWindow);
+    addButton->setFixedSize(55, 25);
+    addButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QPushButton *downloadButton = new QPushButton("download", m_mainWindow);
+    downloadButton->setFixedSize(55, 25);
+    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    grid->addWidget(allCheckBox, index, 0);
+    grid->addWidget(playButton, index, 5);
+    grid->addWidget(addButton, index, 6);
+    grid->addWidget(downloadButton, index++, 7);
+    connect(allCheckBox, SIGNAL(clicked(bool)), SLOT(selectAllItems(bool)));
+    connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
+    connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
+    connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
+    ////////////////////////////////////////////////////////////////////////////
+    for(int i=0; i<4; ++i)
+    {
+        for(int j=0; j<2; j++)
+        {
+            int dIndex = 2*i + j;
+            if( dIndex >= m_likeDownloadDatas.count())
+            {
+                break;
+            }
+            QCheckBox *box = new QCheckBox(m_mainWindow);
+            m_checkBoxs << box;
+            grid->addWidget(box, index, j*4);
+            QLabel *songLabel = new QLabel(m_mainWindow);
+            songLabel->setText(QFontMetrics(font()).elidedText(m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
+            songLabel->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
+            grid->addWidget(songLabel, index, j*4 + 1, 1, 2, Qt::AlignLeft);
+            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, m_mainWindow), index, j*4 + 3);
+        }
+        index++;
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    QLabel *secondLabel = new QLabel(m_mainWindow);
+    secondLabel->setText(QString("Other '<font color=blue> %1 </font>' things").arg(songName));
+    grid->addWidget(secondLabel, index++, 0, 1, 5);
+    ////////////////////////////////////////////////////////////////////////////
+    QLabel *picLabel1 = new QLabel(m_mainWindow);
+    picLabel1->setStyleSheet("background:red");
+    picLabel1->setFixedSize(100, 100);
+    QLabel *picLabel2 = new QLabel(m_mainWindow);
+    picLabel2->setStyleSheet("background:blue");
+    picLabel2->setFixedSize(100, 100);
+    QLabel *picLabel3 = new QLabel(m_mainWindow);
+    picLabel3->setStyleSheet("background:green");
+    picLabel3->setFixedSize(100, 100);
+    ////////////////////////////////////////////////////////////////////////////
+    grid->addWidget(picLabel1, index, 0, 1, 2);
+    grid->addWidget(picLabel2, index, 3, 1, 2);
+    grid->addWidget(picLabel3, index++, 6, 1, 2);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index, 0, 1, 2);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index, 3, 1, 2);
+    grid->addWidget(new QLabel(songName, m_mainWindow), index++, 6, 1, 2);
+
+    m_mainWindow->layout()->addWidget(function);
+}
+
+QList<int> MusicSimilarFoundWidget::foundCheckedItem()
+{
+    QList<int> list;
+    for(int i=0; i<m_checkBoxs.count(); ++i)
+    {
+        if(m_checkBoxs[i]->isChecked())
+        {
+            list << i;
+        }
+    }
+    return list;
 }
 
 void MusicSimilarFoundWidget::selectAllItems(bool all)
@@ -137,15 +180,18 @@ void MusicSimilarFoundWidget::selectAllItems(bool all)
 
 void MusicSimilarFoundWidget::playButtonClicked()
 {
-
+    QList<int> list = foundCheckedItem();
+    qDebug() << list.count();
 }
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
 {
-
+    QList<int> list = foundCheckedItem();
+    qDebug() << list.count();
 }
 
 void MusicSimilarFoundWidget::addButtonClicked()
 {
-
+    QList<int> list = foundCheckedItem();
+    qDebug() << list.count();
 }
