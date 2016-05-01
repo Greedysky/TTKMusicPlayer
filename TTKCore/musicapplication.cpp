@@ -461,7 +461,7 @@ void MusicApplication::showCurrentSong(int index)
         M_SETTING->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
         ui->musicDownload->setIcon(QIcon(exist ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
         //////////////////////////////////////////
-        exist = m_musicSongTree->getMusicLists()[1].contains(m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()][index]);
+        exist = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].contains(m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()][index]);
         M_SETTING->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
         ui->musicBestLove->setIcon(QIcon(exist ? ":/image/loveOn" : ":/image/loveOff"));
         //////////////////////////////////////////

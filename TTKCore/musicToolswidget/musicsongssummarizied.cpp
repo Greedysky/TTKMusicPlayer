@@ -23,12 +23,12 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         MusicSongsListWidget* w = new MusicSongsListWidget(this);
         m_mainSongLists.append(w);
     }
-    addItem(m_mainSongLists[0], tr("myDefaultPlayItem"));
-    addItem(m_mainSongLists[1], tr("myLoveSongItem"));
-    addItem(m_mainSongLists[2], tr("myNetSongItem"));
+    addItem(m_mainSongLists[MUSIC_NORMAL_LIST], tr("myDefaultPlayItem"));
+    addItem(m_mainSongLists[MUSIC_LOVEST_LIST], tr("myLoveSongItem"));
+    addItem(m_mainSongLists[MUSIC_NETWORK_LIST], tr("myNetSongItem"));
     layout()->setSpacing(0);
     changeItemIcon();
-    m_currentIndexs = 0;
+    m_currentIndexs = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
     m_renameIndex = -1;
 
@@ -137,10 +137,10 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     for(int i=0; i<filelist.count(); ++i)
     {
         QString time = tag.readFile(filelist[i]) ? tag.getLengthString() : "-";
-        m_musicFileNames[0] << MusicSong(filelist[i], 0, time, QString());
+        m_musicFileNames[MUSIC_NORMAL_LIST] << MusicSong(filelist[i], 0, time, QString());
         progress.setValue(i + 1);
     }
-    m_mainSongLists[0]->updateSongsFileName(m_musicFileNames[0]);
+    m_mainSongLists[MUSIC_NORMAL_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_NORMAL_LIST]);
 }
 
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
@@ -271,9 +271,9 @@ void MusicSongsSummarizied::addNewItem()
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
     MusicSong song = m_musicFileNames[m_currentIndexs][row];
-    m_musicFileNames[1] << song;
-    m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
-    if(m_currentIndexs == 1)
+    m_musicFileNames[MUSIC_LOVEST_LIST] << song;
+    m_mainSongLists[MUSIC_LOVEST_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_LOVEST_LIST]);
+    if(m_currentIndexs == MUSIC_LOVEST_LIST)
     {
         emit updatePlayLists(song.getMusicPath());
     }
@@ -282,10 +282,10 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 {
     MusicSong song = m_musicFileNames[m_currentIndexs][row];
-    if(m_musicFileNames[1].removeOne(song))
+    if(m_musicFileNames[MUSIC_LOVEST_LIST].removeOne(song))
     {
-        m_mainSongLists[1]->clearAllItems();
-        m_mainSongLists[1]->updateSongsFileName(m_musicFileNames[1]);
+        m_mainSongLists[MUSIC_LOVEST_LIST]->clearAllItems();
+        m_mainSongLists[MUSIC_LOVEST_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_LOVEST_LIST]);
     }
 }
 
@@ -293,15 +293,15 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
                                                   const QString &format)
 {
     const QString path = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL).arg(name).arg(format);
-    m_musicFileNames[2] << MusicSong(path, 0, time, name);
-    m_mainSongLists[2]->updateSongsFileName(m_musicFileNames[2]);
-    if(m_currentIndexs == 2)
+    m_musicFileNames[MUSIC_NETWORK_LIST] << MusicSong(path, 0, time, name);
+    m_mainSongLists[MUSIC_NETWORK_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_NETWORK_LIST]);
+    if(m_currentIndexs == MUSIC_NETWORK_LIST)
     {
         emit updatePlayLists(path);
     }
     ///when download finished just play it at once
-    QToolBox::setCurrentIndex(2);
-    emit musicPlayIndex(m_musicFileNames[2].count() - 1, 0);
+    QToolBox::setCurrentIndex(MUSIC_NETWORK_LIST);
+    emit musicPlayIndex(m_musicFileNames[MUSIC_NETWORK_LIST].count() - 1, 0);
 }
 
 void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
@@ -312,7 +312,7 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     }
 
     importOtherMusicSongs(items);
-    if(m_currentIndexs == 0)
+    if(m_currentIndexs == MUSIC_NORMAL_LIST)
     {
         foreach(QString var, items)
         {
@@ -321,7 +321,7 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     }
     /// just play it at once
     QToolBox::setCurrentIndex(0);
-    emit musicPlayIndex(m_musicFileNames[0].count() - 1, 0);
+    emit musicPlayIndex(m_musicFileNames[MUSIC_NORMAL_LIST].count() - 1, 0);
 }
 
 void MusicSongsSummarizied::deleteItem()

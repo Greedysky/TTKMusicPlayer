@@ -15,6 +15,11 @@
 #include "musicglobaldefine.h"
 #include "musicobject.h"
 
+#define MUSIC_NORMAL_LIST   0
+#define MUSIC_LOVEST_LIST   1
+#define MUSIC_NETWORK_LIST  2
+#define MUSIC_OTHER_LIST    3
+
 class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongsToolItemRenamedWidget;
