@@ -49,6 +49,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
 {
     if(m_reply == nullptr)
     {
+        deleteAll();
         return;
     }
 
@@ -65,6 +66,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         if( jsonError.error != QJsonParseError::NoError ||
             !parseDoucment.isObject())
         {
+            deleteAll();
             return;
         }
 

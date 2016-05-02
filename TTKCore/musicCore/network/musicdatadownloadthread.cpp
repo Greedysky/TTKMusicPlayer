@@ -48,6 +48,7 @@ void MusicDataDownloadThread::downLoadFinished()
 {
     if(!m_file)
     {
+        deleteAll();
         return;
     }
 
@@ -71,8 +72,8 @@ void MusicDataDownloadThread::downLoadFinished()
     {
         emit musicDownLoadFinished("Data");
         M_LOGGER_INFO("data download has finished!");
-        deleteAll();
     }
+    deleteAll();
 }
 
 void MusicDataDownloadThread::downLoadReadyRead()

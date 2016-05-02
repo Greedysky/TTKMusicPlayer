@@ -102,6 +102,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
 {
     if(m_reply == nullptr)
     {
+        deleteAll();
         return;
     }
 
@@ -117,6 +118,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
         ///Put the data into Json
         if( jsonError.error != QJsonParseError::NoError )
         {
+            deleteAll();
             return;
         }
 

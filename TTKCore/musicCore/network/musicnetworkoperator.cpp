@@ -1,7 +1,6 @@
 #include "musicnetworkoperator.h"
-#include "musicdatadownloadthread.h"
+#include "musicsourcedownloadthread.h"
 
-#define IP_DOWNLOAD "ip_tmp"
 const QString IP_CHECK_URL = "http://1212.ip138.com/ic.asp";
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
@@ -17,27 +16,18 @@ MusicNetworkOperator::~MusicNetworkOperator()
 
 void MusicNetworkOperator::startToOperator()
 {
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                             IP_CHECK_URL, IP_DOWNLOAD,
-                             MusicDownLoadThreadAbstract::Download_Other, this);
+    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API
-    connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(downLoadFinished()));
-    download->startToDownload();
+    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    download->startToDownload(IP_CHECK_URL);
 }
 
-void MusicNetworkOperator::downLoadFinished()
+void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
-    QFile file(IP_DOWNLOAD);
-    ///Check if the file exists and can be written
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        return;
-    }
-
-    QTextStream in(&file);
+    QTextStream in(MConst_cast(QByteArray*, &data));
     QString line = in.readLine();
 
-    QString data;
+    QString dataLine;
     while(!line.isNull())
     {
         if(line.contains("<center>"))
@@ -46,16 +36,13 @@ void MusicNetworkOperator::downLoadFinished()
             if(l.count() >= 2)
             {
                 l = l[1].split(" ");
-                data = l.last();
-                data.chop(2); /// remove </
+                dataLine = l.last();
+                dataLine.chop(2); /// remove </
             }
         }
         line = in.readLine();
     }
-    file.close();
-    ///The file is closed and remove the temporary files
-    QFile::remove(IP_DOWNLOAD);
 
-    emit getNetworkOperatorFinished(data);
+    emit getNetworkOperatorFinished(dataLine);
     deleteLater();
 }

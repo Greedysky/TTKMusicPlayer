@@ -23,6 +23,7 @@ HEADERS  += \
     $$PWD/network/musicdata2downloadthread.h \
     $$PWD/network/musicdatadownloadthread.h \
     $$PWD/network/musictextdownloadthread.h \
+    $$PWD/network/musicsourcedownloadthread.h \
     $$PWD/network/musicnetworkthread.h \
     $$PWD/network/musicnetworkproxy.h \
     $$PWD/network/musicnetworkoperator.h \
@@ -69,6 +70,7 @@ SOURCES += \
     $$PWD/network/musicdata2downloadthread.cpp \
     $$PWD/network/musicdatadownloadthread.cpp \
     $$PWD/network/musictextdownloadthread.cpp \
+    $$PWD/network/musicsourcedownloadthread.cpp \
     $$PWD/network/musicnetworkthread.cpp \
     $$PWD/network/musicnetworkproxy.cpp \
     $$PWD/network/musicnetworkoperator.cpp \

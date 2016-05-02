@@ -44,6 +44,7 @@ void MusicTextDownLoadThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
+        deleteAll();
         return;
     }
     m_timer.stop();

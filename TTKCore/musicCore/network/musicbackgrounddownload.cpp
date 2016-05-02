@@ -1,4 +1,5 @@
 #include "musicbackgrounddownload.h"
+#include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
@@ -18,24 +19,15 @@ MusicBackgroundDownload::~MusicBackgroundDownload()
 
 void MusicBackgroundDownload::startToDownload()
 {
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(
-                             BIG_BG_ART_URL.arg(m_artName), TMP_DOWNLOAD,
-                             MusicDownLoadThreadAbstract::Download_BigBG, this);
+    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search image API
-    connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(downLoadFinished()));
-    download->startToDownload();
+    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    download->startToDownload(BIG_BG_ART_URL.arg(m_artName));
 }
 
-void MusicBackgroundDownload::downLoadFinished()
+void MusicBackgroundDownload::downLoadFinished(const QByteArray &data)
 {
-    QFile file(TMP_DOWNLOAD);
-    ///Check if the file exists and can be written
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        return;
-    }
-
-    QTextStream in(&file);
+    QTextStream in(MConst_cast(QByteArray*, &data));
     QString line = in.readLine();
 
     while(!line.isNull())
@@ -57,9 +49,6 @@ void MusicBackgroundDownload::downLoadFinished()
         }
         line = in.readLine();
     }
-    file.close();
-    //The file is closed and remove the temporary files
-    QFile::remove(TMP_DOWNLOAD);
 }
 
 void MusicBackgroundDownload::bgDownLoadFinished()

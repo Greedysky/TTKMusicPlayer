@@ -26,6 +26,9 @@ class MUSIC_WIDGET_EXPORT MusicSimilarFoundWidget : public QWidget
     Q_OBJECT
 public:
     explicit MusicSimilarFoundWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicSimilarFoundWidget();
 
     void setSongName(const QString &name);
@@ -33,11 +36,14 @@ public:
      * Set current name to search founds.
      */
 
-Q_SIGNALS:
 public Q_SLOTS:
     void queryAllFinished();
     /*!
      * Query all quality musics is finished.
+     */
+    void recievedData(const QByteArray &data);
+    /*!
+     * Send recieved data from net.
      */
     void selectAllItems(bool all);
     void playButtonClicked();

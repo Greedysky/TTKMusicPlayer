@@ -57,6 +57,7 @@ void MusicData2DownloadThread::dataGetFinished()
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())
         {
+            deleteAll();
             return ;
         }
 
@@ -74,11 +75,8 @@ void MusicData2DownloadThread::dataGetFinished()
             emit data2urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
         }
-        else
-        {
-            deleteAll();
-        }
     }
+    deleteAll();
 }
 
 void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)

@@ -1,6 +1,14 @@
 #ifndef MUSICNETWORKOPERATOR_H
 #define MUSICNETWORKOPERATOR_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include "musicglobaldefine.h"
 
 /*! @brief The class of music network operator.
@@ -28,7 +36,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void downLoadFinished();
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from ip net finished.
      */

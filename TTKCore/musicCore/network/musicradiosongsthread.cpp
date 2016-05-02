@@ -52,6 +52,7 @@ void MusicRadioSongsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
+        deleteAll();
         return;
     }
 

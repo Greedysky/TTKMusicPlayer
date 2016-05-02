@@ -27,6 +27,7 @@ MusicDownloadQueueCache::~MusicDownloadQueueCache()
     if(m_request)
     {
         delete m_request;
+        m_request = nullptr;
     }
     deleteAll();
 }

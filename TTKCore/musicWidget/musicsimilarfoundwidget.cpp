@@ -1,4 +1,5 @@
 #include "musicsimilarfoundwidget.h"
+#include "musicsourcedownloadthread.h"
 #include "musicuiobject.h"
 
 #include <QBoxLayout>
@@ -155,6 +156,10 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(new QLabel(songName, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(songName, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
 
+    MusicSourceDownloadThread *d = new MusicSourceDownloadThread(this);
+    connect(d, SIGNAL(recievedData(QByteArray)), SLOT(recievedData(QByteArray)));
+    d->startToDownload("http://www.oschina.net/img/logo_s2.png");
+
     m_mainWindow->layout()->addWidget(function);
 }
 
@@ -169,6 +174,15 @@ QList<int> MusicSimilarFoundWidget::foundCheckedItem()
         }
     }
     return list;
+}
+
+void MusicSimilarFoundWidget::recievedData(const QByteArray &data)
+{
+    QLabel *l = new QLabel;
+    QPixmap f;
+    f.loadFromData(data);
+    l->setPixmap(f);
+    l->show();
 }
 
 void MusicSimilarFoundWidget::selectAllItems(bool all)

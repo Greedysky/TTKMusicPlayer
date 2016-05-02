@@ -127,7 +127,7 @@ void MusicDesktopWallpaperWidget::findFiles(const QString &path)
     {
         if( filters.contains(fileInfo.suffix()) )
         {
-            m_path<<fileInfo.absoluteFilePath();
+            m_path << fileInfo.absoluteFilePath();
         }
     }
 }
@@ -184,7 +184,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
             m_path << QString("%1%2").arg(TMP_DOWNLOAD).arg(JPG_FILE);
             MusicDataDownloadThread *background = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
                                                       m_path[0], MusicDownLoadThreadAbstract::Download_BigBG, this);
-            connect(background, SIGNAL(musicDownLoadFinished(QString)),SLOT(parameterFinished()));
+            connect(background, SIGNAL(musicDownLoadFinished(QString)), SLOT(parameterFinished()));
             background->startToDownload();
             break;
         }
