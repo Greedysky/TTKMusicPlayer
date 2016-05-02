@@ -39,7 +39,14 @@ void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QStri
         m_reply = nullptr;
     }
 
-    m_reply = m_manager->get(QNetworkRequest(musicUrl));
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );

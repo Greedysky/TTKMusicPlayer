@@ -36,6 +36,15 @@ void MusicDownloadQueueCache::startToDownload()
 {
     m_manager = new QNetworkAccessManager(this);
     m_request = new QNetworkRequest();
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("MusicDownloadQueueCache Support ssl: %1").arg(QSslSocket::supportsSsl()));
+
+    QSslConfiguration sslConfig = m_request->sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    m_request->setSslConfiguration(sslConfig);
+#endif
     if(!m_imageQueue.isEmpty())
     {
         startOrderImageQueue();

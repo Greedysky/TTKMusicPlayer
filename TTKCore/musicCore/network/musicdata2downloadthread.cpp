@@ -14,12 +14,24 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 {
     m_dataReply = nullptr;
     m_dataManager = new QNetworkAccessManager(this);
+#ifndef QT_NO_SSL
+    connect(m_dataManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                           SLOT(dataSslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("MusicData2DownloadThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+#endif
 }
 
 void MusicData2DownloadThread::startToDownload()
 {
     m_timer.start(1000);
-    m_dataReply = m_dataManager->get( QNetworkRequest(m_url));
+    QNetworkRequest request;
+    request.setUrl(m_url);
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    m_dataReply = m_dataManager->get( request );
     connect(m_dataReply, SIGNAL(finished()), SLOT(dataGetFinished()));
     connect(m_dataReply, SIGNAL(error(QNetworkReply::NetworkError)),
                          SLOT(dataReplyError(QNetworkReply::NetworkError)) );
@@ -84,3 +96,23 @@ void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
     emit musicDownLoadFinished("The data2 create failed");
     deleteAll();
 }
+
+#ifndef QT_NO_SSL
+void MusicData2DownloadThread::dataSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+{
+    QString errorString;
+    foreach(const QSslError &error, errors)
+    {
+        if(!errorString.isEmpty())
+        {
+            errorString += ", ";
+        }
+        errorString += error.errorString();
+    }
+
+    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
+    reply->ignoreSslErrors();
+    emit musicDownLoadFinished("The data2 create failed");
+    deleteAll();
+}
+#endif

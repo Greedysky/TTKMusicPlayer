@@ -29,15 +29,24 @@ MusicRadioSongsThread::~MusicRadioSongsThread()
 void MusicRadioSongsThread::startToDownload(const QString &id)
 {
     m_manager = new QNetworkAccessManager(this);
-    QNetworkRequest networkRequest;
 
-    networkRequest.setUrl(QUrl(songsUrl + id));
+    QNetworkRequest request;
+    request.setUrl(QUrl(songsUrl + id));
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("MusicRadioSongsThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
     if(m_cookJar)
     {
         m_manager->setCookieJar(m_cookJar);
         m_cookJar->setParent(nullptr);
     }
-    m_reply = m_manager->get(networkRequest);
+    m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 

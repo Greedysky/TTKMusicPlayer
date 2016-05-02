@@ -24,7 +24,19 @@ void MusicTextDownLoadThread::startToDownload()
         {
             m_timer.start(1000);
             m_manager = new QNetworkAccessManager(this);
-            m_reply = m_manager->get( QNetworkRequest(QUrl(m_url)));
+
+            QNetworkRequest request;
+            request.setUrl(m_url);
+#ifndef QT_NO_SSL
+            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                               SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+            M_LOGGER_INFO(QString("MusicTextDownLoadThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+
+            QSslConfiguration sslConfig = request.sslConfiguration();
+            sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+            request.setSslConfiguration(sslConfig);
+#endif
+            m_reply = m_manager->get( request );
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                              SLOT(replyError(QNetworkReply::NetworkError)) );

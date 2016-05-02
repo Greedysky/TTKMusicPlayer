@@ -47,6 +47,12 @@ public Q_SLOTS:
     /*!
      * Download reply error.
      */
+#ifndef QT_NO_SSL
+    void dataSslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    /*!
+     * Download ssl reply error.
+     */
+#endif
 
 protected:
     QNetworkAccessManager *m_dataManager;

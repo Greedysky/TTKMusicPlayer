@@ -15,6 +15,11 @@ void MusicDataDownloadThread::startToDownload()
         if( m_file->open(QIODevice::WriteOnly) )
         {
             m_manager = new QNetworkAccessManager(this);
+#ifndef QT_NO_SSL
+            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                               SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+            M_LOGGER_INFO(QString("MusicDataDownloadThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+#endif
             startRequest(m_url);
         }
         else
@@ -29,7 +34,14 @@ void MusicDataDownloadThread::startToDownload()
 void MusicDataDownloadThread::startRequest(const QUrl &url)
 {
     m_timer.start(1000);
-    m_reply = m_manager->get( QNetworkRequest(url));
+    QNetworkRequest request;
+    request.setUrl(url);
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );

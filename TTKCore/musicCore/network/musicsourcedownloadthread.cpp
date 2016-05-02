@@ -29,7 +29,20 @@ void MusicSourceDownloadThread::deleteAll()
 void MusicSourceDownloadThread::startToDownload(const QString &url)
 {
     m_manager = new QNetworkAccessManager(this);
-    m_reply = m_manager->get(QNetworkRequest(QUrl(url)));
+
+    QNetworkRequest request;
+    request.setUrl(url);
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("MusicSourceDownloadThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+
+    m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 
@@ -53,3 +66,23 @@ void MusicSourceDownloadThread::replyError(QNetworkReply::NetworkError)
     emit recievedData(QByteArray());
     deleteAll();
 }
+
+#ifndef QT_NO_SSL
+void MusicSourceDownloadThread::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+{
+    QString errorString;
+    foreach(const QSslError &error, errors)
+    {
+        if(!errorString.isEmpty())
+        {
+            errorString += ", ";
+        }
+        errorString += error.errorString();
+    }
+
+    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
+    reply->ignoreSslErrors();
+    emit recievedData(QByteArray());
+    deleteAll();
+}
+#endif

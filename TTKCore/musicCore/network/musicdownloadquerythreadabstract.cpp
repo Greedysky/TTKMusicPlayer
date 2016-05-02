@@ -4,6 +4,11 @@ MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *pare
     : QObject(parent), m_reply(nullptr)
 {
     m_manager = new QNetworkAccessManager(this);
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("MusicDownLoadQueryThreadAbstract Support ssl: %1").arg(QSslSocket::supportsSsl()));
+#endif
     m_queryAllRecords = false;
 }
 
@@ -32,3 +37,23 @@ void MusicDownLoadQueryThreadAbstract::replyError(QNetworkReply::NetworkError)
     emit resolvedSuccess();
     deleteAll();
 }
+
+#ifndef QT_NO_SSL
+void MusicDownLoadQueryThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+{
+    QString errorString;
+    foreach(const QSslError &error, errors)
+    {
+        if(!errorString.isEmpty())
+        {
+            errorString += ", ";
+        }
+        errorString += error.errorString();
+    }
+
+    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
+    reply->ignoreSslErrors();
+    emit resolvedSuccess();
+    deleteAll();
+}
+#endif

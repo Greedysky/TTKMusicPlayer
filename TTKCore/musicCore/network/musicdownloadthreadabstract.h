@@ -89,6 +89,12 @@ public Q_SLOTS:
     /*!
      * Download reply error.
      */
+#ifndef QT_NO_SSL
+    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    /*!
+     * Download ssl reply error.
+     */
+#endif
     void updateDownloadSpeed();
     /*!
      * Updata download speed due the user mod the net speed limited.

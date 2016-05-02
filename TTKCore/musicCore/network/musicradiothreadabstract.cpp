@@ -30,3 +30,23 @@ void MusicRadioThreadAbstract::replyError(QNetworkReply::NetworkError)
     emit networkReplyFinished("The file create failed");
     deleteAll();
 }
+
+#ifndef QT_NO_SSL
+void MusicRadioThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+{
+    QString errorString;
+    foreach(const QSslError &error, errors)
+    {
+        if(!errorString.isEmpty())
+        {
+            errorString += ", ";
+        }
+        errorString += error.errorString();
+    }
+
+    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
+    reply->ignoreSslErrors();
+    emit networkReplyFinished("The file create failed");
+    deleteAll();
+}
+#endif
