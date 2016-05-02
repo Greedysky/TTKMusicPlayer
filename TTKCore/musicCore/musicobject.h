@@ -45,6 +45,7 @@
 #define LRC_FILE           ".lrc"
 #define KRC_FILE           ".krc"
 #define MP3_FILE           ".mp3"
+#define TMP_FILE           ".ttk"
 
 #define MAKE_TRANSFORM     "MPlugins/avconv.dll"
 #define MAKE_KRC2LRC       "MPlugins/avk2l.dll"

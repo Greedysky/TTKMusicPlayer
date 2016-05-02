@@ -9,9 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QNetworkReply>
 #include <QFile>
 #include <QTimer>
+#include <QNetworkReply>
+#include <QSslConfiguration>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 

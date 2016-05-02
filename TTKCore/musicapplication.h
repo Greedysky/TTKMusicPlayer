@@ -274,7 +274,7 @@ private:
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;
     MusicLeftAreaWidget *m_leftAreaWidget;
-    MusicApplicationObject *m_object;
+    MusicApplicationObject *m_applicationObject;
 
 };
 

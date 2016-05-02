@@ -46,13 +46,39 @@ public Q_SLOTS:
      * Send recieved data from net.
      */
     void selectAllItems(bool all);
+    /*!
+     * Select all items or not.
+     */
     void playButtonClicked();
+    /*!
+     * Play button clicked now.
+     */
     void downloadButtonClicked();
+    /*!
+     * Download button clicked now.
+     */
     void addButtonClicked();
+    /*!
+     * Add button clicked now.
+     */
+    void downloadDataFinished();
+    /*!
+     * Download data finished.
+     */
 
 protected:
     void createLabels();
+    /*!
+     * Create init interface lables.
+     */
     MIntList foundCheckedItem();
+    /*!
+     * Found which items is checked.
+     */
+    void downloadDataFrom(int row);
+    /*!
+     * Download data from net by index.
+     */
 
     QString m_songNameFull;
     QWidget *m_mainWindow;

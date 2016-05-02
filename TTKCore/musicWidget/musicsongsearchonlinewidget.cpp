@@ -9,6 +9,7 @@
 #include "musiccoremplayer.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicitemdelegate.h"
+#include "musiccryptographichash.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -232,9 +233,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     MusicSongInfomation musicSongInfo = musicSongInfos[row];
     MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-    QString downloadName = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL)
-                                             .arg(musicSong).arg(musicSongAttr.m_format);
-
+    QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
+    QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(musicSongAttr.m_format);
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
     connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(searchDataDwonloadFinished()));
@@ -253,7 +253,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 
     m_downloadData.clear();
-    m_downloadData.m_songName = musicSong;
+    m_downloadData.m_songName = musicEnSong;
     m_downloadData.m_time =  item(row, 3)->text();
     m_downloadData.m_format = musicSongAttr.m_format;
 }

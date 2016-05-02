@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QNetworkReply>
+#include <QSslConfiguration>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 

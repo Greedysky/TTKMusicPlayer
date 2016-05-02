@@ -8,6 +8,7 @@
 #if defined Q_OS_UNIX || defined Q_CC_MINGW
 # include <unistd.h>
 #endif
+#include <QSslError>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)

@@ -26,7 +26,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     ui->setupUi(this);
     M_CONNECTION->setValue("MusicApplication", this);
 
-    m_object = new MusicApplicationObject(this);
+    m_applicationObject = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
 //    drawWindowShadow(false);
 
@@ -94,7 +94,7 @@ MusicApplication::~MusicApplication()
     delete m_topAreaWidget;
     delete m_rightAreaWidget;
     delete m_leftAreaWidget;
-    delete m_object;
+    delete m_applicationObject;
     delete ui;
 }
 
@@ -102,13 +102,13 @@ MusicApplication::~MusicApplication()
 #  ifdef MUSIC_QT_5
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
-    m_object->nativeEvent(eventType, message, result);
+    m_applicationObject->nativeEvent(eventType, message, result);
     return QWidget::nativeEvent(eventType, message, result);
 }
 #  else
 bool MusicApplication::winEvent(MSG *message, long *result)
 {
-    m_object->winEvent(message, result);
+    m_applicationObject->winEvent(message, result);
     return QWidget::winEvent(message, result);
 }
 #  endif
@@ -200,8 +200,8 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
-    rightClickMenu.addAction(tr("AudioRecorder"), m_object, SLOT(musicAudioRecorder()));
-    rightClickMenu.addAction(tr("TimingSettings"), m_object, SLOT(musicTimerWidget()));
+    rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
+    rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
     spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
     spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
@@ -213,16 +213,16 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addMenu(&spectrumControl);
     rightClickMenu.addSeparator();
 
-    QAction *window = rightClickMenu.addAction(tr("WindowTop"), m_object, SLOT(musicSetWindowToTop()));
-    window->setIcon(QIcon(m_object->getWindowToTop() ? ":/share/selected" : QString()));
+    QAction *window = rightClickMenu.addAction(tr("WindowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
+    window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/share/selected" : QString()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/setting"), tr("Setting"), this, SLOT(musicSetting()));
     rightClickMenu.addAction(QIcon(":/contextMenu/location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
-    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + TTKMUSIC_VERSION_STR, m_object, SLOT(musicAboutUs()));
-    musicInfo.addAction(QIcon(":/contextMenu/update"), tr("Update"), m_object, SLOT(musicVersionUpdate()));
+    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + TTKMUSIC_VERSION_STR, m_applicationObject, SLOT(musicAboutUs()));
+    musicInfo.addAction(QIcon(":/contextMenu/update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
 
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/quit"), tr("quit"), this, SLOT(quitWindowClose()));
@@ -412,7 +412,7 @@ void MusicApplication::quitWindowClose()
 {
     //Write configuration files
     writeXMLConfigToText();
-    m_object->windowCloseAnimationOpacity();
+    m_applicationObject->windowCloseAnimationOpacity();
 }
 
 void MusicApplication::positionChanged(qint64 position)
@@ -832,7 +832,7 @@ void MusicApplication::setDeleteItemAt(const MIntList &index, bool remove)
 
 void MusicApplication::getParameterSetting()
 {
-    m_object->getParameterSetting();
+    m_applicationObject->getParameterSetting();
     m_rightAreaWidget->getParameterSetting();
     bool config = M_SETTING->value(MusicSettingManager::CloseEventChoiced).toBool();
     m_bottomAreaWidget->setSystemCloseConfig(config);
@@ -843,7 +843,7 @@ void MusicApplication::getParameterSetting()
 
 void MusicApplication::musicSetEqualizer()
 {
-    m_object->musicSetEqualizer();
+    m_applicationObject->musicSetEqualizer();
 }
 
 void MusicApplication::musicSearchIndexChanged(int, int index)

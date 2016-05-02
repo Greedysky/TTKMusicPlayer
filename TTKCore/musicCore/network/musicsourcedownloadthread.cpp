@@ -1,5 +1,7 @@
 #include "musicsourcedownloadthread.h"
 
+#include <QSslConfiguration>
+
 MusicSourceDownloadThread::MusicSourceDownloadThread(QObject *parent)
     : QObject(parent)
 {

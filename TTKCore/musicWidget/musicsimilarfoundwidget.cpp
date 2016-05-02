@@ -1,12 +1,15 @@
 #include "musicsimilarfoundwidget.h"
 #include "musicsourcedownloadthread.h"
+#include "musicdownloadmgmtwidget.h"
+#include "musicdatadownloadthread.h"
+#include "musiccryptographichash.h"
+#include "musicnetworkthread.h"
 #include "musicuiobject.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QCheckBox>
-#include <QDebug>
 
 MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     : QWidget(parent)
@@ -102,7 +105,7 @@ void MusicSimilarFoundWidget::createLabels()
 
     QLabel *firstLabel = new QLabel(m_mainWindow);
     firstLabel->setText(tr("Like \"<font color=blue> %1 </font>\" also like this").arg(m_songNameFull));
-    grid->addWidget(firstLabel, index++, 0, 1, 5);
+    grid->addWidget(firstLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
     QPushButton *playButton = new QPushButton(tr("play"), m_mainWindow);
@@ -147,7 +150,7 @@ void MusicSimilarFoundWidget::createLabels()
     QString artName = m_downloadThread->getSearchedText();
     QLabel *secondLabel = new QLabel(m_mainWindow);
     secondLabel->setText(tr("Other \"<font color=blue> %1 </font>\" things").arg(artName));
-    grid->addWidget(secondLabel, index++, 0, 1, 5);
+    grid->addWidget(secondLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(m_mainWindow);
     picLabel1->setPixmap(QPixmap(":/share/warning"));
@@ -163,9 +166,10 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel1, index, 0, 1, 2);
     grid->addWidget(picLabel2, index, 3, 1, 2);
     grid->addWidget(picLabel3, index++, 6, 1, 2);
-    grid->addWidget(new QLabel(artName, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artName, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artName, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
+    QString artLimitString = QFontMetrics(font()).elidedText(artName, Qt::ElideRight, 90);
+    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
 
     int downloadCounter = 0;
     foreach(DownloadData *data, m_likeDownloadDatas)
@@ -219,18 +223,44 @@ void MusicSimilarFoundWidget::selectAllItems(bool all)
 
 void MusicSimilarFoundWidget::playButtonClicked()
 {
-    MIntList list = foundCheckedItem();
-    qDebug() << list.count();
+    foreach(int index, foundCheckedItem())
+    {
+        downloadDataFrom(index);
+    }
 }
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
 {
-    MIntList list = foundCheckedItem();
-    qDebug() << list.count();
+    foreach(int index, foundCheckedItem())
+    {
+        MusicDownloadMgmtWidget mgmt(this);
+        DownloadData *data = m_likeDownloadDatas[index];
+        mgmt.setSongName(data->m_songArtist + " - " + data->m_songName, MusicDownLoadQueryThreadAbstract::MusicQuery);
+    }
 }
 
 void MusicSimilarFoundWidget::addButtonClicked()
 {
-    MIntList list = foundCheckedItem();
-    qDebug() << list.count();
+    playButtonClicked();
+}
+
+void MusicSimilarFoundWidget::downloadDataFrom(int row)
+{
+    if(!M_NETWORK->isOnline() || row < 0)
+    {
+        return;
+    }
+
+    DownloadData *data = m_likeDownloadDatas[row];
+    QString musicEnSong = MusicCryptographicHash().encrypt(data->m_songArtist + " - " + data->m_songName, DOWNLOAD_KEY);
+    QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(data->m_format);
+    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,
+                                                                     MusicDownLoadThreadAbstract::Download_Music, this);
+    connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(downloadDataFinished()));
+    downSong->startToDownload();
+}
+
+void MusicSimilarFoundWidget::downloadDataFinished()
+{
+
 }

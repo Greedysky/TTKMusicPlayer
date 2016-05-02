@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicprogresswidget.h"
+#include "musiccryptographichash.h"
 #include "musicsongssummariziedfloatwidget.h"
 
 #include <QScrollBar>
@@ -292,8 +293,9 @@ void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time,
                                                   const QString &format)
 {
-    const QString path = QString("%1%2.%3").arg(MUSIC_DOWNLOAD_AL).arg(name).arg(format);
-    m_musicFileNames[MUSIC_NETWORK_LIST] << MusicSong(path, 0, time, name);
+    QString musicSong = MusicCryptographicHash().decrypt(name, DOWNLOAD_KEY);
+    const QString path = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(name).arg(format);
+    m_musicFileNames[MUSIC_NETWORK_LIST] << MusicSong(path, 0, time, musicSong);
     m_mainSongLists[MUSIC_NETWORK_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_NETWORK_LIST]);
     if(m_currentIndexs == MUSIC_NETWORK_LIST)
     {

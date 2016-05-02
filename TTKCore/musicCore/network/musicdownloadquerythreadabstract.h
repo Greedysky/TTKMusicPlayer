@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QObject>
+#include <QSslError>
 #include <QNetworkReply>
 #include "musicglobaldefine.h"
 #include "musicobject.h"
@@ -27,7 +28,9 @@ typedef struct DownloadData{
     void clear()
     {
         m_songName.clear();
+        m_songArtist.clear();
         m_songUrl.clear();
+        m_picUrl.clear();
         m_time.clear();
         m_format.clear();
     }
