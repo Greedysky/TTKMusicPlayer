@@ -29,7 +29,6 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DisConnection);
         return;
     }
-    m_currentSongName = text;
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
@@ -85,7 +84,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
 
     MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
-                             LRC_DOWNLOAD_AL + m_currentSongName + LRC_FILE,
+                             LRC_DOWNLOAD_AL + m_downLoadManager->getSearchedText() + LRC_FILE,
                              MusicDownLoadThreadAbstract::Download_Lrc, this);
     connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)),
                          SIGNAL(lrcDownloadStateChanged(QString)));

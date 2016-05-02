@@ -107,9 +107,8 @@ protected:
      * Add search music to play list by index.
      */
 
-    MusicCoreMPlayer *m_audition;
     int m_previousAuditionRow;
-    QString m_searchText;
+    MusicCoreMPlayer *m_audition;
     DownloadData m_downloadData;
 
 };

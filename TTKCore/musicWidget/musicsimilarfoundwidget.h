@@ -52,11 +52,13 @@ public Q_SLOTS:
 
 protected:
     void createLabels();
-    QList<int> foundCheckedItem();
+    MIntList foundCheckedItem();
 
+    QString m_songNameFull;
     QWidget *m_mainWindow;
     QLabel *m_statusLabel;
     QList<QCheckBox*> m_checkBoxs;
+    QList<QLabel*> m_iconLabels;
     QList<DownloadData*> m_likeDownloadDatas;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 

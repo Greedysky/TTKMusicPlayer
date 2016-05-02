@@ -35,6 +35,14 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
+    while(!m_checkBoxs.isEmpty())
+    {
+        delete m_checkBoxs.takeLast();
+    }
+    while(!m_iconLabels.isEmpty())
+    {
+        delete m_iconLabels.takeLast();
+    }
     while(!m_likeDownloadDatas.isEmpty())
     {
         delete m_likeDownloadDatas.takeLast();
@@ -46,8 +54,9 @@ MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
+    m_songNameFull = name;
     m_downloadThread->setQueryAllRecords(false);
-    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
+    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name.split("-").front().trimmed());
 }
 
 void MusicSimilarFoundWidget::queryAllFinished()
@@ -66,7 +75,9 @@ void MusicSimilarFoundWidget::queryAllFinished()
         {
             DownloadData *data = new DownloadData;
             data->m_songName = info.m_songName;
+            data->m_songArtist = info.m_singerName;
             data->m_time = info.m_timeLength;
+            data->m_picUrl = info.m_smallPicUrl;
             if(!info.m_songAttrs.isEmpty())
             {
                 MusicSongAttribute atrr = info.m_songAttrs.first();
@@ -82,7 +93,6 @@ void MusicSimilarFoundWidget::queryAllFinished()
 
 void MusicSimilarFoundWidget::createLabels()
 {
-    QString songName = m_downloadThread->getSearchedText();
     int index = 0;
 
     QWidget *function = new QWidget(m_mainWindow);
@@ -91,7 +101,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->setSpacing(15);
 
     QLabel *firstLabel = new QLabel(m_mainWindow);
-    firstLabel->setText(tr("Like '<font color=blue> %1 </font>' also like this").arg(songName));
+    firstLabel->setText(tr("Like \"<font color=blue> %1 </font>\" also like this").arg(m_songNameFull));
     grid->addWidget(firstLabel, index++, 0, 1, 5);
     ////////////////////////////////////////////////////////////////////////////
     QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
@@ -134,38 +144,47 @@ void MusicSimilarFoundWidget::createLabels()
         index++;
     }
     ////////////////////////////////////////////////////////////////////////////
-    songName = songName.split("-").front();
+    QString artName = m_downloadThread->getSearchedText();
     QLabel *secondLabel = new QLabel(m_mainWindow);
-    secondLabel->setText(tr("Other '<font color=blue> %1 </font>' things").arg(songName));
+    secondLabel->setText(tr("Other \"<font color=blue> %1 </font>\" things").arg(artName));
     grid->addWidget(secondLabel, index++, 0, 1, 5);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(m_mainWindow);
-    picLabel1->setStyleSheet("background:red");
+    picLabel1->setPixmap(QPixmap(":/share/warning"));
     picLabel1->setFixedSize(100, 100);
     QLabel *picLabel2 = new QLabel(m_mainWindow);
-    picLabel2->setStyleSheet("background:blue");
+    picLabel2->setPixmap(QPixmap(":/share/warning"));
     picLabel2->setFixedSize(100, 100);
     QLabel *picLabel3 = new QLabel(m_mainWindow);
-    picLabel3->setStyleSheet("background:green");
+    picLabel3->setPixmap(QPixmap(":/share/warning"));
     picLabel3->setFixedSize(100, 100);
+    m_iconLabels << picLabel1 << picLabel2 << picLabel3;
     ////////////////////////////////////////////////////////////////////////////
     grid->addWidget(picLabel1, index, 0, 1, 2);
     grid->addWidget(picLabel2, index, 3, 1, 2);
     grid->addWidget(picLabel3, index++, 6, 1, 2);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(songName, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artName, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artName, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artName, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
 
-    MusicSourceDownloadThread *d = new MusicSourceDownloadThread(this);
-    connect(d, SIGNAL(recievedData(QByteArray)), SLOT(recievedData(QByteArray)));
-    d->startToDownload("http://www.oschina.net/img/logo_s2.png");
+    int downloadCounter = 0;
+    foreach(DownloadData *data, m_likeDownloadDatas)
+    {
+        if(data->m_songArtist.contains(artName) && downloadCounter < 3)
+        {
+            downloadCounter++;
+            MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+            connect(download, SIGNAL(recievedData(QByteArray)), SLOT(recievedData(QByteArray)));
+            download->startToDownload(data->m_picUrl);
+        }
+    }
 
     m_mainWindow->layout()->addWidget(function);
 }
 
-QList<int> MusicSimilarFoundWidget::foundCheckedItem()
+MIntList MusicSimilarFoundWidget::foundCheckedItem()
 {
-    QList<int> list;
+    MIntList list;
     for(int i=0; i<m_checkBoxs.count(); ++i)
     {
         if(m_checkBoxs[i]->isChecked())
@@ -178,11 +197,16 @@ QList<int> MusicSimilarFoundWidget::foundCheckedItem()
 
 void MusicSimilarFoundWidget::recievedData(const QByteArray &data)
 {
-    QLabel *l = new QLabel;
-    QPixmap f;
-    f.loadFromData(data);
-    l->setPixmap(f);
-    l->show();
+    for(int i=0; i<m_iconLabels.count(); ++i)
+    {
+        if(m_iconLabels[i]->pixmap()->cacheKey() == QPixmap(":/share/warning").cacheKey())
+        {
+            QPixmap pix;
+            pix.loadFromData(data);
+            m_iconLabels[i]->setPixmap(pix.scaled(100, 100));
+            return;
+        }
+    }
 }
 
 void MusicSimilarFoundWidget::selectAllItems(bool all)
@@ -195,18 +219,18 @@ void MusicSimilarFoundWidget::selectAllItems(bool all)
 
 void MusicSimilarFoundWidget::playButtonClicked()
 {
-    QList<int> list = foundCheckedItem();
+    MIntList list = foundCheckedItem();
     qDebug() << list.count();
 }
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
 {
-    QList<int> list = foundCheckedItem();
+    MIntList list = foundCheckedItem();
     qDebug() << list.count();
 }
 
 void MusicSimilarFoundWidget::addButtonClicked()
 {
-    QList<int> list = foundCheckedItem();
+    MIntList list = foundCheckedItem();
     qDebug() << list.count();
 }

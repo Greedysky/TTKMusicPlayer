@@ -32,10 +32,6 @@ public:
     /*!
      * Data download to local file.
      */
-    inline void setCurrentSongName(const QString &name){ m_currentSongName = name;}
-    /*!
-     * Set current song name.
-     */
 
 Q_SIGNALS:
     void resolvedSuccess();
@@ -67,8 +63,6 @@ protected:
     /*!
      * Override the widget event.
      */
-
-    QString m_currentSongName;
 
 };
 

@@ -18,7 +18,9 @@ class QNetworkAccessManager;
 
 typedef struct DownloadData{
     QString m_songName;
+    QString m_songArtist;
     QString m_songUrl;
+    QString m_picUrl;
     QString m_time;
     QString m_format;
 

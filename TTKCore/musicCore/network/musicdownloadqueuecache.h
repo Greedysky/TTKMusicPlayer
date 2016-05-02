@@ -11,11 +11,11 @@
 
 #include "musicdownloadthreadabstract.h"
 
-typedef struct DownloadData
+typedef struct DownloadQueueData
 {
-    QString url;        ///*download url*/
-    QString savePath;   ///*save local path*/
-}DownloadData;
+    QString m_url;        ///*download url*/
+    QString m_savePath;   ///*save local path*/
+}DownloadQueueData;
 
 /*! @brief The class to download data from cache queue.
  * @author Greedysky <greedysky@163.com>
@@ -75,7 +75,7 @@ protected:
 
     bool m_isDownload;
     bool m_isAbort;
-    QList<DownloadData> m_imageQueue;
+    QList<DownloadQueueData> m_imageQueue;
     QNetworkRequest *m_request;
 
 };

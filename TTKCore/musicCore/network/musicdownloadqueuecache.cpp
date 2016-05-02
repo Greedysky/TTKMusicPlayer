@@ -71,9 +71,9 @@ void MusicDownloadQueueCache::addImageQueue(const QStringList &url,
     m_imageQueue.clear();
     for(int i=0; i<url.count(); ++i)
     {
-        DownloadData data;
-        data.url = url[i];
-        data.savePath = savePath[i];
+        DownloadQueueData data;
+        data.m_url = url[i];
+        data.m_savePath = savePath[i];
         m_imageQueue << data;
     }
 }
@@ -82,14 +82,14 @@ void MusicDownloadQueueCache::startOrderImageQueue()
 {
     if(!m_imageQueue.isEmpty() && M_NETWORK->isOnline())
     {
-        if(QFile::exists(m_imageQueue.first().savePath))
+        if(QFile::exists(m_imageQueue.first().m_savePath))
         {
-            emit musicDownLoadFinished(m_imageQueue.takeFirst().savePath);
+            emit musicDownLoadFinished(m_imageQueue.takeFirst().m_savePath);
             startOrderImageQueue();
         }
         else
         {
-            startDownload(m_imageQueue.first().url);
+            startDownload(m_imageQueue.first().m_url);
         }
     }
 }
@@ -98,7 +98,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
 {
     m_isDownload = true;
     delete m_file;
-    m_file = new QFile( m_imageQueue.first().savePath, this);
+    m_file = new QFile( m_imageQueue.first().m_savePath, this);
     if(!m_file->open(QFile::WriteOnly))
     {
         m_file->close();
@@ -129,7 +129,7 @@ void MusicDownloadQueueCache::downLoadFinished()
     m_reply->deleteLater();
     m_reply = nullptr;
     m_isDownload = false;
-    emit musicDownLoadFinished(m_imageQueue.takeFirst().savePath);
+    emit musicDownLoadFinished(m_imageQueue.takeFirst().m_savePath);
 
     startOrderImageQueue();
 }
