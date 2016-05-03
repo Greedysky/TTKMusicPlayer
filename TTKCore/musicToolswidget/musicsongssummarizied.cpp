@@ -52,7 +52,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
-    connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged(int)));
+    connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged()));
 
     M_CONNECTION->setValue("MusicSongsSummarizied", this);
     M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
@@ -366,7 +366,7 @@ void MusicSongsSummarizied::setChangItemName(const QString &name)
     m_renameLine = nullptr;
 }
 
-void MusicSongsSummarizied::currentIndexChanged(int)
+void MusicSongsSummarizied::currentIndexChanged()
 {
     if(currentIndex() == -1)
     {

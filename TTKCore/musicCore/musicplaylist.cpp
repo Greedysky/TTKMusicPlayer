@@ -1,10 +1,10 @@
 #include "musicplaylist.h"
-#include "time.h"
+#include "musictime.h"
 
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent)
 {
-    qsrand(time(nullptr));
+    MusicTime::timeSRand();
     m_currentIndex = 0;
     m_playbackMode = MusicObject::MC_PlayOrder;
 }

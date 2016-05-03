@@ -67,6 +67,10 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createLabels();
     /*!
      * Create init interface lables.

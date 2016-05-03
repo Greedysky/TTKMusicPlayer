@@ -110,9 +110,9 @@ public Q_SLOTS:
      */
 
 protected:
-    MusicObject::SongPlayType m_playbackMode;
-    QStringList m_mediaList;
     int m_currentIndex;
+    QStringList m_mediaList;
+    MusicObject::SongPlayType m_playbackMode;
 
 };
 

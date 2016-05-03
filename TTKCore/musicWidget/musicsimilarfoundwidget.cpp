@@ -94,6 +94,11 @@ void MusicSimilarFoundWidget::queryAllFinished()
     }
 }
 
+void MusicSimilarFoundWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    QWidget::contextMenuEvent(event);
+}
+
 void MusicSimilarFoundWidget::createLabels()
 {
     int index = 0;

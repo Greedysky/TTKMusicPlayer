@@ -144,7 +144,7 @@ public Q_SLOTS:
     /*!
      * Set current play index from config file.
      */
-    void currentIndexChanged(int index);
+    void currentIndexChanged();
     /*!
      * Current toolbox index has changed.
      */
