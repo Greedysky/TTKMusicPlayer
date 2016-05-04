@@ -291,7 +291,7 @@ void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 }
 
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time,
-                                                  const QString &format)
+                                                  const QString &format, bool play)
 {
     QString musicSong = MusicCryptographicHash().decrypt(name, DOWNLOAD_KEY);
     const QString path = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(name).arg(format);
@@ -301,9 +301,13 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     {
         emit updatePlayLists(path);
     }
-    ///when download finished just play it at once
-    QToolBox::setCurrentIndex(MUSIC_NETWORK_LIST);
-    emit musicPlayIndex(m_musicFileNames[MUSIC_NETWORK_LIST].count() - 1, 0);
+
+    if(play)
+    {
+        ///when download finished just play it at once
+        QToolBox::setCurrentIndex(MUSIC_NETWORK_LIST);
+        emit musicPlayIndex(m_musicFileNames[MUSIC_NETWORK_LIST].count() - 1, 0);
+    }
 }
 
 void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)

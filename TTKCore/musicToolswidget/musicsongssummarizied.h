@@ -157,7 +157,7 @@ public Q_SLOTS:
      * Remove music song to lovest list by row.
      */
     void addNetMusicSongToList(const QString &name, const QString &time,
-                               const QString &format);
+                               const QString &format, bool play);
     /*!
      * Add current network music to download to local.
      */

@@ -4,12 +4,14 @@
 #include "musicdatadownloadthread.h"
 #include "musiccryptographichash.h"
 #include "musicnetworkthread.h"
+#include "musicconnectionpool.h"
 #include "musicuiobject.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QCheckBox>
+#include <QEventLoop>
 
 MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     : QWidget(parent)
@@ -29,15 +31,19 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     m_mainWindow->setLayout(mLayout);
 
 #ifndef USE_MULTIPLE_QUERY
-       m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
 #else
-       m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
+    m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif
     connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
+
+    M_CONNECTION->setValue("MusicSimilarFoundWidget", this);
+    M_CONNECTION->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
+    M_CONNECTION->poolDisConnect("MusicSimilarFoundWidget");
     while(!m_checkBoxs.isEmpty())
     {
         delete m_checkBoxs.takeLast();
@@ -87,7 +93,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
                 data->m_songUrl = atrr.m_url;
                 data->m_format = atrr.m_format;
             }
-            m_likeDownloadDatas <<data;
+            m_likeDownloadDatas << data;
         }
 
         createLabels();
@@ -228,10 +234,7 @@ void MusicSimilarFoundWidget::selectAllItems(bool all)
 
 void MusicSimilarFoundWidget::playButtonClicked()
 {
-    foreach(int index, foundCheckedItem())
-    {
-        downloadDataFrom(index);
-    }
+    downloadDataFrom(true);
 }
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
@@ -246,26 +249,29 @@ void MusicSimilarFoundWidget::downloadButtonClicked()
 
 void MusicSimilarFoundWidget::addButtonClicked()
 {
-    playButtonClicked();
+    downloadDataFrom(false);
 }
 
-void MusicSimilarFoundWidget::downloadDataFrom(int row)
+void MusicSimilarFoundWidget::downloadDataFrom(bool play)
 {
-    if(!M_NETWORK->isOnline() || row < 0)
+    MIntList list = foundCheckedItem();
+    for(int i=0; i<list.count(); ++i)
     {
-        return;
+        if(!M_NETWORK->isOnline())
+        {
+            continue;
+        }
+        DownloadData *data = m_likeDownloadDatas[ list[i] ];
+        QString musicEnSong = MusicCryptographicHash().encrypt(data->m_songArtist + " - " + data->m_songName, DOWNLOAD_KEY);
+        QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(data->m_format);
+
+        QEventLoop loop(this);
+        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,
+                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+        connect(downSong, SIGNAL(musicDownLoadFinished(QString)), &loop, SLOT(quit()));
+        downSong->startToDownload();
+        loop.exec();
+
+        emit muiscSongToPlayListChanged(musicEnSong, data->m_time, data->m_format, play && (i == list.count() - 1));
     }
-
-    DownloadData *data = m_likeDownloadDatas[row];
-    QString musicEnSong = MusicCryptographicHash().encrypt(data->m_songArtist + " - " + data->m_songName, DOWNLOAD_KEY);
-    QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(data->m_format);
-    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,
-                                                                     MusicDownLoadThreadAbstract::Download_Music, this);
-    connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(downloadDataFinished()));
-    downSong->startToDownload();
-}
-
-void MusicSimilarFoundWidget::downloadDataFinished()
-{
-
 }

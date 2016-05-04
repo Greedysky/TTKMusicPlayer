@@ -78,7 +78,8 @@ void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
-        emit muiscSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format);
+        emit muiscSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time,
+                                        m_downloadData.m_format, true);
     }
     m_downloadData.clear();
 }

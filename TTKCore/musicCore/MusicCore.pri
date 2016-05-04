@@ -55,8 +55,7 @@ HEADERS  += \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
     $$PWD/musiccryptographichash.h \
-    $$PWD/musicbackgroundmanager.h \
-    $$PWD/musicsemaphoreeventloop.h
+    $$PWD/musicbackgroundmanager.h
 
 }
 
@@ -95,7 +94,6 @@ SOURCES += \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsong.cpp \
     $$PWD/musiccryptographichash.cpp \
-    $$PWD/musicbackgroundmanager.cpp \
-    $$PWD/musicsemaphoreeventloop.cpp
+    $$PWD/musicbackgroundmanager.cpp
 
 }

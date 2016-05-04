@@ -36,6 +36,13 @@ public:
      * Set current name to search founds.
      */
 
+Q_SIGNALS:
+    void muiscSongToPlayListChanged(const QString &name, const QString &time,
+                                    const QString &format, bool play);
+    /*!
+     * Add current network music to download to local.
+     */
+
 public Q_SLOTS:
     void queryAllFinished();
     /*!
@@ -61,10 +68,6 @@ public Q_SLOTS:
     /*!
      * Add button clicked now.
      */
-    void downloadDataFinished();
-    /*!
-     * Download data finished.
-     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -79,9 +82,9 @@ protected:
     /*!
      * Found which items is checked.
      */
-    void downloadDataFrom(int row);
+    void downloadDataFrom(bool play);
     /*!
-     * Download data from net by index.
+     * Download data from net and just play or not.
      */
 
     QString m_songNameFull;

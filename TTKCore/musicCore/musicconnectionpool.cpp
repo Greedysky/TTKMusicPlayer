@@ -95,10 +95,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
                                 SLOT(musicBgThemeDownloadFinished()));
     }
-    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" )
+    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" ||
+            from == "MusicSimilarFoundWidget" && to == "MusicSongsSummarizied" )
     {
-        QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString)), second,
-                                SLOT(addNetMusicSongToList(QString,QString,QString)));
+        QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
+                                SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }
     else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicRightAreaWidget" )
     {

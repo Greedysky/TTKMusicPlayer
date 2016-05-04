@@ -52,7 +52,7 @@ public:
 
 Q_SIGNALS:
     void muiscSongToPlayListChanged(const QString &name, const QString &time,
-                                    const QString &format);
+                                    const QString &format, bool play);
     /*!
      * Add current network music to download to local.
      */
