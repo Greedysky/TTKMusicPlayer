@@ -12,11 +12,15 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
+    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobal.h
+    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut.h
+    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_p.h
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.h
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.h
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.h
     ${MUSIC_CORE_DIR}/network/musictextdownloadthread.h
     ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.h
+    ${MUSIC_CORE_DIR}/network/musicsourcedownloadthread.h
     ${MUSIC_CORE_DIR}/network/musicnetworkthread.h
     ${MUSIC_CORE_DIR}/network/musicnetworkproxy.h
     ${MUSIC_CORE_DIR}/network/musicnetworkoperator.h
@@ -33,6 +37,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicuiobject.h
     ${MUSIC_CORE_DIR}/musicutils.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
+    ${MUSIC_CORE_DIR}/musicglobalhotkey.h
     ${MUSIC_CORE_DIR}/musicversion.h
     ${MUSIC_CORE_DIR}/musictime.h
     ${MUSIC_CORE_DIR}/musicxmlconfigmanager.h
@@ -47,7 +52,6 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
     ${MUSIC_CORE_DIR}/musiccryptographichash.h
-    ${MUSIC_CORE_DIR}/musicsemaphoreeventloop.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
@@ -69,6 +73,8 @@ set(MUSIC_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
@@ -154,6 +160,8 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.h
+    ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
+    ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.h
     ${MUSIC_LIB_DIR}/musicapplication.h
     ${MUSIC_LIB_DIR}/musicleftareawidget.h
     ${MUSIC_LIB_DIR}/musictopareawidget.h
@@ -163,11 +171,13 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
+    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musictextdownloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.cpp
+    ${MUSIC_CORE_DIR}/network/musicsourcedownloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicnetworkthread.cpp
     ${MUSIC_CORE_DIR}/network/musicnetworkproxy.cpp
     ${MUSIC_CORE_DIR}/network/musicnetworkoperator.cpp
@@ -180,6 +190,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/network/musicradiosongsthread.cpp
     ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.cpp
     ${MUSIC_CORE_DIR}/musicutils.cpp
+    ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
     ${MUSIC_CORE_DIR}/musicplaylist.cpp
@@ -191,7 +202,6 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
     ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
-    ${MUSIC_CORE_DIR}/musicsemaphoreeventloop.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
@@ -213,6 +223,8 @@ set(MUSIC_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp
@@ -298,6 +310,8 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
+    ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
@@ -306,11 +320,19 @@ set(MUSIC_SOURCES
     ${MUSIC_LIB_DIR}/musicapplicationobject.cpp
   )
 
+if(WIN32)
+    list(APPEND MUSIC_SOURCES ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_win.cpp)
+else(UNIX)
+    list(APPEND MUSIC_SOURCES ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_x11.cpp)
+endif()
+
 SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicApplication/musicapplication.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcartphotoupload.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcmakerwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcsearchwidget.ui
+    ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcerrorwidget.ui
+    ${MUSIC_UI_DIR}/musicLrcmanager/musiclrclocallinkwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicaudiorecorderwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicdesktopwallpaperwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicfileinformationwidget.ui
@@ -351,9 +373,9 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} -lIphlpapi)
+  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} -lIphlpapi -luser32)
   if(UNIX)
-    list(REMOVE_ITEM QT5_LIBS Qt5::WinExtras -lIphlpapi)
+    list(REMOVE_ITEM QT5_LIBS Qt5::WinExtras -lIphlpapi -luser32)
   endif()
   target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
 else()
@@ -363,9 +385,9 @@ else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi)
+  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi -luser32)
   if(UNIX)
-    list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi)
+    list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi -luser32)
     list(APPEND QT4_LIBS -lQtMultimediaKit)
   endif()
   target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
