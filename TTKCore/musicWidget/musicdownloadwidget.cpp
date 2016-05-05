@@ -123,9 +123,9 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
 #ifndef USE_MULTIPLE_QUERY
-       m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
 #else
-       m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
+    m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
@@ -193,7 +193,21 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
+        QString filename = m_downloadThread->getSearchedText();
+        QString artistName = filename.split('-').front().trimmed();
+        QString songName = filename.split('-').back().trimmed();
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        foreach(MusicSongInfomation var, musicSongInfos)
+        {
+            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
+                var.m_songName.contains(songName, Qt::CaseInsensitive) )
+            {
+                musicSongInfo = var;
+                break;
+            }
+        }
+
+        MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
         foreach(MusicSongAttribute attr, attrs)
         {
             if(attr.m_bitrate == 32)         ///st
@@ -240,7 +254,21 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        MusicSongAttributes attrs = musicSongInfos.first().m_songAttrs;
+        QString filename = m_downloadThread->getSearchedText();
+        QString artistName = filename.split('-').front().trimmed();
+        QString songName = filename.split('-').back().trimmed();
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        foreach(MusicSongInfomation var, musicSongInfos)
+        {
+            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
+                var.m_songName.contains(songName, Qt::CaseInsensitive) )
+            {
+                musicSongInfo = var;
+                break;
+            }
+        }
+
+        MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
         foreach(MusicSongAttribute attr, attrs)
         {
             if(attr.m_bitrate == 500)       ///hd

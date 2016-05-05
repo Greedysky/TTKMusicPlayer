@@ -125,27 +125,38 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        MusicSongInfomation musicSongInfo = musicSongInfos.first();
         QString filename = m_parentWidget->getCurrentFileName();
+        int count = filename.split('-').count();
+        QString artistName = filename.split('-').front().trimmed();
+        QString songName = filename.split('-').back().trimmed();
+
+        MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        foreach(MusicSongInfomation var, musicSongInfos)
+        {
+            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
+                var.m_songName.contains(songName, Qt::CaseInsensitive) )
+            {
+                musicSongInfo = var;
+                break;
+            }
+        }
+
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl,
                                  LRC_DOWNLOAD_AL + filename + LRC_FILE,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this);
         lrc->startToDownload();
 
-        int count = filename.split('-').count();
-        filename = filename.split('-').front().trimmed();
         ///download art picture
 #ifndef USE_MULTIPLE_QUERY
-        (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
+        (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + artistName + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #else
-        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + filename + SKN_FILE,
+        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + artistName + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #endif
         ///download big picture
-        (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : filename,
-                                   filename, this))->startToDownload();
+        (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this))->startToDownload();
     }
     else
     {
