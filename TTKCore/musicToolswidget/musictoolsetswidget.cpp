@@ -102,7 +102,7 @@ void MusicToolSetsWidget::addListWidgetItem()
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 {
-    switch(row(item))
+    switch( row(item) )
     {
         case 0:
            {

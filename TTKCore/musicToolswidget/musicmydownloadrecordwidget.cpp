@@ -3,8 +3,8 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 
-#include <QContextMenuEvent>
 #include <QMenu>
+#include <QContextMenuEvent>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)

@@ -98,6 +98,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     openButton->setStyleSheet("QPushButton{border-radius:2px;background:rgba(0,0,0,50);}");
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
+    openButton->setEnabled(false);
     connect(openButton, SIGNAL(clicked(bool)), SLOT(openTransferFilesWidget()));
 
     vBox->addWidget(backButton);

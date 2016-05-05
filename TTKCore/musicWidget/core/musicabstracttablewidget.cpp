@@ -56,7 +56,7 @@ void MusicAbstractTableWidget::clear()
 void MusicAbstractTableWidget::listCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 0);
-    if(it != 0)
+    if(it != nullptr)
     {
        setRowColor(m_previousColorRow, m_defaultBkColor);
     }
