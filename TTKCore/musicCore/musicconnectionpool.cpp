@@ -95,8 +95,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(musicBgDownloadFinished()), second,
                                 SLOT(musicBgThemeDownloadFinished()));
     }
-    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied" ||
-            from == "MusicSimilarFoundWidget" && to == "MusicSongsSummarizied" )
+    else if((from == "MusicSongSearchOnlineTableWidget" && to == "MusicSongsSummarizied") ||
+            (from == "MusicSimilarFoundWidget" && to == "MusicSongsSummarizied") )
     {
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
@@ -110,6 +110,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
                                 SLOT(networkConnectionStateChanged(bool)));
+    }
+    else if(from == "MusicLrcLocalLinkWidget" && to == "MusicDownloadStatusLabel" )
+    {
+        QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second,
+                                SLOT(showDownLoadInfoFinished(QString)));
     }
     else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )
     {

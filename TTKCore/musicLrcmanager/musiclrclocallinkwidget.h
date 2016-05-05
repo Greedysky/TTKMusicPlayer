@@ -10,6 +10,34 @@
    =================================================*/
 
 #include "musicabstractmovedialog.h"
+#include "musicabstracttablewidget.h"
+
+/*! @brief The class of the local lrc link table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcLocalLinkTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+public Q_SLOTS:
+    virtual void listCellClicked(int, int) override {}
+    /*!
+     * Table widget list cell click.
+     */
+
+};
+
+
+typedef struct LocalDataItem{
+    QString m_name;
+    QString m_path;
+}LocalDataItem;
+typedef QList<LocalDataItem> LocalDataItems;
 
 namespace Ui {
 class MusicLrcLocalLinkWidget;
@@ -32,14 +60,45 @@ public:
     /*!
      * Set current song name.
      */
+    void createAllItems(const LocalDataItems &items);
+    /*!
+     * Create all items.
+     */
+
+Q_SIGNALS:
+    void currentLrcChanged(const QString &data);
+    /*!
+     * Current lrc changed by user, and emit Lrc flag.
+     */
 
 public Q_SLOTS:
+    void fuzzyStateChanged();
+    /*!
+     * Search fuzzy state changed.
+     */
+    void searchInLocalDir();
+    /*!
+     * Search in local dir button clicked.
+     */
+    void findInLocalFile();
+    /*!
+     * Find in local file button clicked.
+     */
+    void confirmButtonClicked();
+    /*!
+     * Confirm button clicked.
+     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
+    void searchInLocalMLrc();
+    /*!
+     * Search local lrc in MLrc dir.
+     */
+
     Ui::MusicLrcLocalLinkWidget *ui;
 
 };

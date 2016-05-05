@@ -91,13 +91,13 @@
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="widget" native="true">
+  <widget class="MusicLrcLocalLinkTableWidget" name="searchedTable">
    <property name="geometry">
     <rect>
      <x>35</x>
      <y>110</y>
      <width>340</width>
-     <height>151</height>
+     <height>150</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -113,6 +113,9 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>本地搜索</string>
    </property>
@@ -126,6 +129,9 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>浏览</string>
    </property>
@@ -138,6 +144,9 @@
      <width>75</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>确定</string>
@@ -169,19 +178,40 @@
     <string>从以下文件中选择一个进行管理</string>
    </property>
   </widget>
+  <widget class="QLabel" name="functionBottomLabel">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>110</y>
+     <width>340</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(255,255,255)</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>label</zorder>
   <zorder>titleEdit</zorder>
-  <zorder>widget</zorder>
   <zorder>localSearchButton</zorder>
   <zorder>previewButton</zorder>
   <zorder>commitButton</zorder>
   <zorder>fuzzyButton</zorder>
   <zorder>label_2</zorder>
+  <zorder>functionBottomLabel</zorder>
+  <zorder>searchedTable</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicLrcLocalLinkTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclrclocallinkwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
