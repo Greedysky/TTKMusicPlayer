@@ -12,6 +12,12 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
+typedef struct LocalDataItem{
+    QString m_name;
+    QString m_path;
+}LocalDataItem;
+typedef QList<LocalDataItem> LocalDataItems;
+
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -23,6 +29,14 @@ public:
     /*!
      * Object contsructor.
      */
+    bool contains(const QString &string);
+    /*!
+     * Check if current item has in.
+     */
+    void createAllItems(const LocalDataItems &items);
+    /*!
+     * Create all items.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int, int) override {}
@@ -32,12 +46,6 @@ public Q_SLOTS:
 
 };
 
-
-typedef struct LocalDataItem{
-    QString m_name;
-    QString m_path;
-}LocalDataItem;
-typedef QList<LocalDataItem> LocalDataItems;
 
 namespace Ui {
 class MusicLrcLocalLinkWidget;
@@ -59,10 +67,6 @@ public:
     void setCurrentSongName(const QString &name);
     /*!
      * Set current song name.
-     */
-    void createAllItems(const LocalDataItems &items);
-    /*!
-     * Create all items.
      */
 
 Q_SIGNALS:

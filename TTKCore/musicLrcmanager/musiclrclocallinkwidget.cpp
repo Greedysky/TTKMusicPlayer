@@ -17,6 +17,38 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     headerview->resizeSection(1, 200);
 }
 
+bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        if(item(i, 1)->toolTip() == string)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
+{
+    int count = rowCount();
+    setRowCount(count + items.count());
+    for(int i=0; i<items.count(); ++i)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setText( QFontMetrics(font()).elidedText(items[i].m_name, Qt::ElideRight, 128));
+        item->setToolTip( items[i].m_name );
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(count + i, 0, item);
+
+                          item = new QTableWidgetItem;
+        item->setText( QFontMetrics(font()).elidedText(items[i].m_path, Qt::ElideRight, 195));
+        item->setToolTip( items[i].m_path );
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(count + i, 1, item);
+    }
+}
+
 
 MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -61,26 +93,6 @@ void MusicLrcLocalLinkWidget::setCurrentSongName(const QString &name)
     searchInLocalMLrc();
 }
 
-void MusicLrcLocalLinkWidget::createAllItems(const LocalDataItems &items)
-{
-    int count = ui->searchedTable->rowCount();
-    ui->searchedTable->setRowCount(ui->searchedTable->rowCount() + items.count());
-    for(int i=0; i<items.count(); ++i)
-    {
-        QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText( QFontMetrics(font()).elidedText(items[i].m_name, Qt::ElideRight, 128));
-        item->setToolTip( items[i].m_name );
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        ui->searchedTable->setItem(count + i, 0, item);
-
-                          item = new QTableWidgetItem;
-        item->setText( QFontMetrics(font()).elidedText(items[i].m_path, Qt::ElideRight, 195));
-        item->setToolTip( items[i].m_path );
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        ui->searchedTable->setItem(count + i, 1, item);
-    }
-}
-
 void MusicLrcLocalLinkWidget::searchInLocalMLrc()
 {
     QString title = ui->titleEdit->text().trimmed();
@@ -103,7 +115,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
             items << item;
         }
     }
-    createAllItems(items);
+    ui->searchedTable->createAllItems(items);
 }
 
 void MusicLrcLocalLinkWidget::fuzzyStateChanged()
@@ -116,7 +128,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
 {
     QString picPath = QFileDialog::getOpenFileName(
                       this, QString(), "./", "LRC (*.lrc)");
-    if(picPath.isEmpty())
+    if(picPath.isEmpty() || ui->searchedTable->contains(picPath))
     {
         return;
     }
@@ -126,7 +138,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
     item.m_name = picPath.split("/").last();
     item.m_path = picPath;
     items << item;
-    createAllItems(items);
+    ui->searchedTable->createAllItems(items);
 }
 
 void MusicLrcLocalLinkWidget::deleteFoundLrc()
