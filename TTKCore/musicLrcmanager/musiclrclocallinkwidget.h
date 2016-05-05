@@ -76,13 +76,13 @@ public Q_SLOTS:
     /*!
      * Search fuzzy state changed.
      */
-    void searchInLocalDir();
-    /*!
-     * Search in local dir button clicked.
-     */
     void findInLocalFile();
     /*!
      * Find in local file button clicked.
+     */
+    void deleteFoundLrc();
+    /*!
+     * Delete found lrc button clicked.
      */
     void confirmButtonClicked();
     /*!

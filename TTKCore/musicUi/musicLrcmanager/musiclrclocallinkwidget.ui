@@ -124,7 +124,7 @@
    <property name="geometry">
     <rect>
      <x>386</x>
-     <y>150</y>
+     <y>140</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -191,6 +191,22 @@
     <string notr="true">background:rgb(255,255,255)</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>386</x>
+     <y>170</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -204,6 +220,7 @@
   <zorder>label_2</zorder>
   <zorder>functionBottomLabel</zorder>
   <zorder>searchedTable</zorder>
+  <zorder>deleteButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

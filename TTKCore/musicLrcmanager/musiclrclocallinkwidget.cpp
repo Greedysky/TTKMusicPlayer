@@ -34,14 +34,15 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     ui->localSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->commitButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->previewButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->deleteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->titleEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
     ui->fuzzyButton->setChecked(true);
-    ui->titleEdit->setEnabled(false);
 
     connect(ui->fuzzyButton, SIGNAL(clicked(bool)), SLOT(fuzzyStateChanged()));
     connect(ui->previewButton, SIGNAL(clicked()), SLOT(findInLocalFile()));
-    connect(ui->localSearchButton, SIGNAL(clicked()), SLOT(searchInLocalDir()));
+    connect(ui->localSearchButton, SIGNAL(clicked()), SLOT(fuzzyStateChanged()));
+    connect(ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
     M_CONNECTION->setValue("MusicLrcLocalLinkWidget", this);
@@ -111,11 +112,6 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
     searchInLocalMLrc();
 }
 
-void MusicLrcLocalLinkWidget::searchInLocalDir()
-{
-
-}
-
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
     QString picPath = QFileDialog::getOpenFileName(
@@ -131,6 +127,28 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
     item.m_path = picPath;
     items << item;
     createAllItems(items);
+}
+
+void MusicLrcLocalLinkWidget::deleteFoundLrc()
+{
+    int row = ui->searchedTable->currentRow();
+    if(row < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
+        return;
+    }
+
+    bool state = QFile::remove(ui->searchedTable->item(row, 1)->toolTip());
+    MusicMessageBox message;
+    message.setText(tr("Remove select lrc %1").arg(state ? tr("success") : tr("failed")));
+    message.exec();
+
+    if(state)
+    {
+        ui->searchedTable->removeRow(row);
+    }
 }
 
 void MusicLrcLocalLinkWidget::confirmButtonClicked()
