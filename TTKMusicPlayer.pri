@@ -82,7 +82,7 @@ unix:!mac{
     LIBS += -L../lib -lqmmp
 }
 
-TTKMusicPlayer = 2.2.10.0
+TTKMusicPlayer = 2.2.11.0
 
 DEFINES += MUSIC_LIBRARY
 DEFINES += USE_MULTIPLE_QUERY
