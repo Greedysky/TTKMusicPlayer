@@ -9,6 +9,8 @@ MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
 {
     m_width = 0;
     m_height = 0;
+    m_ratio = 0.0f;
+    m_picMoved = true;
 }
 
 void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
@@ -17,6 +19,7 @@ void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
     m_showPix.load(path);
     m_width = m_showPix.width();
     m_height = m_showPix.height();
+    m_ratio = m_width*1.0/m_height;
 }
 
 void MusicLrcArtPhotoLabel::saveImagePath(const QString &path) const
@@ -35,24 +38,65 @@ void MusicLrcArtPhotoLabel::paintEvent(QPaintEvent *event)
     QPixmap bgPix(":/image/imagetrans");
     for(int i=0; i<ceil(width()/PIX_WIDTH); ++i)
     {
-        for(int j=0; j<ceil(height()/PIX_HEIGHT); ++j)
+        for(int j=0; j<=ceil(height()/PIX_HEIGHT); ++j)
         {
             painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, bgPix);
         }
     }
 
-    painter.drawPixmap(0, 0, m_width, m_height, m_showPix);
+    m_imagePos.setX(m_imagePos.x() + m_deltaPos.x());
+    m_imagePos.setY(m_imagePos.y() + m_deltaPos.y());
+    painter.drawPixmap(m_imagePos.x(), m_imagePos.y(), m_width, m_height, m_showPix);
     painter.end();
 }
 
 void MusicLrcArtPhotoLabel::wheelEvent(QWheelEvent *event)
 {
+    m_deltaPos = QPoint();
     QWidget::wheelEvent(event);
     float delta = event->delta() / 100.0;
 
     m_width = delta > 0 ?  m_width * delta : m_width * (1 / -delta);
     m_height = delta > 0 ?  m_height * delta : m_height * (1 / -delta);
 
+    if(m_width < m_height && m_width < 10)
+    {
+        m_width = 10;
+        m_height = m_width/m_ratio;
+    }
+    else if(m_width > m_height && m_height < 10)
+    {
+        m_height = 10;
+        m_width = m_height*m_ratio;
+    }
+
     m_showPix.scaled(m_width, m_height, Qt::KeepAspectRatio);
     update();
+}
+
+void MusicLrcArtPhotoLabel::mousePressEvent(QMouseEvent *event)
+{
+    QWidget::mousePressEvent(event);
+    if(event->button() == Qt::MiddleButton)
+    {
+        m_picMoved = true;
+        m_pressedPos = event->pos();
+    }
+}
+
+void MusicLrcArtPhotoLabel::mouseMoveEvent(QMouseEvent *event)
+{
+    QWidget::mouseMoveEvent(event);
+    if(m_picMoved)
+    {
+        m_deltaPos = event->pos() - m_pressedPos;
+        m_pressedPos = event->pos();
+        update();
+    }
+}
+
+void MusicLrcArtPhotoLabel::mouseReleaseEvent(QMouseEvent *event)
+{
+    QWidget::mouseReleaseEvent(event);
+    m_picMoved = false;
 }

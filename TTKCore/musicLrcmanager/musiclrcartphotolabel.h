@@ -40,6 +40,9 @@ public:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
      */
@@ -47,6 +50,9 @@ protected:
     QString m_path;
     QPixmap m_showPix;
     int m_width, m_height;
+    float m_ratio;
+    bool m_picMoved;
+    QPoint m_pressedPos, m_deltaPos, m_imagePos;
 
 };
 
