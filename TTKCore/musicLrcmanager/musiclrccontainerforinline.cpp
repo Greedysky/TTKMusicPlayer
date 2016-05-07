@@ -14,6 +14,7 @@
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
+#include <QPushButton>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -37,6 +38,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_showArtBackground = true;
     m_changeSpeedValue = 0;
 
+    initFunctionLabel();
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
 
@@ -219,6 +221,34 @@ void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
         m_musicLrcContainer[i]->setText( QString() );
     }
     m_musicLrcContainer[CURRENT_LRC_PAINT]->setText(str);
+}
+
+void MusicLrcContainerForInline::initFunctionLabel()
+{
+    QWidget *functionLabel = new QWidget(this);
+    QHBoxLayout *functionLayout = new QHBoxLayout(functionLabel);
+    functionLayout->setContentsMargins(0, 0, 0, 0);
+
+    QPushButton *movie = new QPushButton(QIcon(":/share/showMV2"), QString(), this);
+    QPushButton *microphone = new QPushButton(QIcon(":/lrc/microphone"), QString(), this);
+    QPushButton *message = new QPushButton(QIcon(":/lrc/message"), QString(), this);
+    movie->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    microphone->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    message->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    movie->setCursor(Qt::PointingHandCursor);
+    microphone->setCursor(Qt::PointingHandCursor);
+    message->setCursor(Qt::PointingHandCursor);
+    movie->setToolTip(tr("MV"));
+    microphone->setToolTip(tr("KMicro"));
+    message->setToolTip(tr("Message"));
+
+    functionLayout->addStretch(1);
+    functionLayout->addWidget(movie);
+    functionLayout->addWidget(microphone);
+    functionLayout->addWidget(message);
+    functionLayout->addStretch(1);
+    functionLabel->setLayout(functionLayout);
+    m_vBoxLayout->addWidget(functionLabel);
 }
 
 void MusicLrcContainerForInline::resizeWidth(int width)

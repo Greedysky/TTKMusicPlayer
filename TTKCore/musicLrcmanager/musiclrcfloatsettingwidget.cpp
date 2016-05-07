@@ -21,10 +21,7 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     colorLabel->setAlignment(Qt::AlignCenter);
     sizeLabel->setAlignment(Qt::AlignCenter);
     bgLabel->setAlignment(Qt::AlignCenter);
-    QFrame *line = new QFrame(this);
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
-    line->setGeometry(10, 170, 150, 5);
+
     colorLabel->setGeometry(10, 30, 70, 20);
     sizeLabel->setGeometry(10, 80, 70, 20);
     bgLabel->setGeometry(10, 120, 70, 20);
@@ -63,8 +60,8 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(artBgButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
     musicBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle18);
     artBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle18);
-    musicBgButton->setGeometry(10, 145, 70, 20);
-    artBgButton->setGeometry(90, 145, 70, 20);
+    musicBgButton->setGeometry(10, 155, 70, 20);
+    artBgButton->setGeometry(90, 155, 70, 20);
 
     QPushButton *settingButton = new QPushButton(tr("More"),this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));

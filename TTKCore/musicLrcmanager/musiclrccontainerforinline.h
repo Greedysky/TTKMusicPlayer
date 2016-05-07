@@ -162,6 +162,10 @@ protected:
     /*!
      * Init current lrc when the first show.
      */
+    void initFunctionLabel();
+    /*!
+     * Init function label widget.
+     */
     void setItemStyleSheet();
     /*!
      * Set per lrc line style sheet.

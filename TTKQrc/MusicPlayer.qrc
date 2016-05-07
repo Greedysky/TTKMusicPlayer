@@ -167,6 +167,8 @@
         <file alias="film">../TTKResource/lrc/lrc_filmBg.png</file>
         <file alias="lrcDisplayAll">../TTKResource/lrc/lrc_displayAll.png</file>
         <file alias="lrcDisplayNor">../TTKResource/lrc/lrc_displayNor.png</file>
+        <file alias="message">../TTKResource/lrc/lrc_message.png</file>
+        <file alias="microphone">../TTKResource/lrc/lrc_microphone.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="bottom">../TTKResource/borderShadow/shadow_bottom.png</file>
