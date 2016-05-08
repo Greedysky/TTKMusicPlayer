@@ -85,6 +85,10 @@
         <file alias="setting">../TTKResource/desktopTool/ds_setting.png</file>
         <file alias="nextP">../TTKResource/desktopTool/ds_nextP.png</file>
         <file alias="previousP">../TTKResource/desktopTool/ds_previousP.png</file>
+        <file alias="makeLrcText">../TTKResource/desktopTool/ds_makeLrcText.png</file>
+        <file alias="searchLrcText">../TTKResource/desktopTool/ds_searchLrcText.png</file>
+        <file alias="updateLrcText">../TTKResource/desktopTool/ds_updateLrcText.png</file>
+        <file alias="errorLrcText">../TTKResource/desktopTool/ds_errorLrcText.png</file>
     </qresource>
     <qresource prefix="/equalizer">
         <file alias="off">../TTKResource/equalizer/eq_off.png</file>
