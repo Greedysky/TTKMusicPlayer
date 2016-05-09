@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicVolumeGainWidget</string>
+   <string>音乐增强界面</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

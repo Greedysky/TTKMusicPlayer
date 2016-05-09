@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicUserDialog</string>
+   <string>用户登录</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicTransformWidget</string>
+   <string>格式转换</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

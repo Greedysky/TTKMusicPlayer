@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>上传歌手写真</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

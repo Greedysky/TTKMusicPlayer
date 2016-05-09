@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicEqualizerDialog</string>
+   <string>均衡器</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

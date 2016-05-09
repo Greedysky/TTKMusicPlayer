@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>皮肤与窗口调整</string>
   </property>
   <widget class="QLabel" name="showPerArea">
    <property name="geometry">

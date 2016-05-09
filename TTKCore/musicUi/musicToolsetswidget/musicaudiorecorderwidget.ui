@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicAudioRecorderWidget</string>
+   <string>录音设置</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

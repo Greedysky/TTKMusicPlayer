@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicWebMusicRadioWidget</string>
+   <string>网络电台播放窗口</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -117,7 +117,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="MusicRoundAnimationLabel" name="artistLabel">
+  <widget class="MusicRoundAnimationLabel" name="artistLabel" native="true">
    <property name="geometry">
     <rect>
      <x>50</x>

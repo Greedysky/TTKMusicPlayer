@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicSettingWidget</string>
+   <string>选项设置</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

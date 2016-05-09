@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicNetworkTestWidget</string>
+   <string>网速测试</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

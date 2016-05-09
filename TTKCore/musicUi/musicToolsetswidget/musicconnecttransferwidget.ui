@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicConnectTransferWidget</string>
+   <string>传文件到移动设备</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

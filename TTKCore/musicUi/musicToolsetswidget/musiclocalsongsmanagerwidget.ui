@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicLocalSongsManagerWidget</string>
+   <string>本地歌曲管理</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

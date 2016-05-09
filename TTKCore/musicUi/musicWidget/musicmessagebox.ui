@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>提示框</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -142,7 +142,6 @@
   <zorder>textLabel</zorder>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
   <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
  </resources>
  <connections/>

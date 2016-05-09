@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>音乐分享</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -297,7 +297,6 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
   </widget>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
   <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
   <include location="../../../TTKQrc/MusicPlayerUser.qrc"/>
  </resources>

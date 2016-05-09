@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>下载窗口</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
