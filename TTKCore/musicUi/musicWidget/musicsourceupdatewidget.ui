@@ -108,10 +108,10 @@
      <widget class="QLabel" name="titleLable_F">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>80</y>
-        <width>231</width>
-        <height>20</height>
+        <x>10</x>
+        <y>0</y>
+        <width>220</width>
+        <height>175</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -121,7 +121,7 @@
        <string>天天酷音正在检测版本号...</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="iconLabel_F">
@@ -159,7 +159,7 @@
        <string>更新</string>
       </property>
      </widget>
-     <widget class="QLabel" name="upgradeFailedLabel">
+     <widget class="MusicClickedLabel" name="upgradeFailedLabel">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -305,6 +305,13 @@ QProgressBar::chunk {
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../../TTKQrc/MusicPlayer.qrc"/>
  </resources>

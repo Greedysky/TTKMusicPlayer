@@ -110,9 +110,9 @@ public:
      * Transform value to tb entity.
      */
 
-    static bool openUrl(const QString &path);
+    static bool openUrl(const QString &path, bool local = true);
     /*!
-     * Open file from local by path.
+     * Open file from local by path or net url.
      */
 
     static QString toUnicode(const char *chars, const char *format = "GBK");

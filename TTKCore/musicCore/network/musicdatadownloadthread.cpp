@@ -106,4 +106,9 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
         total = total.left(total.indexOf(".") + 3) + "M";
         emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
     }
+    else if(m_downloadType == Download_Other)
+    {
+        QString total = QString::number(bytesTotal*1.0/1024/1024);
+        emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
+    }
 }

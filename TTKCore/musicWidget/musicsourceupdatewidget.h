@@ -30,13 +30,25 @@ public:
 
 Q_SIGNALS:
 public Q_SLOTS:
-    virtual int exec();
-    /*!
-     * Override exec function.
-     */
     void upgradeButtonClicked();
     /*!
      * Upgrade button clicked.
+     */
+    void upgradeFailedClicked();
+    /*!
+     * Upgrade failed clicked.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Download data from kuwo net finished.
+     */
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
+    /*!
+     * Update download percent\ total time and current time progress.
+     */
+    virtual int exec();
+    /*!
+     * Override exec function.
      */
 
 protected:

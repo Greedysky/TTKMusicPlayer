@@ -70,7 +70,7 @@ void MusicDownloadResetWidget::openDetailInfo()
 
 void MusicDownloadResetWidget::openFileLocation()
 {
-    MusicUtils::openUrl(M_SETTING->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString());
+    MusicUtils::openUrl(M_SETTING->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString(), true);
     close();
 }
 

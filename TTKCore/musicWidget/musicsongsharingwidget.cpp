@@ -5,9 +5,9 @@
 #include "musicbackgroundmanager.h"
 #include "musicdata2downloadthread.h"
 #include "musicmessagebox.h"
+#include "musicutils.h"
 
 #include <QTimer>
-#include <QDesktopServices>
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -103,7 +103,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
     }
 
     url.replace('#', "%23");
-    QDesktopServices::openUrl(QUrl(url));
+    MusicUtils::openUrl(url, false);
     QTimer::singleShot(1000, this, SLOT(close()));
 }
 

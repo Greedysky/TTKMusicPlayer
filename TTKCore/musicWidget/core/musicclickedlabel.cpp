@@ -1,4 +1,5 @@
 #include "musicclickedlabel.h"
+
 #include <QMouseEvent>
 
 MusicClickedLabel::MusicClickedLabel(QWidget *parent)
