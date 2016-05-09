@@ -9,7 +9,6 @@ MusicNetworkThread::MusicNetworkThread()
 {
     M_CONNECTION->setValue("MusicNetworkThread", this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
-    m_timer.start(NETWORK_DETECT_INTERVAL);
 }
 
 MusicNetworkThread::~MusicNetworkThread()
@@ -20,6 +19,7 @@ MusicNetworkThread::~MusicNetworkThread()
 void MusicNetworkThread::start()
 {
     M_LOGGER_INFO("Load NetworkThread");
+    m_timer.start(NETWORK_DETECT_INTERVAL);
 }
 
 void MusicNetworkThread::setBlockNetWork(int block)
