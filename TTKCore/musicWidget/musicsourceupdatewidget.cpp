@@ -6,6 +6,7 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicversion.h"
+#include "musicmessagebox.h"
 
 #ifdef MUSIC_QT_5
 #   include <QJsonParseError>
@@ -79,9 +80,20 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     ui->titleLable_F->setText( text );
 }
 
-void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
+void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total)
 {
-    qDebug() << percent << total << time;
+    ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
+    ui->downProgressBar->setValue(percent);
+    ui->downProgressBarAL->setValue(percent);
+
+    if(percent == 100.0f)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Download finished, please reunzip!"));
+        message.exec();
+
+        close();
+    }
 }
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
@@ -89,7 +101,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     ui->stackedWidget->setCurrentIndex(1);
     MusicDataDownloadThread *download = new MusicDataDownloadThread(DOWNLOAD_URL, TMP_DOWNLOAD + QString(".7z"),
                                                                     MusicDownLoadThreadAbstract::Download_Other, this);
-    connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString,qint64)));
+    connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     download->startToDownload();
 }
 

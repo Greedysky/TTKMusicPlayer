@@ -225,7 +225,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="text">
-        <string>文档大小: 1802.5KB</string>
+        <string>文档大小: --</string>
        </property>
       </widget>
       <widget class="QLabel" name="speedLabel">
@@ -238,7 +238,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="text">
-        <string>传送速率: 801KB/s</string>
+        <string>传送速率: --</string>
        </property>
       </widget>
       <widget class="QLabel" name="timeLabel">
@@ -251,7 +251,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="text">
-        <string>估计剩余时间: 0:00:02</string>
+        <string>估计剩余时间: --</string>
        </property>
       </widget>
      </widget>

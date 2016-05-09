@@ -42,9 +42,9 @@ public Q_SLOTS:
     /*!
      * Download data from kuwo net finished.
      */
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total);
     /*!
-     * Update download percent\ total time and current time progress.
+     * Update download percent\ total size progress.
      */
     virtual int exec();
     /*!
