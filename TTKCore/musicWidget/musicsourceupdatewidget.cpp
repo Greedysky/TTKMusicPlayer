@@ -66,7 +66,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 
     QJsonObject jsonObject = parseDoucment.object();
     QString text, version = jsonObject.value("version").toString();
-    if(version == TTKMUSIC_VERSION_STR)
+    if(version != TTKMUSIC_VERSION_STR)
     {
         text.append(version);
         text.append("\r\n");
