@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
 #include "musiclrcfloatabstractwidget.h"
 
 #define PHOTO_WIDTH     110

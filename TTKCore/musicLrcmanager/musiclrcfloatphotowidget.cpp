@@ -3,11 +3,10 @@
 #include "musicclickedlabel.h"
 
 #include <qmath.h>
+#include <QTimer>
 #include <QCheckBox>
 #include <QPushButton>
-#include <QTimer>
 #include <QButtonGroup>
-#include <QDebug>
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
