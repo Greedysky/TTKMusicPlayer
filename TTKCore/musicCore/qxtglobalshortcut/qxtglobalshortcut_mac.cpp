@@ -205,7 +205,7 @@ bool QxtGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativ
         keyIDs.insert(Identifier(nativeMods, nativeKey), keyID.id);
         keyRefs.insert(keyID.id, ref);
     }
-    qDebug() << ref;
+
     return rv;
 }
 

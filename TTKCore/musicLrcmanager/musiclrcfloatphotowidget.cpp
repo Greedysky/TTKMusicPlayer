@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QTimer>
 #include <QButtonGroup>
+#include <QDebug>
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicLrcFloatAbstractWidget(parent)
@@ -41,14 +42,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"),this);
-    m_confirmButton->setGeometry(340, 130, 70, 20);
+    m_confirmButton->setGeometry(420, 130, 70, 20);
     m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    m_cancelButton = new QPushButton(tr("Close"), this);
-    m_cancelButton->setGeometry(420, 130, 70, 20);
-    m_cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    m_cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
     m_previous->setGeometry(10, 38, 15, 50);
@@ -62,11 +58,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_currentIndex = 0;
 
-    connect(m_cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
     connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
-    connect(m_cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_plane1, SIGNAL(clicked()), SLOT(sendUserSelectArtBg1()));
     connect(m_plane2, SIGNAL(clicked()), SLOT(sendUserSelectArtBg2()));
     connect(m_plane3, SIGNAL(clicked()), SLOT(sendUserSelectArtBg3()));
@@ -78,9 +72,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     radioGroup->addButton(m_radio3, 2);
     connect(radioGroup, SIGNAL(buttonClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     connect(M_BG_MANAGER, SIGNAL(artHasChanged()), SLOT(artHasChanged()));
-
-    m_checkBox->setEnabled(false);
-    m_cancelButton->setEnabled(false);
+    connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
@@ -95,7 +87,6 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_previous;
     delete m_next;
     delete m_confirmButton;
-    delete m_cancelButton;
     delete m_checkBox;
 }
 
@@ -217,5 +208,26 @@ void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
     else
     {
         m_selectNum.remove(index);
+    }
+
+    m_checkBox->setChecked(false);
+}
+
+void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
+{
+    if(state)
+    {
+        for(int i=0; i<m_artPath.count(); ++i)
+        {
+            m_selectNum << i;
+        }
+        showPhoto();
+    }
+    else
+    {
+        m_radio1->setChecked(false);
+        m_radio2->setChecked(false);
+        m_radio3->setChecked(false);
+        m_selectNum.clear();
     }
 }

@@ -83,6 +83,10 @@ public Q_SLOTS:
     /*!
      * User select check box checked by index.
      */
+    void selectAllStateChanged(bool state);
+    /*!
+     * User select check box checked by state.
+     */
 
 protected:
     virtual void enterEvent(QEvent *) override {}
@@ -95,15 +99,14 @@ protected:
      * Show all artist pics in displaying.
      */
 
-    QWidget* m_filmBGWidget;
-    QCheckBox* m_checkBox;
-    QPushButton* m_previous,*m_next;
-    QPushButton* m_confirmButton,*m_cancelButton;
-    MusicClickedLabel* m_plane1,*m_plane2,*m_plane3;
-    QCheckBox* m_radio1,* m_radio2,* m_radio3;
-    QStringList m_artPath;
-    MIntSet m_selectNum;
     int m_currentIndex;
+    MIntSet m_selectNum;
+    QStringList m_artPath;
+    QWidget *m_filmBGWidget;
+    QCheckBox *m_checkBox;
+    QPushButton *m_previous, *m_next, *m_confirmButton;
+    MusicClickedLabel *m_plane1, *m_plane2, *m_plane3;
+    QCheckBox *m_radio1, *m_radio2, *m_radio3;
 
 };
 
