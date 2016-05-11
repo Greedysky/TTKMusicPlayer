@@ -5,7 +5,7 @@
 #include <QHostInfo>
 
 MusicNetworkThread::MusicNetworkThread()
-    : QObject(0), m_networkState(true)
+    : QObject(nullptr), m_networkState(true)
 {
     M_CONNECTION->setValue("MusicNetworkThread", this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));

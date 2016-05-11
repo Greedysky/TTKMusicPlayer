@@ -11,7 +11,6 @@ MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
     m_playlist = 0;
-    m_music = 0;
     m_state = StoppedState;
     m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
