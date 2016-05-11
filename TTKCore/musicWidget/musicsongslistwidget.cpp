@@ -418,7 +418,7 @@ void MusicSongsListWidget::musicOpenFileDir()
     }
 
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(!MusicUtils::openUrl(QFileInfo(path).absoluteFilePath()))
+    if(!MusicUtils::openUrl(QFileInfo(path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

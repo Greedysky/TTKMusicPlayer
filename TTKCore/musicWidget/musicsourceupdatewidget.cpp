@@ -55,6 +55,7 @@ int MusicSourceUpdateWidget::exec()
 
 void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 {
+#ifdef MUSIC_QT_5
     QJsonParseError jsonError;
     QJsonDocument parseDoucment = QJsonDocument::fromJson(data, &jsonError);
     ///Put the data into Json
@@ -65,12 +66,22 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     }
 
     QJsonObject jsonObject = parseDoucment.object();
-    QString text, version = jsonObject.value("version").toString();
+    QString version = jsonObject.value("version").toString();
+#else
+    QScriptEngine engine;
+    QScriptValue sc = engine.evaluate("value=" + QString(data));
+    QString version = sc.property("version").toString();
+#endif
+    QString text;
     if(version != TTKMUSIC_VERSION_STR)
     {
         text.append(version);
         text.append("\r\n");
+#ifdef MUSIC_QT_5
         text.append(jsonObject.value("data").toString());
+#else
+        text.append(sc.property("data").toString());
+#endif
         ui->upgradeButton->setEnabled(true);
     }
     else

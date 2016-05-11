@@ -147,7 +147,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!MusicUtils::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath()))
+    if(!MusicUtils::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

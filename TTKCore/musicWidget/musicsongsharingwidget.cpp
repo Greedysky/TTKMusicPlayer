@@ -116,10 +116,20 @@ void MusicSongSharingWidget::close()
 
 void MusicSongSharingWidget::textAreaChanged()
 {
-    int count = ui->textEdit->toPlainText().length();
-    if((count = 150 - count) > -1)
+    const int max = 150;
+    QString text = ui->textEdit->toPlainText();
+    int length = text.count();
+    if(length > max)
     {
-        ui->textEditArea->setText(tr("You can enter %1 characters").arg(count));
+        QTextCursor textCursor = ui->textEdit->textCursor();
+        int position = textCursor.position();
+        text.remove(position - (length - max), length - max);
+        ui->textEdit->setText(text);
+        textCursor.setPosition(position - (length - max));
+        ui->textEdit->setTextCursor(textCursor);
     }
-    ui->textEdit->setEnabled( count > -1 );
+    else
+    {
+        ui->textEditArea->setText(tr("You can enter %1 characters").arg(max - length));
+    }
 }
