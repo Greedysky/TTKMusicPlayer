@@ -12,6 +12,28 @@
 #include <QToolButton>
 #include "musicglobaldefine.h"
 
+class QLabel;
+class QMovie;
+
+/*! @brief The class of the enhanced tool button.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicEnhancedToolButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    explicit MusicEnhancedToolButton(QWidget *parent = 0);
+    virtual ~MusicEnhancedToolButton();
+
+protected:
+    virtual void enterEvent(QEvent *event) override;
+
+    QLabel *m_label;
+    QMovie *m_movie;
+
+};
+
+
 /*! @brief The class of the enhanced widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -36,6 +58,10 @@ public Q_SLOTS:
     /*!
      * Set enhanced music config.
      */
+    void caseButtonOnAndOff();
+    /*!
+     * Case button on and off.
+     */
 
 protected:
     void initWidget();
@@ -44,8 +70,9 @@ protected:
      */
 
     QMenu *m_menu;
-    QToolButton *m_caseButton, *m_Button1, *m_Button2;
-    QToolButton *m_Button3, *m_Button4;
+    QToolButton *m_caseButton;
+    MusicEnhancedToolButton *m_Button1, *m_Button2, *m_Button3, *m_Button4;
+    int m_lastSelectedIndex;
 
 };
 

@@ -196,6 +196,7 @@
         <file alias="off">../TTKResource/enhance/enhance_off.png</file>
         <file alias="on">../TTKResource/enhance/enhance_on.png</file>
         <file alias="background">../TTKResource/enhance/enhance_background.png</file>
+        <file alias="enter">../TTKResource/enhance/enhance_enter.gif</file>
         <file alias="iconOff">../TTKResource/enhance/enhance_icon_off.png</file>
         <file alias="icon3D">../TTKResource/enhance/enhance_icon_3D.png</file>
         <file alias="iconNICAM">../TTKResource/enhance/enhance_icon_NICAM.png</file>
