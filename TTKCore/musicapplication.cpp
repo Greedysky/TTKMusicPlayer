@@ -451,7 +451,7 @@ void MusicApplication::showCurrentSong(int index)
     QString name;
     if( index > -1 ) //The list to end
     {
-        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex())[index];
+        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex())[index].trimmed();
         ///detecting whether the file has been downloaded
 
         QString path = QString("%1/%2.%3").arg(M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
@@ -492,7 +492,7 @@ void MusicApplication::showCurrentSong(int index)
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
-    M_BG_MANAGER->setArtName(getCurrentFileName());
+    M_BG_MANAGER->setArtName( getCurrentFileName() );
     m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 
@@ -860,9 +860,9 @@ void MusicApplication::musicLoadCurrentSongLrc()
     {
         return;
     }
-    QString filename = LRC_DOWNLOAD_AL + m_musicSongTree->getMusicSongsFileName(m_currentMusicSongTreeIndex)
-                                         [m_musicList->currentIndex()] + LRC_FILE;
-    m_rightAreaWidget->loadCurrentSongLrc(getCurrentFileName(), filename);
+
+    QString filename = getCurrentFileName();
+    m_rightAreaWidget->loadCurrentSongLrc(filename, LRC_DOWNLOAD_AL + filename + LRC_FILE);
 }
 
 QString MusicApplication::getCurrentFileName() const
@@ -872,7 +872,7 @@ QString MusicApplication::getCurrentFileName() const
         return QString();
     }
     return m_musicSongTree->getMusicSongsFileName( \
-           m_currentMusicSongTreeIndex)[m_musicList->currentIndex()];
+           m_currentMusicSongTreeIndex)[m_musicList->currentIndex()].trimmed();
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const

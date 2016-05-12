@@ -247,6 +247,7 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
     }
 
     QString name = info.m_artistName + " - " + info.m_songName;
+    name = name.trimmed();
     ui->titleWidget->setText(name);
     m_analysis->transLrcFileToTime(LRC_DOWNLOAD_AL + name + LRC_FILE);
 }
