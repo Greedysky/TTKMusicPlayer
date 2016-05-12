@@ -126,11 +126,11 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->showCurrentSong->move(con ? 85 : 300, 558);
     m_ui->playCurrentTime->move(con ? 307 : 522, 568);
     m_ui->playTotalTime->move(con ? 342 : 556, 568);
-    m_ui->musicBestLove->move(con ? 180 : 625, con ? 535 : 578);
-    m_ui->musicPlayMode->move(con ? 202 : 655, con ? 532 : 575);
-    m_ui->musicSimilarFound->move(con ? 225 : 685, con ? 532 : 575);
-    m_ui->musicDownload->move(con ? 250 : 715, con ? 532 : 575);
-    m_ui->musicDesktopLrc->move(con ? 275 : 747, con ? 534 : 577);
+    m_ui->musicBestLove->move(con ? 180 : 685, con ? 535 : 578);
+    m_ui->musicPlayMode->move(con ? 202 : 715, con ? 532 : 575);
+    m_ui->musicSimilarFound->move(con ? 225 : 745, con ? 532 : 575);
+    m_ui->musicDownload->move(con ? 250 : 775, con ? 532 : 575);
+    m_ui->musicDesktopLrc->move(con ? 275 : 807, con ? 534 : 577);
     m_ui->musicSound->move(con ? 295 : 840, con ? 535 : 578);
     m_ui->musicSoundSlider->move(con ? 315 : 865, con ? 535 : 579);
     ////////////////////////////////////////////////////////////

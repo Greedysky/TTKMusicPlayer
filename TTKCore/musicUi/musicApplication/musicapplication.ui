@@ -541,7 +541,7 @@
   <widget class="QToolButton" name="musicBestLove">
    <property name="geometry">
     <rect>
-     <x>625</x>
+     <x>685</x>
      <y>578</y>
      <width>21</width>
      <height>21</height>
@@ -554,7 +554,7 @@
   <widget class="QToolButton" name="musicPlayMode">
    <property name="geometry">
     <rect>
-     <x>655</x>
+     <x>715</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
@@ -567,7 +567,7 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>747</x>
+     <x>807</x>
      <y>577</y>
      <width>20</width>
      <height>20</height>
@@ -586,8 +586,8 @@
   <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
-     <x>775</x>
-     <y>578</y>
+     <x>620</x>
+     <y>580</y>
      <width>50</width>
      <height>20</height>
     </rect>
@@ -625,7 +625,7 @@
   <widget class="QToolButton" name="musicDownload">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>775</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
@@ -641,7 +641,7 @@
   <widget class="QToolButton" name="musicSimilarFound">
    <property name="geometry">
     <rect>
-     <x>685</x>
+     <x>745</x>
      <y>575</y>
      <width>25</width>
      <height>25</height>
