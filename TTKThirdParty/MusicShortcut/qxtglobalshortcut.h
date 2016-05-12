@@ -30,7 +30,7 @@
 #include <QKeySequence>
 class QxtGlobalShortcutPrivate;
 
-class QxtGlobalShortcut : public QObject
+class Q_DECL_EXPORT QxtGlobalShortcut : public QObject
 {
     Q_OBJECT
     QXT_DECLARE_PRIVATE(QxtGlobalShortcut)

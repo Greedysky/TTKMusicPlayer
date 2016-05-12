@@ -11,7 +11,7 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = TTKCore TTKApp
+SUBDIRS = TTKThirdParty TTKCore TTKApp
 
 TRANSLATIONS += TTKLanguage/cn.ts \
                 TTKLanguage/cn_c.ts \

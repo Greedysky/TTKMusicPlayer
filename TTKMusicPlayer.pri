@@ -39,7 +39,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 2):QT  += winextras
         msvc{
-            LIBS += -L../bin -lqmmp1
+            LIBS += -L../bin -lqmmp1 -lMusicZlib -lMusicShortcut
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
                  QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
@@ -48,7 +48,7 @@ win32{
         }
 
         gcc{
-            LIBS += -L../bin -lqmmp1
+            LIBS += -L../bin -lqmmp1 -lMusicZlib -lMusicShortcut
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -58,7 +58,7 @@ win32{
     equals(QT_MAJOR_VERSION, 4){
         QT  += multimedia
         gcc{
-            LIBS += -L../bin -lqmmp0
+            LIBS += -L../bin -lqmmp0 -lMusicZlib -lMusicShortcut
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -79,7 +79,7 @@ unix:!mac{
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
     QMAKE_CXXFLAGS += -Wswitch
-    LIBS += -L../lib -lqmmp
+    LIBS += -L../lib -lqmmp -lMusicZlib -lMusicShortcut
 }
 
 TTKMusicPlayer = 2.2.11.0
@@ -90,12 +90,15 @@ DEFINES += USE_MULTIPLE_QUERY
 contains(CONFIG, TTK_BUILD_LIB){
   include(TTKCore/musicUi/MusicUi.pri)
 }
+#########################################
+INCLUDEPATH += ../TTKThirdParty/MusicShortcut \
+               ../TTKThirdParty/MusicZlib
+#########################################
 include(TTKCore/musicCore/MusicCore.pri)
 include(TTKCore/musicWidget/MusicWidget.pri)
 include(TTKCore/musicLocalsearch/MusicLocalSearch.pri)
 include(TTKCore/musicLrcmanager/MusicLrc.pri)
 include(TTKCore/musicRemotewidget/MusicRemote.pri)
-include(TTKCore/musicThirdParty/MusicThirdParty.pri)
 include(TTKCore/musicToolsetswidget/MusicToolsSets.pri)
 include(TTKCore/musicToolswidget/MusicToolsWidget.pri)
 include(TTKCore/musicUsermanager/MusicUser.pri)

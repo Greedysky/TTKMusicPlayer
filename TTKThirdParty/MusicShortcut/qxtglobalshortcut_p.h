@@ -33,7 +33,7 @@
 #include <QAbstractNativeEventFilter>
 #endif
 
-class QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobalShortcut>
+class Q_DECL_EXPORT QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobalShortcut>
 #if(QT_VERSION>=0x050000)
         , public QAbstractNativeEventFilter
 #endif

@@ -31,7 +31,8 @@ HEADERS  += \
     $$PWD/musiclrcmakerwidget.h \
     $$PWD/musiclrcanalysis.h \
     $$PWD/musiclrcerrorwidget.h \
-    $$PWD/musiclrclocallinkwidget.h
+    $$PWD/musiclrclocallinkwidget.h \
+    $$PWD/musiclrcfromkrc.h
 
 }
 
@@ -54,6 +55,7 @@ SOURCES += \
     $$PWD/musiclrcmakerwidget.cpp \
     $$PWD/musiclrcanalysis.cpp \
     $$PWD/musiclrcerrorwidget.cpp \
-    $$PWD/musiclrclocallinkwidget.cpp
+    $$PWD/musiclrclocallinkwidget.cpp \
+    $$PWD/musiclrcfromkrc.cpp
 
 }

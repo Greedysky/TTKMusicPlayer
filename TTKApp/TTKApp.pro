@@ -33,6 +33,9 @@ win32{
 
 INCLUDEPATH += ../TTKCore
 
+include(../TTKMusicPlayer.pri)
+unix:VERSION += $$TTKMusicPlayer
+
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     ../TTKCore/musicapplication.h \
@@ -43,9 +46,6 @@ HEADERS  += \
     ../TTKCore/musicapplicationobject.h
 
 }
-
-include(../TTKMusicPlayer.pri)
-unix:VERSION += $$TTKMusicPlayer
 
 SOURCES += \
     musicapplicationmain.cpp
