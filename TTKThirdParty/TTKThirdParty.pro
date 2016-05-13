@@ -11,4 +11,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = MusicZlib MusicShortcut
+SUBDIRS = zlib MusicExtras

@@ -10,20 +10,21 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32:TARGET = ../../../bin/MusicShortcut
-unix:TARGET = ../../lib/MusicShortcut
+win32:TARGET = ../../../bin/MusicExtras
+unix:TARGET = ../../lib/MusicExtras
 TEMPLATE = lib
 
+
 HEADERS  += \
-    qxtglobal.h \
-    qxtglobalshortcut.h \
-    qxtglobalshortcut_p.h
+    $$PWD/qxtglobal.h \
+    $$PWD/qxtglobalshortcut.h \
+    $$PWD/qxtglobalshortcut_p.h
 
 
-win32:SOURCES += qxtglobalshortcut_win.cpp
-unix:SOURCES += qxtglobalshortcut_x11.cpp
-mac:SOURCES += qxtglobalshortcut_mac.cpp
+win32:SOURCES += $$PWD/qxtglobalshortcut_win.cpp
+unix:SOURCES += $$PWD/qxtglobalshortcut_x11.cpp
+mac:SOURCES += $$PWD/qxtglobalshortcut_mac.cpp
 
 SOURCES += \
-    qxtglobalshortcut.cpp
+    $$PWD/qxtglobalshortcut.cpp
 
