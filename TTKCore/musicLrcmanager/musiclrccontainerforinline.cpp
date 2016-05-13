@@ -55,9 +55,20 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_noLrcCurrentInfo;
 }
 
-bool MusicLrcContainerForInline::transLrcFileToTime(const QString &lrcFileName)
+bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName)
 {
-    MusicLrcAnalysis::State state = m_lrcAnalysis->transLrcFileToTime(lrcFileName);
+    MusicLrcAnalysis::State state;
+    if(QFileInfo(lrcFileName).suffix() == "krc")
+    {
+        M_LOGGER_INFO("use krc parser!");
+        state = m_lrcAnalysis->transKrcFileToTime(lrcFileName);
+    }
+    else
+    {
+        M_LOGGER_INFO("use lrc parser!");
+        state = m_lrcAnalysis->transLrcFileToTime(lrcFileName);
+    }
+
     for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
     {
         m_musicLrcContainer[i]->setText( QString() );

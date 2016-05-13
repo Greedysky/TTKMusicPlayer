@@ -50,9 +50,9 @@ public:
     /*!
      * Update current lrc by given time.
      */
-    bool transLrcFileToTime(const QString &lrcFileName);
+    bool transLyricFileToTime(const QString &lrcFileName);
     /*!
-     * Analysis lrc file to map return the state.
+     * Analysis lyric file to map return the state.
      */
     QString text() const;
     /*!

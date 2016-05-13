@@ -57,6 +57,10 @@ public:
     /*!
      * Analysis lrc file to map return the state.
      */
+    State transKrcFileToTime(const QString &krcFileName);
+    /*!
+     * Analysis krc file to map return the state.
+     */
     qint64 setSongSpeedAndSlow(qint64 time);
     /*!
      * Set song speed and slow by given time, return new time.

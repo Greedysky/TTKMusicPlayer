@@ -92,8 +92,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
-       QFile file(LRC_DOWNLOAD_AL + filename + LRC_FILE);
-       if(file.exists())
+       if( QFile::exists(LRC_DOWNLOAD_AL + filename + LRC_FILE) ||
+           QFile::exists(LRC_DOWNLOAD_AL + filename + KRC_FILE) )
        {
            return;
        }

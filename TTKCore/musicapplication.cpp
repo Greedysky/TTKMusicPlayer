@@ -862,7 +862,8 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     QString filename = getCurrentFileName();
-    m_rightAreaWidget->loadCurrentSongLrc(filename, LRC_DOWNLOAD_AL + filename + LRC_FILE);
+    QString path = QFile::exists(LRC_DOWNLOAD_AL + filename + LRC_FILE) ? (LRC_DOWNLOAD_AL + filename + LRC_FILE) : (LRC_DOWNLOAD_AL + filename + KRC_FILE);
+    m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 }
 
 QString MusicApplication::getCurrentFileName() const

@@ -34,7 +34,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     fp = fopen(input.toLocal8Bit().constData(), "rb");
     if(!fp)
     {
-        M_LOGGER_ERROR("open file error !")
+        M_LOGGER_ERROR("open file error !");
         return false;
     }
 

@@ -1,4 +1,5 @@
 #include "musiclrcanalysis.h"
+#include "musiclrcfromkrc.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -26,6 +27,57 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     file.close();
     //The lyrics by line into the lyrics list
     foreach(QString oneLine, getAllText.split("\n"))
+    {
+        matchLrcLine(oneLine);
+    }
+
+    //If the lrcContainer is empty
+    if (m_lrcContainer.isEmpty())
+    {
+        return LrcEmpty;
+    }
+
+    m_currentShowLrcContainer.clear();
+    m_currentLrcIndex = 0;
+
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    {
+        m_currentShowLrcContainer << QString();
+    }
+    if(m_lrcContainer.find(0) == m_lrcContainer.end())
+    {
+       m_lrcContainer.insert(0, QString());
+    }
+
+    MIntStringMapIt it(m_lrcContainer);
+    while(it.hasNext())
+    {
+        it.next();
+        m_currentShowLrcContainer << it.value();
+    }
+    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    {
+        m_currentShowLrcContainer << QString();
+    }
+
+    return OpenFileSuccess;
+}
+
+MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
+{
+    m_lrcContainer.clear();///Clear the original map
+    m_currentShowLrcContainer.clear();///Clear the original lrc
+    m_currentLrcFileName = krcFileName;
+
+    MusicLrcFromKrc krc;
+    if(!krc.decode(krcFileName))
+    {
+        return OpenFileFail;
+    }
+
+    QString getAllText = QString(krc.getDecodeString());
+    //The lyrics by line into the lyrics list
+    foreach(QString oneLine, getAllText.split("\r\n"))
     {
         matchLrcLine(oneLine);
     }
