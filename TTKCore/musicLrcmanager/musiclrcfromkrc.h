@@ -27,7 +27,7 @@ protected:
     int sncasecmp(char *s1, char *s2, size_t n);
     int decompression(unsigned char *src, size_t srcsize, size_t *dstsize);
     int isfilter(char *tok);
-    void createLrc(unsigned char *lrc, size_t lrclen);
+    void createLrc(unsigned char *lrc, int lrclen);
 
     uchar *m_resultBytes;
     QByteArray m_data;

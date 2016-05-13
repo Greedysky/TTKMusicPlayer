@@ -171,7 +171,7 @@ void MusicSpeedMeter::drawMark(QPainter *painter)
         else if(i%5 == 0)
         {
             QPointF bottomPot(0, m_colorCircleRadius + S_SPACE);
-            QPointF topPot(0, m_colorCircleRadius + S_SPACE + S_OK);
+            QPointF topPot(0, m_colorCircleRadius + S_SPACE + S_SPAOK);
             painter->drawLine(bottomPot, topPot);
 
         }

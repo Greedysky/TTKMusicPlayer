@@ -337,7 +337,7 @@ void MusicApplication::readXMLConfigFromText()
     //Configure automatic playback
     value = xml.readSystemAutoPlayConfig();
     M_SETTING->setValue(MusicSettingManager::AutoPlayChoiced, value);
-    if(value == true)
+    if(value == 1)
     {
         m_playControl = true;
         musicStatePlay();

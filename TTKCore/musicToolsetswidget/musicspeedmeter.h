@@ -9,8 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define S_LONG 10
-#define S_OK 7
+#define S_LONG  10
+#define S_SPAOK 7
 #define S_SHORT 5
 #define S_SPACE 3
 #define S_ANGLE 10

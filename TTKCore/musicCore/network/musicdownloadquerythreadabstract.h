@@ -11,6 +11,7 @@
 
 #include <QObject>
 #include <QSslError>
+#include <QSslSocket>
 #include <QNetworkReply>
 #include "musicglobaldefine.h"
 #include "musicobject.h"
