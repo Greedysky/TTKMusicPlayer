@@ -10,7 +10,7 @@ MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
     m_width = 0;
     m_height = 0;
     m_ratio = 0.0f;
-    m_picMoved = true;
+    m_picMoved = false;
 }
 
 void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
