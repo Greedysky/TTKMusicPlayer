@@ -69,6 +69,10 @@ public:
     /*!
      * Revert lrc time by pos, both + or - the same pos.
      */
+    void saveLrcTimeChanged();
+    /*!
+     * Save lrc time changed to current lrc file.
+     */
 
     void setCurrentIndex(int index) { m_currentLrcIndex = index;}
     /*!

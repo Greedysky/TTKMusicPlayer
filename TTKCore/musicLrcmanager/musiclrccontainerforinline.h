@@ -107,6 +107,10 @@ public Q_SLOTS:
     /*!
      * Revert lrc time speed.
      */
+    void saveLrcTimeChanged();
+    /*!
+     * Save lrc time changed to current lrc file.
+     */
     void theArtBgChanged();
     /*!
      * The art background state has changed.

@@ -1,5 +1,6 @@
 #include "musiclrcanalysis.h"
 #include "musiclrcfromkrc.h"
+#include "musictime.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -355,6 +356,28 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
         copy.insert(it.key() + pos, it.value());
     }
     m_lrcContainer = copy;
+}
+
+void MusicLrcAnalysis::saveLrcTimeChanged()
+{
+    MIntStringMapIt it(m_lrcContainer);
+    QByteArray data;
+    data.append(QString("[by: TTKMusicPlayer]\n[offset:0]\n"));
+    while(it.hasNext())
+    {
+        it.next();
+        data.append(MusicTime::toString(it.key(), MusicTime::All_Msec, "[mm:ss.zzz]"));
+        data.append(it.value() + "\n");
+    }
+
+    QFile file(m_currentLrcFileName);
+    if(!file.open(QIODevice::WriteOnly))
+    {
+        return;
+    }
+    file.write(data);
+    file.flush();
+    file.close();
 }
 
 bool MusicLrcAnalysis::valid() const

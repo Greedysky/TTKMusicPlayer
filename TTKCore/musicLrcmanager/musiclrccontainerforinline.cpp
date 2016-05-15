@@ -382,6 +382,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
     menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
     menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
+    menu.addAction(tr("saveLrcChanged"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
     //////////////////////////////////////////////////
@@ -471,6 +472,11 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed()
     }
     revertLrcTimeSpeed( -m_changeSpeedValue );
     m_changeSpeedValue = 0;
+}
+
+void MusicLrcContainerForInline::saveLrcTimeChanged()
+{
+    m_lrcAnalysis->saveLrcTimeChanged();
 }
 
 void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
