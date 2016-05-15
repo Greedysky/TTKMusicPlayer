@@ -6,7 +6,6 @@ build-TTKMusicplayer-*/
 *.autosave
 *.*~
 *.uxf
-*.txt
 Thumbs.db
 ehthumbs.db
 Desktop.ini

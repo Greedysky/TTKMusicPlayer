@@ -12,9 +12,6 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobal.h
-    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut.h
-    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_p.h
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.h
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.h
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.h
@@ -75,6 +72,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcfromkrc.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
@@ -171,7 +169,6 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
-    ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.cpp
@@ -225,6 +222,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcfromkrc.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp
@@ -320,12 +318,6 @@ set(MUSIC_SOURCES
     ${MUSIC_LIB_DIR}/musicapplicationobject.cpp
   )
 
-if(WIN32)
-    list(APPEND MUSIC_SOURCES ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_win.cpp)
-else(UNIX)
-    list(APPEND MUSIC_SOURCES ${MUSIC_CORE_DIR}/qxtglobalshortcut/qxtglobalshortcut_x11.cpp)
-endif()
-
 SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicApplication/musicapplication.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcartphotoupload.ui
@@ -373,7 +365,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} -lIphlpapi -luser32)
+  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} -lMusicExtras -lzlib -lIphlpapi -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT5_LIBS Qt5::WinExtras -lIphlpapi -luser32)
     list(APPEND QT5_LIBS Qt5::X11Extras)
@@ -386,7 +378,7 @@ else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi -luser32)
+  list(APPEND QT4_LIBS ${QMMP_LIBRARY} -lMusicExtras -lzlib ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi -luser32)
     list(APPEND QT4_LIBS -lQtMultimediaKit)

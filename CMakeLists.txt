@@ -39,13 +39,12 @@ set(MUSIC_SCRIPT_DIR "${MUSIC_DIR}/TTKScript")
 set(MUSIC_QRC_DIR "${MUSIC_DIR}/TTKQrc")
 set(MUSIC_LANGUAGE_DIR "${MUSIC_DIR}/TTKLanguage")
 set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
-
+set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
 
 include_directories(${MUSIC_DIR})
 include_directories(${MUSIC_LIB_DIR})
 include_directories(${MUSIC_CORE_DIR})
 include_directories(${MUSIC_CORE_DIR}/network)
-include_directories(${MUSIC_CORE_DIR}/qxtglobalshortcut)
 include_directories(${MUSIC_LOCALSEARCH_DIR})
 include_directories(${MUSIC_LOCALSEARCH_DIR}/core)
 include_directories(${MUSIC_LRCMANAGER_DIR})
@@ -59,6 +58,8 @@ include_directories(${MUSIC_USERMANAGER_DIR}/core)
 include_directories(${MUSIC_VIDEOKITS_DIR}) 
 include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGET_DIR}/core)
+include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
+include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
@@ -158,5 +159,6 @@ else()
 endif()
 
 
+add_subdirectory(TTKThirdParty)
 add_subdirectory(TTKCore)
 add_subdirectory(TTKApp)
