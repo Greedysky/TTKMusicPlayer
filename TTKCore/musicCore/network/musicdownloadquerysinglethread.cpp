@@ -73,6 +73,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         if( jsonError.error != QJsonParseError::NoError ||
             !parseDoucment.isObject())
         {
+            emit resolvedSuccess();
             deleteAll();
             return;
         }

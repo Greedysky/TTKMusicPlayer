@@ -125,6 +125,7 @@ void MusicDownLoadQueryMultipleThread::searchFinshed()
         ///Put the data into Json
         if( jsonError.error != QJsonParseError::NoError )
         {
+            emit resolvedSuccess();
             deleteAll();
             return;
         }
