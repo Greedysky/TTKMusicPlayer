@@ -42,5 +42,9 @@ set(MUSIC_SOURCES
     uncompr.c
     zutil.c
   )
-  
+
+if(TTK_BUILD_SHARED STREQUAL "true")
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+else()
+  add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+endif()
