@@ -98,7 +98,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -111,9 +111,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>110</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -143,9 +143,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_2F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>70</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -172,9 +172,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_3F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>30</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -188,9 +188,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_4F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>150</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -204,9 +204,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_5F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>190</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -220,9 +220,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_6F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>230</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -236,9 +236,9 @@ QTabBar::tab:selected {
      <widget class="QLabel" name="label_7F">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>30</x>
         <y>270</y>
-        <width>30</width>
+        <width>50</width>
         <height>20</height>
        </rect>
       </property>
@@ -286,7 +286,7 @@ QTabBar::tab:selected {
        <rect>
         <x>90</x>
         <y>153</y>
-        <width>40</width>
+        <width>50</width>
         <height>15</height>
        </rect>
       </property>
@@ -297,9 +297,9 @@ QTabBar::tab:selected {
      <widget class="QRadioButton" name="femaleRadioButton_F">
       <property name="geometry">
        <rect>
-        <x>135</x>
+        <x>145</x>
         <y>153</y>
-        <width>40</width>
+        <width>60</width>
         <height>15</height>
        </rect>
       </property>
@@ -855,7 +855,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>360</x>
         <y>70</y>
-        <width>81</width>
+        <width>90</width>
         <height>20</height>
        </rect>
       </property>
@@ -868,7 +868,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>360</x>
         <y>180</y>
-        <width>81</width>
+        <width>90</width>
         <height>20</height>
        </rect>
       </property>
@@ -881,7 +881,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <rect>
         <x>360</x>
         <y>285</y>
-        <width>81</width>
+        <width>90</width>
         <height>20</height>
        </rect>
       </property>
