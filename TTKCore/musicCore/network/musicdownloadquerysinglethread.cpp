@@ -30,7 +30,7 @@ void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QStri
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = (type != MovieQuery ) ? MUSIC_REQUERY_URL.arg(text) : MV_REQUERY_URL.arg(text);
+    QUrl musicUrl = MUSIC_REQUERY_URL.arg(text);
     ///This is a ttop music API
 
     if(m_reply)
@@ -91,11 +91,13 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                 QJsonObject object = value.toObject();
 
                 MusicSongInfomation musicInfo;
+
+                QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
+                QString songName = object.take("song_name").toString();
+                QString singerName = object.take("singer_name").toString();
+
                 if(m_currentType != MovieQuery)
                 {
-                    QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
-                    QString songName = object.take("song_name").toString();
-                    QString singerName = object.take("singer_name").toString();
                     QString duration;
                     ///music normal songs urls
                     QJsonArray audUrls = object.value("audition_list").toArray();
@@ -157,10 +159,9 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                 }
                 else
                 {
-                    QString songName = object.take("videoName").toString();
-                    QString singerName = object.take("singerName").toString();
-                    QJsonArray mvUrls = object.take("mvList").toArray();
-                    if( !mvUrls.isEmpty() )
+                    ///music mv urls
+                    QJsonArray mvUrls = object.value("mv_list").toArray();
+                    if(!mvUrls.isEmpty())
                     {
                         foreach(QJsonValue url, mvUrls)
                         {
@@ -198,11 +199,13 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                     }
 
                     MusicSongInfomation musicInfo;
+
+                    QString songId = QString::number(value.property("singer_id").toVariant().toULongLong());
+                    QString songName = value.property("song_name").toString();
+                    QString singerName = value.property("singer_name").toString();
+
                     if(m_currentType != MovieQuery)
                     {
-                        QString songId = QString::number(value.property("singer_id").toVariant().toULongLong());
-                        QString songName = value.property("song_name").toString();
-                        QString singerName = value.property("singer_name").toString();
                         QString duration;
                         ///music normal songs urls
                         QScriptValueIterator audUrlsIt(value.property("audition_list"));
@@ -276,9 +279,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
                     }
                     else
                     {
-                        QString songName = value.property("videoName").toString();
-                        QString singerName = value.property("singerName").toString();
-                        QScriptValueIterator mvUrlIt(value.property("mvList"));
+                        QScriptValueIterator mvUrlIt(value.property("mv_list"));
                         if( mvUrlIt.hasNext() )
                         {
                             while(mvUrlIt.hasNext())
