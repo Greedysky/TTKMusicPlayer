@@ -28,9 +28,10 @@
 #include "qxtglobal.h"
 #include <QObject>
 #include <QKeySequence>
+
 class QxtGlobalShortcutPrivate;
 
-class Q_DECL_EXPORT QxtGlobalShortcut : public QObject
+class MUSIC_EXTRAS_EXPORT QxtGlobalShortcut : public QObject
 {
     Q_OBJECT
     QXT_DECLARE_PRIVATE(QxtGlobalShortcut)

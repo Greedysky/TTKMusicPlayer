@@ -10,16 +10,3 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32{
-    TARGET = ../../../bin/MusicExtras
-    msvc{
-        LIBS += -luser32
-    }
-}
-unix:TARGET = ../../lib/MusicExtras
-TEMPLATE = lib
-
-HEADERS  += musicextrasglobaldefine.h
-
-include(shortcut/ShortCut.pri)
-include(kugou/KuGou.pri)

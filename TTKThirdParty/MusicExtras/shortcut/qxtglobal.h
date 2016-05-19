@@ -26,7 +26,7 @@
 #ifndef QXTGLOBAL_H
 #define QXTGLOBAL_H
 
-#include <QtGlobal>
+#include "musicextrasglobaldefine.h"
 
 #define QXT_VERSION 0x000600
 #define QXT_VERSION_STR "0.6.0"
@@ -148,7 +148,7 @@ QXT_CORE_EXPORT const char* qxtVersion();
 #define QXT_P(PUB) PUB& p = qxt_p()
 
 template <typename PUB>
-class Q_DECL_EXPORT QxtPrivate
+class MUSIC_EXTRAS_EXPORT QxtPrivate
 {
 public:
     virtual ~QxtPrivate()
@@ -173,7 +173,7 @@ private:
 };
 
 template <typename PUB, typename PVT>
-class Q_DECL_EXPORT QxtPrivateInterface
+class MUSIC_EXTRAS_EXPORT QxtPrivateInterface
 {
     friend class QxtPrivate<PUB>;
 public:

@@ -12,19 +12,19 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    qxtglobal.h
-    qxtglobalshortcut.h
-    qxtglobalshortcut_p.h
+    shortcut/qxtglobal.h
+    shortcut/qxtglobalshortcut.h
+    shortcut/qxtglobalshortcut_p.h
   )
 
 set(MUSIC_SOURCES
-    qxtglobalshortcut.cpp
+    shortcut/qxtglobalshortcut.cpp
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qxtglobalshortcut_win.cpp)
+    list(APPEND MUSIC_SOURCES shortcut/qxtglobalshortcut_win.cpp)
 else(UNIX)
-    list(APPEND MUSIC_SOURCES qxtglobalshortcut_x11.cpp)
+    list(APPEND MUSIC_SOURCES shortcut/qxtglobalshortcut_x11.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

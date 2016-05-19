@@ -10,16 +10,17 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32{
-    TARGET = ../../../bin/MusicExtras
-    msvc{
-        LIBS += -luser32
-    }
-}
-unix:TARGET = ../../lib/MusicExtras
-TEMPLATE = lib
 
-HEADERS  += musicextrasglobaldefine.h
+HEADERS  += \
+    $$PWD/qxtglobal.h \
+    $$PWD/qxtglobalshortcut.h \
+    $$PWD/qxtglobalshortcut_p.h
 
-include(shortcut/ShortCut.pri)
-include(kugou/KuGou.pri)
+
+win32:SOURCES += $$PWD/qxtglobalshortcut_win.cpp
+unix:SOURCES += $$PWD/qxtglobalshortcut_x11.cpp
+mac:SOURCES += $$PWD/qxtglobalshortcut_mac.cpp
+
+SOURCES += \
+    $$PWD/qxtglobalshortcut.cpp
+
