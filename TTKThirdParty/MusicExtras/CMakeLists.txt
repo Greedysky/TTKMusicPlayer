@@ -12,6 +12,7 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
+    musicextrasglobaldefine.h
     shortcut/qxtglobal.h
     shortcut/qxtglobalshortcut.h
     shortcut/qxtglobalshortcut_p.h

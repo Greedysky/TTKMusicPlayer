@@ -67,6 +67,7 @@ include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGET_DIR}/core)
 include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
+include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/shortcut)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
