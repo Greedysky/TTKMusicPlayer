@@ -10,6 +10,11 @@
 # * works are strictly forbiden.
 # =================================================
 
+unix:!mac{
+    equals(QT_MAJOR_VERSION, 5){
+        QT  += x11extras
+    }
+}
 
 HEADERS  += \
     $$PWD/qxtglobal.h \

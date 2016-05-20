@@ -287,6 +287,8 @@ bool MusicUtils::openUrl(const QString &path, bool local)
         HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", p.toLocal8Bit().constData(), nullptr, true);
         return (int)value >= 32;
     }
+#else
+    Q_UNUSED(local);
 #endif
     return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
 }

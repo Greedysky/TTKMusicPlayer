@@ -72,9 +72,6 @@ unix:!mac{
                           -I/usr/include/QtMobility
         LIBS += -lQtMultimediaKit
     }
-    equals(QT_MAJOR_VERSION, 5){
-        QT  += x11extras
-    }
 
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
@@ -91,8 +88,9 @@ contains(CONFIG, TTK_BUILD_LIB){
   include(TTKCore/musicUi/MusicUi.pri)
 }
 #########################################
-INCLUDEPATH += ../TTKThirdParty/MusicExtras/shortcut \
-               ../TTKThirdParty/zlib
+INCLUDEPATH += ../TTKThirdParty/MusicExtras \
+                               ../TTKThirdParty/MusicExtras/shortcut \
+                               ../TTKThirdParty/zlib
 #########################################
 include(TTKCore/musicCore/MusicCore.pri)
 include(TTKCore/musicWidget/MusicWidget.pri)
