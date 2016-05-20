@@ -79,7 +79,7 @@ unix:!mac{
     LIBS += -L../lib -lqmmp -lMusicExtras -lzlib
 }
 
-TTKMusicPlayer = 2.2.11.0
+TTKMusicPlayer = 2.2.12.0
 
 DEFINES += MUSIC_LIBRARY
 DEFINES += USE_MULTIPLE_QUERY
@@ -89,8 +89,8 @@ contains(CONFIG, TTK_BUILD_LIB){
 }
 #########################################
 INCLUDEPATH += ../TTKThirdParty/MusicExtras \
-                               ../TTKThirdParty/MusicExtras/shortcut \
-                               ../TTKThirdParty/zlib
+               ../TTKThirdParty/MusicExtras/shortcut \
+               ../TTKThirdParty/zlib
 #########################################
 include(TTKCore/musicCore/MusicCore.pri)
 include(TTKCore/musicWidget/MusicWidget.pri)

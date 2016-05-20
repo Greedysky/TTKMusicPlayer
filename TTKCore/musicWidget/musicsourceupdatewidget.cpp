@@ -17,7 +17,7 @@
 #endif
 
 #define VERSION_URL     "http://7xpa0g.com1.z0.glb.clouddn.com/version"
-#define DOWNLOAD_URL    "http://7xpa0g.com1.z0.glb.clouddn.com/v2.2.11.0.7z"
+#define DOWNLOAD_URL    "http://7xpa0g.com1.z0.glb.clouddn.com/v2.2.12.0.7z"
 #define CSDN_URL        "http://download.csdn.net/album/detail/3094"
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
