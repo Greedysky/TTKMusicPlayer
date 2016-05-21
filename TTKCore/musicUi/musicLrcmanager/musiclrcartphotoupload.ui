@@ -156,7 +156,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请上传尺寸1033*660以上的图片&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>请上传尺寸1033*660以上的图片</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
