@@ -24,8 +24,8 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 225);
-    headerview->resizeSection(2, 176);
+    headerview->resizeSection(1, 305);
+    headerview->resizeSection(2, 188);
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
@@ -102,14 +102,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 220));
+    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 300));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 170));
+    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 180));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -310,13 +310,13 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 {
     m_searchTableWidget->startSearchQuery(name);
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
-                         .arg(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 170)));
+                         .arg(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 240)));
 }
 
 void MusicSongSearchOnlineWidget::createToolWidget()
 {
     m_textLabel = new QLabel(this);
-    m_textLabel->setGeometry(0, 0, 280, 30);
+    m_textLabel->setGeometry(0, 0, 370, 30);
     m_textLabel->setTextFormat(Qt::RichText);
     m_textLabel->setText(tr("&nbsp;find no result"));
 
@@ -332,26 +332,26 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 
     QLabel *Label1 = new QLabel(tr("Song"), this);
     Label1->setStyleSheet(MusicUIObject::MCustomStyle18);
-    Label1->setGeometry(120, 40, 60, 20);
+    Label1->setGeometry(160, 40, 60, 20);
     QLabel *Label2 = new QLabel(tr("Artist"), this);
     Label2->setStyleSheet(MusicUIObject::MCustomStyle18);
-    Label2->setGeometry(310, 40, 60, 20);
+    Label2->setGeometry(405, 40, 60, 20);
     QLabel *Label3 = new QLabel(tr("Operator"), this);
     Label3->setStyleSheet(MusicUIObject::MCustomStyle18);
-    Label3->setGeometry(450, 40, 60, 20);
+    Label3->setGeometry(540, 40, 60, 20);
 
     m_playButton = new QPushButton(tr("Play"), this);
-    m_playButton->setGeometry(315, 5, 70, 20);
+    m_playButton->setGeometry(405, 5, 70, 20);
     m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
-    addButton->setGeometry(390, 5, 70, 20);
+    addButton->setGeometry(480, 5, 70, 20);
     addButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
-    downloadButton->setGeometry(465, 5, 70, 20);
+    downloadButton->setGeometry(555, 5, 70, 20);
     downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 

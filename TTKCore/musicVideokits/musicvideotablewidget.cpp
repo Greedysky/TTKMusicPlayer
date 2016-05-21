@@ -148,8 +148,8 @@ void MusicVideoTableWidget::resizeWindow(float delta)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30*delta);
-    headerview->resizeSection(1, 210*delta);
-    headerview->resizeSection(2, 136*delta);
+    headerview->resizeSection(1, 290*delta);
+    headerview->resizeSection(2, 148*delta);
     headerview->resizeSection(3, 30*delta);
     headerview->resizeSection(4, 55*delta);
     headerview->resizeSection(5, 24*delta);

@@ -28,7 +28,6 @@ public:
      */
     ~MusicWebEntainRadioListView();
 
-Q_SIGNALS:
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
     /*!

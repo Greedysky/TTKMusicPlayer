@@ -49,21 +49,21 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_columnThree = new MusicSongsEnterPlayWidget(index, this);
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(214, 35, 23, 23);
+    m_loveButton->setGeometry(204, 35, 23, 23);
     m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
     currentLoveStateClicked();
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(235, 35, 23, 23);
+    m_deleteButton->setGeometry(225, 35, 23, 23);
     m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
     m_downloadButton = new QPushButton(this);
-    m_downloadButton->setGeometry(170, 35, 23, 23);
+    m_downloadButton->setGeometry(165, 35, 23, 23);
     m_downloadButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
     m_downloadButton->setIconSize(QSize(23, 23));
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));

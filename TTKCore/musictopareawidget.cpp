@@ -158,7 +158,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect()
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 {
-    QSize size(950, 620);
+    QSize size(1033, 660);
     QPixmap origin(path);
     QPixmap afterDeal( size );
     afterDeal.fill(Qt::transparent);

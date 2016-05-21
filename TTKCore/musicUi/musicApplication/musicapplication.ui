@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>990</width>
-    <height>630</height>
+    <width>1033</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
   <widget class="QToolButton" name="windowClose">
    <property name="geometry">
     <rect>
-     <x>937</x>
-     <y>27</y>
+     <x>977</x>
+     <y>30</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -33,8 +33,8 @@
   <widget class="QToolButton" name="minimization">
    <property name="geometry">
     <rect>
-     <x>909</x>
-     <y>27</y>
+     <x>949</x>
+     <y>30</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -48,8 +48,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>950</width>
-     <height>590</height>
+     <width>994</width>
+     <height>620</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>64</x>
-     <y>556</y>
+     <y>576</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>556</y>
+     <y>576</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -92,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>127</x>
-     <y>556</y>
+     <y>576</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -105,8 +105,8 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>65</y>
-     <width>331</width>
+     <y>80</y>
+     <width>320</width>
      <height>490</height>
     </rect>
    </property>
@@ -114,8 +114,8 @@
   <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
    <property name="geometry">
     <rect>
-     <x>304</x>
-     <y>30</y>
+     <x>319</x>
+     <y>32</y>
      <width>261</width>
      <height>28</height>
     </rect>
@@ -130,8 +130,8 @@
   <widget class="QPushButton" name="musicSearchButton">
    <property name="geometry">
     <rect>
-     <x>565</x>
-     <y>30</y>
+     <x>580</x>
+     <y>32</y>
      <width>25</width>
      <height>28</height>
     </rect>
@@ -146,8 +146,8 @@
   <widget class="QToolButton" name="musicWindowChangeSkin">
    <property name="geometry">
     <rect>
-     <x>800</x>
-     <y>27</y>
+     <x>840</x>
+     <y>30</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -162,9 +162,9 @@
   <widget class="QStackedWidget" name="SurfaceStackedWidget">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>100</y>
-     <width>541</width>
+     <x>380</x>
+     <y>115</y>
+     <width>633</width>
      <height>455</height>
     </rect>
    </property>
@@ -177,8 +177,8 @@
   <widget class="QPushButton" name="musicSearchWidgetButton">
    <property name="geometry">
     <rect>
-     <x>625</x>
-     <y>70</y>
+     <x>645</x>
+     <y>82</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -193,8 +193,8 @@
   <widget class="QPushButton" name="musicLrcWidgetButton">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>70</y>
+     <x>750</x>
+     <y>82</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -210,7 +210,7 @@
    <property name="geometry">
     <rect>
      <x>450</x>
-     <y>70</y>
+     <y>82</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -225,8 +225,8 @@
   <widget class="QPushButton" name="musicIndexWidgetButton">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>70</y>
+     <x>540</x>
+     <y>82</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -241,8 +241,8 @@
   <widget class="QLabel" name="showDownloadGif">
    <property name="geometry">
     <rect>
-     <x>930</x>
-     <y>455</y>
+     <x>600</x>
+     <y>530</y>
      <width>41</width>
      <height>101</height>
     </rect>
@@ -255,7 +255,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
+     <y>33</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -273,7 +273,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>375</y>
+     <y>380</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -288,8 +288,8 @@
   <widget class="QToolButton" name="musicWindowRemote">
    <property name="geometry">
     <rect>
-     <x>878</x>
-     <y>27</y>
+     <x>918</x>
+     <y>30</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -305,7 +305,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>75</y>
+     <y>80</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -321,7 +321,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>135</y>
+     <y>140</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -337,7 +337,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>195</y>
+     <y>200</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -353,7 +353,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>315</y>
+     <y>320</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -368,8 +368,8 @@
   <widget class="QPushButton" name="vedioWidgetButton">
    <property name="geometry">
     <rect>
-     <x>815</x>
-     <y>70</y>
+     <x>855</x>
+     <y>82</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -384,8 +384,8 @@
   <widget class="QToolButton" name="musicWindowConcise">
    <property name="geometry">
     <rect>
-     <x>848</x>
-     <y>27</y>
+     <x>888</x>
+     <y>30</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -400,8 +400,8 @@
   <widget class="QLabel" name="resizeWindowLabel">
    <property name="geometry">
     <rect>
-     <x>950</x>
-     <y>590</y>
+     <x>993</x>
+     <y>620</y>
      <width>15</width>
      <height>15</height>
     </rect>
@@ -414,7 +414,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>255</y>
+     <y>260</y>
      <width>40</width>
      <height>40</height>
     </rect>
@@ -432,7 +432,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>392</x>
+     <x>380</x>
      <y>300</y>
      <width>15</width>
      <height>56</height>
@@ -449,7 +449,7 @@
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>70</y>
+     <y>82</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -464,8 +464,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>245</x>
-     <y>563</y>
+     <x>255</x>
+     <y>582</y>
      <width>46</width>
      <height>21</height>
     </rect>
@@ -475,8 +475,8 @@
   <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>558</y>
+     <x>310</x>
+     <y>578</y>
      <width>215</width>
      <height>31</height>
     </rect>
@@ -491,8 +491,8 @@
   <widget class="MusicTimerSliderWidget" name="musicTimeWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>573</y>
+     <x>240</x>
+     <y>593</y>
      <width>375</width>
      <height>40</height>
     </rect>
@@ -504,8 +504,8 @@
   <widget class="QLabel" name="playCurrentTime">
    <property name="geometry">
     <rect>
-     <x>522</x>
-     <y>568</y>
+     <x>532</x>
+     <y>588</y>
      <width>35</width>
      <height>15</height>
     </rect>
@@ -520,8 +520,8 @@
   <widget class="QLabel" name="playTotalTime">
    <property name="geometry">
     <rect>
-     <x>556</x>
-     <y>568</y>
+     <x>566</x>
+     <y>588</y>
      <width>37</width>
      <height>15</height>
     </rect>
@@ -536,8 +536,8 @@
   <widget class="QToolButton" name="musicBestLove">
    <property name="geometry">
     <rect>
-     <x>685</x>
-     <y>578</y>
+     <x>695</x>
+     <y>598</y>
      <width>21</width>
      <height>21</height>
     </rect>
@@ -549,8 +549,8 @@
   <widget class="QToolButton" name="musicPlayMode">
    <property name="geometry">
     <rect>
-     <x>715</x>
-     <y>575</y>
+     <x>735</x>
+     <y>595</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -562,8 +562,8 @@
   <widget class="QCheckBox" name="musicDesktopLrc">
    <property name="geometry">
     <rect>
-     <x>807</x>
-     <y>577</y>
+     <x>857</x>
+     <y>597</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -581,8 +581,8 @@
   <widget class="MusicEnhancedWidget" name="musicEnhancedButton" native="true">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>580</y>
+     <x>625</x>
+     <y>600</y>
      <width>50</width>
      <height>20</height>
     </rect>
@@ -591,8 +591,8 @@
   <widget class="QSlider" name="musicSoundSlider">
    <property name="geometry">
     <rect>
-     <x>865</x>
-     <y>579</y>
+     <x>915</x>
+     <y>599</y>
      <width>65</width>
      <height>16</height>
     </rect>
@@ -604,8 +604,8 @@
   <widget class="QToolButton" name="musicSound">
    <property name="geometry">
     <rect>
-     <x>840</x>
-     <y>578</y>
+     <x>890</x>
+     <y>598</y>
      <width>18</width>
      <height>18</height>
     </rect>
@@ -620,8 +620,8 @@
   <widget class="QToolButton" name="musicDownload">
    <property name="geometry">
     <rect>
-     <x>775</x>
-     <y>575</y>
+     <x>815</x>
+     <y>595</y>
      <width>25</width>
      <height>25</height>
     </rect>
@@ -636,8 +636,8 @@
   <widget class="QToolButton" name="musicSimilarFound">
    <property name="geometry">
     <rect>
-     <x>745</x>
-     <y>575</y>
+     <x>775</x>
+     <y>595</y>
      <width>25</width>
      <height>25</height>
     </rect>

@@ -18,7 +18,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 {
     if(popup)
     {
-        resize(541, 460);
+        resize(635, 460);
     }
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -65,7 +65,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
         topLayout->addWidget(m_closeButton);
     }
     m_topWidget->setLayout(topLayout);
-    m_topWidget->setFixedHeight(40);
+    m_topWidget->setFixedHeight(35);
 
     m_stackedWidget = new QStackedWidget(this);
     m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle20);

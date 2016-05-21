@@ -18,9 +18,9 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
 
     m_cookJar = new QNetworkCookieJar;
 #ifdef Q_OS_WIN
-    setSpacing(20);
+    setSpacing(17);
 #else
-    setSpacing(19);
+    setSpacing(16);
 #endif
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }

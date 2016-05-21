@@ -61,7 +61,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem;
-        item->setText(QFontMetrics(font()).elidedText(songs[i].getMusicName(), Qt::ElideRight, 242));
+        item->setText(QFontMetrics(font()).elidedText(songs[i].getMusicName(), Qt::ElideRight, 232));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);

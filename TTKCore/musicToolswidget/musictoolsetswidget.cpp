@@ -23,11 +23,12 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
+
 #ifdef Q_OS_WIN
-    setSpacing(20);
+    setSpacing(17);
     addListWidgetItem();
 #else
-    setSpacing(19);
+    setSpacing(16);
     QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
 #endif
     MusicUtils::setTransparent(this, 50);

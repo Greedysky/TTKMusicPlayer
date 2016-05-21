@@ -109,30 +109,30 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 void MusicBottomAreaWidget::setWindowConcise()
 {
     bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-    m_supperClass->resize( con ? 390 : 990, m_supperClass->height());
-    m_ui->musicWindowConcise->setGeometry(con ? 305 : 848, 27, 25, 25);
-    m_ui->minimization->setGeometry(con ? 335 : 909, 27, 25, 25);
-    m_ui->windowClose->setGeometry(con ? 360 : 937, 27, 25, 25);
+    m_supperClass->resize( con ? 380 : 1033, m_supperClass->height());
+    m_ui->musicWindowConcise->setGeometry(con ? 295 : 888, 30, 25, 25);
+    m_ui->minimization->setGeometry(con ? 325 : 949, 30, 25, 25);
+    m_ui->windowClose->setGeometry(con ? 350 : 977, 30, 25, 25);
     m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
     m_ui->musicSongSearchLine->setVisible( !con );
     m_ui->resizeWindowLabel->setVisible( !con );
     ////////////////////////////////////////////////////////////
-    m_ui->songsContainer->resize(331, con ? 460 : 490);
-    m_ui->musicPrevious->setGeometry(con ? 35 : 64, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
-    m_ui->musicKey->setGeometry(con ? 65 : 127, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
-    m_ui->musicNext->setGeometry(con ? 95 : 190, con ? 530 : 556, con ? 30 : 50, con ? 30 : 50);
-    m_ui->musicTimeWidget->move(con ? 15 : 230, 573);
-    m_ui->verticalLayoutWidget->move(con ? 30 : 245, 563);
-    m_ui->showCurrentSong->move(con ? 85 : 300, 558);
-    m_ui->playCurrentTime->move(con ? 307 : 522, 568);
-    m_ui->playTotalTime->move(con ? 342 : 556, 568);
-    m_ui->musicBestLove->move(con ? 180 : 685, con ? 535 : 578);
-    m_ui->musicPlayMode->move(con ? 202 : 715, con ? 532 : 575);
-    m_ui->musicSimilarFound->move(con ? 225 : 745, con ? 532 : 575);
-    m_ui->musicDownload->move(con ? 250 : 775, con ? 532 : 575);
-    m_ui->musicDesktopLrc->move(con ? 275 : 807, con ? 534 : 577);
-    m_ui->musicSound->move(con ? 295 : 840, con ? 535 : 578);
-    m_ui->musicSoundSlider->move(con ? 315 : 865, con ? 535 : 579);
+    m_ui->songsContainer->resize(320, con ? 460 : 490);
+    m_ui->musicPrevious->setGeometry(con ? 35 : 64, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicKey->setGeometry(con ? 65 : 127, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicNext->setGeometry(con ? 95 : 190, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
+    m_ui->musicTimeWidget->move(con ? 15 : 240, 593);
+    m_ui->verticalLayoutWidget->move(con ? 30 : 255, 583);
+    m_ui->showCurrentSong->move(con ? 85 : 310, 578);
+    m_ui->playCurrentTime->move(con ? 307 : 532, 588);
+    m_ui->playTotalTime->move(con ? 342 : 566, 588);
+    m_ui->musicBestLove->move(con ? 175 : 695, con ? 555 : 598);
+    m_ui->musicPlayMode->move(con ? 197 : 735, con ? 552 : 595);
+    m_ui->musicSimilarFound->move(con ? 220 : 775, con ? 552 : 595);
+    m_ui->musicDownload->move(con ? 245 : 815, con ? 552 : 595);
+    m_ui->musicDesktopLrc->move(con ? 270 : 857, con ? 554 : 597);
+    m_ui->musicSound->move(con ? 290 : 890, con ? 555 : 598);
+    m_ui->musicSoundSlider->move(con ? 310 : 915, con ? 555 : 599);
     ////////////////////////////////////////////////////////////
     m_ui->musicEnhancedButton->setVisible( !con );
     m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);

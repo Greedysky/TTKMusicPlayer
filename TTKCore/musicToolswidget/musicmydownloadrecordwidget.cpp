@@ -13,7 +13,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 170);
-    headerview->resizeSection(2, 93);
+    headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
     m_delegate = new MusicProgressBarDelegate(this);
@@ -59,7 +59,7 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 170));
+    item->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( name );

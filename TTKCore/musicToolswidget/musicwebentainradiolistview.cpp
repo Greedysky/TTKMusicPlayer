@@ -16,10 +16,10 @@ MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     MusicUtils::setTransparent(this, 50);
 
 #ifdef Q_OS_WIN
-    setSpacing(20);
+    setSpacing(16);
     addListWidgetItem();
 #else
-    setSpacing(19);
+    setSpacing(16);
     QTimer::singleShot(1, this, SLOT(addListWidgetItem()));
 #endif
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));

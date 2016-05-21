@@ -12,7 +12,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->setVisible(false);
     headerview->resizeSection(0, 20);
-    headerview->resizeSection(1, 257);
+    headerview->resizeSection(1, 247);
     headerview->resizeSection(2, 45);
     verticalHeader()->setVisible(false);
 

@@ -19,20 +19,20 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_filmBGWidget->setStyleSheet(MusicUIObject::MCustomStyle21);
 
     m_plane1 = new MusicClickedLabel(this);
-    m_plane1->setGeometry(65, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane1->setGeometry(95, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
     m_plane2 = new MusicClickedLabel(this);
-    m_plane2->setGeometry(210, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane2->setGeometry(270, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
     m_plane3 = new MusicClickedLabel(this);
-    m_plane3->setGeometry(355, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane3->setGeometry(445, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
 
     m_radio1 = new QCheckBox(this);
-    m_radio1->setGeometry(155, 75, 20, 20);
+    m_radio1->setGeometry(185, 75, 20, 20);
     m_radio1->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_radio2 = new QCheckBox(this);
-    m_radio2->setGeometry(300, 75, 20, 20);
+    m_radio2->setGeometry(360, 75, 20, 20);
     m_radio2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_radio3 = new QCheckBox(this);
-    m_radio3->setGeometry(445, 75, 20, 20);
+    m_radio3->setGeometry(535, 75, 20, 20);
     m_radio3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_checkBox = new QCheckBox(tr("All"),this);
@@ -41,14 +41,14 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"),this);
-    m_confirmButton->setGeometry(420, 130, 70, 20);
+    m_confirmButton->setGeometry(500, 130, 70, 20);
     m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
     m_previous->setGeometry(10, 38, 15, 50);
     m_next = new QPushButton(">", this);
-    m_next->setGeometry(500, 38, 15, 50);
+    m_next->setGeometry(610, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -92,7 +92,7 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 void MusicLrcFloatPhotoWidget::resizeWidth(int width)
 {
     m_rectIn = QRect(width/2, 500, 115, 105);
-    m_rectOut = QRect(width/2, 300, 542, 180);
+    m_rectOut = QRect(width/2, 300, 632, 180);
     setGeometry(m_rectOut);
 }
 

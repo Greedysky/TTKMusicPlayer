@@ -65,8 +65,8 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
 
 void MusicLrcFloatWidget::resizeWidth(int width)
 {
-    m_rectIn = QRect(425 + width, 120, 115, 210);
-    m_rectOut = QRect(535 + width, 171, 115, 105);
+    m_rectIn = QRect(518 + width, 120, 115, 210);
+    m_rectOut = QRect(628 + width, 171, 115, 105);
     setGeometry( m_rectOut );
 
     m_floatSettingWidget->resizeWidth(width);
