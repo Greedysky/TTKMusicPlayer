@@ -171,11 +171,6 @@
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QLabel" name="showPicture">
-    <property name="styleSheet">
-     <string notr="true">border-image:url(:/image/mian)</string>
-    </property>
-   </widget>
    <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
    <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline"/>
   </widget>

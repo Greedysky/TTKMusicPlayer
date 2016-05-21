@@ -10,3 +10,12 @@
 # * works are strictly forbiden.
 # =================================================
 
+QT       += webkit webkitwidgets
+
+HEADERS  += \
+    $$PWD/kugouurl.h \
+    $$PWD/kugouwindow.h
+
+SOURCES += \
+    $$PWD/kugouurl.cpp \
+    $$PWD/kugouwindow.cpp

@@ -89,6 +89,7 @@ contains(CONFIG, TTK_BUILD_LIB){
 }
 #########################################
 INCLUDEPATH += ../TTKThirdParty/MusicExtras \
+               ../TTKThirdParty/MusicExtras/kugou \
                ../TTKThirdParty/MusicExtras/shortcut \
                ../TTKThirdParty/zlib
 #########################################

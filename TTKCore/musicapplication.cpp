@@ -19,6 +19,8 @@
 #include "musicconnectionpool.h"
 #include "musicglobalhotkey.h"
 
+#include "kugouwindow.h"
+
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicApplication)
@@ -35,6 +37,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_musicList = new MusicPlaylist(this);
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
+    ///insert kugou network widget
+    ui->SurfaceStackedWidget->insertWidget(0, new KugouWindow(this));
 
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_bottomAreaWidget->setupUi(ui);
