@@ -32,6 +32,7 @@ HEADERS  += \
     $$PWD/network/musicradioplaylistthread.h \
     $$PWD/network/musicradiosongsthread.h \
     $$PWD/network/musicradiothreadabstract.h \
+    $$PWD/network/musictranslationthread.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
@@ -75,6 +76,7 @@ SOURCES += \
     $$PWD/network/musicradioplaylistthread.cpp \
     $$PWD/network/musicradiosongsthread.cpp \
     $$PWD/network/musicradiothreadabstract.cpp \
+    $$PWD/network/musictranslationthread.cpp \
     $$PWD/musicutils.cpp \
     $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \
