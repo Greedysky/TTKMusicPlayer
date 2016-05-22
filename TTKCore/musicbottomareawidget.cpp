@@ -140,7 +140,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     ////////////////////////////////////////////////////////////
     if(m_musicLocalSongSearch)
     {
-        m_musicLocalSongSearch->move(60, con ? 490 : 520);
+        m_musicLocalSongSearch->move(60, con ? 505 : 535);
     }
 }
 
@@ -159,7 +159,7 @@ void MusicBottomAreaWidget::musicSearch()
     if(m_musicLocalSongSearch == nullptr)
     {
         m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
-        m_musicLocalSongSearch->move(60, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 490 : 520);
+        m_musicLocalSongSearch->move(60, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 505 : 535);
     }
     m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }

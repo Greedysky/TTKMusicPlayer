@@ -12,7 +12,6 @@
         <file alias="menu">../TTKResource/music_menu_setting.png</file>
         <file alias="soundmax">../TTKResource/music_sound_max.png</file>
         <file alias="soundmin">../TTKResource/music_sound_min.png</file>
-        <file alias="mian">../TTKResource/music_mian.png</file>
         <file alias="windowicon">../TTKResource/music_player_logo.ico</file>
         <file alias="close">../TTKResource/music_close.png</file>
         <file alias="minimize">../TTKResource/music_min.png</file>
@@ -67,11 +66,6 @@
         <file alias="timerPlay">../TTKResource/controls/controls_timerPlay.png</file>
         <file alias="timerStop">../TTKResource/controls/controls_timerStop.png</file>
         <file alias="timerDown">../TTKResource/controls/controls_timerDown.png</file>
-    </qresource>
-    <qresource prefix="/download">
-        <file alias="downloading">../TTKResource/download/dowload_1.png</file>
-        <file alias="buffing">../TTKResource/download/dowload_2.png</file>
-        <file alias="disconnection">../TTKResource/download/dowload_3.png</file>
     </qresource>
     <qresource prefix="/desktopTool">
         <file alias="lockWindow">../TTKResource/desktopTool/ds_lockWindow.png</file>

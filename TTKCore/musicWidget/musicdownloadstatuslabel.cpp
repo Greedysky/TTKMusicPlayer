@@ -9,8 +9,6 @@
 #include "musicconnectionpool.h"
 #include "musicnetworkthread.h"
 
-#include <QLabel>
-
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
 {
@@ -33,24 +31,23 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType typ
     switch(type)
     {
         case MusicObject::DisConnection:
-            stringType = ":/download/disconnection";
+            stringType = "disconnection";
             break;
         case MusicObject::DownLoading:
-            stringType = ":/download/downloading";
+            stringType = "downloading";
             break;
         case MusicObject::Buffing:
-            stringType = ":/download/buffing";
+            stringType = "buffing";
             break;
         case MusicObject::Waiting:
             break;
-            stringType = ":/download/buffing";
+            stringType = "waiting";
         case MusicObject::Null:
             break;
         default:
             break;
     }
-    ///Start up the information for show download - message;
-    !stringType.isEmpty() ? m_movieLabel->setPixmap( QPixmap(stringType) ) : m_movieLabel->clear();
+    M_LOGGER_INFO(stringType);
 }
 
 void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
@@ -61,7 +58,6 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
         m_parentWidget->musicLoadCurrentSongLrc();
     }
     m_parentWidget->updateCurrentArtist();
-    m_movieLabel->clear();
 }
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)

@@ -238,19 +238,6 @@
     <string>首页</string>
    </property>
   </widget>
-  <widget class="QLabel" name="showDownloadGif">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>530</y>
-     <width>41</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -662,7 +649,6 @@
   <zorder>musicLrcWidgetButton</zorder>
   <zorder>musicSearchRefreshButton</zorder>
   <zorder>musicIndexWidgetButton</zorder>
-  <zorder>showDownloadGif</zorder>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>musicButton_tools</zorder>
   <zorder>musicWindowRemote</zorder>
