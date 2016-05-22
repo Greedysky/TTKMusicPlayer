@@ -52,14 +52,23 @@ void MusicSourceDownloadThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        emit recievedData(m_reply->readAll());
+        if(m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).isValid())
+        {
+            QString newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+            startToDownload(newUrl); ///redirection target url
+        }
+        else
+        {
+            emit recievedData(m_reply->readAll());
+            deleteAll();
+        }
     }
     else
     {
         M_LOGGER_ERROR("Download source data error");
         emit recievedData(QByteArray());
+        deleteAll();
     }
-    deleteAll();
 }
 
 void MusicSourceDownloadThread::replyError(QNetworkReply::NetworkError)
