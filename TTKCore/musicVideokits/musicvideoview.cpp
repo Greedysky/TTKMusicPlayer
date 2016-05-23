@@ -104,7 +104,7 @@ void MusicVideoView::resizeWindow(bool resize, const QSize &size)
     }
     else
     {
-        m_videoWidget->setGeometry(10, 40, 520, 325);
+        m_videoWidget->setGeometry(10, 40, 610, 325);
         m_videoControl->setFixedSize(633, 40);
         m_videoControl->move(0, 370);
         m_barrageCore->setSize(m_videoWidget->size());
