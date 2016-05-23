@@ -117,7 +117,9 @@ void MusicLrcMakerWidget::saveButtonClicked()
         {
             array.append(var + "\n");
         }
-        m_file.write(array);
+        QTextStream outstream(&m_file);
+        outstream.setCodec("utf-8");
+        outstream << array << endl;
         m_file.close();
 
         MusicMessageBox message;

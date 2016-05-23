@@ -375,8 +375,9 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
     {
         return;
     }
-    file.write(data);
-    file.flush();
+    QTextStream outstream(&file);
+    outstream.setCodec("utf-8");
+    outstream << data << endl;
     file.close();
 }
 
@@ -471,7 +472,7 @@ QString MusicLrcAnalysis::getAllLrcs() const
     QString clipString;
     foreach(QString s, m_lrcContainer.values())
     {
-        clipString.append(s);
+        clipString.append(s + "\n");
     }
     return clipString;
 }

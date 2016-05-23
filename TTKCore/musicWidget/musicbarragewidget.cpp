@@ -253,7 +253,9 @@ void MusicBarrageWidget::writeBarrage()
         {
             array.append(var + '\n');
         }
-        file.write(array);
+        QTextStream outstream(&file);
+        outstream.setCodec("utf-8");
+        outstream << array << endl;
     }
     file.close();
 }

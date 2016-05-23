@@ -83,8 +83,9 @@ void MusicTextDownLoadThread::downLoadFinished()
             jsonObject = jsonObject.take("data").toObject();
             if(jsonObject.contains("lrc"))
             {
-                m_file->write(jsonObject.take("lrc").toString().remove("\r").toUtf8());
-                m_file->flush();
+                QTextStream outstream(&m_file);
+                outstream.setCodec("utf-8");
+                outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
                 m_file->close();
                 M_LOGGER_INFO("text download  has finished!");
             }
@@ -97,8 +98,9 @@ void MusicTextDownLoadThread::downLoadFinished()
             sc = sc.property("data");
             if(!sc.property("lrc").isNull())
             {
-                m_file->write(sc.property("lrc").toString().remove("\r").toUtf8());
-                m_file->flush();
+                QTextStream outstream(&m_file);
+                outstream.setCodec("utf-8");
+                outstream << sc.property("lrc").toString().remove("\r").toUtf8() << endl;
                 m_file->close();
                 M_LOGGER_INFO("text download  has finished!");
             }
@@ -114,8 +116,9 @@ void MusicTextDownLoadThread::downLoadFinished()
 #else
     if(!bytes.isEmpty())
     {
-        m_file->write(QString(bytes).remove("\r").toUtf8());
-        m_file->flush();
+        QTextStream outstream(m_file);
+        outstream.setCodec("utf-8");
+        outstream << QString(bytes).remove("\r").toUtf8() << endl;
         m_file->close();
         M_LOGGER_INFO("text download has finished!");
     }

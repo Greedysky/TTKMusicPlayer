@@ -80,8 +80,9 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
         QFile file(output);
         if(file.open(QIODevice::WriteOnly))
         {
-            file.write(m_data);
-            file.flush();
+            QTextStream outstream(&file);
+            outstream.setCodec("utf-8");
+            outstream << m_data << endl;
             file.close();
         }
     }
