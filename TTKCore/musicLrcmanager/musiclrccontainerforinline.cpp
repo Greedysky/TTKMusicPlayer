@@ -240,20 +240,25 @@ void MusicLrcContainerForInline::initFunctionLabel()
     QHBoxLayout *functionLayout = new QHBoxLayout(functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
+    QPushButton *translation = new QPushButton(QIcon(":/lrc/translation"), QString(), this);
     QPushButton *movie = new QPushButton(QIcon(":/share/showMV2"), QString(), this);
     QPushButton *microphone = new QPushButton(QIcon(":/lrc/microphone"), QString(), this);
     QPushButton *message = new QPushButton(QIcon(":/lrc/message"), QString(), this);
+    translation->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     movie->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     microphone->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     message->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);
     microphone->setCursor(Qt::PointingHandCursor);
     message->setCursor(Qt::PointingHandCursor);
+    translation->setToolTip(tr("Translation"));
     movie->setToolTip(tr("MV"));
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
 
     functionLayout->addStretch(1);
+    functionLayout->addWidget(translation);
     functionLayout->addWidget(movie);
     functionLayout->addWidget(microphone);
     functionLayout->addWidget(message);
