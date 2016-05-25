@@ -132,6 +132,6 @@ void MusicRadioSongsThread::downLoadFinished()
         }
 #endif
     }
-    emit networkReplyFinished("query finished!");
+    emit downLoadDataChanged("query finished!");
     deleteAll();
 }

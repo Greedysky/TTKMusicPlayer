@@ -21,13 +21,14 @@ void MusicBackgroundDownload::startToDownload()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search image API
-    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(BIG_BG_ART_URL.arg(m_artName));
 }
 
-void MusicBackgroundDownload::downLoadFinished(const QByteArray &data)
+void MusicBackgroundDownload::downLoadFinished(const QString &data)
 {
-    QTextStream in(MConst_cast(QByteArray*, &data));
+    QByteArray byte(data.toUtf8());
+    QTextStream in(MConst_cast(QByteArray*, &byte));
     QString line = in.readLine();
 
     while(!line.isNull())

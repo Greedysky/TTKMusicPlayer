@@ -14,7 +14,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
     MusicUtils::setTransparent(this, 255);
-    connect(m_downLoadManager, SIGNAL(resolvedSuccess()), SIGNAL(resolvedSuccess()));
+    connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString())), SIGNAL(resolvedSuccess()));
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()

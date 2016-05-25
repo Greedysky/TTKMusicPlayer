@@ -35,7 +35,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 #else
     m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif
-    connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
+    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString())), SLOT(queryAllFinished()));
 
     M_CONNECTION->setValue("MusicSimilarFoundWidget", this);
     M_CONNECTION->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");

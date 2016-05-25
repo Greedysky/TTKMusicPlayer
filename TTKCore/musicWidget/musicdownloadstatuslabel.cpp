@@ -106,7 +106,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        m_downloadLrcThread = new MusicDownLoadQueryMultipleThread(this);
 #endif
        m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
-       connect(m_downloadLrcThread, SIGNAL(resolvedSuccess()), SLOT(musicHaveNoLrcAlready()));
+       connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString())), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::Buffing);
     }
 }

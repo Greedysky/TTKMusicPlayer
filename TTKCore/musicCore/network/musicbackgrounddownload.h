@@ -39,7 +39,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QString &data);
     /*!
      * Download data from kuwo net finished.
      */

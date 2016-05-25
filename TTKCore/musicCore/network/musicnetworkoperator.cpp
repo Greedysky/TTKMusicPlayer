@@ -20,13 +20,14 @@ void MusicNetworkOperator::startToOperator()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API
-    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
     download->startToDownload(IP_CHECK_URL);
 }
 
-void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
+void MusicNetworkOperator::downLoadFinished(const QString &data)
 {
-    QTextStream in(MConst_cast(QByteArray*, &data));
+    QByteArray byte(data.toUtf8());
+    QTextStream in(MConst_cast(QByteArray*, &byte));
     QString line = in.readLine();
 
     QString dataLine;

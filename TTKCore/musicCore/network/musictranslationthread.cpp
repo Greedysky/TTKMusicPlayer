@@ -11,32 +11,16 @@
 #   include <QtScript/QScriptValue>
 #   include <QtScript/QScriptValueIterator>
 #endif
-#include <QSslConfiguration>
 
 MusicTranslationThread::MusicTranslationThread(QObject *parent)
-    : QObject(parent)
+    : MusicNetworkAbstract(parent)
 {
-    m_reply = nullptr;
-    m_manager = nullptr;
+
 }
 
 MusicTranslationThread::~MusicTranslationThread()
 {
     deleteAll();
-}
-
-void MusicTranslationThread::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-    if(m_manager)
-    {
-        m_manager->deleteLater();
-        m_manager = nullptr;
-    }
 }
 
 void MusicTranslationThread::startToTranslation(TranslationType from, TranslationType to, const QString &data)
@@ -121,7 +105,7 @@ void MusicTranslationThread::downLoadFinished()
                        continue;
                     }
                     QJsonObject obj = value.toObject();
-                    emit recievedData(obj.value("dst").toString());
+                    emit downLoadDataChanged(obj.value("dst").toString());
                     break;
                 }
             }
@@ -144,7 +128,7 @@ void MusicTranslationThread::downLoadFinished()
                     {
                         continue;
                     }
-                    emit recievedData(value.property("dst").toString());
+                    emit downLoadDataChanged(value.property("dst").toString());
                     break;
                 }
             }
@@ -154,34 +138,7 @@ void MusicTranslationThread::downLoadFinished()
     else
     {
         M_LOGGER_ERROR("Translation source data error");
-        emit recievedData(QString());
+        emit downLoadDataChanged(QString());
     }
     deleteAll();
 }
-
-void MusicTranslationThread::replyError(QNetworkReply::NetworkError)
-{
-    M_LOGGER_ERROR("Abnormal network connection");
-    emit recievedData(QString());
-    deleteAll();
-}
-
-#ifndef QT_NO_SSL
-void MusicTranslationThread::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
-{
-    QString errorString;
-    foreach(const QSslError &error, errors)
-    {
-        if(!errorString.isEmpty())
-        {
-            errorString += ", ";
-        }
-        errorString += error.errorString();
-    }
-
-    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
-    reply->ignoreSslErrors();
-    emit recievedData(QString());
-    deleteAll();
-}
-#endif
