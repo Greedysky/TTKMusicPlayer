@@ -9,8 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QObject>
+#include <QSslError>
+#include <QSslSocket>
+#include <QNetworkReply>
+#include "musicglobaldefine.h"
 #include "musicobject.h"
-#include "musicnetworkabstract.h"
+
+class QNetworkAccessManager;
 
 typedef struct DownloadData{
     QString m_songName;
@@ -39,7 +45,7 @@ typedef struct DownloadData{
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public QObject
 {
     Q_OBJECT
 public:
@@ -54,8 +60,12 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicDownLoadQueryThreadAbstract();
+    ~MusicDownLoadQueryThreadAbstract();
 
+    void deleteAll();
+    /*!
+     * Release the network object.
+     */
     virtual void startSearchSong(QueryType type, const QString &text) = 0;
     /*!
      * Start to search data from name and type.
@@ -95,6 +105,10 @@ public:
      */
 
 Q_SIGNALS:
+    void resolvedSuccess();
+    /*!
+     * Query data finished.
+     */
     void clearAllItems();
     /*!
      * Clear all items before the new query start.
@@ -105,7 +119,26 @@ Q_SIGNALS:
      * Create the current items by song name\ artist name and time.
      */
 
+public Q_SLOTS:
+    virtual void searchFinshed() = 0;
+    /*!
+     * Download data from net finished.
+     * Subclass should implement this function.
+     */
+    void replyError(QNetworkReply::NetworkError error);
+    /*!
+     * Download reply error.
+     */
+#ifndef QT_NO_SSL
+    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    /*!
+     * Download ssl reply error.
+     */
+#endif
+
 protected:
+    QNetworkAccessManager *m_manager;
+    QNetworkReply *m_reply;
     MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QueryType m_currentType;

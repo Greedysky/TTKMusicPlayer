@@ -15,7 +15,6 @@ INCLUDEPATH += $$PWD \
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/network/musicnetworkabstract.h \
     $$PWD/network/musicdownloadthreadabstract.h \
     $$PWD/network/musicdata2downloadthread.h \
     $$PWD/network/musicdatadownloadthread.h \
@@ -60,7 +59,6 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
-    $$PWD/network/musicnetworkabstract.cpp \
     $$PWD/network/musicdownloadthreadabstract.cpp \
     $$PWD/network/musicdata2downloadthread.cpp \
     $$PWD/network/musicdatadownloadthread.cpp \

@@ -36,7 +36,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void downLoadFinished(const QString &data);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from ip net finished.
      */

@@ -38,7 +38,7 @@ void MusicWebMusicRadioListView::initListItems()
     {
         delete m_getChannelThread;
         m_getChannelThread = new MusicRadioChannelThread(this, m_cookJar);
-        connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
+        connect(m_getChannelThread, SIGNAL(networkReplyFinished(QString)), SLOT(addListWidgetItem()));
         m_getChannelThread->startToDownload(QString());
     }
 }

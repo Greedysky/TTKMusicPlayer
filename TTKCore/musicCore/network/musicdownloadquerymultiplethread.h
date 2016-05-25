@@ -30,7 +30,7 @@ public:
      */
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
+    virtual void searchFinshed() override;
     /*!
      * Download data from net finished.
      */

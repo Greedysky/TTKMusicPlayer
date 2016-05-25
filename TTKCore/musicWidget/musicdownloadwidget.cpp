@@ -130,7 +130,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
-    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_downloadThread, SIGNAL(resolvedSuccess()), SLOT(queryAllFinished()));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
 }

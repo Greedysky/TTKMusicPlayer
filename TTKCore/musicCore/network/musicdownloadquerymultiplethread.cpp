@@ -48,7 +48,7 @@ void MusicDownLoadQueryMultipleThread::startSearchSong(QueryType type, const QSt
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get( request );
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
+    connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
@@ -105,7 +105,7 @@ void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicSongInfom
     }
 }
 
-void MusicDownLoadQueryMultipleThread::downLoadFinished()
+void MusicDownLoadQueryMultipleThread::searchFinshed()
 {
     if(m_reply == nullptr)
     {
@@ -125,7 +125,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
         ///Put the data into Json
         if( jsonError.error != QJsonParseError::NoError )
         {
-            emit downLoadDataChanged(QString());
+            emit resolvedSuccess();
             deleteAll();
             return;
         }
@@ -297,6 +297,6 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
             M_LOGGER_ERROR("not find the song");
         }
     }
-    emit downLoadDataChanged(QString());
+    emit resolvedSuccess();
     deleteAll();
 }

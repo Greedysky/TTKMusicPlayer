@@ -9,14 +9,15 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicnetworkabstract.h"
+#include <QNetworkReply>
+#include "musicglobaldefine.h"
 
 const QString TRANSLATION_URL = "http://fanyi.baidu.com/v2transapi?from=%1&query=%2&to=%3";
 
 /*! @brief The class of translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicTranslationThread : public QObject
 {
     Q_OBJECT
 public:
@@ -45,21 +46,44 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicTranslationThread();
+    ~MusicTranslationThread();
 
+    void deleteAll();
+    /*!
+     * Release the network object.
+     */
     void startToTranslation(TranslationType from, TranslationType to, const QString &data);
     /*!
      * Start to translation data.
      */
 
+Q_SIGNALS:
+    void recievedData(const QString &data);
+    /*!
+     * Send translated data from net.
+     */
+
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
+    void downLoadFinished();
     /*!
      * Download data from net finished.
      */
+    void replyError(QNetworkReply::NetworkError error);
+    /*!
+     * Download reply error.
+     */
+#ifndef QT_NO_SSL
+    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    /*!
+     * Download ssl reply error.
+     */
+#endif
 
 protected:
     QString mapTypeFromEnumToString(TranslationType type);
+
+    QNetworkReply *m_reply;
+    QNetworkAccessManager *m_manager;
 
 };
 

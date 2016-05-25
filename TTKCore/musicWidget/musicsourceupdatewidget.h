@@ -28,6 +28,7 @@ public:
      */
     virtual ~MusicSourceUpdateWidget();
 
+Q_SIGNALS:
 public Q_SLOTS:
     void upgradeButtonClicked();
     /*!
@@ -37,7 +38,7 @@ public Q_SLOTS:
     /*!
      * Upgrade failed clicked.
      */
-    void downLoadFinished(const QString &data);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from kuwo net finished.
      */

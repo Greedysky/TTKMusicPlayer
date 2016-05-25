@@ -47,17 +47,17 @@ int MusicSourceUpdateWidget::exec()
     ui->background->setPixmap(pix.scaled( size() ));
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(VERSION_URL);
 
     return MusicAbstractMoveDialog::exec();
 }
 
-void MusicSourceUpdateWidget::downLoadFinished(const QString &data)
+void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 {
 #ifdef MUSIC_QT_5
     QJsonParseError jsonError;
-    QJsonDocument parseDoucment = QJsonDocument::fromJson(data.toUtf8(), &jsonError);
+    QJsonDocument parseDoucment = QJsonDocument::fromJson(data, &jsonError);
     ///Put the data into Json
     if( jsonError.error != QJsonParseError::NoError ||
         !parseDoucment.isObject())
