@@ -35,7 +35,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 #else
     m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif
-    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString())), SLOT(queryAllFinished()));
+    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 
     M_CONNECTION->setValue("MusicSimilarFoundWidget", this);
     M_CONNECTION->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
@@ -189,7 +189,7 @@ void MusicSimilarFoundWidget::createLabels()
         {
             downloadCounter++;
             MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-            connect(download, SIGNAL(recievedData(QByteArray)), SLOT(recievedData(QByteArray)));
+            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(recievedData(QString)));
             download->startToDownload(data->m_picUrl);
         }
     }
@@ -210,14 +210,14 @@ MIntList MusicSimilarFoundWidget::foundCheckedItem()
     return list;
 }
 
-void MusicSimilarFoundWidget::recievedData(const QByteArray &data)
+void MusicSimilarFoundWidget::recievedData(const QString &data)
 {
     for(int i=0; i<m_iconLabels.count(); ++i)
     {
         if(m_iconLabels[i]->pixmap()->cacheKey() == QPixmap(":/share/warning").cacheKey())
         {
             QPixmap pix;
-            pix.loadFromData(data);
+            pix.loadFromData(data.toUtf8());
             m_iconLabels[i]->setPixmap(pix.scaled(100, 100));
             return;
         }

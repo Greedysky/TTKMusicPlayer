@@ -81,9 +81,9 @@ void MusicWebMusicRadioWidget::setNetworkCookie(QNetworkCookieJar *jar)
     if(m_songsThread == nullptr || m_playListThread == nullptr)
     {
         m_playListThread = new MusicRadioPlayListThread(this, jar);
-        connect(m_playListThread, SIGNAL(networkReplyFinished(QString)), SLOT(getPlayListFinished()));
+        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlayListFinished()));
         m_songsThread = new MusicRadioSongsThread(this, jar);
-        connect(m_songsThread, SIGNAL(networkReplyFinished(QString)), SLOT(getSongInfoFinished()));
+        connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
     }
 }
 
