@@ -59,6 +59,7 @@ protected:
      */
 
     qint64 m_createItemTime;
+    bool m_redirection;
 
 };
 

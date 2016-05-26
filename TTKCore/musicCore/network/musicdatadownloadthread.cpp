@@ -6,6 +6,7 @@ MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QStri
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
     m_createItemTime = -1;
+    m_redirection = false;
 }
 
 void MusicDataDownloadThread::startToDownload()
@@ -48,7 +49,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     /// only download music data can that show progress
-    if(m_downloadType == Download_Music)
+    if(m_downloadType == Download_Music && !m_redirection)
     {
         M_CONNECTION->connectMusicDownload(this);
         m_createItemTime = QDateTime::currentMSecsSinceEpoch();
@@ -74,6 +75,7 @@ void MusicDataDownloadThread::downLoadFinished()
     }
     else if(!redirectionTarget.isNull())
     {
+        m_redirection = true;
         m_reply->deleteLater();
         m_file->open(QIODevice::WriteOnly);
         m_file->resize(0);
