@@ -36,6 +36,13 @@ void MusicNetworkAbstract::replyError(QNetworkReply::NetworkError)
 #ifndef QT_NO_SSL
 void MusicNetworkAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
+    sslErrorsString(reply, errors);
+    emit downLoadDataChanged(QString());
+    deleteAll();
+}
+
+void MusicNetworkAbstract::sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors)
+{
     QString errorString;
     foreach(const QSslError &error, errors)
     {
@@ -48,7 +55,5 @@ void MusicNetworkAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError
 
     M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
     reply->ignoreSslErrors();
-    emit downLoadDataChanged(QString());
-    deleteAll();
 }
 #endif

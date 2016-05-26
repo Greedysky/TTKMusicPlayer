@@ -52,6 +52,10 @@ public Q_SLOTS:
     /*!
      * Download ssl reply error.
      */
+    void sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors);
+    /*!
+     * Download ssl reply error strings.
+     */
 #endif
 
 protected:

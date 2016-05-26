@@ -47,12 +47,12 @@ void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QStri
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get( request );
-    connect(m_reply, SIGNAL(finished()), SLOT(searchFinshed()) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQuerySingleThread::searchFinshed()
+void MusicDownLoadQuerySingleThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -73,7 +73,7 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
         if( jsonError.error != QJsonParseError::NoError ||
             !parseDoucment.isObject())
         {
-            emit resolvedSuccess();
+            emit downLoadDataChanged(QString());
             deleteAll();
             return;
         }
@@ -325,6 +325,6 @@ void MusicDownLoadQuerySingleThread::searchFinshed()
             M_LOGGER_ERROR("not find the song_Id");
         }
     }
-    emit resolvedSuccess();
+    emit downLoadDataChanged(QString());
     deleteAll();
 }
