@@ -56,6 +56,10 @@ public:
      */
     virtual ~MusicDownLoadQueryThreadAbstract();
 
+    virtual void deleteAll();
+    /*!
+     * Release the network object.
+     */
     virtual void startSearchSong(QueryType type, const QString &text) = 0;
     /*!
      * Start to search data from name and type.

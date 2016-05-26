@@ -16,3 +16,12 @@ MusicDownLoadQueryThreadAbstract::~MusicDownLoadQueryThreadAbstract()
 {
     deleteAll();
 }
+
+void MusicDownLoadQueryThreadAbstract::deleteAll()
+{
+    if(m_reply)
+    {
+        m_reply->deleteLater();
+        m_reply = nullptr;
+    }
+}
