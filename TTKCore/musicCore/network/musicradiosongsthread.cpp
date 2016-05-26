@@ -15,6 +15,8 @@
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
 
+#define LRC_PREFIX "http://musicdata.baidu.com"
+
 MusicRadioSongsThread::MusicRadioSongsThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
 {
@@ -99,7 +101,12 @@ void MusicRadioSongsThread::downLoadFinished()
                     m_songInfo.m_artistName = object.value("artistName").toString();
                     m_songInfo.m_songPicUrl = object.value("songPicRadio").toString();
                     m_songInfo.m_albumName = object.value("albumName").toString();
-                    m_songInfo.m_lrcUrl = "http://musicdata.baidu.com" + object.value("lrcLink").toString();
+                    QString lrcLink = object.value("lrcLink").toString();
+                    if(!lrcLink.contains( LRC_PREFIX ))
+                    {
+                        lrcLink = LRC_PREFIX + lrcLink;
+                    }
+                    m_songInfo.m_lrcUrl = lrcLink;
                 }
             }
         }
@@ -132,6 +139,6 @@ void MusicRadioSongsThread::downLoadFinished()
         }
 #endif
     }
-    emit networkReplyFinished("query finished!");
+    emit downLoadDataChanged("query finished!");
     deleteAll();
 }

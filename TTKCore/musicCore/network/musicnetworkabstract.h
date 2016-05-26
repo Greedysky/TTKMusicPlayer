@@ -26,7 +26,7 @@ public:
      */
     virtual ~MusicNetworkAbstract();
 
-    void deleteAll();
+    virtual void deleteAll();
     /*!
      * Release the network object.
      */
@@ -43,12 +43,12 @@ public Q_SLOTS:
      * Download data from net finished.
      * Subclass should implement this function.
      */
-    void replyError(QNetworkReply::NetworkError error);
+    virtual void replyError(QNetworkReply::NetworkError error);
     /*!
      * Download reply error.
      */
 #ifndef QT_NO_SSL
-    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
     /*!
      * Download ssl reply error.
      */

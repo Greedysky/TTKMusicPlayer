@@ -81,9 +81,9 @@ void MusicWebMusicRadioWidget::setNetworkCookie(QNetworkCookieJar *jar)
     if(m_songsThread == nullptr || m_playListThread == nullptr)
     {
         m_playListThread = new MusicRadioPlayListThread(this, jar);
-        connect(m_playListThread, SIGNAL(networkReplyFinished(QString)), SLOT(getPlayListFinished()));
+        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlayListFinished()));
         m_songsThread = new MusicRadioSongsThread(this, jar);
-        connect(m_songsThread, SIGNAL(networkReplyFinished(QString)), SLOT(getSongInfoFinished()));
+        connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
     }
 }
 
@@ -210,6 +210,7 @@ void MusicWebMusicRadioWidget::startToPlay()
     QString name = LRC_DOWNLOAD_AL + info.m_artistName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
+        qDebug() << info.m_lrcUrl;
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this);
         connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)), SLOT(lrcDownloadStateChanged()));

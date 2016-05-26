@@ -14,15 +14,15 @@ MusicNetworkAbstract::~MusicNetworkAbstract()
 
 void MusicNetworkAbstract::deleteAll()
 {
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
     if(m_manager)
     {
         m_manager->deleteLater();
         m_manager = nullptr;
+    }
+    if(m_reply)
+    {
+        m_reply->deleteLater();
+        m_reply = nullptr;
     }
 }
 
