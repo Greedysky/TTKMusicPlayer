@@ -268,7 +268,7 @@ void MusicSimilarFoundWidget::downloadDataFrom(bool play)
         QEventLoop loop(this);
         MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,
                                                                          MusicDownLoadThreadAbstract::Download_Music, this);
-        connect(downSong, SIGNAL(musicDownLoadFinished(QString)), &loop, SLOT(quit()));
+        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         downSong->startToDownload();
         loop.exec();
 

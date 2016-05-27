@@ -12,7 +12,7 @@
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
                 const QString &save, Download_Type type, QObject *parent)
-    : QObject(parent), m_manager(nullptr), m_reply(nullptr)
+    : MusicNetworkAbstract(parent)
 {
     m_url = url;
     m_savePathName = save;
@@ -38,46 +38,27 @@ MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 
 void MusicDownLoadThreadAbstract::deleteAll()
 {
+    MusicNetworkAbstract::deleteAll();
     if(m_file)
     {
         delete m_file;
         m_file = nullptr;
-    }
-    if(m_manager)
-    {
-        m_manager->deleteLater();;
-        m_manager = nullptr;
-    }
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
     }
     deleteLater();
 }
 
 void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
 {
-    emit musicDownLoadFinished("The file create failed");
+    M_LOGGER_ERROR("Abnormal network connection");
+    emit downLoadDataChanged("The file create failed");
     deleteAll();
 }
 
 #ifndef QT_NO_SSL
 void MusicDownLoadThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
-    QString errorString;
-    foreach(const QSslError &error, errors)
-    {
-        if(!errorString.isEmpty())
-        {
-            errorString += ", ";
-        }
-        errorString += error.errorString();
-    }
-
-    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
-    reply->ignoreSslErrors();
-    emit musicDownLoadFinished("The file create failed");
+    sslErrorsString(reply, errors);
+    emit downLoadDataChanged("The file create failed");
     deleteAll();
 }
 #endif

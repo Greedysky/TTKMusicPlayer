@@ -238,7 +238,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(musicSongAttr.m_format);
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
-    connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(searchDataDwonloadFinished()));
+    connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
 
 //    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,

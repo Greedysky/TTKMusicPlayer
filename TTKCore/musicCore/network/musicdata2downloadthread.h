@@ -23,7 +23,7 @@ public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
-    void deleteAll();
+    virtual void deleteAll();
     /*!
      * Release the network object.
      */

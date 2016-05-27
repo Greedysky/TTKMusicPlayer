@@ -11,12 +11,8 @@
 
 #include <QFile>
 #include <QTimer>
-#include <QNetworkReply>
-#include <QSslConfiguration>
 #include "musicobject.h"
-#include "musicglobaldefine.h"
-
-class QNetworkAccessManager;
+#include "musicnetworkabstract.h"
 
 //single query
 const QString MUSIC_REQUERY_URL = "http://search.dongting.com/song/search/old?q=%1&page=1&size=500";
@@ -38,7 +34,7 @@ const QString MUSIC_REQUERY_DM = "http://itwusun.com/search/dm/%1?p=1&f=json&sig
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public QObject
+class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
@@ -59,7 +55,7 @@ public:
      */
     virtual ~MusicDownLoadThreadAbstract();
 
-    void deleteAll();
+    virtual void deleteAll();
     /*!
      * Release the network object.
      */
@@ -69,28 +65,17 @@ public:
      * Subclass should implement this function.
      */
 
-Q_SIGNALS:
-    void musicDownLoadFinished(const QString &name);
-    /*!
-     * Data download is finished, get the type of download type.
-     */
-
 public Q_SLOTS:
-    virtual void downLoadFinished() = 0;
-    /*!
-     * Download data from net finished.
-     * Subclass should implement this function.
-     */
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     /*!
      * Get download received and total data.
      */
-    void replyError(QNetworkReply::NetworkError error);
+    virtual void replyError(QNetworkReply::NetworkError error) override;
     /*!
      * Download reply error.
      */
 #ifndef QT_NO_SSL
-    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
     /*!
      * Download ssl reply error.
      */
@@ -101,8 +86,6 @@ public Q_SLOTS:
      */
 
 protected:
-    QNetworkAccessManager *m_manager;
-    QNetworkReply* m_reply;
     QFile *m_file;
     QString m_url, m_savePathName;
     Download_Type m_downloadType;

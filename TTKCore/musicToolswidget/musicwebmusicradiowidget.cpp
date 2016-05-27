@@ -213,7 +213,7 @@ void MusicWebMusicRadioWidget::startToPlay()
         qDebug() << info.m_lrcUrl;
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this);
-        connect(lrcDownload, SIGNAL(musicDownLoadFinished(QString)), SLOT(lrcDownloadStateChanged()));
+        connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         lrcDownload->startToDownload();
     }
     else
@@ -226,7 +226,7 @@ void MusicWebMusicRadioWidget::startToPlay()
     {
         MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_songPicUrl, name,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this);
-        connect(picDwonload, SIGNAL(musicDownLoadFinished(QString)), SLOT(picDownloadStateChanged()));
+        connect(picDwonload, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         picDwonload->startToDownload();
     }
     else

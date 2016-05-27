@@ -16,7 +16,7 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
     QObject *to = m_para.value( "MusicDownloadStatusLabel" );
     if(to != nullptr)
     {
-        QObject::connect(object, SIGNAL(musicDownLoadFinished(QString)), to,
+        QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to,
                                  SLOT(showDownLoadInfoFinished(QString)));
     }
 }

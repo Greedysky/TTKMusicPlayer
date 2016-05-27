@@ -93,26 +93,15 @@ void MusicData2DownloadThread::dataGetFinished()
 
 void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
 {
-    emit musicDownLoadFinished("The data2 create failed");
+    emit downLoadDataChanged("The data2 create failed");
     deleteAll();
 }
 
 #ifndef QT_NO_SSL
 void MusicData2DownloadThread::dataSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
-    QString errorString;
-    foreach(const QSslError &error, errors)
-    {
-        if(!errorString.isEmpty())
-        {
-            errorString += ", ";
-        }
-        errorString += error.errorString();
-    }
-
-    M_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
-    reply->ignoreSslErrors();
-    emit musicDownLoadFinished("The data2 create failed");
+    sslErrorsString(reply, errors);
+    emit downLoadDataChanged("The data2 create failed");
     deleteAll();
 }
 #endif

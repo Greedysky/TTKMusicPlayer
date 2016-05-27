@@ -424,7 +424,7 @@ void MusicDownloadWidget::startToDownloadMusic()
                 ////////////////////////////////////////////////
                 MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, downloadName,
                                                                                  MusicDownLoadThreadAbstract::Download_Music, this);
-                connect(downSong, SIGNAL(musicDownLoadFinished(QString)), SLOT(dataDownloadFinished()));
+                connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 downSong->startToDownload();
                 break;
             }
@@ -479,7 +479,7 @@ void MusicDownloadWidget::startToDownloadMovie()
                 ////////////////////////////////////////////////
                 MusicDataDownloadThread* download = new MusicDataDownloadThread(musicAttr.m_url, downloadName,
                                                                                 MusicDownLoadThreadAbstract::Download_Video, this);
-                connect(download, SIGNAL(musicDownLoadFinished(QString)), SLOT(dataDownloadFinished()));
+                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
                 break;
             }

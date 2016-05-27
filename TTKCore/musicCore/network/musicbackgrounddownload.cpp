@@ -44,7 +44,7 @@ void MusicBackgroundDownload::downLoadFinished(const QByteArray &data)
             MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
                                     .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
                                     MusicDownLoadThreadAbstract::Download_BigBG, this);
-            connect(down, SIGNAL(musicDownLoadFinished(QString)), SLOT(bgDownLoadFinished()));
+            connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
             down->startToDownload();
         }
         line = in.readLine();
