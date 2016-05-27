@@ -9,15 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QNetworkReply>
-#include "musicglobaldefine.h"
+#include "musicnetworkabstract.h"
 
 const QString TRANSLATION_URL = "http://fanyi.baidu.com/v2transapi?from=%1&query=%2&to=%3";
 
 /*! @brief The class of translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicTranslationThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
@@ -46,44 +45,28 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicTranslationThread();
 
-    void deleteAll();
-    /*!
-     * Release the network object.
-     */
+    virtual ~MusicTranslationThread();
+
     void startToTranslation(TranslationType from, TranslationType to, const QString &data);
     /*!
      * Start to translation data.
      */
 
 Q_SIGNALS:
-    void recievedData(const QString &data);
+    void downLoadDataChanged(const QString &data);
     /*!
      * Send translated data from net.
      */
 
 public Q_SLOTS:
-    void downLoadFinished();
+    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void replyError(QNetworkReply::NetworkError error);
-    /*!
-     * Download reply error.
-     */
-#ifndef QT_NO_SSL
-    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
-    /*!
-     * Download ssl reply error.
-     */
-#endif
 
 protected:
     QString mapTypeFromEnumToString(TranslationType type);
-
-    QNetworkReply *m_reply;
-    QNetworkAccessManager *m_manager;
 
 };
 
