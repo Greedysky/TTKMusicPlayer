@@ -9,13 +9,12 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QNetworkReply>
-#include "musicglobaldefine.h"
+#include "musicnetworkabstract.h"
 
 /*! @brief The class of source data download thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSourceDownloadThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicSourceDownloadThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
@@ -25,40 +24,32 @@ public:
      */
     ~MusicSourceDownloadThread();
 
-    void deleteAll();
-    /*!
-     * Release the network object.
-     */
     void startToDownload(const QString &url);
     /*!
      * Start to download data.
      */
 
 Q_SIGNALS:
-    void recievedData(const QByteArray &data);
+    void downLoadByteDataChanged(const QByteArray &data);
     /*!
-     * Send recieved data from net.
+     * Send download byte data from net.
      */
 
 public Q_SLOTS:
-    void downLoadFinished();
+    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void replyError(QNetworkReply::NetworkError error);
+    virtual void replyError(QNetworkReply::NetworkError error) override;
     /*!
      * Download reply error.
      */
 #ifndef QT_NO_SSL
-    void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
     /*!
      * Download ssl reply error.
      */
 #endif
-
-protected:
-    QNetworkReply *m_reply;
-    QNetworkAccessManager *m_manager;
 
 };
 

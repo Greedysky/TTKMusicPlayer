@@ -20,7 +20,7 @@ void MusicNetworkOperator::startToOperator()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API
-    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(IP_CHECK_URL);
 }
 

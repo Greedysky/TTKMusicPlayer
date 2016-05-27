@@ -189,7 +189,7 @@ void MusicSimilarFoundWidget::createLabels()
         {
             downloadCounter++;
             MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-            connect(download, SIGNAL(recievedData(QByteArray)), SLOT(recievedData(QByteArray)));
+            connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
             download->startToDownload(data->m_picUrl);
         }
     }
@@ -210,7 +210,7 @@ MIntList MusicSimilarFoundWidget::foundCheckedItem()
     return list;
 }
 
-void MusicSimilarFoundWidget::recievedData(const QByteArray &data)
+void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
 {
     for(int i=0; i<m_iconLabels.count(); ++i)
     {

@@ -47,7 +47,7 @@ int MusicSourceUpdateWidget::exec()
     ui->background->setPixmap(pix.scaled( size() ));
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-    connect(download, SIGNAL(recievedData(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(VERSION_URL);
 
     return MusicAbstractMoveDialog::exec();

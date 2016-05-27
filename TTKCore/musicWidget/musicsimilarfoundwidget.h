@@ -48,7 +48,7 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void recievedData(const QByteArray &data);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Send recieved data from net.
      */
