@@ -174,9 +174,9 @@ void MusicSimilarFoundWidget::createLabels()
     picLabel3->setFixedSize(100, 100);
     m_iconLabels << picLabel1 << picLabel2 << picLabel3;
     ////////////////////////////////////////////////////////////////////////////
-    grid->addWidget(picLabel1, index, 0, 1, 2);
-    grid->addWidget(picLabel2, index, 3, 1, 2);
-    grid->addWidget(picLabel3, index++, 6, 1, 2);
+    grid->addWidget(picLabel1, index, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(picLabel2, index, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(picLabel3, index++, 6, 1, 2, Qt::AlignCenter);
     QString artLimitString = QFontMetrics(font()).elidedText(artName, Qt::ElideRight, 90);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
