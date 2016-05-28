@@ -210,7 +210,6 @@ void MusicWebMusicRadioWidget::startToPlay()
     QString name = LRC_DOWNLOAD_AL + info.m_artistName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        qDebug() << info.m_lrcUrl;
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));

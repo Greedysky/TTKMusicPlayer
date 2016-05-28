@@ -15,6 +15,7 @@
 #include <QApplication>
 #include <QActionGroup>
 #include <QPushButton>
+#include <QTextEdit>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -38,12 +39,12 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_showArtBackground = true;
     m_changeSpeedValue = 0;
 
+    m_lrcAnalysis = new MusicLrcAnalysis(this);
+    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
+
     initFunctionLabel();
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
-
-    m_lrcAnalysis = new MusicLrcAnalysis(this);
-    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
@@ -244,6 +245,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     QPushButton *movie = new QPushButton(QIcon(":/share/showMV2"), QString(), this);
     QPushButton *microphone = new QPushButton(QIcon(":/lrc/microphone"), QString(), this);
     QPushButton *message = new QPushButton(QIcon(":/lrc/message"), QString(), this);
+
     translation->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     movie->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     microphone->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -256,6 +258,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     movie->setToolTip(tr("MV"));
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
+    connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(translation);
@@ -264,6 +267,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     functionLayout->addWidget(message);
     functionLayout->addStretch(1);
     functionLabel->setLayout(functionLayout);
+
     m_vBoxLayout->addWidget(functionLabel);
 }
 
@@ -545,4 +549,18 @@ void MusicLrcContainerForInline::showLocalLinkWidget()
     MusicLrcLocalLinkWidget w(this);
     w.setCurrentSongName(m_currentSongName);
     w.exec();
+}
+
+void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
+{
+    QString text;
+    foreach(QString var, data.split("\r"))
+    {
+        text += var.trimmed() + "\r\n";
+    }
+
+    QTextEdit *dlg = new QTextEdit;
+    dlg->resize(500, 500);
+    dlg->setText(text);
+    dlg->show();
 }

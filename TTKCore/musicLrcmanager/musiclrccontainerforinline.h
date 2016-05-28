@@ -136,6 +136,12 @@ public Q_SLOTS:
      * Show local link widget.
      */
 
+private Q_SLOTS:
+    void getTranslatedLrcFinished(const QString &data);
+    /*!
+     * Get translated lrc finished.
+     */
+
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

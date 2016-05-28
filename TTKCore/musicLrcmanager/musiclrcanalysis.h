@@ -15,6 +15,8 @@
 #define MIN_LRCCONTAIN_COUNT 11
 #define CURRENT_LRC_PAINT 5
 
+class MusicTranslationThread;
+
 /*! @brief The class of the core lrc analysis.
  * @author Greedysky <greedysky@163.com>
  */
@@ -117,6 +119,12 @@ public:
      * Get all lrcs from container.
      */
 
+public Q_SLOTS:
+    void getTranslatedLrc();
+    /*!
+     * Get all lrcs from tr container.
+     */
+
 protected:
     void matchLrcLine(const QString &oneLine);
     /*!
@@ -140,9 +148,10 @@ protected:
      */
 
     int m_currentLrcIndex;
-    QStringList m_currentShowLrcContainer;
     QString m_currentLrcFileName;
     MIntStringMap m_lrcContainer;
+    QStringList m_currentShowLrcContainer;
+    MusicTranslationThread *m_translationThread;
 
 };
 

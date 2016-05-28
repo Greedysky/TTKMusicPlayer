@@ -1,23 +1,25 @@
 #include "musiclrcanalysis.h"
 #include "musiclrcfromkrc.h"
 #include "musictime.h"
+#include "musictranslationthread.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
 {
     m_currentLrcIndex = 0;
+    m_translationThread = nullptr;
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()
 {
-
+    delete m_translationThread;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcFileName)
 {
-    m_lrcContainer.clear();///Clear the original map
-    m_currentShowLrcContainer.clear();///Clear the original lrc
-    QFile file(m_currentLrcFileName = lrcFileName); ///Open the lyrics file
+    m_lrcContainer.clear();
+    m_currentShowLrcContainer.clear();
+    QFile file(m_currentLrcFileName = lrcFileName);
 
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -66,8 +68,8 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
 
 MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
 {
-    m_lrcContainer.clear();///Clear the original map
-    m_currentShowLrcContainer.clear();///Clear the original lrc
+    m_lrcContainer.clear();
+    m_currentShowLrcContainer.clear();
     m_currentLrcFileName = krcFileName;
 
     MusicLrcFromKrc krc;
@@ -475,4 +477,26 @@ QString MusicLrcAnalysis::getAllLrcs() const
         clipString.append(s + "\n");
     }
     return clipString;
+}
+
+void MusicLrcAnalysis::getTranslatedLrc()
+{
+    if(m_translationThread == nullptr)
+    {
+        m_translationThread = new MusicTranslationThread(this);
+        if(parent()->metaObject()->indexOfMethod("getTranslatedLrcFinished(QString)") != -1)
+        {
+            connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
+                                         SLOT(getTranslatedLrcFinished(QString)));
+        }
+    }
+
+    QString data;
+    foreach(QString s, m_lrcContainer.values())
+    {
+        data.append(s);
+    }
+
+    m_translationThread->startToTranslation(MusicTranslationThread::Type_Auto,
+                                            MusicTranslationThread::Type_Zh, data);
 }
