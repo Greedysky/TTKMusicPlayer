@@ -31,13 +31,13 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
 
-    M_CONNECTION->setValue("MusicDownloadResetWidget", this);
-    M_CONNECTION->poolConnect("MusicDownloadResetWidget", "MusicLeftAreaWidget");
+    M_CONNECTION_PTR->setValue("MusicDownloadResetWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicDownloadResetWidget", "MusicLeftAreaWidget");
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicDownloadResetWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicDownloadResetWidget");
     delete ui;
 }
 
@@ -48,7 +48,7 @@ void MusicDownloadResetWidget::setSongName(const QString &name)
 
 void MusicDownloadResetWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveWidget::show();
 }
@@ -70,7 +70,7 @@ void MusicDownloadResetWidget::openDetailInfo()
 
 void MusicDownloadResetWidget::openFileLocation()
 {
-    MusicUtils::openUrl(M_SETTING->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString(), true);
+    MusicUtils::openUrl(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString(), true);
     close();
 }
 
@@ -85,7 +85,7 @@ void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQuer
 {
     if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
-        bool exist = M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+        bool exist = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
         if(exist)
         {
             MusicDownloadResetWidget *resetWidget = new MusicDownloadResetWidget(m_parentClass);

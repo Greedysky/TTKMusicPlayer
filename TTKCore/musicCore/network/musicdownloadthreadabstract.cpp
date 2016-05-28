@@ -26,14 +26,14 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     }
     m_file = new QFile(save, this);
 
-    M_CONNECTION->setNetworkMultiValue(this);
+    M_CONNECTION_PTR->setNetworkMultiValue(this);
     m_timer.setInterval(1000);
     connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
-    M_CONNECTION->removeNetworkMultiValue(this);
+    M_CONNECTION_PTR->removeNetworkMultiValue(this);
 }
 
 void MusicDownLoadThreadAbstract::deleteAll()
@@ -74,9 +74,9 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
     int delta = m_currentRecevied - m_hasRecevied;
     //////////////////////////////////////
     ///limit speed
-    if(M_SETTING->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
+    if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
     {
-        int limitValue = M_SETTING->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
+        int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*1024)
         {
 #if defined Q_OS_WIN && defined MUSIC_QT_5

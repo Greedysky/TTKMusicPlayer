@@ -51,7 +51,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     /// only download music data can that show progress
     if(m_downloadType == Download_Music && !m_redirection)
     {
-        M_CONNECTION->connectMusicDownload(this);
+        M_CONNECTION_PTR->connectMusicDownload(this);
         m_createItemTime = QDateTime::currentMSecsSinceEpoch();
         emit createDownloadItem(m_savePathName, m_createItemTime);
     }

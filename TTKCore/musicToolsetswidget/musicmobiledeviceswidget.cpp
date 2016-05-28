@@ -12,7 +12,7 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true);
 
-    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 246, windowSize.height() - 169, 246, 169);
     setPixmap(QPixmap(":/toolSets/mobile"));
 

@@ -7,7 +7,7 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     setGeometry(200, 200, 100, 100);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     move( windowSize.width() - width() - 150, height() + 70);
 
     m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);

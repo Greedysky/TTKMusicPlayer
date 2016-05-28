@@ -42,13 +42,13 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     readEqInformation();
     setControlEnable(false);
 
-    M_CONNECTION->setValue("MusicEqualizerDialog", this);
-    M_CONNECTION->poolConnect("MusicEqualizerDialog", "MusicPlayer");
+    M_CONNECTION_PTR->setValue("MusicEqualizerDialog", this);
+    M_CONNECTION_PTR->poolConnect("MusicEqualizerDialog", "MusicPlayer");
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_CONNECTION->poolDisConnect("MusicEqualizerDialog");
+    M_CONNECTION_PTR->poolDisConnect("MusicEqualizerDialog");
     writeEqInformation();
     delete m_signalMapper;
     delete ui;
@@ -99,14 +99,14 @@ void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
 
 void MusicEqualizerDialog::readEqInformation()
 {
-    if(M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         ui->showEqButton->click();
     }
-    QStringList eqValue = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+    QStringList eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
     if(eqValue.count() == 11)
     {
-        if(M_SETTING->value(MusicSettingManager::EqualizerIndexChoiced).toInt() == 0)
+        if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt() == 0)
         {
             ui->verticalSlider1->setValue(eqValue[1].toInt());
             ui->verticalSlider2->setValue(eqValue[2].toInt());
@@ -122,7 +122,7 @@ void MusicEqualizerDialog::readEqInformation()
         }
         else
         {
-           ui->eqChoice->setCurrentIndex(M_SETTING->value(MusicSettingManager::EqualizerIndexChoiced).toInt());
+           ui->eqChoice->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt());
         }
     }
     else
@@ -133,9 +133,9 @@ void MusicEqualizerDialog::readEqInformation()
 
 void MusicEqualizerDialog::writeEqInformation() const
 {
-    M_SETTING->setValue(MusicSettingManager::EqualizerEnableChoiced, m_eable ? 1 : 0);
-    M_SETTING->setValue(MusicSettingManager::EqualizerIndexChoiced, ui->eqChoice->currentIndex());
-    M_SETTING->setValue(MusicSettingManager::EqualizerValueChoiced,
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, m_eable ? 1 : 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, ui->eqChoice->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced,
           QString("%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11").arg(
           ui->bwVerticalSlider->value()).arg(ui->verticalSlider1->value()).arg(
           ui->verticalSlider2->value()).arg(ui->verticalSlider3->value()).arg(
@@ -257,7 +257,7 @@ void MusicEqualizerDialog::eqChoiceIndexChanged(int index)
 
 int MusicEqualizerDialog::exec()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

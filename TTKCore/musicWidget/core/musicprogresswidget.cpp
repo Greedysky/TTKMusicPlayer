@@ -89,7 +89,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 
 void MusicProgressWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     m_background->setPixmap(pix.scaled( size() ));
     QProgressDialog::show();
 }

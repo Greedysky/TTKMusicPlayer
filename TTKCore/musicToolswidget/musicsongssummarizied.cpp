@@ -54,8 +54,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged()));
 
-    M_CONNECTION->setValue("MusicSongsSummarizied", this);
-    M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue("MusicSongsSummarizied", this);
+    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
 }
 
 MusicSongsSummarizied::~MusicSongsSummarizied()
@@ -469,7 +469,7 @@ void MusicSongsSummarizied::setCurrentMusicSongTreeIndex(int index)
 
 void MusicSongsSummarizied::setCurrentIndex()
 {
-    QStringList keyList = M_SETTING->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    QStringList keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     if(keyList.count() != 3)
     {
         return;

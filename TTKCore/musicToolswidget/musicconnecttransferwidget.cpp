@@ -35,13 +35,13 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
-    M_CONNECTION->setValue("MusicConnectTransferWidget", this);
-    M_CONNECTION->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue("MusicConnectTransferWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicConnectTransferWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicConnectTransferWidget");
     delete ui;
 }
 
@@ -63,7 +63,7 @@ void MusicConnectTransferWidget::initColumns()
         group->addButton(button, i);
     }
 
-    QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     ui->textLabel->setText(QString("( %1 )").arg(path));
     ui->transferButton->setEnabled( !path.isEmpty() );
 }
@@ -150,7 +150,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
     }
 
     QStringList names;
-    QString path = M_SETTING->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     foreach(int index, list)
     {
         if(!m_searchfileListCache.isEmpty())
@@ -198,7 +198,7 @@ void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 int MusicConnectTransferWidget::exec()
 {
     initColumns();
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

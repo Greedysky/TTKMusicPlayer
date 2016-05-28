@@ -22,7 +22,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     setEnaleEffect(false);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
-    M_CONNECTION->setValue("MusicPlayer", this);
+    M_CONNECTION_PTR->setValue("MusicPlayer", this);
 }
 
 MusicPlayer::~MusicPlayer()
@@ -164,7 +164,7 @@ void MusicPlayer::play()
 
     ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
-    int volume = M_SETTING->value(MusicSettingManager::VolumeChoiced).toInt();
+    int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
     if(volume != -1)
     {
         setVolume(volume);
@@ -327,10 +327,10 @@ void MusicPlayer::setEnaleEffect(bool enable)
 void MusicPlayer::setEqInformation()
 {
     ///Read the equalizer parameters from a configuration file
-    if(M_SETTING->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         setEnaleEffect(true);
-        QStringList eqValue = M_SETTING->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+        QStringList eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
             MIntList hz;

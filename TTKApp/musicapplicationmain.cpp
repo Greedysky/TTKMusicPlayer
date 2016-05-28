@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("TTKMusicPlayer");
 
     //detect the current network state
-    M_NETWORK->start();
+    M_NETWORK_PTR->start();
 
     M_LOGGER_INFO("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
     MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
                               xml->readDownloadCacheLimit(), MUSIC_DOWNLOAD_AL);
-    M_NETWORK->setBlockNetWork(xml->readCloseNetworkConfig());
+    M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGER_INFO("End load translation");
 

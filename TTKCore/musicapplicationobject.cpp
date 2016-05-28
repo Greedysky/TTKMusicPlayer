@@ -26,7 +26,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     QWidget *widget = QApplication::desktop();
     m_supperClass->move( (widget->width() - m_supperClass->width())/2,
                          (widget->height() - m_supperClass->height())/2 );
-    M_SETTING->setValue(MusicSettingManager::ScreenSize, widget->size());
+    M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
 
     windowStartAnimationOpacity();
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
@@ -43,9 +43,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 #endif
 
     m_setWindowToTop = false;
-    M_CONNECTION->setValue("MusicApplicationObject", this);
-    M_CONNECTION->poolConnect("MusicApplicationObject", "MusicApplication");
-    M_CONNECTION->poolConnect("MusicApplicationObject", "MusicEnhancedWidget");
+    M_CONNECTION_PTR->setValue("MusicApplicationObject", this);
+    M_CONNECTION_PTR->poolConnect("MusicApplicationObject", "MusicApplication");
+    M_CONNECTION_PTR->poolConnect("MusicApplicationObject", "MusicEnhancedWidget");
 
     musicToolSetsParameter();
 }
@@ -61,7 +61,7 @@ MusicApplicationObject::~MusicApplicationObject()
 void MusicApplicationObject::getParameterSetting()
 {
 #ifdef Q_OS_WIN
-    if(M_SETTING->value(MusicSettingManager::FileAssociationChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt())
     {
         MusicRegeditManager regeditManager;
         regeditManager.setMusicRegeditAssociateFileIcon();
@@ -121,7 +121,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
                         }
                         QString dev((char)(i + 'A'));
                         M_LOGGER_INFO(QString("USB_Arrived and The USBDisk is: %1").arg(dev));
-                        M_SETTING->setValue(MusicSettingManager::MobileDevicePathChoiced, dev + ":/");
+                        M_SETTING_PTR->setValue(MusicSettingManager::MobileDevicePathChoiced, dev + ":/");
                         delete m_mobileDevices;
                         m_mobileDevices = new MusicMobileDevicesWidget;
                         m_mobileDevices->show();
@@ -135,7 +135,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
                     if (lpdbv -> dbcv_flags == 0)
                     {
                         M_LOGGER_INFO("USB_remove");
-                        M_SETTING->setValue(MusicSettingManager::MobileDevicePathChoiced, QString());
+                        M_SETTING_PTR->setValue(MusicSettingManager::MobileDevicePathChoiced, QString());
                         delete m_mobileDevices;
                         m_mobileDevices = nullptr;
                     }
@@ -194,7 +194,7 @@ void MusicApplicationObject::musicToolSetsParameter()
 
 void MusicApplicationObject::musicSetEqualizer()
 {
-    if(M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
     {
         MusicMessageBox message;
         message.setText(tr("we are opening the magic sound, if you want to close?"));

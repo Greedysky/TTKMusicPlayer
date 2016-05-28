@@ -12,7 +12,7 @@
 #include "musicsingleton.h"
 #include <QMetaEnum>
 
-#define M_SETTING (MusicSingleton<MusicSettingManager>::createInstance())
+#define M_SETTING_PTR (MusicSingleton<MusicSettingManager>::createInstance())
 
 /*! @brief The class of the paramater setting manager.
  * @author Greedysky <greedysky@163.com>

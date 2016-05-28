@@ -24,8 +24,8 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     connect(m_setting, SIGNAL(soundEqualizerClicked()), parent,
                        SLOT(musicSetEqualizer()));
 
-    M_CONNECTION->setValue("MusicRightAreaWidget", this);
-    M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget", "MusicRightAreaWidget");
+    M_CONNECTION_PTR->setValue("MusicRightAreaWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicRightAreaWidget");
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -146,8 +146,8 @@ void MusicRightAreaWidget::setSettingParameter() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return ( M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
+    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -200,9 +200,9 @@ void MusicRightAreaWidget::showSettingWidget() const
 void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();
-    bool config = M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
+    bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool();
     m_ui->musiclrccontainerforinline->setVisible(config);
-         config = M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     m_musiclrcfordesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
 }
@@ -212,7 +212,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
     m_ui->musicDesktopLrc->setChecked(visible);
     m_musiclrcfordesktop->setVisible(visible);
     m_musiclrcfordesktop->initCurrentLrc();
-    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, visible);
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, visible);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()

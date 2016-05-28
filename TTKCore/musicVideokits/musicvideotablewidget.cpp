@@ -13,18 +13,18 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     MusicUtils::setTransparent(this, 255);
 
     MusicTime::timeSRand();
-    M_CONNECTION->setValue("MusicVideoTableWidget", this);
+    M_CONNECTION_PTR->setValue("MusicVideoTableWidget", this);
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicVideoTableWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicVideoTableWidget");
     clearAllItems();
 }
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
         emit showDownLoadInfoFor(MusicObject::DisConnection);
         return;

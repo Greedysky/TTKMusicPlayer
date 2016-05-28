@@ -80,7 +80,7 @@ void MusicDownloadQueueCache::addImageQueue(const QStringList &url,
 
 void MusicDownloadQueueCache::startOrderImageQueue()
 {
-    if(!m_imageQueue.isEmpty() && M_NETWORK->isOnline())
+    if(!m_imageQueue.isEmpty() && M_NETWORK_PTR->isOnline())
     {
         if(QFile::exists(m_imageQueue.first().m_savePath))
         {

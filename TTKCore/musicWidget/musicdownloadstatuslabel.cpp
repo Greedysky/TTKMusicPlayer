@@ -15,9 +15,9 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     m_parentWidget = MStatic_cast(MusicApplication*, w);
     m_downloadLrcThread = nullptr;
 
-    M_CONNECTION->setValue("MusicDownloadStatusLabel", this);
-    M_CONNECTION->poolConnect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
-    M_CONNECTION->poolConnect("MusicNetworkThread", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->setValue("MusicDownloadStatusLabel", this);
+    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->poolConnect("MusicNetworkThread", "MusicDownloadStatusLabel");
 }
 
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
@@ -67,13 +67,13 @@ void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue() const
 {
-    return ( M_SETTING->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
+    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
+             M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
 }
 
 void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {
         ///no network connection
         showDownLoadInfoFor(MusicObject::DisConnection);
@@ -113,7 +113,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 
 void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
         showDownLoadInfoFor(MusicObject::DisConnection);
         return;

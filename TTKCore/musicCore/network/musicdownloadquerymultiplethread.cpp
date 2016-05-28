@@ -55,7 +55,7 @@ void MusicDownLoadQueryMultipleThread::startSearchSong(QueryType type, const QSt
 
 QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
 {
-    int index = M_SETTING->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
         case 0: return MUSIC_REQUERY_WY;

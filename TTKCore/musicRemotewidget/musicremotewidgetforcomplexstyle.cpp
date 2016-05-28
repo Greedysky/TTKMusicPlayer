@@ -7,7 +7,7 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     setGeometry(200, 200, 320, 110);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     move( windowSize.width() - width() - 150, height() + 70);
 
     m_iconLabel = new QLabel(this);

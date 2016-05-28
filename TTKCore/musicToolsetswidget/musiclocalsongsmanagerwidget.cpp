@@ -81,13 +81,13 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)),
                       SLOT(setSongNamePath(QFileInfoList)));
 
-    M_CONNECTION->setValue("MusicLocalSongsManagerWidget", this);
-    M_CONNECTION->poolConnect("MusicLocalSongsManagerWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue("MusicLocalSongsManagerWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicLocalSongsManagerWidget", "MusicSongsSummarizied");
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicLocalSongsManagerWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicLocalSongsManagerWidget");
     delete m_movie;
     clearAllItems();
     m_thread->stopAndQuitThread();
@@ -402,7 +402,7 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
 
 int MusicLocalSongsManagerWidget::exec()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

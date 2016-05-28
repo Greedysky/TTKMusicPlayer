@@ -15,7 +15,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    M_CONNECTION->setValue("MusicBottomAreaWidget", this);
+    M_CONNECTION_PTR->setValue("MusicBottomAreaWidget", this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -173,5 +173,5 @@ void MusicBottomAreaWidget::desktopLrcClosed()
 {
     m_ui->musicDesktopLrc->setChecked(false);
     m_systemTrayMenu->showDesktopLrc(false);
-    M_SETTING->setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
 }

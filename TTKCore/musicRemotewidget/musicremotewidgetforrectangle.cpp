@@ -8,7 +8,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     setGeometry(200, 200, 230, 70);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    QSize windowSize = M_SETTING->value(MusicSettingManager::ScreenSize).toSize();
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     move( windowSize.width() - width() - 150, height() + 70);
     
     QVBoxLayout *vbox = new QVBoxLayout(this);

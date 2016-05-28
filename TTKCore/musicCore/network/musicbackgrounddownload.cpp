@@ -8,13 +8,13 @@ MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QStr
                                            QObject *parent)
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
-    M_CONNECTION->setValue("MusicBackgroundDownload", this);
-    M_CONNECTION->poolConnect("MusicBackgroundDownload", "MusicTopAreaWidget");
+    M_CONNECTION_PTR->setValue("MusicBackgroundDownload", this);
+    M_CONNECTION_PTR->poolConnect("MusicBackgroundDownload", "MusicTopAreaWidget");
 }
 
 MusicBackgroundDownload::~MusicBackgroundDownload()
 {
-    M_CONNECTION->poolDisConnect("MusicBackgroundDownload");
+    M_CONNECTION_PTR->poolDisConnect("MusicBackgroundDownload");
 }
 
 void MusicBackgroundDownload::startToDownload()
@@ -55,7 +55,7 @@ void MusicBackgroundDownload::bgDownLoadFinished()
 {
     if( ++m_index >= m_counter)
     {
-        M_BG_MANAGER->setArtName( m_artName );
+        M_BACKGROUND_PTR->setArtName( m_artName );
         emit musicBgDownloadFinished();
         deleteLater();
     }

@@ -95,15 +95,15 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
     connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(downloadLocalByControl()));
 
-    M_CONNECTION->setValue("MusicVideoControl", this);
-    M_CONNECTION->poolConnect("MusicVideoControl", "MusicRightAreaWidget");
-    M_CONNECTION->poolConnect("MusicVideoControl", "MusicVideoTableWidget");
+    M_CONNECTION_PTR->setValue("MusicVideoControl", this);
+    M_CONNECTION_PTR->poolConnect("MusicVideoControl", "MusicRightAreaWidget");
+    M_CONNECTION_PTR->poolConnect("MusicVideoControl", "MusicVideoTableWidget");
 
 }
 
 MusicVideoControl::~MusicVideoControl()
 {
-    M_CONNECTION->poolDisConnect("MusicVideoControl");
+    M_CONNECTION_PTR->poolDisConnect("MusicVideoControl");
     delete m_volumeSlider;
     delete m_timeSlider;
     delete m_menuButton;

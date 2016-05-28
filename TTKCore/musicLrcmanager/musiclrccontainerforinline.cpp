@@ -129,20 +129,20 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     w->setCenterOnLrc(index != CURRENT_LRC_PAINT);
     w->setFontSize(size);
 
-    int value = M_SETTING->value("LrcColorTransChoiced").toInt() - transparent;
+    int value = M_SETTING_PTR->value("LrcColorTransChoiced").toInt() - transparent;
     value = (value < 0) ? 0 : value;
     value = (value > 100) ? 100 : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
-    if(M_SETTING->value("LrcColorChoiced").toInt() != -1)
+    if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING->value("LrcColorChoiced").toInt());
+        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt());
         setMaskLinearGradientColor();
     }
     else
     {
-        w->setLinearGradientColor(M_SETTING->value("LrcBgColorChoiced").value<QColor>());
-        setMaskLinearGradientColor(M_SETTING->value("LrcFgColorChoiced").value<QColor>());
+        w->setLinearGradientColor(M_SETTING_PTR->value("LrcBgColorChoiced").value<QColor>());
+        setMaskLinearGradientColor(M_SETTING_PTR->value("LrcFgColorChoiced").value<QColor>());
     }
 }
 
@@ -192,12 +192,12 @@ void MusicLrcContainerForInline::setLrcSize(MusicLRCManager::LrcSizeTable size) 
     {
         m_musicLrcContainer[i]->setLrcFontSize(size);
     }
-    M_SETTING->setValue(MusicSettingManager::LrcSizeChoiced, size);
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, size);
 }
 
 int MusicLrcContainerForInline::getLrcSize() const
 {
-    return M_SETTING->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    return M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
 void MusicLrcContainerForInline::createNoLrcCurrentInfo()

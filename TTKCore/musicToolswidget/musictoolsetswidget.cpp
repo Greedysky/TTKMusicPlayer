@@ -35,14 +35,14 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
 
-    M_CONNECTION->setValue("MusicToolSetsWidget", this);
-    M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicApplication");
-    M_CONNECTION->poolConnect("MusicToolSetsWidget", "MusicLeftAreaWidget");
+    M_CONNECTION_PTR->setValue("MusicToolSetsWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicToolSetsWidget", "MusicApplication");
+    M_CONNECTION_PTR->poolConnect("MusicToolSetsWidget", "MusicLeftAreaWidget");
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicToolSetsWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicToolSetsWidget");
     if(m_process)
     {
         m_process->kill();

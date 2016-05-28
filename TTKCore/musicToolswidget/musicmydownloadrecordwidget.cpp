@@ -23,13 +23,13 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 
-    M_CONNECTION->setValue("MusicMyDownloadRecordWidget", this);
-    M_CONNECTION->poolConnect("MusicMyDownloadRecordWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue("MusicMyDownloadRecordWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicMyDownloadRecordWidget", "MusicSongsSummarizied");
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicMyDownloadRecordWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicMyDownloadRecordWidget");
     delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordConfigManager xml;

@@ -42,12 +42,12 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     setToolTip(tr("magic music"));
 
     initWidget();
-    M_CONNECTION->setValue("MusicEnhancedWidget", this);
+    M_CONNECTION_PTR->setValue("MusicEnhancedWidget", this);
 }
 
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicEnhancedWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicEnhancedWidget");
     delete m_caseButton;
     delete m_Button1;
     delete m_Button2;
@@ -103,7 +103,7 @@ void MusicEnhancedWidget::initWidget()
     setMenu(m_menu);
     setPopupMode(QToolButton::InstantPopup);
 
-    m_lastSelectedIndex = M_SETTING->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    m_lastSelectedIndex = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 }
 
@@ -128,8 +128,8 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
     m_Button4->setStyleSheet(prfix.arg(type == 4 ? "subwooferOn" : "subwooferOff"));
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
-    M_SETTING->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
-    M_SETTING->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
     emit enhancedMusicChanged(type);
 }
 

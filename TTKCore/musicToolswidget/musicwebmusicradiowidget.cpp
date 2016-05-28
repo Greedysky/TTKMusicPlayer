@@ -327,7 +327,7 @@ void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
 
 void MusicWebMusicRadioWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveWidget::show();
 }

@@ -144,7 +144,7 @@ MusicDownloadWidget::~MusicDownloadWidget()
 void MusicDownloadWidget::initWidget()
 {
     controlEnable(true);
-    QString path = M_SETTING->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DOWNLOAD_AL : path);
 }
 
@@ -166,14 +166,14 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
 
 void MusicDownloadWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveWidget::show();
 }
 
 void MusicDownloadWidget::queryAllFinished()
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {
         return;
     }
@@ -314,7 +314,7 @@ void MusicDownloadWidget::resizeWindow()
     setMoveWidget(ui->settingButton, delta);
     setMoveWidget(ui->downloadButton, delta);
 
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
 }
 
@@ -339,7 +339,7 @@ void MusicDownloadWidget::downloadDirSelected()
         QString path;
         if(!(path = dialog.directory().absolutePath()).isEmpty())
         {
-            M_SETTING->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, path);
+            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, path);
             ui->downloadPathEdit->setText(path);
         }
     }
@@ -384,7 +384,7 @@ void MusicDownloadWidget::startToDownloadMusic()
             if(musicAttr.m_bitrate == bitrate ||
                musicAttr.m_bitrate > 321)
             {
-                if(!M_NETWORK->isOnline())
+                if(!M_NETWORK_PTR->isOnline())
                 {
                     return;
                 }
@@ -452,7 +452,7 @@ void MusicDownloadWidget::startToDownloadMovie()
         {
             if(musicAttr.m_bitrate == bitrate)
             {
-                if(!M_NETWORK->isOnline())
+                if(!M_NETWORK_PTR->isOnline())
                 {
                     return;
                 }

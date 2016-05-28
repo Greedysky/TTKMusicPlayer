@@ -24,27 +24,27 @@ MusicTimerAutoObject::~MusicTimerAutoObject()
 void MusicTimerAutoObject::runTimerAutoConfig()
 {
     m_timer.start(1000);
-    switch(m_funcIndex = M_SETTING->value(MusicSettingManager::TimerAutoIndexChoiced).toInt())
+    switch(m_funcIndex = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt())
     {
         case 0:
-            if(M_SETTING->value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 0)
             {
-                m_hour = M_SETTING->value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt();
-                m_second = M_SETTING->value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt();
+                m_hour = M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayHourChoiced).toInt();
+                m_second = M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlaySecondChoiced).toInt();
             }
             break;
         case 1:
-            if(M_SETTING->value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoStopChoiced).toInt() == 0)
             {
-                m_hour = M_SETTING->value(MusicSettingManager::TimerAutoStopHourChoiced).toInt();
-                m_second = M_SETTING->value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt();
+                m_hour = M_SETTING_PTR->value(MusicSettingManager::TimerAutoStopHourChoiced).toInt();
+                m_second = M_SETTING_PTR->value(MusicSettingManager::TimerAutoStopSecondChoiced).toInt();
             }
             break;
         case 2:
-            if(M_SETTING->value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownChoiced).toInt() == 0)
             {
-                m_hour = M_SETTING->value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt();
-                m_second = M_SETTING->value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt();
+                m_hour = M_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownHourChoiced).toInt();
+                m_second = M_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownSecondChoiced).toInt();
             }
             break;
         default: break;
@@ -67,25 +67,25 @@ void MusicTimerAutoObject::timeout()
         m_hour = m_second = -1;
         if(m_funcIndex == 0)
         {
-            if(M_SETTING->value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayRepeatChoiced).toInt() == 0)
             {
-               M_SETTING->setValue(MusicSettingManager::TimerAutoPlayChoiced, 1);
+               M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayChoiced, 1);
             }
-            emit setPlaySong(M_SETTING->value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
+            emit setPlaySong(M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlaySongIndexChoiced).toInt());
         }
         else if(m_funcIndex == 1)
         {
-            if(M_SETTING->value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoStopRepeatChoiced).toInt() == 0)
             {
-               M_SETTING->setValue(MusicSettingManager::TimerAutoStopChoiced, 1);
+               M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopChoiced, 1);
             }
             emit setStopSong();
         }
         else if(m_funcIndex == 2)
         {
-            if(M_SETTING->value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt() == 0)
+            if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownRepeatChoiced).toInt() == 0)
             {
-               M_SETTING->setValue(MusicSettingManager::TimerAutoShutdownChoiced, 1);
+               M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownChoiced, 1);
             }
             setShutdown();
         }

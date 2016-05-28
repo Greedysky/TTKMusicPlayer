@@ -37,13 +37,13 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 #endif
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 
-    M_CONNECTION->setValue("MusicSimilarFoundWidget", this);
-    M_CONNECTION->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue("MusicSimilarFoundWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicSimilarFoundWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicSimilarFoundWidget");
     while(!m_checkBoxs.isEmpty())
     {
         delete m_checkBoxs.takeLast();
@@ -257,7 +257,7 @@ void MusicSimilarFoundWidget::downloadDataFrom(bool play)
     MIntList list = foundCheckedItem();
     for(int i=0; i<list.count(); ++i)
     {
-        if(!M_NETWORK->isOnline())
+        if(!M_NETWORK_PTR->isOnline())
         {
             continue;
         }

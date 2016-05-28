@@ -83,7 +83,7 @@ void MusicMessageBox::buttonClicked(int index)
 
 int MusicMessageBox::exec()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveDialog::exec();
     return m_status;
@@ -91,7 +91,7 @@ int MusicMessageBox::exec()
 
 void MusicMessageBox::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveDialog::show();
 }

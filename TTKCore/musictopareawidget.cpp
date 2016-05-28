@@ -18,12 +18,12 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_supperClass = parent;
     m_msuicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
-    connect(M_BG_MANAGER, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+    connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 
-    M_CONNECTION->setValue("MusicTopAreaWidget", this);
+    M_CONNECTION_PTR->setValue("MusicTopAreaWidget", this);
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
@@ -140,14 +140,14 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &filename)
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    QString art_path = M_BG_MANAGER->getArtPhotoPath();
+    QString art_path = M_BACKGROUND_PTR->getArtPhotoPath();
     !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
     QString path = THEME_DOWNLOAD_AL + m_currentBgSkin + SKN_FILE;
-    M_BG_MANAGER->setMBackground(path);
+    M_BACKGROUND_PTR->setMBackground(path);
     if(m_musicbgskin)
     {
         m_musicbgskin->updateBackground();

@@ -77,13 +77,13 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
-    M_CONNECTION->setValue("MusicLrcLocalLinkWidget", this);
-    M_CONNECTION->poolConnect("MusicLrcLocalLinkWidget", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->setValue("MusicLrcLocalLinkWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicLrcLocalLinkWidget", "MusicDownloadStatusLabel");
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicLrcLocalLinkWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicLrcLocalLinkWidget");
     delete ui;
 }
 
@@ -202,7 +202,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
 
 int MusicLrcLocalLinkWidget::exec()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

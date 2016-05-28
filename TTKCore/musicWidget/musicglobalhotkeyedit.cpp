@@ -16,6 +16,6 @@ MusicGlobalHotKeyEdit::~MusicGlobalHotKeyEdit()
 
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)
 {
-    setText( M_HOTKEY->toString(event->key(), event->modifiers()) );
+    setText( M_HOTKEY_PTR->toString(event->key(), event->modifiers()) );
     QLineEdit::keyPressEvent(event);
 }

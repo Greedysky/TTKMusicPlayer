@@ -32,7 +32,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     MusicUtils::setTransparent(this, 255);
 
     m_previousAuditionRow = -1;
-    M_CONNECTION->setValue("MusicSongSearchOnlineTableWidget", this);
+    M_CONNECTION_PTR->setValue("MusicSongSearchOnlineTableWidget", this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
@@ -43,7 +43,7 @@ MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
         emit showDownLoadInfoFor(MusicObject::DisConnection);
         return;
@@ -216,7 +216,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
-    if(!M_NETWORK->isOnline())
+    if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
         emit showDownLoadInfoFor(MusicObject::DisConnection);
         return;

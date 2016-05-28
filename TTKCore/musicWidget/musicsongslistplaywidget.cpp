@@ -94,15 +94,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
     connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
-    M_CONNECTION->setValue("MusicSongsListPlayWidget", this);
-    M_CONNECTION->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
-    M_CONNECTION->poolConnect("MusicSongsListPlayWidget", "MusicApplication");
-    M_CONNECTION->poolConnect("MusicLeftAreaWidget", "MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->setValue("MusicSongsListPlayWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
+    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicApplication");
+    M_CONNECTION_PTR->poolConnect("MusicLeftAreaWidget", "MusicSongsListPlayWidget");
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicSongsListPlayWidget");
     delete m_renameLine;
     delete m_artPictureLabel;
     delete m_songNameLabel;
@@ -198,12 +198,12 @@ void MusicSongsListPlayWidget::sharingButtonClicked()
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
-    bool state = M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
     m_loveButton->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
-    bool state = M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+    bool state = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
     m_downloadButton->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
 }

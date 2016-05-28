@@ -18,7 +18,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_supperClass = parent;
     m_stackedWidget = nullptr;
-    M_CONNECTION->setValue("MusicLeftAreaWidget", this);
+    M_CONNECTION_PTR->setValue("MusicLeftAreaWidget", this);
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -153,20 +153,20 @@ void MusicLeftAreaWidget::musicDownloadSongToLocal()
 
 void MusicLeftAreaWidget::musicDownloadSongFinished()
 {
-    bool state = !M_SETTING->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+    bool state = !M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
     if(state)
     {
         m_ui->musicDownload->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
-        M_SETTING->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
+        M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
         emit currentDownloadStateChanged();
     }
 }
 
 void MusicLeftAreaWidget::musictLoveStateClicked()
 {
-    bool state = !M_SETTING->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    bool state = !M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
     m_ui->musicBestLove->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
-    M_SETTING->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
+    M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
     emit currentLoveStateChanged();
 }
 

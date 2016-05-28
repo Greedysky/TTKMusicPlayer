@@ -90,7 +90,7 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
 
 int MusicLrcSearchWidget::exec()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
 }

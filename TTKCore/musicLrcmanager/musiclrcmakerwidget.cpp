@@ -44,13 +44,13 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_position = 0;
     m_currentLine = 0;
 
-    M_CONNECTION->setValue("MusicLrcMakerWidget", this);
-    M_CONNECTION->poolConnect("MusicPlayer", "MusicLrcMakerWidget");
+    M_CONNECTION_PTR->setValue("MusicLrcMakerWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicPlayer", "MusicLrcMakerWidget");
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
-    M_CONNECTION->poolDisConnect("MusicLrcMakerWidget");
+    M_CONNECTION_PTR->poolDisConnect("MusicLrcMakerWidget");
 }
 
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
@@ -189,7 +189,7 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 
 void MusicLrcMakerWidget::show()
 {
-    QPixmap pix(M_BG_MANAGER->getMBackground());
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveWidget::show();
 }

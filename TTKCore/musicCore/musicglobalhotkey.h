@@ -11,7 +11,7 @@
 
 #include "musicsingleton.h"
 
-#define M_HOTKEY (MusicSingleton<MusicGlobalHotKey>::createInstance())
+#define M_HOTKEY_PTR (MusicSingleton<MusicGlobalHotKey>::createInstance())
 
 class QxtGlobalShortcut;
 
