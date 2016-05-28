@@ -123,7 +123,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(second, SIGNAL(researchQueryByQuality()), first,
                                  SLOT(researchQueryByQuality()));
     }
-    else if(from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget" )
+    else if( (from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget") ||
+             (from == "MusicLrcContainerForInline" && to == "MusicRightAreaWidget") )
     {
         QObject::connect(first, SIGNAL(videoButtonClicked(QString)), second,
                                 SLOT(musicVideoButtonSearched(QString)));

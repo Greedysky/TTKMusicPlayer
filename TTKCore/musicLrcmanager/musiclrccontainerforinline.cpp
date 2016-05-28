@@ -8,6 +8,7 @@
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
+#include "musicconnectionpool.h"
 #include "musicutils.h"
 
 #include <QPainter>
@@ -45,10 +46,13 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     initFunctionLabel();
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
+
+    M_CONNECTION_PTR->setValue("MusicLrcContainerForInline", this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
+    M_CONNECTION_PTR->poolDisConnect("MusicLrcContainerForInline");
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
     delete m_lrcAnalysis;
@@ -259,6 +263,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
     connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
+    connect(movie, SIGNAL(clicked()), SLOT(videoButtonClicked()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(translation);
@@ -267,6 +272,9 @@ void MusicLrcContainerForInline::initFunctionLabel()
     functionLayout->addWidget(message);
     functionLayout->addStretch(1);
     functionLabel->setLayout(functionLayout);
+
+    microphone->setEnabled(false);
+    message->setEnabled(false);
 
     m_vBoxLayout->addWidget(functionLabel);
 }
@@ -563,4 +571,9 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
     dlg->resize(500, 500);
     dlg->setText(text);
     dlg->show();
+}
+
+void MusicLrcContainerForInline::videoButtonClicked()
+{
+    emit videoButtonClicked( m_currentSongName );
 }

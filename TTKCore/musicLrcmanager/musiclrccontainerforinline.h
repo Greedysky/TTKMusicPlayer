@@ -93,6 +93,10 @@ Q_SIGNALS:
     /*!
      * The art background state has changed emit.
      */
+    void videoButtonClicked(const QString &text);
+    /*!
+     * Video button clicked it emit.
+     */
 
 public Q_SLOTS:
     void lrcSizeChanged(QAction *action) const;
@@ -140,6 +144,10 @@ private Q_SLOTS:
     void getTranslatedLrcFinished(const QString &data);
     /*!
      * Get translated lrc finished.
+     */
+    void videoButtonClicked();
+    /*!
+     * Video button clicked.
      */
 
 protected:

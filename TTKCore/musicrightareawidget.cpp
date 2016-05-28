@@ -26,6 +26,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 
     M_CONNECTION_PTR->setValue("MusicRightAreaWidget", this);
     M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicRightAreaWidget");
+    M_CONNECTION_PTR->poolConnect("MusicLrcContainerForInline", "MusicRightAreaWidget");
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
