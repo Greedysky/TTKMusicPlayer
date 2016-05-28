@@ -6,6 +6,7 @@
 #include <QToolButton>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QDebug>
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -18,6 +19,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     m_containerType = "DESKTOP";
     //Move the QWidget in the appropriate location
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    qDebug() << windowSize;
     m_geometry.setX(windowSize.width() - 300);
     m_geometry.setY(80);
 
@@ -28,6 +30,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
                         << new MusicLRCManagerForDesktop(desktopWidget);
 
     setGeometry(200,  windowSize.height() - height() - 150, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_HEIGHT);
+        qDebug() << m_geometry << geometry();
     desktopWidget->setGeometry(0, TOOLBAR_HEIGHT, m_geometry.x(), 2*m_geometry.y());
     setSelfGeometry();
 
@@ -277,7 +280,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
         setCursor(Qt::CrossCursor);
         move(event->globalPos() - m_offset);
-        M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::geometry());
+        M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::pos());
     }
 }
 
@@ -381,10 +384,10 @@ void MusicLrcContainerForDesktop::setSettingParameter()
         manager->setLrcFontSize(MStatic_cast(MusicLRCManager::LrcSizeTable, m_currentLrcFontSize));
     }
     m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
-    QRect rect = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toRect();
-    if(!rect.isEmpty())
+    QPoint point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
+    if(!point.isNull())
     {
-        setGeometry(rect);
+        move(point);
     }
 }
 

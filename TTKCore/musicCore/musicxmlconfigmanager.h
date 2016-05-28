@@ -210,7 +210,7 @@ public:
     /*!
      * Read System Last Play Index Config.
      */
-    QRect readShowDLrcGeometry() const;
+    QPoint readShowDLrcGeometry() const;
     /*!
      * Read Show Desktop Lrc Geometry Config.
      */

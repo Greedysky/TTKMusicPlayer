@@ -120,7 +120,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QColor DLrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>();
     int DLrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     int DLrcLockedChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt();
-    QRect DLrcGeometry = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toRect();
+    QPoint DLrcGeometry = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
 
     ///////////////////////////////////////////////////////////////////////////
     int equalizerEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
@@ -233,9 +233,8 @@ void MusicXMLConfigManager::writeXMLConfig()
                                         .arg(DLrcBgColorChoiced.green()).arg(DLrcBgColorChoiced.blue()));
 
     writeDomElement(showDLrc, "lrcDLocked", "value", DLrcLockedChoiced);
-    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2,%3,%4").arg(DLrcGeometry.left())
-                                                     .arg(DLrcGeometry.top()).arg(DLrcGeometry.width())
-                                                     .arg(DLrcGeometry.height()));
+    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2").arg(DLrcGeometry.x())
+                                                                       .arg(DLrcGeometry.y()));
 
     ///////////////////////////////////////////////
     writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
@@ -293,15 +292,14 @@ QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
     return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
 }
 
-QRect MusicXMLConfigManager::readShowDLrcGeometry() const
+QPoint MusicXMLConfigManager::readShowDLrcGeometry() const
 {
-    QStringList geometry = readXmlAttributeByTagNameValue("lrcDGeometry").split(',');
-    if(geometry.count() != 4)
+    QStringList point = readXmlAttributeByTagNameValue("lrcDGeometry").split(',');
+    if(point.count() != 2)
     {
-        return QRect();
+        return QPoint();
     }
-    return QRect(geometry[0].toInt(),geometry[1].toInt(),
-                 geometry[2].toInt(),geometry[3].toInt() );
+    return QPoint(point[0].toInt(), point[1].toInt());
 }
 
 void MusicXMLConfigManager::readOtherLoadConfig() const
