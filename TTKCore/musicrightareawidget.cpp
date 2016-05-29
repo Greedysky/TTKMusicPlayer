@@ -365,6 +365,12 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
 
 void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
 {
+    QString searchedText;
+    if(m_videoPlayer)
+    {
+        searchedText = m_videoPlayer->getSearchText();
+    }
+    //////////////////////////////////////////////////////
     if(popup)
     {
         createVideoWidget(false);
@@ -378,6 +384,11 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     {
         createVideoWidget(false);
         createVideoWidget(true);
+    }
+    //////////////////////////////////////////////////////
+    if(!searchedText.isEmpty())
+    {
+        musicVideoButtonSearched( searchedText );
     }
 }
 
@@ -397,7 +408,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     lrcDisplayAllAnimation->setStartValue(QPoint(m_lrcDisplayAll ? 380 : 61, 300));
     lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 380, 300));
     lrcDisplayAllAnimation->start();
-//    m_ui->lrcDisplayAllButton->move(m_lrcDisplayAll ? 61 : 392, 320);
+
     m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 380, 115, m_lrcDisplayAll ? 950 : 633, 455);
     m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 320 : 0);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));

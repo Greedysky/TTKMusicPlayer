@@ -114,6 +114,11 @@ void MusicVideoPlayWidget::setObjectToClose(QObject *object)
     }
 }
 
+QString MusicVideoPlayWidget::getSearchText() const
+{
+    return m_searchEdit->text().trimmed();
+}
+
 void MusicVideoPlayWidget::resizeWindow(bool resize)
 {
     if(resize)
@@ -154,7 +159,7 @@ void MusicVideoPlayWidget::afterButtonClicked()
 
 void MusicVideoPlayWidget::searchButtonClicked()
 {
-    videoResearchButtonSearched(m_searchEdit->text().trimmed());
+    videoResearchButtonSearched( getSearchText() );
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)

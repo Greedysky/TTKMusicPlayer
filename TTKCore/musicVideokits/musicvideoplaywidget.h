@@ -39,6 +39,10 @@ public:
     /*!
      * Set object to close current widget.
      */
+    QString getSearchText() const;
+    /*!
+     * Get search text in search line.
+     */
 
 public Q_SLOTS:
     void backButtonClicked();
