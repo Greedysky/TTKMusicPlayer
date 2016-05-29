@@ -49,6 +49,10 @@ public Q_SLOTS:
     /*!
      * Start to transfer files.
      */
+    void reflashRemovableDir();
+    /*!
+     * Reflash removable dir.
+     */
     void musicSearchIndexChanged(int row, int col);
     /*!
      * Search file from list.

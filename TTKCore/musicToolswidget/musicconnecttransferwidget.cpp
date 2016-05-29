@@ -33,6 +33,10 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
+    ui->reflashButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->reflashButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->reflashButton, SIGNAL(clicked()), SLOT(reflashRemovableDir()));
+
     ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
@@ -66,13 +70,7 @@ void MusicConnectTransferWidget::initColumns()
         group->addButton(button, i);
     }
 
-    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
-    if(path.isEmpty())
-    {
-        path = getRemovableDrive();
-    }
-    ui->textLabel->setText(QString("( %1 )").arg(path));
-    ui->transferButton->setEnabled( !path.isEmpty() );
+    reflashRemovableDir();
 }
 
 void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
@@ -200,6 +198,17 @@ void MusicConnectTransferWidget::startToTransferFiles()
 
     ui->allSelectedcheckBox->setChecked(false);
     ui->playListTableWidget->clearSelection();
+}
+
+void MusicConnectTransferWidget::reflashRemovableDir()
+{
+    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = getRemovableDrive();
+    }
+    ui->textLabel->setText(QString("( %1 )").arg(path));
+    ui->transferButton->setEnabled( !path.isEmpty() );
 }
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)

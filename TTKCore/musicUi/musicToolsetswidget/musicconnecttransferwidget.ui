@@ -175,13 +175,26 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>508</x>
-      <y>190</y>
+      <y>230</y>
       <width>80</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>transfer</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reflashButton">
+    <property name="geometry">
+     <rect>
+      <x>508</x>
+      <y>190</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>reflash</string>
     </property>
    </widget>
   </widget>
