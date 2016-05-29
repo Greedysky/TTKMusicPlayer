@@ -10,6 +10,9 @@
 #include <QFile>
 #include <QPushButton>
 #include <QButtonGroup>
+#ifdef Q_OS_WIN
+#   include <windows.h>
+#endif
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -64,6 +67,10 @@ void MusicConnectTransferWidget::initColumns()
     }
 
     QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = getRemovableDrive();
+    }
     ui->textLabel->setText(QString("( %1 )").arg(path));
     ui->transferButton->setEnabled( !path.isEmpty() );
 }
@@ -95,6 +102,22 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         ui->playListTableWidget->setItem(i, 2, item);
     }
+}
+
+QString MusicConnectTransferWidget::getRemovableDrive()
+{
+#ifdef Q_OS_WIN
+    QFileInfoList drives = QDir::drives();
+    foreach(QFileInfo driver, drives)
+    {
+        QString path = driver.absoluteDir().absolutePath();
+        if(GetDriveType(path.toStdWString().c_str()) == DRIVE_REMOVABLE)
+        {
+            return path;
+        }
+    }
+#endif
+    return QString();
 }
 
 void MusicConnectTransferWidget::currentPlayListSelected(int index)
@@ -150,10 +173,9 @@ void MusicConnectTransferWidget::startToTransferFiles()
     }
 
     QStringList names;
-    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     foreach(int index, list)
     {
-        if(!m_searchfileListCache.isEmpty())
+        if(!m_searchfileListCache.value(0).isEmpty())
         {
             int count = ui->searchLineEdit->text().trimmed().count();
             index = m_searchfileListCache.value(count)[index];
@@ -161,6 +183,11 @@ void MusicConnectTransferWidget::startToTransferFiles()
         names << m_currentSongs[index].getMusicPath();
     }
 
+    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = getRemovableDrive();
+    }
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Copy File Mode"));

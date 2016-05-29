@@ -67,6 +67,10 @@ protected:
     /*!
      * Create all items.
      */
+    QString getRemovableDrive();
+    /*!
+     * Get removable drive name.
+     */
 
     Ui::MusicConnectTransferWidget *ui;
     int m_currentIndex;
