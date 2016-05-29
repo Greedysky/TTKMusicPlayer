@@ -13,12 +13,16 @@
 #include <QDesktopWidget>
 #endif
 
+#define WINDOW_HEIGHT   460
+#define WINDOW_WIDTH    635
+
+
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_closeButton(nullptr)
 {
     if(popup)
     {
-        resize(635, 460);
+        resize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -119,7 +123,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     else
     {
         showNormal();
-        setGeometry(250, 150, 541, 460);
+        setGeometry(250, 150, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
     QSize s =  size();
 #ifdef Q_OS_UNIX
@@ -130,12 +134,12 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     else
     {
-        s = QSize(541, 460);
+        s = QSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         showNormal();
     }
 #endif
     m_videoView->resizeWindow(resize, s);
-    m_videoTable->resizeWindow(s.width() / 541.0);
+    m_videoTable->resizeWindow(s.width()*1.0 / WINDOW_WIDTH);
 }
 
 void MusicVideoPlayWidget::backButtonClicked()
