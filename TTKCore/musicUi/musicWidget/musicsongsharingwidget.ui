@@ -89,9 +89,6 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
     <property name="styleSheet">
      <string notr="true">QLabel{font-size:22px;font-weight:bold;}</string>
     </property>
-    <property name="text">
-     <string>XXXXXXXXXXXXXXXXXXX</string>
-    </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
@@ -101,22 +98,6 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <width>311</width>
       <height>101</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="QRCodeIcon">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>40</y>
-      <width>80</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:black</string>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="../../../TTKQrc/MusicPlayerShare.qrc">:/share/myQRCode</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="sharedNameIcon">
@@ -294,10 +275,20 @@ QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</
       <normaloff>:/usermanager/xinlang</normaloff>:/usermanager/xinlang</iconset>
     </property>
    </widget>
+   <widget class="QWidget" name="QRCodeIconWidget">
+    <property name="geometry">
+     <rect>
+      <x>355</x>
+      <y>35</y>
+      <width>90</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="QRCodeIconWidgetLayout"/>
+   </widget>
   </widget>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
   <include location="../../../TTKQrc/MusicPlayerUser.qrc"/>
  </resources>
  <connections/>

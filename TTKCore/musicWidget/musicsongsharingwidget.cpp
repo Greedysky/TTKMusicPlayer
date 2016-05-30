@@ -7,6 +7,8 @@
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
+#include "qrcodewidget.h"
+
 #include <QTimer>
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
@@ -21,6 +23,11 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 
     ui->qqButton->setChecked(true);
     ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01);
+
+    QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
+    code->setMargin(2);
+    code->setIcon(":/image/windowicon", 0.23);
+    ui->QRCodeIconWidgetLayout->addWidget(code);
 
     connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
