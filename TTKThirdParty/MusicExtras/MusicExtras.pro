@@ -26,3 +26,4 @@ HEADERS  += musicextrasglobaldefine.h
 
 include(shortcut/ShortCut.pri)
 include(kugou/KuGou.pri)
+include(qrencode/QRencode.pri)
