@@ -568,6 +568,7 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
     }
 
     QTextEdit *dlg = new QTextEdit;
+    dlg->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     dlg->resize(500, 500);
     dlg->setText(text);
     dlg->show();
