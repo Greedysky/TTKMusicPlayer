@@ -297,9 +297,9 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
     if(time < position*1000 && time != -1)
     {
         QString lrc;
-        for(int i=0; i<MIN_LRCCONTAIN_COUNT; ++i)
+        for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
         {
-            if(i == CURRENT_LRC_PAINT)
+            if(i == LRC_CURRENT_LINR)
             {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
             }

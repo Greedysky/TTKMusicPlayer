@@ -43,7 +43,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
 
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    for(int i=0; i<LRC_LINEMAX_COUNT/2; ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -58,7 +58,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
         it.next();
         m_currentShowLrcContainer << it.value();
     }
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    for(int i=0; i<LRC_LINEMAX_COUNT/2; ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -94,7 +94,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
 
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    for(int i=0; i<LRC_LINEMAX_COUNT/2; ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -109,7 +109,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
         it.next();
         m_currentShowLrcContainer << it.value();
     }
-    for(int i=0; i<MIN_LRCCONTAIN_COUNT/2; ++i)
+    for(int i=0; i<LRC_LINEMAX_COUNT/2; ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -338,7 +338,7 @@ qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
     {
         if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
         {
-            if((m_currentLrcIndex = i - CURRENT_LRC_PAINT - 1) < 0 )
+            if((m_currentLrcIndex = i - LRC_CURRENT_LINR - 1) < 0 )
             {
                 m_currentLrcIndex = 0;
             }
@@ -386,7 +386,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
 bool MusicLrcAnalysis::valid() const
 {
     return (!isEmpty()) &&
-           (m_currentLrcIndex + MIN_LRCCONTAIN_COUNT <= m_currentShowLrcContainer.count());
+           (m_currentLrcIndex + LRC_LINEMAX_COUNT <= m_currentShowLrcContainer.count());
 }
 
 bool MusicLrcAnalysis::isEmpty() const
@@ -451,7 +451,7 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total,
 
 qint64 MusicLrcAnalysis::findTime(int index) const
 {
-    if(index + MIN_LRCCONTAIN_COUNT < m_currentShowLrcContainer.count())
+    if(index + LRC_LINEMAX_COUNT < m_currentShowLrcContainer.count())
     {
         MIntStringMapIt it(m_lrcContainer);
         for(int i=0; i<index + 1; ++i)

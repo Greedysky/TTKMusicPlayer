@@ -12,8 +12,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#define MIN_LRCCONTAIN_COUNT 11
-#define CURRENT_LRC_PAINT 5
+#define LRC_LINEMAX_COUNT 11
+#define LRC_CURRENT_LINR 5
 
 class MusicTranslationThread;
 
