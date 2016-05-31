@@ -10,8 +10,6 @@
 # * works are strictly forbiden.
 # =================================================
 
-QMAKE_CXXFLAGS += -std=c++11
-
 HEADERS += \
     $$PWD/bitstream.h \
     $$PWD/config.h \

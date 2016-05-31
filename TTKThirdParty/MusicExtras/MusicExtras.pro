@@ -22,6 +22,8 @@ win32{
 unix:TARGET = ../../lib/MusicExtras
 TEMPLATE = lib
 
+QMAKE_CXXFLAGS += -std=c++11
+
 HEADERS  += musicextrasglobaldefine.h
 
 include(shortcut/ShortCut.pri)
