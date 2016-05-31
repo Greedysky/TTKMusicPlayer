@@ -1,4 +1,4 @@
-#include "KugouUrl.h"
+#include "kugouurl.h"
 
 KugouUrl::KugouUrl()
 {
