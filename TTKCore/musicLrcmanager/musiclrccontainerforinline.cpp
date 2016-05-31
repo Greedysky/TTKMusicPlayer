@@ -571,6 +571,7 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
     dlg->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     dlg->resize(500, 500);
     dlg->setText(text);
+    dlg->setReadOnly(true);
     dlg->show();
 }
 
