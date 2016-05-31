@@ -277,7 +277,7 @@ void MusicSongsListWidget::setDeleteItemAt()
     progress.setTitle(tr("Delete File Mode"));
     progress.setRange(0, selectedItems().count()/3*2);
 
-    MIntSet deletedRow; //if selected multi rows
+    MusicObject::MIntSet deletedRow; //if selected multi rows
     for(int i=0; i<selectedItems().count(); ++i)
     {
         deletedRow.insert(selectedItems()[i]->row());
@@ -287,7 +287,7 @@ void MusicSongsListWidget::setDeleteItemAt()
         }
     }
 
-    MIntList deleteList = deletedRow.toList();
+    MusicObject::MIntList deleteList = deletedRow.toList();
     if(deleteList.count() == 0)
     {
         return;
@@ -437,14 +437,14 @@ void MusicSongsListWidget::musicPlayClicked()
 
 void MusicSongsListWidget::musicMakeRingWidget()
 {
-    if(!QFile(MAKE_RING_AL).exists())
+    if(!QFile(MAKE_RING_FULL).exists())
     {
         MusicMessageBox message;
         message.setText(tr("Lack of plugin file!"));
         message.exec();
         return;
     }
-    (new QProcess(this))->start(MAKE_RING_AL);
+    (new QProcess(this))->start(MAKE_RING_FULL);
 }
 
 void MusicSongsListWidget::musicTransformWidget()

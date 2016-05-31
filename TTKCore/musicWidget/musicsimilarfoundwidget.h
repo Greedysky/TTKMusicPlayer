@@ -78,7 +78,7 @@ protected:
     /*!
      * Create init interface lables.
      */
-    MIntList foundCheckedItem();
+    MusicObject::MIntList foundCheckedItem();
     /*!
      * Found which items is checked.
      */

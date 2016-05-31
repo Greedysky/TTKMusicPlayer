@@ -102,7 +102,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
     }
 
     ui->fuzzyButton->isChecked();
-    QStringList list = QDir(LRC_DOWNLOAD_AL).entryList(QDir::Files |  QDir::Hidden |
+    QStringList list = QDir(LRC_DIR_FULL).entryList(QDir::Files |  QDir::Hidden |
                                                        QDir::NoSymLinks | QDir::NoDotAndDotDot);
     LocalDataItems items;
     foreach(QString var, list)
@@ -111,7 +111,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
         {
             LocalDataItem item;
             item.m_name = var;
-            item.m_path = LRC_DOWNLOAD_AL + var;
+            item.m_path = LRC_DIR_FULL + var;
             items << item;
         }
     }

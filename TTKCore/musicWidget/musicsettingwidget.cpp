@@ -255,8 +255,8 @@ void MusicSettingWidget::initDownloadWidget()
     ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     ui->downloadSpinBox->setRange(1024, 5*1024);
-    ui->downloadDirEdit->setText(MUSIC_DOWNLOAD_AL);
-    ui->downloadLrcDirEdit->setText(LRC_DOWNLOAD_AL);
+    ui->downloadDirEdit->setText(MUSIC_DIR_FULL);
+    ui->downloadLrcDirEdit->setText(LRC_DIR_FULL);
     QStringList downloadSpeed;
     downloadSpeed << "100" << "200" << "300" << "400" << "500" << "600"
                   << "700" << "800" << "900" << "1000" << "1100" << "1200";

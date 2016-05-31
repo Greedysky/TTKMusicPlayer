@@ -88,8 +88,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
-       if( QFile::exists(LRC_DOWNLOAD_AL + filename + LRC_FILE) ||
-           QFile::exists(LRC_DOWNLOAD_AL + filename + KRC_FILE) )
+       if( QFile::exists(LRC_DIR_FULL + filename + LRC_FILE) ||
+           QFile::exists(LRC_DIR_FULL + filename + KRC_FILE) )
        {
            return;
        }
@@ -118,7 +118,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         showDownLoadInfoFor(MusicObject::DisConnection);
         return;
     }
-    MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
+    MusicObject::MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
@@ -126,8 +126,8 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         QString artistName = filename.split('-').front().trimmed();
         QString songName = filename.split('-').back().trimmed();
 
-        MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(MusicSongInfomation var, musicSongInfos)
+        MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
+        foreach(MusicObject::MusicSongInfomation var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )
@@ -139,16 +139,16 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 
         ///download lrc
         MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl,
-                                 LRC_DOWNLOAD_AL + filename + LRC_FILE,
+                                 LRC_DIR_FULL + filename + LRC_FILE,
                                  MusicDownLoadThreadAbstract::Download_Lrc, this);
         lrc->startToDownload();
 
         ///download art picture
 #ifndef USE_MULTIPLE_QUERY
-        (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + artistName + SKN_FILE,
+        (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #else
-        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + artistName + SKN_FILE,
+        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #endif
         ///download big picture

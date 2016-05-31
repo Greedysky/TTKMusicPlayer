@@ -25,7 +25,7 @@ public:
      */
     virtual ~MusicConnectTransferTableWidget();
 
-    MIntList getSelectedItems() const;
+    MusicObject::MIntList getSelectedItems() const;
     /*!
      * Get selected items.
      */

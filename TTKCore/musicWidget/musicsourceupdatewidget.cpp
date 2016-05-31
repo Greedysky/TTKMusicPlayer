@@ -110,7 +110,7 @@ void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QStri
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(DOWNLOAD_URL, TMP_DOWNLOAD + QString(".7z"),
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(DOWNLOAD_URL, TEMPORARY_DIR + QString(".7z"),
                                                                     MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     download->startToDownload();

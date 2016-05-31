@@ -79,7 +79,7 @@ protected:
     Ui::MusicConnectTransferWidget *ui;
     int m_currentIndex;
     MusicSongs m_currentSongs;
-    MIntsListMap m_searchfileListCache;
+    MusicObject::MIntsListMap m_searchfileListCache;
 
 };
 

@@ -158,7 +158,7 @@ public Q_SLOTS:
     /*!
      * Player to stop.
      */
-    void setEqEffect(const MIntList &hz);
+    void setEqEffect(const MusicObject::MIntList &hz);
     /*!
      * Set current equalizer effect.
      */

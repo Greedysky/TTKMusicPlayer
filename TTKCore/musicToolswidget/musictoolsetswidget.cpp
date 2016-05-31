@@ -118,7 +118,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 2:
            {
 #ifdef Q_OS_WIN
-                if(!QFile(MAKE_RING_AL).exists())
+                if(!QFile(MAKE_RING_FULL).exists())
                 {
                     MusicMessageBox message;
                     message.setText(tr("Lack of plugin file!"));
@@ -131,7 +131,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                     delete m_process;
                 }
                 m_process = new QProcess(this);
-                m_process->start(MAKE_RING_AL);
+                m_process->start(MAKE_RING_FULL);
 #endif
                 break;
            }

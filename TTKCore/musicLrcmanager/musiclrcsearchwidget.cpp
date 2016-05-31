@@ -66,7 +66,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
     ui->stateLabel->setText(tr("lrc is downloading now!"));
-    MIntList list = ui->tableWidget->getSelectedItems();
+    MusicObject::MIntList list = ui->tableWidget->getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;

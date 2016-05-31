@@ -107,7 +107,7 @@ Q_SIGNALS:
     /*!
      * Check is current play stack widget.
      */
-    void deleteItemAt(const MIntList &index, bool fileRemove);
+    void deleteItemAt(const MusicObject::MIntList &index, bool fileRemove);
     /*!
      * Delete items from indexs and check remove file or not.
      */

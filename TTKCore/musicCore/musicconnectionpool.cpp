@@ -80,8 +80,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == "MusicEqualizerDialog" && to == "MusicPlayer" )
     {
-        QObject::connect(first, SIGNAL(setEqEffect(MIntList)), second,
-                                SLOT(setEqEffect(MIntList)));
+        QObject::connect(first, SIGNAL(setEqEffect(MusicObject::MIntList)), second,
+                                SLOT(setEqEffect(MusicObject::MIntList)));
         QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second,
                                 SLOT(setEnaleEffect(bool)));
     }
@@ -157,8 +157,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == "MusicVideoControl" && to == "MusicVideoTableWidget" )
     {
-        QObject::connect(first, SIGNAL(getMusicMvInfo(MusicSongAttributes&)), second,
-                                SLOT(getMusicMvInfo(MusicSongAttributes&)));
+        QObject::connect(first, SIGNAL(getMusicMvInfo(MusicObject::MusicSongAttributes&)), second,
+                                SLOT(getMusicMvInfo(MusicObject::MusicSongAttributes&)));
         QObject::connect(first, SIGNAL(downloadLocalByControl()), second,
                                 SLOT(downloadLocalFromControl()));
     }

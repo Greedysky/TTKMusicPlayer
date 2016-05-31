@@ -222,7 +222,7 @@ void MusicVideoControl::barrageColorButtonClicked(int index)
 
 void MusicVideoControl::setQualityActionState()
 {
-    MusicSongAttributes data;
+    MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
     m_mvSd->setEnabled( findExistByBitrate(500) );
@@ -235,9 +235,9 @@ void MusicVideoControl::setQualityActionState()
 
 QString MusicVideoControl::findMVUrlByBitrate(int bitrate)
 {
-    MusicSongAttributes data;
+    MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicSongAttribute attr, data)
+    foreach(MusicObject::MusicSongAttribute attr, data)
     {
         if(attr.m_bitrate == bitrate)
         {
@@ -249,9 +249,9 @@ QString MusicVideoControl::findMVUrlByBitrate(int bitrate)
 
 int MusicVideoControl::findMVBitrateByUrl(const QString &url)
 {
-    MusicSongAttributes data;
+    MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicSongAttribute attr, data)
+    foreach(MusicObject::MusicSongAttribute attr, data)
     {
         if(attr.m_url == url)
         {
@@ -263,9 +263,9 @@ int MusicVideoControl::findMVBitrateByUrl(const QString &url)
 
 bool MusicVideoControl::findExistByBitrate(int bitrate)
 {
-    MusicSongAttributes data;
+    MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicSongAttribute attr, data)
+    foreach(MusicObject::MusicSongAttribute attr, data)
     {
         if(attr.m_bitrate == bitrate)
         {

@@ -139,7 +139,7 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
 
 bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 {
-    QPixmap originPath(QString(ART_DOWNLOAD_AL + name + SKN_FILE));
+    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_artPictureLabel->setPixmap(originPath.scaled(60, 60));

@@ -9,7 +9,7 @@ MusicLocalSongSearchRecordConfigManager::MusicLocalSongSearchRecordConfigManager
 
 void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecord &record)
 {
-    if( !writeConfig( MUSICSEARCH_AL ) )
+    if( !writeConfig( MUSICSEARCH_FULL ) )
     {
         return;
     }

@@ -45,7 +45,7 @@ public:
      * Data download to local file.
      * Subclass should implement this function.
      */
-    MIntList getSelectedItems() const;
+    MusicObject::MIntList getSelectedItems() const;
     /*!
      * Get selected items.
      */

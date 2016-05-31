@@ -83,7 +83,7 @@ void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 
 bool MusicRemoteWidgetForComplexStyle::showArtPicture(const QString &name)
 {
-    QPixmap originPath(QString(ART_DOWNLOAD_AL + name + SKN_FILE));
+    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_iconLabel->setPixmap(originPath.scaled(80, 80));

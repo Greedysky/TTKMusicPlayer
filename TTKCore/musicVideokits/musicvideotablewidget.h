@@ -63,7 +63,7 @@ public Q_SLOTS:
     /*!
      * Item has double clicked.
      */
-    void getMusicMvInfo(MusicSongAttributes &data);
+    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Get music mv information data.
      */

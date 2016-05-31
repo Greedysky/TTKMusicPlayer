@@ -59,7 +59,7 @@ public:
      * Get music songs file path by index.
      */
 
-    void setMusicSongsSearchedFileName(const MIntList &fileIndexs);
+    void setMusicSongsSearchedFileName(const MusicObject::MIntList &fileIndexs);
     /*!
      * Set current searched file indexs.
      */
@@ -102,7 +102,7 @@ public:
      */
 
 Q_SIGNALS:
-    void deleteItemAt(const MIntList &list, bool remove);
+    void deleteItemAt(const MusicObject::MIntList &list, bool remove);
     /*!
      * Delete items from indexs if in current stack widget.
      */
@@ -165,7 +165,7 @@ public Q_SLOTS:
     /*!
      * Add current selected song to play lists.
      */
-    void setDeleteItemAt(const MIntList &del, bool fileRemove);
+    void setDeleteItemAt(const MusicObject::MIntList &del, bool fileRemove);
     /*!
      * Delete items from indexs and check remove file or not.
      */
@@ -224,7 +224,7 @@ protected:
     int m_currentIndexs;
     int m_renameIndex;
     int m_searchFileListIndex;
-    MIntsListMap m_searchfileListCache;
+    MusicObject::MIntsListMap m_searchfileListCache;
     MusicSongsList m_musicFileNames;
     QList<MusicSongsListWidget*> m_mainSongLists;
     MusicSongsToolItemRenamedWidget *m_renameLine;

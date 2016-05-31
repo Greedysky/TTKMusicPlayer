@@ -34,7 +34,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
         return;
     }
     //Open wirte file
-    if( !writeConfig(MUSICPATH_AL) )
+    if( !writeConfig(MUSICPATH_FULL) )
     {
         return;
     }
@@ -156,7 +156,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
-    if( !writeConfig(COFIGPATH_AL) )
+    if( !writeConfig(COFIGPATH_FULL) )
     {
         return;
     }

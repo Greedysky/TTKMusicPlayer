@@ -8,7 +8,7 @@ MusicMyDownloadRecordConfigManager::MusicMyDownloadRecordConfigManager(QObject *
 
 void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecord &record)
 {
-    if( !writeConfig( DOWNLOADINFO_AL ) )
+    if( !writeConfig( DOWNLOADINFO_FULL ) )
     {
         return;
     }

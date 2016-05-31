@@ -182,7 +182,7 @@ void MusicTransformWidget::transformFinish()
             ui->listWidget->addItem(QFontMetrics(font()).elidedText(path, Qt::ElideLeft, LINE_WIDTH));
             ui->listWidget->setToolTip(path);
         }
-        if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_AL : MAKE_KRC2LRC_AL))
+        if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
         {
             return;
         }
@@ -253,7 +253,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
 void MusicTransformWidget::startTransform()
 {
-    QString func = (m_currentType == Music) ? MAKE_TRANSFORM_AL : MAKE_KRC2LRC_AL;
+    QString func = (m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL;
     if(!QFile(func).exists() || !processTransform(func))
     {
         return;
@@ -301,7 +301,7 @@ void MusicTransformWidget::setCheckedControl(bool enable)
 
 int MusicTransformWidget::exec()
 {
-    if(!QFile::exists(MAKE_TRANSFORM_AL) || !QFile::exists(MAKE_KRC2LRC_AL))
+    if(!QFile::exists(MAKE_TRANSFORM_FULL) || !QFile::exists(MAKE_KRC2LRC_FULL))
     {
         MusicMessageBox message;
         message.setText(tr("Lack of plugin file!"));

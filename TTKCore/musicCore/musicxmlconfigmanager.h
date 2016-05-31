@@ -24,11 +24,11 @@ public:
      * Object contsructor.
      */
 
-    inline bool readXMLConfig() { return readConfig(COFIGPATH_AL); }
+    inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH_AL); }
+    inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH_FULL); }
     /*!
      * Read music datas from xml file by given name.
      */

@@ -70,7 +70,7 @@ void MusicSimilarFoundWidget::setSongName(const QString &name)
 
 void MusicSimilarFoundWidget::queryAllFinished()
 {
-    MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/share/noSimilar"));
@@ -80,7 +80,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        foreach(MusicSongInfomation info, musicSongInfos)
+        foreach(MusicObject::MusicSongInfomation info, musicSongInfos)
         {
             DownloadData *data = new DownloadData;
             data->m_songName = info.m_songName;
@@ -89,7 +89,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
             data->m_picUrl = info.m_smallPicUrl;
             if(!info.m_songAttrs.isEmpty())
             {
-                MusicSongAttribute atrr = info.m_songAttrs.first();
+                MusicObject::MusicSongAttribute atrr = info.m_songAttrs.first();
                 data->m_songUrl = atrr.m_url;
                 data->m_format = atrr.m_format;
             }
@@ -197,9 +197,9 @@ void MusicSimilarFoundWidget::createLabels()
     m_mainWindow->layout()->addWidget(function);
 }
 
-MIntList MusicSimilarFoundWidget::foundCheckedItem()
+MusicObject::MIntList MusicSimilarFoundWidget::foundCheckedItem()
 {
-    MIntList list;
+    MusicObject::MIntList list;
     for(int i=0; i<m_checkBoxs.count(); ++i)
     {
         if(m_checkBoxs[i]->isChecked())
@@ -254,7 +254,7 @@ void MusicSimilarFoundWidget::addButtonClicked()
 
 void MusicSimilarFoundWidget::downloadDataFrom(bool play)
 {
-    MIntList list = foundCheckedItem();
+    MusicObject::MIntList list = foundCheckedItem();
     for(int i=0; i<list.count(); ++i)
     {
         if(!M_NETWORK_PTR->isOnline())
@@ -263,7 +263,7 @@ void MusicSimilarFoundWidget::downloadDataFrom(bool play)
         }
         DownloadData *data = m_likeDownloadDatas[ list[i] ];
         QString musicEnSong = MusicCryptographicHash().encrypt(data->m_songArtist + " - " + data->m_songName, DOWNLOAD_KEY);
-        QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(data->m_format);
+        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(data->m_format);
 
         QEventLoop loop(this);
         MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,

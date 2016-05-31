@@ -44,7 +44,7 @@ void MusicSongSharingWidget::setSongName(const QString &name)
 {
     ui->sharedName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 200));
 
-    QString path = ART_DOWNLOAD_AL + name.split('-').front().trimmed() + SKN_FILE;
+    QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
                                   ? path : ":/share/defaultArt").scaled(50, 50));
 
@@ -67,7 +67,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
         ///download art picture
         MusicData2DownloadThread *down = new MusicData2DownloadThread(
                     SML_BG_ART_URL.arg(infos.front().trimmed()),
-                    ART_DOWNLOAD_AL + TMP_DOWNLOAD,
+                    ART_DIR_FULL + TEMPORARY_DIR,
                     MusicDownLoadThreadAbstract::Download_SmlBG, this);
         connect(down, SIGNAL(data2urlHasChanged(QString)),
                       SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
@@ -117,7 +117,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
 void MusicSongSharingWidget::close()
 {
     ///remove temp file path
-    QFile::remove(ART_DOWNLOAD_AL + TMP_DOWNLOAD);
+    QFile::remove(ART_DIR_FULL + TEMPORARY_DIR);
     MusicAbstractMoveDialog::close();
 }
 

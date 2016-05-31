@@ -35,7 +35,7 @@ public:
     virtual ~MusicEqualizerDialog();
 
 Q_SIGNALS:
-    void setEqEffect(const MIntList &effect);
+    void setEqEffect(const MusicObject::MIntList &effect);
     /*!
      * Current equlizer parameters changed emit.
      */
@@ -99,7 +99,7 @@ protected:
     Ui::MusicEqualizerDialog *ui;
     bool m_eable;
     bool m_eqChoiceSelected;
-    MIntList m_equalizeValue;
+    MusicObject::MIntList m_equalizeValue;
     QSignalMapper *m_signalMapper;
 
 };

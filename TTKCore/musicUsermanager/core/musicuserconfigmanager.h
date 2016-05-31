@@ -30,7 +30,7 @@ public:
      * Object contsructor.
      */
 
-    inline bool readUserXMLConfig(){ return readConfig(USERPATH_AL); }
+    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
     /*!
      * Read user datas from xml file by given name.
      */

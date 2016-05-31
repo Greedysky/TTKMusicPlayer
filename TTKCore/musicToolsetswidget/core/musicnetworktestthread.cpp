@@ -59,7 +59,7 @@ void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(outputRecieved()));
     QStringList arguments;
     arguments << m_names.first() << "1";
-    m_process->start(MAKE_NETS_AL, arguments);
+    m_process->start(MAKE_NETS_FULL, arguments);
 #endif
 }
 

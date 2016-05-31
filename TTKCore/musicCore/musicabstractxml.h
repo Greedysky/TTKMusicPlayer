@@ -52,7 +52,7 @@ protected:
     /*!
      * Read xml attribute's text by tagName.
      */
-    MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
+    MusicObject::MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
      * Read xml attributes by tagName and default name "value".
      */

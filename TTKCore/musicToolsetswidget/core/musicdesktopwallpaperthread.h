@@ -26,7 +26,7 @@ public:
      */
     ~MusicDesktopWallpaperThread();
 
-    void setParamters(const MStriantMap &p);
+    void setParamters(const MusicObject::MStriantMap &p);
     /*!
      * Set paramters(Time\Type\Func\Close).
      */
@@ -55,7 +55,7 @@ protected:
     bool m_returnToOrigin;
     int m_currentImageIndex;
     int m_originType;
-    MStriantMap m_paramter;
+    MusicObject::MStriantMap m_paramter;
     QString m_originPath;
 
 };

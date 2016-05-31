@@ -73,7 +73,7 @@ void MusicDesktopWallpaperThread::run()
     }
 }
 
-void MusicDesktopWallpaperThread::setParamters(const MStriantMap &p)
+void MusicDesktopWallpaperThread::setParamters(const MusicObject::MStriantMap &p)
 {
     m_paramter = p;
 }

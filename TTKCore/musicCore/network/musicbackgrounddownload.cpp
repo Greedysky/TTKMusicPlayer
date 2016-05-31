@@ -41,7 +41,7 @@ void MusicBackgroundDownload::downLoadFinished(const QByteArray &data)
             line = line.remove("sp");
 
             M_LOGGER_ERROR(line);
-            MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(ART_BG_AL)
+            MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
                                     .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
                                     MusicDownLoadThreadAbstract::Download_BigBG, this);
             connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));

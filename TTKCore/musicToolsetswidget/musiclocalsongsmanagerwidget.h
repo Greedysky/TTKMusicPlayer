@@ -120,7 +120,7 @@ protected:
     QMovie *m_movie;
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;
-    MIntsListMap m_searchfileListCache;
+    MusicObject::MIntsListMap m_searchfileListCache;
 
 };
 

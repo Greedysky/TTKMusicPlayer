@@ -174,7 +174,7 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0)
     {
         MusicMessageBox message;
@@ -230,24 +230,24 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::DownLoading);
 
-    MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicSongInfomation musicSongInfo = musicSongInfos[row];
-    MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[row];
+    MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
     QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
-    QString downloadName = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(musicEnSong).arg(musicSongAttr.m_format);
+    QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
 
-//    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DOWNLOAD_AL + musicSong + LRC_FILE,
+//    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DIR_FULL + musicSong + LRC_FILE,
 //                                 MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
 #ifndef USE_MULTIPLE_QUERY
-    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
+    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                   MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #else
-    (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DOWNLOAD_AL + musicSongInfo.m_singerName + SKN_FILE,
+    (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
 #endif
     ///download big picture
@@ -364,7 +364,7 @@ void MusicSongSearchOnlineWidget::createToolWidget()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    MIntList list = m_searchTableWidget->getSelectedItems();
+    MusicObject::MIntList list = m_searchTableWidget->getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;

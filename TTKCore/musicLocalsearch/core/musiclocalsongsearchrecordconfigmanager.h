@@ -29,7 +29,7 @@ public:
      * Object contsructor.
      */
 
-    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_AL); }
+    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_FULL); }
     /*!
      * Read history search datas from xml file by given name.
      */

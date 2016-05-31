@@ -68,11 +68,11 @@ QString MusicAbstractXml::readXmlTextByTagName(const QString &tagName) const
     return nodelist.at(0).toElement().text();
 }
 
-MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
+MusicObject::MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
     QDomNamedNodeMap nodes = nodelist.at(0).toElement().attributes();
-    MStriantMap maps;
+    MusicObject::MStriantMap maps;
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomAttr attr = nodes.item(i).toAttr();

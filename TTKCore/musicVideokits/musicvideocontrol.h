@@ -68,7 +68,7 @@ Q_SIGNALS:
     /*!
      * Set video widget fullScreen or not.
      */
-    void getMusicMvInfo(MusicSongAttributes &data);
+    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Get music mv information data.
      */

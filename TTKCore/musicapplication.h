@@ -193,7 +193,7 @@ public Q_SLOTS:
      */
     /////////////////////////////////////////////
     ///This is a slot by MusicSongsSummarizied's signal emit
-    void setDeleteItemAt(const MIntList &index, bool remove);
+    void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);
     /*!
      * Delete items from indexs.
      */

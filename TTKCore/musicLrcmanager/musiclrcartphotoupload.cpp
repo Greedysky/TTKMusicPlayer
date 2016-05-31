@@ -73,7 +73,7 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
 
 void  MusicLrcArtPhotoUpload::uploadButtonClicked()
 {
-    QDir bgDir(ART_BG_AL);
+    QDir bgDir(BACKGROUND_DIR_FULL);
     int count = 0;
     QString name = ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
@@ -92,7 +92,7 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
         }
     }
 
-    QString fileName = QString("%1%2%3").arg(ART_BG_AL).arg(name).arg(count);
+    QString fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
     ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
     close();

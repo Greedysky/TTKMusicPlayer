@@ -149,7 +149,7 @@ protected:
 
     int m_currentLrcIndex;
     QString m_currentLrcFileName;
-    MIntStringMap m_lrcContainer;
+    MusicObject::MIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
     MusicTranslationThread *m_translationThread;
 

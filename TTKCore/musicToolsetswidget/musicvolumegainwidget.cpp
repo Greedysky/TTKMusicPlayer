@@ -175,7 +175,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
             m_currentIndex = i;
             QEventLoop loop(this);
             connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-            m_process->start(MAKE_GAIN_AL, QStringList() << m_paths[i]);
+            m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths[i]);
             loop.exec();
         }
         setControlEnable(true);
@@ -201,7 +201,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
 
                 QEventLoop loop(this);
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-                m_process->start(MAKE_GAIN_AL, QStringList() << m_paths.last());
+                m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths.last());
                 loop.exec();
             }
         }
@@ -253,7 +253,7 @@ void MusicVolumeGainWidget::applyButtonClicked()
     {
         QEventLoop loop(this);
         connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
-        m_process->start(MAKE_GAIN_AL, QStringList() << "-g" <<
+        m_process->start(MAKE_GAIN_FULL, QStringList() << "-g" <<
                          ui->tableWidget->item(i, 2)->text() << m_paths[i]);
         ui->progressBarAll->setValue(i + 1);
         loop.exec();
@@ -329,7 +329,7 @@ void MusicVolumeGainWidget::applyOutput()
 
 int MusicVolumeGainWidget::exec()
 {
-    if(!QFile::exists(MAKE_GAIN_AL))
+    if(!QFile::exists(MAKE_GAIN_FULL))
     {
         MusicMessageBox message;
         message.setText(tr("Lack of plugin file!"));

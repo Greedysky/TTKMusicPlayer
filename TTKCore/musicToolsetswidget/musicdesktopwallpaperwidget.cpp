@@ -45,7 +45,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
 
 MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 {
-    QFile file(QString("%1%2").arg(TMP_DOWNLOAD).arg(JPG_FILE));
+    QFile file(QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE));
     if(file.exists())
     {
         file.remove();
@@ -181,7 +181,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
     {
         case 0:
         {
-            m_path << QString("%1%2").arg(TMP_DOWNLOAD).arg(JPG_FILE);
+            m_path << QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE);
             MusicDataDownloadThread *background = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
                                                       m_path[0], MusicDownLoadThreadAbstract::Download_BigBG, this);
             connect(background, SIGNAL(downLoadDataChanged(QString)), SLOT(parameterFinished()));
@@ -199,7 +199,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
 
 void MusicDesktopWallpaperWidget::parameterFinished()
 {
-    MStriantMap para;
+    MusicObject::MStriantMap para;
     para.insert("Mode", m_currentMode);
     para.insert("Path", m_path);
     para.insert("Effect", ui->pictureEffect->currentIndex());

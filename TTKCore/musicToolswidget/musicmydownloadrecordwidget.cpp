@@ -111,21 +111,21 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
        return;
     }
 
-    MIntSet deletedRow; //if selected multi rows
+    MusicObject::MIntSet deletedRow; //if selected multi rows
     foreach(QTableWidgetItem *item, selectedItems())
     {
         deletedRow.insert(item->row());
     }
 
-    MIntList deleteList = deletedRow.toList();
+    MusicObject::MIntList deleteList = deletedRow.toList();
     qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
-        int ind = deleteList[i];
-        removeRow(ind); //Delete the current row
-        m_musicRecord.m_names.removeAt(ind);
-        m_musicRecord.m_paths.removeAt(ind);
-        m_musicRecord.m_sizes.removeAt(ind);
+        int index = deleteList[i];
+        removeRow(index); //Delete the current row
+        m_musicRecord.m_names.removeAt(index);
+        m_musicRecord.m_paths.removeAt(index);
+        m_musicRecord.m_sizes.removeAt(index);
         --m_loadRecordCount;
     }
 }
@@ -186,7 +186,7 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 {
     setRowCount( rowCount()  + 1);
     QString musicName = name;
-    musicName.remove(MUSIC_DOWNLOAD_AL).chop(4);
+    musicName.remove(MUSIC_DIR_FULL).chop(4);
 
     m_musicRecord.m_names << musicName;
     m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();

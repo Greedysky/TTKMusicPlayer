@@ -22,31 +22,31 @@ void MusicUtils::dirIsExist(const QString &name)
 
 void MusicUtils::checkTheDirectoryExist()
 {
-    dirIsExist(LRC_DOWNLOAD_AL);
-    dirIsExist(MUSIC_DOWNLOAD_AL);
-    dirIsExist(MOVIE_DOWNLOAD_AL);
-    dirIsExist(DATA_CACHED_AL);
-    dirIsExist(THEME_DOWNLOAD_AL);
-    dirIsExist(ART_DOWNLOAD_AL);
-    dirIsExist(TRANS_PLUGINS_AL);
-    dirIsExist(ART_BG_AL);
-    dirIsExist(TR_LANGUAGE_AL);
+    dirIsExist(LRC_DIR_FULL);
+    dirIsExist(MUSIC_DIR_FULL);
+    dirIsExist(MOVIE_DIR_FULL);
+    dirIsExist(CACHE_DIR_FULL);
+    dirIsExist(THEME_DIR_FULL);
+    dirIsExist(ART_DIR_FULL);
+    dirIsExist(PLUGINS_DIR_FULL);
+    dirIsExist(BACKGROUND_DIR_FULL);
+    dirIsExist(LANGUAGE_DIR_FULL);
 }
 
 bool MusicUtils::checkTheFileExist()
 {
-    return QFile::exists(DOWNLOADINFO_AL) &&
-           QFile::exists(DARABASEPATH_AL) &&
-           QFile::exists(USERPATH_AL) &&
-           QFile::exists(COFIGPATH_AL) &&
-           QFile::exists(MUSICPATH_AL) &&
-           QFile::exists(MUSICSEARCH_AL) &&
-           QFile::exists(NETDADIOPATH_AL);
+    return QFile::exists(DOWNLOADINFO_FULL) &&
+           QFile::exists(DARABASEPATH_FULL) &&
+           QFile::exists(USERPATH_FULL) &&
+           QFile::exists(COFIGPATH_FULL) &&
+           QFile::exists(MUSICPATH_FULL) &&
+           QFile::exists(MUSICSEARCH_FULL) &&
+           QFile::exists(NETDADIOPATH_FULL);
 }
 
 QString MusicUtils::getLanguageName(int index)
 {
-    QString lan(TR_LANGUAGE_AL);
+    QString lan(LANGUAGE_DIR_FULL);
     switch(index)
     {
         case 0 : return lan.append("cn.ln");

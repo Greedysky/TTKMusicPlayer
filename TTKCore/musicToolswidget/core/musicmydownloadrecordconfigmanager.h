@@ -29,7 +29,7 @@ public:
      * Object contsructor.
      */
 
-    inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_AL); }
+    inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_FULL); }
     /*!
      * Read history download datas from xml file by given name.
      */

@@ -99,7 +99,7 @@ protected:
      */
 
     int m_currentIndex;
-    MIntSet m_selectNum;
+    MusicObject::MIntSet m_selectNum;
     QStringList m_artPath;
     QWidget *m_filmBGWidget;
     QCheckBox *m_checkBox;

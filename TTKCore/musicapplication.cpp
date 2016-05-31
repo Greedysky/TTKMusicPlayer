@@ -76,7 +76,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), m_musicSongTree, SLOT(setMusicPlayCount(int)));
 
-    connect(m_musicSongTree, SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
+    connect(m_musicSongTree, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
     connect(m_musicSongTree, SIGNAL(clearSearchText()), m_bottomAreaWidget, SLOT(clearSearchedText()));
     connect(m_musicSongTree, SIGNAL(updatePlayLists(QString)), m_musicList, SLOT(appendMedia(QString)));
     connect(m_musicSongTree, SIGNAL(updateMediaLists(QStringList, int)), m_musicList, SLOT(updateMediaLists(QStringList, int)));
@@ -785,7 +785,7 @@ void MusicApplication::musicCurrentPlayLocation()
     m_musicSongTree->selectRow(m_musicList->currentIndex());
 }
 
-void MusicApplication::setDeleteItemAt(const MIntList &index, bool remove)
+void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool remove)
 {
     if(index.isEmpty())
     {
@@ -866,7 +866,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     QString filename = getCurrentFileName();
-    QString path = QFile::exists(LRC_DOWNLOAD_AL + filename + LRC_FILE) ? (LRC_DOWNLOAD_AL + filename + LRC_FILE) : (LRC_DOWNLOAD_AL + filename + KRC_FILE);
+    QString path = QFile::exists(LRC_DIR_FULL + filename + LRC_FILE) ? (LRC_DIR_FULL + filename + LRC_FILE) : (LRC_DIR_FULL + filename + KRC_FILE);
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 }
 
@@ -893,7 +893,7 @@ void MusicApplication::updateCurrentArtist()
 void MusicApplication::musicCurrentLrcUpdated()
 {
     QString filename = getCurrentFileName();
-    QFile file(LRC_DOWNLOAD_AL + filename + LRC_FILE);
+    QFile file(LRC_DIR_FULL + filename + LRC_FILE);
     if(file.exists())
     {
         file.remove();
@@ -923,7 +923,7 @@ void MusicApplication::musicAddSongToLovestListAt()
 
     if(m_currentMusicSongTreeIndex == 1)
     {
-        setDeleteItemAt(MIntList() << index, false);
+        setDeleteItemAt(MusicObject::MIntList() << index, false);
     }
 
     MusicMessageBox message;

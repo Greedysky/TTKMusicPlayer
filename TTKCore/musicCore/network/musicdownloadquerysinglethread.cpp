@@ -90,7 +90,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                 }
                 QJsonObject object = value.toObject();
 
-                MusicSongInfomation musicInfo;
+                MusicObject::MusicSongInfomation musicInfo;
 
                 QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                 QString songName = object.take("song_name").toString();
@@ -107,7 +107,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                         if(m_queryAllRecords == true || (m_queryAllRecords == false &&
                            urlObject.value("typeDescription").toString() == m_searchQuality))
                         {
-                            MusicSongAttribute songAttr;
+                            MusicObject::MusicSongAttribute songAttr;
                             songAttr.m_url = urlObject.value("url").toString();
                             songAttr.m_size = urlObject.value("size").toString();
                             songAttr.m_format = urlObject.value("suffix").toString();
@@ -129,7 +129,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                         if(m_queryAllRecords == true || (m_queryAllRecords == false &&
                            urlObject.value("typeDescription").toString() == m_searchQuality))
                         {
-                            MusicSongAttribute songAttr;
+                            MusicObject::MusicSongAttribute songAttr;
                             songAttr.m_url = urlObject.value("url").toString();
                             songAttr.m_size = urlObject.value("size").toString();
                             songAttr.m_format = urlObject.value("suffix").toString();
@@ -166,7 +166,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                         foreach(QJsonValue url, mvUrls)
                         {
                             object = url.toObject();
-                            MusicSongAttribute songAttr;
+                            MusicObject::MusicSongAttribute songAttr;
                             songAttr.m_format = object.value("suffix").toString();
                             songAttr.m_bitrate = object.value("bitRate").toVariant().toInt();
                             songAttr.m_url = object.value("url").toString();
@@ -198,7 +198,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                         continue;
                     }
 
-                    MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInfomation musicInfo;
 
                     QString songId = QString::number(value.property("singer_id").toVariant().toULongLong());
                     QString songName = value.property("song_name").toString();
@@ -221,7 +221,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                             if(m_queryAllRecords == true || (m_queryAllRecords == false &&
                                audUrlsValue.property("typeDescription").toString() == m_searchQuality))
                             {
-                                MusicSongAttribute songAttr;
+                                MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = audUrlsValue.property("url").toString();
                                 songAttr.m_size = audUrlsValue.property("size").toString();
                                 songAttr.m_format = audUrlsValue.property("suffix").toString();
@@ -249,7 +249,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                             if(m_queryAllRecords == true || (m_queryAllRecords == false &&
                                llUrlsValue.property("typeDescription").toString() == m_searchQuality))
                             {
-                                MusicSongAttribute songAttr;
+                                MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = llUrlsValue.property("url").toString();
                                 songAttr.m_size = llUrlsValue.property("size").toString();
                                 songAttr.m_format = llUrlsValue.property("suffix").toString();
@@ -296,7 +296,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                                 {
                                     continue;
                                 }
-                                MusicSongAttribute songAttr;
+                                MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_bitrate = bitRate;
                                 songAttr.m_format = mvUrlValue.property("suffix").toString();
                                 songAttr.m_url = mvUrlValue.property("url").toString();

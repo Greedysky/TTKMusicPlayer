@@ -93,7 +93,7 @@ public:
     /*!
      * Return the current song container size.
      */
-    inline const MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
+    inline const MusicObject::MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
     /*!
      * Return the current song container.
      */
@@ -110,7 +110,7 @@ Q_SIGNALS:
      */
 
 protected:
-    MusicSongInfomations m_musicSongInfos;
+    MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QueryType m_currentType;
     bool m_queryAllRecords;

@@ -71,7 +71,7 @@ QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
     return QString();
 }
 
-void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicSongInfomation &info,
+void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info,
                                              const QString &size, int bit,
                                              const QString &url)
 {
@@ -84,7 +84,7 @@ void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicSongInfom
         }
 
         QString lastString = list.last();
-        MusicSongAttribute songAttr;
+        MusicObject::MusicSongAttribute songAttr;
         songAttr.m_url = url;
         songAttr.m_size = size.isEmpty() ? "- " : size;
 
@@ -138,7 +138,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
             }
             QJsonObject object = value.toObject();
 
-            MusicSongInfomation musicInfo;
+            MusicObject::MusicSongInfomation musicInfo;
             if(m_currentType != MovieQuery)
             {
                 QString songName = object.take("SongName").toString();
@@ -218,7 +218,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                     continue;
                 }
 
-                MusicSongInfomation musicInfo;
+                MusicObject::MusicSongInfomation musicInfo;
                 if(m_currentType != MovieQuery)
                 {
                     QString songName = value.property("SongName").toString();

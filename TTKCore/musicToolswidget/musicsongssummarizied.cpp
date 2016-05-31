@@ -45,7 +45,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
         connect(m_mainSongLists[i], SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
         connect(m_mainSongLists[i], SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
-        connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
+        connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
         connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
     }
@@ -74,7 +74,7 @@ void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)
     }
 }
 
-void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIndexs)
+void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MusicObject::MIntList &fileIndexs)
 {
     MusicSongs songs;
     foreach(int index, fileIndexs)
@@ -87,7 +87,7 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MIntList &fileIn
 
 void MusicSongsSummarizied::searchFileListCache(int index, const QString &text)
 {
-    MIntList searchResult;
+    MusicObject::MIntList searchResult;
     QStringList searchedSongs(getMusicSongsFileName(currentIndex()));
     for(int j=0; j<searchedSongs.count(); ++j)
     if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
@@ -111,7 +111,7 @@ bool MusicSongsSummarizied::searchFileListEmpty() const
 
 int MusicSongsSummarizied::getSearchFileListIndex(int row)
 {
-    MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
+    MusicObject::MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
     if(row >= list.count())
     {
         return -1;
@@ -235,7 +235,7 @@ void MusicSongsSummarizied::clearAllLists()
     }
 }
 
-void MusicSongsSummarizied::setDeleteItemAt(const MIntList &index, bool fileRemove)
+void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
 {
     if(index.count() == 0)
     {
@@ -294,7 +294,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
                                                   const QString &format, bool play)
 {
     QString musicSong = MusicCryptographicHash().decrypt(name, DOWNLOAD_KEY);
-    const QString path = QString("%1%2.%3").arg(DATA_CACHED_AL).arg(name).arg(format);
+    const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
     m_musicFileNames[MUSIC_NETWORK_LIST] << MusicSong(path, 0, time, musicSong);
     m_mainSongLists[MUSIC_NETWORK_LIST]->updateSongsFileName(m_musicFileNames[MUSIC_NETWORK_LIST]);
     if(m_currentIndexs == MUSIC_NETWORK_LIST)

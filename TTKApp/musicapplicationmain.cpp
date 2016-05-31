@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
 
     MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
-                              xml->readDownloadCacheLimit(), MUSIC_DOWNLOAD_AL);
+                              xml->readDownloadCacheLimit(), MUSIC_DIR_FULL);
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGER_INFO("End load translation");

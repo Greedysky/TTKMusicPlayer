@@ -228,7 +228,7 @@ void MusicBarrageWidget::setLabelTextSize(QLabel *label)
 
 void MusicBarrageWidget::readBarrage()
 {
-    QFile file(BARRAGEPATH_AL);
+    QFile file(BARRAGEPATH_FULL);
     if(file.open(QIODevice::ReadOnly))
     {
         m_barrageLists << QString(file.readAll()).split("\r\n");
@@ -245,7 +245,7 @@ void MusicBarrageWidget::readBarrage()
 
 void MusicBarrageWidget::writeBarrage()
 {
-    QFile file(BARRAGEPATH_AL);
+    QFile file(BARRAGEPATH_FULL);
     if(file.open(QIODevice::WriteOnly | QFile::Text))
     {
         QByteArray array;
