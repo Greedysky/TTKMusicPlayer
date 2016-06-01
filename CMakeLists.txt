@@ -67,7 +67,9 @@ include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGET_DIR}/core)
 include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
+include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/kugou)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/shortcut)
+include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qrencode)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
@@ -131,9 +133,6 @@ else()
   else()
     message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
   endif()
-
-else()
-  message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
 endif()
 
 

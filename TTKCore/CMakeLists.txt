@@ -12,6 +12,7 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
+    ${MUSIC_CORE_DIR}/network/musicnetworkabstract.h
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.h
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.h
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.h
@@ -29,6 +30,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.h
     ${MUSIC_CORE_DIR}/network/musicradiosongsthread.h
     ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.h
+    ${MUSIC_CORE_DIR}/network/musictranslationthread.h
     ${MUSIC_CORE_DIR}/musiclogger.h
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicuiobject.h
@@ -169,6 +171,7 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
+    ${MUSIC_CORE_DIR}/network/musicnetworkabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.cpp
     ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.cpp
     ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.cpp
@@ -186,6 +189,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.cpp
     ${MUSIC_CORE_DIR}/network/musicradiosongsthread.cpp
     ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.cpp
+    ${MUSIC_CORE_DIR}/network/musictranslationthread.cpp
     ${MUSIC_CORE_DIR}/musicutils.cpp
     ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
