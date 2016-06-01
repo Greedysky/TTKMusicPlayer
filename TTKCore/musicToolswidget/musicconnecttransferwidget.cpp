@@ -109,7 +109,7 @@ QString MusicConnectTransferWidget::getRemovableDrive()
     foreach(QFileInfo driver, drives)
     {
         QString path = driver.absoluteDir().absolutePath();
-        if(GetDriveType(path.toStdWString().c_str()) == DRIVE_REMOVABLE)
+        if(GetDriveTypeA(path.toStdString().c_str()) == DRIVE_REMOVABLE)
         {
             return path;
         }

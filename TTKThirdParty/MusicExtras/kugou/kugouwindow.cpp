@@ -1,8 +1,13 @@
 #include "kugouwindow.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+# include <QtWebKitWidgets/QWebView>
+# include <QtWebKitWidgets/QWebFrame>
+#else
+# include <QWebView>
+# include <QWebFrame>
+#endif
 #include <QBoxLayout>
-#include <QWebView>
-#include <QWebFrame>
 #include <QPushButton>
 #include <QButtonGroup>
 
