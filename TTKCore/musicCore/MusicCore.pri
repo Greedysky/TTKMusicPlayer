@@ -95,3 +95,9 @@ SOURCES += \
     $$PWD/musicsystemenvironment.cpp
 
 }
+
+HEADERS += \
+    $$PWD/network/musicvoicettsthread.h
+
+SOURCES += \
+    $$PWD/network/musicvoicettsthread.cpp

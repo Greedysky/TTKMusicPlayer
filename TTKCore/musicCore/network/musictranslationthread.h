@@ -67,6 +67,9 @@ public Q_SLOTS:
 
 protected:
     QString mapTypeFromEnumToString(TranslationType type);
+    /*!
+     * Map type from enum to string.
+     */
 
 };
 
