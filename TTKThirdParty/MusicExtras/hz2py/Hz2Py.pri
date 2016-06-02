@@ -10,23 +10,15 @@
 # * works are strictly forbiden.
 # =================================================
 
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+HEADERS  += \
+    $$PWD/pinyinresource.h \
+    $$PWD/chinesehelper.h \
+    $$PWD/pinyinhelper.h
+    
+SOURCES += \
+    $$PWD/pinyinresource.cpp \
+    $$PWD/chinesehelper.cpp \
+    $$PWD/pinyinhelper.cpp
 
-win32{
-    TARGET = ../../../bin/MusicExtras
-    msvc{
-        LIBS += -luser32
-    }
-}
-unix:TARGET = ../../lib/MusicExtras
-TEMPLATE = lib
 
-QMAKE_CXXFLAGS += -std=c++11
-
-HEADERS  += musicextrasglobaldefine.h
-
-include(shortcut/ShortCut.pri)
-include(kugou/KuGou.pri)
-include(qrencode/QRencode.pri)
-include(hz2py/Hz2Py.pri)
+RESOURCES += $$PWD/resource/Hz2Py.qrc
