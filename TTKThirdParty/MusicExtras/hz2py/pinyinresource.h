@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QMap>
+#include <QStringList>
 #include "musicextrasglobaldefine.h"
 
 /**
