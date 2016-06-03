@@ -95,45 +95,45 @@ bool PinyinHelper::hasMultiPinyin(char c)
     return false;
 }
 
-QString PinyinHelper::getShortPinyin(const QString &str)
-{
-    QString separator = "#";
-    QString sb;
+//QString PinyinHelper::getShortPinyin(const QString &str)
+//{
+//    QString separator = "#";
+//    QString sb;
 
-    QChar* charArray = new QChar[str.length()];
-    for(int i = 0, len = str.length(); i < len; i++)
-    {
-        QChar c = str[i];
-        if(!ChineseHelper::isChinese(c) && c != m_chineseLing)
-        {
-            charArray[i] = c;
-        }
-        else
-        {
-            int j = i + 1;
-            sb.append(c);
+//    QChar* charArray = new QChar[str.length()];
+//    for(int i = 0, len = str.length(); i < len; i++)
+//    {
+//        QChar c = str[i];
+//        if(!ChineseHelper::isChinese(c) && c != m_chineseLing)
+//        {
+//            charArray[i] = c;
+//        }
+//        else
+//        {
+//            int j = i + 1;
+//            sb.append(c);
 
-            while(j < len && (ChineseHelper::isChinese(str[j]) || str[j] == m_chineseLing))
-            {
-                sb.append(str[j]);
-                j++;
-            }
-            QString hanziPinyin = convertToPinyinString(sb, separator, WITHOUT_TONE);
-            QStringList pinyinArray = hanziPinyin.split(separator);
-            foreach (QString string, pinyinArray)
-            {
-                charArray[i] = string[0];
-                i++;
-            }
-            i--;
-            sb.clear();
-        }
-    }
-    QString ss(charArray);
-    delete[] charArray;
+//            while(j < len && (ChineseHelper::isChinese(str[j]) || str[j] == m_chineseLing))
+//            {
+//                sb.append(str[j]);
+//                j++;
+//            }
+//            QString hanziPinyin = convertToPinyinString(sb, separator, WITHOUT_TONE);
+//            QStringList pinyinArray = hanziPinyin.split(separator);
+//            foreach (QString string, pinyinArray)
+//            {
+//                charArray[i] = string[0];
+//                i++;
+//            }
+//            i--;
+//            sb.clear();
+//        }
+//    }
+//    QString ss(charArray);
+//    delete[] charArray;
 
-    return ss;
-}
+//    return ss;
+//}
 
 QStringList PinyinHelper::convertWithToneNumber(const QString &pinyinArrayString)
 {

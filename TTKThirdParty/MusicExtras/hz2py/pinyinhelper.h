@@ -65,7 +65,7 @@ public:
      * @param str String that needs to be converted
      * @return Corresponding to the first letter of the alphabet
      */
-    static QString getShortPinyin(const QString &str);
+//    static QString getShortPinyin(const QString &str);
 
 private:
     PinyinHelper() {}
