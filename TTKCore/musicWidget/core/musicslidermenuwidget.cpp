@@ -39,6 +39,7 @@ MusicSliderMenuWidget::MusicSliderMenuWidget(Qt::Orientation orientation, QWidge
     m_slider->setRange(0, 100);
     m_slider->setValue(100);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
+    hbox->setContentsMargins(0, 0, 0, 0);
 
     hbox->addWidget(m_textLabel);
     hbox->addWidget(m_slider);

@@ -495,6 +495,9 @@ void MusicLrcAnalysis::getTranslatedLrc()
     foreach(QString s, m_lrcContainer.values())
     {
         data.append(s);
+#ifdef Q_OS_LINUX
+        data.append("\r");
+#endif
     }
 
     m_translationThread->startToTranslation(MusicTranslationThread::Type_Auto,
