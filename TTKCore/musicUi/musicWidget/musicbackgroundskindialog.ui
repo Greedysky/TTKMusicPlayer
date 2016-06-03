@@ -7,63 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>570</width>
-    <height>410</height>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>皮肤与窗口调整</string>
   </property>
-  <widget class="QLabel" name="showPerArea">
-   <property name="geometry">
-    <rect>
-     <x>482</x>
-     <y>125</y>
-     <width>24</width>
-     <height>226</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(230,115,0);</string>
-   </property>
-   <property name="text">
-    <string>100%
-
-
-
-
-
-
-
- 50%
-
-
-
-
-
-
- 0%</string>
-   </property>
-  </widget>
-  <widget class="QSlider" name="bgTransparentSlider">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>130</y>
-     <width>20</width>
-     <height>225</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-  </widget>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>20</y>
      <width>530</width>
-     <height>370</height>
+     <height>380</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -111,6 +67,9 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>我的皮肤</string>
    </property>
@@ -124,29 +83,19 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>推荐皮肤</string>
-   </property>
-  </widget>
-  <widget class="QSlider" name="bgTransparentSliderR">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>130</y>
-     <width>20</width>
-     <height>225</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
    </property>
   </widget>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>35</x>
+     <x>40</x>
      <y>120</y>
-     <width>395</width>
+     <width>490</width>
      <height>235</height>
     </rect>
    </property>
@@ -178,6 +127,9 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>自定义皮肤</string>
    </property>
@@ -191,21 +143,11 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>调色板</string>
-   </property>
-  </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>370</y>
-     <width>510</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -214,27 +156,82 @@
      <x>20</x>
      <y>45</y>
      <width>530</width>
-     <height>345</height>
+     <height>355</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
   </widget>
+  <widget class="QToolButton" name="listTransparentButton">
+   <property name="geometry">
+    <rect>
+     <x>295</x>
+     <y>365</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+  </widget>
+  <widget class="QLabel" name="listTransparentLabel">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>365</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>列表透明</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skinTransparentLabel">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>365</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>皮肤透明</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="skinTransparentButton">
+   <property name="geometry">
+    <rect>
+     <x>105</x>
+     <y>365</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
-  <zorder>showPerArea</zorder>
-  <zorder>bgTransparentSlider</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>mySkin</zorder>
   <zorder>netSkin</zorder>
-  <zorder>bgTransparentSliderR</zorder>
   <zorder>stackedWidget</zorder>
   <zorder>line</zorder>
   <zorder>customSkin</zorder>
   <zorder>paletteButton</zorder>
-  <zorder>line_2</zorder>
+  <zorder>listTransparentLabel</zorder>
+  <zorder>skinTransparentLabel</zorder>
+  <zorder>listTransparentButton</zorder>
+  <zorder>skinTransparentButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

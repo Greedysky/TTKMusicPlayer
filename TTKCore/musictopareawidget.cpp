@@ -123,6 +123,10 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
     {
         return;
     }
+    if(m_musicbgskin)
+    {
+        m_musicbgskin->setSkinTransToolText(index);
+    }
     m_alpha = index;//save the alpha
     drawWindowBackgroundRect();
 }
@@ -188,6 +192,10 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 
 void MusicTopAreaWidget::musicPlayListTransparent(int index)
 {
+    if(m_musicbgskin)
+    {
+        m_musicbgskin->setListTransToolText(index);
+    }
     emit setTransparent(m_listAlpha = index);
 }
 

@@ -16,9 +16,9 @@
 #include "musicglobaldefine.h"
 
 class QLabel;
-class QSlider;
 class QToolButton;
 class QPushButton;
+class MusicSliderMenuWidget;
 class MusicMovingLabelSlider;
 
 /*! @brief The class of the video controller.
@@ -163,9 +163,9 @@ protected:
      */
 
     bool m_widgetPopup;
-    QMenu m_popupVolume, m_popupQuality, m_popupBarrage;
+    QMenu m_popupQuality, m_popupBarrage;
     MusicMovingLabelSlider *m_timeSlider;
-    QSlider *m_volumeSlider;
+    MusicSliderMenuWidget *m_volumeSliderMenu;
     QToolButton *m_menuButton, *m_volumeButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;

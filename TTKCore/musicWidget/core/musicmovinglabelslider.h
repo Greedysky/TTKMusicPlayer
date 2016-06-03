@@ -24,8 +24,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMovingLabelSlider(Qt::Orientation orientation,
-                                    QWidget *parent = 0);
+    explicit MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent = 0);
     /*!
      * Object contsructor by slider orientation.
      */

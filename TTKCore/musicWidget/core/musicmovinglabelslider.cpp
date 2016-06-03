@@ -7,8 +7,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)
 
 }
 
-MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation,
-                                               QWidget *parent)
+MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent)
     : QSlider(orientation, parent)
 {
     setMouseTracking(true);

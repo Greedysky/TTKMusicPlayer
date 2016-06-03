@@ -16,6 +16,7 @@ class MusicBackgroundSkinDialog;
 }
 
 class QListWidgetItem;
+class MusicSliderMenuWidget;
 
 /*! @brief The class of the local background widget.
  * @author Greedysky <greedysky@163.com>
@@ -41,6 +42,15 @@ public:
     int getListBgSkinAlpha() const;
     /*!
      * Get kist bg skin alpha.
+     */
+
+    void setSkinTransToolText(int value);
+    /*!
+     * Set skin transparent tool text.
+     */
+    void setListTransToolText(int value);
+    /*!
+     * Set list transparent tool text.
      */
 
 Q_SIGNALS:
@@ -90,6 +100,7 @@ protected:
      */
 
     Ui::MusicBackgroundSkinDialog *ui;
+    MusicSliderMenuWidget *m_listTransMenu, *m_skinTransMenu;
 
 };
 

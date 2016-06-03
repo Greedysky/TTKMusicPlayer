@@ -3,6 +3,7 @@
 #include "musicobject.h"
 #include "musicbackgroundmanager.h"
 #include "musicutils.h"
+#include "musicslidermenuwidget.h"
 
 #include <QFileDialog>
 #include <QColorDialog>
@@ -13,10 +14,14 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->showPerArea->setWordWrap(true);
-    ui->bgTransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
-    ui->bgTransparentSliderR->setStyleSheet(MusicUIObject::MSliderStyle02);
-    ui->bgTransparentSliderR->setValue(100);
+    m_listTransMenu = new MusicSliderMenuWidget(this);
+    m_skinTransMenu = new MusicSliderMenuWidget(this);
+    ui->listTransparentButton->setPopupMode(QToolButton::InstantPopup);
+    ui->listTransparentButton->setMenu(m_listTransMenu);
+    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
+    ui->skinTransparentButton->setPopupMode(QToolButton::InstantPopup);
+    ui->skinTransparentButton->setMenu(m_skinTransMenu);
+    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -26,16 +31,16 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-#ifdef Q_OS_UNIX
-    ui->showPerArea->setText("100%\n\n\n\n\n\n\n\n\n\n 50%\n\n\n\n\n\n\n\n\n\n 0%");
-    MusicUtils::setLabelFont(ui->showPerArea, 7);
-#endif
+//#ifdef Q_OS_UNIX
+//    ui->showPerArea->setText("100%\n\n\n\n\n\n\n\n\n\n 50%\n\n\n\n\n\n\n\n\n\n 0%");
+//    MusicUtils::setLabelFont(ui->showPerArea, 7);
+//#endif
     addThemeListWidgetItem();
 
-    connect(ui->bgTransparentSlider, SIGNAL(valueChanged(int)), parent,
-                                     SLOT(musicBgTransparentChanged(int)));
-    connect(ui->bgTransparentSliderR, SIGNAL(valueChanged(int)), parent,
-                                      SLOT(musicPlayListTransparent(int)));
+    connect(m_skinTransMenu, SIGNAL(valueChanged(int)), parent,
+                             SLOT(musicBgTransparentChanged(int)));
+    connect(m_listTransMenu, SIGNAL(valueChanged(int)), parent,
+                             SLOT(musicPlayListTransparent(int)));
     connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),
                                  SLOT(itemUserClicked(QListWidgetItem*)));
     connect(ui->remoteWidget, SIGNAL(showCustomSkin(QString)), SLOT(showCustomSkin(QString)));
@@ -50,6 +55,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 {
+    delete m_listTransMenu;
+    delete m_skinTransMenu;
     delete ui;
 }
 
@@ -69,8 +76,10 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
 {
     ui->themeListWidget->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
-    ui->bgTransparentSlider->setValue(alpha);
-    ui->bgTransparentSliderR->setValue(listAlpha);
+    m_skinTransMenu->setValue(alpha);
+    m_listTransMenu->setValue(listAlpha);
+    setSkinTransToolText(alpha);
+    setListTransToolText(listAlpha);
 }
 
 void MusicBackgroundSkinDialog::updateBackground()
@@ -81,7 +90,17 @@ void MusicBackgroundSkinDialog::updateBackground()
 
 int MusicBackgroundSkinDialog::getListBgSkinAlpha() const
 {
-    return ui->bgTransparentSliderR->value();
+    return m_listTransMenu->getValue();
+}
+
+void MusicBackgroundSkinDialog::setSkinTransToolText(int value)
+{
+    ui->skinTransparentButton->setText(QString("%1%").arg(value));
+}
+
+void MusicBackgroundSkinDialog::setListTransToolText(int value)
+{
+    ui->listTransparentButton->setText(QString("%1%").arg(value));
 }
 
 void MusicBackgroundSkinDialog::changeToMySkin()
@@ -107,7 +126,6 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
     image.fill(paletteColor);
     if(image.save(palettePath))
     {
-        //add item to listwidget
         ui->themeListWidget->createItem(QString("theme-%1")
                    .arg(ui->themeListWidget->count() + 1),
                    QIcon(QPixmap::fromImage(image).scaled(90, 70)));

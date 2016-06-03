@@ -99,16 +99,16 @@ namespace MusicUIObject
 ///ToolButton
 //////////////////////////////////////////////////////
     const QString MToolButtonStyle01 = " \
-            QToolButton{background-color:transparent;}";
+            QToolButton{ background-color:transparent;}";
 
     const QString MToolButtonStyle02 = " \
             QToolButton::hover{ border:1px solid #000000;}";
             
     const QString MToolButtonStyle03 = MToolButtonStyle01 + " \
-            QToolButton::hover{background-color:rgba(255,255,255,20)}";
+            QToolButton::hover{ background-color:rgba(255,255,255,20)}";
 
     const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
-            QToolButton::menu-indicator{image:None;}";
+            QToolButton::menu-indicator{ image:None;}";
 
     const QString MToolButtonStyle05 = MToolButtonStyle01 + " \
             QToolButton{border:none;}\
@@ -129,7 +129,11 @@ namespace MusicUIObject
     const QString MToolButtonStyle09 = MToolButtonStyle04 + " \
             QToolButton{background-image:url(':/quality/bg');border:none; \
             font-weight:bold; color:white}";
-           
+
+    const QString MToolButtonStyle10 = " \
+            QToolButton{ border: 1px solid gray;background:#EEEEEE;} \
+            QToolButton::hover{ border: 1px solid #AAAAFF; color: rgba(255,255,255)}";
+
 ///ToolBox
 //////////////////////////////////////////////////////
     const QString MToolBoxStyle01 = " \
