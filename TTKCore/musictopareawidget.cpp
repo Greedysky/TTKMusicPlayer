@@ -127,8 +127,21 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
     {
         m_musicbgskin->setSkinTransToolText(index);
     }
-    m_alpha = index;//save the alpha
+    m_alpha = index;    //save the alpha
     drawWindowBackgroundRect();
+}
+
+void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
+{
+    if(m_musicbgskin)
+    {
+        m_musicbgskin->updateBackground(fileName);
+    }
+    if(m_ui->SurfaceStackedWidget->currentIndex() == 2)
+    {
+        return;
+    }
+    drawWindowBackgroundRectString(fileName);
 }
 
 void MusicTopAreaWidget::musicBgTransparentChanged()
@@ -136,9 +149,9 @@ void MusicTopAreaWidget::musicBgTransparentChanged()
     musicBgTransparentChanged(m_alpha);
 }
 
-void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &filename)
+void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 {
-    m_currentBgSkin = filename;
+    m_currentBgSkin = fileName;
     musicBgTransparentChanged();
 }
 
@@ -154,7 +167,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect()
     M_BACKGROUND_PTR->setMBackground(path);
     if(m_musicbgskin)
     {
-        m_musicbgskin->updateBackground();
+        m_musicbgskin->updateBackground(path);
     }
     m_pictureCarouselTimer.stop();
     drawWindowBackgroundRectString(path);

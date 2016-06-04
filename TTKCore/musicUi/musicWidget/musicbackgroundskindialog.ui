@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>420</height>
+    <width>660</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>530</width>
-     <height>380</height>
+     <width>620</width>
+     <height>385</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>525</x>
+     <x>615</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -93,9 +93,9 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>37</x>
      <y>120</y>
-     <width>490</width>
+     <width>585</width>
      <height>235</height>
     </rect>
    </property>
@@ -110,7 +110,7 @@
     <rect>
      <x>29</x>
      <y>105</y>
-     <width>510</width>
+     <width>600</width>
      <height>5</height>
     </rect>
    </property>
@@ -121,10 +121,10 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>70</y>
-     <width>80</width>
-     <height>30</height>
+     <x>550</x>
+     <y>365</y>
+     <width>70</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="cursor">
@@ -137,10 +137,10 @@
   <widget class="QPushButton" name="paletteButton">
    <property name="geometry">
     <rect>
-     <x>375</x>
-     <y>70</y>
-     <width>80</width>
-     <height>30</height>
+     <x>465</x>
+     <y>365</y>
+     <width>70</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="cursor">
@@ -155,8 +155,8 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>530</width>
-     <height>355</height>
+     <width>620</width>
+     <height>360</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -166,7 +166,7 @@
   <widget class="QToolButton" name="listTransparentButton">
    <property name="geometry">
     <rect>
-     <x>295</x>
+     <x>265</x>
      <y>365</y>
      <width>70</width>
      <height>25</height>
@@ -179,7 +179,7 @@
   <widget class="QLabel" name="listTransparentLabel">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>365</y>
      <width>60</width>
      <height>25</height>

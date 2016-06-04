@@ -35,7 +35,7 @@ public:
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
-    void updateBackground();
+    void updateBackground(const QString &text);
     /*!
      * Update this bg when user change the current bg.
      */
@@ -58,6 +58,10 @@ Q_SIGNALS:
     /*!
      * Update app bg when user change the current bg emit.
      */
+    void currentColorChanged(const QString &path);
+    /*!
+     * Update app bg when user change the current bg emit.
+     */
 
 public Q_SLOTS:
     void changeToMySkin();
@@ -69,6 +73,10 @@ public Q_SLOTS:
      * Change index to remote skin.
      */
     void showPaletteDialog();
+    /*!
+     * Change index to palette dialog.
+     */
+    void showPaletteDialog(const QString &path);
     /*!
      * Change index to palette dialog.
      */

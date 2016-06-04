@@ -105,7 +105,11 @@ public Q_SLOTS:
     /*!
      * Current background transparent changed by index.
      */
-    void musicBackgroundSkinChanged(const QString &filename);
+    void musicBgTransparentChanged(const QString &fileName);
+    /*!
+     * Current background transparent changed by string.
+     */
+    void musicBackgroundSkinChanged(const QString &fileName);
     /*!
      * Current background skin changed by new path.
      */

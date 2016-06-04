@@ -1,12 +1,12 @@
 #include "musicbackgroundskindialog.h"
 #include "ui_musicbackgroundskindialog.h"
-#include "musicobject.h"
 #include "musicbackgroundmanager.h"
-#include "musicutils.h"
 #include "musicslidermenuwidget.h"
+#include "musicbackgroundpalettewidget.h"
+#include "musicobject.h"
+#include "musicutils.h"
 
 #include <QFileDialog>
-#include <QColorDialog>
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -31,10 +31,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-//#ifdef Q_OS_UNIX
-//    ui->showPerArea->setText("100%\n\n\n\n\n\n\n\n\n\n 50%\n\n\n\n\n\n\n\n\n\n 0%");
-//    MusicUtils::setLabelFont(ui->showPerArea, 7);
-//#endif
+
     addThemeListWidgetItem();
 
     connect(m_skinTransMenu, SIGNAL(valueChanged(int)), parent,
@@ -51,6 +48,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(this, SIGNAL(currentTextChanged(QString)), parent,
                   SLOT(musicBackgroundSkinChanged(QString)));
+    connect(this, SIGNAL(currentColorChanged(QString)), parent,
+                  SLOT(musicBgTransparentChanged(QString)));
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
@@ -82,9 +81,9 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     setListTransToolText(listAlpha);
 }
 
-void MusicBackgroundSkinDialog::updateBackground()
+void MusicBackgroundSkinDialog::updateBackground(const QString &text)
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
+    QPixmap pix(text);
     ui->background->setPixmap(pix.scaled( size() ));
 }
 
@@ -115,28 +114,19 @@ void MusicBackgroundSkinDialog::changeToNetSkin()
 
 void MusicBackgroundSkinDialog::showPaletteDialog()
 {
-    QColor paletteColor = QColorDialog::getColor(Qt::white, this);
-    if(!paletteColor.isValid())
-    {
-        return;
-    }
-    QImage image(16, 16, QImage::Format_ARGB32);
-    QString palettePath = QString("%1theme-%2%3").arg(THEME_DIR_FULL)
-                          .arg(ui->themeListWidget->count() + 1).arg(JPG_FILE);
-    image.fill(paletteColor);
-    if(image.save(palettePath))
-    {
-        ui->themeListWidget->createItem(QString("theme-%1")
-                   .arg(ui->themeListWidget->count() + 1),
-                   QIcon(QPixmap::fromImage(image).scaled(90, 70)));
+    MusicBackgroundPaletteWidget paletteWidget(this);
+    connect(&paletteWidget, SIGNAL(currentColorToFileChanged(QString)),
+                            SLOT(showPaletteDialog(QString)));
+    connect(&paletteWidget, SIGNAL(currentColorToMemoryChanged(QString)),
+                            SIGNAL(currentColorChanged(QString)));
+    paletteWidget.exec();
+}
 
-        QFile file(palettePath);
-        file.open(QIODevice::ReadOnly);
-        file.rename(QString("%1theme-%2%3").arg(THEME_DIR_FULL)
-                    .arg(ui->themeListWidget->count()).arg(SKN_FILE));
-        file.close();
-    }
-
+void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
+{
+    cpoyFileFromLocal( path );
+    itemUserClicked( ui->themeListWidget->item(ui->themeListWidget->indexOf(path)) );
+    emit currentColorChanged( path );
 }
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
@@ -148,6 +138,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
         return;
     }
     cpoyFileFromLocal( customSkinPath );
+    itemUserClicked( ui->themeListWidget->item(ui->themeListWidget->indexOf(customSkinPath)) );
 }
 
 void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
@@ -178,6 +169,6 @@ void MusicBackgroundSkinDialog::itemUserClicked(QListWidgetItem *item)
 
 int MusicBackgroundSkinDialog::exec()
 {
-    updateBackground();
+    updateBackground(M_BACKGROUND_PTR->getMBackground());
     return MusicAbstractMoveDialog::exec();
 }
