@@ -18,7 +18,7 @@ MusicBackgroundPalette::MusicBackgroundPalette(QWidget *parent)
 
 MusicBackgroundPalette::~MusicBackgroundPalette()
 {
-
+    QFile::remove(COLOR_FILE);
 }
 
 void MusicBackgroundPalette::setPixmap(const QColor &color)
@@ -159,6 +159,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
 
 MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
 {
+    QFile::remove(COLOR_FILE);
     if(!m_confirmButtonClicked)
     {
         emit currentColorToMemoryChanged( M_BACKGROUND_PTR->getMBackground() );
@@ -199,7 +200,6 @@ void MusicBackgroundPaletteWidget::showPaletteDialog()
         return;
     }
     currentColorToFile( m_currentColor = paletteColor );
-//    MStatic_cast(MusicBackgroundPalette*, m_widgets.first())->copyColorToFile(paletteColor);
 }
 
 void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
