@@ -52,7 +52,7 @@ qint64 MusicPlayer::position() const
 
 int MusicPlayer::volume() const
 {
-    return m_music->volume();
+    return isMuted() ? 0 : m_music->volume();
 }
 
 bool MusicPlayer::isMuted() const
