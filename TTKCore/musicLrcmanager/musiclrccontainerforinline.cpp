@@ -40,12 +40,12 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_showArtBackground = true;
     m_changeSpeedValue = 0;
 
-    m_lrcAnalysis = new MusicLrcAnalysis(this);
-    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
-
     initFunctionLabel();
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
+
+    m_lrcAnalysis = new MusicLrcAnalysis(this);
+    m_lrcFloatWidget = new MusicLrcFloatWidget(this);
 
     M_CONNECTION_PTR->setValue("MusicLrcContainerForInline", this);
 }

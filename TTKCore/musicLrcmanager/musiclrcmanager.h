@@ -105,8 +105,6 @@ public:
      * Set lrc font transparent by given valu.e
      */
 
-Q_SIGNALS:
-
 public Q_SLOTS:
     void setTimeOut();
     /*!
