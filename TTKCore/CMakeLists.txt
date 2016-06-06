@@ -138,6 +138,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.h
     ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.h
     ${MUSIC_WIDGET_DIR}/core/musiccodearea.h
+    ${MUSIC_WIDGET_DIR}/core/musicslidermenuwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
@@ -154,6 +155,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
+    ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
@@ -290,6 +292,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.cpp
     ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.cpp
     ${MUSIC_WIDGET_DIR}/core/musiccodearea.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicslidermenuwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
@@ -306,6 +309,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
@@ -345,6 +349,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserrecordwidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserwindow.ui
     ${MUSIC_UI_DIR}/musicWidget/musicbackgroundskindialog.ui
+   ${MUSIC_UI_DIR}/musicWidget/musicbackgroundpalettewidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicdownloadresetwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicdownloadwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicequalizerdialog.ui
