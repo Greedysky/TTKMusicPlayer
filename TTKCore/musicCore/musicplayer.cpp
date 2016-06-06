@@ -21,7 +21,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
 
     setEnaleEffect(false);
 
-    connect(&m_timer, SIGNAL(timeout()), SLOT(setTimeOut()));
+    connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
     M_CONNECTION_PTR->setValue("MusicPlayer", this);
 }
 
@@ -220,7 +220,7 @@ void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
     m_playlist = playlist;
 }
 
-void MusicPlayer::setTimeOut()
+void MusicPlayer::update()
 {
     emit positionChanged( position() );
 

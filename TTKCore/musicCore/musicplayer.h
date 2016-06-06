@@ -176,7 +176,7 @@ public Q_SLOTS:
      */
 
 private Q_SLOTS:
-    void setTimeOut();
+    void update();
     /*!
      * Player one second time out.
      */

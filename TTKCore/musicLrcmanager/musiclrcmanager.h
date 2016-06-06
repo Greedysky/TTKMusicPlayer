@@ -106,7 +106,7 @@ public:
      */
 
 public Q_SLOTS:
-    void setTimeOut();
+    void setUpdateMask();
     /*!
      * Time out to calculate lrc mask line length.
      */
