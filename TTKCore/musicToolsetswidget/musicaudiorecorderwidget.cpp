@@ -7,6 +7,8 @@
 #include <QMovie>
 #include <QFileDialog>
 
+#define RECORD_FILE "record.raw"
+
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicAudioRecorderWidget), m_mBuffer(BufferSize, 0)
@@ -69,7 +71,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     m_mpInputDevSound = nullptr;
 
     m_mpOutputFile = new QFile(this);
-    m_mpOutputFile->setFileName("record.raw");
+    m_mpOutputFile->setFileName( RECORD_FILE );
 
     m_mFormatFile.setSampleSize(16);
     m_mFormatFile.setSampleType(QAudioFormat::SignedInt);
@@ -106,6 +108,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
 
 MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 {
+    m_mpOutputFile->remove();
     delete m_mpOutputFile;
     delete m_movie;
     delete ui;
@@ -259,7 +262,7 @@ int MusicAudioRecorderWidget::addWavHeader(char *filename)
 
     FILE *fp_s = nullptr;
     FILE *fp_d = nullptr;
-    fp_s = fopen("record.raw", "rb");
+    fp_s = fopen(RECORD_FILE, "rb");
     if (fp_s == nullptr)
     {
         return -1;
