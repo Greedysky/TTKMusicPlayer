@@ -177,8 +177,14 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     {
         m_ui->musiclrccontainerforinline->stopLrcMask();
         m_ui->musiclrccontainerforinline->setCurrentSongName( name );
-        m_ui->musiclrccontainerforinline->transLyricFileToTime( path );
+
+        m_musiclrcfordesktop->stopLrcMask();
         m_musiclrcfordesktop->setCurrentSongName( name );
+
+        if(!m_ui->musiclrccontainerforinline->transLyricFileToTime( path ))
+        {
+            m_musiclrcfordesktop->updateCurrentLrc(tr("unFoundLrc"), QString(), 0);
+        }
     }
 }
 
