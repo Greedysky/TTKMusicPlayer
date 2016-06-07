@@ -111,6 +111,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     QToolButton *toolErrorLrcTextButton = new QToolButton(m_toolBarWidget);
     toolErrorLrcTextButton->setFixedSize(TOOLBAR_TEXT_LENGTH, TOOLBAR_HEIGHT);
     layout->addWidget(toolErrorLrcTextButton);
+    connect(toolErrorLrcTextButton, SIGNAL(clicked()), SLOT(theCurrentLrcError()));
 
     QToolButton *toolWindowLockedButton = new QToolButton(m_toolBarWidget);
     toolWindowLockedButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);

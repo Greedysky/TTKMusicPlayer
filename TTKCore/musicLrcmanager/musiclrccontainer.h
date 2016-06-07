@@ -102,6 +102,10 @@ public Q_SLOTS:
     /*!
      * Link current lrc state changed.
      */
+    void theCurrentLrcError();
+    /*!
+     * Show making error lrcs widget.
+     */
 
 protected:
     void createColorMenu(QMenu &menu);

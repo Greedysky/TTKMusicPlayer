@@ -2,7 +2,6 @@
 #include "musiclrcmanagerforinline.h"
 #include "musiclrcartphotoupload.h"
 #include "musiclrcfloatwidget.h"
-#include "musiclrcerrorwidget.h"
 #include "musiclrclocallinkwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
@@ -545,11 +544,6 @@ void MusicLrcContainerForInline::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
     clipBoard->setText(m_lrcAnalysis->getAllLrcs());
-}
-
-void MusicLrcContainerForInline::theCurrentLrcError()
-{
-    MusicLrcErrorWidget(this).exec();
 }
 
 void MusicLrcContainerForInline::showLocalLinkWidget()
