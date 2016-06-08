@@ -121,21 +121,21 @@ QPixmap MusicUtils::pixmapToRound(const QPixmap &src, const QRect &rect, int rat
 
 QString MusicUtils::size2Number(qint64 size)
 {
-    if( size < pow(1024, 1))
+    if( size < MH_KB2B)
     {
         return QString("%1").arg(size);
     }
-    else if( pow(1024, 1) <= size && size < pow(1024, 2))
+    else if( MH_KB2B <= size && size < MH_MB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/pow(1024, 1)*100)/100.0);
+        return QString("%1").arg((qint64)(size*1.0/MH_KB2B*100)/100.0);
     }
-    else if( pow(1024, 2) <= size && size < pow(1024, 3))
+    else if( MH_MB2B <= size && size < MH_GB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/pow(1024, 2)*100)/100.0);
+        return QString("%1").arg((qint64)(size*1.0/MH_MB2B*100)/100.0);
     }
-    else if( pow(1024, 3) <= size && size < pow(1024, 4))
+    else if( MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/pow(1024, 3)*100)/100.0);
+        return QString("%1").arg((qint64)(size*1.0/MH_GB2B*100)/100.0);
     }
     else
     {
@@ -156,19 +156,19 @@ QString MusicUtils::size2NumberInt(qint64 size)
 QString MusicUtils::size2Label(qint64 size)
 {
     QString label = size2Number(size);
-    if( size < pow(1024, 1))
+    if( size < MH_KB2B)
     {
         return QString("%1 Byte").arg(label);
     }
-    else if( pow(1024, 1) <= size && size < pow(1024, 2))
+    else if( MH_KB2B <= size && size < MH_MB2B)
     {
         return QString("%1 KByte").arg(label);
     }
-    else if( pow(1024, 2) <= size && size < pow(1024, 3))
+    else if( MH_MB2B <= size && size < MH_GB2B)
     {
         return QString("%1 MByte").arg(label);
     }
-    else if( pow(1024, 3) <= size && size < pow(1024, 4))
+    else if( MH_GB2B <= size && size < MH_TB2B)
     {
         return QString("%1 TByte").arg(label);
     }
@@ -190,19 +190,19 @@ QString MusicUtils::speed2LabelInt(qint64 size)
 
 QString MusicUtils::speed2LabelFromLabel(qint64 size, const QString &label)
 {
-    if( size < pow(1024, 1))
+    if( size < MH_KB2B)
     {
         return QString("%1 B/s").arg(label);
     }
-    else if( pow(1024, 1) <= size && size < pow(1024, 2))
+    else if( MH_KB2B <= size && size < MH_MB2B)
     {
         return QString("%1 KB/s").arg(label);
     }
-    else if( pow(1024, 2) <= size && size < pow(1024, 3))
+    else if( MH_MB2B <= size && size < MH_GB2B)
     {
         return QString("%1 MB/s").arg(label);
     }
-    else if( pow(1024, 2) <= size && size < pow(1024, 4))
+    else if( MH_GB2B <= size && size < MH_TB2B)
     {
         return QString("%1 TB/s").arg(label);
     }
@@ -214,17 +214,17 @@ QString MusicUtils::speed2LabelFromLabel(qint64 size, const QString &label)
 
 qreal MusicUtils::sizeByte2KByte(qint64 size)
 {
-    return size / 1024.0;
+    return size*1.0 / MH_KB;
 }
 
 qreal MusicUtils::sizeByte2MByte(qint64 size)
 {
-    return sizeByte2KByte(size) / 1024.0;
+    return sizeByte2KByte(size) / MH_MB;
 }
 
 qreal MusicUtils::sizeByte2TByte(qint64 size)
 {
-    return sizeByte2MByte(size) / 1024.0;
+    return sizeByte2MByte(size) / MH_GB;
 }
 
 quint64 MusicUtils::dirSize(const QString &dirName)

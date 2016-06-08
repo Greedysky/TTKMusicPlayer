@@ -2,6 +2,7 @@
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
+#include "musicnumberdefine.h"
 ///qmmp incldue
 #include "soundcore.h"
 ///
@@ -144,7 +145,7 @@ void MusicPlayer::play()
     if(m_currentMedia == m_playlist->currentMediaString() && state == Qmmp::Paused)
     {
         m_music->pause(); ///When the pause time for recovery
-        m_timer.start(1000);
+        m_timer.start(MT_S2MS);
         return;
     }
 
@@ -157,7 +158,7 @@ void MusicPlayer::play()
     }
 
     m_tryTimes = 0;
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
     ///Every second emits a signal change information
     emit positionChanged(0);
     getCurrentDuration();

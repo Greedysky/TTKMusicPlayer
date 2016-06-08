@@ -1,5 +1,6 @@
 #include "musiclrcfromkrc.h"
 #include "musiclogger.h"
+#include "musicnumberdefine.h"
 
 #ifdef Q_CC_GNU
 #   pragma GCC diagnostic ignored "-Wwrite-strings"
@@ -17,7 +18,7 @@ const wchar_t key[] = { L'@', L'G', L'a', L'w', L'^', L'2',
 
 MusicLrcFromKrc::MusicLrcFromKrc()
 {
-    m_resultBytes = new uchar[1024*1024];
+    m_resultBytes = new uchar[MH_MB2B];
 }
 
 MusicLrcFromKrc::~MusicLrcFromKrc()
@@ -121,7 +122,7 @@ int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
 
 int MusicLrcFromKrc::decompression(unsigned char *src, size_t srcsize, size_t *dstsize)
 {
-    *dstsize = 1024 * 1024;
+    *dstsize = MH_MB2B;
     if(Z_OK != uncompress(m_resultBytes, (uLongf*)dstsize, src, srcsize))
     {
         return -1;
@@ -201,7 +202,7 @@ void MusicLrcFromKrc::createLrc(unsigned char *lrc, int lrclen)
                             char ftime[14];
                             lrc[i + j] = 0;
                             ms = atoi((char*)&lrc[i + 1]);
-                            sprintf(ftime, "[%.2d:%.2d.%.2d]", (ms % (1000 * 60 * 60)) / (1000 * 60), (ms % (1000 * 60)) / 1000, (ms % (1000 * 60)) % 100);
+                            sprintf(ftime, "[%.2d:%.2d.%.2d]", (ms % MT_H2MS) / MT_M2MS, (ms % MT_M2MS) / MT_S2MS, (ms % MT_M2MS) % 100);
 
                             for(j = 0; j < 10; j++)
                             {

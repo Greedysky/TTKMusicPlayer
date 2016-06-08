@@ -14,6 +14,7 @@
 #include "musicregeditmanager.h"
 #include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
+#include "musicnumberdefine.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -72,7 +73,7 @@ void MusicApplicationObject::getParameterSetting()
 void MusicApplicationObject::windowStartAnimationOpacity()
 {
     m_animation = new QPropertyAnimation(m_supperClass, "windowOpacity");
-    m_animation->setDuration(1000);
+    m_animation->setDuration(MT_S2MS);
     m_animation->setStartValue(0);
     m_animation->setEndValue(1);
     m_animation->start();
@@ -81,11 +82,11 @@ void MusicApplicationObject::windowStartAnimationOpacity()
 void MusicApplicationObject::windowCloseAnimationOpacity()
 {
     m_animation->stop();
-    m_animation->setDuration(1000);
+    m_animation->setDuration(MT_S2MS);
     m_animation->setStartValue(1);
     m_animation->setEndValue(0);
     m_animation->start();
-    QTimer::singleShot(1000, qApp, SLOT(quit()));
+    QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
 }
 
 #if defined(Q_OS_WIN)

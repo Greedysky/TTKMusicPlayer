@@ -48,7 +48,7 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
 
     settingButton();
 
-    m_testTimer.setInterval(5*1000);
+    m_testTimer.setInterval(5*MT_S2MS);
     connect(&m_testTimer, SIGNAL(timeout()), SLOT(networkTestStop()));
 }
 

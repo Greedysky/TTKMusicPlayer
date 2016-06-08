@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     translator.load(MusicUtils::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
-    MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*1024*1024,
+    MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
                               xml->readDownloadCacheLimit(), MUSIC_DIR_FULL);
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;

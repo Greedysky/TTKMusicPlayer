@@ -34,7 +34,7 @@ void MusicDataDownloadThread::startToDownload()
 
 void MusicDataDownloadThread::startRequest(const QUrl &url)
 {
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
     QNetworkRequest request;
     request.setUrl(url);
 #ifndef QT_NO_SSL
@@ -104,7 +104,7 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
     /// only download music data can that show progress
     if(m_downloadType == Download_Music || m_downloadType == Download_Other)
     {
-        QString total = QString::number(bytesTotal*1.0/1024/1024);
+        QString total = QString::number(bytesTotal*1.0/MH_MB2B);
         total = total.left(total.indexOf(".") + 3) + "M";
         emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
     }

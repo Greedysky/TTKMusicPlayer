@@ -13,6 +13,7 @@ class QComboBox;
 
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicnumberdefine.h"
 
 /*! @brief The class of the utils object.
  * @author Greedysky <greedysky@163.com>

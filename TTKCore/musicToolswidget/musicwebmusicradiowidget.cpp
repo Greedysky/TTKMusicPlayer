@@ -23,7 +23,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
 
-    m_autoNextTimer.setInterval(3*1000);
+    m_autoNextTimer.setInterval(3*MT_S2MS);
     connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
     connect(ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
     connect(ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
@@ -284,7 +284,7 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
 
     m_autoNextTimer.stop();
     m_autoNextTimer.start();
-    ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*1000)));
+    ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS)));
 
     if(m_analysis->isEmpty())
     {
@@ -294,7 +294,7 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
     }
     int index = m_analysis->getCurrentIndex();
     qint64 time = m_analysis->findTime(index);
-    if(time < position*1000 && time != -1)
+    if(time < position*MT_S2MS && time != -1)
     {
         QString lrc;
         for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
@@ -321,7 +321,7 @@ void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
     {
         return;
     }
-    ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*1000)));
+    ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
 void MusicWebMusicRadioWidget::show()

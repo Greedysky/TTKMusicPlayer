@@ -90,7 +90,7 @@ void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory,
                             data, (int)m_videoWidget->winId());
-    QTimer::singleShot(5*1000, this, SLOT(stop()));
+    QTimer::singleShot(5*MT_S2MS, this, SLOT(stop()));
 }
 
 void MusicVideoView::resizeWindow(bool resize, const QSize &size)
@@ -165,7 +165,7 @@ void MusicVideoView::durationChanged(qint64 duration)
 
 void MusicVideoView::setPosition(int position)
 {
-    m_mediaPlayer->setPosition(position/1000);
+    m_mediaPlayer->setPosition(position/MT_S2MS);
 }
 
 void MusicVideoView::volumeChanged(int volume)

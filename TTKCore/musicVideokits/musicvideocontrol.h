@@ -14,6 +14,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicnumberdefine.h"
 
 class QLabel;
 class QToolButton;

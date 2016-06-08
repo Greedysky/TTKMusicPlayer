@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
+#include "musicnumberdefine.h"
 
 #include <QStyledItemDelegate>
 #include <QButtonGroup>
@@ -160,11 +161,11 @@ void MusicTimerWidget::setSongStringList(const QStringList &list)
 
 void MusicTimerWidget::initComboParameter()
 {
-    for(int i=0; i<24; ++i)
+    for(int i=0; i<MT_D; ++i)
     {
         m_hour << tr("%1H").arg(i);
     }
-    for(int i=0; i<60; ++i)
+    for(int i=0; i<MT_H; ++i)
     {
         m_second << tr("%1S").arg(i);
     }

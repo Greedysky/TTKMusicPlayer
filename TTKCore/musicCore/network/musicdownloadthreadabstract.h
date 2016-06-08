@@ -13,6 +13,7 @@
 #include <QTimer>
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
+#include "musicnumberdefine.h"
 
 //single query
 const QString MUSIC_REQUERY_URL = "http://search.dongting.com/song/search/old?q=%1&page=1&size=500";

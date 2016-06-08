@@ -1,4 +1,5 @@
 #include "musicroundanimationlabel.h"
+#include "musicnumberdefine.h"
 
 #include <QPainter>
 
@@ -46,9 +47,9 @@ void MusicRoundAnimationLabel::paintEvent(QPaintEvent *event)
     int cx = self.width() / 2;
     int cy = self.height() / 2;
 
-    if(++m_rotateAngle >= 360)
+    if(++m_rotateAngle >= MA_360)
     {
-        m_rotateAngle -= 360;
+        m_rotateAngle -= MA_360;
     }
 
     painter.save();

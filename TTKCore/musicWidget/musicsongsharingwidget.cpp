@@ -111,7 +111,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
 
     url.replace('#', "%23");
     MusicUtils::openUrl(url, false);
-    QTimer::singleShot(1000, this, SLOT(close()));
+    QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
 
 void MusicSongSharingWidget::close()

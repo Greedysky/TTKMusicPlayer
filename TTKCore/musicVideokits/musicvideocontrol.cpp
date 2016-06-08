@@ -111,12 +111,12 @@ MusicVideoControl::~MusicVideoControl()
 
 void MusicVideoControl::setValue(qint64 position) const
 {
-    m_timeSlider->setValue(position*1000);
+    m_timeSlider->setValue(position*MT_S2MS);
 }
 
 void MusicVideoControl::durationChanged(qint64 duration) const
 {
-    m_timeSlider->setRange(0, duration*1000);
+    m_timeSlider->setRange(0, duration*MT_S2MS);
 }
 
 void MusicVideoControl::setButtonStyle(bool style) const

@@ -23,7 +23,7 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 
 void MusicData2DownloadThread::startToDownload()
 {
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
     QNetworkRequest request;
     request.setUrl(m_url);
 #ifndef QT_NO_SSL

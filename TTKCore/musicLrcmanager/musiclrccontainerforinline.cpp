@@ -9,6 +9,7 @@
 #include "musiclrcanalysis.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
+#include "musicnumberdefine.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -467,14 +468,14 @@ void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
 {
     QString text = action->text();
     int timeValue = 0;
-    if(text == tr("lrcTimeFast0.5s")) timeValue = -500;
-    else if(text == tr("lrcTimeFast1s")) timeValue = -1000;
-    else if(text == tr("lrcTimeFast2s")) timeValue = -2000;
-    else if(text == tr("lrcTimeFast5s")) timeValue = -5000;
-    else if(text == tr("lrcTimeSlow0.5s")) timeValue = 500;
-    else if(text == tr("lrcTimeSlow1s")) timeValue = 1000;
-    else if(text == tr("lrcTimeSlow2s")) timeValue = 2000;
-    else if(text == tr("lrcTimeSlow5s")) timeValue = 5000;
+    if(text == tr("lrcTimeFast0.5s")) timeValue = -0.5*MT_S2MS;
+    else if(text == tr("lrcTimeFast1s")) timeValue = -MT_S2MS;
+    else if(text == tr("lrcTimeFast2s")) timeValue = -2*MT_S2MS;
+    else if(text == tr("lrcTimeFast5s")) timeValue = -5*MT_S2MS;
+    else if(text == tr("lrcTimeSlow0.5s")) timeValue = 0.5*MT_S2MS;
+    else if(text == tr("lrcTimeSlow1s")) timeValue = MT_S2MS;
+    else if(text == tr("lrcTimeSlow2s")) timeValue = 2*MT_S2MS;
+    else if(text == tr("lrcTimeSlow5s")) timeValue = 5*MT_S2MS;
 
     m_changeSpeedValue += timeValue;
     revertLrcTimeSpeed( timeValue );
@@ -507,11 +508,11 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     QString str;
     if(m_changeSpeedValue >= 0)
     {
-        str = tr("after%1s").arg(m_changeSpeedValue/1000.0);
+        str = tr("after%1s").arg(m_changeSpeedValue/MT_S2MS*1.0);
     }
     else
     {
-        str = tr("before%1s").arg(-m_changeSpeedValue/1000.0);
+        str = tr("before%1s").arg(-m_changeSpeedValue/MT_S2MS*1.0);
     }
     toast->setText(str);
     QPoint globalPoint = mapToGlobal(QPoint(0, 0));

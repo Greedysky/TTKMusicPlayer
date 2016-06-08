@@ -1,6 +1,7 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
 #include "musiclogger.h"
+#include "musicnumberdefine.h"
 
 #include <QProcess>
 
@@ -11,7 +12,7 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     m_playState = StoppedState;
     m_category = NullCategory;
 
-    m_timer.setInterval(1000);
+    m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 

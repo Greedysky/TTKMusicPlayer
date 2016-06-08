@@ -2,6 +2,7 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicconnectionpool.h"
+#include "musicnumberdefine.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -39,11 +40,11 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     connect(searchButton, SIGNAL(clicked()), SIGNAL(musicSearch()));
 
     m_currentAnimationValue = 1;
-    m_timer.setInterval(3*1000);
+    m_timer.setInterval(3*MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 
     m_animation = new QPropertyAnimation(this, "windowOpacity");
-    m_animation->setDuration(1000);
+    m_animation->setDuration(MT_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
     M_CONNECTION_PTR->setValue("MusicSongsSummariziedFloatWidget", this);

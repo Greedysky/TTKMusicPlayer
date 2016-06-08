@@ -106,7 +106,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
         m_file = nullptr;
         return;
     }
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
 
     m_request->setUrl(QUrl(url));
     m_reply = m_manager->get(*m_request);

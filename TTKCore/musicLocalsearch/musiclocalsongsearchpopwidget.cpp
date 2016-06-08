@@ -103,7 +103,7 @@ void MusicLocalSongSearchPopWidget::createItems()
 
 QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
-    qint64 t = (QDateTime::currentMSecsSinceEpoch() - time.toLongLong()) / 1000;
+    qint64 t = (QDateTime::currentMSecsSinceEpoch() - time.toLongLong()) / MT_S2MS;
     return MusicTime::normalTime2Label(t);
 }
 

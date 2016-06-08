@@ -14,7 +14,7 @@ MusicTime::MusicTime(qint64 value, Type type)
     : MusicTime()
 {
     m_defaultType = type;
-    fromTimeStamp(value, type == All_Sec ? 1 : 1000);
+    fromTimeStamp(value, type == All_Sec ? MT_S : MT_S2MS);
 }
 
 MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
@@ -43,20 +43,20 @@ void MusicTime::setHMSM(int day, int hour, int min, int sec, int msec)
     init();
 
     int delta = 0;
-    delta = msec >= 1000 ? msec / 1000 : 0;
-    m_msec = msec % 1000;
+    delta = msec >= MT_S2MS ? msec / MT_S2MS : 0;
+    m_msec = msec % MT_S2MS;
 
     sec += delta;
-    delta = sec >= 60 ? sec / 60 : 0;
-    m_sec = sec % 60;
+    delta = sec >= MT_M2S ? sec / MT_M2S : 0;
+    m_sec = sec % MT_M2S;
 
     min += delta;
-    delta = min >= 60 ? min / 60 : 0;
-    m_min = min % 60;
+    delta = min >= MT_H2M ? min / MT_H2M : 0;
+    m_min = min % MT_H2M;
 
     hour += delta;
-    m_day = hour >= 24 ? hour / 24 : 0;
-    m_hour = hour % 24;
+    m_day = hour >= MT_D2H ? hour / MT_D2H : 0;
+    m_hour = hour % MT_D2H;
 
     m_day += day;
 }
@@ -69,17 +69,17 @@ void MusicTime::fromTimeStamp(qint64 value, int delta)
         return;
     }
 
-    m_day = value/3600/24/delta;
-    value -= m_day*3600*24*delta;
+    m_day = value/MT_D2S/delta;
+    value -= m_day*MT_D2S*delta;
 
-    m_hour = value/3600/delta;
-    value -= m_hour*3600*delta;
+    m_hour = value/MT_H2S/delta;
+    value -= m_hour*MT_H2S*delta;
 
-    m_min = value/60/delta;
-    value -= m_min*60*delta;
+    m_min = value/MT_M2S/delta;
+    value -= m_min*MT_M2S*delta;
 
     m_sec = value/delta;
-    if(delta == 1000)
+    if(delta == MT_S2MS)
     {
         value -= (m_sec*delta);
         m_msec = value;
@@ -88,8 +88,7 @@ void MusicTime::fromTimeStamp(qint64 value, int delta)
 
 bool MusicTime::isValid() const
 {
-    return !(m_hour == 0 && m_min == 0 && m_sec == 0 &&
-             m_msec == 0);
+    return !(m_hour == 0 && m_min == 0 && m_sec == 0 && m_msec == 0);
 }
 
 MusicTime MusicTime::fromString(const QString &s, const QString &format)
@@ -113,8 +112,8 @@ QString MusicTime::toString(const QString &format)
 
 qint64 MusicTime::getTimeStamp(Type type) const
 {
-    qint64 delta = (type == All_Sec) ? 1 : 1000;
-           delta = (m_day*3600*24 + m_hour*3600 + m_min*60 +
+    qint64 delta = (type == All_Sec) ? MT_S : MT_S2MS;
+           delta = (m_day*MT_D2S + m_hour*MT_H2S + m_min*MT_M2S +
                     m_sec)*delta;
     return (type == All_Sec) ? delta : (delta + m_msec);
 }
@@ -172,21 +171,21 @@ QString MusicTime::normalTime2Label() const
 
 QString MusicTime::normalTime2Label(qint64 time)
 {
-    if(time < 60)
+    if(time < MT_M2S)
     {
         return QString::number(time) + QObject::tr("ss");
     }
-    else if(60 <= time && time < 60*60)
+    else if(MT_M2S <= time && time < MT_H2S)
     {
-        return QString::number(time/60) + QObject::tr("mm");
+        return QString::number(time/MT_M2S) + QObject::tr("mm");
     }
-    else if(60*60 <= time && time < 60*60*24)
+    else if(MT_H2S <= time && time < MT_D2S)
     {
-        return QString::number(time/60/60) + QObject::tr("hh");
+        return QString::number(time/MT_H2S) + QObject::tr("hh");
     }
     else
     {
-        return QString::number(time/60/60/24) + QObject::tr("day");
+        return QString::number(time/MT_D2S) + QObject::tr("day");
     }
 }
 
@@ -204,42 +203,42 @@ MusicTime& MusicTime::operator= (const MusicTime &other)
 MusicTime& MusicTime::operator+= (const MusicTime &other)
 {
     qint64 t = getTimeStamp(All_Msec) + other.getTimeStamp(All_Msec);
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator+= (const int other)
 {
     qint64 t = getTimeStamp(All_Msec) + other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const MusicTime &other)
 {
     qint64 t = getTimeStamp(All_Msec) - other.getTimeStamp(All_Msec);
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator-= (const int other)
 {
     qint64 t = getTimeStamp(All_Msec) - other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator*= (const int other)
 {
     qint64 t = getTimeStamp(All_Msec) * other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 
 MusicTime& MusicTime::operator/= (const int other)
 {
     qint64 t = getTimeStamp(All_Msec) / other;
-    fromTimeStamp(t, m_defaultType == All_Sec ? 1 : 1000);
+    fromTimeStamp(t, m_defaultType == All_Sec ? MT_S : MT_S2MS);
     return *this;
 }
 

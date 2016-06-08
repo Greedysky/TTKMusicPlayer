@@ -6,6 +6,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicregeditmanager.h"
+#include "musicnumberdefine.h"
 
 #include <QFileDialog>
 #include <QStyledItemDelegate>
@@ -98,11 +99,11 @@ void MusicDesktopWallpaperWidget::initParameters() const
     ui->pictureType->addItems(QStringList()<<tr("center")<<tr("tile")<<tr("drawing"));
     ui->pictureFunc->addItems(QStringList()<<tr("order")<<tr("random"));
     QStringList h,m,s;
-    for(int i=0; i<24; ++i)
+    for(int i=0; i<MT_D; ++i)
     {
         h << tr("%1H").arg(i);
     }
-    for(int i=0; i<60; ++i)
+    for(int i=0; i<MT_H; ++i)
     {
         m << tr("%1M").arg(i);
         s << tr("%1S").arg(i);
@@ -205,8 +206,8 @@ void MusicDesktopWallpaperWidget::parameterFinished()
     para.insert("Effect", ui->pictureEffect->currentIndex());
     para.insert("Type", ui->pictureType->currentIndex());
     para.insert("Func", ui->pictureFunc->currentIndex());
-    para.insert("Time", ui->timeH->currentIndex()*3600 +
-                        ui->timeM->currentIndex()*60 +
+    para.insert("Time", ui->timeH->currentIndex()*MT_H2S +
+                        ui->timeM->currentIndex()*MT_M2S +
                         ui->timeS->currentIndex() );
     para.insert("Close", ui->recoveryWallpaper->isChecked());
     m_wallThread->setParamters(para);

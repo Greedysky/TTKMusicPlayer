@@ -39,6 +39,7 @@ HEADERS  += \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
     $$PWD/musicutils.h \
+    $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
     $$PWD/musicglobalhotkey.h \
     $$PWD/musicversion.h \

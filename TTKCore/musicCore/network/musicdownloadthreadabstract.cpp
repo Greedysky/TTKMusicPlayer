@@ -27,7 +27,7 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     m_file = new QFile(save, this);
 
     M_CONNECTION_PTR->setNetworkMultiValue(this);
-    m_timer.setInterval(1000);
+    m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
@@ -77,14 +77,14 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
     if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
     {
         int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
-        if(limitValue != 0 && delta > limitValue*1024)
+        if(limitValue != 0 && delta > limitValue*MH_KB)
         {
 #if defined Q_OS_WIN && defined MUSIC_QT_5
-            QThread::msleep(1000 - limitValue*1024*1000/delta);
+            QThread::msleep(MT_S2MS - limitValue*MH_KB*MT_S2MS/delta);
 #else
-            usleep( (1000 - limitValue*1024*1000/delta)*1000 );
+            usleep( (MT_S2MS - limitValue*MH_KB*MT_S2MS/delta)*MT_S2MS );
 #endif
-            delta = limitValue*1024;
+            delta = limitValue*MH_KB;
         }
     }
     //////////////////////////////////////

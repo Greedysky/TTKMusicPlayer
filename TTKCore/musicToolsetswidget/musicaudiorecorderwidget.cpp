@@ -161,7 +161,7 @@ void MusicAudioRecorderWidget::onRecordStart()
     ui->startButton->setEnabled(false);
     ui->playButton->setEnabled(false);
     ui->saveButton->setEnabled(false);
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
 
     if(m_movie == nullptr)
     {
@@ -374,7 +374,7 @@ void MusicAudioRecorderWidget::onReadMore()
         }
         //write modified sond sample to outputdevice for playback audio
         m_mpOutputDevSound->write((char*)outdata, len);
-        QTimer::singleShot(1000, this, SLOT(onTimeOut()));
+        QTimer::singleShot(MT_S2MS, this, SLOT(onTimeOut()));
     }
 }
 

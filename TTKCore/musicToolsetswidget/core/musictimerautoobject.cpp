@@ -1,5 +1,6 @@
 #include "musictimerautoobject.h"
 #include "musicsettingmanager.h"
+#include "musicnumberdefine.h"
 
 #include <QTime>
 #include <QProcess>
@@ -23,7 +24,7 @@ MusicTimerAutoObject::~MusicTimerAutoObject()
 
 void MusicTimerAutoObject::runTimerAutoConfig()
 {
-    m_timer.start(1000);
+    m_timer.start(MT_S2MS);
     switch(m_funcIndex = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt())
     {
         case 0:
