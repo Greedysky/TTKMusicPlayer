@@ -99,6 +99,7 @@
         <file alias="phone">../TTKResource/tools/phone.png</file>
         <file alias="speed">../TTKResource/tools/speed.png</file>
         <file alias="gain">../TTKResource/tools/gain.png</file>
+        <file alias="soundtouch">../TTKResource/tools/soundtouch.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="about">../TTKResource/contextMenu/context_about.png</file>

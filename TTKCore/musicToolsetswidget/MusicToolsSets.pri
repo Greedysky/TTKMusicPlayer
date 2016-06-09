@@ -32,7 +32,8 @@ HEADERS  += \
     $$PWD/musicspeedmeter.h \
     $$PWD/musicnetworktestwidget.h \
     $$PWD/musicnetworksuspensionwidget.h \
-    $$PWD/musicvolumegainwidget.h
+    $$PWD/musicvolumegainwidget.h \
+    $$PWD/musicsoundtouchwidget.h
 
 }
 
@@ -55,6 +56,7 @@ SOURCES += \
     $$PWD/musicspeedmeter.cpp \
     $$PWD/musicnetworktestwidget.cpp \
     $$PWD/musicnetworksuspensionwidget.cpp \
-    $$PWD/musicvolumegainwidget.cpp
+    $$PWD/musicvolumegainwidget.cpp \
+    $$PWD/musicsoundtouchwidget.cpp
 
 }

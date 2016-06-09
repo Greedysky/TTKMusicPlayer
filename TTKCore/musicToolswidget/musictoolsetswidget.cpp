@@ -8,6 +8,7 @@
 #include "musicnetworktestwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
+#include "musicsoundtouchwidget.h"
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
@@ -98,7 +99,10 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("gain"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-
+                     item = new QListWidgetItem(QIcon(":/tools/soundtouch")
+                                                ,tr("soundtouch"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
@@ -174,6 +178,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 9:
             {
                 MusicVolumeGainWidget(this).exec();
+                break;
+            }
+        case 10:
+            {
+                MusicSoundTouchWidget(this).exec();
                 break;
             }
         default:
