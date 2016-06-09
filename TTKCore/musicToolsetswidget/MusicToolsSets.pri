@@ -28,6 +28,7 @@ HEADERS  += \
     $$PWD/core/musicsongtag.h \
     $$PWD/core/musicnetworktestthread.h \
     $$PWD/core/musicmobiledevicesthread.h \
+    $$PWD/core/musicaudiorecordercore.h \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicspeedmeter.h \
     $$PWD/musicnetworktestwidget.h \
@@ -52,6 +53,7 @@ SOURCES += \
     $$PWD/core/musicsongtag.cpp \
     $$PWD/core/musicnetworktestthread.cpp \
     $$PWD/core/musicmobiledevicesthread.cpp \
+    $$PWD/core/musicaudiorecordercore.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicspeedmeter.cpp \
     $$PWD/musicnetworktestwidget.cpp \

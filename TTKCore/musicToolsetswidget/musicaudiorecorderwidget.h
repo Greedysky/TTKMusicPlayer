@@ -9,10 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMouseEvent>
 #include <QTimer>
 #include <QAudioInput>
 #include <QAudioOutput>
+#include <QMouseEvent>
 #include <QAudioDeviceInfo>
 #include "musicuiobject.h"
 #include "musicabstractmovedialog.h"
@@ -24,6 +24,7 @@ class QMovie;
 namespace Ui {
 class MusicAudioRecorderWidget;
 }
+class MusicAudioRecorderCore;
 
 /*! @brief The class of the audio recorder widget.
  * @author Greedysky <greedysky@163.com>
@@ -32,29 +33,11 @@ class MUSIC_TOOLSET_EXPORT MusicAudioRecorderWidget : public MusicAbstractMoveDi
 {
     Q_OBJECT
 public:
-    struct HEADER
-    {
-        char RIFFNAME[4];
-        unsigned long nRIFFLength;
-        char WAVNAME[4];
-        char FMTNAME[4];
-        unsigned long nFMTLength;
-        unsigned short nAudioFormat;
-        unsigned short nChannleNumber;
-        unsigned long nSampleRate;
-        unsigned long nBytesPerSecond;
-        unsigned short nBytesPerSample;
-        unsigned short    nBitsPerSample;
-        char    DATANAME[4];
-        unsigned long   nDataLength;
-    };
     explicit MusicAudioRecorderWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
     virtual ~MusicAudioRecorderWidget();
-
-Q_SIGNALS:
 
 public Q_SLOTS:
     void onRecordStart();
@@ -99,10 +82,6 @@ public Q_SLOTS:
      */
 
 protected:
-    int addWavHeader(char *filename);
-    /*!
-     * Add the header of wav.
-     */
     int applyVolumeToSample(short iSample);
     /*!
      * Apply volume to sample.
@@ -127,10 +106,7 @@ protected:
 
     int m_miVolume;
     int m_miMaxValue;
-    QAudioFormat m_mFormatFile;
-    QFile *m_mpOutputFile;
-    QAudioInput *m_mpAudioInputFile;
-    QAudioOutput *m_mpAudioOutputFile;
+    MusicAudioRecorderCore *m_recordCore;
     QAudioFormat m_mFormatSound;
     QAudioInput *m_mpAudioInputSound;
     QAudioOutput *m_mpAudioOutputSound;
