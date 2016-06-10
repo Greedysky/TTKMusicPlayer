@@ -116,12 +116,10 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second,
                                 SLOT(showDownLoadInfoFinished(QString)));
     }
-    else if(from == "MusicSongSearchOnlineTableWidget" && to == "MusicQualityChoiceTableWidget" )
+    else if(from == "MusicQualityChoiceWidget" && to == "MusicLeftAreaWidget" )
     {
-        QObject::connect(first, SIGNAL(getQualityString(QString&)), second,
-                                SLOT(getQualityString(QString&)));
-        QObject::connect(second, SIGNAL(researchQueryByQuality()), first,
-                                 SLOT(researchQueryByQuality()));
+        QObject::connect(first, SIGNAL(researchQueryByQuality(QString)), second,
+                                 SLOT(researchQueryByQuality(QString)));
     }
     else if( (from == "MusicSongsListPlayWidget" && to == "MusicRightAreaWidget") ||
              (from == "MusicLrcContainerForInline" && to == "MusicRightAreaWidget") )

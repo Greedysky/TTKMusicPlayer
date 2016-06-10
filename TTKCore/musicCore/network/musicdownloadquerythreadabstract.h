@@ -56,7 +56,7 @@ public:
      */
     virtual ~MusicDownLoadQueryThreadAbstract();
 
-    virtual void deleteAll();
+    virtual void deleteAll() override;
     /*!
      * Release the network object.
      */

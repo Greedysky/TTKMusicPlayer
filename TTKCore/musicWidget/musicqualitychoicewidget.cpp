@@ -118,11 +118,9 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     initWidget();
     setCursor(Qt::PointingHandCursor);
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
-    setEnabled(false);
 
-    M_CONNECTION_PTR->setValue("MusicQualityChoiceTableWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget",
-                          "MusicQualityChoiceTableWidget");
+    M_CONNECTION_PTR->setValue("MusicQualityChoiceWidget", this);
+    M_CONNECTION_PTR->poolConnect("MusicQualityChoiceWidget", "MusicLeftAreaWidget");
 }
 
 MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
@@ -180,11 +178,5 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
                 break;
             }
     }
-    emit researchQueryByQuality();
-}
-
-void MusicQualityChoiceWidget::getQualityString(QString &string)
-{
-    setEnabled(true);
-    string = m_currentQuality;
+    emit researchQueryByQuality(m_currentQuality);
 }

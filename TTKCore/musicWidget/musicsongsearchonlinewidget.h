@@ -49,6 +49,10 @@ public:
     /*!
      * Stop play audition to music by row.
      */
+    void researchQueryByQuality(const QString &name, const QString &quality);
+    /*!
+     * Research query by quality it changed.
+     */
 
 Q_SIGNALS:
     void muiscSongToPlayListChanged(const QString &name, const QString &time,
@@ -59,10 +63,6 @@ Q_SIGNALS:
     void auditionIsPlaying(bool play);
     /*!
      * Check current audtion is playing or not.
-     */
-    void getQualityString(QString &string);
-    /*!
-     * Get current quality string.
      */
 
 public Q_SLOTS:
@@ -87,10 +87,6 @@ public Q_SLOTS:
     void actionGroupClick(QAction *action) override;
     /*!
      * Left context menu action group click by action.
-     */
-    void researchQueryByQuality();
-    /*!
-     * Research query by quality it changed.
      */
     void searchDataDwonloadFinished();
     /*!
@@ -133,6 +129,10 @@ public:
     void startSearchQuery(const QString &name) const;
     /*!
      * Start search query by text.
+     */
+    void researchQueryByQuality(const QString &name, const QString &quality);
+    /*!
+     * Research query by quality it changed.
      */
 
 public Q_SLOTS:

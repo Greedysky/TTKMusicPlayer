@@ -60,18 +60,13 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     record.m_times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
     search.writeSearchConfig( record );
     ////////////////////////////////////////////////
-    QString currentQuality;
-    emit getQualityString(currentQuality);
-    if(!currentQuality.isEmpty())
-    {
-        m_downLoadManager->setSearchQuality(currentQuality);
-    }
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
-void MusicSongSearchOnlineTableWidget::researchQueryByQuality()
+void MusicSongSearchOnlineTableWidget::researchQueryByQuality(const QString &name, const QString &quality)
 {
-    startSearchQuery( m_downLoadManager->getSearchedText() );
+    m_downLoadManager->setSearchQuality(quality);
+    startSearchQuery(name);
 }
 
 void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
@@ -311,6 +306,11 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
     m_searchTableWidget->startSearchQuery(name);
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
                          .arg(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 240)));
+}
+
+void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)
+{
+    m_searchTableWidget->researchQueryByQuality(name, quality);
 }
 
 void MusicSongSearchOnlineWidget::createToolWidget()

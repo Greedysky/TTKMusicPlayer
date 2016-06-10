@@ -87,6 +87,10 @@ public Q_SLOTS:
     /*!
      * Show projectM spectrum widget.
      */
+    void researchQueryByQuality(const QString &quality);
+    /*!
+     * Research query by quality it changed.
+     */
 
 protected:
     QWidget *m_supperClass;

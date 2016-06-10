@@ -54,19 +54,15 @@ public:
     ~MusicQualityChoiceWidget();
 
 Q_SIGNALS:
-    void researchQueryByQuality();
+    void researchQueryByQuality(const QString &quality);
     /*!
-     * Research query by quality it changed emit.
+     * Research query by quality it changed.
      */
 
 public Q_SLOTS:
     void listCellClicked(int row);
     /*!
      * Current Table item clicked by index.
-     */
-    void getQualityString(QString &string);
-    /*!
-     * Get current selected quality string.
      */
 
 protected:
