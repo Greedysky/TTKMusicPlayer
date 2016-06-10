@@ -30,7 +30,7 @@ typedef struct DownloadData{
         m_format.clear();
     }
 
-    bool isValid()
+    bool isValid() const
     {
         return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
     }

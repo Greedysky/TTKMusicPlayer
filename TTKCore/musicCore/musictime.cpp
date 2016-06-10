@@ -86,9 +86,14 @@ void MusicTime::fromTimeStamp(qint64 value, int delta)
     }
 }
 
+bool MusicTime::isNull() const
+{
+    return (m_hour == 0 && m_min == 0 && m_sec == 0 && m_msec == 0);
+}
+
 bool MusicTime::isValid() const
 {
-    return !(m_hour == 0 && m_min == 0 && m_sec == 0 && m_msec == 0);
+    return !isNull();
 }
 
 MusicTime MusicTime::fromString(const QString &s, const QString &format)

@@ -43,57 +43,61 @@ public:
     /*!
      * Set current day and hour and min and sec and msec.
      */
+    bool isNull() const;
+    /*!
+     * Check current time is null.
+     */
     bool isValid() const;
     /*!
      * Check current time is valid.
      */
 
-    void setType(Type type) {m_defaultType = type;}
+    void setType(Type type) { m_defaultType = type; }
     /*!
      * Set current time type, see Type.
      */
-    Type getType() const {return m_defaultType;}
+    Type getType() const { return m_defaultType; }
     /*!
      * Get current time type, see Type.
      */
 
-    void setDay(int day) {m_day = day;}
+    void setDay(int day) { m_day = day; }
     /*!
      * Set current day.
      */
-    void setHour(int hour) {m_hour = hour;}
+    void setHour(int hour) { m_hour = hour; }
     /*!
      * Set current hour.
      */
-    void setMinute(int min) {m_min = min;}
+    void setMinute(int min) { m_min = min; }
     /*!
      * Set current minute.
      */
-    void setSecond(int sec) {m_sec = sec;}
+    void setSecond(int sec) { m_sec = sec; }
     /*!
      * Set current second.
      */
-    void setMillionSecond(int msec) {m_msec = msec;}
+    void setMillionSecond(int msec) { m_msec = msec; }
     /*!
      * Set current millionSecond.
      */
-    int getDay() const {return m_day;}
+    int getDay() const { return m_day; }
     /*!
      * Get current day.
      */
-    int getHour() const {return m_hour;}
+    int getHour() const { return m_hour; }
     /*!
      * Get current hour.
      */
-    int getMinute() const {return m_min;}
+    int getMinute() const { return m_min; }
     /*!
      * Get current second.
      */
-    int getSecond() const {return m_sec;}
+    int getSecond() const { return m_sec; }
     /*!
      * Get current second.
      */
-    int getMillionSecond() const {return m_msec;}
+    int getMillionSecond() const { return m_msec; }
     /*!
      * Get current millionSecond.
      */
