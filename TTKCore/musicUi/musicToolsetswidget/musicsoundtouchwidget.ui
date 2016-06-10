@@ -281,9 +281,9 @@
   <widget class="QLabel" name="pathLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>89</x>
      <y>300</y>
-     <width>440</width>
+     <width>391</width>
      <height>21</height>
     </rect>
    </property>
@@ -320,6 +320,19 @@
     <string>播放转换录音</string>
    </property>
   </widget>
+  <widget class="QLabel" name="pathLabels">
+   <property name="geometry">
+    <rect>
+     <x>45</x>
+     <y>300</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>路径：</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -329,6 +342,7 @@
   <zorder>pathLabel</zorder>
   <zorder>transformButton</zorder>
   <zorder>playWavButton</zorder>
+  <zorder>pathLabels</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -33,12 +33,12 @@
     #define M_LOGGER_ERROR(str) M_MESSAGE(str, "[Error]")
     #define M_LOGGER_FATAL(str) M_MESSAGE(str, "[Fatal]")
 #else
-    #define M_LOGGER_INFO(str)
-    #define M_LOGGER_DEBUG(str)
-    #define M_LOGGER_WARN(str)
-    #define M_LOGGER_TRACE(str)
-    #define M_LOGGER_ERROR(str)
-    #define M_LOGGER_FATAL(str)
+    #define M_LOGGER_INFO(str)  Q_UNUSED(str)
+    #define M_LOGGER_DEBUG(str) Q_UNUSED(str)
+    #define M_LOGGER_WARN(str)  Q_UNUSED(str)
+    #define M_LOGGER_TRACE(str) Q_UNUSED(str)
+    #define M_LOGGER_ERROR(str) Q_UNUSED(str)
+    #define M_LOGGER_FATAL(str) Q_UNUSED(str)
 #endif
 
 /*! @brief The class of the application logger.

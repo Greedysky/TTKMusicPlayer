@@ -133,6 +133,15 @@ public:
      * Set local codec by format.
      */
 
+    static const char *toLocal8Bit(const QString &str);
+    /*!
+     * Trasform string to local 8bit char.
+     */
+    static const char *toUtf8(const QString &str);
+    /*!
+     * Trasform string to utf8 char.
+     */
+
 private:
     static QString speed2LabelFromLabel(qint64 size, const QString &label);
     /*!

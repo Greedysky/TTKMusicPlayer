@@ -284,7 +284,7 @@ bool MusicUtils::openUrl(const QString &path, bool local)
         QString p = path;
         p.replace('/', "\\");
         p = " /select," + p;
-        HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", p.toLocal8Bit().constData(), nullptr, true);
+        HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", toLocal8Bit(p), nullptr, true);
         return (int)value >= 32;
     }
 #else
@@ -319,4 +319,14 @@ void MusicUtils::setLocalCodec(const char *format)
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForTr(codec);
 #endif
+}
+
+const char* MusicUtils::toLocal8Bit(const QString &str)
+{
+    return str.toLocal8Bit().constData();
+}
+
+const char* MusicUtils::toUtf8(const QString &str)
+{
+    return str.toUtf8().constData();
 }
