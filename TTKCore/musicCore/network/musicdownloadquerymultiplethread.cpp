@@ -148,24 +148,24 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
 
                 if(m_queryAllRecords)
                 {
-                    readFromMusicSongAttribute(musicInfo, size, 1000, object.take("FlacUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, 1000, object.take("AacUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, 320, object.take("SqUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, 192, object.take("HqUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, 128, object.take("LqUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("FlacUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("AacUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_320, object.take("SqUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_192, object.take("HqUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_128, object.take("LqUrl").toString());
                 }
                 else
                 {
                     if(m_searchQuality == tr("SD"))
-                        readFromMusicSongAttribute(musicInfo, size, 128, object.take("LqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_128, object.take("LqUrl").toString());
                     else if(m_searchQuality == tr("HD"))
-                        readFromMusicSongAttribute(musicInfo, size, 192, object.take("HqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_192, object.take("HqUrl").toString());
                     else if(m_searchQuality == tr("SQ"))
-                        readFromMusicSongAttribute(musicInfo, size, 320, object.take("SqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_320, object.take("SqUrl").toString());
                     else if(m_searchQuality == tr("CD"))
                     {
-                        readFromMusicSongAttribute(musicInfo, size, 1000, object.take("FlacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, 1000, object.take("AacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("FlacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("AacUrl").toString());
                     }
                 }
                 if(musicInfo.m_songAttrs.isEmpty())
@@ -228,24 +228,24 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
 
                     if(m_queryAllRecords)
                     {
-                        readFromMusicSongAttribute(musicInfo, size, 1000, value.property("FlacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, 1000, value.property("AacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, 320, value.property("SqUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, 192, value.property("HqUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, 128, value.property("LqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("FlacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("AacUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_320, value.property("SqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_192, value.property("HqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_128, value.property("LqUrl").toString());
                     }
                     else
                     {
                         if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(musicInfo, size, 128, value.property("LqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_128, value.property("LqUrl").toString());
                         else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(musicInfo, size, 192, value.property("HqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_192, value.property("HqUrl").toString());
                         else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(musicInfo, size, 320, value.property("SqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_320, value.property("SqUrl").toString());
                         else if(m_searchQuality == tr("CD"))
                         {
-                            readFromMusicSongAttribute(musicInfo, size, 1000, value.property("FlacUrl").toString());
-                            readFromMusicSongAttribute(musicInfo, size, 1000, value.property("AacUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("FlacUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("AacUrl").toString());
                         }
                     }
                     if(musicInfo.m_songAttrs.isEmpty())

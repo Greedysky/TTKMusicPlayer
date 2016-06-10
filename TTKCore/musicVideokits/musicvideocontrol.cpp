@@ -128,9 +128,9 @@ void MusicVideoControl::mediaChanged(const QString &url)
 {
     switch(findMVBitrateByUrl(url))
     {
-        case 500:   m_qualityButton->setText(tr("SdMV")); break;
-        case 750:   m_qualityButton->setText(tr("HdMV")); break;
-        case 1000:  m_qualityButton->setText(tr("SqMV")); break;
+        case MB_500:   m_qualityButton->setText(tr("SdMV")); break;
+        case MB_750:   m_qualityButton->setText(tr("HdMV")); break;
+        case MB_1000:  m_qualityButton->setText(tr("SqMV")); break;
         default: break;
     }
 }
@@ -174,7 +174,7 @@ void MusicVideoControl::movieQualityChoiced(QAction *action)
     else if(action->text() == tr("SqMV"))
     {
         m_qualityButton->setText(tr("SqMV"));
-        emit mvURLChanged( findMVUrlByBitrate(1000) );
+        emit mvURLChanged( findMVUrlByBitrate(MB_1000) );
     }
 }
 
@@ -219,9 +219,9 @@ void MusicVideoControl::setQualityActionState()
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
 
-    m_mvSd->setEnabled( findExistByBitrate(500) );
-    m_mvHd->setEnabled( findExistByBitrate(750) );
-    m_mvSq->setEnabled( findExistByBitrate(1000) );
+    m_mvSd->setEnabled( findExistByBitrate(MB_500) );
+    m_mvHd->setEnabled( findExistByBitrate(MB_750) );
+    m_mvSq->setEnabled( findExistByBitrate(MB_1000) );
 
     m_downloadButton->setEnabled( m_mvSd->isEnabled() || m_mvHd->isEnabled() ||
                                   m_mvSq->isEnabled() );

@@ -25,6 +25,9 @@ class MUSIC_WIDGET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveDialog
     Q_OBJECT
 public:
     explicit MusicSoundTouchWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSoundTouchWidget();
 
 public Q_SLOTS:
@@ -52,14 +55,35 @@ private Q_SLOTS:
      */
 
     void tempoSliderValueChanged(int value);
+    /*!
+     * Set tempo slider value.
+     */
     void pitchSliderValueChanged(int value);
+    /*!
+     * Set pitch slider value.
+     */
     void rateSliderValueChanged(int value);
+    /*!
+     * Set rate slider value.
+     */
     void openWavButtonClicked();
+    /*!
+     * Load wav file button clicked.
+     */
     void transformButtonClicked();
-    void finished(int);
+    /*!
+     * Transform button clicked.
+     */
+    void finished();
+    /*!
+     * Transform finished.
+     */
 
 protected:
     void setText(const QString &text);
+    /*!
+     * Set label text.
+     */
 
     Ui::MusicSoundTouchWidget *ui;
     QProcess *m_process;

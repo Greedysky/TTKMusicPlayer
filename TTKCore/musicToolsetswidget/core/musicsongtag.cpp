@@ -73,7 +73,7 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
         QList<FileInfo*> infos(decoderfac->createPlayList(path, true, 0));
         if(!infos.isEmpty())
         {
-            QString t = QString::number(infos.first()->length()*1000);
+            QString t = QString::number(infos.first()->length()*MT_S2MS);
             m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t);
         }
     }

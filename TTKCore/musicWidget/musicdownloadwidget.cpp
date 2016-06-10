@@ -210,33 +210,33 @@ void MusicDownloadWidget::queryAllFinishedMusic()
         MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
         foreach(MusicObject::MusicSongAttribute attr, attrs)
         {
-            if(attr.m_bitrate == 32)         ///st
+            if(attr.m_bitrate == MB_32)         ///st
             {
-                ui->viewArea->createItem(32, tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_32, tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/stQuality"));
             }
-            else if(attr.m_bitrate == 128)   ///sd
+            else if(attr.m_bitrate == MB_128)   ///sd
             {
-                ui->viewArea->createItem(128, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_128, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sdQuality"));
             }
-            else if(attr.m_bitrate == 192)   ///hd
+            else if(attr.m_bitrate == MB_192)   ///hd
             {
-                ui->viewArea->createItem(192, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_192, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/hdQuality"));
             }
-            else if(attr.m_bitrate == 320)   ///sq
+            else if(attr.m_bitrate == MB_320)   ///sq
             {
-                ui->viewArea->createItem(320, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_320, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sqQuality"));
             }
-            else if(attr.m_bitrate > 320)   ///cd
+            else if(attr.m_bitrate > MB_320)   ///cd
             {
-                ui->viewArea->createItem(321, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_500, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/cdQuality"));
             }
@@ -271,21 +271,21 @@ void MusicDownloadWidget::queryAllFinishedMovie()
         MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
         foreach(MusicObject::MusicSongAttribute attr, attrs)
         {
-            if(attr.m_bitrate == 500)       ///hd
+            if(attr.m_bitrate == MB_500)       ///hd
             {
-                ui->viewArea->createItem(500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sdQuality"));
             }
-            else if(attr.m_bitrate == 750)  ///sq
+            else if(attr.m_bitrate == MB_750)  ///sq
             {
-                ui->viewArea->createItem(750, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_750, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/hdQuality"));
             }
-            else if(attr.m_bitrate == 1000) ///cd
+            else if(attr.m_bitrate == MB_1000) ///cd
             {
-                ui->viewArea->createItem(1000, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+                ui->viewArea->createItem(MB_1000, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                          .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                          QString(":/quality/sqQuality"));
             }

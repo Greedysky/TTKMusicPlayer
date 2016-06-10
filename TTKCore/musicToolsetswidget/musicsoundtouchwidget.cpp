@@ -9,7 +9,6 @@
 #include <QSound>
 #include <QProcess>
 #include <QFileDialog>
-#include <QDebug>
 
 MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -45,7 +44,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
-    connect(m_process, SIGNAL(finished(int)), SLOT(finished(int)));
+    connect(m_process, SIGNAL(finished(int)), SLOT(finished()));
 
     ui->tempoSlider->setValue(2500);
     ui->pitchSlider->setValue(0);
@@ -157,12 +156,10 @@ void MusicSoundTouchWidget::transformButtonClicked()
                           << QString("-pitch=%1").arg(ui->pitchSlider->value())
                           << QString("-rate=%1").arg(ui->rateSlider->value());
     m_process->start(MAKE_SOUNDTOUCH_FULL, key);
-    qDebug() << MAKE_SOUNDTOUCH_FULL << key;
 }
 
-void MusicSoundTouchWidget::finished(int s)
+void MusicSoundTouchWidget::finished()
 {
-    qDebug()<<s;
     ui->playWavButton->setEnabled(true);
 }
 
