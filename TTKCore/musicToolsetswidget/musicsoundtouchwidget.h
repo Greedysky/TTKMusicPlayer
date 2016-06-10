@@ -54,10 +54,13 @@ private Q_SLOTS:
     void tempoSliderValueChanged(int value);
     void pitchSliderValueChanged(int value);
     void rateSliderValueChanged(int value);
-    void playWavButtonClicked();
+    void openWavButtonClicked();
     void transformButtonClicked();
+    void finished(int);
 
 protected:
+    void setText(const QString &text);
+
     Ui::MusicSoundTouchWidget *ui;
     QProcess *m_process;
     MusicAudioRecorderCore *m_recordCore;

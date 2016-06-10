@@ -6,7 +6,10 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 
+#include <QSound>
 #include <QProcess>
+#include <QFileDialog>
+#include <QDebug>
 
 MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -36,12 +39,13 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
 
     ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    connect(ui->playWavButton, SIGNAL(clicked()), SLOT(playWavButtonClicked()));
+    connect(ui->playWavButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
     connect(ui->transformButton, SIGNAL(clicked()), SLOT(transformButtonClicked()));
 
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
+    connect(m_process, SIGNAL(finished(int)), SLOT(finished(int)));
 
     ui->tempoSlider->setValue(2500);
     ui->pitchSlider->setValue(0);
@@ -49,9 +53,15 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     ui->tempoLabelValue->setText("2500");
     ui->pitchLabelValue->setText("0");
     ui->rateLabelValue->setText("2500");
+    setText(MusicObject::getAppDir() + RECORD_FILE);
+    ui->playWavButton->setEnabled(false);
+    ui->transformButton->setEnabled(false);
 
     m_recordCore = new MusicAudioRecorderCore(this);
 
+    connect(ui->playButton, SIGNAL(clicked()), SLOT(onRecordStart()));
+    connect(ui->stopButton, SIGNAL(clicked()), SLOT(onRecordStop()));
+    connect(ui->openButton, SIGNAL(clicked()), SLOT(openWavButtonClicked()));
 }
 
 MusicSoundTouchWidget::~MusicSoundTouchWidget()
@@ -78,22 +88,31 @@ int MusicSoundTouchWidget::exec()
 
 void MusicSoundTouchWidget::analysisOutput()
 {
-
+    while(m_process->canReadLine())
+    {
+        QByteArray data = m_process->readLine();
+    }
 }
 
 void MusicSoundTouchWidget::onRecordStart()
 {
     m_recordCore->onRecordStart();
+    ui->playButton->setEnabled(false);
+    ui->openButton->setEnabled(false);
 }
 
 void MusicSoundTouchWidget::onRecordStop()
 {
     m_recordCore->onRecordStop();
+    ui->playButton->setEnabled(true);
+    ui->openButton->setEnabled(true);
+    ui->transformButton->setEnabled(true);
 }
 
 void MusicSoundTouchWidget::onRecordPlay()
 {
-    m_recordCore->onRecordPlay();
+    QSound::play(MusicObject::getAppDir() + RECORD_OUT_FILE);
+//    m_recordCore->onRecordPlay();
 }
 
 void MusicSoundTouchWidget::tempoSliderValueChanged(int value)
@@ -111,18 +130,44 @@ void MusicSoundTouchWidget::rateSliderValueChanged(int value)
     ui->rateLabelValue->setText(QString::number(value));
 }
 
-void MusicSoundTouchWidget::playWavButtonClicked()
+void MusicSoundTouchWidget::openWavButtonClicked()
 {
-
+    QString filename = QFileDialog::getOpenFileName(this,
+        tr("choose a filename to open under"), QDir::currentPath(), "Wav(*.wav)");
+    if(!filename.isEmpty())
+    {
+        ui->transformButton->setEnabled(true);
+        m_recordCore->setFileName(filename);
+        setText(filename);
+    }
 }
 
 void MusicSoundTouchWidget::transformButtonClicked()
 {
+    QString input = m_recordCore->getFileName();
+    if(input == RECORD_FILE)
+    {
+        m_recordCore->addWavHeader(RECORD_IN_FILE);
+        input = MusicObject::getAppDir() + RECORD_IN_FILE;
+    }
+
     QStringList key;
-//    key <<
-//    QStringList() << "-i" << in << "-y"
-//                             << "-ab" << ui->kbpsCombo->currentText() + "k"
-//                             << "-ar" << ui->hzCombo->currentText()
-//                             << "-ac" << QString::number(ui->msCombo->
+    key << input << (MusicObject::getAppDir() + RECORD_OUT_FILE)
+                          << QString("-tempo=%1").arg(ui->tempoSlider->value())
+                          << QString("-pitch=%1").arg(ui->pitchSlider->value())
+                          << QString("-rate=%1").arg(ui->rateSlider->value());
     m_process->start(MAKE_SOUNDTOUCH_FULL, key);
+    qDebug() << MAKE_SOUNDTOUCH_FULL << key;
+}
+
+void MusicSoundTouchWidget::finished(int s)
+{
+    qDebug()<<s;
+    ui->playWavButton->setEnabled(true);
+}
+
+void MusicSoundTouchWidget::setText(const QString &text)
+{
+    ui->pathLabel->setText( QFontMetrics(font()).elidedText(text, Qt::ElideLeft, 430) );
+    ui->pathLabel->setToolTip(text);
 }

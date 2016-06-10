@@ -67,7 +67,6 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150);</string>
    </property>
-   <zorder>transformButton</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
@@ -278,7 +277,7 @@
     <rect>
      <x>40</x>
      <y>300</y>
-     <width>311</width>
+     <width>440</width>
      <height>21</height>
     </rect>
    </property>
@@ -287,7 +286,7 @@
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>140</y>
+     <y>120</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -303,7 +302,7 @@
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>220</y>
+     <y>200</y>
      <width>91</width>
      <height>41</height>
     </rect>

@@ -36,7 +36,10 @@ MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
 
 MusicAudioRecorderCore::~MusicAudioRecorderCore()
 {
-    m_mpOutputFile->remove();
+    QFile::remove(RECORD_FILE);
+    QFile::remove(RECORD_IN_FILE);
+    QFile::remove(RECORD_OUT_FILE);
+
     delete m_mpOutputFile;
     delete m_mpAudioInputFile;
     delete m_mpAudioOutputFile;
@@ -59,8 +62,8 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     DestionFileHeader.FMTNAME[1] = 'm';
     DestionFileHeader.FMTNAME[2] = 't';
     DestionFileHeader.FMTNAME[3] = 0x20;
-    DestionFileHeader.nFMTLength = 16;  //
-    DestionFileHeader.nAudioFormat = 1; //
+    DestionFileHeader.nFMTLength = 16;
+    DestionFileHeader.nAudioFormat = 1;
 
     DestionFileHeader.DATANAME[0] = 'd';
     DestionFileHeader.DATANAME[1] = 'a';
@@ -77,7 +80,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
 
     FILE *fp_s = nullptr;
     FILE *fp_d = nullptr;
-    fp_s = fopen(RECORD_FILE, "rb");
+    fp_s = fopen(m_mpOutputFile->fileName().toLocal8Bit().constData(), "rb");
     if (fp_s == nullptr)
     {
         return -1;
