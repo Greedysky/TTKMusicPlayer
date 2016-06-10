@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>录音设置</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
@@ -142,8 +145,17 @@
      <height>115</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+   </property>
    <property name="title">
     <string/>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
    </property>
    <widget class="QCheckBox" name="checkBox_2">
     <property name="geometry">

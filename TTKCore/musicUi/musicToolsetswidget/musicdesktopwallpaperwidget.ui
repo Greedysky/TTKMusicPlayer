@@ -77,6 +77,9 @@
      <height>71</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+   </property>
    <property name="title">
     <string>设置壁纸来源方式</string>
    </property>
