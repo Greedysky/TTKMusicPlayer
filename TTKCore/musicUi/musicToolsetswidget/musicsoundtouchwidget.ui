@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>录音设置</string>
+   <string>音色变音</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -39,7 +39,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>变音设置</string>
+    <string>音色变音</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">
@@ -104,7 +104,7 @@
      <rect>
       <x>20</x>
       <y>15</y>
-      <width>161</width>
+      <width>281</width>
       <height>16</height>
      </rect>
     </property>

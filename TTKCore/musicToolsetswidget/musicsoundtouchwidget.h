@@ -74,7 +74,7 @@ private Q_SLOTS:
     /*!
      * Transform button clicked.
      */
-    void finished();
+    void finished(int code);
     /*!
      * Transform finished.
      */

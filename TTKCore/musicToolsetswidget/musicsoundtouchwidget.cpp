@@ -44,7 +44,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
-    connect(m_process, SIGNAL(finished(int)), SLOT(finished()));
+    connect(m_process, SIGNAL(finished(int)), SLOT(finished(int)));
 
     ui->tempoSlider->setValue(2500);
     ui->pitchSlider->setValue(0);
@@ -87,10 +87,10 @@ int MusicSoundTouchWidget::exec()
 
 void MusicSoundTouchWidget::analysisOutput()
 {
-    while(m_process->canReadLine())
-    {
-        QByteArray data = m_process->readLine();
-    }
+//    while(m_process->canReadLine())
+//    {
+//        QByteArray data = m_process->readLine();
+//    }
 }
 
 void MusicSoundTouchWidget::onRecordStart()
@@ -158,8 +158,15 @@ void MusicSoundTouchWidget::transformButtonClicked()
     m_process->start(MAKE_SOUNDTOUCH_FULL, key);
 }
 
-void MusicSoundTouchWidget::finished()
+void MusicSoundTouchWidget::finished(int code)
 {
+    if(code != 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Transform wav file error!"));
+        message.exec();
+        return;
+    }
     ui->playWavButton->setEnabled(true);
 }
 
