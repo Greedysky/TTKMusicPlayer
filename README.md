@@ -7,7 +7,6 @@ Compiler tutorial I have written in the wiki.
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.x for windows-msvc 32bit
  * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
  
 # For Developers
