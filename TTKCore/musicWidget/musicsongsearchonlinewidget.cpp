@@ -63,10 +63,9 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
-void MusicSongSearchOnlineTableWidget::researchQueryByQuality(const QString &name, const QString &quality)
+void MusicSongSearchOnlineTableWidget::setSearchQuality(const QString &quality)
 {
     m_downLoadManager->setSearchQuality(quality);
-    startSearchQuery(name);
 }
 
 void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
@@ -310,7 +309,8 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 
 void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)
 {
-    m_searchTableWidget->researchQueryByQuality(name, quality);
+    m_searchTableWidget->setSearchQuality(quality);
+    startSearchQuery(name);
 }
 
 void MusicSongSearchOnlineWidget::createToolWidget()

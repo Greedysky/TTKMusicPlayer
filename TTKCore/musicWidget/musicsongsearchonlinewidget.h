@@ -49,9 +49,9 @@ public:
     /*!
      * Stop play audition to music by row.
      */
-    void researchQueryByQuality(const QString &name, const QString &quality);
+    void setSearchQuality(const QString &quality);
     /*!
-     * Research query by quality it changed.
+     * Set search data quality.
      */
 
 Q_SIGNALS:
