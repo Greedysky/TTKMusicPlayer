@@ -3827,6 +3827,11 @@ p, li { white-space: pre-wrap; }
         <source>choose a filename to open under</source>
         <translation>Choose A Filename To Open Wav File</translation>
     </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="166"/>
+        <source>Transform wav file error!</source>
+        <translation>Transform WAV File Error!</translation>
+    </message>
 </context>
 <context>
     <name>MusicSourceUpdateWidget</name>

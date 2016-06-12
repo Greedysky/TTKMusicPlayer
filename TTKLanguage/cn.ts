@@ -3823,6 +3823,11 @@ p, li { white-space: pre-wrap; }
         <source>choose a filename to open under</source>
         <translation>请选择WAV文件</translation>
     </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="166"/>
+        <source>Transform wav file error!</source>
+        <translation>转换WAV的时候出错了!</translation>
+    </message>
 </context>
 <context>
     <name>MusicSourceUpdateWidget</name>
