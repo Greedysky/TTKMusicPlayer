@@ -76,8 +76,9 @@ void MusicLrcArtPhotoLabel::wheelEvent(QWheelEvent *event)
 
 void MusicLrcArtPhotoLabel::mousePressEvent(QMouseEvent *event)
 {
-    QWidget::mousePressEvent(event);
-    if(event->button() == Qt::MiddleButton)
+//    QWidget::mousePressEvent(event);
+    if(event->button() == Qt::MiddleButton ||
+       event->button() == Qt::LeftButton )
     {
         m_picMoved = true;
         m_pressedPos = event->pos();
@@ -86,7 +87,7 @@ void MusicLrcArtPhotoLabel::mousePressEvent(QMouseEvent *event)
 
 void MusicLrcArtPhotoLabel::mouseMoveEvent(QMouseEvent *event)
 {
-    QWidget::mouseMoveEvent(event);
+//    QWidget::mouseMoveEvent(event);
     if(m_picMoved)
     {
         m_deltaPos = event->pos() - m_pressedPos;
@@ -97,6 +98,45 @@ void MusicLrcArtPhotoLabel::mouseMoveEvent(QMouseEvent *event)
 
 void MusicLrcArtPhotoLabel::mouseReleaseEvent(QMouseEvent *event)
 {
-    QWidget::mouseReleaseEvent(event);
+    Q_UNUSED(event);
+//    QWidget::mouseReleaseEvent(event);
     m_picMoved = false;
+}
+
+void MusicLrcArtPhotoLabel::mapRGBTableToPixmap()
+{
+    QImage image = m_showPix.toImage();
+    for(int i=0; i<image.height(); i++)
+    {
+        uchar* out = image.scanLine(i);
+        for(int j=0; j<image.width(); j++)
+        {
+            *out = mapValueToColor(*out); //R
+            ++out;
+            *out = mapValueToColor(*out); //G
+            ++out;
+            *out = mapValueToColor(*out); //B
+            ++out;
+            *out++ = 0xff; //A
+        }
+    }
+    m_showPix = QPixmap::fromImage(image);
+}
+
+uchar MusicLrcArtPhotoLabel::mapValueToColor(float value)
+{
+    int x = m_deltaPos.x();
+    int y = m_deltaPos.y();
+
+    float color = (value - x)/y *255.0 + 127.5 ;
+    if(color < 0.0)
+    {
+        color = 0.0;
+    }
+    else if(color > 255.0)
+    {
+        color = 255.0;
+    }
+    uchar ucolor = (uchar)roundf(color);
+    return ucolor;
 }

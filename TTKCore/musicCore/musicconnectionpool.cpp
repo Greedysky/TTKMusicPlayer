@@ -68,7 +68,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(musicToolSetsParameter()));
     }
     else if( (from == "MusicToolSetsWidget" && to == "MusicApplication") ||
-        (from == "MusicApplicationObject" && to == "MusicApplication") )
+             (from == "MusicApplicationObject" && to == "MusicApplication") )
     {
         QObject::connect(first, SIGNAL(getCurrentPlayList(QStringList&)), second,
                                 SLOT(getCurrentPlayList(QStringList&)));

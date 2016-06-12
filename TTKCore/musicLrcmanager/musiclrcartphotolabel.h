@@ -47,6 +47,15 @@ protected:
      * Override the widget event.
      */
 
+    void mapRGBTableToPixmap();
+    /*!
+     * Map RGB table to pixmap.
+     */
+    uchar mapValueToColor(float value);
+    /*!
+     * Map RGB vlaue to color by value.
+     */
+
     QString m_path;
     QPixmap m_showPix;
     int m_width, m_height;
