@@ -41,7 +41,7 @@ set(MUSIC_HEADERS
     ${MUSIC_UPDATE_WIDGET_DIR}/musicabstractmovewidget.h
     ${MUSIC_UPDATE_WIDGET_DIR}/musicmessagebox.h
     ${MUSIC_UPDATE_WIDGET_DIR}/musicprogresswidget.h
-     ${MUSIC_TTKUPDATE_DIR}/musicupdatemainwindow.h
+    ${MUSIC_TTKUPDATE_DIR}/musicupdatemainwindow.h
 )
 
 set(MUSIC_SOURCES
