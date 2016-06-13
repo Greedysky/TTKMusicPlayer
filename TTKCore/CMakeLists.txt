@@ -89,6 +89,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musictransformwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicaudiorecordercore.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.h
@@ -100,6 +101,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
@@ -243,6 +245,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musictransformwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicaudiorecordercore.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
@@ -254,6 +257,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeter.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
@@ -341,6 +345,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictimerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictransformwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicvolumegainwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicsoundtouchwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicconnecttransferwidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebentainradiowidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebmusicradiowidget.ui
@@ -349,7 +354,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserrecordwidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserwindow.ui
     ${MUSIC_UI_DIR}/musicWidget/musicbackgroundskindialog.ui
-   ${MUSIC_UI_DIR}/musicWidget/musicbackgroundpalettewidget.ui
+    ${MUSIC_UI_DIR}/musicWidget/musicbackgroundpalettewidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicdownloadresetwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicdownloadwidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicequalizerdialog.ui

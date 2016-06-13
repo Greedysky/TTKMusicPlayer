@@ -10,9 +10,7 @@ int main(int argc, char *argv[])
     {
         MusicUpdateMainWindow w;
         w.show();
-
         w.setFilePath(argv[1], QString());
-
         return a.exec();
     }
     return 0;

@@ -83,7 +83,7 @@ void MusicMessageBox::buttonClicked(int index)
 int MusicMessageBox::exec()
 {
     QPixmap pix(20, 20);
-    pix.fill(Qt::red);
+    pix.fill(QColor(76, 108, 179));
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveDialog::exec();
     return m_status;
@@ -92,7 +92,7 @@ int MusicMessageBox::exec()
 void MusicMessageBox::show()
 {
     QPixmap pix(20, 20);
-    pix.fill(Qt::red);
+    pix.fill(QColor(76, 108, 179));
     ui->background->setPixmap(pix.scaled( size() ));
     MusicAbstractMoveDialog::show();
 }

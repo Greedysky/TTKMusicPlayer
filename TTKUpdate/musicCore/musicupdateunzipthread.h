@@ -1,5 +1,5 @@
-#ifndef MUSICUPDATEMAINWINDOW_H
-#define MUSICUPDATEMAINWINDOW_H
+#ifndef MUSICUPDATEUNZIPTHREAD_H
+#define MUSICUPDATEUNZIPTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,41 +9,45 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicprogresswidget.h"
+#include <QThread>
+#include "musicupdateglobaldefine.h"
 
-class MusicUpdateUnzipThread;
-
-/*! @brief The class of the app update main window.
+/*! @brief The class of the update unzip thread.
  * @author Greedysky <greedysky@163.com>
  */
-class /*MUSIC_UPDATE_EXPORT*/ MusicUpdateMainWindow : public MusicProgressWidget
+class MUSIC_UPDATE_EXPORT MusicUpdateUnzipThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicUpdateMainWindow(QWidget *parent = 0);
+    explicit MusicUpdateUnzipThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicUpdateMainWindow();
+    ~MusicUpdateUnzipThread();
 
     void setFilePath(const QString &in, const QString &out);
     /*!
      * Set input and output file path.
      */
-
-private Q_SLOTS:
-    void process(float percent, const QString &file);
+    void stopAndQuitThread();
     /*!
-     * Show current unzip progress and unzip name.
+     * Stop and quit current thread.
      */
-    void finished();
+
+public Q_SLOTS:
+    void start();
     /*!
-     * Unzip given file finished.
+     * Strat thread now.
+     */
+    void run();
+    /*!
+     * Thread run now.
      */
 
 protected:
-    MusicUpdateUnzipThread *m_thread;
+    bool m_run;
+    QString m_input, m_output;
 
 };
 
-#endif // MUSICUPDATEMAINWINDOW_H
+#endif // MUSICUPDATEUNZIPTHREAD_H

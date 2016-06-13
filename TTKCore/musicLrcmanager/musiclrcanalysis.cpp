@@ -484,7 +484,7 @@ void MusicLrcAnalysis::getTranslatedLrc()
     if(m_translationThread == nullptr)
     {
         m_translationThread = new MusicTranslationThread(this);
-        if(parent()->metaObject()->indexOfMethod("getTranslatedLrcFinished(QString)") != -1)
+        if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
         {
             connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
                                          SLOT(getTranslatedLrcFinished(QString)));

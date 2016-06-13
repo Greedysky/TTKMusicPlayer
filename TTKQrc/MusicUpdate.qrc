@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/share">
+        <file alias="searchclosed">../TTKResource/music_close1.png</file>
+    </qresource>
+    <qresource prefix="/shadow">
+        <file alias="bottom">../TTKResource/borderShadow/shadow_bottom.png</file>
+        <file alias="corner1">../TTKResource/borderShadow/shadow_corner1.png</file>
+        <file alias="corner2">../TTKResource/borderShadow/shadow_corner2.png</file>
+        <file alias="corner3">../TTKResource/borderShadow/shadow_corner3.png</file>
+        <file alias="corner4">../TTKResource/borderShadow/shadow_corner4.png</file>
+        <file alias="left">../TTKResource/borderShadow/shadow_left.png</file>
+        <file alias="right">../TTKResource/borderShadow/shadow_right.png</file>
+        <file alias="top">../TTKResource/borderShadow/shadow_top.png</file>
+    </qresource>
+</RCC>

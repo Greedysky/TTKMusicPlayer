@@ -15,7 +15,7 @@ set(MUSIC_APP_SOURCES
   musicapplicationmain.cpp
 )
 
-add_executable(${TARGET_NAME} ../TTKApp.rc ${MUSIC_APP_SOURCES})
+add_executable(${TARGET_NAME} TTKApp.rc ${MUSIC_APP_SOURCES})
 add_dependencies(${TARGET_NAME} MusicCore)
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

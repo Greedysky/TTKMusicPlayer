@@ -13,6 +13,8 @@
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/musicupdateglobaldefine.h
+    $$PWD/musicupdateglobaldefine.h \
+    $$PWD/musicupdateunzipthread.h
 
-SOURCES += 
+SOURCES += \
+    $$PWD/musicupdateunzipthread.cpp

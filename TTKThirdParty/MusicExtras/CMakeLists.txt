@@ -37,7 +37,7 @@ endif()
 
 
 set(MUSIC_HEADERS
-    musicextrasglobaldefine.h.h
+    musicextrasglobaldefine.h
     shortcut/qxtglobal.h
     shortcut/qxtglobalshortcut.h
     shortcut/qxtglobalshortcut_p.h

@@ -47,6 +47,9 @@ win32{
     RC_FILE = TTKUpdate.rc
 }
 
+RESOURCES += \
+    ../TTKQrc/MusicUpdate.qrc
+
 include(musicCore/MusicCore.pri)
 include(musicWidget/MusicWidget.pri)
 include(musicZip/MusicZip.pri)
