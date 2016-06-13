@@ -160,7 +160,7 @@ void MusicApplicationObject::musicAboutUs()
 
 void MusicApplicationObject::musicVersionUpdate()
 {
-    MusicSourceUpdateWidget().exec();
+    MusicSourceUpdateWidget(m_supperClass).exec();
 }
 
 void MusicApplicationObject::musicAudioRecorder()

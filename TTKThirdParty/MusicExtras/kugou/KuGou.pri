@@ -12,6 +12,8 @@
 
 QT       += webkit webkitwidgets
 
+INCLUDEPATH += $$PWD
+
 HEADERS  += \
     $$PWD/kugouurl.h \
     $$PWD/kugouwindow.h

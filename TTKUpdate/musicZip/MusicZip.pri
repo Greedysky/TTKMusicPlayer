@@ -10,8 +10,10 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32:LIBS += -L../../bin -lzlib
-unix:LIBS += -L../../lib -lzlib
+win32:LIBS += -L../bin -lzlib
+unix:LIBS += -L../lib -lzlib
+
+INCLUDEPATH += $$PWD
 
 HEADERS  += \
     $$PWD/crypt.h \

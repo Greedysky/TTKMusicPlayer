@@ -139,11 +139,19 @@ bool PackZip::makeGzipOneFile(QString filelocation)
 
 bool PackZip::unZipTo(const QString &zipfile, const QString &outputdir)
 {
-    char* suk;
     QuaZip zip(zipfile);
     bool extractsuccess = false;
     zip.open(QuaZip::mdUnzip);
     QuaZipFile file(&zip);
+
+    int count, value = 0;
+    for(bool more=zip.goToFirstFile(); more; more=zip.goToNextFile())
+    {
+        ++value;
+    }
+
+    count = value;
+    value = 0;
     for(bool more=zip.goToFirstFile(); more; more=zip.goToNextFile())
     {
         file.open(QIODevice::ReadOnly);
@@ -154,18 +162,16 @@ bool PackZip::unZipTo(const QString &zipfile, const QString &outputdir)
         QDir dira(infofile.absolutePath());
         if( dira.mkpath(infofile.absolutePath()) )
         {
+            ++value;
             QString fileqinfo = zip.getCurrentFileName();
-            QByteArray fe = fileqinfo.toUtf8();
-            suk = fe.data();
-
-            qDebug() <<  "Processing..... " << suk << "\n";
+            qDebug() <<  "Processing..... " << fileqinfo << "\n";
+            emit process(value*1.0/count, fileqinfo);
 
             if(meminfo.open(QIODevice::ReadWrite))
             {
                 meminfo.write(file.readAll());   /* write */
                 meminfo.close();
                 extractsuccess = true;
-                //////////RegisterImage(name);
             }
         }
         else
@@ -206,7 +212,6 @@ void PackZip::init()
 
     QDir dir(startdir);
     char c;
-    char* suk;
     qreal cento;
     qreal percentuale;
     QString dirname = dir.dirName();
@@ -279,10 +284,7 @@ void PackZip::init()
             QString fileqinfo = goname;
             fileqinfo.append(" ");
             fileqinfo.append(biteorMega(inFile.size()));
-            QByteArray fe = fileqinfo.toUtf8();
-            suk = fe.data();
-
-            qDebug() <<  "Status. " << percentuale << "% " << suk << "\n";
+            qDebug() <<  "Status. " << percentuale << "% " << fileqinfo << "\n";
         }
         zip.close();
 
@@ -295,10 +297,7 @@ void PackZip::init()
         QString fr = re.fileName();
         fr.append(" ");
         fr.append(biteorMega(re.size()));
-
-        QByteArray fe = fr.toUtf8();
-        suk = fe.data();
-        qDebug() <<  "End file " << suk << "\n";
+        qDebug() <<  "End file " << fr << "\n";
 
         emit status(100);
         emit zipEnd(zipfile);

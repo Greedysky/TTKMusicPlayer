@@ -13,14 +13,13 @@
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/pinyinresource.h \
-    $$PWD/chinesehelper.h \
-    $$PWD/pinyinhelper.h
-    
+    $$PWD/musicabstractmovedialog.h \
+    $$PWD/musicabstractmovewidget.h \
+    $$PWD/musicmessagebox.h \
+    $$PWD/musicprogresswidget.h
+
 SOURCES += \
-    $$PWD/pinyinresource.cpp \
-    $$PWD/chinesehelper.cpp \
-    $$PWD/pinyinhelper.cpp
-
-
-RESOURCES += $$PWD/resource/Hz2Py.qrc
+    $$PWD/musicabstractmovedialog.cpp \
+    $$PWD/musicabstractmovewidget.cpp \
+    $$PWD/musicmessagebox.cpp \
+    $$PWD/musicprogresswidget.cpp

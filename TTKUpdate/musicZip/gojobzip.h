@@ -1,16 +1,8 @@
 #ifndef GOJOBZIP_H
 #define GOJOBZIP_H
 
-/* =================================================
- * This file is part of the TTK Music Player project
- * Copyright (c) 2014 - 2016 Greedysky Studio
- * All rights reserved!
- * Redistribution and use of the source code or any derivative
- * works are strictly forbiden.
-   =================================================*/
-
 #include <QStringList>
-#include "musicextrasglobaldefine.h"
+#include "musicupdateglobaldefine.h"
 
 #include "quazip.h"
 #include "quazipfile.h"
@@ -65,7 +57,7 @@
 #  define local
 #endif
 
-class MUSIC_EXTRAS_EXPORT PackZip : public QObject
+class MUSIC_UPDATE_EXPORT PackZip : public QObject
 {
     Q_OBJECT
 public:
@@ -81,6 +73,7 @@ public:
     bool unZipTo(const QString &zipfile, const QString &outputdir);
 
 signals:
+    void process(float percent, const QString &file);
     void zipEnd(const QString &result);
     void zipError();
     void status(int state);

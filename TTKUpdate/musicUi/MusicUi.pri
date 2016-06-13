@@ -10,17 +10,5 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD
-
-HEADERS  += \
-    $$PWD/pinyinresource.h \
-    $$PWD/chinesehelper.h \
-    $$PWD/pinyinhelper.h
-    
-SOURCES += \
-    $$PWD/pinyinresource.cpp \
-    $$PWD/chinesehelper.cpp \
-    $$PWD/pinyinhelper.cpp
-
-
-RESOURCES += $$PWD/resource/Hz2Py.qrc
+FORMS    += \
+    $$PWD/musicmessagebox.ui

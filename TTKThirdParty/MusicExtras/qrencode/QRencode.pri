@@ -10,6 +10,8 @@
 # * works are strictly forbiden.
 # =================================================
 
+INCLUDEPATH += $$PWD
+
 HEADERS += \
     $$PWD/bitstream.h \
     $$PWD/config.h \

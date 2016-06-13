@@ -6,7 +6,8 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicversion.h"
-#include "musicmessagebox.h"
+
+#include <QProcess>
 
 #ifdef MUSIC_QT_5
 #   include <QJsonParseError>
@@ -15,10 +16,6 @@
 #   include <QtScript/QScriptEngine>
 #   include <QtScript/QScriptValue>
 #endif
-
-#define VERSION_URL     "http://7xpa0g.com1.z0.glb.clouddn.com/version"
-#define DOWNLOAD_URL    "http://7xpa0g.com1.z0.glb.clouddn.com/v2.2.12.0.7z"
-#define CSDN_URL        "http://download.csdn.net/album/detail/3094"
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -66,16 +63,16 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     }
 
     QJsonObject jsonObject = parseDoucment.object();
-    QString version = jsonObject.value("version").toString();
+    m_newVersionStr = jsonObject.value("version").toString();
 #else
     QScriptEngine engine;
     QScriptValue sc = engine.evaluate("value=" + QString(data));
-    QString version = sc.property("version").toString();
+    m_newVersionStr = sc.property("version").toString();
 #endif
     QString text;
-    if(version != TTKMUSIC_VERSION_STR)
+    if(m_newVersionStr != TTKMUSIC_VERSION_STR)
     {
-        text.append(version);
+        text.append(m_newVersionStr);
         text.append("\r\n");
 #ifdef MUSIC_QT_5
         text.append(jsonObject.value("data").toString());
@@ -99,19 +96,18 @@ void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QStri
 
     if(percent == 100.0f)
     {
-        MusicMessageBox message;
-        message.setText(tr("Download finished, please reunzip!"));
-        message.exec();
-
-        close();
+        QString localDwonload = "v" + m_newVersionStr + DD_TYPE_ZIP;
+        QProcess::startDetached(MusicObject::getAppDir() + NEW_UPDATE_URL, QStringList(localDwonload));
+        MStatic_cast(QWidget*, parent())->close();
     }
 }
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(DOWNLOAD_URL, TEMPORARY_DIR + QString(".7z"),
-                                                                    MusicDownLoadThreadAbstract::Download_Other, this);
+    QString localDwonload = "v" + m_newVersionStr + DD_TYPE_ZIP;
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(DOWNLOAD_URL).arg(localDwonload),
+                                                                    MusicObject::getAppDir() + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     download->startToDownload();
 }

@@ -16,6 +16,8 @@ unix:!mac{
     }
 }
 
+INCLUDEPATH += $$PWD
+
 HEADERS  += \
     $$PWD/qxtglobal.h \
     $$PWD/qxtglobalshortcut.h \
