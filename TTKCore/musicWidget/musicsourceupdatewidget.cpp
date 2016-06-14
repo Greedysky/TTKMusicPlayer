@@ -80,10 +80,12 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
         text.append(sc.property("data").toString());
 #endif
         ui->upgradeButton->setEnabled(true);
+        ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }
     else
     {
         text.append(tr("Current version is updated!"));
+        ui->titleLable_F->setAlignment(Qt::AlignCenter);
     }
     ui->titleLable_F->setText( text );
 }
