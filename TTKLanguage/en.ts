@@ -2260,26 +2260,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicmessagebox.ui" line="14"/>
         <location filename="../TTKCore/musicUi/musicWidget/musicmessagebox.ui" line="48"/>
+        <location filename="../TTKUpdate/musicUi/musicmessagebox.ui" line="14"/>
+        <location filename="../TTKUpdate/musicUi/musicmessagebox.ui" line="48"/>
         <source>提示框</source>
         <translation>Message Box</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicmessagebox.ui" line="61"/>
+        <location filename="../TTKUpdate/musicUi/musicmessagebox.ui" line="61"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicmessagebox.ui" line="87"/>
+        <location filename="../TTKUpdate/musicUi/musicmessagebox.ui" line="87"/>
         <source>确定</source>
         <translation>Confirm</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicmessagebox.ui" line="100"/>
+        <location filename="../TTKUpdate/musicUi/musicmessagebox.ui" line="100"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicWidget/core/musicmessagebox.cpp" line="20"/>
+        <location filename="../TTKUpdate/musicWidget/musicmessagebox.cpp" line="19"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -2414,6 +2420,7 @@ p, li { white-space: pre-wrap; }
     <name>MusicProgressWidget</name>
     <message>
         <location filename="../TTKCore/musicWidget/core/musicprogresswidget.cpp" line="40"/>
+        <location filename="../TTKUpdate/musicWidget/musicprogresswidget.cpp" line="39"/>
         <source>Progress Bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3892,24 +3899,19 @@ p, li { white-space: pre-wrap; }
         <translation>Downloading: 1/1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="31"/>
+        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="28"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="89"/>
+        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="87"/>
         <source>Current version is updated!</source>
         <translation>Current Version Is Updated!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="96"/>
+        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="95"/>
         <source>FileSize: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicWidget/musicsourceupdatewidget.cpp" line="103"/>
-        <source>Download finished, please reunzip!</source>
-        <translation>Download Finished, Please Reunzip!</translation>
     </message>
 </context>
 <context>
@@ -4316,6 +4318,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../TTKCore/musicToolsetswidget/musictransformwidget.cpp" line="307"/>
         <source>Lack of plugin file!</source>
         <translation>Lack Of Plugin File!</translation>
+    </message>
+</context>
+<context>
+    <name>MusicUpdateMainWindow</name>
+    <message>
+        <location filename="../TTKUpdate/musicupdatemainwindow.cpp" line="13"/>
+        <source>Unzip File Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKUpdate/musicupdatemainwindow.cpp" line="45"/>
+        <source>unzip finished, please restart!</source>
+        <translation>Unzip Finished, Please Restart!</translation>
     </message>
 </context>
 <context>
@@ -5249,6 +5264,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKApp/musicapplicationmain.cpp" line="33"/>
         <source>Lack of necessary component files!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFile</name>
+    <message>
+        <location filename="../TTKUpdate/musicZip/quazipfile.cpp" line="128"/>
+        <source>ZIP/UNZIP API error %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
