@@ -9,15 +9,15 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2016.05.20
-#define TTKMUSIC_VERSION_STR "2.2.12.0"
+//update time 2016.06.15
+#define TTKMUSIC_VERSION_STR "2.3.0.0"
 
 #define TTKMUSIC_MAJOR_VERSION 2
-#define TTKMUSIC_MIDLE_VERSION 2
-#define TTKMUSIC_MINOR_VERSION 12
+#define TTKMUSIC_MIDLE_VERSION 3
+#define TTKMUSIC_MINOR_VERSION 0
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x022C0
+#define TTKMUSIC_VERSION 0x02300
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
