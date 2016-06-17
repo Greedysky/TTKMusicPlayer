@@ -119,6 +119,11 @@ QString MusicVideoPlayWidget::getSearchText() const
     return m_searchEdit->text().trimmed();
 }
 
+void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}
+
 void MusicVideoPlayWidget::resizeWindow(bool resize)
 {
     if(resize)

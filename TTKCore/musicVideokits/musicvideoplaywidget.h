@@ -71,6 +71,11 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QWidget *m_topWidget;
     QLabel *m_textLabel;
     QPushButton *m_backButton, *m_afterButton;

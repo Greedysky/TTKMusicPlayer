@@ -31,6 +31,17 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
     }
 }
 
+void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    QWidget::contextMenuEvent(event);
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.addAction(tr("vedioPlay"), parent(), SLOT(play()));
+    menu.addAction(tr("vedioStop"), parent(), SLOT(stop()));
+    menu.exec(QCursor::pos());
+    event->accept();
+}
+
 
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent)
@@ -83,7 +94,13 @@ void MusicVideoView::leaveEvent(QEvent *event)
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 {
-    Q_UNUSED(event);
+    QWidget::contextMenuEvent(event);
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.addAction(tr("vedioPlay"), this, SLOT(play()));
+    menu.addAction(tr("vedioStop"), this, SLOT(stop()));
+    menu.exec(QCursor::pos());
+    event->accept();
 }
 
 void MusicVideoView::setMedia(const QString &data)

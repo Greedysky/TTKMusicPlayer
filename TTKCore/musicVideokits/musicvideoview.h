@@ -41,10 +41,10 @@ Q_SIGNALS:
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-
 };
 
 /*! @brief The class of the video view widget.
