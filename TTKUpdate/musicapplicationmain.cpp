@@ -11,6 +11,10 @@ int main(int argc, char *argv[])
     translator.load("MLanguage/cn.ln");
     a.installTranslator(&translator);
 
+    QCoreApplication::setOrganizationName("TTKMusicPlayer");
+    QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
+    QCoreApplication::setApplicationName("TTKMusicPlayer");
+
     if(argc == 2)
     {
         MusicUpdateMainWindow w;
