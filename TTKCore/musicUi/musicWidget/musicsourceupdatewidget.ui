@@ -162,9 +162,9 @@
      <widget class="MusicClickedLabel" name="upgradeFailedLabel">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>45</x>
         <y>183</y>
-        <width>55</width>
+        <width>75</width>
         <height>20</height>
        </rect>
       </property>
