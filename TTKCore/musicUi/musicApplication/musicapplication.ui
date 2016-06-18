@@ -352,7 +352,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="vedioWidgetButton">
+  <widget class="QPushButton" name="videoWidgetButton">
    <property name="geometry">
     <rect>
      <x>855</x>
@@ -656,7 +656,7 @@
   <zorder>musicButton_radio</zorder>
   <zorder>musicButton_mydownl</zorder>
   <zorder>musicButton_cloud</zorder>
-  <zorder>vedioWidgetButton</zorder>
+  <zorder>videoWidgetButton</zorder>
   <zorder>musicWindowConcise</zorder>
   <zorder>resizeWindowLabel</zorder>
   <zorder>minimization</zorder>

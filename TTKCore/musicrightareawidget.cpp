@@ -71,9 +71,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     connect(ui->musicLrcWidgetButton, SIGNAL(clicked()), SLOT(musicLrcWidgetButtonSearched()));
 
-    ui->vedioWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    connect(ui->vedioWidgetButton, SIGNAL(clicked()), SLOT(musicVideoWidgetButtonSearched()));
+    ui->videoWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->videoWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    connect(ui->videoWidgetButton, SIGNAL(clicked()), SLOT(musicVideoWidgetButtonSearched()));
     ///////////////////////////////////////////////////////
     connect(m_musiclrcfordesktop, SIGNAL(theCurrentLrcUpdated()), m_supperClass,
                  SLOT(musicCurrentLrcUpdated()));
@@ -293,7 +293,7 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
 void MusicRightAreaWidget::musicVideoWidgetButtonSearched()
 {
     musicButtonStyleClear();
-    m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+    m_ui->videoWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
     createVideoWidget(true);
 }
 
@@ -357,7 +357,7 @@ void MusicRightAreaWidget::musicButtonStyleClear()
     m_ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     m_ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->videoWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
 }
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
@@ -381,7 +381,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     {
         createVideoWidget(false);
         musicButtonStyleClear();
-        m_ui->vedioWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+        m_ui->videoWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
         m_videoPlayer = new MusicVideoPlayWidget(true);
         m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->show();

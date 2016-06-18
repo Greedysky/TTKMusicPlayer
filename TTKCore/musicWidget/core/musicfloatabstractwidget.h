@@ -1,5 +1,5 @@
-#ifndef MUSICLRCFLOATABSTRACTWIDGET_H
-#define MUSICLRCFLOATABSTRACTWIDGET_H
+#ifndef MUSICFLOATABSTRACTWIDGET_H
+#define MUSICFLOATABSTRACTWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,18 +15,18 @@
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the lrc float widget base.
+/*! @brief The class of the float widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatAbstractWidget : public QLabel
+class MUSIC_WIDGET_EXPORT MusicFloatAbstractWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatAbstractWidget(QWidget *parent = 0);
+    explicit MusicFloatAbstractWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLrcFloatAbstractWidget();
+    virtual ~MusicFloatAbstractWidget();
 
     inline void setBlockAnimation(bool b) { m_blockAnimation = b;}
     /*!
@@ -63,4 +63,4 @@ protected:
 
 };
 
-#endif // MUSICLRCFLOATABSTRACTWIDGET_H
+#endif // MUSICFLOATABSTRACTWIDGET_H

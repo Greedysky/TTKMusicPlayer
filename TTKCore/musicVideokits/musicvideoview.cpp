@@ -36,8 +36,8 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("vedioPlay"), parent(), SLOT(play()));
-    menu.addAction(tr("vedioStop"), parent(), SLOT(stop()));
+    menu.addAction(tr("videoPlay"), parent(), SLOT(play()));
+    menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
     menu.exec(QCursor::pos());
     event->accept();
 }
@@ -97,8 +97,8 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("vedioPlay"), this, SLOT(play()));
-    menu.addAction(tr("vedioStop"), this, SLOT(stop()));
+    menu.addAction(tr("videoPlay"), this, SLOT(play()));
+    menu.addAction(tr("videoStop"), this, SLOT(stop()));
     menu.exec(QCursor::pos());
     event->accept();
 }

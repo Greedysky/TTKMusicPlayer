@@ -15,6 +15,7 @@ class QLabel;
 class QPushButton;
 class QStackedWidget;
 class MusicVideoView;
+class MusicVideoFloatWidget;
 class MusicVideoTableWidget;
 class MusicLocalSongSearchEdit;
 
@@ -84,6 +85,7 @@ protected:
     MusicVideoView *m_videoView;
     MusicVideoTableWidget *m_videoTable;
     MusicLocalSongSearchEdit *m_searchEdit;
+    MusicVideoFloatWidget *m_videoFloatWidget;
 
 };
 

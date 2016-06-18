@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musiclrcfloatabstractwidget.h"
+#include "musicfloatabstractwidget.h"
 
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65
@@ -22,7 +22,7 @@ class MusicClickedLabel;
 /*! @brief The class of the lrc photo float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicLrcFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
 public:

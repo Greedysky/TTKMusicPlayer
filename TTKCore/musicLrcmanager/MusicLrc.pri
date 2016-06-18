@@ -25,7 +25,6 @@ HEADERS  += \
     $$PWD/musiclrcartphotoupload.h \
     $$PWD/musiclrcartphotolabel.h \
     $$PWD/musiclrcfloatwidget.h \
-    $$PWD/musiclrcfloatabstractwidget.h \
     $$PWD/musiclrcfloatsettingwidget.h \
     $$PWD/musiclrcfloatphotowidget.h \
     $$PWD/musiclrcmakerwidget.h \
@@ -49,7 +48,6 @@ SOURCES += \
     $$PWD/musiclrcartphotoupload.cpp \
     $$PWD/musiclrcartphotolabel.cpp \
     $$PWD/musiclrcfloatwidget.cpp \
-    $$PWD/musiclrcfloatabstractwidget.cpp \
     $$PWD/musiclrcfloatsettingwidget.cpp \
     $$PWD/musiclrcfloatphotowidget.cpp \
     $$PWD/musiclrcmakerwidget.cpp \

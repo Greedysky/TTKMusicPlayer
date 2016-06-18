@@ -9,14 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musiclrcfloatabstractwidget.h"
+#include "musicfloatabstractwidget.h"
 
 class QPushButton;
 
 /*! @brief The class of the lrc setting float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicLrcFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
 public:

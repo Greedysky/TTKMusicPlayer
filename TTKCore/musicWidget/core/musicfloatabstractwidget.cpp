@@ -1,6 +1,6 @@
-#include "musiclrcfloatabstractwidget.h"
+#include "musicfloatabstractwidget.h"
 
-MusicLrcFloatAbstractWidget::MusicLrcFloatAbstractWidget(QWidget *parent)
+MusicFloatAbstractWidget::MusicFloatAbstractWidget(QWidget *parent)
     : QLabel(parent)
 {
     m_animation = new QPropertyAnimation(this, "geometry");
@@ -8,26 +8,26 @@ MusicLrcFloatAbstractWidget::MusicLrcFloatAbstractWidget(QWidget *parent)
     m_blockAnimation = false;
 }
 
-MusicLrcFloatAbstractWidget::~MusicLrcFloatAbstractWidget()
+MusicFloatAbstractWidget::~MusicFloatAbstractWidget()
 {
     delete m_animation;
 }
 
-void MusicLrcFloatAbstractWidget::animationIn()
+void MusicFloatAbstractWidget::animationIn()
 {
     m_animation->setStartValue(m_rectOut);
     m_animation->setEndValue(m_rectIn);
     m_animation->start();
 }
 
-void MusicLrcFloatAbstractWidget::animationOut()
+void MusicFloatAbstractWidget::animationOut()
 {
     m_animation->setStartValue(m_rectIn);
     m_animation->setEndValue(m_rectOut);
     m_animation->start();
 }
 
-void MusicLrcFloatAbstractWidget::enterEvent(QEvent *event)
+void MusicFloatAbstractWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
     if(!m_blockAnimation)
@@ -36,7 +36,7 @@ void MusicLrcFloatAbstractWidget::enterEvent(QEvent *event)
     }
 }
 
-void MusicLrcFloatAbstractWidget::leaveEvent(QEvent *event)
+void MusicFloatAbstractWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     if(!m_blockAnimation)

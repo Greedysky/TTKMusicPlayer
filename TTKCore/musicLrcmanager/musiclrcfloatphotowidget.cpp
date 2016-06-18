@@ -9,7 +9,7 @@
 #include <QButtonGroup>
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
-    : MusicLrcFloatAbstractWidget(parent)
+    : MusicFloatAbstractWidget(parent)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle03 + "}");
@@ -35,12 +35,12 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_radio3->setGeometry(535, 75, 20, 20);
     m_radio3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_checkBox = new QCheckBox(tr("All"),this);
+    m_checkBox = new QCheckBox(tr("All"), this);
     m_checkBox->setGeometry(5, 130, 100, 20);
     m_checkBox->setChecked(true);
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_confirmButton = new QPushButton(tr("Confirm"),this);
+    m_confirmButton = new QPushButton(tr("Confirm"), this);
     m_confirmButton->setGeometry(500, 130, 70, 20);
     m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));

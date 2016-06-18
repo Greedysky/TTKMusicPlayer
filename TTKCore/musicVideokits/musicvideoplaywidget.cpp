@@ -2,6 +2,7 @@
 #include "musicvideoview.h"
 #include "musicvideotablewidget.h"
 #include "musiclocalsongsearchedit.h"
+#include "musicvideofloatwidget.h"
 #include "musicobject.h"
 
 #include <QVBoxLayout>
@@ -77,6 +78,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     layout->addWidget(m_stackedWidget);
     setLayout(layout);
 
+    m_videoFloatWidget = new MusicVideoFloatWidget(this);
     m_videoTable = new MusicVideoTableWidget(this);
     m_videoView = new MusicVideoView(popup, this);
     m_stackedWidget->addWidget(m_videoView);

@@ -1,18 +1,11 @@
-#include "musiclrcfloatwidget.h"
-#include "musiclrcfloatphotowidget.h"
-#include "musiclrcfloatsettingwidget.h"
+#include "musicvideofloatwidget.h"
 
 #include <QPushButton>
 
-MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
+MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle03);
-
-    m_floatPhotoWidget = new MusicLrcFloatPhotoWidget(parent);
-    m_floatPhotoWidget->hide();
-    m_floatSettingWidget = new MusicLrcFloatSettingWidget(parent);
-    m_floatSettingWidget->hide();
+    setStyleSheet("background:rgba(41,41,41);");
 
     resizeWidth(0);
     m_update = new QPushButton(tr(" Update"), this);
@@ -45,43 +38,20 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setCursor(QCursor(Qt::PointingHandCursor));
     m_photo->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_update, SIGNAL(clicked()), parent, SIGNAL(theCurrentLrcUpdated()));
-    connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
-    connect(m_photo, SIGNAL(clicked()), m_floatPhotoWidget, SLOT(show()));
-    connect(m_floatSettingWidget, SIGNAL(widgetClose()), SLOT(closeFloatSettingWidget()));
-    connect(m_more, SIGNAL(clicked()), this, SLOT(showFloatSettingWidget()));
 }
 
-MusicLrcFloatWidget::~MusicLrcFloatWidget()
+MusicVideoFloatWidget::~MusicVideoFloatWidget()
 {
     delete m_more;
     delete m_update;
     delete m_search;
     delete m_wallp;
     delete m_photo;
-    delete m_floatPhotoWidget;
-    delete m_floatSettingWidget;
 }
 
-void MusicLrcFloatWidget::resizeWidth(int width)
+void MusicVideoFloatWidget::resizeWidth(int width)
 {
     m_rectIn = QRect(518 + width, 120, 115, 210);
     m_rectOut = QRect(628 + width, 171, 115, 105);
     setGeometry( m_rectOut );
-
-    m_floatSettingWidget->resizeWidth(width);
-    m_floatPhotoWidget->resizeWidth(width);
-}
-
-void MusicLrcFloatWidget::showFloatSettingWidget()
-{
-    animationOut();
-    m_floatSettingWidget->show();
-    setBlockAnimation(true);
-}
-
-void MusicLrcFloatWidget::closeFloatSettingWidget()
-{
-    m_floatSettingWidget->close();
-    setBlockAnimation(false);
 }

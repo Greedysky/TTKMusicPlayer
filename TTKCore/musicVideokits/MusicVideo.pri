@@ -17,7 +17,8 @@ HEADERS  += \
     $$PWD/musicvideocontrol.h \
     $$PWD/musicvideoview.h \
     $$PWD/musicvideotablewidget.h \
-    $$PWD/musicvideoplaywidget.h
+    $$PWD/musicvideoplaywidget.h \
+    $$PWD/musicvideofloatwidget.h
 
 }
 
@@ -26,6 +27,7 @@ SOURCES += \
     $$PWD/musicvideocontrol.cpp \
     $$PWD/musicvideoview.cpp \
     $$PWD/musicvideotablewidget.cpp \
-    $$PWD/musicvideoplaywidget.cpp
+    $$PWD/musicvideoplaywidget.cpp \
+    $$PWD/musicvideofloatwidget.cpp
 
 }

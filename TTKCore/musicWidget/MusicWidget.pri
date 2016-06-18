@@ -30,6 +30,7 @@ HEADERS  += \
     $$PWD/core/musiccodearea.h \
     $$PWD/core/musicgrabwidget.h \
     $$PWD/core/musicslidermenuwidget.h \
+    $$PWD/core/musicfloatabstractwidget.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -75,6 +76,7 @@ SOURCES += \
     $$PWD/core/musiccodearea.cpp \
     $$PWD/core/musicgrabwidget.cpp \
     $$PWD/core/musicslidermenuwidget.cpp \
+    $$PWD/core/musicfloatabstractwidget.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \

@@ -1,5 +1,5 @@
-#ifndef MUSICLRCFLOATWIDGET_H
-#define MUSICLRCFLOATWIDGET_H
+#ifndef MUSICVIDEOFLOATWIDGET_H
+#define MUSICVIDEOFLOATWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,43 +12,29 @@
 #include "musicfloatabstractwidget.h"
 
 class QPushButton;
-class MusicLrcFloatPhotoWidget;
-class MusicLrcFloatSettingWidget;
 
-/*! @brief The class of the lrc float widget.
+/*! @brief The class of the video float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicVideoFloatWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatWidget(QWidget *parent = 0);
+    explicit MusicVideoFloatWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLrcFloatWidget();
+    virtual ~MusicVideoFloatWidget();
 
     virtual void resizeWidth(int width) override;
     /*!
      * Resize width bound by given width.
      */
 
-public Q_SLOTS:
-    void showFloatSettingWidget();
-    /*!
-     * Show float setting widget.
-     */
-    void closeFloatSettingWidget();
-    /*!
-     * Close float setting widget.
-     */
-
 protected:
     QPushButton *m_more, *m_update, *m_search;
     QPushButton *m_wallp, *m_photo;
-    MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
-    MusicLrcFloatSettingWidget *m_floatSettingWidget;
 
 };
 
-#endif // MUSICLRCFLOATWIDGET_H
+#endif // MUSICVIDEOFLOATWIDGET_H
