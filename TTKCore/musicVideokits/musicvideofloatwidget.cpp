@@ -5,53 +5,85 @@
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
-    setStyleSheet("background:rgba(41,41,41);");
+    setStyleSheet(MusicUIObject::MCustomStyle28);
 
     resizeWidth(0);
-    m_update = new QPushButton(tr(" Update"), this);
     m_search = new QPushButton(tr(" Search"), this);
-    m_more = new QPushButton(tr(" More"), this);
-    m_wallp = new QPushButton(tr(" Wallp"), this);
-    m_photo = new QPushButton(tr(" Photo"), this);
+    m_fresh = new QPushButton(tr(" Fresh"), this);
+    m_fullscreen = new QPushButton(tr(" Fullscreen"), this);
+    m_download = new QPushButton(tr(" Download"), this);
+    m_share = new QPushButton(tr(" Share"), this);
 
-    m_update->setIcon(QIcon(":/lrc/update"));
-    m_search->setIcon(QIcon(":/lrc/search"));
-    m_more->setIcon(QIcon(":/lrc/more"));
-    m_wallp->setIcon(QIcon(":/lrc/wallpaper"));
-    m_photo->setIcon(QIcon(":/share/showMV2"));
+    m_search->setIcon(QIcon(":/video/search"));
+    m_fresh->setIcon(QIcon(":/video/fresh"));
+    m_fullscreen->setIcon(QIcon(":/video/fullscreen"));
+    m_download->setIcon(QIcon(":/video/download"));
+    m_share->setIcon(QIcon(":/image/songShare"));
 
-    m_update->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
     m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_more->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_wallp->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_photo->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_fresh->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_fullscreen->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_download->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_share->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
 
-    m_update->setGeometry(15, 10, m_update->width(), m_update->height());
-    m_search->setGeometry(15, 50, m_search->width(), m_search->height());
-    m_more->setGeometry(15, 90, m_more->width(), m_more->height());
-    m_wallp->setGeometry(15, 130, m_wallp->width(), m_wallp->height());
-    m_photo->setGeometry(15, 170, m_photo->width(), m_photo->height());
+    m_search->move(15, 10);
+    m_fresh->move(15, 50);
+    m_fullscreen->move(15, 90);
+    m_download->move(15, 130);
+    m_share->move(15, 170);
 
-    m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
-    m_more->setCursor(QCursor(Qt::PointingHandCursor));
-    m_wallp->setCursor(QCursor(Qt::PointingHandCursor));
-    m_photo->setCursor(QCursor(Qt::PointingHandCursor));
+    m_fresh->setCursor(QCursor(Qt::PointingHandCursor));
+    m_fullscreen->setCursor(QCursor(Qt::PointingHandCursor));
+    m_download->setCursor(QCursor(Qt::PointingHandCursor));
+    m_share->setCursor(QCursor(Qt::PointingHandCursor));
+
+    connect(m_search, SIGNAL(clicked()), SIGNAL(searchButtonClicked()));
+    connect(m_fresh, SIGNAL(clicked()), SIGNAL(freshButtonClicked()));
+    connect(m_fullscreen, SIGNAL(clicked()), SIGNAL(fullscreenButtonClicked()));
+    connect(m_download, SIGNAL(clicked()), SIGNAL(downloadButtonClicked()));
+    connect(m_share, SIGNAL(clicked()), SIGNAL(shareButtonClicked()));
 
 }
 
 MusicVideoFloatWidget::~MusicVideoFloatWidget()
 {
-    delete m_more;
-    delete m_update;
     delete m_search;
-    delete m_wallp;
-    delete m_photo;
+    delete m_fresh;
+    delete m_fullscreen;
+    delete m_download;
+    delete m_share;
 }
 
 void MusicVideoFloatWidget::resizeWidth(int width)
 {
-    m_rectIn = QRect(518 + width, 120, 115, 210);
-    m_rectOut = QRect(628 + width, 171, 115, 105);
+    m_rectIn = QRect(508 + width, 120, 125, 210);
+    m_rectOut = QRect(628 + width, 171, 125, 105);
     setGeometry( m_rectOut );
+}
+
+void MusicVideoFloatWidget::setText(Type type, const QString &text)
+{
+    switch(type)
+    {
+        case SearchType: m_search->setText(text); break;
+        case FreshType: m_fresh->setText(text); break;
+        case FullscreenType: m_fullscreen->setText(text); break;
+        case DownloadType: m_download->setText(text); break;
+        case ShareType: m_share->setText(text); break;
+        default: break;
+    }
+}
+
+QString MusicVideoFloatWidget::getText(Type type) const
+{
+    switch(type)
+    {
+        case SearchType: return m_search->text().trimmed();
+        case FreshType: return m_fresh->text().trimmed();
+        case FullscreenType: return m_fullscreen->text().trimmed();
+        case DownloadType: return m_download->text().trimmed();
+        case ShareType: return m_share->text();
+        default: return QString();
+    }
 }

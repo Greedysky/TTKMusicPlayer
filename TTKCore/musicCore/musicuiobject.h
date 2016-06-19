@@ -94,7 +94,7 @@ namespace MusicUIObject
             background:rgba(0,0,0,35);";
 
     const QString MCustomStyle28 = " \
-            image:url(:/share/defaultArt);";
+            background:rgba(41,41,41);";
           
 ///ToolButton
 //////////////////////////////////////////////////////

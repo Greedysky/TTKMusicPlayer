@@ -46,13 +46,9 @@ public:
      */
 
 public Q_SLOTS:
-    void backButtonClicked();
+    void switchToSearchTable();
     /*!
-     * Stack backward button clicked.
-     */
-    void afterButtonClicked();
-    /*!
-     * Stack forward button clicked.
+     * Switch to search table.
      */
     void searchButtonClicked();
     /*!
@@ -71,6 +67,11 @@ public Q_SLOTS:
      * Set current media name and url to play.
      */
 
+    void freshButtonClicked();
+    void fullscreenButtonClicked();
+    void downloadButtonClicked();
+    void shareButtonClicked();
+
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
@@ -79,7 +80,6 @@ protected:
 
     QWidget *m_topWidget;
     QLabel *m_textLabel;
-    QPushButton *m_backButton, *m_afterButton;
     QPushButton *m_searchButton, *m_closeButton;
     QStackedWidget *m_stackedWidget;
     MusicVideoView *m_videoView;

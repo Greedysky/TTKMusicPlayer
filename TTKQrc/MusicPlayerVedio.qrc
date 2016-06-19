@@ -4,8 +4,10 @@
         <file alias="pause">../TTKResource/video/video_pause.png</file>
         <file alias="volume">../TTKResource/video/video_volume.png</file>
         <file alias="menu">../TTKResource/video/video_menu.png</file>
-        <file alias="back">../TTKResource/video/video_goback.png</file>
-        <file alias="after">../TTKResource/video/video_goafter.png</file>
+        <file alias="download">../TTKResource/video/video_download.png</file>
+        <file alias="fresh">../TTKResource/video/video_fresh.png</file>
+        <file alias="fullscreen">../TTKResource/video/video_fullscreen.png</file>
+        <file alias="search">../TTKResource/video/video_search.png</file>
         <file alias="video_1">../TTKResource/video/video_1.png</file>
         <file alias="video_2">../TTKResource/video/video_2.png</file>
         <file alias="video_3">../TTKResource/video/video_3.png</file>

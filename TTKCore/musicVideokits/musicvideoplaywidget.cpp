@@ -3,6 +3,7 @@
 #include "musicvideotablewidget.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicvideofloatwidget.h"
+#include "musicsongsharingwidget.h"
 #include "musicobject.h"
 
 #include <QVBoxLayout>
@@ -35,14 +36,6 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
                                MusicUIObject::MCustomStyle20);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setSpacing(0);
-    m_backButton = new QPushButton(this);
-    m_backButton->setIcon(QIcon(":/video/back"));
-    m_backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_backButton->setIconSize(QSize(18, 18));
-    m_afterButton = new QPushButton(this);
-    m_afterButton->setIcon(QIcon(":/video/after"));
-    m_afterButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_afterButton->setIconSize(QSize(18, 18));
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
@@ -52,13 +45,13 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     m_searchButton->setIcon(QIcon(":/share/searchlineleft"));
     m_searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_searchButton->setIconSize(QSize(18, 18));
-    topLayout->addWidget(m_backButton);
-    topLayout->addWidget(m_afterButton);
     topLayout->addStretch();
     topLayout->addWidget(m_textLabel);
     topLayout->addStretch();
     topLayout->addWidget(m_searchEdit);
     topLayout->addWidget(m_searchButton);
+    m_searchEdit->hide();
+    m_searchButton->hide();
 
     if(popup)
     {
@@ -84,9 +77,9 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
     m_stackedWidget->setCurrentIndex(0);
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType,
+                                popup ? " " + tr("InlineMode") : " " + tr("PopupMode"));
 
-    connect(m_afterButton, SIGNAL(clicked(bool)), SLOT(afterButtonClicked()));
-    connect(m_backButton, SIGNAL(clicked(bool)), SLOT(backButtonClicked()));
     connect(m_searchButton,SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
     connect(m_videoTable, SIGNAL(mvURLNameChanged(QString,QString)),
                           SLOT(mvURLNameChanged(QString,QString)));
@@ -94,12 +87,17 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
                           SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
+    connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
+    connect(m_videoFloatWidget, SIGNAL(freshButtonClicked()), SLOT(freshButtonClicked()));
+    connect(m_videoFloatWidget, SIGNAL(fullscreenButtonClicked()), SLOT(fullscreenButtonClicked()));
+    connect(m_videoFloatWidget, SIGNAL(downloadButtonClicked()), SLOT(downloadButtonClicked()));
+    connect(m_videoFloatWidget, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
+
 }
 
 MusicVideoPlayWidget::~MusicVideoPlayWidget()
 {
     delete m_closeButton;
-    delete m_backButton;
     delete m_textLabel;
     delete m_searchEdit;
     delete m_searchButton;
@@ -154,14 +152,41 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     m_videoTable->resizeWindow(s.width()*1.0 / WINDOW_WIDTH);
 }
 
-void MusicVideoPlayWidget::backButtonClicked()
+void MusicVideoPlayWidget::switchToSearchTable()
 {
-    m_stackedWidget->setCurrentIndex(0);
+    m_searchEdit->show();
+    m_searchButton->show();
+    m_stackedWidget->setCurrentIndex(1);
 }
 
-void MusicVideoPlayWidget::afterButtonClicked()
+void MusicVideoPlayWidget::freshButtonClicked()
 {
-    m_stackedWidget->setCurrentIndex(1);
+    qDebug() << "freshButtonClicked";
+}
+
+void MusicVideoPlayWidget::fullscreenButtonClicked()
+{
+    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("PopupMode"))
+    {
+        return;
+    }
+
+    m_videoView->setFullScreen();
+    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) ==
+                                tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
+}
+
+void MusicVideoPlayWidget::downloadButtonClicked()
+{
+    m_videoTable->downloadLocalFromControl();
+}
+
+void MusicVideoPlayWidget::shareButtonClicked()
+{
+    MusicSongSharingWidget shareWidget;
+    shareWidget.setSongName( m_textLabel->text().trimmed() );
+    shareWidget.exec();
 }
 
 void MusicVideoPlayWidget::searchButtonClicked()
@@ -171,8 +196,8 @@ void MusicVideoPlayWidget::searchButtonClicked()
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
+    switchToSearchTable();
     m_searchEdit->setText(name);
-    m_stackedWidget->setCurrentIndex(1);
     m_videoTable->startSearchQuery(name);
 }
 
@@ -180,6 +205,8 @@ void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 {
     m_videoView->setMedia(data);
     m_videoView->play();
+    m_searchEdit->hide();
+    m_searchButton->hide();
     m_stackedWidget->setCurrentIndex(0);
 }
 

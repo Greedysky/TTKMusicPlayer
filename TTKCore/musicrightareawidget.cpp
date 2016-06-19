@@ -371,12 +371,6 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
 
 void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
 {
-    QString searchedText;
-    if(m_videoPlayer)
-    {
-        searchedText = m_videoPlayer->getSearchText();
-    }
-    //////////////////////////////////////////////////////
     if(popup)
     {
         createVideoWidget(false);
@@ -390,11 +384,6 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     {
         createVideoWidget(false);
         createVideoWidget(true);
-    }
-    //////////////////////////////////////////////////////
-    if(!searchedText.isEmpty())
-    {
-        musicVideoButtonSearched( searchedText );
     }
 }
 
