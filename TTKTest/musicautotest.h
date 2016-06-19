@@ -1,5 +1,5 @@
-#ifndef TTKAUTOTEST_H
-#define TTKAUTOTEST_H
+#ifndef MUSICAUTOTEST_H
+#define MUSICAUTOTEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,10 +11,9 @@
 
 #include <QTest>
 #include <QDebug>
-#include <QObject>
 #include <QSharedPointer>
 
-namespace TTKAutoTest
+namespace MusicAutoTest
 {
     typedef QList<QObject*> TestList;
 
@@ -62,19 +61,19 @@ namespace TTKAutoTest
 }
 
 template <class T>
-class TTKTest
+class MusicTest
 {
 public:
     QSharedPointer<T> m_child;
 
-    TTKTest(const QString& name) : m_child(new T)
+    MusicTest(const QString& name) : m_child(new T)
     {
         m_child->setObjectName(name);
-        TTKAutoTest::addTest(m_child.data());
+        MusicAutoTest::addTest(m_child.data());
     }
 };
 
-#define DECLARE_TEST(className) static TTKTest<className> t(#className);
+#define DECLARE_TEST(className) static MusicTest<className> t(#className);
 
 #define TEST_MAIN \
     int main(int argc, char *argv[]) \
@@ -83,7 +82,7 @@ public:
         QCoreApplication::setOrganizationName("TTKMusicPlayer"); \
         QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com"); \
         QCoreApplication::setApplicationName("TTKMusicPlayer"); \
-        return TTKAutoTest::run(argc, argv); \
+        return MusicAutoTest::run(argc, argv); \
     }
 
-#endif // TTKAUTOTEST_H
+#endif // MUSICAUTOTEST_H

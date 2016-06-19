@@ -23,7 +23,7 @@ TEMPLATE = app
 
 
 HEADERS  += \
-    ttkautotest.h
+    musicautotest.h
 
 SOURCES  += \
     musicapplicationmain.cpp
