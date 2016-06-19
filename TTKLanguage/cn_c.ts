@@ -4906,11 +4906,60 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MusicVideoFloatWidget</name>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="11"/>
+        <source> Search</source>
+        <translation> 搜索視頻</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="12"/>
+        <source> Fresh</source>
+        <translation> 彈出模式</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="13"/>
+        <source> Fullscreen</source>
+        <translation> 全屏模式</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="14"/>
+        <source> Download</source>
+        <translation> 下載視頻</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="15"/>
+        <source> Share</source>
+        <translation> 分享視頻</translation>
+    </message>
+</context>
+<context>
     <name>MusicVideoPlayWidget</name>
     <message>
-        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="65"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="59"/>
         <source>Close</source>
         <translation>關閉</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="81"/>
+        <source>InlineMode</source>
+        <translation>内嵌模式</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="81"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="169"/>
+        <source>PopupMode</source>
+        <translation>彈出模式</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="176"/>
+        <source>NormalMode</source>
+        <translation>普通模式</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="176"/>
+        <source>FullScreenMode</source>
+        <translation>全屏模式</translation>
     </message>
 </context>
 <context>
@@ -4924,9 +4973,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="146"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="100"/>
+        <source>videoPlay</source>
+        <translation>視頻播放/暫停</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="101"/>
+        <source>videoStop</source>
+        <translation>停止播放</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="163"/>
         <source>Session time out, try again!</source>
         <translation>連接超時，請重試！</translation>
+    </message>
+</context>
+<context>
+    <name>MusicViewWidget</name>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="39"/>
+        <source>videoPlay</source>
+        <translation>視頻播放/暫停</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="40"/>
+        <source>videoStop</source>
+        <translation>停止播放</translation>
     </message>
 </context>
 <context>

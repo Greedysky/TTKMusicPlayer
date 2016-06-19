@@ -4906,11 +4906,60 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MusicVideoFloatWidget</name>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="11"/>
+        <source> Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="12"/>
+        <source> Fresh</source>
+        <translation> PopupMode</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="13"/>
+        <source> Fullscreen</source>
+        <translation> FullScreenMode</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="14"/>
+        <source> Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideofloatwidget.cpp" line="15"/>
+        <source> Share</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicVideoPlayWidget</name>
     <message>
-        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="65"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="59"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="81"/>
+        <source>InlineMode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="81"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="169"/>
+        <source>PopupMode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="176"/>
+        <source>NormalMode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoplaywidget.cpp" line="176"/>
+        <source>FullScreenMode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4924,9 +4973,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="146"/>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="100"/>
+        <source>videoPlay</source>
+        <translation>VideoPlay</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="101"/>
+        <source>videoStop</source>
+        <translation>VideoStop</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="163"/>
         <source>Session time out, try again!</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicViewWidget</name>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="39"/>
+        <source>videoPlay</source>
+        <translation>VideoPlay</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicVideokits/musicvideoview.cpp" line="40"/>
+        <source>videoStop</source>
+        <translation>VideoStop</translation>
     </message>
 </context>
 <context>
