@@ -35,20 +35,41 @@ public:
      */
     virtual ~MusicVideoFloatWidget();
 
-    virtual void resizeWidth(int width) override;
+    virtual void resizeWindow(int width, int height) override;
     /*!
-     * Resize width bound by given width.
+     * Resize window bound by given width and height.
      */
 
     void setText(Type type, const QString &text);
+    /*!
+     * Set tool button text by type.
+     */
     QString getText(Type type) const;
+    /*!
+     * Get tool button text by type.
+     */
 
 Q_SIGNALS:
     void searchButtonClicked();
+    /*!
+     * Search button clicked.
+     */
     void freshButtonClicked();
+    /*!
+     * Fresh button clicked.
+     */
     void fullscreenButtonClicked();
+    /*!
+     * Fullscreen button clicked.
+     */
     void downloadButtonClicked();
+    /*!
+     * Download button clicked.
+     */
     void shareButtonClicked();
+    /*!
+     * Share button clicked.
+     */
 
 protected:
     QPushButton *m_search, *m_fresh, *m_fullscreen;

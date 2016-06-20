@@ -45,6 +45,12 @@ public:
      * Get search text in search line.
      */
 
+Q_SIGNALS:
+    void freshButtonClicked(bool popup);
+    /*!
+     * Fresh button state changed.
+     */
+
 public Q_SLOTS:
     void switchToSearchTable();
     /*!
@@ -68,9 +74,21 @@ public Q_SLOTS:
      */
 
     void freshButtonClicked();
+    /*!
+     * Fresh button clicked.
+     */
     void fullscreenButtonClicked();
+    /*!
+     * Fullscreen button clicked.
+     */
     void downloadButtonClicked();
+    /*!
+     * Download button clicked.
+     */
     void shareButtonClicked();
+    /*!
+     * Share button clicked.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

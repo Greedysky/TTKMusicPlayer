@@ -14,7 +14,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_floatSettingWidget = new MusicLrcFloatSettingWidget(parent);
     m_floatSettingWidget->hide();
 
-    resizeWidth(0);
+    resizeWindow(0, 0);
     m_update = new QPushButton(tr(" Update"), this);
     m_search = new QPushButton(tr(" Search"), this);
     m_more = new QPushButton(tr(" More"), this);
@@ -63,14 +63,14 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
     delete m_floatSettingWidget;
 }
 
-void MusicLrcFloatWidget::resizeWidth(int width)
+void MusicLrcFloatWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(518 + width, 120, 115, 210);
-    m_rectOut = QRect(628 + width, 171, 115, 105);
+    m_rectIn = QRect(518 + width, 120 + height, 115, 210);
+    m_rectOut = QRect(628 + width, 171 + height, 115, 105);
     setGeometry( m_rectOut );
 
-    m_floatSettingWidget->resizeWidth(width);
-    m_floatPhotoWidget->resizeWidth(width);
+    m_floatSettingWidget->resizeWindow(width, height);
+    m_floatPhotoWidget->resizeWindow(width, height);
 }
 
 void MusicLrcFloatWidget::showFloatSettingWidget()

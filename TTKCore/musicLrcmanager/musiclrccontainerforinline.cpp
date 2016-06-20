@@ -284,7 +284,7 @@ void MusicLrcContainerForInline::resizeWidth(int width)
     for(int i=0; i< LRC_LINEMAX_COUNT; ++i)
     {
         MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(width);
-        m_lrcFloatWidget->resizeWidth(width);
+        m_lrcFloatWidget->resizeWindow(width, 0);
     }
 
     if(m_lrcAnalysis->isEmpty())

@@ -6,8 +6,7 @@
 #include "musicsongsharingwidget.h"
 #include "musicobject.h"
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <QBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QStackedWidget>
@@ -135,7 +134,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
         showNormal();
         setGeometry(250, 150, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
-    QSize s =  size();
+    QSize s = size();
 #ifdef Q_OS_UNIX
     QDesktopWidget* desktopWidget = QApplication::desktop();
     if(desktopWidget && desktopWidget->screen())
@@ -150,6 +149,8 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
 #endif
     m_videoView->resizeWindow(resize, s);
     m_videoTable->resizeWindow(s.width()*1.0 / WINDOW_WIDTH);
+    m_videoFloatWidget->resizeWindow(resize ?  s.width() - WINDOW_WIDTH : 0,
+                                     resize ? (s.height() - WINDOW_HEIGHT)/2 : 0);
 }
 
 void MusicVideoPlayWidget::switchToSearchTable()
@@ -161,7 +162,8 @@ void MusicVideoPlayWidget::switchToSearchTable()
 
 void MusicVideoPlayWidget::freshButtonClicked()
 {
-    qDebug() << "freshButtonClicked";
+    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
+    emit freshButtonClicked( text == tr("PopupMode"));
 }
 
 void MusicVideoPlayWidget::fullscreenButtonClicked()
@@ -184,8 +186,14 @@ void MusicVideoPlayWidget::downloadButtonClicked()
 
 void MusicVideoPlayWidget::shareButtonClicked()
 {
-    MusicSongSharingWidget shareWidget;
-    shareWidget.setSongName( m_textLabel->text().trimmed() );
+    QString text = m_textLabel->text().trimmed();
+    if(text.isEmpty())
+    {
+        return;
+    }
+
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setSongName(text);
     shareWidget.exec();
 }
 

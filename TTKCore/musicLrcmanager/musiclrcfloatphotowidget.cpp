@@ -89,10 +89,10 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_checkBox;
 }
 
-void MusicLrcFloatPhotoWidget::resizeWidth(int width)
+void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(width/2, 500, 115, 105);
-    m_rectOut = QRect(width/2, 300, 632, 180);
+    m_rectIn = QRect(width/2, 500 + height, 115, 105);
+    m_rectOut = QRect(width/2, 300 + height, 632, 180);
     setGeometry(m_rectOut);
 }
 

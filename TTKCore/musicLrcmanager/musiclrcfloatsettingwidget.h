@@ -25,9 +25,9 @@ public:
      * Object contsructor.
      */
 
-    virtual void resizeWidth(int width) override;
+    virtual void resizeWindow(int width, int height) override;
     /*!
-     * Resize width bound by given width.
+     * Resize window bound by given width and height.
      */
 
 Q_SIGNALS:

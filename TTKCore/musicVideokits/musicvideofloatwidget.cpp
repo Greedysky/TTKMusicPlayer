@@ -7,7 +7,7 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
 {
     setStyleSheet(MusicUIObject::MCustomStyle28);
 
-    resizeWidth(0);
+    resizeWindow(0, 0);
     m_search = new QPushButton(tr(" Search"), this);
     m_fresh = new QPushButton(tr(" Fresh"), this);
     m_fullscreen = new QPushButton(tr(" Fullscreen"), this);
@@ -55,10 +55,10 @@ MusicVideoFloatWidget::~MusicVideoFloatWidget()
     delete m_share;
 }
 
-void MusicVideoFloatWidget::resizeWidth(int width)
+void MusicVideoFloatWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(508 + width, 120, 125, 210);
-    m_rectOut = QRect(628 + width, 171, 125, 105);
+    m_rectIn = QRect(508 + width, 120 + height, 125, 210);
+    m_rectOut = QRect(628 + width, 171 + height, 125, 105);
     setGeometry( m_rectOut );
 }
 

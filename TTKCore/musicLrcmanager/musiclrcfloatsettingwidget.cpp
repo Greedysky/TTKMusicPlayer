@@ -70,10 +70,10 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     settingButton->setGeometry(10, 180, 150, 20);
 }
 
-void MusicLrcFloatSettingWidget::resizeWidth(int width)
+void MusicLrcFloatSettingWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(470 + width, 120, 165, 210);
-    m_rectOut = QRect(630 + width, 171, 165, 105);
+    m_rectIn = QRect(470 + width, 120 + height, 165, 210);
+    m_rectOut = QRect(630 + width, 171 + height, 165, 105);
     setGeometry(m_rectOut);
 }
 
