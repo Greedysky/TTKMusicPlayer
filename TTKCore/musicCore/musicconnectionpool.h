@@ -85,6 +85,9 @@ protected:
     QList<QObject*> m_queueList;
 
     MusicConnectionPool();
+    /*!
+     * Object contsructor.
+     */
     ~MusicConnectionPool() = default;
 
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)

@@ -327,6 +327,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         m_videoPlayer = new MusicVideoPlayWidget(false);
         m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->blockMoveOption(true);
+        connect(m_videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
         m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
         m_ui->SurfaceStackedWidget->setCurrentWidget(m_videoPlayer);
     }
@@ -379,6 +380,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         m_videoPlayer = new MusicVideoPlayWidget(true);
         m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->show();
+        connect(m_videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
     }
     else
     {

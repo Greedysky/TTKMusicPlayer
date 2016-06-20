@@ -56,6 +56,9 @@ private:
     bool m_networkState;
 
     MusicNetworkThread();
+    /*!
+     * Object contsructor.
+     */
     ~MusicNetworkThread();
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)

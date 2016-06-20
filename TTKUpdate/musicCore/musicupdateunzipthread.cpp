@@ -1,8 +1,8 @@
 #include "musicupdateunzipthread.h"
 #include "gojobzip.h"
 
-#include <QDebug>
 #include <QDir>
+#include <QDebug>
 
 MusicUpdateUnzipThread::MusicUpdateUnzipThread(QObject *parent)
     : QThread(parent)

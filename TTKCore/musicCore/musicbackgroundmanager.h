@@ -79,6 +79,9 @@ Q_SIGNALS:
 
 protected:
     MusicBackgroundManager();
+    /*!
+     * Object contsructor.
+     */
     ~MusicBackgroundManager() = default;
 
     QString m_currentArtName;

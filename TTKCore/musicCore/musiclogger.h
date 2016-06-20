@@ -52,15 +52,24 @@ public:
         static MusicLogger obj;
         return &obj;
     }
+    /*!
+     * Get object instance ptr.
+     */
 
     inline void setLevel(const QString &level)
     {
         m_levelType = level;
     }
+    /*!
+     * Set logger level.
+     */
     inline QString level() const
     {
         return m_levelType;
     }
+    /*!
+     * Get logger level.
+     */
 
     inline MusicLogger &operator <<(bool t)
     {
@@ -103,6 +112,9 @@ public:
     inline MusicLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
     inline MusicLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
     inline MusicLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
+    /*!
+     * Operator << override.
+     */
 
 private:
     MusicLogger()

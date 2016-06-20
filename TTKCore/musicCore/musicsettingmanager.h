@@ -155,6 +155,9 @@ public:
 
 protected:
     MusicSettingManager(){}
+    /*!
+     * Object contsructor.
+     */
     ~MusicSettingManager(){}
 
     ConfigType typeStringToEnum(const QString &stype) const

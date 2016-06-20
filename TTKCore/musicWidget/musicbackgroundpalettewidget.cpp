@@ -3,7 +3,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 
-#include <QDebug>
 #include <QGridLayout>
 #include <QColorDialog>
 #include <QMouseEvent>

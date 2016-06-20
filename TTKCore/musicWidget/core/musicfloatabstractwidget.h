@@ -32,9 +32,9 @@ public:
     /*!
      * Set block animation state or not.
      */
-    virtual void resizeWidth(int width) = 0;
+    virtual void resizeWindow(int width, int height) = 0;
     /*!
-     * Resize width bound by given width.
+     * Resize window bound by given width and height.
      * Subclass should implement this function.
      */
 
