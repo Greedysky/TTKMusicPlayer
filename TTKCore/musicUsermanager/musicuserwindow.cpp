@@ -119,7 +119,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
         QSize size = ui->userIconL->size();
         m_userManager->setUserUID(uid);
         ui->userIconL->setPixmap(MusicUtils::pixmapToRound(icon, size, size.width()/2, size.height()/2));
-        ui->userNameL->setText(QFontMetrics(font()).elidedText(uid, Qt::ElideRight, 44));
+        ui->userNameL->setText(MusicUtils::elidedText(font(), uid, Qt::ElideRight, 44));
         setCurrentIndex(1);
     }
 }

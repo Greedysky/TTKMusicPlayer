@@ -42,7 +42,7 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
 
 void MusicSongSharingWidget::setSongName(const QString &name)
 {
-    ui->sharedName->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 200));
+    ui->sharedName->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)

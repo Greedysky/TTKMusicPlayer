@@ -1,6 +1,7 @@
 #include "musicremotewidgetforrectangle.h"
 #include "musicsettingmanager.h"
 #include "musicmarqueewidget.h"
+#include "musicutils.h"
 
 MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
@@ -52,6 +53,6 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
 
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(QFontMetrics(font()).elidedText(value,
+    m_songNameLabel->setText(MusicUtils::elidedText(font(), value,
                              Qt::ElideRight, 350));
 }

@@ -6,6 +6,7 @@
 #include "musicnetworkthread.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
+#include "musicutils.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
@@ -150,7 +151,7 @@ void MusicSimilarFoundWidget::createLabels()
             m_checkBoxs << box;
             grid->addWidget(box, index, j*4);
             QLabel *songLabel = new QLabel(m_mainWindow);
-            songLabel->setText(QFontMetrics(font()).elidedText(m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
+            songLabel->setText(MusicUtils::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
             songLabel->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
             grid->addWidget(songLabel, index, j*4 + 1, 1, 2, Qt::AlignLeft);
             grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, m_mainWindow), index, j*4 + 3);
@@ -177,7 +178,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel1, index, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel2, index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel3, index++, 6, 1, 2, Qt::AlignCenter);
-    QString artLimitString = QFontMetrics(font()).elidedText(artName, Qt::ElideRight, 90);
+    QString artLimitString = MusicUtils::elidedText(font(), artName, Qt::ElideRight, 90);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);

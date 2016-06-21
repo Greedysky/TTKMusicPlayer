@@ -31,18 +31,16 @@ bool MusicSongsListItemInfoWidget::showArtPicture(const QString &name)
 void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info)
 {
     QString musicArt = info.getMusicArtistFront();
-    QFontMetrics str(font());
     ui->songNameValue->setText( info.getMusicName().isEmpty() ? "-" :
-                str.elidedText( info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()) );
+                MusicUtils::elidedText(font(), info.getMusicName(), Qt::ElideRight, ui->songNameValue->width()) );
     ui->artlistValue->setText( musicArt.isEmpty() ? "-" :
-               str.elidedText( musicArt, Qt::ElideRight, ui->artlistValue->width()) );
-    ui->sizeValue->setText( str.elidedText( QString::number(MusicUtils::sizeByte2MByte(
+                MusicUtils::elidedText(font(), musicArt, Qt::ElideRight, ui->artlistValue->width()) );
+    ui->sizeValue->setText( MusicUtils::elidedText(font(), QString::number(MusicUtils::sizeByte2MByte(
                             info.getMusicSize())).left(4) + "M", Qt::ElideRight, ui->sizeValue->width()) );
     ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" :
-            str.elidedText( info.getMusicType(), Qt::ElideRight, ui->typeValue->width()) );
+                MusicUtils::elidedText(font(), info.getMusicType(), Qt::ElideRight, ui->typeValue->width()) );
     ui->timeValue->setText(
-            str.elidedText( QString::number(info.getMusicPlayCount()), Qt::ElideRight, ui->timeValue->width()) );
-
+                MusicUtils::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, ui->timeValue->width()) );
 
     if(!showArtPicture(musicArt) && !showArtPicture(info.getMusicArtistBack()))
     {

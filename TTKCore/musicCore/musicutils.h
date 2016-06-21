@@ -56,6 +56,11 @@ public:
     /*!
      * Set widget label font.
      */
+    static QString elidedText(const QFont &font, const QString &text,
+                              Qt::TextElideMode mode, int width);
+    /*!
+     * Set text elided text by font.
+     */
     static void setTransparent(QWidget *widget, int alpha);
     /*!
      * Set widget transparent.

@@ -96,14 +96,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight, 300));
+    item->setText(MusicUtils::elidedText(font(), songname, Qt::ElideRight, 300));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight, 180));
+    item->setText(MusicUtils::elidedText(font(), artistname, Qt::ElideRight, 180));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -304,7 +304,7 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 {
     m_searchTableWidget->startSearchQuery(name);
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
-                         .arg(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 240)));
+                         .arg(MusicUtils::elidedText(font(), name, Qt::ElideRight, 240)));
 }
 
 void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)

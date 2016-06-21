@@ -63,6 +63,13 @@ void MusicUtils::setLabelFont(QWidget *widget, int size)
     widget->setFont(font);
 }
 
+QString MusicUtils::elidedText(const QFont &font, const QString &text,
+                               Qt::TextElideMode mode, int width)
+{
+    QFontMetrics ft(font);
+    return ft.elidedText(text, mode, width);
+}
+
 void MusicUtils::setTransparent(QWidget *widget, int alpha)
 {
     QPalette pal = widget->palette();

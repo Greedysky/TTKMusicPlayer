@@ -1,5 +1,6 @@
 #include "musicsystemtraymenu.h"
 #include "musicuiobject.h"
+#include "musicutils.h"
 
 #include <QWidgetAction>
 #include <QToolButton>
@@ -93,8 +94,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
-    QFontMetrics str(font());
-    m_showText->setText(str.elidedText(text, Qt::ElideRight,160));
+    m_showText->setText(MusicUtils::elidedText(font(), text, Qt::ElideRight, 160));
     m_showText->setToolTip(text);
 }
 

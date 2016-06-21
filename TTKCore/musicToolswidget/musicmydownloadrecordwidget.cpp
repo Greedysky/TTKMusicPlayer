@@ -59,7 +59,7 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 160));
+    item->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( name );

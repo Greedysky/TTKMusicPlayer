@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
+#include "musicutils.h"
 
 #include <QSound>
 #include <QProcess>
@@ -172,6 +173,6 @@ void MusicSoundTouchWidget::finished(int code)
 
 void MusicSoundTouchWidget::setText(const QString &text)
 {
-    ui->pathLabel->setText( QFontMetrics(font()).elidedText(text, Qt::ElideLeft, 390) );
+    ui->pathLabel->setText(MusicUtils::elidedText(font(), text, Qt::ElideLeft, 390) );
     ui->pathLabel->setToolTip(text);
 }

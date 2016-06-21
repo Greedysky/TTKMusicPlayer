@@ -60,7 +60,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
     QString text = ui->songSearchEdit->text().trimmed();
     ui->tableWidget->startSearchQuery( text );
     ui->functionTopLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
-                                  .arg(QFontMetrics(font()).elidedText(text, Qt::ElideRight, 245)));
+                                  .arg(MusicUtils::elidedText(font(), text, Qt::ElideRight, 245)));
 }
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()

@@ -62,7 +62,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem;
-        item->setText(QFontMetrics(font()).elidedText(songs[i].getMusicName(), Qt::ElideRight, 232));
+        item->setText(MusicUtils::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -151,8 +151,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     if(m_renameActived)
     {
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(QFontMetrics(font()).elidedText(
-                       m_renameItem->text(), Qt::ElideRight, 243));
+        m_renameItem->setText(MusicUtils::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
         m_renameActived = false;
     }
 
@@ -501,7 +500,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 2);
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(QFontMetrics(font()).elidedText(name, Qt::ElideRight, 242));
+    item = new QTableWidgetItem(MusicUtils::elidedText(font(), name, Qt::ElideRight, 242));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);

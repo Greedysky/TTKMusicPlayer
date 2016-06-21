@@ -64,16 +64,16 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(songname, Qt::ElideRight,
-                                                  headerview->sectionSize(1) - 5));
+    item->setText(MusicUtils::elidedText(font(), songname, Qt::ElideRight,
+                                                 headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(QFontMetrics(font()).elidedText(artistname, Qt::ElideRight,
-                                                  headerview->sectionSize(2) - 5));
+    item->setText(MusicUtils::elidedText(font(), artistname, Qt::ElideRight,
+                                                 headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -160,11 +160,11 @@ void MusicVideoTableWidget::resizeWindow(float delta)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(QFontMetrics(font()).elidedText(it->toolTip(), Qt::ElideRight,
-                                                    headerview->sectionSize(1) - 5));
+        it->setText(MusicUtils::elidedText(font(), it->toolTip(), Qt::ElideRight,
+                                                   headerview->sectionSize(1) - 5));
         it = item(i, 2);
-        it->setText(QFontMetrics(font()).elidedText(it->toolTip(), Qt::ElideRight,
-                                                    headerview->sectionSize(2) - 5));
+        it->setText(MusicUtils::elidedText(font(), it->toolTip(), Qt::ElideRight,
+                                                   headerview->sectionSize(2) - 5));
     }
 }
 
