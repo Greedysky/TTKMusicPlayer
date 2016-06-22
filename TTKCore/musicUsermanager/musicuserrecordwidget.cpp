@@ -63,6 +63,8 @@ void MusicUserRecordWidget::initTabF()
     ui->userIDLabel_F->setText(uid);
 
     QString string(m_userModel->getUserSex(uid));
+    ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    ui->femaleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->maleRadioButton_F->setChecked(string.isEmpty() || string == "0");
     ui->femaleRadioButton_F->setChecked(string == "1");
 
@@ -90,6 +92,7 @@ void MusicUserRecordWidget::initTabF()
 #endif
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
+    ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle10);
 
     connect(ui->confirmButton_F, SIGNAL(clicked()), SLOT(confirmButtonClickedF()));
 }
@@ -99,6 +102,7 @@ void MusicUserRecordWidget::initTabS()
     QString path = m_userModel->getUserIcon(ui->userIDLabel_F->text());
     ui->bigPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->bigPixmapLabel_S->size()));
     ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->smlPixmapLabel_S->size()));
+    ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     connect(ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
 }
 
@@ -113,6 +117,7 @@ void MusicUserRecordWidget::initTabT()
     connect(ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
     changeVerificationCodeT();
+    ui->confirmButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
     connect(ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
 }

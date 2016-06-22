@@ -261,9 +261,6 @@ QTabBar::tab:selected {
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
-      </property>
       <property name="text">
        <string>保存</string>
       </property>
@@ -315,6 +312,9 @@ QTabBar::tab:selected {
         <width>121</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QDateEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QDateEdit::hover{ border: 1px solid #AAAAFF;}</string>
       </property>
      </widget>
      <widget class="QComboBox" name="cityComboBox_F">
@@ -432,9 +432,6 @@ QTabBar::tab:selected {
       </property>
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
       </property>
       <property name="text">
        <string>选择头像</string>
@@ -573,9 +570,6 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
       </property>
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:17px;font-weight:bold;}</string>
       </property>
       <property name="text">
        <string>保存</string>
@@ -847,7 +841,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        <string notr="true">color:#80B7F1;font-size:15px;font-weight:bold</string>
       </property>
       <property name="text">
-       <string>180******48</string>
+       <string>159******49</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_FF5">
