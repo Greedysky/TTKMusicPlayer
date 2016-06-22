@@ -37,6 +37,10 @@ Q_SIGNALS:
     /*!
      * Widget clicked.
      */
+    void mediaIsPlaying(bool &play);
+    /*!
+     * Current media is playing.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -103,6 +107,10 @@ private Q_SLOTS:
     void mediaChanged(const QString &data);
     /*!
      * Current media changed.
+     */
+    void mediaIsPlaying(bool &play);
+    /*!
+     * Current media is playing.
      */
 
     void addBarrageChanged(const QString &string);

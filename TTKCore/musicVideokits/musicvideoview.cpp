@@ -4,8 +4,8 @@
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
 
-#include <QMouseEvent>
 #include <QTimer>
+#include <QMouseEvent>
 
 MusicViewWidget::MusicViewWidget(QWidget *parent)
     : QWidget(parent)
@@ -36,7 +36,10 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("videoPlay"), parent(), SLOT(play()));
+    bool playing;
+    emit mediaIsPlaying(playing);
+    menu.addAction(tr("videoPlay"), parent(), SLOT(play()))
+            ->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
     menu.exec(QCursor::pos());
     event->accept();
@@ -55,6 +58,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
 
     connect(m_videoWidget, SIGNAL(setClick()), SLOT(play()));
     connect(m_videoWidget, SIGNAL(setFullScreen()), SLOT(setFullScreen()));
+    connect(m_videoWidget, SIGNAL(mediaIsPlaying(bool&)), SLOT(mediaIsPlaying(bool&)));
 
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
@@ -97,7 +101,10 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("videoPlay"), this, SLOT(play()));
+    bool playing;
+    mediaIsPlaying(playing);
+    menu.addAction(tr("videoPlay"), this, SLOT(play()))
+            ->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), this, SLOT(stop()));
     menu.exec(QCursor::pos());
     event->accept();
@@ -193,6 +200,11 @@ void MusicVideoView::volumeChanged(int volume)
 void MusicVideoView::mediaChanged(const QString &data)
 {
     m_videoControl->mediaChanged(data);
+}
+
+void MusicVideoView::mediaIsPlaying(bool &play)
+{
+    play = (m_mediaPlayer->state() == MusicCoreMPlayer::PlayingState);
 }
 
 void MusicVideoView::addBarrageChanged(const QString &string)
