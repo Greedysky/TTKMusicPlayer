@@ -15,6 +15,9 @@ namespace Ui {
 class MusicSongRingtoneMaker;
 }
 
+class MusicPlayer;
+class MusicPlaylist;
+
 /*! @brief The class of the song ringtone maker widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -25,15 +28,34 @@ public:
     explicit MusicSongRingtoneMaker(QWidget *parent = 0);
     virtual ~MusicSongRingtoneMaker();
 
-Q_SIGNALS:
 public Q_SLOTS:
+    void initInputPath();
+    /*!
+     * Selected input path.
+     */
+    void initOutputPath();
+    /*!
+     * Selected save path.
+     */
+    void playRingtone();
+    /*!
+     * Start to play ringtone.
+     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
+    void initControlParameter() const;
+    /*!
+     * Init control parameter.
+     */
+
     Ui::MusicSongRingtoneMaker *ui;
+    QString m_inputFilePath;
+    MusicPlayer *m_player;
+    MusicPlaylist *m_playList;
 
 };
 
