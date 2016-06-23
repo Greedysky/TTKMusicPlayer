@@ -180,8 +180,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
     {
         m_audition = new MusicCoreMPlayer(this);
     }
-    m_audition->setMedia(MusicCoreMPlayer::MusicCategory,
-                         musicSongInfos[row].m_songAttrs.first().m_url, -1);
+    m_audition->setMedia(MusicCoreMPlayer::MusicCategory, musicSongInfos[row].m_songAttrs.first().m_url);
 
     if(m_previousAuditionRow != -1)
     {

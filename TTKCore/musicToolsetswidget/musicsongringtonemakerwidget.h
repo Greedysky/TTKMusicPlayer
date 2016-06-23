@@ -15,8 +15,7 @@ namespace Ui {
 class MusicSongRingtoneMaker;
 }
 
-class MusicPlayer;
-class MusicPlaylist;
+class MusicCoreMPlayer;
 
 /*! @brief The class of the song ringtone maker widget.
  * @author Greedysky <greedysky@163.com>
@@ -54,8 +53,7 @@ protected:
 
     Ui::MusicSongRingtoneMaker *ui;
     QString m_inputFilePath;
-    MusicPlayer *m_player;
-    MusicPlaylist *m_playList;
+    MusicCoreMPlayer *m_player;
 
 };
 

@@ -3,8 +3,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicsongtag.h"
-#include "musicplayer.h"
-#include "musicplaylist.h"
+#include "musiccoremplayer.h"
 
 #include <QFileDialog>
 #include <QStyledItemDelegate>
@@ -44,16 +43,13 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     connect(ui->playSongButton, SIGNAL(clicked()), SLOT(playRingtone()));
     connect(ui->saveSongButton, SIGNAL(clicked()), SLOT(initOutputPath()));
 
-    m_player = new MusicPlayer(this);
-    m_playList = new MusicPlaylist(this);
-    m_player->setPlaylist(m_playList);
+    m_player = new MusicCoreMPlayer(this);
 
 }
 
 MusicSongRingtoneMaker::~MusicSongRingtoneMaker()
 {
-    delete m_player;
-    delete m_playList;
+    delete m_player;;
     delete ui;
 }
 
@@ -86,7 +82,14 @@ void MusicSongRingtoneMaker::initInputPath()
     else
     {
         ui->songLabelValue->setText(tr("Open File Error!"));
+        return;
     }
+
+    ui->playSongButton->setEnabled(true);
+    ui->saveSongButton->setEnabled(true);
+
+    m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_inputFilePath);
+    m_player->play();
 }
 
 void MusicSongRingtoneMaker::initOutputPath()

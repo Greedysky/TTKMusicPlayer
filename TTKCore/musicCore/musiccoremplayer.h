@@ -42,7 +42,7 @@ public:
      */
     ~MusicCoreMPlayer();
 
-    void setMedia(Category type, const QString &data, int winId);
+    void setMedia(Category type, const QString &data, int winId = -1);
     /*!
      * Set media by type and data path.
      */
@@ -62,6 +62,10 @@ public:
     inline State state() { return m_playState;}
     /*!
      * Get current player state.
+     */
+    inline Category category() { return m_category;}
+    /*!
+     * Get current player category.
      */
 
 Q_SIGNALS:

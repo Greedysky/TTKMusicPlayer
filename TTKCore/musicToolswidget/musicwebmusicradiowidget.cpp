@@ -200,7 +200,7 @@ void MusicWebMusicRadioWidget::startToPlay()
     m_radio = new MusicCoreMPlayer(this);
     connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl, -1);
+    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl);
 
     /// fix current play volume temporary
     int v = ui->volumeSlider->value();
