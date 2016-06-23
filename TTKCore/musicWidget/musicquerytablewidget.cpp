@@ -61,8 +61,13 @@ void MusicQueryTableWidget::setSelectedAllItems(bool all)
 void MusicQueryTableWidget::actionGroupClick(QAction *action)
 {
     int row = currentRow();
-    QString songName = row != -1 && rowCount() > 0 ? item(row, 1)->text() : QString();
-    QString artistName = row != -1 && rowCount() > 0 ? item(row, 2)->text() : QString();
+    if( row < 0)
+    {
+        return;
+    }
+
+    QString songName = (row != -1 && rowCount() > 0) ? item(row, 1)->text() : QString();
+    QString artistName = (row != -1 && rowCount() > 0) ? item(row, 2)->text() : QString();
 
     switch( findActionGroup(action) )
     {
