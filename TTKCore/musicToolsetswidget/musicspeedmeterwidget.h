@@ -1,5 +1,5 @@
-#ifndef MUSICSPEEDMETER_H
-#define MUSICSPEEDMETER_H
+#ifndef MUSICSPEEDMETERWIDGET_H
+#define MUSICSPEEDMETERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,11 +22,11 @@
 /*! @brief The class of the speed meter widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpeedMeter : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicSpeedMeterWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSpeedMeter(QWidget *parent = 0);
+    explicit MusicSpeedMeterWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -131,4 +131,4 @@ private:
 
 };
 
-#endif // MUSICSPEEDMETER_H
+#endif // MUSICSPEEDMETERWIDGET_H

@@ -27,6 +27,7 @@ FORMS    += \
     $$PWD/musicToolsetswidget/musicconnecttransferwidget.ui \
     $$PWD/musicToolsetswidget/musicvolumegainwidget.ui \
     $$PWD/musicToolsetswidget/musicsoundtouchwidget.ui \
+    $$PWD/musicToolsetswidget/musicsongringtonemakerwidget.ui \
     $$PWD/musicToolswidget/musicwebentainradiowidget.ui \
     $$PWD/musicToolswidget/musicwebmusicradiowidget.ui \
     $$PWD/musicUsermanager/musicuserdialog.ui \

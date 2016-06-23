@@ -3,6 +3,7 @@
 #include "musicsongslistplaywidget.h"
 #include "musictransformwidget.h"
 #include "musicfileinformationwidget.h"
+#include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 #include "musicutils.h"
@@ -11,7 +12,6 @@
 #include <QUrl>
 #include <QAction>
 #include <QTimer>
-#include <QProcess>
 #include <QPainter>
 
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
@@ -437,14 +437,7 @@ void MusicSongsListWidget::musicPlayClicked()
 
 void MusicSongsListWidget::musicMakeRingWidget()
 {
-    if(!QFile(MAKE_RING_FULL).exists())
-    {
-        MusicMessageBox message;
-        message.setText(tr("Lack of plugin file!"));
-        message.exec();
-        return;
-    }
-    (new QProcess(this))->start(MAKE_RING_FULL);
+    MusicSongRingtoneMaker(this).exec();
 }
 
 void MusicSongsListWidget::musicTransformWidget()

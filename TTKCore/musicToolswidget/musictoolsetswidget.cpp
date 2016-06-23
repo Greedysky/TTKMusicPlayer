@@ -9,14 +9,14 @@
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
+#include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
-#include <QProcess>
 #include <QTimer>
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
-    : QListWidget(parent), m_process(nullptr)
+    : QListWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QFrame::NoFrame);//Set No Border
@@ -44,11 +44,6 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
     M_CONNECTION_PTR->poolDisConnect("MusicToolSetsWidget");
-    if(m_process)
-    {
-        m_process->kill();
-    }
-    delete m_process;
     clearAllItems();
 }
 
@@ -121,22 +116,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 2:
            {
-#ifdef Q_OS_WIN
-                if(!QFile(MAKE_RING_FULL).exists())
-                {
-                    MusicMessageBox message;
-                    message.setText(tr("Lack of plugin file!"));
-                    message.exec();
-                    return;
-                }
-                if(m_process)
-                {
-                    m_process->kill();
-                    delete m_process;
-                }
-                m_process = new QProcess(this);
-                m_process->start(MAKE_RING_FULL);
-#endif
+                MusicSongRingtoneMaker(this).exec();
                 break;
            }
         case 3:

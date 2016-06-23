@@ -20,7 +20,7 @@ class MusicAudioRecorderCore;
 /*! @brief The class of the sound touch widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

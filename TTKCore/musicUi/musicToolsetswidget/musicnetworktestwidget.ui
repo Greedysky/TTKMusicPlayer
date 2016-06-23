@@ -81,7 +81,7 @@
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
   </widget>
-  <widget class="MusicSpeedMeter" name="speedWidget" native="true">
+  <widget class="MusicSpeedMeterWidget" name="speedWidget" native="true">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -278,9 +278,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicSpeedMeter</class>
+   <class>MusicSpeedMeterWidget</class>
    <extends>QWidget</extends>
-   <header>musicspeedmeter.h</header>
+   <header>musicspeedmeterwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

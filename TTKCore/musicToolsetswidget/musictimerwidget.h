@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QDialog>
 #include <QMouseEvent>
 #include "musicobject.h"
 #include "musicabstractmovedialog.h"

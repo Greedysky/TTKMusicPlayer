@@ -13,8 +13,6 @@
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
 
-class QProcess;
-
 /*! @brief The class of the tool sets widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -53,8 +51,6 @@ protected:
     /*!
      * Clear All Items.
      */
-
-    QProcess *m_process;
 
 };
 

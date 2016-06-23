@@ -30,11 +30,12 @@ HEADERS  += \
     $$PWD/core/musicmobiledevicesthread.h \
     $$PWD/core/musicaudiorecordercore.h \
     $$PWD/musiclocalsongstablewidget.h \
-    $$PWD/musicspeedmeter.h \
     $$PWD/musicnetworktestwidget.h \
     $$PWD/musicnetworksuspensionwidget.h \
     $$PWD/musicvolumegainwidget.h \
-    $$PWD/musicsoundtouchwidget.h
+    $$PWD/musicsoundtouchwidget.h \
+    $$PWD/musicspeedmeterwidget.h \
+    $$PWD/musicsongringtonemakerwidget.h
 
 }
 
@@ -55,10 +56,11 @@ SOURCES += \
     $$PWD/core/musicmobiledevicesthread.cpp \
     $$PWD/core/musicaudiorecordercore.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
-    $$PWD/musicspeedmeter.cpp \
     $$PWD/musicnetworktestwidget.cpp \
     $$PWD/musicnetworksuspensionwidget.cpp \
     $$PWD/musicvolumegainwidget.cpp \
-    $$PWD/musicsoundtouchwidget.cpp
+    $$PWD/musicsoundtouchwidget.cpp \
+    $$PWD/musicspeedmeterwidget.cpp \
+    $$PWD/musicsongringtonemakerwidget.cpp
 
 }

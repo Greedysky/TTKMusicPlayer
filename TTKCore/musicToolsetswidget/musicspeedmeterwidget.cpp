@@ -1,12 +1,12 @@
-#include "musicspeedmeter.h"
+#include "musicspeedmeterwidget.h"
 
-MusicSpeedMeter::MusicSpeedMeter(QWidget *parent)
+MusicSpeedMeterWidget::MusicSpeedMeterWidget(QWidget *parent)
     : QWidget(parent)
 {
     initVariables();
 }
 
-void MusicSpeedMeter::setValue(qreal value)
+void MusicSpeedMeterWidget::setValue(qreal value)
 {
     if(value == m_value)
     {
@@ -22,18 +22,18 @@ void MusicSpeedMeter::setValue(qreal value)
     updateTimer->start();
 }
 
-void MusicSpeedMeter::setRatio(qreal value)
+void MusicSpeedMeterWidget::setRatio(qreal value)
 {
     m_ratio = value;
 }
 
-void MusicSpeedMeter::setAnimating(bool enable)
+void MusicSpeedMeterWidget::setAnimating(bool enable)
 {
     m_bAnimating = enable;
     update();
 }
 
-void MusicSpeedMeter::updateGraph()
+void MusicSpeedMeterWidget::updateGraph()
 {
     if(m_bReverse)
     {
@@ -54,7 +54,7 @@ void MusicSpeedMeter::updateGraph()
     update();
 }
 
-void MusicSpeedMeter::paintEvent(QPaintEvent *event)
+void MusicSpeedMeterWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
@@ -71,17 +71,17 @@ void MusicSpeedMeter::paintEvent(QPaintEvent *event)
     painter.end();
 }
 
-QSize MusicSpeedMeter::sizeHint() const
+QSize MusicSpeedMeterWidget::sizeHint() const
 {
     return QSize(300, 300);
 }
 
-QSize MusicSpeedMeter::minimumSizeHint() const
+QSize MusicSpeedMeterWidget::minimumSizeHint() const
 {
     return QSize(200, 200);
 }
 
-void MusicSpeedMeter::initVariables()
+void MusicSpeedMeterWidget::initVariables()
 {
     resetVariables();
 
@@ -98,7 +98,7 @@ void MusicSpeedMeter::initVariables()
     singleTimer->start();
 }
 
-void MusicSpeedMeter::resetVariables()
+void MusicSpeedMeterWidget::resetVariables()
 {
     m_outerRadius = width()>height() ? height()/2 : width()/2;
     m_innerRadius = m_outerRadius/8*7;
@@ -107,7 +107,7 @@ void MusicSpeedMeter::resetVariables()
     m_center = rect().center();
 }
 
-void MusicSpeedMeter::drawOuterCircle(QPainter *painter)
+void MusicSpeedMeterWidget::drawOuterCircle(QPainter *painter)
 {
     painter->save();
 
@@ -123,7 +123,7 @@ void MusicSpeedMeter::drawOuterCircle(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawInnerCircle(QPainter *painter)
+void MusicSpeedMeterWidget::drawInnerCircle(QPainter *painter)
 {
     painter->save();
     QRadialGradient innerGradient(m_center, m_innerRadius, m_center);
@@ -137,7 +137,7 @@ void MusicSpeedMeter::drawInnerCircle(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawMark(QPainter *painter)
+void MusicSpeedMeterWidget::drawMark(QPainter *painter)
 {
     painter->save();
     painter->setPen(Qt::white);
@@ -187,7 +187,7 @@ void MusicSpeedMeter::drawMark(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawCoverBall(QPainter *painter)
+void MusicSpeedMeterWidget::drawCoverBall(QPainter *painter)
 {
     painter->save();
 
@@ -204,7 +204,7 @@ void MusicSpeedMeter::drawCoverBall(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawTextRect(QPainter *painter)
+void MusicSpeedMeterWidget::drawTextRect(QPainter *painter)
 {
     painter->save();
     qreal rectWidth = m_coverCircleRadius/5;
@@ -229,7 +229,7 @@ void MusicSpeedMeter::drawTextRect(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawCoverCircle(QPainter *painter)
+void MusicSpeedMeterWidget::drawCoverCircle(QPainter *painter)
 {
     painter->save();
     painter->setBrush(QColor(130, 130, 130));
@@ -238,7 +238,7 @@ void MusicSpeedMeter::drawCoverCircle(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawColorPie(QPainter *painter)
+void MusicSpeedMeterWidget::drawColorPie(QPainter *painter)
 {
     painter->save();
 
@@ -263,7 +263,7 @@ void MusicSpeedMeter::drawColorPie(QPainter *painter)
     painter->restore();
 }
 
-void MusicSpeedMeter::drawIndicator(QPainter *painter)
+void MusicSpeedMeterWidget::drawIndicator(QPainter *painter)
 {
     painter->save();
 
