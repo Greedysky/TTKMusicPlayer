@@ -31,13 +31,14 @@ HEADERS  += \
     $$PWD/core/musicgrabwidget.h \
     $$PWD/core/musicslidermenuwidget.h \
     $$PWD/core/musicfloatabstractwidget.h \
+    $$PWD/core/musictimersliderwidget.h \
+    $$PWD/core/musiccutsliderwidget.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
     $$PWD/musicbackgroundskindialog.h \
     $$PWD/musicsystemtraymenu.h \
     $$PWD/musicequalizerdialog.h \
-    $$PWD/musictimersliderwidget.h \
     $$PWD/musicwindowextras.h \
     $$PWD/musicsongslistwidget.h \
     $$PWD/musicsongslistiteminfowidget.h \
@@ -77,13 +78,14 @@ SOURCES += \
     $$PWD/core/musicgrabwidget.cpp \
     $$PWD/core/musicslidermenuwidget.cpp \
     $$PWD/core/musicfloatabstractwidget.cpp \
+    $$PWD/core/musictimersliderwidget.cpp \
+    $$PWD/core/musiccutsliderwidget.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
     $$PWD/musicbackgroundskindialog.cpp \
     $$PWD/musicsystemtraymenu.cpp \
     $$PWD/musicequalizerdialog.cpp \
-    $$PWD/musictimersliderwidget.cpp \
     $$PWD/musicwindowextras.cpp \
     $$PWD/musicsongslistwidget.cpp \
     $$PWD/musicsongslistiteminfowidget.cpp \

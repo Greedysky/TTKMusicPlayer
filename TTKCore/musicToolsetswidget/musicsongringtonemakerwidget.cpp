@@ -1,6 +1,7 @@
 #include "musicsongringtonemakerwidget.h"
 #include "ui_musicsongringtonemakerwidget.h"
 #include "musicbackgroundmanager.h"
+#include "musiccutsliderwidget.h"
 #include "musicuiobject.h"
 #include "musicsongtag.h"
 #include "musiccoremplayer.h"
@@ -37,6 +38,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     initControlParameter();
 
+    ui->widget->resizeWindow(435, 55);
     ui->playSongButton->setEnabled(false);
     ui->saveSongButton->setEnabled(false);
     connect(ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));

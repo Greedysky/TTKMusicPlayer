@@ -178,19 +178,6 @@
     <string>铃声信息</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>210</y>
-     <width>450</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <widget class="QLabel" name="startTimeLabel">
    <property name="geometry">
     <rect>
@@ -309,6 +296,16 @@
     <string>频率(Hz)</string>
    </property>
   </widget>
+  <widget class="MusicCutSliderWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>205</y>
+     <width>440</width>
+     <height>55</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -321,7 +318,6 @@
   <zorder>songLabelValue</zorder>
   <zorder>ringLabel</zorder>
   <zorder>ringLabelValue</zorder>
-  <zorder>horizontalSlider</zorder>
   <zorder>startTimeLabel</zorder>
   <zorder>stopTimeLabel</zorder>
   <zorder>label_7</zorder>
@@ -332,7 +328,16 @@
   <zorder>label_9</zorder>
   <zorder>hzCombo</zorder>
   <zorder>label_10</zorder>
+  <zorder>widget</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicCutSliderWidget</class>
+   <extends>QWidget</extends>
+   <header>musiccutsliderwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
