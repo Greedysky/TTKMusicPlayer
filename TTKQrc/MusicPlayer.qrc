@@ -238,5 +238,6 @@
         <file alias="gainRmFiles">../TTKResource/toolSets/ts_gainRmFiles.png</file>
         <file alias="analysis">../TTKResource/toolSets/ts_analysis.png</file>
         <file alias="apply">../TTKResource/toolSets/ts_analysis_apply.png</file>
+        <file alias="buttonarrow">../TTKResource/toolSets/ts_button_arrow.png</file>
     </qresource>
 </RCC>
