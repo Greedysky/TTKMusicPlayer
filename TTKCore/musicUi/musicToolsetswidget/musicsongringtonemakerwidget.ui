@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>音色变音</string>
+   <string>铃声制作</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -104,7 +104,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>播放铃声</string>
+    <string>播放歌曲</string>
    </property>
   </widget>
   <widget class="QPushButton" name="playRingButton">
@@ -188,7 +188,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>起点: 00:54:22</string>
+    <string>起点: 00:00:000</string>
    </property>
   </widget>
   <widget class="QLabel" name="stopTimeLabel">
@@ -201,7 +201,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>终点: 00:54:22</string>
+    <string>终点: 00:00:000</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">

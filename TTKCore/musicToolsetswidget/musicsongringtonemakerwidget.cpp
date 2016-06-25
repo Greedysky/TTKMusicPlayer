@@ -11,7 +11,7 @@
 #include <QProcess>
 #include <QFileDialog>
 #include <QStyledItemDelegate>
-#include <QDebug>
+
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicSongRingtoneMaker)
@@ -123,12 +123,6 @@ void MusicSongRingtoneMaker::initOutputPath()
         << "-ab" << ui->kbpsCombo->currentText() + "k"
         << "-ar" << ui->hzCombo->currentText()
         << "-ac" << QString::number(ui->msCombo->currentIndex() + 1) << value );
-    qDebug() << QStringList()
-             << "-i" << m_inputFilePath << "-ss" << QString::number(m_startPos)
-             << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
-             << "-ab" << ui->kbpsCombo->currentText() + "k"
-             << "-ar" << ui->hzCombo->currentText()
-             << "-ac" << QString::number(ui->msCombo->currentIndex() + 1) << value;
 }
 
 void MusicSongRingtoneMaker::playInputSong()
@@ -172,8 +166,8 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 {
     m_startPos = start;
     m_stopPos = end;
-    ui->startTimeLabel->setText( MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
-    ui->stopTimeLabel->setText( MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
+    ui->startTimeLabel->setText( tr("Begin: ") + MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
+    ui->stopTimeLabel->setText( tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
     ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1")
                         .arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
 }
