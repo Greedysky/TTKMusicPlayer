@@ -20,9 +20,19 @@ class MUSIC_WIDGET_EXPORT MusicMoveButton : public QPushButton
     Q_OBJECT
 public:
     explicit MusicMoveButton(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
 Q_SIGNALS:
     void moveChanged();
+    /*!
+     * Moving button pos updated.
+     */
+    void buttonRelease();
+    /*!
+     * Moving button released.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -46,6 +56,9 @@ class MUSIC_WIDGET_EXPORT MusicCutSliderWidget : public QWidget
     Q_OBJECT
 public:
     explicit MusicCutSliderWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicCutSliderWidget();
 
     void setPosition(qint64 position);
@@ -63,12 +76,33 @@ public:
 
 Q_SIGNALS:
     void posChanged(qint64 start, qint64 end);
+    /*!
+     * Moving button pos changed.
+     */
+    void buttonReleaseChanged(qint64 pos);
+    /*!
+     * Moving button pos release changed.
+     */
 
 public Q_SLOTS:
     void buttonMoveUpdate();
+    /*!
+     * Moving button pos updated.
+     */
+    void buttonReleaseLeft();
+    /*!
+     * Left moving button released.
+     */
+    void buttonReleaseRight();
+    /*!
+     * Left moving button released.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     MusicMoveButton *m_leftControl, *m_rightControl;
     int m_width, m_height;

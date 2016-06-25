@@ -49,7 +49,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     ui->playSongButton->setEnabled(false);
     ui->playRingButton->setEnabled(false);
     ui->saveSongButton->setEnabled(false);
-    ui->cutSliderWidget->resizeWindow(435, 55);
+    ui->cutSliderWidget->resizeWindow(440, 55);
     m_player = new MusicCoreMPlayer(this);
 
     connect(ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
@@ -57,6 +57,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     connect(ui->playRingButton, SIGNAL(clicked()), SLOT(playRingtone()));
     connect(ui->saveSongButton, SIGNAL(clicked()), SLOT(initOutputPath()));
     connect(ui->cutSliderWidget, SIGNAL(posChanged(qint64,qint64)), SLOT(posChanged(qint64,qint64)));
+    connect(ui->cutSliderWidget, SIGNAL(buttonReleaseChanged(qint64)), SLOT(buttonReleaseChanged(qint64)));
     connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 }
@@ -148,13 +149,12 @@ void MusicSongRingtoneMaker::playRingtone()
 
 void MusicSongRingtoneMaker::positionChanged(qint64 position)
 {
+    ui->cutSliderWidget->setPosition(position);
     if(m_playRingtone && m_stopPos < position)
     {
         m_player->play();
         ui->playSongButton->setText(tr("Play"));
-        return;
     }
-    ui->cutSliderWidget->setPosition(position);
 }
 
 void MusicSongRingtoneMaker::durationChanged(qint64 duration)
@@ -170,6 +170,11 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
     ui->stopTimeLabel->setText( tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
     ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1")
                         .arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
+}
+
+void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
+{
+    m_player->setPosition(pos);
 }
 
 int MusicSongRingtoneMaker::exec()

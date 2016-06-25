@@ -25,6 +25,9 @@ class MUSIC_TOOLSET_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDial
     Q_OBJECT
 public:
     explicit MusicSongRingtoneMaker(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicSongRingtoneMaker();
 
 public Q_SLOTS:
@@ -53,7 +56,13 @@ public Q_SLOTS:
      * Current duration changed.
      */
     void posChanged(qint64 start, qint64 end);
-
+    /*!
+     * Moving button pos changed.
+     */
+    void buttonReleaseChanged(qint64 pos);
+    /*!
+     * Moving button pos release changed.
+     */
     virtual int exec();
     /*!
      * Override exec function.
