@@ -36,10 +36,24 @@ public Q_SLOTS:
     /*!
      * Selected save path.
      */
+    void playInputSong();
+    /*!
+     * Start to play input song.
+     */
     void playRingtone();
     /*!
      * Start to play ringtone.
      */
+    void positionChanged(qint64 position);
+    /*!
+     * Current position changed.
+     */
+    void durationChanged(qint64 duration);
+    /*!
+     * Current duration changed.
+     */
+    void posChanged(qint64 start, qint64 end);
+
     virtual int exec();
     /*!
      * Override exec function.
@@ -52,8 +66,10 @@ protected:
      */
 
     Ui::MusicSongRingtoneMaker *ui;
+    bool m_playRingtone;
     QString m_inputFilePath;
     MusicCoreMPlayer *m_player;
+    qint64 m_startPos, m_stopPos;
 
 };
 

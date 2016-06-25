@@ -5,6 +5,7 @@
 #include "musicuiobject.h"
 #include "musicsongtag.h"
 #include "musiccoremplayer.h"
+#include "musictime.h"
 
 #include <QFileDialog>
 #include <QStyledItemDelegate>
@@ -23,6 +24,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
 
     ui->addSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->playSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->playRingButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->saveSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->formatCombo->setItemDelegate(new QStyledItemDelegate(ui->formatCombo));
     ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
@@ -38,20 +40,28 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     initControlParameter();
 
-    ui->widget->resizeWindow(435, 55);
-    ui->playSongButton->setEnabled(false);
-    ui->saveSongButton->setEnabled(false);
-    connect(ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
-    connect(ui->playSongButton, SIGNAL(clicked()), SLOT(playRingtone()));
-    connect(ui->saveSongButton, SIGNAL(clicked()), SLOT(initOutputPath()));
+    m_startPos = 0;
+    m_stopPos = 9999;
+    m_playRingtone = false;
 
+    ui->playSongButton->setEnabled(false);
+    ui->playRingButton->setEnabled(false);
+    ui->saveSongButton->setEnabled(false);
+    ui->cutSliderWidget->resizeWindow(435, 55);
     m_player = new MusicCoreMPlayer(this);
 
+    connect(ui->addSongButton, SIGNAL(clicked()), SLOT(initInputPath()));
+    connect(ui->playSongButton, SIGNAL(clicked()), SLOT(playInputSong()));
+    connect(ui->playRingButton, SIGNAL(clicked()), SLOT(playRingtone()));
+    connect(ui->saveSongButton, SIGNAL(clicked()), SLOT(initOutputPath()));
+    connect(ui->cutSliderWidget, SIGNAL(posChanged(qint64,qint64)), SLOT(posChanged(qint64,qint64)));
+    connect(m_player, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_player, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 }
 
 MusicSongRingtoneMaker::~MusicSongRingtoneMaker()
 {
-    delete m_player;;
+    delete m_player;
     delete ui;
 }
 
@@ -88,10 +98,12 @@ void MusicSongRingtoneMaker::initInputPath()
     }
 
     ui->playSongButton->setEnabled(true);
+    ui->playRingButton->setEnabled(true);
     ui->saveSongButton->setEnabled(true);
 
     m_player->setMedia(MusicCoreMPlayer::MusicCategory, m_inputFilePath);
-    m_player->play();
+    playInputSong();
+
 }
 
 void MusicSongRingtoneMaker::initOutputPath()
@@ -99,9 +111,49 @@ void MusicSongRingtoneMaker::initOutputPath()
 
 }
 
+void MusicSongRingtoneMaker::playInputSong()
+{
+    m_playRingtone = false;
+    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
+       m_player->state() == MusicCoreMPlayer::PausedState)
+    {
+        ui->playSongButton->setText(tr("Stop"));
+    }
+    else
+    {
+        ui->playSongButton->setText(tr("Play"));
+    }
+    m_player->play();
+}
+
 void MusicSongRingtoneMaker::playRingtone()
 {
+    m_playRingtone = true;
+    m_player->setPosition(m_startPos);
+}
 
+void MusicSongRingtoneMaker::positionChanged(qint64 position)
+{
+    if(m_playRingtone && m_stopPos < position)
+    {
+        m_player->play();
+        ui->playSongButton->setText(tr("Play"));
+        return;
+    }
+    ui->cutSliderWidget->setPosition(position);
+}
+
+void MusicSongRingtoneMaker::durationChanged(qint64 duration)
+{
+    ui->cutSliderWidget->setDuration(duration);
+}
+
+void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
+{
+    m_startPos = start;
+    m_stopPos = end;
+    ui->startTimeLabel->setText( MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
+    ui->stopTimeLabel->setText( MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
 }
 
 int MusicSongRingtoneMaker::exec()

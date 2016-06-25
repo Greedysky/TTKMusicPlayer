@@ -107,17 +107,17 @@
     <string>播放铃声</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="saveSongButton">
+  <widget class="QPushButton" name="playRingButton">
    <property name="geometry">
     <rect>
-     <x>195</x>
+     <x>220</x>
      <y>55</y>
      <width>75</width>
      <height>30</height>
     </rect>
    </property>
    <property name="text">
-    <string>保存铃声</string>
+    <string>试听铃声</string>
    </property>
   </widget>
   <widget class="QLabel" name="songLabel">
@@ -296,7 +296,7 @@
     <string>频率(Hz)</string>
    </property>
   </widget>
-  <widget class="MusicCutSliderWidget" name="widget" native="true">
+  <widget class="MusicCutSliderWidget" name="cutSliderWidget" native="true">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -306,6 +306,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="saveSongButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>55</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存铃声</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -313,7 +326,7 @@
   <zorder>line</zorder>
   <zorder>addSongButton</zorder>
   <zorder>playSongButton</zorder>
-  <zorder>saveSongButton</zorder>
+  <zorder>playRingButton</zorder>
   <zorder>songLabel</zorder>
   <zorder>songLabelValue</zorder>
   <zorder>ringLabel</zorder>
@@ -328,7 +341,8 @@
   <zorder>label_9</zorder>
   <zorder>hzCombo</zorder>
   <zorder>label_10</zorder>
-  <zorder>widget</zorder>
+  <zorder>cutSliderWidget</zorder>
+  <zorder>saveSongButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

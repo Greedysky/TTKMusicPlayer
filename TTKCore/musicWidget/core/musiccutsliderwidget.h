@@ -48,19 +48,31 @@ public:
     explicit MusicCutSliderWidget(QWidget *parent = 0);
     ~MusicCutSliderWidget();
 
+    void setPosition(qint64 position);
+    /*!
+     * Set current position.
+     */
+    void setDuration(qint64 duration);
+    /*!
+     * Set current duration.
+     */
     void resizeWindow(int width, int height);
     /*!
      * Resize window bound by given width and height.
      */
 
 Q_SIGNALS:
+    void posChanged(qint64 start, qint64 end);
+
 public Q_SLOTS:
+    void buttonMoveUpdate();
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
     MusicMoveButton *m_leftControl, *m_rightControl;
     int m_width, m_height;
+    qint64 m_duration, m_position;
 
 };
 
