@@ -2,14 +2,16 @@
 #include "ui_musicsongringtonemakerwidget.h"
 #include "musicbackgroundmanager.h"
 #include "musiccutsliderwidget.h"
+#include "musiccoremplayer.h"
+#include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicsongtag.h"
-#include "musiccoremplayer.h"
 #include "musictime.h"
 
+#include <QProcess>
 #include <QFileDialog>
 #include <QStyledItemDelegate>
-
+#include <QDebug>
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       ui(new Ui::MusicSongRingtoneMaker)
@@ -108,7 +110,25 @@ void MusicSongRingtoneMaker::initInputPath()
 
 void MusicSongRingtoneMaker::initOutputPath()
 {
+    QString value = QString("Files (*.%1 )").arg(ui->formatCombo->currentText().toLower());
+    value = QFileDialog::getSaveFileName(this, QString(), "./", value);
+    if(value.isEmpty())
+    {
+        return;
+    }
 
+    QProcess::execute(MAKE_TRANSFORM_FULL, QStringList()
+        << "-i" << m_inputFilePath << "-ss" << QString::number(m_startPos)
+        << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
+        << "-ab" << ui->kbpsCombo->currentText() + "k"
+        << "-ar" << ui->hzCombo->currentText()
+        << "-ac" << QString::number(ui->msCombo->currentIndex() + 1) << value );
+    qDebug() << QStringList()
+             << "-i" << m_inputFilePath << "-ss" << QString::number(m_startPos)
+             << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
+             << "-ab" << ui->kbpsCombo->currentText() + "k"
+             << "-ar" << ui->hzCombo->currentText()
+             << "-ac" << QString::number(ui->msCombo->currentIndex() + 1) << value;
 }
 
 void MusicSongRingtoneMaker::playInputSong()
@@ -154,10 +174,20 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
     m_stopPos = end;
     ui->startTimeLabel->setText( MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
     ui->stopTimeLabel->setText( MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
+    ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1")
+                        .arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
 }
 
 int MusicSongRingtoneMaker::exec()
 {
+    if(!QFile::exists(MAKE_TRANSFORM_FULL))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Lack of plugin file!"));
+        message.exec();
+        return -1;
+    }
+
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
