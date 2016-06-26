@@ -14,6 +14,8 @@ win32:TARGET = ../../../bin/zlib
 unix:TARGET = ../../lib/zlib
 TEMPLATE = lib
 
+unix:VERSION += 1.2.8
+
 HEADERS  += \
     $$PWD/zconf.h \
     $$PWD/zlib.h \
