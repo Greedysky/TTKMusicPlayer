@@ -100,6 +100,9 @@ public Q_SLOTS:
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *) override {}
+    virtual void mouseMoveEvent(QMouseEvent *) override {}
+    virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
      * Override the widget event.
      */
