@@ -30,6 +30,10 @@ public:
      */
     ~MusicToastLabel();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setTimerInterval(int msecond);
     /*!
      * Set timer interval to hide.

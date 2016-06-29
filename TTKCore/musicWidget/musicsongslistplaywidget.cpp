@@ -17,6 +17,11 @@ MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     setAutoFillBackground(true);
 }
 
+QString MusicSongsEnterPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsEnterPlayWidget::enterEvent(QEvent *event)
 {
     QWidget::enterEvent(event);
@@ -115,6 +120,11 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_songShareButton;
     delete m_columnOne;
     delete m_columnThree;
+}
+
+QString MusicSongsListPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const

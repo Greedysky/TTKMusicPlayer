@@ -25,6 +25,10 @@ class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
 public:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void start();
     /*!
      * Strat thread now.

@@ -60,6 +60,11 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_noLrcCurrentInfo;
 }
 
+QString MusicLrcContainerForInline::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName)
 {
     MusicLrcAnalysis::State state;

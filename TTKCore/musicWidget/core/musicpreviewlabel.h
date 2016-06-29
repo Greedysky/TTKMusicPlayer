@@ -17,12 +17,17 @@
  */
 class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
 {
+    Q_OBJECT
 public:
     explicit MusicPreviewLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setParameter(const QStringList &para);
     /*!
      * Set preview parameters(Family\PointSize\Bold or Italic).

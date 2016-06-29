@@ -29,6 +29,10 @@ public:
      */
     ~MusicSystemTrayMenu();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setLabelText(const QString &text) const;
     /*!
      * Set tray menu song text.

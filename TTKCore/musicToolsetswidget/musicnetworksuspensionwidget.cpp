@@ -43,6 +43,11 @@ MusicNetworkSuspensionWidget::~MusicNetworkSuspensionWidget()
     delete m_thread;
 }
 
+QString MusicNetworkSuspensionWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractMoveWidget::contextMenuEvent(event);

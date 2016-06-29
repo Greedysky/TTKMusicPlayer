@@ -32,6 +32,11 @@ MusicWebMusicRadioListView::~MusicWebMusicRadioListView()
     delete m_cookJar;
 }
 
+QString MusicWebMusicRadioListView::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWebMusicRadioListView::initListItems()
 {
     if(count() == 0)

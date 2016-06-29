@@ -36,6 +36,11 @@ MusicUserWindow::~MusicUserWindow()
     disConnectDatabase();
 }
 
+QString MusicUserWindow::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicUserWindow::isUserLogin() const
 {
     return currentIndex() == 1;

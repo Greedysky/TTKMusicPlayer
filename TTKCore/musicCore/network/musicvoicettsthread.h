@@ -33,9 +33,12 @@ public:
     /*!
      * Object contsructor.
      */
-
     ~MusicVoiceTtsThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSpeed(int speed);
     /*!
      * Set speed.

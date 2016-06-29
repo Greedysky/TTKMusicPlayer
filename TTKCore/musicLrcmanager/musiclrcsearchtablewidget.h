@@ -24,6 +24,10 @@ public:
      */
     virtual ~MusicLrcSearchTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.

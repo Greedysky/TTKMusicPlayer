@@ -32,6 +32,10 @@ public:
      */
     virtual ~MusicSongSearchOnlineTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.
@@ -126,6 +130,10 @@ public:
      */
     ~MusicSongSearchOnlineWidget();
 
+    static QString getClassName();
+    /*!
+    * Get class object name.
+    */
     void startSearchQuery(const QString &name) const;
     /*!
      * Start search query by text.

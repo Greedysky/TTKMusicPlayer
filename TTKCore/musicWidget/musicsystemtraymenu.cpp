@@ -40,6 +40,11 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
     delete m_widgetAction;
 }
 
+QString MusicSystemTrayMenu::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSystemTrayMenu::createPlayWidgetActions()
 {
     m_widgetAction = new QWidgetAction(this);

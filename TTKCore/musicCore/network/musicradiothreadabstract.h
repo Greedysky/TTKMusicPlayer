@@ -29,6 +29,10 @@ public:
      */
     virtual ~MusicRadioThreadAbstract();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startToDownload(const QString &data) = 0;
     /*!
      * Start to download data.

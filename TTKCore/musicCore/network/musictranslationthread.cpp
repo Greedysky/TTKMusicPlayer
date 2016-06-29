@@ -24,6 +24,11 @@ MusicTranslationThread::~MusicTranslationThread()
     deleteAll();
 }
 
+QString MusicTranslationThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTranslationThread::startToTranslation(TranslationType from, TranslationType to, const QString &data)
 {
     m_manager = new QNetworkAccessManager(this);

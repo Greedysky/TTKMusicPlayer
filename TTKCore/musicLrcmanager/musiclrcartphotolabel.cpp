@@ -13,6 +13,11 @@ MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
     m_picMoved = false;
 }
 
+QString MusicLrcArtPhotoLabel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
 {
     m_path = path;

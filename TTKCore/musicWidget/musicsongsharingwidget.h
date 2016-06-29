@@ -40,6 +40,10 @@ public:
      */
     virtual ~MusicSongSharingWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongName(const QString &name);
     /*!
      * Set current name to share.

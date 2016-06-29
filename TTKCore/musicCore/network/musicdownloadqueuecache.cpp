@@ -32,6 +32,11 @@ MusicDownloadQueueCache::~MusicDownloadQueueCache()
     deleteAll();
 }
 
+QString MusicDownloadQueueCache::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownloadQueueCache::startToDownload()
 {
     m_manager = new QNetworkAccessManager(this);

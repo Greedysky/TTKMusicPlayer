@@ -39,6 +39,11 @@ public:
      */
     virtual ~MusicAudioRecorderWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void onRecordStart();
     /*!

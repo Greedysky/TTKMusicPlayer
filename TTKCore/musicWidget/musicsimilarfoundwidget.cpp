@@ -62,6 +62,11 @@ MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
     delete m_mainWindow;
 }
 
+QString MusicSimilarFoundWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;

@@ -31,6 +31,10 @@ public:
      */
     virtual ~MusicModifyLineEdit();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool getTextEdited() const { return m_isTextEdited;}
     /*!
      * Get text edit state.
@@ -67,6 +71,10 @@ public:
      */
     virtual ~MusicFileInformationWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setFileInformation(const QString &name);
     /*!
      * Set music file song path name.

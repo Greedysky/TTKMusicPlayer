@@ -59,6 +59,11 @@ MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
     delete m_animation;
 }
 
+QString MusicSongsSummariziedFloatWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsSummariziedFloatWidget::setGeometry(QObject *object)
 {
     QWidget *parent = MStatic_cast(QWidget*, object);

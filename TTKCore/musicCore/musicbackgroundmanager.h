@@ -23,6 +23,10 @@ class MUSIC_CORE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
 public:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setArtName(const QString &name);
     /*!
      * Set current artist name.

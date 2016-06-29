@@ -31,6 +31,10 @@ public:
      */
     ~MusicDownloadStatusLabel();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void musicCheckHasLrcAlready();
     /*!
      * Check the current song already has lrc or not,

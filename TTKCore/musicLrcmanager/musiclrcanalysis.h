@@ -55,6 +55,10 @@ public:
      */
     ~MusicLrcAnalysis();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     State transLrcFileToTime(const QString &lrcFileName);
     /*!
      * Analysis lrc file to map return the state.

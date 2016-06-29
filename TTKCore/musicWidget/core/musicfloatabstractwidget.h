@@ -28,6 +28,10 @@ public:
      */
     virtual ~MusicFloatAbstractWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline void setBlockAnimation(bool b) { m_blockAnimation = b;}
     /*!
      * Set block animation state or not.

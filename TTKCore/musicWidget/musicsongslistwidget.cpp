@@ -46,6 +46,11 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_musicSongsPlayWidget;
 }
 
+QString MusicSongsListWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsListWidget::setSongsFileName(MusicSongs *songs)
 {
     m_musicSongs = songs;

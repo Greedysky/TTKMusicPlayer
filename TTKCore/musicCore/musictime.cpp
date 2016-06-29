@@ -29,6 +29,11 @@ MusicTime::~MusicTime()
 
 }
 
+QString MusicTime::getClassName()
+{
+    return "MusicTime";
+}
+
 void MusicTime::init()
 {
     m_day = 0;

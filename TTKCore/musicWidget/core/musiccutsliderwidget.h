@@ -24,6 +24,11 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void moveChanged();
     /*!
@@ -61,6 +66,10 @@ public:
      */
     ~MusicCutSliderWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setPosition(qint64 position);
     /*!
      * Set current position.

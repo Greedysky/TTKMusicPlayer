@@ -40,6 +40,11 @@ MusicTimerSliderWidget::~MusicTimerSliderWidget()
     delete m_slider;
 }
 
+QString MusicTimerSliderWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTimerSliderWidget::setPlayState(bool state)
 {
     if(!state)

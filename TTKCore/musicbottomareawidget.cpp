@@ -26,6 +26,11 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_musicLocalSongSearch;
 }
 
+QString MusicBottomAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;

@@ -33,6 +33,11 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicRemoteWidget;
 }
 
+QString MusicTopAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;

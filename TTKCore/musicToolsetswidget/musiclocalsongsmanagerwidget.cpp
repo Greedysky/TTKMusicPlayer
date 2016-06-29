@@ -95,6 +95,11 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
     delete ui;
 }
 
+QString MusicLocalSongsManagerWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLocalSongsManagerWidget::clearAllItems()
 {
     ///Remove all the original item

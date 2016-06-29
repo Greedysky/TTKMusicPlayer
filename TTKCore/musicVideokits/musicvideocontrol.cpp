@@ -109,6 +109,11 @@ MusicVideoControl::~MusicVideoControl()
     delete m_downloadButton;
 }
 
+QString MusicVideoControl::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicVideoControl::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position*MT_S2MS);

@@ -31,6 +31,11 @@ MusicPlayer::~MusicPlayer()
     delete m_music;
 }
 
+QString MusicPlayer::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 MusicPlayer::State MusicPlayer::state() const
 {
     return m_state;

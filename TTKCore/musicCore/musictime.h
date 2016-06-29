@@ -39,6 +39,10 @@ public:
      */
     ~MusicTime();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setHMSM(int day, int hour, int min, int sec, int msec = 0);
     /*!
      * Set current day and hour and min and sec and msec.

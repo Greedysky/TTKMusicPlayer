@@ -25,6 +25,11 @@ void MusicBarrageAnimation::animationFinished()
     start();
 }
 
+QString MusicBarrageAnimation::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
@@ -58,6 +63,11 @@ MusicBarrageWidget::~MusicBarrageWidget()
 {
     writeBarrage();
     deleteItems();
+}
+
+QString MusicBarrageWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicBarrageWidget::start()

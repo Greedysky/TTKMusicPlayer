@@ -35,6 +35,10 @@ public:
      */
     ~MusicVideoControl();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setValue(qint64 position) const;
     /*!
      * Set current video play value.

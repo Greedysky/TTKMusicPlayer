@@ -23,10 +23,21 @@ class MUSIC_WIDGET_EXPORT MusicEnhancedToolButton : public QToolButton
     Q_OBJECT
 public:
     explicit MusicEnhancedToolButton(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicEnhancedToolButton();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 
 protected:
     virtual void enterEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
     QLabel *m_label;
     QMovie *m_movie;
@@ -46,6 +57,11 @@ public:
      * Object contsructor.
      */
     ~MusicEnhancedWidget();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 
 Q_SIGNALS:
     void enhancedMusicChanged(int type);

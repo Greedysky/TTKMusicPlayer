@@ -47,6 +47,11 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     clearAllItems();
 }
 
+QString MusicToolSetsWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicToolSetsWidget::clearAllItems()
 {
     clear();

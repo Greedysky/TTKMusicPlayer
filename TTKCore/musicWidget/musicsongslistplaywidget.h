@@ -29,6 +29,10 @@ public:
      * Object contsructor by index.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
     /*!
      * Set current play index.
@@ -68,6 +72,10 @@ public:
      */
     virtual ~MusicSongsListPlayWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void getWidget(QWidget *&one, QWidget *&two) const;
     /*!
      * Get item left and right function widget.

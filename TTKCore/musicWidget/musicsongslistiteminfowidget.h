@@ -30,6 +30,10 @@ public:
      */
     ~MusicSongsListItemInfoWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setMusicSongInformation(const MusicSong &info);
     /*!
      * Set music song information.

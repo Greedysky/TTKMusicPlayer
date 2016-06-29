@@ -15,7 +15,7 @@
 /*! @brief The class of the transfer file list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicConnectTransferTableWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -25,6 +25,10 @@ public:
      */
     virtual ~MusicConnectTransferTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     MusicObject::MIntList getSelectedItems() const;
     /*!
      * Get selected items.

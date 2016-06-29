@@ -59,6 +59,11 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_animation;
 }
 
+QString MusicApplicationObject::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicApplicationObject::getParameterSetting()
 {
 #ifdef Q_OS_WIN

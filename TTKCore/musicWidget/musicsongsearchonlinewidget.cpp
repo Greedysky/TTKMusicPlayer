@@ -41,6 +41,11 @@ MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
     clearAllItems();
 }
 
+QString MusicSongSearchOnlineTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())
@@ -297,6 +302,11 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_playButton;
     delete m_textLabel;
     delete m_searchTableWidget;
+}
+
+QString MusicSongSearchOnlineWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const

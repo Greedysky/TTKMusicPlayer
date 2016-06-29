@@ -38,6 +38,10 @@ public:
      */
     virtual ~MusicSongsSummarizied();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setMusicLists(const MusicSongsList &names);
     /*!
      * Set music datas into container.

@@ -27,6 +27,11 @@ MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
     clear();
 }
 
+QString MusicQualityChoiceTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicQualityChoiceTableWidget::createItems()
 {
     setRowCount(5);
@@ -126,6 +131,11 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
 MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
 {
     delete m_menu;
+}
+
+QString MusicQualityChoiceWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicQualityChoiceWidget::initWidget()

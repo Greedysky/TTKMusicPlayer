@@ -32,6 +32,11 @@ MusicUserRecordWidget::~MusicUserRecordWidget()
     delete ui;
 }
 
+QString MusicUserRecordWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &uid)
 {
     m_userModel = model;

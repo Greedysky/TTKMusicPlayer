@@ -28,6 +28,11 @@ MusicProgressWidget::~MusicProgressWidget()
     delete m_progressBar;
 }
 
+QString MusicProgressWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicProgressWidget::initWidget()
 {
     m_background = new QLabel(this);

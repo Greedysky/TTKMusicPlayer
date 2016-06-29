@@ -33,6 +33,11 @@ MusicDownloadTableItem::~MusicDownloadTableItem()
     delete m_text;
 }
 
+QString MusicDownloadTableItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownloadTableItem::setIcon(const QString &name)
 {
     m_icon->setPixmap(QPixmap(name).scaled(28, 18));
@@ -62,6 +67,11 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
 {
     clearAllItems();
+}
+
+QString MusicDownloadTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicDownloadTableWidget::clearAllItems()
@@ -139,6 +149,11 @@ MusicDownloadWidget::~MusicDownloadWidget()
 {
     delete ui;
     delete m_downloadThread;
+}
+
+QString MusicDownloadWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicDownloadWidget::initWidget()

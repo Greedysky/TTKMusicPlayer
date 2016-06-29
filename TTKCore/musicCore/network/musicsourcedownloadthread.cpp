@@ -11,6 +11,11 @@ MusicSourceDownloadThread::~MusicSourceDownloadThread()
     deleteAll();
 }
 
+QString MusicSourceDownloadThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSourceDownloadThread::startToDownload(const QString &url)
 {
     m_manager = new QNetworkAccessManager(this);

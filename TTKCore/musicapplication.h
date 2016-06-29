@@ -41,6 +41,10 @@ public:
      */
     virtual ~MusicApplication();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QString getCurrentFileName() const;
     /*!
      * Get current file name.

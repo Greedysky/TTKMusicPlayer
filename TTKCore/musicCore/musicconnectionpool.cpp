@@ -10,6 +10,11 @@ MusicConnectionPool::MusicConnectionPool()
 
 }
 
+QString MusicConnectionPool::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 {
     m_queueList << object;

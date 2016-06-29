@@ -26,6 +26,10 @@ public:
      */
     virtual ~MusicLRCManagerForInline();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline void setLrcPerWidth(int width){ m_lrcPerWidth = width + LRC_PER_WIDTH;}
     /*!
      * Set lrc per width.

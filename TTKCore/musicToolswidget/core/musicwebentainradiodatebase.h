@@ -23,6 +23,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool connectDatabase() const;
     /*!
      * Connect to database.

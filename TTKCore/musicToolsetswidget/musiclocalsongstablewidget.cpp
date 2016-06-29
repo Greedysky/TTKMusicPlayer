@@ -7,6 +7,11 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     MusicUtils::setTransparent(this, 150);
 }
 
+QString MusicLocalSongsTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLocalSongsTableWidget::clearShowlist()
 {
     MusicAbstractTableWidget::clear();

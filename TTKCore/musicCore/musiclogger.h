@@ -56,6 +56,13 @@ public:
      * Get object instance ptr.
      */
 
+    static QString getClassName()
+    {
+        return "MusicLogger";
+    }
+    /*!
+     * Get class object name.
+     */
     inline void setLevel(const QString &level)
     {
         m_levelType = level;

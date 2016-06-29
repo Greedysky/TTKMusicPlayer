@@ -53,6 +53,11 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
     M_CONNECTION_PTR->poolDisConnect("MusicLrcMakerWidget");
 }
 
+QString MusicLrcMakerWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
 {
     m_plainText.clear();

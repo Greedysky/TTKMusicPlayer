@@ -25,6 +25,11 @@ public:
      * Object contsructor by index and origin name.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void renameFinished(const QString &text);
     /*!

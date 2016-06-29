@@ -28,6 +28,11 @@ public:
      */
     ~MusicWebEntainRadioListView();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
     /*!

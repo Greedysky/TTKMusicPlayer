@@ -30,6 +30,11 @@ public:
      */
     virtual ~MusicSongRingtoneMaker();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void initInputPath();
     /*!

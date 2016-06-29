@@ -26,6 +26,11 @@ MusicDownLoadQueryMultipleThread::~MusicDownLoadQueryMultipleThread()
 
 }
 
+QString MusicDownLoadQueryMultipleThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownLoadQueryMultipleThread::startSearchSong(QueryType type, const QString &text)
 {
     m_searchText = text.trimmed();

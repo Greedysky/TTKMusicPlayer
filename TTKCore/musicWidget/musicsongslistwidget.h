@@ -31,6 +31,10 @@ public:
      */
     virtual ~MusicSongsListWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongsFileName(MusicSongs *songs);
     /*!
      * Set songs file names.

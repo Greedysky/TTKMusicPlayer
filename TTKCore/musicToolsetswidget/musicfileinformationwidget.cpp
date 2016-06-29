@@ -18,6 +18,11 @@ MusicModifyLineEdit::~MusicModifyLineEdit()
 
 }
 
+QString MusicModifyLineEdit::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicModifyLineEdit::isTextEdited()
 {
     m_isTextEdited = true;
@@ -57,6 +62,11 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
 {
     saveModifyData();
     delete ui;
+}
+
+QString MusicFileInformationWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicFileInformationWidget::musicOpenFileDir()

@@ -28,6 +28,10 @@ public:
      */
     ~MusicTimerAutoObject();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void runTimerAutoConfig();
     /*!
      * Run time auto from local file config.

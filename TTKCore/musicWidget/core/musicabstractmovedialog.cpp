@@ -20,6 +20,11 @@ MusicAbstractMoveDialog::~MusicAbstractMoveDialog()
 
 }
 
+QString MusicAbstractMoveDialog::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicAbstractMoveDialog::paintEvent(QPaintEvent *event)
 {
     QDialog::paintEvent(event);

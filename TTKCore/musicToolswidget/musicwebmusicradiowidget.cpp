@@ -69,6 +69,11 @@ MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
     delete m_playListThread;
 }
 
+QString MusicWebMusicRadioWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWebMusicRadioWidget::closeEvent(QCloseEvent *event)
 {
     delete m_radio;

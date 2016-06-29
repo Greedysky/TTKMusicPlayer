@@ -34,6 +34,11 @@ public:
      */
     virtual ~MusicEqualizerDialog();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void setEqEffect(const MusicObject::MIntList &effect);
     /*!

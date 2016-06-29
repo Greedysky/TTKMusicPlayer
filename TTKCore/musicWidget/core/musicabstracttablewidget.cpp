@@ -47,6 +47,11 @@ MusicAbstractTableWidget::~MusicAbstractTableWidget()
 
 }
 
+QString MusicAbstractTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicAbstractTableWidget::clear()
 {
     clearContents();

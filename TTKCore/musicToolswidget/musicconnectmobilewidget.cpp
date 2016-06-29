@@ -28,6 +28,11 @@ MusicConnectMobileWidget::~MusicConnectMobileWidget()
     delete m_stackedWidget;
 }
 
+QString MusicConnectMobileWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicConnectMobileWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);

@@ -38,6 +38,11 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
     delete ui;
 }
 
+QString MusicSourceUpdateWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 int MusicSourceUpdateWidget::exec()
 {
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());

@@ -11,6 +11,11 @@ MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     addFilterText(tr("please input search text"));
 }
 
+QString MusicLocalSongSearchEdit::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLocalSongSearchEdit::addFilterText(const QString &text)
 {
     m_filterText = text;

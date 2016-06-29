@@ -25,6 +25,11 @@ public:
      */
     ~MusicGrabWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

@@ -40,6 +40,11 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete ui;
 }
 
+QString MusicSongSharingWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongSharingWidget::setSongName(const QString &name)
 {
     ui->sharedName->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 200));

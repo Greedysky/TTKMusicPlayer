@@ -26,6 +26,10 @@ public:
      */
     ~MusicPlaylist() = default;
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     MusicObject::SongPlayType playbackMode() const;
     /*!
      * Get current play mode.

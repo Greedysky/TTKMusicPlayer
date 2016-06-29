@@ -71,6 +71,11 @@ MusicSoundTouchWidget::~MusicSoundTouchWidget()
     delete ui;
 }
 
+QString MusicSoundTouchWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 int MusicSoundTouchWidget::exec()
 {
     if(!QFile::exists(MAKE_SOUNDTOUCH_FULL))

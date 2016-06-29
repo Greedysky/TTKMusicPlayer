@@ -32,6 +32,10 @@ public:
      */
     ~MusicUserManager();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setUserUID(const QString &uid);
     /*!
      * Set current user's uid.

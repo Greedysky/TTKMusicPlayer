@@ -23,6 +23,11 @@ public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void deleteAll() override;
     /*!
      * Release the network object.

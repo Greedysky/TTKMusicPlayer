@@ -21,6 +21,11 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 #endif
 }
 
+QString MusicData2DownloadThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicData2DownloadThread::startToDownload()
 {
     m_timer.start(MT_S2MS);

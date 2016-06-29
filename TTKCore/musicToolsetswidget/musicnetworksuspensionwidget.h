@@ -27,6 +27,10 @@ public:
      */
     ~MusicNetworkSuspensionWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setAvailableNewtworkNames(const QStringList &names);
     /*!
      * Set available newtwork names.

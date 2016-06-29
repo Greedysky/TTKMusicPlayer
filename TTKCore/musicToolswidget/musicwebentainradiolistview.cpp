@@ -31,6 +31,11 @@ MusicWebEntainRadioListView::~MusicWebEntainRadioListView()
     clearAllItems();
 }
 
+QString MusicWebEntainRadioListView::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWebEntainRadioListView::clearAllItems()
 {
     clear();

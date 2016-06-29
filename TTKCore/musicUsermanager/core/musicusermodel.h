@@ -26,6 +26,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool addUser(const QString &uid, const QString &pwd,
                  const QString &mail);
     /*!

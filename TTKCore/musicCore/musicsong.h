@@ -49,6 +49,10 @@ public:
      * Object contsructor by music path and name and playcout and time.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QString getMusicArtistFront() const;
     /*!
      * Get music artist name.

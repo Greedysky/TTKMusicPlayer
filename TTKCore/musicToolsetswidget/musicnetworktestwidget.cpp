@@ -61,6 +61,11 @@ MusicNetworkTestWidget::~MusicNetworkTestWidget()
     delete ui;
 }
 
+QString MusicNetworkTestWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkTestWidget::settingButton()
 {
     m_actionGroup = new QActionGroup(this);

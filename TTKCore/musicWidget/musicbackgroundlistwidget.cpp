@@ -23,6 +23,11 @@ MusicBackgroundListWidget::~MusicBackgroundListWidget()
     clearAllItems();
 }
 
+QString MusicBackgroundListWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 {
     //Set the current theme index

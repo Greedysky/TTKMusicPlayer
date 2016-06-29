@@ -27,6 +27,11 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
     delete m_stackedWidget;
 }
 
+QString MusicLeftAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;

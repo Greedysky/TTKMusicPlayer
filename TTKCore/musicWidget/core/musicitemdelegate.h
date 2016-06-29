@@ -33,6 +33,10 @@ public:
      */
     virtual ~MusicCheckBoxDelegate();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
@@ -64,6 +68,10 @@ public:
      */
     virtual ~MusicQueryTableDelegate();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
@@ -87,6 +95,10 @@ public:
      */
     ~MusicProgressBarDelegate();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!

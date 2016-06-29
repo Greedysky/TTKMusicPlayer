@@ -25,6 +25,11 @@ public:
      */
     virtual ~MusicQualityChoiceTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     /*!
@@ -52,6 +57,11 @@ public:
      * Object contsructor.
      */
     ~MusicQualityChoiceWidget();
+
+    static QString getClassName();
+    /*!
+    * Get class object name.
+    */
 
 Q_SIGNALS:
     void researchQueryByQuality(const QString &quality);

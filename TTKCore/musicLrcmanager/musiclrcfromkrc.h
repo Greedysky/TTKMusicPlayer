@@ -23,6 +23,10 @@ public:
      */
     ~MusicLrcFromKrc();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool decode(const QString &input, const QString &output = QString());
     /*!
      * Decode krc file to lrc by input file and output file.

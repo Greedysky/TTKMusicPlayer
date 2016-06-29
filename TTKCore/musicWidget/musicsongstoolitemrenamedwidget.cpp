@@ -12,6 +12,11 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
     connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
 }
 
+QString MusicSongsToolItemRenamedWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *)
 {
     emit renameFinished(text());

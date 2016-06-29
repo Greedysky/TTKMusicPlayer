@@ -30,6 +30,11 @@ public:
      */
     virtual ~MusicConnectTransferWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void getMusicLists(MusicSongsList &songs, QStringList &names);
     /*!

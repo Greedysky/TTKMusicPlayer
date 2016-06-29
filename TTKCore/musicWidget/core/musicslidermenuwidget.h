@@ -32,6 +32,10 @@ public:
      */
     ~MusicSliderMenuWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setValue(int value);
     /*!
      * Set slider value.

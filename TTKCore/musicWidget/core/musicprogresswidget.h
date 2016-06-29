@@ -30,6 +30,10 @@ public:
      */
     ~MusicProgressWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setTitle(const QString &name);
     /*!
      * Set widget title.

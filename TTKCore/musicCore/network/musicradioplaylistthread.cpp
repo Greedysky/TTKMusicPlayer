@@ -26,6 +26,11 @@ MusicRadioPlayListThread::~MusicRadioPlayListThread()
     deleteAll();
 }
 
+QString MusicRadioPlayListThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicRadioPlayListThread::startToDownload(const QString &id)
 {
     m_manager = new QNetworkAccessManager(this);

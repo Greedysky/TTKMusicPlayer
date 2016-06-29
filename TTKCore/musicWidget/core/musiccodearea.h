@@ -24,6 +24,10 @@ public:
      */
     ~MusicCodeArea();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void renderPicture();
     /*!
      * Render the verify code picture.

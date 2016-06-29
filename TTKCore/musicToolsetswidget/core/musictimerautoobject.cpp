@@ -22,6 +22,11 @@ MusicTimerAutoObject::~MusicTimerAutoObject()
     m_timer.stop();
 }
 
+QString MusicTimerAutoObject::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTimerAutoObject::runTimerAutoConfig()
 {
     m_timer.start(MT_S2MS);

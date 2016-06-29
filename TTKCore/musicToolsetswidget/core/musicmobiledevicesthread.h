@@ -27,6 +27,10 @@ public:
      */
     ~MusicMobileDevicesThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void stopAndQuitThread();
     /*!
      * Stop and quit current thread.

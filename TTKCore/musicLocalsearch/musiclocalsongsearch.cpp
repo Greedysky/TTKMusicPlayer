@@ -40,6 +40,11 @@ MusicLocalSongSearch::~MusicLocalSongSearch()
     delete m_closeButton;
 }
 
+QString MusicLocalSongSearch::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicLocalSongSearch::close()
 {
     clearSearchedText();

@@ -37,6 +37,10 @@ public:
      */
     ~MusicDownloadTableItem();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setIcon(const QString &name);
     /*!
      * Set current item icon.
@@ -70,6 +74,10 @@ public:
      */
     virtual ~MusicDownloadTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void clearAllItems();
     /*!
      * Clear All Items.
@@ -108,6 +116,10 @@ public:
      */
     virtual ~MusicDownloadWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
     /*!
      * Set current name to search and download musics.

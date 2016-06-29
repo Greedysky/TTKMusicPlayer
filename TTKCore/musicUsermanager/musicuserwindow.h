@@ -32,6 +32,10 @@ public:
      */
     ~MusicUserWindow();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool isUserLogin() const;
     /*!
      * Check if the user is login now.

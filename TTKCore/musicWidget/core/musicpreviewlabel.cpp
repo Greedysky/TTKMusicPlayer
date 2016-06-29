@@ -8,6 +8,11 @@ MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
     m_transparent = 255;
 }
 
+QString MusicPreviewLabel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor &bg)
 {
     fg.setAlpha(m_transparent);

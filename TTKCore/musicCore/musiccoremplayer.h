@@ -42,6 +42,10 @@ public:
      */
     ~MusicCoreMPlayer();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setMedia(Category type, const QString &data, int winId = -1);
     /*!
      * Set media by type and data path.

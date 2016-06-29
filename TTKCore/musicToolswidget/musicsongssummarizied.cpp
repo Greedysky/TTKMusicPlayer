@@ -60,9 +60,15 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
 MusicSongsSummarizied::~MusicSongsSummarizied()
 {
+    M_CONNECTION_PTR->poolDisConnect("MusicSongsSummarizied");
     clearAllLists();
     delete m_renameLine;
     delete m_floatWidget;
+}
+
+QString MusicSongsSummarizied::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsSummarizied::setMusicLists(const MusicSongsList &names)

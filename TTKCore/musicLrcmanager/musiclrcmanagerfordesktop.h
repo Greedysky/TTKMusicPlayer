@@ -24,6 +24,10 @@ public:
      */
     virtual ~MusicLRCManagerForDesktop();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSelfGeometry(const QPoint &point);
     /*!
      * Set self geometry by point.

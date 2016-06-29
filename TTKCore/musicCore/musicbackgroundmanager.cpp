@@ -5,9 +5,9 @@ MusicBackgroundManager::MusicBackgroundManager()
     m_currentIndex = 0;
 }
 
-void MusicBackgroundManager::clearArtName()
+QString MusicBackgroundManager::getClassName()
 {
-    m_currentArtName.clear();
+    return staticMetaObject.className();
 }
 
 void MusicBackgroundManager::setArtName(const QString &name)
@@ -28,6 +28,11 @@ void MusicBackgroundManager::setArtName(const QString &name)
         }
     }
     emit artHasChanged();
+}
+
+void MusicBackgroundManager::clearArtName()
+{
+    m_currentArtName.clear();
 }
 
 QString MusicBackgroundManager::getArtPhotoPath()

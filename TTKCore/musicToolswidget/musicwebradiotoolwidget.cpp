@@ -56,6 +56,11 @@ MusicWebRadioToolWidget::~MusicWebRadioToolWidget()
     delete m_stackedWidget;
 }
 
+QString MusicWebRadioToolWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWebRadioToolWidget::buttonClicked(int index)
 {
     QString on = "border:none; background:url(':/radio/toolOn');";

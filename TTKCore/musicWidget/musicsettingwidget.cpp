@@ -36,6 +36,11 @@ MusicFunctionTableWidget::~MusicFunctionTableWidget()
 
 }
 
+QString MusicFunctionTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicFunctionTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(column);
@@ -122,6 +127,11 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 MusicSettingWidget::~MusicSettingWidget()
 {
     delete ui;
+}
+
+QString MusicSettingWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSettingWidget::initNormalSettingWidget()

@@ -8,6 +8,11 @@ MusicClickedLabel::MusicClickedLabel(QWidget *parent)
     setCursor(Qt::PointingHandCursor);
 }
 
+QString MusicClickedLabel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicClickedLabel::mousePressEvent(QMouseEvent *event)
 {
     QLabel::mousePressEvent(event);

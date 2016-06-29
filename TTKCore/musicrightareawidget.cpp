@@ -38,6 +38,11 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_musiclrcfordesktop;
 }
 
+QString MusicRightAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;

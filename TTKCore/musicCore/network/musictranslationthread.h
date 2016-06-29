@@ -48,6 +48,10 @@ public:
 
     virtual ~MusicTranslationThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void startToTranslation(TranslationType from, TranslationType to, const QString &data);
     /*!
      * Start to translation data.

@@ -52,6 +52,11 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     delete ui;
 }
 
+QString MusicConnectTransferWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicConnectTransferWidget::initColumns()
 {
     MusicSongsList songs;

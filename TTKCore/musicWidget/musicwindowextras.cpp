@@ -40,6 +40,11 @@ MusicWindowExtras::~MusicWindowExtras()
 #endif
 }
 
+QString MusicWindowExtras::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 {
     m_disableBlurBehindWindow = enable;

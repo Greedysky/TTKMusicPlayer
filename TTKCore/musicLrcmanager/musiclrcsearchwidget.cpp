@@ -43,6 +43,11 @@ MusicLrcSearchWidget::~MusicLrcSearchWidget()
     delete ui;
 }
 
+QString MusicLrcSearchWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
 {
     ui->songSearchEdit->setText(name);

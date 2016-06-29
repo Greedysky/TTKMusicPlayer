@@ -30,6 +30,11 @@ MusicMovingLabelSlider::~MusicMovingLabelSlider()
     delete m_textLabel;
 }
 
+QString MusicMovingLabelSlider::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMovingLabelSlider::setValue(int value)
 {
     if(!m_isMoving)

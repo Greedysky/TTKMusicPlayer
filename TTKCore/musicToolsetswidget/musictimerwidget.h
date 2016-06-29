@@ -30,6 +30,10 @@ public:
      */
     virtual ~MusicTimerWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongStringList(const QStringList &list);
     /*!
      * Set current songs path list.

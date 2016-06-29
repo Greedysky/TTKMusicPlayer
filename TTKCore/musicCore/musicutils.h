@@ -26,6 +26,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     static void dirIsExist(const QString& name);
     /*!
      * Check current dir is exist, no, just create it.

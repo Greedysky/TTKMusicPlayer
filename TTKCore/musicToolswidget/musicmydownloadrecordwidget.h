@@ -29,6 +29,10 @@ public:
      */
     virtual ~MusicMyDownloadRecordWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void musicSongsFileName();
     /*!
      * Read all config from file and insert items.

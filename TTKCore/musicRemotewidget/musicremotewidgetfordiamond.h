@@ -23,6 +23,11 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     /*!

@@ -30,6 +30,10 @@ public:
      */
     ~MusicMovingLabelSlider();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline bool isMoving() const { return m_isMoving;}
     /*!
      * Slider is now moving or not.

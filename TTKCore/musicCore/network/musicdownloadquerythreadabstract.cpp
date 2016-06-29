@@ -17,6 +17,11 @@ MusicDownLoadQueryThreadAbstract::~MusicDownLoadQueryThreadAbstract()
     deleteAll();
 }
 
+QString MusicDownLoadQueryThreadAbstract::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownLoadQueryThreadAbstract::deleteAll()
 {
     if(m_reply)

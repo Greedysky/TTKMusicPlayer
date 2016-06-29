@@ -32,6 +32,10 @@ public:
      */
     ~MusicBarrageAnimation() = default;
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSize(const QSize &size);
     /*!
      * Set animation region size.
@@ -67,6 +71,10 @@ public:
      */
     ~MusicBarrageWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void start();
     /*!
      * Start barrage animation.

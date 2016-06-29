@@ -24,6 +24,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setText(const QString &newText);
     /*!
      * Set marquee text.

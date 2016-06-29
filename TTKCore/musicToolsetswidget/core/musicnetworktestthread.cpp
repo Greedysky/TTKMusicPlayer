@@ -34,6 +34,11 @@ MusicNetworkTestThread::~MusicNetworkTestThread()
     stopAndQuitThread();
 }
 
+QString MusicNetworkTestThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkTestThread::stopAndQuitThread()
 {
     if(isRunning())

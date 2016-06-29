@@ -29,6 +29,10 @@ public:
      */
     ~MusicWebMusicRadioListView();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void initListItems();
     /*!
      * To init list items.

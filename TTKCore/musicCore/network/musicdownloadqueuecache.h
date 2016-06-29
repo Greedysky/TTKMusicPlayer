@@ -36,6 +36,10 @@ public:
      */
     ~MusicDownloadQueueCache();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void addImageQueue(const QStringList &url, const QStringList &savePath);
     /*!
      * Add image download url and save path to download queue.

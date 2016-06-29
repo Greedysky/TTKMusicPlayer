@@ -31,6 +31,11 @@ MusicQueryTableWidget::~MusicQueryTableWidget()
     delete m_checkBoxDelegate;
 }
 
+QString MusicQueryTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicQueryTableWidget::listCellClicked(int row, int column)
 {
     if(column == 0)

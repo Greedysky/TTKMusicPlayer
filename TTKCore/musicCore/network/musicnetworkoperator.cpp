@@ -16,6 +16,11 @@ MusicNetworkOperator::~MusicNetworkOperator()
 
 }
 
+QString MusicNetworkOperator::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkOperator::startToOperator()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);

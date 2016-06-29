@@ -31,6 +31,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setValue(qreal value);
     /*!
      * Set meter value.

@@ -19,6 +19,11 @@ MusicVoiceTtsThread::~MusicVoiceTtsThread()
     delete m_parser;
 }
 
+QString MusicVoiceTtsThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicVoiceTtsThread::setSpeed(int speed)
 {
     m_speed = speed;

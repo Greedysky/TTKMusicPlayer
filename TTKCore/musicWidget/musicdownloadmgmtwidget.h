@@ -29,6 +29,10 @@ public:
      */
     ~MusicDownloadResetWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongName(const QString &name);
     /*!
      * Set current name to search and download musics.
@@ -79,6 +83,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
     /*!
      * Set current name to search and download musics.

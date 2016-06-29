@@ -17,6 +17,11 @@ MusicBackgroundDownload::~MusicBackgroundDownload()
     M_CONNECTION_PTR->poolDisConnect("MusicBackgroundDownload");
 }
 
+QString MusicBackgroundDownload::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBackgroundDownload::startToDownload()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);

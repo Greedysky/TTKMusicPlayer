@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QObject>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
@@ -27,6 +26,10 @@ public:
      */
     ~MusicBackgroundDownload();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void startToDownload();
     /*!
      * Start to download artist picture from net.

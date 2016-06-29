@@ -26,6 +26,10 @@ public:
      */
     ~MusicDesktopWallpaperThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setParamters(const MusicObject::MStriantMap &p);
     /*!
      * Set paramters(Time\Type\Func\Close).

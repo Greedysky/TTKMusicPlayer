@@ -15,6 +15,11 @@ MusicLrcAnalysis::~MusicLrcAnalysis()
     delete m_translationThread;
 }
 
+QString MusicLrcAnalysis::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcFileName)
 {
     m_lrcContainer.clear();

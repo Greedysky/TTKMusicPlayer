@@ -35,6 +35,10 @@ public:
      */
     virtual ~MusicVideoFloatWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void resizeWindow(int width, int height) override;
     /*!
      * Resize window bound by given width and height.

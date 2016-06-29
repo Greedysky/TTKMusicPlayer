@@ -76,6 +76,11 @@ MusicTimerWidget::~MusicTimerWidget()
     delete ui;
 }
 
+QString MusicTimerWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTimerWidget::initParemeter()
 {
     if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayChoiced).toInt() == 1)

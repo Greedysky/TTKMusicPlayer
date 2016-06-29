@@ -17,6 +17,11 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     headerview->resizeSection(1, 200);
 }
 
+QString MusicLrcLocalLinkTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
 {
     for(int i=0; i<rowCount(); ++i)
@@ -85,6 +90,11 @@ MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
     M_CONNECTION_PTR->poolDisConnect("MusicLrcLocalLinkWidget");
     delete ui;
+}
+
+QString MusicLrcLocalLinkWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicLrcLocalLinkWidget::setCurrentSongName(const QString &name)

@@ -26,6 +26,11 @@ public:
      */
     ~MusicToolSetsWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void getCurrentPlayList(QStringList &list);
     /*!

@@ -28,6 +28,10 @@ public:
      */
     virtual ~MusicSongsSummariziedFloatWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setGeometry(QObject *object);
     /*!
      * Set current geometry position.

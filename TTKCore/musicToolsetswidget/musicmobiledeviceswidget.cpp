@@ -39,6 +39,11 @@ MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
     delete m_openButton;
 }
 
+QString MusicMobileDevicesWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();

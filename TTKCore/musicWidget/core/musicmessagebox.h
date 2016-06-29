@@ -37,6 +37,10 @@ public:
      */
     virtual ~MusicMessageBox();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setTitle(const QString &text) const;
     /*!
      * Set box title.

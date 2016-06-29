@@ -27,6 +27,11 @@ public:
      */
     ~MusicConnectMobileWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 private Q_SLOTS:
     void changeStatckedWidgetFirst();
     /*!

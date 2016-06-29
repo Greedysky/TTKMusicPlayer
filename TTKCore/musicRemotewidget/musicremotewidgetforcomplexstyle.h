@@ -24,6 +24,10 @@ public:
      */
     virtual ~MusicRemoteWidgetForComplexStyle();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void setLabelText(const QString &value) override;
     /*!
      * Set current song text.

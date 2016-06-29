@@ -36,6 +36,11 @@ MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
     xml.writeDownloadConfig(m_musicRecord);
 }
 
+QString MusicMyDownloadRecordWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMyDownloadRecordWidget::musicSongsFileName()
 {
     MusicMyDownloadRecordConfigManager xml;

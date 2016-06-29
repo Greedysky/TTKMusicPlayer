@@ -59,6 +59,11 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
     delete ui;
 }
 
+QString MusicBackgroundSkinDialog::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 {
     QList<QFileInfo> file(QDir(THEME_DIR_FULL)

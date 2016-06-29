@@ -24,6 +24,10 @@ public:
      */
     ~MusicSongTag();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool readFile(const QString &file);
     /*!
      * Read music file to anaylsis.

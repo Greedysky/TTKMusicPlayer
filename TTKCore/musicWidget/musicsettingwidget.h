@@ -33,6 +33,10 @@ public:
      */
     virtual ~MusicFunctionTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void addFunctionItems(int index, const QStringList &icon, const QStringList &path);
     /*!
      * Add table list items by index and icons and paths.
@@ -79,6 +83,10 @@ public:
      */
     virtual ~MusicSettingWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void initControllerParameter();
     /*!
      * Init controller parameter to widget.

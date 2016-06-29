@@ -29,6 +29,11 @@ public:
     /*!
      * Object contsructor.
      */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool contains(const QString &string);
     /*!
      * Check if current item has in.
@@ -64,6 +69,10 @@ public:
      */
     virtual ~MusicLrcLocalLinkWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setCurrentSongName(const QString &name);
     /*!
      * Set current song name.

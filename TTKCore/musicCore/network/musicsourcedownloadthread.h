@@ -24,6 +24,10 @@ public:
      */
     ~MusicSourceDownloadThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void startToDownload(const QString &url);
     /*!
      * Start to download data.

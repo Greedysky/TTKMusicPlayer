@@ -57,7 +57,6 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 
     m_currentType = Music;
     initControlParameter();
-
 }
 
 MusicTransformWidget::~MusicTransformWidget()
@@ -66,6 +65,11 @@ MusicTransformWidget::~MusicTransformWidget()
     delete m_movie;
     delete m_process;
     delete ui;
+}
+
+QString MusicTransformWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicTransformWidget::initControlParameter() const

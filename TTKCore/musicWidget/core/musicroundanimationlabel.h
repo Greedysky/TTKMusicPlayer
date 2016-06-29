@@ -26,6 +26,10 @@ public:
      */
     ~MusicRoundAnimationLabel();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setPixmap(const QPixmap &pix);
     /*!
      * Set rotating widget background pixmap.

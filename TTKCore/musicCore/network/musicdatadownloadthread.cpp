@@ -9,6 +9,11 @@ MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QStri
     m_redirection = false;
 }
 
+QString MusicDataDownloadThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDataDownloadThread::startToDownload()
 {
     if( !m_file->exists() || m_file->size() < 4 )

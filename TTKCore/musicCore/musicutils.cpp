@@ -11,6 +11,11 @@
 #include <shellapi.h>
 #endif
 
+QString MusicUtils::getClassName()
+{
+    return "MusicUtils";
+}
+
 void MusicUtils::dirIsExist(const QString &name)
 {
     QDir dir;

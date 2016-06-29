@@ -28,6 +28,11 @@ MusicEnhancedToolButton::~MusicEnhancedToolButton()
     delete m_label;
 }
 
+QString MusicEnhancedToolButton::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicEnhancedToolButton::enterEvent(QEvent *event)
 {
     QToolButton::enterEvent(event);
@@ -53,6 +58,11 @@ MusicEnhancedWidget::~MusicEnhancedWidget()
     delete m_Button2;
     delete m_Button3;
     delete m_Button4;
+}
+
+QString MusicEnhancedWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicEnhancedWidget::initWidget()

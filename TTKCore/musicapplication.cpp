@@ -102,6 +102,11 @@ MusicApplication::~MusicApplication()
     delete ui;
 }
 
+QString MusicApplication::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_QT_5
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)

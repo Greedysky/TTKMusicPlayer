@@ -188,6 +188,9 @@ namespace MusicObject
     {
         return QApplication::applicationDirPath() + "/";
     }
+    /*!
+     * Get application dir.
+     */
 
 }
 

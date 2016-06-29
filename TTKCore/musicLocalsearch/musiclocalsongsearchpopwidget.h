@@ -29,6 +29,10 @@ public:
      */
     virtual ~MusicLocalSongSearchPopTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void clearAllItems();
     /*!
      * Clear All Items.
@@ -66,6 +70,10 @@ public:
      */
     ~MusicLocalSongSearchPopWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void createItems();
     /*!
      * Create popup search history table items.

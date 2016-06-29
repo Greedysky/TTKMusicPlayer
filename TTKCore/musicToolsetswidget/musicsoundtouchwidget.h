@@ -30,6 +30,11 @@ public:
      */
     virtual ~MusicSoundTouchWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     virtual int exec();
     /*!

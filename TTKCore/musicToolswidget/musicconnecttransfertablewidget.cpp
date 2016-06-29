@@ -24,6 +24,11 @@ MusicConnectTransferTableWidget::~MusicConnectTransferTableWidget()
     delete m_checkBoxDelegate;
 }
 
+QString MusicConnectTransferTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
 {
     if(col == 0)

@@ -105,6 +105,11 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_stackedWidget;
 }
 
+QString MusicVideoPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicVideoPlayWidget::setObjectToClose(QObject *object)
 {
     if(m_closeButton)

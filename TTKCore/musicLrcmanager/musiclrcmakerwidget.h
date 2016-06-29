@@ -28,6 +28,10 @@ public:
      */
     virtual ~MusicLrcMakerWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setCurrentSongName(const QString &name);
     /*!
      * Set current song name.

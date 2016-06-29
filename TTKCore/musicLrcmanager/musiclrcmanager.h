@@ -68,6 +68,10 @@ public:
      */
     virtual ~MusicLRCManager();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void startTimerClock();
     /*!
      * Start timer clock to draw lrc.
