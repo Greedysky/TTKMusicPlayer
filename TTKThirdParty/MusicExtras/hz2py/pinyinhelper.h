@@ -24,6 +24,11 @@ public:
         WITHOUT_TONE        ///Without tone
     };
 
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
     /**
      * Converting a single Chinese character into a tone format
      *

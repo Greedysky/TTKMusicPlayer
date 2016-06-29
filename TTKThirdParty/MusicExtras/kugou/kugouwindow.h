@@ -21,6 +21,8 @@ public:
     explicit KugouWindow(QWidget *parent = 0);
     ~KugouWindow();
 
+    static QString getClassName();
+
 public Q_SLOTS:
     void differButtonIndexChanged(int index);
 

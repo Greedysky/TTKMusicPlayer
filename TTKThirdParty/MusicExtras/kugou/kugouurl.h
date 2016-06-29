@@ -17,6 +17,8 @@ class MUSIC_EXTRAS_EXPORT KugouUrl
 public:
     KugouUrl();
 
+    static QString getClassName();
+
     static QString getYuekuUrl();
     static QString getRecommendUrl();
     static QString getRadioUrl();

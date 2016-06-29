@@ -13,6 +13,11 @@ QChar PinyinHelper::m_chineseLing = L'〇';
 QString PinyinHelper::m_allUnmarkedVowel = "aeiouv";
 QString PinyinHelper::m_allMarkedVowel = "āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ";
 
+QString PinyinHelper::getClassName()
+{
+    return "PinyinHelper";
+}
+
 QStringList PinyinHelper::convertToPinyinArray(const QChar &c)
 {
     return convertToPinyinArray(c, WITH_TONE_MARK);

@@ -76,6 +76,11 @@ KugouWindow::~KugouWindow()
     delete m_webView;
 }
 
+QString KugouWindow::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void KugouWindow::differButtonIndexChanged(int index)
 {
     QString url = KugouUrl::getRecommendUrl();
