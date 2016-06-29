@@ -14,6 +14,11 @@ PackZip::~PackZip()
     QDir::setCurrent(startnow);
 }
 
+QString PackZip::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void PackZip::setJob(const QString &packfolder, const QString &zipoutfolder)
 {
     startdir = packfolder;   /* grab all this file */

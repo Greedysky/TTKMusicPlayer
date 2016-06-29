@@ -72,6 +72,7 @@ public:
     explicit PackZip(QObject *parent = 0);
     ~PackZip();
 
+    static QString getClassName();
     void setJob(const QString &packfolder, const QString &zipoutfolder);
     QString biteorMega(int peso);
     bool makeGzipOneFile(QString filelocation);
