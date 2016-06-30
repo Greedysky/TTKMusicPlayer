@@ -37,8 +37,8 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     connect(ui->pitchSlider, SIGNAL(valueChanged(int)), SLOT(pitchSliderValueChanged(int)));
     connect(ui->rateSlider, SIGNAL(valueChanged(int)), SLOT(rateSliderValueChanged(int)));
 
-    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     connect(ui->playWavButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
     connect(ui->transformButton, SIGNAL(clicked()), SLOT(transformButtonClicked()));
 
