@@ -4,6 +4,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musicdownloadstatuslabel.h"
 
 #include <QDir>
 #include <QFileDialog>
@@ -82,13 +83,13 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
-    M_CONNECTION_PTR->setValue("MusicLrcLocalLinkWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicLrcLocalLinkWidget", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicDownloadStatusLabel::getClassName());
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLrcLocalLinkWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
 }
 

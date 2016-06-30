@@ -8,6 +8,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicsimilarfoundwidget.h"
+#include "musicsongsearchonlinewidget.h"
 
 #include <QPropertyAnimation>
 
@@ -24,9 +25,9 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     connect(m_setting, SIGNAL(soundEqualizerClicked()), parent,
                        SLOT(musicSetEqualizer()));
 
-    M_CONNECTION_PTR->setValue("MusicRightAreaWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicRightAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicLrcContainerForInline", "MusicRightAreaWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicLrcContainerForInline::getClassName(), getClassName());
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()

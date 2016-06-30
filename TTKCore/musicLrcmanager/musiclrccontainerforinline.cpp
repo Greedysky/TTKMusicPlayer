@@ -47,12 +47,12 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
 
-    M_CONNECTION_PTR->setValue("MusicLrcContainerForInline", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLrcContainerForInline");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
     delete m_lrcAnalysis;

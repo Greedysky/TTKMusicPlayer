@@ -6,6 +6,7 @@
 #include "musicsettingmanager.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
+#include "musicsongssummarizied.h"
 
 #include <QFile>
 #include <QPushButton>
@@ -42,13 +43,13 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
-    M_CONNECTION_PTR->setValue("MusicConnectTransferWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicConnectTransferWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicConnectTransferWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
 }
 

@@ -13,12 +13,12 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     MusicUtils::setTransparent(this, 255);
 
     MusicTime::timeSRand();
-    M_CONNECTION_PTR->setValue("MusicVideoTableWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicVideoTableWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
 }
 

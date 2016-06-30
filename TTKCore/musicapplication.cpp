@@ -26,7 +26,7 @@ MusicApplication::MusicApplication(QWidget *parent)
       ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
-    M_CONNECTION_PTR->setValue("MusicApplication", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 
     m_applicationObject = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);

@@ -7,6 +7,9 @@
 #include "musicconnectionpool.h"
 #include "musicsongsharingwidget.h"
 #include "musicsettingmanager.h"
+#include "musicapplication.h"
+#include "musicrightareawidget.h"
+#include "musicleftareawidget.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -100,15 +103,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
     connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
-    M_CONNECTION_PTR->setValue("MusicSongsListPlayWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicApplication");
-    M_CONNECTION_PTR->poolConnect("MusicLeftAreaWidget", "MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicLeftAreaWidget::getClassName(), getClassName());
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_renameLine;
     delete m_artPictureLabel;
     delete m_songNameLabel;

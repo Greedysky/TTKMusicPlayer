@@ -15,7 +15,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    M_CONNECTION_PTR->setValue("MusicBottomAreaWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()

@@ -12,6 +12,8 @@
 #include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
 #include "musicutils.h"
+#include "musicapplication.h"
+#include "musicleftareawidget.h"
 
 #include <QTimer>
 
@@ -36,14 +38,14 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
 
-    M_CONNECTION_PTR->setValue("MusicToolSetsWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicToolSetsWidget", "MusicApplication");
-    M_CONNECTION_PTR->poolConnect("MusicToolSetsWidget", "MusicLeftAreaWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicToolSetsWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
 }
 

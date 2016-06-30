@@ -2,6 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
+#include "musicsongssummarizied.h"
 
 #include <QMenu>
 #include <QContextMenuEvent>
@@ -23,13 +24,13 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 
-    M_CONNECTION_PTR->setValue("MusicMyDownloadRecordWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicMyDownloadRecordWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicMyDownloadRecordWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName() );
     delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordConfigManager xml;

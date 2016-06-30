@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
+#include "musicsongssummarizied.h"
 
 #include <QDateTime>
 #include <QMovie>
@@ -81,13 +82,13 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)),
                       SLOT(setSongNamePath(QFileInfoList)));
 
-    M_CONNECTION_PTR->setValue("MusicLocalSongsManagerWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicLocalSongsManagerWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLocalSongsManagerWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName() );
     delete m_movie;
     clearAllItems();
     m_thread->stopAndQuitThread();

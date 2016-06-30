@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+#include "musicsongssummarizied.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
@@ -38,13 +39,13 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 #endif
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 
-    M_CONNECTION_PTR->setValue("MusicSimilarFoundWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSimilarFoundWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     while(!m_checkBoxs.isEmpty())
     {
         delete m_checkBoxs.takeLast();

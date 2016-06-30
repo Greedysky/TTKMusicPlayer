@@ -5,6 +5,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
+#include "musicplayer.h"
 
 #include <QSignalMapper>
 #include <QStyledItemDelegate>
@@ -42,13 +43,13 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     readEqInformation();
     setControlEnable(false);
 
-    M_CONNECTION_PTR->setValue("MusicEqualizerDialog", this);
-    M_CONNECTION_PTR->poolConnect("MusicEqualizerDialog", "MusicPlayer");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicEqualizerDialog");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     writeEqInformation();
     delete m_signalMapper;
     delete ui;

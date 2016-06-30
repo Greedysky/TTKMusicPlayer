@@ -8,6 +8,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnetworkthread.h"
+#include "musicsongsearchonlinewidget.h"
 
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
@@ -15,9 +16,9 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     m_parentWidget = MStatic_cast(MusicApplication*, w);
     m_downloadLrcThread = nullptr;
 
-    M_CONNECTION_PTR->setValue("MusicDownloadStatusLabel", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicDownloadStatusLabel");
-    M_CONNECTION_PTR->poolConnect("MusicNetworkThread", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
 MusicDownloadStatusLabel::~MusicDownloadStatusLabel()

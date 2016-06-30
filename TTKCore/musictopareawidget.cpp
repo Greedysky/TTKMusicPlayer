@@ -23,7 +23,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 
-    M_CONNECTION_PTR->setValue("MusicTopAreaWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()

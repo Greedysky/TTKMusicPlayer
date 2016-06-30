@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicconnectionpool.h"
+#include "musicplayer.h"
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -44,13 +45,13 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_position = 0;
     m_currentLine = 0;
 
-    M_CONNECTION_PTR->setValue("MusicLrcMakerWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicPlayer", "MusicLrcMakerWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(MusicPlayer::getClassName(), getClassName());
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLrcMakerWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName() );
 }
 
 QString MusicLrcMakerWidget::getClassName()

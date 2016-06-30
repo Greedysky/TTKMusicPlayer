@@ -7,7 +7,7 @@
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr), m_networkState(true)
 {
-    M_CONNECTION_PTR->setValue("MusicNetworkThread", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
 }
 

@@ -3,6 +3,8 @@
 #include "musicutils.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
+#include "musicbottomareawidget.h"
+#include "musicapplication.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -47,15 +49,15 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     m_animation->setDuration(MT_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
-    M_CONNECTION_PTR->setValue("MusicSongsSummariziedFloatWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongsSummariziedFloatWidget", "MusicBottomAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicSongsSummariziedFloatWidget", "MusicApplication");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicBottomAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
     m_timer.start();
 }
 
 MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSongsSummariziedFloatWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_animation;
 }
 

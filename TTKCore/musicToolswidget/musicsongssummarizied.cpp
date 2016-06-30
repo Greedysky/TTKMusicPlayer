@@ -9,6 +9,7 @@
 #include "musicprogresswidget.h"
 #include "musiccryptographichash.h"
 #include "musicsongssummariziedfloatwidget.h"
+#include "musicsongsearchonlinewidget.h"
 
 #include <QScrollBar>
 #include <QTableWidgetItem>
@@ -54,13 +55,13 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
     connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged()));
 
-    M_CONNECTION_PTR->setValue("MusicSongsSummarizied", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongSearchOnlineTableWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
 }
 
 MusicSongsSummarizied::~MusicSongsSummarizied()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSongsSummarizied");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllLists();
     delete m_renameLine;
     delete m_floatWidget;
