@@ -50,3 +50,11 @@ SOURCES += \
     $$PWD/musicwebmusicradiowidget.cpp
 
 }
+
+HEADERS += \
+    $$PWD/core/musicfilesenderserver.h \
+    $$PWD/core/musicfilereceiveserver.h
+
+SOURCES += \
+    $$PWD/core/musicfilesenderserver.cpp \
+    $$PWD/core/musicfilereceiveserver.cpp
