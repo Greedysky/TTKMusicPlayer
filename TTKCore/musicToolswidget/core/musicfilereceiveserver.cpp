@@ -40,6 +40,11 @@ void MusicFileReceiveServer::readPendingDatagrams()
 
         if(datagram.contains(SPLITE_STR))
         {
+            if(m_saveDir.isEmpty())
+            {
+                M_LOGGER_ERROR("The Save Path Is Empty!");
+                return;
+            }
             QString path = QString(datagram).split(SPLITE_STR).first();
             m_file->close();
             m_file->setFileName(m_saveDir + "/" + path.split("/").last());

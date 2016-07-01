@@ -28,7 +28,7 @@ void MusicFileSenderServer::setSendFile(const QString &file)
     m_files << file;
 }
 
-void MusicFileSenderServer::setSnedFiles(const QStringList &files)
+void MusicFileSenderServer::setSendFiles(const QStringList &files)
 {
     m_files << files;
 }
@@ -76,6 +76,7 @@ void MusicFileSenderServer::sendData()
         m_sendSocket->writeDatagram(data , QHostAddress(m_receiveIp), RECEVIE_PORT);
         if(data.size() < MAX_DATA)
         {
+            emit fileSendFinished();
             m_nextFile = true;
         }
     }

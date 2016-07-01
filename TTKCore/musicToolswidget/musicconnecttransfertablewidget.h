@@ -29,6 +29,10 @@ public:
     /*!
      * Get class object name.
      */
+    void cancelAllSelectedItems();
+    /*!
+     * Cancel all selected items.
+     */
     MusicObject::MIntList getSelectedItems() const;
     /*!
      * Get selected items.

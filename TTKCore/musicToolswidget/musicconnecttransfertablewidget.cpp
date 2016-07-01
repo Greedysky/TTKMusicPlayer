@@ -48,6 +48,15 @@ void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
     }
 }
 
+void MusicConnectTransferTableWidget::cancelAllSelectedItems()
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, false);
+    }
+    clearSelection();
+}
+
 MusicObject::MIntList MusicConnectTransferTableWidget::getSelectedItems() const
 {
     MusicObject::MIntList list;

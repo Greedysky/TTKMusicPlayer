@@ -16,6 +16,7 @@
 namespace Ui {
 class MusicConnectTransferWidget;
 }
+class MusicFileSenderServer;
 
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
@@ -97,6 +98,7 @@ protected:
     int m_currentIndex;
     MusicSongs m_currentSongs;
     MusicObject::MIntsListMap m_searchfileListCache;
+    MusicFileSenderServer *m_sendServer;
 
 };
 

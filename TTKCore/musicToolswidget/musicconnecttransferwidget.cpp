@@ -7,6 +7,7 @@
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 #include "musicsongssummarizied.h"
+#include "musicfilesenderserver.h"
 
 #include <QFile>
 #include <QPushButton>
@@ -22,6 +23,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->setupUi(this);
 
     m_currentIndex = -1;
+    m_sendServer = nullptr;
 
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -61,6 +63,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
     M_CONNECTION_PTR->poolDisConnect(getClassName());
+    delete m_sendServer;
     delete ui;
 }
 
@@ -209,6 +212,7 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
         return;
     }
 
+    ui->switchButton->setEnabled(false);
     QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
     if(path.isEmpty())
     {
@@ -224,8 +228,12 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
         progress.setValue(i);
     }
 
-    ui->allSelectedcheckBox->setChecked(false);
-    ui->playListTableWidget->clearSelection();
+    ui->switchButton->setEnabled(true);
+    if(ui->allSelectedcheckBox->isChecked())
+    {
+        ui->allSelectedcheckBox->click();
+    }
+    ui->playListTableWidget->cancelAllSelectedItems();
 }
 
 void MusicConnectTransferWidget::startToTransferWIFIFiles()
@@ -235,6 +243,21 @@ void MusicConnectTransferWidget::startToTransferWIFIFiles()
     {
         return;
     }
+
+    if(m_sendServer == nullptr)
+    {
+        m_sendServer = new MusicFileSenderServer(this);
+    }
+    ui->switchButton->setEnabled(false);
+    m_sendServer->setSendFiles(names);
+    m_sendServer->start();
+
+    ui->switchButton->setEnabled(true);
+    if(ui->allSelectedcheckBox->isChecked())
+    {
+        ui->allSelectedcheckBox->click();
+    }
+    ui->playListTableWidget->cancelAllSelectedItems();
 }
 
 void MusicConnectTransferWidget::reflashRemovableDir()

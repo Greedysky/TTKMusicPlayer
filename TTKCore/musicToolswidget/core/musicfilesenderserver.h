@@ -44,7 +44,7 @@ public:
     /*!
      * Set send file.
      */
-    void setSnedFiles(const QStringList &files);
+    void setSendFiles(const QStringList &files);
     /*!
      * Set send file list.
      */
@@ -56,6 +56,9 @@ public:
     /*!
      * Get receive address.
      */
+
+Q_SIGNALS:
+    void fileSendFinished();
 
 private Q_SLOTS:
     void readPendingDatagrams();
