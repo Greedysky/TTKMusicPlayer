@@ -34,15 +34,26 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    ui->reflashButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->reflashButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->reflashButton, SIGNAL(clicked()), SLOT(reflashRemovableDir()));
+    ui->reflashUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->reflashUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->reflashUSBButton, SIGNAL(clicked()), SLOT(reflashRemovableDir()));
 
-    ui->transferButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->transferButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->transferButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
+    ui->transferUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferUSBFiles()));
 
+    ui->transferWIFIButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transferWIFIButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->transferWIFIButton, SIGNAL(clicked()), SLOT(startToTransferWIFIFiles()));
+
+    ui->switchButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->switchButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(ui->switchButton, SIGNAL(clicked()), SLOT(switchDiffDevice()));
+
+    ui->lineWIFIEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
+    ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
@@ -108,6 +119,36 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
     }
 }
 
+QStringList MusicConnectTransferWidget::getSelectedFiles()
+{
+    QStringList names;
+    MusicObject::MIntList list(ui->playListTableWidget->getSelectedItems());
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("please select one item"));
+        message.exec();
+        return names;
+    }
+
+    if(m_currentIndex == -1 || m_currentIndex > m_currentSongs.count())
+    {
+        return names;
+    }
+
+    foreach(int index, list)
+    {
+        if(!m_searchfileListCache.value(0).isEmpty())
+        {
+            int count = ui->searchLineEdit->text().trimmed().count();
+            index = m_searchfileListCache.value(count)[index];
+        }
+        names << m_currentSongs[index].getMusicPath();
+    }
+
+    return names;
+}
+
 QString MusicConnectTransferWidget::getRemovableDrive()
 {
 #ifdef Q_OS_WIN
@@ -160,31 +201,12 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
     }
 }
 
-void MusicConnectTransferWidget::startToTransferFiles()
+void MusicConnectTransferWidget::startToTransferUSBFiles()
 {
-    MusicObject::MIntList list(ui->playListTableWidget->getSelectedItems());
-    if(list.isEmpty())
-    {
-        MusicMessageBox message;
-        message.setText(tr("please select one item"));
-        message.exec();
-        return;
-    }
-
-    if(m_currentIndex == -1 || m_currentIndex > m_currentSongs.count())
+    QStringList names = getSelectedFiles();
+    if(names.isEmpty())
     {
         return;
-    }
-
-    QStringList names;
-    foreach(int index, list)
-    {
-        if(!m_searchfileListCache.value(0).isEmpty())
-        {
-            int count = ui->searchLineEdit->text().trimmed().count();
-            index = m_searchfileListCache.value(count)[index];
-        }
-        names << m_currentSongs[index].getMusicPath();
     }
 
     QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
@@ -206,6 +228,15 @@ void MusicConnectTransferWidget::startToTransferFiles()
     ui->playListTableWidget->clearSelection();
 }
 
+void MusicConnectTransferWidget::startToTransferWIFIFiles()
+{
+    QStringList names = getSelectedFiles();
+    if(names.isEmpty())
+    {
+        return;
+    }
+}
+
 void MusicConnectTransferWidget::reflashRemovableDir()
 {
     QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
@@ -213,8 +244,15 @@ void MusicConnectTransferWidget::reflashRemovableDir()
     {
         path = getRemovableDrive();
     }
-    ui->textLabel->setText(QString("( %1 )").arg(path));
-    ui->transferButton->setEnabled( !path.isEmpty() );
+    ui->textUSBLabel->setText(QString("( %1 )").arg(path));
+    ui->transferUSBButton->setEnabled( !path.isEmpty() );
+}
+
+void MusicConnectTransferWidget::switchDiffDevice()
+{
+    bool state = ui->switchButton->text() == tr("wifi");
+    ui->switchButton->setText(state ? tr("mobile") : tr("wifi"));
+    ui->stackedWidget->setCurrentIndex(state);
 }
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)

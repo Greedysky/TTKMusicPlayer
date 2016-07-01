@@ -229,6 +229,7 @@
         <file alias="loading">../TTKResource/toolSets/ts_loading.gif</file>
         <file alias="mobile">../TTKResource/toolSets/ts_mobile_devices.png</file>
         <file alias="usb">../TTKResource/toolSets/ts_mobile_usb.png</file>
+        <file alias="wifi">../TTKResource/toolSets/ts_mobile_wifi.png</file>
         <file alias="rate">../TTKResource/toolSets/ts_rate.gif</file>
         <file alias="upgrade">../TTKResource/toolSets/ts_upgrade.png</file>
         <file alias="upgradeMain">../TTKResource/toolSets/ts_upgradeMain.png</file>

@@ -50,13 +50,21 @@ public Q_SLOTS:
     /*!
      * Select all items.
      */
-    void startToTransferFiles();
+    void startToTransferUSBFiles();
     /*!
-     * Start to transfer files.
+     * Start to transfer usb files.
+     */
+    void startToTransferWIFIFiles();
+    /*!
+     * Start to transfer wifi files.
      */
     void reflashRemovableDir();
     /*!
      * Reflash removable dir.
+     */
+    void switchDiffDevice();
+    /*!
+     * Switch to different device.
      */
     void musicSearchIndexChanged(int row, int col);
     /*!
@@ -75,6 +83,10 @@ protected:
     void createAllItems(const MusicSongs &songs);
     /*!
      * Create all items.
+     */
+    QStringList getSelectedFiles();
+    /*!
+     * Get selected files.
      */
     QString getRemovableDrive();
     /*!

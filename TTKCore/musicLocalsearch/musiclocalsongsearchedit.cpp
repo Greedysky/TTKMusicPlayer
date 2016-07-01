@@ -7,7 +7,7 @@
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    setStyleSheet(MusicUIObject::MLineEditStyle03);
+    setStyleSheet(MusicUIObject::MLineEditStyle04);
     addFilterText(tr("please input search text"));
 }
 

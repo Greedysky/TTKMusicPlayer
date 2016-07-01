@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
+    <width>660</width>
     <height>409</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>615</width>
+     <width>620</width>
      <height>369</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>613</x>
+     <x>618</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -60,7 +60,7 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>615</width>
+     <width>620</width>
      <height>344</height>
     </rect>
    </property>
@@ -88,9 +88,6 @@ QLabel{background:transparent;}</string>
        <width>165</width>
        <height>25</height>
       </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/image/searchline);color:#6495ED;</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="allSelectedcheckBox">
@@ -145,56 +142,135 @@ QLabel{background:transparent;}</string>
     <zorder>functionBottomLabel</zorder>
     <zorder>playListTableWidget</zorder>
    </widget>
-   <widget class="QLabel" name="iconLabel">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>50</y>
-      <width>72</width>
-      <height>72</height>
+      <x>475</x>
+      <y>40</y>
+      <width>145</width>
+      <height>304</height>
      </rect>
     </property>
-    <property name="pixmap">
-     <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/usb</pixmap>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
+    <widget class="QWidget" name="mobileModeWidget">
+     <widget class="QLabel" name="iconUSBLabel">
+      <property name="geometry">
+       <rect>
+        <x>35</x>
+        <y>50</y>
+        <width>72</width>
+        <height>72</height>
+       </rect>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/usb</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="textUSBLabel">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>120</y>
+        <width>95</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="transferUSBButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>210</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>transfer</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="reflashUSBButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>reflash</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="wifiModeWidget">
+     <widget class="QLabel" name="iconWIFILabel">
+      <property name="geometry">
+       <rect>
+        <x>35</x>
+        <y>50</y>
+        <width>72</width>
+        <height>72</height>
+       </rect>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/wifi</pixmap>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="transferWIFIButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>210</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>transfer</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="WIFILabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>120</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>对方IP地址</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineWIFIEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>120</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QLabel" name="textLabel">
+   <widget class="QPushButton" name="switchButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>125</y>
-      <width>95</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="transferButton">
-    <property name="geometry">
-     <rect>
-      <x>508</x>
-      <y>230</y>
-      <width>80</width>
+      <x>495</x>
+      <y>10</y>
+      <width>100</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>transfer</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="reflashButton">
-    <property name="geometry">
-     <rect>
-      <x>508</x>
-      <y>190</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>reflash</string>
+     <string>wifi</string>
     </property>
    </widget>
   </widget>
