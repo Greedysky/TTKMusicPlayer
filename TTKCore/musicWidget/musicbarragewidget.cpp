@@ -151,13 +151,14 @@ void MusicBarrageWidget::addBarrage(const QString &string)
 {
     MusicTime::timeSRand();
     QLabel *label = new QLabel(m_parentClass);
+
     createLabel(label);
     createAnimation(label);
     setLabelBackground(label);
-    setLabelTextSize(label);
 
     m_barrageLists << string;
     label->setText(string);
+    setLabelTextSize(label);
 
     if(m_barrageState)
     {
