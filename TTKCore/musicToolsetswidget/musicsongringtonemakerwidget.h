@@ -78,6 +78,10 @@ protected:
     /*!
      * Init control parameter.
      */
+    void playButtonStateChanged();
+    /*!
+     * Play button state changed.
+     */
 
     Ui::MusicSongRingtoneMaker *ui;
     bool m_playRingtone;
