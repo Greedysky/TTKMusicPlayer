@@ -11,6 +11,7 @@
 
 #include <QFile>
 #include <QUdpSocket>
+#include <QStringList>
 #include "musicglobaldefine.h"
 
 #define MAX_DATA        8000
@@ -59,6 +60,9 @@ public:
 
 Q_SIGNALS:
     void fileSendFinished();
+    /*!
+     * Send file just has finished.
+     */
 
 private Q_SLOTS:
     void readPendingDatagrams();

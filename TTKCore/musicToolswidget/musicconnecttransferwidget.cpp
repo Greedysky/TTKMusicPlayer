@@ -244,6 +244,16 @@ void MusicConnectTransferWidget::startToTransferWIFIFiles()
         return;
     }
 
+    QRegExp reg("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
+    QString address = ui->lineWIFIEdit->text();
+    if(!address.contains(reg))
+    {
+        MusicMessageBox message;
+        message.setText(tr("the ip address is incorrect!"));
+        message.exec();
+        return;
+    }
+
     if(m_sendServer == nullptr)
     {
         m_sendServer = new MusicFileSenderServer(this);
