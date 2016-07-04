@@ -92,6 +92,7 @@ void MusicBottomAreaWidget::showPlayStatus(bool status) const
 void MusicBottomAreaWidget::setLabelText(const QString &name) const
 {
     m_systemTrayMenu->setLabelText(name);
+    m_systemTray->setToolTip(name);
 }
 
 void MusicBottomAreaWidget::showMessage(const QString &title, const QString &text)

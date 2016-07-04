@@ -12,7 +12,6 @@
 #include <QProcess>
 #include <QFileDialog>
 #include <QStyledItemDelegate>
-#include <QDebug>
 
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

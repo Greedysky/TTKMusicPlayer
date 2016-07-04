@@ -502,6 +502,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 2, item);
+
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 }
