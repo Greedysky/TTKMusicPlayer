@@ -10,7 +10,8 @@
    =================================================*/
 
 //update time 2016.06.15
-#define TTKMUSIC_VERSION_STR "2.3.0.0"
+#define TTKMUSIC_VERSION_STR    "2.3.0.0"
+#define TTKMUSIC_VER_TIME_STR   "(2016/6/15)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
 #define TTKMUSIC_MIDLE_VERSION 3
