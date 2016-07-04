@@ -87,14 +87,14 @@ void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
     m_totalUp += upload;
     m_totalDown += download;
 
-    ui->uploadSpeedValue->setText(MusicUtils::speed2Label(upload));
-    ui->downloadSpeedValue->setText(MusicUtils::speed2Label(download));
-    ui->uploadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalUp));
-    ui->downloadAllSpeedValue->setText(MusicUtils::speed2Label(m_totalDown));
+    ui->uploadSpeedValue->setText(MusicUtils::UNumber::speed2Label(upload));
+    ui->downloadSpeedValue->setText(MusicUtils::UNumber::speed2Label(download));
+    ui->uploadAllSpeedValue->setText(MusicUtils::UNumber::speed2Label(m_totalUp));
+    ui->downloadAllSpeedValue->setText(MusicUtils::UNumber::speed2Label(m_totalDown));
 
     if(m_testTimer.isActive())
     {
-        int value = MusicUtils::sizeByte2KByte(download);
+        int value = MusicUtils::UNumber::sizeByte2KByte(download);
         if(value > 100*ui->speedWidget->ratio())
         {
             value = 100*ui->speedWidget->ratio();

@@ -14,7 +14,7 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    MusicUtils::setTransparent(this, 50);
+    MusicUtils::UWidget::setTransparent(this, 50);
 
     m_cookJar = new QNetworkCookieJar;
 #ifdef Q_OS_WIN

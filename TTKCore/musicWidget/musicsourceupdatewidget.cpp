@@ -121,5 +121,5 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 
 void MusicSourceUpdateWidget::upgradeFailedClicked()
 {
-    MusicUtils::openUrl(CSDN_URL, false);
+    MusicUtils::UCore::openUrl(CSDN_URL, false);
 }

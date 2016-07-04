@@ -20,7 +20,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     setStyleSheet("#MainWidget{background:rgba(0, 0, 0, 60);}");
 
     resize(60, 25);
-    MusicUtils::widgetToRound(this, 10, 10);
+    MusicUtils::UWidget::widgetToRound(this, 10, 10);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

@@ -275,7 +275,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     {
         pix.load(":/share/defaultArt");
     }
-    pix = MusicUtils::pixmapToRound(pix, QSize(150, 150), 100, 100);
+    pix = MusicUtils::UWidget::pixmapToRound(pix, QSize(150, 150), 100, 100);
     ui->artistLabel->setPixmap(pix);
     ui->artistLabel->start();
 }

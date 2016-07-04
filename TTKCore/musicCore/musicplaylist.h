@@ -1,5 +1,5 @@
-#ifndef QMUSICPLAYLIST_H
-#define QMUSICPLAYLIST_H
+#ifndef MUSICPLAYLIST_H
+#define MUSICPLAYLIST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -120,4 +120,4 @@ protected:
 
 };
 
-#endif // QMUSICPLAYLIST_H
+#endif // MUSICPLAYLIST_H

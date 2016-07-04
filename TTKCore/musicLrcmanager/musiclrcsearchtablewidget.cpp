@@ -13,7 +13,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(2, 193);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
 }
 
@@ -54,14 +54,14 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), songname, Qt::ElideRight, 170));
+    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight, 170));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), artistname, Qt::ElideRight, 144));
+    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight, 144));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);

@@ -99,7 +99,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
-    m_showText->setText(MusicUtils::elidedText(font(), text, Qt::ElideRight, 160));
+    m_showText->setText(MusicUtils::UWidget::elidedText(font(), text, Qt::ElideRight, 160));
     m_showText->setToolTip(text);
 }
 

@@ -71,7 +71,7 @@ QString MusicFileInformationWidget::getClassName()
 
 void MusicFileInformationWidget::musicOpenFileDir()
 {
-    if(!MusicUtils::openUrl(QFileInfo(m_path).absoluteFilePath()))
+    if(!MusicUtils::UCore::openUrl(QFileInfo(m_path).absoluteFilePath()))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
@@ -87,7 +87,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    ui->fileSizeEdit->setText( (check = MusicUtils::size2Label(fin.size()) )
+    ui->fileSizeEdit->setText( (check = MusicUtils::UNumber::size2Label(fin.size()) )
                                 .isEmpty() ? "-" : check );
 
     ui->fileAlbumEdit->setText( state ? ((check = tag.getAlbum()).isEmpty() ? "-" : check) : "-" );

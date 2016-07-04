@@ -543,7 +543,7 @@ void MusicLrcContainerForInline::theArtBgUploaded()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    MusicUtils::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
+    MusicUtils::UCore::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const

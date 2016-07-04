@@ -115,7 +115,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
     if(uid.isEmpty())
     {
         QSize size = ui->userIconU->size();
-        ui->userIconU->setPixmap(MusicUtils::pixmapToRound(QPixmap(":/image/windowicon"), size, size.width()/2, size.height()/2));
+        ui->userIconU->setPixmap(MusicUtils::UWidget::pixmapToRound(QPixmap(":/image/windowicon"), size, size.width()/2, size.height()/2));
         ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
     }
@@ -123,8 +123,8 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
     {
         QSize size = ui->userIconL->size();
         m_userManager->setUserUID(uid);
-        ui->userIconL->setPixmap(MusicUtils::pixmapToRound(icon, size, size.width()/2, size.height()/2));
-        ui->userNameL->setText(MusicUtils::elidedText(font(), uid, Qt::ElideRight, 44));
+        ui->userIconL->setPixmap(MusicUtils::UWidget::pixmapToRound(icon, size, size.width()/2, size.height()/2));
+        ui->userNameL->setText(MusicUtils::UWidget::elidedText(font(), uid, Qt::ElideRight, 44));
         setCurrentIndex(1);
     }
 }

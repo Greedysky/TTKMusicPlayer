@@ -49,7 +49,6 @@
 
 #define MAKE_TRANSFORM          "MPlugins/avconv.dll"
 #define MAKE_KRC2LRC            "MPlugins/avk2l.dll"
-#define MAKE_RING               "MPlugins/avring.dll"
 #define MAKE_PLAYER             "MPlugins/avplayer.dll"
 #define MAKE_GAIN               "MPlugins/avgain.dll"
 #define MAKE_SOUNDTOUCH         "MPlugins/avm2v.dll"
@@ -84,7 +83,6 @@
 
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC
-#define MAKE_RING_FULL          MusicObject::getAppDir() + MAKE_RING
 #define MAKE_PLAYER_FULL        MusicObject::getAppDir() + MAKE_PLAYER
 #define MAKE_GAIN_FULL          MusicObject::getAppDir() + MAKE_GAIN
 #define MAKE_SOUNDTOUCH_FULL    MusicObject::getAppDir() + MAKE_SOUNDTOUCH

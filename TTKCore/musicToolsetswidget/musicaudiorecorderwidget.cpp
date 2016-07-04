@@ -167,7 +167,7 @@ void MusicAudioRecorderWidget::onRecordSave()
         tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
     if(!filename.isEmpty())
     {
-        m_recordCore->addWavHeader(MusicUtils::toLocal8Bit(filename));
+        m_recordCore->addWavHeader(MusicUtils::UCore::toLocal8Bit(filename));
     }
 }
 

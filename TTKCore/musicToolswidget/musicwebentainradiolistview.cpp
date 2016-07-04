@@ -13,7 +13,7 @@ MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    MusicUtils::setTransparent(this, 50);
+    MusicUtils::UWidget::setTransparent(this, 50);
 
 #ifdef Q_OS_WIN
     setSpacing(16);

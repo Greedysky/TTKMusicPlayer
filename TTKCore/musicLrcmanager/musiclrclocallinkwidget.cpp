@@ -42,13 +42,13 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
     for(int i=0; i<items.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText(MusicUtils::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
+        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
         item->setToolTip( items[i].m_name );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
+        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
         item->setToolTip( items[i].m_path );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);

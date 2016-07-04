@@ -33,7 +33,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::NoFocus);
 
-    MusicUtils::setTransparent(this, 50);
+    MusicUtils::UWidget::setTransparent(this, 50);
     m_previousColorRow = -1;
     m_previousClickRow = -1;
     m_defaultBkColor = QColor(255, 255, 255, 0);

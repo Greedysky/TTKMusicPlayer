@@ -107,7 +107,7 @@ void MusicTransformWidget::initInputPath()
             return;
         }
 
-        ui->listWidget->addItem(MusicUtils::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+        ui->listWidget->addItem(MusicUtils::UWidget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
         ui->listWidget->setToolTip(path);
         m_path << path;
     }
@@ -124,7 +124,7 @@ void MusicTransformWidget::initInputPath()
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {
                     m_path << var.absoluteFilePath();
-                    ui->listWidget->addItem(MusicUtils::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
+                    ui->listWidget->addItem(MusicUtils::UWidget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
                     ui->listWidget->setToolTip(m_path.last());
                 }
             }
@@ -184,7 +184,7 @@ void MusicTransformWidget::transformFinish()
     {
         foreach(QString path, m_path)
         {
-            ui->listWidget->addItem(MusicUtils::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+            ui->listWidget->addItem(MusicUtils::UWidget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
             ui->listWidget->setToolTip(path);
         }
         if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
