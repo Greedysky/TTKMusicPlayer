@@ -35,6 +35,10 @@ public:
     /*!
      * Get class object name.
      */
+    void openTransferFiles(int mode);
+    /*!
+     * Open transfer files by mode.
+     */
 
 Q_SIGNALS:
     void getMusicLists(MusicSongsList &songs, QStringList &names);

@@ -10,7 +10,6 @@
 #include "musicfilesenderserver.h"
 
 #include <QFile>
-#include <QPushButton>
 #include <QButtonGroup>
 #ifdef Q_OS_WIN
 #   include <windows.h>
@@ -21,6 +20,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
       ui(new Ui::MusicConnectTransferWidget)
 {
     ui->setupUi(this);
+    setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     m_currentIndex = -1;
     m_sendServer = nullptr;
@@ -70,6 +70,11 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
 QString MusicConnectTransferWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicConnectTransferWidget::openTransferFiles(int mode)
+{
+    ui->stackedWidget->setCurrentIndex(mode);
 }
 
 void MusicConnectTransferWidget::initColumns()

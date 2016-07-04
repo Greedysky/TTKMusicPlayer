@@ -45,9 +45,13 @@ private Q_SLOTS:
     /*!
      * Change to wire widget.
      */
-    void openTransferFilesWidget();
+    void openTransferFiles2Mobile();
     /*!
-     * Open transfer files widget.
+     * Open transfer files to mobile widget.
+     */
+    void openTransferFiles2Wifi();
+    /*!
+     * Open transfer files to wifi widget.
      */
 
 protected:

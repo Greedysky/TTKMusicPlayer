@@ -1,5 +1,6 @@
 #include "musicconnectmobilewidget.h"
 #include "musicconnecttransferwidget.h"
+#include "qrcodewidget.h"
 
 #include <QStackedWidget>
 #include <QBoxLayout>
@@ -103,8 +104,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     openButton->setStyleSheet("QPushButton{border-radius:2px;background:rgba(0,0,0,50);}");
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
-    openButton->setEnabled(false);
-    connect(openButton, SIGNAL(clicked(bool)), SLOT(openTransferFilesWidget()));
+    connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
 
     vBox->addWidget(backButton);
     vBox->addStretch(4);
@@ -131,8 +131,35 @@ void MusicConnectMobileWidget::initThirdWidget()
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
 
+    QLabel *label1 = new QLabel(tr("use mobile app to connect"), thirdWidget);
+    label1->setStyleSheet("font-size:20px");
+
+    QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
+    code->setMargin(8);
+    code->setIcon(":/image/windowicon", 0.23);
+
+    QLabel *label2 = new QLabel(tr("\t1. client and app must in the same wifi"), thirdWidget);
+    label1->setStyleSheet("font-size:15px");
+    QLabel *label3 = new QLabel(tr("\t2. use scanning by mobile app"), thirdWidget);
+    label1->setStyleSheet("font-size:15px");
+
+    QPushButton *openButton = new QPushButton(tr("transfer"), thirdWidget);
+    openButton->setStyleSheet("QPushButton{border-radius:2px;background:rgba(0,0,0,50);}");
+    openButton->setFixedSize(80, 40);
+    openButton->setCursor(Qt::PointingHandCursor);
+    connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Wifi()));
+
     vBox->addWidget(backButton);
-    vBox->addStretch(9);
+    vBox->addStretch(3);
+    vBox->addWidget(label1, 0, Qt::AlignCenter);
+    vBox->addStretch(1);
+    vBox->addWidget(code, 0, Qt::AlignCenter);
+    vBox->addStretch(1);
+    vBox->addWidget(label2, 0, Qt::AlignVCenter);
+    vBox->addWidget(label3, 0, Qt::AlignVCenter);
+    vBox->addStretch(2);
+    vBox->addWidget(openButton, 0, Qt::AlignCenter);
+    vBox->addStretch(3);
 
     thirdWidget->setLayout(vBox);
 
@@ -154,8 +181,16 @@ void MusicConnectMobileWidget::changeStatckedWidgetThird()
     m_stackedWidget->setCurrentIndex(2);
 }
 
-void MusicConnectMobileWidget::openTransferFilesWidget()
+void MusicConnectMobileWidget::openTransferFiles2Mobile()
 {
-    MusicConnectTransferWidget w;
+    MusicConnectTransferWidget w(this);
+    w.openTransferFiles(0);
+    w.exec();
+}
+
+void MusicConnectMobileWidget::openTransferFiles2Wifi()
+{
+    MusicConnectTransferWidget w(this);
+    w.openTransferFiles(1);
     w.exec();
 }
