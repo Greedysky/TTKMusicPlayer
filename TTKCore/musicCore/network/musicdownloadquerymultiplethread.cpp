@@ -63,15 +63,19 @@ QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0: return MUSIC_REQUERY_WY;
-        case 1: return MUSIC_REQUERY_DX;
-        case 2: return MUSIC_REQUERY_QQ;
-        case 3: return MUSIC_REQUERY_XM;
-        case 4: return MUSIC_REQUERY_TT;
-        case 5: return MUSIC_REQUERY_BD;
-        case 6: return MUSIC_REQUERY_KW;
-        case 7: return MUSIC_REQUERY_KG;
-        case 8: return MUSIC_REQUERY_DM;
+        case 0:  return MUSIC_REQUERY_WY;
+        case 1:  return MUSIC_REQUERY_DX;
+        case 2:  return MUSIC_REQUERY_QQ;
+        case 3:  return MUSIC_REQUERY_XM;
+        case 4:  return MUSIC_REQUERY_TT;
+        case 5:  return MUSIC_REQUERY_BD;
+        case 6:  return MUSIC_REQUERY_KW;
+        case 7:  return MUSIC_REQUERY_KG;
+        case 8:  return MUSIC_REQUERY_DM;
+        case 9:  return MUSIC_REQUERY_MG;
+        case 10: return MUSIC_REQUERY_MU;
+        case 11: return MUSIC_REQUERY_EC;
+        case 12: return MUSIC_REQUERY_YY;
     }
     return QString();
 }
