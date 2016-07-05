@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 #ifndef MUSIC_QT_5
-    MusicUtils::setLocalCodec();
+    MusicUtils::UCore::setLocalCodec();
 #endif
 #ifdef Q_OS_UNIX
     QFont font;

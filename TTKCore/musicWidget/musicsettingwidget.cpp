@@ -462,8 +462,8 @@ void MusicSettingWidget::initControllerParameter()
     ui->downloadLimitSpeedComboBox->setCurrentText(M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
     ui->uploadLimitSpeedComboBox->setCurrentText(M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #else
-    MusicUtils::setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    MusicUtils::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+    MusicUtils::UWidget::setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    MusicUtils::UWidget::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #endif
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
