@@ -1,12 +1,15 @@
 #include "kugouwindow.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-# include <QtWebKitWidgets/QWebView>
-# include <QtWebKitWidgets/QWebFrame>
-#else
-# include <QWebView>
-# include <QWebFrame>
+#ifdef MUSIC_WEBKIT
+# if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#  include <QtWebKitWidgets/QWebView>
+#  include <QtWebKitWidgets/QWebFrame>
+# else
+#  include <QWebView>
+#  include <QWebFrame>
+# endif
 #endif
+#include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QButtonGroup>
@@ -17,7 +20,7 @@ KugouWindow::KugouWindow(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-
+#ifdef MUSIC_WEBKIT
     const QString radioStyle = "QPushButton{ border:none; color:rgb(135, 135, 135);} \
                                 QPushButton:hover{ color:rgb(104, 169, 236);} \
                                 QPushButton:checked{ color:rgb(40, 143, 231);} \
@@ -68,12 +71,19 @@ KugouWindow::KugouWindow(QWidget *parent)
 
     layout->addWidget(top);
     layout->addWidget(m_webView);
+#else
+    QLabel *pix = new QLabel(this);
+    pix->setPixmap(QPixmap(":/image/nowebkit"));
+    layout->addWidget(pix);
+#endif
     setLayout(layout);
 }
 
 KugouWindow::~KugouWindow()
 {
+#ifdef MUSIC_WEBKIT
     delete m_webView;
+#endif
 }
 
 QString KugouWindow::getClassName()
@@ -94,5 +104,7 @@ void KugouWindow::differButtonIndexChanged(int index)
         case 5: url = KugouUrl::getShowUrl(); break;
         case 6: url = KugouUrl::getCCTVUrl(); break;
     }
+#ifdef MUSIC_WEBKIT
     m_webView->setUrl(QUrl( url ));
+#endif
 }
