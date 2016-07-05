@@ -48,16 +48,16 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void clearAllItems() override;
+    virtual void clearAllItems() override;
     /*!
      * Clear All Items.
      */
-    void createSearchedItems(const QString &songname,
-                             const QString &artistname, const QString &time) override;
+    virtual void createSearchedItems(const QString &songname, const QString &artistname,
+                                     const QString &time) override;
     /*!
      * Create searched items.
      */
-    void itemDoubleClicked(int row, int column) override;
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Item has double clicked.
      */
