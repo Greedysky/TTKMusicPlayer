@@ -3,7 +3,7 @@
 
 #include <QStyle>
 #if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
-#   include <QtWinExtras>
+#   include <QtWinExtras/QtWinExtras>
 #endif
 
 MusicWindowExtras::MusicWindowExtras(QObject *parent)

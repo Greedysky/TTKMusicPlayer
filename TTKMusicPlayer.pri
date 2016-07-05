@@ -37,7 +37,7 @@ QT_VER_PATCH = $$member(QT_VER_STRING, 2)
 win32{
     LIBS += -lIphlpapi -luser32
     equals(QT_MAJOR_VERSION, 5){
-        greaterThan(QT_VER_MINOR, 2):QT  += winextras
+        greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
             LIBS += -L../bin -lqmmp1 -lMusicExtras -lzlib
             !contains(QMAKE_TARGET.arch, x86_64){
