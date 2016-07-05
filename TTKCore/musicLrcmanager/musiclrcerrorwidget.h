@@ -28,6 +28,11 @@ public:
      */
     virtual ~MusicLrcErrorWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void buttonClicked(int index);
     /*!

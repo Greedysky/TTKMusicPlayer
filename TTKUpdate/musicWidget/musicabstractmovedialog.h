@@ -28,6 +28,10 @@ public:
      */
     virtual ~MusicAbstractMoveDialog();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline void drawWindowShadow(bool show) { m_showShadow = show;}
     /*!
      * Set or not draw window bound shadow.

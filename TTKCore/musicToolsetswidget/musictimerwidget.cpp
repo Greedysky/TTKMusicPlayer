@@ -5,6 +5,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
+#include "musicapplicationobject.h"
 
 #include <QStyledItemDelegate>
 #include <QButtonGroup>
@@ -65,15 +66,19 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     group3->addButton(ui->setRadioButton3, 5);
     connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 
-    M_CONNECTION_PTR->setValue("MusicTimerWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicTimerWidget", "MusicApplicationObject");
-    M_CONNECTION_PTR->poolConnect("MusicTimerWidget", "MusicApplication");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplicationObject::getClassName());
 }
 
 MusicTimerWidget::~MusicTimerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicTimerWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
+}
+
+QString MusicTimerWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicTimerWidget::initParemeter()

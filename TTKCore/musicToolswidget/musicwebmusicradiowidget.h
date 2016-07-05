@@ -35,6 +35,10 @@ public:
      */
     virtual ~MusicWebMusicRadioWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setNetworkCookie(QNetworkCookieJar *jar);
     /*!
      * Set network cookie.

@@ -5,7 +5,7 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
 
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
@@ -22,6 +22,11 @@ MusicConnectTransferTableWidget::~MusicConnectTransferTableWidget()
 {
     clear();
     delete m_checkBoxDelegate;
+}
+
+QString MusicConnectTransferTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
@@ -41,6 +46,15 @@ void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
         m_previousClickRow = row;
         item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
     }
+}
+
+void MusicConnectTransferTableWidget::cancelAllSelectedItems()
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, false);
+    }
+    clearSelection();
 }
 
 MusicObject::MIntList MusicConnectTransferTableWidget::getSelectedItems() const

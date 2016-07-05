@@ -17,8 +17,8 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     ui->setupUi(this);
 
 #ifdef Q_OS_UNIX
-    MusicUtils::setLabelFont(ui->label_5T, 9);
-    MusicUtils::setLabelFont(ui->label_6T, 9);
+    MusicUtils::UWidget::setLabelFont(ui->label_5T, 9);
+    MusicUtils::UWidget::setLabelFont(ui->label_6T, 9);
 #endif
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -30,6 +30,11 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
 MusicUserRecordWidget::~MusicUserRecordWidget()
 {
     delete ui;
+}
+
+QString MusicUserRecordWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &uid)
@@ -78,7 +83,7 @@ void MusicUserRecordWidget::initTabF()
 #ifdef MUSIC_QT_5
         ui->cityComboBox_F->setCurrentText(string);
 #else
-        MusicUtils::setComboboxText(ui->cityComboBox_F, string);
+        MusicUtils::UWidget::setComboboxText(ui->cityComboBox_F, string);
 #endif
     }
 
@@ -88,7 +93,7 @@ void MusicUserRecordWidget::initTabF()
 #ifdef MUSIC_QT_5
         ui->countryComboBox_F->setCurrentText(string);
 #else
-        MusicUtils::setComboboxText(ui->countryComboBox_F, string);
+        MusicUtils::UWidget::setComboboxText(ui->countryComboBox_F, string);
 #endif
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));

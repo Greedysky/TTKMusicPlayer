@@ -28,7 +28,6 @@ typedef QList<SongRadioInfo> SongRadioInfos;
 class MUSIC_NETWORK_EXPORT MusicRadioSongsThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
-
 public:
     explicit MusicRadioSongsThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
     /*!
@@ -36,6 +35,10 @@ public:
      */
     virtual ~MusicRadioSongsThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startToDownload(const QString &id) override;
     /*!
      * Start to download data.

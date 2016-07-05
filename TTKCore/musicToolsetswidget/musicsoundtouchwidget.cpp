@@ -37,8 +37,8 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     connect(ui->pitchSlider, SIGNAL(valueChanged(int)), SLOT(pitchSliderValueChanged(int)));
     connect(ui->rateSlider, SIGNAL(valueChanged(int)), SLOT(rateSliderValueChanged(int)));
 
-    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     connect(ui->playWavButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
     connect(ui->transformButton, SIGNAL(clicked()), SLOT(transformButtonClicked()));
 
@@ -69,6 +69,11 @@ MusicSoundTouchWidget::~MusicSoundTouchWidget()
     delete m_recordCore;
     delete m_process;
     delete ui;
+}
+
+QString MusicSoundTouchWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 int MusicSoundTouchWidget::exec()
@@ -173,6 +178,6 @@ void MusicSoundTouchWidget::finished(int code)
 
 void MusicSoundTouchWidget::setText(const QString &text)
 {
-    ui->pathLabel->setText(MusicUtils::elidedText(font(), text, Qt::ElideLeft, 390) );
+    ui->pathLabel->setText(MusicUtils::UWidget::elidedText(font(), text, Qt::ElideLeft, 390) );
     ui->pathLabel->setToolTip(text);
 }

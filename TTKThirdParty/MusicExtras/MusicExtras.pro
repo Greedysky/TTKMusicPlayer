@@ -27,6 +27,9 @@ unix:VERSION += 2.3.0.0
 
 HEADERS  += musicextrasglobaldefine.h
 
+RESOURCES += \
+    ../../TTKQrc/MusicThirdParty.qrc
+
 include(shortcut/ShortCut.pri)
 include(kugou/KuGou.pri)
 include(qrencode/QRencode.pri)

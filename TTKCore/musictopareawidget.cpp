@@ -23,7 +23,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 
-    M_CONNECTION_PTR->setValue("MusicTopAreaWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
@@ -33,11 +33,16 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicRemoteWidget;
 }
 
+QString MusicTopAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
     ui->userWindow->addWidget(m_msuicUserWindow);
-    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
+    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle04);
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));

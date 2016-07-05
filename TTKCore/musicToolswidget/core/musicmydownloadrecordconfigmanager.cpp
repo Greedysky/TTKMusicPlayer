@@ -6,6 +6,11 @@ MusicMyDownloadRecordConfigManager::MusicMyDownloadRecordConfigManager(QObject *
 
 }
 
+QString MusicMyDownloadRecordConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecord &record)
 {
     if( !writeConfig( DOWNLOADINFO_FULL ) )

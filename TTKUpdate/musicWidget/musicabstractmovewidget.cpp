@@ -18,6 +18,11 @@ MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
 
 }
 
+QString MusicAbstractMoveWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);

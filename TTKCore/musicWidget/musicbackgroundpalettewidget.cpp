@@ -20,6 +20,11 @@ MusicBackgroundPalette::~MusicBackgroundPalette()
     QFile::remove(COLOR_FILE);
 }
 
+QString MusicBackgroundPalette::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBackgroundPalette::setPixmap(const QColor &color)
 {
     QPixmap pixmap(90, 30);
@@ -168,6 +173,11 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
         delete m_widgets.takeLast();
     }
     delete ui;
+}
+
+QString MusicBackgroundPaletteWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicBackgroundPaletteWidget::updateBackground(const QString &text)

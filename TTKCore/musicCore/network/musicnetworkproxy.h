@@ -25,6 +25,10 @@ public:
      */
     ~MusicNetworkProxy();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setHostName(const QString &name);
     /*!
      * Set proxy hostName.

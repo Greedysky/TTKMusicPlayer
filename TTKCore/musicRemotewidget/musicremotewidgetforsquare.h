@@ -24,6 +24,11 @@ public:
      */
     virtual ~MusicRemoteWidgetForSquare();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void enterTimeout();
     /*!

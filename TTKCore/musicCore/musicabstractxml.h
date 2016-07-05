@@ -30,6 +30,11 @@ public:
      */
     ~MusicAbstractXml();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     bool readConfig(const QString &name);
     /*!

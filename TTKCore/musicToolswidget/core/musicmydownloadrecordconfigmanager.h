@@ -23,12 +23,17 @@ typedef struct MusicDownloadRecord
  */
 class MUSIC_TOOL_EXPORT MusicMyDownloadRecordConfigManager : public MusicAbstractXml
 {
+    Q_OBJECT
 public:
     explicit MusicMyDownloadRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline bool readDownloadXMLConfig(){ return readConfig(DOWNLOADINFO_FULL); }
     /*!
      * Read history download datas from xml file by given name.

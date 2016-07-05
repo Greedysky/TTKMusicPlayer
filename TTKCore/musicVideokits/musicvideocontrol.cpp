@@ -4,6 +4,8 @@
 #include "musicmovinglabelslider.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicslidermenuwidget.h"
+#include "musicrightareawidget.h"
+#include "musicvideotablewidget.h"
 
 #include <QPushButton>
 #include <QToolButton>
@@ -89,15 +91,15 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(m_fullButton, SIGNAL(clicked()), SLOT(fullButtonClicked()));
     connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(downloadLocalByControl()));
 
-    M_CONNECTION_PTR->setValue("MusicVideoControl", this);
-    M_CONNECTION_PTR->poolConnect("MusicVideoControl", "MusicRightAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicVideoControl", "MusicVideoTableWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicVideoTableWidget::getClassName());
 
 }
 
 MusicVideoControl::~MusicVideoControl()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicVideoControl");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_volumeSliderMenu;
     delete m_timeSlider;
     delete m_menuButton;
@@ -107,6 +109,11 @@ MusicVideoControl::~MusicVideoControl()
     delete m_fullButton;
     delete m_qualityButton;
     delete m_downloadButton;
+}
+
+QString MusicVideoControl::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicVideoControl::setValue(qint64 position) const

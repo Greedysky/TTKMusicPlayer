@@ -19,6 +19,7 @@
 class MUSIC_EXTRAS_EXPORT PinyinResource
 {
 public:
+    static QString getClassName();
     static QMap<QString, QString> getPinyinResource();
     static QMap<QString, QString> getMutilPinyinResource();
     static QMap<QString, QString> getChineseResource();

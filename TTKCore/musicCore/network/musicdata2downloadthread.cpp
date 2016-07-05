@@ -17,8 +17,13 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 #ifndef QT_NO_SSL
     connect(m_dataManager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                            SLOT(dataSslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("MusicData2DownloadThread Support ssl: %1").arg(QSslSocket::supportsSsl()));
+    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
 #endif
+}
+
+QString MusicData2DownloadThread::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicData2DownloadThread::startToDownload()

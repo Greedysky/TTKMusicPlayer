@@ -22,6 +22,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     static QString getData(const QString &data);
     /*!
      * Get variant data from system environment.

@@ -44,6 +44,11 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
     delete m_toolBarWidget;
 }
 
+QString MusicLrcContainerForDesktop::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);

@@ -30,7 +30,11 @@ public:
      */
     ~MusicDesktopWallpaperWidget();
 
-Q_SIGNALS:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void netRadioButtonPressed();
     /*!

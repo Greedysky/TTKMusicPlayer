@@ -36,6 +36,11 @@ MusicFunctionTableWidget::~MusicFunctionTableWidget()
 
 }
 
+QString MusicFunctionTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicFunctionTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(column);
@@ -122,6 +127,11 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 MusicSettingWidget::~MusicSettingWidget()
 {
     delete ui;
+}
+
+QString MusicSettingWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSettingWidget::initNormalSettingWidget()
@@ -272,6 +282,10 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadServerComboBox->addItem(QIcon(":/server/kuwo"), tr("kuwoMusic"));
     ui->downloadServerComboBox->addItem(QIcon(":/server/kugou"), tr("kuhouMusic"));
     ui->downloadServerComboBox->addItem(QIcon(":/server/duomi"), tr("duomiMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/migu"), tr("miguMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/dingdong"), tr("dingdongMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/echo"), tr("echoMusic"));
+    ui->downloadServerComboBox->addItem(QIcon(":/server/yinyuetai"), tr("yinyuetaiMusic"));
 
     /////////////////////////////////////////////////////////////
     QButtonGroup *buttonGroup = new QButtonGroup(this);
@@ -448,8 +462,8 @@ void MusicSettingWidget::initControllerParameter()
     ui->downloadLimitSpeedComboBox->setCurrentText(M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
     ui->uploadLimitSpeedComboBox->setCurrentText(M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #else
-    MusicUtils::setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    MusicUtils::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+    MusicUtils::UWidget::setComboboxText(ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    MusicUtils::UWidget::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
 #endif
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();

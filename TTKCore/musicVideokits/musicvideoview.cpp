@@ -13,6 +13,11 @@ MusicViewWidget::MusicViewWidget(QWidget *parent)
 
 }
 
+QString MusicViewWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicViewWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
@@ -82,6 +87,11 @@ MusicVideoView::~MusicVideoView()
     delete m_mediaPlayer;
     delete m_videoControl;
     delete m_videoWidget;
+}
+
+QString MusicVideoView::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicVideoView::enterEvent(QEvent *event)

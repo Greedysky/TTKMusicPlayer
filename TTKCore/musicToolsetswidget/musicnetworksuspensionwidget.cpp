@@ -43,6 +43,11 @@ MusicNetworkSuspensionWidget::~MusicNetworkSuspensionWidget()
     delete m_thread;
 }
 
+QString MusicNetworkSuspensionWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractMoveWidget::contextMenuEvent(event);
@@ -108,8 +113,8 @@ void MusicNetworkSuspensionWidget::setAvailableNewtworkNames(const QStringList &
 
 void MusicNetworkSuspensionWidget::networkData(ulong upload, ulong download)
 {
-    m_upload = MusicUtils::speed2Label(upload);
-    m_download = MusicUtils::speed2Label(download);
+    m_upload = MusicUtils::UNumber::speed2Label(upload);
+    m_download = MusicUtils::UNumber::speed2Label(download);
     update();
 }
 

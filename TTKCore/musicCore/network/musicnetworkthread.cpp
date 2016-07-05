@@ -7,13 +7,18 @@
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr), m_networkState(true)
 {
-    M_CONNECTION_PTR->setValue("MusicNetworkThread", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
 }
 
 MusicNetworkThread::~MusicNetworkThread()
 {
     m_timer.stop();
+}
+
+QString MusicNetworkThread::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicNetworkThread::start()

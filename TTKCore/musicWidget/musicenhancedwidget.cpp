@@ -28,6 +28,11 @@ MusicEnhancedToolButton::~MusicEnhancedToolButton()
     delete m_label;
 }
 
+QString MusicEnhancedToolButton::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicEnhancedToolButton::enterEvent(QEvent *event)
 {
     QToolButton::enterEvent(event);
@@ -42,17 +47,22 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     setToolTip(tr("magic music"));
 
     initWidget();
-    M_CONNECTION_PTR->setValue("MusicEnhancedWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicEnhancedWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_caseButton;
     delete m_Button1;
     delete m_Button2;
     delete m_Button3;
     delete m_Button4;
+}
+
+QString MusicEnhancedWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicEnhancedWidget::initWidget()

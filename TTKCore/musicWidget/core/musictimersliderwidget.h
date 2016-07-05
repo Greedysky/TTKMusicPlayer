@@ -31,6 +31,10 @@ public:
      */
     ~MusicTimerSliderWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setPlayState(bool state);
     /*!
      * Set current play state.

@@ -2,6 +2,7 @@
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
+#include "musicleftareawidget.h"
 
 #include <QMenu>
 #include <QWidgetAction>
@@ -25,6 +26,11 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
 {
     clear();
+}
+
+QString MusicQualityChoiceTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicQualityChoiceTableWidget::createItems()
@@ -119,13 +125,18 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     setCursor(Qt::PointingHandCursor);
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
 
-    M_CONNECTION_PTR->setValue("MusicQualityChoiceWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicQualityChoiceWidget", "MusicLeftAreaWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
 }
 
 MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
 {
     delete m_menu;
+}
+
+QString MusicQualityChoiceWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicQualityChoiceWidget::initWidget()

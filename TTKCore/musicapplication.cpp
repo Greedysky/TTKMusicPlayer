@@ -26,7 +26,7 @@ MusicApplication::MusicApplication(QWidget *parent)
       ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
-    M_CONNECTION_PTR->setValue("MusicApplication", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 
     m_applicationObject = new MusicApplicationObject(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
@@ -100,6 +100,11 @@ MusicApplication::~MusicApplication()
     delete m_leftAreaWidget;
     delete m_applicationObject;
     delete ui;
+}
+
+QString MusicApplication::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 #if defined(Q_OS_WIN)
@@ -225,8 +230,9 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
-    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + TTKMUSIC_VERSION_STR, m_applicationObject, SLOT(musicAboutUs()));
     musicInfo.addAction(QIcon(":/contextMenu/update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
+    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
+                        m_applicationObject, SLOT(musicAboutUs()));
 
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/quit"), tr("quit"), this, SLOT(quitWindowClose()));

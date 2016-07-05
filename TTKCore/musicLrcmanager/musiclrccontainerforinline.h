@@ -29,6 +29,10 @@ public:
      */
     virtual ~MusicLrcContainerForInline();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startTimerClock() override;
     /*!
      * Start timer clock to draw lrc.

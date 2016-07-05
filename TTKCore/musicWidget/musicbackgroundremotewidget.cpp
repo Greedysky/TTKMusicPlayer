@@ -29,6 +29,11 @@ MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
     delete m_group;
 }
 
+QString MusicBackgroundRemoteWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBackgroundRemoteWidget::initWidget()
 {
     QVBoxLayout *vbox = new QVBoxLayout(this);

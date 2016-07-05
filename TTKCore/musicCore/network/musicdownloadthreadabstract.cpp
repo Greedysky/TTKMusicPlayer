@@ -17,8 +17,8 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     m_url = url;
     m_savePathName = save;
     m_downloadType = type;
-    m_hasRecevied = -1;
-    m_currentRecevied = -1;
+    m_hasReceived = -1;
+    m_currentReceived = -1;
 
     if(QFile::exists(save))
     {
@@ -34,6 +34,11 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
     M_CONNECTION_PTR->removeNetworkMultiValue(this);
+}
+
+QString MusicDownLoadThreadAbstract::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicDownLoadThreadAbstract::deleteAll()
@@ -66,12 +71,12 @@ void MusicDownLoadThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QS
 void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     Q_UNUSED(bytesTotal);
-    m_currentRecevied = bytesReceived;
+    m_currentReceived = bytesReceived;
 }
 
 void MusicDownLoadThreadAbstract::updateDownloadSpeed()
 {
-    int delta = m_currentRecevied - m_hasRecevied;
+    int delta = m_currentReceived - m_hasReceived;
     //////////////////////////////////////
     ///limit speed
     if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
@@ -88,5 +93,5 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
         }
     }
     //////////////////////////////////////
-    m_hasRecevied = m_currentRecevied;
+    m_hasReceived = m_currentReceived;
 }

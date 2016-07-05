@@ -11,6 +11,11 @@ MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
+QString MusicUserModel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
                              const QString &mail)
 {
@@ -55,7 +60,7 @@ QString MusicUserModel::getRecordData(const QString &uid, const QString &field)
     return record(0).value(field).toString();
 }
 
-bool MusicUserModel::updateRecordData(const QString &uid, const QVariantMap &data)
+bool MusicUserModel::updateRecordData(const QString &uid, const MusicObject::MStriantMap &data)
 {
     if(databaseSelectedFilter(uid))
     {
@@ -79,7 +84,7 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
                                 const QString &mail,const QString &name,
                                 const QString &time)
 {
-    QVariantMap map;
+    MusicObject::MStriantMap map;
     map["USERNAME"] = name;
     map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
     map["EMAIL"] = mail;
@@ -92,7 +97,7 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &name,
                                 const QString &city, const QString &country,
                                 const QString &sign)
 {
-    QVariantMap map;
+    MusicObject::MStriantMap map;
     map["USERNAME"] = name;
     map["SEX"] = sex;
     map["BIRTHDAY"] = birth;
@@ -104,14 +109,14 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &name,
 
 bool MusicUserModel::updateUserIcon(const QString &uid, const QString &icon)
 {
-    QVariantMap map;
+    MusicObject::MStriantMap map;
     map["ICON"] = icon;
     return updateRecordData(uid, map);
 }
 
 bool MusicUserModel::updateUserPwd(const QString &uid, const QString &pwd)
 {
-    QVariantMap map;
+    MusicObject::MStriantMap map;
     map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
     return updateRecordData(uid, map);
 }

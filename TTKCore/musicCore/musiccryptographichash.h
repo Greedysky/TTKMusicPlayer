@@ -49,6 +49,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QString encrypt(const QString &data, const QString &key, Priority p = Lower);
     /*!
      * encrypt by QString data.

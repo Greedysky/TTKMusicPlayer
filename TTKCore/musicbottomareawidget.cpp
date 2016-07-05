@@ -15,7 +15,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    M_CONNECTION_PTR->setValue("MusicBottomAreaWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -24,6 +24,11 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTray;
     delete m_musicWindowExtras;
     delete m_musicLocalSongSearch;
+}
+
+QString MusicBottomAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -87,6 +92,7 @@ void MusicBottomAreaWidget::showPlayStatus(bool status) const
 void MusicBottomAreaWidget::setLabelText(const QString &name) const
 {
     m_systemTrayMenu->setLabelText(name);
+    m_systemTray->setToolTip(name);
 }
 
 void MusicBottomAreaWidget::showMessage(const QString &title, const QString &text)

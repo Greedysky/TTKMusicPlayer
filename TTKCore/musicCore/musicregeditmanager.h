@@ -23,6 +23,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setMusicRegeditAssociateFileIcon();
     /*!
      * Set music regedit associate file icon.

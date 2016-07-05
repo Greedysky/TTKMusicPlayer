@@ -18,12 +18,17 @@
  */
 class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml
 {
+    Q_OBJECT
 public:
     explicit MusicXMLConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
     /*!
      * Read config datas from xml file by given name.

@@ -31,6 +31,10 @@ public:
      */
     ~MusicBackgroundRemoteWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 Q_SIGNALS:
     void showCustomSkin(const QString &path);
     /*!

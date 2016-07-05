@@ -39,6 +39,11 @@ MusicRemoteWidgetForDiamond::MusicRemoteWidgetForDiamond(QWidget *parent)
 
 }
 
+QString MusicRemoteWidgetForDiamond::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicRemoteWidgetForDiamond::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);

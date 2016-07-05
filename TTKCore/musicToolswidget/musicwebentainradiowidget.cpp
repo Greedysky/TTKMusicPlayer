@@ -75,6 +75,11 @@ MusicWebEntainRadioWidget::~MusicWebEntainRadioWidget()
     delete ui;
 }
 
+QString MusicWebEntainRadioWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicWebEntainRadioWidget::closeEvent(QCloseEvent *event)
 {
     m_timer.stop();

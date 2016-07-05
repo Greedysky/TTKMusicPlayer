@@ -54,6 +54,11 @@ MusicUserDialog::~MusicUserDialog()
     delete ui;
 }
 
+QString MusicUserDialog::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicUserDialog::readFromUserConfig()
 {
     MusicUserConfigManager xml;

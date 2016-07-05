@@ -35,6 +35,10 @@ public:
      */
     virtual ~MusicQueryTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startSearchQuery(const QString &text) = 0;
     /*!
      * Start search query by text.

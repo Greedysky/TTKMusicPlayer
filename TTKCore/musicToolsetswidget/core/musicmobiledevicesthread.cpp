@@ -17,6 +17,11 @@ MusicMobileDevicesThread::~MusicMobileDevicesThread()
     stopAndQuitThread();
 }
 
+QString MusicMobileDevicesThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMobileDevicesThread::stopAndQuitThread()
 {
     if(isRunning())

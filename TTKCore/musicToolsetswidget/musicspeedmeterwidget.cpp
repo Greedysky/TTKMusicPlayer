@@ -6,6 +6,11 @@ MusicSpeedMeterWidget::MusicSpeedMeterWidget(QWidget *parent)
     initVariables();
 }
 
+QString MusicSpeedMeterWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSpeedMeterWidget::setValue(qreal value)
 {
     if(value == m_value)

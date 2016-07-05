@@ -26,6 +26,11 @@ public:
      */
     virtual ~MusicLocalSongSearchInlineEdit();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     virtual void focusOutEvent(QFocusEvent *event) override;
     virtual void enterEvent(QEvent *event) override;

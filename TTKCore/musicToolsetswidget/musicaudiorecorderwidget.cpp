@@ -83,6 +83,11 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
     delete ui;
 }
 
+QString MusicAudioRecorderWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicAudioRecorderWidget::onTimerout()
 {
     QString text = MusicTime::normalTime2Label( ++m_time );
@@ -162,7 +167,7 @@ void MusicAudioRecorderWidget::onRecordSave()
         tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
     if(!filename.isEmpty())
     {
-        m_recordCore->addWavHeader(MusicUtils::toLocal8Bit(filename));
+        m_recordCore->addWavHeader(MusicUtils::UCore::toLocal8Bit(filename));
     }
 }
 

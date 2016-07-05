@@ -12,6 +12,11 @@ MusicLRCManagerForDesktop::~MusicLRCManagerForDesktop()
 
 }
 
+QString MusicLRCManagerForDesktop::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLRCManagerForDesktop::setSelfGeometry(const QPoint &point)
 {
     m_geometry = point;

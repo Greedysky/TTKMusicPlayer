@@ -19,6 +19,11 @@ MusicLrcContainer::~MusicLrcContainer()
     delete m_musicLrcSearchWidget;
 }
 
+QString MusicLrcContainer::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcContainer::clearAllMusicLRCManager()
 {
     while(!m_musicLrcContainer.isEmpty())

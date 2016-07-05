@@ -30,6 +30,10 @@ public:
      */
     virtual ~MusicAbstractTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void clear();
     /*!
      * Clear current items.

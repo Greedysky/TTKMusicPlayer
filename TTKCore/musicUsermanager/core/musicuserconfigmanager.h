@@ -24,12 +24,17 @@ typedef struct MusicUserRecord
  */
 class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
+    Q_OBJECT
 public:
     explicit MusicUserConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
     /*!
      * Read user datas from xml file by given name.

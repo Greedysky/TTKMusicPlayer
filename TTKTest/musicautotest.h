@@ -71,6 +71,10 @@ public:
         m_child->setObjectName(name);
         MusicAutoTest::addTest(m_child.data());
     }
+    static QString getClassName()
+    {
+        return "MusicTest";
+    }
 };
 
 #define DECLARE_TEST(className) static MusicTest<className> t(#className);

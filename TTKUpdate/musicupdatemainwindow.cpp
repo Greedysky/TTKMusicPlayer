@@ -22,6 +22,11 @@ MusicUpdateMainWindow::~MusicUpdateMainWindow()
     delete m_thread;
 }
 
+QString MusicUpdateMainWindow::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicUpdateMainWindow::setFilePath(const QString &in, const QString &out)
 {
 #if defined Q_OS_WIN && defined MUSIC_QT_5

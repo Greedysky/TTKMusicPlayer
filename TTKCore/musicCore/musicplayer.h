@@ -49,6 +49,10 @@ public:
      */
     ~MusicPlayer();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     State state() const;
     /*!
      * Get current player state.

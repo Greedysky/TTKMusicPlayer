@@ -22,6 +22,10 @@ class MUSIC_CORE_EXPORT MusicGlobalHotKey : public QObject
 {
     Q_OBJECT
 public:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void connectParentObject(QObject *object);
     /*!
      * To connect parent slot object.

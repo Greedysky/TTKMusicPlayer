@@ -7,6 +7,9 @@
 #include "musicconnectionpool.h"
 #include "musicsongsharingwidget.h"
 #include "musicsettingmanager.h"
+#include "musicapplication.h"
+#include "musicrightareawidget.h"
+#include "musicleftareawidget.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -15,6 +18,11 @@ MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     pal.setBrush(QPalette::Base,QBrush(QColor(0, 0, 0, 100)));
     setPalette(pal);
     setAutoFillBackground(true);
+}
+
+QString MusicSongsEnterPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsEnterPlayWidget::enterEvent(QEvent *event)
@@ -95,15 +103,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
     connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
-    M_CONNECTION_PTR->setValue("MusicSongsListPlayWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicRightAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicSongsListPlayWidget", "MusicApplication");
-    M_CONNECTION_PTR->poolConnect("MusicLeftAreaWidget", "MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicLeftAreaWidget::getClassName(), getClassName());
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSongsListPlayWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_renameLine;
     delete m_artPictureLabel;
     delete m_songNameLabel;
@@ -115,6 +123,11 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_songShareButton;
     delete m_columnOne;
     delete m_columnThree;
+}
+
+QString MusicSongsListPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const
@@ -156,7 +169,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     {
         m_totalTime = "/" + tag.getLengthString();
     }
-    m_songNameLabel->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 180));
+    m_songNameLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 180));
     m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
@@ -178,7 +191,7 @@ void MusicSongsListPlayWidget::setItemRename()
 
 void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
-    m_songNameLabel->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 180));
+    m_songNameLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 180));
     m_songNameLabel->setToolTip(name);
     emit renameFinished(name);
     delete m_renameLine;

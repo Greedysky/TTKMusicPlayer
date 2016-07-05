@@ -27,7 +27,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_mouseMoved = false;
     m_transparent = 0;
 
-    MusicUtils::setTransparent(this, 0);
+    MusicUtils::UWidget::setTransparent(this, 0);
 #ifndef MUSIC_QT_5
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
@@ -46,6 +46,11 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_musicSongsPlayWidget;
 }
 
+QString MusicSongsListWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsListWidget::setSongsFileName(MusicSongs *songs)
 {
     m_musicSongs = songs;
@@ -62,7 +67,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
+        item->setText(MusicUtils::UWidget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -147,7 +152,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     if(m_renameActived)
     {
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
+        m_renameItem->setText(MusicUtils::UWidget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
         m_renameActived = false;
     }
 
@@ -414,7 +419,7 @@ void MusicSongsListWidget::musicOpenFileDir()
     }
 
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(!MusicUtils::openUrl(QFileInfo(path).absoluteFilePath(), true))
+    if(!MusicUtils::UCore::openUrl(QFileInfo(path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
@@ -489,7 +494,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 2);
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(MusicUtils::elidedText(font(), name, Qt::ElideRight, 242));
+    item = new QTableWidgetItem(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 242));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);
@@ -497,6 +502,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 2, item);
+
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 }

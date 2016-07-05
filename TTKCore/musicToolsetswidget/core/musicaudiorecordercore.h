@@ -44,8 +44,15 @@ public:
     };
 
     explicit MusicAudioRecorderCore(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicAudioRecorderCore();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     int addWavHeader(const char *filename);
     /*!
      * Add the header of wav.

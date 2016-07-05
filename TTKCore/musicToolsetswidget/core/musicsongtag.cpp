@@ -21,6 +21,11 @@ MusicSongTag::~MusicSongTag()
     delete m_tag;
 }
 
+QString MusicSongTag::getClassName()
+{
+    return "MusicSongTag";
+}
+
 bool MusicSongTag::readFile(const QString &file)
 {
     delete m_tag;

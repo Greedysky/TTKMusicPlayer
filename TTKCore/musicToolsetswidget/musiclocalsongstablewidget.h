@@ -23,6 +23,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void clearShowlist();
     /*!
      * Clear show list.

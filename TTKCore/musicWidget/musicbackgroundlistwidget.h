@@ -29,6 +29,10 @@ public:
      */
     ~MusicBackgroundListWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setCurrentItemName(const QString &name);
     /*!
      * Select current item by name when the widget show.

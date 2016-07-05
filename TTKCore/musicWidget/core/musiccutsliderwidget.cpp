@@ -17,6 +17,11 @@ MusicMoveButton::MusicMoveButton(QWidget *parent)
     setCursor(QCursor(Qt::PointingHandCursor));
 }
 
+QString MusicMoveButton::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMoveButton::mousePressEvent(QMouseEvent *event)
 {
 //    QWidget::mousePressEvent(event);
@@ -73,6 +78,11 @@ MusicCutSliderWidget::~MusicCutSliderWidget()
 {
     delete m_leftControl;
     delete m_rightControl;
+}
+
+QString MusicCutSliderWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicCutSliderWidget::setPosition(qint64 position)

@@ -32,6 +32,10 @@ public:
      */
     ~MusicUserDialog();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void checkToAutoLogin(QString &name, QString &icon);
     /*!
      * Check current user to login auto automatic.

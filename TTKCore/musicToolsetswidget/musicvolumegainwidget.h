@@ -25,6 +25,10 @@ public:
      */
     virtual ~MusicVolumeGainTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int col) override;
@@ -50,6 +54,11 @@ public:
      * Object contsructor.
      */
     virtual ~MusicVolumeGainWidget();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 
 public Q_SLOTS:
     virtual int exec();

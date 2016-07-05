@@ -26,6 +26,10 @@ public:
      */
     virtual ~MusicNetworkAbstract();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void deleteAll();
     /*!
      * Release the network object.

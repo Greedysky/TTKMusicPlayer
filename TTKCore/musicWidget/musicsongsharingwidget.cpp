@@ -40,9 +40,14 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete ui;
 }
 
+QString MusicSongSharingWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongSharingWidget::setSongName(const QString &name)
 {
-    ui->sharedName->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 200));
+    ui->sharedName->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
@@ -110,7 +115,7 @@ void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
     }
 
     url.replace('#', "%23");
-    MusicUtils::openUrl(url, false);
+    MusicUtils::UCore::openUrl(url, false);
     QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
 

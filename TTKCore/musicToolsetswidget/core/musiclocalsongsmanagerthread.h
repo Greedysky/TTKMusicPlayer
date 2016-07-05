@@ -27,6 +27,10 @@ public:
      */
     ~MusicLocalSongsManagerThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setFindFilePath(const QString &path);
     /*!
      * Set find file path by given path.

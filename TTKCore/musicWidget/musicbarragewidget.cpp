@@ -25,6 +25,11 @@ void MusicBarrageAnimation::animationFinished()
     start();
 }
 
+QString MusicBarrageAnimation::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
@@ -58,6 +63,11 @@ MusicBarrageWidget::~MusicBarrageWidget()
 {
     writeBarrage();
     deleteItems();
+}
+
+QString MusicBarrageWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicBarrageWidget::start()
@@ -141,13 +151,14 @@ void MusicBarrageWidget::addBarrage(const QString &string)
 {
     MusicTime::timeSRand();
     QLabel *label = new QLabel(m_parentClass);
+
     createLabel(label);
     createAnimation(label);
     setLabelBackground(label);
-    setLabelTextSize(label);
 
     m_barrageLists << string;
     label->setText(string);
+    setLabelTextSize(label);
 
     if(m_barrageState)
     {

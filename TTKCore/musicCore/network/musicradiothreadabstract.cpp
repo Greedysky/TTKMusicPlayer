@@ -10,3 +10,8 @@ MusicRadioThreadAbstract::~MusicRadioThreadAbstract()
 {
     deleteAll();
 }
+
+QString MusicRadioThreadAbstract::getClassName()
+{
+    return staticMetaObject.className();
+}

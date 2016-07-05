@@ -14,12 +14,17 @@ MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 215);
     headerview->resizeSection(1, 62);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
 }
 
 MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
 {
     clearAllItems();
+}
+
+QString MusicLocalSongSearchPopTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicLocalSongSearchPopTableWidget::clearAllItems()
@@ -77,6 +82,11 @@ MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
 {
     delete m_popTableWidget;
     delete m_clearButton;
+}
+
+QString MusicLocalSongSearchPopWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicLocalSongSearchPopWidget::createItems()

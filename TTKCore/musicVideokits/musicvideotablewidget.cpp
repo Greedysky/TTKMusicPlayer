@@ -10,16 +10,21 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
 {
     setColumnCount(8);
     resizeWindow(1.0f);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
 
     MusicTime::timeSRand();
-    M_CONNECTION_PTR->setValue("MusicVideoTableWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicVideoTableWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
+}
+
+QString MusicVideoTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
@@ -64,7 +69,7 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), songname, Qt::ElideRight,
+    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight,
                                                  headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
@@ -72,7 +77,7 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), artistname, Qt::ElideRight,
+    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight,
                                                  headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
@@ -160,10 +165,10 @@ void MusicVideoTableWidget::resizeWindow(float delta)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::elidedText(font(), it->toolTip(), Qt::ElideRight,
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
                                                    headerview->sectionSize(1) - 5));
         it = item(i, 2);
-        it->setText(MusicUtils::elidedText(font(), it->toolTip(), Qt::ElideRight,
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
                                                    headerview->sectionSize(2) - 5));
     }
 }

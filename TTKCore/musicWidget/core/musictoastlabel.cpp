@@ -27,6 +27,11 @@ MusicToastLabel::~MusicToastLabel()
     m_timer.stop();
 }
 
+QString MusicToastLabel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicToastLabel::setTimerInterval(int msecond)
 {
     m_timer.stop();

@@ -29,16 +29,21 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(3, 50);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
 
     m_previousAuditionRow = -1;
-    M_CONNECTION_PTR->setValue("MusicSongSearchOnlineTableWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
     delete m_audition;
     clearAllItems();
+}
+
+QString MusicSongSearchOnlineTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
@@ -96,14 +101,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count - 1, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), songname, Qt::ElideRight, 300));
+    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight, 300));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count - 1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), artistname, Qt::ElideRight, 180));
+    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight, 180));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -299,11 +304,16 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_searchTableWidget;
 }
 
+QString MusicSongSearchOnlineWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name) const
 {
     m_searchTableWidget->startSearchQuery(name);
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
-                         .arg(MusicUtils::elidedText(font(), name, Qt::ElideRight, 240)));
+                         .arg(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 240)));
 }
 
 void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)

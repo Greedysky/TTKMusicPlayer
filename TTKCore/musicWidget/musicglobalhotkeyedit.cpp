@@ -14,6 +14,11 @@ MusicGlobalHotKeyEdit::~MusicGlobalHotKeyEdit()
 
 }
 
+QString MusicGlobalHotKeyEdit::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)
 {
     setText( M_HOTKEY_PTR->toString(event->key(), event->modifiers()) );

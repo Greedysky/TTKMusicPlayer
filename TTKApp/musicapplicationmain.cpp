@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 #ifndef MUSIC_QT_5
-    MusicUtils::setLocalCodec();
+    MusicUtils::UCore::setLocalCodec();
 #endif
 #ifdef Q_OS_UNIX
     QFont font;
@@ -21,12 +21,12 @@ int main(int argc, char *argv[])
     qApp->setFont(font);
 #endif
 
-    MusicUtils::checkTheDirectoryExist();
-    if(!MusicUtils::checkTheFileExist())
+    MusicUtils::UCore::checkTheDirectoryExist();
+    if(!MusicUtils::UCore::checkTheFileExist())
     {
         M_LOGGER_INFO("Load Translation");
         QTranslator translator;
-        translator.load(MusicUtils::getLanguageName(0));
+        translator.load(MusicUtils::UCore::getLanguageName(0));
         a.installTranslator(&translator);
 
         MusicMessageBox(QObject::tr("TTKMusicPlayer"),
@@ -48,11 +48,11 @@ int main(int argc, char *argv[])
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
     QTranslator translator;
-    translator.load(MusicUtils::getLanguageName(xml->readLanguageIndex()));
+    translator.load(MusicUtils::UCore::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
-    MusicUtils::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
-                              xml->readDownloadCacheLimit(), MUSIC_DIR_FULL);
+    MusicUtils::UCore::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
+                                      xml->readDownloadCacheLimit(), MUSIC_DIR_FULL);
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGER_INFO("End load translation");

@@ -74,6 +74,11 @@ MusicRemoteWidget::~MusicRemoteWidget()
     delete m_mainWidget;
 }
 
+QString MusicRemoteWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);

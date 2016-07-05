@@ -17,6 +17,11 @@
 class MUSIC_EXTRAS_EXPORT ChineseHelper
 {
 public:
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
     /**
      * The single traditional Chinese characters into simplified Chinese characters
      *

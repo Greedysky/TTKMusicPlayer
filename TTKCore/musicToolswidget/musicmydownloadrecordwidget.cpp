@@ -2,6 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
+#include "musicsongssummarizied.h"
 
 #include <QMenu>
 #include <QContextMenuEvent>
@@ -23,17 +24,22 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
     musicSongsFileName();
 
-    M_CONNECTION_PTR->setValue("MusicMyDownloadRecordWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicMyDownloadRecordWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicMyDownloadRecordWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName() );
     delete m_delegate;
     clearAllItems();
     MusicMyDownloadRecordConfigManager xml;
     xml.writeDownloadConfig(m_musicRecord);
+}
+
+QString MusicMyDownloadRecordWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicMyDownloadRecordWidget::musicSongsFileName()
@@ -59,7 +65,7 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 160));
+    item->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( name );
@@ -147,7 +153,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!MusicUtils::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath(), true))
+    if(!MusicUtils::UCore::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

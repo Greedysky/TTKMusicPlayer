@@ -15,6 +15,11 @@ MusicUpdateUnzipThread::~MusicUpdateUnzipThread()
     stopAndQuitThread();
 }
 
+QString MusicUpdateUnzipThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicUpdateUnzipThread::run()
 {
     PackZip zip;

@@ -36,6 +36,11 @@ public:
      */
     virtual ~MusicWebEntainRadioWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void radioPlay();
     /*!

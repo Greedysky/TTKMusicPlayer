@@ -31,6 +31,10 @@ public:
      */
     virtual ~MusicRemoteWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void showPlayStatus(bool status) const;
     /*!
      * Set current play state button.

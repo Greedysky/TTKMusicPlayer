@@ -36,6 +36,11 @@ public:
      */
     virtual ~MusicLocalSongsManagerWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void addSongToPlay(const QStringList &names);
     /*!

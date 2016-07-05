@@ -19,6 +19,8 @@ class MUSIC_EXTRAS_EXPORT QRCodeQWidget : public QWidget
 public:
     QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = 0);
     
+    static QString getClassName();
+
     void setMargin(const int margin);
     int getMargin() const;
 

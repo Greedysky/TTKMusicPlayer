@@ -16,9 +16,9 @@
 
 #define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
-#define LOG_END  QString("log::npos")
+#define LOG_END     QString("log::npos")
 
-#define M_LOGGER (*MusicLogger::createInstance())
+#define M_LOGGER    (*MusicLogger::createInstance())
 #define M_MESSAGE(str, msg) \
 { \
     M_LOGGER.setLevel(msg); \
@@ -56,6 +56,13 @@ public:
      * Get object instance ptr.
      */
 
+    static QString getClassName()
+    {
+        return "MusicLogger";
+    }
+    /*!
+     * Get class object name.
+     */
     inline void setLevel(const QString &level)
     {
         m_levelType = level;

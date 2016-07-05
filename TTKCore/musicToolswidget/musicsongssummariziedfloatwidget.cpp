@@ -3,6 +3,8 @@
 #include "musicutils.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
+#include "musicbottomareawidget.h"
+#include "musicapplication.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -18,7 +20,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     setStyleSheet("#MainWidget{background:rgba(0, 0, 0, 60);}");
 
     resize(60, 25);
-    MusicUtils::widgetToRound(this, 10, 10);
+    MusicUtils::UWidget::widgetToRound(this, 10, 10);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -47,16 +49,21 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     m_animation->setDuration(MT_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
-    M_CONNECTION_PTR->setValue("MusicSongsSummariziedFloatWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSongsSummariziedFloatWidget", "MusicBottomAreaWidget");
-    M_CONNECTION_PTR->poolConnect("MusicSongsSummariziedFloatWidget", "MusicApplication");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicBottomAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
     m_timer.start();
 }
 
 MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSongsSummariziedFloatWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_animation;
+}
+
+QString MusicSongsSummariziedFloatWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsSummariziedFloatWidget::setGeometry(QObject *object)

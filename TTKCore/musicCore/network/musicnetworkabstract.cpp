@@ -12,6 +12,11 @@ MusicNetworkAbstract::~MusicNetworkAbstract()
     deleteAll();
 }
 
+QString MusicNetworkAbstract::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicNetworkAbstract::deleteAll()
 {
     if(m_manager)

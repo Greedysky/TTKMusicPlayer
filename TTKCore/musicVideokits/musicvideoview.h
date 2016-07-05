@@ -28,6 +28,11 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 Q_SIGNALS:
     void setFullScreen();
     /*!
@@ -64,6 +69,10 @@ public:
      */
     ~MusicVideoView();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setMedia(const QString &data);
     /*!
      * Set video play data.

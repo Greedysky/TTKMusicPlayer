@@ -18,13 +18,18 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_supperClass = parent;
     m_stackedWidget = nullptr;
-    M_CONNECTION_PTR->setValue("MusicLeftAreaWidget", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
     delete m_qualityChoiceWidget;
     delete m_stackedWidget;
+}
+
+QString MusicLeftAreaWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)

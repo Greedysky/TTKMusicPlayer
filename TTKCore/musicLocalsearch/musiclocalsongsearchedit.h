@@ -24,6 +24,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void addFilterText(const QString &text);
     /*!
      * Add new text input.

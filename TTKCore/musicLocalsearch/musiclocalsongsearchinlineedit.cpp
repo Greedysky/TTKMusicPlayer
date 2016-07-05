@@ -14,6 +14,11 @@ MusicLocalSongSearchInlineEdit::~MusicLocalSongSearchInlineEdit()
 
 }
 
+QString MusicLocalSongSearchInlineEdit::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLocalSongSearchInlineEdit::focusOutEvent(QFocusEvent *event)
 {
     MusicLocalSongSearchEdit::focusOutEvent(event);

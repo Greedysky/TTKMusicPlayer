@@ -40,6 +40,11 @@ public:
      */
     ~MusicNetworkTestWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void show();
     /*!

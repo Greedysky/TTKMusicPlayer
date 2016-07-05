@@ -44,6 +44,11 @@ MusicLrcArtPhotoUpload::~MusicLrcArtPhotoUpload()
     delete ui;
 }
 
+QString MusicLrcArtPhotoUpload::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcArtPhotoUpload::selectButtonClicked()
 {
     QString picPath = QFileDialog::getOpenFileName(

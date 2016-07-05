@@ -89,6 +89,11 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_checkBox;
 }
 
+QString MusicLrcFloatPhotoWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
     m_rectIn = QRect(width/2, 500 + height, 115, 105);

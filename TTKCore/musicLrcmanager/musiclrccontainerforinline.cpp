@@ -47,17 +47,22 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
 
-    M_CONNECTION_PTR->setValue("MusicLrcContainerForInline", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLrcContainerForInline");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
     delete m_lrcAnalysis;
     delete m_lrcFloatWidget;
     delete m_noLrcCurrentInfo;
+}
+
+QString MusicLrcContainerForInline::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName)
@@ -538,7 +543,7 @@ void MusicLrcContainerForInline::theArtBgUploaded()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    MusicUtils::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
+    MusicUtils::UCore::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const

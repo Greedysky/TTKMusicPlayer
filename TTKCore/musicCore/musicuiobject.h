@@ -250,8 +250,13 @@ namespace MusicUIObject
             QLineEdit::hover{ border: 3px solid #AAAAFF;}";
 
     const QString MLineEditStyle03 = " \
-            QLineEdit{border-image: url(:/image/searchline); \
-            font-size:15px; color:#333333;}";
+            QLineEdit{border-image: url(:/image/searchline);}";
+
+    const QString MLineEditStyle04 = MLineEditStyle03 + " \
+            QLineEdit{font-size:15px; color:#333333;}";
+
+    const QString MLineEditStyle05 = MLineEditStyle03 + " \
+            QLineEdit{color:#6495ED;}";
 
 ///Menu
 //////////////////////////////////////////////////////

@@ -31,6 +31,10 @@ public:
      */
     ~MusicLeftAreaWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setupUi(Ui::MusicApplication* ui);
     /*!
      * Set up app ui.

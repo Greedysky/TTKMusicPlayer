@@ -14,7 +14,7 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
-    MusicUtils::setTransparent(this, 50);
+    MusicUtils::UWidget::setTransparent(this, 50);
 
     m_cookJar = new QNetworkCookieJar;
 #ifdef Q_OS_WIN
@@ -30,6 +30,11 @@ MusicWebMusicRadioListView::~MusicWebMusicRadioListView()
     delete m_getChannelThread;
     delete m_musicRadio;
     delete m_cookJar;
+}
+
+QString MusicWebMusicRadioListView::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicWebMusicRadioListView::initListItems()

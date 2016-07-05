@@ -55,6 +55,11 @@ MusicVideoFloatWidget::~MusicVideoFloatWidget()
     delete m_share;
 }
 
+QString MusicVideoFloatWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicVideoFloatWidget::resizeWindow(int width, int height)
 {
     m_rectIn = QRect(508 + width, 120 + height, 125, 210);

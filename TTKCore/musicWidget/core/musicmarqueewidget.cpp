@@ -8,6 +8,11 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     m_myTimerId = 0;
 }
 
+QString MusicMarqueeWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicMarqueeWidget::setText(const QString &newText)
 {
     int length = fontMetrics().width(newText) >= width() ? 45 : 25;

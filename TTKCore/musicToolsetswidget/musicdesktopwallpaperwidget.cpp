@@ -56,6 +56,11 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
     delete ui;
 }
 
+QString MusicDesktopWallpaperWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDesktopWallpaperWidget::initWidgetStyle() const
 {
     ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);

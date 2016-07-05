@@ -6,6 +6,11 @@
 
 QMap<QString, QString> ChineseHelper::m_data = PinyinResource::getChineseResource();
 
+QString ChineseHelper::getClassName()
+{
+    return "ChineseHelper";
+}
+
 QChar ChineseHelper::convertToSimplifiedChinese(const QChar &c)
 {
     QString simplifiedChinese = m_data.value(c);

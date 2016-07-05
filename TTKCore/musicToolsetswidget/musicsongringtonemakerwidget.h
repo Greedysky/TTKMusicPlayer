@@ -30,6 +30,11 @@ public:
      */
     virtual ~MusicSongRingtoneMaker();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void initInputPath();
     /*!
@@ -72,6 +77,10 @@ protected:
     void initControlParameter() const;
     /*!
      * Init control parameter.
+     */
+    void playButtonStateChanged();
+    /*!
+     * Play button state changed.
      */
 
     Ui::MusicSongRingtoneMaker *ui;

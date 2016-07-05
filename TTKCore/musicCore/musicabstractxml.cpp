@@ -17,6 +17,11 @@ MusicAbstractXml::~MusicAbstractXml()
     delete m_ddom;
 }
 
+QString MusicAbstractXml::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicAbstractXml::readConfig(const QString &name)
 {
     delete m_file;

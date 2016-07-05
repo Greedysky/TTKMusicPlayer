@@ -49,7 +49,6 @@
 
 #define MAKE_TRANSFORM          "MPlugins/avconv.dll"
 #define MAKE_KRC2LRC            "MPlugins/avk2l.dll"
-#define MAKE_RING               "MPlugins/avring.dll"
 #define MAKE_PLAYER             "MPlugins/avplayer.dll"
 #define MAKE_GAIN               "MPlugins/avgain.dll"
 #define MAKE_SOUNDTOUCH         "MPlugins/avm2v.dll"
@@ -84,7 +83,6 @@
 
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC
-#define MAKE_RING_FULL          MusicObject::getAppDir() + MAKE_RING
 #define MAKE_PLAYER_FULL        MusicObject::getAppDir() + MAKE_PLAYER
 #define MAKE_GAIN_FULL          MusicObject::getAppDir() + MAKE_GAIN
 #define MAKE_SOUNDTOUCH_FULL    MusicObject::getAppDir() + MAKE_SOUNDTOUCH
@@ -129,19 +127,21 @@ namespace MusicObject
     typedef bool               MBool;         /* bool */
     ///////////////////////////////////////
 
-    typedef QList<QStringList>                 MStringLists;      /* stringlists */
-    typedef QList<int>                         MIntList;          /* intlist */
-    typedef QList<MIntList>                    MIntLists;         /* intlists */
-    typedef QSet<int>                          MIntSet;           /* intset */
-    typedef QSet<MIntSet>                      MIntSets;          /* intsets */
-    typedef QMap<QString, QVariant>            MStriantMap;       /* stringVariantMap */
-    typedef QMap<QString, QStringList>         MStringsListMap;   /* stringStrlistsMap */
-    typedef QMap<int, MIntList>                MIntsListMap;      /* intIntlistMap */
-    typedef QMap<qint64, QString>              MIntStringMap;     /* intStrMap */
-    typedef QMapIterator<QString, QVariant>    MStriantMapIt;     /* stringVariantMapIt */
-    typedef QMapIterator<QString, QStringList> MStringsListMapIt; /* stringStrlistsMapIt */
-    typedef QMapIterator<int, MIntList>        MIntsListMapIt;    /* intIntlistMapIt */
-    typedef QMapIterator<qint64, QString>      MIntStringMapIt;   /* intStrMapIt */
+    typedef QList<QStringList>                 MStringLists;            /* stringlists */
+    typedef QList<int>                         MIntList;                /* intlist */
+    typedef QList<MIntList>                    MIntLists;               /* intlists */
+    typedef QSet<int>                          MIntSet;                 /* intset */
+    typedef QSet<MIntSet>                      MIntSets;                /* intsets */
+    typedef QMap<QString, QVariant>            MStriantMap;             /* stringVariantMap */
+    typedef QMap<QString, QString>             MStringsMap;             /* stringsMap */
+    typedef QMap<QString, QStringList>         MStringsListMap;         /* stringStrlistsMap */
+    typedef QMap<int, MIntList>                MIntsListMap;            /* intIntlistMap */
+    typedef QMap<qint64, QString>              MIntStringMap;           /* intStrMap */
+    typedef QMapIterator<QString, QVariant>    MStriantMapIterator;     /* stringVariantMapIterator */
+    typedef QMapIterator<QString, QString>     MStringsMapIterator;     /* stringsMapIterator */
+    typedef QMapIterator<QString, QStringList> MStringsListMapIterator; /* stringStrlistsMapIterator */
+    typedef QMapIterator<int, MIntList>        MIntsListMapIterator;    /* intIntlistMapIterator */
+    typedef QMapIterator<qint64, QString>      MIntStringMapIterator;   /* intStrMapIterator */
     ///////////////////////////////////////
 
     typedef struct MusicSongAttribute
@@ -188,6 +188,9 @@ namespace MusicObject
     {
         return QApplication::applicationDirPath() + "/";
     }
+    /*!
+     * Get application dir.
+     */
 
 }
 

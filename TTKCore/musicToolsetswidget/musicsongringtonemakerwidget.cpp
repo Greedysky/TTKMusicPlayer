@@ -69,6 +69,11 @@ MusicSongRingtoneMaker::~MusicSongRingtoneMaker()
     delete ui;
 }
 
+QString MusicSongRingtoneMaker::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongRingtoneMaker::initInputPath()
 {
     QStringList supportedFormat;
@@ -93,7 +98,7 @@ void MusicSongRingtoneMaker::initInputPath()
     {
         QString name = m_inputFilePath.split("/").last();
         ui->songLabelValue->setToolTip( name );
-        name = MusicUtils::elidedText(font(), name, Qt::ElideRight, 220);
+        name = MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 220);
         ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name)
                 .arg(tag.getLengthString()).arg(tag.getSamplingRate()).arg(tag.getBitrate()));
     }
@@ -132,20 +137,17 @@ void MusicSongRingtoneMaker::initOutputPath()
 void MusicSongRingtoneMaker::playInputSong()
 {
     m_playRingtone = false;
-    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
-       m_player->state() == MusicCoreMPlayer::PausedState)
-    {
-        ui->playSongButton->setText(tr("Stop"));
-    }
-    else
-    {
-        ui->playSongButton->setText(tr("Play"));
-    }
+    playButtonStateChanged();
     m_player->play();
 }
 
 void MusicSongRingtoneMaker::playRingtone()
 {
+    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
+       m_player->state() == MusicCoreMPlayer::PausedState)
+    {
+        ui->playSongButton->setText(tr("Stop"));
+    }
     m_playRingtone = true;
     m_player->setPosition(m_startPos);
 }
@@ -177,6 +179,11 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
 {
+    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
+       m_player->state() == MusicCoreMPlayer::PausedState)
+    {
+        ui->playSongButton->setText(tr("Stop"));
+    }
     m_player->setPosition(pos);
 }
 
@@ -206,4 +213,17 @@ void MusicSongRingtoneMaker::initControlParameter() const
 
     ui->kbpsCombo->setCurrentIndex(7);
     ui->hzCombo->setCurrentIndex(6);
+}
+
+void MusicSongRingtoneMaker::playButtonStateChanged()
+{
+    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
+       m_player->state() == MusicCoreMPlayer::PausedState)
+    {
+        ui->playSongButton->setText(tr("Stop"));
+    }
+    else
+    {
+        ui->playSongButton->setText(tr("Play"));
+    }
 }

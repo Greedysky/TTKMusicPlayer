@@ -97,6 +97,13 @@ public:
 
     };
 
+    static QString getClassName()
+    {
+        return staticMetaObject.className();
+    }
+    /*!
+     * Get class object name.
+     */
     inline void setValue(ConfigType type, const QVariant &var)
     {
         m_para[type] = var;

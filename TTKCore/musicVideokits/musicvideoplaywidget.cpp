@@ -105,6 +105,11 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_stackedWidget;
 }
 
+QString MusicVideoPlayWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicVideoPlayWidget::setObjectToClose(QObject *object)
 {
     if(m_closeButton)
@@ -220,6 +225,6 @@ void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 
 void MusicVideoPlayWidget::mvURLNameChanged(const QString &name, const QString &data)
 {
-    m_textLabel->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 275));
+    m_textLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 275));
     mvURLChanged(data);
 }

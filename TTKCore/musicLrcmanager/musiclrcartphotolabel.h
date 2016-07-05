@@ -27,11 +27,14 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setImagePath(const QString &path);
     /*!
      * Set song image path.
      */
-
     void saveImagePath(const QString &path) const;
     /*!
      * Set save song image path.

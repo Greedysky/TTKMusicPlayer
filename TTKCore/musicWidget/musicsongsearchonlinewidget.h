@@ -32,6 +32,10 @@ public:
      */
     virtual ~MusicSongSearchOnlineTableWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.
@@ -66,25 +70,24 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void listCellClicked(int row, int column) override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void clearAllItems() override;
+    virtual void clearAllItems() override;
     /*!
      * Clear All Items.
      */
-    void createSearchedItems(const QString &songname,
-                             const QString &artistname,
-                             const QString &time) override;
+    virtual void createSearchedItems(const QString &songname, const QString &artistname,
+                                     const QString &time) override;
     /*!
      * Create searched items.
      */
-    void itemDoubleClicked(int row, int column) override;
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Item has double clicked.
      */
-    void actionGroupClick(QAction *action) override;
+    virtual void actionGroupClick(QAction *action) override;
     /*!
      * Left context menu action group click by action.
      */
@@ -126,6 +129,10 @@ public:
      */
     ~MusicSongSearchOnlineWidget();
 
+    static QString getClassName();
+    /*!
+    * Get class object name.
+    */
     void startSearchQuery(const QString &name) const;
     /*!
      * Start search query by text.

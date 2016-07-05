@@ -31,6 +31,10 @@ public:
      */
     ~MusicUserRecordWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setUserModel(MusicUserModel *model, const QString &uid);
     /*!
      * Set user model.

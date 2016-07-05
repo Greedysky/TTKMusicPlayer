@@ -18,6 +18,11 @@ MusicLRCManagerForInline::~MusicLRCManagerForInline()
 
 }
 
+QString MusicLRCManagerForInline::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);

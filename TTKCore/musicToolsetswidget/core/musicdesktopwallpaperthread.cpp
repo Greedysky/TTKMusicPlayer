@@ -34,6 +34,11 @@ MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()
     }
 }
 
+QString MusicDesktopWallpaperThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDesktopWallpaperThread::start()
 {
     m_run = true;

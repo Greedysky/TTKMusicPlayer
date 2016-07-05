@@ -36,6 +36,11 @@ MusicUserManager::~MusicUserManager()
     delete ui;
 }
 
+QString MusicUserManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicUserManager::setUserUID(const QString &uid)
 {
     m_currentUserUID = uid;

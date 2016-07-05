@@ -25,6 +25,11 @@ QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget 
     m_percent = 0.23;
 }
 
+QString QRCodeQWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void QRCodeQWidget::setMargin(const int margin)
 {
     m_margin = margin;

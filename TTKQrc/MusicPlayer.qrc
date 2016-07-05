@@ -224,11 +224,16 @@
         <file alias="ttdongting">../TTKResource/server/server_ttdongting.png</file>
         <file alias="wangyiyun">../TTKResource/server/server_wangyiyun.png</file>
         <file alias="xiami">../TTKResource/server/server_xiami.png</file>
+        <file alias="dingdong">../TTKResource/server/server_dingdong.png</file>
+        <file alias="echo">../TTKResource/server/server_echo.png</file>
+        <file alias="migu">../TTKResource/server/server_migu.png</file>
+        <file alias="yinyuetai">../TTKResource/server/server_yinyuetai.png</file>
     </qresource>
     <qresource prefix="/toolSets">
         <file alias="loading">../TTKResource/toolSets/ts_loading.gif</file>
         <file alias="mobile">../TTKResource/toolSets/ts_mobile_devices.png</file>
         <file alias="usb">../TTKResource/toolSets/ts_mobile_usb.png</file>
+        <file alias="wifi">../TTKResource/toolSets/ts_mobile_wifi.png</file>
         <file alias="rate">../TTKResource/toolSets/ts_rate.gif</file>
         <file alias="upgrade">../TTKResource/toolSets/ts_upgrade.png</file>
         <file alias="upgradeMain">../TTKResource/toolSets/ts_upgradeMain.png</file>

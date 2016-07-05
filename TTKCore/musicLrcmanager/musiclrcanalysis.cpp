@@ -15,6 +15,11 @@ MusicLrcAnalysis::~MusicLrcAnalysis()
     delete m_translationThread;
 }
 
+QString MusicLrcAnalysis::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcFileName)
 {
     m_lrcContainer.clear();
@@ -52,7 +57,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
        m_lrcContainer.insert(0, QString());
     }
 
-    MusicObject::MIntStringMapIt it(m_lrcContainer);
+    MusicObject::MIntStringMapIterator it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -103,7 +108,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
        m_lrcContainer.insert(0, QString());
     }
 
-    MusicObject::MIntStringMapIt it(m_lrcContainer);
+    MusicObject::MIntStringMapIterator it(m_lrcContainer);
     while(it.hasNext())
     {
         it.next();
@@ -350,7 +355,7 @@ qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
 
 void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 {
-    MusicObject::MIntStringMapIt it(m_lrcContainer);
+    MusicObject::MIntStringMapIterator it(m_lrcContainer);
     MusicObject::MIntStringMap copy;
     while(it.hasNext())
     {
@@ -362,7 +367,7 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 
 void MusicLrcAnalysis::saveLrcTimeChanged()
 {
-    MusicObject::MIntStringMapIt it(m_lrcContainer);
+    MusicObject::MIntStringMapIterator it(m_lrcContainer);
     QByteArray data;
     data.append(QString("[by: TTKMusicPlayer]\n[offset:0]\n"));
     while(it.hasNext())
@@ -453,7 +458,7 @@ qint64 MusicLrcAnalysis::findTime(int index) const
 {
     if(index + LRC_LINEMAX_COUNT < m_currentShowLrcContainer.count())
     {
-        MusicObject::MIntStringMapIt it(m_lrcContainer);
+        MusicObject::MIntStringMapIterator it(m_lrcContainer);
         for(int i=0; i<index + 1; ++i)
         {
             if(it.hasNext())

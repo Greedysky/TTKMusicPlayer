@@ -26,6 +26,10 @@ public:
      */
     virtual ~MusicUpdateMainWindow();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setFilePath(const QString &in, const QString &out);
     /*!
      * Set input and output file path.

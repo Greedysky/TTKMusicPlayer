@@ -23,12 +23,17 @@ MusicPlayer::MusicPlayer(QObject *parent)
     setEnaleEffect(false);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
-    M_CONNECTION_PTR->setValue("MusicPlayer", this);
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicPlayer::~MusicPlayer()
 {
     delete m_music;
+}
+
+QString MusicPlayer::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 MusicPlayer::State MusicPlayer::state() const

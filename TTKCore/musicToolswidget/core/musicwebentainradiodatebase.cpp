@@ -10,6 +10,11 @@ MusicWebEntainRadioDatabase::MusicWebEntainRadioDatabase()
 
 }
 
+QString MusicWebEntainRadioDatabase::getClassName()
+{
+    return "MusicWebEntainRadioDatabase";
+}
+
 bool MusicWebEntainRadioDatabase::disConnectDatabase() const
 {
     QString connectionName;

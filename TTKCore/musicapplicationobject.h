@@ -32,6 +32,10 @@ public:
      */
     ~MusicApplicationObject();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     bool getWindowToTop() const {return m_setWindowToTop;}
     /*!
      * Get current window is to top.

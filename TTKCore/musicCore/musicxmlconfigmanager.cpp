@@ -9,6 +9,11 @@ MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
 
 }
 
+QString MusicXMLConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicXMLConfigManager::readMusicSongsConfig(MusicSongsList &musics)
 {
     musics << readMusicFilePath("fileNormalPath")

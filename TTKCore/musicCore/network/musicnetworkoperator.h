@@ -24,6 +24,10 @@ public:
      */
     ~MusicNetworkOperator();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void startToOperator();
     /*!
      * Start to get current ip operator from net.

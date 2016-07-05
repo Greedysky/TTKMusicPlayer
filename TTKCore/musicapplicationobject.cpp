@@ -15,6 +15,8 @@
 #include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
 #include "musicnumberdefine.h"
+#include "musicapplication.h"
+#include "musicenhancedwidget.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -44,9 +46,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 #endif
 
     m_setWindowToTop = false;
-    M_CONNECTION_PTR->setValue("MusicApplicationObject", this);
-    M_CONNECTION_PTR->poolConnect("MusicApplicationObject", "MusicApplication");
-    M_CONNECTION_PTR->poolConnect("MusicApplicationObject", "MusicEnhancedWidget");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicEnhancedWidget::getClassName());
 
     musicToolSetsParameter();
 }
@@ -57,6 +59,11 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;
     delete m_animation;
+}
+
+QString MusicApplicationObject::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicApplicationObject::getParameterSetting()

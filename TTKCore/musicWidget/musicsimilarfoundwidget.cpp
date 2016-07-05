@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+#include "musicsongssummarizied.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
@@ -38,13 +39,13 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 #endif
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 
-    M_CONNECTION_PTR->setValue("MusicSimilarFoundWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicSimilarFoundWidget", "MusicSongsSummarizied");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicSimilarFoundWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     while(!m_checkBoxs.isEmpty())
     {
         delete m_checkBoxs.takeLast();
@@ -60,6 +61,11 @@ MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
     delete m_downloadThread;
     delete m_statusLabel;
     delete m_mainWindow;
+}
+
+QString MusicSimilarFoundWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSimilarFoundWidget::setSongName(const QString &name)
@@ -151,7 +157,7 @@ void MusicSimilarFoundWidget::createLabels()
             m_checkBoxs << box;
             grid->addWidget(box, index, j*4);
             QLabel *songLabel = new QLabel(m_mainWindow);
-            songLabel->setText(MusicUtils::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
+            songLabel->setText(MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
             songLabel->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
             grid->addWidget(songLabel, index, j*4 + 1, 1, 2, Qt::AlignLeft);
             grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, m_mainWindow), index, j*4 + 3);
@@ -178,7 +184,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel1, index, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel2, index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel3, index++, 6, 1, 2, Qt::AlignCenter);
-    QString artLimitString = MusicUtils::elidedText(font(), artName, Qt::ElideRight, 90);
+    QString artLimitString = MusicUtils::UWidget::elidedText(font(), artName, Qt::ElideRight, 90);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);

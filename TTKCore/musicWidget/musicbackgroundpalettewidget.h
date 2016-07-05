@@ -29,6 +29,10 @@ public:
      */
     ~MusicBackgroundPalette();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setPixmap(const QColor &color);
     /*!
      * Set current label background by color.
@@ -73,6 +77,10 @@ public:
      */
     ~MusicBackgroundPaletteWidget();
 
+    static QString getClassName();
+    /*!
+    * Get class object name.
+    */
     void updateBackground(const QString &text);
     /*!
      * Update this bg when user change the current bg.

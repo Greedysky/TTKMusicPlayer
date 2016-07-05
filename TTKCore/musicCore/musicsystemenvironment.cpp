@@ -2,6 +2,11 @@
 
 #include <QProcess>
 
+QString MusicSystemEnvironment::getClassName()
+{
+    return "MusicSystemEnvironment";
+}
+
 QString MusicSystemEnvironment::getData(const QString &data)
 {
     foreach(QString environment, QProcess::systemEnvironment())

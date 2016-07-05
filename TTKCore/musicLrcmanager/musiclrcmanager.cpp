@@ -34,6 +34,11 @@ MusicLRCManager::~MusicLRCManager()
     delete m_timer;
 }
 
+QString MusicLRCManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicLRCManager::startTimerClock()
 {
     m_timer->start(LRC_PER_TIME);

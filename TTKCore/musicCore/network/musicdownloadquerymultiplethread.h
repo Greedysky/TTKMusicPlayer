@@ -24,6 +24,10 @@ public:
      */
     virtual ~MusicDownLoadQueryMultipleThread();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     virtual void startSearchSong(QueryType type, const QString &text) override;
     /*!
      * Start to Search data from name and type.

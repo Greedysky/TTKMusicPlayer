@@ -28,6 +28,11 @@ public:
      */
     virtual ~MusicLrcSearchWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void lrcSearchFinished() const;
     /*!

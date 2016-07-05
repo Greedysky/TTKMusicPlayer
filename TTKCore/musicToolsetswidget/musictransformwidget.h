@@ -40,6 +40,11 @@ public:
      */
     virtual ~MusicTransformWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 public Q_SLOTS:
     void initInputPath();
     /*!

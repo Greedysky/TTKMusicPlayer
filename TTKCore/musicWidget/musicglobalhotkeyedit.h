@@ -25,6 +25,11 @@ public:
      */
     ~MusicGlobalHotKeyEdit();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     void keyPressEvent(QKeyEvent *event);
     /*!

@@ -33,6 +33,11 @@ MusicDownloadTableItem::~MusicDownloadTableItem()
     delete m_text;
 }
 
+QString MusicDownloadTableItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownloadTableItem::setIcon(const QString &name)
 {
     m_icon->setPixmap(QPixmap(name).scaled(28, 18));
@@ -56,12 +61,17 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
     setColumnCount(1);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
-    MusicUtils::setTransparent(this, 255);
+    MusicUtils::UWidget::setTransparent(this, 255);
 }
 
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
 {
     clearAllItems();
+}
+
+QString MusicDownloadTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicDownloadTableWidget::clearAllItems()
@@ -141,6 +151,11 @@ MusicDownloadWidget::~MusicDownloadWidget()
     delete m_downloadThread;
 }
 
+QString MusicDownloadWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicDownloadWidget::initWidget()
 {
     controlEnable(true);
@@ -159,7 +174,7 @@ void MusicDownloadWidget::controlEnable(bool enable)
 void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)
 {
     initWidget();
-    ui->downloadName->setText(MusicUtils::elidedText(font(), name, Qt::ElideRight, 200));
+    ui->downloadName->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 200));
     m_downloadThread->setQueryAllRecords(true);
     m_downloadThread->startSearchSong(m_queryType = type, name);
 }

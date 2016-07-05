@@ -4,6 +4,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musicdownloadstatuslabel.h"
 
 #include <QDir>
 #include <QFileDialog>
@@ -15,6 +16,11 @@ MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 132);
     headerview->resizeSection(1, 200);
+}
+
+QString MusicLrcLocalLinkTableWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
@@ -36,13 +42,13 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
     for(int i=0; i<items.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText(MusicUtils::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
+        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
         item->setToolTip( items[i].m_name );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
+        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
         item->setToolTip( items[i].m_path );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
@@ -77,14 +83,19 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
-    M_CONNECTION_PTR->setValue("MusicLrcLocalLinkWidget", this);
-    M_CONNECTION_PTR->poolConnect("MusicLrcLocalLinkWidget", "MusicDownloadStatusLabel");
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicDownloadStatusLabel::getClassName());
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect("MusicLrcLocalLinkWidget");
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
+}
+
+QString MusicLrcLocalLinkWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicLrcLocalLinkWidget::setCurrentSongName(const QString &name)

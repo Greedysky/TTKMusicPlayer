@@ -35,6 +35,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setLabel(LabelType ty, QLabel *t, QLabel *s);
     /*!
      * Set label and label type.

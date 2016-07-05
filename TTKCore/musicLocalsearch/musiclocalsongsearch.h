@@ -29,6 +29,10 @@ public:
      */
     ~MusicLocalSongSearch();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     QString getSearchedText() const;
     /*!
      * Get the search text that the user searched.

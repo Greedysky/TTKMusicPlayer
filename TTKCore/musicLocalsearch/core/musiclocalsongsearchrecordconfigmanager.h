@@ -29,6 +29,10 @@ public:
      * Object contsructor.
      */
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_FULL); }
     /*!
      * Read history search datas from xml file by given name.

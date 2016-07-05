@@ -21,6 +21,10 @@ class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {
     Q_OBJECT
 public:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     inline void setValue(const QString &type, QObject *object)
     {
         m_para[type] = object;

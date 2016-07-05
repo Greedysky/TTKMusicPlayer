@@ -33,6 +33,11 @@ MusicCodeArea::~MusicCodeArea()
 
 }
 
+QString MusicCodeArea::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicCodeArea::renderPicture()
 {
     QStringList number;

@@ -32,6 +32,10 @@ public:
      */
     ~MusicVideoPlayWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void resizeWindow(bool resize);
     /*!
      * Resize widget size or not.

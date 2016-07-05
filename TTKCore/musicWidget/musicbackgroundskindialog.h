@@ -31,6 +31,10 @@ public:
      */
     virtual ~MusicBackgroundSkinDialog();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
     void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.

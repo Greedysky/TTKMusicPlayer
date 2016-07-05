@@ -26,6 +26,11 @@ MusicLrcFromKrc::~MusicLrcFromKrc()
     delete[] m_resultBytes;
 }
 
+QString MusicLrcFromKrc::getClassName()
+{
+    return "MusicLrcFromKrc";
+}
+
 bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
 {
     FILE *fp;

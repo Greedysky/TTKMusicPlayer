@@ -51,8 +51,13 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
     delete m_songNameLabel;
 }
 
+QString MusicRemoteWidgetForRectangle::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::elidedText(font(), value,
+    m_songNameLabel->setText(MusicUtils::UWidget::elidedText(font(), value,
                              Qt::ElideRight, 350));
 }
