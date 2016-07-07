@@ -1,5 +1,5 @@
-#include "QNMac.h"
-#include "QNUtils.h"
+#include "qnmac.h"
+#include "qnutils.h"
 
 // Use access key and secret key from https://portal.qiniu.com
 QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)

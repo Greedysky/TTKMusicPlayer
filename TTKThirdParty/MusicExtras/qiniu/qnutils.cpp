@@ -1,4 +1,4 @@
-#include "QNUtils.h"
+#include "qnutils.h"
 
 #include <QUrl>
 #include <QDateTime>

@@ -1,9 +1,9 @@
-#include "QNSimpleUploadData.h"
-#include "QNConf.h"
-#include "QNIOHelper.h"
-#include "QNPutPolicy.h"
-#include "QNMac.h"
-#include "QNPutRet.h"
+#include "qnsimpleuploaddata.h"
+#include "qnconf.h"
+#include "qniohelper.h"
+#include "qnputpolicy.h"
+#include "qnmac.h"
+#include "qnputret.h"
 
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager,
                                        QObject *parent)
@@ -51,5 +51,5 @@ void QNSimpleUploadData::receiveDataFromServer()
 
 void QNSimpleUploadData::handleError(QNetworkReply::NetworkError error)
 {
-
+    qDebug() << "error" << error;
 }

@@ -1,7 +1,7 @@
-#include "QNPutPolicy.h"
-#include "QNUtils.h"
-#include "QNMac.h"
-#include "QNConf.h"
+#include "qnputpolicy.h"
+#include "qnutils.h"
+#include "qnmac.h"
+#include "qnconf.h"
 
 #include <QJsonObject>
 #include <QJsonDocument>

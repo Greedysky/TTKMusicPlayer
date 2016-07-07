@@ -13,23 +13,23 @@
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/QNSimpleUploadData.h \
-    $$PWD/QNSimpleListData.h \
-    $$PWD/QNConf.h \
-    $$PWD/QNIOHelper.h \
-    $$PWD/QNMac.h \
-    $$PWD/QNPutExtra.h \
-    $$PWD/QNPutPolicy.h \
-    $$PWD/QNPutRet.h \
-    $$PWD/QNUtils.h
+    $$PWD/qnconf.h \
+    $$PWD/qniohelper.h \
+    $$PWD/qnmac.h \
+    $$PWD/qnputextra.h \
+    $$PWD/qnputpolicy.h \
+    $$PWD/qnputret.h \
+    $$PWD/qnsimplelistdata.h \
+    $$PWD/qnsimpleuploaddata.h \
+    $$PWD/qnutils.h
 
 SOURCES += \
-    $$PWD/QNSimpleUploadData.cpp \
-    $$PWD/QNSimpleListData.cpp \
-    $$PWD/QNConf.cpp \
-    $$PWD/QNIOHelper.cpp \
-    $$PWD/QNMac.cpp \
-    $$PWD/QNPutExtra.cpp \
-    $$PWD/QNPutPolicy.cpp \
-    $$PWD/QNPutRet.cpp \
-    $$PWD/QNUtils.cpp
+    $$PWD/qnconf.cpp \
+    $$PWD/qniohelper.cpp \
+    $$PWD/qnmac.cpp \
+    $$PWD/qnputextra.cpp \
+    $$PWD/qnputpolicy.cpp \
+    $$PWD/qnputret.cpp \
+    $$PWD/qnsimplelistdata.cpp \
+    $$PWD/qnsimpleuploaddata.cpp \
+    $$PWD/qnutils.cpp

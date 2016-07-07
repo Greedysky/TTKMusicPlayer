@@ -1,6 +1,6 @@
-#include "QNSimpleListData.h"
-#include "QNMac.h"
-#include "QNIOHelper.h"
+#include "qnsimplelistdata.h"
+#include "qnmac.h"
+#include "qniohelper.h"
 
 QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent), m_networkManager(networkManager)
@@ -21,7 +21,8 @@ void QNSimpleListData::listDataToServer(const QString &bucket)
 void QNSimpleListData::receiveDataFromServer()
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
-    if (reply) {
+    if(reply)
+    {
         QByteArray respData = reply->readAll();
         int httpStatusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         qDebug() << respData;
@@ -30,7 +31,7 @@ void QNSimpleListData::receiveDataFromServer()
     }
 }
 
-void QNSimpleListData::handleError(QNetworkReply::NetworkError)
+void QNSimpleListData::handleError(QNetworkReply::NetworkError error)
 {
-
+    qDebug() << "error" << error;
 }

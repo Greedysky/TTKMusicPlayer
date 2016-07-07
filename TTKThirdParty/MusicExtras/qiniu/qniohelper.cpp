@@ -1,7 +1,7 @@
-#include "QNIOHelper.h"
-#include "QNPutExtra.h"
-#include "QNUtils.h"
-#include "QNMac.h"
+#include "qniohelper.h"
+#include "qnputextra.h"
+#include "qnutils.h"
+#include "qnmac.h"
 
 #include <QHttpPart>
 

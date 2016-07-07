@@ -1,7 +1,7 @@
 #ifndef QNIOHELPER_H
 #define QNIOHELPER_H
 
-#include "QNConf.h"
+#include "qnconf.h"
 #include <QHttpMultiPart>
 
 class QNMac;

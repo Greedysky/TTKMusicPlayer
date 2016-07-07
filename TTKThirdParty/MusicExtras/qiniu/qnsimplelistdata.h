@@ -1,5 +1,5 @@
-#ifndef QNRSSTATWIDGET_H
-#define QNRSSTATWIDGET_H
+#ifndef QNSIMPLELISTDATA_H
+#define QNSIMPLELISTDATA_H
 
 #include <QWidget>
 #include <QNetworkReply>
@@ -23,10 +23,9 @@ private slots:
     void receiveDataFromServer();
     void handleError(QNetworkReply::NetworkError error);
 
-
 private:
     QNetworkAccessManager *m_networkManager;
 
 };
 
-#endif // QNRSSTATWIDGET_H
+#endif // QNSIMPLELISTDATA_H

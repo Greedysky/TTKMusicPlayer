@@ -1,4 +1,4 @@
-#include "QNPutExtra.h"
+#include "qnputextra.h"
 
 #include <QMap>
 

@@ -1,5 +1,5 @@
-#ifndef QNSIMPLEUPLOADDATAWIDGET_H
-#define QNSIMPLEUPLOADDATAWIDGET_H
+#ifndef QNSIMPLEUPLOADDATA_H
+#define QNSIMPLEUPLOADDATA_H
 
 #include <QNetworkReply>
 
@@ -16,15 +16,13 @@ public:
                             const QString &key, const QString &name);
 
 signals:
-
 private slots:
     void receiveDataFromServer();
     void handleError(QNetworkReply::NetworkError error);
-
 
 private:
     QNetworkAccessManager *m_networkManager;
 
 };
 
-#endif // QNSIMPLEUPLOADDATAWIDGET_H
+#endif // QNSIMPLEUPLOADDATA_H

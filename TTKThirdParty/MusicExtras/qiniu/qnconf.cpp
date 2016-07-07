@@ -1,4 +1,4 @@
-#include "QNConf.h"
+#include "qnconf.h"
 
 QNConf::QNConf()
 {
