@@ -6,6 +6,7 @@
 #include "musicmydownloadrecordwidget.h"
 #include "musicwebradiotoolwidget.h"
 #include "musicconnectmobilewidget.h"
+#include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicewidget.h"
 #include "musicconnectionpool.h"
 ///qmmp incldue
@@ -50,6 +51,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicButton_radio, SIGNAL(clicked()), this, SLOT(musicStackedRadioWidgetChanged()));
     connect(ui->musicButton_mydownl, SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
     connect(ui->musicButton_mobile, SIGNAL(clicked()), this, SLOT(musicStackedMobileWidgetChanged()));
+    connect(ui->musicButton_cloud, SIGNAL(clicked()), this, SLOT(musicStackedCloudWidgetChanged()));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), m_supperClass,
                                      SLOT(musicEnhancedMusicChanged(int)));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
@@ -197,6 +199,15 @@ void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
     m_ui->songsContainer->setCurrentIndex(1);
 }
 
+void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+{
+    delete m_stackedWidget;
+    m_stackedWidget = new MusicWebRadioToolWidget(this);
+
+    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->setCurrentIndex(1);
+}
+
 void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 {
     delete m_stackedWidget;
@@ -213,11 +224,10 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
     m_ui->songsContainer->setCurrentIndex(1);
 }
 
-void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
+void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
 {
     delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioToolWidget(this);
-
+    m_stackedWidget = new MusicCloudSharedSongWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setCurrentIndex(1);
 }

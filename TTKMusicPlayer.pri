@@ -88,12 +88,7 @@ contains(CONFIG, TTK_BUILD_LIB){
   include(TTKCore/musicUi/MusicUi.pri)
 }
 #########################################
-INCLUDEPATH += ../TTKThirdParty/MusicExtras \
-               ../TTKThirdParty/MusicExtras/kugou \
-               ../TTKThirdParty/MusicExtras/shortcut \
-               ../TTKThirdParty/MusicExtras/qrencode \
-               ../TTKThirdParty/MusicExtras/hz2py \
-               ../TTKThirdParty/zlib
+include(TTKThirdParty/TTKThirdParty.pri)
 #########################################
 include(TTKCore/musicCore/MusicCore.pri)
 include(TTKCore/musicWidget/MusicWidget.pri)
