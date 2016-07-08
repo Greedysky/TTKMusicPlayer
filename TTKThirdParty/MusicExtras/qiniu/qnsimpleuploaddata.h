@@ -2,10 +2,11 @@
 #define QNSIMPLEUPLOADDATA_H
 
 #include <QNetworkReply>
+#include "musicextrasglobaldefine.h"
 
 class QNetworkAccessManager;
 
-class QNSimpleUploadData : public QObject
+class MUSIC_EXTRAS_EXPORT QNSimpleUploadData : public QObject
 {
     Q_OBJECT
 public:

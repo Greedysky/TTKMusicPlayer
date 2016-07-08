@@ -2,11 +2,12 @@
 #define QNPUTPOLICY_H
 
 #include <QObject>
+#include "musicextrasglobaldefine.h"
 
 class QNMac;
 
 //@see http://developer.qiniu.com/docs/v6/api/reference/security/put-policy.html
-class QNPutPolicy
+class MUSIC_EXTRAS_EXPORT QNPutPolicy
 {
 public:
     QNPutPolicy(const QString &scope);

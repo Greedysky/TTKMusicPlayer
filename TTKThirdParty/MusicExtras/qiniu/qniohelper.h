@@ -7,7 +7,7 @@
 class QNMac;
 class QNPutExtra;
 
-class QNIOHelper
+class MUSIC_EXTRAS_EXPORT QNIOHelper
 {
 
 public:

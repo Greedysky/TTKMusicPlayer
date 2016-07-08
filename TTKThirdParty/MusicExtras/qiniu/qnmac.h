@@ -2,8 +2,9 @@
 #define QNMAC_H
 
 #include <QNetworkRequest>
+#include "musicextrasglobaldefine.h"
 
-class QNMac
+class MUSIC_EXTRAS_EXPORT QNMac
 {
 public:
     QNMac(const QString &accessKey, const QByteArray &secretKey);

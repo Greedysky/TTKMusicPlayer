@@ -2,8 +2,9 @@
 #define QNUTILS_H
 
 #include <QObject>
+#include "musicextrasglobaldefine.h"
 
-class QNUtils
+class MUSIC_EXTRAS_EXPORT QNUtils
 {
 public:
     QNUtils();

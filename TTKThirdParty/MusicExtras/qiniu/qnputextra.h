@@ -2,8 +2,9 @@
 #define QNPUTEXTRA_H
 
 #include <QMap>
+#include "musicextrasglobaldefine.h"
 
-class QNPutExtra
+class MUSIC_EXTRAS_EXPORT QNPutExtra
 {
 public:
     static const int NO_CRC32 = 0;

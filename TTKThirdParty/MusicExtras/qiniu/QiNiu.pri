@@ -10,6 +10,8 @@
 # * works are strictly forbiden.
 # =================================================
 
+QT       += network
+
 INCLUDEPATH += $$PWD
 
 HEADERS  += \

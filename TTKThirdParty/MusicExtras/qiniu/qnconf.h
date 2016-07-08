@@ -2,8 +2,9 @@
 #define QNCONF_H
 
 #include <QObject>
+#include "musicextrasglobaldefine.h"
 
-class QNConf
+class MUSIC_EXTRAS_EXPORT QNConf
 {
 public:
     QNConf();

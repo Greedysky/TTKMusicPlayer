@@ -2,8 +2,9 @@
 #define QNPUTRET_H
 
 #include <QObject>
+#include "musicextrasglobaldefine.h"
 
-class QNPutRet
+class MUSIC_EXTRAS_EXPORT QNPutRet
 {
 public:
     QNPutRet();

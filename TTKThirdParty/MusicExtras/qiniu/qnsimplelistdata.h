@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QNetworkReply>
+#include "musicextrasglobaldefine.h"
 
 class QLineEdit;
 class QPushButton;
@@ -10,7 +11,7 @@ class QSettings;
 class QTextEdit;
 class QNetworkAccessManager;
 
-class QNSimpleListData : public QObject
+class MUSIC_EXTRAS_EXPORT QNSimpleListData : public QObject
 {
     Q_OBJECT
 public:
