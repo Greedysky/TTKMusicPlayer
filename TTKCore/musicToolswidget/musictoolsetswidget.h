@@ -56,6 +56,10 @@ protected:
     /*!
      * Clear All Items.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 };
 

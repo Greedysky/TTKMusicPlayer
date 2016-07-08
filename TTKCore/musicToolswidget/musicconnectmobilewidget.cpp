@@ -43,6 +43,11 @@ void MusicConnectMobileWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 }
 
+void MusicConnectMobileWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}
+
 void MusicConnectMobileWidget::initFirstWidget()
 {
     QWidget *firstWidget = new QWidget(this);

@@ -114,6 +114,13 @@ int MusicDownloadTableWidget::getCurrentBitrate()
    return item(row, 0)->data(BITRATE_ROLE).toInt();
 }
 
+void MusicDownloadTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}
+
+
 
 MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),

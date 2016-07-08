@@ -55,6 +55,13 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
     }
 }
 
+void MusicLrcLocalLinkTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}
+
+
 
 MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

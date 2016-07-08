@@ -131,3 +131,8 @@ void MusicCloudSharedSongWidget::paintEvent(QPaintEvent *event)
 
     QWidget::paintEvent(event);
 }
+
+void MusicCloudSharedSongWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}

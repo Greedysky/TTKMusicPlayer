@@ -93,7 +93,7 @@ public:
      */
 
 public Q_SLOTS:
-    virtual void listCellClicked(int , int) override {}
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */

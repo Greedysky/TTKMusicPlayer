@@ -78,3 +78,8 @@ void MusicWebRadioToolWidget::buttonClicked(int index)
     }
     m_stackedWidget->setCurrentIndex(index);
 }
+
+void MusicWebRadioToolWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}

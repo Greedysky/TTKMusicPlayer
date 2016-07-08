@@ -41,6 +41,11 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QStackedWidget *m_stackedWidget;
     QPushButton *m_netRadioButton1,*m_netRadioButton2;
     MusicWebMusicRadioListView *m_musicRadioListView;
