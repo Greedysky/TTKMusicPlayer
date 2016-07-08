@@ -19,7 +19,7 @@
 #endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#  define MUSIC_QT_5
+#  define MUSIC_GREATER_NEW
 #  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
 #    define MUSIC_WINEXTRAS
 #  endif

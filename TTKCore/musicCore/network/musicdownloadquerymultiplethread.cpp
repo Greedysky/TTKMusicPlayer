@@ -2,7 +2,7 @@
 #include "musicdownloadthreadabstract.h"
 #include "musicsettingmanager.h"
 
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonArray>
 #   include <QJsonObject>
 #   include <QJsonValue>
@@ -127,7 +127,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);

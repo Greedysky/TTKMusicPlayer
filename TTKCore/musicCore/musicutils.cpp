@@ -322,7 +322,7 @@ void MusicUtils::UCore::setLocalCodec(const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
     QTextCodec::setCodecForLocale(codec);
-#ifndef MUSIC_QT_5
+#ifndef MUSIC_GREATER_NEW
     QTextCodec::setCodecForCStrings(codec);
     QTextCodec::setCodecForTr(codec);
 #endif

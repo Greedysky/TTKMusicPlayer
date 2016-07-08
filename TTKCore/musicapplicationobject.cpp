@@ -97,7 +97,7 @@ void MusicApplicationObject::windowCloseAnimationOpacity()
 }
 
 #if defined(Q_OS_WIN)
-#  ifdef MUSIC_QT_5
+#  ifdef MUSIC_GREATER_NEW
 void MusicApplicationObject::nativeEvent(const QByteArray &,
                                          void *message, long *)
 {

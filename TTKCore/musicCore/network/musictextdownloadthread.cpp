@@ -1,6 +1,6 @@
 #include "musictextdownloadthread.h"
 
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonObject>
 #   include <QJsonValue>
 #   include <QJsonParseError>
@@ -71,7 +71,7 @@ void MusicTextDownLoadThread::downLoadFinished()
 #ifndef USE_MULTIPLE_QUERY
     if(!bytes.contains("\"code\":2"))
     {
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json

@@ -90,13 +90,13 @@ QString MusicSongTag::getNotSupportedPluginPath(const QString &format)
 {
     QString path;
 #ifdef Q_OS_WIN
-#  ifdef MUSIC_QT_5
+#  ifdef MUSIC_GREATER_NEW
     path = QString("plugins/Input/%1.dll").arg(format);
 #  else
     path = QString("../bin/plugins/Input/%1.dll").arg(format);
 #  endif
 #elif defined Q_OS_UNIX
-#  ifdef MUSIC_QT_5
+#  ifdef MUSIC_GREATER_NEW
     path = QString("qmmp/Input/%1.dll").arg(format);
 #  else
     path = QString("../lib/qmmp/Input/%1.dll").arg(format);
