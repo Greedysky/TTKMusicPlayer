@@ -7,6 +7,7 @@
 #include "musicmessagebox.h"
 #include "musicregeditmanager.h"
 #include "musicnumberdefine.h"
+#include "musicutils.h"
 
 #include <QFileDialog>
 #include <QStyledItemDelegate>
@@ -118,26 +119,6 @@ void MusicDesktopWallpaperWidget::initParameters() const
     ui->timeS->addItems(s);
 }
 
-
-void MusicDesktopWallpaperWidget::findFiles(const QString &path)
-{
-    QDir dir(path);
-    if(!dir.exists())
-    {
-        return;
-    }
-    QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
-    QStringList filters;
-    filters << "png" << "bmp" << "jpg";
-    foreach(QFileInfo fileInfo, list)
-    {
-        if( filters.contains(fileInfo.suffix()) )
-        {
-            m_path << fileInfo.absoluteFilePath();
-        }
-    }
-}
-
 void MusicDesktopWallpaperWidget::viewButtonPressed()
 {
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
@@ -146,7 +127,12 @@ void MusicDesktopWallpaperWidget::viewButtonPressed()
         ui->urlLineEdit->setText(path);
     }
 
-    findFiles(path);
+    QStringList filters;
+    filters << "*.bmp" << "*.jpg" <<"*.jpeg" << "*.png";
+    foreach(QFileInfo file, MusicUtils::UCore::findFile(path, filters))
+    {
+        m_path << file.absoluteFilePath();
+    }
 }
 
 void MusicDesktopWallpaperWidget::netRadioButtonPressed()

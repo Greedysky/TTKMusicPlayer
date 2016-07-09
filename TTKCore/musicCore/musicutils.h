@@ -42,6 +42,10 @@ namespace MusicUtils
         /*!
          * Check given dir size is bigger than given size.
          */
+        MUSIC_CORE_EXPORT QFileInfoList findFile(const QString &path, const QStringList &filter);
+        /*!
+         * To find file by dir path.
+         */
 
         MUSIC_CORE_EXPORT QString getLanguageName(int index);
         /*!

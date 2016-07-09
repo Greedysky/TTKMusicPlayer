@@ -278,6 +278,25 @@ void MusicUtils::UCore::checkCacheSize(quint64 cacheSize, bool disabled, const Q
     }
 }
 
+QFileInfoList MusicUtils::UCore::findFile(const QString &path, const QStringList &filter)
+{
+    ///Find the corresponding suffix name
+    QDir dir(path);
+    if(!dir.exists())
+    {
+        return QFileInfoList();
+    }
+
+    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    foreach(QFileInfo folder, folderList)
+    {
+        fileList.append( findFile(folder.absoluteFilePath(), filter) );
+    }
+    return fileList;
+}
+
 bool MusicUtils::UCore::openUrl(const QString &path, bool local)
 {
 #ifdef Q_OS_WIN
