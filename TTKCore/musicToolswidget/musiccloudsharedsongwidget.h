@@ -12,6 +12,7 @@
 #include <QLabel>
 #include "qnsimplelistdata.h"
 #include "qnsimpleuploaddata.h"
+#include "qnsimpledeletedata.h"
 #include "musicabstracttablewidget.h"
 
 typedef struct UploadData{
@@ -51,13 +52,15 @@ public Q_SLOTS:
     /*!
      * Table widget list cell click.
      */
-    void updateList();
+
     void receiveDataFinshed(const QNDataItems &items);
     void uploadFileFinished(const QString &name);
+    void deleteFileFinished(bool state);
 
+    void updateListToServer();
+    void deleteFileToServer();
     void uploadFileToServer();
     void uploadFilesToServer();
-
     void startToUploadFile();
 
 protected:
@@ -73,6 +76,7 @@ protected:
     QString m_currentUploadFileName;
     UploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
+    QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
 

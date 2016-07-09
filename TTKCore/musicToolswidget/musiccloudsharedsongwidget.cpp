@@ -13,6 +13,7 @@
 #include <QPushButton>
 
 #define BUCKET          "music"
+#define DOWNLOAD_PRFIX  "music"
 #define QN_ACCESS_KEY   "L2GGQ-ttIlTScXVtXOdwPF2ftQAEiVK1qor5KCu3"
 #define QN_SECRET_KEY   "FXiQ8EWibo-9tIlWRS3UAJOqv94pM1QViU2Gw25y"
 
@@ -35,12 +36,14 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     m_timerToUpload->setInterval(MT_S2MS);
     m_networkManager = new QNetworkAccessManager(this);
     m_qnListData = new QNSimpleListData(m_networkManager, this);
+    m_qnDeleteData = new QNSimpleDeleteData(m_networkManager, this);
     m_qnUploadData = new QNSimpleUploadData(m_networkManager, this);
     connect(m_timerToUpload, SIGNAL(timeout()), SLOT(startToUploadFile()));
     connect(m_qnListData, SIGNAL(receiveFinshed(QNDataItems)), SLOT(receiveDataFinshed(QNDataItems)));
+    connect(m_qnDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_qnUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
 
-    QTimer::singleShot(MT_MS*100, this, SLOT(updateList()));
+    QTimer::singleShot(MT_MS*100, this, SLOT(updateListToServer()));
 }
 
 MusicCloudSharedSongTableWidget::~MusicCloudSharedSongTableWidget()
@@ -49,6 +52,7 @@ MusicCloudSharedSongTableWidget::~MusicCloudSharedSongTableWidget()
     delete m_timerToUpload;
     delete m_uploadFileWidget;
     delete m_qnListData;
+    delete m_qnDeleteData;
     delete m_qnUploadData;
     delete m_networkManager;
 }
@@ -62,12 +66,6 @@ void MusicCloudSharedSongTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
-}
-
-void MusicCloudSharedSongTableWidget::updateList()
-{
-    emit updateLabelMessage(tr("List Updating"));
-    m_qnListData->listDataToServer(BUCKET);
 }
 
 void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &items)
@@ -119,6 +117,39 @@ void MusicCloudSharedSongTableWidget::uploadFileFinished(const QString &name)
     }
     emit uploadDone();
     qDebug() << "ss" << name;
+}
+
+void MusicCloudSharedSongTableWidget::deleteFileFinished(bool state)
+{
+    if(state)
+    {
+        updateListToServer();
+    }
+    else
+    {
+        qDebug() << "error";
+    }
+}
+
+void MusicCloudSharedSongTableWidget::updateListToServer()
+{
+    emit updateLabelMessage(tr("List Updating"));
+    m_qnListData->listDataToServer(BUCKET);
+}
+
+void MusicCloudSharedSongTableWidget::deleteFileToServer()
+{
+    if(currentRow() < 0)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(currentRow(), 1);
+    if(it == nullptr)
+    {
+        return;
+    }
+    m_qnDeleteData->deleteDataToServer(BUCKET, it->toolTip());
 }
 
 void MusicCloudSharedSongTableWidget::uploadFileToServer()
@@ -197,22 +228,23 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
     }
     m_uploading = false;
 
-    updateList();
+    updateListToServer();
 }
 
 void MusicCloudSharedSongTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu menu(this);
+
     QMenu uploadMenu(tr("upload"), &menu);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     uploadMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-
     uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFileToServer()));
     uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFilesToServer()));
 
     menu.addMenu(&uploadMenu);
-
+    menu.addAction(tr("deleteFile"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("updateFiles"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
     menu.exec(QCursor::pos());
 }
 
@@ -229,8 +261,8 @@ void MusicCloudSharedSongTableWidget::createUploadFileWidget()
         MusicClickedLabel *uploadDirs = new MusicClickedLabel(m_uploadFileWidget);
         connect(uploadFile, SIGNAL(clicked()), SLOT(uploadFileToServer()));
         connect(uploadDirs, SIGNAL(clicked()), SLOT(uploadFilesToServer()));
-        layout->addWidget(uploadFile);
-        layout->addWidget(uploadDirs);
+        layout->addWidget(uploadFile, 0, Qt::AlignCenter);
+        layout->addWidget(uploadDirs, 0, Qt::AlignCenter);
         m_uploadFileWidget->setLayout(layout);
 
         uploadFile->setText(tr("<u>uploadFile</u>"));

@@ -21,9 +21,10 @@ HEADERS  += \
     $$PWD/qnputextra.h \
     $$PWD/qnputpolicy.h \
     $$PWD/qnputret.h \
+    $$PWD/qnutils.h \
     $$PWD/qnsimplelistdata.h \
     $$PWD/qnsimpleuploaddata.h \
-    $$PWD/qnutils.h
+    $$PWD/qnsimpledeletedata.h
 
 SOURCES += \
     $$PWD/qnconf.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     $$PWD/qnputextra.cpp \
     $$PWD/qnputpolicy.cpp \
     $$PWD/qnputret.cpp \
+    $$PWD/qnutils.cpp \
     $$PWD/qnsimplelistdata.cpp \
     $$PWD/qnsimpleuploaddata.cpp \
-    $$PWD/qnutils.cpp
+    $$PWD/qnsimpledeletedata.cpp

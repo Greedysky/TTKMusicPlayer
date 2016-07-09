@@ -1,7 +1,6 @@
 #ifndef QNSIMPLELISTDATA_H
 #define QNSIMPLELISTDATA_H
 
-#include <QWidget>
 #include <QNetworkReply>
 #include "musicextrasglobaldefine.h"
 
