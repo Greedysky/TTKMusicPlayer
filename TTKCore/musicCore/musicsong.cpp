@@ -1,5 +1,6 @@
 #include "musicsong.h"
 
+#include <QFileInfo>
 #include <QStringList>
 
 MusicSong::MusicSong()
@@ -15,12 +16,12 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicPath = musicPath;
     m_musicName = musicName;
 
-    QString splitString = musicPath.split("/").last();
+    QFileInfo info(m_musicPath);
     if(m_musicName.isEmpty())
     {
-        m_musicName = splitString.left(splitString.lastIndexOf('.'));
+        m_musicName = info.baseName();
     }
-    m_musicType = splitString.remove(0, splitString.lastIndexOf('.') + 1);
+    m_musicType = info.suffix();
 }
 
 MusicSong::MusicSong(const QString &musicPath,

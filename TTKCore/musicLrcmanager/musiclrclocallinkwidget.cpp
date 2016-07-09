@@ -153,7 +153,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
 
     LocalDataItems items;
     LocalDataItem item;
-    item.m_name = picPath.split("/").last();
+    item.m_name = QFileInfo(picPath).fileName();
     item.m_path = picPath;
     items << item;
     ui->searchedTable->createAllItems(items);
