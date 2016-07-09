@@ -11,9 +11,17 @@
 
 #include <QLabel>
 #include "qnsimplelistdata.h"
+#include "qnsimpleuploaddata.h"
 #include "musicabstracttablewidget.h"
 
-class QNSimpleListData;
+typedef struct UploadData{
+    QString m_path;
+    QString m_name;
+    int m_state;
+    ///0 waited, 1 successed, 2 error
+}UploadData;
+typedef QList<UploadData> UploadDatas;
+
 class QNetworkAccessManager;
 
 /*! @brief The class of the cloud shared song table widget.
@@ -34,8 +42,9 @@ public:
      * Get class object name.
      */
 
-signals:
+Q_SIGNALS:
     void updateLabelMessage(const QString &text);
+    void uploadDone();
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
@@ -44,14 +53,27 @@ public Q_SLOTS:
      */
     void updateList();
     void receiveDataFinshed(const QNDataItems &items);
+    void uploadFileFinished(const QString &name);
+
+    void uploadFileToServer();
+    void uploadFilesToServer();
+
+    void startToUploadFile();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    void createUploadFileWidget();
 
+    bool m_uploading;
+    QTimer *m_timerToUpload;
+    QWidget *m_uploadFileWidget;
+    QString m_currentUploadFileName;
+    UploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
+    QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
 
 };
@@ -75,9 +97,9 @@ public:
      * Get class object name.
      */
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     void updateLabelMessage(const QString &text);
 
 protected:

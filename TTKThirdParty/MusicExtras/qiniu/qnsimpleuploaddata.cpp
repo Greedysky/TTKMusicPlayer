@@ -36,6 +36,7 @@ void QNSimpleUploadData::receiveDataFromServer()
         {
             QByteArray respData=reply->readAll();
             QNPutRet *putRet = QNPutRet::fromJSON(respData);
+            emit uploadFileFinished(putRet->getKey());
             delete putRet;
         }
         else
@@ -44,8 +45,13 @@ void QNSimpleUploadData::receiveDataFromServer()
             int httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             //do some error management
             qDebug() << httpStatus;
+            emit uploadFileFinished( QString() );
         }
         reply->deleteLater();
+    }
+    else
+    {
+        emit uploadFileFinished( QString() );
     }
 }
 

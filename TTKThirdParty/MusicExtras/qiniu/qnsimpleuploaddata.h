@@ -16,8 +16,10 @@ public:
     void uploadDataToServer(const QByteArray &data, const QString &bucket,
                             const QString &key, const QString &name);
 
-signals:
-private slots:
+Q_SIGNALS:
+    void uploadFileFinished(const QString &name);
+
+private Q_SLOTS:
     void receiveDataFromServer();
     void handleError(QNetworkReply::NetworkError error);
 

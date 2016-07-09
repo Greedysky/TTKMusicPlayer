@@ -81,7 +81,7 @@ public:
     void gzCompress(FILE *in, gzFile out);
     bool unZipTo(const QString &zipfile, const QString &outputdir);
 
-signals:
+Q_SIGNALS:
     void process(float percent, const QString &file);
     void zipEnd(const QString &result);
     void zipError();

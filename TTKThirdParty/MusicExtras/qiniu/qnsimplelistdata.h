@@ -24,10 +24,10 @@ public:
                               QObject *parent = 0);
     void listDataToServer(const QString &bucket);
 
-signals:
+Q_SIGNALS:
     void receiveFinshed(const QNDataItems &items);
 
-private slots:
+private Q_SLOTS:
     void receiveDataFromServer();
     void handleError(QNetworkReply::NetworkError error);
 

@@ -60,7 +60,7 @@ QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, c
 
     //pack multi part
     multiPart->append(tokenPart);
-    if(keyPart!=0)
+    if(keyPart != 0)
     {
         multiPart->append(*keyPart);
     }
