@@ -9,14 +9,15 @@ Usage
 ----
 **The music player use of qmmp core ( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
 Compiler tutorial I have written in the wiki.**
+
+#### This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
+ 
+## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
  * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
  
- 
-#### CI Status
-
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
 | Linux    | 4.8.6 GCC & 5.X GCC    | ![traviscistatus](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
