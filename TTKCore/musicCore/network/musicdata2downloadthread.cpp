@@ -1,6 +1,6 @@
 #include "musicdata2downloadthread.h"
 
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonParseError>
 #   include <QJsonObject>
 #else
@@ -69,7 +69,7 @@ void MusicData2DownloadThread::dataGetFinished()
     if(m_dataReply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_dataReply->readAll();
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())

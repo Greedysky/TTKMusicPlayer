@@ -83,6 +83,10 @@ public Q_SLOTS:
     /*!
      * Change to mobile widget.
      */
+    void musicStackedCloudWidgetChanged();
+    /*!
+     * Change to shared cloud widget.
+     */
     void musicAnalyzerSpectrumWidget();
     /*!
      * Show analyzer spectrum widget.

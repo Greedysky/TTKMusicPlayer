@@ -1,5 +1,7 @@
 #include "musicfilereceiveserver.h"
 
+#include <QFileInfo>
+
 MusicFileReceiveServer::MusicFileReceiveServer(QObject *parent)
     : QObject(parent)
 {
@@ -47,7 +49,7 @@ void MusicFileReceiveServer::readPendingDatagrams()
             }
             QString path = QString(datagram).split(SPLITE_STR).first();
             m_file->close();
-            m_file->setFileName(m_saveDir + "/" + path.split("/").last());
+            m_file->setFileName(m_saveDir + "/" + QFileInfo(path).fileName() );
             m_file->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Unbuffered);
         }
         else

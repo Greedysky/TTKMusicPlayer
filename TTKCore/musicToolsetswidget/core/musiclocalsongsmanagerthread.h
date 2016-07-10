@@ -61,11 +61,6 @@ public Q_SLOTS:
      */
 
 protected:
-    QFileInfoList findFile(const QString &path);
-    /*!
-     * To find file by path.
-     */
-
     bool m_run;
     QStringList m_path;
 

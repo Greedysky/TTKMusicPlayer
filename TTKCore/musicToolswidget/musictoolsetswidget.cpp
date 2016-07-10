@@ -59,6 +59,11 @@ void MusicToolSetsWidget::clearAllItems()
     clear();
 }
 
+void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}
+
 void MusicToolSetsWidget::addListWidgetItem()
 {
     QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/localmanager")

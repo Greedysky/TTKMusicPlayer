@@ -82,10 +82,6 @@ protected:
     /*!
      * Init parameters.
      */
-    void findFiles(const QString &path);
-    /*!
-     * Find current dir files.
-     */
     void setAutoStart(bool autoStart) const;
     /*!
      * Set auto thread to show wallpaper.

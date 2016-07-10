@@ -108,7 +108,7 @@ QString MusicApplication::getClassName()
 }
 
 #if defined(Q_OS_WIN)
-#  ifdef MUSIC_QT_5
+#  ifdef MUSIC_GREATER_NEW
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
     m_applicationObject->nativeEvent(eventType, message, result);
@@ -214,7 +214,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
     spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
     spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
-#if !defined Q_OS_WIN || defined MUSIC_QT_5
+#if !defined Q_OS_WIN || defined MUSIC_GREATER_NEW
     false);
 #else
     true);

@@ -28,7 +28,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_transparent = 0;
 
     MusicUtils::UWidget::setTransparent(this, 0);
-#ifndef MUSIC_QT_5
+#ifndef MUSIC_GREATER_NEW
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MScrollBarStyle01 + \
                   MusicUIObject::MLineEditStyle02 + \

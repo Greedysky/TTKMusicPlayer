@@ -1,13 +1,28 @@
 # TTKMusicPlayer
+![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
+![License](https://img.shields.io/badge/license-GPL%20V2-yellowgreen.svg?style=flat-square)
+![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
+![AP](https://img.shields.io/badge/Angels-Parliament-ff69b4.svg?style=flat-square)
+### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
 
 Usage
 ----
-The music player use of qmmp core ( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
-Compiler tutorial I have written in the wiki.
+**The music player use of qmmp core ( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
+Compiler tutorial I have written in the wiki.**
+
+#### This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
+ 
+## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
  * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
+ 
+| Platform | Qt & Compiler       | Status                                                                                      |
+| :---:    | :---:               | :---:                                                                                       |
+| Linux    | 4.8.6 GCC & 5.X GCC    | ![traviscistatus](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
+| Windows  | 4.8.7 GCC & 5.X GCC       | ![appvayorstatus](https://img.shields.io/wercker/ci/wercker/docs.svg) |
+| OS X     | 5.x Clang     | ![traviscistatus](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
  
 # For Developers
 
@@ -45,44 +60,42 @@ Search and high-speed downloads. Song search accuracy optimization, intelligent 
  * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones Yang Hyun.
  * Audio format I choose. I made my songs, I decided to sound quality.
  * Personalized skin. DIY your own personalized skin, creating a only part of your skin.
- * 
-Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
- * 
-Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
+ * Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
+ * Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
  * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
 
 Screenshots
 ----
 
-Index
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
+### Index
+![Index](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
 
-Search
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true)
+### Search
+![Search](https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true)
 
-Lrc
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
+### Lrc
+![Lrc](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
 
-Desktop-lrc
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
+### Desktop-lrc
+![Desktop-lrc](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
 
-Remote Controller
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
+### Remote Controller
+![Remote Controller](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
 
-Lrc Display Expand
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
+### Lrc Display Expand
+![Lrc Display Expand](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
 
-MV
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
+### MV
+![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
 
-Video Barrage
+### Video Barrage
 ![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
 
-Magic Music
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
+### Magic Music
+![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
 
-App Narrow
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
+### App Narrow
+![App Narrow](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
 Copyright
 -------

@@ -103,7 +103,7 @@ void MusicUserManager::leaveEvent(QEvent *event)
 
 void MusicUserManager::popupUserRecordWidget()
 {
-#ifndef MUSIC_QT_5
+#ifndef MUSIC_GREATER_NEW
     close();
 #endif
     MusicUserRecordWidget record;

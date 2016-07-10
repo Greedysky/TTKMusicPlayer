@@ -172,7 +172,7 @@ void MusicUserDialog::clearOriginData()
 
     ui->automaticLogon->setChecked(false);
     ui->rememberPwd->setChecked(false);
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
     ui->userComboBox->setCurrentText(QString());
 #else
     ui->userComboBox->setCurrentIndex(-1);

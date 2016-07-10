@@ -34,10 +34,10 @@ QString MusicVolumeGainTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicVolumeGainTableWidget::listCellClicked(int row, int col)
+void MusicVolumeGainTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-    Q_UNUSED(col);
+    Q_UNUSED(column);
 }
 
 

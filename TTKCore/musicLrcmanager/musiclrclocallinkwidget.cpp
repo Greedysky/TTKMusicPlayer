@@ -55,6 +55,13 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
     }
 }
 
+void MusicLrcLocalLinkTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}
+
+
 
 MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -146,7 +153,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
 
     LocalDataItems items;
     LocalDataItem item;
-    item.m_name = picPath.split("/").last();
+    item.m_name = QFileInfo(picPath).fileName();
     item.m_path = picPath;
     items << item;
     ui->searchedTable->createAllItems(items);

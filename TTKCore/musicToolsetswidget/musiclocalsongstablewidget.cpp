@@ -41,3 +41,9 @@ void MusicLocalSongsTableWidget::createShowPath()
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 528);
 }
+
+void MusicLocalSongsTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}

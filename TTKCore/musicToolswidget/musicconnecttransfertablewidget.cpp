@@ -29,9 +29,9 @@ QString MusicConnectTransferTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicConnectTransferTableWidget::listCellClicked(int row, int col)
+void MusicConnectTransferTableWidget::listCellClicked(int row, int column)
 {
-    if(col == 0)
+    if(column == 0)
     {
         QTableWidgetItem *it = item(row, 0);
         bool status = it->data(MUSIC_CHECK_ROLE).toBool();

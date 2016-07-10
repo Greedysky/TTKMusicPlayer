@@ -67,7 +67,7 @@ public:
      * Get output file name.
      */
 
-public slots:
+public Q_SLOTS:
     void onRecordStart();
     /*!
      * Recorder play start.

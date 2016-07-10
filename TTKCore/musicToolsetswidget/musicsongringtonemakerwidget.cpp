@@ -96,7 +96,7 @@ void MusicSongRingtoneMaker::initInputPath()
     MusicSongTag tag;
     if(tag.readFile(m_inputFilePath))
     {
-        QString name = m_inputFilePath.split("/").last();
+        QString name = QFileInfo(m_inputFilePath).fileName();
         ui->songLabelValue->setToolTip( name );
         name = MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 220);
         ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name)

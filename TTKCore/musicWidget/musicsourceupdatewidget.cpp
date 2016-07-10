@@ -9,7 +9,7 @@
 
 #include <QProcess>
 
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonParseError>
 #   include <QJsonObject>
 #else
@@ -57,7 +57,7 @@ int MusicSourceUpdateWidget::exec()
 
 void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 {
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
     QJsonParseError jsonError;
     QJsonDocument parseDoucment = QJsonDocument::fromJson(data, &jsonError);
     ///Put the data into Json
@@ -79,7 +79,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     {
         text.append(m_newVersionStr);
         text.append("\r\n");
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
         text.append(jsonObject.value("data").toString());
 #else
         text.append(sc.property("data").toString());

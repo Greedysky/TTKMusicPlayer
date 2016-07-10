@@ -1,6 +1,6 @@
 #include "musicradioplaylistthread.h"
 
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonParseError>
 #   include <QJsonDocument>
 #   include <QJsonObject>
@@ -74,7 +74,7 @@ void MusicRadioPlayListThread::downLoadFinished()
     {
         QByteArray bytes = m_reply->readAll();
         m_playList.clear();
-#ifdef MUSIC_QT_5
+#ifdef MUSIC_GREATER_NEW
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json

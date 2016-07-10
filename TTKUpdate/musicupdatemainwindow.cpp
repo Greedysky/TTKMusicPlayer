@@ -29,7 +29,7 @@ QString MusicUpdateMainWindow::getClassName()
 
 void MusicUpdateMainWindow::setFilePath(const QString &in, const QString &out)
 {
-#if defined Q_OS_WIN && defined MUSIC_QT_5
+#if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
     QThread::sleep(3);
 #else
     sleep(3);

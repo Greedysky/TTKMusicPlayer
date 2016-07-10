@@ -166,12 +166,7 @@ QString MusicTransformWidget::getTransformSongName() const
     {
         return QString();
     }
-    QString str = m_path[0];
-#ifdef Q_OS_WIN
-    str.replace("\\", "/");
-#endif
-    str = str.split('/').back().split('.').front();
-    return str;
+    return QFileInfo(m_path[0]).baseName();
 }
 
 void MusicTransformWidget::transformFinish()
