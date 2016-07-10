@@ -18,10 +18,10 @@ Compiler tutorial I have written in the wiki.**
 #### CI Status
 
 | Platform | Qt & Compiler       | Status                                                                                      |
-	| :---:    | :---:               | :---:                                                                                       |
-	| Linux    | 4.8.6 GCC & 5.X GCC    | ![traviscistatus](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
-	| Windows  | 4.8.7 GCC & 5.X GCC       | ![appvayorstatus](https://img.shields.io/wercker/ci/wercker/docs.svg) |
-    | OS X     | 5.x Clang     | ![traviscistatus](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
+| :---:    | :---:               | :---:                                                                                       |
+| Linux    | 4.8.6 GCC & 5.X GCC    | ![traviscistatus](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
+| Windows  | 4.8.7 GCC & 5.X GCC       | ![appvayorstatus](https://img.shields.io/wercker/ci/wercker/docs.svg) |
+| OS X     | 5.x Clang     | ![traviscistatus](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
  
 # For Developers
 
