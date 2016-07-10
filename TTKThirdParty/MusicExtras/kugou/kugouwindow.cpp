@@ -65,12 +65,12 @@ KugouWindow::KugouWindow(QWidget *parent)
     topLayout->addWidget(buttonGroup->button(6));
     topLayout->addStretch(1);
 
-    m_webView = new QWebView(this);
-    m_webView->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    m_webView->setUrl(QUrl( KugouUrl::getRecommendUrl() ));
+    QWebView *view = new QWebView(this);
+    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->setUrl(QUrl( KugouUrl::getRecommendUrl() ));
 
     layout->addWidget(top);
-    layout->addWidget(m_webView);
+    layout->addWidget(m_webView = view);
 #else
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/nowebkit"));
@@ -81,9 +81,7 @@ KugouWindow::KugouWindow(QWidget *parent)
 
 KugouWindow::~KugouWindow()
 {
-#ifdef MUSIC_WEBKIT
     delete m_webView;
-#endif
 }
 
 QString KugouWindow::getClassName()
@@ -105,6 +103,6 @@ void KugouWindow::differButtonIndexChanged(int index)
         case 6: url = KugouUrl::getCCTVUrl(); break;
     }
 #ifdef MUSIC_WEBKIT
-    m_webView->setUrl(QUrl( url ));
+    static_cast<QWebView*>(m_webView)->setUrl(QUrl( url ));
 #endif
 }
