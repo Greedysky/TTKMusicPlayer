@@ -2,15 +2,14 @@
 ![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/license-GPL%20V2-yellowgreen.svg?style=flat-square)
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![AP](https://img.shields.io/badge/Angels-Parliament-ff69b4.svg?style=flat-square)
-### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
+### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
 
 Usage
 ----
-**The music player use of qmmp core ( http://pan.baidu.com/s/1bv4iSY ) library based on Qt.
+**The music player use of qmmp core library based on Qt.
 Compiler tutorial I have written in the wiki.**
 
-#### This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
+#### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
@@ -29,6 +28,14 @@ Compiler tutorial I have written in the wiki.**
 License
 ---
 TTKMusicPlayer is free software licensed under the term of GPL v2. If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
+
+Download
+---
+Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
+
+Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
+
+Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
 
 Features
 -------
