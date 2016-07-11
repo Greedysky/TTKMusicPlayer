@@ -2,6 +2,8 @@
     <qresource prefix="/usermanager">
         <file alias="qq">../TTKResource/usermanager/qq-icon.png</file>
         <file alias="right">../TTKResource/usermanager/right-icon.png</file>
+        <file alias="error">../TTKResource/usermanager/error-icon.png</file>
+        <file alias="wait">../TTKResource/usermanager/wait-icon.png</file>
         <file alias="renren">../TTKResource/usermanager/renren-icon.png</file>
         <file alias="weixing">../TTKResource/usermanager/weixing-icon.png</file>
         <file alias="xinlang">../TTKResource/usermanager/xinlang-icon.png</file>
