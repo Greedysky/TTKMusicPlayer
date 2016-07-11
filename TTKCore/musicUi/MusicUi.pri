@@ -24,12 +24,13 @@ FORMS    += \
     $$PWD/musicToolsetswidget/musictimerwidget.ui \
     $$PWD/musicToolsetswidget/musictransformwidget.ui \
     $$PWD/musicToolsetswidget/musicnetworktestwidget.ui \
-    $$PWD/musicToolsetswidget/musicconnecttransferwidget.ui \
     $$PWD/musicToolsetswidget/musicvolumegainwidget.ui \
     $$PWD/musicToolsetswidget/musicsoundtouchwidget.ui \
     $$PWD/musicToolsetswidget/musicsongringtonemakerwidget.ui \
     $$PWD/musicToolswidget/musicwebentainradiowidget.ui \
     $$PWD/musicToolswidget/musicwebmusicradiowidget.ui \
+    $$PWD/musicToolswidget/musicconnecttransferwidget.ui \
+    $$PWD/musicToolswidget/musiccloudfilemanagerdialog.ui \
     $$PWD/musicUsermanager/musicuserdialog.ui \
     $$PWD/musicUsermanager/musicusermanager.ui \
     $$PWD/musicUsermanager/musicuserrecordwidget.ui \
