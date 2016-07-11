@@ -15,6 +15,7 @@ public:
 
     void uploadDataToServer(const QByteArray &data, const QString &bucket,
                             const QString &key, const QString &name);
+    QString getDownloadUrl(const QString &domain, const QString &key);
 
 Q_SIGNALS:
     void uploadFileFinished(const QString &name);

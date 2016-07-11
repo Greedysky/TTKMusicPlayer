@@ -106,10 +106,31 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
     }
     else
     {
-        QNMac macx = QNMac(QNConf::ACCESS_KEY,QNConf::SECRET_KEY);
+        QNMac macx = QNMac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         uploadToken = macx.signWithData(putPolicyJson);
     }
     return uploadToken;
+}
+
+QString QNPutPolicy::makeDownloadToken(const QNMac *mac)
+{
+    // check whether deadline set, otherwise default is one hour
+    if(m_deadline == 0)
+    {
+        m_deadline = QNUtils::expireInSeconds(3600);
+    }
+
+    QString downloadToken;
+    if(mac != 0)
+    {
+        downloadToken = mac->signWithData2(m_scope.toUtf8());
+    }
+    else
+    {
+        QNMac macx = QNMac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        downloadToken = macx.signWithData2(m_scope.toUtf8());
+    }
+    return downloadToken;
 }
 
 qint32 QNPutPolicy::getDeadline() const

@@ -47,6 +47,15 @@ QString QNMac::signWithData(const QByteArray &data) const
     return retStr;
 }
 
+QString QNMac::signWithData2(const QByteArray &data) const
+{
+    QByteArray signedData = QNUtils::hmacSha1(data, m_secretKey);
+    QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
+    QString retStr = m_accessKey;
+    retStr.append(":").append(encodedSignedData);
+    return retStr;
+}
+
 // Sign http request and body
 // Mainly used to create the resource management auth token
 

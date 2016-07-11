@@ -11,8 +11,10 @@ class MUSIC_EXTRAS_EXPORT QNPutPolicy
 {
 public:
     QNPutPolicy(const QString &scope);
+
     QByteArray toJSON(bool compact = true);
     QString makeUploadToken(const QNMac *mac = 0);
+    QString makeDownloadToken(const QNMac *mac = 0);
 
     //getters & setters
     QString getScope() const;

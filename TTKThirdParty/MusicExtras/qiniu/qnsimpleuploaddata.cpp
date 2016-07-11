@@ -4,6 +4,7 @@
 #include "qnputpolicy.h"
 #include "qnmac.h"
 #include "qnputret.h"
+#include "qnutils.h"
 
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager,
                                        QObject *parent)
@@ -27,6 +28,16 @@ void QNSimpleUploadData::uploadDataToServer(const QByteArray &data, const QStrin
                    SLOT(handleError(QNetworkReply::NetworkError)));
 }
 
+QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString &key)
+{
+    QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+    int deadline = QNUtils::expireInSeconds(3600);
+    QString baseUrl = QString("%1/%2?e=%3").arg(domain).arg(key).arg(deadline);
+
+    QNPutPolicy policy(baseUrl);
+    return QString("%1&token=%2").arg(baseUrl).arg(policy.makeDownloadToken(&mac));
+}
+
 void QNSimpleUploadData::receiveDataFromServer()
 {
     QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
@@ -41,10 +52,6 @@ void QNSimpleUploadData::receiveDataFromServer()
         }
         else
         {
-            //get http status code
-            int httpStatus = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-            //do some error management
-            qDebug() << httpStatus;
             emit uploadFileFinished( QString() );
         }
         reply->deleteLater();
