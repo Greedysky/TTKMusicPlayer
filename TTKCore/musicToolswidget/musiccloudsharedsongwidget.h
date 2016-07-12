@@ -13,17 +13,7 @@
 #include "qnsimplelistdata.h"
 #include "qnsimpleuploaddata.h"
 #include "qnsimpledeletedata.h"
-#include "musicabstracttablewidget.h"
-
-typedef struct UploadData{
-    QString m_path;
-    QString m_name;
-    int m_state;
-    ///0 waited, 1 successed, 2 error
-}UploadData;
-typedef QList<UploadData> UploadDatas;
-
-class QNetworkAccessManager;
+#include "musiccloudfilemanagerdialog.h"
 
 /*! @brief The class of the cloud shared song table widget.
  * @author Greedysky <greedysky@163.com>
@@ -43,25 +33,61 @@ public:
      * Get class object name.
      */
 
+    inline const UploadDatas& getUploadDatas() const { return m_waitedFiles;}
+    /*!
+     * Get upload datas.
+     */
+
 Q_SIGNALS:
     void updateLabelMessage(const QString &text);
+    /*!
+     * To update message label text.
+     */
     void uploadDone();
+    /*!
+     * One file upload finsihed.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-
     void receiveDataFinshed(const QNDataItems &items);
+    /*!
+     * Receive data from qiniu finshed.
+     */
     void uploadFileFinished(const QString &name);
+    /*!
+     * Upload data to qiniu finshed.
+     */
     void deleteFileFinished(bool state);
+    /*!
+     * Delete data to qiniu finshed.
+     */
 
     void updateListToServer();
+    /*!
+     * Update list to server.
+     */
     void deleteFileToServer();
+    /*!
+     * Delete file to server.
+     */
     void uploadFileToServer();
+    /*!
+     * Upload file to server.
+     */
     void uploadFilesToServer();
+    /*!
+     * Upload files to server.
+     */
     void startToUploadFile();
+    /*!
+     * Start to upload files to server.
+     */
+
+    void openFileManagerDialog();
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -69,8 +95,12 @@ protected:
      * Override the widget event.
      */
     void createUploadFileWidget();
+    /*!
+     * Create upload file widget.
+     */
 
     bool m_uploading;
+    QEventLoop m_eventLoop;
     QTimer *m_timerToUpload;
     QWidget *m_uploadFileWidget;
     QString m_currentUploadFileName;
@@ -79,6 +109,7 @@ protected:
     QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
+    MusicCloudFileManagerDialog *m_fileDialog;
 
 };
 
@@ -101,11 +132,6 @@ public:
      * Get class object name.
      */
 
-Q_SIGNALS:
-
-public Q_SLOTS:
-    void updateLabelMessage(const QString &text);
-
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -113,8 +139,8 @@ protected:
      * Override the widget event.
      */
 
-    MusicCloudSharedSongTableWidget *m_tableWidget;
     QLabel *m_statusLabel;
+    MusicCloudSharedSongTableWidget *m_tableWidget;
 
 };
 
