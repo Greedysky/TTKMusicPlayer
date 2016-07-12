@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(TTKUpdate)
 set(TARGET_NAME TTKUpdate)
+project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)

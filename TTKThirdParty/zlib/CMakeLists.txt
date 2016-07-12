@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(zlib)
 set(TARGET_NAME zlib)
+project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -43,7 +43,7 @@ set(MUSIC_SOURCES
     zutil.c
   )
 
-if(TTK_BUILD_SHARED STREQUAL "true")
+if(TTK_BUILD_SHARED)
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 else()
   add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})

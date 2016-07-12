@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(MusicExtras)
 set(TARGET_NAME MusicExtras)
+project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -12,16 +12,44 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 
+set(QT_WEBKIT_MODULE_NAME "libQt5WebKit")
+macro(_TO_FOUND_WEBKIT module)
+  find_library(QT_WEBKIT_MODULE
+    NAMES ${module}
+    PATHS ${QT_INSTALL_LIBS}
+  )
+  STRING(REGEX MATCH "${QT_WEBKIT_MODULE_NAME}" QT_WEBKIT_NAME_FILTER ${QT_WEBKIT_MODULE})
+  string(COMPARE EQUAL "${QT_WEBKIT_NAME_FILTER}" "${QT_WEBKIT_MODULE_NAME}" QT_RESULT)
+  if(${QT_RESULT})
+    find_package(Qt5WebKit REQUIRED)
+    find_package(Qt5WebKitWidgets REQUIRED)
+    add_definitions(-DMUSIC_WEBKIT)
+    message(STATUS "Message Found QT_WEBKIT_MODULE component, build in KuGou by webkit :" ${QT_WEBKIT_MODULE})
+  else()
+    message(STATUS "Message Not found QT_WEBKIT_MODULE component, build in KuGou by normal")
+  endif()
+endmacro(_TO_FOUND_WEBKIT)
+
+
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  find_package(Qt5WebKit REQUIRED)
-  find_package(Qt5WebKitWidgets REQUIRED)
+  if(WIN32)
+    if(MSVC)
+      _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.lib)
+    else()
+      _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.a)
+    endif()
+  else(UNIX)
+    _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.so)
+  endif()
 else()
-  set(minimum_required_qt_version "4.6")
+  set(minimum_required_qt_version "4.8")
   find_package(Qt4 REQUIRED)
+  add_definitions(-DMUSIC_WEBKIT)
+  message(STATUS "Message Found QT_WEBKIT_MODULE component, build in KuGou by webkit")
   
   if(QT4_FOUND)
     if("${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}" VERSION_LESS "${minimum_required_qt_version}")
-      message(FATAL_ERROR "error: TTK requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}.")
+      message(FATAL_ERROR "Message error: TTK requires Qt >= ${minimum_required_qt_version} -- you cannot use Qt ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_PATCH}.")
     endif()
 
     set(QT_USE_QTWEBKIT ON)
@@ -31,7 +59,7 @@ else()
       get_filename_component(${QT_LIBRARY_DIR} ${QT_QMAKE_EXECUTABLE} PATH)
     endif()
   else()
-    message(FATAL_ERROR "error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
+    message(FATAL_ERROR "Message error: Qt4 was not found on your system. You probably need to set the QT_QMAKE_EXECUTABLE variable")
   endif()
 endif()
 
@@ -55,6 +83,17 @@ set(MUSIC_HEADERS
     qrencode/rscode.h
     qrencode/split.h
     qrencode/qrcodewidget.h
+    qiniu/qnconf.h
+    qiniu/qniohelper.h
+    qiniu/qnmac.h
+    qiniu/qnputextra.h
+    qiniu/qnputpolicy.h
+    qiniu/qnputret.h
+    qiniu/qnutils.h
+    qiniu/qnsimplelistdata.h
+    qiniu/qnsimpleuploaddata.h
+    qiniu/qnsimpledeletedata.h
+
   )
 
 set(MUSIC_SOURCES
@@ -71,7 +110,22 @@ set(MUSIC_SOURCES
     qrencode/rscode.c
     qrencode/split.c
     qrencode/qrcodewidget.cpp
+    qiniu/qnconf.cpp
+    qiniu/qniohelper.cpp
+    qiniu/qnmac.cpp
+    qiniu/qnputextra.cpp
+    qiniu/qnputpolicy.cpp
+    qiniu/qnputret.cpp
+    qiniu/qnutils.cpp
+    qiniu/qnsimplelistdata.cpp
+    qiniu/qnsimpleuploaddata.cpp
+    qiniu/qnsimpledeletedata.cpp
+
   )
+
+SET(MUSIC_QRC
+    ${MUSIC_QRC_DIR}/MusicThirdParty.qrc
+)
 
 if(WIN32)
     list(APPEND MUSIC_SOURCES shortcut/qxtglobalshortcut_win.cpp)
@@ -81,11 +135,12 @@ endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
+  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
 
-  if(TTK_BUILD_SHARED STREQUAL "true")
-    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  if(TTK_BUILD_SHARED)
+    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
   list(APPEND QT5_LIBS Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WebKit Qt5::WebKitWidgets -luser32)
   if(UNIX)
@@ -95,11 +150,12 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-
-  if(TTK_BUILD_SHARED STREQUAL "true")
-    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
+  
+  if(TTK_BUILD_SHARED)
+    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
   list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTWEBKIT_LIBRARY} -luser32)
   if(UNIX)
