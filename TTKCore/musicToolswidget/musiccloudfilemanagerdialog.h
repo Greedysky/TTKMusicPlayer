@@ -12,7 +12,8 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
-typedef struct UploadData{
+typedef struct UploadData
+{
     enum State{
         Waited = 0,     ///0 waited
         Successed,      ///1 successed
@@ -22,12 +23,23 @@ typedef struct UploadData{
     QString m_path;
     QString m_name;
     State m_state;
+
+    inline bool operator<(const UploadData &other) const
+    {
+        return m_name < other.m_name;
+    }
+
+    inline bool operator==(const UploadData &other) const
+    {
+        return !(*this < other || other < *this);
+    }
 }UploadData;
 typedef QList<UploadData> UploadDatas;
 
 namespace Ui {
 class MusicCloudFileManagerDialog;
 }
+
 class MusicProgressBarDelegate;
 
 /*! @brief The class of the cloud shared song table widget.
@@ -79,6 +91,7 @@ public:
      */
 
     void creatFileManager(const UploadDatas &datas);
+    void updateItemProgress(int percent, const UploadData &data);
 
 public Q_SLOTS:
     virtual int exec();

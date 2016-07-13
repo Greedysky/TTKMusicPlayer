@@ -3,6 +3,8 @@
 #include "musicbackgroundmanager.h"
 #include "musicitemdelegate.h"
 
+#include <QDebug>
+
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -83,6 +85,19 @@ void MusicCloudFileManagerDialog::creatFileManager(const UploadDatas &datas)
         item->setIcon( getIconByDataState(data.m_state) );
         item->setTextAlignment(Qt::AlignCenter);
         ui->uploadTableWidget->setItem(i, 3, item);
+    }
+}
+
+void MusicCloudFileManagerDialog::updateItemProgress(int percent, const UploadData &data)
+{
+    for(int i=0; i<ui->uploadTableWidget->rowCount(); ++i)
+    {
+        QTableWidgetItem *it = ui->uploadTableWidget->item(i, 1);
+        if(it && it->toolTip() == data.m_name)
+        {
+            ui->uploadTableWidget->item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
+            ui->uploadTableWidget->item(i, 3)->setIcon( getIconByDataState(data.m_state) );
+        }
     }
 }
 
