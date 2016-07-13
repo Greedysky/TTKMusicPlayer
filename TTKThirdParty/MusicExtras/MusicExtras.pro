@@ -32,8 +32,6 @@ RESOURCES += \
 
 include(hz2py/Hz2Py.pri)
 include(kugou/KuGou.pri)
-greaterThan(QT_MAJOR_VERSION, 4){
 include(qiniu/QiNiu.pri)
-}
 include(qrencode/QRencode.pri)
 include(shortcut/ShortCut.pri)

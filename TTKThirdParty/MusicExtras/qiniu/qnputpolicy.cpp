@@ -3,8 +3,12 @@
 #include "qnmac.h"
 #include "qnconf.h"
 
-#include <QJsonObject>
-#include <QJsonDocument>
+#ifdef MUSIC_GREATER_NEW
+#   include <QJsonObject>
+#   include <QJsonDocument>
+#else
+#   include <QMap>
+#endif
 
 QNPutPolicy::QNPutPolicy(const QString &scope)
     : m_scope(scope)
@@ -20,7 +24,11 @@ QNPutPolicy::QNPutPolicy(const QString &scope)
 
 QByteArray QNPutPolicy::toJSON(bool compact)
 {
+#ifdef MUSIC_GREATER_NEW
     QJsonObject json;
+#else
+    QMap<QString, QVariant> json;
+#endif
     json["scope"] = m_scope;
     json["deadline"] = m_deadline;
 
@@ -85,9 +93,29 @@ QByteArray QNPutPolicy::toJSON(bool compact)
         json["persistentPipeline"] = m_persistentPipeline;
     }
 
+#ifdef MUSIC_GREATER_NEW
     QJsonDocument doc = QJsonDocument(json);
     QByteArray data = doc.toJson(compact ? QJsonDocument::Compact :
                                            QJsonDocument::Indented);
+#else
+    Q_UNUSED(compact);
+    QByteArray data("{");
+    QList<QString> keys(json.keys());
+    QList<QVariant> values(json.values());
+    for(int i=0; i<keys.count(); ++i)
+    {
+        switch(values[i].type())
+        {
+            case QVariant::String : data.append(QString("\"%1\":\"%2\",")
+                                    .arg(keys[i]).arg(values[i].toString())); break;
+            case QVariant::Int : data.append(QString("\"%1\":%2,")
+                                 .arg(keys[i]).arg(values[i].toInt())); break;
+            default: break;
+        }
+    }
+    if(data.count() != 1) data.chop(1);
+    data.append("}");
+#endif
     return data;
 }
 

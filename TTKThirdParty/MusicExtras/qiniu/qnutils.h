@@ -19,6 +19,7 @@ public:
     static uint expireInSeconds(const uint seconds);
     static uint crc32(const QByteArray &data);
     static QString randomFileName();
+    static QString urlQuery(const QString &url);
 
     static const char KEY_ESCAPE_RESERVE_BYTES[];
     static const char KEY_ESCAPE_UNRESERVE_BYTES[];

@@ -6,7 +6,8 @@
 
 class QNetworkAccessManager;
 
-typedef struct QNDataItem{
+typedef struct QNDataItem
+{
     QString m_name;
     QString m_hash;
     QString m_mimeType;

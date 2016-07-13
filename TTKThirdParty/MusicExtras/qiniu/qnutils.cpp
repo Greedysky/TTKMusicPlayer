@@ -2,6 +2,7 @@
 
 #include <QUrl>
 #include <QDateTime>
+#include <QStringList>
 #include <QCryptographicHash>
 
 const char QNUtils::KEY_ESCAPE_UNRESERVE_BYTES[] = {'!', '*', '\'', '(', ')', ';', ':', '@',
@@ -21,7 +22,13 @@ QNUtils::~QNUtils()
 // Url safe base64 encode
 QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 {
+#ifdef MUSIC_GREATER_NEW
     QByteArray encodedData = data.toBase64(QByteArray::Base64UrlEncoding);
+#else
+    QByteArray encodedData = data.toBase64();
+    encodedData.replace('+', '-');
+    encodedData.replace('/', '_');
+#endif
     return QString(encodedData);
 }
 
@@ -29,6 +36,8 @@ QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 QByteArray QNUtils::urlSafeBase64Decode(const QString &data)
 {
     QByteArray bytesToDecode = QByteArray(data.toLocal8Bit());
+    bytesToDecode.replace('-', '+');
+    bytesToDecode.replace('_', '/');
     return QByteArray::fromBase64(bytesToDecode);
 }
 
@@ -87,7 +96,7 @@ uint QNUtils::expireInSeconds(const uint seconds)
 {
     QDateTime now = QDateTime::currentDateTime();
     //qiniu server timezone is utc+8
-    now.setOffsetFromUtc(3600*8);
+///    now.setOffsetFromUtc(3600*8);
     //default time span is one hour
     now = now.addSecs(seconds);
     return now.toTime_t();
@@ -121,8 +130,21 @@ uint QNUtils::crc32(const QByteArray &data)
 QString QNUtils::randomFileName()
 {
     QDateTime now = QDateTime::currentDateTime();
-    now.setOffsetFromUtc(3600*8);
+///    now.setOffsetFromUtc(3600*8);
     QString randFileName("Qiniu_Random_File_");
     randFileName.append(now.toTime_t());
     return randFileName;
+}
+
+QString QNUtils::urlQuery(const QString &url)
+{
+    int count = 0;
+    for(int i=0; i<url.count(); ++i)
+    {
+        if(url[i] == '?')
+        {
+            ++count;
+        }
+    }
+    return (count == 1) ? url.split('?').last() : QString();
 }

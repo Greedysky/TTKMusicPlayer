@@ -6,6 +6,10 @@
 #include "qnputret.h"
 #include "qnutils.h"
 
+#include <QUrl>
+#include <QDebug>
+#include <QStringList>
+
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager,
                                        QObject *parent)
     : QObject(parent)
@@ -26,13 +30,23 @@ void QNSimpleUploadData::uploadDataToServer(const QByteArray &data, const QStrin
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
                    SLOT(handleError(QNetworkReply::NetworkError)));
+    if(parent()->metaObject()->indexOfSlot("uploadProgress(qint64,qint64)") != -1)
+    {
+        connect(reply, SIGNAL(uploadProgress(qint64,qint64)), parent(),
+                       SLOT(uploadProgress(qint64,qint64)));
+    }
 }
 
 QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString &key)
 {
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     int deadline = QNUtils::expireInSeconds(3600);
-    QString baseUrl = QString("%1/%2?e=%3").arg(domain).arg(key).arg(deadline);
+#ifdef MUSIC_GREATER_NEW
+    QString encodeKey = QUrl(key).toString(QUrl::FullyEncoded);
+#else
+    QString encodeKey = QUrl(key).toEncoded();
+#endif
+    QString baseUrl = QString("%1/%2?e=%3").arg(domain).arg(encodeKey).arg(deadline);
 
     QNPutPolicy policy(baseUrl);
     return QString("%1&token=%2").arg(baseUrl).arg(policy.makeDownloadToken(&mac));
@@ -45,7 +59,8 @@ void QNSimpleUploadData::receiveDataFromServer()
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            QByteArray respData=reply->readAll();
+            QByteArray respData = reply->readAll();
+            qDebug()<<"ddd" << respData;
             QNPutRet *putRet = QNPutRet::fromJSON(respData);
             emit uploadFileFinished(putRet->getKey());
             delete putRet;

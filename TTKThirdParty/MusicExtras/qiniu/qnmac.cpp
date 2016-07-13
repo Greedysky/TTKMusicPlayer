@@ -66,8 +66,10 @@ QString QNMac::signWithData2(const QByteArray &data) const
 QString QNMac::signRequest(const QUrl &requestUrl, const QByteArray &bodyData) const
 {
     QString path = requestUrl.path();
-    QString query = requestUrl.query();
+    QString requestUrlstr = requestUrl.toString();
+    QString query = QNUtils::urlQuery(requestUrlstr);
     QByteArray dataToSign = path.toUtf8();
+
     // check query whether empty
     if(!query.isEmpty())
     {
