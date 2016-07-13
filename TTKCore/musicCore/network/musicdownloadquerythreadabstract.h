@@ -12,7 +12,8 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-typedef struct DownloadData{
+typedef struct DownloadData
+{
     QString m_songName;
     QString m_songArtist;
     QString m_songUrl;
@@ -34,6 +35,7 @@ typedef struct DownloadData{
     {
         return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
     }
+
 }DownloadData;
 
 /*! @brief The class to abstract query download data from net.
