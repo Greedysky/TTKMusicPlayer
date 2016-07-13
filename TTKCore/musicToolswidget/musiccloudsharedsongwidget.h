@@ -74,6 +74,8 @@ public Q_SLOTS:
     /*!
      * Delete file to server.
      */
+    void downloadFileToServer();
+
     void uploadFileToServer();
     /*!
      * Upload file to server.
@@ -88,6 +90,7 @@ public Q_SLOTS:
      */
 
     void openFileManagerDialog();
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -103,7 +106,7 @@ protected:
     QEventLoop m_eventLoop;
     QTimer *m_timerToUpload;
     QWidget *m_uploadFileWidget;
-    QString m_currentUploadFileName;
+    UploadData m_currentUploadData;
     UploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
     QNSimpleDeleteData *m_qnDeleteData;
