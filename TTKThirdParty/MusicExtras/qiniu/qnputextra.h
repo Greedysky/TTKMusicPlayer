@@ -2,6 +2,7 @@
 #define QNPUTEXTRA_H
 
 #include <QMap>
+#include <QString>
 #include "musicextrasglobaldefine.h"
 
 class MUSIC_EXTRAS_EXPORT QNPutExtra

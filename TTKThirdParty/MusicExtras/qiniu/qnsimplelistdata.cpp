@@ -2,10 +2,17 @@
 #include "qnmac.h"
 #include "qniohelper.h"
 
+#ifdef MUSIC_GREATER_NEW
 #   include <QJsonParseError>
 #   include <QJsonDocument>
 #   include <QJsonObject>
 #   include <QJsonArray>
+#else
+#   include <QtScript/QScriptEngine>
+#   include <QtScript/QScriptValue>
+#   include <QtScript/QScriptValueIterator>
+#endif
+#include <QDebug>
 
 QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent), m_networkManager(networkManager)
@@ -31,6 +38,7 @@ void QNSimpleListData::receiveDataFromServer()
         QNDataItems items;
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200)
         {
+#ifdef MUSIC_GREATER_NEW
             QJsonParseError jsonError;
             QJsonDocument parseDoucment = QJsonDocument::fromJson(reply->readAll(), &jsonError);
             ///Put the data into Json
@@ -62,6 +70,31 @@ void QNSimpleListData::receiveDataFromServer()
                     items << item;
                 }
             }
+#else
+            QScriptEngine engine;
+            QScriptValue sc = engine.evaluate("value=" + QString(reply->readAll()));
+            if(sc.property("items").isArray())
+            {
+                QScriptValueIterator it(sc.property("items"));
+                while(it.hasNext())
+                {
+                    it.next();
+                    QScriptValue value = it.value();
+                    if(value.isNull() || value.property("key").toString().isEmpty())
+                    {
+                        continue;
+                    }
+
+                    QNDataItem item;
+                    item.m_name = value.property("key").toString();
+                    item.m_hash = value.property("hash").toString();
+                    item.m_mimeType = value.property("mimeType").toString();
+                    item.m_size = value.property("fsize").toInt32();
+                    item.m_putTime = value.property("putTime").toInt32();
+                    items << item;
+                }
+            }
+#endif
         }
         reply->deleteLater();
         emit receiveFinshed( items );

@@ -1,7 +1,7 @@
 #include "kugouwindow.h"
 
 #ifdef MUSIC_WEBKIT
-# if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+# ifdef MUSIC_GREATER_NEW
 #  include <QtWebKitWidgets/QWebView>
 #  include <QtWebKitWidgets/QWebFrame>
 # else

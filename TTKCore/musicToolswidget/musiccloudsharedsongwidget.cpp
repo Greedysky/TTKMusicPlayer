@@ -14,6 +14,7 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QPushButton>
+#include <QDebug>
 
 #define QN_BUCKET       "music"
 #define QN_PRFIX        "http://o9zmxm4rh.bkt.clouddn.com"

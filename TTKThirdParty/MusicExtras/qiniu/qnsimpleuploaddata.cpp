@@ -6,6 +6,10 @@
 #include "qnputret.h"
 #include "qnutils.h"
 
+#include <QUrl>
+#include <QDebug>
+#include <QStringList>
+
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager,
                                        QObject *parent)
     : QObject(parent)
@@ -37,7 +41,11 @@ QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString 
 {
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     int deadline = QNUtils::expireInSeconds(3600);
+#ifdef MUSIC_GREATER_NEW
     QString encodeKey = QUrl(key).toString(QUrl::FullyEncoded);
+#else
+    QString encodeKey = QUrl(key).toEncoded();
+#endif
     QString baseUrl = QString("%1/%2?e=%3").arg(domain).arg(encodeKey).arg(deadline);
 
     QNPutPolicy policy(baseUrl);
@@ -51,7 +59,8 @@ void QNSimpleUploadData::receiveDataFromServer()
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            QByteArray respData=reply->readAll();
+            QByteArray respData = reply->readAll();
+            qDebug()<<"ddd" << respData;
             QNPutRet *putRet = QNPutRet::fromJSON(respData);
             emit uploadFileFinished(putRet->getKey());
             delete putRet;

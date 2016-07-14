@@ -11,6 +11,13 @@
 
 #include <QtCore/qglobal.h>
 
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#  define MUSIC_GREATER_NEW
+#  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
+#    define MUSIC_WINEXTRAS
+#  endif
+#endif
+
 #ifdef QT_DEBUG
 #   define MUSIC_DEBUG
 #endif
