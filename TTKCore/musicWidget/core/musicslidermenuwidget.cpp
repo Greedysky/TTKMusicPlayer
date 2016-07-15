@@ -1,5 +1,6 @@
 #include "musicslidermenuwidget.h"
 #include "musicuiobject.h"
+#include "musicobject.h"
 
 #include <QLabel>
 #include <QBoxLayout>

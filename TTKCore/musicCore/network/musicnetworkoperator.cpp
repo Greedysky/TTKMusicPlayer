@@ -1,5 +1,6 @@
 #include "musicnetworkoperator.h"
 #include "musicsourcedownloadthread.h"
+#include "musicobject.h"
 
 #include <QStringList>
 

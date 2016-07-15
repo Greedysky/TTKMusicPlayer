@@ -1,6 +1,5 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
-#include "musiclogger.h"
 #include "musicnumberdefine.h"
 
 #include <QProcess>

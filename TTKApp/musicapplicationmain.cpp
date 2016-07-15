@@ -2,7 +2,6 @@
 #include "musicutils.h"
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
-#include "musiclogger.h"
 #include "musicmessagebox.h"
 
 #include <QApplication>

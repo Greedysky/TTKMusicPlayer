@@ -31,10 +31,13 @@ RCC_DIR = ./.build/rcc
 
 QMAKE_CXXFLAGS += -std=c++11
 
-INCLUDEPATH += ../TTKCore/musicCore
+INCLUDEPATH += \
+        ../TTKCore/musicCore \
+        ../
 
 HEADERS += \
     ../TTKCore/musicCore/musicuiobject.h \
+    ../musicglobal.h \
     musicupdatemainwindow.h
 
 

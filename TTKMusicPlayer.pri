@@ -84,6 +84,11 @@ TTKMusicPlayer = 2.3.0.0
 DEFINES += MUSIC_LIBRARY
 DEFINES += USE_MULTIPLE_QUERY
 
+
+#########################################
+HEADERS += $$PWD/musicglobal.h
+INCLUDEPATH += $$PWD
+#########################################
 contains(CONFIG, TTK_BUILD_LIB){
   include(TTKCore/musicUi/MusicUi.pri)
 }

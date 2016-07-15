@@ -60,7 +60,6 @@ void QNSimpleUploadData::receiveDataFromServer()
         if(reply->error() == QNetworkReply::NoError)
         {
             QByteArray respData = reply->readAll();
-            qDebug()<<"ddd" << respData;
             QNPutRet *putRet = QNPutRet::fromJSON(respData);
             emit uploadFileFinished(putRet->getKey());
             delete putRet;

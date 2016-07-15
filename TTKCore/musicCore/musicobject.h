@@ -10,21 +10,8 @@
    =================================================*/
 
 #include <QDir>
-#include <QMap>
-#include <QSet>
 #include <QApplication>
-
-#ifdef Q_CC_GNU
-#  pragma GCC diagnostic ignored "-Wunused-function"
-#endif
-
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#  define MUSIC_GREATER_NEW
-#  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
-#    define MUSIC_WINEXTRAS
-#  endif
-#endif
-
+#include "musicglobal.h"
 
 ///////////////////////////////////////
 #define LRC_DIR                 "MLrc/"
@@ -112,38 +99,6 @@
  */
 namespace MusicObject
 {
-    typedef signed char        MInt8;         /* 8 bit signed */
-    typedef unsigned char      MUint8;        /* 8 bit unsigned */
-    typedef short              MInt16;        /* 16 bit signed */
-    typedef unsigned short     MUint16;       /* 16 bit unsigned */
-    typedef int                MInt32;        /* 32 bit signed */
-    typedef unsigned int       MUint32;       /* 32 bit unsigned */
-    typedef long long          MInt64;        /* 64 bit signed */
-    typedef unsigned long long MUint64;       /* 64 bit unsigned */
-    ///////////////////////////////////////
-
-    typedef double             MDouble;       /* double */
-    typedef float              MFloat;        /* float */
-    typedef bool               MBool;         /* bool */
-    ///////////////////////////////////////
-
-    typedef QList<QStringList>                 MStringLists;            /* stringlists */
-    typedef QList<int>                         MIntList;                /* intlist */
-    typedef QList<MIntList>                    MIntLists;               /* intlists */
-    typedef QSet<int>                          MIntSet;                 /* intset */
-    typedef QSet<MIntSet>                      MIntSets;                /* intsets */
-    typedef QMap<QString, QVariant>            MStriantMap;             /* stringVariantMap */
-    typedef QMap<QString, QString>             MStringsMap;             /* stringsMap */
-    typedef QMap<QString, QStringList>         MStringsListMap;         /* stringStrlistsMap */
-    typedef QMap<int, MIntList>                MIntsListMap;            /* intIntlistMap */
-    typedef QMap<qint64, QString>              MIntStringMap;           /* intStrMap */
-    typedef QMapIterator<QString, QVariant>    MStriantMapIterator;     /* stringVariantMapIterator */
-    typedef QMapIterator<QString, QString>     MStringsMapIterator;     /* stringsMapIterator */
-    typedef QMapIterator<QString, QStringList> MStringsListMapIterator; /* stringStrlistsMapIterator */
-    typedef QMapIterator<int, MIntList>        MIntsListMapIterator;    /* intIntlistMapIterator */
-    typedef QMapIterator<qint64, QString>      MIntStringMapIterator;   /* intStrMapIterator */
-    ///////////////////////////////////////
-
     typedef struct MusicSongAttribute
     {
         int m_bitrate;

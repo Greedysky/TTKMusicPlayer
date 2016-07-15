@@ -1,5 +1,6 @@
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
+#include "musicobject.h"
 
 #include <QPainter>
 #include <QCheckBox>

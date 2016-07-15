@@ -1,4 +1,5 @@
 #include "musicnetworkproxy.h"
+#include "musicobject.h"
 
 #include <QNetworkProxy>
 

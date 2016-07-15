@@ -9,8 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicsingleton.h"
 #include <QMetaEnum>
+#include "musicobject.h"
+#include "musicsingleton.h"
 
 #define M_SETTING_PTR (MusicSingleton<MusicSettingManager>::createInstance())
 

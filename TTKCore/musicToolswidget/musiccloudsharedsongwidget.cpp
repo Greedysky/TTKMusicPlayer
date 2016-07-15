@@ -14,7 +14,6 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QPushButton>
-#include <QDebug>
 
 #define QN_BUCKET       "music"
 #define QN_PRFIX        "http://o9zmxm4rh.bkt.clouddn.com"
@@ -393,11 +392,10 @@ QString MusicCloudSharedSongWidget::getClassName()
 
 void MusicCloudSharedSongWidget::paintEvent(QPaintEvent *event)
 {
+    QWidget::paintEvent(event);
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, 50));
     painter.end();
-
-    QWidget::paintEvent(event);
 }
 
 void MusicCloudSharedSongWidget::contextMenuEvent(QContextMenuEvent *event)

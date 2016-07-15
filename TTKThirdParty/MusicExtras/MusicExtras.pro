@@ -25,7 +25,10 @@ TEMPLATE = lib
 QMAKE_CXXFLAGS += -std=c++11
 unix:VERSION += 2.3.0.0
 
-HEADERS  += musicextrasglobaldefine.h
+INCLUDEPATH += ../../
+HEADERS  += \
+    musicextrasglobaldefine.h \
+    ../../musicglobal.h
 
 RESOURCES += \
     ../../TTKQrc/MusicThirdParty.qrc

@@ -1,6 +1,6 @@
 #include "musiclrcfromkrc.h"
-#include "musiclogger.h"
 #include "musicnumberdefine.h"
+#include "musicobject.h"
 
 #ifdef Q_CC_GNU
 #   pragma GCC diagnostic ignored "-Wwrite-strings"

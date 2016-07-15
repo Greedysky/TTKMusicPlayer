@@ -197,8 +197,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                 QString duration = object.take("Length").toString();
                 QString size = object.take("Size").toString();
 
-                readFromMusicSongAttribute(musicInfo, size, 750, object.take("MvUrl").toString());
-                readFromMusicSongAttribute(musicInfo, size, 500, object.take("VideoUrl").toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_750, object.take("MvUrl").toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_500, object.take("VideoUrl").toString());
 
                 if(musicInfo.m_songAttrs.isEmpty())
                 {
@@ -277,8 +277,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                     QString duration = value.property("Length").toString();
                     QString size = value.property("Size").toString();
 
-                    readFromMusicSongAttribute(musicInfo, size, 750, value.property("MvUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, 500, value.property("VideoUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_750, value.property("MvUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_500, value.property("VideoUrl").toString());
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
