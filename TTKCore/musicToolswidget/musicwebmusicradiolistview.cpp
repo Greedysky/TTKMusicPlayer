@@ -16,7 +16,7 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     setMovement(QListView::Static);
     MusicUtils::UWidget::setTransparent(this, 50);
 
-    m_cookJar = new QNetworkCookieJar;
+    m_cookJar = new QNetworkCookieJar(this);
 #ifdef Q_OS_WIN
     setSpacing(17);
 #else

@@ -33,6 +33,7 @@ HEADERS  += \
     $$PWD/core/musicfloatabstractwidget.h \
     $$PWD/core/musictimersliderwidget.h \
     $$PWD/core/musiccutsliderwidget.h \
+    $$PWD/core/musicanimationstackedwidget.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -80,6 +81,7 @@ SOURCES += \
     $$PWD/core/musicfloatabstractwidget.cpp \
     $$PWD/core/musictimersliderwidget.cpp \
     $$PWD/core/musiccutsliderwidget.cpp \
+    $$PWD/core/musicanimationstackedwidget.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \

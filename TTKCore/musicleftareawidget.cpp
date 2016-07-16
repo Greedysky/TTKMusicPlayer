@@ -38,6 +38,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
     m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
+    m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
 
     connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
     connect(ui->musicPrevious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrevious()));
@@ -185,27 +186,28 @@ void MusicLeftAreaWidget::musictLoveStateClicked()
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 {
-    m_ui->songsContainer->setCurrentIndex(0);
     delete m_stackedWidget;
     m_stackedWidget = nullptr;
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(0);
 }
 
 void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
 {
     delete m_stackedWidget;
     m_stackedWidget = new MusicToolSetsWidget(this);
-
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    m_ui->songsContainer->setCurrentIndex(1);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
 }
 
 void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 {
     delete m_stackedWidget;
     m_stackedWidget = new MusicWebRadioToolWidget(this);
-
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    m_ui->songsContainer->setCurrentIndex(1);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
 }
 
 void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
@@ -213,7 +215,8 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = new MusicMyDownloadRecordWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    m_ui->songsContainer->setCurrentIndex(1);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
 }
 
 void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
@@ -221,7 +224,8 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = new MusicConnectMobileWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    m_ui->songsContainer->setCurrentIndex(1);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
 }
 
 void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
@@ -229,5 +233,6 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     delete m_stackedWidget;
     m_stackedWidget = new MusicCloudSharedSongWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
-    m_ui->songsContainer->setCurrentIndex(1);
+    m_ui->songsContainer->setIndex(0, 0);
+    m_ui->songsContainer->start(1);
 }

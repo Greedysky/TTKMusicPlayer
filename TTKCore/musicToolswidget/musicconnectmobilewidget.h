@@ -12,7 +12,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class QStackedWidget;
+class MusicAnimationStackedWidget;
 
 /*! @brief The class of the connect mobile widget.
  * @author Greedysky <greedysky@163.com>
@@ -73,7 +73,7 @@ protected:
      * Init connect to wire widget.
      */
 
-    QStackedWidget *m_stackedWidget;
+    MusicAnimationStackedWidget *m_stackedWidget;
 
 };
 

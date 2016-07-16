@@ -101,7 +101,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="songsContainer">
+  <widget class="MusicAnimationStackedWidget" name="songsContainer">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -714,6 +714,12 @@
    <class>MusicEnhancedWidget</class>
    <extends>QWidget</extends>
    <header>musicenhancedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicAnimationStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>musicanimationstackedwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

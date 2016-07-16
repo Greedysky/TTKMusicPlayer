@@ -1,19 +1,20 @@
 #include "musicconnectmobilewidget.h"
 #include "musicconnecttransferwidget.h"
+#include "musicanimationstackedwidget.h"
 #include "qrcodewidget.h"
 
-#include <QStackedWidget>
-#include <QBoxLayout>
-#include <QPushButton>
 #include <QLabel>
 #include <QPainter>
+#include <QBoxLayout>
+#include <QPushButton>
 
 MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *vBox = new QVBoxLayout(this);
     vBox->setContentsMargins(0, 0, 0, 0);
-    m_stackedWidget = new QStackedWidget(this);
+    m_stackedWidget = new MusicAnimationStackedWidget(this);
+    m_stackedWidget->setLength(320, MusicAnimationStackedWidget::LeftToRight);
     vBox->addWidget(m_stackedWidget);
     setLayout(vBox);
 
@@ -21,7 +22,7 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     initSecondWidget();
     initThirdWidget();
 
-    changeStatckedWidgetFirst();
+    m_stackedWidget->setCurrentIndex(0);
 }
 
 MusicConnectMobileWidget::~MusicConnectMobileWidget()
@@ -173,17 +174,17 @@ void MusicConnectMobileWidget::initThirdWidget()
 
 void MusicConnectMobileWidget::changeStatckedWidgetFirst()
 {
-    m_stackedWidget->setCurrentIndex(0);
+    m_stackedWidget->start(0);
 }
 
 void MusicConnectMobileWidget::changeStatckedWidgetSecond()
 {
-    m_stackedWidget->setCurrentIndex(1);
+    m_stackedWidget->start(1);
 }
 
 void MusicConnectMobileWidget::changeStatckedWidgetThird()
 {
-    m_stackedWidget->setCurrentIndex(2);
+    m_stackedWidget->start(2);
 }
 
 void MusicConnectMobileWidget::openTransferFiles2Mobile()

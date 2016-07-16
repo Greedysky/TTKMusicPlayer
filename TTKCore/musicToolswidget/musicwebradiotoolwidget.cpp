@@ -1,6 +1,7 @@
 #include "musicwebradiotoolwidget.h"
 #include "musicwebentainradiolistview.h"
 #include "musicwebmusicradiolistview.h"
+#include "musicanimationstackedwidget.h"
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -29,7 +30,8 @@ MusicWebRadioToolWidget::MusicWebRadioToolWidget(QWidget *parent)
     m_netRadioButton1->setFixedHeight(40);
     m_netRadioButton2->setFixedHeight(40);
 
-    m_stackedWidget = new QStackedWidget(this);
+    m_stackedWidget = new MusicAnimationStackedWidget(this);
+    m_stackedWidget->setLength(320, MusicAnimationStackedWidget::LeftToRight);
     mainLayout->addWidget(toolWidget);
     mainLayout->addWidget(m_stackedWidget);
     setLayout(mainLayout);
@@ -63,6 +65,8 @@ QString MusicWebRadioToolWidget::getClassName()
 
 void MusicWebRadioToolWidget::buttonClicked(int index)
 {
+    m_stackedWidget->start(index);
+
     QString on = "border:none; background:url(':/radio/toolOn');";
     QString off = "border:none; background:url(':/radio/toolOff');";
     if(index == 0)
@@ -76,7 +80,6 @@ void MusicWebRadioToolWidget::buttonClicked(int index)
         m_netRadioButton2->setStyleSheet(on);
         m_musicRadioListView->initListItems();
     }
-    m_stackedWidget->setCurrentIndex(index);
 }
 
 void MusicWebRadioToolWidget::contextMenuEvent(QContextMenuEvent *event)

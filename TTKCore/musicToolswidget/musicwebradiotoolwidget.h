@@ -10,11 +10,11 @@
    =================================================*/
 
 #include <QPushButton>
-#include <QStackedWidget>
 #include "musicglobaldefine.h"
 
 class MusicWebEntainRadioListView;
 class MusicWebMusicRadioListView;
+class MusicAnimationStackedWidget;
 
 /*! @brief The class of the web radio tool widget.
  * @author Greedysky <greedysky@163.com>
@@ -46,7 +46,7 @@ protected:
      * Override the widget event.
      */
 
-    QStackedWidget *m_stackedWidget;
+    MusicAnimationStackedWidget *m_stackedWidget;
     QPushButton *m_netRadioButton1,*m_netRadioButton2;
     MusicWebMusicRadioListView *m_musicRadioListView;
     MusicWebEntainRadioListView *m_entainRadioListView;
