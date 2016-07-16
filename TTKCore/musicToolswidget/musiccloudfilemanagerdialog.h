@@ -98,6 +98,10 @@ public Q_SLOTS:
     /*!
      * Override exec function.
      */
+    void show();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     QIcon getIconByDataState(UploadData::State state);

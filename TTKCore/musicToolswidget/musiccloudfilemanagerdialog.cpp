@@ -3,8 +3,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicitemdelegate.h"
 
-#include <QDebug>
-
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -106,6 +104,13 @@ int MusicCloudFileManagerDialog::exec()
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicCloudFileManagerDialog::show()
+{
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
+    ui->background->setPixmap(pix.scaled( size() ));
+    return MusicAbstractMoveDialog::show();
 }
 
 QIcon MusicCloudFileManagerDialog::getIconByDataState(UploadData::State state)

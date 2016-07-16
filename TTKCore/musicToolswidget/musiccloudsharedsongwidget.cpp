@@ -284,7 +284,7 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
 void MusicCloudSharedSongTableWidget::openFileManagerDialog()
 {
     m_fileDialog->creatFileManager(m_waitedFiles);
-    m_fileDialog->exec();
+    m_fileDialog->show();
 }
 
 void MusicCloudSharedSongTableWidget::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
