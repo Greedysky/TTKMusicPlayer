@@ -5,6 +5,7 @@
 #include "musicsongstoolitemrenamedwidget.h"
 
 #include <QMenu>
+#include <QPainter>
 #include <QScrollArea>
 #include <QMouseEvent>
 
@@ -107,6 +108,15 @@ void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+    painter.drawLine(0, height(), width(), height());
+}
+
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
@@ -193,6 +203,8 @@ void MusicSongsToolBoxWidgetItem::contextMenuEvent(QContextMenuEvent *event)
 MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     : QWidget(parent)
 {
+    setAttribute(Qt::WA_TranslucentBackground);
+
     m_currentIndex = -1;
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -207,9 +219,16 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
+    scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
     scrollArea->setWidget(contentsWidget);
-//    scrollArea->viewport()->setStyleSheet("border: none;");
+
+    QString style = "background:rgba(255,255,255,25)";
+    contentsWidget->setObjectName("contentsWidget");
+    contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(style));
+    QWidget *view = scrollArea->viewport();
+    view->setObjectName("viewport");
+    view->setStyleSheet(QString("#viewport{%1}").arg(style));
 
     mainLayout->addWidget(scrollArea);
     setLayout(mainLayout);
