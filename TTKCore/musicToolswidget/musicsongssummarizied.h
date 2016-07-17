@@ -11,7 +11,6 @@
 
 #include "musicsong.h"
 #include "musicobject.h"
-#include "musicglobaldefine.h"
 #include "musicsongstoolboxwidget.h"
 
 #define MUSIC_NORMAL_LIST   0
@@ -130,25 +129,21 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void addNewItem();
+    void addNewRowItem();
     /*!
      * Add new play list item.
      */
-    void deleteItem(int index);
+    void deleteRowItem(int index);
     /*!
      * Delete selected play list item.
      */
-    void changItemName(int index, const QString &name);
+    void changRowItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
      */
     void setCurrentIndex();
     /*!
      * Set current play index from config file.
-     */
-    void currentIndexChanged();
-    /*!
-     * Current toolbox index has changed.
      */
     void addMusicSongToLovestListAt(int row);
     /*!
@@ -205,6 +200,18 @@ public Q_SLOTS:
      */
 
 protected:
+    int foundMappingIndex(int index);
+    /*!
+     * Found mapped index in container.
+     */
+    void addNewRowItem(const QString &name);
+    /*!
+     * Add new play list item by name.
+     */
+    void createWidgetItem(MusicSongItem *item);
+    /*!
+     * Create widget item.
+     */
     void clearAllLists();
     /*!
      * Delete all objects.

@@ -13,6 +13,7 @@
 #include <QBoxLayout>
 #include "musicglobaldefine.h"
 
+class MusicSongsToolItemRenamedWidget;
 /*! @brief The class of the tool box top widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -20,20 +21,61 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsToolBoxTopWidget(int index, QWidget *parent = 0);
+    explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    ~MusicSongsToolBoxTopWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
 
+    void setItemExpand(bool expand);
+    /*!
+     * Set Item expand.
+     */
+
+    void setTitle(const QString &text);
+    /*!
+     * Set top label title.
+     */
+    QString getTitle() const;
+    /*!
+     * Get top label title.
+     */
+
 Q_SIGNALS:
     void mousePressAt(int index);
     /*!
      * Current top widget is pressed.
+     */
+    void deleteRowItem(int index);
+    /*!
+     * Delete selected play list item.
+     */
+    void renameFinished(int index, const QString &name);
+    /*!
+     * Open rename selected play list item widget.
+     */
+
+public Q_SLOTS:
+    void deleteRowItem();
+    /*!
+     * Delete selected play list item.
+     */
+    void changRowItemName();
+    /*!
+     * Open rename selected play list item widget.
+     */
+    void setChangItemName(const QString &name);
+    /*!
+     * Rename item artist label is finised.
+     */
+    void showMenu();
+    /*!
+     * Show menu items.
      */
 
 protected:
@@ -44,6 +86,8 @@ protected:
      */
 
     int m_index;
+    QLabel *m_labelIcon, *m_labelText;
+    MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };
 
@@ -66,6 +110,10 @@ public:
      * Get class object name.
      */
 
+    QWidget *item(int index);
+    /*!
+     * Get widget item.
+     */
     void addItem(QWidget *item);
     /*!
      * Add widget item.
@@ -73,15 +121,6 @@ public:
     void removeItem(QWidget *item);
     /*!
      * Remove widget item.
-     */
-
-    void setTitle(const QString &text);
-    /*!
-     * Set top label title.
-     */
-    QString getTitle() const;
-    /*!
-     * Get top label title.
      */
 
     void setItemHide(bool hide);
@@ -94,15 +133,15 @@ public:
      */
 
 Q_SIGNALS:
-    void addNewItem();
+    void addNewRowItem();
     /*!
      * Add new play list item.
      */
-    void deleteItem(int index);
+    void deleteRowItem(int index);
     /*!
      * Delete selected play list item.
      */
-    void changItemName(int index, const QString &name);
+    void changRowItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
      */
@@ -114,9 +153,9 @@ protected:
      * Override the widget event.
      */
 
-    QLabel *m_labelIcon, *m_labelText;
     QVBoxLayout *m_layout;
     QList<QWidget*> m_itemList;
+    MusicSongsToolBoxTopWidget *m_topWidget;
 
 };
 
@@ -129,6 +168,9 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidget : public QWidget
     Q_OBJECT
 public:
     explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicSongsToolBoxWidget();
 
     static QString getClassName();
@@ -140,6 +182,10 @@ public:
     /*!
      * Add widget item.
      */
+    void removeItem(QWidget *item);
+    /*!
+     * Remove widget item.
+     */
 
     int currentIndex() const;
     /*!
@@ -150,7 +196,6 @@ public:
      * Get item's count.
      */
 
-Q_SIGNALS:
 public Q_SLOTS:
     void setCurrentIndex(int index);
     /*!

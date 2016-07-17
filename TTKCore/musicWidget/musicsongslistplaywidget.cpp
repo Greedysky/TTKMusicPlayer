@@ -182,7 +182,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
 void MusicSongsListPlayWidget::setItemRename()
 {
-    m_renameLine = new MusicSongsToolItemRenamedWidget(0, m_songNameLabel->toolTip(), this);
+    m_renameLine = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
     connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
     m_renameLine->setFixedSize(182, 25);
     m_renameLine->setGeometry(65, 5, 182, 25);

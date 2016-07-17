@@ -1,20 +1,101 @@
 #include "musicsongstoolboxwidget.h"
+#include "musicclickedlabel.h"
 #include "musicuiobject.h"
+#include "musicobject.h"
+#include "musicsongstoolitemrenamedwidget.h"
 
+#include <QMenu>
 #include <QScrollArea>
 #include <QMouseEvent>
-#include <QPainter>
-#include <QMenu>
 
-MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, QWidget *parent)
+MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
 {
+    m_renameLine = nullptr;
     m_index = index;
+    setFixedHeight(35);
+
+    QHBoxLayout *topLayout = new QHBoxLayout(this);
+    topLayout->setContentsMargins(3, 0, 0, 0);
+    topLayout->setSpacing(0);
+    m_labelIcon = new QLabel(this);
+    m_labelIcon->setPixmap(QPixmap(":/image/arrowup"));
+    m_labelText = new QLabel(this);
+    m_labelText->setText(text);
+    MusicClickedLabel *menuLabel = new MusicClickedLabel(this);
+    connect(menuLabel, SIGNAL(clicked()), SLOT(showMenu()));
+    menuLabel->setPixmap(QPixmap(":/toolSets/listmenu"));
+    topLayout->addWidget(m_labelIcon);
+    topLayout->addWidget(m_labelText, 20);
+    topLayout->addWidget(menuLabel);
+    topLayout->addStretch(1);
+    setLayout(topLayout);
+}
+
+MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
+{
+    delete m_renameLine;
+    delete m_labelIcon;
+    delete m_labelText;
 }
 
 QString MusicSongsToolBoxTopWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSongsToolBoxTopWidget::setItemExpand(bool expand)
+{
+    m_labelIcon->setPixmap(QPixmap(expand ? ":/image/arrowdown" : ":/image/arrowup"));
+}
+
+void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
+{
+    m_labelText->setText(text);
+}
+
+QString MusicSongsToolBoxTopWidget::getTitle() const
+{
+    return m_labelText->text().trimmed();
+}
+
+void MusicSongsToolBoxTopWidget::deleteRowItem()
+{
+    emit deleteRowItem(m_index);
+}
+
+void MusicSongsToolBoxTopWidget::changRowItemName()
+{
+    if(!m_renameLine)
+    {
+        m_renameLine = new MusicSongsToolItemRenamedWidget(getTitle(), this);
+        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
+        m_renameLine->setGeometry(m_labelIcon->width(), 3, 250, height() - 6);
+    }
+    m_renameLine->show();
+}
+
+void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
+{
+    m_labelText->setText(name);
+    m_labelText->setToolTip(name);
+    emit renameFinished(m_index, name);
+
+    m_renameLine->deleteLater();
+    m_renameLine = nullptr;
+}
+
+void MusicSongsToolBoxTopWidget::showMenu()
+{
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.addAction(tr("addNewItem"), parent(), SIGNAL(addNewRowItem()));
+    menu.addSeparator();
+
+    bool disable = !(m_index == 0 || m_index == 1 || m_index == 2);
+    menu.addAction(tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
+    menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
+    menu.exec(QCursor::pos());
 }
 
 void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
@@ -29,62 +110,43 @@ void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
-    QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("addNewItem"), parent(), SIGNAL(addNewItem()));
-    menu.addSeparator();
-
-    bool disable = !(m_index == 0 || m_index == 1 || m_index == 2);
-    menu.addAction(tr("deleteItem"), parent(), SIGNAL(deleteItem()))->setEnabled(disable);
-    menu.addAction(tr("changItemName"), parent(), SIGNAL(changItemName()))->setEnabled(disable);
-    menu.exec(QCursor::pos());
+    showMenu();
 }
 
-//void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
-//{
-//    QPainter painter(this);
-//    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, 20));
-//    painter.end();
-
-//    QWidget::paintEvent(event);
-//}
 
 MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
 {
-    MusicSongsToolBoxTopWidget *topWidget = new MusicSongsToolBoxTopWidget(index, this);
-    connect(topWidget, SIGNAL(mousePressAt(int)), parent, SLOT(mousePressAt(int)));
-
-    QHBoxLayout *topLayout = new QHBoxLayout(topWidget);
-    topLayout->setContentsMargins(3, 0, 0, 0);
-    topLayout->setSpacing(0);
-    m_labelIcon = new QLabel(this);
-    m_labelIcon->setPixmap(QPixmap(":/image/arrowup"));
-    m_labelText = new QLabel(this);
-    m_labelText->setText(text);
-    topLayout->addWidget(m_labelIcon);
-    topLayout->addWidget(m_labelText);
-    topLayout->addStretch(5);
-    topWidget->setLayout(topLayout);
-    topWidget->setFixedHeight(30);
+    m_topWidget = new MusicSongsToolBoxTopWidget(index, text, this);
+    connect(m_topWidget, SIGNAL(mousePressAt(int)), parent, SLOT(mousePressAt(int)));
+    connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
+    connect(m_topWidget, SIGNAL(renameFinished(int,QString)), SIGNAL(changRowItemName(int,QString)));
 
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
-    m_layout->addWidget(topWidget);
+    m_layout->addWidget(m_topWidget);
     setLayout(m_layout);
 }
 
 MusicSongsToolBoxWidgetItem::~MusicSongsToolBoxWidgetItem()
 {
-    delete m_labelIcon;
-    delete m_labelText;
+    delete m_topWidget;
     delete m_layout;
 }
 
 QString MusicSongsToolBoxWidgetItem::getClassName()
 {
     return staticMetaObject.className();
+}
+
+QWidget *MusicSongsToolBoxWidgetItem::item(int index)
+{
+    if(index < 0 || index >= m_itemList.count())
+    {
+        return nullptr;
+    }
+    return m_itemList[index];
 }
 
 void MusicSongsToolBoxWidgetItem::addItem(QWidget *item)
@@ -99,19 +161,9 @@ void MusicSongsToolBoxWidgetItem::removeItem(QWidget *item)
     m_layout->removeWidget(item);
 }
 
-void MusicSongsToolBoxWidgetItem::setTitle(const QString &text)
-{
-    m_labelText->setText(text);
-}
-
-QString MusicSongsToolBoxWidgetItem::getTitle() const
-{
-    return m_labelText->text().trimmed();
-}
-
 void MusicSongsToolBoxWidgetItem::setItemHide(bool hide)
 {
-    m_labelIcon->setPixmap(QPixmap(hide ? ":/image/arrowdown" : ":/image/arrowup"));
+    m_topWidget->setItemExpand(hide);
     foreach(QWidget *w, m_itemList)
     {
         w->setVisible(hide);
@@ -165,6 +217,10 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 
 MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
 {
+    while(!m_itemList.isEmpty())
+    {
+        delete m_itemList.takeLast();
+    }
     delete m_layout;
 }
 
@@ -222,6 +278,20 @@ void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)
     m_itemList.append(it);
     m_layout->addWidget(it);
     m_layout->addStretch(5);
+}
+
+void MusicSongsToolBoxWidget::removeItem(QWidget *item)
+{
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        if(m_itemList[i]->item(0) == item)
+        {
+            m_layout->removeWidget(item);
+            m_itemList.takeAt(i)->deleteLater();
+            m_currentIndex = 0;
+            break;
+        }
+    }
 }
 
 void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)

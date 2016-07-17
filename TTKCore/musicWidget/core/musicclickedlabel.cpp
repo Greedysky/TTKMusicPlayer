@@ -15,7 +15,7 @@ QString MusicClickedLabel::getClassName()
 
 void MusicClickedLabel::mousePressEvent(QMouseEvent *event)
 {
-    QLabel::mousePressEvent(event);
+//    QLabel::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
        emit clicked();

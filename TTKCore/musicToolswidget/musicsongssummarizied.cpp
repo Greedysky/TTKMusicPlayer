@@ -10,52 +10,15 @@
 #include "musicsongssummariziedfloatwidget.h"
 #include "musicsongsearchonlinewidget.h"
 
-#include <QScrollBar>
-#include <QTableWidgetItem>
-#include <QLayout>
-
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
 {
     m_supperClass = parent;
-//    setAttribute(Qt::WA_TranslucentBackground, true);
-//    for(int i=0; i<3; ++i)
-//    {
-//        MusicSongsListWidget *w = new MusicSongsListWidget(this);
-//        m_mainSongLists.append(w);
-//    }
-
-//    addItem(m_mainSongLists[MUSIC_NORMAL_LIST], tr("myDefaultPlayItem"));
-//    addItem(m_mainSongLists[MUSIC_LOVEST_LIST], tr("myLoveSongItem"));
-//    addItem(m_mainSongLists[MUSIC_NETWORK_LIST], tr("myNetSongItem"));
-
     m_currentIndexs = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
 
-//    for(int i=0; i<3; ++i)
-//    {
-//        connect(m_mainSongLists[i], SIGNAL(cellDoubleClicked(int,int)), parent, SLOT(musicPlayIndex(int,int)));
-//        connect(m_mainSongLists[i], SIGNAL(musicPlayOrder()), parent, SLOT(musicPlayOrder()));
-//        connect(m_mainSongLists[i], SIGNAL(musicPlayRandom()), parent, SLOT(musicPlayRandom()));
-//        connect(m_mainSongLists[i], SIGNAL(musicPlayListLoop()), parent, SLOT(musicPlayListLoop()));
-//        connect(m_mainSongLists[i], SIGNAL(musicPlayOneLoop()), parent, SLOT(musicPlayOneLoop()));
-//        connect(m_mainSongLists[i], SIGNAL(musicPlayItemOnce()), parent, SLOT(musicPlayItemOnce()));
-//        connect(m_mainSongLists[i], SIGNAL(musicAddNewFiles()), parent, SLOT(musicImportSongsOnlyFile()));
-//        connect(m_mainSongLists[i], SIGNAL(musicAddNewDir()), parent, SLOT(musicImportSongsOnlyDir()));
-//        connect(m_mainSongLists[i], SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
-//        connect(m_mainSongLists[i], SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
-//        connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
-//        connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
-//                                    SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
-//        ///connect to items
-//        connect(m_itemList[i], SIGNAL(addNewItem()), SLOT(addNewItem()));
-//        connect(m_itemList[i], SIGNAL(deleteItem(int)), SLOT(deleteItem(int)));
-//        connect(m_itemList[i], SIGNAL(changItemName(int,QString)), SLOT(changItemName(int,QString)));
-//    }
-
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
-    connect(this, SIGNAL(currentChanged(int)), SLOT(currentIndexChanged()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
@@ -75,32 +38,20 @@ QString MusicSongsSummarizied::getClassName()
 
 void MusicSongsSummarizied::setMusicLists(const MusicSongItems &names)
 {
-    m_songItems = names;
-    for(int i=0; i<names.count(); ++i)
+    if(names.count() < 3)
     {
-        MusicSongsListWidget *w = new MusicSongsListWidget(this);
-        m_songItems[i].m_itemObject = w;
-        addItem(w, m_songItems[i].m_itemName);
-
-        connect(w, SIGNAL(cellDoubleClicked(int,int)), m_supperClass, SLOT(musicPlayIndex(int,int)));
-        connect(w, SIGNAL(musicPlayOrder()), m_supperClass, SLOT(musicPlayOrder()));
-        connect(w, SIGNAL(musicPlayRandom()), m_supperClass, SLOT(musicPlayRandom()));
-        connect(w, SIGNAL(musicPlayListLoop()), m_supperClass, SLOT(musicPlayListLoop()));
-        connect(w, SIGNAL(musicPlayOneLoop()), m_supperClass, SLOT(musicPlayOneLoop()));
-        connect(w, SIGNAL(musicPlayItemOnce()), m_supperClass, SLOT(musicPlayItemOnce()));
-        connect(w, SIGNAL(musicAddNewFiles()), m_supperClass, SLOT(musicImportSongsOnlyFile()));
-        connect(w, SIGNAL(musicAddNewDir()), m_supperClass, SLOT(musicImportSongsOnlyDir()));
-        connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
-        connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
-        connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
-        connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
-                   SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
-        ///connect to items
-        connect(m_itemList.last(), SIGNAL(addNewItem()), SLOT(addNewItem()));
-        connect(m_itemList.last(), SIGNAL(deleteItem(int)), SLOT(deleteItem(int)));
-        connect(m_itemList.last(), SIGNAL(changItemName(int,QString)), SLOT(changItemName(int,QString)));
-
-        w->setSongsFileName(&m_songItems[i].m_songs);
+        //if less than three count, add default items
+        addNewRowItem( tr("myDefaultPlayItem") );
+        addNewRowItem( tr("myLoveSongItem") );
+        addNewRowItem( tr("myNetSongItem") );
+    }
+    else
+    {
+        m_songItems = names;
+        for(int i=0; i<names.count(); ++i)
+        {
+            createWidgetItem(&m_songItems[i]);
+        }
     }
 }
 
@@ -251,6 +202,56 @@ void MusicSongsSummarizied::updateCurrentArtist()
     m_songItems[m_currentIndexs].m_itemObject->updateCurrentArtist();
 }
 
+int MusicSongsSummarizied::foundMappingIndex(int index)
+{
+    int id = -1;
+    for(int i=0; i<m_songItems.count(); ++i)
+    {
+        if(m_songItems[i].m_itemIndex == index)
+        {
+            id = i;
+            break;
+        }
+    }
+    return id;
+}
+
+void MusicSongsSummarizied::addNewRowItem(const QString &name)
+{
+    MusicSongItem item;
+    item.m_itemName = name;
+    item.m_itemIndex = m_songItems.count();
+    m_songItems << item;
+    createWidgetItem(&m_songItems.last());
+}
+
+void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
+{
+    MusicSongsListWidget *w = new MusicSongsListWidget(this);
+    item->m_itemObject = w;
+    addItem(w, item->m_itemName);
+
+    connect(w, SIGNAL(cellDoubleClicked(int,int)), m_supperClass, SLOT(musicPlayIndex(int,int)));
+    connect(w, SIGNAL(musicPlayOrder()), m_supperClass, SLOT(musicPlayOrder()));
+    connect(w, SIGNAL(musicPlayRandom()), m_supperClass, SLOT(musicPlayRandom()));
+    connect(w, SIGNAL(musicPlayListLoop()), m_supperClass, SLOT(musicPlayListLoop()));
+    connect(w, SIGNAL(musicPlayOneLoop()), m_supperClass, SLOT(musicPlayOneLoop()));
+    connect(w, SIGNAL(musicPlayItemOnce()), m_supperClass, SLOT(musicPlayItemOnce()));
+    connect(w, SIGNAL(musicAddNewFiles()), m_supperClass, SLOT(musicImportSongsOnlyFile()));
+    connect(w, SIGNAL(musicAddNewDir()), m_supperClass, SLOT(musicImportSongsOnlyDir()));
+    connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
+    connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
+    connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
+    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
+               SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+    ///connect to items
+    connect(m_itemList.last(), SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
+    connect(m_itemList.last(), SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
+    connect(m_itemList.last(), SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
+
+    w->setSongsFileName(&item->m_songs);
+}
+
 void MusicSongsSummarizied::clearAllLists()
 {
     while(!m_songItems.isEmpty())
@@ -343,49 +344,33 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     emit musicPlayIndex(m_songItems[MUSIC_NORMAL_LIST].m_songs.count() - 1, 0);
 }
 
-void MusicSongsSummarizied::addNewItem()
+void MusicSongsSummarizied::addNewRowItem()
 {
-//    MusicSongsListWidget *w = new MusicSongsListWidget(this);
-
-//    addItem(w, tr("defaultSongItem"));
-//    m_mainSongLists.append(w);
-
-//    connect(m_itemList.last(), SIGNAL(addNewItem()), SLOT(addNewItem()));
-//    connect(m_itemList.last(), SIGNAL(deleteItem()), SLOT(deleteItem()));
-//    connect(m_itemList.last(), SIGNAL(changItemName()), SLOT(changItemName()));
+    addNewRowItem( tr("defaultItem") );
 }
 
-void MusicSongsSummarizied::deleteItem(int index)
+void MusicSongsSummarizied::deleteRowItem(int index)
 {
-//    int index = currentIndex();
-//    if(index == 0 || index == 1 || index == 2)
-//    {
-//        MusicMessageBox message;
-//        message.setText(tr("The origin one can't delete!"));
-//        message.exec();
-//        return;//Not allow to delete the origin three item
-//    }
-//    removeItem(index);
-}
-
-void MusicSongsSummarizied::changItemName(int index, const QString &name)
-{
-//    int index = currentIndex();
-//    if(index == 0 || index == 1 || index == 2)
-//    {
-//        MusicMessageBox message;
-//        message.setText(tr("The origin one can't rename!"));
-//        message.exec();
-//        return;//Not allow to change name for the origin three item
-//    }
-}
-
-void MusicSongsSummarizied::currentIndexChanged()
-{
-    if(currentIndex() == -1)
+    int id = foundMappingIndex(index);
+    if(id == -1)
     {
         return;
     }
+
+    MusicSongItem item = m_songItems.takeLast();
+    removeItem(item.m_itemObject);
+    delete item.m_itemObject;
+}
+
+void MusicSongsSummarizied::changRowItemName(int index, const QString &name)
+{
+    int id = foundMappingIndex(index);
+    if(id == -1)
+    {
+        return;
+    }
+
+    m_songItems[id].m_itemName = name;
 }
 
 void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
@@ -405,7 +390,7 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
     MusicSongsToolBoxWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/add"), tr("addNewItem"), this, SLOT(addNewItem()));
+    menu.addAction(QIcon(":/contextMenu/add"), tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"));
     menu.addAction(tr("musicTest"));
     menu.addAction(tr("deleteAllItem"));

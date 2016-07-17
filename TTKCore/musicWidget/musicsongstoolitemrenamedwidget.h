@@ -19,8 +19,7 @@ class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
 public:
-    MusicSongsToolItemRenamedWidget(int offset, const QString &originText,
-                                    QWidget *parent = 0);
+    MusicSongsToolItemRenamedWidget(const QString &originText, QWidget *parent = 0);
     /*!
      * Object contsructor by index and origin name.
      */

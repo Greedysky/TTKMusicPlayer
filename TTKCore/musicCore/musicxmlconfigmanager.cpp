@@ -26,11 +26,11 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
-    foreach(MusicSongItem item, musics)
+    for(int i=0; i<musics.count(); ++i)
     {
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
-                                  QList<QVariant>() << item.m_itemName << item.m_itemIndex << item.m_songs.count());
-        foreach(MusicSong song, item.m_songs)
+                                  QList<QVariant>() << musics[i].m_itemName << i << musics[i].m_songs.count());
+        foreach(MusicSong song, musics[i].m_songs)
         {
             writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
                                      QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
