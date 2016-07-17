@@ -208,8 +208,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicConnectTransferWidget::getClassName() && to == MusicSongsSummarizied::getClassName() )
     {
-        QObject::connect(first, SIGNAL(getMusicLists(MusicSongsList&,QStringList&)), second,
-                                SLOT(getMusicLists(MusicSongsList&,QStringList&)));
+        QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second,
+                                SLOT(getMusicLists(MusicSongItems&)));
     }
 
 }

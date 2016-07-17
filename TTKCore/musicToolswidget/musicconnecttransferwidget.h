@@ -41,7 +41,7 @@ public:
      */
 
 Q_SIGNALS:
-    void getMusicLists(MusicSongsList &songs, QStringList &names);
+    void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.
      */

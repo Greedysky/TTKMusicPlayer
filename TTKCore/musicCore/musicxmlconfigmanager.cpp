@@ -1,8 +1,6 @@
 #include "musicxmlconfigmanager.h"
 #include "musicsettingmanager.h"
 
-#include <QPixmap>
-
 MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
@@ -14,25 +12,7 @@ QString MusicXMLConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MusicSongsList &musics)
-{
-    musics << readMusicFilePath("fileNormalPath")
-           << readMusicFilePath("fileLovestPath")
-           << readMusicFilePath("netFilePath");
-
-    //extend playlist init here
-//    for(int i=3; i<8; ++i)
-//    {
-//        onePara = readMusicFilePath("extend" + QString::number(i - 2));
-//        if(!onePara.first.isEmpty() && !onePara.second.isEmpty())
-//        {
-//            fileNamesList<<onePara.first;
-//            fileUrlsList<<onePara.second;
-//        }
-//    }
-}
-
-void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
 {
     if( musics.isEmpty() )
     {
@@ -46,44 +26,37 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongsList &musics)
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
-    //Class A
-    QDomElement fileNormalPath = writeDomElement(musicPlayer, "fileNormalPath", "count", musics[0].count());
-    QDomElement fileLovestPath = writeDomElement(musicPlayer, "fileLovestPath", "count", musics[1].count());
-    QDomElement netFilePath = writeDomElement(musicPlayer, "netFilePath", "count", musics[2].count());
-
-    //extend playlist init here
-//    for(int i=3; i<fileNamesList.count(); ++i)
-//    {
-//        QDomElement extend = m_ddom->createElement("extend" + QString::number(i - 2));
-//        extend.setAttribute("count",fileNamesList[i].count());
-//        TTKMusicPlayer.appendChild(extend);
-//    }
-
-    //Class B
-    foreach(MusicSong song, musics[0])
+    foreach(MusicSongItem item, musics)
     {
-        writeDomElementMutilText(fileNormalPath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
-                                                   << song.getMusicTime(), song.getMusicPath());
-    }
-
-    foreach(MusicSong song, musics[1])
-    {
-        writeDomElementMutilText(fileLovestPath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
-                                                   << song.getMusicTime(), song.getMusicPath());
-    }
-
-    foreach(MusicSong song, musics[2])
-    {
-        writeDomElementMutilText(netFilePath, "value", QStringList() << "name" << "playCount" << "time",
-                                 QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
-                                                   << song.getMusicTime(), song.getMusicPath());
+        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
+                                  QList<QVariant>() << item.m_itemName << item.m_itemIndex << item.m_songs.count());
+        foreach(MusicSong song, item.m_songs)
+        {
+            writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
+                                     QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
+                                                       << song.getMusicTime(), song.getMusicPath());
+        }
     }
 
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out, 4);
+}
+
+void MusicXMLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
+{
+    QDomNodeList nodes = m_ddom->elementsByTagName("musicList");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomNode node = nodes.at(i);
+        MusicSongItem item;
+        item.m_songs = readMusicFilePath(node);
+
+        QDomElement element = node.toElement();
+        item.m_itemIndex = element.attribute("index").toInt();
+        item.m_itemName = element.attribute("name");
+        musics << item;
+    }
 }
 
 void MusicXMLConfigManager::writeXMLConfig()
@@ -260,17 +233,18 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out, 4);
 }
 
-MusicSongs MusicXMLConfigManager::readMusicFilePath(const QString &value) const
+MusicSongs MusicXMLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
-    QDomNodeList nodelist = m_ddom->elementsByTagName(value).at(0).childNodes();
+    QDomNodeList nodelist = node.childNodes();
 
     MusicSongs songs;
     for(int i=0; i<nodelist.count(); i++)
     {
-        songs << MusicSong(nodelist.at(i).toElement().text(),
-                           nodelist.at(i).toElement().attribute("playCount").toInt(),
-                           nodelist.at(i).toElement().attribute("time"),
-                           nodelist.at(i).toElement().attribute("name"));
+        QDomElement element = nodelist.at(i).toElement();
+        songs << MusicSong(element.text(),
+                           element.attribute("playCount").toInt(),
+                           element.attribute("time"),
+                           element.attribute("name"));
     }
     return songs;
 }

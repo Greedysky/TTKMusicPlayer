@@ -40,11 +40,11 @@ public:
     /*!
      * Get class object name.
      */
-    void setMusicLists(const MusicSongsList &names);
+    void setMusicLists(const MusicSongItems &names);
     /*!
      * Set music datas into container.
      */
-    inline const MusicSongsList& getMusicLists() const  { return m_musicFileNames;}
+    inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
     /*!
      * Get music datas from container.
      */
@@ -195,7 +195,7 @@ public Q_SLOTS:
     /*!
      * Delete the float function widget.
      */
-    void getMusicLists(MusicSongsList &songs, QStringList &names);
+    void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.
      */
@@ -217,9 +217,9 @@ protected:
 
     int m_currentIndexs;
     int m_searchFileListIndex;
+    QObject *m_supperClass;
+    MusicSongItems m_songItems;
     MusicObject::MIntsListMap m_searchfileListCache;
-    MusicSongsList m_musicFileNames;
-    QList<MusicSongsListWidget*> m_mainSongLists;
     MusicSongsSummariziedFloatWidget *m_floatWidget;
 
 };

@@ -41,11 +41,11 @@ public:
     /*!
      * Write datas into xml file.
      */
-    void writeMusicSongsConfig(const MusicSongsList &musics);
+    void writeMusicSongsConfig(const MusicSongItems &musics);
     /*!
      * Write music datas into xml file.
      */
-    void readMusicSongsConfig(MusicSongsList &musics);
+    void readMusicSongsConfig(MusicSongItems &musics);
     /*!
      * Read music datas into xml file.
      */
@@ -225,7 +225,7 @@ public:
      */
 
 protected:
-    MusicSongs readMusicFilePath(const QString &value) const;
+    MusicSongs readMusicFilePath(const QDomNode &node) const;
     /*!
      * Read Music File Path.
      */

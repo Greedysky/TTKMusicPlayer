@@ -311,6 +311,9 @@ void MusicSongsListWidget::setDeleteItemAt()
         progress.setValue(deleteList.count()*2 - i);
     }
 
+    //just fix table widget size hint
+    setFixedHeight( allRowHeight() );
+
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 

@@ -79,16 +79,15 @@ void MusicConnectTransferWidget::openTransferFiles(int mode)
 
 void MusicConnectTransferWidget::initColumns()
 {
-    MusicSongsList songs;
-    QStringList names;
-    emit getMusicLists(songs, names);
+    MusicSongItems songs;
+    emit getMusicLists(songs);
 
     QButtonGroup *group = new QButtonGroup(this);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(currentPlayListSelected(int)));
     for(int i=0; i<songs.count(); ++i)
     {
-        QPushButton *button = new QPushButton(QString("%1(%2)")
-                                              .arg(names[i]).arg(songs[i].count()), this);
+        QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName)
+                                              .arg(songs[i].m_songs.count()), this);
         button->setStyleSheet(MusicUIObject::MPushButtonStyle08);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setGeometry(32, 100 + 50*i, 90, 25);
@@ -175,9 +174,8 @@ QString MusicConnectTransferWidget::getRemovableDrive()
 
 void MusicConnectTransferWidget::currentPlayListSelected(int index)
 {
-    MusicSongsList songs;
-    QStringList names;
-    emit getMusicLists(songs, names);
+    MusicSongItems songs;
+    emit getMusicLists(songs);
     if(index >= songs.count())
     {
         return;
@@ -185,7 +183,7 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 
     m_searchfileListCache.clear();
     ui->searchLineEdit->clear();
-    m_currentSongs = songs[m_currentIndex = index];
+    m_currentSongs = songs[m_currentIndex = index].m_songs;
     createAllItems(m_currentSongs);
 }
 
