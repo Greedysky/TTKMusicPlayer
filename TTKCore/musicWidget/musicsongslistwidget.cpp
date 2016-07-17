@@ -8,6 +8,7 @@
 #include "musicprogresswidget.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
+#include <QDebug>
 
 #include <QUrl>
 #include <QAction>
@@ -27,10 +28,12 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     m_mouseMoved = false;
     m_transparent = 0;
 
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     MusicUtils::UWidget::setTransparent(this, 0);
 #ifndef MUSIC_GREATER_NEW
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MScrollBarStyle01 + \
                   MusicUIObject::MLineEditStyle02 + \
                   "QTableWidget{background:rgba(0, 0, 0, 255)}");
 #endif
@@ -76,6 +79,8 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
     }
+    //just fix table widget size hint
+    setFixedHeight( allRowHeight() );
 }
 
 void MusicSongsListWidget::clearAllItems()
@@ -505,6 +510,19 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
+
+    //just fix table widget size hint
+    setFixedHeight( allRowHeight() );
+}
+
+int MusicSongsListWidget::allRowHeight() const
+{
+    int height = 0;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        height += rowHeight(i);
+    }
+    return height;
 }
 
 void MusicSongsListWidget::selectRow(int index)
@@ -536,4 +554,7 @@ void MusicSongsListWidget::selectRow(int index)
     setCellWidget(index, 2, widget1);
     setRowHeight(index, 60);
     m_playRowIndex = index;
+
+    //just fix table widget size hint
+    setFixedHeight( allRowHeight() );
 }

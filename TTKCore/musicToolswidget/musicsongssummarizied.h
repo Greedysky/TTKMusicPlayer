@@ -9,11 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QToolBox>
-#include <QContextMenuEvent>
 #include "musicsong.h"
-#include "musicglobaldefine.h"
 #include "musicobject.h"
+#include "musicglobaldefine.h"
+#include "musicsongstoolboxwidget.h"
 
 #define MUSIC_NORMAL_LIST   0
 #define MUSIC_LOVEST_LIST   1
@@ -22,13 +21,12 @@
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
-class MusicSongsToolItemRenamedWidget;
 class MusicSongsSummariziedFloatWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsSummarizied : public QToolBox
+class MUSIC_TOOL_EXPORT MusicSongsSummarizied : public MusicSongsToolBoxWidget
 {
     Q_OBJECT
 public:
@@ -136,11 +134,11 @@ public Q_SLOTS:
     /*!
      * Add new play list item.
      */
-    void deleteItem();
+    void deleteItem(int index);
     /*!
      * Delete selected play list item.
      */
-    void changItemName();
+    void changItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
      */
@@ -185,10 +183,6 @@ public Q_SLOTS:
     /*!
      * Check current list is searched or not.
      */
-    void setChangItemName(const QString &name);
-    /*!
-     * Rename selected play list item.
-     */
     void setTransparent(int alpha);
     /*!
      * Set background transparent.
@@ -211,10 +205,6 @@ public Q_SLOTS:
      */
 
 protected:
-    void changeItemIcon();
-    /*!
-     * Set item icon due to the tool box index changed.
-     */
     void clearAllLists();
     /*!
      * Delete all objects.
@@ -226,12 +216,10 @@ protected:
      */
 
     int m_currentIndexs;
-    int m_renameIndex;
     int m_searchFileListIndex;
     MusicObject::MIntsListMap m_searchfileListCache;
     MusicSongsList m_musicFileNames;
     QList<MusicSongsListWidget*> m_mainSongLists;
-    MusicSongsToolItemRenamedWidget *m_renameLine;
     MusicSongsSummariziedFloatWidget *m_floatWidget;
 
 };

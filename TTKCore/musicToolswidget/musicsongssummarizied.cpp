@@ -1,6 +1,5 @@
 #include "musicsongssummarizied.h"
 #include "musicsongslistwidget.h"
-#include "musicsongstoolitemrenamedwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
@@ -16,23 +15,21 @@
 #include <QLayout>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
-    : QToolBox(parent), m_renameLine(nullptr), m_floatWidget(nullptr)
+    : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    setStyleSheet(MusicUIObject::MToolBoxStyle01);
+//    setAttribute(Qt::WA_TranslucentBackground, true);
     for(int i=0; i<3; ++i)
     {
-        MusicSongsListWidget* w = new MusicSongsListWidget(this);
+        MusicSongsListWidget *w = new MusicSongsListWidget(this);
         m_mainSongLists.append(w);
     }
+
     addItem(m_mainSongLists[MUSIC_NORMAL_LIST], tr("myDefaultPlayItem"));
     addItem(m_mainSongLists[MUSIC_LOVEST_LIST], tr("myLoveSongItem"));
     addItem(m_mainSongLists[MUSIC_NETWORK_LIST], tr("myNetSongItem"));
-    layout()->setSpacing(0);
-    changeItemIcon();
+
     m_currentIndexs = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
-    m_renameIndex = -1;
 
     for(int i=0; i<3; ++i)
     {
@@ -49,6 +46,10 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
         connect(m_mainSongLists[i], SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
         connect(m_mainSongLists[i], SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                                     SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+        ///connect to items
+        connect(m_itemList[i], SIGNAL(addNewItem()), SLOT(addNewItem()));
+        connect(m_itemList[i], SIGNAL(deleteItem(int)), SLOT(deleteItem(int)));
+        connect(m_itemList[i], SIGNAL(changItemName(int,QString)), SLOT(changItemName(int,QString)));
     }
 
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
@@ -63,7 +64,6 @@ MusicSongsSummarizied::~MusicSongsSummarizied()
 {
     M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllLists();
-    delete m_renameLine;
     delete m_floatWidget;
 }
 
@@ -173,7 +173,7 @@ QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
 
 void MusicSongsSummarizied::selectRow(int index)
 {
-    QToolBox::setCurrentIndex(m_currentIndexs);
+    MusicSongsToolBoxWidget::setCurrentIndex(m_currentIndexs);
     m_mainSongLists[m_currentIndexs]->selectRow(index);
 }
 
@@ -265,15 +265,14 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
 
 void MusicSongsSummarizied::addNewItem()
 {
-    if(m_mainSongLists.count() > 8)
-    {
-        return;
-    }
-
     MusicSongsListWidget *w = new MusicSongsListWidget(this);
+
+    addItem(w, tr("defaultSongItem"));
     m_mainSongLists.append(w);
-    addItem(w, tr("newSongItem"));
-    changeItemIcon();
+
+    connect(m_itemList.last(), SIGNAL(addNewItem()), SLOT(addNewItem()));
+    connect(m_itemList.last(), SIGNAL(deleteItem()), SLOT(deleteItem()));
+    connect(m_itemList.last(), SIGNAL(changItemName()), SLOT(changItemName()));
 }
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
@@ -312,7 +311,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     if(play)
     {
         ///when download finished just play it at once
-        QToolBox::setCurrentIndex(MUSIC_NETWORK_LIST);
+        MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NETWORK_LIST);
         emit musicPlayIndex(m_musicFileNames[MUSIC_NETWORK_LIST].count() - 1, 0);
     }
 }
@@ -333,48 +332,33 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
         }
     }
     /// just play it at once
-    QToolBox::setCurrentIndex(0);
+    MusicSongsToolBoxWidget::setCurrentIndex(0);
     emit musicPlayIndex(m_musicFileNames[MUSIC_NORMAL_LIST].count() - 1, 0);
 }
 
-void MusicSongsSummarizied::deleteItem()
+void MusicSongsSummarizied::deleteItem(int index)
 {
-    int index = currentIndex();
-    if(index == 0 || index == 1 || index == 2)
-    {
-        MusicMessageBox message;
-        message.setText(tr("The origin one can't delete!"));
-        message.exec();
-        return;//Not allow to delete the origin three item
-    }
-    removeItem(index);
+//    int index = currentIndex();
+//    if(index == 0 || index == 1 || index == 2)
+//    {
+//        MusicMessageBox message;
+//        message.setText(tr("The origin one can't delete!"));
+//        message.exec();
+//        return;//Not allow to delete the origin three item
+//    }
+//    removeItem(index);
 }
 
-void MusicSongsSummarizied::changItemName()
+void MusicSongsSummarizied::changItemName(int index, const QString &name)
 {
-    int index = currentIndex();
-    if(index == 0 || index == 1 || index == 2)
-    {
-        MusicMessageBox message;
-        message.setText(tr("The origin one can't rename!"));
-        message.exec();
-        return;//Not allow to change name for the origin three item
-    }
-    if(!m_renameLine)
-    {
-        m_renameIndex = currentIndex();
-        m_renameLine =new MusicSongsToolItemRenamedWidget(m_renameIndex*26,
-                                  QToolBox::itemText(m_renameIndex), this);
-        connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
-        m_renameLine->show();
-    }
-}
-
-void MusicSongsSummarizied::setChangItemName(const QString &name)
-{
-    setItemText(m_renameIndex, name);
-    delete m_renameLine;
-    m_renameLine = nullptr;
+//    int index = currentIndex();
+//    if(index == 0 || index == 1 || index == 2)
+//    {
+//        MusicMessageBox message;
+//        message.setText(tr("The origin one can't rename!"));
+//        message.exec();
+//        return;//Not allow to change name for the origin three item
+//    }
 }
 
 void MusicSongsSummarizied::currentIndexChanged()
@@ -383,16 +367,11 @@ void MusicSongsSummarizied::currentIndexChanged()
     {
         return;
     }
-    changeItemIcon();
-    if(m_renameLine)
-    {
-        m_renameLine->renameFinished();
-    }
 }
 
 void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
 {
-    QToolBox::wheelEvent(event);
+    MusicSongsToolBoxWidget::wheelEvent(event);
     if(m_floatWidget == nullptr)
     {
         m_floatWidget = new MusicSongsSummariziedFloatWidget;
@@ -404,22 +383,14 @@ void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
 
 void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
 {
-    QToolBox::contextMenuEvent(event);
+    MusicSongsToolBoxWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/delete"), tr("deleteItem"), this, SLOT(deleteItem()));
     menu.addAction(QIcon(":/contextMenu/add"), tr("addNewItem"), this, SLOT(addNewItem()));
-    menu.addAction(tr("changItemName"), this, SLOT(changItemName()));
-    menu.exec(event->globalPos());
-}
-
-void MusicSongsSummarizied::changeItemIcon()
-{
-    for(int i=0; i<count(); ++i)
-    {
-        setItemIcon(i, QIcon(":/image/arrowup"));
-    }
-    setItemIcon(currentIndex(), QIcon(":/image/arrowdown"));
+    menu.addAction(tr("importItem"));
+    menu.addAction(tr("musicTest"));
+    menu.addAction(tr("deleteAllItem"));
+    menu.exec(QCursor::pos());
 }
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
@@ -483,7 +454,7 @@ void MusicSongsSummarizied::setCurrentIndex()
     }
     m_currentIndexs = keyList[1].toInt();
     int index = keyList[2].toInt();
-    QToolBox::setCurrentIndex(index);
+    MusicSongsToolBoxWidget::setCurrentIndex(index);
     setMusicPlayCount(index);
     emit showCurrentSong(index);
 }

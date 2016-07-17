@@ -19,6 +19,7 @@ HEADERS  += \
     $$PWD/core/musicwebentainradiodatebase.h \
     $$PWD/core/musicfilesenderserver.h \
     $$PWD/core/musicfilereceiveserver.h \
+    $$PWD/musicsongstoolboxwidget.h \
     $$PWD/musicsongssummarizied.h \
     $$PWD/musicsongssummariziedfloatwidget.h \
     $$PWD/musictoolsetswidget.h \
@@ -42,6 +43,7 @@ SOURCES += \
     $$PWD/core/musicwebentainradiodatebase.cpp \
     $$PWD/core/musicfilesenderserver.cpp \
     $$PWD/core/musicfilereceiveserver.cpp \
+    $$PWD/musicsongstoolboxwidget.cpp \
     $$PWD/musicsongssummarizied.cpp \
     $$PWD/musicsongssummariziedfloatwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \

@@ -48,6 +48,10 @@ public:
      * Clear All Items.
      */
 
+    int allRowHeight() const;
+    /*!
+     * Get all row height.
+     */
     void selectRow(int index);
     /*!
      * Select the current play row.
