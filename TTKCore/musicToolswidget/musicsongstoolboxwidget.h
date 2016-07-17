@@ -1,43 +1,99 @@
 #ifndef MUSICSONGSTOOLBOXWIDGET_H
 #define MUSICSONGSTOOLBOXWIDGET_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QLabel>
 #include <QBoxLayout>
+#include "musicglobaldefine.h"
 
-class MusicSongsToolBoxTopWidget : public QWidget
+/*! @brief The class of the tool box top widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicSongsToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicSongsToolBoxTopWidget(int index, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
-signals:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+Q_SIGNALS:
     void mousePressAt(int index);
+    /*!
+     * Current top widget is pressed.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
-//    void paintEvent(QPaintEvent *event);
+    /*!
+     * Override the widget event.
+     */
+
     int m_index;
+
 };
 
 
-class MusicSongsToolBoxWidgetItem : public QWidget
+/*! @brief The class of the tool box widget item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidgetItem : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicSongsToolBoxWidgetItem();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
     void addItem(QWidget *item);
+    /*!
+     * Add widget item.
+     */
     void removeItem(QWidget *item);
+    /*!
+     * Remove widget item.
+     */
 
     void setTitle(const QString &text);
+    /*!
+     * Set top label title.
+     */
     QString getTitle() const;
+    /*!
+     * Get top label title.
+     */
 
     void setItemHide(bool hide);
+    /*!
+     * Set item widget to hide or not.
+     */
     bool itemHide() const;
+    /*!
+     * Get item widget hide state.
+     */
 
-signals:
+Q_SIGNALS:
     void addNewItem();
     /*!
      * Add new play list item.
@@ -54,6 +110,10 @@ signals:
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
+    /*!
+     * Override the widget event.
+     */
+
     QLabel *m_labelIcon, *m_labelText;
     QVBoxLayout *m_layout;
     QList<QWidget*> m_itemList;
@@ -61,30 +121,53 @@ protected:
 };
 
 
-class MusicSongsToolBoxWidget : public QWidget
+/*! @brief The class of the tool box widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
     ~MusicSongsToolBoxWidget();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
     void addItem(QWidget *item, const QString &text);
+    /*!
+     * Add widget item.
+     */
 
     int currentIndex() const;
-
-    void setItemText(int index, const QString &text);
-    QString itemText(int index) const;
-
+    /*!
+     * Get current index.
+     */
     int count() const;
+    /*!
+     * Get item's count.
+     */
 
-signals:
-public slots:
+Q_SIGNALS:
+public Q_SLOTS:
     void setCurrentIndex(int index);
+    /*!
+     * Set current index.
+     */
     void mousePressAt(int index);
+    /*!
+     * Current top widget is pressed.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
+    /*!
+     * Override the widget event.
+     */
+
     int m_currentIndex;
     QVBoxLayout *m_layout;
     QList<MusicSongsToolBoxWidgetItem*> m_itemList;

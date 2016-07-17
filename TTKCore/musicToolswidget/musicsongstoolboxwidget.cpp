@@ -1,6 +1,6 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+
 #include <QScrollArea>
 #include <QMouseEvent>
 #include <QPainter>
@@ -10,6 +10,11 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, QWidget *paren
     : QWidget(parent)
 {
     m_index = index;
+}
+
+QString MusicSongsToolBoxTopWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
@@ -75,6 +80,11 @@ MusicSongsToolBoxWidgetItem::~MusicSongsToolBoxWidgetItem()
     delete m_labelIcon;
     delete m_labelText;
     delete m_layout;
+}
+
+QString MusicSongsToolBoxWidgetItem::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicSongsToolBoxWidgetItem::addItem(QWidget *item)
@@ -158,6 +168,11 @@ MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
     delete m_layout;
 }
 
+QString MusicSongsToolBoxWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 void MusicSongsToolBoxWidget::setCurrentIndex(int index)
 {
     m_currentIndex = index;
@@ -180,24 +195,6 @@ void MusicSongsToolBoxWidget::mousePressAt(int index)
 int MusicSongsToolBoxWidget::currentIndex() const
 {
     return m_currentIndex;
-}
-
-void MusicSongsToolBoxWidget::setItemText(int index, const QString &text)
-{
-    if(index < 0 || index >= m_itemList.count())
-    {
-        return;
-    }
-    m_itemList[index]->setTitle(text);
-}
-
-QString MusicSongsToolBoxWidget::itemText(int index) const
-{
-    if(index < 0 || index >= m_itemList.count())
-    {
-        return QString();
-    }
-    return m_itemList[index]->getTitle();
 }
 
 int MusicSongsToolBoxWidget::count() const

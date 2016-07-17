@@ -244,5 +244,6 @@
         <file alias="analysis">../TTKResource/toolSets/ts_analysis.png</file>
         <file alias="apply">../TTKResource/toolSets/ts_analysis_apply.png</file>
         <file alias="buttonarrow">../TTKResource/toolSets/ts_button_arrow.png</file>
+        <file alias="openFiles">../TTKResource/toolSets/ts_openFiles.png</file>
     </qresource>
 </RCC>

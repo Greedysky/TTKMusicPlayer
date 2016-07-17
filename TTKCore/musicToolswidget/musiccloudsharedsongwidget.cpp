@@ -1,11 +1,10 @@
 #include "musiccloudsharedsongwidget.h"
+#include "musicdatadownloadthread.h"
+#include "musicuploadfilewidget.h"
 #include "musicnumberdefine.h"
-#include "musicclickedlabel.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicplayer.h"
-#include "musicdatadownloadthread.h"
-
 #include "qnconf.h"
 
 #include <QPainter>
@@ -319,26 +318,10 @@ void MusicCloudSharedSongTableWidget::createUploadFileWidget()
 {
     if(m_uploadFileWidget == nullptr)
     {
-        m_uploadFileWidget = new QWidget(this);
-
-        QVBoxLayout *layout = new QVBoxLayout(m_uploadFileWidget);
-        layout->setContentsMargins(0, 0, 0, 0);
-        layout->setSpacing(0);
-        MusicClickedLabel *uploadFile = new MusicClickedLabel(m_uploadFileWidget);
-        MusicClickedLabel *uploadDirs = new MusicClickedLabel(m_uploadFileWidget);
-        connect(uploadFile, SIGNAL(clicked()), SLOT(uploadFileToServer()));
-        connect(uploadDirs, SIGNAL(clicked()), SLOT(uploadFilesToServer()));
-        layout->addWidget(uploadFile, 0, Qt::AlignCenter);
-        layout->addWidget(uploadDirs, 0, Qt::AlignCenter);
-        m_uploadFileWidget->setLayout(layout);
-
-        uploadFile->setText(tr("<u>uploadFile</u>"));
-        uploadDirs->setText(tr("<u>uploadDirs</u>"));
-        m_uploadFileWidget->resize(100, 50);
-
-        int x = (width() - m_uploadFileWidget->width())/2;
-        int y = (height() - m_uploadFileWidget->height())/2;
-        m_uploadFileWidget->move(x, y);
+        m_uploadFileWidget = new MusicUploadFileWidget(this);
+        connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFileToServer()));
+        connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFilesToServer()));
+        m_uploadFileWidget->adjustRect(width(), height());
     }
     m_uploadFileWidget->raise();
     m_uploadFileWidget->show();

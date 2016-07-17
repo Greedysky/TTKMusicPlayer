@@ -15,6 +15,8 @@
 #include "qnsimpledeletedata.h"
 #include "musiccloudfilemanagerdialog.h"
 
+class MusicUploadFileWidget;
+
 /*! @brief The class of the cloud shared song table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -90,7 +92,13 @@ public Q_SLOTS:
      */
 
     void openFileManagerDialog();
+    /*!
+     * Open file manager dialog.
+     */
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
+    /*!
+     * Show upload progress.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -105,13 +113,13 @@ protected:
     bool m_uploading;
     QEventLoop m_eventLoop;
     QTimer *m_timerToUpload;
-    QWidget *m_uploadFileWidget;
     UploadData m_currentUploadData;
     UploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
     QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
+    MusicUploadFileWidget *m_uploadFileWidget;
     MusicCloudFileManagerDialog *m_fileDialog;
 
 };
