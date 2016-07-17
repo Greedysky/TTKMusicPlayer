@@ -191,4 +191,5 @@ to be done:
 播放列表个数的显示
 上传时切换奔溃
 传歌曲到移动端按钮wifi未改变
-
+setTransparent setautofill
+网络监测优化
