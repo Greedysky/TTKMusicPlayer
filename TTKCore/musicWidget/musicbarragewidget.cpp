@@ -1,6 +1,7 @@
 #include "musicbarragewidget.h"
 #include "musictime.h"
 #include "musicobject.h"
+#include "musicutils.h"
 
 #include <QFile>
 
@@ -230,10 +231,8 @@ void MusicBarrageWidget::setLabelBackground(QLabel *label)
 
 void MusicBarrageWidget::setLabelTextSize(QLabel *label)
 {
-    QFont ft = label->font();
-    ft.setPointSize(m_fontSize);
-    label->setFont(ft);
-    QFontMetrics ftMcs(ft);
+    MusicUtils::UWidget::setLabelFontSize(label, m_fontSize);
+    QFontMetrics ftMcs(label->font());
     label->resize(ftMcs.width(label->text()), ftMcs.height());
 }
 

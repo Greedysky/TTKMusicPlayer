@@ -213,11 +213,9 @@ int MusicLrcContainerForInline::getLrcSize() const
 void MusicLrcContainerForInline::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
-    QFont f = m_noLrcCurrentInfo->font();
-    f.setPointSize(15);
-    f.setUnderline(true);
+    MusicUtils::UWidget::setLabelFontSize(m_noLrcCurrentInfo, 15);
+    MusicUtils::UWidget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
     m_noLrcCurrentInfo->setStyleSheet("color:rgb(244, 244, 244)");
-    m_noLrcCurrentInfo->setFont(f);
     m_noLrcCurrentInfo->setText(tr("makeLrc"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(theCurrentLrcMaked()));

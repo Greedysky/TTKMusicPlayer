@@ -50,7 +50,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
-        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     ////////////////////////////////////////////////
@@ -216,7 +216,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
     if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
-        emit showDownLoadInfoFor(MusicObject::DisConnection);
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     if(row < 0)
@@ -226,7 +226,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
         message.exec();
         return;
     }
-    emit showDownLoadInfoFor(MusicObject::DownLoading);
+    emit showDownLoadInfoFor(MusicObject::DW_DownLoading);
 
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[row];

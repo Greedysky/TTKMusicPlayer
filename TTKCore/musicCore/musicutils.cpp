@@ -56,10 +56,27 @@ QString MusicUtils::UCore::getLanguageName(int index)
     }
 }
 
-void MusicUtils::UWidget::setLabelFont(QWidget *widget, int size)
+void MusicUtils::UWidget::setLabelFontSize(QWidget *widget, int size)
 {
     QFont font = widget->font();
     font.setPointSize(size);
+    widget->setFont(font);
+}
+
+void MusicUtils::UWidget::setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type)
+{
+    QFont font = widget->font();
+    switch(type)
+    {
+        case MusicObject::FT_Bold : font.setBold(true); break;
+        case MusicObject::FT_Italic : font.setItalic(true); break;
+        case MusicObject::FT_Underline : font.setUnderline(true); break;
+        case MusicObject::FT_Overline : font.setOverline(true); break;
+        case MusicObject::FT_StrikeOut : font.setStrikeOut(true); break;
+        case MusicObject::FT_FixedPitch : font.setFixedPitch(true); break;
+        case MusicObject::FT_Kerningt : font.setKerning(true); break;
+        default: break;
+    }
     widget->setFont(font);
 }
 

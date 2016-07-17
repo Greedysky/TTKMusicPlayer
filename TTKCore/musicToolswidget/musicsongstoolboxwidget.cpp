@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicutils.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -23,6 +24,8 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_labelIcon->setPixmap(QPixmap(":/image/arrowup"));
     m_labelText = new QLabel(this);
     m_labelText->setText(text);
+    MusicUtils::UWidget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
+
     MusicClickedLabel *menuLabel = new MusicClickedLabel(this);
     connect(menuLabel, SIGNAL(clicked()), SLOT(showMenu()));
     menuLabel->setPixmap(QPixmap(":/toolSets/listmenu"));
@@ -30,6 +33,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     topLayout->addWidget(m_labelText, 20);
     topLayout->addWidget(menuLabel);
     topLayout->addStretch(1);
+
     setLayout(topLayout);
 }
 

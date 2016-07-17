@@ -36,19 +36,19 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType typ
     QString stringType;
     switch(type)
     {
-        case MusicObject::DisConnection:
+        case MusicObject::DW_DisConnection:
             stringType = "disconnection";
             break;
-        case MusicObject::DownLoading:
+        case MusicObject::DW_DownLoading:
             stringType = "downloading";
             break;
-        case MusicObject::Buffing:
+        case MusicObject::DW_Buffing:
             stringType = "buffing";
             break;
-        case MusicObject::Waiting:
+        case MusicObject::DW_Waiting:
             break;
             stringType = "waiting";
-        case MusicObject::Null:
+        case MusicObject::DW_Null:
             break;
         default:
             break;
@@ -68,7 +68,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
-    showDownLoadInfoFor(state ? MusicObject::Null : MusicObject::DisConnection);
+    showDownLoadInfoFor(state ? MusicObject::DW_Null : MusicObject::DW_DisConnection);
 }
 
 bool MusicDownloadStatusLabel::checkSettingParameterValue() const
@@ -82,7 +82,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
     if(!M_NETWORK_PTR->isOnline())
     {
         ///no network connection
-        showDownLoadInfoFor(MusicObject::DisConnection);
+        showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     else if( checkSettingParameterValue() )
@@ -113,7 +113,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 #endif
        m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicHaveNoLrcAlready()));
-       showDownLoadInfoFor(MusicObject::Buffing);
+       showDownLoadInfoFor(MusicObject::DW_Buffing);
     }
 }
 
@@ -121,7 +121,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
 {
     if(!M_NETWORK_PTR->isOnline())
     {   //no network connection
-        showDownLoadInfoFor(MusicObject::DisConnection);
+        showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     MusicObject::MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());

@@ -86,7 +86,11 @@ namespace MusicUtils
 
     namespace UWidget
     {
-        MUSIC_CORE_EXPORT void setLabelFont(QWidget *widget, int size);
+        MUSIC_CORE_EXPORT void setLabelFontSize(QWidget *widget, int size);
+        /*!
+         * Set widget label font.
+         */
+        MUSIC_CORE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type);
         /*!
          * Set widget label font.
          */

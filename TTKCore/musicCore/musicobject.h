@@ -123,11 +123,11 @@ namespace MusicObject
 
     enum DownLoadType
     {
-        Null,           ///*network null*/
-        DisConnection,  ///*network disable*/
-        DownLoading,    ///*network download*/
-        Buffing,        ///*network buffing*/
-        Waiting         ///*network waiting*/
+        DW_Null,           ///*network null*/
+        DW_DisConnection,  ///*network disable*/
+        DW_DownLoading,    ///*network download*/
+        DW_Buffing,        ///*network buffing*/
+        DW_Waiting         ///*network waiting*/
     };
 
     enum SongPlayType
@@ -137,6 +137,17 @@ namespace MusicObject
         MC_PlayListLoop,    ///*play list loop*/
         MC_PlayOneLoop,     ///*play single loop*/
         MC_PlayOnce         ///*play just once*/
+    };
+
+    enum FontStyleType
+    {
+        FT_Bold =       0x00001,   ///*font bold*/
+        FT_Italic =     0x00002,   ///*font italic*/
+        FT_Underline =  0x00004,   ///*font underline*/
+        FT_Overline =   0x00008,   ///*font overline*/
+        FT_StrikeOut =  0x00010,   ///*font strikeOut*/
+        FT_FixedPitch = 0x00020,   ///*font fixedPitch*/
+        FT_Kerningt =   0x00040    ///*font kerningt*/
     };
 
     static QString getAppDir()

@@ -1,5 +1,6 @@
 #include "musicuploadfilewidget.h"
 #include "musicclickedlabel.h"
+#include "musicutils.h"
 
 #include <QGridLayout>
 
@@ -13,18 +14,14 @@ MusicUploadFileWidget::MusicUploadFileWidget(QWidget *parent)
     uploadFileIcon->setPixmap(QPixmap("://toolSets/openFiles"));
     MusicClickedLabel *uploadFile = new MusicClickedLabel(this);
     uploadFile->setText(tr("uploadFile"));
-    QFont font = uploadFile->font();
-    font.setUnderline(true);
-    uploadFile->setFont(font);
+    MusicUtils::UWidget::setLabelFontStyle(uploadFile, MusicObject::FT_Underline);
     connect(uploadFile, SIGNAL(clicked()), SIGNAL(uploadFileClicked()));
 
     QLabel *uploadDirIcon = new QLabel(this);
     uploadDirIcon->setPixmap(QPixmap("://toolSets/openFiles"));
     MusicClickedLabel *uploadDir = new MusicClickedLabel(this);
     uploadDir->setText(tr("uploadFiles"));
-    font = uploadDir->font();
-    font.setUnderline(true);
-    uploadDir->setFont(font);
+    MusicUtils::UWidget::setLabelFontStyle(uploadDir, MusicObject::FT_Underline);
     connect(uploadDir, SIGNAL(clicked()), SIGNAL(uploadFilesClicked()));
 
     layout->addWidget(uploadFileIcon, 0, 0, Qt::AlignRight);
