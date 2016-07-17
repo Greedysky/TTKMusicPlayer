@@ -11,7 +11,7 @@
 
 #include "musicradiothreadabstract.h"
 
-typedef struct ChannelInfo
+typedef struct MUSIC_NETWORK_EXPORT ChannelInfo
 {
     QString m_id;
     QString m_name;

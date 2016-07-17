@@ -125,7 +125,7 @@ typedef QList<MusicSong>    MusicSongs;
 typedef QList<MusicSongs>   MusicSongsList;
 
 class MusicSongsListWidget;
-typedef struct MusicSongItem
+typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;

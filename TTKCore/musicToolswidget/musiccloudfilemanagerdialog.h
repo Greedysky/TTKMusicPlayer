@@ -12,7 +12,7 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
-typedef struct UploadData
+typedef struct MUSIC_TOOL_EXPORT UploadData
 {
     enum State{
         Waited = 0,     ///0 waited

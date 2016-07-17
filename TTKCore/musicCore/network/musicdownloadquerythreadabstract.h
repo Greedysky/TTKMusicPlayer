@@ -12,7 +12,7 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-typedef struct DownloadData
+typedef struct MUSIC_NETWORK_EXPORT DownloadData
 {
     QString m_songName;
     QString m_songArtist;

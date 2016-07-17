@@ -12,7 +12,7 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
-typedef struct LocalDataItem
+typedef struct MUSIC_LRC_EXPORT LocalDataItem
 {
     QString m_name;
     QString m_path;

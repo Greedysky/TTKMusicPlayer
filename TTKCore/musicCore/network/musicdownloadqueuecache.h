@@ -11,7 +11,7 @@
 
 #include "musicdownloadthreadabstract.h"
 
-typedef struct DownloadQueueData
+typedef struct MUSIC_NETWORK_EXPORT DownloadQueueData
 {
     QString m_url;        ///*download url*/
     QString m_savePath;   ///*save local path*/

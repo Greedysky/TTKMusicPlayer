@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MusicDownloadRecord
+typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
 {
     QStringList m_names;
     QStringList m_paths;

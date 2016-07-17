@@ -11,7 +11,7 @@
 
 #include "musicradiothreadabstract.h"
 
-typedef struct SongRadioInfo
+typedef struct MUSIC_NETWORK_EXPORT SongRadioInfo
 {
     QString m_songUrl;
     QString m_songName;
