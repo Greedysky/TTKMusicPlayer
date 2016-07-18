@@ -22,6 +22,13 @@
 #  define MUSIC_GREATER_NEW
 #  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
 #    define MUSIC_WINEXTRAS
+#  else
+#    define MUSIC_NO_WINEXTRAS
+#    if QT_VERSION >= QT_VERSION_CHECK(5,1,0)
+#      define MUSIC_GREATER_FIVE_ONE
+#    else
+#      define MUSIC_GREATER_FIVE_ZERO
+#    endif
 #  endif
 #endif
 

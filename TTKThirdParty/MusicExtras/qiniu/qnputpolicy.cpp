@@ -9,6 +9,7 @@
 #else
 #   include <QMap>
 #endif
+#include <QStringList>
 
 QNPutPolicy::QNPutPolicy(const QString &scope)
     : m_scope(scope)
@@ -24,7 +25,7 @@ QNPutPolicy::QNPutPolicy(const QString &scope)
 
 QByteArray QNPutPolicy::toJSON(bool compact)
 {
-#ifdef MUSIC_GREATER_NEW
+#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
     QJsonObject json;
 #else
     QMap<QString, QVariant> json;
@@ -93,7 +94,7 @@ QByteArray QNPutPolicy::toJSON(bool compact)
         json["persistentPipeline"] = m_persistentPipeline;
     }
 
-#ifdef MUSIC_GREATER_NEW
+#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
     QJsonDocument doc = QJsonDocument(json);
     QByteArray data = doc.toJson(compact ? QJsonDocument::Compact :
                                            QJsonDocument::Indented);
@@ -211,12 +212,12 @@ void QNPutPolicy::setEndUser(const QString &value)
     m_endUser = value;
 }
 
-qint64 QNPutPolicy::getFSizeLimit() const
+qint32 QNPutPolicy::getFSizeLimit() const
 {
     return m_fSizeLimit;
 }
 
-void QNPutPolicy::setFSizeLimit(qint64 value)
+void QNPutPolicy::setFSizeLimit(qint32 value)
 {
     m_fSizeLimit = value;
 }

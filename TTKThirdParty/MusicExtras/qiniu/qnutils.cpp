@@ -22,7 +22,7 @@ QNUtils::~QNUtils()
 // Url safe base64 encode
 QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 {
-#ifdef MUSIC_GREATER_NEW
+#if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
     QByteArray encodedData = data.toBase64(QByteArray::Base64UrlEncoding);
 #else
     QByteArray encodedData = data.toBase64();

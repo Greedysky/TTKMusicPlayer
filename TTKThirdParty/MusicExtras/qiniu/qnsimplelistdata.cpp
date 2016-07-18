@@ -65,8 +65,8 @@ void QNSimpleListData::receiveDataFromServer()
                     item.m_name = object.value("key").toString();
                     item.m_hash = object.value("hash").toString();
                     item.m_mimeType = object.value("mimeType").toString();
-                    item.m_size = object.value("fsize").toInt();
-                    item.m_putTime = object.value("putTime").toInt();
+                    item.m_size = object.value("fsize").toVariant().toInt();
+                    item.m_putTime = object.value("putTime").toVariant().toInt();
                     items << item;
                 }
             }
