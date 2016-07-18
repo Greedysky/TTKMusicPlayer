@@ -361,7 +361,7 @@ void MusicSongsSummarizied::deleteRowItem(int index)
         return;
     }
 
-    MusicSongItem item = m_songItems.takeLast();
+    MusicSongItem item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
 }
