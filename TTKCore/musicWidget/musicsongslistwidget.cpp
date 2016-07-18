@@ -8,7 +8,6 @@
 #include "musicprogresswidget.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
-#include <QDebug>
 
 #include <QUrl>
 #include <QAction>

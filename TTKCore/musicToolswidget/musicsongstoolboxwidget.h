@@ -41,7 +41,7 @@ public:
     /*!
      * Set top label title.
      */
-    QString getTitle() const;
+    QString getTitle(bool suffix = false);
     /*!
      * Get top label title.
      */
@@ -87,6 +87,7 @@ protected:
      */
 
     int m_index;
+    QString m_suffixString;
     QLabel *m_labelIcon, *m_labelText;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
@@ -124,6 +125,15 @@ public:
      * Remove widget item.
      */
 
+    void setTitle(const QString &text);
+    /*!
+     * Set title text.
+     */
+    QString getTitle() const;
+    /*!
+     * Get title text.
+     */
+
     void setItemHide(bool hide);
     /*!
      * Set item widget to hide or not.
@@ -131,6 +141,11 @@ public:
     bool itemHide() const;
     /*!
      * Get item widget hide state.
+     */
+
+    int count() const;
+    /*!
+     * Get item's count.
      */
 
 Q_SIGNALS:
@@ -186,6 +201,15 @@ public:
     void removeItem(QWidget *item);
     /*!
      * Remove widget item.
+     */
+
+    void setTitle(QWidget *item, const QString &text);
+    /*!
+     * Set title text.
+     */
+    QString getTitle(QWidget *item) const;
+    /*!
+     * Get title text.
      */
 
     int currentIndex() const;

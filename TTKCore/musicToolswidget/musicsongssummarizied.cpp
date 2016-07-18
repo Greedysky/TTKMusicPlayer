@@ -116,13 +116,15 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
     progress.setRange(0, filelist.count());
 
     MusicSongTag tag;
+    MusicSongItem *item = &m_songItems[MUSIC_NORMAL_LIST];
     for(int i=0; i<filelist.count(); ++i)
     {
         QString time = tag.readFile(filelist[i]) ? tag.getLengthString() : "-";
-        m_songItems[MUSIC_NORMAL_LIST].m_songs << MusicSong(filelist[i], 0, time, QString());
+        item->m_songs << MusicSong(filelist[i], 0, time, QString());
         progress.setValue(i + 1);
     }
-    m_songItems[MUSIC_NORMAL_LIST].m_itemObject->updateSongsFileName(m_songItems[MUSIC_NORMAL_LIST].m_songs);
+    item->m_itemObject->updateSongsFileName(item->m_songs);
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
@@ -243,6 +245,7 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     connect(m_itemList.last(), SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
 
     w->setSongsFileName(&item->m_songs);
+    setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummarizied::clearAllLists()
@@ -262,9 +265,10 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
         return;
     }
 
+    MusicSongItem *item = &m_songItems[currentIndex()];
     for(int i=index.count()-1; i>=0; --i)
     {
-        MusicSong song = m_songItems[currentIndex()].m_songs.takeAt(index[i]);
+        MusicSong song = item->m_songs.takeAt(index[i]);
         if(fileRemove)
         {
             QFile::remove(song.getMusicPath());
@@ -274,26 +278,31 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
     {
         emit deleteItemAt(index, fileRemove);
     }
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
     MusicSong song = m_songItems[m_currentIndexs].m_songs[row];
-    m_songItems[MUSIC_LOVEST_LIST].m_songs << song;
-    m_songItems[MUSIC_LOVEST_LIST].m_itemObject->updateSongsFileName(m_songItems[MUSIC_LOVEST_LIST].m_songs);
+    MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
+    item->m_songs << song;
+    item->m_itemObject->updateSongsFileName(item->m_songs);
     if(m_currentIndexs == MUSIC_LOVEST_LIST)
     {
         emit updatePlayLists(song.getMusicPath());
     }
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 {
     MusicSong song = m_songItems[m_currentIndexs].m_songs[row];
-    if(m_songItems[MUSIC_LOVEST_LIST].m_songs.removeOne(song))
+    MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
+    if(item->m_songs.removeOne(song))
     {
-        m_songItems[MUSIC_LOVEST_LIST].m_itemObject->clearAllItems();
-        m_songItems[MUSIC_LOVEST_LIST].m_itemObject->updateSongsFileName(m_songItems[MUSIC_LOVEST_LIST].m_songs);
+        item->m_itemObject->clearAllItems();
+        item->m_itemObject->updateSongsFileName(item->m_songs);
+        setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     }
 }
 
@@ -302,18 +311,20 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
 {
     QString musicSong = MusicCryptographicHash().decrypt(name, DOWNLOAD_KEY);
     const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
-    m_songItems[MUSIC_NETWORK_LIST].m_songs << MusicSong(path, 0, time, musicSong);
-    m_songItems[MUSIC_NETWORK_LIST].m_itemObject->updateSongsFileName(m_songItems[MUSIC_NETWORK_LIST].m_songs);
+    MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
+    item->m_songs << MusicSong(path, 0, time, musicSong);
+    item->m_itemObject->updateSongsFileName(item->m_songs);
     if(m_currentIndexs == MUSIC_NETWORK_LIST)
     {
         emit updatePlayLists(path);
     }
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 
     if(play)
     {
         ///when download finished just play it at once
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NETWORK_LIST);
-        emit musicPlayIndex(m_songItems[MUSIC_NETWORK_LIST].m_songs.count() - 1, 0);
+        emit musicPlayIndex(item->m_songs.count() - 1, 0);
     }
 }
 

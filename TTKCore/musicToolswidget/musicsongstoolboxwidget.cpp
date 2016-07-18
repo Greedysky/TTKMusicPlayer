@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QScrollArea>
 #include <QMouseEvent>
+#include <QDebug>
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
@@ -59,9 +60,16 @@ void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
     m_labelText->setText(text);
 }
 
-QString MusicSongsToolBoxTopWidget::getTitle() const
+QString MusicSongsToolBoxTopWidget::getTitle(bool suffix)
 {
-    return m_labelText->text().trimmed();
+    QString text = m_labelText->text().trimmed();
+    if(!suffix)
+    {
+        int index = text.lastIndexOf("[");
+        m_suffixString = text.right(text.count() - index);
+        text = text.left( index );
+    }
+    return text;
 }
 
 void MusicSongsToolBoxTopWidget::deleteRowItem()
@@ -82,8 +90,8 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
 
 void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
 {
-    m_labelText->setText(name);
-    m_labelText->setToolTip(name);
+    m_labelText->setText(name + m_suffixString);
+    m_labelText->setToolTip(name + m_suffixString);
     emit renameFinished(m_index, name);
 
     m_renameLine->deleteLater();
@@ -175,6 +183,16 @@ void MusicSongsToolBoxWidgetItem::removeItem(QWidget *item)
     m_layout->removeWidget(item);
 }
 
+void MusicSongsToolBoxWidgetItem::setTitle(const QString &text)
+{
+    m_topWidget->setTitle(text);
+}
+
+QString MusicSongsToolBoxWidgetItem::getTitle() const
+{
+    return m_topWidget->getTitle();
+}
+
 void MusicSongsToolBoxWidgetItem::setItemHide(bool hide)
 {
     m_topWidget->setItemExpand(hide);
@@ -191,6 +209,11 @@ bool MusicSongsToolBoxWidgetItem::itemHide() const
         return m_itemList.first()->isVisible();
     }
     return false;
+}
+
+int MusicSongsToolBoxWidgetItem::count() const
+{
+    return m_itemList.count();
 }
 
 void MusicSongsToolBoxWidgetItem::mousePressEvent(QMouseEvent *event)
@@ -307,14 +330,50 @@ void MusicSongsToolBoxWidget::removeItem(QWidget *item)
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        if(m_itemList[i]->item(0) == item)
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        for(int j=0; j<it->count(); ++j)
         {
-            m_layout->removeWidget(item);
-            m_itemList.takeAt(i)->deleteLater();
-            m_currentIndex = 0;
-            break;
+            if(it->item(j) == item)
+            {
+                m_layout->removeWidget(item);
+                m_itemList.takeAt(i)->deleteLater();
+                m_currentIndex = 0;
+                return;
+            }
         }
     }
+}
+
+void MusicSongsToolBoxWidget::setTitle(QWidget *item, const QString &text)
+{
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        for(int j=0; j<it->count(); ++j)
+        {
+            if(it->item(j) == item)
+            {
+                it->setTitle(text);
+                return;
+            }
+        }
+    }
+}
+
+QString MusicSongsToolBoxWidget::getTitle(QWidget *item) const
+{
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        for(int j=0; j<it->count(); ++j)
+        {
+            if(it->item(j) == item)
+            {
+                return it->getTitle();
+            }
+        }
+    }
+    return QString();
 }
 
 void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)
