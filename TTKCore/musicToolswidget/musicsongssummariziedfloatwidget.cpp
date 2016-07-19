@@ -71,7 +71,7 @@ void MusicSongsSummariziedFloatWidget::setGeometry(QObject *object)
     QWidget *parent = MStatic_cast(QWidget*, object);
     QPoint global(parent->size().width(), parent->size().height());
     global = parent->mapToGlobal( global );
-    move(global.x() - width() - height(), global.y() - 4*height());
+    move(global.x() - width() - height(), global.y() - 3*height());
 }
 
 void MusicSongsSummariziedFloatWidget::start(bool play, int end)

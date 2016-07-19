@@ -14,6 +14,8 @@
 #include <QTimer>
 #include <QPainter>
 
+#define ROW_HIGHT   30
+
 MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(nullptr),
       m_musicSongsPlayWidget(nullptr)
@@ -79,18 +81,20 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 2, item);
     }
     //just fix table widget size hint
-    setFixedHeight( allRowHeight() );
+    setFixedHeight( allRowsHeight() );
 }
 
 void MusicSongsListWidget::clearAllItems()
 {
     //Remove play widget
-    setRowHeight(m_playRowIndex, 30);
+    setRowHeight(m_playRowIndex, ROW_HIGHT);
     removeCellWidget(m_playRowIndex, 0);
     removeCellWidget(m_playRowIndex, 1);
     removeCellWidget(m_playRowIndex, 2);
+
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
+
     m_playRowIndex = 0;
     //Remove all the original item
     MusicAbstractTableWidget::clear();
@@ -311,7 +315,7 @@ void MusicSongsListWidget::setDeleteItemAt()
     }
 
     //just fix table widget size hint
-    setFixedHeight( allRowHeight() );
+    setFixedHeight( allRowsHeight() );
 
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
@@ -395,8 +399,7 @@ void MusicSongsListWidget::stayTimeOut()
 
 void MusicSongsListWidget::setChangSongName()
 {
-    if(rowCount() == 0 || currentRow() < 0 ||
-        currentItem()->column() != 1)
+    if(rowCount() == 0 || currentRow() < 0 || currentItem()->column() != 1)
     {
         return;
     }
@@ -460,7 +463,6 @@ void MusicSongsListWidget::musicFileInformation()
         return;
     }
 
-
     MusicFileInformationWidget file(this);
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
     file.setFileInformation(path);
@@ -491,7 +493,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     }
     QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
 
-    setRowHeight(m_playRowIndex, 30);
+    setRowHeight(m_playRowIndex, ROW_HIGHT);
     removeCellWidget(m_playRowIndex, 0);
     removeCellWidget(m_playRowIndex, 1);
     removeCellWidget(m_playRowIndex, 2);
@@ -499,6 +501,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 1);
     delete takeItem(m_playRowIndex, 2);
+
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
     item = new QTableWidgetItem(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 242));
@@ -514,10 +517,10 @@ void MusicSongsListWidget::replacePlayWidgetRow()
     m_musicSongsPlayWidget = nullptr;
 
     //just fix table widget size hint
-    setFixedHeight( allRowHeight() );
+    setFixedHeight( allRowsHeight() );
 }
 
-int MusicSongsListWidget::allRowHeight() const
+int MusicSongsListWidget::allRowsHeight() const
 {
     int height = 0;
     for(int i=0; i<rowCount(); ++i)
@@ -554,9 +557,9 @@ void MusicSongsListWidget::selectRow(int index)
     setCellWidget(index, 0, widget);
     setCellWidget(index, 1, m_musicSongsPlayWidget);
     setCellWidget(index, 2, widget1);
-    setRowHeight(index, 60);
+    setRowHeight(index, 2*ROW_HIGHT);
     m_playRowIndex = index;
 
     //just fix table widget size hint
-    setFixedHeight( allRowHeight() );
+    setFixedHeight( allRowsHeight() );
 }

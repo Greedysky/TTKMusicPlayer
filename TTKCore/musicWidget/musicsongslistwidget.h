@@ -48,9 +48,9 @@ public:
      * Clear All Items.
      */
 
-    int allRowHeight() const;
+    int allRowsHeight() const;
     /*!
-     * Get all row height.
+     * Get all rows height.
      */
     void selectRow(int index);
     /*!

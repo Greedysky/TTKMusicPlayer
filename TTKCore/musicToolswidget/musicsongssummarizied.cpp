@@ -382,7 +382,7 @@ void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
     MusicSongsToolBoxWidget::wheelEvent(event);
     if(m_floatWidget == nullptr)
     {
-        m_floatWidget = new MusicSongsSummariziedFloatWidget;
+        m_floatWidget = new MusicSongsSummariziedFloatWidget(this);
         connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
         m_floatWidget->setGeometry(this);
         m_floatWidget->show();

@@ -9,7 +9,6 @@
 #include <QPainter>
 #include <QScrollArea>
 #include <QMouseEvent>
-#include <QDebug>
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
