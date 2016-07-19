@@ -33,8 +33,8 @@ public:
     QString getEndUser() const;
     void setEndUser(const QString &value);
 
-    qint64 getFSizeLimit() const;
-    void setFSizeLimit(qint64 value);
+    qint32 getFSizeLimit() const;
+    void setFSizeLimit(qint32 value);
 
     qint16 getDetectMime() const;
     void setDetectMime(qint16 value);
@@ -77,7 +77,7 @@ private:
     QString m_saveKey;   //optional
     QString m_endUser;   //optional
 
-    qint64 m_fSizeLimit;  //optional
+    qint32 m_fSizeLimit;  //optional
 
     //let qiniu server dectect file mime type
     //1. check file name extension
