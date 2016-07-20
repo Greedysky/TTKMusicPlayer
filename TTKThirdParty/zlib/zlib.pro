@@ -14,6 +14,7 @@ win32:TARGET = ../../../bin/zlib
 unix:TARGET = ../../lib/zlib
 TEMPLATE = lib
 
+CONFIG       += warn_off
 unix:VERSION += 1.2.8
 
 HEADERS  += \

@@ -17,8 +17,8 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     ui->setupUi(this);
 
 #ifdef Q_OS_UNIX
-    MusicUtils::UWidget::setLabelFont(ui->label_5T, 9);
-    MusicUtils::UWidget::setLabelFont(ui->label_6T, 9);
+    MusicUtils::UWidget::setLabelFontSize(ui->label_5T, 9);
+    MusicUtils::UWidget::setLabelFontSize(ui->label_6T, 9);
 #endif
     ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
