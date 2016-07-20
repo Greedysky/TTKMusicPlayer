@@ -106,6 +106,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
@@ -149,6 +150,8 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.h
     ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.h
     ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.h
+    ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.h
+    ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
@@ -277,6 +280,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
@@ -312,6 +316,8 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
