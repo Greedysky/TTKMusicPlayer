@@ -23,7 +23,7 @@ unix:TARGET = ../../lib/MusicExtras
 TEMPLATE = lib
 
 QMAKE_CXXFLAGS += -std=c++11
-unix:VERSION += 2.3.0.0
+unix:VERSION += 2.3.2.0
 
 INCLUDEPATH += ../../
 HEADERS  += \
