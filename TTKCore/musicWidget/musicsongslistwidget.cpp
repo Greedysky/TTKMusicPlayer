@@ -119,15 +119,15 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SIGNAL(musicPlayListLoop()));
     QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SIGNAL(musicPlayOneLoop()));
     QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SIGNAL(musicPlayItemOnce()));
-    (m_songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/share/selected")) : order->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/share/selected")) : random->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/share/selected")) : lCycle->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/share/selected")) : sCycle->setIcon(QIcon());
-    (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/share/selected")) : once->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/selected")) : order->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/selected")) : random->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/selected")) : lCycle->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/selected")) : sCycle->setIcon(QIcon());
+    (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
+    rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
 
@@ -348,7 +348,7 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     if((it = item(row, 2)) != nullptr)
     {
         it->setText(QString());
-        it->setIcon(QIcon(":/image/musicdelete"));
+        it->setIcon(QIcon(":/tiny/btn_delete_hover"));
     }
 
     bool isCurrentIndex;

@@ -34,13 +34,13 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->playButton->setIcon(QIcon(":/image/stop"));
-    ui->previousButton->setIcon(QIcon(":/image/previous"));
-    ui->nextButton->setIcon(QIcon(":/image/next"));
+    ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+    ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
+    ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
 
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->previousButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->nextButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->playButton->setStyleSheet("background:transparent;");
+    ui->previousButton->setStyleSheet("background:transparent;");
+    ui->nextButton->setStyleSheet("background:transparent;");
 
     ui->playButton->setIconSize(QSize(31, 31));
     ui->previousButton->setIconSize(QSize(31, 31));
@@ -105,11 +105,11 @@ void MusicWebMusicRadioWidget::radioPlay()
     m_isPlaying = !m_isPlaying;
     if(m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/image/stop"));
+        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
     else
     {
-        ui->playButton->setIcon(QIcon(":/image/play"));
+        ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
         m_radio->stop();
         return;
     }
@@ -137,7 +137,7 @@ void MusicWebMusicRadioWidget::radioPrevious()
 
     if(!m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/image/stop"));
+        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
 }
 
@@ -161,7 +161,7 @@ void MusicWebMusicRadioWidget::radioNext()
 
     if(!m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/image/stop"));
+        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
 }
 

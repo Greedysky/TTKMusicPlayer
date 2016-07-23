@@ -18,6 +18,7 @@
 #include "musicapplicationobject.h"
 #include "musicconnectionpool.h"
 #include "musicglobalhotkey.h"
+#include "musickugouuiobject.h"
 
 #include "kugouwindow.h"
 
@@ -189,7 +190,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles)->setIcon(QIcon(":/contextMenu/add"));
+    rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
 
@@ -199,7 +200,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicRemoteControl)->setIcon(QIcon(":/contextMenu/remote"));
+    rightClickMenu.addMenu(&musicRemoteControl);
     musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
     musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
     musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
@@ -226,7 +227,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/share/selected" : QString()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/setting"), tr("Setting"), this, SLOT(musicSetting()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
@@ -250,11 +251,11 @@ void MusicApplication::createPlayModeMenuIcon(QMenu &menu)
 {
     QList<QAction*> as = menu.actions();
     MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
-    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(":/share/selected")) : as[0]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(":/share/selected")) : as[1]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(":/share/selected")) : as[2]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(":/share/selected")) : as[3]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(":/share/selected")) : as[4]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(":/contextMenu/selected")) : as[0]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(":/contextMenu/selected")) : as[1]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(":/contextMenu/selected")) : as[2]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(":/contextMenu/selected")) : as[3]->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(":/contextMenu/selected")) : as[4]->setIcon(QIcon());
 }
 
 void MusicApplication::createPlayModeMenu(QMenu &menu)
@@ -469,20 +470,20 @@ void MusicApplication::showCurrentSong(int index)
         bool exist = QFile::exists(path);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
-        ui->musicDownload->setIcon(QIcon(exist ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
+        ui->musicDownload->setStyleSheet(exist ? MusicKuGouUIObject::MKGBtnDownload : MusicKuGouUIObject::MKGBtnUnDownload);
         //////////////////////////////////////////
         MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
         exist = loveSongs.contains(currentSongs[index]);
         M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
-        ui->musicBestLove->setIcon(QIcon(exist ? ":/image/loveOn" : ":/image/loveOff"));
+        ui->musicBestLove->setStyleSheet(exist ? MusicKuGouUIObject::MKGBtnLove : MusicKuGouUIObject::MKGBtnUnLove);
         //////////////////////////////////////////
         m_musicSongTree->selectRow(index);
     }
     else
     {
-        ui->musicBestLove->setIcon(QIcon(":/image/loveOff"));
-        ui->musicDownload->setIcon(QIcon(":/appTools/buttonmydownl"));
-        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
+        ui->musicBestLove->setStyleSheet(MusicKuGouUIObject::MKGBtnUnLove);
+        ui->musicDownload->setStyleSheet(MusicKuGouUIObject::MKGBtnUnDownload);
+        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->stop();
         m_rightAreaWidget->stopLrcMask();
@@ -510,7 +511,7 @@ void MusicApplication::showCurrentSong(int index)
 void MusicApplication::stateChanged()
 {
     m_playControl = true;
-    ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
+    ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
 }
 
 void MusicApplication::musicImportPlay()
@@ -526,7 +527,7 @@ void MusicApplication::musicStatePlay()
     }
     if(m_playControl)
     {
-        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/stop")));
+        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPause);
         m_playControl = false;
         m_musicPlayer->play();
         m_topAreaWidget->musicBgThemeDownloadFinished();
@@ -534,7 +535,7 @@ void MusicApplication::musicStatePlay()
     }
     else
     {
-        ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
+        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setTimerStop();
@@ -587,7 +588,7 @@ void MusicApplication::musicPlayNext()
 void MusicApplication::musicPlayOrder()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
-    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/orderplay")));
+    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOrder);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOrder);
     createPlayModeMenuIcon(m_playModeMenu);
 }
@@ -595,7 +596,7 @@ void MusicApplication::musicPlayOrder()
 void MusicApplication::musicPlayRandom()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayRandom);
-    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/randomplay")));
+    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnRandom);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayRandom);
     createPlayModeMenuIcon(m_playModeMenu);
 }
@@ -603,7 +604,7 @@ void MusicApplication::musicPlayRandom()
 void MusicApplication::musicPlayListLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/listloop")));
+    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnListLoop);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayListLoop);
     createPlayModeMenuIcon(m_playModeMenu);
 }
@@ -611,7 +612,7 @@ void MusicApplication::musicPlayListLoop()
 void MusicApplication::musicPlayOneLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/oneloop")));
+    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOneLoop);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOneLoop);
     createPlayModeMenuIcon(m_playModeMenu);
 }
@@ -619,7 +620,7 @@ void MusicApplication::musicPlayOneLoop()
 void MusicApplication::musicPlayItemOnce()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOnce);
-    ui->musicPlayMode->setIcon(QIcon(QString::fromUtf8(":/image/playonce")));
+    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOnce);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOnce);
     createPlayModeMenuIcon(m_playModeMenu);
 }

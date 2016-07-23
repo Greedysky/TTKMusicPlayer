@@ -1,6 +1,7 @@
 #include "musicsystemtraymenu.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+#include "musickugouuiobject.h"
 
 #include <QWidgetAction>
 #include <QToolButton>
@@ -50,27 +51,22 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     m_widgetAction = new QWidgetAction(this);
     QWidget *widgetActionContainer = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout(widgetActionContainer);
-    vbox->setMargin(0);
 
     QWidget *widgetContainer = new QWidget(widgetActionContainer);
     QHBoxLayout *box = new QHBoxLayout(widgetContainer);
-    box->setMargin(0);
+    box->setContentsMargins(9, 2, 9, 9);
 
     QToolButton *previousPlay = new QToolButton(widgetContainer);
     QToolButton *nextPlay = new QToolButton(widgetContainer);
     m_PlayOrStop = new QToolButton(widgetContainer);
 
-    previousPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysprevious")));
-    nextPlay->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysnext")));
-    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(":/contextMenu/sysplay")));
+    previousPlay->setFixedSize(32, 32);
+    nextPlay->setFixedSize(32, 32);
+    m_PlayOrStop->setFixedSize(32, 32);
 
-    previousPlay->setIconSize(QSize(40, 40));
-    nextPlay->setIconSize(QSize(40, 40));
-    m_PlayOrStop->setIconSize(QSize(45, 45));
-
-    previousPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    nextPlay->setStyleSheet(MusicUIObject::MToolButtonStyle01);
-    m_PlayOrStop->setStyleSheet(MusicUIObject::MToolButtonStyle01);
+    previousPlay->setStyleSheet(MusicKuGouUIObject::MKGContextPrevious);
+    nextPlay->setStyleSheet(MusicKuGouUIObject::MKGContextNext);
+    m_PlayOrStop->setStyleSheet(MusicKuGouUIObject::MKGContextPlay);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
@@ -116,8 +112,8 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
-    m_PlayOrStop->setIcon(QIcon(QString::fromUtf8(!status ? ":/contextMenu/sysstop"
-                                                          : ":/contextMenu/sysplay")) );
+    m_PlayOrStop->setStyleSheet(status ? MusicKuGouUIObject::MKGContextPlay :
+                                         MusicKuGouUIObject::MKGContextPause);
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()

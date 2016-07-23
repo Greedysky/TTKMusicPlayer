@@ -2,13 +2,11 @@
     <qresource prefix="/share">
         <file alias="searchclosed">../TTKResource/music_close1.png</file>
         <file alias="defaultArt">../TTKResource/music_default_art.jpg</file>
-        <file alias="selected">../TTKResource/contextMenu/context_selected.png</file>
         <file alias="showMV">../TTKResource/video/video_showMV.png</file>
         <file alias="musicdownload">../TTKResource/music_download.png</file>
         <file alias="autionplay">../TTKResource/music_autionPlay.png</file>
         <file alias="searchlineleft">../TTKResource/music_search_line_left.png</file>
         <file alias="warning">../TTKResource/music_warning.png</file>
-        <file alias="showMV2">../TTKResource/lrc/lrc_photo.png</file>
         <file alias="noSimilar">../TTKResource/music_no_similar_found.png</file>
     </qresource>
 </RCC>

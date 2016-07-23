@@ -21,11 +21,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp = new QPushButton(tr(" Wallp"), this);
     m_photo = new QPushButton(tr(" Photo"), this);
 
-    m_update->setIcon(QIcon(":/lrc/update"));
-    m_search->setIcon(QIcon(":/lrc/search"));
-    m_more->setIcon(QIcon(":/lrc/more"));
-    m_wallp->setIcon(QIcon(":/lrc/wallpaper"));
-    m_photo->setIcon(QIcon(":/share/showMV2"));
+    m_update->setIcon(QIcon(":/lrc/lb_lrc_update"));
+    m_search->setIcon(QIcon(":/lrc/lb_lrc_search"));
+    m_more->setIcon(QIcon(":/lrc/lb_lrc_more"));
+    m_wallp->setIcon(QIcon(":/lrc/lb_lrc_wallpaper"));
+    m_photo->setIcon(QIcon(":/lrc/lb_lrc_photo"));
 
     m_update->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
     m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );

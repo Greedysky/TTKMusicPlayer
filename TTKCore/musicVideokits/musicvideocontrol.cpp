@@ -187,7 +187,8 @@ void MusicVideoControl::movieQualityChoiced(QAction *action)
 
 void MusicVideoControl::pushBarrageClicked()
 {
-    m_pushBarrage->setIcon(QIcon(m_pushBarrageOn ? ":/equalizer/on" : ":/equalizer/off"));
+    m_pushBarrage->setIcon(QIcon(m_pushBarrageOn ? ":/enhance/btn_equalizer_on_normal" :
+                                                   ":/enhance/btn_equalizer_off_normal"));
     emit pushBarrageChanged(m_pushBarrageOn);
     m_pushBarrageOn = !m_pushBarrageOn;
 }

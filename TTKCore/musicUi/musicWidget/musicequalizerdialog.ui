@@ -220,13 +220,10 @@ font-weight:bold;
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>62</y>
-     <width>75</width>
-     <height>31</height>
+     <y>67</y>
+     <width>55</width>
+     <height>24</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{background:transparent;border:none;}</string>
    </property>
    <property name="text">
     <string/>

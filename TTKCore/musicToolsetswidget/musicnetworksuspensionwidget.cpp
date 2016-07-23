@@ -64,7 +64,7 @@ void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
         m_actionGroup->addAction(action);
         if(available.contains(var))
         {
-            action->setIcon(QIcon(":/share/selected"));
+            action->setIcon(QIcon(":/contextMenu/selected"));
         }
     }
 
@@ -122,7 +122,7 @@ void MusicNetworkSuspensionWidget::actionTriggered(QAction *action)
 {
     if(action->icon().isNull())
     {
-        action->setIcon(QIcon(":/share/selected"));
+        action->setIcon(QIcon(":/contextMenu/selected"));
     }
     else
     {
@@ -142,7 +142,7 @@ void MusicNetworkSuspensionWidget::actionTriggered(QAction *action)
 #elif defined Q_OS_UNIX
         action->setIcon(QIcon());
     }
-    action->setIcon(QIcon(":/share/selected"));
+    action->setIcon(QIcon(":/contextMenu/selected"));
     selected << action->text();
 #endif
     m_thread->setAvailableNewtworkNames(selected);

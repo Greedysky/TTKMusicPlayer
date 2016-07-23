@@ -9,6 +9,7 @@
 #include "musicconnectionpool.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
+#include "musickugouuiobject.h"
 
 #include <QPropertyAnimation>
 
@@ -54,15 +55,11 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
 
     ui->musicSearchBackButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->musicSearchBackButton->setIconSize(QSize(20, 20));
-    ui->musicSearchBackButton->setIcon(QIcon(QString::fromUtf8(":/image/back")));
+    ui->musicSearchBackButton->setStyleSheet(MusicKuGouUIObject::MKGBtnBack);
 //    connect(ui->musicSearchBackButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicSearchRefreshButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->musicSearchRefreshButton->setIconSize(QSize(20, 20));
-    ui->musicSearchRefreshButton->setIcon(QIcon(QString::fromUtf8(":/image/flash")));
+    ui->musicSearchRefreshButton->setStyleSheet(MusicKuGouUIObject::MKGBtnFresh);
     connect(ui->musicSearchRefreshButton, SIGNAL(clicked()), SLOT(musicSearchRefreshButtonRefreshed()));
 
     ui->musicIndexWidgetButton->setCursor(QCursor(Qt::PointingHandCursor));

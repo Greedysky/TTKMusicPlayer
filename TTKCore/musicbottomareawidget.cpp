@@ -119,7 +119,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->musicWindowConcise->setGeometry(con ? 295 : 888, 30, 25, 25);
     m_ui->minimization->setGeometry(con ? 325 : 949, 30, 25, 25);
     m_ui->windowClose->setGeometry(con ? 350 : 977, 30, 25, 25);
-    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
+//    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
     m_ui->musicSongSearchLine->setVisible( !con );
     m_ui->resizeWindowLabel->setVisible( !con );
     ////////////////////////////////////////////////////////////
@@ -128,7 +128,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->musicKey->setGeometry(con ? 65 : 127, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
     m_ui->musicNext->setGeometry(con ? 95 : 190, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
     m_ui->musicTimeWidget->move(con ? 15 : 240, 593);
-    m_ui->verticalLayoutWidget->move(con ? 30 : 255, 583);
+//    m_ui->verticalLayoutWidget->move(con ? 30 : 255, 583);
     m_ui->showCurrentSong->move(con ? 85 : 310, 578);
     m_ui->playCurrentTime->move(con ? 307 : 532, 588);
     m_ui->playTotalTime->move(con ? 342 : 566, 588);

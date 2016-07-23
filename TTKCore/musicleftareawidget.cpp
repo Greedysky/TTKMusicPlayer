@@ -1,6 +1,7 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicuiobject.h"
+#include "musickugouuiobject.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musictoolsetswidget.h"
 #include "musicmydownloadrecordwidget.h"
@@ -58,48 +59,16 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
                                      SLOT(setSliderStyleByType(int)));
 
-    ui->musicPrevious->setIcon(QIcon(QString::fromUtf8(":/image/previous")));
-    ui->musicNext->setIcon(QIcon(QString::fromUtf8(":/image/next")));
-    ui->musicKey->setIcon(QIcon(QString::fromUtf8(":/image/play")));
-    ui->musicBestLove->setIcon(QIcon(QString::fromUtf8(":/image/loveOff")));
-    ui->musicDownload->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
-    ui->musicSimilarFound->setIcon(QIcon(QString::fromUtf8(":/appTools/similar")));
-    ui->musicButton_cloud->setIcon(QIcon(QString::fromUtf8(":/appTools/buttoncloud")));
-    ui->musicButton_mydownl->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmydownl")));
-    ui->musicButton_playlist->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonplaylist")));
-    ui->musicButton_radio->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonradio")));
-    ui->musicButton_tools->setIcon(QIcon(QString::fromUtf8(":/appTools/buttontools")));
-    ui->musicButton_mobile->setIcon(QIcon(QString::fromUtf8(":/appTools/buttonmobile")));
+    ui->musicPrevious->setStyleSheet(MusicKuGouUIObject::MKGBtnPrevious);
+    ui->musicNext->setStyleSheet(MusicKuGouUIObject::MKGBtnNext);
+    ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
 
-    ui->musicPrevious->setIconSize(QSize(45, 45));
-    ui->musicNext->setIconSize(QSize(45, 45));
-    ui->musicKey->setIconSize(QSize(45, 45));
-    ui->musicBestLove->setIconSize(QSize(25, 25));
-    ui->musicButton_cloud->setIconSize(QSize(35, 35));
-    ui->musicButton_mydownl->setIconSize(QSize(35, 35));
-    ui->musicButton_playlist->setIconSize(QSize(35, 35));
-    ui->musicButton_radio->setIconSize(QSize(35, 35));
-    ui->musicButton_tools->setIconSize(QSize(35, 35));
-    ui->musicButton_mobile->setIconSize(QSize(35, 35));
-    ui->musicPlayMode->setIconSize(QSize(25, 25));
-    ui->musicDownload->setIconSize(QSize(25, 25));
-    ui->musicSimilarFound->setIconSize(QSize(25, 20));
-
+    switchToSelectedItemStyle(0);
     ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->musicPrevious->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicNext->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicKey->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicBestLove->setStyleSheet(MusicUIObject::MToolButtonStyle06);
-    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MCheckBoxStyle03);
-    ui->musicButton_cloud->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicButton_playlist->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicButton_radio->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicButton_tools->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicButton_mobile->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicPlayMode->setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MToolButtonStyle03);
-    ui->musicDownload->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->musicSimilarFound->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    ui->musicBestLove->setStyleSheet(MusicKuGouUIObject::MKGBtnUnLove);
+    ui->musicDesktopLrc->setStyleSheet(MusicKuGouUIObject::MKGBtnDKLrc);
+    ui->musicDownload->setStyleSheet(MusicKuGouUIObject::MKGBtnUnDownload);
+    ui->musicSimilarFound->setStyleSheet(MusicKuGouUIObject::MKGBtnSimilar);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -127,6 +96,34 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_radio->setToolTip(tr("musicRadio"));
     ui->musicButton_tools->setToolTip(tr("musicTools"));
     ui->musicButton_mobile->setToolTip(tr("musicMobile"));
+}
+
+void MusicLeftAreaWidget::musictLoveStateClicked()
+{
+    bool state = !M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    m_ui->musicBestLove->setStyleSheet(state ? MusicKuGouUIObject::MKGBtnLove : MusicKuGouUIObject::MKGBtnUnLove);
+    M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
+    emit currentLoveStateChanged();
+}
+
+void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
+{
+    m_ui->musicButton_cloud->setStyleSheet(MusicKuGouUIObject::MKGItemFavourite);
+    m_ui->musicButton_mydownl->setStyleSheet(MusicKuGouUIObject::MKGItemDownload);
+    m_ui->musicButton_playlist->setStyleSheet(MusicKuGouUIObject::MKGItemMusic);
+    m_ui->musicButton_radio->setStyleSheet(MusicKuGouUIObject::MKGItemRadio);
+    m_ui->musicButton_tools->setStyleSheet(MusicKuGouUIObject::MKGItemMore);
+    m_ui->musicButton_mobile->setStyleSheet(MusicKuGouUIObject::MKGItemMobile);
+    switch(index)
+    {
+        case 0: m_ui->musicButton_playlist->setStyleSheet(MusicKuGouUIObject::MKGItemMusicClicked); break;
+        case 1: m_ui->musicButton_radio->setStyleSheet(MusicKuGouUIObject::MKGItemRadioClicked);break;
+        case 2: m_ui->musicButton_mydownl->setStyleSheet(MusicKuGouUIObject::MKGItemDownloadClicked);break;
+        case 3: m_ui->musicButton_mobile->setStyleSheet(MusicKuGouUIObject::MKGItemMobileClicked);break;
+        case 4: m_ui->musicButton_cloud->setStyleSheet(MusicKuGouUIObject::MKGItemFavouriteClicked);break;
+        case 5: m_ui->musicButton_tools->setStyleSheet(MusicKuGouUIObject::MKGItemMoreClicked);break;
+        default: break;
+    }
 }
 
 void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
@@ -170,18 +167,10 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
     bool state = !M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
     if(state)
     {
-        m_ui->musicDownload->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
+        m_ui->musicDownload->setStyleSheet(state ? MusicKuGouUIObject::MKGBtnDownload : MusicKuGouUIObject::MKGBtnUnDownload);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
         emit currentDownloadStateChanged();
     }
-}
-
-void MusicLeftAreaWidget::musictLoveStateClicked()
-{
-    bool state = !M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    m_ui->musicBestLove->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
-    M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
-    emit currentLoveStateChanged();
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
@@ -190,6 +179,7 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
     m_stackedWidget = nullptr;
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(0);
+    switchToSelectedItemStyle(0);
 }
 
 void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
@@ -199,6 +189,7 @@ void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    switchToSelectedItemStyle(5);
 }
 
 void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
@@ -208,6 +199,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    switchToSelectedItemStyle(1);
 }
 
 void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
@@ -217,6 +209,7 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    switchToSelectedItemStyle(2);
 }
 
 void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
@@ -226,6 +219,7 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    switchToSelectedItemStyle(3);
 }
 
 void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
@@ -235,4 +229,5 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_ui->songsContainer->addWidget(m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
+    switchToSelectedItemStyle(4);
 }

@@ -21,7 +21,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     topLayout->setContentsMargins(3, 0, 0, 0);
     topLayout->setSpacing(0);
     m_labelIcon = new QLabel(this);
-    m_labelIcon->setPixmap(QPixmap(":/image/arrowup"));
+    m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
     m_labelText = new QLabel(this);
     m_labelText->setText(text);
     MusicUtils::UWidget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
@@ -51,7 +51,7 @@ QString MusicSongsToolBoxTopWidget::getClassName()
 
 void MusicSongsToolBoxTopWidget::setItemExpand(bool expand)
 {
-    m_labelIcon->setPixmap(QPixmap(expand ? ":/image/arrowdown" : ":/image/arrowup"));
+    m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
 }
 
 void MusicSongsToolBoxTopWidget::setTitle(const QString &text)

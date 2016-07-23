@@ -62,14 +62,14 @@ void MusicConnectMobileWidget::initFirstWidget()
 
     QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
     firButton->setStyleSheet(buttonStyle);
-    firButton->setIcon(QIcon(":/appTools/wired"));
+    firButton->setIcon(QIcon(":/toolSets/wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
     secButton->setStyleSheet(buttonStyle);
-    secButton->setIcon(QIcon(":/appTools/wireless"));
+    secButton->setIcon(QIcon(":/toolSets/wireless"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
     connect(secButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetThird()));
@@ -99,7 +99,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
 
     QLabel *pixLabel = new QLabel(secondWidget);
-    pixLabel->setPixmap(QPixmap(":/appTools/wired_con"));
+    pixLabel->setPixmap(QPixmap(":/toolSets/wired_con"));
 
     QLabel *label1 = new QLabel(tr("use Wired Mode"), secondWidget);
     label1->setStyleSheet("font-size:18px");

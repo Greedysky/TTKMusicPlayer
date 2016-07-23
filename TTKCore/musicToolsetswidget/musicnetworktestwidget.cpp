@@ -127,7 +127,7 @@ void MusicNetworkTestWidget::actionTriggered(QAction *action)
 {
     if(action->icon().isNull())
     {
-        action->setIcon(QIcon(":/share/selected"));
+        action->setIcon(QIcon(":/contextMenu/selected"));
     }
     else
     {
@@ -147,7 +147,7 @@ void MusicNetworkTestWidget::actionTriggered(QAction *action)
 #elif defined Q_OS_UNIX
         action->setIcon(QIcon());
     }
-    action->setIcon(QIcon(":/share/selected"));
+    action->setIcon(QIcon(":/contextMenu/selected"));
     selected << action->text();
 #endif
     m_thread->setAvailableNewtworkNames(selected);

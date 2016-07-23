@@ -1,14 +1,11 @@
 #include "musicsongssummariziedfloatwidget.h"
-#include "musicuiobject.h"
-#include "musicutils.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
+#include "musickugouuiobject.h"
+#include "musicutils.h"
 
-#include <QBitmap>
-#include <QPainter>
-#include <QBoxLayout>
 #include <QToolButton>
 #include <QPropertyAnimation>
 
@@ -17,27 +14,19 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setObjectName("MainWidget");
-    setStyleSheet("#MainWidget{background:rgba(0, 0, 0, 60);}");
+    setStyleSheet("#MainWidget{background:rgba(255, 255, 255, 180);}");
 
-    resize(60, 25);
+    resize(55, 26);
     MusicUtils::UWidget::widgetToRound(this, 10, 10);
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(0);
     QToolButton *locationButton = new QToolButton(this);
     QToolButton *searchButton = new QToolButton(this);
-    layout->addWidget(locationButton);
-    layout->addWidget(searchButton);
-
-    locationButton->setIcon(QIcon(QString::fromUtf8(":/appTools/location")));
-    locationButton->setIconSize(QSize(20, 20));
-    locationButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    locationButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
-    searchButton->setIcon(QIcon(QString::fromUtf8(":/appTools/search")));
-    searchButton->setIconSize(QSize(20, 20));
-    searchButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    locationButton->setGeometry(0, 1, 24, 24);
+    searchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
+    searchButton->setGeometry(30, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));
     connect(searchButton, SIGNAL(clicked()), SIGNAL(musicSearch()));
 

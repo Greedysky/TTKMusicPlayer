@@ -11,8 +11,8 @@
 
 #include "musiclrccontainer.h"
 
-#define TOOLBAR_HEIGHT      30
-#define TOOLBAR_TEXT_LENGTH 55
+#define TOOLBAR_HEIGHT      23
+#define TOOLBAR_TEXT_LENGTH 58
 #define TOOLBAR_WIDTH       600
 
 class QPushButton;

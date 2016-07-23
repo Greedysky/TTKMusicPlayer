@@ -24,10 +24,10 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
     m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
-    m_PreSongButton->setIcon(QIcon(":/desktopTool/previousP"));
-    m_NextSongButton->setIcon(QIcon(":/desktopTool/nextP"));
-    m_PlayButton->setIcon(QIcon(":/desktopTool/play"));
-    m_SettingButton->setIcon(QIcon(":/desktopTool/setting"));
+    m_PreSongButton->setIcon(QIcon(":/tiny/btn_previous_normal"));
+    m_NextSongButton->setIcon(QIcon(":/tiny/btn_next_normal"));
+    m_PlayButton->setIcon(QIcon(":/tiny/btn_play_normal"));
+    m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
     m_showMainWindow->setToolTip(tr("showMainWindow"));
     m_PreSongButton->setToolTip(tr("Previous"));
     m_NextSongButton->setToolTip(tr("Next"));
@@ -84,7 +84,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle03);
-    menu.addAction(QIcon(":/share/selected"), tr("WindowTop"))->setEnabled(false);
+    menu.addAction(QIcon(":/contextMenu/selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addSeparator();
 
@@ -108,8 +108,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop"
-                                                          : ":/desktopTool/play")) );
+    m_PlayButton->setIcon(QIcon(QString::fromUtf8(status ? ":/tiny/btn_play_normal"
+                                                         : ":/tiny/btn_pause_normal")) );
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)

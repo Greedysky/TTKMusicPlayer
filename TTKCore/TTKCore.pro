@@ -36,7 +36,8 @@ HEADERS  += \
     musictopareawidget.h \
     musicrightareawidget.h \
     musicbottomareawidget.h \
-    musicapplicationobject.h
+    musicapplicationobject.h \
+    musicCore/musickugouuiobject.h
 
 
 RESOURCES += \

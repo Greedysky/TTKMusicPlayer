@@ -1,6 +1,7 @@
 #include "musiclrccontainerfordesktop.h"
 #include "musiclrcmanagerfordesktop.h"
 #include "musicuiobject.h"
+#include "musickugouuiobject.h"
 #include "musicsettingmanager.h"
 
 #include <QToolButton>
@@ -83,11 +84,6 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     layout->addWidget(toolSettingButton);
     connect(toolSettingButton, SIGNAL(clicked()), SLOT(currentLrcCustom()));
 
-    QToolButton *toolUpdateLrcButton = new QToolButton(m_toolBarWidget);
-    toolUpdateLrcButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
-    layout->addWidget(toolUpdateLrcButton);
-    connect(toolUpdateLrcButton, SIGNAL(clicked()),  SIGNAL(theCurrentLrcUpdated()));
-
     QToolButton *toolLrcSmallerButton = new QToolButton(m_toolBarWidget);
     toolLrcSmallerButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     layout->addWidget(toolLrcSmallerButton);
@@ -97,6 +93,24 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolLrcBigerButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     layout->addWidget(toolLrcBigerButton);
     connect(toolLrcBigerButton, SIGNAL(clicked()), SLOT(setLrcBiggerChanged()));
+
+    QToolButton *toolStyleButton = new QToolButton(m_toolBarWidget);
+    toolStyleButton->setFixedSize(20, 20);
+    layout->addWidget(toolStyleButton);
+    toolStyleButton->setCursor(QCursor(Qt::PointingHandCursor));
+    toolStyleButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopStyle);
+
+    QToolButton *toolYinButton = new QToolButton(m_toolBarWidget);
+    toolYinButton->setIconSize(QSize(18, 23));
+    layout->addWidget(toolYinButton);
+    toolYinButton->setCursor(QCursor(Qt::PointingHandCursor));
+    toolYinButton->setIcon(QIcon(":/desktopTool/btn_yin_normal"));
+
+    QToolButton *toolYiButton = new QToolButton(m_toolBarWidget);
+    toolYiButton->setIconSize(QSize(18, 23));
+    layout->addWidget(toolYiButton);
+    toolYiButton->setCursor(QCursor(Qt::PointingHandCursor));
+    toolYiButton->setIcon(QIcon(":/desktopTool/btn_yi_normal"));
 
     QToolButton *toolMakeLrcTextButton = new QToolButton(m_toolBarWidget);
     toolMakeLrcTextButton->setFixedSize(TOOLBAR_TEXT_LENGTH, TOOLBAR_HEIGHT);
@@ -124,29 +138,11 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     connect(toolWindowLockedButton, SIGNAL(clicked()), SLOT(setWindowLockedChanged()));
 
     QToolButton *toolCloseButton = new QToolButton(m_toolBarWidget);
-    toolCloseButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
+    toolCloseButton->setFixedSize(14, 14);
     layout->addWidget(toolCloseButton);
     connect(toolCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     showMainWindow->setIcon(QIcon(":/image/windowicon"));
-    toolCloseButton->setIcon(QIcon(QPixmap(":/image/close").scaled(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT)));
-    toolMakeLrcTextButton->setIcon(QIcon(QPixmap(":/desktopTool/makeLrcText")));
-    toolSearchLrcTextButton->setIcon(QIcon(QPixmap(":/desktopTool/searchLrcText")));
-    toolUpdateLrcTextButton->setIcon(QIcon(QPixmap(":/desktopTool/updateLrcText")));
-    toolErrorLrcTextButton->setIcon(QIcon(QPixmap(":/desktopTool/errorLrcText")));
-    toolWindowLockedButton->setIcon(QIcon(QPixmap(":/desktopTool/lockWindow").scaled(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT)));
-    toolLrcBigerButton->setIcon(QIcon(QPixmap(":/desktopTool/lrcsizeUp").scaled(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT)));
-    toolLrcSmallerButton->setIcon(QIcon(QPixmap(":/desktopTool/lrcsizeDown").scaled(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT)));
-    toolUpdateLrcButton->setIcon(QIcon(QPixmap(":/desktopTool/updateLrc").scaled(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT)));
-    toolPreSongButton->setIcon(QIcon(":/desktopTool/previous"));
-    toolNextSongButton->setIcon(QIcon(":/desktopTool/next"));
-    toolSettingButton->setIcon(QIcon(":/desktopTool/setting"));
-    m_toolPlayButton->setIcon(QIcon(":/desktopTool/play"));
-
-    toolMakeLrcTextButton->setIconSize(QSize(TOOLBAR_TEXT_LENGTH, 20));
-    toolSearchLrcTextButton->setIconSize(QSize(TOOLBAR_TEXT_LENGTH, 20));
-    toolUpdateLrcTextButton->setIconSize(QSize(TOOLBAR_TEXT_LENGTH, 20));
-    toolErrorLrcTextButton->setIconSize(QSize(TOOLBAR_TEXT_LENGTH, 20));
 
     showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     toolCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -157,33 +153,30 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolWindowLockedButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolLrcBigerButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolLrcSmallerButton->setCursor(QCursor(Qt::PointingHandCursor));
-    toolUpdateLrcButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolPreSongButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolNextSongButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    toolCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolMakeLrcTextButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolSearchLrcTextButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolUpdateLrcTextButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolErrorLrcTextButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolWindowLockedButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolLrcSmallerButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolUpdateLrcButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolLrcBigerButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolPreSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolNextSongButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    toolSettingButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    m_toolPlayButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    toolCloseButton->setStyleSheet(MusicKuGouUIObject::MKGBtnTClose);
+    toolMakeLrcTextButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopMakeLrc);
+    toolSearchLrcTextButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopSearchLrc);
+    toolUpdateLrcTextButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopUpdateLrc);
+    toolErrorLrcTextButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopErrorLrc);
+    toolWindowLockedButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopLock);
+    toolLrcSmallerButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopSizeDown);
+    toolLrcBigerButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopSizeUp);
+    toolPreSongButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopPrevious);
+    toolNextSongButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopNext);
+    toolSettingButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopSetting);
+    m_toolPlayButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopPlay);
 
     showMainWindow->setToolTip(tr("showMainWindow"));
     toolCloseButton->setToolTip(tr("hide"));
     toolWindowLockedButton->setToolTip(tr("lockLrc"));
     toolLrcBigerButton->setToolTip(tr("lrcBiger"));
     toolLrcSmallerButton->setToolTip(tr("lrcSmaller"));
-    toolUpdateLrcButton->setToolTip(tr("updateLrc"));
     toolPreSongButton->setToolTip(tr("Previous"));
     toolNextSongButton->setToolTip(tr("Next"));
     toolSettingButton->setToolTip(tr("Setting"));
@@ -396,5 +389,6 @@ void MusicLrcContainerForDesktop::setSettingParameter()
 
 void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
 {
-    m_toolPlayButton->setIcon(QIcon(QString::fromUtf8(!status ? ":/desktopTool/stop" : ":/desktopTool/play")) );
+    m_toolPlayButton->setStyleSheet(status ? MusicKuGouUIObject::MKGDeskTopPlay :
+                                             MusicKuGouUIObject::MKGDeskTopPause);
 }

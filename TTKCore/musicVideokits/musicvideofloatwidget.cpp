@@ -18,7 +18,7 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_fresh->setIcon(QIcon(":/video/fresh"));
     m_fullscreen->setIcon(QIcon(":/video/fullscreen"));
     m_download->setIcon(QIcon(":/video/download"));
-    m_share->setIcon(QIcon(":/image/songShare"));
+    m_share->setIcon(QIcon(":/video/songShare"));
 
     m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
     m_fresh->setStyleSheet( MusicUIObject::MPushButtonStyle15 );

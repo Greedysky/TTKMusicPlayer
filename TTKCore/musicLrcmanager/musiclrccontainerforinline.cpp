@@ -10,6 +10,7 @@
 #include "musicconnectionpool.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
+#include "musickugouuiobject.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -248,23 +249,31 @@ void MusicLrcContainerForInline::initFunctionLabel()
     QHBoxLayout *functionLayout = new QHBoxLayout(functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
-    QPushButton *translation = new QPushButton(QIcon(":/lrc/translation"), QString(), this);
-    QPushButton *movie = new QPushButton(QIcon(":/share/showMV2"), QString(), this);
-    QPushButton *microphone = new QPushButton(QIcon(":/lrc/microphone"), QString(), this);
-    QPushButton *message = new QPushButton(QIcon(":/lrc/message"), QString(), this);
+    QPushButton *translation = new QPushButton(this);
+    QPushButton *movie = new QPushButton(this);
+    QPushButton *microphone = new QPushButton(this);
+    QPushButton *message = new QPushButton(this);
 
-    translation->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    movie->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    microphone->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    message->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    translation->setFixedSize(30, 30);
+    movie->setFixedSize(30, 30);
+    microphone->setFixedSize(30, 30);
+    message->setFixedSize(30, 30);
+
+    translation->setStyleSheet(MusicKuGouUIObject::MKGInlineTranslation);
+    movie->setStyleSheet(MusicKuGouUIObject::MKGInlineMovie);
+    microphone->setStyleSheet(MusicKuGouUIObject::MKGInlineMicrophone);
+    message->setStyleSheet(MusicKuGouUIObject::MKGInlineMessage);
+
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);
     microphone->setCursor(Qt::PointingHandCursor);
     message->setCursor(Qt::PointingHandCursor);
+
     translation->setToolTip(tr("Translation"));
     movie->setToolTip(tr("MV"));
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
+
     connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
     connect(movie, SIGNAL(clicked()), SLOT(videoButtonClicked()));
 
@@ -275,9 +284,6 @@ void MusicLrcContainerForInline::initFunctionLabel()
     functionLayout->addWidget(message);
     functionLayout->addStretch(1);
     functionLabel->setLayout(functionLayout);
-
-    microphone->setEnabled(false);
-    message->setEnabled(false);
 
     m_vBoxLayout->addWidget(functionLabel);
 }

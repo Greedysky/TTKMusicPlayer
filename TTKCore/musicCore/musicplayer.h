@@ -38,9 +38,9 @@ public:
     {
         EnhancedOff,    ///*enhanced off, no any effect*/
         Music3D,        ///*3d music effect*/
-        MusicVocal,     ///*vocal music effect*/
         MusicNICAM,     ///*nicam music effect*/
-        MusicSubwoofer  ///*subwoofer music effect*/
+        MusicSubwoofer, ///*subwoofer music effect*/
+        MusicVocal      ///*vocal music effect*/
     };
 
     explicit MusicPlayer(QObject *parent = 0);

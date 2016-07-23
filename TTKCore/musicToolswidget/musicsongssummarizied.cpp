@@ -394,7 +394,7 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
     MusicSongsToolBoxWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(QIcon(":/contextMenu/add"), tr("addNewItem"), this, SLOT(addNewRowItem()));
+    menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"));
     menu.addAction(tr("musicTest"));
     menu.addAction(tr("deleteAllItem"));

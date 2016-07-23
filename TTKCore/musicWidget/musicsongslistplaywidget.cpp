@@ -10,6 +10,7 @@
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
+#include "musickugouuiobject.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -58,38 +59,32 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_columnThree = new MusicSongsEnterPlayWidget(index, this);
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(204, 35, 23, 23);
-    m_loveButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
+    m_loveButton->setGeometry(204, 40, 16, 16);
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
     currentLoveStateClicked();
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(225, 35, 23, 23);
-    m_deleteButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_deleteButton->setIcon(QIcon(":/image/musicdelete"));
+    m_deleteButton->setGeometry(225, 40, 16, 16);
+    m_deleteButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
     m_downloadButton = new QPushButton(this);
-    m_downloadButton->setGeometry(165, 35, 23, 23);
-    m_downloadButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_downloadButton->setIconSize(QSize(23, 23));
+    m_downloadButton->setGeometry(180, 40, 16, 16);
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_downloadButton->setToolTip(tr("songDownload"));
     currentDownloadStateClicked();
 
     m_showMVButton = new QPushButton(m_columnThree);
-    m_showMVButton->setGeometry(0, 35, 23, 23);
-    m_showMVButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_showMVButton->setIcon(QIcon(":/share/showMV2"));
+    m_showMVButton->setGeometry(0, 39, 16, 16);
+    m_showMVButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMV);
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
     m_songShareButton = new QPushButton(m_columnThree);
-    m_songShareButton->setGeometry(0, 7, 23, 23);
-    m_songShareButton->setStyleSheet( MusicUIObject::MPushButtonStyle13 );
-    m_songShareButton->setIcon(QIcon(":/image/songShare"));
+    m_songShareButton->setGeometry(23, 39, 16, 16);
+    m_songShareButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMore);
     m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_songShareButton->setToolTip(tr("songShare"));
 
@@ -213,11 +208,13 @@ void MusicSongsListPlayWidget::sharingButtonClicked()
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
     bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    m_loveButton->setIcon(QIcon(state ? ":/image/loveOn" : ":/image/loveOff"));
+    m_loveButton->setStyleSheet(state ? MusicKuGouUIObject::MKGTinyBtnLove :
+                                        MusicKuGouUIObject::MKGTinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool state = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
-    m_downloadButton->setIcon(QIcon(state ? ":/appTools/buttonmydownfn" : ":/appTools/buttonmydownl"));
+    m_downloadButton->setStyleSheet(state ? MusicKuGouUIObject::MKGTinyBtnDownload :
+                                            MusicKuGouUIObject::MKGTinyBtnUnDownload);
 }

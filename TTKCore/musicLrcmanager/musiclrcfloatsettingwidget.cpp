@@ -41,8 +41,8 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
     QPushButton *sizeBigerButton = new QPushButton(this);
     QPushButton *sizeSmallerButton = new QPushButton(this);
-    sizeBigerButton->setIcon(QIcon(":/desktopTool/lrcsizeUp"));
-    sizeSmallerButton->setIcon(QIcon(":/desktopTool/lrcsizeDown"));
+    sizeBigerButton->setIcon(QIcon(":/desktopTool/btn_size-_normal"));
+    sizeSmallerButton->setIcon(QIcon(":/desktopTool/btn_size+_normal"));
     sizeBigerButton->setIconSize(QSize(25,25));
     sizeSmallerButton->setIconSize(QSize(25,25));
     sizeBigerButton->setGeometry(85, 80, 25, 25);

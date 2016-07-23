@@ -22,26 +22,31 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     m_database = new MusicWebEntainRadioDatabase;
     m_database->connectDatabase();
 
-    ui->playButton->setIcon(QIcon(":/image/play"));
-    ui->stopButton->setIcon(QIcon(":/image/stop"));
+    ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+    ui->stopButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     ui->colletButton->setIcon(QIcon(":/radio/collect"));
     ui->discolletButton->setIcon(QIcon(":/radio/discollect"));
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->colletButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->discolletButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+
+    ui->playButton->setStyleSheet("background:transparent;");
+    ui->stopButton->setStyleSheet("background:transparent;");
+    ui->colletButton->setStyleSheet("background:transparent;");
+    ui->discolletButton->setStyleSheet("background:transparent;");
+
     ui->playButton->setIconSize(QSize(31, 31));
     ui->stopButton->setIconSize(QSize(31, 31));
     ui->colletButton->setIconSize(QSize(31, 31));
     ui->discolletButton->setIconSize(QSize(31, 31));
+
     ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->colletButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->discolletButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     ui->playButton->setToolTip(tr("Play"));
     ui->stopButton->setToolTip(tr("Stop"));
     ui->colletButton->setToolTip(tr("Colletion"));
     ui->discolletButton->setToolTip(tr("Discolletion"));
+
     ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->volumeSlider->setRange(0, 100);
     ui->volumeSlider->setValue(100);
