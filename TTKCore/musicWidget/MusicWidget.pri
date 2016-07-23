@@ -112,3 +112,13 @@ SOURCES += \
     $$PWD/musicsimilarfoundwidget.cpp
 
 }
+
+HEADERS += \
+    $$PWD/core/musictoolmenuwidget.h \
+    $$PWD/musicplaybackmodewidget.h \
+    $$PWD/musicvolumepopwidget.h
+
+SOURCES += \
+    $$PWD/core/musictoolmenuwidget.cpp \
+    $$PWD/musicplaybackmodewidget.cpp \
+    $$PWD/musicvolumepopwidget.cpp

@@ -9,8 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QToolButton>
 #include "musicglobaldefine.h"
+#include "musictoolmenuwidget.h"
 
 class QLabel;
 class QMovie;
@@ -48,7 +48,7 @@ protected:
 /*! @brief The class of the enhanced widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicEnhancedWidget : public QToolButton
+class MUSIC_WIDGET_EXPORT MusicEnhancedWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicEnhancedWidget();
+    virtual ~MusicEnhancedWidget();
 
     static QString getClassName();
     /*!
@@ -85,10 +85,10 @@ protected:
      * Create all widget in layout.
      */
 
-    QMenu *m_menu;
+    int m_lastSelectedIndex;
     QToolButton *m_caseButton;
     MusicEnhancedToolButton *m_Button1, *m_Button2, *m_Button3, *m_Button4;
-    int m_lastSelectedIndex;
+
 
 };
 

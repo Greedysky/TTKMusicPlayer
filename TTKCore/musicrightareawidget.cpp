@@ -48,7 +48,7 @@ QString MusicRightAreaWidget::getClassName()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    ui->musiclrccontainerforinline->resize(ui->SurfaceStackedWidget->size());
+    ui->musiclrccontainerforinline->resize(ui->surfaceStackedWidget->size());
 
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
@@ -245,7 +245,7 @@ void MusicRightAreaWidget::musicSearchButtonSearched()
     {
         musicButtonStyleClear();
         m_ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
-        m_ui->SurfaceStackedWidget->setCurrentIndex(1);
+        m_ui->surfaceStackedWidget->setCurrentIndex(1);
         createVideoWidget(false);
         m_ui->songSearchWidget->startSearchQuery(searchedQString);
     }
@@ -268,7 +268,7 @@ void MusicRightAreaWidget::musicIndexWidgetButtonSearched()
     musicButtonStyleClear();
     m_ui->musicIndexWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
     //Show the first index of widget
-    m_ui->SurfaceStackedWidget->setCurrentIndex(0);
+    m_ui->surfaceStackedWidget->setCurrentIndex(0);
     createVideoWidget(false);
 }
 
@@ -277,7 +277,7 @@ void MusicRightAreaWidget::musicSearchWidgetButtonSearched()
     musicButtonStyleClear();
     m_ui->musicSearchWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
     //Show searched song lists
-    m_ui->SurfaceStackedWidget->setCurrentIndex(1);
+    m_ui->surfaceStackedWidget->setCurrentIndex(1);
     createVideoWidget(false);
 }
 
@@ -286,7 +286,7 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     musicButtonStyleClear();
     m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
     //Show lrc display widget
-    m_ui->SurfaceStackedWidget->setCurrentIndex(2);
+    m_ui->surfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(":/lrc/lrcDisplayAll"));
     m_ui->lrcDisplayAllButton->setVisible(true);
@@ -313,8 +313,8 @@ void MusicRightAreaWidget::musicSimilarFoundButtonSearched()
 
     createVideoWidget(false);
     m_similarFoundWidget = new MusicSimilarFoundWidget(this);
-    m_ui->SurfaceStackedWidget->addWidget(m_similarFoundWidget);
-    m_ui->SurfaceStackedWidget->setCurrentWidget(m_similarFoundWidget);
+    m_ui->surfaceStackedWidget->addWidget(m_similarFoundWidget);
+    m_ui->surfaceStackedWidget->setCurrentWidget(m_similarFoundWidget);
     m_similarFoundWidget->setSongName(m_ui->showCurrentSong->text().trimmed());
 }
 
@@ -331,18 +331,18 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
         m_videoPlayer->setObjectToClose(this);
         m_videoPlayer->blockMoveOption(true);
         connect(m_videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
-        m_ui->SurfaceStackedWidget->addWidget(m_videoPlayer);
-        m_ui->SurfaceStackedWidget->setCurrentWidget(m_videoPlayer);
+        m_ui->surfaceStackedWidget->addWidget(m_videoPlayer);
+        m_ui->surfaceStackedWidget->setCurrentWidget(m_videoPlayer);
     }
     else if(m_videoPlayer)
     {
-        m_ui->SurfaceStackedWidget->removeWidget(m_videoPlayer);
+        m_ui->surfaceStackedWidget->removeWidget(m_videoPlayer);
         deleteVideoWidget();
     }
     ////////////////////////////////////////////////////////////
     if(m_similarFoundWidget)
     {
-        m_ui->SurfaceStackedWidget->removeWidget(m_similarFoundWidget);
+        m_ui->surfaceStackedWidget->removeWidget(m_similarFoundWidget);
         delete m_similarFoundWidget;
         m_similarFoundWidget = nullptr;
     }
@@ -409,7 +409,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 380, 300));
     lrcDisplayAllAnimation->start();
 
-    m_ui->SurfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 380, 115, m_lrcDisplayAll ? 950 : 633, 455);
+    m_ui->surfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 380, 115, m_lrcDisplayAll ? 950 : 633, 455);
     m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 320 : 0);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));
     m_ui->musicWindowConcise->setEnabled(!m_lrcDisplayAll);

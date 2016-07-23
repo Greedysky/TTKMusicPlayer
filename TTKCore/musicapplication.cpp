@@ -37,7 +37,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
     ///insert kugou network widget
-    ui->SurfaceStackedWidget->insertWidget(0, new KugouWindow(this));
+    ui->surfaceStackedWidget->insertWidget(0, new KugouWindow(this));
 
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_bottomAreaWidget->setupUi(ui);
@@ -56,16 +56,16 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_rightAreaWidget, SIGNAL(lockDesktopLrc(bool)), m_bottomAreaWidget, SLOT(lockDesktopLrc(bool)));
     connect(m_rightAreaWidget, SIGNAL(desktopLrcClosed()), m_bottomAreaWidget, SLOT(desktopLrcClosed()));
 
-    initWindowSurface();
     setAcceptDrops(true);
 
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
+    ui->musicPlayMode->initWidget(this);
     //The default is the order of play
+
     m_musicPlayer->setPlaylist(m_musicList);
     m_musicPlayer->setVolume(100);
     //The default Volume is 100
-    ui->musicSoundSlider->setRange(0, 100);
-    ui->musicSoundSlider->setValue(100);
+
     m_playControl = true;//The default in the suspended state
     m_currentMusicSongTreeIndex = 0;
 
@@ -80,8 +80,10 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicSongTree, SIGNAL(updatePlayLists(QString)), m_musicList, SLOT(appendMedia(QString)));
     connect(m_musicSongTree, SIGNAL(updateMediaLists(QStringList, int)), m_musicList, SLOT(updateMediaLists(QStringList, int)));
 
+    connect(ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
+
     ui->lrcDisplayAllButton->hide();
-    ui->SurfaceStackedWidget->setCurrentIndex(0);
+    ui->surfaceStackedWidget->setCurrentIndex(0);
     ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
 
@@ -209,7 +211,18 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
-    createPlayModeMenu(musicPlaybackMode);
+
+    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
+    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
+    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
+    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
+    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
+    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
+    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/selected")) : order->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/selected")) : random->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/selected")) : lCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/selected")) : sCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
@@ -253,35 +266,6 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicApplication::initWindowSurface()
-{
-    connect(ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
-    ui->musicPlayMode->setMenu(&m_playModeMenu);
-    ui->musicPlayMode->setPopupMode(QToolButton::InstantPopup);
-}
-
-void MusicApplication::createPlayModeMenuIcon(QMenu &menu)
-{
-    QList<QAction*> as = menu.actions();
-    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
-    (songplaymode == MusicObject::MC_PlayOrder) ? as[0]->setIcon(QIcon(":/contextMenu/selected")) : as[0]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? as[1]->setIcon(QIcon(":/contextMenu/selected")) : as[1]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? as[2]->setIcon(QIcon(":/contextMenu/selected")) : as[2]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? as[3]->setIcon(QIcon(":/contextMenu/selected")) : as[3]->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? as[4]->setIcon(QIcon(":/contextMenu/selected")) : as[4]->setIcon(QIcon());
-}
-
-void MusicApplication::createPlayModeMenu(QMenu &menu)
-{
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
-    menu.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
-    menu.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
-    menu.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
-    menu.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
-    createPlayModeMenuIcon(menu);
-}
-
 void MusicApplication::readXMLConfigFromText()
 {
     MusicXMLConfigManager xml;
@@ -304,7 +288,6 @@ void MusicApplication::readXMLConfigFromText()
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
     xml.readOtherLoadConfig();
 
-    createPlayModeMenu(m_playModeMenu);
     switch( xml.readMusicPlayModeConfig() )
     {
         case MusicObject::MC_PlayOrder:
@@ -322,7 +305,7 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     //The size of the volume of the allocation of songs
     value = xml.readMusicPlayVolumeConfig();
-    ui->musicSoundSlider->setValue(value);
+    ui->musicSound->setValue(value);
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
@@ -412,7 +395,7 @@ void MusicApplication::writeXMLConfigToText()
 
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, ui->musicSoundSlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, ui->musicSound->value());
     lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     if(lastPlayIndexChoiced.isEmpty())
     {
@@ -601,68 +584,50 @@ void MusicApplication::musicPlayNext()
 void MusicApplication::musicPlayOrder()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
-    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOrder);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOrder);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOrder);
-    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayRandom()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayRandom);
-    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnRandom);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayRandom);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayRandom);
-    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayListLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnListLoop);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayListLoop);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayOneLoop()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOneLoop);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOneLoop);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicPlayItemOnce()
 {
     m_musicList->setPlaybackMode(MusicObject::MC_PlayOnce);
-    ui->musicPlayMode->setStyleSheet(MusicKuGouUIObject::MKGBtnOnce);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOnce);
     m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOnce);
-    createPlayModeMenuIcon(m_playModeMenu);
 }
 
 void MusicApplication::musicVolumeMute()
 {
-    if(!m_musicPlayer->isMuted())
-    {
-        m_musicPlayer->setMuted(true);
-        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle25);
-    }
-    else
-    {
-        m_musicPlayer->setMuted(false);
-        ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24);
-    }
-    ui->musicSoundSlider->blockSignals(true);
-    ui->musicSoundSlider->setValue(m_musicPlayer->volume());
-    ui->musicSoundSlider->blockSignals(false);
+    m_musicPlayer->setMuted(!m_musicPlayer->isMuted());
+    ui->musicSound->setValue(m_musicPlayer->volume());
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, m_musicPlayer->volume());
 }
 
 void MusicApplication::musicVolumeChanged(int volume)
 {
     m_topAreaWidget->setVolumeValue(volume);
-    m_bottomAreaWidget->setVolumeValue(volume);
+    ui->musicSound->setValue(volume);
     m_musicPlayer->setVolume(volume);
-    (volume > 0) ? ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle24)
-                 : ui->musicSound->setStyleSheet(MusicUIObject::MCustomStyle25);
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
 }
 
@@ -674,7 +639,6 @@ void MusicApplication::musicActionVolumeSub()
     {
         currentVol = 0;   //reset music volume
     }
-    ui->musicSoundSlider->setValue(currentVol);
     musicVolumeChanged( currentVol );
 }
 
@@ -686,7 +650,6 @@ void MusicApplication::musicActionVolumePlus()
     {
         currentVol = 100;   //reset music volume
     }
-    ui->musicSoundSlider->setValue(currentVol);
     musicVolumeChanged( currentVol );
 }
 

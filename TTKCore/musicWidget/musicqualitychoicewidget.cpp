@@ -4,8 +4,7 @@
 #include "musicconnectionpool.h"
 #include "musicleftareawidget.h"
 
-#include <QMenu>
-#include <QWidgetAction>
+#include <QBoxLayout>
 
 MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -20,7 +19,6 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     m_previousClickRow = 1;
 
     createItems();
-    setFixedSize(110, 150);
 }
 
 MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
@@ -116,22 +114,18 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 
 
 MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
-    : QToolButton(parent)
+    : MusicToolMenuWidget(parent)
 {
     setText(tr("SD-text"));
     setToolTip(tr("Quality Choice"));
     setFixedSize(45, 20);
+
     initWidget();
-    setCursor(Qt::PointingHandCursor);
+
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
-}
-
-MusicQualityChoiceWidget::~MusicQualityChoiceWidget()
-{
-    delete m_menu;
 }
 
 QString MusicQualityChoiceWidget::getClassName()
@@ -141,16 +135,19 @@ QString MusicQualityChoiceWidget::getClassName()
 
 void MusicQualityChoiceWidget::initWidget()
 {
-    m_menu = new QMenu(this);
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle02);
-    QWidgetAction *actionWidget = new QWidgetAction(m_menu);
-    MusicQualityChoiceTableWidget *containWidget = new MusicQualityChoiceTableWidget(m_menu);
-    connect(containWidget, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));
 
-    actionWidget->setDefaultWidget(containWidget);
-    m_menu->addAction(actionWidget);
-    setMenu(m_menu);
-    setPopupMode(QToolButton::InstantPopup);
+    QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+
+
+    MusicQualityChoiceTableWidget *table = new MusicQualityChoiceTableWidget(m_containWidget);
+    connect(table, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));
+    layout->addWidget(table);
+    m_containWidget->setFixedSize(110, 150);
+
+    m_containWidget->setLayout(layout);
 }
 
 void MusicQualityChoiceWidget::listCellClicked(int row)

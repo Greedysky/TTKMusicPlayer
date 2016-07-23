@@ -282,6 +282,11 @@ namespace MusicKuGouUIObject
             background-image: url(:/functions/btn_similar_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_similar_hover);}";
 
+    const QString MKGBtnSound = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_sound_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_sound_hover);}";
+
     const QString MKGBtnUnLove = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_unloved_normal);} \
@@ -317,6 +322,11 @@ namespace MusicKuGouUIObject
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_skin_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_skin_hover);}";
+
+    const QString MKGBtnSetting = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_setting_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_setting_hover);}";
 
     const QString MKGBtnRemote = " \
             QToolButton{ border:none; \

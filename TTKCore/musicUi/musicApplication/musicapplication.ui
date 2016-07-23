@@ -58,7 +58,7 @@
        <number>1</number>
       </property>
       <item>
-       <widget class="QWidget" name="widget" native="true">
+       <widget class="QWidget" name="topWidget" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -91,7 +91,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="widget_7" native="true">
+          <widget class="QWidget" name="topLeftWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>370</width>
@@ -128,7 +128,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_8" native="true">
+          <widget class="QWidget" name="topRightWidget" native="true">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -256,7 +256,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="musicWindowSetting">
+             <widget class="QToolButton" name="musicWindowSetting">
               <property name="minimumSize">
                <size>
                 <width>14</width>
@@ -408,7 +408,7 @@ QPushButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_2" native="true">
+       <widget class="QWidget" name="centerWidget" native="true">
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -429,7 +429,7 @@ QPushButton:hover {
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="widget_4" native="true">
+          <widget class="QWidget" name="centerLeftWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>50</width>
@@ -671,7 +671,7 @@ QPushButton:pressed {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_6" native="true">
+          <widget class="QWidget" name="centerRightWidget" native="true">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -692,7 +692,7 @@ QPushButton:pressed {
              <number>0</number>
             </property>
             <item>
-             <widget class="QWidget" name="widget_15" native="true">
+             <widget class="QWidget" name="stackedFunctionWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -773,7 +773,7 @@ QPushButton:pressed {
                 </spacer>
                </item>
                <item>
-                <widget class="QWidget" name="widget_17" native="true">
+                <widget class="QWidget" name="stackedWidgetFunctionOption" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>470</width>
@@ -936,9 +936,9 @@ QPushButton:pressed {
              </widget>
             </item>
             <item>
-             <widget class="QStackedWidget" name="SurfaceStackedWidget">
+             <widget class="QStackedWidget" name="surfaceStackedWidget">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
               <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline"/>
@@ -951,7 +951,7 @@ QPushButton:pressed {
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="widget_3" native="true">
+       <widget class="QWidget" name="bottomWidget" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -984,7 +984,7 @@ QPushButton:pressed {
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="widget_9" native="true">
+          <widget class="QWidget" name="bottomLeftWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>240</width>
@@ -1089,7 +1089,7 @@ QPushButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_10" native="true">
+          <widget class="QWidget" name="bottomCenterWidget" native="true">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -1113,7 +1113,7 @@ QPushButton:hover {
              <number>0</number>
             </property>
             <item row="1" column="5">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="rightMargin">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1158,7 +1158,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item row="1" column="4">
-             <widget class="QWidget" name="widget_14" native="true">
+             <widget class="QWidget" name="timeWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>80</width>
@@ -1230,14 +1230,14 @@ QPushButton:hover {
              </widget>
             </item>
             <item row="0" column="0" colspan="6">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="topMargin">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="leftMargin">
               <property name="minimumSize">
                <size>
                 <width>1</width>
@@ -1259,7 +1259,7 @@ QPushButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_11" native="true">
+          <widget class="QWidget" name="bottomRightWidget" native="true">
            <property name="minimumSize">
             <size>
              <width>380</width>
@@ -1351,7 +1351,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicPlayMode">
+             <widget class="MusicPlayBackModeWidget" name="musicPlayMode" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1420,31 +1420,6 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="btn_lrc_3">
-              <property name="minimumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="lrcDisplayAllButton">
               <property name="enabled">
                <bool>true</bool>
@@ -1458,25 +1433,20 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="resizeWindowLabel">
-              <property name="pixmap">
-               <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/image/resizeWindow</pixmap>
+             <widget class="MusicVolumePopWidget" name="musicSound" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSlider" name="musicSoundSlider">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicSound">
-              <property name="styleSheet">
-               <string notr="true">border-image: url(:/image/soundmax);</string>
-              </property>
-              <property name="text">
+              <property name="text" stdset="0">
                <string/>
               </property>
              </widget>
@@ -1523,7 +1493,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_21">
+             <widget class="QToolButton" name="musicPlayedList">
               <property name="minimumSize">
                <size>
                 <width>64</width>
@@ -1535,6 +1505,11 @@ QPushButton:hover {
                 <width>64</width>
                 <height>20</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"> QToolButton{ border:none;
+background-image: url(:/functions/btn_queue_normal);}
+QToolButton:hover{ background-image: url(:/functions/btn_queue_hover);}</string>
               </property>
               <property name="text">
                <string/>
@@ -1594,6 +1569,18 @@ QPushButton:hover {
    <class>MusicAnimationStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>musicanimationstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicPlayBackModeWidget</class>
+   <extends>QWidget</extends>
+   <header>musicplaybackmodewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicVolumePopWidget</class>
+   <extends>QWidget</extends>
+   <header>musicvolumepopwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

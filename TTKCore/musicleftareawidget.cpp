@@ -45,7 +45,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicPrevious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
     connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));
-    connect(ui->musicSoundSlider, SIGNAL(valueChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
+    connect(ui->musicSound, SIGNAL(musicVolumeChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
     connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
@@ -64,7 +64,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
 
     switchToSelectedItemStyle(0);
-    ui->musicSoundSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->musicBestLove->setStyleSheet(MusicKuGouUIObject::MKGBtnUnLove);
     ui->musicDesktopLrc->setStyleSheet(MusicKuGouUIObject::MKGBtnDKLrc);
     ui->musicDownload->setStyleSheet(MusicKuGouUIObject::MKGBtnUnDownload);
@@ -74,7 +73,6 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicNext->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSound->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSoundSlider->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicBestLove->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));

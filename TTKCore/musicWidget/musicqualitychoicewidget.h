@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QToolButton>
+#include "musictoolmenuwidget.h"
 #include "musicabstracttablewidget.h"
 
 /*! @brief The class of the quality choice table widget.
@@ -43,12 +43,10 @@ public Q_SLOTS:
 };
 
 
-class QMenu;
-
 /*! @brief The class of the quality choice widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQualityChoiceWidget : public QToolButton
+class MUSIC_WIDGET_EXPORT MusicQualityChoiceWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
@@ -56,7 +54,6 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicQualityChoiceWidget();
 
     static QString getClassName();
     /*!
@@ -81,7 +78,6 @@ protected:
      * Create all widget in layout.
      */
 
-    QMenu *m_menu;
     QString m_currentQuality;
 
 };

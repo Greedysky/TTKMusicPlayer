@@ -54,6 +54,11 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowChangeSkin->setStyleSheet(MusicKuGouUIObject::MKGBtnSkin);
     connect(ui->musicWindowChangeSkin, SIGNAL(clicked()) , SLOT(musicShowSkinChangedWindow()));
 
+    ui->musicWindowSetting->setToolTip(tr("setting"));
+    ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicWindowSetting->setStyleSheet(MusicKuGouUIObject::MKGBtnSetting);
+    connect(ui->musicWindowSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
+
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowConcise->setStyleSheet(MusicKuGouUIObject::MKGBtnConciseIn);
@@ -118,7 +123,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 {
-    if(m_ui->SurfaceStackedWidget->currentIndex() == 2)
+    if(m_ui->surfaceStackedWidget->currentIndex() == 2)
     {
         return;
     }
@@ -136,7 +141,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
     {
         m_musicbgskin->updateBackground(fileName);
     }
-    if(m_ui->SurfaceStackedWidget->currentIndex() == 2)
+    if(m_ui->surfaceStackedWidget->currentIndex() == 2)
     {
         return;
     }
@@ -190,7 +195,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
-    if(m_ui->SurfaceStackedWidget->currentIndex() == 2  &&
+    if(m_ui->surfaceStackedWidget->currentIndex() == 2  &&
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
@@ -213,7 +218,7 @@ void MusicTopAreaWidget::musicPlayListTransparent(int index)
 
 void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
 {
-    m_ui->musicSoundSlider->setValue(value);
+    m_ui->musicSound->setValue(value);
 }
 
 void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
@@ -266,7 +271,7 @@ void MusicTopAreaWidget::createRemoteWidget()
         return;
     }
     m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
-    m_musicRemoteWidget->setVolumeValue(m_ui->musicSoundSlider->value());
+    m_musicRemoteWidget->setVolumeValue(m_ui->musicSound->value());
     connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), m_supperClass, SLOT(showNormal()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousSignal()), m_supperClass, SLOT(musicPlayPrevious()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));

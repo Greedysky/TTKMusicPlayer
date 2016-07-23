@@ -72,10 +72,6 @@ public:
     /*!
      * Set system tray message show title and context.
      */
-    void setVolumeValue(int value) const;
-    /*!
-     * Set current volume value by index.
-     */
 
 #if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_GREATER_NEW
     void setValue(int value) const;

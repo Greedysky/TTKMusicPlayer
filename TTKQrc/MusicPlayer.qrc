@@ -291,6 +291,8 @@
         <file alias="btn_download_hover">../TTKResource/functions/btn_download_hover.png</file>
         <file alias="btn_similar_normal">../TTKResource/functions/btn_similar_normal.png</file>
         <file alias="btn_similar_hover">../TTKResource/functions/btn_similar_hover..png</file>
+        <file alias="btn_sound_normal">../TTKResource/functions/btn_sound_normal.png</file>
+        <file alias="btn_sound_hover">../TTKResource/functions/btn_sound_hover.png</file>
         <file alias="btn_unloved_normal">../TTKResource/functions/btn_unloved_normal.png</file>
         <file alias="btn_unloved_hover">../TTKResource/functions/btn_unloved_hover.png</file>
         <file alias="btn_loved_normal">../TTKResource/functions/btn_loved_normal.png</file>
@@ -331,5 +333,9 @@
         <file alias="btn_fresh_hover">../TTKResource/functions/btn_fresh_hover.png</file>
         <file alias="btn_back_normal">../TTKResource/functions/btn_back_normal.png</file>
         <file alias="btn_back_hover">../TTKResource/functions/btn_back_hover.png</file>
+        <file alias="btn_setting_normal">../TTKResource/functions/btn_setting_normal.png</file>
+        <file alias="btn_setting_hover">../TTKResource/functions/btn_setting_hover.png</file>
+        <file alias="btn_queue_normal">../TTKResource/functions/btn_queue_normal.png</file>
+        <file alias="btn_queue_hover">../TTKResource/functions/btn_queue_hover.png</file>
     </qresource>
 </RCC>

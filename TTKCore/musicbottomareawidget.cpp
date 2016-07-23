@@ -55,11 +55,6 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
     }
 }
 
-void MusicBottomAreaWidget::setVolumeValue(int value) const
-{
-    m_ui->musicSoundSlider->setValue(value);
-}
-
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
     m_systemTray = new QSystemTrayIcon(m_supperClass);

@@ -244,18 +244,6 @@ protected:
      * Override the widget event.
      */
 
-    void initWindowSurface();
-    /*!
-     * Init window surface widget interface.
-     */
-    void createPlayModeMenu(QMenu &menu);
-    /*!
-     * Create play mode menu.
-     */
-    void createPlayModeMenuIcon(QMenu &menu);
-    /*!
-     * Create play mode menu's icon.
-     */
     void readXMLConfigFromText();
     /*!
      * Read XML config from text.
@@ -269,7 +257,6 @@ private:
     Ui::MusicApplication *ui;
     bool m_playControl;
     int m_currentMusicSongTreeIndex;
-    QMenu m_playModeMenu;
 
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
