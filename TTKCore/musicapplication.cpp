@@ -23,15 +23,13 @@
 #include "kugouwindow.h"
 
 MusicApplication::MusicApplication(QWidget *parent)
-    : MusicAbstractMoveWidget(parent),
+    : MusicAbstractMoveResizeWidget(parent),
       ui(new Ui::MusicApplication)
 {
     ui->setupUi(this);
     M_CONNECTION_PTR->setValue(getClassName(), this);
 
     m_applicationObject = new MusicApplicationObject(this);
-    setAttribute(Qt::WA_TranslucentBackground, true);
-//    drawWindowShadow(false);
 
     ////////////////////////////////////////////////
     m_musicPlayer = new MusicPlayer(this);
@@ -87,6 +85,14 @@ MusicApplication::MusicApplication(QWidget *parent)
     ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
 
+    QObjectList result = foreachWidget(this);
+    foreach(QObject *obj, result)
+    {
+        QWidget *widget = qobject_cast<QWidget*>(obj);
+        widget->installEventFilter(this);
+        widget->setMouseTracking(true);
+    }
+
     readXMLConfigFromText();
 }
 
@@ -113,20 +119,27 @@ QString MusicApplication::getClassName()
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
     m_applicationObject->nativeEvent(eventType, message, result);
-    return QWidget::nativeEvent(eventType, message, result);
+    return MusicAbstractMoveResizeWidget::nativeEvent(eventType, message, result);
 }
 #  else
 bool MusicApplication::winEvent(MSG *message, long *result)
 {
     m_applicationObject->winEvent(message, result);
-    return QWidget::winEvent(message, result);
+    return MusicAbstractMoveResizeWidget::winEvent(message, result);
 }
 #  endif
 #endif
 
+void MusicApplication::resizeEvent(QResizeEvent *event)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
+    m_topAreaWidget->musicBgThemeDownloadFinished();
+    MusicAbstractMoveResizeWidget::resizeEvent(event);
+}
+
 void MusicApplication::closeEvent(QCloseEvent *event)
 {
-    QWidget::closeEvent(event);
+    MusicAbstractMoveResizeWidget::closeEvent(event);
     event->ignore();
     if(!m_bottomAreaWidget->getSystemCloseConfig() &&
         m_bottomAreaWidget->systemTrayIsVisible() )
@@ -143,21 +156,21 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 
 void MusicApplication::dragEnterEvent(QDragEnterEvent *event)
 {
-    QWidget::dragEnterEvent(event);
+    MusicAbstractMoveResizeWidget::dragEnterEvent(event);
     event->setDropAction(Qt::MoveAction);
     event->accept();
 }
 
 void MusicApplication::dragMoveEvent(QDragMoveEvent *event)
 {
-    QWidget::dragMoveEvent(event);
+    MusicAbstractMoveResizeWidget::dragMoveEvent(event);
     event->setDropAction(Qt::MoveAction);
     event->accept();
 }
 
 void MusicApplication::dropEvent(QDropEvent *event)
 {
-    QWidget::dropEvent(event);
+    MusicAbstractMoveResizeWidget::dropEvent(event);
     const QMimeData *data = event->mimeData();
     QStringList fileList;
     QString suffix;
@@ -182,7 +195,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget::contextMenuEvent(event);
+    MusicAbstractMoveResizeWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),

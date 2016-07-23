@@ -67,6 +67,11 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     int m_picIndex;
     bool m_reverse;
     QLabel *m_label;

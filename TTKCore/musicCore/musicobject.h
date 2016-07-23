@@ -94,6 +94,9 @@
 #define LOGINTIME          20
 ///////////////////////////////////////
 
+#define WINDOW_WIDTH_MIN    1033
+#define WINDOW_HEIGHT_MIN   660
+
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */

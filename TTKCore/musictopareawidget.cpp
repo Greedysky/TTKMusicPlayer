@@ -174,7 +174,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect()
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 {
-    QSize size(1033, 660);
+    QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
     QPixmap origin(path);
     QPixmap afterDeal( size );
     afterDeal.fill(Qt::transparent);
@@ -194,7 +194,7 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
-        m_pictureCarouselTimer.start(5000);
+        m_pictureCarouselTimer.start(5*MT_S2MS);
     }
     else
     {

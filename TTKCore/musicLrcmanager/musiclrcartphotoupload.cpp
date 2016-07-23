@@ -59,7 +59,7 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
     }
 
     QPixmap pix(picPath);
-    if(pix.width() < 1033 || pix.height() < 660)
+    if(pix.width() < WINDOW_WIDTH_MIN || pix.height() < WINDOW_HEIGHT_MIN)
     {
         ui->stateLabel->show();
         ui->uploadButton->hide();

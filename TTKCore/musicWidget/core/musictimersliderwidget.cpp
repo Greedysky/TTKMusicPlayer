@@ -4,21 +4,17 @@
 
 #include <qmath.h>
 #include <QLabel>
-#include <QSlider>
 
 MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setGeometry(0, 0, 376, 40);
-
     m_label = new QLabel(this);
-    m_label->move(5, 5);
-    m_label->setFixedSize(35, 35);
+    m_label->setGeometry(0, 0, 36, 36);
     m_label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     m_label->hide();
 
     m_slider = new MusicMovingLabelSlider(Qt::Horizontal, this);
-    m_slider->setGeometry(17, 17, 345, 10);
+    m_slider->setGeometry(5, m_label->width()/2, width() - m_label->width()/2, 10);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -79,8 +75,23 @@ void MusicTimerSliderWidget::sliderMovedAt(int pos) const
     int max = m_slider->maximum();
     if(max != 0)
     {
-        m_label->move(5 + ceil(pos * 338 / max), 5);
+        m_label->move(ceil(pos*(m_slider->width())*1.0/max) - 10, 5);
     }
+}
+
+void MusicTimerSliderWidget::setSliderStyleByType(int type)
+{
+    QString rgba1 = "rgb(231, 80, 229)", rgba2 = "rgb(7, 208, 255)";
+    switch(type)
+    {
+        case 1: rgba1 = "rgb(232, 202, 189)"; rgba2 = "rgb(191, 252, 198)"; break;
+        case 2: rgba1 = "rgb(255, 179, 249)"; rgba2 = "rgb(247, 246, 200)"; break;
+        case 3: rgba1 = "rgb(122, 246, 231)"; rgba2 = "rgb(244, 247, 191)"; break;
+        case 4: rgba1 = "rgb(213, 203, 255)"; rgba2 = "rgb(153, 236, 255)"; break;
+    }
+    QString prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
+                     "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
+    m_slider->setStyleSheet(MusicUIObject::MSliderStyle05 + prefix);
 }
 
 void MusicTimerSliderWidget::timeout()
@@ -102,17 +113,8 @@ void MusicTimerSliderWidget::timeout()
     m_label->setPixmap(QPixmap(":/slidergif/" + QString::number(m_picIndex)));
 }
 
-void MusicTimerSliderWidget::setSliderStyleByType(int type)
+void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)
 {
-    QString rgba1 = "rgb(231, 80, 229)", rgba2 = "rgb(7, 208, 255)";
-    switch(type)
-    {
-        case 1: rgba1 = "rgb(232, 202, 189)"; rgba2 = "rgb(191, 252, 198)"; break;
-        case 2: rgba1 = "rgb(255, 179, 249)"; rgba2 = "rgb(247, 246, 200)"; break;
-        case 3: rgba1 = "rgb(122, 246, 231)"; rgba2 = "rgb(244, 247, 191)"; break;
-        case 4: rgba1 = "rgb(213, 203, 255)"; rgba2 = "rgb(153, 236, 255)"; break;
-    }
-    QString prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
-                     "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
-    m_slider->setStyleSheet(MusicUIObject::MSliderStyle05 + prefix);
+    QWidget::resizeEvent(event);
+    m_slider->setFixedWidth(width() - m_label->width());
 }

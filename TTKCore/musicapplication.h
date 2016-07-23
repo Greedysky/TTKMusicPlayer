@@ -12,8 +12,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QCloseEvent>
-#include "musicabstractmovewidget.h"
-#include "musicobject.h"
+#include "musicabstractmoveresizewidget.h"
 
 class MusicPlayer;
 class MusicPlaylist;
@@ -31,7 +30,7 @@ class MusicApplication;
 /*! @brief The class of the app main widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveWidget
+class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
 {
     Q_OBJECT
 public:
@@ -228,6 +227,7 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
