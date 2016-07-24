@@ -84,6 +84,11 @@ void MusicBottomAreaWidget::showPlayStatus(bool status) const
 #endif
 }
 
+void MusicBottomAreaWidget::setVolumeValue(int value) const
+{
+    m_systemTrayMenu->setVolumeValue(value);
+}
+
 void MusicBottomAreaWidget::setLabelText(const QString &name) const
 {
     m_systemTrayMenu->setLabelText(name);

@@ -13,6 +13,7 @@
 #include "musicglobaldefine.h"
 
 class QLabel;
+class QSlider;
 class QWidgetAction;
 class QToolButton;
 
@@ -45,6 +46,10 @@ public:
     /*!
      * Set current play state button.
      */
+    void setVolumeValue(int value) const;
+    /*!
+     * Set current play volume.
+     */
 
 Q_SIGNALS:
     void setShowDesktopLrc(bool status);
@@ -71,10 +76,14 @@ protected:
     /*!
      * Create play widget actions.
      */
+    void createVolumeWidgetActions();
+    /*!
+     * Create volume widget actions.
+     */
 
-    QWidgetAction *m_widgetAction;
     QLabel *m_showText;
-    QToolButton *m_PlayOrStop;
+    QToolButton *m_PlayOrStop, *m_volumeButton;
+    QSlider *m_volumeSlider;
     QAction *m_showLrcAction, *m_lockLrcAction;
 
 };

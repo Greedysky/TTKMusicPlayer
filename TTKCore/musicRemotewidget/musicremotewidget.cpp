@@ -83,6 +83,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
+    menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
+    menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(MusicUIObject::MMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
@@ -108,8 +110,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setIcon(QIcon(QString::fromUtf8(status ? ":/tiny/btn_play_normal"
-                                                         : ":/tiny/btn_pause_normal")) );
+    m_PlayButton->setIcon(QIcon(status ? ":/tiny/btn_play_normal" : ":/tiny/btn_pause_normal"));
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)

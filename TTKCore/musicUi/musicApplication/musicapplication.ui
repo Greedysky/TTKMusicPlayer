@@ -941,7 +941,33 @@ QPushButton:pressed {
                <number>1</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
-              <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline"/>
+              <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">
+               <widget class="QPushButton" name="lrcDisplayAllButton">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>200</y>
+                  <width>12</width>
+                  <height>56</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>12</width>
+                  <height>56</height>
+                 </size>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{border:none;background:transparent;};</string>
+                </property>
+               </widget>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -1351,41 +1377,6 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="MusicPlayBackModeWidget" name="musicPlayMode" native="true">
-              <property name="minimumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_download_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_download_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/btn_download_hover);
-	margin-left:-20px;    
-}</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QToolButton" name="musicSimilarFound">
               <property name="minimumSize">
                <size>
@@ -1420,15 +1411,37 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="lrcDisplayAllButton">
-              <property name="enabled">
-               <bool>true</bool>
+             <widget class="MusicPlayBackModeWidget" name="musicPlayMode" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
               </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton{border:none;background:transparent;};</string>
+               <string notr="true">QPushButton {
+	border:none;
+	background-image: url(:/kugou/btn_download_normal);
+}
+QPushButton:hover {
+	background-image: url(:/kugou/btn_download_hover);
+}
+QPushButton:pressed {
+	background-image: url(:/kugou/btn_download_hover);
+	margin-left:-20px;    
+}</string>
               </property>
              </widget>
             </item>

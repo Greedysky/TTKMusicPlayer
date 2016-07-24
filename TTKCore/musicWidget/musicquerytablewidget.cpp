@@ -114,18 +114,6 @@ void MusicQueryTableWidget::createContextMenu(QMenu &menu)
     m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)));
 }
 
-void MusicQueryTableWidget::paintEvent(QPaintEvent *event)
-{
-    MusicAbstractTableWidget::paintEvent(event);
-    QPainter painter(viewport());
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.05, Qt::SolidLine));
-    for(int i=0; i<rowCount(); ++i)
-    {
-        painter.drawLine(10, rowHeight(0)*(i + 1), width() - 15, rowHeight(0)*(i + 1));
-    }
-}
-
 MusicObject::MIntList MusicQueryTableWidget::getSelectedItems() const
 {
     MusicObject::MIntList list;

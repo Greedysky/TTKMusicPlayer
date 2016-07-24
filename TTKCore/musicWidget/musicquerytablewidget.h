@@ -96,7 +96,6 @@ public Q_SLOTS:
      */
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override {}
     /*!
      * Override the widget event.

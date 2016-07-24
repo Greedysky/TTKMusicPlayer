@@ -158,10 +158,6 @@ public Q_SLOTS:
     /*!
      * Delete current remote.
      */
-    void musicVolumeChangedFromRemote(int value);
-    /*!
-     * Set current play volume by value.
-     */
     void musicRemoteTypeChanged(QAction *type);
     /*!
      * Switch to diff remote type.
@@ -183,7 +179,7 @@ protected:
 
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
-    MusicUserWindow *m_msuicUserWindow;
+    MusicUserWindow *m_musicUserWindow;
     MusicBackgroundSkinDialog *m_musicbgskin;
     MusicRemoteWidget *m_musicRemoteWidget;
 

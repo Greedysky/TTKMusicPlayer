@@ -256,17 +256,23 @@ namespace MusicUIObject
 ///Menu
 //////////////////////////////////////////////////////
     const QString MMenuStyle01 = " \
-            QMenu {border: 1px solid gray; padding: 5px; }\
-            QMenu::item {padding: 4px 25px 4px 30px;border: 1px solid transparent; }\
-            QMenu::item:disabled {color: #666666;}\
-            QMenu::item:selected { color: white; background: #BBBBBB;}\
-            QMenu::separator {height: 1px;background: #BBBBBB;margin-top: 5px; margin-bottom: 5px;}";
+            QMenu {padding: 5px;}\
+            QMenu::icon {margin-left: 10px;}\
+            QMenu::right-arrow {background: url(:/tiny/lb_arrow_up_normal);}\
+            QMenu::item {color: #666666; padding: 6px 30px 6px 30px; border: 1px solid transparent;}\
+            QMenu::item:disabled {color: #AAAAAA;}\
+            QMenu::item:selected {color: white; background: rgb(22,154,243);}\
+            QMenu::separator {height:1px; background: #DDDDDD; margin-top: 5px; margin-bottom: 5px;}";
 
     const QString MMenuStyle02 = MMenuStyle01 + " \
-            QMenu { background-color: rgba(255, 255, 255, 235);}";
+            QMenu { background: rgba(255, 255, 255, 235);}";
 
     const QString MMenuStyle03 = MMenuStyle01 + " \
-            QMenu { color:white; background-color: rgba(0, 0, 0, 50);}";
+            QMenu {border:none; background:rgba(0,0,0,210); border-radius:4px;}\
+            QMenu::item {color: #BBBBBB;}\
+            QMenu::item:disabled {color: #555555;}\
+            QMenu::item:selected {background:rgba(0,0,0,200);}\
+            QMenu::separator {background: #BBBBBB;}";
 
 ///Slider
 //////////////////////////////////////////////////////
@@ -335,6 +341,23 @@ namespace MusicUIObject
             QSlider::groove:Horizontal{background:transparent;height:4px;} \
             QSlider::handle:Horizontal{border-image:url(':/image/musicslider');\
             width:8px;height: 6px;margin: -2px -3px -2px 0px;}";
+
+    const QString MSliderStyle06 = "\
+            QSlider::groove:horizontal{background-image: url(:/control/lb_volume_back);}\
+            QSlider::sub-page:horizontal{border-image: url(:/control/lb_volume_fore);}\
+            QSlider::add-page:horizontal{background-image: url(:/control/lb_volume_back);}\
+            QSlider::handle:horizontal{margin: 0px -2px 0px -2px;\
+            background-image: url(:/control/lb_volume_handle_normal);width: 13px;}\
+            QSlider::handle:horizontal:hover{background-image: url(:/control/lb_volume_handle_hover);}";
+
+
+    const QString MSliderStyle07 = "\
+            QSlider::groove:vertical { \
+            background: #FFFEA1; width:3px; border-radius:1px;}  \
+            QSlider::sub-page:vertical {background:#4E4F4F;}\
+            QSlider::add-page:vertical {background:#FFFEA1;}  \
+            QSlider::handle:vertical{ background:#FFFEA1;\
+            height:9px; margin-left:-3px; margin-right:-3px; border-radius:4px;}";
 
 ///ComboBox
 //////////////////////////////////////////////////////

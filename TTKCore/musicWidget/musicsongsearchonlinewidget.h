@@ -97,6 +97,7 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
@@ -133,7 +134,7 @@ public:
     /*!
     * Get class object name.
     */
-    void startSearchQuery(const QString &name) const;
+    void startSearchQuery(const QString &name);
     /*!
      * Start search query by text.
      */
@@ -153,9 +154,17 @@ public Q_SLOTS:
      */
 
 protected:
-    void createToolWidget();
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+    void createToolWidget(QWidget *widget);
     /*!
      * Create tool widget.
+     */
+    void setResizeLabelText(const QString &name);
+    /*!
+     * Set resize labelt ext.
      */
 
     QLabel *m_textLabel;

@@ -51,6 +51,10 @@ public:
     /*!
      * Set current play state button.
      */
+    void setVolumeValue(int value) const;
+    /*!
+     * Set current play volume.
+     */
     void setLabelText(const QString &name) const;
     /*!
      * Set current song text.

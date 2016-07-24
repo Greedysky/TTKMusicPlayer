@@ -1,6 +1,8 @@
 #include "musicvolumepopwidget.h"
 #include "musickugouuiobject.h"
+#include "musicuiobject.h"
 
+#include <QTimer>
 #include <QSlider>
 #include <QHBoxLayout>
 
@@ -48,6 +50,7 @@ void MusicVolumePopWidget::setValue(int value)
         style += "QToolButton{ margin-left:-80px; }";
     }
     setStyleSheet(style);
+    setToolTip(QString::number(value));
 }
 
 int MusicVolumePopWidget::value() const
@@ -57,45 +60,37 @@ int MusicVolumePopWidget::value() const
 
 void MusicVolumePopWidget::enterEvent(QEvent *event)
 {
-    MusicToolMenuWidget::enterEvent(event);
+    MusicToolMenuWidget::enterEvent(event);;
     if(!m_menuShown)
     {
         m_menuShown = true;
         popupMenu();
+        QTimer::singleShot(500, this, SLOT(timeToResetFlag()));
     }
 }
 
-void MusicVolumePopWidget::leaveEvent(QEvent *event)
+void MusicVolumePopWidget::timeToResetFlag()
 {
-    MusicToolMenuWidget::leaveEvent(event);
     m_menuShown = false;
-    m_menu->close();
 }
 
 void MusicVolumePopWidget::initWidget()
 {
     m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
     m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    QString MMenuStyle = " \
-            QMenu {color: rgb(150,150,150); border:none; padding: 5px; background:rgba(0,0,0,240);}\
-            QMenu::item {padding: 4px 25px 4px 30px;border: 1px solid transparent; }\
-            QMenu::item:disabled {color: #666666;}\
-            QMenu::item:selected { color: white; background:rgba(0,0,0,200);}\
-            QMenu::separator {height: 1px;background: #BBBBBB;margin-top: 5px; margin-bottom: 5px;}";
+    m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
 
-    m_menu->setStyleSheet(MMenuStyle);
-
-    m_containWidget->setFixedSize(30, 100);
+    m_containWidget->setFixedSize(20, 100);
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins(0, 9, 0, 9);
     layout->setSpacing(0);
 
     m_volumeSlider = new QSlider(Qt::Vertical, this);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setValue(100);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle07);
+
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(musicVolumeChanged(int)));
 
     layout->addWidget(m_volumeSlider);
     m_containWidget->setLayout(layout);
-
 }

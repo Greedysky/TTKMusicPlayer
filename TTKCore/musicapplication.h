@@ -178,6 +178,10 @@ public Q_SLOTS:
     /*!
      * Import outside song to play list and play.
      */
+    void musicCreateRightMenu();
+    /*!
+     * Create right menu.
+     */
     /////////////////////////////////////////////
     ///This is a slot by MusicLocalSongSearch's signal emit
     void musicSearchIndexChanged(int row, int col);

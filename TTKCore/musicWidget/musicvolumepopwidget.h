@@ -32,8 +32,13 @@ public:
      */
 
     void setValue(int value);
-
+    /*!
+     * Set slider value.
+     */
     int value() const;
+    /*!
+     * Get slider value.
+     */
 
 Q_SIGNALS:
     void musicVolumeChanged(int volume);
@@ -41,9 +46,17 @@ Q_SIGNALS:
      * Current play volume changed.
      */
 
+public Q_SLOTS:
+    void timeToResetFlag();
+    /*!
+     * Timer ot reset show slider flag.
+     */
+
 protected:
     void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
+    /*!
+     * Override the widget event.
+     */
 
     void initWidget();
     /*!

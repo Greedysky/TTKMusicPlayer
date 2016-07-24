@@ -3,42 +3,42 @@
 #include "musicutils.h"
 #include "musickugouuiobject.h"
 
-#include <QWidgetAction>
-#include <QToolButton>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QLabel>
+#include <QSlider>
+#include <QBoxLayout>
+#include <QToolButton>
+#include <QWidgetAction>
 
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
     setStyleSheet(MusicUIObject::MMenuStyle02);
-    createPlayWidgetActions();
-    addAction(m_widgetAction);
 
     m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"), tr("lockLrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SIGNAL(setWindowLockedChanged()));
 
+    createPlayWidgetActions();
     addSeparator();
-    addAction(QIcon(":/contextMenu/window"), tr("showMainWindow"), parent, SLOT(showNormal()));
-    addSeparator();
-    addAction(QIcon(":/contextMenu/setting"), tr("showSetting"), parent, SLOT(musicSetting()));
+    createVolumeWidgetActions();
     addAction(m_showLrcAction);
-    addSeparator();
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(":/contextMenu/quit"), tr("appClose"), parent, SLOT(quitWindowClose()));
+    addAction(QIcon(":/contextMenu/setting"), tr("showSetting"), parent, SLOT(musicSetting()));
+    addSeparator();
+    addAction(QIcon(":/contextMenu/login"), tr("logout"));
+    addAction(tr("appClose"), parent, SLOT(quitWindowClose()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
 {
     delete m_showText;
     delete m_PlayOrStop;
+    delete m_volumeButton;
     delete m_showLrcAction;
     delete m_lockLrcAction;
-    delete m_widgetAction;
+    delete m_volumeSlider;
 }
 
 QString MusicSystemTrayMenu::getClassName()
@@ -46,13 +46,71 @@ QString MusicSystemTrayMenu::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicSystemTrayMenu::setLabelText(const QString &text) const
+{
+    m_showText->setText(MusicUtils::UWidget::elidedText(font(), text, Qt::ElideRight, 160));
+    m_showText->setToolTip(text);
+}
+
+void MusicSystemTrayMenu::showDesktopLrc(bool show) const
+{
+    m_showLrcAction->setText( show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    m_lockLrcAction->setEnabled( show );
+}
+
+void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
+{
+    m_lockLrcAction->setText(!lock ? tr("lockLrc") : tr("unlockLrc"));
+}
+
+void MusicSystemTrayMenu::showPlayStatus(bool status) const
+{
+    m_PlayOrStop->setStyleSheet(status ? MusicKuGouUIObject::MKGContextPlay :
+                                         MusicKuGouUIObject::MKGContextPause);
+}
+
+void MusicSystemTrayMenu::setVolumeValue(int value) const
+{
+    m_volumeSlider->blockSignals(true);
+    m_volumeSlider->setValue(value);
+    m_volumeSlider->blockSignals(false);
+
+    QString style = MusicKuGouUIObject::MKGTinyBtnSound;
+    if(66 < value && value <=100)
+    {
+        style += "QToolButton{ margin-left:-48px; }";
+    }
+    else if(33 < value && value <=66)
+    {
+        style += "QToolButton{ margin-left:-32px; }";
+    }
+    else if(0 < value && value <=33)
+    {
+        style += "QToolButton{ margin-left:-16px; }";
+    }
+    else
+    {
+        style += "QToolButton{ margin-left:-64px; }";
+    }
+    m_volumeButton->setStyleSheet(style);
+}
+
+void MusicSystemTrayMenu::showDesktopLrc()
+{
+    bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
+    m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    m_lockLrcAction->setEnabled(show);
+    emit setShowDesktopLrc(show);
+}
+
 void MusicSystemTrayMenu::createPlayWidgetActions()
 {
-    m_widgetAction = new QWidgetAction(this);
+    QWidgetAction *widgetAction = new QWidgetAction(this);
     QWidget *widgetActionContainer = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout(widgetActionContainer);
 
     QWidget *widgetContainer = new QWidget(widgetActionContainer);
+    widgetContainer->setFixedWidth(172);
     QHBoxLayout *box = new QHBoxLayout(widgetContainer);
     box->setContentsMargins(9, 2, 9, 9);
 
@@ -86,40 +144,36 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);
-    m_widgetAction->setDefaultWidget(widgetActionContainer);
+    widgetAction->setDefaultWidget(widgetActionContainer);
+    addAction(widgetAction);
 
     connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrevious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
     connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
 }
 
-void MusicSystemTrayMenu::setLabelText(const QString &text) const
+void MusicSystemTrayMenu::createVolumeWidgetActions()
 {
-    m_showText->setText(MusicUtils::UWidget::elidedText(font(), text, Qt::ElideRight, 160));
-    m_showText->setToolTip(text);
-}
+    QWidgetAction *widgetAction = new QWidgetAction(this);
+    QWidget *widgetActionContainer = new QWidget(this);
+    QHBoxLayout *vbox = new QHBoxLayout(widgetActionContainer);
+    vbox->setContentsMargins(9, 2, 9, 9);
 
-void MusicSystemTrayMenu::showDesktopLrc(bool show) const
-{
-    m_showLrcAction->setText( show ? tr("hideDeskLrc") : tr("showDeskLrc"));
-    m_lockLrcAction->setEnabled( show );
-}
+    m_volumeButton = new QToolButton(widgetActionContainer);
+    m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_volumeButton->setFixedSize(16, 16);
 
-void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
-{
-    m_lockLrcAction->setText(!lock ? tr("lockLrc") : tr("unlockLrc"));
-}
+    m_volumeSlider = new QSlider(Qt::Horizontal, widgetActionContainer);
+    m_volumeSlider->setRange(0, 100);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
 
-void MusicSystemTrayMenu::showPlayStatus(bool status) const
-{
-    m_PlayOrStop->setStyleSheet(status ? MusicKuGouUIObject::MKGContextPlay :
-                                         MusicKuGouUIObject::MKGContextPause);
-}
+    vbox->addWidget(m_volumeButton);
+    vbox->addWidget(m_volumeSlider);
+    widgetActionContainer->setLayout(vbox);
 
-void MusicSystemTrayMenu::showDesktopLrc()
-{
-    bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
-    m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
-    m_lockLrcAction->setEnabled(show);
-    emit setShowDesktopLrc(show);
+    widgetAction->setDefaultWidget(widgetActionContainer);
+    addAction(widgetAction);
+
+    connect(m_volumeButton, SIGNAL(clicked()), parent(), SLOT(musicVolumeMute()));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), parent(), SLOT(musicVolumeChanged(int)));
 }

@@ -17,7 +17,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicbgskin(nullptr), m_musicRemoteWidget(nullptr)
 {
     m_supperClass = parent;
-    m_msuicUserWindow = new MusicUserWindow(this);
+    m_musicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
@@ -29,7 +29,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
 {
-    delete m_msuicUserWindow;
+    delete m_musicUserWindow;
     delete m_musicbgskin;
     delete m_musicRemoteWidget;
 }
@@ -42,7 +42,7 @@ QString MusicTopAreaWidget::getClassName()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    ui->userWindow->addWidget(m_msuicUserWindow);
+    ui->userWindow->addWidget(m_musicUserWindow);
     ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle04);
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
@@ -57,7 +57,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowSetting->setToolTip(tr("setting"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowSetting->setStyleSheet(MusicKuGouUIObject::MKGBtnSetting);
-    connect(ui->musicWindowSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
+    connect(ui->musicWindowSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicCreateRightMenu()));
 
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
@@ -98,7 +98,7 @@ int MusicTopAreaWidget::getListBgSkinAlpha()
 
 bool MusicTopAreaWidget::getUserLoginState() const
 {
-    return m_msuicUserWindow->isUserLogin();
+    return m_musicUserWindow->isUserLogin();
 }
 
 void MusicTopAreaWidget::setTimerStop()
@@ -118,7 +118,7 @@ void MusicTopAreaWidget::musicShowSkinChangedWindow()
 
 void MusicTopAreaWidget::musicUserContextLogin()
 {
-    m_msuicUserWindow->musicUserContextLogin();
+    m_musicUserWindow->musicUserContextLogin();
 }
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
@@ -216,11 +216,6 @@ void MusicTopAreaWidget::musicPlayListTransparent(int index)
     emit setTransparent(m_listAlpha = index);
 }
 
-void MusicTopAreaWidget::musicVolumeChangedFromRemote(int value)
-{
-    m_ui->musicSound->setValue(value);
-}
-
 void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
 {
     MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
@@ -277,7 +272,7 @@ void MusicTopAreaWidget::createRemoteWidget()
     connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));
     connect(m_musicRemoteWidget, SIGNAL(musicKeySignal()), m_supperClass, SLOT(musicStatePlay()));
     connect(m_musicRemoteWidget, SIGNAL(musicSettingSignal()), m_supperClass, SLOT(musicSetting()));
-    connect(m_musicRemoteWidget, SIGNAL(musicVolumeSignal(int)), SLOT(musicVolumeChangedFromRemote(int)));
+    connect(m_musicRemoteWidget, SIGNAL(musicVolumeSignal(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
     connect(m_musicRemoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
     m_musicRemoteWidget->show();
 }

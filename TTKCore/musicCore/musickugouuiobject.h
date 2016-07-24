@@ -267,6 +267,11 @@ namespace MusicKuGouUIObject
             background-image: url(:/tiny/btn_location_normal);} \
             QToolButton:hover{ background-image: url(:/tiny/btn_location_hover);}";
 
+    const QString MKGTinyBtnSound = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_sound_normal);} \
+            QToolButton:hover{ background-image: url(:/tiny/btn_sound_hover);}";
+
 ///function button style
 //////////////////////////////////////////////////////
     const QString MKGBtnUnDownload = " \
