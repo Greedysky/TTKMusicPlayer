@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCH_H
-#define MUSICLOCALSONGSEARCH_H
+#ifndef MUSICLOCALSONGSEARCHDIALOG_H
+#define MUSICLOCALSONGSEARCHDIALOG_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,22 +12,20 @@
 #include <QDialog>
 #include "musicglobaldefine.h"
 
-class QLabel;
-class QToolButton;
 class MusicLocalSongSearchEdit;
 
 /*! @brief The class of the local song search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearch : public QDialog
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearchDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearch(QWidget *parent = 0);
+    explicit MusicLocalSongSearchDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicLocalSongSearch();
+    ~MusicLocalSongSearchDialog();
 
     static QString getClassName();
     /*!
@@ -49,10 +47,8 @@ public Q_SLOTS:
      */
 
 private:
-    QLabel *m_showIcon;
-    QToolButton *m_closeButton;
     MusicLocalSongSearchEdit *m_searchLine;
 
 };
 
-#endif // MUSICLOCALSONGSEARCH_H
+#endif // MUSICLOCALSONGSEARCHDIALOG_H

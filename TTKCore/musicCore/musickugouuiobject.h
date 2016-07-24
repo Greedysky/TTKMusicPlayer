@@ -257,10 +257,15 @@ namespace MusicKuGouUIObject
             background-image: url(:/tiny/btn_more_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_more_hover);}";
 
-    const QString MKGTinyBtnSearch = " \
+    const QString MKGTinyBtnLocalSearch = " \
             QToolButton{ border:none; \
             background-image: url(:/tiny/btn_search_normal);} \
             QToolButton:hover{ background-image: url(:/tiny/btn_search_hover);}";
+
+    const QString MKGTinyBtnMainSearch = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_search_main_normal);} \
+            QToolButton:hover{ background-image: url(:/tiny/btn_search_main_hover);}";
 
     const QString MKGTinyBtnLocation = " \
             QToolButton{ border:none; \
@@ -271,6 +276,11 @@ namespace MusicKuGouUIObject
             QToolButton{ border:none; \
             background-image: url(:/tiny/btn_sound_normal);} \
             QToolButton:hover{ background-image: url(:/tiny/btn_sound_hover);}";
+
+    const QString MKGTinyBtnClose = " \
+            QToolButton{ border:none; \
+            background-image: url(:/tiny/btn_close_normal);} \
+            QToolButton:hover{ background-image: url(:/tiny/btn_close_hover);}";
 
 ///function button style
 //////////////////////////////////////////////////////
@@ -291,6 +301,11 @@ namespace MusicKuGouUIObject
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_sound_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_sound_hover);}";
+
+    const QString MKGBtnMore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_more_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_more_hover);}";
 
     const QString MKGBtnUnLove = " \
             QToolButton{ border:none; \

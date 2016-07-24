@@ -16,7 +16,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));

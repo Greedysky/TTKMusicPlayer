@@ -43,10 +43,11 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
     ui->userWindow->addWidget(m_musicUserWindow);
-    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle04);
+    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicSearchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMainSearch);
     connect(ui->musicSearchButton, SIGNAL(clicked()), SIGNAL(musicSearchButtonClicked()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));

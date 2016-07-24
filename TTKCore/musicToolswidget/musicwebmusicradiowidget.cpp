@@ -28,7 +28,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     connect(ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
     connect(ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -273,7 +273,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     QPixmap pix(path);
     if(pix.isNull())
     {
-        pix.load(":/share/defaultArt");
+        pix.load(":/image/lb_defaultArt");
     }
     pix = MusicUtils::UWidget::pixmapToRound(pix, QSize(150, 150), 100, 100);
     ui->artistLabel->setPixmap(pix);

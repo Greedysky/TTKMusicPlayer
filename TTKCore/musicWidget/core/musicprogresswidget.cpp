@@ -48,7 +48,7 @@ void MusicProgressWidget::initWidget()
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(360, 22, 20, 20);
-    topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     topTitleCloseButton->setEnabled(false);
 

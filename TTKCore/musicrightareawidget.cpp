@@ -100,7 +100,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
-    connect(ui->musicSimilarFound, SIGNAL(clicked()), SLOT(musicSimilarFoundButtonSearched()));
+//    connect(ui->musicMoreFunction, SIGNAL(clicked()), SLOT(musicSimilarFoundButtonSearched()));
 
 }
 

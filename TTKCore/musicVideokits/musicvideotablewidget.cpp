@@ -94,15 +94,15 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/share/showMV")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_mv")));
     setItem(count - 1, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/share/autionplay")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
     setItem(count - 1, 6, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/share/musicdownload")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
     setItem(count - 1, 7, item);
 }
 

@@ -129,7 +129,7 @@
     </rect>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../TTKQrc/MusicPlayerShare.qrc">:/share/warning</pixmap>
+    <pixmap resource="../../../TTKQrc/MusicUpdate.qrc">:/share/lb_warning</pixmap>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -142,7 +142,7 @@
   <zorder>textLabel</zorder>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerShare.qrc"/>
+  <include location="../../../TTKQrc/MusicUpdate.qrc"/>
  </resources>
  <connections/>
 </ui>

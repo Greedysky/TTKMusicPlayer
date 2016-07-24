@@ -121,11 +121,11 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count - 1, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/image/addtoplaylist")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
     setItem(count - 1, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/share/musicdownload")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
     setItem(count - 1, 5, item);
 }
 

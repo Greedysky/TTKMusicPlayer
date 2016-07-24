@@ -31,10 +31,7 @@ namespace MusicUIObject
             background:white;border:3px solid rgb(173,216,230);";
 
     const QString MCustomStyle05 = MCustomStyle01 + "\
-            border-image: url(:/share/searchlineleft);";
-
-    const QString MCustomStyle06 = "\
-            border-image: url(:/share/searchclosed);";
+            border-image: url(:/tiny/btn_search_line_normal);";
 
     const QString MCustomStyle07 = "\
             text-align:left; font-weight:bold; font-size:15px;\
@@ -121,10 +118,10 @@ namespace MusicUIObject
             QToolButton::hover{ image:url(:/image/shadow); border:none;}";
 
     const QString MToolButtonStyle07 = MToolButtonStyle01 + MToolButtonStyle02 + " \
-            QToolButton{image: url(:/share/autionplay);}";
+            QToolButton{image: url(:/contextMenu/btn_audition);}";
 
     const QString MToolButtonStyle08 = MToolButtonStyle01 + MToolButtonStyle02 + " \
-            QToolButton{image: url(:/image/addtoplaylist);}";
+            QToolButton{image: url(:/contextMenu/btn_add);}";
 
     const QString MToolButtonStyle09 = MToolButtonStyle04 + " \
             QToolButton{background-image:url(':/quality/bg');border:none; \
@@ -245,13 +242,13 @@ namespace MusicUIObject
             QLineEdit::hover{ border: 3px solid #AAAAFF;}";
 
     const QString MLineEditStyle03 = " \
-            QLineEdit{border-image: url(:/image/searchline);}";
+            QLineEdit{ border-image: url(:/tiny/lb_transparent);}";
 
     const QString MLineEditStyle04 = MLineEditStyle03 + " \
-            QLineEdit{font-size:15px; color:#333333;}";
+            QLineEdit{ font-size:15px; color:#333333;}";
 
     const QString MLineEditStyle05 = MLineEditStyle03 + " \
-            QLineEdit{color:#6495ED;}";
+            QLineEdit{ color:#6495ED;}";
 
 ///Menu
 //////////////////////////////////////////////////////

@@ -80,7 +80,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
     MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
-        m_statusLabel->setPixmap(QPixmap(":/share/noSimilar"));
+        m_statusLabel->setPixmap(QPixmap(":/image/lb_noSimilar"));
     }
     else
     {
@@ -171,13 +171,13 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(secondLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(m_mainWindow);
-    picLabel1->setPixmap(QPixmap(":/share/warning"));
+    picLabel1->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel1->setFixedSize(100, 100);
     QLabel *picLabel2 = new QLabel(m_mainWindow);
-    picLabel2->setPixmap(QPixmap(":/share/warning"));
+    picLabel2->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel2->setFixedSize(100, 100);
     QLabel *picLabel3 = new QLabel(m_mainWindow);
-    picLabel3->setPixmap(QPixmap(":/share/warning"));
+    picLabel3->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel3->setFixedSize(100, 100);
     m_iconLabels << picLabel1 << picLabel2 << picLabel3;
     ////////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
 {
     for(int i=0; i<m_iconLabels.count(); ++i)
     {
-        if(m_iconLabels[i]->pixmap()->cacheKey() == QPixmap(":/share/warning").cacheKey())
+        if(m_iconLabels[i]->pixmap()->cacheKey() == QPixmap(":/image/lb_warning").cacheKey())
         {
             QPixmap pix;
             pix.loadFromData(data);

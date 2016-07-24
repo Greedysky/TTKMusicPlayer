@@ -67,7 +67,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicBestLove->setStyleSheet(MusicKuGouUIObject::MKGBtnUnLove);
     ui->musicDesktopLrc->setStyleSheet(MusicKuGouUIObject::MKGBtnDKLrc);
     ui->musicDownload->setStyleSheet(MusicKuGouUIObject::MKGBtnUnDownload);
-    ui->musicSimilarFound->setStyleSheet(MusicKuGouUIObject::MKGBtnSimilar);
+    ui->musicMoreFunction->setStyleSheet(MusicKuGouUIObject::MKGBtnMore);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -77,7 +77,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicDesktopLrc->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicPlayMode->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicDownload->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSimilarFound->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicMoreFunction->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->musicKey->setToolTip(tr("Play"));
@@ -85,7 +85,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicNext->setToolTip(tr("Next"));
     ui->musicBestLove->setToolTip(tr("bestlove"));
     ui->musicDownload->setToolTip(tr("download"));
-    ui->musicSimilarFound->setToolTip(tr("similar"));
+    ui->musicMoreFunction->setToolTip(tr("moreFunction"));
     ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));
     ui->musicPlayMode->setToolTip(tr("playMode"));
     ui->musicButton_cloud->setToolTip(tr("musicCloud"));

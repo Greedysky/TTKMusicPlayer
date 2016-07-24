@@ -24,7 +24,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     locationButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
     locationButton->setGeometry(0, 1, 24, 24);
-    searchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnSearch);
+    searchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(30, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));

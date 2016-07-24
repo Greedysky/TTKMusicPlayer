@@ -21,7 +21,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -140,11 +140,11 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
             ui->songlistsTable->setItem(i, 2, item);
 
                              item = new QTableWidgetItem;
-            item->setIcon(QIcon(QString::fromUtf8(":/share/autionplay")));
+            item->setIcon(QIcon(":/contextMenu/btn_audition"));
             ui->songlistsTable->setItem(i, 3, item);
 
                              item = new QTableWidgetItem;
-            item->setIcon(QIcon(QString::fromUtf8(":/image/addtoplaylist")));
+            item->setIcon(QIcon(":/contextMenu/btn_add"));
             ui->songlistsTable->setItem(i, 4, item);
         }
         else

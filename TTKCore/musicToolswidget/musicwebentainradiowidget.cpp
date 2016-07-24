@@ -13,7 +13,7 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     ui->setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground, true);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -24,8 +24,8 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
 
     ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
     ui->stopButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    ui->colletButton->setIcon(QIcon(":/radio/collect"));
-    ui->discolletButton->setIcon(QIcon(":/radio/discollect"));
+    ui->colletButton->setIcon(QIcon(":/tiny/lb_star"));
+    ui->discolletButton->setIcon(QIcon(":/tiny/lb_unstar"));
 
     ui->playButton->setStyleSheet("background:transparent;");
     ui->stopButton->setStyleSheet("background:transparent;");
@@ -60,8 +60,8 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     ui->movieLabel->setPixmap(QPixmap(":/radio/radiopng1").scaled(455, 60));
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     m_timerCount = 1;
-    m_collecticon = new QIcon(":/radio/collect");
-    m_discollecticon = new QIcon(":/radio/discollect");
+    m_collecticon = new QIcon(":/tiny/lb_star");
+    m_discollecticon = new QIcon(":/tiny/lb_unstar");
 
     connect(ui->listWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
                             SLOT(itemHasDoubleClicked(QListWidgetItem*)));

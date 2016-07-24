@@ -73,7 +73,7 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
     setItem(count - 1, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/radio/collect")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_star")));
     setItem(count - 1, 4, item);
 }
 

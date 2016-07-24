@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/share">
-        <file alias="searchclosed">../TTKResource/music_close1.png</file>
+        <file alias="lb_close">../TTKResource/functions/btn_close_hover.png</file>
+        <file alias="lb_warning">../TTKResource/lb_warning.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="bottom">../TTKResource/borderShadow/shadow_bottom.png</file>

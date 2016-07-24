@@ -82,7 +82,7 @@ void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
     if(!showArtPicture(strings.first().trimmed()) &&
        !showArtPicture(strings.last().trimmed()))
     {
-        m_iconLabel->setPixmap(QPixmap(":/share/defaultArt").scaled(80, 80));
+        m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(80, 80));
     }
 }
 

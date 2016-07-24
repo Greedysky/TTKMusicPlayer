@@ -142,7 +142,7 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     if(!showArtPicture(name.split('-').front().trimmed()) &&
        !showArtPicture(name.split('-').back().trimmed()) )
     {
-        m_artPictureLabel->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
+        m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
 }
 
@@ -171,7 +171,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     if(!showArtPicture(name.split('-').front().trimmed()) &&
        !showArtPicture(name.split('-').back().trimmed()) )
     {
-        m_artPictureLabel->setPixmap(QPixmap(":/share/defaultArt").scaled(60, 60));
+        m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
 }
 

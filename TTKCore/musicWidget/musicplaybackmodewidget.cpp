@@ -48,7 +48,7 @@ void MusicPlayBackModeWidget::initWidget(QWidget *parent)
     m_menu->setAttribute(Qt::WA_TranslucentBackground);
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
 
-    m_containWidget->setFixedSize(120, 140);
+    m_containWidget->setFixedSize(140, 160);
     m_menu->removeAction(m_menu->actions().first());
     m_menu->addAction(QIcon(":/functions/btn_once_hover"), tr("PlayOnce"), parent, SLOT(musicPlayItemOnce()));
     m_menu->addAction(QIcon(":/functions/btn_oneLoop_hover"), tr("SingleCycle"), parent, SLOT(musicPlayOneLoop()));

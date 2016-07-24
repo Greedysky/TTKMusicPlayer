@@ -16,7 +16,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
       ui(new Ui::MusicSongSharingWidget)
 {
     ui->setupUi(this);
-    ui->topTitleCloseButton->setIcon(QIcon(":/share/searchclosed"));
+    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
@@ -51,7 +51,7 @@ void MusicSongSharingWidget::setSongName(const QString &name)
 
     QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
-                                  ? path : ":/share/defaultArt").scaled(50, 50));
+                                  ? path : ":/image/lb_defaultArt").scaled(50, 50));
 
     ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) +
                           tr("and recommend it to you! (From #TTKMusicPlayer#)"));

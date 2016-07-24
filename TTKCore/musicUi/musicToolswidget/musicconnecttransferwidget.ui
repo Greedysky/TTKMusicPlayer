@@ -110,7 +110,7 @@ QLabel{background:transparent;}</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/share/searchlineleft);</string>
+      <string notr="true">border-image: url(:/tiny/btn_search_main_hover);</string>
      </property>
     </widget>
     <widget class="MusicConnectTransferTableWidget" name="playListTableWidget">

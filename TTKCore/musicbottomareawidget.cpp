@@ -4,7 +4,7 @@
 #include "musicsystemtraymenu.h"
 #include "musicwindowextras.h"
 #include "musicconnectionpool.h"
-#include "musiclocalsongsearch.h"
+#include "musiclocalsongsearchdialog.h"
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicLocalSongSearch(nullptr)
@@ -155,6 +155,15 @@ QString MusicBottomAreaWidget::getSearchedText() const
     return m_musicLocalSongSearch->getSearchedText();
 }
 
+void MusicBottomAreaWidget::resizeWindow()
+{
+    if(m_musicLocalSongSearch)
+    {
+        int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+        m_musicLocalSongSearch->move(51, 554 + h - WINDOW_HEIGHT_MIN);
+    }
+}
+
 void MusicBottomAreaWidget::clearSearchedText()
 {
     m_musicLocalSongSearch->close();
@@ -164,8 +173,9 @@ void MusicBottomAreaWidget::musicSearch()
 {
     if(m_musicLocalSongSearch == nullptr)
     {
-        m_musicLocalSongSearch = new MusicLocalSongSearch(m_supperClass);
-        m_musicLocalSongSearch->move(60, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 505 : 535);
+        m_musicLocalSongSearch = new MusicLocalSongSearchDialog(m_supperClass);
+        resizeWindow();
+//        m_musicLocalSongSearch->move(51, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 505 : 535);
     }
     m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }

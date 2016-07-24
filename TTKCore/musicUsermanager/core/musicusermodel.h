@@ -107,7 +107,7 @@ public:
     inline QString getUserIcon(const QString &uid)
     {
         QString icon = getRecordData(uid, "ICON");
-        return icon.isEmpty()  || !QFile::exists(icon) ? ":/share/defaultArt" : icon;
+        return icon.isEmpty()  || !QFile::exists(icon) ? ":/image/lb_defaultArt" : icon;
     }
     /*!
      * Get user icon.

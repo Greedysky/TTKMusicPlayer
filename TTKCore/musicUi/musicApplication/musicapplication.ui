@@ -134,19 +134,7 @@
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <property name="spacing">
-             <number>10</number>
-            </property>
-            <property name="leftMargin">
-             <number>5</number>
-            </property>
-            <property name="topMargin">
-             <number>5</number>
-            </property>
-            <property name="rightMargin">
-             <number>10</number>
-            </property>
-            <property name="bottomMargin">
-             <number>5</number>
+             <number>12</number>
             </property>
             <item>
              <spacer name="horizontalSpacer">
@@ -162,34 +150,95 @@
              </spacer>
             </item>
             <item>
-             <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text" stdset="0">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="musicSearchButton">
+             <widget class="QWidget" name="searchWidget" native="true">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>300</width>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>300</width>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-image: url(:/share/searchlineleft);</string>
+               <string notr="true">#searchWidget{background:rgba(255,255,255,200); border-radius:15px;}</string>
               </property>
-              <property name="text">
-               <string/>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>10</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>260</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>260</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text" stdset="0">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="musicSearchButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>33</width>
+                   <height>27</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>33</width>
+                   <height>27</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="marginLabel">
+              <property name="minimumSize">
+               <size>
+                <width>1</width>
+                <height>1</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>1</width>
+                <height>1</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -209,15 +258,6 @@
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_skin_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_skin_hover);
-}</string>
               </property>
               <property name="text">
                <string/>
@@ -239,13 +279,13 @@ QPushButton:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background:rgba(255,255,255)</string>
+               <string notr="true">background:rgba(255,255,255,150)</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::VLine</enum>
               </property>
               <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
+               <enum>QFrame::Sunken</enum>
               </property>
               <property name="lineWidth">
                <number>1</number>
@@ -294,15 +334,6 @@ QPushButton:hover {
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_remote_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_remote_hover);
-}</string>
-              </property>
               <property name="text">
                <string/>
               </property>
@@ -324,15 +355,6 @@ QPushButton:hover {
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_unshow_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_unshow_hover);
-}</string>
               </property>
               <property name="text">
                <string/>
@@ -356,15 +378,6 @@ QPushButton:hover {
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_min_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_min_hover);
-}</string>
-              </property>
               <property name="text">
                <string/>
               </property>
@@ -386,15 +399,6 @@ QPushButton:hover {
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_close_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_close_hover);
-}</string>
               </property>
               <property name="text">
                <string/>
@@ -497,18 +501,6 @@ QPushButton:hover {
                 <height>70</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/item_favorite_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/item_favorite_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/item_favorite_clicked);
-}</string>
-              </property>
               <property name="text">
                <string/>
               </property>
@@ -527,18 +519,6 @@ QPushButton:pressed {
                 <width>50</width>
                 <height>70</height>
                </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/item_radio_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/item_radio_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/item_radio_clicked);
-}</string>
               </property>
               <property name="text">
                <string/>
@@ -559,18 +539,6 @@ QPushButton:pressed {
                 <height>70</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/item_mobile_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/item_mobile_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/item_mobile_clicked);
-}</string>
-              </property>
               <property name="text">
                <string/>
               </property>
@@ -590,18 +558,6 @@ QPushButton:pressed {
                 <height>70</height>
                </size>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/item_download_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/item_download_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/item_download_clicked);
-}</string>
-              </property>
               <property name="text">
                <string/>
               </property>
@@ -620,18 +576,6 @@ QPushButton:pressed {
                 <width>50</width>
                 <height>70</height>
                </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/item_more_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/item_more_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/item_more_clicked);
-}</string>
               </property>
               <property name="text">
                <string/>
@@ -938,7 +882,7 @@ QPushButton:pressed {
             <item>
              <widget class="QStackedWidget" name="surfaceStackedWidget">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
               <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">
@@ -1044,15 +988,6 @@ QPushButton:pressed {
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_previous_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_previous_hover);
-}</string>
-              </property>
              </widget>
             </item>
             <item>
@@ -1072,15 +1007,6 @@ QPushButton:hover {
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_play_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_play_hover);
-}</string>
-              </property>
              </widget>
             </item>
             <item>
@@ -1099,15 +1025,6 @@ QPushButton:hover {
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_next_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_next_hover);
-}</string>
               </property>
              </widget>
             </item>
@@ -1328,18 +1245,6 @@ QPushButton:hover {
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_unloved_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_unloved_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/btn_loved_normal);
-}</string>
-              </property>
               <property name="checkable">
                <bool>true</bool>
               </property>
@@ -1365,19 +1270,10 @@ QPushButton:pressed {
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_random_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_random_hover);
-}</string>
-              </property>
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicSimilarFound">
+             <widget class="MusicMoreFunctionsPopWidget" name="musicMoreFunction" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -1396,16 +1292,7 @@ QPushButton:hover {
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_more_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_more_hover);
-}</string>
-              </property>
-              <property name="checkable">
+              <property name="checkable" stdset="0">
                <bool>true</bool>
               </property>
              </widget>
@@ -1429,19 +1316,6 @@ QPushButton:hover {
               </property>
               <property name="focusPolicy">
                <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QPushButton {
-	border:none;
-	background-image: url(:/kugou/btn_download_normal);
-}
-QPushButton:hover {
-	background-image: url(:/kugou/btn_download_hover);
-}
-QPushButton:pressed {
-	background-image: url(:/kugou/btn_download_hover);
-	margin-left:-20px;    
-}</string>
               </property>
              </widget>
             </item>
@@ -1594,6 +1468,12 @@ QToolButton:hover{ background-image: url(:/functions/btn_queue_hover);}</string>
    <class>MusicVolumePopWidget</class>
    <extends>QWidget</extends>
    <header>musicvolumepopwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicMoreFunctionsPopWidget</class>
+   <extends>QWidget</extends>
+   <header>musicmorefunctionspopwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

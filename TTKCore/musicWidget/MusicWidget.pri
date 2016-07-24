@@ -36,6 +36,7 @@ HEADERS  += \
     $$PWD/core/musiccutsliderwidget.h \
     $$PWD/core/musicanimationstackedwidget.h \
     $$PWD/core/musicuploadfilewidget.h \
+    $$PWD/core/musictoolmenuwidget.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -59,7 +60,10 @@ HEADERS  += \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicbarragewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
-    $$PWD/musicsimilarfoundwidget.h
+    $$PWD/musicsimilarfoundwidget.h \
+    $$PWD/musicplaybackmodewidget.h \
+    $$PWD/musicvolumepopwidget.h \
+    $$PWD/musicmorefunctionspopwidget.h
 
 }
 
@@ -86,6 +90,7 @@ SOURCES += \
     $$PWD/core/musiccutsliderwidget.cpp \
     $$PWD/core/musicanimationstackedwidget.cpp \
     $$PWD/core/musicuploadfilewidget.cpp \
+    $$PWD/core/musictoolmenuwidget.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
@@ -109,16 +114,9 @@ SOURCES += \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicbarragewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
-    $$PWD/musicsimilarfoundwidget.cpp
+    $$PWD/musicsimilarfoundwidget.cpp \
+    $$PWD/musicplaybackmodewidget.cpp \
+    $$PWD/musicvolumepopwidget.cpp \
+    $$PWD/musicmorefunctionspopwidget.cpp
 
 }
-
-HEADERS += \
-    $$PWD/core/musictoolmenuwidget.h \
-    $$PWD/musicplaybackmodewidget.h \
-    $$PWD/musicvolumepopwidget.h
-
-SOURCES += \
-    $$PWD/core/musictoolmenuwidget.cpp \
-    $$PWD/musicplaybackmodewidget.cpp \
-    $$PWD/musicvolumepopwidget.cpp

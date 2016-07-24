@@ -16,7 +16,7 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
-class MusicLocalSongSearch;
+class MusicLocalSongSearchDialog;
 
 namespace Ui {
     class MusicApplication;
@@ -97,6 +97,11 @@ public:
      * Get the search text that the user searched.
      */
 
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+
 Q_SIGNALS:
     void setShowDesktopLrc(bool show);
     /*!
@@ -142,7 +147,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
-    MusicLocalSongSearch *m_musicLocalSongSearch;
+    MusicLocalSongSearchDialog *m_musicLocalSongSearch;
 
 };
 

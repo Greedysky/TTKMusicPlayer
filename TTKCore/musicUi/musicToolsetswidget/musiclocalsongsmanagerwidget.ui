@@ -188,7 +188,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/image/searchline);color:#6495ED;</string>
+     <string notr="true">border-image: url(:/tiny/lb_transparent);color:#6495ED;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="scanButton">
@@ -214,7 +214,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/share/searchlineleft);</string>
+     <string notr="true">border-image: url(:/tiny/btn_search_main_hover);</string>
     </property>
    </widget>
    <widget class="QComboBox" name="filterComboBox">

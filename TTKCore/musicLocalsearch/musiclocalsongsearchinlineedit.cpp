@@ -1,6 +1,8 @@
 #include "musiclocalsongsearchinlineedit.h"
 #include "musiclocalsongsearchpopwidget.h"
 
+#include <QDebug>
+
 MusicLocalSongSearchInlineEdit::MusicLocalSongSearchInlineEdit(QWidget *parent)
     : MusicLocalSongSearchEdit(parent)
 {
@@ -31,6 +33,7 @@ void MusicLocalSongSearchInlineEdit::focusOutEvent(QFocusEvent *event)
 
 void MusicLocalSongSearchInlineEdit::enterEvent(QEvent *event)
 {
+    qDebug() << "MusicLocalSongSearchInlineEdit";
     QWidget::enterEvent(event);
     if(text().trimmed().isEmpty())
     {
