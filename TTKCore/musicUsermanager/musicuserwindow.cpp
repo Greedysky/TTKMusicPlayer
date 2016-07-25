@@ -26,7 +26,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
                            SLOT(userStateChanged(QString,QString)));
 
-    QTimer::singleShot(1, this, SLOT(checkToAutoLogin()));
+    QTimer::singleShot(MT_MS, this, SLOT(checkToAutoLogin()));
 }
 
 MusicUserWindow::~MusicUserWindow()
@@ -144,7 +144,7 @@ void MusicUserWindow::musicUserContextLogin()
         m_userManager->musicUserLogoff();
         return;
     }
-    QTimer::singleShot(1, this, SLOT(musicUserLogin()));
+    QTimer::singleShot(MT_MS, this, SLOT(musicUserLogin()));
 }
 
 void MusicUserWindow::checkToAutoLogin()

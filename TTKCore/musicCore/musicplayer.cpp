@@ -298,7 +298,7 @@ void MusicPlayer::getCurrentDuration()
     qint64 dur = duration();
     if( (dur == 0 || m_duration == dur) && m_tryTimes++ < 10 )
     {
-        QTimer::singleShot(50, this, SLOT(getCurrentDuration()));
+        QTimer::singleShot(50*MT_MS, this, SLOT(getCurrentDuration()));
     }
     else
     {

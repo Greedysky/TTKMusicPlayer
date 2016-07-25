@@ -77,7 +77,7 @@ public:
     /*!
      * Set video play data.
      */
-    void resizeWindow(bool resize, const QSize &size);
+    void resizeWindow(int width, int height);
     /*!
      * Resize widget size or not.
      */

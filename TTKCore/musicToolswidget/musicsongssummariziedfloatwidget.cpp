@@ -87,7 +87,7 @@ void MusicSongsSummariziedFloatWidget::animationFinished()
     m_currentAnimationValue = m_animation->currentValue().toFloat();
     if(m_currentAnimationValue == 0)
     {
-        QTimer::singleShot(100, this, SIGNAL(deleteObject()));
+        QTimer::singleShot(MT_MS*100, this, SIGNAL(deleteObject()));
     }
 }
 

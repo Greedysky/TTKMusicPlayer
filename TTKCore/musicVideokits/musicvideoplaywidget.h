@@ -40,6 +40,10 @@ public:
     /*!
      * Resize widget size or not.
      */
+    void resizeWindow(int width, int height);
+    /*!
+     * Resize widget size or not.
+     */
     void setObjectToClose(QObject *object);
     /*!
      * Set object to close current widget.
@@ -95,6 +99,7 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.

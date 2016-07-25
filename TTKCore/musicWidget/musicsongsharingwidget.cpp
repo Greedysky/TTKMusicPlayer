@@ -78,7 +78,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
                       SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
         down->startToDownload();
     }
-    QTimer::singleShot(5000, this, SLOT(queryUrlTimeout()));
+    QTimer::singleShot(5*MT_S2MS, this, SLOT(queryUrlTimeout()));
 }
 
 void MusicSongSharingWidget::queryUrlTimeout()

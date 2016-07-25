@@ -74,7 +74,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     connect(m_videoControl, SIGNAL(barrageColorButtonChanged(QColor)), SLOT(barrageColorButtonChanged(QColor)));
     m_videoControl->hide();
 
-    resizeWindow(false, QSize(-1, -1));
+    resizeWindow(0, 0);
 
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
@@ -127,22 +127,11 @@ void MusicVideoView::setMedia(const QString &data)
     QTimer::singleShot(5*MT_S2MS, this, SLOT(stop()));
 }
 
-void MusicVideoView::resizeWindow(bool resize, const QSize &size)
+void MusicVideoView::resizeWindow(int width, int height)
 {
-    if(resize)
-    {
-        m_videoWidget->resize(QSize(size.width() - 20, size.height()*0.8));
-        m_videoControl->setFixedSize( size.width(), 40);
-        m_videoControl->move(0, size.height() - 40 - 50);
-        m_barrageCore->setSize(m_videoWidget->size());
-    }
-    else
-    {
-        m_videoWidget->setGeometry(10, 40, 610, 325);
-        m_videoControl->setFixedSize(633, 40);
-        m_videoControl->move(0, 370);
-        m_barrageCore->setSize(m_videoWidget->size());
-    }
+    m_videoWidget->setGeometry(10, 35, 635 + width, 355 + height);
+    m_videoControl->setGeometry(0, 410 + height, 660 + width, 40);
+    m_barrageCore->setSize(m_videoWidget->size());
 }
 
 void MusicVideoView::setFullScreen()

@@ -53,7 +53,8 @@ public Q_SLOTS:
      */
 
 protected:
-    void enterEvent(QEvent *event);
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */

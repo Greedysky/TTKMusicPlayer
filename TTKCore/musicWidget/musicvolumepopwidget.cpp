@@ -1,6 +1,7 @@
 #include "musicvolumepopwidget.h"
 #include "musickugouuiobject.h"
 #include "musicuiobject.h"
+#include "musicnumberdefine.h"
 
 #include <QTimer>
 #include <QSlider>
@@ -58,14 +59,20 @@ int MusicVolumePopWidget::value() const
     return m_volumeSlider->value();
 }
 
+void MusicVolumePopWidget::leaveEvent(QEvent *event)
+{
+     MusicToolMenuWidget::leaveEvent(event);
+     QTimer::singleShot(500*MT_MS, m_menu, SLOT(close()));
+}
+
 void MusicVolumePopWidget::enterEvent(QEvent *event)
 {
-    MusicToolMenuWidget::enterEvent(event);;
+    MusicToolMenuWidget::enterEvent(event);
     if(!m_menuShown)
     {
         m_menuShown = true;
         popupMenu();
-        QTimer::singleShot(500, this, SLOT(timeToResetFlag()));
+        QTimer::singleShot(500*MT_MS, this, SLOT(timeToResetFlag()));
     }
 }
 
@@ -86,6 +93,7 @@ void MusicVolumePopWidget::initWidget()
     layout->setSpacing(0);
 
     m_volumeSlider = new QSlider(Qt::Vertical, this);
+    m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle07);
 

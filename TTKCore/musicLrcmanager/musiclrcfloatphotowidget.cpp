@@ -15,28 +15,28 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle03 + "}");
 
     m_filmBGWidget = new QWidget(this);
-    m_filmBGWidget->setGeometry(0, 0, parent->width(), 125);
+    m_filmBGWidget->setGeometry(0, 0, 662, 125);
     m_filmBGWidget->setStyleSheet(MusicUIObject::MCustomStyle21);
 
     m_plane1 = new MusicClickedLabel(this);
-    m_plane1->setGeometry(95, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane1->setGeometry(100, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
     m_plane2 = new MusicClickedLabel(this);
-    m_plane2->setGeometry(270, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane2->setGeometry(280, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
     m_plane3 = new MusicClickedLabel(this);
-    m_plane3->setGeometry(445, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
+    m_plane3->setGeometry(460, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
 
     m_radio1 = new QCheckBox(this);
-    m_radio1->setGeometry(185, 75, 20, 20);
+    m_radio1->setGeometry(190, 75, 20, 20);
     m_radio1->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_radio2 = new QCheckBox(this);
-    m_radio2->setGeometry(360, 75, 20, 20);
+    m_radio2->setGeometry(370, 75, 20, 20);
     m_radio2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_radio3 = new QCheckBox(this);
-    m_radio3->setGeometry(535, 75, 20, 20);
+    m_radio3->setGeometry(550, 75, 20, 20);
     m_radio3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_checkBox = new QCheckBox(tr("All"), this);
-    m_checkBox->setGeometry(5, 130, 100, 20);
+    m_checkBox->setGeometry(15, 130, 100, 20);
     m_checkBox->setChecked(true);
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
@@ -46,9 +46,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
-    m_previous->setGeometry(10, 38, 15, 50);
+    m_previous->setGeometry(20, 38, 15, 50);
     m_next = new QPushButton(">", this);
-    m_next->setGeometry(610, 38, 15, 50);
+    m_next->setGeometry(625, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -96,8 +96,8 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(width/2, 500 + height, 115, 105);
-    m_rectOut = QRect(width/2, 300 + height, 632, 180);
+    m_rectIn = QRect(width/2, 530 + height, 115, 105);
+    m_rectOut = QRect(width/2, 330 + height, 662, 180);
     setGeometry(m_rectOut);
 }
 

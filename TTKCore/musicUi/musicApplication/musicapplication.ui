@@ -761,7 +761,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>乐库</string>
                     </property>
                    </widget>
                   </item>
@@ -780,7 +780,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>搜索</string>
                     </property>
                    </widget>
                   </item>
@@ -799,7 +799,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>歌词</string>
                     </property>
                    </widget>
                   </item>
@@ -818,7 +818,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>视频</string>
                     </property>
                    </widget>
                   </item>
@@ -837,7 +837,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>电台</string>
                     </property>
                    </widget>
                   </item>
@@ -856,7 +856,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>PushButton</string>
+                     <string>直播</string>
                     </property>
                    </widget>
                   </item>

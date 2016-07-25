@@ -18,6 +18,7 @@
 #include <QActionGroup>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QDebug>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -288,12 +289,12 @@ void MusicLrcContainerForInline::initFunctionLabel()
     m_vBoxLayout->addWidget(functionLabel);
 }
 
-void MusicLrcContainerForInline::resizeWidth(int width)
+void MusicLrcContainerForInline::resizeWidth(int width, int height)
 {
     for(int i=0; i< LRC_LINEMAX_COUNT; ++i)
     {
         MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(width);
-        m_lrcFloatWidget->resizeWindow(width, 0);
+        m_lrcFloatWidget->resizeWindow(width, height);
     }
 
     if(m_lrcAnalysis->isEmpty())
@@ -315,6 +316,14 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QColor(Qt::white));
     painter.drawLine(0, m_mouseMovedAt.y(), width(), m_mouseMovedAt.y());
     painter.end();
+}
+
+void MusicLrcContainerForInline::resizeEvent(QResizeEvent *event)
+{
+    MusicLrcContainer::resizeEvent(event);
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    resizeWidth( width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 }
 
 void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)

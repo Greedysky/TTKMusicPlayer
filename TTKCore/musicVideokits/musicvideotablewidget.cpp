@@ -9,7 +9,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
     setColumnCount(8);
-    resizeWindow(1.0f);
+    resizeWindow(0);
     MusicUtils::UWidget::setTransparent(this, 255);
 
     MusicTime::timeSRand();
@@ -149,17 +149,17 @@ void MusicVideoTableWidget::downloadLocalMovie(int row)
                      MusicDownLoadQueryThreadAbstract::MovieQuery);
 }
 
-void MusicVideoTableWidget::resizeWindow(float delta)
+void MusicVideoTableWidget::resizeWindow(int delta)
 {
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30*delta);
-    headerview->resizeSection(1, 290*delta);
-    headerview->resizeSection(2, 148*delta);
-    headerview->resizeSection(3, 30*delta);
-    headerview->resizeSection(4, 55*delta);
-    headerview->resizeSection(5, 24*delta);
-    headerview->resizeSection(6, 24*delta);
-    headerview->resizeSection(7, 24*delta);
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 305 + delta*0.4);
+    headerview->resizeSection(2, 160 + delta*0.4);
+    headerview->resizeSection(3, 31 + delta*0.1);
+    headerview->resizeSection(4, 55 + delta*0.1);
+    headerview->resizeSection(5, 24);
+    headerview->resizeSection(6, 24);
+    headerview->resizeSection(7, 24);
 
     //resize row
     for(int i=0; i<rowCount(); ++i)

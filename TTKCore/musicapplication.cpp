@@ -83,6 +83,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
 
     ui->lrcDisplayAllButton->hide();
+    ui->musicKey->setFocus();
     ui->surfaceStackedWidget->setCurrentIndex(0);
     ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
@@ -270,7 +271,7 @@ void MusicApplication::readXMLConfigFromText()
     m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(keyList[1].toInt()));
     if(keyList[0] == "1")
     {
-        QTimer::singleShot(1, m_musicSongTree, SLOT(setCurrentIndex()));
+        QTimer::singleShot(MT_MS, m_musicSongTree, SLOT(setCurrentIndex()));
         m_currentMusicSongTreeIndex = keyList[1].toInt();
         m_musicList->blockSignals(true);
         m_musicList->setCurrentIndex(keyList[2].toInt());

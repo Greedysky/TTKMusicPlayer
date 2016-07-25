@@ -30,10 +30,18 @@ public:
     /*!
      * Get class object name.
      */
+    void initWidget(QWidget *parent);
+    /*!
+     * Create all widget in layout.
+     */
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
 
 protected:
-    virtual void focusOutEvent(QFocusEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */

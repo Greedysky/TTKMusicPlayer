@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         if( QString(argv[1]) == "-Open" )
         {
             w.musicImportSongsSettingPath(QStringList() << argv[2]);
-            QTimer::singleShot(1, &w, SLOT(musicImportPlay()));
+            QTimer::singleShot(MT_MS, &w, SLOT(musicImportPlay()));
         }
         if( QString(argv[1]) == "-List" )
         {

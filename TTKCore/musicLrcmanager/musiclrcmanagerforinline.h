@@ -11,7 +11,7 @@
 
 #include "musiclrcmanager.h"
 
-#define LRC_PER_WIDTH 633
+#define LRC_PER_WIDTH 670
 
 /*! @brief The class of the inline lrc manager.
  * @author Greedysky <greedysky@163.com>

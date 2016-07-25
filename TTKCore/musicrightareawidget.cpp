@@ -410,7 +410,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     lrcDisplayAllAnimation->start();
 
     m_ui->surfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 380, 115, m_lrcDisplayAll ? 950 : 633, 455);
-    m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 320 : 0);
+    m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 320 : 0, 0);
     m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));
     m_ui->musicWindowConcise->setEnabled(!m_lrcDisplayAll);
 }

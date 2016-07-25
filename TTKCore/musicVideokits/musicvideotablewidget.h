@@ -37,7 +37,7 @@ public:
     /*!
      * Data download to local file.
      */
-    void resizeWindow(float delta);
+    void resizeWindow(int delta);
     /*!
      * Resize widget size by delta.
      */

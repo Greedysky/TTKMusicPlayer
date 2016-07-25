@@ -6,6 +6,7 @@
 #include "musicsongsharingwidget.h"
 #include "musicobject.h"
 #include "musickugouuiobject.h"
+#include "musicsettingmanager.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -15,8 +16,8 @@
 #include <QDesktopWidget>
 #endif
 
-#define WINDOW_HEIGHT   460
-#define WINDOW_WIDTH    635
+#define WINDOW_HEIGHT   503
+#define WINDOW_WIDTH    661
 
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
@@ -28,7 +29,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     }
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
     m_topWidget->setObjectName("#topWidget");
@@ -39,17 +40,26 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
-    m_searchEdit = new MusicLocalSongSearchEdit(m_topWidget);
+
+    QWidget *searchWidget = new QWidget(m_topWidget);
+    searchWidget->setStyleSheet("background:rgba(255,255,255,125)");
+    QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
+    searchLayout->setContentsMargins(0, 0, 0, 0);
+    searchLayout->setSpacing(0);
+    m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
     m_searchEdit->setFixedHeight(18);
-    m_searchButton = new QPushButton(m_topWidget);
+    m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     m_searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_searchButton->setIconSize(QSize(18, 18));
+    searchLayout->addWidget(m_searchEdit);
+    searchLayout->addWidget(m_searchButton);
+    searchWidget->setLayout(searchLayout);
+
     topLayout->addStretch();
     topLayout->addWidget(m_textLabel);
     topLayout->addStretch();
-    topLayout->addWidget(m_searchEdit);
-    topLayout->addWidget(m_searchButton);
+    topLayout->addWidget(searchWidget);
     m_searchEdit->hide();
     m_searchButton->hide();
 
@@ -124,6 +134,14 @@ QString MusicVideoPlayWidget::getSearchText() const
     return m_searchEdit->text().trimmed();
 }
 
+void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicAbstractMoveWidget::resizeEvent(event);
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+}
+
 void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
@@ -134,6 +152,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     if(resize)
     {
         showFullScreen();
+        qDebug() <<this->size();
     }
     else
     {
@@ -153,10 +172,14 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
         showNormal();
     }
 #endif
-    m_videoView->resizeWindow(resize, s);
-    m_videoTable->resizeWindow(s.width()*1.0 / WINDOW_WIDTH);
-    m_videoFloatWidget->resizeWindow(resize ?  s.width() - WINDOW_WIDTH : 0,
-                                     resize ? (s.height() - WINDOW_HEIGHT)/2 : 0);
+    resizeWindow(s.width() - WINDOW_WIDTH, s.height() - WINDOW_HEIGHT);
+}
+
+void MusicVideoPlayWidget::resizeWindow(int width, int height)
+{
+    m_videoView->resizeWindow(width, height);
+    m_videoTable->resizeWindow(width);
+    m_videoFloatWidget->resizeWindow(width, height);
 }
 
 void MusicVideoPlayWidget::switchToSearchTable()

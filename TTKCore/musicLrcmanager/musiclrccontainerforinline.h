@@ -83,7 +83,7 @@ public:
     /*!
      * Get current lrc size.
      */
-    void resizeWidth(int width);
+    void resizeWidth(int width, int height);
     /*!
      * Resize width bound by given width.
      */
@@ -157,6 +157,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */

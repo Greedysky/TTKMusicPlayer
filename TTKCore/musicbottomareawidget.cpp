@@ -162,6 +162,7 @@ void MusicBottomAreaWidget::resizeWindow()
         int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
         m_musicLocalSongSearch->move(51, 554 + h - WINDOW_HEIGHT_MIN);
     }
+    m_ui->musicSongSearchLine->resizeWindow();
 }
 
 void MusicBottomAreaWidget::clearSearchedText()
