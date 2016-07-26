@@ -14,9 +14,9 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
 {
     setStyleSheet(MusicUIObject::MMenuStyle02);
 
-    m_showLrcAction = new QAction(QIcon(":/contextMenu/lrc"),tr("showDeskLrc"), this);
+    m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc"),tr("showDeskLrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
-    m_lockLrcAction = new QAction(QIcon(":/contextMenu/lock"), tr("lockLrc"), this);
+    m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SIGNAL(setWindowLockedChanged()));
 
     createPlayWidgetActions();
@@ -25,9 +25,9 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(":/contextMenu/setting"), tr("showSetting"), parent, SLOT(musicSetting()));
+    addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addSeparator();
-    addAction(QIcon(":/contextMenu/login"), tr("logout"));
+    addAction(QIcon(":/contextMenu/btn_login"), tr("logout"));
     addAction(tr("appClose"), parent, SLOT(quitWindowClose()));
 }
 

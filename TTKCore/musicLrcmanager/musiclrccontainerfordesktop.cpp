@@ -53,9 +53,10 @@ QString MusicLrcContainerForDesktop::getClassName()
 void MusicLrcContainerForDesktop::creatToolBarWidget()
 {
     m_toolBarWidget = new QWidget(this);
+    m_toolBarWidget->setObjectName("toolBarWidget");
     QHBoxLayout *layout = new QHBoxLayout(m_toolBarWidget);
     layout->setContentsMargins(0, 0, 0, 0);
-    m_toolBarWidget->setStyleSheet(MusicUIObject::MCustomStyle09);
+    m_toolBarWidget->setStyleSheet(QString("#toolBarWidget{%1}").arg(MusicUIObject::MCustomStyle09));
     m_toolBarWidget->setGeometry((m_geometry.x() - TOOLBAR_WIDTH)/2, 0, TOOLBAR_WIDTH, TOOLBAR_HEIGHT);
     m_toolBarWidget->setLayout(layout);
 
@@ -100,17 +101,17 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolStyleButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolStyleButton->setStyleSheet(MusicKuGouUIObject::MKGDeskTopStyle);
 
-    QToolButton *toolYinButton = new QToolButton(m_toolBarWidget);
-    toolYinButton->setIconSize(QSize(18, 23));
-    layout->addWidget(toolYinButton);
-    toolYinButton->setCursor(QCursor(Qt::PointingHandCursor));
-    toolYinButton->setIcon(QIcon(":/desktopTool/btn_yin_normal"));
+//    QToolButton *toolYinButton = new QToolButton(m_toolBarWidget);
+//    toolYinButton->setIconSize(QSize(18, 23));
+//    layout->addWidget(toolYinButton);
+//    toolYinButton->setCursor(QCursor(Qt::PointingHandCursor));
+//    toolYinButton->setIcon(QIcon(":/desktopTool/btn_yin_normal"));
 
-    QToolButton *toolYiButton = new QToolButton(m_toolBarWidget);
-    toolYiButton->setIconSize(QSize(18, 23));
-    layout->addWidget(toolYiButton);
-    toolYiButton->setCursor(QCursor(Qt::PointingHandCursor));
-    toolYiButton->setIcon(QIcon(":/desktopTool/btn_yi_normal"));
+//    QToolButton *toolYiButton = new QToolButton(m_toolBarWidget);
+//    toolYiButton->setIconSize(QSize(18, 23));
+//    layout->addWidget(toolYiButton);
+//    toolYiButton->setCursor(QCursor(Qt::PointingHandCursor));
+//    toolYiButton->setIcon(QIcon(":/desktopTool/btn_yi_normal"));
 
     QToolButton *toolMakeLrcTextButton = new QToolButton(m_toolBarWidget);
     toolMakeLrcTextButton->setFixedSize(TOOLBAR_TEXT_LENGTH, TOOLBAR_HEIGHT);
@@ -142,7 +143,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     layout->addWidget(toolCloseButton);
     connect(toolCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    showMainWindow->setIcon(QIcon(":/image/windowicon"));
+    showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
 
     showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     toolCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -361,7 +362,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addAction(tr("hide"), this, SLOT(close()));
-    menu.addAction(QIcon(":/contextMenu/lock"), tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
+    menu.addAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
     menu.addMenu(&changColorMenu);
     menu.addSeparator();
 

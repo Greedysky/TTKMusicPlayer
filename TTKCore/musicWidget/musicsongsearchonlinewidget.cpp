@@ -171,7 +171,7 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 
-    QAction *playAction = rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"));
+    QAction *playAction = rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"));
     QAction *addAction = rightClickMenu.addAction(tr("musicAdd"));
     rightClickMenu.insertAction(rightClickMenu.actions().first(), addAction);
     rightClickMenu.insertAction(addAction, playAction);

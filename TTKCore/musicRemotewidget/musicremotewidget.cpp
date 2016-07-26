@@ -24,7 +24,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_mainWidget->setObjectName("mainWidget");
 
     m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
+    m_showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
     m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
 
     m_showMainWindow->setToolTip(tr("showMainWindow"));
@@ -98,7 +98,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(MusicUIObject::MMenuStyle03);
-    menu.addAction(QIcon(":/contextMenu/selected"), tr("WindowTop"))->setEnabled(false);
+    menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addSeparator();
 

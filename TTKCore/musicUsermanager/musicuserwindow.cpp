@@ -115,7 +115,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
     if(uid.isEmpty())
     {
         QSize size = ui->userIconU->size();
-        ui->userIconU->setPixmap(MusicUtils::UWidget::pixmapToRound(QPixmap(":/image/windowicon"), size, size.width()/2, size.height()/2));
+        ui->userIconU->setPixmap(MusicUtils::UWidget::pixmapToRound(QPixmap(":/image/lb_player_logo"), size, size.width()/2, size.height()/2));
         ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
     }

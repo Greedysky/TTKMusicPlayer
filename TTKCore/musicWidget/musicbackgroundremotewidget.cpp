@@ -89,7 +89,7 @@ void MusicBackgroundRemoteWidget::buttonClicked(int index)
     m_listWidget->clearAllItems();
     for(int i=0; i<count; i++)
     {
-        m_listWidget->createItem(QString(), ":/image/noneImage");
+        m_listWidget->createItem(QString(), ":/image/lb_noneImage");
     }
 
     m_downloadQueue->addImageQueue(m_urls[m_currentIndex], createPaths());

@@ -43,10 +43,10 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    ui->scanButton->setIcon(QIcon(":/image/searchlocalfile"));
+    ui->scanButton->setIcon(QIcon(":/toolSets/btn_search"));
     ui->scanButton->setStyleSheet("QPushButton{ background:transparent;}"
                                   "QPushButton::hover{ border:1px solid #000000;}");
-    ui->scanCustButton->setIcon(QIcon(":/image/searchlocalfile"));
+    ui->scanCustButton->setIcon(QIcon(":/toolSets/btn_search"));
     ui->scanCustButton->setStyleSheet("QPushButton{ background:transparent;}"
                                       "QPushButton::hover{ border:1px solid #000000;}");
 

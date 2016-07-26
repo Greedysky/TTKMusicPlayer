@@ -66,47 +66,47 @@ void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/localmanager")
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager")
                                                 ,tr("localmanager"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/recorder")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_recorder")
                                                 ,tr("recorder"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/bell")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_bell")
                                                 ,tr("bell"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/timer")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_timer")
                                                 ,tr("timer"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/transform")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_transform")
                                                 ,tr("transform"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/spectrum")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_spectrum")
                                                 ,tr("spectrum"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/wallpaper")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_wallpaper")
                                                 ,tr("wallpaper"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/phone")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_phone")
                                                 ,tr("phone"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/speed")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_speed")
                                                 ,tr("speed"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/gain")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_gain")
                                                 ,tr("gain"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/soundtouch")
+                     item = new QListWidgetItem(QIcon(":/tools/lb_soundtouch")
                                                 ,tr("soundtouch"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);

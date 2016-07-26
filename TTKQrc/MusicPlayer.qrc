@@ -3,38 +3,35 @@
         <file alias="lb_warning">../TTKResource/lb_warning.png</file>
         <file alias="lb_defaultArt">../TTKResource/lb_default_art.jpg</file>
         <file alias="lb_noSimilar">../TTKResource/lb_no_similar_found.png</file>
-        <file alias="windowicon">../TTKResource/music_player_logo.ico</file>
-        <file alias="shadow">../TTKResource/music_shadow.png</file>
-        <file alias="searchlocalfile">../TTKResource/music_searchLocalFile.png</file>
-        <file alias="musicslider">../TTKResource/music_slider.png</file>
-        <file alias="imagetrans">../TTKResource/music_image_transparent.png</file>
-        <file alias="noneImage">../TTKResource/music_noneImage.png</file>
+        <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
+        <file alias="lb_slider">../TTKResource/lb_slider.png</file>
+        <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
     </qresource>
     <qresource prefix="/quality">
-        <file alias="bg">../TTKResource/quality/background.png</file>
-        <file alias="stQuality">../TTKResource/quality/st_quality.png</file>
-        <file alias="sdQuality">../TTKResource/quality/sd_quality.png</file>
-        <file alias="hdQuality">../TTKResource/quality/hd_quality.png</file>
-        <file alias="sqQuality">../TTKResource/quality/sq_quality.png</file>
-        <file alias="cdQuality">../TTKResource/quality/cd_quality.png</file>
+        <file alias="lb_background">../TTKResource/quality/lb_background.png</file>
+        <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>
+        <file alias="lb_sd_quality">../TTKResource/quality/lb_sd_quality.png</file>
+        <file alias="lb_hd_quality">../TTKResource/quality/lb_hd_quality.png</file>
+        <file alias="lb_sq_quality">../TTKResource/quality/lb_sq_quality.png</file>
+        <file alias="lb_cd_quality">../TTKResource/quality/lb_cd_quality.png</file>
     </qresource>
     <qresource prefix="/color">
-        <file alias="black">../TTKResource/color/Black.png</file>
-        <file alias="blue">../TTKResource/color/Blue.png</file>
-        <file alias="green">../TTKResource/color/Green.png</file>
-        <file alias="indigo">../TTKResource/color/Indigo.png</file>
-        <file alias="orange">../TTKResource/color/Orange.png</file>
-        <file alias="origin">../TTKResource/color/Origin.png</file>
-        <file alias="purple">../TTKResource/color/Purple.png</file>
-        <file alias="red">../TTKResource/color/Red.png</file>
-        <file alias="white">../TTKResource/color/White.png</file>
-        <file alias="yellow">../TTKResource/color/Yellow.png</file>
+        <file alias="lb_black">../TTKResource/color/lb_black.png</file>
+        <file alias="lb_blue">../TTKResource/color/lb_blue.png</file>
+        <file alias="lb_green">../TTKResource/color/lb_green.png</file>
+        <file alias="lb_indigo">../TTKResource/color/lb_indigo.png</file>
+        <file alias="lb_orange">../TTKResource/color/lb_orange.png</file>
+        <file alias="lb_origin">../TTKResource/color/lb_origin.png</file>
+        <file alias="lb_purple">../TTKResource/color/lb_purple.png</file>
+        <file alias="lb_red">../TTKResource/color/lb_red.png</file>
+        <file alias="lb_white">../TTKResource/color/lb_white.png</file>
+        <file alias="lb_yellow">../TTKResource/color/lb_yellow.png</file>
     </qresource>
     <qresource prefix="/control">
-        <file alias="checkbox_checked">../TTKResource/controls/controls_checkBox_checked.png</file>
-        <file alias="checkbox_unchecked">../TTKResource/controls/controls_checkBox_unchecked.png</file>
-        <file alias="radiobutton_checked">../TTKResource/controls/controls_radiobutton_checked.png</file>
-        <file alias="radiobutton_unchecked">../TTKResource/controls/controls_radioButton_unchecked.png</file>
+        <file alias="btn_checkBox_checked">../TTKResource/controls/btn_checkBox_checked.png</file>
+        <file alias="btn_checkBox_unchecked">../TTKResource/controls/btn_checkBox_unchecked.png</file>
+        <file alias="btn_radiobutton_checked">../TTKResource/controls/btn_radiobutton_checked.png</file>
+        <file alias="btn_radioButton_unchecked">../TTKResource/controls/btn_radioButton_unchecked.png</file>
         <file alias="lb_volume_back">../TTKResource/controls/lb_volume_back.png</file>
         <file alias="lb_volume_fore">../TTKResource/controls/lb_volume_fore.png</file>
         <file alias="lb_volume_handle_normal">../TTKResource/controls/lb_volume_handle_normal.png</file>
@@ -42,9 +39,6 @@
         <file alias="lb_slider_disable">../TTKResource/controls/lb_slider_disable.png</file>
         <file alias="lb_slider_handle_hover">../TTKResource/controls/lb_slider_handle_hover.png</file>
         <file alias="lb_slider_handle_normal">../TTKResource/controls/lb_slider_handle_normal.png</file>
-        <file alias="timerPlay">../TTKResource/controls/controls_timerPlay.png</file>
-        <file alias="timerStop">../TTKResource/controls/controls_timerStop.png</file>
-        <file alias="timerDown">../TTKResource/controls/controls_timerDown.png</file>
     </qresource>
     <qresource prefix="/desktopTool">
         <file alias="btn_next_normal">../TTKResource/desktopTool/btn_next_normal.png</file>
@@ -77,17 +71,17 @@
         <file alias="btn_update_hover">../TTKResource/desktopTool/btn_update_hover.png</file>
     </qresource>
     <qresource prefix="/tools">
-        <file alias="localmanager">../TTKResource/tools/localmanager.png</file>
-        <file alias="recorder">../TTKResource/tools/recorder.png</file>
-        <file alias="bell">../TTKResource/tools/thebell.png</file>
-        <file alias="timer">../TTKResource/tools/timer.png</file>
-        <file alias="transform">../TTKResource/tools/transform.png</file>
-        <file alias="spectrum">../TTKResource/tools/spectrum.png</file>
-        <file alias="wallpaper">../TTKResource/tools/wallpaper.png</file>
-        <file alias="phone">../TTKResource/tools/phone.png</file>
-        <file alias="speed">../TTKResource/tools/speed.png</file>
-        <file alias="gain">../TTKResource/tools/gain.png</file>
-        <file alias="soundtouch">../TTKResource/tools/soundtouch.png</file>
+        <file alias="lb_localmanager">../TTKResource/tools/lb_localmanager.png</file>
+        <file alias="lb_recorder">../TTKResource/tools/lb_recorder.png</file>
+        <file alias="lb_bell">../TTKResource/tools/lb_thebell.png</file>
+        <file alias="lb_timer">../TTKResource/tools/lb_timer.png</file>
+        <file alias="lb_transform">../TTKResource/tools/lb_transform.png</file>
+        <file alias="lb_spectrum">../TTKResource/tools/lb_spectrum.png</file>
+        <file alias="lb_wallpaper">../TTKResource/tools/lb_wallpaper.png</file>
+        <file alias="lb_phone">../TTKResource/tools/lb_phone.png</file>
+        <file alias="lb_speed">../TTKResource/tools/lb_speed.png</file>
+        <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
+        <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -106,23 +100,20 @@
         <file alias="btn_location">../TTKResource/contextMenu/btn_location.png</file>
         <file alias="btn_mv">../TTKResource/contextMenu/btn_mv.png</file>
         <file alias="btn_audition">../TTKResource/contextMenu/btn_audition.png</file>
-        <file alias="about">../TTKResource/contextMenu/context_about.png</file>
-        <file alias="delete">../TTKResource/contextMenu/context_delete.png</file>
-        <file alias="lock">../TTKResource/contextMenu/context_lock.png</file>
-        <file alias="login">../TTKResource/contextMenu/context_login.png</file>
-        <file alias="play">../TTKResource/contextMenu/context_play.png</file>
-        <file alias="setting">../TTKResource/contextMenu/context_setting.png</file>
-        <file alias="lrc">../TTKResource/contextMenu/context_lrc.png</file>
-        <file alias="window">../TTKResource/contextMenu/context_window.png</file>
-        <file alias="quit">../TTKResource/contextMenu/context_quit.png</file>
-        <file alias="location">../TTKResource/contextMenu/context_location.png</file>
-        <file alias="equalizer">../TTKResource/contextMenu/context_eq.png</file>
-        <file alias="funckeyboard">../TTKResource/contextMenu/context_function_keyboard.png</file>
-        <file alias="funcdesktopLrc">../TTKResource/contextMenu/context_function_desktopLrc.png</file>
-        <file alias="funcdownload">../TTKResource/contextMenu/context_function_download.png</file>
-        <file alias="network">../TTKResource/contextMenu/context_network.png</file>
-        <file alias="update">../TTKResource/contextMenu/context_update.png</file>
-        <file alias="selected">../TTKResource/contextMenu/context_selected.png</file>
+        <file alias="btn_about">../TTKResource/contextMenu/btn_about.png</file>
+        <file alias="btn_delete">../TTKResource/contextMenu/btn_delete.png</file>
+        <file alias="btn_lock">../TTKResource/contextMenu/btn_lock.png</file>
+        <file alias="btn_login">../TTKResource/contextMenu/btn_login.png</file>
+        <file alias="btn_play">../TTKResource/contextMenu/btn_play.png</file>
+        <file alias="btn_setting">../TTKResource/contextMenu/btn_setting.png</file>
+        <file alias="btn_lrc">../TTKResource/contextMenu/btn_lrc.png</file>
+        <file alias="btn_quit">../TTKResource/contextMenu/btn_quit.png</file>
+        <file alias="btn_equalizer">../TTKResource/contextMenu/btn_equalizer.png</file>
+        <file alias="btn_keyboard">../TTKResource/contextMenu/btn_keyboard.png</file>
+        <file alias="btn_desktopLrc">../TTKResource/contextMenu/btn_desktopLrc.png</file>
+        <file alias="btn_network">../TTKResource/contextMenu/btn_network.png</file>
+        <file alias="btn_update">../TTKResource/contextMenu/btn_update.png</file>
+        <file alias="btn_selected">../TTKResource/contextMenu/btn_selected.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="favorite">../TTKResource/netRadio/button_favorite.png</file>
@@ -173,6 +164,7 @@
         <file alias="message">../TTKResource/lrc/lrc_message.png</file>
         <file alias="microphone">../TTKResource/lrc/lrc_microphone.png</file>
         <file alias="translation">../TTKResource/lrc/lrc_translation.png</file>
+        <file alias="lb_transparent">../TTKResource/lrc/lb_transparent.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="bottom">../TTKResource/borderShadow/shadow_bottom.png</file>
@@ -250,6 +242,10 @@
         <file alias="yinyuetai">../TTKResource/server/server_yinyuetai.png</file>
     </qresource>
     <qresource prefix="/toolSets">
+        <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>
+        <file alias="btn_timer_play">../TTKResource/toolSets/btn_timer_play.png</file>
+        <file alias="btn_timer_down">../TTKResource/toolSets/btn_timer_down.png</file>
+        <file alias="btn_timer_stop">../TTKResource/toolSets/btn_timer_stop.png</file>
         <file alias="loading">../TTKResource/toolSets/ts_loading.gif</file>
         <file alias="mobile">../TTKResource/toolSets/ts_mobile_devices.png</file>
         <file alias="usb">../TTKResource/toolSets/ts_mobile_usb.png</file>
@@ -300,7 +296,6 @@
         <file alias="btn_previous_hover">../TTKResource/tiny/btn_previous_normal.png</file>
         <file alias="btn_next_normal">../TTKResource/tiny/btn_next_normal.png</file>
         <file alias="btn_next_hover">../TTKResource/tiny/btn_next_normal.png</file>
-        <file alias="btn_setting_normal">../TTKResource/tiny/btn_setting_normal.png</file>
         <file alias="btn_close_normal">../TTKResource/tiny/btn_close_normal.png</file>
         <file alias="btn_close_hover">../TTKResource/tiny/btn_close_hover.png</file>
         <file alias="btn_search_line_normal">../TTKResource/tiny/btn_search_line_normal.png</file>

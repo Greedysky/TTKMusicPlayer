@@ -456,7 +456,7 @@ void MusicApplication::musicCreateRightMenu()
 {
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),
                              m_topAreaWidget, SLOT(musicUserContextLogin()));
     rightClickMenu.addSeparator();
 
@@ -474,11 +474,11 @@ void MusicApplication::musicCreateRightMenu()
     QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
     QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
     QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
-    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/selected")) : order->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/selected")) : random->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/selected")) : lCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/selected")) : sCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/selected")) : once->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/btn_selected")) : order->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/btn_selected")) : random->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : lCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : sCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/btn_selected")) : once->setIcon(QIcon());
 
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
@@ -491,7 +491,7 @@ void MusicApplication::musicCreateRightMenu()
     musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
@@ -508,17 +508,17 @@ void MusicApplication::musicCreateRightMenu()
     QAction *window = rightClickMenu.addAction(tr("WindowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
     window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/share/selected" : QString()));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/setting"), tr("Setting"), this, SLOT(musicSetting()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/about"));
-    musicInfo.addAction(QIcon(":/contextMenu/update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
-    musicInfo.addAction(QIcon(":/contextMenu/about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
+    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
                         m_applicationObject, SLOT(musicAboutUs()));
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/quit"), tr("quit"), this, SLOT(quitWindowClose()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_quit"), tr("quit"), this, SLOT(quitWindowClose()));
     rightClickMenu.exec(QCursor::pos());
 }
 

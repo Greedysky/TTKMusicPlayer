@@ -106,9 +106,6 @@ namespace MusicUIObject
             stop:0 #EEEEEE,stop: 0.5 #EEEEEE,stop: 1.0 #EEEEEE);\
             border:none;}";
 
-    const QString MToolButtonStyle06 = MToolButtonStyle01 + " \
-            QToolButton::hover{ image:url(:/image/shadow); border:none;}";
-
     const QString MToolButtonStyle07 = MToolButtonStyle01 + MToolButtonStyle02 + " \
             QToolButton{image: url(:/contextMenu/btn_audition);}";
 
@@ -116,7 +113,7 @@ namespace MusicUIObject
             QToolButton{image: url(:/contextMenu/btn_add);}";
 
     const QString MToolButtonStyle09 = MToolButtonStyle04 + " \
-            QToolButton{background-image:url(':/quality/bg');border:none; \
+            QToolButton{background-image:url(':/quality/lb_background');border:none; \
             font-weight:bold; color:white}";
 
     const QString MToolButtonStyle10 = " \
@@ -131,9 +128,6 @@ namespace MusicUIObject
 
 ///PushButton
 //////////////////////////////////////////////////////
-    const QString MPushButtonStyle01 = "\
-            QPushButton::hover{image:url(:/image/shadow);}";
-
     const QString MPushButtonStyle02 = "\
             QPushButton::hover{image:url(:/lrc/shadow);}";
 
@@ -171,12 +165,6 @@ namespace MusicUIObject
     const QString MPushButtonStyle11 = MPushButtonStyle04 + " \
             QPushButton{font-size:17px; font-weight:bold; color:#FFFFFF;}";
 
-    const QString MPushButtonStyle12 = MPushButtonStyle01 + "\
-            QPushButton{background-color:rgba(0, 0, 0, 50);border-none;}";
-
-    const QString MPushButtonStyle13 = MPushButtonStyle01 + MPushButtonStyle03 + "\
-            QPushButton::hover{border:none;}";
-
     const QString MPushButtonStyle14 = MPushButtonStyle02 + MPushButtonStyle04 + "\
             QPushButton{color:white;font-size:15px;}";
            
@@ -184,7 +172,7 @@ namespace MusicUIObject
             QPushButton{text-align:left;color:white;}";
            
     const QString MPushButtonStyle16 = MPushButtonStyle07 + "\
-            QPushButton{ border-image:url(':/quality/bg');}";
+            QPushButton{ border-image:url(':/quality/lb_background');}";
 
     const QString MPushButtonStyle17 = MPushButtonStyle06 + "\
             QPushButton{ color: #3BA1E6;}";
@@ -196,17 +184,17 @@ namespace MusicUIObject
 //////////////////////////////////////////////////////
     const QString MRadioButtonStyle01 = " \
             QRadioButton{ background-color:transparent; } \
-            QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); } \
+            QRadioButton::indicator::unchecked{ image: url(:/control/btn_radioButton_unchecked); } \
             QRadioButton::checked { color: rgb(230,115,0); } \
-            QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }";
+            QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked); }";
 
 ///CheckBox
 //////////////////////////////////////////////////////
     const QString MCheckBoxStyle01 = " \
             QCheckBox{ background-color:transparent; } \
-            QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); } \
+            QCheckBox::indicator::unchecked{ image: url(:/control/btn_checkBox_unchecked); } \
             QCheckBox::checked { color: rgb(230,115,0); } \
-            QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); }";
+            QCheckBox::indicator:checked { image: url(:/control/btn_checkBox_checked); }";
            
     const QString MCheckBoxStyle02 = MCheckBoxStyle01 + " \
             QCheckBox::checked { color: rgb(0,169,236); }";
@@ -297,7 +285,7 @@ namespace MusicUIObject
             QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
             y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255)); height:4px;} \
             QSlider::groove:Horizontal{ background:transparent;height:4px;} \
-            QSlider::handle:Horizontal{ border-image:url(':/image/musicslider'); \
+            QSlider::handle:Horizontal{ border-image:url(':/image/lb_slider'); \
             width:8px;height:6px; margin:-2px -3px -2px 0px;}";
 
     const QString MSliderStyle06 = " \

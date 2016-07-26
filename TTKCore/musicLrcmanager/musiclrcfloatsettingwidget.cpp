@@ -87,16 +87,16 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
     QPushButton *button = new QPushButton(this);
     switch(index)
     {
-        case 0: button->setIcon(QIcon(":/color/origin")); break;
-        case 1: button->setIcon(QIcon(":/color/red")); break;
-        case 2: button->setIcon(QIcon(":/color/orange")); break;
-        case 3: button->setIcon(QIcon(":/color/yellow")); break;
-        case 4: button->setIcon(QIcon(":/color/green")); break;
-        case 5: button->setIcon(QIcon(":/color/blue")); break;
-        case 6: button->setIcon(QIcon(":/color/indigo")); break;
-        case 7: button->setIcon(QIcon(":/color/purple")); break;
-        case 8: button->setIcon(QIcon(":/color/white")); break;
-        case 9: button->setIcon(QIcon(":/color/black")); break;
+        case 0: button->setIcon(QIcon(":/color/lb_origin")); break;
+        case 1: button->setIcon(QIcon(":/color/lb_red")); break;
+        case 2: button->setIcon(QIcon(":/color/lb_orange")); break;
+        case 3: button->setIcon(QIcon(":/color/lb_yellow")); break;
+        case 4: button->setIcon(QIcon(":/color/lb_green")); break;
+        case 5: button->setIcon(QIcon(":/color/lb_blue")); break;
+        case 6: button->setIcon(QIcon(":/color/lb_indigo")); break;
+        case 7: button->setIcon(QIcon(":/color/lb_purple")); break;
+        case 8: button->setIcon(QIcon(":/color/lb_white")); break;
+        case 9: button->setIcon(QIcon(":/color/lb_black")); break;
     }
     if(index < 4)
         button->setGeometry(80 + index*20, 10, 16, 16);

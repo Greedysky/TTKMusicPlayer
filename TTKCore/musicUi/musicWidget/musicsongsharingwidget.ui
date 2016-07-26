@@ -74,8 +74,8 @@
     <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
 QLabel{background:transparent;color:#666666;}
 QRadioButton{background:transparent;}
-QRadioButton::indicator::unchecked{ image: url(:/control/radiobutton_unchecked); }
-QRadioButton::indicator:checked { image: url(:/control/radiobutton_checked); }</string>
+QRadioButton::indicator::unchecked{ image: url(:/control/btn_radioButton_unchecked); }
+QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked); }</string>
    </property>
    <widget class="QLabel" name="sharedName">
     <property name="geometry">

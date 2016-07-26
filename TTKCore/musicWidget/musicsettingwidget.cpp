@@ -90,15 +90,15 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ////////////////////////////////////////////////
     ui->normalFunTableWidget->setRowCount(3);
     ui->normalFunTableWidget->addFunctionItems(0,
-        QStringList() << ":/contextMenu/setting" << ":/contextMenu/funckeyboard" << ":/contextMenu/funcdownload",
+        QStringList() << ":/contextMenu/btn_setting" << ":/contextMenu/btn_keyboard" << ":/contextMenu/btn_download",
         QStringList() << tr("Normal") << tr("Hotkey") << tr("Dwonload"));
     ui->lrcFunTableWidget->setRowCount(2);
     ui->lrcFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount(),
-        QStringList() << ":/contextMenu/lrc" << ":/contextMenu/funcdesktopLrc",
+        QStringList() << ":/contextMenu/btn_lrc" << ":/contextMenu/btn_desktopLrc",
         QStringList() << tr("Desktop") << tr("Inline"));
     ui->supperFunTableWidget->setRowCount(2);
     ui->supperFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount() + ui->lrcFunTableWidget->rowCount(),
-        QStringList() << ":/contextMenu/equalizer" << ":/contextMenu/network",
+        QStringList() << ":/contextMenu/btn_equalizer" << ":/contextMenu/btn_network",
         QStringList() << tr("Equalizer") << tr("NetWork"));
     ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
@@ -180,10 +180,10 @@ void MusicSettingWidget::initInlineLrcWidget()
     connect(ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
 
     ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->noPlayedPushButton->setIcon(QIcon(":/color/purple"));
+    ui->noPlayedPushButton->setIcon(QIcon(":/color/lb_purple"));
     ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->noPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->playedPushButton->setIcon(QIcon(":/color/purple"));
+    ui->playedPushButton->setIcon(QIcon(":/color/lb_purple"));
     ui->playedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->playedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(inlineLrcBgChanged()));
@@ -226,10 +226,10 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
 
     ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->DnoPlayedPushButton->setIcon(QIcon(":/color/purple"));
+    ui->DnoPlayedPushButton->setIcon(QIcon(":/color/lb_purple"));
     ui->DnoPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->DnoPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->DplayedPushButton->setIcon(QIcon(":/color/purple"));
+    ui->DplayedPushButton->setIcon(QIcon(":/color/lb_purple"));
     ui->DplayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->DplayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBgChanged()));

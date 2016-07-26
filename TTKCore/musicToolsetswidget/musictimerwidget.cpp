@@ -26,9 +26,9 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     connect(ui->timerToStop, SIGNAL(clicked()), SLOT(changeSecondWidget()));
     connect(ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
 
-    ui->timerToPlay->setIcon(QIcon(":/control/timerPlay"));
-    ui->timerToStop->setIcon(QIcon(":/control/timerStop"));
-    ui->timerToShutdown->setIcon(QIcon(":/control/timerDown"));
+    ui->timerToPlay->setIcon(QIcon(":/toolSets/btn_timer_play"));
+    ui->timerToStop->setIcon(QIcon(":/toolSets/btn_timer_stop"));
+    ui->timerToShutdown->setIcon(QIcon(":/toolSets/btn_timer_down"));
     ui->timerToPlay->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->timerToStop->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->timerToShutdown->setStyleSheet(MusicUIObject::MPushButtonStyle08);

@@ -74,7 +74,7 @@ KugouWindow::KugouWindow(QWidget *parent)
 #else
     m_webView = nullptr;
     QLabel *pix = new QLabel(this);
-    pix->setPixmap(QPixmap(":/image/nowebkit"));
+    pix->setPixmap(QPixmap(":/image/lb_no_webkit"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);

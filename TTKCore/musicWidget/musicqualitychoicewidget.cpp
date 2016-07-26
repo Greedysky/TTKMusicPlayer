@@ -61,23 +61,23 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(4, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/stQuality"));
+    item->setIcon(QIcon(":/quality/lb_st_quality"));
     setItem(0, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/sdQuality"));
+    item->setIcon(QIcon(":/quality/lb_sd_quality"));
     setItem(1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/hdQuality"));
+    item->setIcon(QIcon(":/quality/lb_hd_quality"));
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/sqQuality"));
+    item->setIcon(QIcon(":/quality/lb_sq_quality"));
     setItem(3, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/cdQuality"));
+    item->setIcon(QIcon(":/quality/lb_cd_quality"));
     setItem(4, 1, item);
 
                       item = new QTableWidgetItem;

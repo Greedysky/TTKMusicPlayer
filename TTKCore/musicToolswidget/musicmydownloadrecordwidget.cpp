@@ -93,10 +93,10 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/play"), tr("musicPlay"), this, SLOT(musicPlay()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlay()));
     rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()));
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
     rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
     rightClickMenu.exec(QCursor::pos());
     event->accept();

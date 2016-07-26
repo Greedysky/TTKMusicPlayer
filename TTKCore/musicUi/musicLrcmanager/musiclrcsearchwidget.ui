@@ -227,9 +227,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"> QCheckBox{ background-color:transparent; } 
- QCheckBox::indicator::unchecked{ image: url(:/control/checkbox_unchecked); }QCheckBox::checked { color: rgb(230,115,0); } 
-QCheckBox::indicator:checked { image: url(:/control/checkbox_checked); };</string>
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QPushButton" name="lrcSearchDownload">

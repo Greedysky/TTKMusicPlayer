@@ -51,16 +51,16 @@ void MusicLrcContainer::searchMusicLrcs()
 void MusicLrcContainer::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(QIcon(":/color/origin"), tr("origin")));
-    group->addAction(menu.addAction(QIcon(":/color/red"), tr("red")));
-    group->addAction(menu.addAction(QIcon(":/color/orange"), tr("orange")));
-    group->addAction(menu.addAction(QIcon(":/color/yellow"), tr("yellow")));
-    group->addAction(menu.addAction(QIcon(":/color/green"), tr("green")));
-    group->addAction(menu.addAction(QIcon(":/color/blue"), tr("blue")));
-    group->addAction(menu.addAction(QIcon(":/color/indigo"), tr("indigo")));
-    group->addAction(menu.addAction(QIcon(":/color/purple"), tr("purple")));
-    group->addAction(menu.addAction(QIcon(":/color/white"), tr("white")));
-    group->addAction(menu.addAction(QIcon(":/color/black"), tr("black")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_origin"), tr("origin")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_red"), tr("red")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_orange"), tr("orange")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_yellow"), tr("yellow")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_green"), tr("green")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_blue"), tr("blue")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_indigo"), tr("indigo")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_purple"), tr("purple")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_white"), tr("white")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_black"), tr("black")));
     connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
