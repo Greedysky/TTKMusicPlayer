@@ -52,7 +52,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_popupQuality.setStyleSheet(MusicUIObject::MMenuStyle01);
-    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
+    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
 
     QVBoxLayout *controlVLayout = new QVBoxLayout(this);
     controlVLayout->setSpacing(0);

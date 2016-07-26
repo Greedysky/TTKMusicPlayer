@@ -99,7 +99,7 @@ void MusicEqualizerDialog::init()
 void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
 {
     slider->setRange(-15, 15);
-    slider->setStyleSheet(MusicUIObject::MSliderStyle03);
+    slider->setStyleSheet(MusicUIObject::MSliderStyle04);
     connect(slider, SIGNAL(valueChanged(int)), m_signalMapper, SLOT(map()));
     m_signalMapper->setMapping(slider, index);
 }

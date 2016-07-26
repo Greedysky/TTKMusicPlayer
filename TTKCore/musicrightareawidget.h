@@ -191,7 +191,6 @@ protected:
      * Function button style clear.
      */
 
-    bool m_lrcDisplayAll;
     QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;

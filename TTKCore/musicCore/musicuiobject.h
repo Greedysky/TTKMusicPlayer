@@ -79,14 +79,6 @@ namespace MusicUIObject
     const QString MCustomStyle23 = " \
             color:white;image:url(:/lrc/shadow);text-align:center;";
 
-    const QString MCustomStyle24 = " \
-            border-image: url(:/image/soundmax);";
-
-    const QString MCustomStyle25 = " \
-            border-image: url(:/image/soundmin);";
-
-    const QString MCustomStyle26 = MCustomStyle01 + MCustomStyle24;
-
     const QString MCustomStyle27 = " \
             background:rgba(0,0,0,35);";
 
@@ -222,14 +214,12 @@ namespace MusicUIObject
 ///ScrollBar
 //////////////////////////////////////////////////////
     const QString MScrollBarStyle01 = " \
-            QScrollBar{ background: #F0F0F0;width: 8px; padding-top:10px; padding-bottom:10px;}\
-            QScrollBar::handle{background: #CFCFCF; min-width: 20px;min-height: 20px;}\
+            QScrollBar{ background:#F0F0F0; width:8px; padding-top:0px; padding-bottom:0px;}\
+            QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF;}\
             QScrollBar::handle:vertical::disabled{ background:#DBDBDB;}\
-            QScrollBar::handle:vertical:hover{ background:#DBDBDB; border:1px solid rgb(230,115,0);}\
-            QScrollBar::add-line, QScrollBar::sub-line { background: none; border: none;}\
-            QScrollBar::add-page, QScrollBar::sub-page { background: none; }\
-            QScrollBar::up-arrow:vertical{border-image: url(':/usermanager/uparrow');}\
-            QScrollBar::down-arrow:vertical{border-image: url(':/usermanager/downarrow');}";
+            QScrollBar::handle:vertical:hover{ background:#BBBBBB;}\
+            QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;}\
+            QScrollBar::add-page, QScrollBar::sub-page{ background:none;}";
 
 ///LineEdit
 //////////////////////////////////////////////////////
@@ -274,87 +264,49 @@ namespace MusicUIObject
 ///Slider
 //////////////////////////////////////////////////////
     const QString MSliderStyle01 = " \
-            QSlider::groove:horizontal{ border: 1px solid #4A708B;\
-            background: #C0C0C0;height: 5px;border-radius: 1px;\
-            padding-left:-1px;padding-right:-1px;}\
-            QSlider::sub-page:horizontal{\
-            background: qlineargradient(x1:0, y1:0, x2:0, y2:1,\
-            stop:0 #B1B1B1, stop:1 #c4c4c4);\
-            background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,\
-            stop: 0 #5DCCFF, stop: 1 #1874CD);\
-            border: 1px solid #4A708B;height: 10px;border-radius: 2px;}\
-            QSlider::add-page:horizontal{background-color:white;\
-            border: 0px solid #777;height: 10px;border-radius: 2px;}\
-            QSlider::handle:horizontal{\
-            background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5,\
-            stop:0.6 #45ADED, stop:0.778409 rgba(255, 255, 255, 255));\
-            width: 11px;margin-top: -3px;\
-            margin-bottom: -3px;border-radius: 5px;}\
-            QSlider::handle:horizontal:hover{\
-            background: qradialgradient(spread:pad, cx:0.5, cy:0.5, \
-            radius:0.5, fx:0.5, fy:0.5, stop:0.6 #2A8BDA,\
-            stop:0.778409 rgba(255, 255, 255, 255));\
-            width: 11px;margin-top: -3px;margin-bottom: -3px;border-radius: 5px;}\
-            QSlider::sub-page:horizontal:disabled{background-color:white;border-color: #999;}\
-            QSlider::add-page:horizontal:disabled{background: #eee;border-color: #999;}\
-            QSlider::handle:horizontal:disabled{background: #eee;border: 1px solid #aaa;border-radius: 4px;}";
+            QSlider::groove:horizontal{ \
+            background:#FFFEA1; height:3px; border-radius:1px;} \
+            QSlider::sub-page:horizontal{ background:#FFFEA1;} \
+            QSlider::add-page:horizontal{ background:#4E4F4F;} \
+            QSlider::handle:horizontal{ background:#FFFEA1; \
+            width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px;}";
 
     const QString MSliderStyle02 = " \
-            QSlider::groove:vertical {border: 1px solid #4A708B; \
-            background: #C0C0C0;  width: 5px;  border-radius: 1px;\
-            padding-left:-1px;padding-right:-1px;  padding-top:-1px;  padding-bottom:-1px;}  \
-            QSlider::sub-page:vertical {background: #575757;border:1px solid #4A708B;border-radius: 2px;}\
-            QSlider::add-page:vertical {  \
-            background: qlineargradient(x1:0, y1:0, x2:0, y2:1,  \
-            stop:0 #c4c4c4, stop:1 #B1B1B1);  \
-            background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,  \
-            stop: 0 #5DCCFF, stop: 1 #1874CD);  \
-            border: 0px solid #777;  width: 10px;border-radius: 2px;}  \
-            QSlider::handle:vertical{\
-            background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, \
-            fx:0.5, fy:0.5, stop:0.6 #45ADED,stop:0.778409 rgba(255, 255, 255, 255));\
-            height: 11px;margin-left: -3px;margin-right: -3px;border-radius: 5px;}\
-            QSlider::handle:vertical:disabled {background: #eee;border: 1px solid #aaa;border-radius: 4px;}";
-
-    const QString MSliderStyle03 =  MSliderStyle02 + "\
-            QSlider::sub-page:vertical { \
-            background: qlineargradient(x1:0, y1:0, x2:0, y2:1,  \
-            stop:0 #c4c4c4, stop:1 #B1B1B1);  \
-            background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,  \
-            stop: 0 #5DCCFF, stop: 1 #1874CD);  \
-            border: 0px solid #777;  width: 10px;border-radius: 2px;} \
-            QSlider::handle:vertical:hover{ image:url(:/image/shadow);border:none;}";
-
-    const QString MSliderStyle04 = "\
-            QSlider::groove:horizontal{background:#C0C0C0; height:8px;}\
-            QSlider::sub-page:horizontal{background:#F7F66C;}\
-            QSlider::add-page:horizontal{background:#4E4E4E;}\
-            QSlider::handle:horizontal{background:#FFFFFF; width:10px;}";
-
-    const QString MSliderStyle05 = "\
-            QSlider::add-page:Horizontal{background-color: rgb(87, 97, 106);height:4px;}\
-            QSlider::sub-page:Horizontal{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1,\
-            y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255));height:4px;}\
-            QSlider::groove:Horizontal{background:transparent;height:4px;} \
-            QSlider::handle:Horizontal{border-image:url(':/image/musicslider');\
-            width:8px;height: 6px;margin: -2px -3px -2px 0px;}";
-
-    const QString MSliderStyle06 = "\
-            QSlider::groove:horizontal{background-image: url(:/control/lb_volume_back);}\
-            QSlider::sub-page:horizontal{border-image: url(:/control/lb_volume_fore);}\
-            QSlider::add-page:horizontal{background-image: url(:/control/lb_volume_back);}\
-            QSlider::handle:horizontal{margin: 0px -2px 0px -2px;\
-            background-image: url(:/control/lb_volume_handle_normal);width: 13px;}\
-            QSlider::handle:horizontal:hover{background-image: url(:/control/lb_volume_handle_hover);}";
-
-
-    const QString MSliderStyle07 = "\
-            QSlider::groove:vertical { \
-            background: #FFFEA1; width:3px; border-radius:1px;}  \
-            QSlider::sub-page:vertical {background:#4E4F4F;}\
-            QSlider::add-page:vertical {background:#FFFEA1;}  \
-            QSlider::handle:vertical{ background:#FFFEA1;\
+            QSlider::groove:vertical{ \
+            background: #FFFEA1; width:3px; border-radius:1px;} \
+            QSlider::sub-page:vertical{ background:#4E4F4F;} \
+            QSlider::add-page:vertical{ background:#FFFEA1;} \
+            QSlider::handle:vertical{ background:#FFFEA1; \
             height:9px; margin-left:-3px; margin-right:-3px; border-radius:4px;}";
+
+    const QString MSliderStyle03 = " \
+            QSlider::groove:vertical{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, \
+            stop:0 #B5B4B4, stop:1 #FCFCFC); width:3px;} \
+            QSlider::handle:vertical{ border-image:url(:/control/lb_slider_handle_normal); \
+            height:21px; margin-left:-8px; margin-right:-8px;} \
+            QSlider::handle:vertical:disabled {border-image:url(:/control/lb_slider_disable);} \
+            QSlider::handle:vertical:hover{ border-image:url(:/control/lb_slider_handle_hover); border:none;}";
+
+    const QString MSliderStyle04 = MSliderStyle03 + " \
+            QSlider::groove:vertical{ background:white;} \
+            QSlider::sub-page:vertical{ background:#AFC7F8;} \
+            QSlider::add-page:vertical{ background:white; border:1px solid #ACF;}";
+
+    const QString MSliderStyle05 = " \
+            QSlider::add-page:Horizontal{ background-color:rgb(87, 97, 106); height:4px;} \
+            QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
+            y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255)); height:4px;} \
+            QSlider::groove:Horizontal{ background:transparent;height:4px;} \
+            QSlider::handle:Horizontal{ border-image:url(':/image/musicslider'); \
+            width:8px;height:6px; margin:-2px -3px -2px 0px;}";
+
+    const QString MSliderStyle06 = " \
+            QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back);} \
+            QSlider::sub-page:horizontal{ border-image:url(:/control/lb_volume_fore);} \
+            QSlider::add-page:horizontal{ background-image:url(:/control/lb_volume_back);} \
+            QSlider::handle:horizontal{ margin:0px -2px 0px -2px; \
+            background-image:url(:/control/lb_volume_handle_normal); width:13px;} \
+            QSlider::handle:horizontal:hover{ background-image:url(:/control/lb_volume_handle_hover);}";
 
 ///ComboBox
 //////////////////////////////////////////////////////
@@ -369,7 +321,7 @@ namespace MusicUIObject
 ///TableWidget
 //////////////////////////////////////////////////////
     const QString MTableWidgetStyle01 = " \
-            QTableWidget{selection-background-color: rgba(20,20,20,100);}";
+            QTableWidget{selection-background-color: rgba(20,20,20,40);}";
            
 ///TextEdit
 //////////////////////////////////////////////////////

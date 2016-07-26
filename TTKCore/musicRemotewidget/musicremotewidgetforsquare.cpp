@@ -10,17 +10,6 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     move( windowSize.width() - width() - 150, height() + 70);
 
-    m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    m_showMainWindow->setIconSize(QSize(30, 30));
-    m_PreSongButton->setIconSize(QSize(30, 30));
-    m_NextSongButton->setIconSize(QSize(30, 30));
-    m_PlayButton->setIconSize(QSize(30, 30));
-    m_SettingButton->setIconSize(QSize(30, 30));
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
-
     QGridLayout* grid = new QGridLayout(this);
     for(int i=0; i<3; i++)
     {
@@ -32,10 +21,6 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
         grid->setColumnMinimumWidth(j, 30);
         grid->setColumnStretch(j, 1);
     }
-    m_PreSongButton->setFixedSize(50, 50);
-    m_NextSongButton->setFixedSize(50, 50);
-    m_PlayButton->setFixedSize(50, 50);
-    m_SettingButton->setFixedSize(50, 50);
     m_mainWidget->setFixedSize(70, 70);
     grid->addWidget(m_PlayButton, 0, 1, Qt::AlignCenter);
     grid->addWidget(m_PreSongButton, 1, 0, Qt::AlignCenter);
@@ -49,7 +34,6 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     mainWidgetLayout->addWidget(m_showMainWindow);
     mainWidgetLayout->setAlignment(m_showMainWindow, Qt::AlignCenter);
     mainWidgetLayout->addWidget(m_volumeWidget);
-    m_showMainWindow->setFixedSize(30, 30);
 
     m_interval = 0.0f;
     for(int i=0; i<4; ++i)

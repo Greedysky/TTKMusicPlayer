@@ -881,8 +881,14 @@
             </item>
             <item>
              <widget class="QStackedWidget" name="surfaceStackedWidget">
+              <property name="minimumSize">
+               <size>
+                <width>661</width>
+                <height>503</height>
+               </size>
+              </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
               <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">
@@ -894,14 +900,14 @@
                  <rect>
                   <x>0</x>
                   <y>200</y>
-                  <width>12</width>
-                  <height>56</height>
+                  <width>13</width>
+                  <height>55</height>
                  </rect>
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>12</width>
-                  <height>56</height>
+                  <width>13</width>
+                  <height>55</height>
                  </size>
                 </property>
                 <property name="autoFillBackground">

@@ -69,7 +69,7 @@ void MusicAbstractTableWidget::listCellEntered(int row, int column)
     it = item(row, column);
     if(it != nullptr)
     {
-       setRowColor(row, QColor(20, 20, 20, 40));
+       setRowColor(row, QColor(20, 20, 20, 20));
     }
 
     m_previousColorRow = row;

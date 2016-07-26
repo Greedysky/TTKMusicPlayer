@@ -18,7 +18,6 @@
 #include <QActionGroup>
 #include <QPushButton>
 #include <QTextEdit>
-#include <QDebug>
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -40,6 +39,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
+    m_lrcDisplayAll = false;
     m_changeSpeedValue = 0;
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
@@ -323,7 +323,12 @@ void MusicLrcContainerForInline::resizeEvent(QResizeEvent *event)
     MusicLrcContainer::resizeEvent(event);
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-    resizeWidth( width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+
+    if(m_lrcDisplayAll)
+    {
+        width += 320;
+    }
+    resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 }
 
 void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)

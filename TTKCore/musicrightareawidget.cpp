@@ -17,7 +17,6 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent), m_videoPlayer(nullptr), m_similarFoundWidget(nullptr)
 {
     m_supperClass = parent;
-    m_lrcDisplayAll = false;
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
     m_downloadStatusLabel = new MusicDownloadStatusLabel(parent);
     m_setting = new MusicSettingWidget(this);
@@ -288,7 +287,7 @@ void MusicRightAreaWidget::musicLrcWidgetButtonSearched()
     //Show lrc display widget
     m_ui->surfaceStackedWidget->setCurrentIndex(2);
     createVideoWidget(false);
-    m_ui->lrcDisplayAllButton->setIcon(QIcon(":/lrc/lrcDisplayAll"));
+    m_ui->lrcDisplayAllButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLrcCollapse);
     m_ui->lrcDisplayAllButton->setVisible(true);
     emit updateBgThemeDownload();
 }
@@ -348,7 +347,7 @@ void MusicRightAreaWidget::createVideoWidget(bool create)
     }
     ////////////////////////////////////////////////////////////
     m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_lrcDisplayAll)
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
     {
         musicLrcDisplayAllButtonClicked();
     }
@@ -400,17 +399,19 @@ void MusicRightAreaWidget::musicVideoFullscreen(bool full)
 
 void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
 {
-    m_lrcDisplayAll = !m_lrcDisplayAll;
-    m_ui->songsContainer->setHidden(m_lrcDisplayAll);
+    bool lrcDisplayAll = !m_ui->musiclrccontainerforinline->lrcDisplayExpand();
+    m_ui->musiclrccontainerforinline->setLrcDisplayExpand(lrcDisplayAll);
+    m_ui->songsContainer->setHidden(lrcDisplayAll);
+
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
 
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(m_lrcDisplayAll ? 380 : 61, 300));
-    lrcDisplayAllAnimation->setEndValue(QPoint(m_lrcDisplayAll ? 61 : 380, 300));
+    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 350 : -370, 220 + height/2));
+    lrcDisplayAllAnimation->setEndValue(QPoint(0, 220 + height/2));
     lrcDisplayAllAnimation->start();
 
-    m_ui->surfaceStackedWidget->setGeometry(m_lrcDisplayAll ? 60 : 380, 115, m_lrcDisplayAll ? 950 : 633, 455);
-    m_ui->musiclrccontainerforinline->resizeWidth(m_lrcDisplayAll ? 320 : 0, 0);
-    m_ui->lrcDisplayAllButton->setIcon(QIcon(m_lrcDisplayAll ? ":/lrc/lrcDisplayNor" : ":/lrc/lrcDisplayAll"));
-    m_ui->musicWindowConcise->setEnabled(!m_lrcDisplayAll);
+    m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicKuGouUIObject::MKGTinyBtnLrcExpand :
+                                                             MusicKuGouUIObject::MKGTinyBtnLrcCollapse);
+    m_ui->musicWindowConcise->setEnabled(!lrcDisplayAll);
 }

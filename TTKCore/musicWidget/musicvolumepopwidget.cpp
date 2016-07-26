@@ -95,7 +95,7 @@ void MusicVolumePopWidget::initWidget()
     m_volumeSlider = new QSlider(Qt::Vertical, this);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle07);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
 
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), SIGNAL(musicVolumeChanged(int)));
 

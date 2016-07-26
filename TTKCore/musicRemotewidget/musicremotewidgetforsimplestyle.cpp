@@ -17,10 +17,6 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     vbox->addWidget(m_mainWidget);
     setLayout(vbox);
 
-    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
-
     m_songNameLabel = new MusicMarqueeWidget(this);
     m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
     m_PreSongButton->hide();
@@ -28,7 +24,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(0, 0, 0, 0);
-    mhbox->setSpacing(0);
+    mhbox->setSpacing(3);
     mhbox->addWidget(m_showMainWindow);
     mhbox->addWidget(m_PlayButton);
     mhbox->addWidget(m_songNameLabel);

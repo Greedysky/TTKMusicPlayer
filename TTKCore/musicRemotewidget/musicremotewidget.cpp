@@ -5,6 +5,7 @@
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
+#include "musickugouuiobject.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
@@ -24,20 +25,32 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
     m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_showMainWindow->setIcon(QIcon(":/image/windowicon"));
-    m_PreSongButton->setIcon(QIcon(":/tiny/btn_previous_normal"));
-    m_NextSongButton->setIcon(QIcon(":/tiny/btn_next_normal"));
-    m_PlayButton->setIcon(QIcon(":/tiny/btn_play_normal"));
     m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
+
     m_showMainWindow->setToolTip(tr("showMainWindow"));
     m_PreSongButton->setToolTip(tr("Previous"));
     m_NextSongButton->setToolTip(tr("Next"));
     m_PlayButton->setToolTip(tr("Play"));
     m_SettingButton->setToolTip(tr("showSetting"));
+
+    m_PreSongButton->setFixedSize(28, 28);
+    m_NextSongButton->setFixedSize(28, 28);
+    m_PlayButton->setFixedSize(28, 28);
+    m_SettingButton->setFixedSize(28, 28);
+    m_showMainWindow->setFixedSize(30, 30);
+
+    m_PreSongButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnPrevious);
+    m_NextSongButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnNext);
+    m_PlayButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnPlay);
+    m_SettingButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnSetting);
+    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
+
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     m_PreSongButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_NextSongButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_PlayButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_SettingButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     connect(m_showMainWindow, SIGNAL(clicked()), SIGNAL(musicWindowSignal()));
     connect(m_PlayButton, SIGNAL(clicked()), SIGNAL(musicKeySignal()));
     connect(m_PreSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPreviousSignal()));
@@ -48,14 +61,13 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     QHBoxLayout *volumeLayout = new QHBoxLayout(m_volumeWidget);
     volumeLayout->setContentsMargins(0, 0, 0, 0);
     volumeLayout->setSpacing(1);
-    m_volumeLabel = new QLabel(m_volumeWidget);
-    m_volumeLabel->setStyleSheet(MusicUIObject::MCustomStyle26);
-    m_volumeLabel->setFixedSize(QSize(20, 15));
+    m_volumeButton = new QToolButton(m_volumeWidget);
+    m_volumeButton->setFixedSize(QSize(16, 16));
     m_volumeSlider = new QSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle04);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_volumeSlider->setFixedWidth(45);
-    volumeLayout->addWidget(m_volumeLabel);
+    volumeLayout->addWidget(m_volumeButton);
     volumeLayout->addWidget(m_volumeSlider);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(musicVolumeChanged(int)));
@@ -63,7 +75,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
 MusicRemoteWidget::~MusicRemoteWidget()
 {
-    delete m_volumeLabel;
+    delete m_volumeButton;
     delete m_volumeSlider;
     delete m_volumeWidget;
     delete m_showMainWindow;
@@ -110,7 +122,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setIcon(QIcon(status ? ":/tiny/btn_play_normal" : ":/tiny/btn_pause_normal"));
+    m_PlayButton->setStyleSheet(status ? MusicKuGouUIObject::MKGTinyBtnPlay : MusicKuGouUIObject::MKGTinyBtnPause);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)
@@ -121,9 +133,26 @@ void MusicRemoteWidget::setVolumeValue(int index)
     blockSignals(false);
 }
 
-void MusicRemoteWidget::musicVolumeChanged(int index)
+void MusicRemoteWidget::musicVolumeChanged(int value)
 {
-    emit musicVolumeSignal(index);
-    m_volumeLabel->setStyleSheet(index > 0 ? MusicUIObject::MCustomStyle24
-                                           : MusicUIObject::MCustomStyle25);
+    emit musicVolumeSignal(value);
+
+    QString style = MusicKuGouUIObject::MKGTinyBtnSoundWhite;
+    if(66 < value && value <=100)
+    {
+        style += "QToolButton{ margin-left:-48px; }";
+    }
+    else if(33 < value && value <=66)
+    {
+        style += "QToolButton{ margin-left:-32px; }";
+    }
+    else if(0 < value && value <=33)
+    {
+        style += "QToolButton{ margin-left:-16px; }";
+    }
+    else
+    {
+        style += "QToolButton{ margin-left:-64px; }";
+    }
+    m_volumeButton->setStyleSheet(style);
 }

@@ -380,7 +380,7 @@ void MusicSongsListWidget::showTimeOut()
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
         m_musicSongsInfoWidget->setMusicSongInformation( song );
-        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 5,
+        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
                                             QCursor::pos().y(), 264, 108);
         bool isCurrentIndex;
         emit isCurrentIndexs(isCurrentIndex);

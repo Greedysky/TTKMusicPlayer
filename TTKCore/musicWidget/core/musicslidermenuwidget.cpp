@@ -35,7 +35,7 @@ MusicSliderMenuWidget::MusicSliderMenuWidget(Qt::Orientation orientation, QWidge
     {
         hbox = new QHBoxLayout(widgetActionContainer);
         m_textLabel->setText("100%\n\n\n50%\n\n\n0%");
-        m_slider->setStyleSheet(MusicUIObject::MSliderStyle02);
+        m_slider->setStyleSheet(MusicUIObject::MSliderStyle03);
     }
     m_slider->setRange(0, 100);
     m_slider->setValue(100);

@@ -65,7 +65,7 @@ Q_SIGNALS:
     /*!
      * Set current play to next.
      */
-    void musicVolumeSignal(int index);
+    void musicVolumeSignal(int value);
     /*!
      * Set current play volume by value.
      */
@@ -79,7 +79,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void musicVolumeChanged(int index);
+    void musicVolumeChanged(int value);
     /*!
      * Set current play volume change by value.
      */
@@ -94,7 +94,7 @@ protected:
     QPushButton *m_NextSongButton, *m_PlayButton;
     QPushButton *m_SettingButton;
     QWidget *m_mainWidget, *m_volumeWidget;
-    QLabel *m_volumeLabel;
+    QToolButton *m_volumeButton;
     QSlider *m_volumeSlider;
 
 };

@@ -152,7 +152,6 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     if(resize)
     {
         showFullScreen();
-        qDebug() <<this->size();
     }
     else
     {

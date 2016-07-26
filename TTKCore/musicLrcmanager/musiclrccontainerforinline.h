@@ -71,7 +71,15 @@ public:
      * Get current lrc and next lrc in container by current time.
      */
 
-    inline bool artBackgroundIsShow() const {return m_showArtBackground;}
+    inline void setLrcDisplayExpand(bool expand) { m_lrcDisplayAll = expand;}
+    /*!
+     * Get state of background is artist shown.
+     */
+    inline bool lrcDisplayExpand() const { return m_lrcDisplayAll;}
+    /*!
+     * Get state of background is artist shown.
+     */
+    inline bool artBackgroundIsShow() const { return m_showArtBackground;}
     /*!
      * Get state of background is artist shown.
      */
@@ -82,10 +90,6 @@ public:
     int getLrcSize() const;
     /*!
      * Get current lrc size.
-     */
-    void resizeWidth(int width, int height);
-    /*!
-     * Resize width bound by given width.
      */
 
 Q_SIGNALS:
@@ -193,9 +197,14 @@ protected:
     /*!
      * Set per lrc line style sheet by index and size and transparent.
      */
+    void resizeWidth(int width, int height);
+    /*!
+     * Resize width bound by given width.
+     */
 
     QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed, m_showArtBackground;
+    bool m_lrcDisplayAll;
     qint64 m_changeSpeedValue;
     QVBoxLayout *m_vBoxLayout;
     MusicLrcFloatWidget *m_lrcFloatWidget;

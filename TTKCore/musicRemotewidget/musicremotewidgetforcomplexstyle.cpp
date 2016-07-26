@@ -48,11 +48,6 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     m_iconLabel->setFixedSize(80, 80);
     m_songName->setStyleSheet(MusicUIObject::MWidgetStyle01);
     m_songArtist->setStyleSheet(MusicUIObject::MWidgetStyle01);
-    m_PreSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_NextSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_PlayButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_SettingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
 
 }
 

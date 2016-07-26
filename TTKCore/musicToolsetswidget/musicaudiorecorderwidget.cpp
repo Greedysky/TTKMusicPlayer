@@ -67,7 +67,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     m_mpInputDevSound = nullptr;
     m_mpInputDevSound = nullptr;
 
-    m_recordCore = new  MusicAudioRecorderCore(this);
+    m_recordCore = new MusicAudioRecorderCore(this);
 
     initMonitor();
 }
