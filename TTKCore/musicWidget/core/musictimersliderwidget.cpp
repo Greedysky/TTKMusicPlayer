@@ -110,7 +110,7 @@ void MusicTimerSliderWidget::timeout()
             m_reverse = false;
         }
     }
-    m_label->setPixmap(QPixmap(":/slidergif/" + QString::number(m_picIndex)));
+    m_label->setPixmap(QPixmap(":/slidergif/lb_" + QString::number(m_picIndex)));
 }
 
 void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)

@@ -43,47 +43,47 @@ void MusicWebEntainRadioListView::clearAllItems()
 
 void MusicWebEntainRadioListView::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(":/radio/guowai")
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/radio/lb_guowai")
                                                 ,tr("guowai"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon(":/radio/jiaotong")
+    QListWidgetItem *item1 = new QListWidgetItem(QIcon(":/radio/lb_jiaotong")
                                                 ,tr("jiaotong"), this);
     item1->setSizeHint(QSize(80, 90));
     addItem(item1);
-    QListWidgetItem *item2 = new QListWidgetItem(QIcon(":/radio/jingji")
+    QListWidgetItem *item2 = new QListWidgetItem(QIcon(":/radio/lb_jingji")
                                                 ,tr("jingji"), this);
     item2->setSizeHint(QSize(80, 90));
     addItem(item2);
-    QListWidgetItem *item3 = new QListWidgetItem(QIcon(":/radio/music")
+    QListWidgetItem *item3 = new QListWidgetItem(QIcon(":/radio/lb_music")
                                                 ,tr("music"), this);
     item3->setSizeHint(QSize(80, 90));
     addItem(item3);
-    QListWidgetItem *item4 = new QListWidgetItem(QIcon(":/radio/news")
+    QListWidgetItem *item4 = new QListWidgetItem(QIcon(":/radio/lb_news")
                                                 ,tr("news"), this);
     item4->setSizeHint(QSize(80, 90));
     addItem(item4);
-    QListWidgetItem *item5 = new QListWidgetItem(QIcon(":/radio/quyi")
+    QListWidgetItem *item5 = new QListWidgetItem(QIcon(":/radio/lb_quyi")
                                                 ,tr("quyi"), this);
     item5->setSizeHint(QSize(80, 90));
     addItem(item5);
-    QListWidgetItem *item6 = new QListWidgetItem(QIcon(":/radio/shenghuo")
+    QListWidgetItem *item6 = new QListWidgetItem(QIcon(":/radio/lb_shenghuo")
                                                 ,tr("shenghuo"), this);
     item6->setSizeHint(QSize(80, 90));
     addItem(item6);
-    QListWidgetItem *item7 = new QListWidgetItem(QIcon(":/radio/sports")
+    QListWidgetItem *item7 = new QListWidgetItem(QIcon(":/radio/lb_sports")
                                                 ,tr("sports"), this);
     item7->setSizeHint(QSize(80, 90));
     addItem(item7);
-    QListWidgetItem *item8 = new QListWidgetItem(QIcon(":/radio/zhongyang")
+    QListWidgetItem *item8 = new QListWidgetItem(QIcon(":/radio/lb_zhongyang")
                                                 ,tr("zhongyang"), this);
     item8->setSizeHint(QSize(80, 90));
     addItem(item8);
-    QListWidgetItem *item9 = new QListWidgetItem(QIcon(":/radio/favorite")
+    QListWidgetItem *item9 = new QListWidgetItem(QIcon(":/radio/lb_favorite")
                                                 ,tr("favorite"), this);
     item9->setSizeHint(QSize(80, 90));
     addItem(item9);
-    QListWidgetItem *item10 = new QListWidgetItem(QIcon(":/radio/latest")
+    QListWidgetItem *item10 = new QListWidgetItem(QIcon(":/radio/lb_latest")
                                                 ,tr("latest"), this);
     item10->setSizeHint(QSize(80, 90));
     addItem(item10);

@@ -71,13 +71,13 @@ namespace MusicUIObject
             border:none;";
            
     const QString MCustomStyle21 = " \
-            background-image:url(':/lrc/film');";
+            background-image:url(':/lrc/lb_film_bg');";
            
     const QString MCustomStyle22 = " \
             background:rgba(255, 255, 255, 50);" + MCustomStyle20;
            
     const QString MCustomStyle23 = " \
-            color:white;image:url(:/lrc/shadow);text-align:center;";
+            color:white;image:url(:/lrc/lb_shadow);text-align:center;";
 
     const QString MCustomStyle27 = " \
             background:rgba(0,0,0,35);";
@@ -129,7 +129,7 @@ namespace MusicUIObject
 ///PushButton
 //////////////////////////////////////////////////////
     const QString MPushButtonStyle02 = "\
-            QPushButton::hover{image:url(:/lrc/shadow);}";
+            QPushButton::hover{image:url(:/lrc/lb_shadow);}";
 
     const QString MPushButtonStyle03 = "\
             QPushButton{background-color:transparent;}";

@@ -57,7 +57,7 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     connect(ui->colletButton, SIGNAL(clicked()), SLOT(radioColletButton()));
     connect(ui->discolletButton, SIGNAL(clicked()), SLOT(radioDiscolletButton()));
 
-    ui->movieLabel->setPixmap(QPixmap(":/radio/radiopng1").scaled(455, 60));
+    ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng1").scaled(455, 60));
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     m_timerCount = 1;
     m_collecticon = new QIcon(":/tiny/lb_star");
@@ -96,7 +96,7 @@ void MusicWebEntainRadioWidget::closeEvent(QCloseEvent *event)
 void MusicWebEntainRadioWidget::timeout()
 {
     ++m_timerCount;
-    ui->movieLabel->setPixmap(QPixmap(":/radio/radiopng" +
+    ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng" +
                               QString::number(m_timerCount)).scaled(455, 60));
     if(m_timerCount >= 4)
     {
