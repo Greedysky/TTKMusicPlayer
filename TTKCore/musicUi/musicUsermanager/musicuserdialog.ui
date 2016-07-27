@@ -235,7 +235,7 @@
       <string/>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/qq)</string>
+      <string notr="true">border-image:url(:/usermanager/lb_qq)</string>
      </property>
      <property name="text">
       <string/>
@@ -257,7 +257,7 @@
       <string/>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/renren)</string>
+      <string notr="true">border-image:url(:/usermanager/lb_renren)</string>
      </property>
      <property name="text">
       <string/>
@@ -279,7 +279,7 @@
       <string/>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/weixing)</string>
+      <string notr="true">border-image:url(:/usermanager/lb_weixing)</string>
      </property>
      <property name="text">
       <string/>
@@ -301,7 +301,7 @@
       <string/>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/xinlang)</string>
+      <string notr="true">border-image:url(:/usermanager/lb_xinlang)</string>
      </property>
      <property name="text">
       <string/>
@@ -530,7 +530,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image:url(:/usermanager/right)</string>
+      <string notr="true">image:url(:/tiny/lb_right)</string>
      </property>
      <property name="text">
       <string/>
@@ -546,7 +546,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image:url(:/usermanager/right)</string>
+      <string notr="true">image:url(:/tiny/lb_right)</string>
      </property>
      <property name="text">
       <string/>
@@ -562,7 +562,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image:url(:/usermanager/right)</string>
+      <string notr="true">image:url(:/tiny/lb_right)</string>
      </property>
      <property name="text">
       <string/>
@@ -578,7 +578,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image:url(:/usermanager/right)</string>
+      <string notr="true">image:url(:/tiny/lb_right)</string>
      </property>
      <property name="text">
       <string/>
@@ -690,7 +690,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image:url(:/usermanager/right)</string>
+      <string notr="true">image:url(:/tiny/lb_right)</string>
      </property>
      <property name="text">
       <string/>

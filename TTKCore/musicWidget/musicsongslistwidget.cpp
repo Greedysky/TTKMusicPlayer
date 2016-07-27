@@ -136,7 +136,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
     rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addSeparator();
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);

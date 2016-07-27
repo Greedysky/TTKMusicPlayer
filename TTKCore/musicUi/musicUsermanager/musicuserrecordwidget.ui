@@ -674,7 +674,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image:url(:/usermanager/right)</string>
+       <string notr="true">image:url(:/tiny/lb_right)</string>
       </property>
       <property name="text">
        <string/>
@@ -690,7 +690,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image:url(:/usermanager/right)</string>
+       <string notr="true">image:url(:/tiny/lb_right)</string>
       </property>
       <property name="text">
        <string/>
@@ -706,7 +706,7 @@ QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border:1px solid gray
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">image:url(:/usermanager/right)</string>
+       <string notr="true">image:url(:/tiny/lb_right)</string>
       </property>
       <property name="text">
        <string/>

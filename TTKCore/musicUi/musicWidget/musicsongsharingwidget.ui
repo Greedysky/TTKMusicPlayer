@@ -166,7 +166,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <property name="icon">
      <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
-      <normaloff>:/usermanager/qq</normaloff>:/usermanager/qq</iconset>
+      <normaloff>:/usermanager/lb_qq</normaloff>:/usermanager/lb_qq</iconset>
     </property>
    </widget>
    <widget class="QRadioButton" name="renrenButton">
@@ -183,7 +183,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <property name="icon">
      <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
-      <normaloff>:/usermanager/renren</normaloff>:/usermanager/renren</iconset>
+      <normaloff>:/usermanager/lb_renren</normaloff>:/usermanager/lb_renren</iconset>
     </property>
    </widget>
    <widget class="QRadioButton" name="qqspaceButton">
@@ -200,7 +200,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <property name="icon">
      <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
-      <normaloff>:/usermanager/qqspace</normaloff>:/usermanager/qqspace</iconset>
+      <normaloff>:/usermanager/lb_qq_space</normaloff>:/usermanager/lb_qq_space</iconset>
     </property>
    </widget>
    <widget class="QRadioButton" name="qqblogButton">
@@ -217,7 +217,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <property name="icon">
      <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
-      <normaloff>:/usermanager/qqblog</normaloff>:/usermanager/qqblog</iconset>
+      <normaloff>:/usermanager/lb_qqblog</normaloff>:/usermanager/lb_qqblog</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="shareButton">
@@ -272,7 +272,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <property name="icon">
      <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
-      <normaloff>:/usermanager/xinlang</normaloff>:/usermanager/xinlang</iconset>
+      <normaloff>:/usermanager/lb_xinlang</normaloff>:/usermanager/lb_xinlang</iconset>
     </property>
    </widget>
    <widget class="QWidget" name="QRCodeIconWidget">

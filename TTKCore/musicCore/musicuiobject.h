@@ -304,7 +304,7 @@ namespace MusicUIObject
             QComboBox::drop-down { subcontrol-origin: padding; \
             subcontrol-position: top right;width: 20px;border-left-width: 1px;\
             border-left-color: darkgray; border-left-style: solid;}\
-            QComboBox::down-arrow {image:url(:/usermanager/downarrow);}";
+            QComboBox::down-arrow {image:url(:/usermanager/btn_down_arrow);}";
 
 ///TableWidget
 //////////////////////////////////////////////////////

@@ -117,9 +117,9 @@ QIcon MusicCloudFileManagerDialog::getIconByDataState(UploadData::State state)
 {
     switch(state)
     {
-        case UploadData::Waited :    return QIcon(":/usermanager/wait");
-        case UploadData::Successed : return QIcon(":/usermanager/right");
-        case UploadData::Errored :   return QIcon(":/usermanager/error");
+        case UploadData::Waited :    return QIcon(":/tiny/lb_wait");
+        case UploadData::Successed : return QIcon(":/tiny/lb_right");
+        case UploadData::Errored :   return QIcon(":/tiny/lb_error");
         default: return QIcon();
     }
 }

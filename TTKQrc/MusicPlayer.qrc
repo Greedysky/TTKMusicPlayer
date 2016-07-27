@@ -160,14 +160,14 @@
         <file alias="btn_microphone_hover">../TTKResource/lrc/btn_microphone_hover.png</file>
     </qresource>
     <qresource prefix="/shadow">
-        <file alias="bottom">../TTKResource/borderShadow/shadow_bottom.png</file>
-        <file alias="corner1">../TTKResource/borderShadow/shadow_corner1.png</file>
-        <file alias="corner2">../TTKResource/borderShadow/shadow_corner2.png</file>
-        <file alias="corner3">../TTKResource/borderShadow/shadow_corner3.png</file>
-        <file alias="corner4">../TTKResource/borderShadow/shadow_corner4.png</file>
-        <file alias="left">../TTKResource/borderShadow/shadow_left.png</file>
-        <file alias="right">../TTKResource/borderShadow/shadow_right.png</file>
-        <file alias="top">../TTKResource/borderShadow/shadow_top.png</file>
+        <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>
+        <file alias="lb_left">../TTKResource/borderShadow/lb_left.png</file>
+        <file alias="lb_right">../TTKResource/borderShadow/lb_right.png</file>
+        <file alias="lb_top">../TTKResource/borderShadow/lb_top.png</file>
+        <file alias="lb_left_top">../TTKResource/borderShadow/lb_left_top.png</file>
+        <file alias="lb_right_top">../TTKResource/borderShadow/lb_right_top.png</file>
+        <file alias="lb_left_bottom">../TTKResource/borderShadow/lb_left_bottom.png</file>
+        <file alias="lb_right_bottom">../TTKResource/borderShadow/lb_right_bottom.png</file>
     </qresource>
     <qresource prefix="/enhance">
         <file alias="lb_3dOff">../TTKResource/enhance/lb_enhance_3d.png</file>
@@ -265,6 +265,9 @@
         <file alias="lb_star">../TTKResource/tiny/lb_star.png</file>
         <file alias="lb_unstar">../TTKResource/tiny/lb_unstar.png</file>
         <file alias="lb_transparent">../TTKResource/tiny/lb_transparent.png</file>
+        <file alias="lb_right">../TTKResource/tiny/lb_right.png</file>
+        <file alias="lb_error">../TTKResource/tiny/lb_error.png</file>
+        <file alias="lb_wait">../TTKResource/tiny/lb_wait.png</file>
         <file alias="btn_unloved_normal">../TTKResource/tiny/btn_unloved_normal.png</file>
         <file alias="btn_unloved_hover">../TTKResource/tiny/btn_unloved_hover.png</file>
         <file alias="btn_loved_normal">../TTKResource/tiny/btn_loved_normal.png</file>
@@ -368,5 +371,33 @@
         <file alias="btn_message_hover">../TTKResource/functions/btn_message_hover.png</file>
         <file alias="btn_queue_normal">../TTKResource/functions/btn_queue_normal.png</file>
         <file alias="btn_queue_hover">../TTKResource/functions/btn_queue_hover.png</file>
+    </qresource>
+    <qresource prefix="/video">
+        <file alias="btn_play">../TTKResource/video/btn_play.png</file>
+        <file alias="btn_pause">../TTKResource/video/btn_pause.png</file>
+        <file alias="btn_volume">../TTKResource/video/btn_volume.png</file>
+        <file alias="btn_download">../TTKResource/video/btn_download.png</file>
+        <file alias="btn_fresh">../TTKResource/video/btn_fresh.png</file>
+        <file alias="btn_fullscreen">../TTKResource/video/btn_fullscreen.png</file>
+        <file alias="btn_search">../TTKResource/video/btn_search.png</file>
+        <file alias="btn_share">../TTKResource/video/btn_share.png</file>
+        <file alias="lb_video_1">../TTKResource/video/lb_video_1.png</file>
+        <file alias="lb_video_2">../TTKResource/video/lb_video_2.png</file>
+        <file alias="lb_video_3">../TTKResource/video/lb_video_3.png</file>
+        <file alias="lb_video_4">../TTKResource/video/lb_video_4.png</file>
+        <file alias="lb_video_5">../TTKResource/video/lb_video_5.png</file>
+        <file alias="btn_barrage_style">../TTKResource/video/btn_barrage_style.png</file>
+    </qresource>
+    <qresource prefix="/usermanager">
+        <file alias="lb_qq">../TTKResource/usermanager/lb_qq.png</file>
+        <file alias="lb_renren">../TTKResource/usermanager/lb_renren.png</file>
+        <file alias="lb_weixing">../TTKResource/usermanager/lb_weixing.png</file>
+        <file alias="lb_xinlang">../TTKResource/usermanager/lb_xinlang.png</file>
+        <file alias="lb_qq_space">../TTKResource/usermanager/lb_qq_space.png</file>
+        <file alias="lb_qqblog">../TTKResource/usermanager/lb_qqblog.png</file>
+        <file alias="lb_top_arrow">../TTKResource/usermanager/lb_top_arrow.png</file>
+        <file alias="btn_down_arrow">../TTKResource/usermanager/btn_down_arrow.png</file>
+        <file alias="btn_up_arrow">../TTKResource/usermanager/btn_up_arrow.png</file>
+        <file alias="btn_setting">../TTKResource/usermanager/btn_setting.png</file>
     </qresource>
 </RCC>

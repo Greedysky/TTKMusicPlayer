@@ -14,11 +14,11 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_download = new QPushButton(tr(" Download"), this);
     m_share = new QPushButton(tr(" Share"), this);
 
-    m_search->setIcon(QIcon(":/video/search"));
-    m_fresh->setIcon(QIcon(":/video/fresh"));
-    m_fullscreen->setIcon(QIcon(":/video/fullscreen"));
-    m_download->setIcon(QIcon(":/video/download"));
-    m_share->setIcon(QIcon(":/video/songShare"));
+    m_search->setIcon(QIcon(":/video/btn_search"));
+    m_fresh->setIcon(QIcon(":/video/btn_fresh"));
+    m_fullscreen->setIcon(QIcon(":/video/btn_fullscreen"));
+    m_download->setIcon(QIcon(":/video/btn_download"));
+    m_share->setIcon(QIcon(":/video/btn_share"));
 
     m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
     m_fresh->setStyleSheet( MusicUIObject::MPushButtonStyle15 );

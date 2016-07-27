@@ -18,7 +18,6 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
 {
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
-    m_menuButton = new QToolButton(this);
     m_playButton = new QPushButton(this);
     m_inSideButton = new QPushButton(this);
     m_fullButton = new QPushButton(this);
@@ -29,10 +28,8 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumeSliderMenu = new MusicSliderMenuWidget(this);
     m_volumeSliderMenu->showTextLabel(false);
 
-    m_playButton->setIcon(QIcon(":/video/play"));
-    m_volumeButton->setIcon(QIcon(":/video/volume"));
-    m_menuButton->setIcon(QIcon(":/video/menu"));
-
+    m_playButton->setIcon(QIcon(":/video/btn_play"));
+    m_volumeButton->setIcon(QIcon(":/video/btn_volume"));
     m_inSideButton->setText(popup ? tr("InlineMode") : tr("PopupMode"));
     m_fullButton->setText(tr("FullScreenMode"));
     m_fullButton->setEnabled( popup );
@@ -44,7 +41,6 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_timeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_inSideButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_fullButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -60,7 +56,6 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     QWidget *controlBWidget = new QWidget(this);
     QHBoxLayout *controlBLayout = new QHBoxLayout(controlBWidget);
     controlBLayout->setContentsMargins(9, 0, 9, 0);
-    controlBLayout->addWidget(m_menuButton);
     controlBLayout->addWidget(m_playButton);
     controlBLayout->addWidget(m_volumeButton);
     controlBLayout->addStretch(1);
@@ -102,7 +97,6 @@ MusicVideoControl::~MusicVideoControl()
     M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_volumeSliderMenu;
     delete m_timeSlider;
-    delete m_menuButton;
     delete m_playButton;
     delete m_volumeButton;
     delete m_inSideButton;
@@ -128,7 +122,7 @@ void MusicVideoControl::durationChanged(qint64 duration) const
 
 void MusicVideoControl::setButtonStyle(bool style) const
 {
-    m_playButton->setIcon(QIcon( style ? ":/video/play" : ":/video/pause"));
+    m_playButton->setIcon(QIcon( style ? ":/video/btn_play" : ":/video/btn_pause"));
 }
 
 void MusicVideoControl::mediaChanged(const QString &url)
