@@ -14,7 +14,7 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
 
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 246, windowSize.height() - 169, 246, 169);
-    setPixmap(QPixmap(":/toolSets/mobile"));
+    setPixmap(QPixmap(":/toolSets/lb_mobile_devices"));
 
     m_closeButton = new QToolButton(this);
     m_closeButton->setIcon(QIcon(":/functions/btn_close_hover"));

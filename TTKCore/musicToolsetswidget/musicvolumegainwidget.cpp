@@ -53,37 +53,37 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->addFileButton->setIcon(QIcon(":/toolSets/gainAddFile"));
+    ui->addFileButton->setIcon(QIcon(":/toolSets/btn_gain_add_file"));
     ui->addFileButton->setIconSize(QSize(40, 40));
     ui->addFileButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->addFileButton->setToolTip(tr("addFile"));
     ui->addFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->addFilesButton->setIcon(QIcon(":/toolSets/gainAddFiles"));
+    ui->addFilesButton->setIcon(QIcon(":/toolSets/btn_gain_add_files"));
     ui->addFilesButton->setIconSize(QSize(40, 40));
     ui->addFilesButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->addFilesButton->setToolTip(tr("addFiles"));
     ui->addFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->rmFileButton->setIcon(QIcon(":/toolSets/gainRmFile"));
+    ui->rmFileButton->setIcon(QIcon(":/toolSets/btn_gain_rm_file"));
     ui->rmFileButton->setIconSize(QSize(40, 40));
     ui->rmFileButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->rmFileButton->setToolTip(tr("rmFile"));
     ui->rmFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->rmFilesButton->setIcon(QIcon(":/toolSets/gainRmFiles"));
+    ui->rmFilesButton->setIcon(QIcon(":/toolSets/btn_gain_rm_files"));
     ui->rmFilesButton->setIconSize(QSize(40, 40));
     ui->rmFilesButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->rmFilesButton->setToolTip(tr("rmFiles"));
     ui->rmFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->analysisButton->setIcon(QIcon(":/toolSets/analysis"));
+    ui->analysisButton->setIcon(QIcon(":/toolSets/btn_analysis"));
     ui->analysisButton->setIconSize(QSize(40, 40));
     ui->analysisButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->analysisButton->setToolTip(tr("analysis"));
     ui->analysisButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->applyButton->setIcon(QIcon(":/toolSets/apply"));
+    ui->applyButton->setIcon(QIcon(":/toolSets/btn_analysis_apply"));
     ui->applyButton->setIconSize(QSize(50, 50));
     ui->applyButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->applyButton->setToolTip(tr("apply"));

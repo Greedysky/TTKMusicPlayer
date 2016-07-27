@@ -192,7 +192,7 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
     }
 
     ui->loadingLabel->show();
-    ui->loadingLabel->setMovie(m_movie = new QMovie(":/toolSets/loading",QByteArray(),this));
+    ui->loadingLabel->setMovie(m_movie = new QMovie(":/toolSets/ib_loading", QByteArray(),this));
     m_movie->start();
     m_thread->start();
 }

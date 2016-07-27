@@ -28,7 +28,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
 
     MusicClickedLabel *menuLabel = new MusicClickedLabel(this);
     connect(menuLabel, SIGNAL(clicked()), SLOT(showMenu()));
-    menuLabel->setPixmap(QPixmap(":/toolSets/listmenu"));
+    menuLabel->setPixmap(QPixmap(":/toolSets/btn_list_menu"));
     menuLabel->setGeometry(290, 10, 16, 16);
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);

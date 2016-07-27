@@ -174,7 +174,7 @@ QLabel{background:transparent;}</string>
        </rect>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/usb</pixmap>
+       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_usb</pixmap>
       </property>
      </widget>
      <widget class="QLabel" name="textUSBLabel">
@@ -228,7 +228,7 @@ QLabel{background:transparent;}</string>
        </rect>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/wifi</pixmap>
+       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_wifi</pixmap>
       </property>
      </widget>
      <widget class="QPushButton" name="transferWIFIButton">
