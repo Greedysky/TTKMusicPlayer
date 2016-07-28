@@ -49,7 +49,6 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMainSearch);
-    connect(ui->musicSearchButton, SIGNAL(clicked()), SIGNAL(musicSearchButtonClicked()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
@@ -125,7 +124,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == 2)
+    if(m_ui->surfaceStackedWidget->currentIndex() == 1)
     {
         return;
     }
@@ -143,7 +142,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
     {
         m_musicbgskin->updateBackground(fileName);
     }
-    if(m_ui->surfaceStackedWidget->currentIndex() == 2)
+    if(m_ui->surfaceStackedWidget->currentIndex() == 1)
     {
         return;
     }
@@ -197,7 +196,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == 2  &&
+    if(m_ui->surfaceStackedWidget->currentIndex() == 1  &&
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();

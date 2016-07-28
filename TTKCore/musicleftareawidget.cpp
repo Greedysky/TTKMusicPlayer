@@ -148,12 +148,6 @@ void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
     }
 }
 
-void MusicLeftAreaWidget::researchQueryByQuality(const QString &quality)
-{
-    m_ui->musicSearchWidgetButton->click();
-    m_ui->songSearchWidget->researchQueryByQuality(m_ui->showCurrentSong->text().trimmed(), quality);
-}
-
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);

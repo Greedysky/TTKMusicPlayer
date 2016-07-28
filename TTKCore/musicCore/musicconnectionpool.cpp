@@ -147,7 +147,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second,
                                 SLOT(showDownLoadInfoFinished(QString)));
     }
-    else if(from == MusicQualityChoiceWidget::getClassName() && to == MusicLeftAreaWidget::getClassName() )
+    else if(from == MusicQualityChoiceWidget::getClassName() && to == MusicRightAreaWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(researchQueryByQuality(QString)), second,
                                  SLOT(researchQueryByQuality(QString)));

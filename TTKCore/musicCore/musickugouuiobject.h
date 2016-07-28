@@ -65,6 +65,88 @@ namespace MusicKuGouUIObject
             background-image: url(:/appTools/item_more_clicked);}";
 
 
+///function list style
+//////////////////////////////////////////////////////
+    const QString MKGFuncSongFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/song_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/song_fore_hover);}";
+
+    const QString MKGFuncSongForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/song_fore_clicked);}";
+
+    const QString MKGFuncSongBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/song_back_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/song_back_hover);}";
+
+    const QString MKGFuncRadioFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/radio_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/radio_fore_hover);}";
+
+    const QString MKGFuncRadioForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/radio_fore_clicked);}";
+
+    const QString MKGFuncRadioBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/radio_back_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/radio_back_hover);}";
+
+    const QString MKGFuncListFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/list_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/list_fore_hover);}";
+
+    const QString MKGFuncListForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/list_fore_clicked);}";
+
+    const QString MKGFuncListBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/list_back_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/list_back_hover);}";
+
+    const QString MKGFuncMVFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/mv_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/mv_fore_hover);}";
+
+    const QString MKGFuncMVForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/mv_fore_clicked);}";
+
+    const QString MKGFuncMVBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/mv_back_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/mv_back_hover);}";
+
+    const QString MKGFuncLiveFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/live_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/live_fore_hover);}";
+
+    const QString MKGFuncLiveForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/live_fore_clicked);}";
+
+    const QString MKGFuncLiveBack = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/live_back_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/live_back_hover);}";
+
+    const QString MKGFuncLrcFore = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/lrc_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/funcTools/lrc_fore_hover);}";
+
+    const QString MKGFuncLrcForeClicked = " \
+            QToolButton{ border:none; \
+            background-image: url(:/funcTools/lrc_back_clicked);}";
+
+
 ///music magic widget style
 //////////////////////////////////////////////////////
     const QString MKGEnhanceOn = " \
@@ -454,15 +536,25 @@ namespace MusicKuGouUIObject
             background-image: url(:/enhance/btn_magic_normal);} \
             QToolButton:hover{ background-image: url(:/enhance/btn_magic_hover);}";
 
-    const QString MKGBtnBack = " \
+    const QString MKGBtnForeBack = " \
             QToolButton{ border:none; \
-            background-image: url(:/functions/btn_back_normal);} \
-            QToolButton:hover{ background-image: url(:/functions/btn_back_hover);}";
+            background-image: url(:/functions/btn_back_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_back_fore_hover);}";
 
-    const QString MKGBtnFresh = " \
+    const QString MKGBtnBackBack = " \
             QToolButton{ border:none; \
-            background-image: url(:/functions/btn_fresh_normal);} \
-            QToolButton:hover{ background-image: url(:/functions/btn_fresh_hover);}";
+            background-image: url(:/functions/btn_back_back_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_back_back_hover);}";
+
+    const QString MKGBtnForeFresh = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_fresh_fore_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_fresh_fore_hover);}";
+
+    const QString MKGBtnBackFresh = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_fresh_back_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_fresh_back_hover);}";
 
 
 }

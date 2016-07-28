@@ -125,7 +125,7 @@ void MusicVideoPlayWidget::setObjectToClose(QObject *object)
 {
     if(m_closeButton)
     {
-        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(deleteVideoWidget()));
+        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(deleteStackedFuncWidget()));
     }
 }
 

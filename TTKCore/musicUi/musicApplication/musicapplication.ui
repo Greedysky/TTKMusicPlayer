@@ -679,6 +679,9 @@
                    <height>20</height>
                   </size>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -697,6 +700,9 @@
                    <width>20</width>
                    <height>20</height>
                   </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
                   <string/>
@@ -747,40 +753,97 @@
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QToolButton" name="musicIndexWidgetButton">
+                   <widget class="QToolButton" name="musicSongWidgetButton">
                     <property name="minimumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
-                    <property name="text">
-                     <string>乐库</string>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QToolButton" name="musicSearchWidgetButton">
+                   <widget class="QToolButton" name="musicRadioWidgetButton">
                     <property name="minimumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
-                    <property name="text">
-                     <string>搜索</string>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="musicListWidgetButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="musicVideoWidgetButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="musicLiveWidgetButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>54</width>
+                      <height>23</height>
+                     </size>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                    </widget>
                   </item>
@@ -788,75 +851,18 @@
                    <widget class="QToolButton" name="musicLrcWidgetButton">
                     <property name="minimumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>55</width>
-                      <height>25</height>
+                      <width>54</width>
+                      <height>23</height>
                      </size>
                     </property>
-                    <property name="text">
-                     <string>歌词</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QToolButton" name="videoWidgetButton">
-                    <property name="minimumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>视频</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_15">
-                    <property name="minimumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>电台</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_13">
-                    <property name="minimumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>55</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>直播</string>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                    </widget>
                   </item>
@@ -888,7 +894,7 @@
                </size>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
               <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">

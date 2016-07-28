@@ -10,7 +10,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicLocalSongSearch(nullptr)
 {
     m_supperClass = parent;
-    m_systemCloseConfig = false;//Control the mode to exit
+    m_systemCloseConfig = false;
 
     createSystemTrayIcon();
 

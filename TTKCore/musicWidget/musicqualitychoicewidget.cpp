@@ -2,7 +2,7 @@
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
-#include "musicleftareawidget.h"
+#include "musicrightareawidget.h"
 
 #include <QBoxLayout>
 
@@ -125,7 +125,7 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MToolButtonStyle09);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
 }
 
 QString MusicQualityChoiceWidget::getClassName()

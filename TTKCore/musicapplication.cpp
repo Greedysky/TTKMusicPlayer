@@ -20,8 +20,6 @@
 #include "musicglobalhotkey.h"
 #include "musickugouuiobject.h"
 
-#include "kugouwindow.h"
-
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveResizeWidget(parent),
       ui(new Ui::MusicApplication)
@@ -36,8 +34,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_musicList = new MusicPlaylist(this);
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
-    ///insert kugou network widget
-    ui->surfaceStackedWidget->insertWidget(0, new KugouWindow(this));
 
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_bottomAreaWidget->setupUi(ui);
@@ -48,7 +44,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
     m_leftAreaWidget->setupUi(ui);
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTree, SLOT(setTransparent(int)));
-    connect(m_topAreaWidget, SIGNAL(musicSearchButtonClicked()), m_rightAreaWidget, SLOT(musicSearchButtonSearched()));
     connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));
     connect(m_bottomAreaWidget, SIGNAL(setShowDesktopLrc(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
