@@ -359,6 +359,11 @@ namespace MusicKuGouUIObject
             background-image: url(:/tiny/btn_mv_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_mv_hover);}";
 
+    const QString MKGTinyBtnPlayLater = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_play_later_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_play_later_hover);}";
+
     const QString MKGTinyBtnMore = " \
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_more_normal);} \

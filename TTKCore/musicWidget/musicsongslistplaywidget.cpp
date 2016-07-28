@@ -76,6 +76,12 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_downloadButton->setToolTip(tr("songDownload"));
     currentDownloadStateClicked();
 
+    QPushButton *addButton = new QPushButton(m_columnOne);
+    addButton->setGeometry(2, 20, 16, 16);
+    addButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnPlayLater);
+    addButton->setCursor(QCursor(Qt::PointingHandCursor));
+    addButton->setToolTip(tr("playLater"));
+
     m_showMVButton = new QPushButton(m_columnThree);
     m_showMVButton->setGeometry(0, 39, 16, 16);
     m_showMVButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMV);

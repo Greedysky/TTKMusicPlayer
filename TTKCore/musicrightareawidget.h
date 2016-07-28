@@ -119,12 +119,12 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void musicFunctionClicked(int index);
-
-
-
+    /*!
+     * Music function button clicked.
+     */
     void deleteStackedFuncWidget();
     /*!
-     * Delete current video player widget.
+     * Delete current stacked widget.
      */
     void setDestopLrcVisible(bool visible) const;
     /*!

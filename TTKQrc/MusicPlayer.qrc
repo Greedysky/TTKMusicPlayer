@@ -298,6 +298,8 @@
         <file alias="lb_right">../TTKResource/tiny/lb_right.png</file>
         <file alias="lb_error">../TTKResource/tiny/lb_error.png</file>
         <file alias="lb_wait">../TTKResource/tiny/lb_wait.png</file>
+        <file alias="btn_play_later_normal">../TTKResource/tiny/btn_play_later_normal.png</file>
+        <file alias="btn_play_later_hover">../TTKResource/tiny/btn_play_later_hover.png</file>
         <file alias="btn_unloved_normal">../TTKResource/tiny/btn_unloved_normal.png</file>
         <file alias="btn_unloved_hover">../TTKResource/tiny/btn_unloved_hover.png</file>
         <file alias="btn_loved_normal">../TTKResource/tiny/btn_loved_normal.png</file>

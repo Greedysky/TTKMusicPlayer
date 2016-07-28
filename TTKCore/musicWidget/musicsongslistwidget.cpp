@@ -339,11 +339,23 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 
 void MusicSongsListWidget::listCellEntered(int row, int column)
 {
-    QTableWidgetItem *it = item(m_previousColorRow, 2);
+    ///clear previous table item state
+    QTableWidgetItem *it = item(m_previousColorRow, 0);
+    if(it != nullptr)
+    {
+        it->setIcon(QIcon());
+    }
+    it = item(m_previousColorRow, 2);
     if(it != nullptr)
     {
         it->setIcon(QIcon());
         it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
+    }
+
+    ///draw new table item state
+    if((it = item(row, 0)) != nullptr)
+    {
+        it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
     }
     if((it = item(row, 2)) != nullptr)
     {
@@ -351,12 +363,20 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
         it->setIcon(QIcon(":/tiny/btn_delete_hover"));
     }
 
+    ///current play table item should not clear something
     bool isCurrentIndex;
     emit isCurrentIndexs(isCurrentIndex);
-    if(isCurrentIndex && (it = item(m_playRowIndex, 2)) != nullptr)
+    if(isCurrentIndex)
     {
-        it->setText(QString());
-        it->setIcon(QIcon());
+        if((it = item(m_playRowIndex, 0)) != nullptr)
+        {
+            it->setIcon(QIcon());
+        }
+        if((it = item(m_playRowIndex, 2)) != nullptr)
+        {
+            it->setText(QString());
+            it->setIcon(QIcon());
+        }
     }
     MusicAbstractTableWidget::listCellEntered(row, column);
 
