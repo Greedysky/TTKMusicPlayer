@@ -314,7 +314,7 @@ void MusicPlayer::setEqEffect(const MusicObject::MIntList &hz)
     }
 
     EqSettings eq = m_music->eqSettings();
-    eq.setPreamp(hz[0]);
+    eq.setPreamp(15 + hz[0]);
     eq.setEnabled(true);
     for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
     {
