@@ -126,6 +126,7 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
         return;
     }
     search.writeSearchConfig( MusicSearchRecord() );
+    close();
 }
 
 void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)

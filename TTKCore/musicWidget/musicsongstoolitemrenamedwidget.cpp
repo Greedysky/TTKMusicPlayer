@@ -7,7 +7,7 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
 {
     setGeometry(1, 0, 330, 20);
     setText(originText);
-    setStyleSheet(MusicUIObject::MCustomStyle04);
+    setStyleSheet(MusicUIObject::MLineEditStyle02);
     setFocus(Qt::MouseFocusReason);
     connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
 }

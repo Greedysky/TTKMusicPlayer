@@ -91,6 +91,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(songResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
 
+    QTimer::singleShot(MT_MS, this, SLOT(musicLoadSongIndexWidget()));
 }
 
 void MusicRightAreaWidget::stopLrcMask() const
@@ -243,6 +244,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case 1: //insert kugou radio widget
             {
                 m_stackedFuncWidget = new QWidget(this);
+                m_stackedFuncWidget->setStyleSheet("background:red");
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicRadioWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncRadioForeClicked);
@@ -252,6 +254,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case 2: //insert kugou list widget
             {
                 m_stackedFuncWidget = new QWidget(this);
+                m_stackedFuncWidget->setStyleSheet("background:blue");
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicListWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncListForeClicked);
@@ -275,6 +278,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case 4: //insert kugou live widget
             {
                 m_stackedFuncWidget = new QWidget(this);
+                m_stackedFuncWidget->setStyleSheet("background:yellow");
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicLiveWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncLiveForeClicked);
@@ -321,6 +325,11 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         default: break;
     }
+}
+
+void MusicRightAreaWidget::musicLoadSongIndexWidget()
+{
+    musicFunctionClicked(0);
 }
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()

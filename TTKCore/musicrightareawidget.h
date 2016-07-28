@@ -122,6 +122,10 @@ public Q_SLOTS:
     /*!
      * Music function button clicked.
      */
+    void musicLoadSongIndexWidget();
+    /*!
+     * Music load song index widget.
+     */
     void deleteStackedFuncWidget();
     /*!
      * Delete current stacked widget.

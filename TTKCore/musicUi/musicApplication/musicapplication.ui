@@ -470,13 +470,13 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -488,17 +488,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicButton_radio">
+             <widget class="QToolButton" name="musicButton_cloud">
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="text">
@@ -507,17 +507,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicButton_mydownl">
+             <widget class="QToolButton" name="musicButton_radio">
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="text">
@@ -530,13 +530,13 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="text">
@@ -545,17 +545,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicButton_cloud">
+             <widget class="QToolButton" name="musicButton_mydownl">
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="text">
@@ -568,13 +568,13 @@
               <property name="minimumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>50</width>
-                <height>70</height>
+                <height>60</height>
                </size>
               </property>
               <property name="text">
