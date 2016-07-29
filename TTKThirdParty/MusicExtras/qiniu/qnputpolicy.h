@@ -1,12 +1,19 @@
 #ifndef QNPUTPOLICY_H
 #define QNPUTPOLICY_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QObject>
 #include "musicextrasglobaldefine.h"
 
 class QNMac;
 
-//@see http://developer.qiniu.com/docs/v6/api/reference/security/put-policy.html
 class MUSIC_EXTRAS_EXPORT QNPutPolicy
 {
 public:
