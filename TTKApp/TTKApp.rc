@@ -4,7 +4,7 @@
     #include <winver.h>
 #endif
 
-IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/music_player_logo.ico"
+IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/lb_player_logo.ico"
 IDI_ICON2                ICON     DISCARDABLE     "../TTKResource/fileIcon/aac.ico"
 IDI_ICON3                ICON     DISCARDABLE     "../TTKResource/fileIcon/ac3.ico"
 IDI_ICON4                ICON     DISCARDABLE     "../TTKResource/fileIcon/flac.ico"
