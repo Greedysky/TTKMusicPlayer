@@ -5,9 +5,10 @@
 #include "musickugouuiobject.h"
 
 #include <QLabel>
-#include <QMovie>
 #include <QButtonGroup>
+#include <QPropertyAnimation>
 
+#define LABEL_ANIMAT_WIDGET 156
 #define LABEL_BUTTON_WIDGET 116
 #define LABEL_BUTTON_HEIGHT 111
 
@@ -15,16 +16,18 @@ MusicEnhancedToolButton::MusicEnhancedToolButton(QWidget *parent)
     : QToolButton(parent)
 {
     m_label = new QLabel(this);
-    m_label->resize(LABEL_BUTTON_WIDGET, LABEL_BUTTON_HEIGHT);
+    m_label->resize(LABEL_ANIMAT_WIDGET, LABEL_BUTTON_HEIGHT);
 
-    m_movie = new QMovie(":/enhance/lb_enter", QByteArray(), this);
-    m_label->setMovie(m_movie);
+    m_animation = new QPropertyAnimation(m_label, "pos", this);
+    m_animation->setDuration(500);
+    m_animation->setStartValue(QPoint(-LABEL_ANIMAT_WIDGET, 0));
+    m_animation->setEndValue(QPoint(LABEL_ANIMAT_WIDGET, 0));
 }
 
 MusicEnhancedToolButton::~MusicEnhancedToolButton()
 {
-    delete m_movie;
     delete m_label;
+    delete m_animation;
 }
 
 QString MusicEnhancedToolButton::getClassName()
@@ -35,7 +38,8 @@ QString MusicEnhancedToolButton::getClassName()
 void MusicEnhancedToolButton::enterEvent(QEvent *event)
 {
     QToolButton::enterEvent(event);
-    m_movie->start();
+    m_label->setStyleSheet("background-image:url(':/enhance/lb_enter')");
+    m_animation->start();
 }
 
 
@@ -93,6 +97,7 @@ void MusicEnhancedWidget::initWidget()
     closeButton->setGeometry(255, 8, 16, 16);
     closeButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceClose);
     closeButton->setCursor(Qt::PointingHandCursor);
+    connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
 
     m_caseButton = new QToolButton(m_containWidget);
     m_caseButton->setGeometry(200, 70, 62, 38);

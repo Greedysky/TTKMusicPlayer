@@ -179,7 +179,7 @@
         <file alias="lb_vocalOff">../TTKResource/enhance/lb_enhance_vocal.png</file>
         <file alias="lb_vocalOn">../TTKResource/enhance/lb_enhance_vocal_on.png</file>
         <file alias="lb_background">../TTKResource/enhance/lb_enhance_background.png</file>
-        <file alias="lb_enter">../TTKResource/enhance/lb_enhance_enter.gif</file>
+        <file alias="lb_enter">../TTKResource/enhance/lb_enhance_enter.png</file>
         <file alias="lb_title_normal">../TTKResource/enhance/lb_title_normal.png</file>
         <file alias="lb_title_hover">../TTKResource/enhance/lb_title_hover.png</file>
         <file alias="btn_magic_off_hover">../TTKResource/enhance/btn_magic_off_hover.png</file>

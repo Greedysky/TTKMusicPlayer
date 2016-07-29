@@ -13,7 +13,7 @@
 #include "musictoolmenuwidget.h"
 
 class QLabel;
-class QMovie;
+class QPropertyAnimation;
 
 /*! @brief The class of the enhanced tool button.
  * @author Greedysky <greedysky@163.com>
@@ -40,8 +40,7 @@ protected:
      */
 
     QLabel *m_label;
-    QMovie *m_movie;
-
+    QPropertyAnimation *m_animation;
 };
 
 
