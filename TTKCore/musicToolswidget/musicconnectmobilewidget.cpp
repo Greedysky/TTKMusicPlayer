@@ -69,7 +69,7 @@ void MusicConnectMobileWidget::initFirstWidget()
 
     QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
     secButton->setStyleSheet(buttonStyle);
-    secButton->setIcon(QIcon(":/toolSets/wireless"));
+    secButton->setIcon(QIcon(":/toolSets/lb_wireless"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
     connect(secButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetThird()));

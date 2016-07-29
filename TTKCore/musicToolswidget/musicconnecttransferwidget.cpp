@@ -74,7 +74,10 @@ QString MusicConnectTransferWidget::getClassName()
 
 void MusicConnectTransferWidget::openTransferFiles(int mode)
 {
-    ui->stackedWidget->setCurrentIndex(mode);
+    if(mode == 1)
+    {
+        switchDiffDevice();
+    }
 }
 
 void MusicConnectTransferWidget::initColumns()
