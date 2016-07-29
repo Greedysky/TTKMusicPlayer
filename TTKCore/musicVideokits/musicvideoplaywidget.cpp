@@ -139,7 +139,10 @@ void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
     MusicAbstractMoveWidget::resizeEvent(event);
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-    resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+    if(!isFullScreen())
+    {
+        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+    }
 }
 
 void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -161,7 +164,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     QSize s = size();
 #ifdef Q_OS_UNIX
     QDesktopWidget* desktopWidget = QApplication::desktop();
-    if(desktopWidget && desktopWidget->screen())
+    if(isFullScreen() && desktopWidget && desktopWidget->screen())
     {
         s = desktopWidget->screen()->size();
     }
