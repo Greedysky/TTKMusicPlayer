@@ -19,14 +19,29 @@ public:
 
     static QString getClassName();
 
-    static QString getYuekuUrl();
-    static QString getRecommendUrl();
-    static QString getRadioUrl();
-    static QString getRankUrl();
-    static QString getSingerUrl();
-    static QString getCategoryUrl();
-    static QString getShowUrl();
-    static QString getCCTVUrl();
+    //kugou song
+    static QString getSongYuekuUrl();
+    static QString getSongRecommendUrl();
+    static QString getSongRankUrl();
+    static QString getSongSingerUrl();
+    static QString getSongCategoryUrl();
+    static QString getSongShowUrl();
+    static QString getSongHeroesUrl();
+
+    //kugou radio
+    static QString getRadioPublicUrl();
+    static QString getRadioHighFmUrl();
+    static QString getRadioFxUrl();
+    static QString getRadioHomeUrl();
+
+    //kugou list
+    static QString getListUrl();
+
+    //kugou mv
+    static QString getMVRadioUrl();
+    static QString getMVRecommendUrl();
+    static QString getMVFanxingUrl();
+    static QString getMVStarMusicUrl();
 
 };
 

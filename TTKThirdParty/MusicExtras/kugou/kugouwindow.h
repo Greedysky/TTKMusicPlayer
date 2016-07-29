@@ -12,20 +12,42 @@
 #include <QWidget>
 #include "kugouurl.h"
 
+class QButtonGroup;
+
 class MUSIC_EXTRAS_EXPORT KugouWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KugouWindow(QWidget *parent = 0);
+    enum KuGouType
+    {
+        KuGouSong,
+        KuGouRadio,
+        KuGouList,
+        KugouMv,
+        KuGouLive,
+        KuGouLrc
+    };
+
+    explicit KugouWindow(KuGouType type, QWidget *parent = 0);
     ~KugouWindow();
 
     static QString getClassName();
 
 public Q_SLOTS:
-    void differButtonIndexChanged(int index);
+    void kugouSongIndexChanged(int index);
+    void kugouRadioIndexChanged(int index);
+    void kugouMVIndexChanged(int index);
 
 protected:
-    QWidget *m_webView;
+    void createKugouSongWidget();
+    void createKugouRadioWidget();
+    void createKugouListWidget();
+    void createKugouMVWidget();
+
+    void changeClickedButtonStyle(int index);
+
+    QWidget *m_webView, *m_topWidget;
+    QButtonGroup *m_buttonGroup;
 
 };
 

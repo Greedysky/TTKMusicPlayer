@@ -345,7 +345,7 @@ MusicCloudSharedSongWidget::MusicCloudSharedSongWidget(QWidget *parent)
     bottomLayout->setContentsMargins(5, 0, 0, 0);
     m_statusLabel = new QLabel(this);
     QPushButton *button = new QPushButton(this);
-    button->setIcon(QIcon(":/desktopTool/setting"));
+    button->setIcon(QIcon(":/desktopTool/btn_setting_hover"));
     button->setCursor(QCursor(Qt::PointingHandCursor));
     button->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     button->setFixedWidth(40);

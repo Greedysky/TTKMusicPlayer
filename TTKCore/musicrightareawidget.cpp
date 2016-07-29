@@ -235,7 +235,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         case 0: //insert kugou song widget
             {
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = new KugouWindow(this));
+                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouSong, this);
+                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicSongWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncSongForeClicked);
                 emit updateBackgroundTheme();
@@ -243,8 +244,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case 1: //insert kugou radio widget
             {
-                m_stackedFuncWidget = new QWidget(this);
-                m_stackedFuncWidget->setStyleSheet("background:red");
+                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouRadio, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicRadioWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncRadioForeClicked);
@@ -253,8 +253,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case 2: //insert kugou list widget
             {
-                m_stackedFuncWidget = new QWidget(this);
-                m_stackedFuncWidget->setStyleSheet("background:blue");
+                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouList, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicListWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncListForeClicked);
@@ -277,8 +276,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case 4: //insert kugou live widget
             {
-                m_stackedFuncWidget = new QWidget(this);
-                m_stackedFuncWidget->setStyleSheet("background:yellow");
+                m_stackedFuncWidget = new KugouWindow(KugouWindow::KugouMv, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicLiveWidgetButton->setStyleSheet(MusicKuGouUIObject::MKGFuncLiveForeClicked);

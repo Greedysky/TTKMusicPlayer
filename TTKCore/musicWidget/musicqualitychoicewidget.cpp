@@ -141,7 +141,6 @@ void MusicQualityChoiceWidget::initWidget()
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
-
     MusicQualityChoiceTableWidget *table = new MusicQualityChoiceTableWidget(m_containWidget);
     connect(table, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));
     layout->addWidget(table);
