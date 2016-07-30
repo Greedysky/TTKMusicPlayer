@@ -345,6 +345,16 @@
         <file alias="btn_open_file">../TTKResource/tiny/btn_open_file.png</file>
         <file alias="btn_open_files">../TTKResource/tiny/btn_open_files.png</file>
         <file alias="btn_list_menu">../TTKResource/tiny/btn_list_menu.png</file>
+        <file alias="lb_number0">../TTKResource/tiny/lb_number0.png</file>
+        <file alias="lb_number1">../TTKResource/tiny/lb_number1.png</file>
+        <file alias="lb_number2">../TTKResource/tiny/lb_number2.png</file>
+        <file alias="lb_number3">../TTKResource/tiny/lb_number3.png</file>
+        <file alias="lb_number4">../TTKResource/tiny/lb_number4.png</file>
+        <file alias="lb_number5">../TTKResource/tiny/lb_number5.png</file>
+        <file alias="lb_number6">../TTKResource/tiny/lb_number6.png</file>
+        <file alias="lb_number7">../TTKResource/tiny/lb_number7.png</file>
+        <file alias="lb_number8">../TTKResource/tiny/lb_number8.png</file>
+        <file alias="lb_number9">../TTKResource/tiny/lb_number9.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="btn_download_normal">../TTKResource/functions/btn_download_normal.png</file>

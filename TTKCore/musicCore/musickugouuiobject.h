@@ -561,6 +561,11 @@ namespace MusicKuGouUIObject
             background-image: url(:/functions/btn_fresh_back_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_fresh_back_hover);}";
 
+    const QString MKGBtnPlayedList = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_queue_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_queue_hover);}";
+
 
 }
 

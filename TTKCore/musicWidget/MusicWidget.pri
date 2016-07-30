@@ -25,6 +25,7 @@ HEADERS  += \
     $$PWD/core/musicmessagebox.h \
     $$PWD/core/musicprogresswidget.h \
     $$PWD/core/musicclickedlabel.h \
+    $$PWD/core/musicclickedslider.h \
     $$PWD/core/musicmovinglabelslider.h \
     $$PWD/core/musictoastlabel.h \
     $$PWD/core/musicroundanimationlabel.h \
@@ -63,7 +64,8 @@ HEADERS  += \
     $$PWD/musicsimilarfoundwidget.h \
     $$PWD/musicplaybackmodewidget.h \
     $$PWD/musicvolumepopwidget.h \
-    $$PWD/musicmorefunctionspopwidget.h
+    $$PWD/musicmorefunctionspopwidget.h \
+    $$PWD/musicplayedlistwidget.h
 
 }
 
@@ -79,6 +81,7 @@ SOURCES += \
     $$PWD/core/musicmessagebox.cpp \
     $$PWD/core/musicprogresswidget.cpp \
     $$PWD/core/musicclickedlabel.cpp \
+    $$PWD/core/musicclickedslider.cpp \
     $$PWD/core/musicmovinglabelslider.cpp \
     $$PWD/core/musictoastlabel.cpp \
     $$PWD/core/musicroundanimationlabel.cpp \
@@ -117,12 +120,7 @@ SOURCES += \
     $$PWD/musicsimilarfoundwidget.cpp \
     $$PWD/musicplaybackmodewidget.cpp \
     $$PWD/musicvolumepopwidget.cpp \
-    $$PWD/musicmorefunctionspopwidget.cpp
+    $$PWD/musicmorefunctionspopwidget.cpp \
+    $$PWD/musicplayedlistwidget.cpp
 
 }
-
-HEADERS += \
-    $$PWD/core/musicclickedslider.h
-
-SOURCES += \
-    $$PWD/core/musicclickedslider.cpp

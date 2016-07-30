@@ -16,6 +16,11 @@ MusicClickedSlider::MusicClickedSlider(Qt::Orientation orientation, QWidget *par
     m_value = 0;
 }
 
+QString MusicClickedSlider::getClassName()
+{
+    return staticMetaObject.className();
+}
+
 bool MusicClickedSlider::event(QEvent *event)
 {
     if(m_mousePress)

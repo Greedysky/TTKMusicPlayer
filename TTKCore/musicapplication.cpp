@@ -211,6 +211,10 @@ void MusicApplication::readXMLConfigFromText()
     MusicSongItems songs;
     xml.readMusicSongsConfig(songs);
     m_musicSongTree->setMusicLists(songs);
+    if(songs.count() > 0)
+    {
+        ui->musicPlayedList->setPlayListCount(songs.first().m_songs.count());
+    }
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig())//open file
     {
