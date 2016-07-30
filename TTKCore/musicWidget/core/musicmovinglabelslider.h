@@ -55,12 +55,6 @@ public Q_SLOTS:
      * Set slider current value.
      */
 
-private Q_SLOTS:
-    void sliderMovedChanged();
-    /*!
-     * Slider start to move or stop to move just.
-     */
-
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

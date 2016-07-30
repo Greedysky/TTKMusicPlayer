@@ -1,6 +1,8 @@
 #include "musicmovinglabelslider.h"
 #include "musictime.h"
 
+#include <QDebug>
+
 MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)
     : MusicMovingLabelSlider(Qt::Horizontal, parent)
 {
@@ -20,8 +22,6 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWid
     m_textLabel->setAlignment(Qt::AlignCenter);
     m_textLabel->setStyleSheet("QLabel{color:#888888; background-color:#FFE6E6; \
                                        border:1px solid gray;}");
-
-    connect(this, SIGNAL(sliderMoved(int)), SLOT(sliderMovedChanged()));
 }
 
 MusicMovingLabelSlider::~MusicMovingLabelSlider()
@@ -42,15 +42,10 @@ void MusicMovingLabelSlider::setValue(int value)
     }
 }
 
-void MusicMovingLabelSlider::sliderMovedChanged()
-{
-    m_isMoving = true;
-}
-
 void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
 {
     MusicClickedSlider::mousePressEvent(event);
-
+    m_isMoving = false;
     emit sliderMoved( m_value );
     m_textLabel->raise();
 }
@@ -58,7 +53,11 @@ void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
 void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
 {
     MusicClickedSlider::mouseMoveEvent(event);
-    emit sliderMoved( value() );
+    if(m_mousePress)
+    {
+        m_isMoving = true;
+        emit sliderMoved( m_value );
+    }
 
     QPoint curPos = mapFromGlobal(QCursor::pos());
     QPoint glbPos = mapToGlobal(QPoint(0, 0));
@@ -81,9 +80,8 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
 void MusicMovingLabelSlider::mouseReleaseEvent(QMouseEvent *event)
 {
     MusicClickedSlider::mouseReleaseEvent(event);
+    emit sliderReleasedAt( m_value );
     m_isMoving = false;
-    emit sliderMoved( value() );
-    emit sliderReleasedAt( value() );
 }
 
 void MusicMovingLabelSlider::enterEvent(QEvent *event)

@@ -118,4 +118,5 @@ void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     m_slider->setFixedWidth(width() - m_label->width());
+    sliderMovedAt(m_slider->value());
 }
