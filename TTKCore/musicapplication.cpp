@@ -769,10 +769,7 @@ void MusicApplication::musicCurrentPlayLocation()
     {
         return;
     }
-    m_musicSongTree->selectRow(0);
-    /*Repair when already in the original row, paging,
-     cannot return to the original row */
-    m_musicSongTree->selectRow(m_musicList->currentIndex());
+    m_musicSongTree->playLocation(m_musicList->currentIndex());
 }
 
 void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool remove)

@@ -40,10 +40,10 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QWidget::mouseDoubleClickEvent(event);
-    if( event->buttons() == Qt::LeftButton)
-    {
-        isMaximized() ? showNormal() : showMaximized();
-    }
+//    if( event->buttons() == Qt::LeftButton)
+//    {
+//        isMaximized() ? showNormal() : showMaximized();
+//    }
 }
 
 void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)

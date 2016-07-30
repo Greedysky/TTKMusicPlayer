@@ -7,6 +7,7 @@
 
 #include <QMenu>
 #include <QPainter>
+#include <QScrollBar>
 #include <QScrollArea>
 #include <QMouseEvent>
 
@@ -243,21 +244,21 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     m_layout->setSpacing(0);
     contentsWidget->setLayout(m_layout);
 
-    QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setFrameShape(QFrame::NoFrame);
-    scrollArea->setAlignment(Qt::AlignLeft);
-    scrollArea->setWidget(contentsWidget);
+    m_scrollArea = new QScrollArea(this);
+    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_scrollArea->setWidgetResizable(true);
+    m_scrollArea->setFrameShape(QFrame::NoFrame);
+    m_scrollArea->setAlignment(Qt::AlignLeft);
+    m_scrollArea->setWidget(contentsWidget);
 
     QString style = "background:rgba(255,255,255,25)";
     contentsWidget->setObjectName("contentsWidget");
     contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(style));
-    QWidget *view = scrollArea->viewport();
+    QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(style));
 
-    mainLayout->addWidget(scrollArea);
+    mainLayout->addWidget(m_scrollArea);
     setLayout(mainLayout);
 }
 
@@ -268,6 +269,7 @@ MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
         delete m_itemList.takeLast();
     }
     delete m_layout;
+    delete m_scrollArea;
 }
 
 QString MusicSongsToolBoxWidget::getClassName()
@@ -291,6 +293,15 @@ void MusicSongsToolBoxWidget::mousePressAt(int index)
     {
         bool hide = (i== index) ? !m_itemList[i]->itemHide() : false;
         m_itemList[i]->setItemHide(hide);
+    }
+}
+
+void MusicSongsToolBoxWidget::resizeScrollIndex(int index) const
+{
+    QScrollBar *bar = m_scrollArea->verticalScrollBar();
+    if(bar)
+    {
+        bar->setSliderPosition(index);
     }
 }
 

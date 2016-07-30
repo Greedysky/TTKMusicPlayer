@@ -89,6 +89,10 @@ public:
     /*!
      * Set current music song tree index.
      */
+    void playLocation(int index);
+    /*!
+     * Show current play index.
+     */
     void selectRow(int index);
     /*!
      * Select the current play row.

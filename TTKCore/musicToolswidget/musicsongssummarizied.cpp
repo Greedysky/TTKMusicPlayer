@@ -147,6 +147,12 @@ QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
     return list;
 }
 
+void MusicSongsSummarizied::playLocation(int index)
+{
+    selectRow(index);
+    resizeScrollIndex(index*30);
+}
+
 void MusicSongsSummarizied::selectRow(int index)
 {
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentIndexs);

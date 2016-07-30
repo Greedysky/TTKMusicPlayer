@@ -176,6 +176,8 @@ protected:
 };
 
 
+class QScrollArea;
+
 /*! @brief The class of the tool box widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -212,6 +214,10 @@ public:
      * Get title text.
      */
 
+    void resizeScrollIndex(int index) const;
+    /*!
+     * Reset scroll index by given position.
+     */
     int currentIndex() const;
     /*!
      * Get current index.
@@ -240,6 +246,7 @@ protected:
 
     int m_currentIndex;
     QVBoxLayout *m_layout;
+    QScrollArea *m_scrollArea;
     QList<MusicSongsToolBoxWidgetItem*> m_itemList;
 
 };
