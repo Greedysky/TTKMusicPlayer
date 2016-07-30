@@ -1,12 +1,12 @@
-#ifndef MUSICKUGOUUIOBJECT_H
-#define MUSICKUGOUUIOBJECT_H
+#ifndef MUSICTTKUIOBJECT_H
+#define MUSICTTKUIOBJECT_H
 
 #include <QObject>
 
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicKuGouUIObject
+namespace MusicTTKUIObject
 {
 ///left item list style
 //////////////////////////////////////////////////////
@@ -569,4 +569,4 @@ namespace MusicKuGouUIObject
 
 }
 
-#endif // MUSICKUGOUUIOBJECT_H
+#endif // MUSICTTKUIOBJECT_H

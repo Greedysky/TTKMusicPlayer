@@ -1,5 +1,5 @@
 #include "musicvolumepopwidget.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
 #include "musicclickedslider.h"
@@ -33,7 +33,7 @@ void MusicVolumePopWidget::setValue(int value)
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicKuGouUIObject::MKGBtnSound;
+    QString style = MusicTTKUIObject::MKGBtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-60px; }";

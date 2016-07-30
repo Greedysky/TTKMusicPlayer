@@ -1,7 +1,7 @@
 #include "musiclocalsongsearchdialog.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicuiobject.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -36,7 +36,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    closeButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnClose);
+    closeButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnClose);
 
     layout->addWidget(searchPair);
     layout->addWidget(closeButton);

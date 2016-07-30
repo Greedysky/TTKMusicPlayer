@@ -2,7 +2,7 @@
 #include "ui_musicequalizerdialog.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
@@ -38,7 +38,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
                   << tr("Electronics"));
     connect(ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
-    ui->showEqButton->setStyleSheet(MusicKuGouUIObject::MKGEqualizerOff);
+    ui->showEqButton->setStyleSheet(MusicTTKUIObject::MKGEqualizerOff);
 
     initEqualizeValue();
     readEqInformation();
@@ -176,8 +176,8 @@ void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
     emit setEnaleEffect(m_eable);
-    ui->showEqButton->setStyleSheet(!m_eable ? MusicKuGouUIObject::MKGEqualizerOff :
-                                               MusicKuGouUIObject::MKGEqualizerOn);
+    ui->showEqButton->setStyleSheet(!m_eable ? MusicTTKUIObject::MKGEqualizerOff :
+                                               MusicTTKUIObject::MKGEqualizerOn);
 
     setControlEnable(!m_eable);
     if(m_eable)

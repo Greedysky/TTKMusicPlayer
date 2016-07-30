@@ -11,7 +11,7 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicbgskin(nullptr), m_musicRemoteWidget(nullptr)
@@ -48,36 +48,36 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicSearchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMainSearch);
+    ui->musicSearchButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnMainSearch);
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowChangeSkin->setStyleSheet(MusicKuGouUIObject::MKGBtnSkin);
+    ui->musicWindowChangeSkin->setStyleSheet(MusicTTKUIObject::MKGBtnSkin);
     connect(ui->musicWindowChangeSkin, SIGNAL(clicked()) , SLOT(musicShowSkinChangedWindow()));
 
     ui->musicWindowSetting->setToolTip(tr("setting"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowSetting->setStyleSheet(MusicKuGouUIObject::MKGBtnSetting);
+    ui->musicWindowSetting->setStyleSheet(MusicTTKUIObject::MKGBtnSetting);
     connect(ui->musicWindowSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicCreateRightMenu()));
 
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowConcise->setStyleSheet(MusicKuGouUIObject::MKGBtnConciseIn);
+    ui->musicWindowConcise->setStyleSheet(MusicTTKUIObject::MKGBtnConciseIn);
     connect(ui->musicWindowConcise, SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
 
     ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->musicWindowRemote->setStyleSheet(MusicKuGouUIObject::MKGBtnRemote);
+    ui->musicWindowRemote->setStyleSheet(MusicTTKUIObject::MKGBtnRemote);
     connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(musicSquareRemote()));
 
-    ui->minimization->setStyleSheet(MusicKuGouUIObject::MKGBtnMinimum);
+    ui->minimization->setStyleSheet(MusicTTKUIObject::MKGBtnMinimum);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
     connect(ui->minimization, SIGNAL(clicked()), m_supperClass, SLOT(hide()));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->windowClose->setStyleSheet(MusicKuGouUIObject::MKGBtnTClose);
+    ui->windowClose->setStyleSheet(MusicTTKUIObject::MKGBtnTClose);
     connect(ui->windowClose, SIGNAL(clicked()), m_supperClass, SLOT(close()));
 }
 

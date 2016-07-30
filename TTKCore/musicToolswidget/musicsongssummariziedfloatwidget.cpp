@@ -3,7 +3,7 @@
 #include "musicnumberdefine.h"
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicutils.h"
 
 #include <QToolButton>
@@ -21,10 +21,10 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
 
     QToolButton *locationButton = new QToolButton(this);
     QToolButton *searchButton = new QToolButton(this);
-    locationButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLocation);
+    locationButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
     locationButton->setGeometry(0, 1, 24, 24);
-    searchButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnLocalSearch);
+    searchButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(30, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));

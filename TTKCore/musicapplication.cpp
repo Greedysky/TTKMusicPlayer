@@ -18,7 +18,7 @@
 #include "musicapplicationobject.h"
 #include "musicconnectionpool.h"
 #include "musicglobalhotkey.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveResizeWidget(parent),
@@ -402,20 +402,20 @@ void MusicApplication::showCurrentSong(int index)
         bool exist = QFile::exists(path);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
-        ui->musicDownload->setStyleSheet(exist ? MusicKuGouUIObject::MKGBtnDownload : MusicKuGouUIObject::MKGBtnUnDownload);
+        ui->musicDownload->setStyleSheet(exist ? MusicTTKUIObject::MKGBtnDownload : MusicTTKUIObject::MKGBtnUnDownload);
         //////////////////////////////////////////
         MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
         exist = loveSongs.contains(currentSongs[index]);
         M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
-        ui->musicBestLove->setStyleSheet(exist ? MusicKuGouUIObject::MKGBtnLove : MusicKuGouUIObject::MKGBtnUnLove);
+        ui->musicBestLove->setStyleSheet(exist ? MusicTTKUIObject::MKGBtnLove : MusicTTKUIObject::MKGBtnUnLove);
         //////////////////////////////////////////
         m_musicSongTree->selectRow(index);
     }
     else
     {
-        ui->musicBestLove->setStyleSheet(MusicKuGouUIObject::MKGBtnUnLove);
-        ui->musicDownload->setStyleSheet(MusicKuGouUIObject::MKGBtnUnDownload);
-        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
+        ui->musicBestLove->setStyleSheet(MusicTTKUIObject::MKGBtnUnLove);
+        ui->musicDownload->setStyleSheet(MusicTTKUIObject::MKGBtnUnDownload);
+        ui->musicKey->setStyleSheet(MusicTTKUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->stop();
         m_rightAreaWidget->stopLrcMask();
@@ -443,7 +443,7 @@ void MusicApplication::showCurrentSong(int index)
 void MusicApplication::stateChanged()
 {
     m_playControl = true;
-    ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
+    ui->musicKey->setStyleSheet(MusicTTKUIObject::MKGBtnPlay);
 }
 
 void MusicApplication::musicImportPlay()
@@ -529,7 +529,7 @@ void MusicApplication::musicStatePlay()
     }
     if(m_playControl)
     {
-        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPause);
+        ui->musicKey->setStyleSheet(MusicTTKUIObject::MKGBtnPause);
         m_playControl = false;
         m_musicPlayer->play();
         m_topAreaWidget->musicBgThemeDownloadFinished();
@@ -537,7 +537,7 @@ void MusicApplication::musicStatePlay()
     }
     else
     {
-        ui->musicKey->setStyleSheet(MusicKuGouUIObject::MKGBtnPlay);
+        ui->musicKey->setStyleSheet(MusicTTKUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setTimerStop();

@@ -10,7 +10,7 @@
 #include "musicconnectionpool.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -260,10 +260,10 @@ void MusicLrcContainerForInline::initFunctionLabel()
     microphone->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicKuGouUIObject::MKGInlineTranslation);
-    movie->setStyleSheet(MusicKuGouUIObject::MKGInlineMovie);
-    microphone->setStyleSheet(MusicKuGouUIObject::MKGInlineMicrophone);
-    message->setStyleSheet(MusicKuGouUIObject::MKGInlineMessage);
+    translation->setStyleSheet(MusicTTKUIObject::MKGInlineTranslation);
+    movie->setStyleSheet(MusicTTKUIObject::MKGInlineMovie);
+    microphone->setStyleSheet(MusicTTKUIObject::MKGInlineMicrophone);
+    message->setStyleSheet(MusicTTKUIObject::MKGInlineMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

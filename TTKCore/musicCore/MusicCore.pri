@@ -37,8 +37,8 @@ HEADERS  += \
     $$PWD/network/musicvoicettsthread.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
-    $$PWD/musickugouuiobject.h \
     $$PWD/musicuiobject.h \
+    $$PWD/musicttkuiobject.h \
     $$PWD/musicutils.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \

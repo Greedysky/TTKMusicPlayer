@@ -1,5 +1,5 @@
 #include "musicplayedlistwidget.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicuiobject.h"
 
 #include <QLabel>
@@ -11,7 +11,7 @@ MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     setToolTip(tr("playedList"));
-    setStyleSheet(MusicKuGouUIObject::MKGBtnPlayedList);
+    setStyleSheet(MusicTTKUIObject::MKGBtnPlayedList);
 
     initWidget();
 }

@@ -1,5 +1,5 @@
 #include "musicplaybackmodewidget.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicuiobject.h"
 
 MusicPlayBackModeWidget::MusicPlayBackModeWidget(QWidget *parent)
@@ -18,23 +18,23 @@ void MusicPlayBackModeWidget::setPlaybackMode(MusicObject::SongPlayType mode)
     switch( mode )
     {
         case MusicObject::MC_PlayOrder:
-                setStyleSheet(MusicKuGouUIObject::MKGBtnOrder);
+                setStyleSheet(MusicTTKUIObject::MKGBtnOrder);
                 setToolTip(tr("OrderPlay"));
                 break;
         case MusicObject::MC_PlayRandom:
-                setStyleSheet(MusicKuGouUIObject::MKGBtnRandom);
+                setStyleSheet(MusicTTKUIObject::MKGBtnRandom);
                 setToolTip(tr("RandomPlay"));
                 break;
         case MusicObject::MC_PlayListLoop:
-                setStyleSheet(MusicKuGouUIObject::MKGBtnListLoop);
+                setStyleSheet(MusicTTKUIObject::MKGBtnListLoop);
                 setToolTip(tr("ListCycle"));
                 break;
         case MusicObject::MC_PlayOneLoop:
-                setStyleSheet(MusicKuGouUIObject::MKGBtnOneLoop);
+                setStyleSheet(MusicTTKUIObject::MKGBtnOneLoop);
                 setToolTip(tr("SingleCycle"));
                 break;
         case MusicObject::MC_PlayOnce:
-                setStyleSheet(MusicKuGouUIObject::MKGBtnOnce);
+                setStyleSheet(MusicTTKUIObject::MKGBtnOnce);
                 setToolTip(tr("PlayOnce"));
                 break;
         default:

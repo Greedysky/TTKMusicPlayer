@@ -2,7 +2,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 
 #include <QLabel>
 #include <QButtonGroup>
@@ -80,28 +80,28 @@ void MusicEnhancedWidget::initWidget()
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);
-    labelButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceTitle);
+    labelButton->setStyleSheet(MusicTTKUIObject::MKGEnhanceTitle);
     labelButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *helpButton = new QToolButton(m_containWidget);
     helpButton->setGeometry(205, 3, 24, 24);
-    helpButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceHelp);
+    helpButton->setStyleSheet(MusicTTKUIObject::MKGEnhanceHelp);
     helpButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *shareButton = new QToolButton(m_containWidget);
     shareButton->setGeometry(230, 3, 24, 24);
-    shareButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceShare);
+    shareButton->setStyleSheet(MusicTTKUIObject::MKGEnhanceShare);
     shareButton->setCursor(Qt::PointingHandCursor);
 
     QToolButton *closeButton = new QToolButton(m_containWidget);
     closeButton->setGeometry(255, 8, 16, 16);
-    closeButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceClose);
+    closeButton->setStyleSheet(MusicTTKUIObject::MKGEnhanceClose);
     closeButton->setCursor(Qt::PointingHandCursor);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
 
     m_caseButton = new QToolButton(m_containWidget);
     m_caseButton->setGeometry(200, 70, 62, 38);
-    m_caseButton->setStyleSheet(MusicKuGouUIObject::MKGEnhanceOn);
+    m_caseButton->setStyleSheet(MusicTTKUIObject::MKGEnhanceOn);
     m_caseButton->setCursor(Qt::PointingHandCursor);
 
     m_Button1 = new MusicEnhancedToolButton(m_containWidget);
@@ -138,7 +138,7 @@ void MusicEnhancedWidget::initWidget()
 void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
 {
     setObjectName("EnhancedWidget");
-    QString style = MusicKuGouUIObject::MKGBtnMagic;
+    QString style = MusicTTKUIObject::MKGBtnMagic;
     switch(type)
     {
         case 0: style += "#EnhancedWidget{ margin-left: -2px; }"; break;
@@ -150,8 +150,8 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
     setStyleSheet( style );
 
     QString prfix = QString("background-image:url(':/enhance/lb_%1')");
-    m_caseButton->setStyleSheet(type ? MusicKuGouUIObject::MKGEnhanceOn :
-                                       MusicKuGouUIObject::MKGEnhanceOff);
+    m_caseButton->setStyleSheet(type ? MusicTTKUIObject::MKGEnhanceOn :
+                                       MusicTTKUIObject::MKGEnhanceOff);
     m_Button1->setStyleSheet(prfix.arg(type == 1 ? "3dOn" : "3dOff"));
     m_Button2->setStyleSheet(prfix.arg(type == 2 ? "NICAMOn" : "NICAMOff"));
     m_Button3->setStyleSheet(prfix.arg(type == 3 ? "subwooferOn" : "subwooferOff"));

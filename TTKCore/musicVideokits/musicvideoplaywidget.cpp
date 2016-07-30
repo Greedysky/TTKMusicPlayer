@@ -5,7 +5,7 @@
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicobject.h"
-#include "musickugouuiobject.h"
+#include "musicttkuiobject.h"
 #include "musicsettingmanager.h"
 
 #include <QBoxLayout>
@@ -68,7 +68,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
         m_closeButton = new QPushButton(this);
         m_closeButton->setToolTip(tr("Close"));
         m_closeButton->setFixedSize(14, 14);
-        m_closeButton->setStyleSheet(MusicKuGouUIObject::MKGBtnPClose);
+        m_closeButton->setStyleSheet(MusicTTKUIObject::MKGBtnPClose);
         m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
         topLayout->addWidget(m_closeButton);
     }
