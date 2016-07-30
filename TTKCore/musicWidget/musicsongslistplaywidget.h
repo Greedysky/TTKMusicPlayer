@@ -142,6 +142,8 @@ public Q_SLOTS:
      */
 
 protected:
+    void createMoreMenu(QMenu *menu);
+
     bool showArtPicture(const QString &name) const;
     /*!
      * Show artist small picture, if no exsit there is default pic.
@@ -151,7 +153,7 @@ protected:
     QLabel *m_artPictureLabel, *m_songNameLabel, *m_timeLabel;
     MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
-    QPushButton *m_downloadButton, *m_songShareButton;
+    QPushButton *m_downloadButton, *m_moreButton;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
 };

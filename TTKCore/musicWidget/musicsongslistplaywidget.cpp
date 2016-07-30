@@ -88,11 +88,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
-    m_songShareButton = new QPushButton(m_columnThree);
-    m_songShareButton->setGeometry(23, 39, 16, 16);
-    m_songShareButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMore);
-    m_songShareButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_songShareButton->setToolTip(tr("songShare"));
+    m_moreButton = new QPushButton(m_columnThree);
+    m_moreButton->setGeometry(23, 39, 16, 16);
+    m_moreButton->setStyleSheet(MusicKuGouUIObject::MKGTinyBtnMore);
+    m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_moreButton->setToolTip(tr("moreFunction"));
+
+    QMenu *menu = new QMenu(m_columnThree);
+    createMoreMenu(menu);
+    m_moreButton->setMenu(menu);
 
     connect(m_loveButton, SIGNAL(clicked()), SIGNAL(currentLoveStateChanged()));
     connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(currentDownloadStateChanged()));
@@ -102,7 +106,6 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
-    connect(m_songShareButton, SIGNAL(clicked()), SLOT(sharingButtonClicked()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
@@ -121,7 +124,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_deleteButton;
     delete m_showMVButton;
     delete m_downloadButton;
-    delete m_songShareButton;
+    delete m_moreButton;
     delete m_columnOne;
     delete m_columnThree;
 }
@@ -150,6 +153,20 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
+}
+
+void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
+{
+    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
+    addMenu->addAction(tr("musicCloud"));
+
+    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
+    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(sharingButtonClicked()));
+    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 }
 
 bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const

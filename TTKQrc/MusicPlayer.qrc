@@ -114,6 +114,10 @@
         <file alias="btn_network">../TTKResource/contextMenu/btn_network.png</file>
         <file alias="btn_update">../TTKResource/contextMenu/btn_update.png</file>
         <file alias="btn_selected">../TTKResource/contextMenu/btn_selected.png</file>
+        <file alias="btn_share">../TTKResource/contextMenu/btn_share.png</file>
+        <file alias="btn_ring">../TTKResource/contextMenu/btn_ring.png</file>
+        <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
+        <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
     </qresource>
     <qresource prefix="/radio">
         <file alias="lb_favorite">../TTKResource/netRadio/lb_favorite.png</file>

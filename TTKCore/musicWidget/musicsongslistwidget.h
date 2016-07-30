@@ -196,6 +196,10 @@ protected:
     /*!
      * Start to drag to play list.
      */
+    void createContextMenu(QMenu &menu);
+    /*!
+     * Create context menu.
+     */
 
     int m_transparent;
     int m_playRowIndex, m_dragStartIndex;

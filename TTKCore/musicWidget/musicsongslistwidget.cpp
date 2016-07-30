@@ -13,6 +13,7 @@
 #include <QAction>
 #include <QTimer>
 #include <QPainter>
+#include <QDebug>
 
 #define ROW_HIGHT   30
 
@@ -107,11 +108,12 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 
-    bool empty;
-    emit isSearchFileListEmpty(empty);
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(tr("playLater"));
+    rightClickMenu.addAction(tr("addToPlayList"));
+    rightClickMenu.addAction(tr("downloadMore..."));
+    rightClickMenu.addSeparator();
 
     rightClickMenu.addMenu(&musicPlaybackMode);
     QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SIGNAL(musicPlayOrder()));
@@ -125,23 +127,42 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     (m_songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : sCycle->setIcon(QIcon());
     (m_songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/btn_selected")) : once->setIcon(QIcon());
 
-    rightClickMenu.addSeparator();
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
+    rightClickMenu.addAction(tr("foundMV"));
+    rightClickMenu.addSeparator();
+
+    QMenu *addMenu = rightClickMenu.addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
+    addMenu->addAction(tr("musicCloud"));
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 
     QMenu musicToolMenu(tr("musicTool"), &rightClickMenu);
     musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()));
     musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
-    rightClickMenu.addAction(tr("musicInfoD"), this, SLOT(musicFileInformation()))->setEnabled(empty);
+
+    bool empty;
+    emit isSearchFileListEmpty(empty);
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"));
     rightClickMenu.addSeparator();
 
+    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
     rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
     rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    rightClickMenu.addSeparator();
+
+    createContextMenu(rightClickMenu);
+
     rightClickMenu.exec(QCursor::pos());
     //Menu location for the current mouse position
     event->accept();
@@ -256,6 +277,18 @@ void MusicSongsListWidget::startToDrag()
         {
             selectRow(index);
         }
+    }
+}
+
+void MusicSongsListWidget::createContextMenu(QMenu &menu)
+{
+    QString songName = currentRow() != -1 && rowCount() > 0 ?
+                m_musicSongs->at(currentRow()).getMusicName() : QString();
+
+    QStringList names = songName.split("-");
+    foreach(QString name, names)
+    {
+        menu.addAction(tr("search '%1'").arg(name.trimmed()));
     }
 }
 
