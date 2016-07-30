@@ -16,7 +16,6 @@ class MusicBackgroundSkinDialog;
 }
 
 class QListWidgetItem;
-class MusicSliderMenuWidget;
 
 /*! @brief The class of the local background widget.
  * @author Greedysky <greedysky@163.com>
@@ -112,7 +111,6 @@ protected:
      */
 
     Ui::MusicBackgroundSkinDialog *ui;
-    MusicSliderMenuWidget *m_listTransMenu, *m_skinTransMenu;
 
 };
 

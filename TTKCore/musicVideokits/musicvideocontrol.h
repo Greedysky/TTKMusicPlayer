@@ -19,7 +19,6 @@
 class QLabel;
 class QToolButton;
 class QPushButton;
-class MusicSliderMenuWidget;
 class MusicMovingLabelSlider;
 
 /*! @brief The class of the video controller.
@@ -170,7 +169,6 @@ protected:
     bool m_widgetPopup;
     QMenu m_popupQuality, m_popupBarrage;
     MusicMovingLabelSlider *m_timeSlider;
-    MusicSliderMenuWidget *m_volumeSliderMenu;
     QToolButton *m_volumeButton;
     QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
     QPushButton *m_qualityButton, *m_downloadButton;

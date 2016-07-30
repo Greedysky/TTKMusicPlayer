@@ -163,7 +163,7 @@
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
   </widget>
-  <widget class="QToolButton" name="listTransparentButton">
+  <widget class="MusicBackgroundPopWidget" name="listTransparentButton">
    <property name="geometry">
     <rect>
      <x>265</x>
@@ -202,7 +202,7 @@
     <string>皮肤透明</string>
    </property>
   </widget>
-  <widget class="QToolButton" name="skinTransparentButton">
+  <widget class="MusicBackgroundPopWidget" name="skinTransparentButton">
    <property name="geometry">
     <rect>
      <x>105</x>
@@ -244,6 +244,12 @@
    <class>MusicBackgroundRemoteWidget</class>
    <extends>QWidget</extends>
    <header>musicbackgroundremotewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicBackgroundPopWidget</class>
+   <extends>QWidget</extends>
+   <header>musicbackgroundpopwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

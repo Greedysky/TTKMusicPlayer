@@ -1,4 +1,5 @@
 #include "musicanimationstackedwidget.h"
+#include "musicnumberdefine.h"
 
 #include <QPixmap>
 #include <QTransform>
@@ -12,7 +13,7 @@ MusicAnimationStackedWidget::MusicAnimationStackedWidget(QWidget *parent)
     m_previousIndex = 0;
 
     m_animation = new QPropertyAnimation(this, QByteArray());
-    m_animation->setDuration(200);
+    m_animation->setDuration(120*MT_MS);
     m_animation->setEasingCurve(QEasingCurve::Linear);
     m_animation->setStartValue(0);
     m_animation->setEndValue(0);

@@ -1,7 +1,6 @@
 #include "musicbackgroundskindialog.h"
 #include "ui_musicbackgroundskindialog.h"
 #include "musicbackgroundmanager.h"
-#include "musicslidermenuwidget.h"
 #include "musicbackgroundpalettewidget.h"
 #include "musicobject.h"
 #include "musicutils.h"
@@ -14,15 +13,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_listTransMenu = new MusicSliderMenuWidget(this);
-    m_skinTransMenu = new MusicSliderMenuWidget(this);
-    ui->listTransparentButton->setPopupMode(QToolButton::InstantPopup);
-    ui->listTransparentButton->setMenu(m_listTransMenu);
-    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
-    ui->skinTransparentButton->setPopupMode(QToolButton::InstantPopup);
-    ui->skinTransparentButton->setMenu(m_skinTransMenu);
-    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
-
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -34,10 +24,10 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     addThemeListWidgetItem();
 
-    connect(m_skinTransMenu, SIGNAL(valueChanged(int)), parent,
-                             SLOT(musicBgTransparentChanged(int)));
-    connect(m_listTransMenu, SIGNAL(valueChanged(int)), parent,
-                             SLOT(musicPlayListTransparent(int)));
+    connect(ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
+                                       SLOT(musicBgTransparentChanged(int)));
+    connect(ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
+                                       SLOT(musicPlayListTransparent(int)));
     connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),
                                  SLOT(itemUserClicked(QListWidgetItem*)));
     connect(ui->remoteWidget, SIGNAL(showCustomSkin(QString)), SLOT(showCustomSkin(QString)));
@@ -54,8 +44,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 {
-    delete m_listTransMenu;
-    delete m_skinTransMenu;
     delete ui;
 }
 
@@ -80,8 +68,8 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
 {
     ui->themeListWidget->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
-    m_skinTransMenu->setValue(alpha);
-    m_listTransMenu->setValue(listAlpha);
+    ui->skinTransparentButton->setValue(alpha);
+    ui->listTransparentButton->setValue(listAlpha);
     setSkinTransToolText(alpha);
     setListTransToolText(listAlpha);
 }
@@ -94,7 +82,7 @@ void MusicBackgroundSkinDialog::updateBackground(const QString &text)
 
 int MusicBackgroundSkinDialog::getListBgSkinAlpha() const
 {
-    return m_listTransMenu->getValue();
+    return ui->listTransparentButton->value();
 }
 
 void MusicBackgroundSkinDialog::setSkinTransToolText(int value)

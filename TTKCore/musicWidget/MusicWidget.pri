@@ -30,7 +30,6 @@ HEADERS  += \
     $$PWD/core/musicroundanimationlabel.h \
     $$PWD/core/musiccodearea.h \
     $$PWD/core/musicgrabwidget.h \
-    $$PWD/core/musicslidermenuwidget.h \
     $$PWD/core/musicfloatabstractwidget.h \
     $$PWD/core/musictimersliderwidget.h \
     $$PWD/core/musiccutsliderwidget.h \
@@ -53,6 +52,7 @@ HEADERS  += \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
+    $$PWD/musicbackgroundpopwidget.h \
     $$PWD/musicenhancedwidget.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicdownloadmgmtwidget.h \
@@ -84,7 +84,6 @@ SOURCES += \
     $$PWD/core/musicroundanimationlabel.cpp \
     $$PWD/core/musiccodearea.cpp \
     $$PWD/core/musicgrabwidget.cpp \
-    $$PWD/core/musicslidermenuwidget.cpp \
     $$PWD/core/musicfloatabstractwidget.cpp \
     $$PWD/core/musictimersliderwidget.cpp \
     $$PWD/core/musiccutsliderwidget.cpp \
@@ -107,6 +106,7 @@ SOURCES += \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \
+    $$PWD/musicbackgroundpopwidget.cpp \
     $$PWD/musicenhancedwidget.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicdownloadmgmtwidget.cpp \

@@ -1,5 +1,5 @@
-#ifndef MUSICVOLUMEPOPWIDGET_H
-#define MUSICVOLUMEPOPWIDGET_H
+#ifndef MUSICBACKGROUNDPOPWIDGET_H
+#define MUSICBACKGROUNDPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -16,15 +16,15 @@ class QSlider;
 /*! @brief The class of the volume popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVolumePopWidget(QWidget *parent = 0);
+    explicit MusicBackgroundPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicVolumePopWidget();
+    virtual ~MusicBackgroundPopWidget();
 
     static QString getClassName();
     /*!
@@ -41,32 +41,19 @@ public:
      */
 
 Q_SIGNALS:
-    void musicVolumeChanged(int volume);
+    void valueChanged(int value);
     /*!
-     * Current play volume changed.
-     */
-
-public Q_SLOTS:
-    void timeToResetFlag();
-    /*!
-     * Timer ot reset show slider flag.
+     * Current play transparent changed.
      */
 
 protected:
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
-
     void initWidget();
     /*!
      * Create all widget in layout.
      */
 
-    bool m_menuShown;
-    QSlider *m_volumeSlider;
+    QSlider *m_slider;
 
 };
 
-#endif // MUSICVOLUMEPOPWIDGET_H
+#endif // MUSICBACKGROUNDPOPWIDGET_H
