@@ -13,7 +13,7 @@
 #include "musicglobaldefine.h"
 
 class QLabel;
-class QSlider;
+class MusicClickedSlider;
 class QWidgetAction;
 class QToolButton;
 
@@ -83,7 +83,7 @@ protected:
 
     QLabel *m_showText;
     QToolButton *m_PlayOrStop, *m_volumeButton;
-    QSlider *m_volumeSlider;
+    MusicClickedSlider *m_volumeSlider;
     QAction *m_showLrcAction, *m_lockLrcAction;
 
 };

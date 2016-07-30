@@ -11,7 +11,7 @@
 
 #include "musictoolmenuwidget.h"
 
-class QSlider;
+class MusicClickedSlider;
 
 /*! @brief The class of the volume popup widget.
  * @author Greedysky <greedysky@163.com>
@@ -65,7 +65,7 @@ protected:
      */
 
     bool m_menuShown;
-    QSlider *m_volumeSlider;
+    MusicClickedSlider *m_volumeSlider;
 
 };
 

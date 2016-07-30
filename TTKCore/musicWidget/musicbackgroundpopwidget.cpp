@@ -1,8 +1,8 @@
 #include "musicbackgroundpopwidget.h"
 #include "musicuiobject.h"
+#include "musicclickedslider.h"
 
 #include <QLabel>
-#include <QSlider>
 #include <QBoxLayout>
 
 MusicBackgroundPopWidget::MusicBackgroundPopWidget(QWidget *parent)
@@ -46,7 +46,7 @@ void MusicBackgroundPopWidget::initWidget()
     textLabel->setStyleSheet("color: rgb(230, 115, 0);");
     textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
 
-    m_slider = new QSlider(Qt::Vertical, m_containWidget);
+    m_slider = new MusicClickedSlider(Qt::Vertical, m_containWidget);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle03);
     connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
 

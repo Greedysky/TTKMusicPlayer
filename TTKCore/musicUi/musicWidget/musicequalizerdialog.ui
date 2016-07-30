@@ -55,7 +55,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QSlider" name="bwVerticalSlider">
+  <widget class="MusicClickedSlider" name="bwVerticalSlider">
    <property name="geometry">
     <rect>
      <x>35</x>
@@ -68,7 +68,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider3">
+  <widget class="MusicClickedSlider" name="verticalSlider3">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -81,7 +81,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider4">
+  <widget class="MusicClickedSlider" name="verticalSlider4">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -94,7 +94,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider5">
+  <widget class="MusicClickedSlider" name="verticalSlider5">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -107,7 +107,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider2">
+  <widget class="MusicClickedSlider" name="verticalSlider2">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -120,7 +120,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider7">
+  <widget class="MusicClickedSlider" name="verticalSlider7">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -133,7 +133,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider6">
+  <widget class="MusicClickedSlider" name="verticalSlider6">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -146,7 +146,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider8">
+  <widget class="MusicClickedSlider" name="verticalSlider8">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -159,7 +159,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider9">
+  <widget class="MusicClickedSlider" name="verticalSlider9">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -172,7 +172,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider10">
+  <widget class="MusicClickedSlider" name="verticalSlider10">
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -185,7 +185,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="verticalSlider1">
+  <widget class="MusicClickedSlider" name="verticalSlider1">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -648,6 +648,13 @@ font-weight:bold;
   <zorder>showPerArea_30</zorder>
   <zorder>showPerArea_31</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

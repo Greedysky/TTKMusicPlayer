@@ -160,7 +160,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QSlider" name="tempoSlider">
+   <widget class="MusicClickedSlider" name="tempoSlider">
     <property name="geometry">
      <rect>
       <x>74</x>
@@ -199,7 +199,7 @@
      <string>音色：</string>
     </property>
    </widget>
-   <widget class="QSlider" name="pitchSlider">
+   <widget class="MusicClickedSlider" name="pitchSlider">
     <property name="geometry">
      <rect>
       <x>74</x>
@@ -225,7 +225,7 @@
      <string>比率：</string>
     </property>
    </widget>
-   <widget class="QSlider" name="rateSlider">
+   <widget class="MusicClickedSlider" name="rateSlider">
     <property name="geometry">
      <rect>
       <x>74</x>
@@ -344,6 +344,13 @@
   <zorder>playWavButton</zorder>
   <zorder>pathLabels</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

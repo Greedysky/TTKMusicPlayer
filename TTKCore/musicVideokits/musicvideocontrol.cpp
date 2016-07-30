@@ -5,6 +5,7 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicrightareawidget.h"
 #include "musicvideotablewidget.h"
+#include "musicclickedslider.h"
 
 #include <QPushButton>
 #include <QToolButton>
@@ -26,7 +27,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumeButton = new QToolButton(this);
     QMenu *volumeSliderMenu = new QMenu(this);
     QHBoxLayout *volumeLayout = new QHBoxLayout(volumeSliderMenu);
-    QSlider *volumeSlider = new QSlider(volumeSliderMenu);
+    MusicClickedSlider *volumeSlider = new MusicClickedSlider(Qt::Vertical, volumeSliderMenu);
     volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle03);
     volumeSlider->setFixedHeight(100);
     volumeSlider->setRange(0, 100);

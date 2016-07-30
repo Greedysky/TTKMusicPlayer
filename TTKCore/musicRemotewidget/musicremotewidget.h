@@ -18,6 +18,8 @@
 #   include <QtGui>
 #endif
 
+class MusicClickedSlider;
+
 /*! @brief The class of the desktop remote widget base.
  * @author Greedysky <greedysky@163.com>
  */
@@ -95,7 +97,7 @@ protected:
     QPushButton *m_SettingButton;
     QWidget *m_mainWidget, *m_volumeWidget;
     QToolButton *m_volumeButton;
-    QSlider *m_volumeSlider;
+    MusicClickedSlider *m_volumeSlider;
 
 };
 

@@ -9,14 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QSlider>
 #include <QLabel>
 #include "musicglobaldefine.h"
+#include "musicclickedslider.h"
 
 /*! @brief The class of the slider that can show such as tooltip.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public QSlider
+class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public MusicClickedSlider
 {
     Q_OBJECT
 public:
@@ -60,14 +60,11 @@ private Q_SLOTS:
     /*!
      * Slider start to move or stop to move just.
      */
-    void sliderReleasedChanged();
-    /*!
-     * Slider stop to move just.
-     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     /*!

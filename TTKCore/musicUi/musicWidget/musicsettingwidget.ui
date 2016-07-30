@@ -1172,7 +1172,7 @@ font-weight:bold;</string>
       <string>透明度</string>
      </property>
     </widget>
-    <widget class="QSlider" name="transparentSlider">
+    <widget class="MusicClickedSlider" name="transparentSlider">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -1436,7 +1436,7 @@ font-weight:bold;</string>
       <string>透明度</string>
      </property>
     </widget>
-    <widget class="QSlider" name="DtransparentSlider">
+    <widget class="MusicClickedSlider" name="DtransparentSlider">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -2176,6 +2176,11 @@ color:rgb(80,80,80);</string>
   <zorder>line_M</zorder>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
   <customwidget>
    <class>MusicPreviewLabel</class>
    <extends>QLabel</extends>

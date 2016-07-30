@@ -120,3 +120,9 @@ SOURCES += \
     $$PWD/musicmorefunctionspopwidget.cpp
 
 }
+
+HEADERS += \
+    $$PWD/core/musicclickedslider.h
+
+SOURCES += \
+    $$PWD/core/musicclickedslider.cpp

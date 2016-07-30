@@ -2,9 +2,9 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musickugouuiobject.h"
+#include "musicclickedslider.h"
 
 #include <QLabel>
-#include <QSlider>
 #include <QBoxLayout>
 #include <QToolButton>
 #include <QWidgetAction>
@@ -163,7 +163,7 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeButton->setFixedSize(16, 16);
 
-    m_volumeSlider = new QSlider(Qt::Horizontal, widgetActionContainer);
+    m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, widgetActionContainer);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
 

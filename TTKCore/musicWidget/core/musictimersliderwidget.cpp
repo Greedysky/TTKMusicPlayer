@@ -14,6 +14,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     m_label->hide();
 
     m_slider = new MusicMovingLabelSlider(Qt::Horizontal, this);
+    m_slider->setValue(0);
     m_slider->setGeometry(5, m_label->width()/2, width() - m_label->width()/2, 10);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));

@@ -6,6 +6,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musickugouuiobject.h"
+#include "musicclickedslider.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
@@ -61,12 +62,15 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     QHBoxLayout *volumeLayout = new QHBoxLayout(m_volumeWidget);
     volumeLayout->setContentsMargins(0, 0, 0, 0);
     volumeLayout->setSpacing(1);
+
     m_volumeButton = new QToolButton(m_volumeWidget);
     m_volumeButton->setFixedSize(QSize(16, 16));
-    m_volumeSlider = new QSlider(Qt::Horizontal, m_volumeWidget);
+
+    m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_volumeSlider->setFixedWidth(45);
+
     volumeLayout->addWidget(m_volumeButton);
     volumeLayout->addWidget(m_volumeSlider);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));

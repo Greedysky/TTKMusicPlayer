@@ -68,7 +68,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QSlider" name="volumeSlider">
+  <widget class="MusicClickedSlider" name="volumeSlider">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -208,6 +208,11 @@
   <zorder>titleWidget</zorder>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
   <customwidget>
    <class>MusicMarqueeWidget</class>
    <extends>QWidget</extends>

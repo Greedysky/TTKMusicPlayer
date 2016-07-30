@@ -2,9 +2,9 @@
 #include "musickugouuiobject.h"
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
+#include "musicclickedslider.h"
 
 #include <QTimer>
-#include <QSlider>
 #include <QHBoxLayout>
 
 MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
@@ -92,7 +92,7 @@ void MusicVolumePopWidget::initWidget()
     layout->setContentsMargins(0, 9, 0, 9);
     layout->setSpacing(0);
 
-    m_volumeSlider = new QSlider(Qt::Vertical, this);
+    m_volumeSlider = new MusicClickedSlider(Qt::Vertical, this);
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle02);
