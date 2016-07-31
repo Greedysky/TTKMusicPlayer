@@ -207,13 +207,18 @@ void MusicSongsListPlayWidget::setItemRename()
     m_renameLine->show();
 }
 
+void MusicSongsListPlayWidget::deleteRenameItem()
+{
+    delete m_renameLine;
+    m_renameLine = nullptr;
+}
+
 void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
     m_songNameLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 180));
     m_songNameLabel->setToolTip(name);
     emit renameFinished(name);
-    delete m_renameLine;
-    m_renameLine = nullptr;
+    QTimer::singleShot(MT_MS, this, SLOT(deleteRenameItem()));
 }
 
 void MusicSongsListPlayWidget::showMVButtonClicked()

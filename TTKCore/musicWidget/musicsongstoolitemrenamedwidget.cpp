@@ -9,6 +9,7 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(
     setText(originText);
     setStyleSheet(MusicUIObject::MLineEditStyle01);
     setFocus(Qt::MouseFocusReason);
+    setFocusPolicy(Qt::ClickFocus);
     connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
 }
 
@@ -21,6 +22,7 @@ void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *event)
 {
     QLineEdit::focusOutEvent(event);
     emit renameFinished(text());
+    close();
 }
 
 void MusicSongsToolItemRenamedWidget::contextMenuEvent(QContextMenuEvent *)
