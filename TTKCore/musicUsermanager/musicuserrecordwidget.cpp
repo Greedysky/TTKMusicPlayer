@@ -68,6 +68,7 @@ void MusicUserRecordWidget::initTabF()
     ui->userIDLabel_F->setText(uid);
 
     ui->nicknameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->birthDateEdit_F->setStyleSheet(MusicUIObject::MDateEditStyle01);
 
     QString string(m_userModel->getUserSex(uid));
     ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);

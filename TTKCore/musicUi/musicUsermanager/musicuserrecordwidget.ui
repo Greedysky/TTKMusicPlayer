@@ -310,9 +310,6 @@ QTabBar::tab:selected {
         <height>22</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QDateEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QDateEdit::hover{ border: 1px solid #AAAAFF;}</string>
-      </property>
      </widget>
      <widget class="QComboBox" name="cityComboBox_F">
       <property name="geometry">

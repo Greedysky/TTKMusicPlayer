@@ -267,6 +267,7 @@ void MusicSettingWidget::initDownloadWidget()
     ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
+    ui->downloadSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
     ui->downloadSpinBox->setRange(1024, 5*1024);
     ui->downloadDirEdit->setText(MUSIC_DIR_FULL);
     ui->downloadLrcDirEdit->setText(LRC_DIR_FULL);

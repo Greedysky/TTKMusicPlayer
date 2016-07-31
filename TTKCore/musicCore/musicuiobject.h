@@ -94,7 +94,7 @@ namespace MusicUIObject
             QToolButton::hover{ border:1px solid #000000;}";
             
     const QString MToolButtonStyle03 = MToolButtonStyle01 + " \
-            QToolButton::hover{ background-color:rgba(255,255,255,20)}";
+            QToolButton::hover{ background-color:rgba(255, 255, 255, 20)}";
 
     const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
             QToolButton::menu-indicator{ image:None;}";
@@ -165,7 +165,7 @@ namespace MusicUIObject
     const QString MRadioButtonStyle01 = " \
             QRadioButton{ background-color:transparent;} \
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton_unchecked);} \
-            QRadioButton::checked { color:rgb(230,115,0);} \
+            QRadioButton::checked { color:rgb(230, 115, 0);} \
             QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked);}";
 
 
@@ -174,11 +174,11 @@ namespace MusicUIObject
     const QString MCheckBoxStyle01 = " \
             QCheckBox{ background-color:transparent;} \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked);} \
-            QCheckBox::checked{ color:rgb(230,115,0);} \
+            QCheckBox::checked{ color:rgb(230, 115, 0);} \
             QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked);}";
            
     const QString MCheckBoxStyle02 = MCheckBoxStyle01 + " \
-            QCheckBox::checked{ color:rgb(0,169,236);}";
+            QCheckBox::checked{ color:rgb(0, 169, 236);}";
 
 
 ///ScrollBar
@@ -196,7 +196,8 @@ namespace MusicUIObject
 //////////////////////////////////////////////////////
     const QString MLineEditStyle01 = " \
             QLineEdit{ font-size:12px; color:#666666; font-weight:normal; border:1px solid gray;} \
-            QLineEdit::hover{ border:1px solid rgb(22,154,243);}";
+            QLineEdit::hover{ border:1px solid rgb(22, 154, 243);} \
+            QLineEdit::disabled{ color:#BBBBBB;}";
 
     const QString MLineEditStyle02 = " \
             QLineEdit{ border-image:url(:/tiny/lb_transparent);}";
@@ -216,17 +217,17 @@ namespace MusicUIObject
             QMenu::right-arrow{ background: url(:/tiny/lb_arrow_up_normal);} \
             QMenu::item{ color:#666666; padding:6px 30px 6px 30px; border:1px solid transparent;} \
             QMenu::item:disabled{ color:#AAAAAA;} \
-            QMenu::item:selected{ color:white; background: rgb(22,154,243);} \
+            QMenu::item:selected{ color:white; background: rgb(22, 154, 243);} \
             QMenu::separator{ height:1px; background:#DDDDDD; margin-top:5px; margin-bottom:5px;}";
 
     const QString MMenuStyle02 = MMenuStyle01 + " \
             QMenu{ background:rgba(255, 255, 255, 235);}";
 
     const QString MMenuStyle03 = MMenuStyle01 + " \
-            QMenu{ border:none; background:rgba(0,0,0,210); border-radius:4px;} \
+            QMenu{ border:none; background:rgba(0, 0, 0, 210); border-radius:4px;} \
             QMenu::item{ color:#BBBBBB;} \
             QMenu::item:disabled{ color:#555555;} \
-            QMenu::item:selected{ background:rgba(0,0,0,200);} \
+            QMenu::item:selected{ background:rgba(0, 0, 0, 200);} \
             QMenu::separator{ background:#BBBBBB;}";
 
 
@@ -264,7 +265,7 @@ namespace MusicUIObject
     const QString MSliderStyle05 = " \
             QSlider::add-page:Horizontal{ background-color:rgb(87, 97, 106); height:4px;} \
             QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
-            y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255,255)); height:4px;} \
+            y2:0, stop:0 rgba(231, 80, 229, 255), stop:1 rgba(7, 208, 255, 255)); height:4px;} \
             QSlider::groove:Horizontal{ background:transparent;height:4px;} \
             QSlider::handle:Horizontal{ border-image:url(':/image/lb_slider'); \
             width:8px;height:6px; margin:-2px -3px -2px 0px;}";
@@ -282,7 +283,7 @@ namespace MusicUIObject
 //////////////////////////////////////////////////////
     const QString MComboBoxStyle01 = " \
             QComboBox{ border: 1px solid gray;} \
-            QComboBox::hover{ border: 1px solid rgb(22,154,243);} \
+            QComboBox::hover{ border: 1px solid rgb(22, 154, 243);} \
             QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left-width:1px; \
             border-left-color:darkgray; border-left-style:solid;} \
@@ -292,7 +293,7 @@ namespace MusicUIObject
 ///TableWidget
 //////////////////////////////////////////////////////
     const QString MTableWidgetStyle01 = " \
-            QTableWidget{ selection-background-color:rgba(20,20,20,40);}";
+            QTableWidget{ selection-background-color:rgba(20, 20, 20, 40);}";
 
     const QString MTableWidgetStyle02 = " \
             QTableWidget{ background:rgba(0, 0, 0, 255);}";
@@ -301,14 +302,35 @@ namespace MusicUIObject
 ///TextEdit
 //////////////////////////////////////////////////////
     const QString MTextEditStyle01 = " \
-            QTextEdit{ border: 1px solid gray;} \
-            QTextEdit::hover{ border: 1px solid #AAAAFF;}";
+            QTextEdit{ border:1px solid gray; color:#666666;} \
+            QTextEdit::hover{ border:1px solid rgb(22, 154, 243);} \
+            QTextEdit::disabled{ color:#BBBBBB;}";
 
 
 ///Widget
 //////////////////////////////////////////////////////
     const QString MWidgetStyle01 = " \
-            QWidget{ background:rgba(255,255,255,50); color:white; font-weight:bold;}";
+            QWidget{ background:rgba(255, 255, 255, 50); color:white; font-weight:bold;}";
+
+
+///DateEdit
+//////////////////////////////////////////////////////
+    const QString MDateEditStyle01 = " \
+            QDateEdit{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray;} \
+            QDateEdit::hover{ border:1px solid rgb(22, 154, 243);} \
+            QDateEdit::up-button{ image:url(:/usermanager/btn_up_arrow);} \
+            QDateEdit::down-button{ image:url(:/usermanager/btn_down_arrow);} \
+            QDateEdit::disabled{ color:#BBBBBB;}";
+
+
+///SpinBox
+//////////////////////////////////////////////////////
+    const QString MSpinBoxStyle01 = " \
+            QSpinBox{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray;} \
+            QSpinBoxt::hover{ border:1px solid rgb(22, 154, 243);} \
+            QSpinBox::up-button{ image:url(:/usermanager/btn_up_arrow);} \
+            QSpinBox::down-button{ image:url(:/usermanager/btn_down_arrow);} \
+            QSpinBox::disabled{ color:#BBBBBB;}";
 
 
 ///ProgressBar
