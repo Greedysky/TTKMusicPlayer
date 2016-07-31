@@ -28,11 +28,16 @@ public:
     /*!
      * Get class object name.
      */
+
+    void setEffectOnResize(bool on) { m_effectOnResize = on; }
+    /*!
+     * Set effect on resize.
+     */
     void setText(const QString &newText);
     /*!
      * Set marquee text.
      */
-    inline QString text() const { return m_myText; }
+    inline QString text() const { return m_myText.trimmed(); }
     /*!
      * Get marquee text.
      */
@@ -46,14 +51,15 @@ protected:
     virtual void showEvent(QShowEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;
     virtual void timerEvent(QTimerEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
 
 private:
     QString m_myText;
-    int m_offset;
-    int m_myTimerId;
+    int m_offset,m_myTimerId;
+    bool m_effectOnResize;
 
 };
 

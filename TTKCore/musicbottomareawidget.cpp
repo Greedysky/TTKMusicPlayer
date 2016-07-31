@@ -34,6 +34,7 @@ QString MusicBottomAreaWidget::getClassName()
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    ui->showCurrentSong->setEffectOnResize(true);
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 }
 
