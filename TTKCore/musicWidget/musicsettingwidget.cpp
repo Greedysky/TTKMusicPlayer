@@ -245,6 +245,9 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initDownloadWidget()
 {
+    ui->downloadDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->downloadLrcDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+
     ui->downloadDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -370,6 +373,11 @@ void MusicSettingWidget::initSoundEffectWidget()
 
 void MusicSettingWidget::initNetworkWidget()
 {
+    ui->proxyIpEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->proxyPortEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->proxyPwdEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+
     ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
     ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);

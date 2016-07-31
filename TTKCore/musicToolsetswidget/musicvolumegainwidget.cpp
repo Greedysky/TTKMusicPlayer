@@ -89,6 +89,7 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     ui->applyButton->setToolTip(tr("apply"));
     ui->applyButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    ui->volumeLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->volumeLineEdit->setValidator(new QRegExpValidator(QRegExp("-?[0-9]+$"), this));
 
     m_currentIndex = -1;

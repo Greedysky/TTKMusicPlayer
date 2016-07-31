@@ -36,8 +36,8 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     MusicUtils::UWidget::setTransparent(this, 0);
 #ifndef MUSIC_GREATER_NEW
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MLineEditStyle02 + \
-                  "QTableWidget{background:rgba(0, 0, 0, 255)}");
+                  MusicUIObject::MLineEditStyle01 + \
+                  MusicUIObject::MTableWidgetStyle02);
 #endif
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));

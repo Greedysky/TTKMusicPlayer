@@ -50,6 +50,9 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     ui->checkBox_4->setCursor(QCursor(Qt::PointingHandCursor));
     ui->checkBox_5->setCursor(QCursor(Qt::PointingHandCursor));
 
+    ui->progress->setStyleSheet(MusicUIObject::MProgressBar02);
+    ui->horizontalSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+
     connect(&m_timer, SIGNAL(timeout()), SLOT(onTimerout()));
     ui->stopButton->setEnabled(false);
     ui->playButton->setEnabled(false);

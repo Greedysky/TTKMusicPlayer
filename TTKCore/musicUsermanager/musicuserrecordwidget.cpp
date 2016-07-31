@@ -67,6 +67,8 @@ void MusicUserRecordWidget::initTabF()
     ui->nicknameEdit->setText(m_userModel->getUserName(uid));
     ui->userIDLabel_F->setText(uid);
 
+    ui->nicknameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+
     QString string(m_userModel->getUserSex(uid));
     ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->femaleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
@@ -105,6 +107,7 @@ void MusicUserRecordWidget::initTabS()
 
 void MusicUserRecordWidget::initTabT()
 {
+    ui->tab_3->setStyleSheet(MusicUIObject::MLineEditStyle01 + "QWidget{ color:#666666;}");
     ui->labelRighT1->hide();
     ui->labelRighT2->hide();
     ui->labelRighT3->hide();

@@ -52,8 +52,8 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->switchButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->switchButton, SIGNAL(clicked()), SLOT(switchDiffDevice()));
 
-    ui->lineWIFIEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
-    ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
+    ui->lineWIFIEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle04);
     connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);

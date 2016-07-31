@@ -14,7 +14,7 @@
    <string>歌曲信息</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLineEdit{font-size:12px;color:#BFBFBF; font-weight:normal;border: 1px solid gray;}QLineEdit::hover{ border: 1px solid #AAAAFF;}</string>
+   <string notr="true"/>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

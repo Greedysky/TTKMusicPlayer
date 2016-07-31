@@ -53,6 +53,8 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    setStyleSheet(MusicUIObject::MLineEditStyle01);
+
     ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));

@@ -24,6 +24,9 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     addThemeListWidgetItem();
 
+    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
+    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle10);
+
     connect(ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicBgTransparentChanged(int)));
     connect(ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
