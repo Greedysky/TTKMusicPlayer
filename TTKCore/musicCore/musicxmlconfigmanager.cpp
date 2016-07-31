@@ -1,6 +1,8 @@
 #include "musicxmlconfigmanager.h"
 #include "musicsettingmanager.h"
 
+#include <QRect>
+
 MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
@@ -63,13 +65,15 @@ void MusicXMLConfigManager::writeXMLConfig()
 {
     int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
+    int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
 
     ///////////////////////////////////////////////////////////////////////////
+    QPoint widgetPositionChoiced = M_SETTING_PTR->value(MusicSettingManager::WidgetPosition).toPoint();
+    QSize widgetSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize();
     int autoPlayChoiced = M_SETTING_PTR->value(MusicSettingManager::AutoPlayChoiced).toInt();
-    int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     int languageIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     int closeEventChoiced = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toInt();
-    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     int closeNetWorkChoiced = M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt();
     int fileAssociationChoiced = M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt();
 
@@ -153,14 +157,16 @@ void MusicXMLConfigManager::writeXMLConfig()
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
+    writeDomElement(music, "enhancedMusic", "value", enhancedMusicChoiced);
+    writeDomElementText(music, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+                        QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(settings, "enhancedMusic", "value", enhancedMusicChoiced);
+    writeDomElement(settings, "geometry", "value", QString("%1,%2,%3,%4").arg(widgetPositionChoiced.x())
+                    .arg(widgetPositionChoiced.y()).arg(widgetSizeChoiced.width()).arg(widgetSizeChoiced.height()));
     writeDomElement(settings, "language", "value", languageIndexChoiced);
     writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
     writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
-    writeDomElementText(settings, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
-                        QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
     writeDomElement(settings, "closeNetwork", "value", closeNetWorkChoiced);
     writeDomElement(settings, "fileAssociation", "value", fileAssociationChoiced);
 
@@ -233,22 +239,6 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out, 4);
 }
 
-MusicSongs MusicXMLConfigManager::readMusicFilePath(const QDomNode &node) const
-{
-    QDomNodeList nodelist = node.childNodes();
-
-    MusicSongs songs;
-    for(int i=0; i<nodelist.count(); i++)
-    {
-        QDomElement element = nodelist.at(i).toElement();
-        songs << MusicSong(element.text(),
-                           element.attribute("playCount").toInt(),
-                           element.attribute("time"),
-                           element.attribute("name"));
-    }
-    return songs;
-}
-
 void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
@@ -261,14 +251,13 @@ void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
     }
 }
 
-QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
+QRect MusicXMLConfigManager::readWindowGeometry() const
 {
-    QStringList rgb = readXmlAttributeByTagNameValue(value).split(',');
-    if(rgb.count() != 3)
-    {
-        return QColor();
-    }
-    return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
+    QDomNodeList nodelist = m_ddom->elementsByTagName("geometry");
+    QDomElement element = nodelist.at(0).toElement();
+
+    QStringList slists = element.attribute("value").split(",");
+    return QRect(slists[0].toInt(), slists[1].toInt(), slists[2].toInt(), slists[3].toInt());
 }
 
 QPoint MusicXMLConfigManager::readShowDLrcGeometry() const
@@ -334,4 +323,30 @@ void MusicXMLConfigManager::readOtherLoadConfig() const
     M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced,
                      readXmlAttributeByTagNameValue("fileAssociation"));
 
+}
+
+MusicSongs MusicXMLConfigManager::readMusicFilePath(const QDomNode &node) const
+{
+    QDomNodeList nodelist = node.childNodes();
+
+    MusicSongs songs;
+    for(int i=0; i<nodelist.count(); i++)
+    {
+        QDomElement element = nodelist.at(i).toElement();
+        songs << MusicSong(element.text(),
+                           element.attribute("playCount").toInt(),
+                           element.attribute("time"),
+                           element.attribute("name"));
+    }
+    return songs;
+}
+
+QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
+{
+    QStringList rgb = readXmlAttributeByTagNameValue(value).split(',');
+    if(rgb.count() != 3)
+    {
+        return QColor();
+    }
+    return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
 }

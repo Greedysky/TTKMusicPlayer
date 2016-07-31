@@ -1,4 +1,5 @@
 #include "musicabstractmoveresizewidget.h"
+#include "musicsettingmanager.h"
 
 #include <QMouseEvent>
 #include <QApplication>
@@ -74,9 +75,10 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
         }
         else
         {
+            QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
             if(Direction_Left == m_direction)
             {
-                if(width() - xpos <= WINDOW_WIDTH_MIN)
+                if(width() - xpos <= WINDOW_WIDTH_MIN || width() - xpos >= size.width())
                 {
                     return;
                 }
@@ -85,7 +87,7 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
             }
             else if(Direction_Top == m_direction)
             {
-                if(height() - ypos <= WINDOW_HEIGHT_MIN)
+                if(height() - ypos <= WINDOW_HEIGHT_MIN || height() - ypos >= size.height())
                 {
                     return;
                 }
@@ -94,15 +96,24 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
             }
             else if(Direction_Right == m_direction)
             {
-                resize(width() +  xpos, height());
+                if(width() + xpos >= size.width())
+                {
+                    return;
+                }
+                resize(width() + xpos, height());
             }
             else if(Direction_Bottom == m_direction)
             {
+                if(height() + ypos >= size.height())
+                {
+                    return;
+                }
                 resize(width(), height() + ypos);
             }
             else if(Direction_LeftTop == m_direction)
             {
-                if(width() - xpos <= WINDOW_WIDTH_MIN || height() - ypos <= WINDOW_HEIGHT_MIN)
+                if(width() - xpos <= WINDOW_WIDTH_MIN || height() - ypos <= WINDOW_HEIGHT_MIN ||
+                   width() - xpos >= size.width() || height() - ypos >= size.height())
                 {
                     return;
                 }
@@ -111,7 +122,8 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
             }
             else if(Direction_LeftBottom == m_direction)
             {
-                if(width() - xpos <= WINDOW_WIDTH_MIN)
+                if(width() - xpos <= WINDOW_WIDTH_MIN || width() - xpos >= size.width() ||
+                   height() + ypos >= size.height())
                 {
                     return;
                 }
@@ -120,7 +132,8 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
             }
             else if(Direction_RightTop == m_direction)
             {
-                if(height() - ypos <= WINDOW_HEIGHT_MIN)
+                if(height() - ypos <= WINDOW_HEIGHT_MIN || width() + xpos >= size.width() ||
+                   height() - ypos >= size.height())
                 {
                     return;
                 }
@@ -129,6 +142,10 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
             }
             else if(Direction_RightBottom == m_direction)
             {
+                if(width() + xpos >= size.width() || height() + ypos >= size.height())
+                {
+                    return;
+                }
                 resize(width() +  xpos, height() + ypos);
             }
         }

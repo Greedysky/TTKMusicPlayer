@@ -322,6 +322,8 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, xml.readLanguageIndex());
 
+    ///init or reset the window
+    setGeometry( xml.readWindowGeometry() );
 }
 
 void MusicApplication::writeXMLConfigToText()
@@ -329,6 +331,7 @@ void MusicApplication::writeXMLConfigToText()
     MusicXMLConfigManager xml;
     QStringList lastPlayIndexChoiced;
 
+    M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, ui->musicSound->value());

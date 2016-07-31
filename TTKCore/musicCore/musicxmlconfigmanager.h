@@ -59,6 +59,11 @@ public:
     /*!
      * Read Music Play Volume Config.
      */
+    inline int readEnhancedMusicConfig() const
+    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
+    /*!
+     * Read Enhanced Music Config.
+     */
     inline int readSystemCloseConfig() const
     { return readXmlAttributeByTagNameValue("closeEvent").toInt(); }
     /*!
@@ -73,11 +78,6 @@ public:
     { return readXmlAttributeByTagNameValue("autoPlay").toInt(); }
     /*!
      * Read System Auto Play Config.
-     */
-    inline int readEnhancedMusicConfig() const
-    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
-    /*!
-     * Read Enhanced Music Config.
      */
     inline QString readBackgroundTheme() const
     { return readXmlAttributeByTagNameValue("bgTheme"); }
@@ -214,6 +214,10 @@ public:
     void readSystemLastPlayIndexConfig(QStringList &key) const;
     /*!
      * Read System Last Play Index Config.
+     */
+    QRect readWindowGeometry() const;
+    /*!
+     * Read window widget Geometry Config.
      */
     QPoint readShowDLrcGeometry() const;
     /*!

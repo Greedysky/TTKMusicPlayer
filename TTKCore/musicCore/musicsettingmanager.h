@@ -27,6 +27,7 @@ public:
     {
         Null = -1,                      ///*No Parameter*/
         ScreenSize,                     ///*Screen Size Parameter*/
+        WidgetPosition,                 ///*Widget Position Parameter*/
         WidgetSize,                     ///*Widget Size Parameter*/
 
         PlayModeChoiced,                ///*Play Mode Parameter*/

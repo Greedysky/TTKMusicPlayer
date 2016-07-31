@@ -61,7 +61,7 @@ QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName)
 }
 
 QString MusicAbstractXml::readXmlAttributeByTagName(const QString &tagName,
-                                                       const QString &attrName) const
+                                                    const QString &attrName) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName(tagName);
     return nodelist.at(0).toElement().attribute(attrName);
