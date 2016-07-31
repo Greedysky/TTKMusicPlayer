@@ -19,8 +19,8 @@ QString MusicSongsToolItemRenamedWidget::getClassName()
 
 void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *event)
 {
-    emit renameFinished(text());
     QLineEdit::focusOutEvent(event);
+    emit renameFinished(text());
 }
 
 void MusicSongsToolItemRenamedWidget::contextMenuEvent(QContextMenuEvent *)
