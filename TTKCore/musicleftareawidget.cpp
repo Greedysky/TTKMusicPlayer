@@ -151,7 +151,7 @@ void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(m_ui->showCurrentSong->text().trimmed(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicDownLoadQueryThreadAbstract::MusicQuery);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongFinished()

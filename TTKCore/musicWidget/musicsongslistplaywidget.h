@@ -120,6 +120,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void deleteRenameItem();
+    /*!
+     * Delete rename item.
+     */
     void setChangItemName(const QString &name);
     /*!
      * Rename item artist label is finised.
@@ -143,7 +147,9 @@ public Q_SLOTS:
 
 protected:
     void createMoreMenu(QMenu *menu);
-
+    /*!
+     * Create more menu information.
+     */
     bool showArtPicture(const QString &name) const;
     /*!
      * Show artist small picture, if no exsit there is default pic.

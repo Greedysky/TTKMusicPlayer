@@ -157,7 +157,7 @@ void KugouWindow::createKugouSongWidget()
     kugouSongIndexChanged(0);
 #else
     QLabel *pix = new QLabel(this);
-    pix->setPixmap(QPixmap(":/image/lb_no_webkit"));
+    pix->setPixmap(QPixmap(":/image/lb_no_webkit_song"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);
@@ -207,7 +207,7 @@ void KugouWindow::createKugouRadioWidget()
     kugouRadioIndexChanged(0);
 #else
     QLabel *pix = new QLabel(this);
-    pix->setPixmap(QPixmap(":/image/lb_no_webkit"));
+    pix->setPixmap(QPixmap(":/image/lb_no_webkit_radio"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);
@@ -225,7 +225,7 @@ void KugouWindow::createKugouListWidget()
     layout->addWidget(m_webView = view);
 #else
     QLabel *pix = new QLabel(this);
-    pix->setPixmap(QPixmap(":/image/lb_no_webkit"));
+    pix->setPixmap(QPixmap(":/image/lb_no_webkit_list"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);
@@ -275,7 +275,7 @@ void KugouWindow::createKugouMVWidget()
     kugouMVIndexChanged(0);
 #else
     QLabel *pix = new QLabel(this);
-    pix->setPixmap(QPixmap(":/image/lb_no_webkit"));
+    pix->setPixmap(QPixmap(":/image/lb_no_webkit_mv"));
     layout->addWidget(pix);
 #endif
     setLayout(layout);

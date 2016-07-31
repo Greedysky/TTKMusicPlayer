@@ -1,11 +1,15 @@
 #include "musicmarqueewidget.h"
-#include <QtGui>
+#include "musicsettingmanager.h"
+
+#include <QPainter>
+#include <QDebug>
 
 MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_offset = 0;
     m_myTimerId = 0;
+    m_effectOnResize = false;
 }
 
 QString MusicMarqueeWidget::getClassName()
@@ -15,15 +19,24 @@ QString MusicMarqueeWidget::getClassName()
 
 void MusicMarqueeWidget::setText(const QString &newText)
 {
-    int length = fontMetrics().width(newText) >= width() ? 45 : 25;
+    int w = 0;
+    if(m_effectOnResize)
+    {
+        w = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        w = (w - WINDOW_WIDTH_MIN)/10;
+    }
+
+    int length = fontMetrics().width( newText );
+    length = (length >= width()) ? (45 + w) : (25 + w);
     m_myText = newText.leftJustified(length, ' ');
+
     update();
     updateGeometry();
 }
 
 QSize MusicMarqueeWidget::sizeHint() const
 {
-    return fontMetrics().size(0, text());
+    return fontMetrics().size(0, m_myText);
 }
 
 void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
@@ -35,7 +48,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     f.setBold(false);
     painter.setFont(f);
 
-    int textWidth = fontMetrics().width(text());
+    int textWidth = fontMetrics().width(m_myText);
     if(textWidth < 1)
     {
         return;
@@ -44,7 +57,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     while(x < width())
     {
         painter.drawText(x, 0, textWidth, height(),
-                         Qt::AlignLeft | Qt::AlignVCenter, text());
+                         Qt::AlignLeft | Qt::AlignVCenter, m_myText);
         x += textWidth;
     }
     painter.end();
@@ -61,7 +74,7 @@ void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
     if(event->timerId() == m_myTimerId)
     {
         ++m_offset;
-        if (m_offset >= fontMetrics().width(text()))
+        if (m_offset >= fontMetrics().width(m_myText))
         {
             m_offset = 0;
         }
@@ -78,4 +91,10 @@ void MusicMarqueeWidget::hideEvent(QHideEvent *event)
     QWidget::hideEvent(event);
     killTimer(m_myTimerId);
     m_myTimerId = 0;
+}
+
+void MusicMarqueeWidget::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    setText( text() );
 }
