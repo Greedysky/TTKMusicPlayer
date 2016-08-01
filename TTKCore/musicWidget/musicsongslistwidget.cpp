@@ -102,9 +102,93 @@ void MusicSongsListWidget::clearAllItems()
     setColumnCount(3);
 }
 
+void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
+{
+    MusicAbstractTableWidget::mousePressEvent(event);
+    //just close the rename edittext;
+    if(m_renameActived)
+    {
+        closePersistentEditor(m_renameItem);
+    }
+    //it may be a bug in closePersistentEditor,so we select
+    //the two if function to deal with
+    if(m_renameActived)
+    {
+        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
+        m_renameItem->setText(MusicUtils::UWidget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
+        m_renameActived = false;
+        m_renameItem = nullptr;
+    }
+
+    if( event->button() == Qt::LeftButton )//Press the left key
+    {
+        m_leftButtonPressed = true;
+        m_dragStartIndex = currentRow();
+        m_dragStartPoint = event->pos();
+    }
+}
+
+void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    MusicAbstractTableWidget::mouseMoveEvent(event);
+    if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
+    {
+        m_mouseMoved = true;
+        setCursor(QCursor(Qt::CrossCursor));
+        setSelectionMode(QAbstractItemView::SingleSelection);
+    }
+}
+
+void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    MusicAbstractTableWidget::mouseReleaseEvent(event);
+    startToDrag();
+
+    m_leftButtonPressed = false;
+    m_mouseMoved = false;
+    setCursor(QCursor(Qt::ArrowCursor));
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+}
+
+void MusicSongsListWidget::leaveEvent(QEvent *event)
+{
+    MusicAbstractTableWidget::leaveEvent(event);
+    listCellEntered(-1, -1);
+    delete m_musicSongsInfoWidget;
+    m_musicSongsInfoWidget = nullptr;
+
+    if(m_renameActived && m_renameItem)
+    {
+        closePersistentEditor(m_renameItem);
+        m_renameActived = false;
+        m_renameItem = nullptr;
+    }
+}
+
+void MusicSongsListWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget *w = viewport();
+    QPainter painter(w);
+    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, m_transparent));
+    painter.end();
+
+    MusicAbstractTableWidget::paintEvent(event);
+}
+
+void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
+{
+    MusicAbstractTableWidget::wheelEvent(event);
+    if(m_renameActived && m_renameItem)
+    {
+        closePersistentEditor(m_renameItem);
+        m_renameActived = false;
+        m_renameItem = nullptr;
+    }
+}
+
 void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    QTableWidget::contextMenuEvent(event);
+    MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 
@@ -166,71 +250,6 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
     //Menu location for the current mouse position
     event->accept();
-}
-
-void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
-{
-    QTableWidget::mousePressEvent(event);
-    //just close the rename edittext;
-    if(m_renameActived)
-    {
-        closePersistentEditor(m_renameItem);
-    }
-    //it may be a bug in closePersistentEditor,so we select
-    //the two if function to deal with
-    if(m_renameActived)
-    {
-        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::UWidget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
-        m_renameActived = false;
-    }
-
-    if( event->button() == Qt::LeftButton )//Press the left key
-    {
-        m_leftButtonPressed = true;
-        m_dragStartIndex = currentRow();
-        m_dragStartPoint = event->pos();
-    }
-}
-
-void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    QTableWidget::mouseMoveEvent(event);
-    if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
-    {
-        m_mouseMoved = true;
-        setCursor(QCursor(Qt::CrossCursor));
-        setSelectionMode(QAbstractItemView::SingleSelection);
-    }
-}
-
-void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
-{
-    QTableWidget::mouseReleaseEvent(event);
-    startToDrag();
-
-    m_leftButtonPressed = false;
-    m_mouseMoved = false;
-    setCursor(QCursor(Qt::ArrowCursor));
-    setSelectionMode(QAbstractItemView::ExtendedSelection);
-}
-
-void MusicSongsListWidget::leaveEvent(QEvent *event)
-{
-    QTableWidget::leaveEvent(event);
-    listCellEntered(-1, -1);
-    delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = nullptr;
-}
-
-void MusicSongsListWidget::paintEvent(QPaintEvent *event)
-{
-    QWidget *w = viewport();
-    QPainter painter(w);
-    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, m_transparent));
-    painter.end();
-
-    MusicAbstractTableWidget::paintEvent(event);
 }
 
 void MusicSongsListWidget::startToDrag()
