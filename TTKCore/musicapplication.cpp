@@ -201,15 +201,14 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 void MusicApplication::readXMLConfigFromText()
 {
     MusicXMLConfigManager xml;
-    int value;
-    if(!xml.readMusicXMLConfig())//open music file
-    {
-        return;
-    }
-    //////////////////////////////////////////////////////////////
+    int value = -1;
+
     //Path configuration song
     MusicSongItems songs;
-    xml.readMusicSongsConfig(songs);
+    if(xml.readMusicXMLConfig())//open music file
+    {
+        xml.readMusicSongsConfig(songs);
+    }
     m_musicSongTree->setMusicLists(songs);
     if(songs.count() > 0)
     {
@@ -220,6 +219,7 @@ void MusicApplication::readXMLConfigFromText()
     {
         return;
     }
+
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
     xml.readOtherLoadConfig();
@@ -329,13 +329,12 @@ void MusicApplication::readXMLConfigFromText()
 void MusicApplication::writeXMLConfigToText()
 {
     MusicXMLConfigManager xml;
-    QStringList lastPlayIndexChoiced;
 
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, m_musicList->playbackMode());
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, ui->musicSound->value());
-    lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     if(lastPlayIndexChoiced.isEmpty())
     {
         lastPlayIndexChoiced << "0" << "0" << "-1";

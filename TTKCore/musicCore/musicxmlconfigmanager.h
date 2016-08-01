@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QPair>
 #include <QColor>
 #include "musicabstractxml.h"
 

@@ -217,8 +217,7 @@ void MusicXMLConfigManager::writeXMLConfig()
                                         .arg(DLrcBgColorChoiced.green()).arg(DLrcBgColorChoiced.blue()));
 
     writeDomElement(showDLrc, "lrcDLocked", "value", DLrcLockedChoiced);
-    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2").arg(DLrcGeometry.x())
-                                                                       .arg(DLrcGeometry.y()));
+    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y()));
 
     ///////////////////////////////////////////////
     writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
@@ -242,22 +241,41 @@ void MusicXMLConfigManager::writeXMLConfig()
 void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
+    if(nodelist.isEmpty())
+    {
+        key << "0" << "0" << "-1";
+        return;
+    }
+
     QDomElement element = nodelist.at(0).toElement();
-    key<<element.attribute("value")<<element.text().split(',');
-    Q_ASSERT(key.count() == 3);
+    key << element.attribute("value") << element.text().split(',');
     if(key.count() != 3)
     {
-        key.insert(0, "0");
+        key.clear();
+        key << "0" << "0" << "-1";
     }
 }
 
 QRect MusicXMLConfigManager::readWindowGeometry() const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("geometry");
-    QDomElement element = nodelist.at(0).toElement();
+    if(nodelist.isEmpty())
+    {
+        return QRect(0, 0, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    }
 
-    QStringList slists = element.attribute("value").split(",");
-    return QRect(slists[0].toInt(), slists[1].toInt(), slists[2].toInt(), slists[3].toInt());
+    QDomElement element = nodelist.at(0).toElement();
+    QStringList lists = element.attribute("value").split(",");
+    if(lists.count() == 4)
+    {
+        return QRect(lists[0].toInt() < 0 ? 0 : lists[0].toInt(),
+                     lists[1].toInt() < 0 ? 0 : lists[1].toInt(),
+                     lists[2].toInt(), lists[3].toInt());
+    }
+    else
+    {
+        return QRect(0, 0, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    }
 }
 
 QPoint MusicXMLConfigManager::readShowDLrcGeometry() const
@@ -348,5 +366,5 @@ QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
     {
         return QColor();
     }
-    return QColor(rgb[0].toInt(),rgb[1].toInt(),rgb[2].toInt());
+    return QColor(rgb[0].toInt(), rgb[1].toInt(), rgb[2].toInt());
 }
