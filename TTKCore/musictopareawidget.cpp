@@ -208,6 +208,22 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
     }
 }
 
+void MusicTopAreaWidget::musicBgThemeChangedByResize()
+{
+    if(m_ui->surfaceStackedWidget->currentIndex() == 1  &&
+       m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
+    {
+        m_pictureCarouselTimer.stop();
+        QString art_path = M_BACKGROUND_PTR->getArtPhotoPathByIndex();
+        !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
+        m_pictureCarouselTimer.start(5*MT_S2MS);
+    }
+    else
+    {
+        drawWindowBackgroundRect();
+    }
+}
+
 void MusicTopAreaWidget::musicPlayListTransparent(int index)
 {
     if(m_musicbgskin)

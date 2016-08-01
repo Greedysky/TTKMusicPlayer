@@ -36,6 +36,10 @@ public:
      * Remove current artist name.
      */
 
+    inline int getCurrentIndex() const { return m_currentIndex; }
+    /*!
+     * Get artist photo current index.
+     */
     inline int getArtPhotoCount() const { return m_photos.count(); }
     /*!
      * Get artist photo count.

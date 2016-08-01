@@ -119,11 +119,15 @@ public Q_SLOTS:
      */
     void musicBackgroundChanged();
     /*!
-     * Changed Current background skin.
+     * Changed current background skin.
      */
     void musicBgThemeDownloadFinished();
     /*!
      * Current background skin download is finished.
+     */
+    void musicBgThemeChangedByResize();
+    /*!
+     * Resize current background skin when geometry changed.
      */
     void musicPlayListTransparent(int index);
     /*!

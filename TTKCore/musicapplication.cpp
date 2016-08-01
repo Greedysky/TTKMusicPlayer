@@ -131,7 +131,7 @@ bool MusicApplication::winEvent(MSG *message, long *result)
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->musicBgThemeChangedByResize();
     m_bottomAreaWidget->resizeWindow();
     MusicAbstractMoveResizeWidget::resizeEvent(event);
 }
