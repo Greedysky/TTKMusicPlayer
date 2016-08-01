@@ -10,23 +10,42 @@
 #include <QDebug>
 #include <QStringList>
 
-QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager,
-                                       QObject *parent)
+class QNSimpleUploadDataPrivate : public TTKPrivate<QNSimpleUploadData>
+{
+public:
+    QNSimpleUploadDataPrivate();
+
+    QNetworkAccessManager *m_networkManager;
+
+};
+
+QNSimpleUploadDataPrivate::QNSimpleUploadDataPrivate()
+{
+
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {
-    m_networkManager = networkManager;
+    TTK_INIT_PRIVATE;
+    TTK_D(QNSimpleUploadData);
+    d->m_networkManager = networkManager;
 }
 
 void QNSimpleUploadData::uploadDataToServer(const QByteArray &data, const QString &bucket,
                                             const QString &key, const QString &name)
 {
+    TTK_D(QNSimpleUploadData);
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNPutPolicy policy(bucket);
     QString uploadToken = policy.makeUploadToken(&mac);
     QHttpMultiPart *multiPart = QNIOHelper::createPutDataMultiPart(uploadToken, data, key, name);
     QNetworkRequest request;
     request.setUrl(QUrl(QNConf::UPLOAD_HOST));
-    QNetworkReply *reply = m_networkManager->post(request, multiPart);
+    QNetworkReply *reply = d->m_networkManager->post(request, multiPart);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
                    SLOT(handleError(QNetworkReply::NetworkError)));

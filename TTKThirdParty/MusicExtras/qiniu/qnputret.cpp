@@ -8,14 +8,26 @@
 #   include <QtScript/QScriptValue>
 #endif
 
-QNPutRet::QNPutRet()
+class QNPutRetPrivate : public TTKPrivate<QNPutRet>
+{
+public:
+    QNPutRetPrivate();
+
+    QString m_hash, m_key, m_error;
+
+};
+
+QNPutRetPrivate::QNPutRetPrivate()
 {
 
 }
 
-QNPutRet::~QNPutRet()
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QNPutRet::QNPutRet()
 {
-
+    TTK_INIT_PRIVATE;
 }
 
 QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
@@ -37,20 +49,24 @@ QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
 
 QString QNPutRet::getHash() const
 {
-    return m_hash;
+    TTK_D(QNPutRet);
+    return d->m_hash;
 }
 
 void QNPutRet::setHash(const QString &value)
 {
-    m_hash = value;
+    TTK_D(QNPutRet);
+    d->m_hash = value;
 }
 
 QString QNPutRet::getKey() const
 {
-    return m_key;
+    TTK_D(QNPutRet);
+    return d->m_key;
 }
 
 void QNPutRet::setKey(const QString &value)
 {
-    m_key = value;
+    TTK_D(QNPutRet);
+    d->m_key = value;
 }

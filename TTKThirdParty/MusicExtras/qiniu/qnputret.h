@@ -10,13 +10,15 @@
    =================================================*/
 
 #include <QObject>
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class QNPutRetPrivate;
 
 class MUSIC_EXTRAS_EXPORT QNPutRet
 {
 public:
     QNPutRet();
-    ~QNPutRet();
 
     static QNPutRet* fromJSON(const QByteArray &json);
 
@@ -27,8 +29,7 @@ public:
     void setKey(const QString &value);
 
 private:
-    QString m_hash, m_key, m_error;
-    int code;
+    TTK_DECLARE_PRIVATE(QNPutRet)
 
 };
 

@@ -10,13 +10,15 @@
    =================================================*/
 
 #include <QNetworkRequest>
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class QNMacPrivate;
 
 class MUSIC_EXTRAS_EXPORT QNMac
 {
 public:
     QNMac(const QString &accessKey, const QByteArray &secretKey);
-    ~QNMac();
 
     QString sign(const QByteArray &data) const;
     QString signWithData(const QByteArray &data) const;
@@ -25,8 +27,7 @@ public:
     QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = 0) const;
 
 private:
-    QString m_accessKey;
-    QByteArray m_secretKey;
+    TTK_DECLARE_PRIVATE(QNMac)
 
 };
 

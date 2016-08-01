@@ -2,23 +2,36 @@
 
 #include <QMap>
 
-QNPutExtra::QNPutExtra()
+class QNPutExtraPrivate : public TTKPrivate<QNPutExtra>
+{
+public:
+    QNPutExtraPrivate();
+
+    void insert(const QString &key, const QString &value);
+    QString remove(const QString &key);
+
+    QMap<QString, QString> m_params;
+    QString m_mimeType;
+    qint32 m_crc32, m_checkCrc32;
+
+//    static const int NO_CRC32 = 0;
+//    static const int AUTO_CRC32 = 1;
+//    static const int WITH_CRC32 = 2;
+
+};
+
+QNPutExtraPrivate::QNPutExtraPrivate()
 {
     m_crc32 = -1;
     m_checkCrc32 = -1;
 }
 
-QNPutExtra::~QNPutExtra()
-{
-
-}
-
-void QNPutExtra::addExtraParam(const QString &key, const QString &value)
+void QNPutExtraPrivate::insert(const QString &key, const QString &value)
 {
     m_params.insert(key, value);
 }
 
-QString QNPutExtra::removeExtraParam(const QString &key)
+QString QNPutExtraPrivate::remove(const QString &key)
 {
     QString value;
     if(m_params.contains(key))
@@ -29,32 +42,58 @@ QString QNPutExtra::removeExtraParam(const QString &key)
     return value;
 }
 
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QNPutExtra::QNPutExtra()
+{
+    TTK_INIT_PRIVATE;
+}
+
+void QNPutExtra::addExtraParam(const QString &key, const QString &value)
+{
+    TTK_D(QNPutExtra);
+    d->insert(key, value);
+}
+
+QString QNPutExtra::removeExtraParam(const QString &key)
+{
+    TTK_D(QNPutExtra);
+    return d->remove(key);
+}
+
 QString QNPutExtra::getMimeType() const
 {
-    return m_mimeType;
+    TTK_D(QNPutExtra);
+    return d->m_mimeType;
 }
 
 void QNPutExtra::setMimeType(const QString &value)
 {
-    m_mimeType = value;
+    TTK_D(QNPutExtra);
+    d->m_mimeType = value;
 }
 
 qint32 QNPutExtra::getCrc32() const
 {
-    return m_crc32;
+    TTK_D(QNPutExtra);
+    return d->m_crc32;
 }
 
 void QNPutExtra::setCrc32(qint32 value)
 {
-    m_crc32 = value;
+    TTK_D(QNPutExtra);
+    d->m_crc32 = value;
 }
 
 qint32 QNPutExtra::getCheckCrc32() const
 {
-    return m_checkCrc32;
+    TTK_D(QNPutExtra);
+    return d->m_checkCrc32;
 }
 
 void QNPutExtra::setCheckCrc32(qint32 value)
 {
-    m_checkCrc32 = value;
+    TTK_D(QNPutExtra);
+    d->m_checkCrc32 = value;
 }

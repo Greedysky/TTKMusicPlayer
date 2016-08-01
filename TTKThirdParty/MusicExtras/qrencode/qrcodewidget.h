@@ -11,14 +11,17 @@
 
 #include <QWidget>
 #include "qrencode.h"
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class QRCodeQWidgetPrivate;
 
 class MUSIC_EXTRAS_EXPORT QRCodeQWidget : public QWidget
 {
     Q_OBJECT
 public:
     QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = 0);
-    
+
     static QString getClassName();
 
     void setMargin(const int margin);
@@ -53,14 +56,7 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
     
 private:
-    bool m_casesen;
-    int m_margin;
-    QString m_iconPath;
-    qreal m_percent;
-    QByteArray m_text;
-    QColor m_foreground, m_background;
-    QRencodeMode m_mode;
-    QRecLevel m_level;
+    TTK_DECLARE_PRIVATE(QRCodeQWidget)
 
 };
 

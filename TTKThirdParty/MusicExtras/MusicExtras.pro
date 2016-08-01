@@ -28,7 +28,8 @@ unix:VERSION += 2.3.2.0
 INCLUDEPATH += ../../
 HEADERS  += \
     musicextrasglobaldefine.h \
-    ../../musicglobal.h
+    ../../musicglobal.h \
+    ../../musicprivate.h
 
 RESOURCES += \
     ../../TTKQrc/MusicThirdParty.qrc

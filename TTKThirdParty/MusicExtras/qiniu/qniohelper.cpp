@@ -89,7 +89,7 @@ QNetworkRequest QNIOHelper::listRequest(const QString &bucket, const QNMac *mac)
     }
     else
     {
-        QNMac macx = QNMac(QNConf::ACCESS_KEY,QNConf::SECRET_KEY);
+        QNMac macx(QNConf::ACCESS_KEY,QNConf::SECRET_KEY);
         accessToken = macx.signRequest(request);
     }
     authHeaderBody.append(accessToken);
@@ -123,7 +123,7 @@ QNetworkRequest QNIOHelper::deleteRequest(const QString &bucket, const QString &
     }
     else
     {
-        QNMac macx = QNMac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         accessToken = macx.signRequest(request);
     }
     authHeaderBody.append(accessToken);
@@ -132,4 +132,3 @@ QNetworkRequest QNIOHelper::deleteRequest(const QString &bucket, const QString &
 
     return request;
 }
-

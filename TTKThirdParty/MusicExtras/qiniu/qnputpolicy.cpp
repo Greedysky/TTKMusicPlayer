@@ -11,19 +11,58 @@
 #endif
 #include <QStringList>
 
-QNPutPolicy::QNPutPolicy(const QString &scope)
-    : m_scope(scope)
+class QNPutPolicyPrivate : public TTKPrivate<QNPutPolicy>
+{
+public:
+    QNPutPolicyPrivate();
+
+    QByteArray toJSON(bool compact);
+
+    QString m_scope;
+    qint32 m_deadline;
+
+    qint16 m_insertOnly; //optional, default 0
+    QString m_saveKey;   //optional
+    QString m_endUser;   //optional
+
+    qint32 m_fSizeLimit;  //optional
+
+    //let qiniu server dectect file mime type
+    //1. check file name extension
+    //2. check key extension
+    //3. check file content
+    //default is 0, auto use the specified mimetype
+    //or check by step 1,2,3
+    //if the server cannot figure out the mimetype,
+    //use application/octet-stream
+    qint16 m_detectMime; //optional, default 0
+    QString m_mimeLimit; //optional
+
+    QString m_callbackUrl;   //optional
+    QString m_callbackHost;  //optional
+    QString m_callbackBody;  //optional
+    qint16 m_callbackFetchKey; //optional
+
+    QString m_returnUrl;     //optional
+    QString m_returnBody;    //optional
+
+    QString m_persistentOps;         //optional
+    QString m_persistentNotifyUrl;   //optional
+    QString m_persistentPipeline;    //optional
+
+};
+
+QNPutPolicyPrivate::QNPutPolicyPrivate()
 {
     //default is 1970/1/1, timestamp is 0
     m_deadline = 0;
-    
     m_detectMime = -1;
     m_fSizeLimit = -1;
     m_insertOnly = -1;
     m_callbackFetchKey = -1;
 }
 
-QByteArray QNPutPolicy::toJSON(bool compact)
+QByteArray QNPutPolicyPrivate::toJSON(bool compact)
 {
 #if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
     QJsonObject json;
@@ -120,12 +159,29 @@ QByteArray QNPutPolicy::toJSON(bool compact)
     return data;
 }
 
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QNPutPolicy::QNPutPolicy(const QString &scope)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QNPutPolicy);
+    d->m_scope = scope;
+}
+
+QByteArray QNPutPolicy::toJSON(bool compact)
+{
+    TTK_D(QNPutPolicy);
+    return d->toJSON(compact);
+}
+
 QString QNPutPolicy::makeUploadToken(const QNMac *mac)
 {
+    TTK_D(QNPutPolicy);
     // check whether deadline set, otherwise default is one hour
-    if(m_deadline == 0)
+    if(d->m_deadline == 0)
     {
-        m_deadline = QNUtils::expireInSeconds(3600);
+        d->m_deadline = QNUtils::expireInSeconds(3600);
     }
     QByteArray putPolicyJson = toJSON();
     QString uploadToken;
@@ -135,7 +191,7 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
     }
     else
     {
-        QNMac macx = QNMac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         uploadToken = macx.signWithData(putPolicyJson);
     }
     return uploadToken;
@@ -143,191 +199,226 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
 
 QString QNPutPolicy::makeDownloadToken(const QNMac *mac)
 {
+    TTK_D(QNPutPolicy);
     // check whether deadline set, otherwise default is one hour
-    if(m_deadline == 0)
+    if(d->m_deadline == 0)
     {
-        m_deadline = QNUtils::expireInSeconds(3600);
+        d->m_deadline = QNUtils::expireInSeconds(3600);
     }
 
     QString downloadToken;
     if(mac != 0)
     {
-        downloadToken = mac->signWithData2(m_scope.toUtf8());
+        downloadToken = mac->signWithData2(d->m_scope.toUtf8());
     }
     else
     {
-        QNMac macx = QNMac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
-        downloadToken = macx.signWithData2(m_scope.toUtf8());
+        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        downloadToken = macx.signWithData2(d->m_scope.toUtf8());
     }
     return downloadToken;
 }
 
 qint32 QNPutPolicy::getDeadline() const
 {
-    return m_deadline;
+    TTK_D(QNPutPolicy);
+    return d->m_deadline;
 }
 
 void QNPutPolicy::setDeadline(qint32 value)
 {
-    m_deadline = value;
+    TTK_D(QNPutPolicy);
+    d->m_deadline = value;
 }
 
 QString QNPutPolicy::getScope() const
 {
-    return m_scope;
+    TTK_D(QNPutPolicy);
+    return d->m_scope;
 }
 
 void QNPutPolicy::setScope(const QString &value)
 {
-    m_scope = value;
+    TTK_D(QNPutPolicy);
+    d->m_scope = value;
 }
 
 quint16 QNPutPolicy::getInsertOnly() const
 {
-    return m_insertOnly;
+    TTK_D(QNPutPolicy);
+    return d->m_insertOnly;
 }
 
 void QNPutPolicy::setInsertOnly(quint16 value)
 {
-    m_insertOnly = value;
+    TTK_D(QNPutPolicy);
+    d->m_insertOnly = value;
 }
 
 QString QNPutPolicy::getSaveKey() const
 {
-    return m_saveKey;
+    TTK_D(QNPutPolicy);
+    return d->m_saveKey;
 }
 
 void QNPutPolicy::setSaveKey(const QString &value)
 {
-    m_saveKey = value;
+    TTK_D(QNPutPolicy);
+    d->m_saveKey = value;
 }
 
 QString QNPutPolicy::getEndUser() const
 {
-    return m_endUser;
+    TTK_D(QNPutPolicy);
+    return d->m_endUser;
 }
 
 void QNPutPolicy::setEndUser(const QString &value)
 {
-    m_endUser = value;
+    TTK_D(QNPutPolicy);
+    d->m_endUser = value;
 }
 
 qint32 QNPutPolicy::getFSizeLimit() const
 {
-    return m_fSizeLimit;
+    TTK_D(QNPutPolicy);
+    return d->m_fSizeLimit;
 }
 
 void QNPutPolicy::setFSizeLimit(qint32 value)
 {
-    m_fSizeLimit = value;
+    TTK_D(QNPutPolicy);
+    d->m_fSizeLimit = value;
 }
 
 qint16 QNPutPolicy::getDetectMime() const
 {
-    return m_detectMime;
+    TTK_D(QNPutPolicy);
+    return d->m_detectMime;
 }
 
 void QNPutPolicy::setDetectMime(qint16 value)
 {
-    m_detectMime = value;
+    TTK_D(QNPutPolicy);
+    d->m_detectMime = value;
 }
 
 QString QNPutPolicy::getMimeLimit() const
 {
-    return m_mimeLimit;
+    TTK_D(QNPutPolicy);
+    return d->m_mimeLimit;
 }
 
 void QNPutPolicy::setMimeLimit(const QString &value)
 {
-    m_mimeLimit = value;
+    TTK_D(QNPutPolicy);
+    d->m_mimeLimit = value;
 }
 
 QString QNPutPolicy::getCallbackUrl() const
 {
-    return m_callbackUrl;
+    TTK_D(QNPutPolicy);
+    return d->m_callbackUrl;
 }
 
 void QNPutPolicy::setCallbackUrl(const QString &value)
 {
-    m_callbackUrl = value;
+    TTK_D(QNPutPolicy);
+    d->m_callbackUrl = value;
 }
 
 QString QNPutPolicy::getCallbackHost() const
 {
-    return m_callbackHost;
+    TTK_D(QNPutPolicy);
+    return d->m_callbackHost;
 }
 
 void QNPutPolicy::setCallbackHost(const QString &value)
 {
-    m_callbackHost = value;
+    TTK_D(QNPutPolicy);
+    d->m_callbackHost = value;
 }
 
 QString QNPutPolicy::getCallbackBody() const
 {
-    return m_callbackBody;
+    TTK_D(QNPutPolicy);
+    return d->m_callbackBody;
 }
 
 void QNPutPolicy::setCallbackBody(const QString &value)
 {
-    m_callbackBody = value;
+    TTK_D(QNPutPolicy);
+    d->m_callbackBody = value;
 }
 
 qint16 QNPutPolicy::getCallbackFetchKey() const
 {
-    return m_callbackFetchKey;
+    TTK_D(QNPutPolicy);
+    return d->m_callbackFetchKey;
 }
 
 void QNPutPolicy::setCallbackFetchKey(qint16 value)
 {
-    m_callbackFetchKey = value;
+    TTK_D(QNPutPolicy);
+    d->m_callbackFetchKey = value;
 }
 
 QString QNPutPolicy::getReturnUrl() const
 {
-    return m_returnUrl;
+    TTK_D(QNPutPolicy);
+    return d->m_returnUrl;
 }
 
 void QNPutPolicy::setReturnUrl(const QString &value)
 {
-    m_returnUrl = value;
+    TTK_D(QNPutPolicy);
+    d->m_returnUrl = value;
 }
 
 QString QNPutPolicy::getReturnBody() const
 {
-    return m_returnBody;
+    TTK_D(QNPutPolicy);
+    return d->m_returnBody;
 }
 
 void QNPutPolicy::setReturnBody(const QString &value)
 {
-    m_returnBody = value;
+    TTK_D(QNPutPolicy);
+    d->m_returnBody = value;
 }
 
 QString QNPutPolicy::getPersistentOps() const
 {
-    return m_persistentOps;
+    TTK_D(QNPutPolicy);
+    return d->m_persistentOps;
 }
 
 void QNPutPolicy::setPersistentOps(const QString &value)
 {
-    m_persistentOps = value;
+    TTK_D(QNPutPolicy);
+    d->m_persistentOps = value;
 }
 
 QString QNPutPolicy::getPersistentNotifyUrl() const
 {
-    return m_persistentNotifyUrl;
+    TTK_D(QNPutPolicy);
+    return d->m_persistentNotifyUrl;
 }
 
 void QNPutPolicy::setPersistentNotifyUrl(const QString &value)
 {
-    m_persistentNotifyUrl = value;
+    TTK_D(QNPutPolicy);
+    d->m_persistentNotifyUrl = value;
 }
 
 QString QNPutPolicy::getPersistentPipeline() const
 {
-    return m_persistentPipeline;
+    TTK_D(QNPutPolicy);
+    return d->m_persistentPipeline;
 }
 
 void QNPutPolicy::setPersistentPipeline(const QString &value)
 {
-    m_persistentPipeline = value;
+    TTK_D(QNPutPolicy);
+    d->m_persistentPipeline = value;
 }

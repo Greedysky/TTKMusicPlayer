@@ -11,6 +11,7 @@
 
 #include <QMap>
 #include <QStringList>
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
 
 /**

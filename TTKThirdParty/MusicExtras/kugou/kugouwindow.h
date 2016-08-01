@@ -11,8 +11,9 @@
 
 #include <QWidget>
 #include "kugouurl.h"
+#include "musicprivate.h"
 
-class QButtonGroup;
+class KugouWindowPrivate;
 
 class MUSIC_EXTRAS_EXPORT KugouWindow : public QWidget
 {
@@ -29,7 +30,6 @@ public:
     };
 
     explicit KugouWindow(KuGouType type, QWidget *parent = 0);
-    ~KugouWindow();
 
     static QString getClassName();
 
@@ -46,8 +46,8 @@ protected:
 
     void changeClickedButtonStyle(int index);
 
-    QWidget *m_webView, *m_topWidget;
-    QButtonGroup *m_buttonGroup;
+private:
+    TTK_DECLARE_PRIVATE(KugouWindow)
 
 };
 

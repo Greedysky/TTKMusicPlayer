@@ -14,17 +14,37 @@
 #endif
 #include <QDebug>
 
-QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QObject(parent), m_networkManager(networkManager)
+class QNSimpleListDataPrivate : public TTKPrivate<QNSimpleListData>
+{
+public:
+    QNSimpleListDataPrivate();
+
+    QNetworkAccessManager *m_networkManager;
+
+};
+
+QNSimpleListDataPrivate::QNSimpleListDataPrivate()
 {
 
 }
 
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
+    : QObject(parent)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QNSimpleListData);
+    d->m_networkManager = networkManager;
+}
+
 void QNSimpleListData::listDataToServer(const QString &bucket)
 {
+    TTK_D(QNSimpleListData);
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNetworkRequest request = QNIOHelper::listRequest(bucket, &mac);
-    QNetworkReply *reply = m_networkManager->get(request);
+    QNetworkReply *reply = d->m_networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
                    SLOT(handleError(QNetworkReply::NetworkError)));

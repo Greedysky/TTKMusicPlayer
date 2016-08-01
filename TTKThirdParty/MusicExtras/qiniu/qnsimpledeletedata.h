@@ -10,7 +10,10 @@
    =================================================*/
 
 #include <QNetworkReply>
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class QNSimpleDeleteDataPrivate;
 
 class MUSIC_EXTRAS_EXPORT QNSimpleDeleteData : public QObject
 {
@@ -28,7 +31,7 @@ private Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 private:
-    QNetworkAccessManager *m_networkManager;
+    TTK_DECLARE_PRIVATE(QNSimpleDeleteData)
 
 };
 

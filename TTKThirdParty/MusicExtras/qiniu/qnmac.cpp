@@ -1,16 +1,31 @@
 #include "qnmac.h"
 #include "qnutils.h"
 
-// Use access key and secret key from https://portal.qiniu.com
-QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)
-    : m_accessKey(accesKey), m_secretKey(secretKey)
+class QNMacPrivate : public TTKPrivate<QNMac>
+{
+public:
+    QNMacPrivate();
+
+    QString m_accessKey;
+    QByteArray m_secretKey;
+
+};
+
+QNMacPrivate::QNMacPrivate()
 {
 
 }
 
-QNMac::~QNMac()
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+// Use access key and secret key from https://portal.qiniu.com
+QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)
 {
-
+    TTK_INIT_PRIVATE;
+    TTK_D(QNMac);
+    d->m_accessKey = accesKey;
+    d->m_secretKey = secretKey;
 }
 
 // Sign data
@@ -21,8 +36,9 @@ QNMac::~QNMac()
 // 3. Join access key and the result string from step2 with ':'
 QString QNMac::sign(const QByteArray &data) const
 {
-    QByteArray signedData = QNUtils::hmacSha1(data, m_secretKey);
-    QString retStr = m_accessKey;
+    TTK_D(QNMac);
+    QByteArray signedData = QNUtils::hmacSha1(data, d->m_secretKey);
+    QString retStr = d->m_accessKey;
     retStr.append(":");
     retStr.append(QNUtils::urlSafeBase64Encode(signedData));
     return retStr;
@@ -38,10 +54,11 @@ QString QNMac::sign(const QByteArray &data) const
 // step1 with ':'
 QString QNMac::signWithData(const QByteArray &data) const
 {
+    TTK_D(QNMac);
     QString encodedData = QNUtils::urlSafeBase64Encode(data);
-    QByteArray signedData = QNUtils::hmacSha1(encodedData.toLocal8Bit(), m_secretKey);
+    QByteArray signedData = QNUtils::hmacSha1(encodedData.toLocal8Bit(), d->m_secretKey);
     QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
-    QString retStr = m_accessKey;
+    QString retStr = d->m_accessKey;
     retStr.append(":").append(encodedSignedData);
     retStr.append(":").append(encodedData);
     return retStr;
@@ -49,9 +66,10 @@ QString QNMac::signWithData(const QByteArray &data) const
 
 QString QNMac::signWithData2(const QByteArray &data) const
 {
-    QByteArray signedData = QNUtils::hmacSha1(data, m_secretKey);
+    TTK_D(QNMac);
+    QByteArray signedData = QNUtils::hmacSha1(data, d->m_secretKey);
     QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
-    QString retStr = m_accessKey;
+    QString retStr = d->m_accessKey;
     retStr.append(":").append(encodedSignedData);
     return retStr;
 }
@@ -65,6 +83,7 @@ QString QNMac::signWithData2(const QByteArray &data) const
 // 4. Join access key and the result string from step3 with ':'
 QString QNMac::signRequest(const QUrl &requestUrl, const QByteArray &bodyData) const
 {
+    TTK_D(QNMac);
     QString path = requestUrl.path();
     QString requestUrlstr = requestUrl.toString();
     QString query = QNUtils::urlQuery(requestUrlstr);
@@ -81,9 +100,9 @@ QString QNMac::signRequest(const QUrl &requestUrl, const QByteArray &bodyData) c
     {
         dataToSign.append(bodyData);
     }
-    QByteArray signedData = QNUtils::hmacSha1(dataToSign,m_secretKey);
+    QByteArray signedData = QNUtils::hmacSha1(dataToSign, d->m_secretKey);
     QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
-    QString retStr = m_accessKey;
+    QString retStr = d->m_accessKey;
     retStr.append(":").append(encodedSignedData);
     return retStr;
 }

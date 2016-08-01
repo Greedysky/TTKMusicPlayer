@@ -10,9 +10,11 @@
    =================================================*/
 
 #include <QObject>
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNMac;
+class QNPutPolicyPrivate;
 
 class MUSIC_EXTRAS_EXPORT QNPutPolicy
 {
@@ -77,37 +79,7 @@ public:
     void setPersistentPipeline(const QString &value);
 
 private:
-    QString m_scope;
-    qint32 m_deadline;
-
-    qint16 m_insertOnly; //optional, default 0
-    QString m_saveKey;   //optional
-    QString m_endUser;   //optional
-
-    qint32 m_fSizeLimit;  //optional
-
-    //let qiniu server dectect file mime type
-    //1. check file name extension
-    //2. check key extension
-    //3. check file content
-    //default is 0, auto use the specified mimetype
-    //or check by step 1,2,3
-    //if the server cannot figure out the mimetype,
-    //use application/octet-stream
-    qint16 m_detectMime; //optional, default 0
-    QString m_mimeLimit; //optional
-
-    QString m_callbackUrl;   //optional
-    QString m_callbackHost;  //optional
-    QString m_callbackBody;  //optional
-    qint16 m_callbackFetchKey; //optional
-
-    QString m_returnUrl;     //optional
-    QString m_returnBody;    //optional
-
-    QString m_persistentOps;         //optional
-    QString m_persistentNotifyUrl;   //optional
-    QString m_persistentPipeline;    //optional
+    TTK_DECLARE_PRIVATE(QNPutPolicy)
 
 };
 

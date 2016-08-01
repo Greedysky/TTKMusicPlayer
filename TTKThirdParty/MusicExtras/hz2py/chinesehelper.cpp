@@ -4,7 +4,27 @@
 #  pragma GCC diagnostic ignored "-Wmultichar"
 #endif
 
-QMap<QString, QString> ChineseHelper::m_data = PinyinResource::getChineseResource();
+class ChineseHelperPrivate : public TTKPrivate<ChineseHelper>
+{
+public:
+    ChineseHelperPrivate();
+
+    QMap<QString, QString> m_data;
+
+};
+
+ChineseHelperPrivate::ChineseHelperPrivate()
+{
+    m_data = PinyinResource::getChineseResource();
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+ChineseHelper::ChineseHelper()
+{
+    TTK_INIT_PRIVATE;
+}
 
 QString ChineseHelper::getClassName()
 {
@@ -13,13 +33,15 @@ QString ChineseHelper::getClassName()
 
 QChar ChineseHelper::convertToSimplifiedChinese(const QChar &c)
 {
-    QString simplifiedChinese = m_data.value(c);
+    TTK_D(ChineseHelper);
+    QString simplifiedChinese = d->m_data.value(c);
     return simplifiedChinese.isEmpty() ? c : simplifiedChinese.at(0);
 }
 
 QChar ChineseHelper::convertToTraditionalChinese(const QChar &c)
 {
-    QString simpTraditionaChinese = m_data.key(c);
+    TTK_D(ChineseHelper);
+    QString simpTraditionaChinese = d->m_data.key(c);
     return simpTraditionaChinese.isEmpty() ? c : simpTraditionaChinese.at(0);
 }
 
@@ -45,7 +67,8 @@ QString ChineseHelper::convertToTraditionalChinese(const QString &str)
 
 bool ChineseHelper::isTraditionalChinese(const QChar &c)
 {
-    return m_data.keys().indexOf(c)!=-1;
+    TTK_D(ChineseHelper);
+    return d->m_data.keys().indexOf(c) != -1;
 }
 
 bool ChineseHelper::isChinese(const QChar &c)

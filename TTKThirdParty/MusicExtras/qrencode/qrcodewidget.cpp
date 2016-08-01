@@ -3,26 +3,51 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
-    : QWidget(parent)
+class QRCodeQWidgetPrivate : public TTKPrivate<QRCodeQWidget>
 {
-    if(text.isEmpty())
-    {
-        m_text = QByteArray("https://github.com/Greedysky/TTKMusicplayer");
-    }
-    else
-    {
-        m_text = text;
-    }
-    setFixedSize(size);
+public:
+    QRCodeQWidgetPrivate();
 
+    bool m_casesen;
+    int m_margin;
+    QString m_iconPath;
+    qreal m_percent;
+    QByteArray m_text;
+    QColor m_foreground, m_background;
+    QRencodeMode m_mode;
+    QRecLevel m_level;
+
+};
+
+QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
+{
     m_margin = 10;
     m_foreground = QColor("black");
     m_background = QColor("white");
     m_casesen = true;
     m_mode = QR_MODE_8;
     m_level = QR_ECLEVEL_Q;
-    m_percent = 0.23;
+    m_percent = 0.23f;
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
+    : QWidget(parent)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QRCodeQWidget);
+    if(text.isEmpty())
+    {
+        d->m_text = QByteArray("https://github.com/Greedysky/TTKMusicplayer");
+    }
+    else
+    {
+        d->m_text = text;
+    }
+    setFixedSize(size);
+
 }
 
 QString QRCodeQWidget::getClassName()
@@ -32,112 +57,132 @@ QString QRCodeQWidget::getClassName()
 
 void QRCodeQWidget::setMargin(const int margin)
 {
-    m_margin = margin;
+    TTK_D(QRCodeQWidget);
+    d->m_margin = margin;
     repaint();
 }
 
 int QRCodeQWidget::getMargin() const
 {
-    return m_margin;
+    TTK_D(QRCodeQWidget);
+    return d->m_margin;
 }
 
 void QRCodeQWidget::setIcon(const QString &path, qreal percent)
 {
+    TTK_D(QRCodeQWidget);
     setIconPercent(percent);
-    m_iconPath = path;
+    d->m_iconPath = path;
     repaint();
 }
 
 QString QRCodeQWidget::getIcon() const
 {
-    return m_iconPath;
+    TTK_D(QRCodeQWidget);
+    return d->m_iconPath;
 }
 
 void QRCodeQWidget::setIconPercent(qreal percent)
 {
-    m_percent = percent < 0.5 ? percent : 0.3;
+    TTK_D(QRCodeQWidget);
+    d->m_percent = percent < 0.5 ? percent : 0.3;
 }
 
 qreal QRCodeQWidget::getIconPercent() const
 {
-    return m_percent;
+    TTK_D(QRCodeQWidget);
+    return d->m_percent;
 }
 
 void QRCodeQWidget::setCaseSensitive(bool flag)
 {
-    m_casesen = flag;
+    TTK_D(QRCodeQWidget);
+    d->m_casesen = flag;
     repaint();
 }
 
 bool QRCodeQWidget::caseSensitive() const
 {
-    return m_casesen;
+    TTK_D(QRCodeQWidget);
+    return d->m_casesen;
 }
 
 void QRCodeQWidget::setText(const QByteArray &text)
 {
-    m_text = text;
+    TTK_D(QRCodeQWidget);
+    d->m_text = text;
 }
 
 QByteArray QRCodeQWidget::getText() const
 {
-    return m_text;
+    TTK_D(QRCodeQWidget);
+    return d->m_text;
 }
 
 void QRCodeQWidget::setForegroundColor(const QColor &color)
 {
-    m_foreground = color;
+    TTK_D(QRCodeQWidget);
+    d->m_foreground = color;
 }
 
 QColor QRCodeQWidget::getForegroundColor() const
 {
-    return m_foreground;
+    TTK_D(QRCodeQWidget);
+    return d->m_foreground;
 }
 
 void QRCodeQWidget::setBackgroundColor(const QColor &color)
 {
-    m_background = color;
+    TTK_D(QRCodeQWidget);
+    d->m_background = color;
 }
 
 QColor QRCodeQWidget::getBackgroundColor() const
 {
-    return m_background;
+    TTK_D(QRCodeQWidget);
+    return d->m_background;
 }
 
 void QRCodeQWidget::setMode(QRencodeMode mode)
 {
-    m_mode = mode;
+    TTK_D(QRCodeQWidget);
+    d->m_mode = mode;
 }
 
 QRencodeMode QRCodeQWidget::getMode() const
 {
-    return m_mode;
+    TTK_D(QRCodeQWidget);
+    return d->m_mode;
 }
 
 void QRCodeQWidget::setLevel(QRecLevel level)
 {
-    m_level = level;
+    TTK_D(QRCodeQWidget);
+    d->m_level = level;
 }
 
 QRecLevel QRCodeQWidget::getLevel() const
 {
-    return m_level;
+    TTK_D(QRCodeQWidget);
+    return d->m_level;
 }
 
 void QRCodeQWidget::paintEvent(QPaintEvent *event)
 {
+    TTK_D(QRCodeQWidget);
     QWidget::paintEvent (event);
     QPainter painter(this);
 
-    QRcode *qrcode = QRcode_encodeString(m_text.constData(), 7, m_level, m_mode, m_casesen);
+    QRcode *qrcode = QRcode_encodeString(d->m_text.constData(), 7,
+                                         d->m_level, d->m_mode, d->m_casesen);
     if(qrcode != nullptr)
     {
         unsigned char *point = qrcode->data;
         painter.setPen(Qt::NoPen);
-        painter.setBrush(m_background);
+        painter.setBrush(d->m_background);
         painter.drawRect(0, 0, width(), height());
-        double scale = (width () - 2.0 * m_margin) / qrcode->width;
-        painter.setBrush(m_foreground);
+        double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
+        painter.setBrush(d->m_foreground);
 
         for(int x=0; x<qrcode->width; ++x)
         {
@@ -145,7 +190,7 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
             {
                 if(*point & 1)
                 {
-                    QRectF r(m_margin + y * scale, m_margin + x * scale, scale, scale);
+                    QRectF r(d->m_margin + y * scale, d->m_margin + x * scale, scale, scale);
                     painter.drawRects(&r, 1);
                 }
                 ++point;
@@ -155,14 +200,14 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         QRcode_free(qrcode);
 
         /// draw icon
-        painter.setBrush(m_background);
-        double icon_width = (width () - 2.0 * m_margin) * m_percent;
+        painter.setBrush(d->m_background);
+        double icon_width = (width () - 2.0 * d->m_margin) * d->m_percent;
         double icon_height = icon_width;
         double wrap_x = (width () - icon_width) / 2.0;
         double wrap_y = (width () - icon_height) / 2.0;
         QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
         painter.drawRoundRect(wrap, 50, 50);
-        QPixmap image(m_iconPath);
+        QPixmap image(d->m_iconPath);
         QRectF target(wrap_x, wrap_y, icon_width, icon_height);
         QRectF source(0, 0, image.width (), image.height ());
         painter.drawPixmap(target, image, source);
