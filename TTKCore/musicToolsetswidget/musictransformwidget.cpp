@@ -166,7 +166,7 @@ QString MusicTransformWidget::getTransformSongName() const
     {
         return QString();
     }
-    return QFileInfo(m_path[0]).baseName();
+    return QFileInfo(m_path[0]).completeBaseName();
 }
 
 void MusicTransformWidget::transformFinish()

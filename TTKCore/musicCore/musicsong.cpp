@@ -19,7 +19,7 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     QFileInfo info(m_musicPath);
     if(m_musicName.isEmpty())
     {
-        m_musicName = info.baseName();
+        m_musicName = info.completeBaseName();
     }
     m_musicType = info.suffix();
 }
