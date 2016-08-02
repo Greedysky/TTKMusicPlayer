@@ -3,6 +3,11 @@
 #include "musicsettingmanager.h"
 
 #include <QHostInfo>
+#ifdef MUSIC_GREATER_NEW
+#  include <QtConcurrent/QtConcurrent>
+#else
+#  include <QtConcurrentRun>
+#endif
 
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr), m_networkState(true)
@@ -34,9 +39,12 @@ void MusicNetworkThread::setBlockNetWork(int block)
 
 void MusicNetworkThread::networkStateChanged()
 {
-    bool block = M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toBool();
-    QHostInfo info = QHostInfo::fromName(NETWORK_REQUEST_ADDRESS);
-    m_networkState = !info.addresses().isEmpty();
-    m_networkState = block ? false : m_networkState;
-    emit networkConnectionStateChanged(m_networkState);
+    QtConcurrent::run([&]
+    {
+        bool block = M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toBool();
+        QHostInfo info = QHostInfo::fromName(NETWORK_REQUEST_ADDRESS);
+        m_networkState = !info.addresses().isEmpty();
+        m_networkState = block ? false : m_networkState;
+        emit networkConnectionStateChanged(m_networkState);
+    });
 }
