@@ -34,7 +34,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+    ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
 

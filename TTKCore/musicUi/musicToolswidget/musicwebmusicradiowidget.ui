@@ -58,7 +58,7 @@
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>65</x>
+     <x>108</x>
      <y>245</y>
      <width>31</width>
      <height>31</height>
@@ -130,7 +130,7 @@
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>108</x>
+     <x>65</x>
      <y>245</y>
      <width>31</width>
      <height>31</height>
