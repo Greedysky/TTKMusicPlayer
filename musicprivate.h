@@ -20,8 +20,8 @@
 #define TTK_INIT_PRIVATE \
     ttk_d.setPublic(this);
 
-#define TTK_D(Class) Class##Private *d = ttk_d()
-#define TTK_Q(Class) Class *q = ttk_q()
+#define TTK_D(Class) Class##Private *const d = ttk_d()
+#define TTK_Q(Class) Class *const q = ttk_q()
 
 template <typename PUB>
 class TTKPrivate

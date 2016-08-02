@@ -37,5 +37,6 @@ RESOURCES += \
 include(hz2py/Hz2Py.pri)
 include(kugou/KuGou.pri)
 include(qiniu/QiNiu.pri)
+include(qjson/QJson.pri)
 include(qrencode/QRencode.pri)
 include(shortcut/ShortCut.pri)
