@@ -21,7 +21,7 @@ QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, c
         keyPart = new QHttpPart;
         keyPart->setHeader(QNetworkRequest::ContentDispositionHeader,
                            QVariant("form-data; name=\"key\""));
-        keyPart->setBody(key.toLocal8Bit());
+        keyPart->setBody(key.toUtf8());
     }
     //file
     QHttpPart filePart;
@@ -109,7 +109,7 @@ QNetworkRequest QNIOHelper::deleteRequest(const QString &bucket, const QString &
     //append encoded entry
     QString entry;
     entry.append(bucket).append(":").append(key);
-    QString encodedEntry = QNUtils::urlSafeBase64Encode(entry.toLocal8Bit());
+    QString encodedEntry = QNUtils::urlSafeBase64Encode(entry.toUtf8());
     reqUrl.append(encodedEntry);
     request.setUrl(reqUrl);
 
