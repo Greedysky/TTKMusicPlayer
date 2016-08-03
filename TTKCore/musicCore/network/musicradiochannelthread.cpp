@@ -6,9 +6,8 @@
 #   include <QJsonObject>
 #   include <QJsonArray>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 #include <QNetworkAccessManager>
@@ -104,23 +103,19 @@ void MusicRadioChannelThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
-        if(sc.property("channel_list").isArray())
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            QScriptValueIterator it(sc.property("channel_list"));
-            while(it.hasNext())
+            QVariantMap value = data.toMap();
+            QVariantList channels = value["channel_list"].toList();
+            foreach(QVariant var, channels)
             {
-                it.next();
-                QScriptValue value = it.value();
-                if(value.isNull() || value.property("channel_id").toString().isEmpty())
-                {
-                    continue;
-                }
-
+                value = var.toMap();
                 ChannelInfo channel;
-                channel.m_id = value.property("channel_id").toString();
-                channel.m_name = value.property("channel_name").toString();
+                channel.m_id = value["channel_id"].toString();
+                channel.m_name = value["channel_name"].toString();
                 m_channels << channel;
             }
         }

@@ -31,11 +31,11 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
     for(int i=0; i<musics.count(); ++i)
     {
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
-                                  QList<QVariant>() << musics[i].m_itemName << i << musics[i].m_songs.count());
+                                  QVariantList() << musics[i].m_itemName << i << musics[i].m_songs.count());
         foreach(MusicSong song, musics[i].m_songs)
         {
             writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
-                                     QList<QVariant>() << song.getMusicName() << song.getMusicPlayCount()
+                                     QVariantList() << song.getMusicName() << song.getMusicPlayCount()
                                                        << song.getMusicTime(), song.getMusicPath());
         }
     }

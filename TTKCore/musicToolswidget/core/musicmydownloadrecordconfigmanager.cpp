@@ -25,7 +25,7 @@ void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownload
     for(int i=0; i<record.m_names.count(); ++i)
     {
         writeDomElementMutilText(download, "value", QStringList()<<"name"<<"size",
-                                 QList<QVariant>()<<record.m_names[i]<<record.m_sizes[i],
+                                 QVariantList()<<record.m_names[i]<<record.m_sizes[i],
                                  record.m_paths[i]);
     }
     //Write to file

@@ -7,9 +7,8 @@
 #   include <QJsonValue>
 #   include <QJsonParseError>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 MusicTranslationThread::MusicTranslationThread(QObject *parent)
@@ -119,26 +118,23 @@ void MusicTranslationThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
-
-        if(!sc.property("trans_result").isNull())
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            sc = sc.property("trans_result");
-            if(sc.property("data").isArray())
+            QVariantMap value = data.toMap();
+            value = value["trans_result"].toMap();
+            QVariantList datas = value["data"].toList();
+            foreach(QVariant var, datas)
             {
-                QScriptValueIterator it(sc.property("data"));
-                while(it.hasNext())
+                value = var.toMap();
+                if(value.isEmpty() || value["dst"].toString().isEmpty())
                 {
-                    it.next();
-                    QScriptValue value = it.value();
-                    if(value.isNull() || value.property("dst").toString().isEmpty())
-                    {
-                        continue;
-                    }
-                    emit downLoadDataChanged(value.property("dst").toString());
-                    break;
+                    continue;
                 }
+                emit downLoadDataChanged(value["dst"].toString());
+                break;
             }
         }
 #endif

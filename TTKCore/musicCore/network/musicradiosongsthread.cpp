@@ -6,9 +6,8 @@
 #   include <QJsonObject>
 #   include <QJsonArray>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 #include <QNetworkAccessManager>
@@ -116,30 +115,28 @@ void MusicRadioSongsThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
-        if(sc.property("data").isValid())
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            sc = sc.property("data");
-            if(sc.property("songList").isArray())
+            QVariantMap value = data.toMap();
+            value = value["data"].toMap();
+            QVariantList songLists = value["songList"].toList();
+            foreach(QVariant var, songLists)
             {
-                QScriptValueIterator it(sc.property("songList"));
-                while(it.hasNext())
+                value = var.toMap();
+                if(value.isEmpty() || value["songLink"].toString().isEmpty())
                 {
-                    it.next();
-                    QScriptValue value = it.value();
-                    if(value.isNull() || value.property("songLink").toString().isEmpty())
-                    {
-                        continue;
-                    }
-
-                    m_songInfo.m_songUrl = value.property("songLink").toString();
-                    m_songInfo.m_songName = value.property("songName").toString();
-                    m_songInfo.m_artistName = value.property("artistName").toString();
-                    m_songInfo.m_songPicUrl = value.property("songPicRadio").toString();
-                    m_songInfo.m_albumName = value.property("albumName").toString();
-                    m_songInfo.m_lrcUrl = "http://musicdata.baidu.com" + value.property("lrcLink").toString();
+                    continue;
                 }
+
+                m_songInfo.m_songUrl = value["songLink"].toString();
+                m_songInfo.m_songName = value["songName"].toString();
+                m_songInfo.m_artistName = value["artistName"].toString();
+                m_songInfo.m_songPicUrl = value["songPicRadio"].toString();
+                m_songInfo.m_albumName = value["albumName"].toString();
+                m_songInfo.m_lrcUrl = "http://musicdata.baidu.com" + value["lrcLink"].toString();
             }
         }
 #endif

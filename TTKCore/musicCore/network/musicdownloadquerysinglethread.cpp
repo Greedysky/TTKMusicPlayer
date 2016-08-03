@@ -7,9 +7,8 @@
 #   include <QJsonValue>
 #   include <QJsonParseError>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -187,53 +186,53 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
-        if(sc.property("code").toInt32() == 1 || sc.property("code").toInt32() == 200 )
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        if(ok)
         {
-            if(sc.property("data").isArray())
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 1 || value["code"].toInt() == 200)
             {
-                QScriptValueIterator it(sc.property("data"));
-                while(it.hasNext())
+                QVariantList datas = value["data"].toList();
+                foreach(QVariant var, datas)
                 {
-                    it.next();
-                    QScriptValue value = it.value();
-                    if(value.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
+                    value = var.toMap();
                     MusicObject::MusicSongInfomation musicInfo;
 
-                    QString songId = QString::number(value.property("singer_id").toVariant().toULongLong());
-                    QString songName = value.property("song_name").toString();
-                    QString singerName = value.property("singer_name").toString();
+                    QString songId = QString::number(value["singer_id"].toULongLong());
+                    QString songName = value["song_name"].toString();
+                    QString singerName = value["singer_name"].toString();
 
                     if(m_currentType != MovieQuery)
                     {
                         QString duration;
                         ///music normal songs urls
-                        QScriptValueIterator audUrlsIt(value.property("audition_list"));
-                        while(audUrlsIt.hasNext())
+                        QVariantList auditions = value["audition_list"].toList();
+                        foreach(QVariant audition, auditions)
                         {
-                            audUrlsIt.next();
-                            QScriptValue audUrlsValue = audUrlsIt.value();
-                            if(audUrlsValue.isNull())
+                            QVariantMap audUrlsValue = audition.toMap();
+                            if(audUrlsValue.isEmpty())
                             {
                                 continue;
                             }
 
                             if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                               audUrlsValue.property("typeDescription").toString() == m_searchQuality))
+                               audUrlsValue["typeDescription"].toString() == m_searchQuality))
                             {
                                 MusicObject::MusicSongAttribute songAttr;
-                                songAttr.m_url = audUrlsValue.property("url").toString();
-                                songAttr.m_size = audUrlsValue.property("size").toString();
-                                songAttr.m_format = audUrlsValue.property("suffix").toString();
-                                songAttr.m_bitrate = audUrlsValue.property("bitRate").toInt32();
+                                songAttr.m_url = audUrlsValue["url"].toString();
+                                songAttr.m_size = audUrlsValue["size"].toString();
+                                songAttr.m_format = audUrlsValue["suffix"].toString();
+                                songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
                                 ////set duration
-                                duration = audUrlsValue.property("duration").toString();
+                                duration = audUrlsValue["duration"].toString();
                                 if(!m_queryAllRecords)
                                 {
                                     break;
@@ -241,27 +240,26 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                             }
                         }
                         ///music cd songs urls
-                        QScriptValueIterator llUrlsIt(value.property("ll_list"));
-                        while(llUrlsIt.hasNext())
+                        QVariantList llUrls = value["ll_list"].toList();
+                        foreach(QVariant llUrl, llUrls)
                         {
-                            llUrlsIt.next();
-                            QScriptValue llUrlsValue = llUrlsIt.value();
-                            if(llUrlsValue.isNull())
+                            QVariantMap llUrlValue = llUrl.toMap();
+                            if(llUrlValue.isEmpty())
                             {
                                 continue;
                             }
 
                             if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                               llUrlsValue.property("typeDescription").toString() == m_searchQuality))
+                               llUrlValue["typeDescription"].toString() == m_searchQuality))
                             {
                                 MusicObject::MusicSongAttribute songAttr;
-                                songAttr.m_url = llUrlsValue.property("url").toString();
-                                songAttr.m_size = llUrlsValue.property("size").toString();
-                                songAttr.m_format = llUrlsValue.property("suffix").toString();
-                                songAttr.m_bitrate = llUrlsValue.property("bitRate").toInt32();
+                                songAttr.m_url = llUrlValue["url"].toString();
+                                songAttr.m_size = llUrlValue["size"].toString();
+                                songAttr.m_format = llUrlValue["suffix"].toString();
+                                songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
                                 ////set duration
-                                duration = llUrlsValue.property("duration").toString();
+                                duration = llUrlValue["duration"].toString();
                                 if(!m_queryAllRecords)
                                 {
                                     break;
@@ -284,31 +282,32 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                     }
                     else
                     {
-                        QScriptValueIterator mvUrlIt(value.property("mv_list"));
-                        if( mvUrlIt.hasNext() )
+                        QVariantList mvs = value["mv_list"].toList();
+                        if(!mvs.isEmpty())
                         {
-                            while(mvUrlIt.hasNext())
+                            QString duration;
+                            foreach(QVariant mv, mvs)
                             {
-                                mvUrlIt.next();
-                                QScriptValue mvUrlValue = mvUrlIt.value();
-                                if(mvUrlValue.isNull())
+                                QVariantMap mvUrlValue = mv.toMap();
+                                if(mvUrlValue.isEmpty())
                                 {
                                     continue;
                                 }
 
-                                int bitRate = mvUrlValue.property("bitRate").toInt32();
+                                duration = mvUrlValue["duration"].toString();
+                                int bitRate = mvUrlValue["bitRate"].toInt();
                                 if(bitRate == 0)
                                 {
                                     continue;
                                 }
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_bitrate = bitRate;
-                                songAttr.m_format = mvUrlValue.property("suffix").toString();
-                                songAttr.m_url = mvUrlValue.property("url").toString();
-                                songAttr.m_size = mvUrlValue.property("size").toString();
+                                songAttr.m_format = mvUrlValue["suffix"].toString();
+                                songAttr.m_url = mvUrlValue["url"].toString();
+                                songAttr.m_size = mvUrlValue["size"].toString();
                                 musicInfo.m_songAttrs << songAttr;
                             }
-                            emit createSearchedItems(songName, singerName, mvUrlIt.value().property("duration").toString());
+                            emit createSearchedItems(songName, singerName, duration);
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
                             m_musicSongInfos << musicInfo;

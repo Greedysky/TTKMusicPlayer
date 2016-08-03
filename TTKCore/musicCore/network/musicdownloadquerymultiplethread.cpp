@@ -8,9 +8,8 @@
 #   include <QJsonValue>
 #   include <QJsonParseError>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -213,48 +212,48 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(m_reply->readAll()));
-        if(sc.isArray())
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        if(ok)
         {
-            QScriptValueIterator it(sc);
-            while(it.hasNext())
+            QVariantList datas = data.toList();
+            foreach(QVariant var, datas)
             {
-                it.next();
-                QScriptValue value = it.value();
-                if(value.isNull())
+                if(var.isNull())
                 {
                     continue;
                 }
 
+                QVariantMap value = var.toMap();
                 MusicObject::MusicSongInfomation musicInfo;
                 if(m_currentType != MovieQuery)
                 {
-                    QString songName = value.property("SongName").toString();
-                    QString singerName = value.property("Artist").toString();
-                    QString duration = value.property("Length").toString();
-                    QString size = value.property("Size").toString();
+                    QString songName = value["SongName"].toString();
+                    QString singerName = value["Artist"].toString();
+                    QString duration = value["Length"].toString();
+                    QString size = value["Size"].toString();
 
                     if(m_queryAllRecords)
                     {
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("FlacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("AacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_320, value.property("SqUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_192, value.property("HqUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_128, value.property("LqUrl").toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
                     }
                     else
                     {
                         if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_128, value.property("LqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
                         else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_192, value.property("HqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
                         else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_320, value.property("SqUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
                         else if(m_searchQuality == tr("CD"))
                         {
-                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("FlacUrl").toString());
-                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value.property("AacUrl").toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
                         }
                     }
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -266,19 +265,19 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
-                    musicInfo.m_lrcUrl = value.property("LrcUrl").toString();
-                    musicInfo.m_smallPicUrl = value.property("PicUrl").toString();
+                    musicInfo.m_lrcUrl = value["LrcUrl"].toString();
+                    musicInfo.m_smallPicUrl = value["PicUrl"].toString();
                     m_musicSongInfos << musicInfo;
                 }
                 else
                 {
-                    QString songName = value.property("SongName").toString();
-                    QString singerName = value.property("Artist").toString();
-                    QString duration = value.property("Length").toString();
-                    QString size = value.property("Size").toString();
+                    QString songName = value["SongName"].toString();
+                    QString singerName = value["Artist"].toString();
+                    QString duration = value["Length"].toString();
+                    QString size = value["Size"].toString();
 
-                    readFromMusicSongAttribute(musicInfo, size, MB_750, value.property("MvUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_500, value.property("VideoUrl").toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_750, value["MvUrl"].toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_500, value["VideoUrl"].toString());
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

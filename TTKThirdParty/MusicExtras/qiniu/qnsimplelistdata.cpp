@@ -96,7 +96,7 @@ void QNSimpleListData::receiveDataFromServer()
             if(ok)
             {
                 QVariantMap value = data.toMap();
-                QList<QVariant> array = value["items"].toList();
+                QVariantList array = value["items"].toList();
                 foreach(QVariant var, array)
                 {
                     value = var.toMap();

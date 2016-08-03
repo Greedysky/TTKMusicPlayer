@@ -13,7 +13,7 @@
 QT       += core gui xml sql
 
 equals(QT_MAJOR_VERSION, 4){
-QT       += network script
+QT       += network
 CONFIG   += gcc
 include(TTKExtra/Qt4/qmmp.pri)
 }
@@ -82,7 +82,7 @@ unix:!mac{
 TTKMusicPlayer = 2.3.2.0
 
 DEFINES += MUSIC_LIBRARY
-DEFINES += USE_MULTIPLE_QUERY
+#DEFINES += USE_MULTIPLE_QUERY
 
 
 #########################################

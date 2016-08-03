@@ -129,7 +129,7 @@ QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QStrin
 
 QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node,
                                                    const QStringList &keys,
-                                                   const QList<QVariant> &values)
+                                                   const QVariantList &values)
 {
     if(keys.isEmpty() || values.isEmpty())
     {
@@ -175,7 +175,7 @@ QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QS
 }
 
 QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node,
-                                                       const QStringList &keys, const QList<QVariant> &values,
+                                                       const QStringList &keys, const QVariantList &values,
                                                        const QString &text)
 {
     if(keys.isEmpty() || values.isEmpty())

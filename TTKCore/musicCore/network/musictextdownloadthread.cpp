@@ -5,8 +5,8 @@
 #   include <QJsonValue>
 #   include <QJsonParseError>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
@@ -96,18 +96,23 @@ void MusicTextDownLoadThread::downLoadFinished()
             }
         }
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
-        if(!sc.property("data").isNull())
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            sc = sc.property("data");
-            if(!sc.property("lrc").isNull())
+            QVariantMap value = data.toMap();
+            value = value["data"].toMap();
+            if(!value.isEmpty())
             {
-                QTextStream outstream(&m_file);
-                outstream.setCodec("utf-8");
-                outstream << sc.property("lrc").toString().remove("\r").toUtf8() << endl;
-                m_file->close();
-                M_LOGGER_INFO("text download  has finished!");
+                if(!value["lrc"].toString().isEmpty())
+                {
+                    QTextStream outstream(m_file);
+                    outstream.setCodec("utf-8");
+                    outstream << value["lrc"].toString().remove("\r").toUtf8() << endl;
+                    m_file->close();
+                    M_LOGGER_INFO("text download  has finished!");
+                }
             }
         }
 #endif

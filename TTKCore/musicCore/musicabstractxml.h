@@ -79,7 +79,7 @@ protected:
      * Append xml element nodes by node name\ key name and value.
      */
     QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
-                                     const QStringList &keys, const QList<QVariant> &values);
+                                     const QStringList &keys, const QVariantList &values);
     /*!
      * Append xml elements nodes by node name\ keys name and values.
      */
@@ -90,7 +90,7 @@ protected:
      * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
     QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
-                                         const QStringList &keys, const QList<QVariant> &values,
+                                         const QStringList &keys, const QVariantList &values,
                                          const QString &text);
     /*!
      * Append xml elements nodes by node name\ keys name \ values and attribute's text.

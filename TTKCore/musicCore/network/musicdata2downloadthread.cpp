@@ -4,8 +4,8 @@
 #   include <QJsonParseError>
 #   include <QJsonObject>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QString &save,
@@ -83,11 +83,14 @@ void MusicData2DownloadThread::dataGetFinished()
         {
             m_url = jsonObject.value("data").toObject().value("singerPic").toString();
 #else
-        QScriptEngine engine;
-        QScriptValue sc = engine.evaluate("value=" + QString(bytes));
-        if(sc.property("code").toInt32() == 1)
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok && data.toMap()["code"].toInt() == 1)
         {
-            m_url = sc.property("data").property("singerPic").toString();
+            QVariantMap value = data.toMap();
+            value = value["data"].toMap();
+            m_url = value["singerPic"].toString();
 #endif
             emit data2urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
