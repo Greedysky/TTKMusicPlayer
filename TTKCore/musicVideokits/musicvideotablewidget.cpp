@@ -179,9 +179,14 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
+
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(),
-                          musicSongInfos[row].m_songAttrs.first().m_url);
+    MusicObject::MusicSongAttributes attrs = musicSongInfos[row].m_songAttrs;
+    if(!attrs.isEmpty())
+    {
+        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(),
+                              attrs.first().m_url);
+    }
 }
 
 void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &data)

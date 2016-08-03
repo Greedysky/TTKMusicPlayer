@@ -306,7 +306,6 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                                 songAttr.m_url = mvUrlValue["url"].toString();
                                 songAttr.m_size = mvUrlValue["size"].toString();
                                 musicInfo.m_songAttrs << songAttr;
-                                qDebug() << "??????????" << songAttr.m_url;
                             }
                             emit createSearchedItems(songName, singerName, duration);
                             musicInfo.m_singerName = singerName;
