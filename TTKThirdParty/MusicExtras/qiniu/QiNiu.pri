@@ -11,9 +11,6 @@
 # =================================================
 
 QT       += network
-equals(QT_MAJOR_VERSION, 4){
-QT       += script
-}
 
 INCLUDEPATH += $$PWD
 

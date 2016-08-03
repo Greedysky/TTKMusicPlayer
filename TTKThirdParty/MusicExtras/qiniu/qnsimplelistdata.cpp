@@ -8,9 +8,8 @@
 #   include <QJsonObject>
 #   include <QJsonArray>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
-#   include <QtScript/QScriptValueIterator>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 #include <QDebug>
 
@@ -91,26 +90,22 @@ void QNSimpleListData::receiveDataFromServer()
                 }
             }
 #else
-            QScriptEngine engine;
-            QScriptValue sc = engine.evaluate("value=" + QString(reply->readAll()));
-            if(sc.property("items").isArray())
+            QJson::Parser parser;
+            bool ok;
+            QVariant data = parser.parse(reply->readAll(), &ok);
+            if(ok)
             {
-                QScriptValueIterator it(sc.property("items"));
-                while(it.hasNext())
+                QVariantMap value = data.toMap();
+                QList<QVariant> array = value["items"].toList();
+                foreach(QVariant var, array)
                 {
-                    it.next();
-                    QScriptValue value = it.value();
-                    if(value.isNull() || value.property("key").toString().isEmpty())
-                    {
-                        continue;
-                    }
-
+                    value = var.toMap();
                     QNDataItem item;
-                    item.m_name = value.property("key").toString();
-                    item.m_hash = value.property("hash").toString();
-                    item.m_mimeType = value.property("mimeType").toString();
-                    item.m_size = value.property("fsize").toInt32();
-                    item.m_putTime = value.property("putTime").toInt32();
+                    item.m_name = value["key"].toString();
+                    item.m_hash = value["hash"].toString();
+                    item.m_mimeType = value["mimeType"].toString();
+                    item.m_size = value["fsize"].toInt();
+                    item.m_putTime = value["putTime"].toInt();
                     items << item;
                 }
             }

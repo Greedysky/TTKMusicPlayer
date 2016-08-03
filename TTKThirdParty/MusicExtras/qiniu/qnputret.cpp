@@ -4,8 +4,8 @@
 #   include <QJsonDocument>
 #   include <QJsonObject>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 class QNPutRetPrivate : public TTKPrivate<QNPutRet>
@@ -39,10 +39,15 @@ QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
     putRet->setHash(json["hash"].toString());
     putRet->setKey(json["key"].toString());
 #else
-    QScriptEngine engine;
-    QScriptValue sc = engine.evaluate("value=" + QString(jsonData));
-    putRet->setHash(sc.property("hash").toString());
-    putRet->setKey(sc.property("key").toString());
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(jsonData, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        putRet->setHash(value["hash"].toString());
+        putRet->setKey(value["key"].toString());
+    }
 #endif
     return putRet;
 }

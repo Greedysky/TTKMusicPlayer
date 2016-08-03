@@ -13,8 +13,8 @@
 #   include <QJsonParseError>
 #   include <QJsonObject>
 #else
-#   include <QtScript/QScriptEngine>
-#   include <QtScript/QScriptValue>
+#   ///QJson import
+#   include "qjson/parser.h"
 #endif
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
@@ -70,9 +70,16 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     QJsonObject jsonObject = parseDoucment.object();
     m_newVersionStr = jsonObject.value("version").toString();
 #else
-    QScriptEngine engine;
-    QScriptValue sc = engine.evaluate("value=" + QString(data));
-    m_newVersionStr = sc.property("version").toString();
+    QJson::Parser parser;
+    bool ok;
+    QVariant parseData = parser.parse(data, &ok);
+    if(!ok)
+    {
+        return;
+    }
+
+    QVariantMap value = parseData.toMap();
+    m_newVersionStr = value["version"].toString();
 #endif
     QString text;
     if(m_newVersionStr != TTKMUSIC_VERSION_STR)
@@ -82,7 +89,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 #ifdef MUSIC_GREATER_NEW
         text.append(jsonObject.value("data").toString());
 #else
-        text.append(sc.property("data").toString());
+        text.append(value["data"].toString());
 #endif
         ui->upgradeButton->setEnabled(true);
         ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
