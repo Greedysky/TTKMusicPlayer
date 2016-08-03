@@ -69,8 +69,8 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-#ifdef MUSIC_GREATER_NEW
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+#ifdef MUSIC_GREATER_NEW
         QJsonParseError jsonError;
         QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
         ///Put the data into Json
@@ -188,7 +188,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
 #else
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        QVariant data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -295,7 +295,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                                 }
 
                                 duration = mvUrlValue["duration"].toString();
-                                int bitRate = mvUrlValue["bitRate"].toInt();
+                                int bitRate = mvUrlValue["bitrate"].toInt();
                                 if(bitRate == 0)
                                 {
                                     continue;
@@ -306,6 +306,7 @@ void MusicDownLoadQuerySingleThread::downLoadFinished()
                                 songAttr.m_url = mvUrlValue["url"].toString();
                                 songAttr.m_size = mvUrlValue["size"].toString();
                                 musicInfo.m_songAttrs << songAttr;
+                                qDebug() << "??????????" << songAttr.m_url;
                             }
                             emit createSearchedItems(songName, singerName, duration);
                             musicInfo.m_singerName = singerName;

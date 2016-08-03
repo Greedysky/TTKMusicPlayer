@@ -88,7 +88,7 @@ void MusicTextDownLoadThread::downLoadFinished()
             jsonObject = jsonObject.take("data").toObject();
             if(jsonObject.contains("lrc"))
             {
-                QTextStream outstream(&m_file);
+                QTextStream outstream(m_file);
                 outstream.setCodec("utf-8");
                 outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
                 m_file->close();

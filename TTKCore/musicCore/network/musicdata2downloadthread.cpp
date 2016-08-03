@@ -96,7 +96,17 @@ void MusicData2DownloadThread::dataGetFinished()
             MusicDataDownloadThread::startToDownload();
         }
     }
-    deleteAll();
+//    deleteAll();
+    if(m_dataManager)
+    {
+        m_dataManager->deleteLater();;
+        m_dataManager = nullptr;
+    }
+    if(m_dataReply)
+    {
+        m_dataReply->deleteLater();
+        m_dataReply = nullptr;
+    }
 }
 
 void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
