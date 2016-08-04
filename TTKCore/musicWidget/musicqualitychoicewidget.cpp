@@ -3,6 +3,7 @@
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
+#include "musicttkuiobject.h"
 
 #include <QBoxLayout>
 
@@ -116,13 +117,13 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    setText(tr("SD-text"));
     setToolTip(tr("Quality Choice"));
     setFixedSize(45, 20);
 
     initWidget();
 
-    setStyleSheet(MusicUIObject::MToolButtonStyle09);
+    setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MKGBtnQuality +
+                  "QToolButton{ margin-left:-45px;}" );
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
@@ -152,38 +153,42 @@ void MusicQualityChoiceWidget::initWidget()
 void MusicQualityChoiceWidget::listCellClicked(int row)
 {
     m_menu->close();
+
+    QString style;
     switch(row)
     {
         case 0:
             {
-                setText(tr("ST-text"));
+                style = "QToolButton{ margin-left:-0px; }";
                 m_currentQuality = tr("ST");
                 break;
             }
         case 1:
             {
-                setText(tr("SD-text"));
+                style = "QToolButton{ margin-left:-45px; }";
                 m_currentQuality = tr("SD");
                 break;
             }
         case 2:
             {
-                setText(tr("HD-text"));
+                style = "QToolButton{ margin-left:-90px; }";
                 m_currentQuality = tr("HD");
                 break;
             }
         case 3:
             {
-                setText(tr("SQ-text"));
+                style = "QToolButton{ margin-left:-135px; }";
                 m_currentQuality = tr("SQ");
                 break;
             }
         case 4:
             {
-                setText(tr("CD-text"));
+                style = "QToolButton{ margin-left:-180px; }";
                 m_currentQuality = tr("CD");
                 break;
             }
     }
+    setStyleSheet( styleSheet() + style);
+
     emit researchQueryByQuality(m_currentQuality);
 }

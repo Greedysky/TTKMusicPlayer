@@ -155,6 +155,14 @@ namespace MusicUIObject
             background-image: url(:/funcTools/lrc_back_clicked);}";
 
 
+///music quality widget style
+//////////////////////////////////////////////////////
+    const QString MKGBtnQuality = " \
+            QToolButton{ border:none; \
+            background-image: url(:/quality/btn_quality_normal);} \
+            QToolButton:hover{ background-image: url(:/quality/btn_quality_hover);}";
+
+
 ///music magic widget style
 //////////////////////////////////////////////////////
     const QString MKGEnhanceOn = " \
