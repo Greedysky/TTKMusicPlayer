@@ -124,7 +124,6 @@ else()
     set(QT_USE_QTXML ON)
     set(QT_USE_QTNETWORK ON)
     set(QT_USE_QTSQL ON)
-    set(QT_USE_QTSCRIPT ON)
     set(QT_USE_QTXML ON)
     include(${QT_USE_FILE})
 

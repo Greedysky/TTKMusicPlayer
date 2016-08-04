@@ -52,7 +52,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicsong.h
     ${MUSIC_CORE_DIR}/musiccryptographichash.h
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.h
-    ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.h
+    ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchdialog.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.h
@@ -133,6 +133,7 @@ set(MUSIC_HEADERS
     ${MUSIC_VIDEOKITS_DIR}/musicvideotablewidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideoplaywidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideofloatwidget.h
+    ${MUSIC_WIDGET_DIR}/core/musicabstractmoveresizewidget.h
     ${MUSIC_WIDGET_DIR}/core/musicabstracttablewidget.h
     ${MUSIC_WIDGET_DIR}/core/musicabstractmovedialog.h
     ${MUSIC_WIDGET_DIR}/core/musicabstractmovewidget.h
@@ -142,16 +143,17 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/core/musicmessagebox.h
     ${MUSIC_WIDGET_DIR}/core/musicprogresswidget.h
     ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.h
+    ${MUSIC_WIDGET_DIR}/core/musicclickedslider.h
     ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.h
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.h
     ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.h
     ${MUSIC_WIDGET_DIR}/core/musiccodearea.h
-    ${MUSIC_WIDGET_DIR}/core/musicslidermenuwidget.h
     ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.h
     ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.h
     ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.h
     ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.h
     ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.h
+    ${MUSIC_WIDGET_DIR}/core/musictoolmenuwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
@@ -168,6 +170,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
+    ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.h
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
@@ -176,6 +179,10 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.h
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
     ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodewidget.h
+    ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.h
+    ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.h
     ${MUSIC_LIB_DIR}/musicapplication.h
     ${MUSIC_LIB_DIR}/musicleftareawidget.h
     ${MUSIC_LIB_DIR}/musictopareawidget.h
@@ -218,7 +225,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musicsong.cpp
     ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.cpp
-    ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearch.cpp
+    ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchdialog.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.cpp
@@ -299,6 +306,7 @@ set(MUSIC_SOURCES
     ${MUSIC_VIDEOKITS_DIR}/musicvideotablewidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideoplaywidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideofloatwidget.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicabstractmoveresizewidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicabstracttablewidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicabstractmovedialog.cpp
     ${MUSIC_WIDGET_DIR}/core/musicabstractmovewidget.cpp
@@ -308,16 +316,17 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/core/musicmessagebox.cpp
     ${MUSIC_WIDGET_DIR}/core/musicprogresswidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.cpp
+    ${MUSIC_WIDGET_DIR}/core/musicclickedslider.cpp
     ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.cpp
     ${MUSIC_WIDGET_DIR}/core/musictoastlabel.cpp
     ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.cpp
     ${MUSIC_WIDGET_DIR}/core/musiccodearea.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicslidermenuwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.cpp
     ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.cpp
+    ${MUSIC_WIDGET_DIR}/core/musictoolmenuwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
@@ -334,6 +343,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicenhancedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
@@ -342,6 +352,10 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicbarragewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
     ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
@@ -389,9 +403,6 @@ SET(MUSIC_UIS
 
 SET(MUSIC_QRC
     ${MUSIC_QRC_DIR}/MusicPlayer.qrc
-    ${MUSIC_QRC_DIR}/MusicPlayerShare.qrc
-    ${MUSIC_QRC_DIR}/MusicPlayerUser.qrc
-    ${MUSIC_QRC_DIR}/MusicPlayerVedio.qrc
 )
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -421,7 +432,7 @@ else()
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT4_LIBS ${QMMP_LIBRARY} MusicExtras zlib ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSCRIPT_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi -luser32)
+  list(APPEND QT4_LIBS ${QMMP_LIBRARY} MusicExtras zlib ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} -lIphlpapi -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi -luser32)
     list(APPEND QT4_LIBS -lQtMultimediaKit)

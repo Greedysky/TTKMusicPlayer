@@ -29,7 +29,7 @@
 
 // Only include FlexLexer.h if it hasn't been already included
 #if ! defined(yyFlexLexerOnce)
-#include <flexlexer.h>
+#include "flexlexer.h"
 #endif
 
 #include "parser_p.h"
