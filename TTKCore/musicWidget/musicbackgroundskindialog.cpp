@@ -17,10 +17,10 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     addThemeListWidgetItem();
 

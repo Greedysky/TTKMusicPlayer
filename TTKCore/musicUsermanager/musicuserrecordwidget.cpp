@@ -92,7 +92,7 @@ void MusicUserRecordWidget::initTabF()
         MusicUtils::UWidget::setComboboxText(ui->countryComboBox_F, string);
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
-    ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle08);
 
     connect(ui->confirmButton_F, SIGNAL(clicked()), SLOT(confirmButtonClickedF()));
 }
@@ -102,7 +102,7 @@ void MusicUserRecordWidget::initTabS()
     QString path = m_userModel->getUserIcon(ui->userIDLabel_F->text());
     ui->bigPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->bigPixmapLabel_S->size()));
     ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(ui->smlPixmapLabel_S->size()));
-    ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     connect(ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
 }
 
@@ -118,7 +118,7 @@ void MusicUserRecordWidget::initTabT()
     connect(ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
     changeVerificationCodeT();
-    ui->confirmButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle10);
+    ui->confirmButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle08);
     connect(ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
     connect(ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
 }
@@ -232,21 +232,19 @@ void MusicUserRecordWidget::confirmButtonClickedT()
 
 void MusicUserRecordWidget::checkPwdStrength(int code)
 {
-    QString blue = "background:#80B7F1;";
-    QString grey = "background:#BFBFBF;";
-
-    ui->pwdStrengthT1->setStyleSheet(code != -1 ? blue : grey);
-    ui->pwdStrengthT2->setStyleSheet(grey);
-    ui->pwdStrengthT3->setStyleSheet(grey);
+    ui->pwdStrengthT1->setStyleSheet(code != -1 ? MusicUIObject::MBackgroundStyle14 :
+                                                  MusicUIObject::MBackgroundStyle15);
+    ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle15);
+    ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MBackgroundStyle15);
 
     switch(code)
     {
         case  1:
-            ui->pwdStrengthT2->setStyleSheet(blue);
+            ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle14);
             break;
         case  2:
-            ui->pwdStrengthT2->setStyleSheet(blue);
-            ui->pwdStrengthT3->setStyleSheet(blue);
+            ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle14);
+            ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MBackgroundStyle14);
             break;
         default: break;
     }

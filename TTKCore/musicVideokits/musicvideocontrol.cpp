@@ -41,10 +41,10 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_fullButton->setText(tr("FullScreenMode"));
     m_fullButton->setEnabled( popup );
 
-    m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
-    m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
-    m_qualityButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
-    m_downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle17);
+    m_inSideButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
+    m_fullButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
+    m_qualityButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
+    m_downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -345,7 +345,7 @@ QWidget* MusicVideoControl::createBarrageWidget()
     connect(lineEditBarrage, SIGNAL(enterFinished(QString)), SIGNAL(addBarrageChanged(QString)));
 
     QLabel *labelBarrage = new QLabel(barrageWidget);
-    labelBarrage->setStyleSheet("color:white;");
+    labelBarrage->setStyleSheet(MusicUIObject::MColorStyle01);
     labelBarrage->setText(tr("openBarrage"));
     m_pushBarrage = new QPushButton(barrageWidget);
     m_pushBarrage->setIconSize(QSize(40, 25));
@@ -371,7 +371,7 @@ QPushButton* MusicVideoControl::createBarrageSizeButton(int index)
         case 3: button->setText(tr("G")); break;
     }
     button->setFixedSize(25, 15);
-    button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    button->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     return button;
 }
@@ -391,7 +391,7 @@ QPushButton* MusicVideoControl::createBarrageColorButton(int index)
         case 8: button->setIcon(QIcon(":/color/lb_black")); break;
     }
     button->setFixedSize(15, 15);
-    button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    button->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     button->setCursor(QCursor(Qt::PointingHandCursor));
     return button;
 }

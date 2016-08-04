@@ -212,14 +212,14 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     if(index == 5) ///lrc option
     {
         musicButtonStyleClear(false);
-        m_ui->stackedFunctionWidget->setStyleSheet("#stackedFunctionWidget{ background:transparent;}");
+        m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
         m_ui->musicSearchBackButton->setStyleSheet(MusicTTKUIObject::MKGBtnBackBack);
         m_ui->musicSearchRefreshButton->setStyleSheet(MusicTTKUIObject::MKGBtnBackFresh);
     }
     else
     {
         musicButtonStyleClear(true);
-        m_ui->stackedFunctionWidget->setStyleSheet("#stackedFunctionWidget{ background:white;}");
+        m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
         m_ui->musicSearchBackButton->setStyleSheet(MusicTTKUIObject::MKGBtnForeBack);
         m_ui->musicSearchRefreshButton->setStyleSheet(MusicTTKUIObject::MKGBtnForeFresh);
     }

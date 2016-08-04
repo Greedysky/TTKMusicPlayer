@@ -19,15 +19,16 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     ui->uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->selectButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->stateLabel->setStyleSheet(MusicUIObject::MCustomStyle08);
+    ui->stateLabel->setStyleSheet(MusicUIObject::MBackgroundStyle05 +
+                                  MusicUIObject::MColorStyle07);
 
     ui->uploadButton->hide();
     ui->closeButton->hide();

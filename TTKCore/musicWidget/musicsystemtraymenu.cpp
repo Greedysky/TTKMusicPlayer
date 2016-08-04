@@ -140,7 +140,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     m_showText = new QLabel(widgetActionContainer);
     m_showText->setAlignment(Qt::AlignCenter);
-    m_showText->setStyleSheet(MusicUIObject::MCustomStyle12);
+    m_showText->setStyleSheet(MusicUIObject::MColorStyle03);
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);

@@ -27,7 +27,7 @@ void MusicUserLineEdit::focusInEvent(QFocusEvent *event)
     if(m_tipsLabel)
     {
         m_tipsLabel->show();
-        m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle13);
+        m_tipsLabel->setStyleSheet(MusicUIObject::MColorStyle04);
     }
 }
 
@@ -61,7 +61,7 @@ void MusicUserLineEdit::labelCheck(bool check)
         if(m_tipsLabel)
         {
             m_tipsLabel->show();
-            m_tipsLabel->setStyleSheet(MusicUIObject::MCustomStyle14);
+            m_tipsLabel->setStyleSheet(MusicUIObject::MColorStyle05);
         }
     }
 }

@@ -27,7 +27,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle27 + "}");
+    ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle07));
 
     ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
     ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
@@ -44,19 +44,17 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
     ui->scanButton->setIcon(QIcon(":/toolSets/btn_search"));
-    ui->scanButton->setStyleSheet("QPushButton{ background:transparent;}"
-                                  "QPushButton::hover{ border:1px solid #000000;}");
+    ui->scanButton->setStyleSheet(MusicUIObject::MPushButtonStyle14);
     ui->scanCustButton->setIcon(QIcon(":/toolSets/btn_search"));
-    ui->scanCustButton->setStyleSheet("QPushButton{ background:transparent;}"
-                                      "QPushButton::hover{ border:1px solid #000000;}");
+    ui->scanCustButton->setStyleSheet(MusicUIObject::MPushButtonStyle14);
 
-    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->filterComboBox->setItemDelegate(new QStyledItemDelegate(ui->filterComboBox));
     ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

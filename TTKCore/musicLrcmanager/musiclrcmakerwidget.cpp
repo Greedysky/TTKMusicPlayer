@@ -31,9 +31,9 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 + \
                                     MusicUIObject::MScrollBarStyle01 );
 
-    ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle08);
-    ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle08);
-    ui->reviewButton->setStyleSheet( MusicUIObject::MPushButtonStyle08);
+    ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle06);
+    ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle06);
+    ui->reviewButton->setStyleSheet( MusicUIObject::MPushButtonStyle06);
     ui->makeButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->reviewButton->setCursor(QCursor(Qt::PointingHandCursor));

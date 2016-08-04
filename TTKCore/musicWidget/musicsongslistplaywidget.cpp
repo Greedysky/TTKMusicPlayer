@@ -46,13 +46,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_songNameLabel = new QLabel(this);
     m_songNameLabel->setFixedSize(202, 25);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MColorStyle01);
     m_songNameLabel->setGeometry(65, 5, 182, 25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+    m_timeLabel->setStyleSheet(MusicUIObject::MColorStyle01);
     m_timeLabel->setGeometry(65, 37, 100, 20);
 
     m_columnOne = new MusicSongsEnterPlayWidget(index, this);

@@ -1,7 +1,6 @@
 #include "musicmovinglabelslider.h"
+#include "musicuiobject.h"
 #include "musictime.h"
-
-#include <QDebug>
 
 MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)
     : MusicMovingLabelSlider(Qt::Horizontal, parent)
@@ -20,8 +19,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWid
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     m_textLabel->setGeometry(0, 0, 40, 20);
     m_textLabel->setAlignment(Qt::AlignCenter);
-    m_textLabel->setStyleSheet("QLabel{color:#888888; background-color:#FFE6E6; \
-                                       border:1px solid gray;}");
+    m_textLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
 }
 
 MusicMovingLabelSlider::~MusicMovingLabelSlider()

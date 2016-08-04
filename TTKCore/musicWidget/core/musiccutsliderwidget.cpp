@@ -13,7 +13,7 @@ MusicMoveButton::MusicMoveButton(QWidget *parent)
     : QPushButton(parent)
 {
     setIcon(QIcon(":/toolSets/btn_arrow"));
-    setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    setStyleSheet(MusicUIObject::MPushButtonStyle03);
     setCursor(QCursor(Qt::PointingHandCursor));
 }
 

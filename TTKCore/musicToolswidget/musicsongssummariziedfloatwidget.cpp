@@ -4,6 +4,7 @@
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
 #include "musicttkuiobject.h"
+#include "musicuiobject.h"
 #include "musicutils.h"
 
 #include <QToolButton>
@@ -14,7 +15,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setObjectName("MainWidget");
-    setStyleSheet("#MainWidget{background:rgba(255, 255, 255, 180);}");
+    setStyleSheet(QString("#MainWidget{%1}").arg(MusicUIObject::MBackgroundStyle12));
 
     resize(55, 26);
     MusicUtils::UWidget::widgetToRound(this, 10, 10);

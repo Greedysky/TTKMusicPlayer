@@ -24,7 +24,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     m_showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
     m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
 
@@ -44,7 +44,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_NextSongButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnNext);
     m_PlayButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnPlay);
     m_SettingButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnSetting);
-    m_mainWidget->setStyleSheet("#mainWidget{" + MusicUIObject::MCustomStyle09 + "}");
+    m_mainWidget->setStyleSheet(QString("#mainWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
 
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     m_PreSongButton->setCursor(QCursor(Qt::PointingHandCursor));

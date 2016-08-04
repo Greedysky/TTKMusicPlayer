@@ -27,10 +27,10 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     ui->colletButton->setIcon(QIcon(":/tiny/lb_star"));
     ui->discolletButton->setIcon(QIcon(":/tiny/lb_unstar"));
 
-    ui->playButton->setStyleSheet("background:transparent;");
-    ui->stopButton->setStyleSheet("background:transparent;");
-    ui->colletButton->setStyleSheet("background:transparent;");
-    ui->discolletButton->setStyleSheet("background:transparent;");
+    ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    ui->stopButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    ui->colletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    ui->discolletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
 
     ui->playButton->setIconSize(QSize(31, 31));
     ui->stopButton->setIconSize(QSize(31, 31));

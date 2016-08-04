@@ -56,7 +56,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarWidget->setObjectName("toolBarWidget");
     QHBoxLayout *layout = new QHBoxLayout(m_toolBarWidget);
     layout->setContentsMargins(0, 0, 0, 0);
-    m_toolBarWidget->setStyleSheet(QString("#toolBarWidget{%1}").arg(MusicUIObject::MCustomStyle09));
+    m_toolBarWidget->setStyleSheet(QString("#toolBarWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
     m_toolBarWidget->setGeometry((m_geometry.x() - TOOLBAR_WIDTH)/2, 0, TOOLBAR_WIDTH, TOOLBAR_HEIGHT);
     m_toolBarWidget->setLayout(layout);
 
@@ -159,7 +159,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     toolCloseButton->setStyleSheet(MusicTTKUIObject::MKGBtnTClose);
     toolMakeLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopMakeLrc);
     toolSearchLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopSearchLrc);
@@ -289,7 +289,7 @@ void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
     }
     QWidget::enterEvent(event);
     m_toolBarWidget->show();
-    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle10 + "}");
+    setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MCustomStyle07));
 }
 
 void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
@@ -300,7 +300,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
     }
     QWidget::leaveEvent(event);
     m_toolBarWidget->hide();
-    setStyleSheet("#desktopWidget{" + MusicUIObject::MCustomStyle01 + "}");
+    setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
 }
 
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
@@ -315,7 +315,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
     if(m_windowLocked)
     {
        m_toolBarWidget->hide();
-       setStyleSheet(MusicUIObject::MCustomStyle01);
+       setStyleSheet(MusicUIObject::MBackgroundStyle01);
     }
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced,  m_windowLocked ? 1 : 0);
     emit setWindowLockedChanged(m_windowLocked);

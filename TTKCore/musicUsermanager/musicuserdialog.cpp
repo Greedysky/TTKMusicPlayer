@@ -83,9 +83,9 @@ void MusicUserDialog::firstStatckWidget()
     ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->userComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle09);
-    ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle09);
+    ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
 
     ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -101,9 +101,9 @@ void MusicUserDialog::secondStatckWidget()
     ui->registerMailLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->registerPwdLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->registerPwdCLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle09);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle07);
 
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -129,8 +129,8 @@ void MusicUserDialog::thirdStatckWidget()
     ui->pwdLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->mailLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     ui->confirmButton_2->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton_2->setCursor(QCursor(Qt::PointingHandCursor));

@@ -8,7 +8,6 @@
 MusicBackgroundPopWidget::MusicBackgroundPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-//    setStyleSheet(MusicUIObject::MToolButtonStyle10);
     initWidget();
 }
 
@@ -43,7 +42,7 @@ void MusicBackgroundPopWidget::initWidget()
     hbox->setSpacing(0);
 
     QLabel *textLabel = new QLabel(m_containWidget);
-    textLabel->setStyleSheet("color: rgb(230, 115, 0);");
+    textLabel->setStyleSheet(MusicUIObject::MColorStyle02);
     textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
 
     m_slider = new MusicClickedSlider(Qt::Vertical, m_containWidget);

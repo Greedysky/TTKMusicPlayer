@@ -401,19 +401,19 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     m_playButton = new QPushButton(tr("Play"), this);
     m_playButton->setFixedSize(70, 20);
-    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(m_playButton);
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setFixedSize(70, 20);
-    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(addButton);
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
     downloadButton->setFixedSize(70, 20);
-    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(downloadButton);
 
@@ -430,7 +430,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);
     labelLayout->setSpacing(10);
-    labelWidget->setStyleSheet(MusicUIObject::MCustomStyle17);
+    labelWidget->setStyleSheet(MusicUIObject::MBackgroundStyle03);
 
     QCheckBox *label_checkBox = new QCheckBox(this);
     label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -439,15 +439,15 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     labelLayout->addWidget(label_checkBox, 3);
 
     QLabel *Label1 = new QLabel(tr("Song"), this);
-    Label1->setStyleSheet(MusicUIObject::MCustomStyle18);
+    Label1->setStyleSheet(MusicUIObject::MCustomStyle01);
     labelLayout->addWidget(Label1, 5);
 
     QLabel *Label2 = new QLabel(tr("Artist"), this);
-    Label2->setStyleSheet(MusicUIObject::MCustomStyle18);
+    Label2->setStyleSheet(MusicUIObject::MCustomStyle01);
     labelLayout->addWidget(Label2, 3);
 
     QLabel *Label3 = new QLabel(tr("Operator"), this);
-    Label3->setStyleSheet(MusicUIObject::MCustomStyle18);
+    Label3->setStyleSheet(MusicUIObject::MCustomStyle01);
     labelLayout->addWidget(Label3, 1);
 
     labelWidget->setLayout(labelLayout);

@@ -12,11 +12,11 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MCustomStyle03 + "}");
+    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MBackgroundStyle08 + "}");
 
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setGeometry(0, 0, 662, 125);
-    m_filmBGWidget->setStyleSheet(MusicUIObject::MCustomStyle21);
+    m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/lb_film_bg');");
 
     m_plane1 = new MusicClickedLabel(this);
     m_plane1->setGeometry(100, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
@@ -42,7 +42,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
     m_confirmButton->setGeometry(500, 130, 70, 20);
-    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
@@ -52,8 +52,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_previous->setStyleSheet( MusicUIObject::MCustomStyle22 );
-    m_next->setStyleSheet( MusicUIObject::MCustomStyle22 );
+    m_previous->setStyleSheet( MusicUIObject::MCustomStyle09 );
+    m_next->setStyleSheet( MusicUIObject::MCustomStyle09 );
 
     m_currentIndex = 0;
 

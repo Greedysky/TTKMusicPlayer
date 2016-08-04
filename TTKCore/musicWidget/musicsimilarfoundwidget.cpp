@@ -22,12 +22,12 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
     m_mainWindow = new QWidget(this);
-    m_mainWindow->setStyleSheet("background:#FFFFFF");
+    m_mainWindow->setStyleSheet(MusicUIObject::MBackgroundStyle17);
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet("font-size:20px; font-weight:bold");
+    m_statusLabel->setStyleSheet(MusicUIObject::MCustomStyle04 + MusicUIObject::MCustomStyle01);
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
@@ -117,7 +117,7 @@ void MusicSimilarFoundWidget::createLabels()
     int index = 0;
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle05);
+    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle04);
     QGridLayout *grid = new QGridLayout(function);
     grid->setSpacing(15);
 

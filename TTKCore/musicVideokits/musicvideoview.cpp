@@ -54,7 +54,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle19);
+    setStyleSheet(MusicUIObject::MBackgroundStyle02);
 
     m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);

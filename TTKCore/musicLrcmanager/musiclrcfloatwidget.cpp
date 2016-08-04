@@ -7,7 +7,7 @@
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle03);
+    setStyleSheet(MusicUIObject::MBackgroundStyle08);
 
     m_floatPhotoWidget = new MusicLrcFloatPhotoWidget(parent);
     m_floatPhotoWidget->hide();
@@ -27,11 +27,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setIcon(QIcon(":/lrc/lb_lrc_wallpaper"));
     m_photo->setIcon(QIcon(":/lrc/lb_lrc_photo"));
 
-    m_update->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_more->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_wallp->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_photo->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_update->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_search->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_more->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_wallp->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_photo->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
 
     m_update->setGeometry(15, 10, m_update->width(), m_update->height());
     m_search->setGeometry(15, 50, m_search->width(), m_search->height());

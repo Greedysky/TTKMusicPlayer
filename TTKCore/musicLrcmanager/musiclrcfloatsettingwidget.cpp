@@ -9,15 +9,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
     setObjectName("MusicLrcFloatSettingWidget");
-    setStyleSheet("#MusicLrcFloatSettingWidget{" + MusicUIObject::MCustomStyle03 + "}" +
-                  MusicUIObject::MPushButtonStyle14);
+    setStyleSheet(QString("#MusicLrcFloatSettingWidget{%1}").arg(MusicUIObject::MBackgroundStyle08) +
+                  MusicUIObject::MPushButtonStyle10);
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *bgLabel = new QLabel(tr("Background"), this);
-    colorLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
-    sizeLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
-    bgLabel->setStyleSheet( MusicUIObject::MCustomStyle23 );
+    colorLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
+    sizeLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
+    bgLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
     colorLabel->setAlignment(Qt::AlignCenter);
     sizeLabel->setAlignment(Qt::AlignCenter);
     bgLabel->setAlignment(Qt::AlignCenter);
@@ -58,15 +58,15 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QPushButton *artBgButton = new QPushButton(tr("ArtBg"), this);
     artBgButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(artBgButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
-    musicBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle18);
-    artBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle18);
+    musicBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle13);
+    artBgButton->setStyleSheet(MusicUIObject::MPushButtonStyle13);
     musicBgButton->setGeometry(10, 155, 70, 20);
     artBgButton->setGeometry(90, 155, 70, 20);
 
     QPushButton *settingButton = new QPushButton(tr("More"),this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
-    settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle18);
+    settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle13);
     settingButton->setGeometry(10, 180, 150, 20);
 }
 

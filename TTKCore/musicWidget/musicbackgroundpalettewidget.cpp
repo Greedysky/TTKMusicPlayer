@@ -153,8 +153,8 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));

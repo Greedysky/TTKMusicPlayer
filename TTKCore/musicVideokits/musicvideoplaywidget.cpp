@@ -33,16 +33,16 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
     m_topWidget->setObjectName("#topWidget");
-    m_topWidget->setStyleSheet(MusicUIObject::MCustomStyle19 + \
-                               MusicUIObject::MCustomStyle20);
+    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle02 + \
+                               MusicUIObject::MCustomStyle05);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setSpacing(0);
 
     m_textLabel = new QLabel(m_topWidget);
-    m_textLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle01);
 
     QWidget *searchWidget = new QWidget(m_topWidget);
-    searchWidget->setStyleSheet("background:rgba(255,255,255,125)");
+    searchWidget->setStyleSheet(MusicUIObject::MBackgroundStyle11);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
     searchLayout->setContentsMargins(0, 0, 0, 0);
     searchLayout->setSpacing(0);
@@ -76,7 +76,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     m_topWidget->setFixedHeight(35);
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle20);
+    m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle05);
     layout->addWidget(m_topWidget);
     layout->addWidget(m_stackedWidget);
     setLayout(layout);

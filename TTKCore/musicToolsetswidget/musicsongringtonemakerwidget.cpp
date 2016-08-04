@@ -25,10 +25,10 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->addSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->playSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->playRingButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->saveSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->addSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->playSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->playRingButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->saveSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->formatCombo->setItemDelegate(new QStyledItemDelegate(ui->formatCombo));
     ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);

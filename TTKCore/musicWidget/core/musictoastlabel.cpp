@@ -1,5 +1,6 @@
 #include "musictoastlabel.h"
 #include "musicnumberdefine.h"
+#include "musicuiobject.h"
 
 #include <QPropertyAnimation>
 
@@ -8,7 +9,7 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet("background:#F9D982; color:white;");
+    setStyleSheet(MusicUIObject::MBackgroundStyle16 + MusicUIObject::MColorStyle01);
 
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));

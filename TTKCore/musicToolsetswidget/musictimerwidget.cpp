@@ -29,11 +29,11 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     ui->timerToPlay->setIcon(QIcon(":/toolSets/btn_timer_play"));
     ui->timerToStop->setIcon(QIcon(":/toolSets/btn_timer_stop"));
     ui->timerToShutdown->setIcon(QIcon(":/toolSets/btn_timer_down"));
-    ui->timerToPlay->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->timerToStop->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->timerToShutdown->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-    ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->timerToPlay->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->timerToStop->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->timerToShutdown->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->timerToPlay->setCursor(QCursor(Qt::PointingHandCursor));
     ui->timerToStop->setCursor(QCursor(Qt::PointingHandCursor));
     ui->timerToShutdown->setCursor(QCursor(Qt::PointingHandCursor));

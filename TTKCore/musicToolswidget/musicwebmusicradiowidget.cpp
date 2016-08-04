@@ -38,9 +38,9 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
 
-    ui->playButton->setStyleSheet("background:transparent;");
-    ui->previousButton->setStyleSheet("background:transparent;");
-    ui->nextButton->setStyleSheet("background:transparent;");
+    ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
 
     ui->playButton->setIconSize(QSize(31, 31));
     ui->previousButton->setIconSize(QSize(31, 31));

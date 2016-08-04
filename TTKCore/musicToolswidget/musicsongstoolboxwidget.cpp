@@ -251,12 +251,11 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     m_scrollArea->setAlignment(Qt::AlignLeft);
     m_scrollArea->setWidget(contentsWidget);
 
-    QString style = "background:rgba(255,255,255,25)";
     contentsWidget->setObjectName("contentsWidget");
-    contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(style));
+    contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MBackgroundStyle09));
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(style));
+    view->setStyleSheet(QString("#viewport{%1}").arg(MusicUIObject::MBackgroundStyle09));
 
     mainLayout->addWidget(m_scrollArea);
     setLayout(mainLayout);

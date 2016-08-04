@@ -5,7 +5,7 @@
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle28);
+    setStyleSheet(MusicUIObject::MBackgroundStyle06);
 
     resizeWindow(0, 0);
     m_search = new QPushButton(tr(" Search"), this);
@@ -20,11 +20,11 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_download->setIcon(QIcon(":/video/btn_download"));
     m_share->setIcon(QIcon(":/video/btn_share"));
 
-    m_search->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_fresh->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_fullscreen->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_download->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
-    m_share->setStyleSheet( MusicUIObject::MPushButtonStyle15 );
+    m_search->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_fresh->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_fullscreen->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_download->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
+    m_share->setStyleSheet( MusicUIObject::MPushButtonStyle11 );
 
     m_search->move(15, 10);
     m_fresh->move(15, 50);

@@ -76,7 +76,8 @@ void MusicEnhancedWidget::initWidget()
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("containWidget");
-    m_containWidget->setStyleSheet("#containWidget{border:none; background:url(':/enhance/lb_background')}");
+    m_containWidget->setStyleSheet(QString("#containWidget{%1%2}").arg(MusicUIObject::MCustomStyle05)
+                                                   .arg("background:url(':/enhance/lb_background')"));
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);

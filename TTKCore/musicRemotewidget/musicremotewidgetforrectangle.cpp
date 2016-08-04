@@ -26,7 +26,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("toolWidget");
-    m_toolWidget->setStyleSheet("#toolWidget{" + MusicUIObject::MCustomStyle09 + "}");
+    m_toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
     vbox->addWidget(m_toolWidget);
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
     hbox->setContentsMargins(0, 0, 0, 0);

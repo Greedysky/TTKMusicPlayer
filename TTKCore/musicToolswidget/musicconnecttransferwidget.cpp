@@ -36,19 +36,19 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    ui->reflashUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->reflashUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->reflashUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->reflashUSBButton, SIGNAL(clicked()), SLOT(reflashRemovableDir()));
 
-    ui->transferUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transferUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferUSBFiles()));
 
-    ui->transferWIFIButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->transferWIFIButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->transferWIFIButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->transferWIFIButton, SIGNAL(clicked()), SLOT(startToTransferWIFIFiles()));
 
-    ui->switchButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->switchButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->switchButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->switchButton, SIGNAL(clicked()), SLOT(switchDiffDevice()));
 
@@ -91,7 +91,7 @@ void MusicConnectTransferWidget::initColumns()
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName)
                                               .arg(songs[i].m_songs.count()), this);
-        button->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+        button->setStyleSheet(MusicUIObject::MPushButtonStyle06);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setGeometry(32, 100 + 50*i, 90, 25);
         group->addButton(button, i);

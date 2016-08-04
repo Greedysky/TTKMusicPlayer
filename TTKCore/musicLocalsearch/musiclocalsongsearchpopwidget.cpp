@@ -74,7 +74,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     layout->addWidget(m_clearButton);
     setLayout(layout);
 
-    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle07);
+    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle08);
     connect(m_clearButton, SIGNAL(clicked()), SLOT(clearButtonClicked()));
     connect(m_popTableWidget, SIGNAL(setText(QString)), SIGNAL(setText(QString)));
 }
