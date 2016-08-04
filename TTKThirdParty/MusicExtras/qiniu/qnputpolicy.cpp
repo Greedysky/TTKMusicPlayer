@@ -3,7 +3,7 @@
 #include "qnmac.h"
 #include "qnconf.h"
 
-#ifdef MUSIC_GREATER_NEW
+#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
 #   include <QJsonObject>
 #   include <QJsonDocument>
 #else
