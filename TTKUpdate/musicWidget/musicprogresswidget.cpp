@@ -38,12 +38,12 @@ void MusicProgressWidget::initWidget()
     m_background->setGeometry(20, 20, 360, 115);
     QWidget *backgroundMask = new QWidget(this);
     backgroundMask->setGeometry(20, 45, 360, 90);
-    backgroundMask->setStyleSheet("background:rgba(255,255,255,200);");
+    backgroundMask->setStyleSheet(MusicUIObject::MBackgroundStyle13);
 
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));
     topTitleName->setGeometry(30, 20, 221, 25);
-    topTitleName->setStyleSheet("color:#FFFFFF;font-weight:bold;");
+    topTitleName->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle01);
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(360, 22, 20, 20);

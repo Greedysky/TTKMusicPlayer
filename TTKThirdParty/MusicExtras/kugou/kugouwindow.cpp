@@ -1,4 +1,5 @@
 #include "kugouwindow.h"
+#include "kugouuiobject.h"
 
 #ifdef MUSIC_WEBKIT
 # ifdef MUSIC_GREATER_NEW
@@ -41,10 +42,6 @@ KugouWindowPrivate::~KugouWindowPrivate()
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 ///
-
-const QString radioStyle = "QPushButton{ border:none; color:rgb(135, 135, 135);} \
-                            QPushButton:hover{ color:rgb(104, 169, 236);} \
-                            QPushButton:checked{ color:rgb(40, 143, 231);}";
 
 KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
     : QWidget(parent)
@@ -136,7 +133,7 @@ void KugouWindow::createKugouSongWidget()
 #ifdef MUSIC_WEBKIT
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(radioStyle + "QWidget{background:white;}");
+    d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(25);
@@ -195,7 +192,7 @@ void KugouWindow::createKugouRadioWidget()
 #ifdef MUSIC_WEBKIT
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(radioStyle + "QWidget{background:white;}");
+    d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -265,7 +262,7 @@ void KugouWindow::createKugouMVWidget()
 #ifdef MUSIC_WEBKIT
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
-    d->m_topWidget->setStyleSheet(radioStyle + "QWidget{background:white;}");
+    d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
     QHBoxLayout *topLayout = new QHBoxLayout(d->m_topWidget);
     topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setSpacing(50);
@@ -312,7 +309,7 @@ void KugouWindow::changeClickedButtonStyle(int index)
     TTK_D(KugouWindow);
     for(int i=0; i<d->m_buttonGroup->buttons().count(); ++i)
     {
-        d->m_buttonGroup->button(i)->setStyleSheet(radioStyle);
+        d->m_buttonGroup->button(i)->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     }
-    d->m_buttonGroup->button(index)->setStyleSheet("QPushButton{ color:rgb(104, 169, 236);}");
+    d->m_buttonGroup->button(index)->setStyleSheet(MusicUIObject::MPushButtonStyle02);
 }

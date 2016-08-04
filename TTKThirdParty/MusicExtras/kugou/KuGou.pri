@@ -50,7 +50,8 @@ INCLUDEPATH += $$PWD
 
 HEADERS  += \
     $$PWD/kugouurl.h \
-    $$PWD/kugouwindow.h
+    $$PWD/kugouwindow.h \
+    $$PWD/kugouuiobject.h
 
 SOURCES += \
     $$PWD/kugouurl.cpp \
