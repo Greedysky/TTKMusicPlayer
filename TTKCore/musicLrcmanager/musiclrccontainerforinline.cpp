@@ -260,10 +260,10 @@ void MusicLrcContainerForInline::initFunctionLabel()
     microphone->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicTTKUIObject::MKGInlineTranslation);
-    movie->setStyleSheet(MusicTTKUIObject::MKGInlineMovie);
-    microphone->setStyleSheet(MusicTTKUIObject::MKGInlineMicrophone);
-    message->setStyleSheet(MusicTTKUIObject::MKGInlineMessage);
+    translation->setStyleSheet(MusicUIObject::MKGInlineTranslation);
+    movie->setStyleSheet(MusicUIObject::MKGInlineMovie);
+    microphone->setStyleSheet(MusicUIObject::MKGInlineMicrophone);
+    message->setStyleSheet(MusicUIObject::MKGInlineMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

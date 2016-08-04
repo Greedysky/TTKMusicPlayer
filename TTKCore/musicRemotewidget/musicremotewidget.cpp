@@ -40,10 +40,10 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_SettingButton->setFixedSize(28, 28);
     m_showMainWindow->setFixedSize(30, 30);
 
-    m_PreSongButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnPrevious);
-    m_NextSongButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnNext);
-    m_PlayButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnPlay);
-    m_SettingButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnSetting);
+    m_PreSongButton->setStyleSheet(MusicUIObject::MKGTinyBtnPrevious);
+    m_NextSongButton->setStyleSheet(MusicUIObject::MKGTinyBtnNext);
+    m_PlayButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlay);
+    m_SettingButton->setStyleSheet(MusicUIObject::MKGTinyBtnSetting);
     m_mainWidget->setStyleSheet(QString("#mainWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
 
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
@@ -126,7 +126,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setStyleSheet(status ? MusicTTKUIObject::MKGTinyBtnPlay : MusicTTKUIObject::MKGTinyBtnPause);
+    m_PlayButton->setStyleSheet(status ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGTinyBtnPause);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)
@@ -141,7 +141,7 @@ void MusicRemoteWidget::musicVolumeChanged(int value)
 {
     emit musicVolumeSignal(value);
 
-    QString style = MusicTTKUIObject::MKGTinyBtnSoundWhite;
+    QString style = MusicUIObject::MKGTinyBtnSoundWhite;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-48px; }";

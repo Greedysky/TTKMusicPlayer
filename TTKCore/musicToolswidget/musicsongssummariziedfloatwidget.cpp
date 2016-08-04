@@ -22,10 +22,10 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
 
     QToolButton *locationButton = new QToolButton(this);
     QToolButton *searchButton = new QToolButton(this);
-    locationButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnLocation);
+    locationButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
     locationButton->setGeometry(0, 1, 24, 24);
-    searchButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnLocalSearch);
+    searchButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(30, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));

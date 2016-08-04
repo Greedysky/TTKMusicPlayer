@@ -65,8 +65,8 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
-    m_PlayOrStop->setStyleSheet(status ? MusicTTKUIObject::MKGContextPlay :
-                                         MusicTTKUIObject::MKGContextPause);
+    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay :
+                                         MusicUIObject::MKGContextPause);
 }
 
 void MusicSystemTrayMenu::setVolumeValue(int value) const
@@ -75,7 +75,7 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicTTKUIObject::MKGTinyBtnSound;
+    QString style = MusicUIObject::MKGTinyBtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-48px; }";
@@ -122,9 +122,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setFixedSize(32, 32);
     m_PlayOrStop->setFixedSize(32, 32);
 
-    previousPlay->setStyleSheet(MusicTTKUIObject::MKGContextPrevious);
-    nextPlay->setStyleSheet(MusicTTKUIObject::MKGContextNext);
-    m_PlayOrStop->setStyleSheet(MusicTTKUIObject::MKGContextPlay);
+    previousPlay->setStyleSheet(MusicUIObject::MKGContextPrevious);
+    nextPlay->setStyleSheet(MusicUIObject::MKGContextNext);
+    m_PlayOrStop->setStyleSheet(MusicUIObject::MKGContextPlay);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));

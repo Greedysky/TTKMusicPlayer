@@ -59,15 +59,15 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
                                      SLOT(setSliderStyleByType(int)));
 
-    ui->musicPrevious->setStyleSheet(MusicTTKUIObject::MKGBtnPrevious);
-    ui->musicNext->setStyleSheet(MusicTTKUIObject::MKGBtnNext);
-    ui->musicKey->setStyleSheet(MusicTTKUIObject::MKGBtnPlay);
+    ui->musicPrevious->setStyleSheet(MusicUIObject::MKGBtnPrevious);
+    ui->musicNext->setStyleSheet(MusicUIObject::MKGBtnNext);
+    ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
 
     switchToSelectedItemStyle(0);
-    ui->musicBestLove->setStyleSheet(MusicTTKUIObject::MKGBtnUnLove);
-    ui->musicDesktopLrc->setStyleSheet(MusicTTKUIObject::MKGBtnDKLrc);
-    ui->musicDownload->setStyleSheet(MusicTTKUIObject::MKGBtnUnDownload);
-    ui->musicMoreFunction->setStyleSheet(MusicTTKUIObject::MKGBtnMore);
+    ui->musicBestLove->setStyleSheet(MusicUIObject::MKGBtnUnLove);
+    ui->musicDesktopLrc->setStyleSheet(MusicUIObject::MKGBtnDKLrc);
+    ui->musicDownload->setStyleSheet(MusicUIObject::MKGBtnUnDownload);
+    ui->musicMoreFunction->setStyleSheet(MusicUIObject::MKGBtnMore);
 
     ui->musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -99,27 +99,27 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 void MusicLeftAreaWidget::musictLoveStateClicked()
 {
     bool state = !M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    m_ui->musicBestLove->setStyleSheet(state ? MusicTTKUIObject::MKGBtnLove : MusicTTKUIObject::MKGBtnUnLove);
+    m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
     M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
     emit currentLoveStateChanged();
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
 {
-    m_ui->musicButton_cloud->setStyleSheet(MusicTTKUIObject::MKGItemFavourite);
-    m_ui->musicButton_mydownl->setStyleSheet(MusicTTKUIObject::MKGItemDownload);
-    m_ui->musicButton_playlist->setStyleSheet(MusicTTKUIObject::MKGItemMusic);
-    m_ui->musicButton_radio->setStyleSheet(MusicTTKUIObject::MKGItemRadio);
-    m_ui->musicButton_tools->setStyleSheet(MusicTTKUIObject::MKGItemMore);
-    m_ui->musicButton_mobile->setStyleSheet(MusicTTKUIObject::MKGItemMobile);
+    m_ui->musicButton_cloud->setStyleSheet(MusicUIObject::MKGItemFavourite);
+    m_ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MKGItemDownload);
+    m_ui->musicButton_playlist->setStyleSheet(MusicUIObject::MKGItemMusic);
+    m_ui->musicButton_radio->setStyleSheet(MusicUIObject::MKGItemRadio);
+    m_ui->musicButton_tools->setStyleSheet(MusicUIObject::MKGItemMore);
+    m_ui->musicButton_mobile->setStyleSheet(MusicUIObject::MKGItemMobile);
     switch(index)
     {
-        case 0: m_ui->musicButton_playlist->setStyleSheet(MusicTTKUIObject::MKGItemMusicClicked); break;
-        case 1: m_ui->musicButton_radio->setStyleSheet(MusicTTKUIObject::MKGItemRadioClicked);break;
-        case 2: m_ui->musicButton_mydownl->setStyleSheet(MusicTTKUIObject::MKGItemDownloadClicked);break;
-        case 3: m_ui->musicButton_mobile->setStyleSheet(MusicTTKUIObject::MKGItemMobileClicked);break;
-        case 4: m_ui->musicButton_cloud->setStyleSheet(MusicTTKUIObject::MKGItemFavouriteClicked);break;
-        case 5: m_ui->musicButton_tools->setStyleSheet(MusicTTKUIObject::MKGItemMoreClicked);break;
+        case 0: m_ui->musicButton_playlist->setStyleSheet(MusicUIObject::MKGItemMusicClicked); break;
+        case 1: m_ui->musicButton_radio->setStyleSheet(MusicUIObject::MKGItemRadioClicked);break;
+        case 2: m_ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MKGItemDownloadClicked);break;
+        case 3: m_ui->musicButton_mobile->setStyleSheet(MusicUIObject::MKGItemMobileClicked);break;
+        case 4: m_ui->musicButton_cloud->setStyleSheet(MusicUIObject::MKGItemFavouriteClicked);break;
+        case 5: m_ui->musicButton_tools->setStyleSheet(MusicUIObject::MKGItemMoreClicked);break;
         default: break;
     }
 }
@@ -159,7 +159,7 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
     bool state = !M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
     if(state)
     {
-        m_ui->musicDownload->setStyleSheet(state ? MusicTTKUIObject::MKGBtnDownload : MusicTTKUIObject::MKGBtnUnDownload);
+        m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
         M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
         emit currentDownloadStateChanged();
     }

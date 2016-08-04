@@ -99,7 +99,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolStyleButton->setFixedSize(20, 20);
     layout->addWidget(toolStyleButton);
     toolStyleButton->setCursor(QCursor(Qt::PointingHandCursor));
-    toolStyleButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopStyle);
+    toolStyleButton->setStyleSheet(MusicUIObject::MKGDeskTopStyle);
 
 //    QToolButton *toolYinButton = new QToolButton(m_toolBarWidget);
 //    toolYinButton->setIconSize(QSize(18, 23));
@@ -160,18 +160,18 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    toolCloseButton->setStyleSheet(MusicTTKUIObject::MKGBtnTClose);
-    toolMakeLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopMakeLrc);
-    toolSearchLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopSearchLrc);
-    toolUpdateLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopUpdateLrc);
-    toolErrorLrcTextButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopErrorLrc);
-    toolWindowLockedButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopLock);
-    toolLrcSmallerButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopSizeDown);
-    toolLrcBigerButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopSizeUp);
-    toolPreSongButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopPrevious);
-    toolNextSongButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopNext);
-    toolSettingButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopSetting);
-    m_toolPlayButton->setStyleSheet(MusicTTKUIObject::MKGDeskTopPlay);
+    toolCloseButton->setStyleSheet(MusicUIObject::MKGBtnTClose);
+    toolMakeLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopMakeLrc);
+    toolSearchLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopSearchLrc);
+    toolUpdateLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopUpdateLrc);
+    toolErrorLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopErrorLrc);
+    toolWindowLockedButton->setStyleSheet(MusicUIObject::MKGDeskTopLock);
+    toolLrcSmallerButton->setStyleSheet(MusicUIObject::MKGDeskTopSizeDown);
+    toolLrcBigerButton->setStyleSheet(MusicUIObject::MKGDeskTopSizeUp);
+    toolPreSongButton->setStyleSheet(MusicUIObject::MKGDeskTopPrevious);
+    toolNextSongButton->setStyleSheet(MusicUIObject::MKGDeskTopNext);
+    toolSettingButton->setStyleSheet(MusicUIObject::MKGDeskTopSetting);
+    m_toolPlayButton->setStyleSheet(MusicUIObject::MKGDeskTopPlay);
 
     showMainWindow->setToolTip(tr("showMainWindow"));
     toolCloseButton->setToolTip(tr("hide"));
@@ -390,6 +390,6 @@ void MusicLrcContainerForDesktop::setSettingParameter()
 
 void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
 {
-    m_toolPlayButton->setStyleSheet(status ? MusicTTKUIObject::MKGDeskTopPlay :
-                                             MusicTTKUIObject::MKGDeskTopPause);
+    m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MKGDeskTopPlay :
+                                             MusicUIObject::MKGDeskTopPause);
 }

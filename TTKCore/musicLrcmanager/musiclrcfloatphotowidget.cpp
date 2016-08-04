@@ -12,7 +12,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
-    setStyleSheet("#MusicLrcFloatPhotoWidget{" + MusicUIObject::MBackgroundStyle08 + "}");
+    setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MBackgroundStyle08));
 
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setGeometry(0, 0, 662, 125);

@@ -38,7 +38,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
                   << tr("Electronics"));
     connect(ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
-    ui->showEqButton->setStyleSheet(MusicTTKUIObject::MKGEqualizerOff);
+    ui->showEqButton->setStyleSheet(MusicUIObject::MKGEqualizerOff);
 
     initEqualizeValue();
     readEqInformation();
@@ -176,8 +176,8 @@ void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
     emit setEnaleEffect(m_eable);
-    ui->showEqButton->setStyleSheet(!m_eable ? MusicTTKUIObject::MKGEqualizerOff :
-                                               MusicTTKUIObject::MKGEqualizerOn);
+    ui->showEqButton->setStyleSheet(!m_eable ? MusicUIObject::MKGEqualizerOff :
+                                               MusicUIObject::MKGEqualizerOn);
 
     setControlEnable(!m_eable);
     if(m_eable)

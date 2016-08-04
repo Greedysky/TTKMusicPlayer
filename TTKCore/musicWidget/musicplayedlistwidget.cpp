@@ -11,7 +11,7 @@ MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     setToolTip(tr("playedList"));
-    setStyleSheet(MusicTTKUIObject::MKGBtnPlayedList);
+    setStyleSheet(MusicUIObject::MKGBtnPlayedList);
 
     initWidget();
 }

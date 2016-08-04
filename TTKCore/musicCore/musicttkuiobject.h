@@ -1,12 +1,20 @@
 #ifndef MUSICTTKUIOBJECT_H
 #define MUSICTTKUIOBJECT_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QObject>
 
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicTTKUIObject
+namespace MusicUIObject
 {
 ///left item list style
 //////////////////////////////////////////////////////

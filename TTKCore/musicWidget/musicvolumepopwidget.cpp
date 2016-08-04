@@ -33,7 +33,7 @@ void MusicVolumePopWidget::setValue(int value)
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicTTKUIObject::MKGBtnSound;
+    QString style = MusicUIObject::MKGBtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-60px; }";

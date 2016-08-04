@@ -37,7 +37,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    closeButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnClose);
+    closeButton->setStyleSheet(MusicUIObject::MKGTinyBtnClose);
 
     layout->addWidget(searchPair);
     layout->addWidget(closeButton);

@@ -18,23 +18,23 @@ void MusicPlayBackModeWidget::setPlaybackMode(MusicObject::SongPlayType mode)
     switch( mode )
     {
         case MusicObject::MC_PlayOrder:
-                setStyleSheet(MusicTTKUIObject::MKGBtnOrder);
+                setStyleSheet(MusicUIObject::MKGBtnOrder);
                 setToolTip(tr("OrderPlay"));
                 break;
         case MusicObject::MC_PlayRandom:
-                setStyleSheet(MusicTTKUIObject::MKGBtnRandom);
+                setStyleSheet(MusicUIObject::MKGBtnRandom);
                 setToolTip(tr("RandomPlay"));
                 break;
         case MusicObject::MC_PlayListLoop:
-                setStyleSheet(MusicTTKUIObject::MKGBtnListLoop);
+                setStyleSheet(MusicUIObject::MKGBtnListLoop);
                 setToolTip(tr("ListCycle"));
                 break;
         case MusicObject::MC_PlayOneLoop:
-                setStyleSheet(MusicTTKUIObject::MKGBtnOneLoop);
+                setStyleSheet(MusicUIObject::MKGBtnOneLoop);
                 setToolTip(tr("SingleCycle"));
                 break;
         case MusicObject::MC_PlayOnce:
-                setStyleSheet(MusicTTKUIObject::MKGBtnOnce);
+                setStyleSheet(MusicUIObject::MKGBtnOnce);
                 setToolTip(tr("PlayOnce"));
                 break;
         default:

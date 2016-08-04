@@ -213,15 +213,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
-        m_ui->musicSearchBackButton->setStyleSheet(MusicTTKUIObject::MKGBtnBackBack);
-        m_ui->musicSearchRefreshButton->setStyleSheet(MusicTTKUIObject::MKGBtnBackFresh);
+        m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
+        m_ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
     }
     else
     {
         musicButtonStyleClear(true);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
-        m_ui->musicSearchBackButton->setStyleSheet(MusicTTKUIObject::MKGBtnForeBack);
-        m_ui->musicSearchRefreshButton->setStyleSheet(MusicTTKUIObject::MKGBtnForeFresh);
+        m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
+        m_ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
     }
 
     deleteStackedFuncWidget();
@@ -238,7 +238,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouSong, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
-                m_ui->musicSongWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncSongForeClicked);
+                m_ui->musicSongWidgetButton->setStyleSheet(MusicUIObject::MKGFuncSongForeClicked);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -247,7 +247,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouRadio, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
-                m_ui->musicRadioWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncRadioForeClicked);
+                m_ui->musicRadioWidgetButton->setStyleSheet(MusicUIObject::MKGFuncRadioForeClicked);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -256,7 +256,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouList, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
-                m_ui->musicListWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncListForeClicked);
+                m_ui->musicListWidgetButton->setStyleSheet(MusicUIObject::MKGFuncListForeClicked);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -270,7 +270,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_stackedFuncWidget = videoPlayer;
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
-                m_ui->musicVideoWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncMVForeClicked);
+                m_ui->musicVideoWidgetButton->setStyleSheet(MusicUIObject::MKGFuncMVForeClicked);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -279,16 +279,16 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KugouMv, this);
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
-                m_ui->musicLiveWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncLiveForeClicked);
+                m_ui->musicLiveWidgetButton->setStyleSheet(MusicUIObject::MKGFuncLiveForeClicked);
                 emit updateBackgroundTheme();
                 break;
             }
         case 5: //insert lrc display widget
             {
-                m_ui->musicLrcWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncLrcForeClicked);
+                m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MKGFuncLrcForeClicked);
 
                 m_ui->surfaceStackedWidget->setCurrentIndex(1);
-                m_ui->lrcDisplayAllButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnLrcCollapse);
+                m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcCollapse);
                 m_ui->lrcDisplayAllButton->setVisible(true);
                 emit updateBgThemeDownload();
                 break;
@@ -364,17 +364,17 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
 
 void MusicRightAreaWidget::musicButtonStyleClear(bool fore)
 {
-    m_ui->musicSongWidgetButton->setStyleSheet(fore ? MusicTTKUIObject::MKGFuncSongFore :
-                                                      MusicTTKUIObject::MKGFuncSongBack);
-    m_ui->musicRadioWidgetButton->setStyleSheet(fore ?MusicTTKUIObject::MKGFuncRadioFore :
-                                                      MusicTTKUIObject::MKGFuncRadioBack);
-    m_ui->musicListWidgetButton->setStyleSheet(fore ? MusicTTKUIObject::MKGFuncListFore :
-                                                      MusicTTKUIObject::MKGFuncListBack);
-    m_ui->musicVideoWidgetButton->setStyleSheet(fore ? MusicTTKUIObject::MKGFuncMVFore :
-                                                       MusicTTKUIObject::MKGFuncMVBack);
-    m_ui->musicLiveWidgetButton->setStyleSheet(fore ? MusicTTKUIObject::MKGFuncLiveFore :
-                                                      MusicTTKUIObject::MKGFuncLiveBack);
-    m_ui->musicLrcWidgetButton->setStyleSheet(MusicTTKUIObject::MKGFuncLrcFore);
+    m_ui->musicSongWidgetButton->setStyleSheet(fore ? MusicUIObject::MKGFuncSongFore :
+                                                      MusicUIObject::MKGFuncSongBack);
+    m_ui->musicRadioWidgetButton->setStyleSheet(fore ?MusicUIObject::MKGFuncRadioFore :
+                                                      MusicUIObject::MKGFuncRadioBack);
+    m_ui->musicListWidgetButton->setStyleSheet(fore ? MusicUIObject::MKGFuncListFore :
+                                                      MusicUIObject::MKGFuncListBack);
+    m_ui->musicVideoWidgetButton->setStyleSheet(fore ? MusicUIObject::MKGFuncMVFore :
+                                                       MusicUIObject::MKGFuncMVBack);
+    m_ui->musicLiveWidgetButton->setStyleSheet(fore ? MusicUIObject::MKGFuncLiveFore :
+                                                      MusicUIObject::MKGFuncLiveBack);
+    m_ui->musicLrcWidgetButton->setStyleSheet(MusicUIObject::MKGFuncLrcFore);
 }
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
@@ -429,7 +429,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     lrcDisplayAllAnimation->setEndValue(QPoint(0, 220 + height/2));
     lrcDisplayAllAnimation->start();
 
-    m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicTTKUIObject::MKGTinyBtnLrcExpand :
-                                                             MusicTTKUIObject::MKGTinyBtnLrcCollapse);
+    m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::MKGTinyBtnLrcExpand :
+                                                             MusicUIObject::MKGTinyBtnLrcCollapse);
     m_ui->musicWindowConcise->setEnabled(!lrcDisplayAll);
 }

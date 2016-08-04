@@ -66,7 +66,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(225, 40, 16, 16);
-    m_deleteButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnDelete);
+    m_deleteButton->setStyleSheet(MusicUIObject::MKGTinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
@@ -78,19 +78,19 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     QPushButton *addButton = new QPushButton(m_columnOne);
     addButton->setGeometry(2, 20, 16, 16);
-    addButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnPlayLater);
+    addButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlayLater);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     addButton->setToolTip(tr("playLater"));
 
     m_showMVButton = new QPushButton(m_columnThree);
     m_showMVButton->setGeometry(0, 39, 16, 16);
-    m_showMVButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnMV);
+    m_showMVButton->setStyleSheet(MusicUIObject::MKGTinyBtnMV);
     m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_showMVButton->setToolTip(tr("showMV"));
 
     m_moreButton = new QPushButton(m_columnThree);
     m_moreButton->setGeometry(23, 39, 16, 16);
-    m_moreButton->setStyleSheet(MusicTTKUIObject::MKGTinyBtnMore);
+    m_moreButton->setStyleSheet(MusicUIObject::MKGTinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("moreFunction"));
 
@@ -236,13 +236,13 @@ void MusicSongsListPlayWidget::sharingButtonClicked()
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
     bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    m_loveButton->setStyleSheet(state ? MusicTTKUIObject::MKGTinyBtnLove :
-                                        MusicTTKUIObject::MKGTinyBtnUnLove);
+    m_loveButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnLove :
+                                        MusicUIObject::MKGTinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool state = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
-    m_downloadButton->setStyleSheet(state ? MusicTTKUIObject::MKGTinyBtnDownload :
-                                            MusicTTKUIObject::MKGTinyBtnUnDownload);
+    m_downloadButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnDownload :
+                                            MusicUIObject::MKGTinyBtnUnDownload);
 }
