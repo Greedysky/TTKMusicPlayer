@@ -18,7 +18,6 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_TranslucentBackground);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -204,7 +203,7 @@ void MusicDesktopWallpaperWidget::parameterFinished()
     m_wallThread->setParamters(para);
     m_wallThread->start();
     setAutoStart(ui->openWithstart->isChecked());
-    close();
+    hide();
 }
 
 void MusicDesktopWallpaperWidget::stopButtonPressed()
