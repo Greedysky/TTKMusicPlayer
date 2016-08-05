@@ -86,7 +86,6 @@ public:
         QCoreApplication::setOrganizationName("TTKMusicPlayer"); \
         QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com"); \
         QCoreApplication::setApplicationName("TTKMusicPlayer"); \
-        qDebug() << "error"; \
         return MusicAutoTest::run(argc, argv); \
     }
 
