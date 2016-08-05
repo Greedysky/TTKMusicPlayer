@@ -53,7 +53,7 @@ void MusicBackgroundPalette::mousePressEvent(QMouseEvent *event)
 //    QLabel::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        currentColorToFileChanged(m_color);
+        emit currentColorToFileChanged(m_color);
     }
 }
 
@@ -138,9 +138,12 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
         for(int j=0; j<10; ++j)
         {
             MusicBackgroundPalette *label = new MusicBackgroundPalette(this);
-            label->setPixmap( colors[i*10 + j] );
-            m_widgets << label;
+            QColor color = colors[i*10 + j];
+            label->setPixmap(color);
+            label->setToolTip(color.name());
             layout->addWidget(label, i, j);
+            m_widgets << label;
+
             connect(label, SIGNAL(currentColorToFileChanged(QColor)),
                            SLOT(currentColorToFile(QColor)));
             connect(label, SIGNAL(currentColorToMemoryChanged(QString)),

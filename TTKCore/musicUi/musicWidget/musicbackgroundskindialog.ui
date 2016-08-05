@@ -58,11 +58,11 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="mySkin">
+  <widget class="MusicClickedLabel" name="mySkin">
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>70</y>
+     <y>48</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -71,14 +71,17 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
-    <string>我的皮肤</string>
+    <string>我的</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="netSkin">
+  <widget class="MusicClickedLabel" name="netSkin">
    <property name="geometry">
     <rect>
      <x>125</x>
-     <y>70</y>
+     <y>48</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -87,16 +90,19 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
-    <string>推荐皮肤</string>
+    <string>推荐</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="stackedWidget">
+  <widget class="MusicAnimationStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>37</x>
-     <y>120</y>
+     <y>77</y>
      <width>585</width>
-     <height>235</height>
+     <height>280</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -104,19 +110,6 @@
    </property>
    <widget class="MusicBackgroundListWidget" name="themeListWidget"/>
    <widget class="MusicBackgroundRemoteWidget" name="remoteWidget"/>
-  </widget>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>105</y>
-     <width>600</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
   </widget>
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
@@ -163,7 +156,7 @@
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
   </widget>
-  <widget class="MusicBackgroundPopWidget" name="listTransparentButton">
+  <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
    <property name="geometry">
     <rect>
      <x>265</x>
@@ -202,7 +195,7 @@
     <string>皮肤透明</string>
    </property>
   </widget>
-  <widget class="MusicBackgroundPopWidget" name="skinTransparentButton">
+  <widget class="MusicBackgroundPopWidget" name="skinTransparentButton" native="true">
    <property name="geometry">
     <rect>
      <x>105</x>
@@ -218,6 +211,16 @@
     <string notr="true"/>
    </property>
   </widget>
+  <widget class="QLabel" name="arrowLabel">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>70</y>
+     <width>9</width>
+     <height>7</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -225,13 +228,13 @@
   <zorder>mySkin</zorder>
   <zorder>netSkin</zorder>
   <zorder>stackedWidget</zorder>
-  <zorder>line</zorder>
   <zorder>customSkin</zorder>
   <zorder>paletteButton</zorder>
   <zorder>listTransparentLabel</zorder>
   <zorder>skinTransparentLabel</zorder>
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
+  <zorder>arrowLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -250,6 +253,18 @@
    <class>MusicBackgroundPopWidget</class>
    <extends>QWidget</extends>
    <header>musicbackgroundpopwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicAnimationStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>musicanimationstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

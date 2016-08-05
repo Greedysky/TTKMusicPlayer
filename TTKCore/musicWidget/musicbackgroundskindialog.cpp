@@ -17,13 +17,15 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->netSkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
+    ui->netSkin->setStyleSheet(MusicUIObject::MLabelStyle02);
     ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     addThemeListWidgetItem();
 
+    ui->arrowLabel->setPixmap(QPixmap(":/usermanager/lb_top_arrow"));
+    ui->stackedWidget->setLength(ui->stackedWidget->width(), MusicAnimationStackedWidget::LeftToRight);
     ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
     ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
 
@@ -43,6 +45,10 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
                   SLOT(musicBackgroundSkinChanged(QString)));
     connect(this, SIGNAL(currentColorChanged(QString)), parent,
                   SLOT(musicBgTransparentChanged(QString)));
+
+    ui->netSkin->setStyleSheet("QLabel{ color:#777777; font-size:15px;}"
+                              "QLabel::hover{ color:rgb(22, 154, 243);}");
+    ui->mySkin->setStyleSheet("QLabel{ color:rgb(22, 154, 243);font-size:15px;}");
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
@@ -100,12 +106,18 @@ void MusicBackgroundSkinDialog::setListTransToolText(int value)
 
 void MusicBackgroundSkinDialog::changeToMySkin()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
+    ui->netSkin->setStyleSheet(MusicUIObject::MLabelStyle02);
+    ui->stackedWidget->start(0);
+    ui->arrowLabel->move(75, ui->arrowLabel->y());
 }
 
 void MusicBackgroundSkinDialog::changeToNetSkin()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->netSkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
+    ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02);
+    ui->stackedWidget->start(1);
+    ui->arrowLabel->move(160, ui->arrowLabel->y());
 }
 
 void MusicBackgroundSkinDialog::showPaletteDialog()

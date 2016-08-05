@@ -38,15 +38,21 @@ void MusicBackgroundRemoteWidget::initWidget()
 {
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(0, 0, 0, 0);
-    QHBoxLayout *hbox = new QHBoxLayout;
-    hbox->setContentsMargins(0, 0, 0, 0);
+    vbox->setSpacing(0);
+
+    QWidget *buttonWidget = new QWidget(this);
+    buttonWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    QHBoxLayout *hbox = new QHBoxLayout(buttonWidget);
+    hbox->setContentsMargins(3, 3, 3, 3);
 
     createButton();
     for(int i=0; i<4; ++i)
     {
         hbox->addWidget( m_group->button(i) );
     }
-    vbox->addLayout(hbox);
+    buttonWidget->setLayout(hbox);
+    vbox->addWidget(buttonWidget);
+
     m_listWidget = new MusicBackgroundListWidget(this);
     connect(m_listWidget, SIGNAL(itemClicked(QListWidgetItem*)),
                           SLOT(itemUserClicked(QListWidgetItem*)));

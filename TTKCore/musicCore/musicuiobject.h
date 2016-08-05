@@ -250,6 +250,13 @@ namespace MusicUIObject
     const QString MLabelStyle01 = " \
             QLabel{ color:#888888; background-color:#FFE6E6; border:1px solid gray;}";
 
+    const QString MLabelStyle02 = " \
+            QLabel{ color:#777777; font-size:15px;} \
+            QLabel::hover{ color:rgb(22, 154, 243);}";
+
+    const QString MLabelStyle03 = " \
+            QLabel{ color:rgb(22, 154, 243);}";
+
 
 ///LineEdit
 //////////////////////////////////////////////////////
