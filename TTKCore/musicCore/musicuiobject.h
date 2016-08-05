@@ -208,7 +208,10 @@ namespace MusicUIObject
             QPushButton::hover{ background:rgba(0, 0, 0, 100);}";
 
     const QString MPushButtonStyle16 = " \
-           QPushButton{ border-radius:2px; background:rgba(0, 0, 0, 50);}";
+            QPushButton{ border-radius:2px; background:rgba(0, 0, 0, 50);}";
+
+    const QString MPushButtonStyle17 = " \
+            QPushButton::menu-indicator{ image:none;}";
 
 
 ///RadioButton
