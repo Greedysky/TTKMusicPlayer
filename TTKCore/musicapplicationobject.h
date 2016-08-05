@@ -102,6 +102,10 @@ public Q_SLOTS:
     /*!
      * Set current window to top.
      */
+    void musicResetWindow();
+    /*!
+     * Reset current window geometry.
+     */
     void musicToolSetsParameter();
     /*!
      * Timer parameter changed.

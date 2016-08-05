@@ -506,8 +506,9 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addMenu(&spectrumControl);
     rightClickMenu.addSeparator();
 
-    QAction *window = rightClickMenu.addAction(tr("WindowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
-    window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/share/selected" : QString()));
+    QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
+    window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/contextMenu/btn_selected" : QString()));
+    rightClickMenu.addAction(tr("resetWindow"), m_applicationObject, SLOT(musicResetWindow()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
