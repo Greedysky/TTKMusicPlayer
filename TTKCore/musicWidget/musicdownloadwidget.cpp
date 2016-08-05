@@ -167,8 +167,7 @@ QString MusicDownloadWidget::getClassName()
 void MusicDownloadWidget::initWidget()
 {
     controlEnable(true);
-    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
-    ui->downloadPathEdit->setText(path.isEmpty() ? MUSIC_DIR_FULL : path);
+    ui->downloadPathEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
 }
 
 void MusicDownloadWidget::controlEnable(bool enable)

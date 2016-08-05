@@ -353,7 +353,7 @@ namespace MusicUIObject
             QPushButton:hover{ background-image: url(:/tiny/btn_download_hover);}";
 
     const QString MKGTinyBtnDownload = MKGTinyBtnUnDownload + " \
-            QPushButton{ margin-left:-20px; }";
+            QPushButton{ margin-left:-16px; }";
 
     const QString MKGTinyBtnUnLove = " \
             QPushButton{ border:none; \

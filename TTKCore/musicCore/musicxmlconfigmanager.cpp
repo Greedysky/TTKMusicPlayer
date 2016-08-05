@@ -321,10 +321,12 @@ void MusicXMLConfigManager::readOtherLoadConfig() const
     M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
                      readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
 
+    QString path = readXmlAttributeByTagNameValue("downloadMusicPath");
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
-                     readXmlAttributeByTagNameValue("downloadMusicPath"));
+                     path.isEmpty() ? MUSIC_DIR_FULL : path);
+    path = readXmlAttributeByTagNameValue("downloadLrcPath");
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
-                     readXmlAttributeByTagNameValue("downloadLrcPath"));
+                     path.isEmpty() ? LRC_DIR_FULL : path);
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadCacheLimit").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced,
