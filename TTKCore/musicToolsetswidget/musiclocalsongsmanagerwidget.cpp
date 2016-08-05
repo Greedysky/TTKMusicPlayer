@@ -30,8 +30,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle07));
 
     ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
-    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
-    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle08);
+    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
 
     ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));

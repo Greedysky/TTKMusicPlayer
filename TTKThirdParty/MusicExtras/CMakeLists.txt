@@ -66,11 +66,15 @@ endif()
 
 set(MUSIC_HEADERS
     musicextrasglobaldefine.h
+    hz2py/pinyinresource.h
+    hz2py/chinesehelper.h
+    hz2py/pinyinhelper.h
     shortcut/qxtglobal.h
     shortcut/qxtglobalshortcut.h
     shortcut/qxtglobalshortcut_p.h
     kugou/kugouurl.h
     kugou/kugouwindow.h
+    kugou/kugouuiobject.h
     qrencode/bitstream.h
     qrencode/config.h
     qrencode/mask.h
@@ -93,11 +97,19 @@ set(MUSIC_HEADERS
     qiniu/qnsimplelistdata.h
     qiniu/qnsimpleuploaddata.h
     qiniu/qnsimpledeletedata.h
-
+    qjson/parser.h
+    qjson/parserrunnable.h
+    qjson/qobjecthelper.h
+    qjson/serializer.h
+    qjson/serializerrunnable.h
+    
   )
 
 set(MUSIC_SOURCES
     shortcut/qxtglobalshortcut.cpp
+    hz2py/pinyinresource.cpp
+    hz2py/chinesehelper.cpp
+    hz2py/pinyinhelper.cpp
     kugou/kugouurl.cpp
     kugou/kugouwindow.cpp
     qrencode/bitstream.c
@@ -120,11 +132,19 @@ set(MUSIC_SOURCES
     qiniu/qnsimplelistdata.cpp
     qiniu/qnsimpleuploaddata.cpp
     qiniu/qnsimpledeletedata.cpp
-
+    qjson/parser.cpp
+    qjson/qobjecthelper.cpp
+    qjson/json_scanner.cpp
+    qjson/json_parser.cc
+    qjson/parserrunnable.cpp
+    qjson/serializer.cpp
+    qjson/serializerrunnable.cpp
+    
   )
 
 SET(MUSIC_QRC
     ${MUSIC_QRC_DIR}/MusicThirdParty.qrc
+    hz2py/resource/Hz2Py.qrc
 )
 
 if(WIN32)
@@ -157,7 +177,7 @@ else()
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_RCC_SRCS} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTWEBKIT_LIBRARY} -luser32)
+  list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTWEBKIT_LIBRARY} -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT4_LIBS -luser32)
   endif()

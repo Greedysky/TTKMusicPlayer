@@ -141,17 +141,13 @@ namespace MusicUIObject
     const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
             QToolButton::menu-indicator{ image:None;}";
 
-    const QString MToolButtonStyle07 = MToolButtonStyle01 + MToolButtonStyle02 + " \
+    const QString MToolButtonStyle05 = MToolButtonStyle01 + MToolButtonStyle02 + " \
             QToolButton{ image:url(:/contextMenu/btn_audition);}";
 
-    const QString MToolButtonStyle08 = MToolButtonStyle01 + MToolButtonStyle02 + " \
+    const QString MToolButtonStyle06 = MToolButtonStyle01 + MToolButtonStyle02 + " \
             QToolButton{ image:url(:/contextMenu/btn_add);}";
 
-    const QString MToolButtonStyle09 = MToolButtonStyle04 + " \
-            QToolButton{ background-image:url(':/quality/lb_background'); border:none; \
-            font-weight:bold; color:white}";
-
-    const QString MToolButtonStyle10 = " \
+    const QString MToolButtonStyle07 = " \
             QToolButton{ border:1px solid #777777; background:#EEEEEE; color:#555555;} \
             QToolButton::hover{ border:1px solid #444444; color:#222222;} \
             QToolButton::disabled{ color:#999999;}";

@@ -310,7 +310,7 @@ typedef unsigned char YY_CHAR;
 
 #define yytext_ptr yytext
 
-#include <flexlexer.h>
+#include "flexlexer.h"
 
 int yyFlexLexer::yywrap() { return 1; }
 int yyFlexLexer::yylex()

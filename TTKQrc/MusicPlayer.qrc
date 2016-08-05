@@ -8,12 +8,13 @@
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
     </qresource>
     <qresource prefix="/quality">
-        <file alias="lb_background">../TTKResource/quality/lb_background.png</file>
         <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>
         <file alias="lb_sd_quality">../TTKResource/quality/lb_sd_quality.png</file>
         <file alias="lb_hd_quality">../TTKResource/quality/lb_hd_quality.png</file>
         <file alias="lb_sq_quality">../TTKResource/quality/lb_sq_quality.png</file>
         <file alias="lb_cd_quality">../TTKResource/quality/lb_cd_quality.png</file>
+        <file alias="btn_quality_normal">../TTKResource/quality/btn_quality_normal.png</file>
+        <file alias="btn_quality_hover">../TTKResource/quality/btn_quality_hover.png</file>
     </qresource>
     <qresource prefix="/color">
         <file alias="lb_black">../TTKResource/color/lb_black.png</file>
