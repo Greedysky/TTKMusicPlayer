@@ -1,5 +1,6 @@
 #include "musicquerytablewidget.h"
 #include "musicitemdelegate.h"
+#include "musicdownloadqueryfactory.h"
 
 #include <QPainter>
 #include <QActionGroup>
@@ -7,11 +8,7 @@
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-#ifndef USE_MULTIPLE_QUERY
-       m_downLoadManager = new MusicDownLoadQueryTTThread(this);
-#else
-       m_downLoadManager = new MusicDownLoadQueryMultipleThread(this);
-#endif
+    m_downLoadManager = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
     connect(m_downLoadManager, SIGNAL(createSearchedItems(QString,QString,QString)),
                                SLOT(createSearchedItems(QString,QString,QString)));

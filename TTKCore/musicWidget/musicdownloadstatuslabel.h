@@ -9,12 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#ifndef USE_MULTIPLE_QUERY
-#  include "musicdownloadquerysinglethread.h"
-#else
-#  include "musicdownloadquerymultiplethread.h"
-#endif
 #include "musicglobaldefine.h"
+#include "musicdownloadquerythreadabstract.h"
 
 class MusicApplication;
 

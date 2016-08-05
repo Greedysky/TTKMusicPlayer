@@ -11,11 +11,7 @@
 
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
-#ifndef USE_MULTIPLE_QUERY
-#  include "musicdownloadquerysinglethread.h"
-#else
-#  include "musicdownloadquerymultiplethread.h"
-#endif
+#include "musicdownloadquerythreadabstract.h"
 
 #define ROW_HEIGHT  25
 

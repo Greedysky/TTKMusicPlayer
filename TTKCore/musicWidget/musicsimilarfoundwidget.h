@@ -10,11 +10,7 @@
    =================================================*/
 
 #include <QLabel>
-#ifndef USE_MULTIPLE_QUERY
-#  include "musicdownloadquerysinglethread.h"
-#else
-#  include "musicdownloadquerymultiplethread.h"
-#endif
+#include "musicdownloadquerythreadabstract.h"
 
 class QCheckBox;
 

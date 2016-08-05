@@ -10,6 +10,7 @@
 #include "musicdata2downloadthread.h"
 #include "musicbackgrounddownload.h"
 #include "musicmessagebox.h"
+#include "musicdownloadqueryfactory.h"
 
 #include <QFileDialog>
 #include <QLabel>
@@ -140,11 +141,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->pathChangedButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
-#ifndef USE_MULTIPLE_QUERY
-    m_downloadThread = new MusicDownLoadQueryTTThread(this);
-#else
-    m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
-#endif
+
+    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
     connect(ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));

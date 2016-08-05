@@ -3,11 +3,12 @@
 #include "musicdownloadmgmtwidget.h"
 #include "musicdatadownloadthread.h"
 #include "musiccryptographichash.h"
+#include "musicsongssummarizied.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicnetworkthread.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
-#include "musicsongssummarizied.h"
 
 #include <QBoxLayout>
 #include <QGridLayout>
@@ -32,11 +33,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
 
-#ifndef USE_MULTIPLE_QUERY
-    m_downloadThread = new MusicDownLoadQueryTTThread(this);
-#else
-    m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
-#endif
+    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);

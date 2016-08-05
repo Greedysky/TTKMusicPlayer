@@ -9,6 +9,7 @@
 #include "musicconnectionpool.h"
 #include "musicnetworkthread.h"
 #include "musicsongsearchonlinewidget.h"
+#include "musicdownloadqueryfactory.h"
 
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
@@ -106,11 +107,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
            m_downloadLrcThread = nullptr;
        }
        ///Start the request query
-#ifndef USE_MULTIPLE_QUERY
-       m_downloadLrcThread = new MusicDownLoadQueryTTThread(this);
-#else
-       m_downloadLrcThread = new MusicDownLoadQueryMultipleThread(this);
-#endif
+       m_downloadLrcThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
        m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::DW_Buffing);
