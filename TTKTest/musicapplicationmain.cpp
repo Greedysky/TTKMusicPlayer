@@ -7,7 +7,7 @@ TEST_MAIN
 // Or supply your own main function
 int main(int argc, char *argv[])
 {
-    int failures = MusicAutoTest::run(argc, argv);
+    int failures = AutoTest::run(argc, argv);
     if(failures == 0)
     {
         qDebug() << "ALL TESTS PASSED";
@@ -16,6 +16,6 @@ int main(int argc, char *argv[])
     {
         qDebug() << failures << " TESTS FAILED!";
     }
-    return failures;
+    return app.exec();
 }
 #endif

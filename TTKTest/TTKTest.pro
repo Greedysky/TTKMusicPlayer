@@ -10,21 +10,22 @@
 # * works are strictly forbiden.
 # =================================================
 
-QT       += core testlib gui
+QT       += core gui testlib
 equals(QT_MAJOR_VERSION, 5){
 QT       += widgets
 }
 
+QMAKE_CXXFLAGS += -std=c++11
+
 TARGET = TTKTest
-CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-
 HEADERS  += \
-    musicautotest.h
+    musicautotest.h \
+    tst_codelines.h
 
 SOURCES  += \
-    musicapplicationmain.cpp
+    musicapplicationmain.cpp \
+    tst_codelines.cpp
 
