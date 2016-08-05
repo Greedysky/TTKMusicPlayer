@@ -69,6 +69,7 @@ include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/hz2py)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/kugou)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qiniu)
+include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qjson)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qrencode)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/shortcut)
 

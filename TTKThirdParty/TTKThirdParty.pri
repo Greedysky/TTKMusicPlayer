@@ -16,5 +16,6 @@ INCLUDEPATH += \
         $$PWD/MusicExtras/hz2py \
         $$PWD/MusicExtras/kugou \
         $$PWD/MusicExtras/qiniu \
+        $$PWD/MusicExtras/qjson \
         $$PWD/MusicExtras/qrencode \
         $$PWD/MusicExtras/shortcut
