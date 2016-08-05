@@ -1,4 +1,4 @@
-#include "musicdownloadquerysinglethread.h"
+#include "musicdownloadqueryttthread.h"
 #include "musicdownloadthreadabstract.h"
 
 #ifdef MUSIC_GREATER_NEW
@@ -13,23 +13,23 @@
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 
-MusicDownLoadQuerySingleThread::MusicDownLoadQuerySingleThread(QObject *parent)
+MusicDownLoadQueryTTThread::MusicDownLoadQueryTTThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-    m_searchQuality = "标准品质";
+
 }
 
-MusicDownLoadQuerySingleThread::~MusicDownLoadQuerySingleThread()
+MusicDownLoadQueryTTThread::~MusicDownLoadQueryTTThread()
 {
 
 }
 
-QString MusicDownLoadQuerySingleThread::getClassName()
+QString MusicDownLoadQueryTTThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &text)
 {
     m_searchText = text.trimmed();
     m_currentType = type;
@@ -56,7 +56,7 @@ void MusicDownLoadQuerySingleThread::startSearchSong(QueryType type, const QStri
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQuerySingleThread::downLoadFinished()
+void MusicDownLoadQueryTTThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {

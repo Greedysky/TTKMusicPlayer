@@ -8,7 +8,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
 #ifndef USE_MULTIPLE_QUERY
-       m_downLoadManager = new MusicDownLoadQuerySingleThread(this);
+       m_downLoadManager = new MusicDownLoadQueryTTThread(this);
 #else
        m_downLoadManager = new MusicDownLoadQueryMultipleThread(this);
 #endif

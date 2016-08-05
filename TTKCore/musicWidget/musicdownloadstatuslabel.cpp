@@ -107,7 +107,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
        }
        ///Start the request query
 #ifndef USE_MULTIPLE_QUERY
-       m_downloadLrcThread = new MusicDownLoadQuerySingleThread(this);
+       m_downloadLrcThread = new MusicDownLoadQueryTTThread(this);
 #else
        m_downloadLrcThread = new MusicDownLoadQueryMultipleThread(this);
 #endif

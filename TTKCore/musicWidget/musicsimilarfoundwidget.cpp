@@ -33,7 +33,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     m_mainWindow->setLayout(mLayout);
 
 #ifndef USE_MULTIPLE_QUERY
-    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+    m_downloadThread = new MusicDownLoadQueryTTThread(this);
 #else
     m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif

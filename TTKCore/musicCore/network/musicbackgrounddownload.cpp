@@ -1,4 +1,5 @@
 #include "musicbackgrounddownload.h"
+#include "musicdownloadqueryttthread.h"
 #include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"

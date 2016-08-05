@@ -141,7 +141,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
 #ifndef USE_MULTIPLE_QUERY
-    m_downloadThread = new MusicDownLoadQuerySingleThread(this);
+    m_downloadThread = new MusicDownLoadQueryTTThread(this);
 #else
     m_downloadThread = new MusicDownLoadQueryMultipleThread(this);
 #endif

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYSINGLETHREAD_H
-#define MUSICDOWNLOADQUERYSINGLETHREAD_H
+#ifndef MUSICDOWNLOADQUERYTTTHREAD_H
+#define MUSICDOWNLOADQUERYTTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,18 +11,25 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to single query download data from net.
+//single query
+const QString MUSIC_REQUERY_URL = "http://search.dongting.com/song/search/old?q=%1&page=1&size=500";
+const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&song_id=%3";
+const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
+const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
+
+
+/*! @brief The class to ttpod query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQuerySingleThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryTTThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQuerySingleThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryTTThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicDownLoadQuerySingleThread();
+    virtual ~MusicDownLoadQueryTTThread();
 
     static QString getClassName();
     /*!
@@ -41,4 +48,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYSINGLETHREAD_H
+#endif // MUSICDOWNLOADQUERYTTTHREAD_H
