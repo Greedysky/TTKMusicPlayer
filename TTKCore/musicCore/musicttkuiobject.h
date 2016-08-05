@@ -582,6 +582,10 @@ namespace MusicUIObject
             background-image: url(:/functions/btn_queue_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_queue_hover);}";
 
+    const QString MKGBtnResetWindow = " \
+            QPushButton{ border:none; \
+            background-image: url(:/functions/btn_reset_window_normal);} \
+            QPushButton:hover{ background-image: url(:/functions/btn_reset_window_hover);}";
 
 }
 

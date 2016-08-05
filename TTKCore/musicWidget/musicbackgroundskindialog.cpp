@@ -2,6 +2,7 @@
 #include "ui_musicbackgroundskindialog.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundpalettewidget.h"
+#include "musicttkuiobject.h"
 #include "musicobject.h"
 #include "musicutils.h"
 
@@ -26,6 +27,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     ui->arrowLabel->setPixmap(QPixmap(":/usermanager/lb_top_arrow"));
     ui->stackedWidget->setLength(ui->stackedWidget->width(), MusicAnimationStackedWidget::LeftToRight);
+
+    ui->resetWindowButton->setStyleSheet(MusicUIObject::MKGBtnResetWindow);
     ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
     ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
 
