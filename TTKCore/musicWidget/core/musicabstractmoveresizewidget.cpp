@@ -41,10 +41,21 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QWidget::mouseDoubleClickEvent(event);
-//    if( event->buttons() == Qt::LeftButton)
-//    {
-//        isMaximized() ? showNormal() : showMaximized();
-//    }
+    if( event->buttons() == Qt::LeftButton)
+    {
+        if(isMaximized())
+        {
+            M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, m_originSize);
+            showNormal();
+        }
+        else
+        {
+            m_originSize = size();
+            QSize s = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+            M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, s);
+            showMaximized();
+        }
+    }
 }
 
 void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)

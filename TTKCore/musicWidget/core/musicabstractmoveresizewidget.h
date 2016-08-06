@@ -67,6 +67,7 @@ protected:
      */
 
     QPoint m_pressAt;
+    QSize m_originSize;
     bool m_mouseLeftPress;
     int m_direction;
 
