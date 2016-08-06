@@ -1,4 +1,5 @@
 #include "tst_codelines.h"
+#include "musicglobal.h"
 
 #include <QDir>
 #include <QMap>
