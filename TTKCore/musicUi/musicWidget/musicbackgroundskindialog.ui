@@ -221,6 +221,22 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="resetWindowButton">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>55</y>
+     <width>118</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -235,6 +251,7 @@
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
   <zorder>arrowLabel</zorder>
+  <zorder>resetWindowButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

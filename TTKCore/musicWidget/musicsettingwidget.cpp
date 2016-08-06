@@ -95,7 +95,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->lrcFunTableWidget->setRowCount(2);
     ui->lrcFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/btn_lrc" << ":/contextMenu/btn_desktopLrc",
-        QStringList() << tr("Desktop") << tr("Inline"));
+        QStringList() << tr("Inline") << tr("Desktop"));
     ui->supperFunTableWidget->setRowCount(2);
     ui->supperFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount() + ui->lrcFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/btn_equalizer" << ":/contextMenu/btn_network",
