@@ -5,7 +5,11 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <functional>
-#include <QtConcurrent/QtConcurrent>
+#ifdef MUSIC_GREATER_NEW
+#  include <QtConcurrent/QtConcurrent>
+#else
+#  include <QtConcurrentRun>
+#endif
 
 void foreachFileFromDirectory(const QDir &directory, const std::function<void(const QFileInfo &)> &each, const bool &recursion)
 {

@@ -45,10 +45,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
                   SLOT(musicBackgroundSkinChanged(QString)));
     connect(this, SIGNAL(currentColorChanged(QString)), parent,
                   SLOT(musicBgTransparentChanged(QString)));
-
-    ui->netSkin->setStyleSheet("QLabel{ color:#777777; font-size:15px;}"
-                              "QLabel::hover{ color:rgb(22, 154, 243);}");
-    ui->mySkin->setStyleSheet("QLabel{ color:rgb(22, 154, 243);font-size:15px;}");
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()

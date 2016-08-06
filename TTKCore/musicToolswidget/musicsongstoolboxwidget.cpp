@@ -33,7 +33,6 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     menuLabel->setGeometry(290, 10, 16, 16);
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);
-//    topLayout->addWidget(menuLabel);
     topLayout->addStretch(1);
 
     setLayout(topLayout);

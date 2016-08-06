@@ -92,11 +92,6 @@ void MusicSongsSummariziedFloatWidget::animationFinished()
     }
 }
 
-void MusicSongsSummariziedFloatWidget::paintEvent(QPaintEvent *event)
-{
-    QLabel::paintEvent(event);
-}
-
 void MusicSongsSummariziedFloatWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
