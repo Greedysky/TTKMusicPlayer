@@ -25,6 +25,7 @@
 #include "musicdownloadmgmtwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicsongssummariziedfloatwidget.h"
+#include "musicbackgroundskindialog.h"
 #include "musicleftareawidget.h"
 #include "musicrightareawidget.h"
 #include "musictopareawidget.h"
@@ -211,7 +212,10 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second,
                                 SLOT(getMusicLists(MusicSongItems&)));
     }
-
+    else if(from == MusicBackgroundSkinDialog::getClassName() && to == MusicApplicationObject::getClassName() )
+    {
+        QObject::connect(first, SIGNAL(clicked()), second, SLOT(musicResetWindow()));
+    }
 }
 
 void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)

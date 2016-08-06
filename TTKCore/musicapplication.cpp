@@ -80,6 +80,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     ui->lrcDisplayAllButton->hide();
     ui->musicKey->setFocus();
     ui->surfaceStackedWidget->setCurrentIndex(0);
+
     ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
 

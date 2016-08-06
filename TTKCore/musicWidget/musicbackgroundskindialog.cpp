@@ -5,6 +5,8 @@
 #include "musicttkuiobject.h"
 #include "musicobject.h"
 #include "musicutils.h"
+#include "musicapplicationobject.h"
+#include "musicconnectionpool.h"
 
 #include <QFileDialog>
 
@@ -48,10 +50,14 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
                   SLOT(musicBackgroundSkinChanged(QString)));
     connect(this, SIGNAL(currentColorChanged(QString)), parent,
                   SLOT(musicBgTransparentChanged(QString)));
+
+    M_CONNECTION_PTR->setValue(getClassName(), ui->resetWindowButton);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplicationObject::getClassName());
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 {
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
 }
 
