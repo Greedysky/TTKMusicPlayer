@@ -19,8 +19,8 @@
 #include "musicqualitychoicewidget.h"
 #include "musicsongslistplaywidget.h"
 #include "musiclrccontainerforinline.h"
-#include "musicvideocontrol.h"
 #include "musicenhancedwidget.h"
+#include "musicvideoqualitypopwidget.h"
 #include "musicvideotablewidget.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicconnecttransferwidget.h"
@@ -173,24 +173,15 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(currentDownloadStateChanged()), second,
                                 SLOT(currentDownloadStateClicked()));
     }
-    else if(from == MusicVideoControl::getClassName() && to == MusicRightAreaWidget::getClassName() )
-    {
-        QObject::connect(first, SIGNAL(musicVideoSetPopup(bool)), second,
-                                SLOT(musicVideoSetPopup(bool)));
-        QObject::connect(first, SIGNAL(musicVideoFullscreen(bool)), second,
-                                SLOT(musicVideoFullscreen(bool)));
-    }
     else if(from == MusicApplicationObject::getClassName() && to == MusicEnhancedWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(enhancedMusicChanged(int)), second,
                                 SLOT(setEnhancedMusicConfig(int)));
     }
-    else if(from == MusicVideoControl::getClassName() && to == MusicVideoTableWidget::getClassName() )
+    else if(from == MusicVideoQualityPopWidget::getClassName() && to == MusicVideoTableWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(getMusicMvInfo(MusicObject::MusicSongAttributes&)), second,
                                 SLOT(getMusicMvInfo(MusicObject::MusicSongAttributes&)));
-        QObject::connect(first, SIGNAL(downloadLocalByControl()), second,
-                                SLOT(downloadLocalFromControl()));
     }
     else if(from == MusicSongsSummariziedFloatWidget::getClassName() && to == MusicBottomAreaWidget::getClassName() )
     {

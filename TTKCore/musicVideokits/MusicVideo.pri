@@ -31,3 +31,11 @@ SOURCES += \
     $$PWD/musicvideofloatwidget.cpp
 
 }
+
+HEADERS += \
+    $$PWD/musicvideoqualitypopwidget.h \
+    $$PWD/musicvideobarragestylepopwidget.h
+
+SOURCES += \
+    $$PWD/musicvideoqualitypopwidget.cpp \
+    $$PWD/musicvideobarragestylepopwidget.cpp

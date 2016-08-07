@@ -33,7 +33,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
     m_topWidget->setObjectName("#topWidget");
-    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle02 + \
+    m_topWidget->setStyleSheet("background-color:#292929;" + \
                                MusicUIObject::MCustomStyle05);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setSpacing(0);

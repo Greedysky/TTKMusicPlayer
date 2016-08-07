@@ -14,12 +14,13 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicglobaldefine.h"
-#include "musicnumberdefine.h"
 
-class QLabel;
-class QToolButton;
 class QPushButton;
+class MusicVolumePopWidget;
 class MusicMovingLabelSlider;
+class MusicVideoQualityPopWidget;
+class MusicVideoBarrageStylePopWidget;
+class MusicLocalSongSearchEdit;
 
 /*! @brief The class of the video controller.
  * @author Greedysky <greedysky@163.com>
@@ -64,22 +65,6 @@ public:
      */
 
 Q_SIGNALS:
-    void musicVideoSetPopup(bool popup);
-    /*!
-     * Set video widget popop or not.
-     */
-    void musicVideoFullscreen(bool full);
-    /*!
-     * Set video widget fullScreen or not.
-     */
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
-    /*!
-     * Get music mv information data.
-     */
-    void downloadLocalByControl();
-    /*!
-     * Download current mv by controller.
-     */
     void mvURLChanged(const QString &data);
     /*!
      * Set current media url by selected quality.
@@ -111,18 +96,6 @@ public Q_SLOTS:
     /*!
      * Override show function.
      */
-    void insideButtonClicked();
-    /*!
-     * Inside button clicked.
-     */
-    void fullButtonClicked();
-    /*!
-     * Full button clicked.
-     */
-    void movieQualityChoiced(QAction *action);
-    /*!
-     * Movie quality choiced by index.
-     */
     void pushBarrageClicked();
     /*!
      * Push barrage clicked.
@@ -136,46 +109,20 @@ public Q_SLOTS:
      * Barrage color button clicked by index.
      */
 
+
 protected:
-    void setQualityActionState();
-    /*!
-     * Set quality action state enable or disable.
-     */
-    QString findMVUrlByBitrate(int bitrate);
-    /*!
-     * Find mv url by given bitrate.
-     */
-    int findMVBitrateByUrl(const QString &url);
-    /*!
-     * Find mv bitrate by given url.
-     */
-    bool findExistByBitrate(int bitrate);
-    /*!
-     * Check given bitrate is exist or not.
-     */
-    QWidget* createBarrageWidget();
-    /*!
-     * Create barrage widget.
-     */
-    QPushButton* createBarrageSizeButton(int index);
-    /*!
-     * Create barrage size button by index.
-     */
-    QPushButton* createBarrageColorButton(int index);
-    /*!
-     * Create barrage color button by index.
-     */
+    QWidget *createVideoBarrageWidget();
 
     bool m_widgetPopup;
-    QMenu m_popupQuality, m_popupBarrage;
+    QPushButton *m_playButton;
     MusicMovingLabelSlider *m_timeSlider;
-    QToolButton *m_volumeButton;
-    QPushButton *m_playButton, *m_inSideButton, *m_fullButton;
-    QPushButton *m_qualityButton, *m_downloadButton;
-    QAction *m_mvSd, *m_mvHd, *m_mvSq;
+    MusicVolumePopWidget *m_volumeButton;
+    MusicVideoQualityPopWidget *m_qualityButton;
 
-    QPushButton *m_pushBarrage;
     bool m_pushBarrageOn;
+    QPushButton *m_pushBarrage, *m_barrageSend;
+    MusicVideoBarrageStylePopWidget *m_menuBarrage;
+    MusicLocalSongSearchEdit *m_lineEditBarrage;
 
 };
 

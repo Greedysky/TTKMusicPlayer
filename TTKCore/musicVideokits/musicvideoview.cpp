@@ -3,6 +3,7 @@
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
+#include "musicnumberdefine.h"
 
 #include <QTimer>
 #include <QMouseEvent>
@@ -54,7 +55,8 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     : QGraphicsView(parent)
 {
-    setStyleSheet(MusicUIObject::MBackgroundStyle02);
+    setObjectName("MusicVideoView");
+    setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MBackgroundStyle02));
 
     m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);
@@ -103,7 +105,7 @@ void MusicVideoView::enterEvent(QEvent *event)
 void MusicVideoView::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
-    m_videoControl->hide();
+//    m_videoControl->hide();
 }
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
@@ -130,16 +132,16 @@ void MusicVideoView::setMedia(const QString &data)
 void MusicVideoView::resizeWindow(int width, int height)
 {
     m_videoWidget->setGeometry(10, 35, 635 + width, 355 + height);
-    m_videoControl->setGeometry(0, 410 + height, 660 + width, 40);
+    m_videoControl->setGeometry(0, 410 + height, 660 + width, 60);
     m_barrageCore->setSize(m_videoWidget->size());
 }
 
 void MusicVideoView::setFullScreen()
 {
-    if(m_videoControl->isPopup())
-    {
-        m_videoControl->fullButtonClicked();
-    }
+//    if(m_videoControl->isPopup())
+//    {
+//        m_videoControl->fullButtonClicked();
+//    }
 }
 
 void MusicVideoView::play()
