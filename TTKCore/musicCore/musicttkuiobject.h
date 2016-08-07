@@ -356,6 +356,62 @@ namespace MusicUIObject
             QPushButton:hover{ background-image: url(:/video/lb_big_on_hover);}";
 
 
+///video float button style
+/////////////////////////////////////////////////////
+    const QString MKGInlineFloatMore = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_more_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_more_hover);}";
+
+    const QString MKGInlineFloatUpdate = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_update_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_update_hover);}";
+
+    const  QString MKGInlineFloatWallpaper = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_wallpaper_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover);}";
+
+    const QString MKGInlineFloatSearch = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_search_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_search_hover);}";
+
+    const QString MKGInlineFloatPhoto = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_photo_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover);}";
+
+
+///video float button style
+//////////////////////////////////////////////////////
+    const QString MKGVideoFloatDownload = " \
+            QPushButton{ border:none;\
+            background-image: url(:/video/btn_download_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_download_hover);}";
+
+    const QString MKGVideoFloatFresh = " \
+            QPushButton{ border:none;\
+            background-image: url(:/video/btn_fresh_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_fresh_hover);}";
+
+    const QString MKGVideoFloatFullscreen = " \
+            QPushButton{ border:none;\
+            background-image: url(:/video/btn_fullscreen_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_fullscreen_hover);}";
+
+    const QString MKGVideoFloatSearch = " \
+            QPushButton{ border:none;\
+            background-image: url(:/video/btn_search_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_search_hover);}";
+
+    const QString MKGVideoFloatShare = " \
+            QPushButton{ border:none;\
+            background-image: url(:/video/btn_share_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_share_hover);}";
+
+
 ///inline lrc button style
 //////////////////////////////////////////////////////
     const QString MKGInlineTranslation = " \

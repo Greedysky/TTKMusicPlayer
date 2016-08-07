@@ -136,17 +136,25 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     m_menuBarrage = new MusicVideoBarrageStylePopWidget(barrageWidget);
     m_menuBarrage->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageStyle);
 
-    m_lineEditBarrage = new MusicLocalSongSearchEdit(barrageWidget);
+    QWidget *pairWidget = new QWidget(barrageWidget);
+    QHBoxLayout *pairWidgetLayout = new QHBoxLayout(pairWidget);
+    pairWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    pairWidgetLayout->setSpacing(0);
+
+    m_lineEditBarrage = new MusicLocalSongSearchEdit(pairWidget);
     m_lineEditBarrage->setFixedHeight(24);
     m_lineEditBarrage->addFilterText(tr("just one barrage!"));
-    m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle01 + \
-                                     "QLineEdit{color:white;}");
+
+    m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SIGNAL(addBarrageChanged(QString)));
 
-    m_barrageSend = new QPushButton(barrageWidget);
+    m_barrageSend = new QPushButton(pairWidget);
     m_barrageSend->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageSend);
     m_barrageSend->setCursor(QCursor(Qt::PointingHandCursor));
     m_barrageSend->setFixedSize(50, 24);
+    pairWidgetLayout->addWidget(m_lineEditBarrage);
+    pairWidgetLayout->addWidget(m_barrageSend);
+    pairWidget->setLayout(pairWidgetLayout);
 
     m_pushBarrage = new QPushButton(barrageWidget);
     m_pushBarrage->setFixedSize(56, 20);
@@ -155,8 +163,7 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     pushBarrageClicked();
 
     barrageLayout->addWidget(m_menuBarrage);
-    barrageLayout->addWidget(m_lineEditBarrage);
-    barrageLayout->addWidget(m_barrageSend);
+    barrageLayout->addWidget(pairWidget);
     barrageLayout->addWidget(m_pushBarrage);
     barrageWidget->setLayout(barrageLayout);
 

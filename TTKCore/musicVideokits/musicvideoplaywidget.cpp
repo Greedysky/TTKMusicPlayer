@@ -47,11 +47,11 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     searchLayout->setContentsMargins(0, 0, 0, 0);
     searchLayout->setSpacing(0);
     m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
-    m_searchEdit->setFixedHeight(18);
+    m_searchEdit->setFixedHeight(20);
     m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     m_searchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_searchButton->setIconSize(QSize(18, 18));
+    m_searchButton->setIconSize(QSize(23, 23));
     searchLayout->addWidget(m_searchEdit);
     searchLayout->addWidget(m_searchButton);
     searchWidget->setLayout(searchLayout);

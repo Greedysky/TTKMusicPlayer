@@ -26,7 +26,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    MusicVideoPlayWidget(bool popup, QWidget *parent = 0);
+    explicit MusicVideoPlayWidget(bool popup, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */

@@ -189,9 +189,10 @@ namespace MusicUIObject
     const QString MPushButtonStyle10 = MPushButtonStyle01 + MPushButtonStyle03 + " \
             QPushButton{ color:white; font-size:15px;}";
            
-    const QString MPushButtonStyle11 = MPushButtonStyle01 + MPushButtonStyle02 + " \
-            QPushButton{ text-align:left; color:white;}";
-           
+    const QString MPushButtonStyle11 = " \
+            QPushButton{ text-align:right; color:#CCCCCC;} \
+            QPushButton:hover{ color:#FFFFFF;}";
+
     const QString MPushButtonStyle12 = MPushButtonStyle05 + " \
             QPushButton{ color:#3BA1E6;}";
 
@@ -273,6 +274,10 @@ namespace MusicUIObject
 
     const QString MLineEditStyle04 = MLineEditStyle02 + " \
             QLineEdit{ color:#6495ED;}";
+
+    const QString MLineEditStyle05 = MLineEditStyle01 + " \
+            QLineEdit{ color:white; border:1px solid #545454;} \
+            QLineEdit::disabled{ color:#323232; border:1px solid #323232;}";
 
 
 ///Menu
