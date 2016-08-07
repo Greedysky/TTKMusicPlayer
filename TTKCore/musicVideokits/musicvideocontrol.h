@@ -9,9 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMenu>
 #include <QWidget>
-#include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
@@ -74,21 +72,13 @@ Q_SIGNALS:
      * Slider value changed at value.
      */
 
-    void addBarrageChanged(const QString &string);
-    /*!
-     * Add barrage text to mv.
-     */
     void pushBarrageChanged(bool on);
     /*!
      * Open barrage on or not.
      */
-    void barrageSizeButtonChanged(int size);
+    void addBarrageChanged(const QString &string);
     /*!
-     * Change barrage size button clicked by size.
-     */
-    void barrageColorButtonChanged(const QColor &color);
-    /*!
-     * Change barrage color button clicked by color.
+     * Add barrage text to mv.
      */
 
 public Q_SLOTS:
@@ -100,15 +90,6 @@ public Q_SLOTS:
     /*!
      * Push barrage clicked.
      */
-    void barrageSizeButtonClicked(int index);
-    /*!
-     * Barrage size button clicked by index.
-     */
-    void barrageColorButtonClicked(int index);
-    /*!
-     * Barrage color button clicked by index.
-     */
-
 
 protected:
     QWidget *createVideoBarrageWidget();

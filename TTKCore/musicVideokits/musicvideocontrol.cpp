@@ -7,6 +7,7 @@
 #include "musicvideobarragestylepopwidget.h"
 #include "musiclocalsongsearchedit.h"
 
+#include "musicuiobject.h"
 #include <QPushButton>
 #include <QBoxLayout>
 
@@ -122,36 +123,6 @@ void MusicVideoControl::pushBarrageClicked()
 
     emit pushBarrageChanged(m_pushBarrageOn);
     m_pushBarrageOn = !m_pushBarrageOn;
-
-}
-
-void MusicVideoControl::barrageSizeButtonClicked(int index)
-{
-    int size = 10;
-    switch(index)
-    {
-        case 1: size = 15; break;
-        case 2: size = 20; break;
-        case 3: size = 30; break;
-    }
-    emit barrageSizeButtonChanged(size);
-}
-
-void MusicVideoControl::barrageColorButtonClicked(int index)
-{
-    QColor color(0, 0, 0);
-    switch(index)
-    {
-        case 1: color = QColor(255, 255, 255); break;
-        case 2: color = QColor(255, 0, 0); break;
-        case 3: color = QColor(255, 165, 0); break;
-        case 4: color = QColor(255, 255, 0); break;
-        case 5: color = QColor(0, 255, 0); break;
-        case 6: color = QColor(0, 0, 255);  break;
-        case 7: color = QColor(160, 32, 240); break;
-        case 8: color = QColor(0, 0, 0); break;
-    }
-    emit barrageColorButtonChanged(color);
 }
 
 QWidget *MusicVideoControl::createVideoBarrageWidget()
@@ -188,6 +159,9 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     barrageLayout->addWidget(m_barrageSend);
     barrageLayout->addWidget(m_pushBarrage);
     barrageWidget->setLayout(barrageLayout);
+
+    connect(m_menuBarrage, SIGNAL(barrageSizeButtonChanged(int)), parent(), SLOT(barrageSizeButtonChanged(int)));
+    connect(m_menuBarrage, SIGNAL(barrageColorButtonChanged(QColor)), parent(), SLOT(barrageColorButtonChanged(QColor)));
 
     return barrageWidget;
 }

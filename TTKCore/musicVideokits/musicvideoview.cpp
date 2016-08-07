@@ -4,7 +4,9 @@
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
 #include "musicnumberdefine.h"
+#include "musicuiobject.h"
 
+#include <QMenu>
 #include <QTimer>
 #include <QMouseEvent>
 
@@ -72,8 +74,6 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
     connect(m_videoControl, SIGNAL(addBarrageChanged(QString)), SLOT(addBarrageChanged(QString)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
-    connect(m_videoControl, SIGNAL(barrageSizeButtonChanged(int)), SLOT(barrageSizeButtonChanged(int)));
-    connect(m_videoControl, SIGNAL(barrageColorButtonChanged(QColor)), SLOT(barrageColorButtonChanged(QColor)));
     m_videoControl->hide();
 
     resizeWindow(0, 0);

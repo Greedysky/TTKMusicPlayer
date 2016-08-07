@@ -231,12 +231,14 @@ namespace MusicUIObject
     const QString MKGVideoBtnBarrageSend = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_send_normal);} \
-            QPushButton:hover{ background-image: url(:/video/btn_barrage_send_hover);}";
+            QPushButton:hover{ background-image: url(:/video/btn_barrage_send_hover);} \
+            QPushButton:disabled{ background-image: url(:/video/btn_barrage_send_disable);}";
 
     const QString MKGVideoBtnBarrageStyle = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_barrage_style_normal);} \
-            QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover);}";
+            QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover);} \
+            QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable);}";
 
     const QString MKGVideoBtnSDMode  = " \
             QToolButton{ border:none; \
@@ -572,6 +574,7 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_expand_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_expand_hover);}";
+
 
 ///function button style
 //////////////////////////////////////////////////////

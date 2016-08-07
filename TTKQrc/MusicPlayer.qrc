@@ -436,8 +436,10 @@
         <file alias="btn_barrage_on_hover">../TTKResource/video/btn_barrage_on_hover.png</file>
         <file alias="btn_barrage_send_normal">../TTKResource/video/btn_barrage_send_normal.png</file>
         <file alias="btn_barrage_send_hover">../TTKResource/video/btn_barrage_send_hover.png</file>
+        <file alias="btn_barrage_send_disable">../TTKResource/video/btn_barrage_send_disable.png</file>
         <file alias="btn_barrage_style_normal">../TTKResource/video/btn_barrage_style_normal.png</file>
         <file alias="btn_barrage_style_hover">../TTKResource/video/btn_barrage_style_hover.png</file>
+        <file alias="btn_barrage_style_disable">../TTKResource/video/btn_barrage_style_disable.png</file>
         <file alias="lb_blue_hover">../TTKResource/video/lb_blue_hover.png</file>
         <file alias="lb_blue_normal">../TTKResource/video/lb_blue_normal.png</file>
         <file alias="lb_blue_on_normal">../TTKResource/video/lb_blue_on_normal.png</file>
