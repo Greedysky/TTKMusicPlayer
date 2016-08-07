@@ -383,6 +383,21 @@ namespace MusicUIObject
             background-image: url(:/lrc/lb_photo_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover);}";
 
+    const QString MKGInlineFloatSetting = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_border_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_border_hover);}";
+
+    const QString MKGInlineLrcBigger = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/btn_bigger_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover);}";
+
+    const QString MKGInlineLrcSmaller = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/btn_smaller_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover);}";
+
 
 ///video float button style
 //////////////////////////////////////////////////////

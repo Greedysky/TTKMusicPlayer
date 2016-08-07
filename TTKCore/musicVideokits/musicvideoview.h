@@ -87,10 +87,6 @@ public Q_SLOTS:
     /*!
      * Player to play.
      */
-    void setFullScreen();
-    /*!
-     * Set widget to fullScreen.
-     */
 
 private Q_SLOTS:
     void stop();

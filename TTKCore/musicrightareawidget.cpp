@@ -266,6 +266,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 videoPlayer->setObjectToClose(this);
                 videoPlayer->blockMoveOption(true);
                 connect(videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
+                connect(videoPlayer, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
 
                 m_stackedFuncWidget = videoPlayer;
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
@@ -398,6 +399,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         videoPlayer->show();
         m_stackedFuncWidget = videoPlayer;
         connect(videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
+        connect(videoPlayer, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
     }
     else
     {

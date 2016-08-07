@@ -14,8 +14,7 @@
 MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
 {
-    setObjectName("MusicVideoControl");
-    setStyleSheet("background-color:#292929;");
+    setStyleSheet(MusicUIObject::MBackgroundStyle06);
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);

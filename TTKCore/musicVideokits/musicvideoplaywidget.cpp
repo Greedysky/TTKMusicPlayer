@@ -32,26 +32,28 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
-    m_topWidget->setObjectName("#topWidget");
-    m_topWidget->setStyleSheet("background-color:#292929;" + \
+    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + \
                                MusicUIObject::MCustomStyle05);
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
+    topLayout->setContentsMargins(9, 4, 9, 4);
     topLayout->setSpacing(0);
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setStyleSheet(MusicUIObject::MColorStyle01);
 
     QWidget *searchWidget = new QWidget(m_topWidget);
+    searchWidget->setFixedHeight(25);
     searchWidget->setStyleSheet(MusicUIObject::MBackgroundStyle11);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
     searchLayout->setContentsMargins(0, 0, 0, 0);
     searchLayout->setSpacing(0);
+
     m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
-    m_searchEdit->setFixedHeight(20);
+    m_searchEdit->setFixedHeight(25);
     m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     m_searchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_searchButton->setIconSize(QSize(23, 23));
+    m_searchButton->setIconSize(QSize(25, 25));
     searchLayout->addWidget(m_searchEdit);
     searchLayout->addWidget(m_searchButton);
     searchWidget->setLayout(searchLayout);
@@ -204,10 +206,10 @@ void MusicVideoPlayWidget::fullscreenButtonClicked()
         return;
     }
 
-    m_videoView->setFullScreen();
     QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) ==
                                 tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
+    emit fullscreenButtonClicked( text == tr("NormalMode"));
 }
 
 void MusicVideoPlayWidget::downloadButtonClicked()

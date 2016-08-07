@@ -155,9 +155,6 @@ namespace MusicUIObject
 
 ///PushButton
 //////////////////////////////////////////////////////
-    const QString MPushButtonStyle01 = " \
-            QPushButton::hover{ image:url(:/lrc/lb_shadow);}";
-
     const QString MPushButtonStyle02 = " \
             QPushButton{ background-color:transparent;}";
 
@@ -186,12 +183,12 @@ namespace MusicUIObject
     const QString MPushButtonStyle09 = MPushButtonStyle03 + " \
             QPushButton{ font-size:17px; font-weight:bold; color:#FFFFFF;}";
 
-    const QString MPushButtonStyle10 = MPushButtonStyle01 + MPushButtonStyle03 + " \
-            QPushButton{ color:white; font-size:15px;}";
-           
-    const QString MPushButtonStyle11 = " \
-            QPushButton{ text-align:right; color:#CCCCCC;} \
+    const QString MPushButtonStyle10 = " \
+            QPushButton{ color:#CCCCCC;} \
             QPushButton:hover{ color:#FFFFFF;}";
+           
+    const QString MPushButtonStyle11 = MPushButtonStyle10 + " \
+            QPushButton{ text-align:right;}";
 
     const QString MPushButtonStyle12 = MPushButtonStyle05 + " \
             QPushButton{ color:#3BA1E6;}";

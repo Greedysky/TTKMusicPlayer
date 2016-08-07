@@ -58,6 +58,10 @@ Q_SIGNALS:
     /*!
      * Fresh button state changed.
      */
+    void fullscreenButtonClicked(bool popup);
+    /*!
+     * Fullscreen button clicked.
+     */
 
 public Q_SLOTS:
     void switchToSearchTable();

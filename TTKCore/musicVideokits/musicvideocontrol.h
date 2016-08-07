@@ -93,6 +93,9 @@ public Q_SLOTS:
 
 protected:
     QWidget *createVideoBarrageWidget();
+    /*!
+     * Create video barrage widget.
+     */
 
     bool m_widgetPopup;
     QPushButton *m_playButton;

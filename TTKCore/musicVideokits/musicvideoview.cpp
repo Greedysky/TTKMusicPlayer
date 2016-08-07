@@ -66,7 +66,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_barrageCore = new MusicBarrageWidget(this);
 
     connect(m_videoWidget, SIGNAL(setClick()), SLOT(play()));
-    connect(m_videoWidget, SIGNAL(setFullScreen()), SLOT(setFullScreen()));
+    connect(m_videoWidget, SIGNAL(setFullScreen()), parent, SLOT(fullscreenButtonClicked()));
     connect(m_videoWidget, SIGNAL(mediaIsPlaying(bool&)), SLOT(mediaIsPlaying(bool&)));
 
     m_videoControl = new MusicVideoControl(popup, this);
@@ -134,14 +134,6 @@ void MusicVideoView::resizeWindow(int width, int height)
     m_videoWidget->setGeometry(10, 35, 635 + width, 355 + height);
     m_videoControl->setGeometry(0, 410 + height, 660 + width, 60);
     m_barrageCore->setSize(m_videoWidget->size());
-}
-
-void MusicVideoView::setFullScreen()
-{
-//    if(m_videoControl->isPopup())
-//    {
-//        m_videoControl->fullButtonClicked();
-//    }
 }
 
 void MusicVideoView::play()
