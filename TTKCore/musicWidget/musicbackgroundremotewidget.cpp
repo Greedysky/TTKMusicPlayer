@@ -67,7 +67,7 @@ void MusicBackgroundRemoteWidget::createButton()
         QPushButton *button = new QPushButton(this);
         button->setFixedHeight(25);
         button->setText(tr("NetButton%1").arg(i + 1));
-        button->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+        button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         m_group->addButton(button, i);
     }

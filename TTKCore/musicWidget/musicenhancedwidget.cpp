@@ -72,7 +72,7 @@ void MusicEnhancedWidget::initWidget()
 {
     m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
     m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    m_menu->setStyleSheet("QMenu{ border:none; background:transparent;}");
+    m_menu->setStyleSheet(MusicUIObject::MMenuStyle04);
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("containWidget");

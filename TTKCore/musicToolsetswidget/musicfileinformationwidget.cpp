@@ -55,7 +55,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 
     setStyleSheet(MusicUIObject::MLineEditStyle01);
 
-    ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));
 }

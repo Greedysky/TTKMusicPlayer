@@ -18,8 +18,8 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 

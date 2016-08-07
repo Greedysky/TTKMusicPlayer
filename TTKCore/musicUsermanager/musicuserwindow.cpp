@@ -14,7 +14,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
      ui(new Ui::MusicUserWindow)
 {
     ui->setupUi(this);
-    ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle09);
+    ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
     ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
 

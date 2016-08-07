@@ -18,9 +18,9 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
 
     ui->label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->songSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->lrcSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->lrcSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     ui->lrcSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));

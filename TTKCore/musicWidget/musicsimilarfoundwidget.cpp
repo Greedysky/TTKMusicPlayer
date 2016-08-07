@@ -114,7 +114,7 @@ void MusicSimilarFoundWidget::createLabels()
     int index = 0;
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle04);
+    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
     QGridLayout *grid = new QGridLayout(function);
     grid->setSpacing(15);
 

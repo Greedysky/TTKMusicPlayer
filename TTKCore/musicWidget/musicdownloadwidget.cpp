@@ -138,9 +138,9 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
 
     ui->downloadPathEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->pathChangedButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle08);
+    ui->pathChangedButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;

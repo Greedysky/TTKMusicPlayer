@@ -24,9 +24,9 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->openDetailButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->openDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->openDetailButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    ui->openDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
 
     connect(ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
     connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));

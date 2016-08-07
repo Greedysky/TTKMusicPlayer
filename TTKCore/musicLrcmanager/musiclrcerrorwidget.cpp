@@ -25,13 +25,12 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     ui->radioButton3->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     ui->radioButton4->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
 
-    ui->textEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 + \
-                                 MusicUIObject::MScrollBarStyle01 );
+    ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     ui->textEdit->setEnabled(false);
     ui->radioButton1->setChecked(true);
     connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
 
-    ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->pushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->pushButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 

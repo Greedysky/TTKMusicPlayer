@@ -23,9 +23,9 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->openButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->openButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     ui->tempoSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->pitchSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
@@ -37,8 +37,8 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     connect(ui->pitchSlider, SIGNAL(valueChanged(int)), SLOT(pitchSliderValueChanged(int)));
     connect(ui->rateSlider, SIGNAL(valueChanged(int)), SLOT(rateSliderValueChanged(int)));
 
-    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->playWavButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     connect(ui->playWavButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
     connect(ui->transformButton, SIGNAL(clicked()), SLOT(transformButtonClicked()));
 

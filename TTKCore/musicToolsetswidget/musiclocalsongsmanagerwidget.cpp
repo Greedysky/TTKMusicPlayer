@@ -30,8 +30,10 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle07));
 
     ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
-    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
+    ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
+                                      "QToolButton{ image:url(:/contextMenu/btn_audition);}");
+    ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
+                                 "QToolButton{ image:url(:/contextMenu/btn_add);}");
 
     ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -44,17 +46,17 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
     ui->scanButton->setIcon(QIcon(":/toolSets/btn_search"));
-    ui->scanButton->setStyleSheet(MusicUIObject::MPushButtonStyle14);
+    ui->scanButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
     ui->scanCustButton->setIcon(QIcon(":/toolSets/btn_search"));
-    ui->scanCustButton->setStyleSheet(MusicUIObject::MPushButtonStyle14);
+    ui->scanCustButton->setStyleSheet(MusicUIObject::MPushButtonStyle10);
 
-    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->showlistButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->filterComboBox->setItemDelegate(new QStyledItemDelegate(ui->filterComboBox));
     ui->filterComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->showPathButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->showPathButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);

@@ -22,8 +22,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
     ui->netSkin->setStyleSheet(MusicUIObject::MLabelStyle02);
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     addThemeListWidgetItem();
 
@@ -31,8 +31,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     ui->stackedWidget->setLength(ui->stackedWidget->width(), MusicAnimationStackedWidget::LeftToRight);
 
     ui->resetWindowButton->setStyleSheet(MusicUIObject::MKGBtnResetWindow);
-    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
-    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle07);
+    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
 
     connect(ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicBgTransparentChanged(int)));

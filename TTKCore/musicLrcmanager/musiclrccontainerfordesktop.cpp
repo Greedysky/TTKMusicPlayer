@@ -159,7 +159,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolSettingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     toolCloseButton->setStyleSheet(MusicUIObject::MKGBtnTClose);
     toolMakeLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopMakeLrc);
     toolSearchLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopSearchLrc);

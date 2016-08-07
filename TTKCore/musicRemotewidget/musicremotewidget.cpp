@@ -24,7 +24,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     m_showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
     m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
 

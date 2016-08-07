@@ -42,7 +42,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
     m_confirmButton->setGeometry(500, 130, 70, 20);
-    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
@@ -52,8 +52,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_previous->setStyleSheet( MusicUIObject::MCustomStyle09 );
-    m_next->setStyleSheet( MusicUIObject::MCustomStyle09 );
+    m_previous->setStyleSheet(MusicUIObject::MCustomStyle09);
+    m_next->setStyleSheet(MusicUIObject::MCustomStyle09);
 
     m_currentIndex = 0;
 

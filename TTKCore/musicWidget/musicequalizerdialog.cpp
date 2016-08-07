@@ -79,7 +79,7 @@ void MusicEqualizerDialog::init()
 
     connect(ui->showEqButton, SIGNAL(clicked()), SLOT(setEqEnable()));
     connect(ui->resetButton, SIGNAL(clicked()), SLOT(resetEq()));
-    ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_21, 9);

@@ -100,8 +100,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     ui->supperFunTableWidget->addFunctionItems(ui->normalFunTableWidget->rowCount() + ui->lrcFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/btn_equalizer" << ":/contextMenu/btn_network",
         QStringList() << tr("Equalizer") << tr("NetWork"));
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -181,16 +181,16 @@ void MusicSettingWidget::initInlineLrcWidget()
 
     ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->noPlayedPushButton->setIcon(QIcon(":/color/lb_purple"));
-    ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->noPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->noPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->playedPushButton->setIcon(QIcon(":/color/lb_purple"));
-    ui->playedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->playedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->playedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(inlineLrcBgChanged()));
     connect(ui->playedPushButton, SIGNAL(clicked()), SLOT(inlineLrcFgChanged()));
     connect(ui->transparentSlider, SIGNAL(valueChanged(int)), SLOT(inlineLrcTransChanged(int)));
 
-    ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInlineParameter()));
 
@@ -227,16 +227,16 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
     ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     ui->DnoPlayedPushButton->setIcon(QIcon(":/color/lb_purple"));
-    ui->DnoPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->DnoPlayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->DnoPlayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->DplayedPushButton->setIcon(QIcon(":/color/lb_purple"));
-    ui->DplayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->DplayedPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->DplayedPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBgChanged()));
     connect(ui->DplayedPushButton, SIGNAL(clicked()), SLOT(desktopFgChanged()));
     connect(ui->DtransparentSlider, SIGNAL(valueChanged(int)), SLOT(desktopLrcTransChanged(int)));
 
-    ui->DresetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->DresetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->DresetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
 
@@ -248,8 +248,8 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->downloadLrcDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
-    ui->downloadDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->downloadDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
@@ -327,21 +327,21 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->ladspaCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     ui->samplerateCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->bs2bButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->bs2bButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->bs2bButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->crossfadeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->crossfadeButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->crossfadeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->stereoButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->stereoButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->stereoButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->ladspaButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->ladspaButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->ladspaButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->samplerateButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->samplerateButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->samplerateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     ui->bs2bButton->setEnabled(false);
     ui->crossfadeButton->setEnabled(false);
@@ -383,9 +383,9 @@ void MusicSettingWidget::initNetworkWidget()
     ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->netConnectionTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") <<

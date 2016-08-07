@@ -58,14 +58,14 @@ void MusicConnectMobileWidget::initFirstWidget()
     textLabel->setStyleSheet(MusicUIObject::MCustomStyle04);
 
     QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
-    firButton->setStyleSheet(MusicUIObject::MPushButtonStyle15);
+    firButton->setStyleSheet(MusicUIObject::MPushButtonStyle11);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
-    secButton->setStyleSheet(MusicUIObject::MPushButtonStyle15);
+    secButton->setStyleSheet(MusicUIObject::MPushButtonStyle11);
     secButton->setIcon(QIcon(":/toolSets/lb_wireless"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);
@@ -90,7 +90,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     QVBoxLayout *vBox = new QVBoxLayout(secondWidget);
 
     QPushButton *backButton = new QPushButton(tr("< back"), secondWidget);
-    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
@@ -104,7 +104,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     label2->setStyleSheet(MusicUIObject::MCustomStyle02);
 
     QPushButton *openButton = new QPushButton(tr("transfer"), secondWidget);
-    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
     connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
@@ -129,7 +129,7 @@ void MusicConnectMobileWidget::initThirdWidget()
     QVBoxLayout *vBox = new QVBoxLayout(thirdWidget);
 
     QPushButton *backButton = new QPushButton(tr("< back"), thirdWidget);
-    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
@@ -147,7 +147,7 @@ void MusicConnectMobileWidget::initThirdWidget()
     label1->setStyleSheet(MusicUIObject::MCustomStyle02);
 
     QPushButton *openButton = new QPushButton(tr("transfer"), thirdWidget);
-    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle16);
+    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
     connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Wifi()));

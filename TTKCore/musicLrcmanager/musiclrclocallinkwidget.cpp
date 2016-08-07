@@ -76,10 +76,10 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ui->fuzzyButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->localSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->commitButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->previewButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    ui->deleteButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    ui->localSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->commitButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->previewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->deleteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->titleEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
     ui->fuzzyButton->setChecked(true);

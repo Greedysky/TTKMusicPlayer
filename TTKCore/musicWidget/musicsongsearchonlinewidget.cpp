@@ -401,19 +401,19 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     m_playButton = new QPushButton(tr("Play"), this);
     m_playButton->setFixedSize(70, 20);
-    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(m_playButton);
 
     QPushButton *addButton = new QPushButton(tr("Add"), this);
     addButton->setFixedSize(70, 20);
-    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    addButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(addButton);
 
     QPushButton *downloadButton = new QPushButton(tr("Download"), this);
     downloadButton->setFixedSize(70, 20);
-    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     funcLayout->addWidget(downloadButton);
 

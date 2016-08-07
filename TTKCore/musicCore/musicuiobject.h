@@ -141,13 +141,7 @@ namespace MusicUIObject
     const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
             QToolButton::menu-indicator{ image:None;}";
 
-    const QString MToolButtonStyle05 = MToolButtonStyle01 + MToolButtonStyle02 + " \
-            QToolButton{ image:url(:/contextMenu/btn_audition);}";
-
-    const QString MToolButtonStyle06 = MToolButtonStyle01 + MToolButtonStyle02 + " \
-            QToolButton{ image:url(:/contextMenu/btn_add);}";
-
-    const QString MToolButtonStyle07 = " \
+    const QString MToolButtonStyle05 = " \
             QToolButton{ border:1px solid #777777; background:#EEEEEE; color:#555555;} \
             QToolButton::hover{ border:1px solid #444444; color:#222222;} \
             QToolButton::disabled{ color:#999999;}";
@@ -155,60 +149,50 @@ namespace MusicUIObject
 
 ///PushButton
 //////////////////////////////////////////////////////
-    const QString MPushButtonStyle02 = " \
+    const QString MPushButtonStyle01 = " \
             QPushButton{ background-color:transparent;}";
 
-    const QString MPushButtonStyle03 = MPushButtonStyle02 + " \
+    const QString MPushButtonStyle02 = MPushButtonStyle01 + " \
             QPushButton{ border-none;}";
             
-    const QString MPushButtonStyle04 = " \
+    const QString MPushButtonStyle03 = " \
             QPushButton{ border-radius:3px; background-color:#80B7F1; color:white;}";
 
-    const QString MPushButtonStyle05 = " \
-            QPushButton{ border-style:outset; border-width: 1px; border-radius: 2px; \
-            border-color: #3BA1E6; padding: 1px;}";
-
-    const QString MPushButtonStyle06 = " \
+    const QString MPushButtonStyle04 = " \
             QPushButton{ border:1px solid #777777; background:#EEEEEE; color:#555555;} \
             QPushButton::hover{ border:1px solid #444444; color:#222222;} \
             QPushButton::disabled{ color:#999999;}";
 
-    const QString MPushButtonStyle07 = " \
+    const QString MPushButtonStyle05 = " \
             QPushButton{ border:none; color:#3333FF;} \
             QPushButton::hover{ color:#7777FF;}";
 
-    const QString MPushButtonStyle08 = MPushButtonStyle04 + " \
+    const QString MPushButtonStyle06 = MPushButtonStyle03 + " \
             QPushButton{ font-size:17px; font-weight:bold; }";
 
-    const QString MPushButtonStyle09 = MPushButtonStyle03 + " \
+    const QString MPushButtonStyle07 = MPushButtonStyle02 + " \
             QPushButton{ font-size:17px; font-weight:bold; color:#FFFFFF;}";
 
-    const QString MPushButtonStyle10 = " \
+    const QString MPushButtonStyle08 = " \
             QPushButton{ color:#CCCCCC;} \
             QPushButton:hover{ color:#FFFFFF;}";
            
-    const QString MPushButtonStyle11 = MPushButtonStyle10 + " \
+    const QString MPushButtonStyle09 = MPushButtonStyle08 + " \
             QPushButton{ text-align:right;}";
 
-    const QString MPushButtonStyle12 = MPushButtonStyle05 + " \
-            QPushButton{ color:#3BA1E6;}";
-
-    const QString MPushButtonStyle13 = MPushButtonStyle05 + " \
-            QPushButton{ font-size:13px; color:white; font-weight:bold;}";
-
-    const QString MPushButtonStyle14 = " \
+    const QString MPushButtonStyle10 = " \
             QPushButton{ background:transparent;} \
             QPushButton::hover{ border:1px solid #000000;}";
 
-    const QString MPushButtonStyle15 = " \
+    const QString MPushButtonStyle11 = " \
             QPushButton{ border-radius:5px; font-size:20px; \
             background:rgba(0, 0, 0, 50);} \
             QPushButton::hover{ background:rgba(0, 0, 0, 100);}";
 
-    const QString MPushButtonStyle16 = " \
+    const QString MPushButtonStyle12 = " \
             QPushButton{ border-radius:2px; background:rgba(0, 0, 0, 50);}";
 
-    const QString MPushButtonStyle17 = " \
+    const QString MPushButtonStyle13 = " \
             QPushButton::menu-indicator{ image:none;}";
 
 
@@ -297,6 +281,9 @@ namespace MusicUIObject
             QMenu::item:disabled{ color:#555555;} \
             QMenu::item:selected{ background:rgba(0, 0, 0, 200);} \
             QMenu::separator{ background:#BBBBBB;}";
+
+    const QString MMenuStyle04 = " \
+            QMenu{ border:none; background:transparent;}";
 
 
 ///Slider
