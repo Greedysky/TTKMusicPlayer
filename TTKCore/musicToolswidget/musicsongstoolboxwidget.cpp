@@ -105,9 +105,20 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("addNewItem"), parent(), SIGNAL(addNewRowItem()));
     menu.addSeparator();
 
+    QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
+    menu.addMenu(&musicAddNewFiles);
+    musicAddNewFiles.addAction(tr("openOnlyFiles"));
+    musicAddNewFiles.addAction(tr("openOnlyDir"));
+    menu.addAction(tr("playLater"));
+    menu.addAction(tr("addToPlayList"));
+    menu.addAction(tr("collectAll"))->setEnabled(m_index != 1 && m_index != 2);
+    menu.addSeparator();
+
     bool disable = !(m_index == 0 || m_index == 1 || m_index == 2);
-    menu.addAction(tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
+    menu.addAction(tr("deleteAll"));
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
+
     menu.exec(QCursor::pos());
 }
 
