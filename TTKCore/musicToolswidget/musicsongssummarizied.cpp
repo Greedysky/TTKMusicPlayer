@@ -372,6 +372,16 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     delete item.m_itemObject;
 }
 
+void MusicSongsSummarizied::deleteRowItems()
+{
+    for(int i = m_songItems.count() - 1; i>2; --i)
+    {
+        MusicSongItem item = m_songItems.takeLast();
+        removeItem(item.m_itemObject);
+        delete item.m_itemObject;
+    }
+}
+
 void MusicSongsSummarizied::changRowItemName(int index, const QString &name)
 {
     int id = foundMappingIndex(index);
@@ -403,7 +413,7 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"));
     menu.addAction(tr("musicTest"));
-    menu.addAction(tr("deleteAllItem"));
+    menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > 3);
     menu.exec(QCursor::pos());
 }
 

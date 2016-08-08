@@ -141,6 +141,10 @@ public Q_SLOTS:
     /*!
      * Delete selected play list item.
      */
+    void deleteRowItems();
+    /*!
+     * Delete all other item, left than three item.
+     */
     void changRowItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
