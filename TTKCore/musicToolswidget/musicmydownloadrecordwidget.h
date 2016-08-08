@@ -93,7 +93,7 @@ protected:
      */
 
     MusicProgressBarDelegate *m_delegate;
-    MusicDownloadRecord m_musicRecord;
+    MusicDownloadRecords m_musicRecords;
     int m_loadRecordCount;
 
 };

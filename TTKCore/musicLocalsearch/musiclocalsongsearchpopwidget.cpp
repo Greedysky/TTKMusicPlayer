@@ -99,16 +99,15 @@ void MusicLocalSongSearchPopWidget::createItems()
         return;
     }
 
-    MusicSearchRecord record;
-    search.readSearchConfig( record );
-    int count = record.m_names.count();
+    MusicSearchRecords records;
+    search.readSearchConfig( records );
+    int count = records.count();
     resize(285, count == 0 ? 40 : (count < 6 ? (count + 1)*ROW_HEIGHT : 7*ROW_HEIGHT - 10) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
     {
-        m_popTableWidget->createItems(i, record.m_names[i],
-                                      utcTimeToLocal(record.m_times[i]));
+        m_popTableWidget->createItems(i, records[i].m_name, utcTimeToLocal(records[i].m_time));
     }
 }
 
@@ -125,7 +124,7 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
     {
         return;
     }
-    search.writeSearchConfig( MusicSearchRecord() );
+    search.writeSearchConfig( MusicSearchRecords() );
     close();
 }
 

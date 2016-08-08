@@ -13,11 +13,12 @@
 
 typedef struct MUSIC_USER_EXPORT MusicUserRecord
 {
-    QStringList m_names;
-    QStringList m_rps;
-    QStringList m_als;
-    QStringList m_pwds;
+    QString m_name;
+    QString m_rp;
+    QString m_al;
+    QString m_pwd;
 }MusicUserRecord;
+typedef QList<MusicUserRecord> MusicUserRecords;
 
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>
@@ -39,11 +40,11 @@ public:
     /*!
      * Read user datas from xml file by given name.
      */
-    void writeUserXMLConfig(const MusicUserRecord &record);
+    void writeUserXMLConfig(const MusicUserRecords &records);
     /*!
      * Write user datas into xml file.
      */
-    void readUserConfig(MusicUserRecord &record);
+    void readUserConfig(MusicUserRecords &records);
     /*!
      * Read user datas into xml file.
      */

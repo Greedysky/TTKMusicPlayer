@@ -55,16 +55,18 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
         return;
     }
     ////////////////////////////////////////////////
-    MusicSearchRecord record;
+    MusicSearchRecords records;
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
         return;
     }
-    search.readSearchConfig( record );
-    record.m_names.insert(0, text);
-    record.m_times.insert(0, QString::number(QDateTime::currentMSecsSinceEpoch()));
-    search.writeSearchConfig( record );
+    search.readSearchConfig( records );
+    MusicSearchRecord record;
+    record.m_name = text;
+    record.m_time = QString::number(QDateTime::currentMSecsSinceEpoch());
+    records.insert(0, record);
+    search.writeSearchConfig( records );
     ////////////////////////////////////////////////
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }

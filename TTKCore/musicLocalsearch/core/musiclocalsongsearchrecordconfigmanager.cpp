@@ -11,7 +11,7 @@ QString MusicLocalSongSearchRecordConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecord &record)
+void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecords &records)
 {
     if( !writeConfig( MUSICSEARCH_FULL ) )
     {
@@ -23,10 +23,9 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearc
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "searchRecord");
 
-    for(int i=0; i<record.m_names.count(); ++i)
+    foreach(MusicSearchRecord record, records)
     {
-        writeDomElementText(download, "value", "name",
-                            record.m_names[i], record.m_times[i]);
+        writeDomElementText(download, "value", "name", record.m_name, record.m_time);
     }
 
     //Write to file
@@ -34,15 +33,14 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearc
     m_ddom->save(out, 4);
 }
 
-void MusicLocalSongSearchRecordConfigManager::readSearchConfig(MusicSearchRecord &record)
+void MusicLocalSongSearchRecordConfigManager::readSearchConfig(MusicSearchRecords &records)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
-    QStringList names, times;
     for(int i=0; i<nodelist.count(); ++i)
     {
-        names << nodelist.at(i).toElement().attribute("name");
-        times << nodelist.at(i).toElement().text();
+        MusicSearchRecord record;
+        record.m_name = nodelist.at(i).toElement().attribute("name");
+        record.m_time = nodelist.at(i).toElement().text();
+        records << record;
     }
-    record.m_names = names;
-    record.m_times = times;
 }

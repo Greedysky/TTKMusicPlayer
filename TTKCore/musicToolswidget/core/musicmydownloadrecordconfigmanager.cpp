@@ -11,7 +11,7 @@ QString MusicMyDownloadRecordConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecord &record)
+void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
 {
     if( !writeConfig( DOWNLOADINFO_FULL ) )
     {
@@ -22,28 +22,26 @@ void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownload
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "download");
 
-    for(int i=0; i<record.m_names.count(); ++i)
+    foreach(MusicDownloadRecord record, records)
     {
-        writeDomElementMutilText(download, "value", QStringList()<<"name"<<"size",
-                                 QVariantList()<<record.m_names[i]<<record.m_sizes[i],
-                                 record.m_paths[i]);
+        writeDomElementMutilText(download, "value", QStringList() << "name" << "size",
+                                 QVariantList() << record.m_name << record.m_size, record.m_path);
     }
+
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out, 4);
 }
 
-void MusicMyDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecord &record)
+void MusicMyDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecords &records)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
-    QStringList names, paths, size;
     for(int i=0; i<nodelist.count(); ++i)
     {
-        names << nodelist.at(i).toElement().attribute("name");
-        paths << nodelist.at(i).toElement().text();
-        size << nodelist.at(i).toElement().attribute("size");
+        MusicDownloadRecord record;
+        record.m_name = nodelist.at(i).toElement().attribute("name");
+        record.m_path = nodelist.at(i).toElement().text();
+        record.m_size = nodelist.at(i).toElement().attribute("size");
+        records << record;
     }
-    record.m_names = names;
-    record.m_paths = paths;
-    record.m_sizes = size;
 }

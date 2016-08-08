@@ -33,8 +33,9 @@ MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
     M_CONNECTION_PTR->poolDisConnect(getClassName() );
     delete m_delegate;
     clearAllItems();
+
     MusicMyDownloadRecordConfigManager xml;
-    xml.writeDownloadConfig(m_musicRecord);
+    xml.writeDownloadConfig(m_musicRecords);
 }
 
 QString MusicMyDownloadRecordWidget::getClassName()
@@ -49,12 +50,12 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     {
         return;
     }
-    xml.readDownloadConfig(m_musicRecord);
+    xml.readDownloadConfig(m_musicRecords);
 
-    setRowCount(m_loadRecordCount = m_musicRecord.m_names.count()); //reset row count
-    for(int i=0; i<m_musicRecord.m_names.count(); i++)
+    setRowCount(m_loadRecordCount = m_musicRecords.count()); //reset row count
+    for(int i=0; i<m_musicRecords.count(); i++)
     {
-        createItem(i, m_musicRecord.m_names[i], m_musicRecord.m_sizes[i], 999);
+        createItem(i, m_musicRecords[i].m_name, m_musicRecords[i].m_size, 999);
     }
 }
 
@@ -129,9 +130,7 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
     {
         int index = deleteList[i];
         removeRow(index); //Delete the current row
-        m_musicRecord.m_names.removeAt(index);
-        m_musicRecord.m_paths.removeAt(index);
-        m_musicRecord.m_sizes.removeAt(index);
+        m_musicRecords.removeAt(index);
         --m_loadRecordCount;
     }
 }
@@ -153,7 +152,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!MusicUtils::UCore::openUrl(QFileInfo(m_musicRecord.m_paths[currentRow()]).absoluteFilePath(), true))
+    if(!MusicUtils::UCore::openUrl(QFileInfo(m_musicRecords[currentRow()].m_path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
@@ -167,7 +166,7 @@ void MusicMyDownloadRecordWidget::musicPlay()
     {
         return;
     }
-    emit addSongToPlay(QStringList(m_musicRecord.m_paths[currentRow()]));
+    emit addSongToPlay(QStringList(m_musicRecords[currentRow()].m_path));
 }
 
 void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
@@ -181,7 +180,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
             item(i, 3)->setText( total );
             if(percent == 100)
             {
-                m_musicRecord.m_sizes[i] = total;
+                m_musicRecords[i].m_size = total;
             }
             break;
         }
@@ -194,9 +193,11 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
     QString musicName = name;
     musicName.remove(MUSIC_DIR_FULL).chop(4);
 
-    m_musicRecord.m_names << musicName;
-    m_musicRecord.m_paths << QFileInfo(name).absoluteFilePath();
-    m_musicRecord.m_sizes << "0.0M";
+    MusicDownloadRecord record;
+    record.m_name = musicName;
+    record.m_path = QFileInfo(name).absoluteFilePath();
+    record.m_size = "0.0M";
+    m_musicRecords << record;
 
     createItem(rowCount() - 1, musicName, "0.0M", time);
 }

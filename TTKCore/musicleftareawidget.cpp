@@ -9,7 +9,6 @@
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicewidget.h"
-#include "musicsongssummarizied.h"
 #include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"

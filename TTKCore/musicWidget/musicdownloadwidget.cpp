@@ -411,18 +411,20 @@ void MusicDownloadWidget::startToDownloadMusic()
                 QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
                 QString downloadName = QString("%1%2.%3").arg(MUSIC_DIR_FULL).arg(musicSong).arg(musicAttr.m_format);
                 ////////////////////////////////////////////////
-                MusicDownloadRecord record;
+                MusicDownloadRecords records;
                 MusicMyDownloadRecordConfigManager down(this);
                 if(!down.readDownloadXMLConfig())
                 {
                     return;
                 }
 
-                down.readDownloadConfig( record );
-                record.m_names << musicSong;
-                record.m_paths << QFileInfo(downloadName).absoluteFilePath();
-                record.m_sizes << musicAttr.m_size;
-                down.writeDownloadConfig( record );
+                down.readDownloadConfig( records );
+                MusicDownloadRecord record;
+                record.m_name = musicSong;
+                record.m_path = QFileInfo(downloadName).absoluteFilePath();
+                record.m_size = musicAttr.m_size;
+                records << record;
+                down.writeDownloadConfig( records );
                 ////////////////////////////////////////////////
                 QFile file(downloadName);
                 if(file.exists())

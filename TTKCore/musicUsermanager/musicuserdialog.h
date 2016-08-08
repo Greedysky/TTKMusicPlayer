@@ -107,6 +107,10 @@ protected:
     /*!
      * Read user setting to config file.
      */
+    int findUserNameIndex(const QString &name);
+    /*!
+     * To find current username in the record list.
+     */
     void readFromUserSettings();
     /*!
      * Read user info from setting.
@@ -126,7 +130,7 @@ protected:
 
     Ui::MusicUserDialog *ui;
     MusicUserModel *m_userModel;
-    MusicUserRecord m_record;
+    MusicUserRecords m_records;
     QString m_userName;
 
 };

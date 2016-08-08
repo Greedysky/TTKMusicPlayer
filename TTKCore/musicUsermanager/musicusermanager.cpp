@@ -76,11 +76,22 @@ void MusicUserManager::musicUserLogoff()
     {
         return;
     }
-    MusicUserRecord record;
-    xml.readUserConfig( record );
-    int index = record.m_names.indexOf(m_currentUserUID);
-    record.m_als[index] = "0";  //auto login flag
-    xml.writeUserXMLConfig( record );
+    MusicUserRecords records;
+    xml.readUserConfig( records );
+
+    int index = -1;
+    for(int i=0; i<records.count(); ++i)
+    {
+        if(records[i].m_name == m_currentUserUID)
+        {
+            index = i;
+        }
+    }
+    if(index != -1)
+    {
+        records[index].m_al = "0";  //auto login flag
+    }
+    xml.writeUserXMLConfig( records );
 
     m_currentUserUID.clear();
     emit userStateChanged(QString(), QString());

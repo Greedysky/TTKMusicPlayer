@@ -13,10 +13,11 @@
 
 typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
 {
-    QStringList m_names;
-    QStringList m_paths;
-    QStringList m_sizes;
+    QString m_name;
+    QString m_path;
+    QString m_size;
 }MusicDownloadRecord;
+typedef QList<MusicDownloadRecord> MusicDownloadRecords;
 
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
@@ -38,11 +39,11 @@ public:
     /*!
      * Read history download datas from xml file by given name.
      */
-    void writeDownloadConfig(const MusicDownloadRecord &record);
+    void writeDownloadConfig(const MusicDownloadRecords &records);
     /*!
      * Write history download datas into xml file.
      */
-    void readDownloadConfig(MusicDownloadRecord &record);
+    void readDownloadConfig(MusicDownloadRecords &records);
     /*!
      * Read history download datas into xml file.
      */

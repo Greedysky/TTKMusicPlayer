@@ -13,9 +13,10 @@
 
 typedef struct MUSIC_SEARCH_EXPORT MusicSearchRecord
 {
-    QStringList m_names;
-    QStringList m_times;
+    QString m_name;
+    QString m_time;
 }MusicSearchRecord;
+typedef QList<MusicSearchRecord> MusicSearchRecords;
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
@@ -37,11 +38,11 @@ public:
     /*!
      * Read history search datas from xml file by given name.
      */
-    void writeSearchConfig(const MusicSearchRecord &record);
+    void writeSearchConfig(const MusicSearchRecords &records);
     /*!
      * Write history search datas into xml file.
      */
-    void readSearchConfig(MusicSearchRecord &record);
+    void readSearchConfig(MusicSearchRecords &records);
     /*!
      * Read history search datas into xml file.
      */
