@@ -397,22 +397,26 @@ void MusicApplication::showCurrentSong(int index)
     QString name;
     if( index > -1 ) //The list to end
     {
-        name = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex())[index].trimmed();
-        ///detecting whether the file has been downloaded
-        MusicSongs currentSongs = m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
-        QString path = QString("%1/%2.%3").arg(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
-                                          .arg(name).arg(currentSongs[index].getMusicType());
-        bool exist = QFile::exists(path);
-        M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
-        M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
-        ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
-        //////////////////////////////////////////
-        MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
-        exist = loveSongs.contains(currentSongs[index]);
-        M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
-        ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
-        //////////////////////////////////////////
-        m_musicSongTree->selectRow(index);
+        QStringList songsFileNames = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex());
+        if(songsFileNames.count() > index)
+        {
+            name = songsFileNames[index].trimmed();
+            ///detecting whether the file has been downloaded
+            MusicSongs currentSongs = m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
+            QString path = QString("%1/%2.%3").arg(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
+                                              .arg(name).arg(currentSongs[index].getMusicType());
+            bool exist = QFile::exists(path);
+            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
+            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
+            ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
+            //////////////////////////////////////////
+            MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
+            exist = loveSongs.contains(currentSongs[index]);
+            M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
+            ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
+            //////////////////////////////////////////
+            m_musicSongTree->selectRow(index);
+        }
     }
     else
     {
@@ -712,7 +716,7 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
     {
         m_musicList->appendMedia(path);
     }
-    if(path.count() > 0 && m_musicList->currentIndex() < 0)
+    if(path.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
     {
         m_musicList->setCurrentIndex(0);
     }
@@ -863,8 +867,9 @@ QString MusicApplication::getCurrentFileName() const
     {
         return QString();
     }
-    return m_musicSongTree->getMusicSongsFileName( \
-           m_currentMusicSongTreeIndex)[m_musicList->currentIndex()].trimmed();
+
+    QStringList nanmes = m_musicSongTree->getMusicSongsFileName(m_currentMusicSongTreeIndex);
+    return (nanmes.count() > m_musicList->currentIndex()) ? nanmes[m_musicList->currentIndex()].trimmed() : QString();
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const
