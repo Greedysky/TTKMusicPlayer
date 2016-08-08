@@ -103,7 +103,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     middleButton->setFixedSize(16, 16);
     bigButton->setFixedSize(16, 16);
 
-    smallButton->setStyleSheet(MusicUIObject::MKGVideoBtnSmall);
+    smallButton->setStyleSheet(MusicUIObject::MKGVideoBtnSmallOn);
     middleButton->setStyleSheet(MusicUIObject::MKGVideoBtnMiddle);
     bigButton->setStyleSheet(MusicUIObject::MKGVideoBtnBig);
 
@@ -144,7 +144,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     blueButton->setFixedSize(19, 26);
     purpleButton->setFixedSize(19, 26);
 
-    whiteButton->setStyleSheet(MusicUIObject::MKGVideoBtnWhite);
+    whiteButton->setStyleSheet(MusicUIObject::MKGVideoBtnWhiteOn);
     redButton->setStyleSheet(MusicUIObject::MKGVideoBtnRed);
     orangeButton->setStyleSheet(MusicUIObject::MKGVideoBtnOrange);
     yellowButton->setStyleSheet(MusicUIObject::MKGVideoBtnYellow);

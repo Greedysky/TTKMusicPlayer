@@ -353,6 +353,10 @@
         <file alias="btn_expand_normal">../TTKResource/tiny/btn_expand_normal.png</file>
         <file alias="btn_setting_normal">../TTKResource/tiny/btn_setting_normal.png</file>
         <file alias="btn_setting_hover">../TTKResource/tiny/btn_setting_hover.png</file>
+        <file alias="btn_top_off_hover">../TTKResource/tiny/btn_top_off_hover.png</file>
+        <file alias="btn_top_off_normal">../TTKResource/tiny/btn_top_off_normal.png</file>
+        <file alias="btn_top_on_hover">../TTKResource/tiny/btn_top_on_hover.png</file>
+        <file alias="btn_top_on_normal">../TTKResource/tiny/btn_top_on_normal.png</file>
         <file alias="btn_sound">../TTKResource/tiny/btn_sound.png</file>
         <file alias="btn_open_file">../TTKResource/tiny/btn_open_file.png</file>
         <file alias="btn_open_files">../TTKResource/tiny/btn_open_files.png</file>

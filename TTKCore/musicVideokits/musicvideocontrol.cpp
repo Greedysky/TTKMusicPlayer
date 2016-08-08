@@ -6,8 +6,9 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"
 #include "musiclocalsongsearchedit.h"
-
 #include "musicuiobject.h"
+#include "musictime.h"
+
 #include <QPushButton>
 #include <QBoxLayout>
 
@@ -18,6 +19,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);
+    m_timeLabel = new QLabel("00:00/00:00", this);
     m_qualityButton = new MusicVideoQualityPopWidget(this);
     m_volumeButton = new MusicVolumePopWidget(this);
 
@@ -25,6 +27,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     m_volumeButton->setFixedSize(20, 20);
     m_playButton->setFixedSize(34, 34);
 
+    m_timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     m_playButton->setStyleSheet(MusicUIObject::MKGVideoBtnPlay);
     m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
 
@@ -43,6 +46,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     controlBLayout->setContentsMargins(9, 0, 9, 0);
     controlBLayout->setSpacing(12);
     controlBLayout->addWidget(m_playButton);
+    controlBLayout->addWidget(m_timeLabel);
     controlBLayout->addStretch(1);
     controlBLayout->addWidget(createVideoBarrageWidget(), 25);
     controlBLayout->addStretch(1);
@@ -63,6 +67,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
 
 MusicVideoControl::~MusicVideoControl()
 {
+    delete m_timeLabel;
     delete m_timeSlider;
     delete m_playButton;
     delete m_volumeButton;
@@ -82,11 +87,14 @@ QString MusicVideoControl::getClassName()
 void MusicVideoControl::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position*MT_S2MS);
+    m_timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
+                                         .arg(MusicTime::msecTime2LabelJustified(m_timeSlider->maximum())));
 }
 
 void MusicVideoControl::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration*MT_S2MS);
+    m_timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
 void MusicVideoControl::setButtonStyle(bool style) const

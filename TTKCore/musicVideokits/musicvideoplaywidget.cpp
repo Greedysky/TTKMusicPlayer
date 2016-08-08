@@ -21,7 +21,7 @@
 
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
-    : MusicAbstractMoveWidget(parent), m_closeButton(nullptr)
+    : MusicAbstractMoveWidget(parent)
 {
     if(popup)
     {
@@ -36,9 +36,9 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setContentsMargins(9, 4, 9, 4);
-    topLayout->setSpacing(0);
 
     m_textLabel = new QLabel(m_topWidget);
+    m_textLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     m_textLabel->setStyleSheet(MusicUIObject::MColorStyle01);
 
     QWidget *searchWidget = new QWidget(m_topWidget);
@@ -58,15 +58,25 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     searchLayout->addWidget(m_searchButton);
     searchWidget->setLayout(searchLayout);
 
-    topLayout->addStretch();
     topLayout->addWidget(m_textLabel);
     topLayout->addStretch();
     topLayout->addWidget(searchWidget);
+
     m_searchEdit->hide();
     m_searchButton->hide();
 
+    m_closeButton = nullptr;
+    m_winTopButton = nullptr;
+
     if(popup)
     {
+        m_winTopButton = new QPushButton(m_topWidget);
+        m_winTopButton->setFixedSize(14, 14);
+        m_winTopButton->setCursor(QCursor(Qt::PointingHandCursor));
+        m_winTopButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+        connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
+        topLayout->addWidget(m_winTopButton);
+
         m_closeButton = new QPushButton(this);
         m_closeButton->setToolTip(tr("Close"));
         m_closeButton->setFixedSize(14, 14);
@@ -90,7 +100,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     m_stackedWidget->addWidget(m_videoTable);
     m_stackedWidget->setCurrentIndex(0);
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType,
-                                popup ? " " + tr("InlineMode") : " " + tr("PopupMode"));
+                                popup ? tr("InlineMode") : tr("PopupMode"));
 
     connect(m_searchButton,SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
     connect(m_videoTable, SIGNAL(mvURLNameChanged(QString,QString)),
@@ -109,6 +119,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
 
 MusicVideoPlayWidget::~MusicVideoPlayWidget()
 {
+    delete m_winTopButton;
     delete m_closeButton;
     delete m_textLabel;
     delete m_searchEdit;
@@ -190,6 +201,7 @@ void MusicVideoPlayWidget::switchToSearchTable()
 {
     m_searchEdit->show();
     m_searchButton->show();
+
     m_stackedWidget->setCurrentIndex(1);
 }
 
@@ -235,6 +247,17 @@ void MusicVideoPlayWidget::searchButtonClicked()
     videoResearchButtonSearched( getSearchText() );
 }
 
+void MusicVideoPlayWidget::windowTopStateChanged()
+{
+    Qt::WindowFlags flags = windowFlags();
+    bool top = m_winTopButton->styleSheet().contains("btn_top_off_normal");
+    setWindowFlags( top ? (flags | Qt::WindowStaysOnTopHint) :
+                          (flags & ~Qt::WindowStaysOnTopHint) );
+    show();
+    m_winTopButton->setStyleSheet(top ? MusicUIObject::MKGTinyBtnWintopOn :
+                                        MusicUIObject::MKGTinyBtnWintopOff);
+}
+
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 {
     switchToSearchTable();
@@ -246,8 +269,10 @@ void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 {
     m_videoView->setMedia(data);
     m_videoView->play();
+
     m_searchEdit->hide();
     m_searchButton->hide();
+
     m_stackedWidget->setCurrentIndex(0);
 }
 

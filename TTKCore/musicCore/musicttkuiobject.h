@@ -646,6 +646,16 @@ namespace MusicUIObject
             background-image: url(:/tiny/btn_expand_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_expand_hover);}";
 
+    const QString MKGTinyBtnWintopOn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_top_on_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_top_on_hover);}";
+
+    const QString MKGTinyBtnWintopOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_top_off_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_top_off_hover);}";
+
 
 ///function button style
 //////////////////////////////////////////////////////

@@ -74,7 +74,6 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
     connect(m_videoControl, SIGNAL(addBarrageChanged(QString)), SLOT(addBarrageChanged(QString)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
-    m_videoControl->hide();
 
     resizeWindow(0, 0);
 
@@ -94,18 +93,6 @@ MusicVideoView::~MusicVideoView()
 QString MusicVideoView::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicVideoView::enterEvent(QEvent *event)
-{
-    QWidget::enterEvent(event);
-    m_videoControl->show();
-}
-
-void MusicVideoView::leaveEvent(QEvent *event)
-{
-    QWidget::leaveEvent(event);
-//    m_videoControl->hide();
 }
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)

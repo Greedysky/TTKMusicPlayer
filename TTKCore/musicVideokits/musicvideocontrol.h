@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
+#include <QLabel>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
@@ -98,6 +98,7 @@ protected:
      */
 
     bool m_widgetPopup;
+    QLabel *m_timeLabel;
     QPushButton *m_playButton;
     MusicMovingLabelSlider *m_timeSlider;
     MusicVolumePopWidget *m_volumeButton;

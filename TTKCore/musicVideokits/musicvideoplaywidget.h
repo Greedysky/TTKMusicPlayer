@@ -72,6 +72,10 @@ public Q_SLOTS:
     /*!
      * Search button clicked.
      */
+    void windowTopStateChanged();
+    /*!
+     * Window top state changed.
+     */
     void videoResearchButtonSearched(const QString &name);
     /*!
      * Video research button searched by name.
@@ -111,7 +115,7 @@ protected:
 
     QWidget *m_topWidget;
     QLabel *m_textLabel;
-    QPushButton *m_searchButton, *m_closeButton;
+    QPushButton *m_searchButton, *m_closeButton, *m_winTopButton;
     QStackedWidget *m_stackedWidget;
     MusicVideoView *m_videoView;
     MusicVideoTableWidget *m_videoTable;
