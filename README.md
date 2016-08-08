@@ -19,9 +19,9 @@ Compiler tutorial I have written in the wiki.**
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
-| Linux    | 4.8.6 GCC & 5.X GCC    | ![traviscistatus](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
-| Windows  | 4.8.7 GCC & 5.X GCC       | ![appvayorstatus](https://img.shields.io/wercker/ci/wercker/docs.svg) |
-| OS X     | 5.x Clang     | ![traviscistatus](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
+| Linux    | 4.8.6 GCC & 5.5 GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                           |
+| Windows  | 4.8.7 GCC & 5.X GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
+| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
  
 # For Developers
 
@@ -100,9 +100,6 @@ Screenshots
 
 ### Magic Music
 ![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
-
-### App Narrow
-![App Narrow](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
 Copyright
 -------
