@@ -90,6 +90,10 @@ public Q_SLOTS:
     /*!
      * Push barrage clicked.
      */
+    void sendBarrageClicked();
+    /*!
+     * Send barrage clicked.
+     */
 
 protected:
     QWidget *createVideoBarrageWidget();

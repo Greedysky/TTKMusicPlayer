@@ -132,6 +132,11 @@ void MusicVideoControl::pushBarrageClicked()
     m_pushBarrageOn = !m_pushBarrageOn;
 }
 
+void MusicVideoControl::sendBarrageClicked()
+{
+    emit addBarrageChanged( m_lineEditBarrage->text() );
+}
+
 QWidget *MusicVideoControl::createVideoBarrageWidget()
 {
     m_pushBarrageOn = false;
@@ -159,6 +164,8 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     m_barrageSend->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageSend);
     m_barrageSend->setCursor(QCursor(Qt::PointingHandCursor));
     m_barrageSend->setFixedSize(50, 24);
+    connect(m_barrageSend, SIGNAL(clicked()), SLOT(sendBarrageClicked()));
+
     pairWidgetLayout->addWidget(m_lineEditBarrage);
     pairWidgetLayout->addWidget(m_barrageSend);
     pairWidget->setLayout(pairWidgetLayout);
