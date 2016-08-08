@@ -73,7 +73,7 @@ QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString 
 
 void QNSimpleUploadData::receiveDataFromServer()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)

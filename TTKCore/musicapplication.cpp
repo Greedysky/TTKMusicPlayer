@@ -87,7 +87,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     QObjectList result = foreachWidget(this);
     foreach(QObject *obj, result)
     {
-        QWidget *widget = qobject_cast<QWidget*>(obj);
+        QWidget *widget = MObject_cast(QWidget*, obj);
         widget->installEventFilter(this);
         widget->setMouseTracking(true);
     }

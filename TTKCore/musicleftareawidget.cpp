@@ -9,6 +9,7 @@
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicewidget.h"
+#include "musicsongssummarizied.h"
 #include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"
@@ -167,6 +168,11 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 {
+    if(!m_stackedWidget)
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = nullptr;
     m_ui->songsContainer->setIndex(0, 0);
@@ -176,6 +182,11 @@ void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
 {
+    if(MObject_cast(MusicToolSetsWidget*, m_stackedWidget))
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = new MusicToolSetsWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
@@ -186,6 +197,11 @@ void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 {
+    if(MObject_cast(MusicWebRadioToolWidget*, m_stackedWidget))
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = new MusicWebRadioToolWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
@@ -196,6 +212,11 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 {
+    if(MObject_cast(MusicMyDownloadRecordWidget*, m_stackedWidget))
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = new MusicMyDownloadRecordWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
@@ -206,6 +227,11 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
 {
+    if(MObject_cast(MusicConnectMobileWidget*, m_stackedWidget))
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = new MusicConnectMobileWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);
@@ -216,6 +242,11 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
 {
+    if(MObject_cast(MusicCloudSharedSongWidget*, m_stackedWidget))
+    {
+        return;
+    }
+
     delete m_stackedWidget;
     m_stackedWidget = new MusicCloudSharedSongWidget(this);
     m_ui->songsContainer->addWidget(m_stackedWidget);

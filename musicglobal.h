@@ -69,6 +69,12 @@
 #  define MStatic_cast(x,y) ((x)(y))
 #endif
 
+#ifdef MUSIC_CAST
+#  define MObject_cast(x,y) (qobject_cast< x >(y))
+#else
+#  define MObject_cast(x,y) (qobject_cast< x >(y))
+#endif
+
 //////////////////////////////////////
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

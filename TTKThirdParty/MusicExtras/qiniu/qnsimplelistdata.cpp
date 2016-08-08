@@ -51,7 +51,7 @@ void QNSimpleListData::listDataToServer(const QString &bucket)
 
 void QNSimpleListData::receiveDataFromServer()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         QNDataItems items;

@@ -62,7 +62,7 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
 
     QObject *obj = loader.instance();
     DecoderFactory *decoderfac = nullptr;
-    if(obj && (decoderfac = qobject_cast<DecoderFactory*>( obj )) )
+    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)) )
     {
         MetaDataModel *model = decoderfac->createMetaDataModel(path);
         if(model != nullptr)

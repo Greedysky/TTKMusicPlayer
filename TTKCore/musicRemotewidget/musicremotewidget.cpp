@@ -107,17 +107,17 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     menu.addAction(tr("CircleRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForCircle*>(this));
+                !MObject_cast(MusicRemoteWidgetForCircle*, this));
     menu.addAction(tr("SquareRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForSquare*>(this));
+                !MObject_cast(MusicRemoteWidgetForSquare*, this));
     menu.addAction(tr("RectangleRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForRectangle*>(this));
+                !MObject_cast(MusicRemoteWidgetForRectangle*, this));
     menu.addAction(tr("SimpleStyleRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForSimpleStyle*>(this));
+                !MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
     menu.addAction(tr("ComplexStyleRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForComplexStyle*>(this));
+                !MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
     menu.addAction(tr("DiamondRemote"))->setEnabled(
-                !qobject_cast<MusicRemoteWidgetForDiamond*>(this));
+                !MObject_cast(MusicRemoteWidgetForDiamond*, this));
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 

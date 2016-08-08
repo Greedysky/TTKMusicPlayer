@@ -42,7 +42,7 @@ void QNSimpleDeleteData::deleteDataToServer(const QString &bucket, const QString
 
 void QNSimpleDeleteData::receiveDataFromServer()
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         emit deleteFileFinished(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200);
