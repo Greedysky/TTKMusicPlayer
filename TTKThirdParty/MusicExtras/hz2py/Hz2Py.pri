@@ -21,6 +21,3 @@ SOURCES += \
     $$PWD/pinyinresource.cpp \
     $$PWD/chinesehelper.cpp \
     $$PWD/pinyinhelper.cpp
-
-
-RESOURCES += $$PWD/resource/Hz2Py.qrc
