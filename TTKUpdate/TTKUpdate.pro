@@ -18,11 +18,12 @@ QT       += widgets
 TEMPLATE = app
 win32{
   TARGET = ../../bin/TTKUpdate
+  LIBS += -L../bin -lMusicUi
 }
 unix{
   TARGET = ../lib/TTKUpdate
+  LIBS += -L../lib -lMusicUi
 }
-
 
 UI_DIR = ./.build/ui/
 MOC_DIR = ./.build/moc/
@@ -49,9 +50,6 @@ SOURCES += \
 win32{
     RC_FILE = TTKUpdate.rc
 }
-
-RESOURCES += \
-    ../TTKQrc/MusicUpdate.qrc
 
 include(musicCore/MusicCore.pri)
 include(musicWidget/MusicWidget.pri)

@@ -26,13 +26,18 @@ QMAKE_CXXFLAGS += -std=c++11
 unix:VERSION += 2.3.2.0
 
 INCLUDEPATH += ../../
+
+win32{
+    LIBS += -L../../bin -lMusicUi
+}
+unix:!mac{
+    LIBS += -L../../lib -lMusicUi
+}
+
 HEADERS  += \
     musicextrasglobaldefine.h \
     ../../musicglobal.h \
     ../../musicprivate.h
-
-RESOURCES += \
-    ../../TTKQrc/MusicThirdParty.qrc
 
 include(hz2py/Hz2Py.pri)
 include(kugou/KuGou.pri)

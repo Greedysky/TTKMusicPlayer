@@ -25,6 +25,7 @@
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(nullptr)
 {
+    Q_INIT_RESOURCE(MusicPlayer);
     m_supperClass = MStatic_cast(QWidget*, parent);
 
     musicResetWindow();
@@ -53,6 +54,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 
 MusicApplicationObject::~MusicApplicationObject()
 {
+    Q_CLEANUP_RESOURCE(MusicPlayer);
     delete m_mobileDevicesLinux;
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;

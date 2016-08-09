@@ -10,14 +10,11 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD
+win32:TARGET = ../../bin/MusicUi
+unix:TARGET = ../lib/MusicUi
+TEMPLATE = lib
 
-HEADERS  += \
-    $$PWD/pinyinresource.h \
-    $$PWD/chinesehelper.h \
-    $$PWD/pinyinhelper.h
-    
-SOURCES += \
-    $$PWD/pinyinresource.cpp \
-    $$PWD/chinesehelper.cpp \
-    $$PWD/pinyinhelper.cpp
+RESOURCES += \
+    MusicPlayer.qrc \
+    MusicThirdParty.qrc \
+    MusicUpdate.qrc

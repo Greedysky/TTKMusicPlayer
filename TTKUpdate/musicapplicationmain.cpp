@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    Q_INIT_RESOURCE(MusicUpdate);
     QTranslator translator;
     translator.load("MLanguage/cn.ln");
     a.installTranslator(&translator);
