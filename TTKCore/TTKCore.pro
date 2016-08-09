@@ -37,7 +37,3 @@ HEADERS  += \
     musicrightareawidget.h \
     musicbottomareawidget.h \
     musicapplicationobject.h
-
-
-RESOURCES += \
-    ../TTKQrc/MusicPlayer.qrc
