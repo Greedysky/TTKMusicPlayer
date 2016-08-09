@@ -34,6 +34,11 @@ public:
     /*!
      * Get class object name.
      */
+
+    void setFontMargin(int height, int width);
+    /*!
+     * Set text margin in the body.
+     */
     void setTimerInterval(int msecond);
     /*!
      * Set timer interval to hide.
@@ -74,6 +79,7 @@ private Q_SLOTS:
 protected:
     QTimer m_timer;
     QFont m_font;
+    QPoint m_margin;
 
 };
 

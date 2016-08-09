@@ -527,21 +527,13 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
 
     /////////////////////////////////////////////////////////
     MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->setFontSize(13);
-    QString str;
-    if(m_changeSpeedValue >= 0)
-    {
-        str = tr("after%1s").arg(m_changeSpeedValue/MT_S2MS*1.0);
-    }
-    else
-    {
-        str = tr("before%1s").arg(-m_changeSpeedValue/MT_S2MS*1.0);
-    }
-    toast->setText(str);
+    toast->setFontSize(15);
+    toast->setFontMargin(10, 10);
+    toast->setText(m_changeSpeedValue >= 0 ? tr("after%1s").arg(m_changeSpeedValue/MT_S2MS*1.0) :
+                                             tr("before%1s").arg(-m_changeSpeedValue/MT_S2MS*1.0));
     QPoint globalPoint = mapToGlobal(QPoint(0, 0));
-    int x = globalPoint.x() + (width() - toast->width())/2;
-    int y = globalPoint.y() + height() - toast->height() - 20;
-    toast->move(x, y);
+    toast->move(globalPoint.x() + (width() - toast->width())/2,
+                globalPoint.y() + height() - toast->height() - 40);
     toast->show();
     /////////////////////////////////////////////////////////
 }

@@ -10,6 +10,7 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setAttribute(Qt::WA_DeleteOnClose);
     setStyleSheet(MusicUIObject::MBackgroundStyle16 + MusicUIObject::MColorStyle01);
+    setAlignment(Qt::AlignCenter);
 
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
@@ -31,6 +32,12 @@ MusicToastLabel::~MusicToastLabel()
 QString MusicToastLabel::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicToastLabel::setFontMargin(int height, int width)
+{
+    m_margin.setX(height);
+    m_margin.setY(width);
 }
 
 void MusicToastLabel::setTimerInterval(int msecond)
@@ -70,7 +77,7 @@ void MusicToastLabel::setBold(bool bold)
 void MusicToastLabel::setText(const QString &text)
 {
     QFontMetrics metrics = QFontMetrics(m_font);
-    setFixedSize(metrics.width(text), metrics.height());
+    setFixedSize(metrics.width(text) + m_margin.x(), metrics.height() + m_margin.y());
     QLabel::setText(text);
 }
 
