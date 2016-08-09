@@ -15,6 +15,6 @@ unix:TARGET = ../lib/MusicUi
 TEMPLATE = lib
 
 RESOURCES += \
-    ../TTKQrc/MusicPlayer.qrc \
-    ../TTKQrc/MusicThirdParty.qrc \
-    ../TTKQrc/MusicUpdate.qrc
+    MusicPlayer.qrc \
+    MusicThirdParty.qrc \
+    MusicUpdate.qrc

@@ -18,11 +18,12 @@ QT       += widgets
 TEMPLATE = app
 win32{
   TARGET = ../../bin/TTKUpdate
+  LIBS += -L../bin -lMusicUi
 }
 unix{
   TARGET = ../lib/TTKUpdate
+  LIBS += -L../lib -lMusicUi
 }
-
 
 UI_DIR = ./.build/ui/
 MOC_DIR = ./.build/moc/
