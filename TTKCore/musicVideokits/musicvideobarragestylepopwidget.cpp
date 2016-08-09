@@ -11,6 +11,8 @@ MusicVideoBarrageStylePopWidget::MusicVideoBarrageStylePopWidget(QWidget *parent
     : MusicToolMenuWidget(parent)
 {
     initWidget();
+    m_barrageSize = 15;
+    m_barrageColor = QColor(255, 255, 255);
 }
 
 MusicVideoBarrageStylePopWidget::~MusicVideoBarrageStylePopWidget()
@@ -24,6 +26,17 @@ QString MusicVideoBarrageStylePopWidget::getClassName()
     return staticMetaObject.className();
 }
 
+
+int MusicVideoBarrageStylePopWidget::getBarrageSize() const
+{
+    return m_barrageSize;
+}
+
+QColor MusicVideoBarrageStylePopWidget::getBarrageColor() const
+{
+    return m_barrageColor;
+}
+
 void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
 {
     QList<QAbstractButton*> buttons = m_sizeGroup->buttons();
@@ -34,17 +47,15 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
         buttons[2]->setStyleSheet(MusicUIObject::MKGVideoBtnBig);
     }
 
-    int size = 10;
     switch(index)
     {
-        case 0: size = 15;
+        case 0: m_barrageSize = 15;
                 buttons[0]->setStyleSheet(MusicUIObject::MKGVideoBtnSmallOn); break;
-        case 1: size = 20;
+        case 1: m_barrageSize = 20;
                 buttons[1]->setStyleSheet(MusicUIObject::MKGVideoBtnMiddleOn); break;
-        case 2: size = 30;
+        case 2: m_barrageSize = 30;
                 buttons[2]->setStyleSheet(MusicUIObject::MKGVideoBtnBigOn); break;
     }
-    emit barrageSizeButtonChanged(size);
 }
 
 void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
@@ -61,25 +72,23 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
         buttons[6]->setStyleSheet(MusicUIObject::MKGVideoBtnPurple);
     }
 
-    QColor color(0, 0, 0);
     switch(index)
     {
-        case 0: color = QColor(255, 255, 255);
+        case 0: m_barrageColor = QColor(255, 255, 255);
                 buttons[0]->setStyleSheet(MusicUIObject::MKGVideoBtnWhiteOn); break;
-        case 1: color = QColor(255, 0, 0);
+        case 1: m_barrageColor = QColor(255, 0, 0);
                 buttons[1]->setStyleSheet(MusicUIObject::MKGVideoBtnRedOn); break;
-        case 2: color = QColor(255, 165, 0);
+        case 2: m_barrageColor = QColor(255, 165, 0);
                 buttons[2]->setStyleSheet(MusicUIObject::MKGVideoBtnOrangeOn); break;
-        case 3: color = QColor(255, 255, 0);
+        case 3: m_barrageColor = QColor(255, 255, 0);
                 buttons[3]->setStyleSheet(MusicUIObject::MKGVideoBtnYellowOn); break;
-        case 4: color = QColor(0, 255, 0);
+        case 4: m_barrageColor = QColor(0, 255, 0);
                 buttons[4]->setStyleSheet(MusicUIObject::MKGVideoBtnGreenOn); break;
-        case 5: color = QColor(0, 0, 255);
+        case 5: m_barrageColor = QColor(0, 0, 255);
                 buttons[5]->setStyleSheet(MusicUIObject::MKGVideoBtnBlueOn); break;
-        case 6: color = QColor(160, 32, 240);
+        case 6: m_barrageColor = QColor(160, 32, 240);
                 buttons[6]->setStyleSheet(MusicUIObject::MKGVideoBtnPurpleOn); break;
     }
-    emit barrageColorButtonChanged(color);
 }
 
 void MusicVideoBarrageStylePopWidget::initWidget()

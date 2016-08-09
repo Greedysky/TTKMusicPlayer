@@ -11,8 +11,8 @@
 
 #include <QGraphicsView>
 #include "musicglobaldefine.h"
+#include "musicvideocontrol.h"
 
-class MusicVideoControl;
 class MusicCoreMPlayer;
 class MusicBarrageWidget;
 
@@ -118,21 +118,13 @@ private Q_SLOTS:
      * Current media is playing.
      */
 
-    void addBarrageChanged(const QString &string);
+    void addBarrageChanged(const MusicBarrageRecord &record);
     /*!
      * Add barrage text to mv.
      */
     void pushBarrageChanged(bool on);
     /*!
      * Open barrage on or not.
-     */
-    void barrageSizeButtonChanged(int size);
-    /*!
-     * Change barrage size button clicked by size.
-     */
-    void barrageColorButtonChanged(const QColor &color);
-    /*!
-     * Change barrage color button clicked by color.
      */
 
 protected:

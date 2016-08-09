@@ -3,8 +3,6 @@
 #include "musicobject.h"
 #include "musicutils.h"
 
-#include <QFile>
-
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     : QPropertyAnimation(parent)
 {
@@ -21,7 +19,7 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *target,
 
 void MusicBarrageAnimation::animationFinished()
 {
-    setDuration(qrand()%10000 + MT_S2MS);
+    setDuration(qrand()%(10*MT_S2MS) + MT_S2MS);
     setSize(m_parentSize);
     start();
 }
@@ -41,7 +39,6 @@ void MusicBarrageAnimation::setSize(const QSize &size)
 
 void MusicBarrageAnimation::init()
 {
-    MusicTime::timeSRand();
     setDuration(qrand()%10000 + MT_S2MS);
     setEasingCurve(QEasingCurve::Linear);
 
@@ -54,8 +51,6 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
 {
     m_parentClass = MStatic_cast(QWidget*, parent);
     m_barrageState = false;
-    m_fontSize = 15;
-    m_backgroundColor = QColor(0, 0, 0);
 
     readBarrage();
 }
@@ -104,23 +99,6 @@ void MusicBarrageWidget::stop()
     }
 }
 
-void MusicBarrageWidget::barrageStateChanged(bool on)
-{
-    m_barrageState = on;
-    if(m_barrageState && !m_barrageLists.isEmpty())
-    {
-        deleteItems();
-        createLabel();
-        createAnimation();
-        setLabelTextSize(m_fontSize);
-        start();
-    }
-    else
-    {
-        stop();
-    }
-}
-
 void MusicBarrageWidget::setSize(const QSize &size)
 {
     m_parentSize = size;
@@ -130,45 +108,32 @@ void MusicBarrageWidget::setSize(const QSize &size)
     }
 }
 
-void MusicBarrageWidget::setLabelBackground(const QColor &color)
+void MusicBarrageWidget::barrageStateChanged(bool on)
 {
-    m_backgroundColor = color;
-    foreach(QLabel *label, m_labels)
+    m_barrageState = on;
+    if(m_barrageState && !m_barrageRecords.isEmpty())
     {
-        setLabelBackground(label);
+        deleteItems();
+        createLabel();
+        createAnimation();
+        start();
+    }
+    else
+    {
+        stop();
     }
 }
 
-void MusicBarrageWidget::setLabelTextSize(int size)
-{
-    m_fontSize = size;
-    foreach(QLabel *label, m_labels)
-    {
-        setLabelTextSize(label);
-    }
-}
-
-void MusicBarrageWidget::addBarrage(const QString &string)
+void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
 {
     MusicTime::timeSRand();
-    QLabel *label = new QLabel(m_parentClass);
 
-    createLabel(label);
+    QLabel *label = createLabel(record);
     createAnimation(label);
-    setLabelBackground(label);
-
-    m_barrageLists << string;
-    label->setText(string);
-    setLabelTextSize(label);
+    m_barrageRecords << record;
 
     if(m_barrageState)
     {
-        if(m_labels.count() == 1)
-        {
-            deleteItems();
-            createLabel();
-            createAnimation();
-        }
         start();
     }
 }
@@ -185,25 +150,26 @@ void MusicBarrageWidget::deleteItems()
 void MusicBarrageWidget::createLabel()
 {
     MusicTime::timeSRand();
-    foreach(QString str, m_barrageLists)
+    foreach(MusicBarrageRecord record, m_barrageRecords)
     {
-        Q_UNUSED(str);
-        QLabel *label = new QLabel(m_parentClass);
-        createLabel(label);
+        createLabel(record);
     }
 }
 
-void MusicBarrageWidget::createLabel(QLabel *label)
+QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
 {
-    QString color = QString("QLabel{color:rgb(%1,%2,%3);}")
-            .arg(qrand()%255).arg(qrand()%255).arg(qrand()%255);
-    label->setStyleSheet(color);
-    if(!m_barrageLists.isEmpty())
-    {
-        label->setText(m_barrageLists[qrand()%m_barrageLists.count()]);
-    }
+    QLabel *label = new QLabel(m_parentClass);
+    label->setStyleSheet(QString("QLabel{ color:%1}").arg(record.m_color));
+    label->setText(record.m_value);
+
+    MusicUtils::UWidget::setLabelFontSize(label, record.m_size);
+    QFontMetrics ftMcs(label->font());
+    label->resize(ftMcs.width(label->text()), ftMcs.height());
+
     label->hide();
     m_labels << label;
+
+    return label;
 }
 
 void MusicBarrageWidget::createAnimation()
@@ -221,51 +187,22 @@ void MusicBarrageWidget::createAnimation(QLabel *label)
     m_animations << anim;
 }
 
-void MusicBarrageWidget::setLabelBackground(QLabel *label)
-{
-    QString colorString = QString("QLabel{background-color:rgb(%1,%2,%3);}")
-            .arg(m_backgroundColor.red()).arg(m_backgroundColor.green())
-            .arg(m_backgroundColor.blue());
-    label->setStyleSheet(label->styleSheet() + colorString);
-}
-
-void MusicBarrageWidget::setLabelTextSize(QLabel *label)
-{
-    MusicUtils::UWidget::setLabelFontSize(label, m_fontSize);
-    QFontMetrics ftMcs(label->font());
-    label->resize(ftMcs.width(label->text()), ftMcs.height());
-}
-
 void MusicBarrageWidget::readBarrage()
 {
-    QFile file(BARRAGEPATH_FULL);
-    if(file.open(QIODevice::ReadOnly))
+    MusicBarrageRecordConfigManager manager(this);
+    if(!manager.readBarrageXMLConfig())
     {
-        m_barrageLists << QString(file.readAll()).split("\r\n");
-        for(int i=m_barrageLists.count() -1; i>=0; --i)
-        {
-            if(m_barrageLists[i].isEmpty())
-            {
-                m_barrageLists.removeAt(i);
-            }
-        }
+        return;
     }
-    file.close();
+    manager.readBarrageConfig(m_barrageRecords);
 }
 
 void MusicBarrageWidget::writeBarrage()
 {
-    QFile file(BARRAGEPATH_FULL);
-    if(file.open(QIODevice::WriteOnly | QFile::Text))
+    MusicBarrageRecordConfigManager manager(this);
+    if(!manager.readBarrageXMLConfig())
     {
-        QByteArray array;
-        foreach(QString var, m_barrageLists)
-        {
-            array.append(var + '\n');
-        }
-        QTextStream outstream(&file);
-        outstream.setCodec("utf-8");
-        outstream << array << endl;
+        return;
     }
-    file.close();
+    manager.writeBarrageConfig(m_barrageRecords);
 }

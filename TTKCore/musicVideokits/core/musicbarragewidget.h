@@ -10,10 +10,11 @@
    =================================================*/
 
 #include "musicglobaldefine.h"
+#include "musicbarragerecordconfigmanager.h"
 
-#include <QPropertyAnimation>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPropertyAnimation>
 
 /*! @brief The class of the barrage animation.
  * @author Greedysky <greedysky@163.com>
@@ -88,26 +89,17 @@ public:
      * Stop barrage animation.
      */
 
-    void barrageStateChanged(bool on);
-    /*!
-     * Set current barrage animation on or not.
-     */
     void setSize(const QSize &size);
     /*!
      * Set animation region size.
      */
-
-    void setLabelBackground(const QColor &color);
+    void barrageStateChanged(bool on);
     /*!
-     * Set barrage background.
+     * Set current barrage animation on or not.
      */
-    void setLabelTextSize(int size);
+    void addBarrage(const MusicBarrageRecord &record);
     /*!
-     * Set barrage text size.
-     */
-    void addBarrage(const QString &string);
-    /*!
-     * Add barrage string.
+     * Add barrage record.
      */
 
 protected:
@@ -119,7 +111,7 @@ protected:
     /*!
      * Create barrage item label.
      */
-    void createLabel(QLabel *label);
+    QLabel *createLabel(const MusicBarrageRecord &record);
     /*!
      * Create barrage item label by object.
      */
@@ -131,14 +123,6 @@ protected:
     /*!
      * Create barrage animation by object.
      */
-    void setLabelBackground(QLabel *label);
-    /*!
-     * Set barrage background by object.
-     */
-    void setLabelTextSize(QLabel *label);
-    /*!
-     * Set barrage text size by object.
-     */
     void readBarrage();
     /*!
      * Read barrage text from local file.
@@ -148,14 +132,12 @@ protected:
      * Write barrage text to local file.
      */
 
-    int m_fontSize;
     bool m_barrageState;
-    QWidget *m_parentClass;
     QSize m_parentSize;
-    QColor m_backgroundColor;
+    QWidget *m_parentClass;
     QList<QLabel*> m_labels;
     QList<MusicBarrageAnimation*> m_animations;
-    QStringList m_barrageLists;
+    MusicBarrageRecords m_barrageRecords;
 
 };
 

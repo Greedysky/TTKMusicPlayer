@@ -29,14 +29,13 @@ public:
      * Get class object name.
      */
 
-Q_SIGNALS:
-    void barrageSizeButtonChanged(int size);
+    int getBarrageSize() const;
     /*!
-     * Change barrage size button clicked by size.
+     * Get barrage size.
      */
-    void barrageColorButtonChanged(const QColor &color);
+    QColor getBarrageColor() const;
     /*!
-     * Change barrage color button clicked by color.
+     * Get barrage color.
      */
 
 public Q_SLOTS:
@@ -55,6 +54,8 @@ protected:
      * Create all widget in layout.
      */
 
+    int m_barrageSize;
+    QColor m_barrageColor;
     QButtonGroup *m_sizeGroup;
     QButtonGroup *m_colorGroup;
 

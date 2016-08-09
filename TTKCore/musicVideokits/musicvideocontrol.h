@@ -12,6 +12,7 @@
 #include <QLabel>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicbarragerecordconfigmanager.h"
 
 class QPushButton;
 class MusicVolumePopWidget;
@@ -76,7 +77,7 @@ Q_SIGNALS:
     /*!
      * Open barrage on or not.
      */
-    void addBarrageChanged(const QString &string);
+    void addBarrageChanged(const MusicBarrageRecord &record);
     /*!
      * Add barrage text to mv.
      */

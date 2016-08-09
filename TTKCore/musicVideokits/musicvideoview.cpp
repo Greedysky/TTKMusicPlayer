@@ -1,5 +1,4 @@
 #include "musicvideoview.h"
-#include "musicvideocontrol.h"
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
@@ -72,7 +71,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     m_videoControl = new MusicVideoControl(popup, this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
-    connect(m_videoControl, SIGNAL(addBarrageChanged(QString)), SLOT(addBarrageChanged(QString)));
+    connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
 
     resizeWindow(0, 0);
@@ -187,22 +186,12 @@ void MusicVideoView::mediaIsPlaying(bool &play)
     play = (m_mediaPlayer->state() == MusicCoreMPlayer::PlayingState);
 }
 
-void MusicVideoView::addBarrageChanged(const QString &string)
+void MusicVideoView::addBarrageChanged(const MusicBarrageRecord &record)
 {
-    m_barrageCore->addBarrage(string);
+    m_barrageCore->addBarrage(record);
 }
 
 void MusicVideoView::pushBarrageChanged(bool on)
 {
     m_barrageCore->barrageStateChanged(on);
-}
-
-void MusicVideoView::barrageSizeButtonChanged(int size)
-{
-    m_barrageCore->setLabelTextSize(size);
-}
-
-void MusicVideoView::barrageColorButtonChanged(const QColor &color)
-{
-    m_barrageCore->setLabelBackground(color);
 }

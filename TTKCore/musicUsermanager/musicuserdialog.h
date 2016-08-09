@@ -53,6 +53,9 @@ public Q_SLOTS:
      * Change to user login widget.
      */
     void checkUserLogin();
+    /*!
+     * Check the current user login state.
+     */
     void registerUser();
     /*!
      * Change to user register widget.

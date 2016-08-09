@@ -10,10 +10,15 @@
 # * works are strictly forbiden.
 # =================================================
    
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD \
+               $$PWD/core
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
+    $$PWD/core/musicbarragerecordconfigmanager.h \
+    $$PWD/core/musicbarragewidget.h \
+    $$PWD/musicvideoqualitypopwidget.h \
+    $$PWD/musicvideobarragestylepopwidget.h \
     $$PWD/musicvideocontrol.h \
     $$PWD/musicvideoview.h \
     $$PWD/musicvideotablewidget.h \
@@ -24,6 +29,10 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
+    $$PWD/core/musicbarragerecordconfigmanager.cpp \
+    $$PWD/core/musicbarragewidget.cpp \
+    $$PWD/musicvideoqualitypopwidget.cpp \
+    $$PWD/musicvideobarragestylepopwidget.cpp \
     $$PWD/musicvideocontrol.cpp \
     $$PWD/musicvideoview.cpp \
     $$PWD/musicvideotablewidget.cpp \
@@ -31,11 +40,3 @@ SOURCES += \
     $$PWD/musicvideofloatwidget.cpp
 
 }
-
-HEADERS += \
-    $$PWD/musicvideoqualitypopwidget.h \
-    $$PWD/musicvideobarragestylepopwidget.h
-
-SOURCES += \
-    $$PWD/musicvideoqualitypopwidget.cpp \
-    $$PWD/musicvideobarragestylepopwidget.cpp

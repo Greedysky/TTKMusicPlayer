@@ -134,7 +134,11 @@ void MusicVideoControl::pushBarrageClicked()
 
 void MusicVideoControl::sendBarrageClicked()
 {
-    emit addBarrageChanged( m_lineEditBarrage->text() );
+    MusicBarrageRecord record;
+    record.m_value = m_lineEditBarrage->text();
+    record.m_size = m_menuBarrage->getBarrageSize();
+    record.m_color = m_menuBarrage->getBarrageColor().name();
+    emit addBarrageChanged( record );
 }
 
 QWidget *MusicVideoControl::createVideoBarrageWidget()
@@ -158,7 +162,7 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     m_lineEditBarrage->addFilterText(tr("just one barrage!"));
 
     m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle05);
-    connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SIGNAL(addBarrageChanged(QString)));
+    connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));
 
     m_barrageSend = new QPushButton(pairWidget);
     m_barrageSend->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageSend);
@@ -180,9 +184,6 @@ QWidget *MusicVideoControl::createVideoBarrageWidget()
     barrageLayout->addWidget(pairWidget);
     barrageLayout->addWidget(m_pushBarrage);
     barrageWidget->setLayout(barrageLayout);
-
-    connect(m_menuBarrage, SIGNAL(barrageSizeButtonChanged(int)), parent(), SLOT(barrageSizeButtonChanged(int)));
-    connect(m_menuBarrage, SIGNAL(barrageColorButtonChanged(QColor)), parent(), SLOT(barrageColorButtonChanged(QColor)));
 
     return barrageWidget;
 }
