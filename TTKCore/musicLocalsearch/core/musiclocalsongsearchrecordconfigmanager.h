@@ -16,7 +16,7 @@ typedef struct MUSIC_SEARCH_EXPORT MusicSearchRecord
     QString m_name;
     QString m_time;
 }MusicSearchRecord;
-typedef QList<MusicSearchRecord> MusicSearchRecords;
+TTK_DECLARE_LISTS(MusicSearchRecord)
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>

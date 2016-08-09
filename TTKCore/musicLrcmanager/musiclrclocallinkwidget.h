@@ -17,7 +17,7 @@ typedef struct MUSIC_LRC_EXPORT LocalDataItem
     QString m_name;
     QString m_path;
 }LocalDataItem;
-typedef QList<LocalDataItem> LocalDataItems;
+TTK_DECLARE_LISTS(LocalDataItem)
 
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>

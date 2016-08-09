@@ -17,7 +17,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicBarrageRecord
     QString m_color;
     QString m_value;
 }MusicBarrageRecord;
-typedef QList<MusicBarrageRecord> MusicBarrageRecords;
+TTK_DECLARE_LISTS(MusicBarrageRecord)
 
 /*! @brief The class of the barrage record manager.
  * @author Greedysky <greedysky@163.com>

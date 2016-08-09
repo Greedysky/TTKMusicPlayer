@@ -93,9 +93,12 @@
 #define USERNAME           20
 #define LOGINTIME          20
 ///////////////////////////////////////
-
 #define WINDOW_WIDTH_MIN    1033
 #define WINDOW_HEIGHT_MIN   660
+///////////////////////////////////////
+
+#define TTK_DECLARE_LISTS(Class) \
+    typedef QList<Class> Class##s;
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
@@ -109,7 +112,8 @@ namespace MusicObject
         QString m_url;
         QString m_size;
     }MusicSongAttribute;
-    typedef QList<MusicSongAttribute> MusicSongAttributes;
+    TTK_DECLARE_LISTS(MusicSongAttribute)
+
     ///////////////////////////////////////
 
     typedef struct MusicSongInfomation
@@ -121,7 +125,7 @@ namespace MusicObject
         QString m_songName;
         QString m_timeLength;
     }MusicSongInfomation;
-    typedef QList<MusicSongInfomation> MusicSongInfomations;
+    TTK_DECLARE_LISTS(MusicSongInfomation)
     ///////////////////////////////////////
 
     enum DownLoadType

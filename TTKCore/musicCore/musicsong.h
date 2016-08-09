@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QObject>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song info.
@@ -121,10 +121,9 @@ protected:
 
 };
 
-typedef QList<MusicSong>    MusicSongs;
-typedef QList<MusicSongs>   MusicSongsList;
-
+TTK_DECLARE_LISTS(MusicSong)
 class MusicSongsListWidget;
+
 typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;
@@ -138,6 +137,6 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
         m_itemObject = nullptr;
     }
 }MusicSongItem;
-typedef QList<MusicSongItem> MusicSongItems;
+TTK_DECLARE_LISTS(MusicSongItem)
 
 #endif // MUSICSONG_H

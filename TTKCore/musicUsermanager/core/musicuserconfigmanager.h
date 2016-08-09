@@ -18,7 +18,7 @@ typedef struct MUSIC_USER_EXPORT MusicUserRecord
     QString m_al;
     QString m_pwd;
 }MusicUserRecord;
-typedef QList<MusicUserRecord> MusicUserRecords;
+TTK_DECLARE_LISTS(MusicUserRecord)
 
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>

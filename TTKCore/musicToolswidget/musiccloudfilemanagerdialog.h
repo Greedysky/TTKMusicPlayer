@@ -34,7 +34,7 @@ typedef struct MUSIC_TOOL_EXPORT UploadData
         return !(*this < other || other < *this);
     }
 }UploadData;
-typedef QList<UploadData> UploadDatas;
+TTK_DECLARE_LISTS(UploadData)
 
 namespace Ui {
 class MusicCloudFileManagerDialog;
