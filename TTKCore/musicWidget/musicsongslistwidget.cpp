@@ -32,6 +32,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::UWidget::setTransparent(this, 0);
 #ifndef MUSIC_GREATER_NEW

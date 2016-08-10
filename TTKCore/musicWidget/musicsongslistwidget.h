@@ -60,6 +60,10 @@ public:
     /*!
      * Set current play mode.
      */
+    inline int getTransparent() const { return m_transparent;}
+    /*!
+     * Get item transparent.
+     */
     inline void setTransparent(int transparent) { m_transparent = transparent;}
     /*!
      * Set item transparent.

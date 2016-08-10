@@ -77,6 +77,11 @@ void MusicSongsToolBoxTopWidget::deleteRowItem()
     emit deleteRowItem(m_index);
 }
 
+void MusicSongsToolBoxTopWidget::deleteRowItemAll()
+{
+    emit deleteRowItemAll(m_index);
+}
+
 void MusicSongsToolBoxTopWidget::changRowItemName()
 {
     if(!m_renameLine)
@@ -98,6 +103,16 @@ void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
     m_renameLine = nullptr;
 }
 
+void MusicSongsToolBoxTopWidget::addNewFiles()
+{
+    emit addNewFiles(m_index);
+}
+
+void MusicSongsToolBoxTopWidget::addNewDir()
+{
+    emit addNewDir(m_index);
+}
+
 void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
@@ -106,16 +121,16 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
-    menu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.addAction(tr("openOnlyFiles"));
-    musicAddNewFiles.addAction(tr("openOnlyDir"));
+    menu.addMenu(&musicAddNewFiles)->setEnabled(m_index != 1 && m_index != 2);
+    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
+    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
     menu.addAction(tr("playLater"));
     menu.addAction(tr("addToPlayList"));
-    menu.addAction(tr("collectAll"))->setEnabled(m_index != 1 && m_index != 2);
+    menu.addAction(tr("collectAll"));
     menu.addSeparator();
 
     bool disable = !(m_index == 0 || m_index == 1 || m_index == 2);
-    menu.addAction(tr("deleteAll"));
+    menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
 
@@ -153,7 +168,10 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     m_topWidget = new MusicSongsToolBoxTopWidget(index, text, this);
     connect(m_topWidget, SIGNAL(mousePressAt(int)), parent, SLOT(mousePressAt(int)));
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
+    connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
     connect(m_topWidget, SIGNAL(renameFinished(int,QString)), SIGNAL(changRowItemName(int,QString)));
+    connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
+    connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
 
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);

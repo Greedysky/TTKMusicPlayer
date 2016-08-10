@@ -16,7 +16,6 @@
 #define MUSIC_NORMAL_LIST   0
 #define MUSIC_LOVEST_LIST   1
 #define MUSIC_NETWORK_LIST  2
-#define MUSIC_OTHER_LIST    3
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
@@ -141,6 +140,10 @@ public Q_SLOTS:
     /*!
      * Delete selected play list item.
      */
+    void deleteRowItemAll(int index);
+    /*!
+     * Delete all items in play list item.
+     */
     void deleteRowItems();
     /*!
      * Delete all other item, left than three item.
@@ -149,6 +152,15 @@ public Q_SLOTS:
     /*!
      * Open rename selected play list item widget.
      */
+    void addNewFiles(int index);
+    /*!
+     * Add new music file or files to list.
+     */
+    void addNewDir(int index);
+    /*!
+     * Add new music dir to list.
+     */
+
     void setCurrentIndex();
     /*!
      * Set current play index from config file.
@@ -230,8 +242,8 @@ protected:
      * Override the widget event.
      */
 
-    int m_currentIndexs;
-    int m_searchFileListIndex;
+    int m_currentIndexs, m_searchFileListIndex;
+    int m_currentImportIndex, m_currentDeleteIndex;
     QObject *m_supperClass;
     MusicSongItems m_songItems;
     MusicObject::MIntsListMap m_searchfileListCache;

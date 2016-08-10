@@ -55,15 +55,31 @@ Q_SIGNALS:
     /*!
      * Delete selected play list item.
      */
+    void deleteRowItemAll(int index);
+    /*!
+     * Delete all items in play list item.
+     */
     void renameFinished(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
+     */
+    void addNewFiles(int index);
+    /*!
+     * Add new music file or files to list.
+     */
+    void addNewDir(int index);
+    /*!
+     * Add new music dir to list.
      */
 
 public Q_SLOTS:
     void deleteRowItem();
     /*!
      * Delete selected play list item.
+     */
+    void deleteRowItemAll();
+    /*!
+     * Delete all items in play list item.
      */
     void changRowItemName();
     /*!
@@ -72,6 +88,14 @@ public Q_SLOTS:
     void setChangItemName(const QString &name);
     /*!
      * Rename item artist label is finised.
+     */
+    void addNewFiles();
+    /*!
+     * Add new music file or files to list.
+     */
+    void addNewDir();
+    /*!
+     * Add new music dir to list.
      */
     void showMenu();
     /*!
@@ -157,9 +181,21 @@ Q_SIGNALS:
     /*!
      * Delete selected play list item.
      */
+    void deleteRowItemAll(int index);
+    /*!
+     * Delete all items in play list item.
+     */
     void changRowItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
+     */
+    void addNewFiles(int index);
+    /*!
+     * Add new music file or files to list.
+     */
+    void addNewDir(int index);
+    /*!
+     * Add new music dir to list.
      */
 
 protected:
