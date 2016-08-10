@@ -20,6 +20,8 @@ QString MusicLocalSongSearchInlineEdit::getClassName()
 
 void MusicLocalSongSearchInlineEdit::initWidget(QWidget *parent)
 {
+    setFocus(Qt::MouseFocusReason);
+    setFocusPolicy(Qt::ClickFocus);
     m_popWidget = new MusicLocalSongSearchPopWidget(parent);
     connect(m_popWidget, SIGNAL(setText(QString)), SLOT(setText(QString)));
     m_popWidget->hide();

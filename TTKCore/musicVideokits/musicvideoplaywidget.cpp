@@ -19,7 +19,6 @@
 #define WINDOW_HEIGHT   503
 #define WINDOW_WIDTH    661
 
-
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent)
 {
@@ -74,6 +73,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
         m_winTopButton->setFixedSize(14, 14);
         m_winTopButton->setCursor(QCursor(Qt::PointingHandCursor));
         m_winTopButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+        m_winTopButton->setToolTip(tr("windowTopOn"));
         connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
         topLayout->addWidget(m_winTopButton);
 
@@ -254,6 +254,7 @@ void MusicVideoPlayWidget::windowTopStateChanged()
     setWindowFlags( top ? (flags | Qt::WindowStaysOnTopHint) :
                           (flags & ~Qt::WindowStaysOnTopHint) );
     show();
+    m_winTopButton->setToolTip(top ? tr("windowTopOff") : tr("windowTopOn"));
     m_winTopButton->setStyleSheet(top ? MusicUIObject::MKGTinyBtnWintopOn :
                                         MusicUIObject::MKGTinyBtnWintopOff);
 }
