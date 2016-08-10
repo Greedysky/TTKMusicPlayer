@@ -97,9 +97,6 @@
 #define WINDOW_HEIGHT_MIN   660
 ///////////////////////////////////////
 
-#define TTK_DECLARE_LISTS(Class) \
-    typedef QList<Class> Class##s;
-
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */

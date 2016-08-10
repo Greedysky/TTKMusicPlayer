@@ -23,7 +23,7 @@ typedef struct QNDataItem
     int m_size;
     int m_putTime;
 }QNDataItem;
-typedef QList<QNDataItem> QNDataItems;
+TTK_DECLARE_LISTS(QNDataItem)
 
 class MUSIC_EXTRAS_EXPORT QNSimpleListData : public QObject
 {

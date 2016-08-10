@@ -80,7 +80,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 void MusicBottomAreaWidget::showPlayStatus(bool status) const
 {
     m_systemTrayMenu->showPlayStatus(status);
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
     m_musicWindowExtras->showPlayStatus(status);
 #endif
 }
