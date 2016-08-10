@@ -57,8 +57,6 @@ void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 #if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
 void MusicWindowExtras::showPlayStatus(bool status) const
 {
-    m_thumbnailToolBar->setIconicPixmapNotificationsEnabled(true);
-    m_thumbnailToolBar->setIconicThumbnailPixmap(QPixmap(":/image/lb_warning"));
     if(!status)
     {
         m_playToolButton->setIcon(m_superClass->style()->standardIcon(QStyle::SP_MediaPause));
