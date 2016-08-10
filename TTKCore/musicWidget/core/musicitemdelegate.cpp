@@ -4,7 +4,55 @@
 
 #include <QPainter>
 #include <QCheckBox>
+#include <QRadioButton>
 #include <QProgressBar>
+
+MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
+    : QItemDelegate(parent)
+{
+    m_radioButton  = new QRadioButton;
+    m_radioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+}
+
+MusicRadioButtonDelegate::~MusicRadioButtonDelegate()
+{
+    delete m_radioButton;
+}
+
+QString MusicRadioButtonDelegate::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicRadioButtonDelegate::setStyleSheet(const QString &style)
+{
+    m_radioButton->setStyleSheet(style);
+}
+
+QSize MusicRadioButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
+                                         const QModelIndex &) const
+{
+    QSize size = option.rect.size();
+    size.setHeight(25);
+    return size;
+}
+
+void MusicRadioButtonDelegate::paint(QPainter *painter,
+                                     const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
+{
+    QItemDelegate::paint(painter, option, index);
+
+    painter->save();
+    int minSize = qMin(option.rect.width(), option.rect.height());
+    m_radioButton->resize(minSize, minSize);
+    m_radioButton->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
+    painter->translate((option.rect.width() - 16)/2, 0); // top left
+    m_radioButton->render(painter, option.rect.topLeft(), QRegion(),
+                          QWidget::DrawChildren);
+    painter->restore();
+}
+
 
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
     : QItemDelegate(parent)
@@ -21,6 +69,11 @@ MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
 QString MusicCheckBoxDelegate::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicCheckBoxDelegate::setStyleSheet(const QString &style)
+{
+    m_checkBox->setStyleSheet(style);
 }
 
 QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option,
@@ -89,6 +142,11 @@ MusicProgressBarDelegate::~MusicProgressBarDelegate()
 QString MusicProgressBarDelegate::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicProgressBarDelegate::setStyleSheet(const QString &style)
+{
+    m_progress->setStyleSheet(style);
 }
 
 QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option,

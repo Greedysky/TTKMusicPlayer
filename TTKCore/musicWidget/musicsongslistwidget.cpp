@@ -38,7 +38,7 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
 #ifndef MUSIC_GREATER_NEW
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MLineEditStyle01 + \
-                  MusicUIObject::MTableWidgetStyle02);
+                  MusicUIObject::MTableWidgetStyle03);
 #endif
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
@@ -135,7 +135,7 @@ void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
     if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
     {
         m_mouseMoved = true;
-        setCursor(QCursor(Qt::CrossCursor));
+        setCursor(QCursor(QPixmap(":/functions/lb_drag_cursor")));
         setSelectionMode(QAbstractItemView::SingleSelection);
     }
 }

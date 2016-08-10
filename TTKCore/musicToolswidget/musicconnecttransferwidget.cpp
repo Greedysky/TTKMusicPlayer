@@ -31,7 +31,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
+    ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle03);
     ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));

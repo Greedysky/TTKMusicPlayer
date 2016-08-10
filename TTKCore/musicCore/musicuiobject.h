@@ -204,6 +204,12 @@ namespace MusicUIObject
             QRadioButton::checked { color:rgb(230, 115, 0);} \
             QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked);}";
 
+    const QString MRadioButtonStyle02 = " \
+            QRadioButton{ background-color:transparent;} \
+            QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked);} \
+            QRadioButton::checked { color:rgb(230, 115, 0);} \
+            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton2_checked);}";
+
 
 ///CheckBox
 //////////////////////////////////////////////////////
@@ -212,8 +218,14 @@ namespace MusicUIObject
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked);} \
             QCheckBox::checked{ color:rgb(230, 115, 0);} \
             QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked);}";
-           
-    const QString MCheckBoxStyle02 = MCheckBoxStyle01 + " \
+
+    const QString MCheckBoxStyle02 = " \
+            QCheckBox{ background-color:transparent;} \
+            QCheckBox::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked);} \
+            QCheckBox::checked { color:rgb(230, 115, 0);} \
+            QCheckBox::indicator:checked { image:url(:/control/btn_radiobutton2_checked);}";
+
+    const QString MCheckBoxStyle03 = MCheckBoxStyle01 + " \
             QCheckBox::checked{ color:rgb(0, 169, 236);}";
 
 
@@ -282,7 +294,10 @@ namespace MusicUIObject
             QMenu::item:selected{ background:rgba(0, 0, 0, 200);} \
             QMenu::separator{ background:#BBBBBB;}";
 
-    const QString MMenuStyle04 = " \
+    const QString MMenuStyle04 = MMenuStyle03 + " \
+            QMenu{ background:rgba(0, 0, 0, 150);}";
+
+    const QString MMenuStyle05 = " \
             QMenu{ border:none; background:transparent;}";
 
 
@@ -351,6 +366,9 @@ namespace MusicUIObject
             QTableWidget{ selection-background-color:rgba(20, 20, 20, 40);}";
 
     const QString MTableWidgetStyle02 = " \
+            QTableWidget{ selection-background-color:rgba(20, 20, 20, 100);}";
+
+    const QString MTableWidgetStyle03 = " \
             QTableWidget{ background:rgba(0, 0, 0, 255);}";
 
 

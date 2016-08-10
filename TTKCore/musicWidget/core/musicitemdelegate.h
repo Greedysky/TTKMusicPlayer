@@ -18,7 +18,48 @@
 #define MUSIC_AUDIT_ROLE Qt::UserRole + 4
 
 class QCheckBox;
+class QRadioButton;
 class QProgressBar;
+
+/*! @brief The class of the radio button item delegate.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicRadioButtonDelegate : public QItemDelegate
+{
+    Q_OBJECT
+public:
+    explicit MusicRadioButtonDelegate(QObject* parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicRadioButtonDelegate();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void setStyleSheet(const QString &style);
+    /*!
+     * Set delegate item style.
+     */
+    QSize sizeHint(const QStyleOptionViewItem &option,
+                   const QModelIndex &) const;
+    /*!
+     * Override size hint.
+     */
+    void paint(QPainter *painter,
+               const QStyleOptionViewItem &option,
+               const QModelIndex &index) const;
+    /*!
+     * Override paint.
+     */
+
+protected:
+    QRadioButton *m_radioButton;
+
+};
+
 
 /*! @brief The class of the checkbox item delegate.
  * @author Greedysky <greedysky@163.com>
@@ -36,6 +77,11 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void setStyleSheet(const QString &style);
+    /*!
+     * Set delegate item style.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
@@ -72,6 +118,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
@@ -98,6 +145,11 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void setStyleSheet(const QString &style);
+    /*!
+     * Set delegate item style.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;

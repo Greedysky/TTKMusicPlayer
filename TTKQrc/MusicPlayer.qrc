@@ -33,6 +33,8 @@
         <file alias="btn_checkBox_unchecked">../TTKResource/controls/btn_checkBox_unchecked.png</file>
         <file alias="btn_radiobutton_checked">../TTKResource/controls/btn_radiobutton_checked.png</file>
         <file alias="btn_radioButton_unchecked">../TTKResource/controls/btn_radioButton_unchecked.png</file>
+        <file alias="btn_radiobutton2_checked">../TTKResource/controls/btn_radiobutton2_checked.png</file>
+        <file alias="btn_radioButton2_unchecked">../TTKResource/controls/btn_radioButton2_unchecked.png</file>
         <file alias="lb_volume_back">../TTKResource/controls/lb_volume_back.png</file>
         <file alias="lb_volume_fore">../TTKResource/controls/lb_volume_fore.png</file>
         <file alias="lb_volume_handle_normal">../TTKResource/controls/lb_volume_handle_normal.png</file>
@@ -373,6 +375,7 @@
         <file alias="lb_number9">../TTKResource/tiny/lb_number9.png</file>
     </qresource>
     <qresource prefix="/functions">
+        <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>
         <file alias="btn_download_normal">../TTKResource/functions/btn_download_normal.png</file>
         <file alias="btn_download_hover">../TTKResource/functions/btn_download_hover.png</file>
         <file alias="btn_similar_normal">../TTKResource/functions/btn_similar_normal.png</file>

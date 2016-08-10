@@ -29,7 +29,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     ui->toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle07));
 
-    ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
+    ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle03);
     ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
                                       "QToolButton{ image:url(:/contextMenu/btn_audition);}");
     ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +

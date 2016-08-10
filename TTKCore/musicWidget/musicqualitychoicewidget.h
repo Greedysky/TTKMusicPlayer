@@ -31,6 +31,10 @@ public:
      */
 
 public Q_SLOTS:
+    virtual void listCellEntered(int row, int column);
+    /*!
+     * Table widget list cell enter.
+     */
     virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
