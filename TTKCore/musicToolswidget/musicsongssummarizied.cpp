@@ -18,7 +18,8 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     m_currentIndexs = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
     m_currentImportIndex = MUSIC_NORMAL_LIST;
-    m_currentDeleteIndex = currentIndex();
+    m_currentDeleteIndex = -1;
+    m_toolDeleteChanged = false;
 
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
@@ -215,13 +216,14 @@ void MusicSongsSummarizied::deleteRowItemAll(int index)
     }
 
     m_currentDeleteIndex = id;
+    m_toolDeleteChanged = true;
     MusicSongsListWidget *w = m_songItems[id].m_itemObject;
     if(w->rowCount() > 0)
     {
         w->setCurrentCell(0, 1);
         w->setDeleteItemAll();
     }
-    m_currentDeleteIndex = currentIndex();
+    m_toolDeleteChanged = false;
 }
 
 void MusicSongsSummarizied::deleteRowItems()
@@ -359,7 +361,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
         return;
     }
 
-    MusicSongItem *item = &m_songItems[m_currentDeleteIndex];
+    MusicSongItem *item = &m_songItems[m_toolDeleteChanged ? m_currentDeleteIndex : currentIndex()];
     for(int i=index.count()-1; i>=0; --i)
     {
         MusicSong song = item->m_songs.takeAt(index[i]);

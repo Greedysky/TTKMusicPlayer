@@ -244,6 +244,7 @@ protected:
 
     int m_currentIndexs, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;
+    bool m_toolDeleteChanged;
     QObject *m_supperClass;
     MusicSongItems m_songItems;
     MusicObject::MIntsListMap m_searchfileListCache;
