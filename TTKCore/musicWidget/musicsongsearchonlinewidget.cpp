@@ -176,8 +176,8 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     QAction *addAction = rightClickMenu.addAction(tr("musicAdd"));
     rightClickMenu.insertAction(rightClickMenu.actions().first(), addAction);
     rightClickMenu.insertAction(addAction, playAction);
-    m_actionGroup->addAction( playAction );
-    m_actionGroup->addAction( addAction );
+    m_actionGroup->addAction( playAction )->setData(4);
+    m_actionGroup->addAction( addAction )->setData(5);
     rightClickMenu.exec(QCursor::pos());
 }
 
@@ -185,7 +185,7 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 {
     MusicQueryTableWidget::actionGroupClick(action);
     int row = currentRow();
-    switch( findActionGroup(action) )
+    switch( action->data().toInt() )
     {
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
@@ -401,6 +401,8 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     funcLayout->addWidget(m_textLabel);
 
     m_playButton = new QPushButton(tr("Play"), this);
+    m_playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
+    m_playButton->setIconSize(QSize(14, 14));
     m_playButton->setFixedSize(70, 20);
     m_playButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));

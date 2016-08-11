@@ -427,11 +427,11 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 
     //////////////////////////////////////////////////
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(changeLrcSize.addAction(tr("smaller")));
-    group->addAction(changeLrcSize.addAction(tr("small")));
-    group->addAction(changeLrcSize.addAction(tr("middle")));
-    group->addAction(changeLrcSize.addAction(tr("big")));
-    group->addAction(changeLrcSize.addAction(tr("bigger")));
+    group->addAction(changeLrcSize.addAction(tr("smaller")))->setData(0);
+    group->addAction(changeLrcSize.addAction(tr("small")))->setData(1);
+    group->addAction(changeLrcSize.addAction(tr("middle")))->setData(2);
+    group->addAction(changeLrcSize.addAction(tr("big")))->setData(3);
+    group->addAction(changeLrcSize.addAction(tr("bigger")))->setData(4);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
 
     changeLrcSize.addSeparator();
@@ -440,18 +440,18 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 
     //////////////////////////////////////////////////
     QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast0.5s")));
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast1s")));
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast2s")));
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")));
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast0.5s")))->setData(0);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast1s")))->setData(1);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast2s")))->setData(2);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")))->setData(3);
     connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
     //////////////////////////////////////////////////
     QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")));
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow1s")));
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow2s")));
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")));
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")))->setData(4);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow1s")))->setData(5);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow2s")))->setData(6);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")))->setData(7);
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
     //////////////////////////////////////////////////
@@ -479,26 +479,32 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 
 void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
 {
-    QString text = action->text();
-    if(text == tr("smaller")) setLrcSize(MusicLRCManager::Smaller);
-    else if (text == tr("small")) setLrcSize(MusicLRCManager::Small);
-    else if (text == tr("middle")) setLrcSize(MusicLRCManager::Middle);
-    else if (text == tr("big")) setLrcSize(MusicLRCManager::Big);
-    else if (text == tr("bigger")) setLrcSize(MusicLRCManager::Bigger);
+    switch(action->data().toInt())
+    {
+        case 0: setLrcSize(MusicLRCManager::Smaller); break;
+        case 1: setLrcSize(MusicLRCManager::Small); break;
+        case 2: setLrcSize(MusicLRCManager::Middle); break;
+        case 3: setLrcSize(MusicLRCManager::Big); break;
+        case 4: setLrcSize(MusicLRCManager::Bigger); break;
+        default: break;
+    }
 }
 
 void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
 {
-    QString text = action->text();
     int timeValue = 0;
-    if(text == tr("lrcTimeFast0.5s")) timeValue = -0.5*MT_S2MS;
-    else if(text == tr("lrcTimeFast1s")) timeValue = -MT_S2MS;
-    else if(text == tr("lrcTimeFast2s")) timeValue = -2*MT_S2MS;
-    else if(text == tr("lrcTimeFast5s")) timeValue = -5*MT_S2MS;
-    else if(text == tr("lrcTimeSlow0.5s")) timeValue = 0.5*MT_S2MS;
-    else if(text == tr("lrcTimeSlow1s")) timeValue = MT_S2MS;
-    else if(text == tr("lrcTimeSlow2s")) timeValue = 2*MT_S2MS;
-    else if(text == tr("lrcTimeSlow5s")) timeValue = 5*MT_S2MS;
+    switch(action->data().toInt())
+    {
+        case 0: timeValue = -0.5*MT_S2MS; break;
+        case 1: timeValue = -MT_S2MS; break;
+        case 2: timeValue = -2*MT_S2MS; break;
+        case 3: timeValue = -5*MT_S2MS; break;
+        case 4: timeValue = 0.5*MT_S2MS; break;
+        case 5: timeValue = MT_S2MS; break;
+        case 6: timeValue = 2*MT_S2MS; break;
+        case 7: timeValue = 5*MT_S2MS; break;
+        default: break;
+    }
 
     m_changeSpeedValue += timeValue;
     revertLrcTimeSpeed( timeValue );

@@ -74,7 +74,7 @@ void MusicQueryTableWidget::actionGroupClick(QAction *action)
     QString songName = (row != -1 && rowCount() > 0) ? item(row, 1)->toolTip() : QString();
     QString artistName = (row != -1 && rowCount() > 0) ? item(row, 2)->toolTip() : QString();
 
-    switch( findActionGroup(action) )
+    switch( action->data().toInt() )
     {
         case 0: musicDownloadLocal(row); break;
         case 1: emit restartSearchQuery(songName); break;
@@ -83,25 +83,10 @@ void MusicQueryTableWidget::actionGroupClick(QAction *action)
     }
 }
 
-int MusicQueryTableWidget::findActionGroup(QAction *action)
-{
-    int key = -1;
-    QList<QAction*> actions = m_actionGroup->actions();
-    for(int i=0; i<actions.count(); ++i)
-    {
-        if(actions[i] == action)
-        {
-            key = i;
-            break;
-        }
-    }
-    return key;
-}
-
 void MusicQueryTableWidget::createContextMenu(QMenu &menu)
 {
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    m_actionGroup->addAction(menu.addAction(tr("musicDownload")));
+    m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);
 
     menu.addSeparator();
 
@@ -109,9 +94,9 @@ void MusicQueryTableWidget::createContextMenu(QMenu &menu)
                 item(currentRow(), 1)->toolTip() : QString();
     QString artistName = currentRow() != -1 && rowCount() > 0 ?
                 item(currentRow(), 2)->toolTip() : QString();
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)));
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)));
-    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)));
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)))->setData(1);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)))->setData(2);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)))->setData(3);
 }
 
 MusicObject::MIntList MusicQueryTableWidget::getSelectedItems() const

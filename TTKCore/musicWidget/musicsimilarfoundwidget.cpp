@@ -124,11 +124,15 @@ void MusicSimilarFoundWidget::createLabels()
     ////////////////////////////////////////////////////////////////////////////
     QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
     QPushButton *playButton = new QPushButton(tr("play"), m_mainWindow);
+    playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
+    playButton->setIconSize(QSize(14, 14));
     playButton->setFixedSize(55, 25);
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     QPushButton *addButton = new QPushButton(tr("add"), m_mainWindow);
     addButton->setFixedSize(55, 25);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     QPushButton *downloadButton = new QPushButton(tr("download"), m_mainWindow);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));

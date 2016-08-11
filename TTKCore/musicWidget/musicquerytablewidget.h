@@ -100,10 +100,6 @@ protected:
     /*!
      * Create context menu.
      */
-    int findActionGroup(QAction *action);
-    /*!
-     * Find acton index from action group by given action.
-     */
 
     QActionGroup *m_actionGroup;
     MusicDownLoadQueryThreadAbstract *m_downLoadManager;

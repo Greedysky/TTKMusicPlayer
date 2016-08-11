@@ -80,15 +80,9 @@ void MusicVideoQualityPopWidget::initWidget()
 
     m_containWidget->setFixedSize(140, 100);
     m_menu->removeAction(m_menu->actions().first());
-    m_actionGroup->addAction( m_menu->addAction(tr("SdMV")) );
-    m_actionGroup->addAction( m_menu->addAction(tr("HdMV")) );
-    m_actionGroup->addAction( m_menu->addAction(tr("SqMV")) );
-
-    QList<QAction*> actions = m_actionGroup->actions();
-    for(int i=0; i<actions.count(); ++i)
-    {
-        actions[i]->setData(i);
-    }
+    m_actionGroup->addAction(m_menu->addAction(tr("SdMV")))->setData(0);
+    m_actionGroup->addAction(m_menu->addAction(tr("HdMV")))->setData(1);
+    m_actionGroup->addAction(m_menu->addAction(tr("SqMV")))->setData(2);
 }
 
 QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)

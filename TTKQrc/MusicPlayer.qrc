@@ -108,6 +108,7 @@
         <file alias="btn_lock">../TTKResource/contextMenu/btn_lock.png</file>
         <file alias="btn_login">../TTKResource/contextMenu/btn_login.png</file>
         <file alias="btn_play">../TTKResource/contextMenu/btn_play.png</file>
+        <file alias="btn_play_white">../TTKResource/contextMenu/btn_play_white.png</file>
         <file alias="btn_setting">../TTKResource/contextMenu/btn_setting.png</file>
         <file alias="btn_lrc">../TTKResource/contextMenu/btn_lrc.png</file>
         <file alias="btn_quit">../TTKResource/contextMenu/btn_quit.png</file>

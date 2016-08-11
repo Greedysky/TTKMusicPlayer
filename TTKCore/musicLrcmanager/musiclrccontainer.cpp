@@ -51,16 +51,16 @@ void MusicLrcContainer::searchMusicLrcs()
 void MusicLrcContainer::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(QIcon(":/color/lb_origin"), tr("origin")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_red"), tr("red")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_orange"), tr("orange")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_yellow"), tr("yellow")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_green"), tr("green")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_blue"), tr("blue")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_indigo"), tr("indigo")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_purple"), tr("purple")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_white"), tr("white")));
-    group->addAction(menu.addAction(QIcon(":/color/lb_black"), tr("black")));
+    group->addAction(menu.addAction(QIcon(":/color/lb_origin"), tr("origin")))->setData(0);
+    group->addAction(menu.addAction(QIcon(":/color/lb_red"), tr("red")))->setData(1);
+    group->addAction(menu.addAction(QIcon(":/color/lb_orange"), tr("orange")))->setData(2);
+    group->addAction(menu.addAction(QIcon(":/color/lb_yellow"), tr("yellow")))->setData(3);
+    group->addAction(menu.addAction(QIcon(":/color/lb_green"), tr("green")))->setData(4);
+    group->addAction(menu.addAction(QIcon(":/color/lb_blue"), tr("blue")))->setData(5);
+    group->addAction(menu.addAction(QIcon(":/color/lb_indigo"), tr("indigo")))->setData(6);
+    group->addAction(menu.addAction(QIcon(":/color/lb_purple"), tr("purple")))->setData(7);
+    group->addAction(menu.addAction(QIcon(":/color/lb_white"), tr("white")))->setData(8);
+    group->addAction(menu.addAction(QIcon(":/color/lb_black"), tr("black")))->setData(9);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
@@ -68,17 +68,20 @@ void MusicLrcContainer::createColorMenu(QMenu &menu)
 
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 {
-    QString text = action->text();
-    if(text == tr("origin")) setLinearGradientColor(MusicLRCManager::Origin);
-    else if (text == tr("origin")) setLinearGradientColor(MusicLRCManager::Red);
-    else if (text == tr("red")) setLinearGradientColor(MusicLRCManager::Orange);
-    else if (text == tr("yellow")) setLinearGradientColor(MusicLRCManager::Yellow);
-    else if (text == tr("green")) setLinearGradientColor(MusicLRCManager::Green);
-    else if (text == tr("blue")) setLinearGradientColor(MusicLRCManager::Blue);
-    else if (text == tr("indigo")) setLinearGradientColor(MusicLRCManager::Indigo);
-    else if (text == tr("purple")) setLinearGradientColor(MusicLRCManager::Purple);
-    else if (text == tr("white")) setLinearGradientColor(MusicLRCManager::White);
-    else if (text == tr("black")) setLinearGradientColor(MusicLRCManager::Black);
+    switch(action->data().toInt())
+    {
+        case 0: setLinearGradientColor(MusicLRCManager::Origin); break;
+        case 1: setLinearGradientColor(MusicLRCManager::Red); break;
+        case 2: setLinearGradientColor(MusicLRCManager::Orange); break;
+        case 3: setLinearGradientColor(MusicLRCManager::Yellow); break;
+        case 4: setLinearGradientColor(MusicLRCManager::Green); break;
+        case 5: setLinearGradientColor(MusicLRCManager::Blue); break;
+        case 6: setLinearGradientColor(MusicLRCManager::Indigo); break;
+        case 7: setLinearGradientColor(MusicLRCManager::Purple); break;
+        case 8: setLinearGradientColor(MusicLRCManager::White); break;
+        case 9: setLinearGradientColor(MusicLRCManager::Black); break;
+        default: break;
+    }
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
