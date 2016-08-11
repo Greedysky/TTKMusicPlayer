@@ -10,6 +10,7 @@
 #include "musicfilesenderserver.h"
 
 #include <QFile>
+#include <QTimer>
 #include <QButtonGroup>
 #ifdef Q_OS_WIN
 #   include <windows.h>
@@ -23,6 +24,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     m_currentIndex = -1;
+    m_buttonGroup = nullptr;
     m_sendServer = nullptr;
 
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -56,6 +58,8 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle04);
     connect(ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
 
+    QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
@@ -63,6 +67,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
     M_CONNECTION_PTR->poolDisConnect(getClassName());
+    delete m_buttonGroup;
     delete m_sendServer;
     delete ui;
 }
@@ -80,21 +85,29 @@ void MusicConnectTransferWidget::openTransferFiles(int mode)
     }
 }
 
+void MusicConnectTransferWidget::redirectToCurrentSong(int toolIndex, int songIndex)
+{
+    currentPlayListSelected(toolIndex);
+    ui->playListTableWidget->listCellClicked(songIndex, 0);
+}
+
 void MusicConnectTransferWidget::initColumns()
 {
     MusicSongItems songs;
     emit getMusicLists(songs);
 
-    QButtonGroup *group = new QButtonGroup(this);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(currentPlayListSelected(int)));
+    ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_buttonGroup = new QButtonGroup(this);
+    connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlayListSelected(int)));
     for(int i=0; i<songs.count(); ++i)
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName)
                                               .arg(songs[i].m_songs.count()), this);
         button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
-        button->setGeometry(32, 100 + 50*i, 90, 25);
-        group->addButton(button, i);
+        button->setFixedSize(90, 25);
+        ui->playListLayout->addWidget(button);
+        m_buttonGroup->addButton(button, i);
     }
 
     reflashRemovableDir();
@@ -116,7 +129,7 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
         ui->playListTableWidget->setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 280));
+        item->setText(MusicUtils::UWidget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 245));
         item->setToolTip(song.getMusicPath());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         ui->playListTableWidget->setItem(i, 1, item);
@@ -316,7 +329,6 @@ void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 
 int MusicConnectTransferWidget::exec()
 {
-    initColumns();
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     ui->background->setPixmap(pix.scaled( size() ));
     return MusicAbstractMoveDialog::exec();

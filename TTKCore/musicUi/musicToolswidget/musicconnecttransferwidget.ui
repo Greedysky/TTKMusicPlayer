@@ -282,6 +282,21 @@ QLabel{background:transparent;}</string>
      <string>wifi</string>
     </property>
    </widget>
+   <widget class="QWidget" name="playListLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>90</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="playListLayout">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+    </layout>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>

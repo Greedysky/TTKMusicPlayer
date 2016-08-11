@@ -90,7 +90,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
     ///////////////////////////////////////////////////////
-
+    connect(ui->musicMoreFunction, SIGNAL(musicSimilarFound(QString)), SLOT(musicSimilarFound(QString)));
+    connect(ui->musicMoreFunction, SIGNAL(musicSongMovieClicked(QString)), SLOT(musicVideoButtonSearched(QString)));
+    ///////////////////////////////////////////////////////
     QTimer::singleShot(MT_MS, this, SLOT(musicLoadSongIndexWidget()));
 }
 

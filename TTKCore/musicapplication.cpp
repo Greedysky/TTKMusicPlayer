@@ -438,6 +438,7 @@ void MusicApplication::showCurrentSong(int index)
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
     ui->showCurrentSong->setText(name);
+    ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
     M_BACKGROUND_PTR->clearArtName();
     m_rightAreaWidget->musicCheckHasLrcAlready();

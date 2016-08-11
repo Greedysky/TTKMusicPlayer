@@ -106,7 +106,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
 
 void MusicSimilarFoundWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget::contextMenuEvent(event);
+   Q_UNUSED(event);
 }
 
 void MusicSimilarFoundWidget::createLabels()
@@ -119,7 +119,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->setSpacing(15);
 
     QLabel *firstLabel = new QLabel(m_mainWindow);
-    firstLabel->setText(tr("Like \"<font color=blue> %1 </font>\" also like this").arg(m_songNameFull));
+    firstLabel->setText(tr("Like \"<font color=#169AF3> %1 </font>\" also like this").arg(m_songNameFull));
     grid->addWidget(firstLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
@@ -164,7 +164,7 @@ void MusicSimilarFoundWidget::createLabels()
     ////////////////////////////////////////////////////////////////////////////
     QString artName = m_downloadThread->getSearchedText();
     QLabel *secondLabel = new QLabel(m_mainWindow);
-    secondLabel->setText(tr("Other \"<font color=blue> %1 </font>\" things").arg(artName));
+    secondLabel->setText(tr("Other \"<font color=#169AF3> %1 </font>\" things").arg(artName));
     grid->addWidget(secondLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(m_mainWindow);

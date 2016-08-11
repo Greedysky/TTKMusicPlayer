@@ -16,6 +16,7 @@
 namespace Ui {
 class MusicConnectTransferWidget;
 }
+class QButtonGroup;
 class MusicFileSenderServer;
 
 /*! @brief The class of the transfer file to mobile widget.
@@ -38,6 +39,10 @@ public:
     void openTransferFiles(int mode);
     /*!
      * Open transfer files by mode.
+     */
+    void redirectToCurrentSong(int toolIndex, int songIndex);
+    /*!
+     * Redirect to current song.
      */
 
 Q_SIGNALS:
@@ -75,16 +80,16 @@ public Q_SLOTS:
     /*!
      * Search file from list.
      */
+    void initColumns();
+    /*!
+     * Create the left button column
+     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
-    void initColumns();
-    /*!
-     * Create the left button column
-     */
     void createAllItems(const MusicSongs &songs);
     /*!
      * Create all items.
@@ -101,6 +106,7 @@ protected:
     Ui::MusicConnectTransferWidget *ui;
     int m_currentIndex;
     MusicSongs m_currentSongs;
+    QButtonGroup *m_buttonGroup;
     MusicObject::MIntsListMap m_searchfileListCache;
     MusicFileSenderServer *m_sendServer;
 

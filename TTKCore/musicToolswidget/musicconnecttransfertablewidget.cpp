@@ -5,13 +5,15 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+
     MusicUtils::UWidget::setTransparent(this, 255);
+    setStyleSheet( styleSheet() + MusicUIObject::MTableWidgetStyle02);
 
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 283);
-    headerview->resizeSection(2, 40);
+    headerview->resizeSection(1, 280);
+    headerview->resizeSection(2, 43);
 
     m_checkBoxDelegate = new MusicQueryTableDelegate(this);
     setItemDelegateForColumn(0, m_checkBoxDelegate);

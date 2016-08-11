@@ -20,8 +20,8 @@
 
 #define ROW_HIGHT   30
 
-MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_musicSongsInfoWidget(nullptr),
+MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
+    : MusicAbstractTableWidget(parent), m_parentToolIndex(index), m_musicSongsInfoWidget(nullptr),
       m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
@@ -442,6 +442,7 @@ void MusicSongsListWidget::musicSongSharedWidget()
 void MusicSongsListWidget::musicSongTransferWidget()
 {
     MusicConnectTransferWidget transferWidget(this);
+    transferWidget.redirectToCurrentSong(m_parentToolIndex, currentRow());
     transferWidget.exec();
 }
 

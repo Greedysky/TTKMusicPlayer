@@ -28,11 +28,34 @@ public:
      * Get class object name.
      */
 
+    void setCurrentSongName(const QString &name);
+    /*!
+     * Set current song name.
+     */
+
+Q_SIGNALS:
+    void musicSongMovieClicked(const QString &text);
+    /*!
+     * Video search that by string.
+     */
+    void musicSimilarFound(const QString &text);
+    /*!
+     * Music similar function that by string.
+     */
+
+private Q_SLOTS:
+    void musicFunctionClicked(QAction *index);
+    /*!
+     * Music function button clicked.
+     */
+
 protected:
     void initWidget();
     /*!
      * Create all widget in layout.
      */
+
+    QString m_currentSongName;
 
 };
 

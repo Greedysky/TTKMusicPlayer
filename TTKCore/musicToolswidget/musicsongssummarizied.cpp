@@ -187,7 +187,10 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
 
 void MusicSongsSummarizied::addNewRowItem()
 {
-    addNewRowItem( tr("defaultItem") );
+    if(m_songItems.count() < 10)
+    {
+        addNewRowItem( tr("defaultItem") );
+    }
 }
 
 void MusicSongsSummarizied::deleteRowItem(int index)
@@ -474,7 +477,7 @@ void MusicSongsSummarizied::addNewRowItem(const QString &name)
 
 void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListWidget *w = new MusicSongsListWidget(this);
+    MusicSongsListWidget *w = new MusicSongsListWidget(item->m_itemIndex, this);
     item->m_itemObject = w;
     addItem(w, item->m_itemName);
 

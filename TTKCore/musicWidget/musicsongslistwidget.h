@@ -25,7 +25,7 @@ class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListWidget(QWidget *parent = 0);
+    explicit MusicSongsListWidget(int index, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -239,7 +239,7 @@ protected:
      * Get current song name.
      */
 
-    int m_transparent;
+    int m_transparent, m_parentToolIndex;
     int m_playRowIndex, m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
