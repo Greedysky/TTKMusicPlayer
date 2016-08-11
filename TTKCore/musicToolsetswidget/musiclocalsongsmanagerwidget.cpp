@@ -8,8 +8,8 @@
 #include "musicutils.h"
 #include "musicsongssummarizied.h"
 
-#include <QDateTime>
 #include <QMovie>
+#include <QDateTime>
 #include <QFileDialog>
 #include <QButtonGroup>
 #include <QStyledItemDelegate>

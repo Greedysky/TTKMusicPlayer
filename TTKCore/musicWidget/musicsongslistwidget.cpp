@@ -35,11 +35,9 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::UWidget::setTransparent(this, 0);
-#ifndef MUSIC_GREATER_NEW
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MLineEditStyle01 + \
-                  MusicUIObject::MTableWidgetStyle03);
-#endif
+                  MusicUIObject::MTableWidgetStyle04);
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));

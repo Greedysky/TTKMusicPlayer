@@ -13,6 +13,9 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     connect(m_downLoadManager, SIGNAL(createSearchedItems(QString,QString,QString)),
                                SLOT(createSearchedItems(QString,QString,QString)));
 
+    MusicUtils::UWidget::setTransparent(this, 255);
+    setStyleSheet( styleSheet() + MusicUIObject::MTableWidgetStyle02);
+
     m_checkBoxDelegate = new MusicQueryTableDelegate(this);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 

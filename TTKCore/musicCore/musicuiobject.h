@@ -366,9 +366,12 @@ namespace MusicUIObject
             QTableWidget{ selection-background-color:rgba(20, 20, 20, 40);}";
 
     const QString MTableWidgetStyle02 = " \
-            QTableWidget{ selection-background-color:rgba(20, 20, 20, 100);}";
+            QTableWidget{ selection-background-color:rgb(220, 220, 220);}";
 
     const QString MTableWidgetStyle03 = " \
+            QTableWidget{ selection-background-color:rgb(50, 50, 50);}";
+
+    const QString MTableWidgetStyle04 = " \
             QTableWidget{ background:rgba(0, 0, 0, 255);}";
 
 

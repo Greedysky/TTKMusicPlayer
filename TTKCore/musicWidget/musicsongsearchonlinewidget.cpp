@@ -30,7 +30,6 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(3, 60);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
-    MusicUtils::UWidget::setTransparent(this, 255);
 
     m_previousAuditionRow = -1;
     M_CONNECTION_PTR->setValue(getClassName(), this);

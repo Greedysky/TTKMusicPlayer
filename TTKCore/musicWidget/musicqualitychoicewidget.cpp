@@ -6,7 +6,7 @@
 #include "musicttkuiobject.h"
 
 #include <QBoxLayout>
-
+#include <QDebug>
 #define PREVIOUS_COLOR  QColor(187, 187, 187)
 #define HOVER_COLOR     QColor(255, 255, 255)
 
@@ -19,7 +19,10 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(2, 25);
 
     MusicUtils::UWidget::setTransparent(this, 0);
-    setStyleSheet( styleSheet() + MusicUIObject::MTableWidgetStyle02);
+    setStyleSheet(MusicUIObject::MTableWidgetStyle03 + \
+                  MusicUIObject::MLineEditStyle01 + \
+                  MusicUIObject::MTableWidgetStyle04);
+
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     delegate->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);
