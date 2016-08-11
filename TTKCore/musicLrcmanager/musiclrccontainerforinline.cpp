@@ -276,7 +276,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     message->setToolTip(tr("Message"));
 
     connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
-    connect(movie, SIGNAL(clicked()), SLOT(videoButtonClicked()));
+    connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
 
     functionLayout->addStretch(1);
     functionLayout->addWidget(translation);
@@ -585,7 +585,7 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
     dlg->show();
 }
 
-void MusicLrcContainerForInline::videoButtonClicked()
+void MusicLrcContainerForInline::musicSongMovieClicked()
 {
-    emit videoButtonClicked( m_currentSongName );
+    emit musicSongMovieClicked( m_currentSongName );
 }

@@ -5,10 +5,8 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicconnectionpool.h"
-#include "musicsongsharingwidget.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
-#include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicttkuiobject.h"
 
@@ -105,10 +103,9 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_showMVButton, SIGNAL(clicked()), SLOT(showMVButtonClicked()));
+    connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongMovieFound()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
     M_CONNECTION_PTR->poolConnect(MusicLeftAreaWidget::getClassName(), getClassName());
 }
@@ -162,10 +159,10 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
     QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
     addMenu->addAction(tr("musicCloud"));
 
-    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
-    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"));
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(sharingButtonClicked()));
+    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), parent(), SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), parent(), SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicSimilarFoundWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongSharedWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 }
 
@@ -219,18 +216,6 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
     m_songNameLabel->setToolTip(name);
     emit renameFinished(name);
     QTimer::singleShot(MT_MS, this, SLOT(deleteRenameItem()));
-}
-
-void MusicSongsListPlayWidget::showMVButtonClicked()
-{
-    emit videoButtonClicked(m_songNameLabel->toolTip());
-}
-
-void MusicSongsListPlayWidget::sharingButtonClicked()
-{
-    MusicSongSharingWidget shareWidget;
-    shareWidget.setSongName(m_songNameLabel->toolTip());
-    shareWidget.exec();
 }
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()

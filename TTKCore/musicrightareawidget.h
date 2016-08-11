@@ -122,6 +122,10 @@ public Q_SLOTS:
     /*!
      * Music function button clicked.
      */
+    void musicSimilarFound(const QString &text);
+    /*!
+     * Music similar function that by string.
+     */
     void musicLoadSongIndexWidget();
     /*!
      * Music load song index widget.

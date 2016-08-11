@@ -128,6 +128,15 @@ Q_SIGNALS:
      * Swap the current play index when user drag and drop.
      */
 
+    void musicSongMovieClicked(const QString &text);
+    /*!
+     * Video search that by string.
+     */
+    void musicSimilarFound(const QString &text);
+    /*!
+     * Music similar function that by string.
+     */
+
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
     /*!
@@ -181,6 +190,22 @@ public Q_SLOTS:
     /*!
      * Open music file information widget.
      */
+    void musicSongMovieFound();
+    /*!
+     * To search song mv by song name.
+     */
+    void musicSimilarFoundWidget();
+    /*!
+     * Open music similar found widget.
+     */
+    void musicSongSharedWidget();
+    /*!
+     * Open music song shared widget.
+     */
+    void musicSongTransferWidget();
+    /*!
+     * Open music song transfer widget.
+     */
     void setItemRenameFinished(const QString &name);
     /*!
      * Rename item artist label is finised.
@@ -204,6 +229,14 @@ protected:
     void createContextMenu(QMenu &menu);
     /*!
      * Create context menu.
+     */
+    QString getCurrentSongPath() const;
+    /*!
+     * Get current song path.
+     */
+    QString getCurrentSongName() const;
+    /*!
+     * Get current song name.
      */
 
     int m_transparent;

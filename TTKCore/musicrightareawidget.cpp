@@ -317,13 +317,19 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 MusicSimilarFoundWidget *similarFoundWidget = new MusicSimilarFoundWidget(this);
                 m_ui->surfaceStackedWidget->addWidget(similarFoundWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(similarFoundWidget);
-                similarFoundWidget->setSongName(m_ui->showCurrentSong->text().trimmed());
+//                similarFoundWidget->setSongName(m_ui->showCurrentSong->text().trimmed());
                 m_stackedFuncWidget = similarFoundWidget;
                 emit updateBackgroundTheme();
                 break;
             }
         default: break;
     }
+}
+
+void MusicRightAreaWidget::musicSimilarFound(const QString &text)
+{
+    musicFunctionClicked(7);
+    MStatic_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()

@@ -106,10 +106,6 @@ Q_SIGNALS:
     /*!
      * Rename item artist label is finised it emit.
      */
-    void videoButtonClicked(const QString &text);
-    /*!
-     * Video button clicked it emit.
-     */
     void currentLoveStateChanged();
     /*!
      * Current music love icon state changed.
@@ -127,14 +123,6 @@ public Q_SLOTS:
     void setChangItemName(const QString &name);
     /*!
      * Rename item artist label is finised.
-     */
-    void showMVButtonClicked();
-    /*!
-     * Show video button clicked.
-     */
-    void sharingButtonClicked();
-    /*!
-     * Sharing music button clicked.
      */
     void currentLoveStateClicked();
     /*!

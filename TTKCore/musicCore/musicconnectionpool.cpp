@@ -18,6 +18,7 @@
 #include "musiclrclocallinkwidget.h"
 #include "musicqualitychoicewidget.h"
 #include "musicsongslistplaywidget.h"
+#include "musicsongslistwidget.h"
 #include "musiclrccontainerforinline.h"
 #include "musicenhancedwidget.h"
 #include "musicvideoqualitypopwidget.h"
@@ -153,11 +154,17 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(researchQueryByQuality(QString)), second,
                                  SLOT(researchQueryByQuality(QString)));
     }
-    else if( (from == MusicSongsListPlayWidget::getClassName() && to == MusicRightAreaWidget::getClassName()) ||
-             (from == MusicLrcContainerForInline::getClassName() && to == MusicRightAreaWidget::getClassName()) )
+    else if( from == MusicLrcContainerForInline::getClassName() && to == MusicRightAreaWidget::getClassName() )
     {
-        QObject::connect(first, SIGNAL(videoButtonClicked(QString)), second,
+        QObject::connect(first, SIGNAL(musicSongMovieClicked(QString)), second,
                                 SLOT(musicVideoButtonSearched(QString)));
+    }
+    else if( from == MusicSongsListWidget::getClassName() && to == MusicRightAreaWidget::getClassName() )
+    {
+        QObject::connect(first, SIGNAL(musicSongMovieClicked(QString)), second,
+                                SLOT(musicVideoButtonSearched(QString)));
+        QObject::connect(first, SIGNAL(musicSimilarFound(QString)), second,
+                                SLOT(musicSimilarFound(QString)));
     }
     else if(from == MusicSongsListPlayWidget::getClassName() && to == MusicApplication::getClassName() )
     {

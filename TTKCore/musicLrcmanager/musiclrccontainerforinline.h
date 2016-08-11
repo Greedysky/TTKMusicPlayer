@@ -101,7 +101,7 @@ Q_SIGNALS:
     /*!
      * The art background state has changed emit.
      */
-    void videoButtonClicked(const QString &text);
+    void musicSongMovieClicked(const QString &text);
     /*!
      * Video button clicked it emit.
      */
@@ -149,7 +149,7 @@ private Q_SLOTS:
     /*!
      * Get translated lrc finished.
      */
-    void videoButtonClicked();
+    void musicSongMovieClicked();
     /*!
      * Video button clicked.
      */

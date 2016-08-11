@@ -8,6 +8,10 @@
 #include "musicprogresswidget.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
+#include "musicsongsharingwidget.h"
+#include "musicconnecttransferwidget.h"
+#include "musicconnectionpool.h"
+#include "musicrightareawidget.h"
 
 #include <QUrl>
 #include <QAction>
@@ -40,10 +44,14 @@ MusicSongsListWidget::MusicSongsListWidget(QWidget *parent)
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
 {
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
@@ -98,6 +106,348 @@ void MusicSongsListWidget::clearAllItems()
     //Remove all the original item
     MusicAbstractTableWidget::clear();
     setColumnCount(3);
+}
+
+int MusicSongsListWidget::allRowsHeight() const
+{
+    int height = 0;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        height += rowHeight(i);
+    }
+    return height;
+}
+
+void MusicSongsListWidget::selectRow(int index)
+{
+    if(index < 0)
+    {
+        return;
+    }
+    QTableWidget::selectRow(index);
+
+    replacePlayWidgetRow();
+    delete takeItem(index, 0);
+    delete takeItem(index, 1);
+    delete takeItem(index, 2);
+    setItem(index, 0, new QTableWidgetItem);
+    setItem(index, 1, new QTableWidgetItem);
+    setItem(index, 2, new QTableWidgetItem);
+
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
+
+    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
+    m_musicSongsPlayWidget->setParameter(name, path);
+    QWidget *widget, *widget1;
+    m_musicSongsPlayWidget->getWidget(widget, widget1);
+
+    setCellWidget(index, 0, widget);
+    setCellWidget(index, 1, m_musicSongsPlayWidget);
+    setCellWidget(index, 2, widget1);
+    setRowHeight(index, 2*ROW_HIGHT);
+    m_playRowIndex = index;
+
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
+}
+
+void MusicSongsListWidget::setTimerLabel(const QString &t) const
+{
+    if(m_musicSongsPlayWidget)
+    {
+        m_musicSongsPlayWidget->insertTimerLabel(t);
+    }
+}
+
+void MusicSongsListWidget::updateCurrentArtist()
+{
+    if(m_musicSongsPlayWidget)
+    {
+        m_musicSongsPlayWidget->updateCurrentArtist();
+    }
+}
+
+void MusicSongsListWidget::replacePlayWidgetRow()
+{
+    if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
+    {
+        m_playRowIndex = 0;
+    }
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
+
+    setRowHeight(m_playRowIndex, ROW_HIGHT);
+    removeCellWidget(m_playRowIndex, 0);
+    removeCellWidget(m_playRowIndex, 1);
+    removeCellWidget(m_playRowIndex, 2);
+
+    delete takeItem(m_playRowIndex, 0);
+    delete takeItem(m_playRowIndex, 1);
+    delete takeItem(m_playRowIndex, 2);
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(m_playRowIndex, 0, item);
+    item = new QTableWidgetItem(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 242));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(m_playRowIndex, 1, item);
+    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(m_playRowIndex, 2, item);
+
+    delete m_musicSongsPlayWidget;
+    m_musicSongsPlayWidget = nullptr;
+
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
+}
+
+void MusicSongsListWidget::listCellEntered(int row, int column)
+{
+    ///clear previous table item state
+    QTableWidgetItem *it = item(m_previousColorRow, 0);
+    if(it != nullptr)
+    {
+        it->setIcon(QIcon());
+    }
+    it = item(m_previousColorRow, 2);
+    if(it != nullptr)
+    {
+        it->setIcon(QIcon());
+        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
+    }
+
+    ///draw new table item state
+    if((it = item(row, 0)) != nullptr)
+    {
+        it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
+    }
+    if((it = item(row, 2)) != nullptr)
+    {
+        it->setText(QString());
+        it->setIcon(QIcon(":/tiny/btn_delete_hover"));
+    }
+
+    ///current play table item should not clear something
+    bool isCurrentIndex;
+    emit isCurrentIndexs(isCurrentIndex);
+    if(isCurrentIndex)
+    {
+        if((it = item(m_playRowIndex, 0)) != nullptr)
+        {
+            it->setIcon(QIcon());
+        }
+        if((it = item(m_playRowIndex, 2)) != nullptr)
+        {
+            it->setText(QString());
+            it->setIcon(QIcon());
+        }
+    }
+    MusicAbstractTableWidget::listCellEntered(row, column);
+
+    //To show music Songs Item information
+    if(m_musicSongsInfoWidget == nullptr)
+    {
+        m_musicSongsInfoWidget = new MusicSongsListItemInfoWidget;
+        m_musicSongsInfoWidget->hide();
+    }
+    m_timerShow.stop();
+    m_timerShow.start(0.5*MT_S2MS);
+    m_timerStay.stop();
+    m_timerStay.start(3*MT_S2MS);
+}
+
+void MusicSongsListWidget::listCellClicked(int row, int column)
+{
+    //the playing widget allow deleting
+    if(row == m_playRowIndex)
+    {
+        return;
+    }
+    switch(column)
+    {
+        case 2:
+            setDeleteItemAt();
+            break;
+        default:
+            break;
+    }
+}
+
+void MusicSongsListWidget::musicPlayClicked()
+{
+    if(rowCount() == 0 || currentRow() < 0 )
+    {
+        return;
+    }
+    emit cellDoubleClicked(currentRow(), 0);
+}
+
+void MusicSongsListWidget::setDeleteItemAt()
+{
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to delete?"));
+    if(message.exec() || rowCount() == 0 || currentRow() < 0)
+    {
+       return;
+    }
+
+    MusicProgressWidget progress;
+    progress.show();
+    progress.setTitle(tr("Delete File Mode"));
+    progress.setRange(0, selectedItems().count()/3*2);
+
+    MusicObject::MIntSet deletedRow; //if selected multi rows
+    for(int i=0; i<selectedItems().count(); ++i)
+    {
+        deletedRow.insert(selectedItems()[i]->row());
+        if(i%3 == 0)
+        {
+            progress.setValue(i/3);
+        }
+    }
+
+    MusicObject::MIntList deleteList = deletedRow.toList();
+    if(deleteList.count() == 0)
+    {
+        return;
+    }
+
+    qSort(deleteList);
+    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
+    {
+        replacePlayWidgetRow();
+    }
+
+    for(int i=deleteList.count() - 1; i>=0; --i)
+    {
+        removeRow(deleteList[i]); //Delete the current row
+        progress.setValue(deleteList.count()*2 - i);
+    }
+
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
+
+    emit deleteItemAt(deleteList, m_deleteItemWithFile);
+}
+
+void MusicSongsListWidget::setDeleteItemAll()
+{
+    selectAll();
+    setDeleteItemAt();
+}
+
+void MusicSongsListWidget::setDeleteItemWithFile()
+{
+    m_deleteItemWithFile = true;
+    setDeleteItemAt();
+    m_deleteItemWithFile = false;
+}
+
+void MusicSongsListWidget::showTimeOut()
+{
+    m_timerShow.stop();
+    if(m_musicSongsInfoWidget)
+    {
+        MusicSong song = (*m_musicSongs)[m_previousColorRow];
+        song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
+        m_musicSongsInfoWidget->setMusicSongInformation( song );
+        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
+                                            QCursor::pos().y(), 264, 108);
+        bool isCurrentIndex;
+        emit isCurrentIndexs(isCurrentIndex);
+        m_musicSongsInfoWidget->setVisible( isCurrentIndex ? (m_musicSongsPlayWidget &&
+                                            !m_musicSongsPlayWidget->getItemRenameState()) :
+                                            true);
+    }
+}
+
+void MusicSongsListWidget::stayTimeOut()
+{
+    m_timerStay.stop();
+    delete m_musicSongsInfoWidget;
+    m_musicSongsInfoWidget = nullptr;
+}
+
+void MusicSongsListWidget::setChangSongName()
+{
+    if(rowCount() == 0 || currentRow() < 0 || currentItem()->column() != 1)
+    {
+        return;
+    }
+    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
+    //the playing widget allow renaming
+    {
+        m_musicSongsPlayWidget->setItemRename();
+        return;
+    }
+    //others
+    m_renameActived = true;
+    m_renameItem = currentItem();
+    openPersistentEditor(m_renameItem);
+    editItem(m_renameItem);
+}
+
+void MusicSongsListWidget::musicOpenFileDir()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    if(!MusicUtils::UCore::openUrl(QFileInfo(path).absoluteFilePath(), true))
+    {
+        MusicMessageBox message;
+        message.setText(tr("The origin one does not exist!"));
+        message.exec();
+    }
+}
+
+void MusicSongsListWidget::musicMakeRingWidget()
+{
+    MusicSongRingtoneMaker(this).exec();
+}
+
+void MusicSongsListWidget::musicTransformWidget()
+{
+    MusicTransformWidget(this).exec();
+}
+
+void MusicSongsListWidget::musicFileInformation()
+{
+    MusicFileInformationWidget file(this);
+    file.setFileInformation( getCurrentSongPath() );
+    file.exec();
+}
+
+void MusicSongsListWidget::musicSongMovieFound()
+{
+    emit musicSongMovieClicked( getCurrentSongName() );
+}
+
+void MusicSongsListWidget::musicSimilarFoundWidget()
+{
+    emit musicSimilarFound( getCurrentSongName() );
+}
+
+void MusicSongsListWidget::musicSongSharedWidget()
+{
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setSongName( getCurrentSongName() );
+    shareWidget.exec();
+}
+
+void MusicSongsListWidget::musicSongTransferWidget()
+{
+    MusicConnectTransferWidget transferWidget(this);
+    transferWidget.exec();
+}
+
+void MusicSongsListWidget::setItemRenameFinished(const QString &name)
+{
+    (*m_musicSongs)[m_playRowIndex].setMusicName(name);
 }
 
 void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
@@ -213,16 +563,16 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
-    rightClickMenu.addAction(tr("foundMV"));
+    rightClickMenu.addAction(tr("foundMV"), this, SLOT(musicSongMovieFound()));
     rightClickMenu.addSeparator();
 
     QMenu *addMenu = rightClickMenu.addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
     addMenu->addAction(tr("musicCloud"));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), this, SLOT(musicSongTransferWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), this, SLOT(musicSongTransferWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), this, SLOT(musicSimilarFoundWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(musicSongSharedWidget()));
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 
     QMenu musicToolMenu(tr("musicTool"), &rightClickMenu);
@@ -299,9 +649,7 @@ void MusicSongsListWidget::startToDrag()
 
 void MusicSongsListWidget::createContextMenu(QMenu &menu)
 {
-    QString songName = currentRow() != -1 && rowCount() > 0 ?
-                m_musicSongs->at(currentRow()).getMusicName() : QString();
-
+    QString songName = getCurrentSongName();
     QStringList names = songName.split("-");
     foreach(QString name, names)
     {
@@ -309,327 +657,22 @@ void MusicSongsListWidget::createContextMenu(QMenu &menu)
     }
 }
 
-void MusicSongsListWidget::setDeleteItemAll()
-{
-    selectAll();
-    setDeleteItemAt();
-}
-
-void MusicSongsListWidget::setDeleteItemWithFile()
-{
-    m_deleteItemWithFile = true;
-    setDeleteItemAt();
-    m_deleteItemWithFile = false;
-}
-
-void MusicSongsListWidget::setDeleteItemAt()
-{
-    MusicMessageBox message;
-    message.setText(tr("Are you sure to delete?"));
-    if(message.exec() || rowCount() == 0 || currentRow() < 0)
-    {
-       return;
-    }
-
-    MusicProgressWidget progress;
-    progress.show();
-    progress.setTitle(tr("Delete File Mode"));
-    progress.setRange(0, selectedItems().count()/3*2);
-
-    MusicObject::MIntSet deletedRow; //if selected multi rows
-    for(int i=0; i<selectedItems().count(); ++i)
-    {
-        deletedRow.insert(selectedItems()[i]->row());
-        if(i%3 == 0)
-        {
-            progress.setValue(i/3);
-        }
-    }
-
-    MusicObject::MIntList deleteList = deletedRow.toList();
-    if(deleteList.count() == 0)
-    {
-        return;
-    }
-
-    qSort(deleteList);
-    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
-    {
-        replacePlayWidgetRow();
-    }
-
-    for(int i=deleteList.count() - 1; i>=0; --i)
-    {
-        removeRow(deleteList[i]); //Delete the current row
-        progress.setValue(deleteList.count()*2 - i);
-    }
-
-    //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
-
-    emit deleteItemAt(deleteList, m_deleteItemWithFile);
-}
-
-void MusicSongsListWidget::listCellClicked(int row, int column)
-{
-    //the playing widget allow deleting
-    if(row == m_playRowIndex)
-    {
-        return;
-    }
-    switch(column)
-    {
-        case 2:
-            setDeleteItemAt();
-            break;
-        default:
-            break;
-    }
-}
-
-void MusicSongsListWidget::listCellEntered(int row, int column)
-{
-    ///clear previous table item state
-    QTableWidgetItem *it = item(m_previousColorRow, 0);
-    if(it != nullptr)
-    {
-        it->setIcon(QIcon());
-    }
-    it = item(m_previousColorRow, 2);
-    if(it != nullptr)
-    {
-        it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
-    }
-
-    ///draw new table item state
-    if((it = item(row, 0)) != nullptr)
-    {
-        it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
-    }
-    if((it = item(row, 2)) != nullptr)
-    {
-        it->setText(QString());
-        it->setIcon(QIcon(":/tiny/btn_delete_hover"));
-    }
-
-    ///current play table item should not clear something
-    bool isCurrentIndex;
-    emit isCurrentIndexs(isCurrentIndex);
-    if(isCurrentIndex)
-    {
-        if((it = item(m_playRowIndex, 0)) != nullptr)
-        {
-            it->setIcon(QIcon());
-        }
-        if((it = item(m_playRowIndex, 2)) != nullptr)
-        {
-            it->setText(QString());
-            it->setIcon(QIcon());
-        }
-    }
-    MusicAbstractTableWidget::listCellEntered(row, column);
-
-    //To show music Songs Item information
-    if(m_musicSongsInfoWidget == nullptr)
-    {
-        m_musicSongsInfoWidget = new MusicSongsListItemInfoWidget;
-        m_musicSongsInfoWidget->hide();
-    }
-    m_timerShow.stop();
-    m_timerShow.start(0.5*MT_S2MS);
-    m_timerStay.stop();
-    m_timerStay.start(3*MT_S2MS);
-}
-
-void MusicSongsListWidget::showTimeOut()
-{
-    m_timerShow.stop();
-    if(m_musicSongsInfoWidget)
-    {
-        MusicSong song = (*m_musicSongs)[m_previousColorRow];
-        song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
-        m_musicSongsInfoWidget->setMusicSongInformation( song );
-        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
-                                            QCursor::pos().y(), 264, 108);
-        bool isCurrentIndex;
-        emit isCurrentIndexs(isCurrentIndex);
-        m_musicSongsInfoWidget->setVisible( isCurrentIndex ? (m_musicSongsPlayWidget &&
-                                            !m_musicSongsPlayWidget->getItemRenameState()) :
-                                            true);
-    }
-}
-
-void MusicSongsListWidget::stayTimeOut()
-{
-    m_timerStay.stop();
-    delete m_musicSongsInfoWidget;
-    m_musicSongsInfoWidget = nullptr;
-}
-
-void MusicSongsListWidget::setChangSongName()
-{
-    if(rowCount() == 0 || currentRow() < 0 || currentItem()->column() != 1)
-    {
-        return;
-    }
-    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
-    //the playing widget allow renaming
-    {
-        m_musicSongsPlayWidget->setItemRename();
-        return;
-    }
-    //others
-    m_renameActived = true;
-    m_renameItem = currentItem();
-    openPersistentEditor(m_renameItem);
-    editItem(m_renameItem);
-}
-
-void MusicSongsListWidget::setItemRenameFinished(const QString &name)
-{
-    (*m_musicSongs)[m_playRowIndex].setMusicName(name);
-}
-
-void MusicSongsListWidget::musicOpenFileDir()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-
-    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(!MusicUtils::UCore::openUrl(QFileInfo(path).absoluteFilePath(), true))
-    {
-        MusicMessageBox message;
-        message.setText(tr("The origin one does not exist!"));
-        message.exec();
-    }
-}
-
-void MusicSongsListWidget::musicPlayClicked()
+QString MusicSongsListWidget::getCurrentSongPath() const
 {
     if(rowCount() == 0 || currentRow() < 0 )
     {
-        return;
+        return QString();
     }
-    emit cellDoubleClicked(currentRow(), 0);
+
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath().trimmed() : QString();
 }
 
-void MusicSongsListWidget::musicMakeRingWidget()
-{
-    MusicSongRingtoneMaker(this).exec();
-}
-
-void MusicSongsListWidget::musicTransformWidget()
-{
-    MusicTransformWidget(this).exec();
-}
-
-void MusicSongsListWidget::musicFileInformation()
+QString MusicSongsListWidget::getCurrentSongName() const
 {
     if(rowCount() == 0 || currentRow() < 0 )
     {
-        return;
+        return QString();
     }
 
-    MusicFileInformationWidget file(this);
-    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    file.setFileInformation(path);
-    file.exec();
-}
-
-void MusicSongsListWidget::setTimerLabel(const QString &t) const
-{
-    if(m_musicSongsPlayWidget)
-    {
-        m_musicSongsPlayWidget->insertTimerLabel(t);
-    }
-}
-
-void MusicSongsListWidget::updateCurrentArtist()
-{
-    if(m_musicSongsPlayWidget)
-    {
-        m_musicSongsPlayWidget->updateCurrentArtist();
-    }
-}
-
-void MusicSongsListWidget::replacePlayWidgetRow()
-{
-    if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
-    {
-        m_playRowIndex = 0;
-    }
-    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
-
-    setRowHeight(m_playRowIndex, ROW_HIGHT);
-    removeCellWidget(m_playRowIndex, 0);
-    removeCellWidget(m_playRowIndex, 1);
-    removeCellWidget(m_playRowIndex, 2);
-
-    delete takeItem(m_playRowIndex, 0);
-    delete takeItem(m_playRowIndex, 1);
-    delete takeItem(m_playRowIndex, 2);
-
-    QTableWidgetItem *item = new QTableWidgetItem;
-    setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 242));
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(m_playRowIndex, 1, item);
-    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(m_playRowIndex, 2, item);
-
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
-
-    //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
-}
-
-int MusicSongsListWidget::allRowsHeight() const
-{
-    int height = 0;
-    for(int i=0; i<rowCount(); ++i)
-    {
-        height += rowHeight(i);
-    }
-    return height;
-}
-
-void MusicSongsListWidget::selectRow(int index)
-{
-    if(index < 0)
-    {
-        return;
-    }
-    QTableWidget::selectRow(index);
-
-    replacePlayWidgetRow();
-    delete takeItem(index, 0);
-    delete takeItem(index, 1);
-    delete takeItem(index, 2);
-    setItem(index, 0, new QTableWidgetItem);
-    setItem(index, 1, new QTableWidgetItem);
-    setItem(index, 2, new QTableWidgetItem);
-
-    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
-    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
-
-    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_musicSongsPlayWidget->setParameter(name, path);
-    QWidget *widget, *widget1;
-    m_musicSongsPlayWidget->getWidget(widget, widget1);
-
-    setCellWidget(index, 0, widget);
-    setCellWidget(index, 1, m_musicSongsPlayWidget);
-    setCellWidget(index, 2, widget1);
-    setRowHeight(index, 2*ROW_HIGHT);
-    m_playRowIndex = index;
-
-    //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicName().trimmed() : QString();
 }
