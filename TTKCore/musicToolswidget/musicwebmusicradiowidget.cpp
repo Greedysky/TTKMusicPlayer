@@ -2,7 +2,6 @@
 #include "ui_musicwebmusicradiowidget.h"
 #include "musiccoremplayer.h"
 #include "musicuiobject.h"
-#include "musicbackgroundmanager.h"
 #include "musicradioplaylistthread.h"
 #include "musicradiosongsthread.h"
 #include "musictextdownloadthread.h"
@@ -331,7 +330,6 @@ void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
 
 void MusicWebMusicRadioWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveWidget::show();
 }

@@ -1,6 +1,5 @@
 #include "musicconnecttransferwidget.h"
 #include "ui_musicconnecttransferwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
@@ -329,7 +328,6 @@ void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 
 int MusicConnectTransferWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

@@ -2,7 +2,6 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
 #include "musicapplicationobject.h"
@@ -299,7 +298,6 @@ void MusicTimerWidget::setEnabledThreeControl(bool enable)
 
 int MusicTimerWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

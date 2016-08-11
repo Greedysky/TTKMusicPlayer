@@ -1,6 +1,5 @@
 #include "musicsettingwidget.h"
 #include "ui_musicsettingwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicnetworkthread.h"
 #include "musicutils.h"
 #include "musicnetworkproxy.h"
@@ -715,8 +714,7 @@ void MusicSettingWidget::resetDesktopParameter()
 
 int MusicSettingWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }
 

@@ -1,6 +1,5 @@
 #include "musicnetworktestwidget.h"
 #include "ui_musicnetworktestwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicnetworktestthread.h"
 #include "musicutils.h"
@@ -174,7 +173,6 @@ void MusicNetworkTestWidget::networkTestStop()
 
 void MusicNetworkTestWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveWidget::show();
 }

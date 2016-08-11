@@ -1,6 +1,5 @@
 #include "musicvolumegainwidget.h"
 #include "ui_musicvolumegainwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 
@@ -348,7 +347,6 @@ int MusicVolumeGainWidget::exec()
         return -1;
     }
 
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

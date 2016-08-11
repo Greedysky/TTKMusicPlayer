@@ -1,6 +1,5 @@
 #include "musicsourceupdatewidget.h"
 #include "ui_musicsourceupdatewidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicuiobject.h"
@@ -45,8 +44,7 @@ QString MusicSourceUpdateWidget::getClassName()
 
 int MusicSourceUpdateWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

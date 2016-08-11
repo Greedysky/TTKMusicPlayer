@@ -1,6 +1,5 @@
 #include "musicuserrecordwidget.h"
 #include "ui_musicuserrecordwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
@@ -252,7 +251,6 @@ void MusicUserRecordWidget::checkPwdStrength(int code)
 
 int MusicUserRecordWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();;
 }

@@ -1,6 +1,5 @@
 #include "musicdownloadwidget.h"
 #include "ui_musicdownloadwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
@@ -186,8 +185,7 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
 
 void MusicDownloadWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveWidget::show();
 }
 
@@ -334,8 +332,7 @@ void MusicDownloadWidget::resizeWindow()
     setMoveWidget(ui->settingButton, delta);
     setMoveWidget(ui->downloadButton, delta);
 
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
 }
 
 void MusicDownloadWidget::setFixedHeightWidget(QWidget *w, int height)

@@ -1,4 +1,5 @@
 #include "musicabstractmovedialog.h"
+#include "musicbackgroundmanager.h"
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -78,4 +79,10 @@ void MusicAbstractMoveDialog::mouseReleaseEvent(QMouseEvent *event)
     QWidget::mouseReleaseEvent(event);
     m_pressAt = event->globalPos();
     m_leftButtonPress = false;
+}
+
+void MusicAbstractMoveDialog::setBackgroundPixmap(QLabel *label, const QSize &size)
+{
+    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
+    label->setPixmap(pix.scaled(size));
 }

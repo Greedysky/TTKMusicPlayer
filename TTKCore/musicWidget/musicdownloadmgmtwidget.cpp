@@ -3,7 +3,6 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
-#include "musicbackgroundmanager.h"
 #include "musicutils.h"
 #include "musicleftareawidget.h"
 
@@ -54,8 +53,7 @@ void MusicDownloadResetWidget::setSongName(const QString &name)
 
 void MusicDownloadResetWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveWidget::show();
 }
 

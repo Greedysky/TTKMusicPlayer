@@ -2,7 +2,6 @@
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
 #include "musicutils.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
 
@@ -262,7 +261,6 @@ void MusicAudioRecorderWidget::onTimeOut()
 
 int MusicAudioRecorderWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

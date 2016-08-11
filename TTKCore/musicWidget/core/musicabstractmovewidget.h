@@ -12,7 +12,7 @@
 #define WIDTH  20
 #define HEIGHT 20
 
-#include <QWidget>
+#include <QLabel>
 #include <QMouseEvent>
 #include "musicglobaldefine.h"
 
@@ -49,6 +49,10 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
+     */
+    void setBackgroundPixmap(QLabel *label, const QSize &size);
+    /*!
+     * Set background pixmap.
      */
 
     QPoint m_pressAt;

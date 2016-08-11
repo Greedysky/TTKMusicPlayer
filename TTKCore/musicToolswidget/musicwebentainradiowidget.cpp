@@ -1,7 +1,6 @@
 #include "musicwebentainradiowidget.h"
 #include "ui_musicwebentainradiowidget.h"
 #include "musicwebentainradiodatebase.h"
-#include "musicbackgroundmanager.h"
 #include "musiccoremplayer.h"
 
 #include <QProcess>
@@ -217,7 +216,6 @@ void MusicWebEntainRadioWidget::radioDiscolletButton()
 
 void MusicWebEntainRadioWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveWidget::show();
 }

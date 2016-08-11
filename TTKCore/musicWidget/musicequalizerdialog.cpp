@@ -3,7 +3,6 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicttkuiobject.h"
-#include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
 #include "musicplayer.h"
@@ -265,7 +264,6 @@ void MusicEqualizerDialog::eqChoiceIndexChanged(int index)
 
 int MusicEqualizerDialog::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

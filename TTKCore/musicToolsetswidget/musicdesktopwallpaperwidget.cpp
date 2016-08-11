@@ -3,7 +3,6 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicuiobject.h"
 #include "musicdatadownloadthread.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicregeditmanager.h"
 #include "musicnumberdefine.h"
@@ -227,7 +226,6 @@ void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
 
 void MusicDesktopWallpaperWidget::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveWidget::show();
 }

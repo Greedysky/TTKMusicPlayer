@@ -2,7 +2,6 @@
 #include "ui_musiclocalsongsmanagerwidget.h"
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
@@ -408,7 +407,6 @@ void MusicLocalSongsManagerWidget::setShowPathButton()
 
 int MusicLocalSongsManagerWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

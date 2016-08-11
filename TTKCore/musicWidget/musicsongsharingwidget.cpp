@@ -2,7 +2,6 @@
 #include "ui_musicsongsharingwidget.h"
 #include "musicdownloadqueryttthread.h"
 #include "musicdata2downloadthread.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
@@ -60,8 +59,7 @@ void MusicSongSharingWidget::setSongName(const QString &name)
 
 int MusicSongSharingWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }
 

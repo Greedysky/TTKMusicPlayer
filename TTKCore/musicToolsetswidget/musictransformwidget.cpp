@@ -1,6 +1,5 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
@@ -309,7 +308,6 @@ int MusicTransformWidget::exec()
         return -1;
     }
 
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

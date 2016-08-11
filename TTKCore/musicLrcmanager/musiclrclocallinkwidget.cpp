@@ -1,6 +1,5 @@
 #include "musiclrclocallinkwidget.h"
 #include "ui_musiclrclocallinkwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
@@ -220,7 +219,6 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
 
 int MusicLrcLocalLinkWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

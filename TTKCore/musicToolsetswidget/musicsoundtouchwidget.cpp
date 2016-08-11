@@ -1,6 +1,5 @@
 #include "musicsoundtouchwidget.h"
 #include "ui_musicsoundtouchwidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicaudiorecordercore.h"
 #include "musicmessagebox.h"
 #include "musicobject.h"
@@ -86,8 +85,7 @@ int MusicSoundTouchWidget::exec()
         return -1;
     }
 
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }
 

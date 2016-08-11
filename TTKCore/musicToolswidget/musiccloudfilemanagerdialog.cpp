@@ -1,6 +1,5 @@
 #include "musiccloudfilemanagerdialog.h"
 #include "ui_musiccloudfilemanagerdialog.h"
-#include "musicbackgroundmanager.h"
 #include "musicitemdelegate.h"
 
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
@@ -101,15 +100,13 @@ void MusicCloudFileManagerDialog::updateItemProgress(int percent, const UploadDa
 
 int MusicCloudFileManagerDialog::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }
 
 void MusicCloudFileManagerDialog::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::show();
 }
 

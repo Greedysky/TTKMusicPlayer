@@ -2,7 +2,6 @@
 #include "ui_musiclrcsearchwidget.h"
 #include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
@@ -96,7 +95,6 @@ void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
 
 int MusicLrcSearchWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

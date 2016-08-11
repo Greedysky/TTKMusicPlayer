@@ -1,7 +1,6 @@
 #include "musiclrcerrorwidget.h"
 #include "ui_musiclrcerrorwidget.h"
 #include "musicuiobject.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 #include <QButtonGroup>
@@ -96,7 +95,6 @@ void MusicLrcErrorWidget::confirmButtonClicked()
 
 int MusicLrcErrorWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

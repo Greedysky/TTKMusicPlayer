@@ -3,7 +3,6 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicsongtag.h"
-#include "musicbackgroundmanager.h"
 #include "musicmessagebox.h"
 
 MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
@@ -136,7 +135,6 @@ void MusicFileInformationWidget::saveModifyData()
 
 int MusicFileInformationWidget::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

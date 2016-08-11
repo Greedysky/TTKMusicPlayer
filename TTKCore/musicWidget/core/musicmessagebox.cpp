@@ -1,6 +1,5 @@
 #include "musicmessagebox.h"
 #include "ui_musicmessagebox.h"
-#include "musicbackgroundmanager.h"
 #include "musicuiobject.h"
 
 #include <QButtonGroup>
@@ -88,15 +87,13 @@ void MusicMessageBox::buttonClicked(int index)
 
 int MusicMessageBox::exec()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveDialog::exec();
     return m_status;
 }
 
 void MusicMessageBox::show()
 {
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    ui->background->setPixmap(pix.scaled( size() ));
+    setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveDialog::show();
 }
