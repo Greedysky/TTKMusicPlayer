@@ -6,7 +6,7 @@
 #include "musicttkuiobject.h"
 
 #include <QBoxLayout>
-#include <QDebug>
+
 #define PREVIOUS_COLOR  QColor(187, 187, 187)
 #define HOVER_COLOR     QColor(255, 255, 255)
 

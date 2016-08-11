@@ -2,7 +2,6 @@
 #include "musicsettingmanager.h"
 
 #include <QPainter>
-#include <QDebug>
 
 MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     : QWidget(parent)

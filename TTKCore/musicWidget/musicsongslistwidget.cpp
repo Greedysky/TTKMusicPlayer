@@ -13,7 +13,6 @@
 #include <QAction>
 #include <QTimer>
 #include <QPainter>
-#include <QDebug>
 
 #define ROW_HIGHT   30
 

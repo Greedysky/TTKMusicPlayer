@@ -6,7 +6,6 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QProgressBar>
-#include<QDebug>
 
 MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
