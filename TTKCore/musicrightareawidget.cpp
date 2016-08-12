@@ -388,6 +388,16 @@ void MusicRightAreaWidget::musicButtonStyleClear(bool fore)
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
 {
+    if(MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget))
+    {
+        MusicVideoPlayWidget *video = MStatic_cast(MusicVideoPlayWidget*, m_stackedFuncWidget);
+        if(video->isPopup())
+        {
+            video->raise();
+            video->videoResearchButtonSearched(name);
+            return;
+        }
+    }
     musicFunctionClicked(3);
     MusicVideoPlayWidget *video = MStatic_cast(MusicVideoPlayWidget*, m_stackedFuncWidget);
     if(video)

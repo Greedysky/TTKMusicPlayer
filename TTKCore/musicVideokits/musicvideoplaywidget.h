@@ -36,6 +36,11 @@ public:
     /*!
      * Get class object name.
      */
+
+    bool isPopup() const;
+    /*!
+     * Get the window is popup or not.
+     */
     void resizeWindow(bool resize);
     /*!
      * Resize widget size or not.
@@ -113,6 +118,7 @@ protected:
      * Override the widget event.
      */
 
+    bool m_windowPopup;
     QWidget *m_topWidget;
     QLabel *m_textLabel;
     QPushButton *m_searchButton, *m_closeButton, *m_winTopButton;

@@ -112,7 +112,8 @@ void MusicVideoView::setMedia(const QString &data)
 {
     m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data,
                            (int)m_videoWidget->winId());
-    QTimer::singleShot(5*MT_S2MS, this, SLOT(stop()));
+    m_videoControl->setQualityActionState();
+    QTimer::singleShot(10*MT_S2MS, this, SLOT(stop()));
 }
 
 void MusicVideoView::resizeWindow(int width, int height)
@@ -145,6 +146,7 @@ void MusicVideoView::stop()
     {
         m_mediaPlayer->stop();
         m_barrageCore->stop();
+
         MusicMessageBox message;
         message.setText(tr("Session time out, try again!"));
         message.exec();

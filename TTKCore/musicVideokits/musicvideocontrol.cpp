@@ -114,9 +114,8 @@ void MusicVideoControl::setFixedSize(int w, int h)
     m_timeSlider->setFixedWidth(w);
 }
 
-void MusicVideoControl::show()
+void MusicVideoControl::setQualityActionState()
 {
-    QWidget::show();
     m_qualityButton->setQualityActionState();
 }
 

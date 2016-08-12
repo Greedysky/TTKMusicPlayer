@@ -20,7 +20,7 @@
 #define WINDOW_WIDTH    661
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
-    : MusicAbstractMoveWidget(parent)
+    : MusicAbstractMoveWidget(parent), m_windowPopup(popup)
 {
     if(popup)
     {
@@ -76,6 +76,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
         m_winTopButton->setToolTip(tr("windowTopOn"));
         connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
         topLayout->addWidget(m_winTopButton);
+        m_winTopButton->setEnabled(false);
 
         m_closeButton = new QPushButton(this);
         m_closeButton->setToolTip(tr("Close"));
@@ -134,33 +135,9 @@ QString MusicVideoPlayWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicVideoPlayWidget::setObjectToClose(QObject *object)
+bool MusicVideoPlayWidget::isPopup() const
 {
-    if(m_closeButton)
-    {
-        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(deleteStackedFuncWidget()));
-    }
-}
-
-QString MusicVideoPlayWidget::getSearchText() const
-{
-    return m_searchEdit->text().trimmed();
-}
-
-void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicAbstractMoveWidget::resizeEvent(event);
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-    if(!isFullScreen())
-    {
-        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
-    }
-}
-
-void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
+    return m_windowPopup;
 }
 
 void MusicVideoPlayWidget::resizeWindow(bool resize)
@@ -197,49 +174,25 @@ void MusicVideoPlayWidget::resizeWindow(int width, int height)
     m_videoFloatWidget->resizeWindow(width, height);
 }
 
+void MusicVideoPlayWidget::setObjectToClose(QObject *object)
+{
+    if(m_closeButton)
+    {
+        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(deleteStackedFuncWidget()));
+    }
+}
+
+QString MusicVideoPlayWidget::getSearchText() const
+{
+    return m_searchEdit->text().trimmed();
+}
+
 void MusicVideoPlayWidget::switchToSearchTable()
 {
     m_searchEdit->show();
     m_searchButton->show();
 
     m_stackedWidget->setCurrentIndex(1);
-}
-
-void MusicVideoPlayWidget::freshButtonClicked()
-{
-    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
-    emit freshButtonClicked( text == tr("PopupMode"));
-}
-
-void MusicVideoPlayWidget::fullscreenButtonClicked()
-{
-    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("PopupMode"))
-    {
-        return;
-    }
-
-    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) ==
-                                tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
-    emit fullscreenButtonClicked( text == tr("NormalMode"));
-}
-
-void MusicVideoPlayWidget::downloadButtonClicked()
-{
-    m_videoTable->downloadLocalFromControl();
-}
-
-void MusicVideoPlayWidget::shareButtonClicked()
-{
-    QString text = m_textLabel->text().trimmed();
-    if(text.isEmpty())
-    {
-        return;
-    }
-
-    MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName(text);
-    shareWidget.exec();
 }
 
 void MusicVideoPlayWidget::searchButtonClicked()
@@ -281,4 +234,57 @@ void MusicVideoPlayWidget::mvURLNameChanged(const QString &name, const QString &
 {
     m_textLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 275));
     mvURLChanged(data);
+}
+
+void MusicVideoPlayWidget::freshButtonClicked()
+{
+    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
+    emit freshButtonClicked( text == tr("PopupMode"));
+}
+
+void MusicVideoPlayWidget::fullscreenButtonClicked()
+{
+    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("PopupMode"))
+    {
+        return;
+    }
+
+    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) ==
+                                tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
+    emit fullscreenButtonClicked( text == tr("NormalMode"));
+}
+
+void MusicVideoPlayWidget::downloadButtonClicked()
+{
+    m_videoTable->downloadLocalFromControl();
+}
+
+void MusicVideoPlayWidget::shareButtonClicked()
+{
+    QString text = m_textLabel->text().trimmed();
+    if(text.isEmpty())
+    {
+        return;
+    }
+
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setSongName(text);
+    shareWidget.exec();
+}
+
+void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicAbstractMoveWidget::resizeEvent(event);
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    if(!isFullScreen())
+    {
+        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+    }
+}
+
+void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
 }

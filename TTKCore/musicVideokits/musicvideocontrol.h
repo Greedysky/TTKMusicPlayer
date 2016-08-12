@@ -62,6 +62,10 @@ public:
     /*!
      * Resize width bound by given width and height.
      */
+    void setQualityActionState();
+    /*!
+     * Set quality action state enable or disable.
+     */
 
 Q_SIGNALS:
     void mvURLChanged(const QString &data);
@@ -83,10 +87,6 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void show();
-    /*!
-     * Override show function.
-     */
     void pushBarrageClicked();
     /*!
      * Push barrage clicked.
