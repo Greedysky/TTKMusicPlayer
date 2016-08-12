@@ -261,7 +261,7 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
 
-    m_currentIndex = -1;
+    m_currentIndex = 0;
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
@@ -359,7 +359,11 @@ void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)
     // Add item and make sure it stretches the remaining space.
     MusicSongsToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemList.count(), text, this);
     it->addItem(item);
+    it->setItemHide(true);
+
     m_itemList.append(it);
+    m_currentIndex = m_itemList.count() - 1;
+
     m_layout->addWidget(it);
     m_layout->addStretch(5);
 }

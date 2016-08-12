@@ -63,7 +63,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     //The default Volume is 100
 
     m_playControl = true;//The default in the suspended state
-    m_currentMusicSongTreeIndex = 0;
+    m_currentMusicSongTreeIndex = -1;
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
