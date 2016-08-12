@@ -138,6 +138,10 @@ public Q_SLOTS:
     /*!
      * Import music songs by dir.
      */
+    void musicPlayIndex(int row);
+    /*!
+     * Set current row index music to play.
+     */
     void musicPlayIndex(int row, int col);
     /*!
      * Set current row index music to play.

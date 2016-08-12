@@ -21,6 +21,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     m_currentDeleteIndex = -1;
     m_toolDeleteChanged = false;
 
+    connect(this, SIGNAL(musicPlayIndex(int)), parent, SLOT(musicPlayIndex(int)));
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
     connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
 
@@ -205,7 +206,7 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     if(m_currentIndexs == id)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
-        emit musicPlayIndex(-1, 0);
+        emit musicPlayIndex(-1);
     }
     else if(m_currentIndexs > id)
     {
@@ -243,7 +244,7 @@ void MusicSongsSummarizied::deleteRowItemAll(int index)
 void MusicSongsSummarizied::deleteRowItems()
 {
     MusicSongsToolBoxWidget::setCurrentIndex(0);
-    emit musicPlayIndex(-1, 0);
+    emit musicPlayIndex(-1);
 
     for(int i = m_songItems.count() - 1; i>2; --i)
     {

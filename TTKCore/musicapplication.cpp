@@ -735,9 +735,9 @@ void MusicApplication::musicImportSongs()
     menu.exec(QCursor::pos());
 }
 
-void MusicApplication::musicPlayIndex(int row, int)
+void MusicApplication::musicPlayIndex(int row)
 {
-    m_musicPlayer->stop();//stop playing the previous song
+    m_musicPlayer->stop();
     if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex())
     {
         m_musicList->clear();
@@ -745,6 +745,14 @@ void MusicApplication::musicPlayIndex(int row, int)
         m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
         m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
     }
+    m_musicList->blockSignals(true);
+    m_musicList->setCurrentIndex(row);
+    m_musicList->blockSignals(false);
+}
+
+void MusicApplication::musicPlayIndex(int row, int)
+{
+    musicPlayIndex(row);
     if(!m_musicSongTree->searchFileListEmpty())
     {
         row = m_musicSongTree->getSearchFileListIndexAndClear(row);

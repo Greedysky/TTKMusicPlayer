@@ -126,6 +126,10 @@ Q_SIGNALS:
     /*!
      * Clear current search lineedit text.
      */
+    void musicPlayIndex(int row);
+    /*!
+     * Set current row index music to play.
+     */
     void musicPlayIndex(int row, int col);
     /*!
      * Set current row index music to play.
