@@ -202,9 +202,23 @@ void MusicSongsSummarizied::deleteRowItem(int index)
         return;
     }
 
+    if(m_currentIndexs == id)
+    {
+        MusicSongsToolBoxWidget::setCurrentIndex(0);
+        emit musicPlayIndex(-1, 0);
+    }
+    else if(m_currentIndexs > id)
+    {
+        MusicSongsToolBoxWidget::setCurrentIndex(--m_currentIndexs);
+    }
+
     MusicSongItem item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
+    foreach(MusicSongItem item, m_songItems)
+    {
+        item.m_itemObject->setParentToolIndex( foundMappingIndex(item.m_itemIndex) );
+    }
 }
 
 void MusicSongsSummarizied::deleteRowItemAll(int index)
@@ -228,6 +242,9 @@ void MusicSongsSummarizied::deleteRowItemAll(int index)
 
 void MusicSongsSummarizied::deleteRowItems()
 {
+    MusicSongsToolBoxWidget::setCurrentIndex(0);
+    emit musicPlayIndex(-1, 0);
+
     for(int i = m_songItems.count() - 1; i>2; --i)
     {
         MusicSongItem item = m_songItems.takeLast();
@@ -451,25 +468,10 @@ void MusicSongsSummarizied::updateCurrentArtist()
     m_songItems[m_currentIndexs].m_itemObject->updateCurrentArtist();
 }
 
-int MusicSongsSummarizied::foundMappingIndex(int index)
-{
-    int id = -1;
-    for(int i=0; i<m_songItems.count(); ++i)
-    {
-        if(m_songItems[i].m_itemIndex == index)
-        {
-            id = i;
-            break;
-        }
-    }
-    return id;
-}
-
 void MusicSongsSummarizied::addNewRowItem(const QString &name)
 {
     MusicSongItem item;
     item.m_itemName = name;
-    item.m_itemIndex = m_songItems.count();
     m_songItems << item;
     createWidgetItem(&m_songItems.last());
 
@@ -479,9 +481,11 @@ void MusicSongsSummarizied::addNewRowItem(const QString &name)
 
 void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListWidget *w = new MusicSongsListWidget(item->m_itemIndex, this);
+    MusicSongsListWidget *w = new MusicSongsListWidget(-1, this);
     item->m_itemObject = w;
+    item->m_itemIndex = m_itemIndexRaise;
     addItem(w, item->m_itemName);
+    w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
     connect(w, SIGNAL(cellDoubleClicked(int,int)), m_supperClass, SLOT(musicPlayIndex(int,int)));
     connect(w, SIGNAL(musicPlayOrder()), m_supperClass, SLOT(musicPlayOrder()));
@@ -497,12 +501,12 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
                SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
     ///connect to items
-    connect(m_itemList.last(), SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
-    connect(m_itemList.last(), SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
-    connect(m_itemList.last(), SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
-    connect(m_itemList.last(), SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
-    connect(m_itemList.last(), SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
-    connect(m_itemList.last(), SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
 
     w->setSongsFileName(&item->m_songs);
     setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));

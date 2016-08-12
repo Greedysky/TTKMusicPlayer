@@ -220,10 +220,6 @@ public Q_SLOTS:
      */
 
 protected:
-    int foundMappingIndex(int index);
-    /*!
-     * Found mapped index in container.
-     */
     void addNewRowItem(const QString &name);
     /*!
      * Add new play list item by name.

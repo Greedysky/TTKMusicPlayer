@@ -48,6 +48,10 @@ public:
      * Clear All Items.
      */
 
+    void setParentToolIndex(int index);
+    /*!
+     * Set parent tool index.
+     */
     int allRowsHeight() const;
     /*!
      * Get all rows height.

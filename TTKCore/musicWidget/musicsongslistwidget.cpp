@@ -108,6 +108,11 @@ void MusicSongsListWidget::clearAllItems()
     setColumnCount(3);
 }
 
+void MusicSongsListWidget::setParentToolIndex(int index)
+{
+    m_parentToolIndex = index;
+}
+
 int MusicSongsListWidget::allRowsHeight() const
 {
     int height = 0;

@@ -158,13 +158,13 @@ public:
      * Get title text.
      */
 
-    void setItemHide(bool hide);
+    void setItemExpand(bool expand);
     /*!
      * Set item widget to hide or not.
      */
-    bool itemHide() const;
+    bool itemExpand() const;
     /*!
-     * Get item widget hide state.
+     * Get item widget expand state.
      */
 
     int count() const;
@@ -213,6 +213,18 @@ protected:
 
 
 class QScrollArea;
+
+typedef struct MUSIC_TOOL_EXPORT MusicToolBoxWidgetItem
+{
+    int m_itemIndex;
+    MusicSongsToolBoxWidgetItem* m_widgetItem;
+
+    MusicToolBoxWidgetItem()
+    {
+        m_itemIndex = -1;
+        m_widgetItem = nullptr;
+    }
+}MusicToolBoxWidgetItem;
 
 /*! @brief The class of the tool box widget.
  * @author Greedysky <greedysky@163.com>
@@ -279,11 +291,15 @@ protected:
     /*!
      * Override the widget event.
      */
+    int foundMappingIndex(int index);
+    /*!
+     * Found mapped index in container.
+     */
 
-    int m_currentIndex;
+    int m_currentIndex, m_itemIndexRaise;
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
-    QList<MusicSongsToolBoxWidgetItem*> m_itemList;
+    QList<MusicToolBoxWidgetItem> m_itemList;
 
 };
 

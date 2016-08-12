@@ -222,16 +222,16 @@ QString MusicSongsToolBoxWidgetItem::getTitle() const
     return m_topWidget->getTitle();
 }
 
-void MusicSongsToolBoxWidgetItem::setItemHide(bool hide)
+void MusicSongsToolBoxWidgetItem::setItemExpand(bool expand)
 {
-    m_topWidget->setItemExpand(hide);
+    m_topWidget->setItemExpand(expand);
     foreach(QWidget *w, m_itemList)
     {
-        w->setVisible(hide);
+        w->setVisible(expand);
     }
 }
 
-bool MusicSongsToolBoxWidgetItem::itemHide() const
+bool MusicSongsToolBoxWidgetItem::itemExpand() const
 {
     if(!m_itemList.isEmpty())
     {
@@ -261,7 +261,9 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
 
-    m_currentIndex = 0;
+    m_currentIndex = -1;
+    m_itemIndexRaise = 0;
+
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
@@ -293,7 +295,7 @@ MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
 {
     while(!m_itemList.isEmpty())
     {
-        delete m_itemList.takeLast();
+        delete m_itemList.takeLast().m_widgetItem;
     }
     delete m_layout;
     delete m_scrollArea;
@@ -309,17 +311,17 @@ void MusicSongsToolBoxWidget::setCurrentIndex(int index)
     m_currentIndex = index;
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        m_itemList[i]->setItemHide( i== index );
+        m_itemList[i].m_widgetItem->setItemExpand( i == index );
     }
 }
 
 void MusicSongsToolBoxWidget::mousePressAt(int index)
 {
-    m_currentIndex = index;
+    m_currentIndex = foundMappingIndex(index);
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        bool hide = (i== index) ? !m_itemList[i]->itemHide() : false;
-        m_itemList[i]->setItemHide(hide);
+        bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
+        m_itemList[i].m_widgetItem->setItemExpand(hide);
     }
 }
 
@@ -353,15 +355,19 @@ void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)
     //hide before widget
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        m_itemList[i]->setItemHide(false);
+        m_itemList[i].m_widgetItem->setItemExpand(false);
     }
 
     // Add item and make sure it stretches the remaining space.
-    MusicSongsToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemList.count(), text, this);
+    MusicSongsToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemIndexRaise, text, this);
     it->addItem(item);
-    it->setItemHide(true);
+    it->setItemExpand(true);
 
-    m_itemList.append(it);
+    MusicToolBoxWidgetItem widgetItem;
+    widgetItem.m_widgetItem = it;
+    widgetItem.m_itemIndex = m_itemIndexRaise++;
+    m_itemList.append(widgetItem);
+
     m_currentIndex = m_itemList.count() - 1;
 
     m_layout->addWidget(it);
@@ -372,13 +378,13 @@ void MusicSongsToolBoxWidget::removeItem(QWidget *item)
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         for(int j=0; j<it->count(); ++j)
         {
             if(it->item(j) == item)
             {
                 m_layout->removeWidget(item);
-                m_itemList.takeAt(i)->deleteLater();
+                m_itemList.takeAt(i).m_widgetItem->deleteLater();
                 m_currentIndex = 0;
                 return;
             }
@@ -390,7 +396,7 @@ void MusicSongsToolBoxWidget::setTitle(QWidget *item, const QString &text)
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         for(int j=0; j<it->count(); ++j)
         {
             if(it->item(j) == item)
@@ -406,7 +412,7 @@ QString MusicSongsToolBoxWidget::getTitle(QWidget *item) const
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i];
+        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         for(int j=0; j<it->count(); ++j)
         {
             if(it->item(j) == item)
@@ -426,4 +432,18 @@ void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)
 void MusicSongsToolBoxWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
+}
+
+int MusicSongsToolBoxWidget::foundMappingIndex(int index)
+{
+    int id = -1;
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        if(m_itemList[i].m_itemIndex == index)
+        {
+            id = i;
+            break;
+        }
+    }
+    return id;
 }
