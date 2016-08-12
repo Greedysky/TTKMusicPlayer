@@ -873,7 +873,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
 
 QString MusicApplication::getCurrentFileName() const
 {
-    if(m_musicList->currentIndex() == -1)
+    if(m_musicList->currentIndex() < 0 || m_currentMusicSongTreeIndex < 0)
     {
         return QString();
     }
