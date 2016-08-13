@@ -15,7 +15,6 @@
 
 #define LINE_WIDTH 380
 
-class QMovie;
 class QProcess;
 
 namespace Ui {
@@ -103,7 +102,6 @@ protected:
 
     Ui::MusicTransformWidget *ui;
     QProcess *m_process;
-    QMovie *m_movie;
     QStringList m_path;
     TransformType m_currentType;
 

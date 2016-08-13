@@ -19,7 +19,7 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_picIndex = -1;
+    m_picIndex = 21;
     m_reverse = false;
 
 }
@@ -46,7 +46,7 @@ void MusicTimerSliderWidget::setPlayState(bool state)
 {
     if(!state)
     {
-        m_timer.start(200);
+        m_timer.start(100);
         m_label->show();
         m_label->raise();
     }
@@ -97,21 +97,21 @@ void MusicTimerSliderWidget::setSliderStyleByType(int type)
 
 void MusicTimerSliderWidget::timeout()
 {
-    if(!m_reverse)
+    if(m_reverse)
     {
-        if(++m_picIndex == 6)
-        {
-            m_reverse = true;
-        }
-    }
-    else
-    {
-        if(--m_picIndex == 0)
+        if(++m_picIndex == 20)
         {
             m_reverse = false;
         }
     }
-    m_label->setPixmap(QPixmap(":/slidergif/lb_" + QString::number(m_picIndex)));
+    else
+    {
+        if(--m_picIndex == 1)
+        {
+            m_reverse = true;
+        }
+    }
+    m_label->setPixmap(QPixmap(":/gif/lb_" + QString::number(m_picIndex)));
 }
 
 void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)

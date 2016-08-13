@@ -127,13 +127,13 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QLabel" name="loadingLabel">
+  <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>57</x>
-     <y>345</y>
-     <width>220</width>
-     <height>19</height>
+     <x>220</x>
+     <y>250</y>
+     <width>58</width>
+     <height>58</height>
     </rect>
    </property>
    <property name="text">
@@ -304,7 +304,6 @@
   <zorder>label_2</zorder>
   <zorder>inputButton</zorder>
   <zorder>outputButton</zorder>
-  <zorder>loadingLabel</zorder>
   <zorder>listWidget</zorder>
   <zorder>formatCombo</zorder>
   <zorder>label_4</zorder>
@@ -317,7 +316,15 @@
   <zorder>transformButton</zorder>
   <zorder>folderBox</zorder>
   <zorder>krc2lrcBox</zorder>
+  <zorder>loadingLabel</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QLabel</extends>
+   <header>musicgiflabelwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

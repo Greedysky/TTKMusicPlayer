@@ -7,7 +7,6 @@
 #include "musicutils.h"
 #include "musicsongssummarizied.h"
 
-#include <QMovie>
 #include <QDateTime>
 #include <QFileDialog>
 #include <QButtonGroup>
@@ -15,7 +14,7 @@
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicLocalSongsManagerWidget), m_movie(nullptr)
+      ui(new Ui::MusicLocalSongsManagerWidget)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     ui->setupUi(this);
@@ -40,6 +39,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     ui->scanButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->scanCustButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->searchLineLabel->setCursor(QCursor(Qt::PointingHandCursor));
+
+    ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
 
     ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
@@ -88,7 +89,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
     M_CONNECTION_PTR->poolDisConnect(getClassName() );
-    delete m_movie;
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;
@@ -191,8 +191,7 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
     }
 
     ui->loadingLabel->show();
-    ui->loadingLabel->setMovie(m_movie = new QMovie(":/toolSets/ib_loading", QByteArray(),this));
-    m_movie->start();
+    ui->loadingLabel->start();
     m_thread->start();
 }
 
@@ -259,8 +258,8 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 {
     M_LOGGER_INFO("stop fetch!");
     ui->loadingLabel->hide();
-    delete m_movie;
-    m_movie = nullptr;
+    ui->loadingLabel->stop();
+
     clearAllItems();
     addAllItems( m_filenames = name );
 }

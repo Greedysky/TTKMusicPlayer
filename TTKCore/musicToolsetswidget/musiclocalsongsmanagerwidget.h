@@ -16,7 +16,6 @@
 #include "musicabstractmovedialog.h"
 #include <QFileInfo>
 
-class QMovie;
 class MusicLocalSongsManagerThread;
 
 namespace Ui {
@@ -122,7 +121,6 @@ protected:
 
     Ui::MusicLocalSongsManagerWidget *ui;
     int m_currentIndex;
-    QMovie *m_movie;
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;
     MusicObject::MIntsListMap m_searchfileListCache;

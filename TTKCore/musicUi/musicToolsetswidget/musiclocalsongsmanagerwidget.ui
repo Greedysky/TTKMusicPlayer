@@ -273,13 +273,13 @@ background:rgba(255,255,255,50)</string>
    <zorder>searchLineLabel</zorder>
    <zorder>filterComboBox</zorder>
   </widget>
-  <widget class="QLabel" name="loadingLabel">
+  <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>240</y>
-     <width>220</width>
-     <height>19</height>
+     <x>380</x>
+     <y>235</y>
+     <width>58</width>
+     <height>58</height>
     </rect>
    </property>
    <property name="text">
@@ -292,6 +292,11 @@ background:rgba(255,255,255,50)</string>
    <class>MusicLocalSongsTableWidget</class>
    <extends>QTableWidget</extends>
    <header>musiclocalsongstablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QLabel</extends>
+   <header>musicgiflabelwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

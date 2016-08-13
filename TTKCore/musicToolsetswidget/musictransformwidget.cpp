@@ -3,7 +3,6 @@
 #include "musicmessagebox.h"
 #include "musicutils.h"
 
-#include <QMovie>
 #include <QSound>
 #include <QProcess>
 #include <QFileDialog>
@@ -11,7 +10,7 @@
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicTransformWidget), m_movie(nullptr)
+      ui(new Ui::MusicTransformWidget)
 {
     ui->setupUi(this);
     
@@ -54,6 +53,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     ui->krc2lrcBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     connect(ui->krc2lrcBox, SIGNAL(clicked(bool)), SLOT(krc2lrcBoxChecked(bool)));
 
+    ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_currentType = Music;
     initControlParameter();
 }
@@ -61,7 +61,6 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
 MusicTransformWidget::~MusicTransformWidget()
 {
     m_process->kill();
-    delete m_movie;
     delete m_process;
     delete ui;
 }
@@ -195,8 +194,7 @@ void MusicTransformWidget::transformFinish()
         }
         ui->inputLineEdit->clear();
         ui->loadingLabel->hide();
-        delete m_movie;
-        m_movie = nullptr;
+        ui->loadingLabel->stop();
     }
 }
 
@@ -259,8 +257,7 @@ void MusicTransformWidget::startTransform()
     }
     ///////////////////////////////////////////////////////////
     ui->loadingLabel->show();
-    ui->loadingLabel->setMovie(m_movie = new QMovie(":/toolSets/ib_loading", QByteArray(), this));
-    m_movie->start();
+    ui->loadingLabel->start();
     setCheckedControl(false);
 }
 
