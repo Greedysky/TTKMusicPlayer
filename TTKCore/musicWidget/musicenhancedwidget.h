@@ -33,13 +33,33 @@ public:
      * Get class object name.
      */
 
+    void setStyleSheet(const QString &styleSheet, bool state = false);
+    /*!
+     * Set object style sheet.
+     */
+    void start();
+    /*!
+     * Start label animation .
+     */
+    void stop();
+    /*!
+     * Stop label animation.
+     */
+
+private Q_SLOTS:
+    void finished();
+    /*!
+     * Label animation just finished.
+     */
+
 protected:
     virtual void enterEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
 
-    QLabel *m_label;
+    bool m_state;
+    QLabel *m_foreLabel, *m_animationLabel;
     QPropertyAnimation *m_animation;
 };
 
@@ -77,6 +97,10 @@ public Q_SLOTS:
     /*!
      * Case button on and off.
      */
+    void buttonAnimationChanged(bool state);
+    /*!
+     * Button animation state changed.
+     */
 
 protected:
     void initWidget();
@@ -86,8 +110,7 @@ protected:
 
     int m_lastSelectedIndex;
     QToolButton *m_caseButton;
-    MusicEnhancedToolButton *m_Button1, *m_Button2, *m_Button3, *m_Button4;
-
+    QList<MusicEnhancedToolButton*> m_buttons;
 
 };
 

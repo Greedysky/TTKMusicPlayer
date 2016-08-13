@@ -13,6 +13,39 @@
 #include <QToolButton>
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the tool menu.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicToolMenu : public QMenu
+{
+    Q_OBJECT
+public:
+    explicit MusicToolMenu(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+Q_SIGNALS:
+    void windowStateChanged(bool state);
+    /*!
+     * Window state changed.
+     */
+
+protected:
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+};
+
+
 /*! @brief The class of the tool menu base widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -38,7 +71,7 @@ public Q_SLOTS:
      */
 
 protected:
-    QMenu *m_menu;
+    MusicToolMenu *m_menu;
     QWidget *m_containWidget;
 
 };

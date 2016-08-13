@@ -2,12 +2,36 @@
 
 #include <QWidgetAction>
 
+MusicToolMenu::MusicToolMenu(QWidget *parent)
+    : QMenu(parent)
+{
+
+}
+
+QString MusicToolMenu::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicToolMenu::showEvent(QShowEvent *event)
+{
+    QMenu::showEvent(event);
+    emit windowStateChanged(true);
+}
+
+void MusicToolMenu::hideEvent(QHideEvent *event)
+{
+    QMenu::hideEvent(event);
+    emit windowStateChanged(false);
+}
+
+
 MusicToolMenuWidget::MusicToolMenuWidget(QWidget *parent)
     : QToolButton(parent)
 {
     setCursor(Qt::PointingHandCursor);
 
-    m_menu = new QMenu(this);
+    m_menu = new MusicToolMenu(this);
     QWidgetAction *actionWidget = new QWidgetAction(m_menu);
     m_containWidget = new QWidget(m_menu);
 

@@ -26,7 +26,6 @@ QString MusicVideoBarrageStylePopWidget::getClassName()
     return staticMetaObject.className();
 }
 
-
 int MusicVideoBarrageStylePopWidget::getBarrageSize() const
 {
     return m_barrageSize;

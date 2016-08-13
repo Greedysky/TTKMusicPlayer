@@ -149,7 +149,6 @@ void MusicEqualizerDialog::writeEqInformation() const
           ui->verticalSlider6->value()).arg(ui->verticalSlider7->value()).arg(
           ui->verticalSlider8->value()).arg(ui->verticalSlider9->value()).arg(
           ui->verticalSlider10->value()));
-
 }
 
 void MusicEqualizerDialog::verticalSliderChanged(int)
@@ -175,31 +174,30 @@ void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
     emit setEnaleEffect(m_eable);
-    ui->showEqButton->setStyleSheet(!m_eable ? MusicUIObject::MKGEqualizerOff :
-                                               MusicUIObject::MKGEqualizerOn);
+    ui->showEqButton->setStyleSheet(!m_eable ? MusicUIObject::MKGEqualizerOff : MusicUIObject::MKGEqualizerOn);
 
-    setControlEnable(!m_eable);
+    setControlEnable(m_eable);
     if(m_eable)
     {
         emitParameter();
     }
 }
 
-void MusicEqualizerDialog::setControlEnable(bool) const
+void MusicEqualizerDialog::setControlEnable(bool enable) const
 {
-    ui->bwVerticalSlider->setEnabled(m_eable);
-    ui->verticalSlider1->setEnabled(m_eable);
-    ui->verticalSlider2->setEnabled(m_eable);
-    ui->verticalSlider3->setEnabled(m_eable);
-    ui->verticalSlider4->setEnabled(m_eable);
-    ui->verticalSlider5->setEnabled(m_eable);
-    ui->verticalSlider6->setEnabled(m_eable);
-    ui->verticalSlider7->setEnabled(m_eable);
-    ui->verticalSlider8->setEnabled(m_eable);;
-    ui->verticalSlider9->setEnabled(m_eable);
-    ui->verticalSlider10->setEnabled(m_eable);
-    ui->eqChoice->setEnabled(m_eable);
-    ui->resetButton->setEnabled(m_eable);
+    ui->bwVerticalSlider->setEnabled(enable);
+    ui->verticalSlider1->setEnabled(enable);
+    ui->verticalSlider2->setEnabled(enable);
+    ui->verticalSlider3->setEnabled(enable);
+    ui->verticalSlider4->setEnabled(enable);
+    ui->verticalSlider5->setEnabled(enable);
+    ui->verticalSlider6->setEnabled(enable);
+    ui->verticalSlider7->setEnabled(enable);
+    ui->verticalSlider8->setEnabled(enable);;
+    ui->verticalSlider9->setEnabled(enable);
+    ui->verticalSlider10->setEnabled(enable);
+    ui->eqChoice->setEnabled(enable);
+    ui->resetButton->setEnabled(enable);
 }
 
 void MusicEqualizerDialog::resetEq()
