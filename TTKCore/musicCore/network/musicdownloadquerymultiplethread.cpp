@@ -20,11 +20,6 @@ MusicDownLoadQueryMultipleThread::MusicDownLoadQueryMultipleThread(QObject *pare
 
 }
 
-MusicDownLoadQueryMultipleThread::~MusicDownLoadQueryMultipleThread()
-{
-
-}
-
 QString MusicDownLoadQueryMultipleThread::getClassName()
 {
     return staticMetaObject.className();

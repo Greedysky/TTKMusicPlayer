@@ -38,7 +38,6 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicDownLoadQueryMultipleThread();
 
     static QString getClassName();
     /*!

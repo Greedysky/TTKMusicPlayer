@@ -134,7 +134,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }
-    else if(from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicRightAreaWidget::getClassName() )
+    else if(from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicRightAreaWidget::getClassName())
     {
         QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
                                 SLOT(songResearchButtonSearched(QString)));
@@ -161,6 +161,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if( from == MusicSongsListWidget::getClassName() && to == MusicRightAreaWidget::getClassName() )
     {
+        QObject::connect(first, SIGNAL(restartSearchQuery(QString)), second,
+                                SLOT(songResearchButtonSearched(QString)));
         QObject::connect(first, SIGNAL(musicSongMovieClicked(QString)), second,
                                 SLOT(musicVideoButtonSearched(QString)));
         QObject::connect(first, SIGNAL(musicSimilarFound(QString)), second,

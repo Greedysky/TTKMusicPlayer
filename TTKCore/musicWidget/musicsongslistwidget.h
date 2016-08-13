@@ -140,6 +140,10 @@ Q_SIGNALS:
     /*!
      * Music similar function that by string.
      */
+    void restartSearchQuery(const QString &name);
+    /*!
+     * Restart search query by name.
+     */
 
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
@@ -209,6 +213,14 @@ public Q_SLOTS:
     void musicSongTransferWidget();
     /*!
      * Open music song transfer widget.
+     */
+    void musicSongDownload();
+    /*!
+     * Open music song download widget.
+     */
+    void musicSearchQuery(QAction *action);
+    /*!
+     * Open music song search query.
      */
     void setItemRenameFinished(const QString &name);
     /*!

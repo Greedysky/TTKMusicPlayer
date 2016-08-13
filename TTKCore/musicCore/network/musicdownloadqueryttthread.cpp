@@ -19,11 +19,6 @@ MusicDownLoadQueryTTThread::MusicDownLoadQueryTTThread(QObject *parent)
 
 }
 
-MusicDownLoadQueryTTThread::~MusicDownLoadQueryTTThread()
-{
-
-}
-
 QString MusicDownLoadQueryTTThread::getClassName()
 {
     return staticMetaObject.className();

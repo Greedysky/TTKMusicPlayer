@@ -29,7 +29,6 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicDownLoadQueryTTThread();
 
     static QString getClassName();
     /*!

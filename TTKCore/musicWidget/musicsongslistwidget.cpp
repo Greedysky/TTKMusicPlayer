@@ -12,12 +12,13 @@
 #include "musicconnecttransferwidget.h"
 #include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
+#include "musicdownloadwidget.h"
 
 #include <QUrl>
 #include <QAction>
 #include <QTimer>
 #include <QPainter>
-
+#include <QDebug>
 #define ROW_HIGHT   30
 
 MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
@@ -451,6 +452,46 @@ void MusicSongsListWidget::musicSongTransferWidget()
     transferWidget.exec();
 }
 
+void MusicSongsListWidget::musicSongDownload()
+{
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(getCurrentSongName(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+}
+
+void MusicSongsListWidget::musicSearchQuery(QAction *action)
+{
+    if(action->data().isNull())
+    {
+        return;
+    }
+
+    QString songName = getCurrentSongName();
+    QStringList names = songName.split("-");
+    switch(action->data().toInt())
+    {
+        case 0:
+            if(names.count() >= 1)
+            {
+                emit restartSearchQuery(names[0]);
+            }
+            break;
+        case 1:
+            if(names.count() >= 2)
+            {
+                emit restartSearchQuery(names[1]);
+            }
+            break;
+        case 2:
+            if(names.count() >= 3)
+            {
+                emit restartSearchQuery(names[2]);
+            }
+            break;
+        default: break;
+    }
+}
+
 void MusicSongsListWidget::setItemRenameFinished(const QString &name)
 {
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
@@ -550,7 +591,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("playLater"));
     rightClickMenu.addAction(tr("addToPlayList"));
-    rightClickMenu.addAction(tr("downloadMore..."));
+    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 
     rightClickMenu.addMenu(&musicPlaybackMode);
@@ -657,10 +698,11 @@ void MusicSongsListWidget::createContextMenu(QMenu &menu)
 {
     QString songName = getCurrentSongName();
     QStringList names = songName.split("-");
-    foreach(QString name, names)
+    for(int i=0; i<names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(name.trimmed()));
+        menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i);
     }
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }
 
 QString MusicSongsListWidget::getCurrentSongPath() const

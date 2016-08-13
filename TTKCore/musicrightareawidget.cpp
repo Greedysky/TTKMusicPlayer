@@ -360,7 +360,7 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::songResearchButtonSearched(const QString &name)
 {
-    m_ui->musicSongSearchLine->setText(name);
+    m_ui->musicSongSearchLine->setText(name.trimmed());
     musicFunctionClicked(6);
 }
 

@@ -6,11 +6,6 @@ MusicDownLoadQueryWYThread::MusicDownLoadQueryWYThread(QObject *parent)
 
 }
 
-MusicDownLoadQueryWYThread::~MusicDownLoadQueryWYThread()
-{
-
-}
-
 QString MusicDownLoadQueryWYThread::getClassName()
 {
     return staticMetaObject.className();
