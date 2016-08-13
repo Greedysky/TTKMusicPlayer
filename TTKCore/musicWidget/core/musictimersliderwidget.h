@@ -10,12 +10,11 @@
    =================================================*/
 
 #include <QWidget>
-#include <QTimer>
 #include <QMouseEvent>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-class QLabel;
+class MusicGifLabelWidget;
 class MusicMovingLabelSlider;
 
 /*! @brief The class of the timer slider widget.
@@ -61,10 +60,6 @@ public Q_SLOTS:
     /*!
      * Set slider style diff by diff enhanced effect.
      */
-    void timeout();
-    /*!
-     * To change the pic index that show animation.
-     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -72,10 +67,7 @@ protected:
      * Override the widget event.
      */
 
-    int m_picIndex;
-    bool m_reverse;
-    QLabel *m_label;
-    QTimer m_timer;
+    MusicGifLabelWidget *m_label;
     MusicMovingLabelSlider *m_slider;
 
 };

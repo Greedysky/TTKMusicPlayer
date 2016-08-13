@@ -1,6 +1,7 @@
 #include "musictimersliderwidget.h"
 #include "musicuiobject.h"
 #include "musicmovinglabelslider.h"
+#include "musicgiflabelwidget.h"
 
 #include <qmath.h>
 #include <QLabel>
@@ -8,9 +9,10 @@
 MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_label = new QLabel(this);
-    m_label->setGeometry(15, 5, 36, 36);
+    m_label = new MusicGifLabelWidget(this);
+    m_label->setType(MusicGifLabelWidget::Gif_Ballon_White);
     m_label->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    m_label->move(15, 5);
     m_label->hide();
 
     m_slider = new MusicMovingLabelSlider(Qt::Horizontal, this);
@@ -18,15 +20,10 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     m_slider->setGeometry(15, m_label->width()/2, width() - m_label->width(), 10);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05);
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
-
-    m_picIndex = 21;
-    m_reverse = false;
-
 }
 
 void MusicTimerSliderWidget::setObject(QObject *object) const
 {
-    connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
     connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(musicPlayAnyTimeAt(int)));
 }
@@ -46,13 +43,13 @@ void MusicTimerSliderWidget::setPlayState(bool state)
 {
     if(!state)
     {
-        m_timer.start(100);
         m_label->show();
         m_label->raise();
+        m_label->start();
     }
     else
     {
-        m_timer.stop();
+        m_label->stop();
         m_label->hide();
     }
 }
@@ -93,25 +90,6 @@ void MusicTimerSliderWidget::setSliderStyleByType(int type)
     QString prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
                      "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle05 + prefix);
-}
-
-void MusicTimerSliderWidget::timeout()
-{
-    if(m_reverse)
-    {
-        if(++m_picIndex == 20)
-        {
-            m_reverse = false;
-        }
-    }
-    else
-    {
-        if(--m_picIndex == 1)
-        {
-            m_reverse = true;
-        }
-    }
-    m_label->setPixmap(QPixmap(":/gif/lb_" + QString::number(m_picIndex)));
 }
 
 void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)

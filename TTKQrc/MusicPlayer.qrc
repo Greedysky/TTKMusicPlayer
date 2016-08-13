@@ -141,26 +141,7 @@
         <file alias="lb_radiopng4">../TTKResource/netRadio/lb_top_3.png</file>
     </qresource>
     <qresource prefix="/gif">
-        <file alias="lb_1">../TTKResource/gif/1.png</file>
-        <file alias="lb_2">../TTKResource/gif/2.png</file>
-        <file alias="lb_3">../TTKResource/gif/3.png</file>
-        <file alias="lb_4">../TTKResource/gif/4.png</file>
-        <file alias="lb_5">../TTKResource/gif/5.png</file>
-        <file alias="lb_6">../TTKResource/gif/6.png</file>
-        <file alias="lb_7">../TTKResource/gif/7.png</file>
-        <file alias="lb_8">../TTKResource/gif/8.png</file>
-        <file alias="lb_9">../TTKResource/gif/9.png</file>
-        <file alias="lb_10">../TTKResource/gif/10.png</file>
-        <file alias="lb_11">../TTKResource/gif/11.png</file>
-        <file alias="lb_12">../TTKResource/gif/12.png</file>
-        <file alias="lb_13">../TTKResource/gif/13.png</file>
-        <file alias="lb_14">../TTKResource/gif/14.png</file>
-        <file alias="lb_15">../TTKResource/gif/15.png</file>
-        <file alias="lb_16">../TTKResource/gif/16.png</file>
-        <file alias="lb_17">../TTKResource/gif/17.png</file>
-        <file alias="lb_18">../TTKResource/gif/18.png</file>
-        <file alias="lb_19">../TTKResource/gif/19.png</file>
-        <file alias="lb_20">../TTKResource/gif/20.png</file>
+        <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>
         <file alias="lb_cicle_blue">../TTKResource/gif/lb_cicle_blue.png</file>
         <file alias="lb_hourglass_white">../TTKResource/gif/lb_hourglass_white.png</file>
         <file alias="lb_radio_blue">../TTKResource/gif/lb_radio_blue.png</file>

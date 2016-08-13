@@ -2,6 +2,7 @@
 
 #include <QTimer>
 
+#define GIF_BALLON_WHITE        35
 #define GIF_CICLE_BLUE          58
 #define GIF_RICE_FONT_WHITE     26
 #define GIF_RICE_FONT_BLACK_BIG 42
@@ -12,7 +13,8 @@
 MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
     : QLabel(parent)
 {
-    m_index = 0;
+    m_index = -1;
+
     setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE);
 
     m_timer = new QTimer(this);
@@ -35,6 +37,7 @@ void MusicGifLabelWidget::setType(Type type)
 {
     switch(m_type = type)
     {
+        case Gif_Ballon_White: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
         case Gif_Cicle_Blue: setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE); break;
         case Gif_Rice_Font_White: setFixedSize(GIF_RICE_FONT_WHITE, GIF_RICE_FONT_WHITE); break;
         case Gif_Rice_Font_Black_Big: setFixedSize(GIF_RICE_FONT_BLACK_BIG, GIF_RICE_FONT_BLACK_BIG); break;
@@ -75,53 +78,62 @@ void MusicGifLabelWidget::timeout()
     ++m_index;
     switch(m_type)
     {
+        case Gif_Ballon_White:
+            if(m_index == 40)
+            {
+                m_index = 0;
+            }
+            setStyleSheet(QString("background-image: url(':/gif/lb_ballon_white'); \
+                                   margin-left:-%1px;").arg(GIF_BALLON_WHITE*m_index));
+            break;
         case Gif_Cicle_Blue:
+            if(m_index == 12)
+            {
+                m_index = 0;
+            }
             setStyleSheet(QString("background-image: url(':/gif/lb_cicle_blue'); \
                                    margin-left:-%1px;").arg(GIF_CICLE_BLUE*m_index));
-            if(m_index == 13)
-            {
-                m_index = 0;
-            }
             break;
         case Gif_Rice_Font_White:
+            if(m_index == 8)
+            {
+                m_index = 0;
+            }
             setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_white'); \
                                    margin-left:-%1px;").arg(GIF_RICE_FONT_WHITE*m_index));
-            if(m_index == 9)
+
+            break;
+      case Gif_Rice_Font_Black_Big:
+            if(m_index == 8)
             {
                 m_index = 0;
             }
-            break;
-        case Gif_Rice_Font_Black_Big:
             setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_black_big'); \
                                    margin-left:-%1px;").arg(GIF_RICE_FONT_BLACK_BIG*m_index));
-            if(m_index == 9)
-            {
-                m_index = 0;
-            }
             break;
         case Gif_Rice_Font_Black:
+            if(m_index == 12)
+            {
+                m_index = 0;
+            }
             setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_black'); \
                                    margin-left:-%1px;").arg(GIF_RICE_FONT_BLACK*m_index));
-            if(m_index == 22)
-            {
-                m_index = 0;
-            }
             break;
         case Gif_Hourglass_White:
+            if(m_index == 16)
+            {
+                m_index = 0;
+            }
             setStyleSheet(QString("background-image: url(':/gif/lb_hourglass_white'); \
                                    margin-left:-%1px;").arg(GIF_HOURGLASS_WHITE*m_index));
-            if(m_index == 17)
-            {
-                m_index = 0;
-            }
             break;
         case Gif_Radio_Blue:
-            setStyleSheet(QString("background-image: url(':/gif/lb_radio_blue'); \
-                                   margin-left:-%1px;").arg(GIF_RADIO_BLUE*m_index));
-            if(m_index == 11)
+            if(m_index == 10)
             {
                 m_index = 0;
             }
+            setStyleSheet(QString("background-image: url(':/gif/lb_radio_blue'); \
+                                   margin-left:-%1px;").arg(GIF_RADIO_BLUE*m_index));
             break;
         default: break;
     }

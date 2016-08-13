@@ -10,6 +10,7 @@ class MusicGifLabelWidget : public QLabel
     Q_OBJECT
 public:
     enum Type{
+        Gif_Ballon_White,
         Gif_Cicle_Blue,
         Gif_Rice_Font_White,
         Gif_Rice_Font_Black,
@@ -34,9 +35,9 @@ public slots:
     void timeout();
 
 protected:
+    int m_index;
     Type m_type;
     QTimer *m_timer;
-    int m_index;
 
 };
 
