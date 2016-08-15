@@ -15,9 +15,7 @@
 #define DOWNLOAD_URL    "http://7xpa0g.com1.z0.glb.clouddn.com/"
 #define CSDN_URL        "http://download.csdn.net/album/detail/3094"
 
-#define DD_TYPE_ZIP     ".zip"
-#define LAST_UPDATE_URL "TTKUpdate.exe"
-#define NEW_UPDATE_URL  "TTKUpdate.exe"
+#define DD_TYPE_EXE     ".exe"
 
 namespace Ui {
 class MusicSourceUpdateWidget;
@@ -57,6 +55,10 @@ public Q_SLOTS:
     void downloadProgressChanged(float percent, const QString &total);
     /*!
      * Update download percent\ total size progress.
+     */
+    void downloadProgressFinished();
+    /*!
+     * Update download progress finished.
      */
     virtual int exec();
     /*!

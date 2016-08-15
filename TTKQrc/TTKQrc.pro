@@ -16,5 +16,4 @@ TEMPLATE = lib
 
 RESOURCES += \
     MusicPlayer.qrc \
-    MusicThirdParty.qrc \
-    MusicUpdate.qrc
+    MusicThirdParty.qrc
