@@ -13,6 +13,7 @@
 #include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
+#include "musicuploadfilewidget.h"
 
 #include <QUrl>
 #include <QAction>
@@ -22,8 +23,8 @@
 #define ROW_HIGHT   30
 
 MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_parentToolIndex(index), m_musicSongsInfoWidget(nullptr),
-      m_musicSongsPlayWidget(nullptr)
+    : MusicAbstractTableWidget(parent), m_parentToolIndex(index), m_uploadFileWidget(nullptr),
+      m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
     m_renameActived = false;
@@ -54,6 +55,7 @@ MusicSongsListWidget::~MusicSongsListWidget()
 {
     M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
+    delete m_uploadFileWidget;
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
 }
@@ -71,6 +73,12 @@ void MusicSongsListWidget::setSongsFileName(MusicSongs *songs)
 
 void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
 {
+    if(createUploadFileWidget())
+    {
+        return;
+    }
+    ////////////////////////////////////////////////////////////////
+
     int count = rowCount();
     setRowCount(songs.count());    //reset row count
     for(int i=count; i<songs.count(); i++)
@@ -207,6 +215,30 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
     //just fix table widget size hint
     setFixedHeight( allRowsHeight() );
+}
+
+bool MusicSongsListWidget::createUploadFileWidget()
+{
+    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST) //lovest not need that widget
+    {
+        setFixedSize(320, 100);
+        if(m_uploadFileWidget == nullptr)
+        {
+            m_uploadFileWidget = new MusicUploadFileWidget(this);
+            connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SIGNAL(musicAddNewFiles()));
+            connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SIGNAL(musicAddNewDir()));
+            m_uploadFileWidget->adjustRect(width(), height());
+        }
+        m_uploadFileWidget->raise();
+        m_uploadFileWidget->show();
+        return true;
+    }
+    else
+    {
+        delete m_uploadFileWidget;
+        m_uploadFileWidget = nullptr;
+    }
+    return false;
 }
 
 void MusicSongsListWidget::listCellEntered(int row, int column)
@@ -608,6 +640,7 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
+    musicAddNewFiles.setEnabled(m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
     rightClickMenu.addAction(tr("foundMV"), this, SLOT(musicSongMovieFound()));

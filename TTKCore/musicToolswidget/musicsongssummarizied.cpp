@@ -15,7 +15,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
 {
     m_supperClass = parent;
-    m_currentIndexs = MUSIC_NORMAL_LIST;
+    m_currentPlayToolIndex = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
     m_currentImportIndex = MUSIC_NORMAL_LIST;
     m_currentDeleteIndex = -1;
@@ -105,16 +105,16 @@ void MusicSongsSummarizied::setMusicSongsSearchedFileName(const MusicObject::MIn
     MusicSongs songs;
     foreach(int index, fileIndexs)
     {
-        songs << m_songItems[currentIndex()].m_songs[index];
+        songs << m_songItems[m_currentIndex].m_songs[index];
     }
-    m_songItems[currentIndex()].m_itemObject->clearAllItems();
-    m_songItems[currentIndex()].m_itemObject->updateSongsFileName(songs);
+    m_songItems[m_currentIndex].m_itemObject->clearAllItems();
+    m_songItems[m_currentIndex].m_itemObject->updateSongsFileName(songs);
 }
 
 void MusicSongsSummarizied::searchFileListCache(int index, const QString &text)
 {
     MusicObject::MIntList searchResult;
-    QStringList searchedSongs(getMusicSongsFileName(currentIndex()));
+    QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
     for(int j=0; j<searchedSongs.count(); ++j)
     if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
     {
@@ -155,11 +155,11 @@ int MusicSongsSummarizied::getSearchFileListIndexAndClear(int row)
 
 void MusicSongsSummarizied::setCurrentMusicSongTreeIndex(int index)
 {
-    if(!m_songItems[m_currentIndexs].m_songs.isEmpty())
+    if(!m_songItems[m_currentPlayToolIndex].m_songs.isEmpty())
     {
-        m_songItems[m_currentIndexs].m_itemObject->replacePlayWidgetRow();
+        m_songItems[m_currentPlayToolIndex].m_itemObject->replacePlayWidgetRow();
     }
-    m_currentIndexs = index;
+    m_currentPlayToolIndex = index;
 }
 
 void MusicSongsSummarizied::playLocation(int index)
@@ -170,13 +170,13 @@ void MusicSongsSummarizied::playLocation(int index)
 
 void MusicSongsSummarizied::selectRow(int index)
 {
-    MusicSongsToolBoxWidget::setCurrentIndex(m_currentIndexs);
-    m_songItems[m_currentIndexs].m_itemObject->selectRow(index);
+    MusicSongsToolBoxWidget::setCurrentIndex(m_currentPlayToolIndex);
+    m_songItems[m_currentPlayToolIndex].m_itemObject->selectRow(index);
 }
 
 void MusicSongsSummarizied::setTimerLabel(const QString &time) const
 {
-    m_songItems[m_currentIndexs].m_itemObject->setTimerLabel(time);
+    m_songItems[m_currentPlayToolIndex].m_itemObject->setTimerLabel(time);
 }
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
@@ -203,14 +203,14 @@ void MusicSongsSummarizied::deleteRowItem(int index)
         return;
     }
 
-    if(m_currentIndexs == id)
+    if(m_currentPlayToolIndex == id)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
         emit musicPlayIndex(-1);
     }
-    else if(m_currentIndexs > id)
+    else if(m_currentPlayToolIndex > id)
     {
-        MusicSongsToolBoxWidget::setCurrentIndex(--m_currentIndexs);
+        MusicSongsToolBoxWidget::setCurrentIndex(--m_currentPlayToolIndex);
     }
 
     MusicSongItem item = m_songItems.takeAt(id);
@@ -275,7 +275,7 @@ void MusicSongsSummarizied::addNewFiles(int index)
 
     m_currentImportIndex = id;
     MStatic_cast(MusicApplication*, m_supperClass)->musicImportSongsOnlyFile();
-    m_currentImportIndex = MUSIC_NORMAL_LIST;
+    m_currentImportIndex = m_currentIndex;
 }
 
 void MusicSongsSummarizied::addNewDir(int index)
@@ -288,7 +288,19 @@ void MusicSongsSummarizied::addNewDir(int index)
 
     m_currentImportIndex = id;
     MStatic_cast(MusicApplication*, m_supperClass)->musicImportSongsOnlyDir();
-    m_currentImportIndex = MUSIC_NORMAL_LIST;
+    m_currentImportIndex = m_currentIndex;
+}
+
+void MusicSongsSummarizied::musicImportSongsOnlyFile()
+{
+    m_currentImportIndex = m_currentIndex;
+    MStatic_cast(MusicApplication*, m_supperClass)->musicImportSongsOnlyFile();
+}
+
+void MusicSongsSummarizied::musicImportSongsOnlyDir()
+{
+    m_currentImportIndex = m_currentIndex;
+    MStatic_cast(MusicApplication*, m_supperClass)->musicImportSongsOnlyDir();
 }
 
 void MusicSongsSummarizied::setCurrentIndex()
@@ -298,7 +310,7 @@ void MusicSongsSummarizied::setCurrentIndex()
     {
         return;
     }
-    m_currentIndexs = keyList[1].toInt();
+    m_currentPlayToolIndex = keyList[1].toInt();
     int index = keyList[2].toInt();
     MusicSongsToolBoxWidget::setCurrentIndex(index);
     setMusicPlayCount(index);
@@ -307,11 +319,11 @@ void MusicSongsSummarizied::setCurrentIndex()
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 {
-    MusicSong song = m_songItems[m_currentIndexs].m_songs[row];
+    MusicSong song = m_songItems[m_currentPlayToolIndex].m_songs[row];
     MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
     item->m_songs << song;
     item->m_itemObject->updateSongsFileName(item->m_songs);
-    if(m_currentIndexs == MUSIC_LOVEST_LIST)
+    if(m_currentPlayToolIndex == MUSIC_LOVEST_LIST)
     {
         emit updatePlayLists(song.getMusicPath());
     }
@@ -320,7 +332,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
 
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 {
-    MusicSong song = m_songItems[m_currentIndexs].m_songs[row];
+    MusicSong song = m_songItems[m_currentPlayToolIndex].m_songs[row];
     MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
     if(item->m_songs.removeOne(song))
     {
@@ -338,7 +350,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     item->m_songs << MusicSong(path, 0, time, musicSong);
     item->m_itemObject->updateSongsFileName(item->m_songs);
-    if(m_currentIndexs == MUSIC_NETWORK_LIST)
+    if(m_currentPlayToolIndex == MUSIC_NETWORK_LIST)
     {
         emit updatePlayLists(path);
     }
@@ -360,7 +372,7 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     }
 
     importOtherMusicSongs(items);
-    if(m_currentIndexs == MUSIC_NORMAL_LIST)
+    if(m_currentPlayToolIndex == MUSIC_NORMAL_LIST)
     {
         foreach(QString var, items)
         {
@@ -379,7 +391,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
         return;
     }
 
-    MusicSongItem *item = &m_songItems[m_toolDeleteChanged ? m_currentDeleteIndex : currentIndex()];
+    MusicSongItem *item = &m_songItems[m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex];
     for(int i=index.count()-1; i>=0; --i)
     {
         MusicSong song = item->m_songs.takeAt(index[i]);
@@ -388,16 +400,19 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
             QFile::remove(song.getMusicPath());
         }
     }
-    if(currentIndex() == m_currentIndexs)
+    if(m_currentIndex == m_currentPlayToolIndex)
     {
         emit deleteItemAt(index, fileRemove);
     }
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+
+    //create upload file widget if current items is all been deleted
+    item->m_itemObject->createUploadFileWidget();
 }
 
 void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
 {
-    MusicSongs *names = &m_songItems[currentIndex()].m_songs;
+    MusicSongs *names = &m_songItems[m_currentIndex].m_songs;
     if(before > after)
     {
         for(int i=before; i>after; --i)
@@ -413,16 +428,16 @@ void MusicSongsSummarizied::setMusicIndexSwaped(int before, int after, int play,
         }
     }
 
-    list = getMusicSongsFileName(currentIndex());
-    if(currentIndex() == m_currentIndexs)
+    list = getMusicSongsFileName(m_currentIndex);
+    if(m_currentIndex == m_currentPlayToolIndex)
     {
-        emit updateMediaLists(getMusicSongsFilePath(m_currentIndexs), play);
+        emit updateMediaLists(getMusicSongsFilePath(m_currentPlayToolIndex), play);
     }
 }
 
 void MusicSongsSummarizied::isCurrentIndexs(bool &state)
 {
-    state = ( currentIndex() == m_currentIndexs );
+    state = ( m_currentIndex == m_currentPlayToolIndex );
 }
 
 void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
@@ -445,7 +460,7 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
     {
         return;
     }
-    MusicSongs *songs = &m_songItems[m_currentIndexs].m_songs;
+    MusicSongs *songs = &m_songItems[m_currentPlayToolIndex].m_songs;
     if(!songs->isEmpty() && index < songs->count())
     {
         MusicSong *song = &(*songs)[index];
@@ -466,7 +481,7 @@ void MusicSongsSummarizied::getMusicLists(MusicSongItems &songs)
 
 void MusicSongsSummarizied::updateCurrentArtist()
 {
-    m_songItems[m_currentIndexs].m_itemObject->updateCurrentArtist();
+    m_songItems[m_currentPlayToolIndex].m_itemObject->updateCurrentArtist();
 }
 
 void MusicSongsSummarizied::addNewRowItem(const QString &name)
@@ -494,8 +509,8 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(musicPlayListLoop()), m_supperClass, SLOT(musicPlayListLoop()));
     connect(w, SIGNAL(musicPlayOneLoop()), m_supperClass, SLOT(musicPlayOneLoop()));
     connect(w, SIGNAL(musicPlayItemOnce()), m_supperClass, SLOT(musicPlayItemOnce()));
-    connect(w, SIGNAL(musicAddNewFiles()), m_supperClass, SLOT(musicImportSongsOnlyFile()));
-    connect(w, SIGNAL(musicAddNewDir()), m_supperClass, SLOT(musicImportSongsOnlyDir()));
+    connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
+    connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
     connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));

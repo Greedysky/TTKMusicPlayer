@@ -13,10 +13,6 @@
 #include "musicobject.h"
 #include "musicsongstoolboxwidget.h"
 
-#define MUSIC_NORMAL_LIST   0
-#define MUSIC_LOVEST_LIST   1
-#define MUSIC_NETWORK_LIST  2
-
 class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongsSummariziedFloatWidget;
@@ -80,7 +76,7 @@ public:
      * Get search file index from list by given row and clear cache.
      */
 
-    inline int getCurrentPlayToolIndex() const { return m_currentIndexs;}
+    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex;}
     /*!
      * Get current played tool index.
      */
@@ -164,6 +160,14 @@ public Q_SLOTS:
     /*!
      * Add new music dir to list.
      */
+    void musicImportSongsOnlyFile();
+    /*!
+     * Import music songs by file.
+     */
+    void musicImportSongsOnlyDir();
+    /*!
+     * Import music songs by dir.
+     */
 
     void setCurrentIndex();
     /*!
@@ -242,7 +246,7 @@ protected:
      * Override the widget event.
      */
 
-    int m_currentIndexs, m_searchFileListIndex;
+    int m_currentPlayToolIndex, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;
     bool m_toolDeleteChanged;
     QObject *m_supperClass;

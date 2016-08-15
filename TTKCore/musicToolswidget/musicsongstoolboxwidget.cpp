@@ -1,8 +1,8 @@
 #include "musicsongstoolboxwidget.h"
+#include "musicsongstoolitemrenamedwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
-#include "musicobject.h"
-#include "musicsongstoolitemrenamedwidget.h"
+#include "musicsong.h"
 #include "musicutils.h"
 
 #include <QMenu>
@@ -121,7 +121,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
-    menu.addMenu(&musicAddNewFiles)->setEnabled(m_index != 1 && m_index != 2);
+    menu.addMenu(&musicAddNewFiles)->setEnabled(m_index != MUSIC_LOVEST_LIST && m_index != MUSIC_NETWORK_LIST);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
     menu.addAction(tr("playLater"));
@@ -129,7 +129,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("collectAll"));
     menu.addSeparator();
 
-    bool disable = !(m_index == 0 || m_index == 1 || m_index == 2);
+    bool disable = !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST);
     menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
@@ -385,7 +385,7 @@ void MusicSongsToolBoxWidget::removeItem(QWidget *item)
             {
                 m_layout->removeWidget(item);
                 m_itemList.takeAt(i).m_widgetItem->deleteLater();
-                m_currentIndex = 0;
+                m_currentIndex = MUSIC_NORMAL_LIST;
                 return;
             }
         }

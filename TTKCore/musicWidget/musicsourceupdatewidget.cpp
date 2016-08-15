@@ -86,9 +86,8 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
     m_newVersionStr = value["version"].toString();
 #endif
     QString text;
-    if(m_newVersionStr != "s")
+    if(m_newVersionStr != TTKMUSIC_VERSION_STR)
     {
-//        TTKMUSIC_VERSION_STR
         text.append(m_newVersionStr);
         text.append("\r\n");
 #ifdef MUSIC_GREATER_NEW

@@ -12,6 +12,10 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+#define MUSIC_NORMAL_LIST   0
+#define MUSIC_LOVEST_LIST   1
+#define MUSIC_NETWORK_LIST  2
+
 /*! @brief The class of the music song info.
  * @author Greedysky <greedysky@163.com>
  */

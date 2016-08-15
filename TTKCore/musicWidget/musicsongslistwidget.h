@@ -11,10 +11,10 @@
 
 #include <QMenu>
 #include <QTimer>
-#include <QContextMenuEvent>
 #include "musicsong.h"
 #include "musicabstracttablewidget.h"
 
+class MusicUploadFileWidget;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
 
@@ -83,6 +83,10 @@ public:
     void replacePlayWidgetRow();
     /*!
      * Replace current play widget row.
+     */
+    bool createUploadFileWidget();
+    /*!
+     * Create upload file widget.
      */
 
 Q_SIGNALS:
@@ -262,6 +266,7 @@ protected:
 
     QTimer m_timerShow, m_timerStay;
     MusicSongs *m_musicSongs;
+    MusicUploadFileWidget *m_uploadFileWidget;
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
