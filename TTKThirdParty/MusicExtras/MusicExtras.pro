@@ -13,25 +13,27 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TTKMusicPlayer = 2.3.2.0
+unix:VERSION += $$TTKMusicPlayer
+
 win32{
-    TARGET = ../../../bin/MusicExtras
+    TARGET = ../../../bin/$$TTKMusicPlayer/MusicExtras
     msvc{
         LIBS += -luser32
     }
 }
-unix:TARGET = ../../lib/MusicExtras
+unix:TARGET = ../../lib/$$TTKMusicPlayer/MusicExtras
 TEMPLATE = lib
 
 QMAKE_CXXFLAGS += -std=c++11
-unix:VERSION += 2.3.2.0
 
 INCLUDEPATH += ../../
 
 win32{
-    LIBS += -L../../bin -lMusicUi
+    LIBS += -L../../bin/$$TTKMusicPlayer -lMusicUi
 }
 unix:!mac{
-    LIBS += -L../../lib -lMusicUi
+    LIBS += -L../../lib/$$TTKMusicPlayer -lMusicUi
 }
 
 HEADERS  += \

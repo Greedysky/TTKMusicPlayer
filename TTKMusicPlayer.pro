@@ -10,8 +10,9 @@
 # * works are strictly forbiden.
 # =================================================
 
+TTKMusicPlayer = 2.3.2.0
 TEMPLATE = subdirs
-SUBDIRS = TTKQrc TTKThirdParty TTKCore TTKApp TTKTest
+SUBDIRS = TTKQrc TTKThirdParty TTKCore TTKApp TTKService TTKTest
 
 TRANSLATIONS += TTKLanguage/cn.ts \
                 TTKLanguage/cn_c.ts \
@@ -38,7 +39,7 @@ else{
 }
 
 unix:{
-    output = $$OUT_PWD/lib/MLanguage
+    output = $$OUT_PWD/lib/$$TTKMusicPlayer/MLanguage
     !exists($$output):system(mkdir $$output)
 
     system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
@@ -46,7 +47,7 @@ unix:{
     system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
 win32:{
-    output = $$OUT_PWD/bin/MLanguage
+    output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)
 

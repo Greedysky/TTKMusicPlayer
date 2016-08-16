@@ -10,9 +10,13 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32:TARGET = ../../bin/MusicUi
-unix:TARGET = ../lib/MusicUi
 TEMPLATE = lib
+
+TTKMusicPlayer = 2.3.2.0
+unix:VERSION += $$TTKMusicPlayer
+
+win32:TARGET = ../../bin/$$TTKMusicPlayer/MusicUi
+unix:TARGET = ../lib/$$TTKMusicPlayer/MusicUi
 
 RESOURCES += \
     MusicPlayer.qrc \

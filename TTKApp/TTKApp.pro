@@ -11,14 +11,6 @@
 # =================================================
 
 TEMPLATE = app
-win32{
-  TARGET = ../../bin/TTKMusicPlayer
-  LIBS += -L../bin -lMusicCore
-}
-unix{
-  TARGET = ../lib/TTKMusicPlayer
-  LIBS += -L./lib -lMusicCore
-}
 
 contains(CONFIG, TTK_BUILD_LIB){
     CONFIG -= TTK_BUILD_LIB
@@ -30,11 +22,20 @@ win32{
         CONFIG -= TTK_NO_MSVC_LINK_NEED
     }
 }
-
-INCLUDEPATH += ../TTKCore
-
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
+
+win32{
+  TARGET = ../../bin/$$TTKMusicPlayer/TTKRun
+  LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
+}
+unix{
+  TARGET = ../lib/$$TTKMusicPlayer/TTKRun
+  LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
+}
+
+
+INCLUDEPATH += ../TTKCore
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \

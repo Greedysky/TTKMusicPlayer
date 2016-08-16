@@ -10,16 +10,16 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32:TARGET = ../../bin/MusicCore
-unix:TARGET = ../lib/MusicCore
 TEMPLATE = lib
-
 CONFIG += TTK_BUILD_LIB
-
-INCLUDEPATH += $$PWD
 
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
+
+win32:TARGET = ../../bin/$$TTKMusicPlayer/MusicCore
+unix:TARGET = ../lib/$$TTKMusicPlayer/MusicCore
+
+INCLUDEPATH += $$PWD
 
 SOURCES += \
     musicapplication.cpp \

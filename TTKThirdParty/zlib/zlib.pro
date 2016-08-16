@@ -10,9 +10,13 @@
 # * works are strictly forbiden.
 # =================================================
 
-win32:TARGET = ../../../bin/zlib
-unix:TARGET = ../../lib/zlib
 TEMPLATE = lib
+
+TTKMusicPlayer = 2.3.2.0
+#unix:VERSION += $$TTKMusicPlayer
+
+win32:TARGET = ../../../bin/$$TTKMusicPlayer/zlib
+unix:TARGET = ../../lib/$$TTKMusicPlayer/zlib
 
 CONFIG       += warn_off
 unix:VERSION += 1.2.8
