@@ -14,6 +14,10 @@
 #include "musicglobal.h"
 
 ///////////////////////////////////////
+
+#define APPDATA_DIR             "AppData/"
+#define DOWNLOADS_DIR           "Downloads/"
+
 #define LRC_DIR                 "MLrc/"
 #define MUSIC_DIR               "Music/"
 #define MOVIE_DIR               "Movie/"
@@ -57,6 +61,9 @@
 #define OCI_DATABASE            "QOCI"
 
 ///////////////////////////////////////
+#define APPDATA_DIR_FULL        MusicObject::getAppDir() + QString("../") + APPDATA_DIR
+#define DOWNLOADS_DIR_FULL      MusicObject::getAppDir() + QString("../") + DOWNLOADS_DIR
+
 #define LRC_DIR_FULL            MusicObject::getAppDir() + LRC_DIR
 #define MUSIC_DIR_FULL          MusicObject::getAppDir() + MUSIC_DIR
 #define MOVIE_DIR_FULL          MusicObject::getAppDir() + MOVIE_DIR
