@@ -22,7 +22,7 @@ void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownload
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "download");
 
-    foreach(MusicDownloadRecord record, records)
+    foreach(const MusicDownloadRecord &record, records)
     {
         writeDomElementMutilText(download, "value", QStringList() << "name" << "size",
                                  QVariantList() << record.m_name << record.m_size, record.m_path);

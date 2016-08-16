@@ -72,7 +72,7 @@ void QNSimpleListData::receiveDataFromServer()
             if(jsonObject.contains("items"))
             {
                 QJsonArray array = jsonObject.take("items").toArray();
-                foreach(QJsonValue value, array)
+                foreach(const QJsonValue &value, array)
                 {
                     if(!value.isObject())
                     {
@@ -97,7 +97,7 @@ void QNSimpleListData::receiveDataFromServer()
             {
                 QVariantMap value = data.toMap();
                 QVariantList array = value["items"].toList();
-                foreach(QVariant var, array)
+                foreach(const QVariant &var, array)
                 {
                     value = var.toMap();
                     QNDataItem item;

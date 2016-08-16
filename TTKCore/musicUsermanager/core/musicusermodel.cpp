@@ -68,7 +68,7 @@ bool MusicUserModel::updateRecordData(const QString &uid, const MusicObject::MSt
     }
 
     QStringList keys = data.keys();
-    foreach(QString key, keys)
+    foreach(const QString &key, keys)
     {
         QString var = data[key].toString();
         if(!var.isEmpty())

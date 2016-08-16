@@ -200,7 +200,7 @@ void MusicCloudSharedSongTableWidget::uploadFileToServer()
                        QString(), "./", "File (*.mp3)");
     if(!path.isEmpty())
     {
-        foreach(QString file, path)
+        foreach(const QString &file, path)
         {
             UploadData data;
             data.m_path = file.trimmed();
@@ -221,7 +221,7 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        foreach(QFileInfo file, MusicUtils::UCore::findFile(path, MusicPlayer::supportFormatsFilterString()))
+        foreach(const QFileInfo &file, MusicUtils::UCore::findFile(path, MusicPlayer::supportFormatsFilterString()))
         {
             UploadData data;
             data.m_path = file.absoluteFilePath().trimmed();
@@ -247,7 +247,7 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
     m_uploading = true;
     m_timerToUpload->stop();
     bool needUpload;
-    foreach(UploadData data, m_waitedFiles)
+    foreach(const UploadData &data, m_waitedFiles)
     {
         if(data.m_state == UploadData::Waited)
         {
@@ -262,7 +262,7 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
     }
 
     emit updateLabelMessage(tr("Files Is Uploading!"));
-    foreach(UploadData data, m_waitedFiles)
+    foreach(const UploadData &data, m_waitedFiles)
     {
         m_currentUploadData = data;
         QFile file(data.m_path);

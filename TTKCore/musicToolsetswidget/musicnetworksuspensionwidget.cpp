@@ -58,7 +58,7 @@ void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QStringList list = m_thread->getNewtworkNames();
     QStringList available = m_thread->getAvailableNewtworkNames();
-    foreach(QString var, list)
+    foreach(const QString &var, list)
     {
         QAction *action = settingMenu.addAction(var);
         m_actionGroup->addAction(action);

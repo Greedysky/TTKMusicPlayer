@@ -84,7 +84,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        foreach(MusicObject::MusicSongInfomation info, musicSongInfos)
+        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
         {
             DownloadData *data = new DownloadData;
             data->m_songName = info.m_songName;

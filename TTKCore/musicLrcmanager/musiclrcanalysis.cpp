@@ -34,7 +34,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     QString getAllText = QString(file.readAll());
     file.close();
     //The lyrics by line into the lyrics list
-    foreach(QString oneLine, getAllText.split("\n"))
+    foreach(const QString &oneLine, getAllText.split("\n"))
     {
         matchLrcLine(oneLine);
     }
@@ -85,7 +85,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     QString getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
-    foreach(QString oneLine, getAllText.split("\r\n"))
+    foreach(const QString &oneLine, getAllText.split("\r\n"))
     {
         matchLrcLine(oneLine);
     }
@@ -429,7 +429,7 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total,
     qint64 previous = 0;
     qint64 later = 0;
     //Keys () method returns a list of lrcContainer
-    foreach (qint64 value, m_lrcContainer.keys())
+    foreach(const qint64 &value, m_lrcContainer.keys())
     {
         if(current >= value)
         {
@@ -477,7 +477,7 @@ qint64 MusicLrcAnalysis::findTime(int index) const
 QString MusicLrcAnalysis::getAllLrcs() const
 {
     QString clipString;
-    foreach(QString s, m_lrcContainer.values())
+    foreach(const QString &s, m_lrcContainer.values())
     {
         clipString.append(s + "\n");
     }
@@ -497,7 +497,7 @@ void MusicLrcAnalysis::getTranslatedLrc()
     }
 
     QString data;
-    foreach(QString s, m_lrcContainer.values())
+    foreach(const QString &s, m_lrcContainer.values())
     {
         data.append(s);
 #ifdef Q_OS_LINUX

@@ -72,7 +72,7 @@ void MusicNetworkTestWidget::settingButton()
     menu->setStyleSheet(MusicUIObject::MMenuStyle02);
 
     QStringList list = m_thread->getNewtworkNames();
-    foreach(QString var, list)
+    foreach(const QString &var, list)
     {
         m_actionGroup->addAction(menu->addAction(var));
     }

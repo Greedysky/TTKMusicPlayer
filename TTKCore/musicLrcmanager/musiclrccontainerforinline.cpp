@@ -578,7 +578,7 @@ void MusicLrcContainerForInline::showLocalLinkWidget()
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
-    foreach(QString var, data.split("\r"))
+    foreach(const QString &var, data.split("\r"))
     {
         text += var.trimmed() + "\r\n";
     }

@@ -215,7 +215,7 @@ void MusicDownloadWidget::queryAllFinishedMusic()
         QString artistName = filename.split('-').front().trimmed();
         QString songName = filename.split('-').back().trimmed();
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(MusicObject::MusicSongInfomation var, musicSongInfos)
+        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )
@@ -226,7 +226,7 @@ void MusicDownloadWidget::queryAllFinishedMusic()
         }
 
         MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
-        foreach(MusicObject::MusicSongAttribute attr, attrs)
+        foreach(const MusicObject::MusicSongAttribute &attr, attrs)
         {
             if(attr.m_bitrate == MB_32)         ///st
             {
@@ -276,7 +276,7 @@ void MusicDownloadWidget::queryAllFinishedMovie()
         QString artistName = filename.split('-').front().trimmed();
         QString songName = filename.split('-').back().trimmed();
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(MusicObject::MusicSongInfomation var, musicSongInfos)
+        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )
@@ -287,7 +287,7 @@ void MusicDownloadWidget::queryAllFinishedMovie()
         }
 
         MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
-        foreach(MusicObject::MusicSongAttribute attr, attrs)
+        foreach(const MusicObject::MusicSongAttribute &attr, attrs)
         {
             if(attr.m_bitrate == MB_500)       ///hd
             {
@@ -396,7 +396,7 @@ void MusicDownloadWidget::startToDownloadMusic()
     {
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
-        foreach(MusicObject::MusicSongAttribute musicAttr, musicAttrs)
+        foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
         {
             if(musicAttr.m_bitrate == bitrate ||
                musicAttr.m_bitrate > 321)
@@ -467,7 +467,7 @@ void MusicDownloadWidget::startToDownloadMovie()
     {
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
-        foreach(MusicObject::MusicSongAttribute musicAttr, musicAttrs)
+        foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
         {
             if(musicAttr.m_bitrate == bitrate)
             {

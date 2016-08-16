@@ -21,7 +21,7 @@ QString MusicLocalSongsManagerThread::getClassName()
 void MusicLocalSongsManagerThread::run()
 {
     QFileInfoList list;
-    foreach(QString path, m_path)
+    foreach(const QString &path, m_path)
     {
         if(m_run)
         {

@@ -89,7 +89,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicObject::MusicSongAttribute attr, data)
+    foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         if(attr.m_bitrate == bitrate)
         {
@@ -103,7 +103,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicObject::MusicSongAttribute attr, data)
+    foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         if(attr.m_url == url)
         {
@@ -117,7 +117,7 @@ bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
-    foreach(MusicObject::MusicSongAttribute attr, data)
+    foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         if(attr.m_bitrate == bitrate)
         {

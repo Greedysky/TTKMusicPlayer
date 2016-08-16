@@ -315,7 +315,7 @@ void MusicSettingWidget::initSoundEffectWidget()
     ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(ui->downloadServerComboBox));
     ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    foreach(QAudioDeviceInfo info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
+    foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         ui->outputTypeComboBox->addItem(info.deviceName());
     }

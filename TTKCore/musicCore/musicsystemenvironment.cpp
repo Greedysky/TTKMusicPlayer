@@ -9,7 +9,7 @@ QString MusicSystemEnvironment::getClassName()
 
 QString MusicSystemEnvironment::getData(const QString &data)
 {
-    foreach(QString environment, QProcess::systemEnvironment())
+    foreach(const QString &environment, QProcess::systemEnvironment())
     {
         if(environment.startsWith(data, Qt::CaseInsensitive))
         {

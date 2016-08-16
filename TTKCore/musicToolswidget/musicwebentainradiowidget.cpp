@@ -148,7 +148,7 @@ void MusicWebEntainRadioWidget::updateRadioList(const QString &category)
     ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRadioNames(category);
-    foreach(QString name, rnames)
+    foreach(const QString &name, rnames)
     {
         ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
                                                     ? *m_collecticon
@@ -162,7 +162,7 @@ void MusicWebEntainRadioWidget::updateRecentList()
     ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRecentNames();
-    foreach(QString name, rnames)
+    foreach(const QString &name, rnames)
     {
         ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
                                                     ? *m_collecticon
@@ -174,7 +174,7 @@ void MusicWebEntainRadioWidget::updateFavouriteList()
 {
     clearAllItems();
     ui->listWidget->clear();
-    foreach(QString name, m_database->getFavouriteNames())
+    foreach(const QString &name, m_database->getFavouriteNames())
     {
         ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, name));
     }

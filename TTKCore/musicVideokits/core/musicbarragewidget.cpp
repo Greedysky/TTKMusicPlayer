@@ -150,7 +150,7 @@ void MusicBarrageWidget::deleteItems()
 void MusicBarrageWidget::createLabel()
 {
     MusicTime::timeSRand();
-    foreach(MusicBarrageRecord record, m_barrageRecords)
+    foreach(const MusicBarrageRecord &record, m_barrageRecords)
     {
         createLabel(record);
     }

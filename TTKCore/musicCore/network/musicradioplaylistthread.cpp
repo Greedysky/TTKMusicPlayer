@@ -88,7 +88,7 @@ void MusicRadioPlayListThread::downLoadFinished()
         if(jsonObject.contains("list"))
         {
             QJsonArray array = jsonObject.value("list").toArray();
-            foreach(QJsonValue value, array)
+            foreach(const QJsonValue &value, array)
             {
                 if(!value.isObject())
                 {
@@ -106,7 +106,7 @@ void MusicRadioPlayListThread::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             QVariantList channels = value["list"].toList();
-            foreach(QVariant channel, channels)
+            foreach(const QVariant &channel, channels)
             {
                 value = channel.toMap();
                 m_playList << QString::number(value["id"].toInt());

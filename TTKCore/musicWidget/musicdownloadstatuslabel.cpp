@@ -130,7 +130,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         QString songName = filename.split('-').back().trimmed();
 
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(MusicObject::MusicSongInfomation var, musicSongInfos)
+        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )

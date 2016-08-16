@@ -52,7 +52,7 @@ void MusicWebMusicRadioListView::addListWidgetItem()
 {
     ChannelInfos channels = m_getChannelThread->getMusicChannel();
 
-    foreach(ChannelInfo channel, channels)
+    foreach(const ChannelInfo &channel, channels)
     {
         QListWidgetItem *item = new QListWidgetItem(channel.m_name, this);
         item->setSizeHint(QSize(80, 30));

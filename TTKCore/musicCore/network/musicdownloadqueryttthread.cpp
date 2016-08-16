@@ -81,7 +81,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
         if(jsonObject.contains("data"))
         {
             QJsonArray array = jsonObject.take("data").toArray();
-            foreach(QJsonValue value, array)
+            foreach(const QJsonValue &value, array)
             {
                 if(!value.isObject())
                 {
@@ -100,7 +100,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     QString duration;
                     ///music normal songs urls
                     QJsonArray audUrls = object.value("audition_list").toArray();
-                    foreach(QJsonValue url, audUrls)
+                    foreach(const QJsonValue &url, audUrls)
                     {
                         QJsonObject urlObject = url.toObject();
                         if(m_queryAllRecords == true || (m_queryAllRecords == false &&
@@ -122,7 +122,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     }
                     ///music cd songs urls
                     QJsonArray llUrls = object.value("ll_list").toArray();
-                    foreach(QJsonValue url, llUrls)
+                    foreach(const QJsonValue &url, llUrls)
                     {
                         QJsonObject urlObject = url.toObject();
                         if(m_queryAllRecords == true || (m_queryAllRecords == false &&
@@ -162,7 +162,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     QJsonArray mvUrls = object.value("mv_list").toArray();
                     if(!mvUrls.isEmpty())
                     {
-                        foreach(QJsonValue url, mvUrls)
+                        foreach(const QJsonValue &url, mvUrls)
                         {
                             object = url.toObject();
                             MusicObject::MusicSongAttribute songAttr;
@@ -190,7 +190,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
             if(value["code"].toInt() == 1 || value["code"].toInt() == 200)
             {
                 QVariantList datas = value["data"].toList();
-                foreach(QVariant var, datas)
+                foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
                     {
@@ -209,7 +209,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         QString duration;
                         ///music normal songs urls
                         QVariantList auditions = value["audition_list"].toList();
-                        foreach(QVariant audition, auditions)
+                        foreach(const QVariant &audition, auditions)
                         {
                             QVariantMap audUrlsValue = audition.toMap();
                             if(audUrlsValue.isEmpty())
@@ -236,7 +236,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         }
                         ///music cd songs urls
                         QVariantList llUrls = value["ll_list"].toList();
-                        foreach(QVariant llUrl, llUrls)
+                        foreach(const QVariant &llUrl, llUrls)
                         {
                             QVariantMap llUrlValue = llUrl.toMap();
                             if(llUrlValue.isEmpty())
@@ -281,7 +281,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         if(!mvs.isEmpty())
                         {
                             QString duration;
-                            foreach(QVariant mv, mvs)
+                            foreach(const QVariant &mv, mvs)
                             {
                                 QVariantMap mvUrlValue = mv.toMap();
                                 if(mvUrlValue.isEmpty())

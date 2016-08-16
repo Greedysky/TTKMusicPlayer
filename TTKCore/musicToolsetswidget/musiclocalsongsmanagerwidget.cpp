@@ -163,7 +163,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
     QStringList names;
     names << tr("Overall");
     QFileInfoList drives = QDir::drives();
-    foreach(QFileInfo driver, drives)
+    foreach(const QFileInfo &driver, drives)
     {
        names << driver.absoluteDir().absolutePath();
     }
@@ -225,7 +225,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
     {
         QStringList names;
         QFileInfoList drives = QDir::drives();
-        foreach(QFileInfo driver, drives)
+        foreach(const QFileInfo &driver, drives)
         {
            names << driver.absoluteDir().absolutePath();
         }

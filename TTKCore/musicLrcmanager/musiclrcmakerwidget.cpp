@@ -118,7 +118,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
         array.append(QString("[ti:%1]\n[ar:%2]\n[by:%3]\n")
                 .arg(ui->songNameEdit->text()).arg(ui->artNameEdit->text())
                 .arg(ui->authorNameEdit->text()));
-        foreach(QString var, m_plainText)
+        foreach(const QString &var, m_plainText)
         {
             array.append(var + "\n");
         }

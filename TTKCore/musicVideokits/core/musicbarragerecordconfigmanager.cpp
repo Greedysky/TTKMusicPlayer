@@ -22,7 +22,7 @@ void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecor
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     QDomElement download = writeDom(musicPlayer, "barrageRecord");
 
-    foreach(MusicBarrageRecord record, records)
+    foreach(const MusicBarrageRecord &record, records)
     {
         writeDomElementMutilText(download, "value", QStringList() << "color" << "size",
                                  QVariantList() << record.m_color << record.m_size, record.m_value);

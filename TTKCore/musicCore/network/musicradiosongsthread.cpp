@@ -92,7 +92,7 @@ void MusicRadioSongsThread::downLoadFinished()
             if(jsonObject.contains("songList"))
             {
                 QJsonArray array = jsonObject.value("songList").toArray();
-                foreach(QJsonValue value, array)
+                foreach(const QJsonValue &value, array)
                 {
                     if(!value.isObject())
                     {
@@ -123,7 +123,7 @@ void MusicRadioSongsThread::downLoadFinished()
             QVariantMap value = data.toMap();
             value = value["data"].toMap();
             QVariantList songLists = value["songList"].toList();
-            foreach(QVariant var, songLists)
+            foreach(const QVariant &var, songLists)
             {
                 value = var.toMap();
                 if(value.isEmpty() || value["songLink"].toString().isEmpty())

@@ -173,7 +173,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
     {
         setControlEnable(false);
         int orcount = m_paths.count();
-        foreach(QString path, dialog.selectedFiles())
+        foreach(const QString &path, dialog.selectedFiles())
         {
             if(!m_paths.contains(path))
             {
@@ -201,7 +201,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
     {
         setControlEnable(false);
         QList<QFileInfo> file(dialog.directory().entryInfoList());
-        foreach(QFileInfo info, file)
+        foreach(const QFileInfo &info, file)
         {
             if( QString("mp3").contains(info.suffix().toLower()) &&
                 !m_paths.contains(info.absoluteFilePath()) )

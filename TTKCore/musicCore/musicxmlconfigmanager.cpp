@@ -32,7 +32,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
     {
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
                                   QVariantList() << musics[i].m_itemName << i << musics[i].m_songs.count());
-        foreach(MusicSong song, musics[i].m_songs)
+        foreach(const MusicSong &song, musics[i].m_songs)
         {
             writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
                                      QVariantList() << song.getMusicName() << song.getMusicPlayCount()

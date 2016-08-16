@@ -83,7 +83,7 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
 {
     QStringList list;
-    foreach(MusicSong song, m_songItems[index].m_songs)
+    foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicName();
     }
@@ -93,7 +93,7 @@ QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
 QStringList MusicSongsSummarizied::getMusicSongsFilePath(int index) const
 {
     QStringList list;
-    foreach(MusicSong song, m_songItems[index].m_songs)
+    foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicPath();
     }
@@ -181,7 +181,7 @@ void MusicSongsSummarizied::setTimerLabel(const QString &time) const
 
 void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) const
 {
-    foreach(MusicSongItem item, m_songItems)
+    foreach(const MusicSongItem &item, m_songItems)
     {
         item.m_itemObject->setPlaybackMode(mode);
     }
@@ -216,7 +216,7 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     MusicSongItem item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
-    foreach(MusicSongItem item, m_songItems)
+    foreach(const MusicSongItem &item, m_songItems)
     {
         item.m_itemObject->setParentToolIndex( foundMappingIndex(item.m_itemIndex) );
     }
@@ -374,7 +374,7 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     importOtherMusicSongs(items);
     if(m_currentPlayToolIndex == MUSIC_NORMAL_LIST)
     {
-        foreach(QString var, items)
+        foreach(const QString &var, items)
         {
             emit updatePlayLists(var);
         }
@@ -447,7 +447,7 @@ void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
 
 void MusicSongsSummarizied::setTransparent(int alpha)
 {
-    foreach(MusicSongItem item, m_songItems)
+    foreach(const MusicSongItem &item, m_songItems)
     {
         item.m_itemObject->setTransparent(alpha*2.55);
         item.m_itemObject->update();

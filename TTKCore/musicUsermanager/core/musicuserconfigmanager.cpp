@@ -21,7 +21,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
 
-    foreach(MusicUserRecord record, records)
+    foreach(const MusicUserRecord &record, records)
     {
         writeDomElementMutilText(musicPlayer, "username", QStringList() << "name" << "userRp" << "userAl",
                                  QVariantList() << record.m_name << record.m_rp << record.m_al,

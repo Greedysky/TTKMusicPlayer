@@ -133,7 +133,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
             return;
         }
 
-        foreach(QJsonValue value, parseDoucment.array())
+        foreach(const QJsonValue &value, parseDoucment.array())
         {
             if(!value.isObject())
             {
@@ -213,7 +213,7 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
         if(ok)
         {
             QVariantList datas = data.toList();
-            foreach(QVariant var, datas)
+            foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
                 {

@@ -125,13 +125,13 @@ void MusicTimerAutoObject::setShutdown()
     bool isWind64 = systemIs64bit();
     QString item;
     QStringList lists = QProcess::systemEnvironment();
-    foreach(QString var, lists)
+    foreach(const QString &var, lists)
     {
         item = var.toUpper();
         if(item.startsWith("PATH="))
         {
             lists = item.split(';');
-            foreach(QString var, lists)
+            foreach(const QString &var, lists)
             {
                 if(var.contains("\\WINDOWS\\SYSTEM32"))
                 {   ///x86 or x64

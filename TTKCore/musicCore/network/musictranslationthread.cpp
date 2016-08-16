@@ -105,7 +105,7 @@ void MusicTranslationThread::downLoadFinished()
             if(jsonObject.contains("data"))
             {
                 QJsonArray array = jsonObject.value("data").toArray();
-                foreach(QJsonValue value, array)
+                foreach(const QJsonValue &value, array)
                 {
                     if(!value.isObject())
                     {
@@ -126,7 +126,7 @@ void MusicTranslationThread::downLoadFinished()
             QVariantMap value = data.toMap();
             value = value["trans_result"].toMap();
             QVariantList datas = value["data"].toList();
-            foreach(QVariant var, datas)
+            foreach(const QVariant &var, datas)
             {
                 value = var.toMap();
                 if(value.isEmpty() || value["dst"].toString().isEmpty())
