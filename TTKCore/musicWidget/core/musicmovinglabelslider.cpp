@@ -15,7 +15,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWid
 
     m_isMoving = false;
     m_orientation = orientation;
-    m_textLabel = new QLabel;
+    m_textLabel = new QLabel(this);
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     m_textLabel->setGeometry(0, 0, 40, 20);
     m_textLabel->setAlignment(Qt::AlignCenter);

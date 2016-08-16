@@ -206,6 +206,7 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     if(m_currentPlayToolIndex == id)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
+        m_itemList.first().m_widgetItem->setItemExpand(false);
         emit musicPlayIndex(-1);
     }
     else if(m_currentPlayToolIndex > id)
@@ -216,9 +217,28 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     MusicSongItem item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
+
     foreach(const MusicSongItem &item, m_songItems)
     {
         item.m_itemObject->setParentToolIndex( foundMappingIndex(item.m_itemIndex) );
+    }
+}
+
+void MusicSongsSummarizied::deleteRowItems()
+{
+    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_NETWORK_LIST &&
+       m_currentPlayToolIndex != MUSIC_NETWORK_LIST )
+    {
+        MusicSongsToolBoxWidget::setCurrentIndex(0);
+        m_itemList.first().m_widgetItem->setItemExpand(false);
+        emit musicPlayIndex(-1);
+    }
+
+    for(int i = m_songItems.count() - 1; i>2; --i)
+    {
+        MusicSongItem item = m_songItems.takeLast();
+        removeItem(item.m_itemObject);
+        delete item.m_itemObject;
     }
 }
 
@@ -239,18 +259,10 @@ void MusicSongsSummarizied::deleteRowItemAll(int index)
         w->setDeleteItemAll();
     }
     m_toolDeleteChanged = false;
-}
 
-void MusicSongsSummarizied::deleteRowItems()
-{
-    MusicSongsToolBoxWidget::setCurrentIndex(0);
-    emit musicPlayIndex(-1);
-
-    for(int i = m_songItems.count() - 1; i>2; --i)
+    if(m_songItems[id].m_songs.isEmpty() && m_currentPlayToolIndex == id)
     {
-        MusicSongItem item = m_songItems.takeLast();
-        removeItem(item.m_itemObject);
-        delete item.m_itemObject;
+        emit musicPlayIndex(-1);
     }
 }
 

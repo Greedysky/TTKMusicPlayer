@@ -738,21 +738,21 @@ void MusicApplication::musicImportSongs()
 void MusicApplication::musicPlayIndex(int row)
 {
     m_musicPlayer->stop();
-    if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex())
+
+    m_musicList->clear();
+    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
+    m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
+    m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
+
+    if(row != -999)
     {
-        m_musicList->clear();
-        m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
-        m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
-        m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
+        m_musicList->setCurrentIndex(row);
     }
-    m_musicList->blockSignals(true);
-    m_musicList->setCurrentIndex(row);
-    m_musicList->blockSignals(false);
 }
 
 void MusicApplication::musicPlayIndex(int row, int)
 {
-    musicPlayIndex(row);
+    musicPlayIndex(-999); //just invalid
     if(!m_musicSongTree->searchFileListEmpty())
     {
         row = m_musicSongTree->getSearchFileListIndexAndClear(row);

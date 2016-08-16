@@ -140,13 +140,13 @@ public Q_SLOTS:
     /*!
      * Delete selected play list item.
      */
-    void deleteRowItemAll(int index);
-    /*!
-     * Delete all items in play list item.
-     */
     void deleteRowItems();
     /*!
      * Delete all other item, left than three item.
+     */
+    void deleteRowItemAll(int index);
+    /*!
+     * Delete all items in play list item.
      */
     void changRowItemName(int index, const QString &name);
     /*!
