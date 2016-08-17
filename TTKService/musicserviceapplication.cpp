@@ -6,10 +6,51 @@
 #include <QLocalSocket>
 #include <QFile>
 
+class MusicServiceApplicationPrivate : public TTKPrivate<MusicServiceApplication>
+{
+public:
+    MusicServiceApplicationPrivate();
+    ~MusicServiceApplicationPrivate();
+
+    void listen(const QString &serverName);
+
+    bool m_isRunning;
+    QLocalServer *m_localServer;
+};
+
+MusicServiceApplicationPrivate::MusicServiceApplicationPrivate()
+{
+    m_isRunning = false;
+    m_localServer = nullptr;
+}
+
+MusicServiceApplicationPrivate::~MusicServiceApplicationPrivate()
+{
+    delete m_localServer;
+}
+
+void MusicServiceApplicationPrivate::listen(const QString &serverName)
+{
+    if(m_localServer->listen(serverName))
+    {
+        if(m_localServer->serverError() == QAbstractSocket::AddressInUseError &&
+           QFile::exists(m_localServer->serverName()))
+        {
+            QFile::remove(m_localServer->serverName());
+            m_localServer->listen(serverName);
+        }
+    }
+}
+
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+///
 MusicServiceApplication::MusicServiceApplication(int argc, char **argv)
   : QApplication(argc, argv)
 {
-    m_isRunning = false;
+    TTK_INIT_PRIVATE;
+    TTK_D(MusicServiceApplication);
 
     QCoreApplication::setApplicationName("MusicService");
     QString serverName = QCoreApplication::applicationName();
@@ -32,37 +73,26 @@ MusicServiceApplication::MusicServiceApplication(int argc, char **argv)
         qDebug() << "Connected server, program will quit";
         socket.waitForBytesWritten();
 
-        m_isRunning = true;
+        d->m_isRunning = true;
         return;
     }
+
     qDebug() << "Can't connect to server,build a server";
-
-    m_localServer = new QLocalServer(this);
-    connect(m_localServer, SIGNAL(newConnection()), SLOT(newLocalConnection()));
-    if(m_localServer->listen(serverName))
-    {
-        if(m_localServer->serverError() == QAbstractSocket::AddressInUseError &&
-           QFile::exists(m_localServer->serverName()))
-        {
-            QFile::remove(m_localServer->serverName());
-            m_localServer->listen(serverName);
-        }
-    }
-}
-
-MusicServiceApplication::~MusicServiceApplication()
-{
-    delete m_localServer;
+    d->m_localServer = new QLocalServer(this);
+    connect(d->m_localServer, SIGNAL(newConnection()), SLOT(newLocalConnection()));
+    d->listen(serverName);
 }
 
 bool MusicServiceApplication::isRunning()
 {
-    return m_isRunning;
+    TTK_D(MusicServiceApplication);
+    return d->m_isRunning;
 }
 
 void MusicServiceApplication::newLocalConnection()
 {
-    QLocalSocket *socket = m_localServer->nextPendingConnection();
+    TTK_D(MusicServiceApplication);
+    QLocalSocket *socket = d->m_localServer->nextPendingConnection();
     if(!socket)
     {
         return;
@@ -73,5 +103,6 @@ void MusicServiceApplication::newLocalConnection()
     QString string;
     in >> string;
     qDebug() << "The value is: " << string;
+
     delete socket;
 }

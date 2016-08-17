@@ -10,7 +10,10 @@
    =================================================*/
 
 #include <QProcess>
+#include "musicprivate.h"
 #include "musicserviceglobaldefine.h"
+
+class MusicServiceObjectPrivate;
 
 /*! @brief The class of the music service object.
  * @author Greedysky <greedysky@163.com>
@@ -23,15 +26,14 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicServiceObject();
 
     void run();
     /*!
      * To run main window.
      */
 
-protected:
-    QProcess *m_process;
+private:
+    TTK_DECLARE_PRIVATE(MusicServiceObject)
 
 };
 

@@ -10,9 +10,10 @@
    =================================================*/
 
 #include <QApplication>
+#include "musicprivate.h"
 #include "musicserviceglobaldefine.h"
 
-class QLocalServer;
+class MusicServiceApplicationPrivate;
 
 /*! @brief The class of the music service application.
  * @author Greedysky <greedysky@163.com>
@@ -25,7 +26,6 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicServiceApplication();
 
     bool isRunning();
     /*!
@@ -39,8 +39,7 @@ private slots:
      */
 
 private:
-    bool m_isRunning;
-    QLocalServer *m_localServer;
+    TTK_DECLARE_PRIVATE(MusicServiceApplication)
 
 };
 

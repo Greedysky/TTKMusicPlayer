@@ -3,19 +3,42 @@
 
 #include <QApplication>
 
-MusicServiceObject::MusicServiceObject(QObject *parent)
-    : QObject(parent)
+class MusicServiceObjectPrivate : public TTKPrivate<MusicServiceObject>
 {
-    m_process = new QProcess(this);
-    connect(m_process, SIGNAL(finished(int)), qApp, SLOT(quit()));
+public:
+    MusicServiceObjectPrivate();
+    ~MusicServiceObjectPrivate();
+
+    QProcess *m_process;
+
+};
+
+MusicServiceObjectPrivate::MusicServiceObjectPrivate()
+{
+    m_process = nullptr;
 }
 
-MusicServiceObject::~MusicServiceObject()
+MusicServiceObjectPrivate::~MusicServiceObjectPrivate()
 {
     delete m_process;
 }
 
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+///
+///
+MusicServiceObject::MusicServiceObject(QObject *parent)
+    : QObject(parent)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(MusicServiceObject);
+
+    d->m_process = new QProcess(this);
+    connect(d->m_process, SIGNAL(finished(int)), qApp, SLOT(quit()));
+}
+
 void MusicServiceObject::run()
 {
-    m_process->start(QString("%1/TTKRun.exe").arg(TTKMUSIC_VERSION_STR));
+    TTK_D(MusicServiceObject);
+    d->m_process->start(QString("%1/TTKRun.exe").arg(TTKMUSIC_VERSION_STR));
 }
