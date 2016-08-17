@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DMUSIC_LIBRARY)
 
+set(TTK_VERSION "2.3.2.0")
+
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Turn on automatic invocation of the MOC
@@ -45,7 +47,7 @@ set(MUSIC_QRC_DIR "${MUSIC_DIR}/TTKQrc")
 set(MUSIC_LANGUAGE_DIR "${MUSIC_DIR}/TTKLanguage")
 set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
 set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
-set(MUSIC_TTKUPDATE_DIR "${MUSIC_DIR}/TTKUpdate")
+set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
 
 include_directories(${MUSIC_DIR})
 include_directories(${MUSIC_LIB_DIR})
@@ -61,7 +63,8 @@ include_directories(${MUSIC_TOOLSWIDGET_DIR})
 include_directories(${MUSIC_TOOLSWIDGET_DIR}/core)
 include_directories(${MUSIC_USERMANAGER_DIR})
 include_directories(${MUSIC_USERMANAGER_DIR}/core)
-include_directories(${MUSIC_VIDEOKITS_DIR}) 
+include_directories(${MUSIC_VIDEOKITS_DIR})
+include_directories(${MUSIC_VIDEOKITS_DIR}/core)
 include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGET_DIR}/core)
 include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
@@ -74,8 +77,8 @@ include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qrencode)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/shortcut)
 
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION}) 
 
 set(TTK_QT_VERSION "0" CACHE STRING "Expected Qt version")
 set_property(CACHE TTK_QT_VERSION PROPERTY STRINGS 4 5)
@@ -166,8 +169,8 @@ else()
   endif()
 endif()
 
-
+add_subdirectory(TTKQrc)
 add_subdirectory(TTKThirdParty)
 add_subdirectory(TTKCore)
 add_subdirectory(TTKApp)
-add_subdirectory(TTKUpdate)
+add_subdirectory(TTKService)
