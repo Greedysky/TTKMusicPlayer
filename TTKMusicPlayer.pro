@@ -10,6 +10,8 @@
 # * works are strictly forbiden.
 # =================================================
 
+TTKMusicPlayer = 2.3.2.0
+
 TEMPLATE = subdirs
 SUBDIRS = TTKQrc TTKThirdParty TTKCore TTKApp TTKService TTKTest
 
