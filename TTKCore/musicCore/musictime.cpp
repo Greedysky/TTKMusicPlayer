@@ -2,7 +2,6 @@
 
 #include <QFileInfo>
 #include <QDir>
-#include <time.h>
 
 MusicTime::MusicTime()
 {
@@ -130,7 +129,7 @@ qint64 MusicTime::getTimeStamp(Type type) const
 
 void MusicTime::timeSRand()
 {
-    qsrand(time(nullptr));
+    qsrand(QDateTime::currentMSecsSinceEpoch());
 }
 
 QString MusicTime::msecTime2LabelJustified()
