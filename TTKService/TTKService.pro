@@ -10,37 +10,46 @@
 # * works are strictly forbiden.
 # =================================================
 
-QT       += core gui network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TEMPLATE = app
 
-TTKMusicPlayer = 2.3.2.0
+contains(CONFIG, TTK_BUILD_LIB){
+    CONFIG -= TTK_BUILD_LIB
+}
+
+CONFIG += TTK_NO_MSVC_LINK_NEED
+win32{
+    msvc{
+        CONFIG -= TTK_NO_MSVC_LINK_NEED
+    }
+}
+include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32{
-  TARGET = ../../bin/TTKMusicPlayer
-  LIBS += -L../bin/$$TTKMusicPlayer -lMusicUi
+  TARGET = ../../bin/$$TTKMusicPlayer/TTKService
+  LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
 }
 unix{
-  TARGET = ../lib/TTKMusicPlayer
-  LIBS += -L./lib/$$TTKMusicPlayer -lMusicUi
+  TARGET = ../lib/$$TTKMusicPlayer/TTKService
+  LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
 }
 
-TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11
+INCLUDEPATH += ../TTKCore
 
-INCLUDEPATH += ../ \
-    ../TTKCore/musicCore
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
+HEADERS  += \
+    ../TTKCore/musicapplication.h \
+    ../TTKCore/musicleftareawidget.h \
+    ../TTKCore/musictopareawidget.h \
+    ../TTKCore/musicrightareawidget.h \
+    ../TTKCore/musicbottomareawidget.h \
+    ../TTKCore/musicapplicationobject.h
+
+}
 
 SOURCES += \
-    musicservicemain.cpp \
-    musicserviceapplication.cpp \
-    musicserviceobject.cpp
-
-HEADERS += \
-    musicserviceglobaldefine.h \
-    musicserviceobject.h \
-    musicserviceapplication.h
+    musicservicemain.cpp
 
 win32{
     RC_FILE = TTKService.rc

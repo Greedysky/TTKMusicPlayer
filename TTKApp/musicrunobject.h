@@ -1,5 +1,5 @@
-#ifndef MUSICSERVICEOBJECT_H
-#define MUSICSERVICEOBJECT_H
+#ifndef MUSICRUNOBJECT_H
+#define MUSICRUNOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,18 +12,18 @@
 #include <QProcess>
 #include "musicobject.h"
 #include "musicprivate.h"
-#include "musicserviceglobaldefine.h"
+#include "musicrunglobaldefine.h"
 
-class MusicServiceObjectPrivate;
+class MusicRunObjectPrivate;
 
-/*! @brief The class of the music service object.
+/*! @brief The class of the music run object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SERVICE_EXPORT MusicServiceObject : public QObject
+class MUSIC_RUN_EXPORT MusicRunObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicServiceObject(QObject *parent = 0);
+    explicit MusicRunObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -51,8 +51,8 @@ private:
      * Check the related file is exist.
      */
 
-    TTK_DECLARE_PRIVATE(MusicServiceObject)
+    TTK_DECLARE_PRIVATE(MusicRunObject)
 
 };
 
-#endif // MUSICSERVICEOBJECT_H
+#endif // MUSICRUNOBJECT_H

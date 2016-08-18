@@ -1,4 +1,4 @@
-#include "musicserviceapplication.h"
+#include "musicrunapplication.h"
 
 #include <QStringList>
 #include <QSharedMemory>
@@ -6,11 +6,11 @@
 #include <QLocalSocket>
 #include <QFile>
 
-class MusicServiceApplicationPrivate : public TTKPrivate<MusicServiceApplication>
+class MusicRunApplicationPrivate : public TTKPrivate<MusicRunApplication>
 {
 public:
-    MusicServiceApplicationPrivate();
-    ~MusicServiceApplicationPrivate();
+    MusicRunApplicationPrivate();
+    ~MusicRunApplicationPrivate();
 
     void listen(const QString &serverName);
 
@@ -18,18 +18,18 @@ public:
     QLocalServer *m_localServer;
 };
 
-MusicServiceApplicationPrivate::MusicServiceApplicationPrivate()
+MusicRunApplicationPrivate::MusicRunApplicationPrivate()
 {
     m_isRunning = false;
     m_localServer = nullptr;
 }
 
-MusicServiceApplicationPrivate::~MusicServiceApplicationPrivate()
+MusicRunApplicationPrivate::~MusicRunApplicationPrivate()
 {
     delete m_localServer;
 }
 
-void MusicServiceApplicationPrivate::listen(const QString &serverName)
+void MusicRunApplicationPrivate::listen(const QString &serverName)
 {
     if(m_localServer->listen(serverName))
     {
@@ -46,11 +46,11 @@ void MusicServiceApplicationPrivate::listen(const QString &serverName)
 //////////////////////////////////////////////////////
 ///
 ///
-MusicServiceApplication::MusicServiceApplication(int argc, char **argv)
+MusicRunApplication::MusicRunApplication(int argc, char **argv)
   : QApplication(argc, argv)
 {
     TTK_INIT_PRIVATE;
-    TTK_D(MusicServiceApplication);
+    TTK_D(MusicRunApplication);
 
     QCoreApplication::setApplicationName("MusicService");
     QString serverName = QCoreApplication::applicationName();
@@ -83,15 +83,15 @@ MusicServiceApplication::MusicServiceApplication(int argc, char **argv)
     d->listen(serverName);
 }
 
-bool MusicServiceApplication::isRunning()
+bool MusicRunApplication::isRunning()
 {
-    TTK_D(MusicServiceApplication);
+    TTK_D(MusicRunApplication);
     return d->m_isRunning;
 }
 
-void MusicServiceApplication::newLocalConnection()
+void MusicRunApplication::newLocalConnection()
 {
-    TTK_D(MusicServiceApplication);
+    TTK_D(MusicRunApplication);
     QLocalSocket *socket = d->m_localServer->nextPendingConnection();
     if(!socket)
     {

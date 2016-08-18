@@ -5,6 +5,16 @@
 #endif
 
 IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/lb_player_logo.ico"
+IDI_ICON2                ICON     DISCARDABLE     "../TTKResource/fileIcon/aac.ico"
+IDI_ICON3                ICON     DISCARDABLE     "../TTKResource/fileIcon/ac3.ico"
+IDI_ICON4                ICON     DISCARDABLE     "../TTKResource/fileIcon/flac.ico"
+IDI_ICON5                ICON     DISCARDABLE     "../TTKResource/fileIcon/mp1.ico"
+IDI_ICON6                ICON     DISCARDABLE     "../TTKResource/fileIcon/mp2.ico"
+IDI_ICON7                ICON     DISCARDABLE     "../TTKResource/fileIcon/mp3.ico"
+IDI_ICON8                ICON     DISCARDABLE     "../TTKResource/fileIcon/oga.ico"
+IDI_ICON9                ICON     DISCARDABLE     "../TTKResource/fileIcon/ogg.ico"
+IDI_ICON10               ICON     DISCARDABLE     "../TTKResource/fileIcon/pcm.ico"
+IDI_ICON11               ICON     DISCARDABLE     "../TTKResource/fileIcon/wav.ico"
 
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION 2,3,2,0

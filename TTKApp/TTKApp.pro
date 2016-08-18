@@ -10,46 +10,34 @@
 # * works are strictly forbiden.
 # =================================================
 
-TEMPLATE = app
+QT       += core gui network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-contains(CONFIG, TTK_BUILD_LIB){
-    CONFIG -= TTK_BUILD_LIB
-}
-
-CONFIG += TTK_NO_MSVC_LINK_NEED
-win32{
-    msvc{
-        CONFIG -= TTK_NO_MSVC_LINK_NEED
-    }
-}
-include(../TTKMusicPlayer.pri)
+TTKMusicPlayer = 2.3.2.0
 unix:VERSION += $$TTKMusicPlayer
 
-win32{
-  TARGET = ../../bin/$$TTKMusicPlayer/TTKRun
-  LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
-}
-unix{
-  TARGET = ../lib/$$TTKMusicPlayer/TTKRun
-  LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
-}
+win32:TARGET = ../../bin/TTKMusicPlayer
+unix:TARGET = ../lib/TTKMusicPlayer
 
+TEMPLATE = app
 
-INCLUDEPATH += ../TTKCore
+QMAKE_CXXFLAGS += -std=c++11
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
-HEADERS  += \
-    ../TTKCore/musicapplication.h \
-    ../TTKCore/musicleftareawidget.h \
-    ../TTKCore/musictopareawidget.h \
-    ../TTKCore/musicrightareawidget.h \
-    ../TTKCore/musicbottomareawidget.h \
-    ../TTKCore/musicapplicationobject.h
-
-}
+INCLUDEPATH += ../ \
+    ../TTKCore/musicCore
 
 SOURCES += \
-    musicapplicationmain.cpp
+    musicrunmain.cpp \
+    musicrunapplication.cpp \
+    musicrunobject.cpp
+
+HEADERS += \
+    musicrunglobaldefine.h \
+    musicrunobject.h \
+    musicrunapplication.h
+
+RESOURCES += \
+    ../TTKQrc/MusicApp.qrc
 
 win32{
     RC_FILE = TTKApp.rc

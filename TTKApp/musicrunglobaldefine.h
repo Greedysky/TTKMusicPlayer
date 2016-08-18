@@ -1,5 +1,5 @@
-#ifndef MUSICSERVICEGLOBALDEFINE_H
-#define MUSICSERVICEGLOBALDEFINE_H
+#ifndef MUSICRUNGLOBALDEFINE_H
+#define MUSICRUNGLOBALDEFINE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -18,9 +18,9 @@
 #define MUSIC_EXPORT
 
 #ifdef MUSIC_EXPORT
-#  define MUSIC_SERVICE_EXPORT Q_DECL_EXPORT
+#  define MUSIC_RUN_EXPORT Q_DECL_EXPORT
 #else
-#  define MUSIC_SERVICE_EXPORT Q_DECL_IMPORT
+#  define MUSIC_RUN_EXPORT Q_DECL_IMPORT
 #endif
 
-#endif // MUSICSERVICEGLOBALDEFINE_H
+#endif // MUSICRUNGLOBALDEFINE_H

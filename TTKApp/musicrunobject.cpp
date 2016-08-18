@@ -1,4 +1,4 @@
-#include "musicserviceobject.h"
+#include "musicrunobject.h"
 #include "musicversion.h"
 
 #include <QApplication>
@@ -28,22 +28,22 @@
 #define S_LANGUAGE_DIR_FULL       MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + LANGUAGE_DIR
 #define S_SOUNDPATH_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + SOUNDPATH
 
-class MusicServiceObjectPrivate : public TTKPrivate<MusicServiceObject>
+class MusicRunObjectPrivate : public TTKPrivate<MusicRunObject>
 {
 public:
-    MusicServiceObjectPrivate();
-    ~MusicServiceObjectPrivate();
+    MusicRunObjectPrivate();
+    ~MusicRunObjectPrivate();
 
     QProcess *m_process;
 
 };
 
-MusicServiceObjectPrivate::MusicServiceObjectPrivate()
+MusicRunObjectPrivate::MusicRunObjectPrivate()
 {
     m_process = nullptr;
 }
 
-MusicServiceObjectPrivate::~MusicServiceObjectPrivate()
+MusicRunObjectPrivate::~MusicRunObjectPrivate()
 {
     delete m_process;
 }
@@ -52,34 +52,34 @@ MusicServiceObjectPrivate::~MusicServiceObjectPrivate()
 //////////////////////////////////////////////////////
 ///
 ///
-MusicServiceObject::MusicServiceObject(QObject *parent)
+MusicRunObject::MusicRunObject(QObject *parent)
     : QObject(parent)
 {
     TTK_INIT_PRIVATE;
-    TTK_D(MusicServiceObject);
+    TTK_D(MusicRunObject);
 
     d->m_process = new QProcess(this);
     connect(d->m_process, SIGNAL(finished(int)), qApp, SLOT(quit()));
 }
 
-void MusicServiceObject::checkValid()
+void MusicRunObject::checkValid()
 {
     checkTheDirectoryExist();
     checkTheFileNeededExist();
 }
 
-void MusicServiceObject::run(int argc, char **argv)
+void MusicRunObject::run(int argc, char **argv)
 {
-    TTK_D(MusicServiceObject);
+    TTK_D(MusicRunObject);
     QStringList list(APPNAME);
     if(argc == 3)
     {
         list << argv[1] << argv[2];
     }
-    d->m_process->start(QString("%1/TTKRun.exe").arg(TTKMUSIC_VERSION_STR), list);
+    d->m_process->start(QString("%1/TTKService.exe").arg(TTKMUSIC_VERSION_STR), list);
 }
 
-void MusicServiceObject::dirIsExist(const QString &name)
+void MusicRunObject::dirIsExist(const QString &name)
 {
     QDir dir;
     if(!dir.exists(name))
@@ -88,7 +88,7 @@ void MusicServiceObject::dirIsExist(const QString &name)
     }
 }
 
-void MusicServiceObject::checkTheDirectoryExist()
+void MusicRunObject::checkTheDirectoryExist()
 {
     dirIsExist(S_APPDATA_DIR_FULL);
     dirIsExist(S_DOWNLOADS_DIR_FULL);
@@ -105,7 +105,7 @@ void MusicServiceObject::checkTheDirectoryExist()
     dirIsExist(S_LANGUAGE_DIR_FULL);
 }
 
-void MusicServiceObject::checkTheFileNeededExist()
+void MusicRunObject::checkTheFileNeededExist()
 {
     if(!QFile::exists(S_COFIGPATH_FULL))
     {

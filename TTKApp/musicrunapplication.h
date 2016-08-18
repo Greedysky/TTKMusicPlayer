@@ -1,5 +1,5 @@
-#ifndef MUSICSERVICEAPPLICATION_H
-#define MUSICSERVICEAPPLICATION_H
+#ifndef MUSICRUNAPPLICATION_H
+#define MUSICRUNAPPLICATION_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,18 +11,18 @@
 
 #include <QApplication>
 #include "musicprivate.h"
-#include "musicserviceglobaldefine.h"
+#include "musicrunglobaldefine.h"
 
-class MusicServiceApplicationPrivate;
+class MusicRunApplicationPrivate;
 
-/*! @brief The class of the music service application.
+/*! @brief The class of the music run application.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SERVICE_EXPORT MusicServiceApplication : public QApplication
+class MUSIC_RUN_EXPORT MusicRunApplication : public QApplication
 {
     Q_OBJECT
 public:
-    explicit MusicServiceApplication(int argc, char **argv);
+    explicit MusicRunApplication(int argc, char **argv);
     /*!
      * Object contsructor.
      */
@@ -39,8 +39,8 @@ private slots:
      */
 
 private:
-    TTK_DECLARE_PRIVATE(MusicServiceApplication)
+    TTK_DECLARE_PRIVATE(MusicRunApplication)
 
 };
 
-#endif // MUSICSERVICEAPPLICATION_H
+#endif // MUSICRUNAPPLICATION_H
