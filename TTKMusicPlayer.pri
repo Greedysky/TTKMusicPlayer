@@ -96,7 +96,9 @@ contains(CONFIG, TTK_BUILD_LIB){
 include(TTKThirdParty/TTKThirdParty.pri)
 #########################################
 include(TTKCore/musicCore/MusicCore.pri)
+include(TTKCore/musicNetwork/MusicNetwork.pri)
 include(TTKCore/musicWidget/MusicWidget.pri)
+include(TTKCore/musicWidgetCore/MusicWidgetCore.pri)
 include(TTKCore/musicLocalsearch/MusicLocalSearch.pri)
 include(TTKCore/musicLrcmanager/MusicLrc.pri)
 include(TTKCore/musicRemotewidget/MusicRemote.pri)

@@ -10,33 +10,10 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD \
-               $$PWD/network
+INCLUDEPATH += $$PWD
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/network/musicnetworkabstract.h \
-    $$PWD/network/musicdownloadthreadabstract.h \
-    $$PWD/network/musicdata2downloadthread.h \
-    $$PWD/network/musicdatadownloadthread.h \
-    $$PWD/network/musictextdownloadthread.h \
-    $$PWD/network/musicsourcedownloadthread.h \
-    $$PWD/network/musicnetworkthread.h \
-    $$PWD/network/musicnetworkproxy.h \
-    $$PWD/network/musicnetworkoperator.h \
-    $$PWD/network/musicbackgrounddownload.h \
-    $$PWD/network/musicdownloadqueuecache.h \
-    $$PWD/network/musicdownloadqueryfactory.h \
-    $$PWD/network/musicdownloadquerythreadabstract.h \
-    $$PWD/network/musicdownloadquerymultiplethread.h \
-    $$PWD/network/musicdownloadqueryttthread.h \
-    $$PWD/network/musicdownloadquerywythread.h \
-    $$PWD/network/musicradiochannelthread.h \
-    $$PWD/network/musicradioplaylistthread.h \
-    $$PWD/network/musicradiosongsthread.h \
-    $$PWD/network/musicradiothreadabstract.h \
-    $$PWD/network/musictranslationthread.h \
-    $$PWD/network/musicvoicettsthread.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicuiobject.h \
@@ -65,28 +42,6 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
-    $$PWD/network/musicnetworkabstract.cpp \
-    $$PWD/network/musicdownloadthreadabstract.cpp \
-    $$PWD/network/musicdata2downloadthread.cpp \
-    $$PWD/network/musicdatadownloadthread.cpp \
-    $$PWD/network/musictextdownloadthread.cpp \
-    $$PWD/network/musicsourcedownloadthread.cpp \
-    $$PWD/network/musicnetworkthread.cpp \
-    $$PWD/network/musicnetworkproxy.cpp \
-    $$PWD/network/musicnetworkoperator.cpp \
-    $$PWD/network/musicbackgrounddownload.cpp \
-    $$PWD/network/musicdownloadqueuecache.cpp \
-    $$PWD/network/musicdownloadqueryfactory.cpp \
-    $$PWD/network/musicdownloadquerythreadabstract.cpp \
-    $$PWD/network/musicdownloadquerymultiplethread.cpp \
-    $$PWD/network/musicdownloadqueryttthread.cpp \
-    $$PWD/network/musicdownloadquerywythread.cpp \
-    $$PWD/network/musicradiochannelthread.cpp \
-    $$PWD/network/musicradioplaylistthread.cpp \
-    $$PWD/network/musicradiosongsthread.cpp \
-    $$PWD/network/musicradiothreadabstract.cpp \
-    $$PWD/network/musictranslationthread.cpp \
-    $$PWD/network/musicvoicettsthread.cpp \
     $$PWD/musicutils.cpp \
     $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \

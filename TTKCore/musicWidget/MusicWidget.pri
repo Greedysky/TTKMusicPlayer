@@ -10,34 +10,10 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD \
-               $$PWD/core
+INCLUDEPATH += $$PWD
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/core/musicabstracttablewidget.h \
-    $$PWD/core/musicabstractmovedialog.h \
-    $$PWD/core/musicabstractmovewidget.h \
-    $$PWD/core/musicabstractmoveresizewidget.h \
-    $$PWD/core/musicitemdelegate.h \
-    $$PWD/core/musicmarqueewidget.h \
-    $$PWD/core/musicpreviewlabel.h \
-    $$PWD/core/musicmessagebox.h \
-    $$PWD/core/musicprogresswidget.h \
-    $$PWD/core/musicclickedlabel.h \
-    $$PWD/core/musicclickedslider.h \
-    $$PWD/core/musicmovinglabelslider.h \
-    $$PWD/core/musictoastlabel.h \
-    $$PWD/core/musicroundanimationlabel.h \
-    $$PWD/core/musiccodearea.h \
-    $$PWD/core/musicgrabwidget.h \
-    $$PWD/core/musicfloatabstractwidget.h \
-    $$PWD/core/musictimersliderwidget.h \
-    $$PWD/core/musiccutsliderwidget.h \
-    $$PWD/core/musicanimationstackedwidget.h \
-    $$PWD/core/musicuploadfilewidget.h \
-    $$PWD/core/musictoolmenuwidget.h \
-    $$PWD/core/musicgiflabelwidget.h \
     $$PWD/musicdownloadstatuslabel.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
@@ -71,29 +47,6 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
-    $$PWD/core/musicabstracttablewidget.cpp \
-    $$PWD/core/musicabstractmovedialog.cpp \
-    $$PWD/core/musicabstractmovewidget.cpp \
-    $$PWD/core/musicabstractmoveresizewidget.cpp \
-    $$PWD/core/musicitemdelegate.cpp \
-    $$PWD/core/musicmarqueewidget.cpp \
-    $$PWD/core/musicpreviewlabel.cpp \
-    $$PWD/core/musicmessagebox.cpp \
-    $$PWD/core/musicprogresswidget.cpp \
-    $$PWD/core/musicclickedlabel.cpp \
-    $$PWD/core/musicclickedslider.cpp \
-    $$PWD/core/musicmovinglabelslider.cpp \
-    $$PWD/core/musictoastlabel.cpp \
-    $$PWD/core/musicroundanimationlabel.cpp \
-    $$PWD/core/musiccodearea.cpp \
-    $$PWD/core/musicgrabwidget.cpp \
-    $$PWD/core/musicfloatabstractwidget.cpp \
-    $$PWD/core/musictimersliderwidget.cpp \
-    $$PWD/core/musiccutsliderwidget.cpp \
-    $$PWD/core/musicanimationstackedwidget.cpp \
-    $$PWD/core/musicuploadfilewidget.cpp \
-    $$PWD/core/musictoolmenuwidget.cpp \
-    $$PWD/core/musicgiflabelwidget.cpp \
     $$PWD/musicdownloadstatuslabel.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
