@@ -9,8 +9,11 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    Q_INIT_RESOURCE(MusicService);
+
     MusicServiceObject object;
-    object.run();
+    object.checkValid();
+    object.run(argc, argv);
 
     return app.exec();
 }

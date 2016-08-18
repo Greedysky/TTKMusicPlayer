@@ -22,18 +22,6 @@ namespace MusicUtils
 {
     namespace UCore
     {
-        MUSIC_CORE_EXPORT void dirIsExist(const QString& name);
-        /*!
-         * Check current dir is exist, no, just create it.
-         */
-        MUSIC_CORE_EXPORT void checkTheDirectoryExist();
-        /*!
-         * Check the related dir is exist.
-         */
-        MUSIC_CORE_EXPORT bool checkTheFileExist();
-        /*!
-         * Check the related file is exist.
-         */
         MUSIC_CORE_EXPORT quint64 dirSize(const QString &dirName);
         /*!
          * Get given dir size.

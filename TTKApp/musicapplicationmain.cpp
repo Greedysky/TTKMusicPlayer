@@ -2,15 +2,26 @@
 #include "musicutils.h"
 #include "musicxmlconfigmanager.h"
 #include "musicnetworkthread.h"
-#include "musicmessagebox.h"
 
 #include <QApplication>
 #include <QTranslator>
 
+//#define TTK_DEBUG
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+#ifndef TTK_DEBUG
+    if(argc <= 1)
+    {
+        return -1;
+    }
+    else if(QString(argv[1]) != APPNAME)
+    {
+        return -1;
+    }
+#endif
+    ///////////////////////////////////////////////////////
 #ifndef MUSIC_GREATER_NEW
     MusicUtils::UCore::setLocalCodec();
 #endif
@@ -19,20 +30,6 @@ int main(int argc, char *argv[])
     font.setPixelSize(13);
     qApp->setFont(font);
 #endif
-
-    MusicUtils::UCore::checkTheDirectoryExist();
-    if(!MusicUtils::UCore::checkTheFileExist())
-    {
-        M_LOGGER_INFO("Load Translation");
-        QTranslator translator;
-        translator.load(MusicUtils::UCore::getLanguageName(0));
-        a.installTranslator(&translator);
-
-        MusicMessageBox(QObject::tr("TTKMusicPlayer"),
-                        QObject::tr("Lack of necessary component files!")
-                        ).exec();
-        return -1;
-    }//check file error!
 
     ///////////////////////////////////////////////////////
     M_LOGGER_INFO("MusicApplication Begin");
@@ -59,7 +56,7 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
-    if(argc == 3)
+    if(argc == 4)
     {
         if( QString(argv[1]) == "-Open" )
         {

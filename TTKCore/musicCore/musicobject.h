@@ -13,6 +13,7 @@
 #include <QApplication>
 #include "musicglobal.h"
 
+#define APPNAME                 "TTKMusicPlayer"
 ///////////////////////////////////////
 
 #define APPDATA_DIR             "AppData/"
@@ -55,6 +56,7 @@
 #define DARABASEPATH            "musicuser.dll"
 #define USERPATH                "musicuser.ttk"
 #define BARRAGEPATH             "musicbarrage.ttk"
+#define SOUNDPATH               "sound.wav"
 
 #define SQLITE_DATABASE         "QSQLITE"
 #define MYSQL_DATABASE          "QMYSQL"
@@ -84,6 +86,7 @@
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
+#define SOUNDPATH_FULL          MusicObject::getAppDir() + SOUNDPATH
 
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC

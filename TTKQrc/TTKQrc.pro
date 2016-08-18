@@ -20,4 +20,5 @@ unix:TARGET = ../lib/$$TTKMusicPlayer/MusicUi
 
 RESOURCES += \
     MusicPlayer.qrc \
-    MusicThirdParty.qrc
+    MusicThirdParty.qrc \
+    MusicService.qrc

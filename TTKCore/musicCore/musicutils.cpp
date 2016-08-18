@@ -11,39 +11,6 @@
 #include <shellapi.h>
 #endif
 
-void MusicUtils::UCore::dirIsExist(const QString &name)
-{
-    QDir dir;
-    if(!dir.exists(name))
-    {
-        dir.mkdir(name);
-    }
-}
-
-void MusicUtils::UCore::checkTheDirectoryExist()
-{
-    dirIsExist(LRC_DIR_FULL);
-    dirIsExist(MUSIC_DIR_FULL);
-    dirIsExist(MOVIE_DIR_FULL);
-    dirIsExist(CACHE_DIR_FULL);
-    dirIsExist(THEME_DIR_FULL);
-    dirIsExist(ART_DIR_FULL);
-    dirIsExist(PLUGINS_DIR_FULL);
-    dirIsExist(BACKGROUND_DIR_FULL);
-    dirIsExist(LANGUAGE_DIR_FULL);
-}
-
-bool MusicUtils::UCore::checkTheFileExist()
-{
-    return QFile::exists(DOWNLOADINFO_FULL) &&
-           QFile::exists(DARABASEPATH_FULL) &&
-           QFile::exists(USERPATH_FULL) &&
-           QFile::exists(COFIGPATH_FULL) &&
-           QFile::exists(MUSICPATH_FULL) &&
-           QFile::exists(MUSICSEARCH_FULL) &&
-           QFile::exists(NETDADIOPATH_FULL);
-}
-
 QString MusicUtils::UCore::getLanguageName(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);

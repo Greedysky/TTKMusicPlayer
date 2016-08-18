@@ -13,8 +13,18 @@
 QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-win32:TARGET = ../../bin/TTKMusicPlayer
-unix:TARGET = ../lib/TTKMusicPlayer
+TTKMusicPlayer = 2.3.2.0
+unix:VERSION += $$TTKMusicPlayer
+
+win32{
+  TARGET = ../../bin/TTKMusicPlayer
+  LIBS += -L../bin/$$TTKMusicPlayer -lMusicUi
+}
+unix{
+  TARGET = ../lib/TTKMusicPlayer
+  LIBS += -L./lib/$$TTKMusicPlayer -lMusicUi
+}
+
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++11
