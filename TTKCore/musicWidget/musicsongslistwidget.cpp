@@ -10,7 +10,6 @@
 #include "musicnumberdefine.h"
 #include "musicsongsharingwidget.h"
 #include "musicconnecttransferwidget.h"
-#include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
 #include "musicuploadfilewidget.h"
@@ -46,14 +45,10 @@ MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
 }
 
 MusicSongsListWidget::~MusicSongsListWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
     delete m_uploadFileWidget;
     delete m_musicSongsInfoWidget;
@@ -463,12 +458,12 @@ void MusicSongsListWidget::musicFileInformation()
 
 void MusicSongsListWidget::musicSongMovieFound()
 {
-    emit musicSongMovieClicked( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
 }
 
 void MusicSongsListWidget::musicSimilarFoundWidget()
 {
-    emit musicSimilarFound( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );
 }
 
 void MusicSongsListWidget::musicSongSharedWidget()
@@ -506,19 +501,19 @@ void MusicSongsListWidget::musicSearchQuery(QAction *action)
         case 0:
             if(names.count() >= 1)
             {
-                emit restartSearchQuery(names[0]);
+                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[0]);
             }
             break;
         case 1:
             if(names.count() >= 2)
             {
-                emit restartSearchQuery(names[1]);
+                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[1]);
             }
             break;
         case 2:
             if(names.count() >= 3)
             {
-                emit restartSearchQuery(names[2]);
+                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[2]);
             }
             break;
         default: break;

@@ -5,7 +5,6 @@
 #include "musicbackgrounddownload.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicmessagebox.h"
-#include "musicconnectionpool.h"
 #include "musiccoremplayer.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicitemdelegate.h"
@@ -32,7 +31,6 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(5, 26);
 
     m_previousAuditionRow = -1;
-    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()

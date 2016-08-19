@@ -9,24 +9,24 @@
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
 #include "musicequalizerdialog.h"
-#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicregeditmanager.h"
 #include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
-#include "musicenhancedwidget.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
 #include <QDesktopWidget>
 
+MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
+
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
     : QObject(parent), m_mobileDevices(nullptr)
 {
     Q_INIT_RESOURCE(MusicPlayer);
-    m_supperClass = MStatic_cast(QWidget*, parent);
+    m_instance = this;
 
     musicResetWindow();
     windowStartAnimationOpacity();
@@ -43,11 +43,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 #elif defined Q_OS_WIN
     m_mobileDevicesLinux = nullptr;
 #endif
-
     m_setWindowToTop = false;
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicEnhancedWidget::getClassName());
 
     musicToolSetsParameter();
 }
@@ -66,6 +62,11 @@ QString MusicApplicationObject::getClassName()
     return staticMetaObject.className();
 }
 
+MusicApplicationObject *MusicApplicationObject::instance()
+{
+    return m_instance;
+}
+
 void MusicApplicationObject::getParameterSetting()
 {
 #ifdef Q_OS_WIN
@@ -79,7 +80,7 @@ void MusicApplicationObject::getParameterSetting()
 
 void MusicApplicationObject::windowStartAnimationOpacity()
 {
-    m_animation = new QPropertyAnimation(m_supperClass, "windowOpacity");
+    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity");
     m_animation->setDuration(MT_S2MS);
     m_animation->setStartValue(0);
     m_animation->setEndValue(1);
@@ -167,7 +168,7 @@ void MusicApplicationObject::musicAboutUs()
 
 void MusicApplicationObject::musicVersionUpdate()
 {
-    MusicSourceUpdateWidget(m_supperClass).exec();
+    MusicSourceUpdateWidget(MusicApplication::instance()).exec();
 }
 
 void MusicApplicationObject::musicAudioRecorder()
@@ -180,7 +181,7 @@ void MusicApplicationObject::musicTimerWidget()
 {
     MusicTimerWidget timer;
     QStringList list;
-    emit getCurrentPlayList(list);
+    MusicApplication::instance()->getCurrentPlayList(list);
     timer.setSongStringList(list);
     timer.exec();
 }
@@ -188,11 +189,11 @@ void MusicApplicationObject::musicTimerWidget()
 void MusicApplicationObject::musicSetWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
-    Qt::WindowFlags flags = m_supperClass->windowFlags();
-    m_supperClass->setWindowFlags( m_setWindowToTop ?
-                  (flags | Qt::WindowStaysOnTopHint) :
-                  (flags & ~Qt::WindowStaysOnTopHint) );
-    m_supperClass->show();
+    Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
+    MusicApplication::instance()->setWindowFlags( m_setWindowToTop ?
+                              (flags | Qt::WindowStaysOnTopHint) :
+                              (flags & ~Qt::WindowStaysOnTopHint) );
+    MusicApplication::instance()->show();
 }
 
 void MusicApplicationObject::musicResetWindow()
@@ -201,8 +202,8 @@ void MusicApplicationObject::musicResetWindow()
     M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 
-    m_supperClass->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2,
-                               (widget->height() - WINDOW_HEIGHT_MIN)/2,
+    MusicApplication::instance()->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2,
+                                (widget->height() - WINDOW_HEIGHT_MIN)/2,
                                 WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 

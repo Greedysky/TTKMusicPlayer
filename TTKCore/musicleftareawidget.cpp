@@ -1,5 +1,6 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
+#include "musicapplication.h"
 #include "musicuiobject.h"
 #include "musicttkuiobject.h"
 #include "musicdownloadmgmtwidget.h"
@@ -9,18 +10,19 @@
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicewidget.h"
-#include "musicconnectionpool.h"
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
 ///
+/// \brief MusicBottomAreaWidget::m_instance
+///
+MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     : QWidget(parent), m_qualityChoiceWidget(nullptr)
 {
-    m_supperClass = parent;
+    m_instance = this;
     m_stackedWidget = nullptr;
-    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -34,6 +36,11 @@ QString MusicLeftAreaWidget::getClassName()
     return staticMetaObject.className();
 }
 
+MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
+{
+    return m_instance;
+}
+
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
@@ -41,12 +48,12 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
 
-    connect(ui->musicKey, SIGNAL(clicked()), m_supperClass, SLOT(musicStatePlay()));
-    connect(ui->musicPrevious, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayPrevious()));
-    connect(ui->musicNext, SIGNAL(clicked()), m_supperClass, SLOT(musicPlayNext()));
-    connect(ui->musicSound, SIGNAL(clicked()), m_supperClass, SLOT(musicVolumeMute()));
-    connect(ui->musicSound, SIGNAL(musicVolumeChanged(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
-    connect(ui->musicBestLove, SIGNAL(clicked()), m_supperClass, SLOT(musicAddSongToLovestListAt()));
+    connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicStatePlay()));
+    connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(ui->musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(ui->musicSound, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
+    connect(ui->musicSound, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
+    connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
     connect(ui->musicButton_playlist, SIGNAL(clicked()), this, SLOT(musicStackedSongListWidgetChanged()));
     connect(ui->musicButton_tools, SIGNAL(clicked()), this, SLOT(musicStackedToolsWidgetChanged()));
@@ -54,7 +61,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicButton_mydownl, SIGNAL(clicked()), this, SLOT(musicStackedMyDownWidgetChanged()));
     connect(ui->musicButton_mobile, SIGNAL(clicked()), this, SLOT(musicStackedMobileWidgetChanged()));
     connect(ui->musicButton_cloud, SIGNAL(clicked()), this, SLOT(musicStackedCloudWidgetChanged()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), m_supperClass,
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(),
                                      SLOT(musicEnhancedMusicChanged(int)));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
                                      SLOT(setSliderStyleByType(int)));
@@ -126,7 +133,7 @@ void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
 
 void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
 {
-    Visual::initialize(m_supperClass);
+    Visual::initialize(MusicApplication::instance());
     foreach(VisualFactory *v, Visual::factories())
     {
         if(v->properties().shortName.contains("analyzer"))
@@ -138,7 +145,7 @@ void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
 
 void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
 {
-    Visual::initialize(m_supperClass);
+    Visual::initialize(MusicApplication::instance());
     foreach(VisualFactory *v, Visual::factories())
     {
         if(v->properties().shortName.contains("projectm"))

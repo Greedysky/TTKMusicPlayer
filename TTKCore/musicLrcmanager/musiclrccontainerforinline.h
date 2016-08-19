@@ -101,10 +101,6 @@ Q_SIGNALS:
     /*!
      * The art background state has changed emit.
      */
-    void musicSongMovieClicked(const QString &text);
-    /*!
-     * Video button clicked it emit.
-     */
 
 public Q_SLOTS:
     void lrcSizeChanged(QAction *action) const;

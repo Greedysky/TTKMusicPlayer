@@ -16,21 +16,21 @@
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
-#include "musicconnectionpool.h"
 #include "musicglobalhotkey.h"
 #include "musicttkuiobject.h"
 #include "musictoastlabel.h"
+
+MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
     : MusicAbstractMoveResizeWidget(parent),
       ui(new Ui::MusicApplication)
 {
-    ui->setupUi(this);
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-
+    m_instance = this;
     m_applicationObject = new MusicApplicationObject(this);
-
     ////////////////////////////////////////////////
+    ui->setupUi(this);
+
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);
     m_musicSongTree = new MusicSongsSummarizied(this);
@@ -112,6 +112,11 @@ MusicApplication::~MusicApplication()
 QString MusicApplication::getClassName()
 {
     return staticMetaObject.className();
+}
+
+MusicApplication *MusicApplication::instance()
+{
+    return m_instance;
 }
 
 #if defined(Q_OS_WIN)

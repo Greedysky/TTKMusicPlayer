@@ -44,6 +44,10 @@ public:
     /*!
      * Get class object name.
      */
+    static MusicApplication *instance();
+    /*!
+     * Get class object instance.
+     */
     QString getCurrentFileName() const;
     /*!
      * Get current file name.
@@ -275,6 +279,7 @@ private:
     MusicLeftAreaWidget *m_leftAreaWidget;
     MusicApplicationObject *m_applicationObject;
 
+    static MusicApplication *m_instance;
 };
 
 #endif // MUSICAPPLICATION_H

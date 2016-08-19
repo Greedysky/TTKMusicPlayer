@@ -1,5 +1,6 @@
 #include "musictopareawidget.h"
 #include "ui_musicapplication.h"
+#include "musicapplication.h"
 #include "musicuserwindow.h"
 #include "musicbackgroundskindialog.h"
 #include "musicbackgroundmanager.h"
@@ -10,21 +11,20 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicuiobject.h"
-#include "musicconnectionpool.h"
 #include "musicttkuiobject.h"
+
+MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicbgskin(nullptr), m_musicRemoteWidget(nullptr)
 {
-    m_supperClass = parent;
+    m_instance = this;
     m_musicUserWindow = new MusicUserWindow(this);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
     m_currentPlayStatus = true;
     m_listAlpha = 40;
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
@@ -39,11 +39,16 @@ QString MusicTopAreaWidget::getClassName()
     return staticMetaObject.className();
 }
 
+MusicTopAreaWidget *MusicTopAreaWidget::instance()
+{
+    return m_instance;
+}
+
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
     ui->userWindow->addWidget(m_musicUserWindow);
-    ui->musicSongSearchLine->initWidget(m_supperClass);
+    ui->musicSongSearchLine->initWidget(MusicApplication::instance());
     ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
     ui->musicSongSearchLine->setText(tr("please input search text"));
 
@@ -58,12 +63,12 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowSetting->setToolTip(tr("setting"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowSetting->setStyleSheet(MusicUIObject::MKGBtnSetting);
-    connect(ui->musicWindowSetting, SIGNAL(clicked()), m_supperClass, SLOT(musicCreateRightMenu()));
+    connect(ui->musicWindowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCreateRightMenu()));
 
     ui->musicWindowConcise->setToolTip(tr("concisein/out"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowConcise->setStyleSheet(MusicUIObject::MKGBtnConciseIn);
-    connect(ui->musicWindowConcise, SIGNAL(clicked()), m_supperClass, SLOT(musicWindowConciseChanged()));
+    connect(ui->musicWindowConcise, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicWindowConciseChanged()));
 
     ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
@@ -73,12 +78,12 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->minimization->setStyleSheet(MusicUIObject::MKGBtnMinimum);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
-    connect(ui->minimization, SIGNAL(clicked()), m_supperClass, SLOT(hide()));
+    connect(ui->minimization, SIGNAL(clicked()), MusicApplication::instance(), SLOT(hide()));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));
     ui->windowClose->setStyleSheet(MusicUIObject::MKGBtnTClose);
-    connect(ui->windowClose, SIGNAL(clicked()), m_supperClass, SLOT(close()));
+    connect(ui->windowClose, SIGNAL(clicked()), MusicApplication::instance(), SLOT(close()));
 }
 
 void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alphaR)
@@ -284,12 +289,12 @@ void MusicTopAreaWidget::createRemoteWidget()
     }
     m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSound->value());
-    connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), m_supperClass, SLOT(showNormal()));
-    connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousSignal()), m_supperClass, SLOT(musicPlayPrevious()));
-    connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), m_supperClass, SLOT(musicPlayNext()));
-    connect(m_musicRemoteWidget, SIGNAL(musicKeySignal()), m_supperClass, SLOT(musicStatePlay()));
-    connect(m_musicRemoteWidget, SIGNAL(musicSettingSignal()), m_supperClass, SLOT(musicSetting()));
-    connect(m_musicRemoteWidget, SIGNAL(musicVolumeSignal(int)), m_supperClass, SLOT(musicVolumeChanged(int)));
+    connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), MusicApplication::instance(), SLOT(showNormal()));
+    connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousSignal()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(m_musicRemoteWidget, SIGNAL(musicPlayNextSignal()), MusicApplication::instance(), SLOT(musicPlayNext()));
+    connect(m_musicRemoteWidget, SIGNAL(musicKeySignal()), MusicApplication::instance(), SLOT(musicStatePlay()));
+    connect(m_musicRemoteWidget, SIGNAL(musicSettingSignal()), MusicApplication::instance(), SLOT(musicSetting()));
+    connect(m_musicRemoteWidget, SIGNAL(musicVolumeSignal(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
     connect(m_musicRemoteWidget, SIGNAL(musicRemoteTypeChanged(QAction*)), SLOT(musicRemoteTypeChanged(QAction*)));
     m_musicRemoteWidget->show();
 }

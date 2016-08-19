@@ -136,19 +136,6 @@ Q_SIGNALS:
      * Swap the current play index when user drag and drop.
      */
 
-    void musicSongMovieClicked(const QString &text);
-    /*!
-     * Video search that by string.
-     */
-    void musicSimilarFound(const QString &text);
-    /*!
-     * Music similar function that by string.
-     */
-    void restartSearchQuery(const QString &name);
-    /*!
-     * Restart search query by name.
-     */
-
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
     /*!

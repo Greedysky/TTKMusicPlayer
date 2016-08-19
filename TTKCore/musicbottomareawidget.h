@@ -39,6 +39,10 @@ public:
     /*!
      * Get class object name.
      */
+    static MusicBottomAreaWidget *instance();
+    /*!
+     * Get class object instance.
+     */
     void setupUi(Ui::MusicApplication* ui);
     /*!
      * Set up app ui.
@@ -140,7 +144,6 @@ protected:
      * Create system tray icon.
      */
 
-    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     bool m_systemCloseConfig;
     QMenu m_toolPopupMenu;
@@ -149,6 +152,7 @@ protected:
     MusicWindowExtras *m_musicWindowExtras;
     MusicLocalSongSearchDialog *m_musicLocalSongSearch;
 
+    static MusicBottomAreaWidget *m_instance;
 };
 
 #endif // MUSICBOTTOMAREAWIDGET_H

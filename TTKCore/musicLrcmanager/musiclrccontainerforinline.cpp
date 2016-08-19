@@ -7,10 +7,10 @@
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
-#include "musicconnectionpool.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
 #include "musicttkuiobject.h"
+#include "musicrightareawidget.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -49,12 +49,10 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllMusicLRCManager();
     delete m_vBoxLayout;
     delete m_lrcAnalysis;
@@ -593,5 +591,5 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 
 void MusicLrcContainerForInline::musicSongMovieClicked()
 {
-    emit musicSongMovieClicked( m_currentSongName );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
 }

@@ -1,8 +1,8 @@
 #include "musicenhancedwidget.h"
 #include "musicsettingmanager.h"
-#include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicttkuiobject.h"
+#include "musicapplicationobject.h"
 
 #include <QLabel>
 #include <QButtonGroup>
@@ -98,13 +98,13 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
 
     initWidget();
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    connect(MusicApplicationObject::instance(), SIGNAL(enhancedMusicChanged(int)),
+                                                SLOT(setEnhancedMusicConfig(int)));
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
 }
 
 MusicEnhancedWidget::~MusicEnhancedWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_caseButton;
     while(!m_buttons.isEmpty())
     {

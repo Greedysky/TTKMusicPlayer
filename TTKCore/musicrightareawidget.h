@@ -37,6 +37,10 @@ public:
     /*!
      * Get class object name.
      */
+    static MusicRightAreaWidget *instance();
+    /*!
+     * Get class object instance.
+     */
     void setupUi(Ui::MusicApplication* ui);
     /*!
      * Set up app ui.
@@ -173,12 +177,13 @@ protected:
      * Function button style clear.
      */
 
-    QWidget *m_supperClass, *m_stackedFuncWidget;
+    QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;
     MusicLrcContainerForDesktop *m_musiclrcfordesktop;
     MusicDownloadStatusLabel *m_downloadStatusLabel;
 
+    static MusicRightAreaWidget *m_instance;
 };
 
 #endif // MUSICRIGHTAREAWIDGET_H

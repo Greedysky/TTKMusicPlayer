@@ -3,20 +3,13 @@
 #include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
-#include "musicconnectionpool.h"
 #include "musictopareawidget.h"
 
 MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
                                            QObject *parent)
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicTopAreaWidget::getClassName());
-}
 
-MusicBackgroundDownload::~MusicBackgroundDownload()
-{
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
 }
 
 QString MusicBackgroundDownload::getClassName()
@@ -63,7 +56,7 @@ void MusicBackgroundDownload::bgDownLoadFinished()
     if( ++m_index >= m_counter)
     {
         M_BACKGROUND_PTR->setArtName( m_artName );
-        emit musicBgDownloadFinished();
+        MusicTopAreaWidget::instance()->musicBgThemeDownloadFinished();
         deleteLater();
     }
 }

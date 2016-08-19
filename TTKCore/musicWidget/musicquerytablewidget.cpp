@@ -1,6 +1,7 @@
 #include "musicquerytablewidget.h"
 #include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicrightareawidget.h"
 
 #include <QPainter>
 #include <QActionGroup>
@@ -77,9 +78,9 @@ void MusicQueryTableWidget::actionGroupClick(QAction *action)
     switch( action->data().toInt() )
     {
         case 0: musicDownloadLocal(row); break;
-        case 1: emit restartSearchQuery(songName); break;
-        case 2: emit restartSearchQuery(artistName); break;
-        case 3: emit restartSearchQuery(songName + "-" + artistName); break;
+        case 1: MusicRightAreaWidget::instance()->songResearchButtonSearched(songName); break;
+        case 2: MusicRightAreaWidget::instance()->songResearchButtonSearched(artistName); break;
+        case 3: MusicRightAreaWidget::instance()->songResearchButtonSearched(songName + "-" + artistName); break;
     }
 }
 

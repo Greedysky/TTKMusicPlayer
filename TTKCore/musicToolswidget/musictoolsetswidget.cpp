@@ -4,7 +4,6 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
-#include "musicconnectionpool.h"
 #include "musicnetworktestwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
@@ -37,15 +36,10 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     MusicUtils::UWidget::setTransparent(this, 50);
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     clearAllItems();
 }
 
@@ -135,7 +129,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
            {
                 MusicTimerWidget timer(this);
                 QStringList songlist;
-                emit getCurrentPlayList(songlist);
+                MusicApplication::instance()->getCurrentPlayList(songlist);
                 timer.setSongStringList(songlist);
                 timer.exec();
                 break;
@@ -147,7 +141,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
-                emit showSpectrumWidget();
+                MusicLeftAreaWidget::instance()->musicAnalyzerSpectrumWidget();
                 break;
             }
         case 6:

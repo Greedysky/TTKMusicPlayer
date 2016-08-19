@@ -24,7 +24,6 @@ public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    ~MusicBackgroundDownload();
 
     static QString getClassName();
     /*!

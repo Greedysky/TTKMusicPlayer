@@ -106,14 +106,6 @@ Q_SIGNALS:
     /*!
      * Rename item artist label is finised it emit.
      */
-    void currentLoveStateChanged();
-    /*!
-     * Current music love icon state changed.
-     */
-    void currentDownloadStateChanged();
-    /*!
-     * Current music download icon state changed.
-     */
 
 public Q_SLOTS:
     void deleteRenameItem();

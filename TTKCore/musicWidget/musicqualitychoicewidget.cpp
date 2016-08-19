@@ -1,7 +1,6 @@
 #include "musicqualitychoicewidget.h"
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
-#include "musicconnectionpool.h"
 #include "musicrightareawidget.h"
 #include "musicttkuiobject.h"
 
@@ -151,9 +150,6 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
 
     setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MKGBtnQuality +
                   "QToolButton{ margin-left:-45px;}" );
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicRightAreaWidget::getClassName());
 }
 
 QString MusicQualityChoiceWidget::getClassName()
@@ -219,5 +215,5 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
     }
     setStyleSheet( styleSheet() + style);
 
-    emit researchQueryByQuality(m_currentQuality);
+    MusicRightAreaWidget::instance()->researchQueryByQuality(m_currentQuality);
 }

@@ -35,6 +35,10 @@ public:
     /*!
      * Get class object name.
      */
+    static MusicLeftAreaWidget *instance();
+    /*!
+     * Get class object instance.
+     */
     void setupUi(Ui::MusicApplication* ui);
     /*!
      * Set up app ui.
@@ -101,12 +105,11 @@ public Q_SLOTS:
      */
 
 protected:
-
-    QWidget *m_supperClass;
     Ui::MusicApplication *m_ui;
     QWidget *m_stackedWidget;
     MusicQualityChoiceWidget *m_qualityChoiceWidget;
 
+    static MusicLeftAreaWidget *m_instance;
 };
 
 #endif // MUSICLEFTAREAWIDGET_H

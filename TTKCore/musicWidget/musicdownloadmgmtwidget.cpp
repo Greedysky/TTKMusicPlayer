@@ -1,10 +1,9 @@
 ﻿#include "ui_musicdownloadresetwidget.h"
 #include "musicdownloadmgmtwidget.h"
-#include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
-#include "musicutils.h"
 #include "musicleftareawidget.h"
+#include "musicutils.h"
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -30,14 +29,12 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
     connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
     connect(ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicLeftAreaWidget::getClassName());
+    connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(),
+                  SLOT(musicStackedMyDownWidgetChanged()));
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
 }
 

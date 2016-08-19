@@ -2,7 +2,6 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
 #include "musicapplicationobject.h"
 
@@ -65,13 +64,12 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     group3->addButton(ui->setRadioButton3, 5);
     connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplicationObject::getClassName());
+    connect(this, SIGNAL(timerParameterChanged()), MusicApplicationObject::instance(),
+                  SLOT(musicToolSetsParameter()));
 }
 
 MusicTimerWidget::~MusicTimerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete ui;
 }
 

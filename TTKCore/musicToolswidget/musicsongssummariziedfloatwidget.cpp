@@ -1,5 +1,4 @@
 #include "musicsongssummariziedfloatwidget.h"
-#include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
@@ -28,8 +27,8 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     searchButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(30, 1, 24, 24);
-    connect(locationButton, SIGNAL(clicked()), SIGNAL(musicCurrentPlayLocation()));
-    connect(searchButton, SIGNAL(clicked()), SIGNAL(musicSearch()));
+    connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
+    connect(searchButton, SIGNAL(clicked()), MusicBottomAreaWidget::instance(), SLOT(musicSearch()));
 
     m_currentAnimationValue = 1;
     m_timer.setInterval(3*MT_S2MS);
@@ -39,15 +38,11 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     m_animation->setDuration(MT_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicBottomAreaWidget::getClassName());
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
     m_timer.start();
 }
 
 MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_animation;
 }
 

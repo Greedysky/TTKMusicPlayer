@@ -1,21 +1,22 @@
 #include "musicbottomareawidget.h"
 #include "ui_musicapplication.h"
+#include "musicapplication.h"
 #include "musicuiobject.h"
 #include "musicsystemtraymenu.h"
 #include "musicwindowextras.h"
-#include "musicconnectionpool.h"
 #include "musiclocalsongsearchdialog.h"
+
+MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     : QWidget(parent), m_musicLocalSongSearch(nullptr)
 {
-    m_supperClass = parent;
+    m_instance = this;
     m_systemCloseConfig = false;
 
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -29,6 +30,11 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
 QString MusicBottomAreaWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
+{
+    return m_instance;
 }
 
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -45,10 +51,10 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
         case QSystemTrayIcon::DoubleClick:
             break;
         case QSystemTrayIcon::Trigger:
-            if(!m_supperClass->isVisible())
+            if(!MusicApplication::instance()->isVisible())
             {
-                m_supperClass->show();
-                m_supperClass->activateWindow();
+                MusicApplication::instance()->show();
+                MusicApplication::instance()->activateWindow();
             }
             break;
         default:
@@ -58,11 +64,11 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
-    m_systemTray = new QSystemTrayIcon(m_supperClass);
+    m_systemTray = new QSystemTrayIcon(MusicApplication::instance());
     m_systemTray->setIcon(QIcon(QString::fromUtf8(":/image/lb_player_logo")));
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
-    m_systemTrayMenu = new MusicSystemTrayMenu(m_supperClass);
+    m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
     connect(m_systemTrayMenu, SIGNAL(setShowDesktopLrc(bool)), SIGNAL(setShowDesktopLrc(bool)));
     connect(m_systemTrayMenu, SIGNAL(setWindowLockedChanged()), SIGNAL(setWindowLockedChanged()));
 
@@ -178,7 +184,7 @@ void MusicBottomAreaWidget::musicSearch()
 {
     if(m_musicLocalSongSearch == nullptr)
     {
-        m_musicLocalSongSearch = new MusicLocalSongSearchDialog(m_supperClass);
+        m_musicLocalSongSearch = new MusicLocalSongSearchDialog(MusicApplication::instance());
         resizeWindow();
 //        m_musicLocalSongSearch->move(51, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 505 : 535);
     }

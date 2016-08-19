@@ -31,16 +31,6 @@ public:
      * Get class object name.
      */
 
-Q_SIGNALS:
-    void getCurrentPlayList(QStringList &list);
-    /*!
-     * Get current play lists.
-     */
-    void showSpectrumWidget();
-    /*!
-     * Show dpectrum widget dialog.
-     */
-
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);
     /*!

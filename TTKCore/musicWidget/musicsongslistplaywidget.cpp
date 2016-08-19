@@ -4,7 +4,6 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
-#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
@@ -96,8 +95,8 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     createMoreMenu(menu);
     m_moreButton->setMenu(menu);
 
-    connect(m_loveButton, SIGNAL(clicked()), SIGNAL(currentLoveStateChanged()));
-    connect(m_downloadButton, SIGNAL(clicked()), SIGNAL(currentDownloadStateChanged()));
+    connect(m_loveButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestListAt()));
+    connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
     connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
@@ -105,14 +104,12 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongMovieFound()));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicApplication::getClassName());
-    M_CONNECTION_PTR->poolConnect(MusicLeftAreaWidget::getClassName(), getClassName());
+    connect(MusicLeftAreaWidget::instance(), SIGNAL(currentLoveStateChanged()), SLOT(currentLoveStateClicked()));
+    connect(MusicLeftAreaWidget::instance(), SIGNAL(currentDownloadStateChanged()), SLOT(currentDownloadStateClicked()));
 }
 
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_renameLine;
     delete m_artPictureLabel;
     delete m_songNameLabel;

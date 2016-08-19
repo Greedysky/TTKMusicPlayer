@@ -36,6 +36,10 @@ public:
     /*!
      * Get class object name.
      */
+    static MusicApplicationObject *instance();
+    /*!
+     * Get class object instance.
+     */
     bool getWindowToTop() const {return m_setWindowToTop;}
     /*!
      * Get current window is to top.
@@ -72,10 +76,6 @@ public:
      */
 
 Q_SIGNALS:
-    void getCurrentPlayList(QStringList &list);
-    /*!
-     * Get current play lists.
-     */
     void enhancedMusicChanged(int type);
     /*!
      * Set enhanced music config changed.
@@ -118,11 +118,11 @@ public Q_SLOTS:
 protected:
     bool m_setWindowToTop;
     QPropertyAnimation *m_animation;
-    QWidget *m_supperClass;
     MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDevices;
     MusicMobileDevicesThread *m_mobileDevicesLinux;
 
+    static MusicApplicationObject *m_instance;
 };
 
 #endif // MUSICAPPLICATIONOBJECT_H

@@ -1,12 +1,12 @@
 #include "musicrightareawidget.h"
 #include "ui_musicapplication.h"
+#include "musicapplication.h"
 #include "musicuiobject.h"
 #include "musiclrccontainerfordesktop.h"
 #include "musicvideoplaywidget.h"
 #include "musicdownloadstatuslabel.h"
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
-#include "musicconnectionpool.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicttkuiobject.h"
@@ -15,10 +15,12 @@
 
 #include <QPropertyAnimation>
 
+MusicRightAreaWidget *MusicRightAreaWidget::m_instance = nullptr;
+
 MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_supperClass = parent;
+    m_instance = this;
     m_stackedFuncWidget = nullptr;
 
     m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
@@ -28,10 +30,6 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
                        SLOT(getParameterSetting()));
     connect(m_setting, SIGNAL(soundEqualizerClicked()), parent,
                        SLOT(musicSetEqualizer()));
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
-    M_CONNECTION_PTR->poolConnect(MusicLrcContainerForInline::getClassName(), getClassName());
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -44,6 +42,11 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
 QString MusicRightAreaWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+MusicRightAreaWidget *MusicRightAreaWidget::instance()
+{
+    return m_instance;
 }
 
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
@@ -68,9 +71,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
 
     ///////////////////////////////////////////////////////
-    connect(m_musiclrcfordesktop, SIGNAL(theCurrentLrcUpdated()), m_supperClass,
+    connect(m_musiclrcfordesktop, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));
-    connect(m_musiclrcfordesktop, SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
+    connect(m_musiclrcfordesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(),
                  SLOT(musicSetting()));
     connect(m_musiclrcfordesktop, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeDesktopLrcWidget()));
@@ -79,13 +82,13 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ///////////////////////////////////////////////////////
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeInlineLrcWidget()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(theCurrentLrcUpdated()), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline, SIGNAL(theArtBgHasChanged()),
                  SIGNAL(updateBgThemeDownload()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(),
                  SLOT(musicSetting()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), m_supperClass,
+    connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(),
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
