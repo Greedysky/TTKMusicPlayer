@@ -8,6 +8,9 @@
 #include "musicrunglobaldefine.h"
 
 namespace MusicLockedPrivate {
+  /*! @brief The class of the music local file.
+   * @author Greedysky <greedysky@163.com>
+   */
     class MUSIC_RUN_EXPORT MusicLockedFile : public QFile
     {
     public:
@@ -19,16 +22,37 @@ namespace MusicLockedPrivate {
         };
 
         MusicLockedFile();
+       /*!
+         * Object contsructor.
+        */
         explicit MusicLockedFile(const QString &name);
+        /*!
+         * Object contsructor.
+        */
         ~MusicLockedFile();
 
         bool open(OpenMode mode);
-
+        /*!
+         * Open current locked file.
+        */
+        
         bool lock(LockMode mode, bool block = true);
+        /*!
+         * Lock current file.
+        */
         bool unlock();
+        /*!
+         * Unlock current file.
+        */
         bool isLocked() const;
+        /*!
+         * Get current lock status.
+        */
         LockMode lockMode() const;
-
+        /*!
+         * Get current lock file mode.
+        */
+        
     private:
     #ifdef Q_OS_WIN
         Qt::HANDLE wmutex;
