@@ -28,6 +28,12 @@
 #define S_LANGUAGE_DIR_FULL       MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + LANGUAGE_DIR
 #define S_SOUNDPATH_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + SOUNDPATH
 
+#ifdef Q_OS_WIN
+#define S_TTKSERVICE_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
+#else
+#define S_TTKSERVICE_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService"
+#endif
+
 class MusicRunObjectPrivate : public TTKPrivate<MusicRunObject>
 {
 public:
@@ -59,7 +65,7 @@ MusicRunObject::MusicRunObject(QObject *parent)
     TTK_D(MusicRunObject);
 
     d->m_process = new QProcess(this);
-    connect(d->m_process, SIGNAL(finished(int)), qApp, SLOT(quit()));
+    connect(d->m_process, SIGNAL(finished(int)),SLOT(finished(int)));
 }
 
 void MusicRunObject::checkValid()
@@ -76,7 +82,13 @@ void MusicRunObject::run(int argc, char **argv)
     {
         list << argv[1] << argv[2];
     }
-    d->m_process->start(QString("%1/TTKService.exe").arg(TTKMUSIC_VERSION_STR), list);
+    d->m_process->start(S_TTKSERVICE_FULL, list);
+}
+
+void MusicRunObject::finished(int code)
+{
+     qDebug() << code;
+     qApp->quit();
 }
 
 void MusicRunObject::dirIsExist(const QString &name)

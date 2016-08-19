@@ -124,7 +124,7 @@ bool MusicLocalPeer::isClient()
     if(!res && d->m_server->serverError() == QAbstractSocket::AddressInUseError)
     {
         QFile::remove(QDir::cleanPath(QDir::tempPath()) + QLatin1Char('/') + d->m_socketName);
-        res = server->listen(d->m_socketName);
+        res = d->m_server->listen(d->m_socketName);
     }
 #endif
     if(!res)

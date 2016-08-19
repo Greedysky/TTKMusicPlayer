@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QProcess>
+#include <QDebug>
 #include "musicobject.h"
 #include "musicprivate.h"
 #include "musicrunglobaldefine.h"
@@ -35,6 +36,11 @@ public:
     void run(int argc, char **argv);
     /*!
      * To run main window.
+     */
+private slots:
+    void finished(int code);
+    /*!
+     * Run finished.
      */
 
 private:
