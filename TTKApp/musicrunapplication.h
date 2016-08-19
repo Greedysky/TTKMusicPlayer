@@ -15,30 +15,38 @@
 
 class MusicRunApplicationPrivate;
 
-/*! @brief The class of the music run application.
- * @author Greedysky <greedysky@163.com>
- */
 class MUSIC_RUN_EXPORT MusicRunApplication : public QApplication
 {
     Q_OBJECT
 public:
-    explicit MusicRunApplication(int argc, char **argv);
-    /*!
-     * Object contsructor.
-     */
+    MusicRunApplication(int &argc, char **argv, bool GUIenabled = true);
+    MusicRunApplication(const QString &id, int &argc, char **argv);
+#if QT_VERSION < 0x050000
+    MusicRunApplication(int &argc, char **argv, Type type);
+#  if defined(Q_WS_X11)
+    MusicRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+    MusicRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
+    MusicRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+#  endif
+#endif
 
-    bool isRunning();
-    /*!
-     * Check current main window is running or not.
-     */
+    void initialize(bool dummy = true);
 
-private slots:
-    void newLocalConnection();
-    /*!
-     * The new one main window comes.
-     */
+    bool isRunning() const;
+    QString id() const;
+
+    void setActivationWindow(QWidget *aw, bool activateOnMessage = true);
+    QWidget* activationWindow() const;
+
+Q_SIGNALS:
+    void messageReceived(const QString &message);
+
+public Q_SLOTS:
+    bool sendMessage(const QString &message, int timeout = 5000);
+    void activateWindow();
 
 private:
+    void sysInit(const QString &appId = QString());
     TTK_DECLARE_PRIVATE(MusicRunApplication)
 
 };

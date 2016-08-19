@@ -28,12 +28,14 @@ INCLUDEPATH += ../ \
 
 SOURCES += \
     musicrunmain.cpp \
+    musiclocalpeer.cpp \
     musicrunapplication.cpp \
     musicrunobject.cpp
 
 HEADERS += \
     musicrunglobaldefine.h \
     musicrunobject.h \
+    musiclocalpeer.h \
     musicrunapplication.h
 
 RESOURCES += \
