@@ -22,23 +22,78 @@ class MUSIC_RUN_EXPORT MusicRunApplication : public QApplication
 {
     Q_OBJECT
 public:
-    explicit MusicRunApplication(int argc, char **argv);
+    MusicRunApplication(int &argc, char **argv, bool GUIenabled = true);
     /*!
      * Object contsructor.
-     */
-
-    bool isRunning();
+    */
+    MusicRunApplication(const QString &id, int &argc, char **argv);
     /*!
-     * Check current main window is running or not.
-     */
-
-private slots:
-    void newLocalConnection();
+     * Object contsructor.
+    */
+#if QT_VERSION < 0x050000
+    MusicRunApplication(int &argc, char **argv, Type type);
     /*!
-     * The new one main window comes.
-     */
+     * Object contsructor.
+    */
+#  if defined(Q_WS_X11)
+    MusicRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+    /*!
+     * Object contsructor.
+    */
+    MusicRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
+    /*!
+     * Object contsructor.
+    */
+    MusicRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+    /*!
+     * Object contsructor.
+    */
+#  endif
+#endif
+
+    void initialize(bool dummy = true);
+    /*!
+     * Initialize the current server.
+    */
+    bool isRunning() const;
+    /*!
+     * Check the current server is running or not.
+    */
+    QString id() const;
+    /*!
+     * Get current server id.
+    */
+
+    void setActivationWindow(QWidget *aw, bool activateOnMessage = true);
+    /*!
+     * Set current active window.
+    */
+    QWidget *activationWindow() const;
+    /*!
+     * Get current active window.
+    */
+
+Q_SIGNALS:
+    void messageReceived(const QString &message);
+    /*!
+     * Emit when the current message received.
+    */
+
+public Q_SLOTS:
+    bool sendMessage(const QString &message, int timeout = 5000);
+    /*!
+     * Emit when the current message received.
+    */
+    void activateWindow();
+    /*!
+     * Selected current active window.
+    */
 
 private:
+    void sysInit(const QString &appId = QString());
+    /*!
+     * Init the system parameter.
+    */
     TTK_DECLARE_PRIVATE(MusicRunApplication)
 
 };

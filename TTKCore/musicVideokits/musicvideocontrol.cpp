@@ -133,6 +133,11 @@ void MusicVideoControl::pushBarrageClicked()
 
 void MusicVideoControl::sendBarrageClicked()
 {
+    if(m_lineEditBarrage->text() == tr("just one barrage!"))
+    {
+        return;
+    }
+
     MusicBarrageRecord record;
     record.m_value = m_lineEditBarrage->text();
     record.m_size = m_menuBarrage->getBarrageSize();

@@ -312,7 +312,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 else
                 {
                     MusicMessageBox message;
-                    message.setText(tr("please input search text"));
+                    message.setText(tr("enter input search text first"));
                     message.exec();
                 }
                 break;

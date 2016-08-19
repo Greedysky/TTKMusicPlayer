@@ -1,10 +1,7 @@
 #include "musicrunapplication.h"
+#include "musiclocalpeer.h"
 
-#include <QStringList>
-#include <QSharedMemory>
-#include <QLocalServer>
-#include <QLocalSocket>
-#include <QFile>
+#include <QWidget>
 
 class MusicRunApplicationPrivate : public TTKPrivate<MusicRunApplication>
 {
@@ -12,97 +9,131 @@ public:
     MusicRunApplicationPrivate();
     ~MusicRunApplicationPrivate();
 
-    void listen(const QString &serverName);
-
-    bool m_isRunning;
-    QLocalServer *m_localServer;
+    MusicLocalPeer *m_peer;
+    QWidget *m_activeWindow;
 };
 
 MusicRunApplicationPrivate::MusicRunApplicationPrivate()
 {
-    m_isRunning = false;
-    m_localServer = nullptr;
+    m_peer = nullptr;
+    m_activeWindow = nullptr;
 }
 
 MusicRunApplicationPrivate::~MusicRunApplicationPrivate()
 {
-    delete m_localServer;
-}
-
-void MusicRunApplicationPrivate::listen(const QString &serverName)
-{
-    if(m_localServer->listen(serverName))
-    {
-        if(m_localServer->serverError() == QAbstractSocket::AddressInUseError &&
-           QFile::exists(m_localServer->serverName()))
-        {
-            QFile::remove(m_localServer->serverName());
-            m_localServer->listen(serverName);
-        }
-    }
+    delete m_peer;
 }
 
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 ///
 ///
-MusicRunApplication::MusicRunApplication(int argc, char **argv)
-  : QApplication(argc, argv)
+
+MusicRunApplication::MusicRunApplication(int &argc, char **argv, bool GUIenabled)
+    : QApplication(argc, argv, GUIenabled)
 {
     TTK_INIT_PRIVATE;
-    TTK_D(MusicRunApplication);
-
-    QCoreApplication::setApplicationName("MusicService");
-    QString serverName = QCoreApplication::applicationName();
-
-    QLocalSocket socket;
-    socket.connectToServer(serverName);
-
-    if(socket.waitForConnected(500))
-    {
-        QTextStream stream(&socket);
-        QStringList args = QCoreApplication::arguments();
-        if(args.count()>1)
-        {
-            stream << args.last();
-        }else
-        {
-            stream << QString();
-        }
-        stream.flush();
-        qDebug() << "Connected server, program will quit";
-        socket.waitForBytesWritten();
-
-        d->m_isRunning = true;
-        return;
-    }
-
-    qDebug() << "Can't connect to server,build a server";
-    d->m_localServer = new QLocalServer(this);
-    connect(d->m_localServer, SIGNAL(newConnection()), SLOT(newLocalConnection()));
-    d->listen(serverName);
+    sysInit();
 }
 
-bool MusicRunApplication::isRunning()
+MusicRunApplication::MusicRunApplication(const QString &appId, int &argc, char **argv)
+    : QApplication(argc, argv)
 {
-    TTK_D(MusicRunApplication);
-    return d->m_isRunning;
+    TTK_INIT_PRIVATE;
+    sysInit(appId);
 }
 
-void MusicRunApplication::newLocalConnection()
+#if QT_VERSION < 0x050000
+MusicRunApplication::MusicRunApplication(int &argc, char **argv, Type type)
+    : QApplication(argc, argv, type)
+{
+    TTK_INIT_PRIVATE;
+    sysInit();
+}
+
+#  if defined(Q_WS_X11)
+MusicRunApplication::MusicRunApplication(Display* dpy, Qt::HANDLE visual, Qt::HANDLE cmap)
+    : QApplication(dpy, visual, cmap)
+{
+    TTK_INIT_PRIVATE;
+    sysInit();
+}
+
+MusicRunApplication::MusicRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
+    : QApplication(dpy, argc, argv, visual, cmap)
+{
+    TTK_INIT_PRIVATE;
+    sysInit();
+}
+
+MusicRunApplication::MusicRunApplication(Display* dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
+    : QApplication(dpy, argc, argv, visual, cmap)
+{
+    TTK_INIT_PRIVATE;
+    sysInit(appId);
+}
+#  endif
+#endif
+
+void MusicRunApplication::initialize(bool dummy)
+{
+    Q_UNUSED(dummy);
+    isRunning();
+}
+
+bool MusicRunApplication::isRunning() const
 {
     TTK_D(MusicRunApplication);
-    QLocalSocket *socket = d->m_localServer->nextPendingConnection();
-    if(!socket)
+    return d->m_peer->isClient();
+}
+
+QString MusicRunApplication::id() const
+{
+    TTK_D(MusicRunApplication);
+    return d->m_peer->applicationId();
+}
+
+void MusicRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage)
+{
+    TTK_D(MusicRunApplication);
+    d->m_activeWindow = aw;
+
+    if(activateOnMessage)
     {
-        return;
+        connect(d->m_peer, SIGNAL(messageReceived(QString)), this, SLOT(activateWindow()));
     }
+    else
+    {
+        disconnect(d->m_peer, SIGNAL(messageReceived(QString)), this, SLOT(activateWindow()));
+    }
+}
 
-    socket->waitForReadyRead(1000);
-    QTextStream in(socket);
-    QString string;
-    in >> string;
-    qDebug() << "The value is: " << string;
+QWidget* MusicRunApplication::activationWindow() const
+{
+    TTK_D(MusicRunApplication);
+    return d->m_activeWindow;
+}
 
-    delete socket;
+bool MusicRunApplication::sendMessage(const QString &message, int timeout)
+{
+    TTK_D(MusicRunApplication);
+    return d->m_peer->sendMessage(message, timeout);
+}
+
+void MusicRunApplication::activateWindow()
+{
+    TTK_D(MusicRunApplication);
+    if(d->m_activeWindow)
+    {
+        d->m_activeWindow->setWindowState(d->m_activeWindow->windowState() & ~Qt::WindowMinimized);
+        d->m_activeWindow->raise();
+        d->m_activeWindow->activateWindow();
+    }
+}
+
+void MusicRunApplication::sysInit(const QString &appId)
+{
+    TTK_D(MusicRunApplication);
+    d->m_peer = new MusicLocalPeer(this, appId);
+    connect(d->m_peer, SIGNAL(messageReceived(QString)), SIGNAL(messageReceived(QString)));
 }
