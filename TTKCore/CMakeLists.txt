@@ -12,27 +12,27 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    ${MUSIC_CORE_DIR}/network/musicnetworkabstract.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.h
-    ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.h
-    ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.h
-    ${MUSIC_CORE_DIR}/network/musictextdownloadthread.h
-    ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.h
-    ${MUSIC_CORE_DIR}/network/musicsourcedownloadthread.h
-    ${MUSIC_CORE_DIR}/network/musicnetworkthread.h
-    ${MUSIC_CORE_DIR}/network/musicnetworkproxy.h
-    ${MUSIC_CORE_DIR}/network/musicnetworkoperator.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueuecache.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueryfactory.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerymultiplethread.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueryttthread.h
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerywythread.h
-    ${MUSIC_CORE_DIR}/network/musicradiochannelthread.h
-    ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.h
-    ${MUSIC_CORE_DIR}/network/musicradiosongsthread.h
-    ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.h
-    ${MUSIC_CORE_DIR}/network/musictranslationthread.h
+    ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
+    ${MUSIC_NETWORK_DIR}/musicdata2downloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musictextdownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicbackgrounddownload.h
+    ${MUSIC_NETWORK_DIR}/musicsourcedownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicnetworkthread.h
+    ${MUSIC_NETWORK_DIR}/musicnetworkproxy.h
+    ${MUSIC_NETWORK_DIR}/musicnetworkoperator.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerymultiplethread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryttthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerywythread.h
+    ${MUSIC_NETWORK_DIR}/musicradiochannelthread.h
+    ${MUSIC_NETWORK_DIR}/musicradioplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/musicradiosongsthread.h
+    ${MUSIC_NETWORK_DIR}/musicradiothreadabstract.h
+    ${MUSIC_NETWORK_DIR}/musictranslationthread.h
     ${MUSIC_CORE_DIR}/musiclogger.h
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicuiobject.h
@@ -139,28 +139,28 @@ set(MUSIC_HEADERS
     ${MUSIC_VIDEOKITS_DIR}/musicvideofloatwidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideoqualitypopwidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmoveresizewidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicabstracttablewidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmovedialog.h
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmovewidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicitemdelegate.h
-    ${MUSIC_WIDGET_DIR}/core/musicmarqueewidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicpreviewlabel.h
-    ${MUSIC_WIDGET_DIR}/core/musicmessagebox.h
-    ${MUSIC_WIDGET_DIR}/core/musicprogresswidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.h
-    ${MUSIC_WIDGET_DIR}/core/musicclickedslider.h
-    ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.h
-    ${MUSIC_WIDGET_DIR}/core/musictoastlabel.h
-    ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.h
-    ${MUSIC_WIDGET_DIR}/core/musiccodearea.h
-    ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.h
-    ${MUSIC_WIDGET_DIR}/core/musictoolmenuwidget.h
-    ${MUSIC_WIDGET_DIR}/core/musicgiflabelwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmoveresizewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicabstracttablewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmovedialog.h
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmovewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicitemdelegate.h
+    ${MUSIC_WIDGETCORE_DIR}/musicmarqueewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicpreviewlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicmessagebox.h
+    ${MUSIC_WIDGETCORE_DIR}/musicprogresswidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicclickedlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicclickedslider.h
+    ${MUSIC_WIDGETCORE_DIR}/musicmovinglabelslider.h
+    ${MUSIC_WIDGETCORE_DIR}/musictoastlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicroundanimationlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musiccodearea.h
+    ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicfloatabstractwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicuploadfilewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
@@ -198,27 +198,27 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
-    ${MUSIC_CORE_DIR}/network/musicnetworkabstract.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadthreadabstract.cpp
-    ${MUSIC_CORE_DIR}/network/musicdata2downloadthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicdatadownloadthread.cpp
-    ${MUSIC_CORE_DIR}/network/musictextdownloadthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicbackgrounddownload.cpp
-    ${MUSIC_CORE_DIR}/network/musicsourcedownloadthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicnetworkthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicnetworkproxy.cpp
-    ${MUSIC_CORE_DIR}/network/musicnetworkoperator.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueuecache.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueryfactory.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerythreadabstract.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerymultiplethread.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadqueryttthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicdownloadquerywythread.cpp
-    ${MUSIC_CORE_DIR}/network/musicradiochannelthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicradioplaylistthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicradiosongsthread.cpp
-    ${MUSIC_CORE_DIR}/network/musicradiothreadabstract.cpp
-    ${MUSIC_CORE_DIR}/network/musictranslationthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
+    ${MUSIC_NETWORK_DIR}/musicdata2downloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musictextdownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicbackgrounddownload.cpp
+    ${MUSIC_NETWORK_DIR}/musicsourcedownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicnetworkthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicnetworkproxy.cpp
+    ${MUSIC_NETWORK_DIR}/musicnetworkoperator.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerymultiplethread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryttthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadquerywythread.cpp
+    ${MUSIC_NETWORK_DIR}/musicradiochannelthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicradioplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicradiosongsthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicradiothreadabstract.cpp
+    ${MUSIC_NETWORK_DIR}/musictranslationthread.cpp
     ${MUSIC_CORE_DIR}/musicutils.cpp
     ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
@@ -318,28 +318,28 @@ set(MUSIC_SOURCES
     ${MUSIC_VIDEOKITS_DIR}/musicvideofloatwidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideoqualitypopwidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideobarragestylepopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmoveresizewidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicabstracttablewidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmovedialog.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicabstractmovewidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicitemdelegate.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicmarqueewidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicpreviewlabel.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicmessagebox.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicprogresswidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicclickedlabel.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicclickedslider.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicmovinglabelslider.cpp
-    ${MUSIC_WIDGET_DIR}/core/musictoastlabel.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicroundanimationlabel.cpp
-    ${MUSIC_WIDGET_DIR}/core/musiccodearea.cpp
-    ${MUSIC_WIDGET_DIR}/core/musictimersliderwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicfloatabstractwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musiccutsliderwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicanimationstackedwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicuploadfilewidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musictoolmenuwidget.cpp
-    ${MUSIC_WIDGET_DIR}/core/musicgiflabelwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmoveresizewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicabstracttablewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmovedialog.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicabstractmovewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicitemdelegate.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicmarqueewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicpreviewlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicmessagebox.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicprogresswidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicclickedlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicclickedslider.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicmovinglabelslider.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musictoastlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicroundanimationlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musiccodearea.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicfloatabstractwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicuploadfilewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
