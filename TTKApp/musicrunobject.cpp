@@ -29,9 +29,9 @@
 #define S_SOUNDPATH_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + SOUNDPATH
 
 #ifdef Q_OS_WIN
-#define S_TTKSERVICE_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
+#define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
 #else
-#define S_TTKSERVICE_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService"
+#define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService"
 #endif
 
 class MusicRunObjectPrivate : public TTKPrivate<MusicRunObject>
@@ -87,7 +87,15 @@ void MusicRunObject::run(int argc, char **argv)
 
 void MusicRunObject::finished(int code)
 {
-     qDebug() << code;
+     if(code == 0)
+     {
+         qDebug() << "Application exit success!";
+     }
+     else
+     {
+         qDebug() << "Application exit error!";
+     }
+
      qApp->quit();
 }
 
