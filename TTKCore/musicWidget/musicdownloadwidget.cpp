@@ -196,6 +196,7 @@ void MusicDownloadWidget::queryAllFinished()
         return;
     }
 
+    ui->viewArea->clearAllItems();
     if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {
         queryAllFinishedMusic();

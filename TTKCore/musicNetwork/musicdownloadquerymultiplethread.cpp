@@ -75,8 +75,7 @@ QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
 }
 
 void MusicDownLoadQueryMultipleThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info,
-                                             const QString &size, int bit,
-                                             const QString &url)
+                                             const QString &size, int bit, const QString &url)
 {
     if(!url.isEmpty())
     {

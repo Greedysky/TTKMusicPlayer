@@ -127,6 +127,7 @@ namespace MusicObject
     typedef struct MusicSongInfomation
     {
         MusicSongAttributes m_songAttrs;
+        QString m_id;
         QString m_lrcUrl;
         QString m_smallPicUrl;
         QString m_singerName;

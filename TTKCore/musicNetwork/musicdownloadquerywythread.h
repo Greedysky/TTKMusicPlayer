@@ -29,7 +29,7 @@ public:
      */
     virtual void startSearchSong(QueryType type, const QString &text) override;
     /*!
-     * Start to Search data from name and type.
+     * Start to search data from name and type.
      */
 
 public Q_SLOTS:
@@ -37,6 +37,40 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
+    void songListFinished();
+    /*!
+     * Query song list finished.
+     */
+    void mvListFinished();
+    /*!
+     * Query mv list finished.
+     */
+
+protected:
+    void startSongListQuery();
+    /*!
+     * Start to search song list by id.
+     */
+    void startMVListQuery();
+    /*!
+     * Start to search mv list by id.
+     */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                    const QVariantMap &key, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+
+    QString encryptedId(const QString &string);
+    /*!
+     * Encrypted music info id.
+     */
+    int foundMusicInfoById(int id);
+    /*!
+     * Found music info id.
+     */
+
+    int m_index;
 
 };
 
