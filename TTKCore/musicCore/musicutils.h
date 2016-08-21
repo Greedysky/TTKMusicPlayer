@@ -99,6 +99,10 @@ namespace MusicUtils
         /*!
          * Set widget to round by ratioX and ratioY.
          */
+        MUSIC_CORE_EXPORT void fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt);
+        /*!
+         * Set fusion two image.
+         */
         MUSIC_CORE_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.

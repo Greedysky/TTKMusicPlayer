@@ -77,20 +77,17 @@ void MusicUtils::UWidget::setComboboxText(QComboBox *object, const QString &text
     }
 }
 
-QBitmap MusicUtils::UWidget::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
-{
-    QBitmap mask(rect.size());
-    QPainter painter(&mask);
-    painter.fillRect(rect, Qt::white);
-    painter.setBrush(QColor(0, 0, 0));
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawRoundedRect(rect, ratioX, ratioY);
-    return mask;
-}
-
 void MusicUtils::UWidget::widgetToRound(QWidget *w, int ratioX, int ratioY)
 {
     w->setMask( getBitmapMask(w->rect(), ratioX, ratioY) );
+}
+
+void MusicUtils::UWidget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt)
+{
+    QPainter painter(&bg);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawPixmap(pt.x(), pt.y(), fg);
+    painter.end();
 }
 
 QPixmap MusicUtils::UWidget::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
@@ -108,6 +105,17 @@ QPixmap MusicUtils::UWidget::pixmapToRound(const QPixmap &src, const QRect &rect
     QPixmap image = src.scaled(rect.size());
     image.setMask( getBitmapMask(rect, ratioX, ratioY) );
     return image;
+}
+
+QBitmap MusicUtils::UWidget::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
+{
+    QBitmap mask(rect.size());
+    QPainter painter(&mask);
+    painter.fillRect(rect, Qt::white);
+    painter.setBrush(QColor(0, 0, 0));
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawRoundedRect(rect, ratioX, ratioY);
+    return mask;
 }
 
 QString MusicUtils::UNumber::size2Number(qint64 size)

@@ -34,7 +34,7 @@ QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="userIconU">
+   <widget class="MusicClickedLabel" name="userIconU">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -49,7 +49,7 @@ QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
    </widget>
   </widget>
   <widget class="QWidget" name="loginedWidget">
-   <widget class="QLabel" name="userIconL">
+   <widget class="MusicClickedLabel" name="userIconL">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -77,6 +77,13 @@ QPushButton::hover{ background:rgba(255,255,255,50); border:none;}</string>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
