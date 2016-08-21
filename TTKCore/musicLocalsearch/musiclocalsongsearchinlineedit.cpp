@@ -43,8 +43,11 @@ void MusicLocalSongSearchInlineEdit::focusInEvent(QFocusEvent *event)
     if(m_popWidget && !m_popWidget->isVisible() && text().trimmed().isEmpty())
     {
         m_popWidget->createItems();
-        m_popWidget->raise();
-        m_popWidget->show();
+        if(m_popWidget->height() != 0)
+        {
+            m_popWidget->raise();
+            m_popWidget->show();
+        }
     }
 }
 

@@ -96,7 +96,7 @@ namespace MusicUIObject
 
 ///Custom
 //////////////////////////////////////////////////////
-    const QString MCustomStyle01 = "\
+    const QString MCustomStyle01 = " \
             font-weight:bold;";
 
     const QString MCustomStyle02 = " \
@@ -108,18 +108,18 @@ namespace MusicUIObject
     const QString MCustomStyle04 = " \
             font-size:20px;";
 
-    const QString MCustomStyle05 = "\
+    const QString MCustomStyle05 = " \
             border:none;";
 
     const QString MCustomStyle06 = " \
             border:1px solid #666666;";
 
-    const QString MCustomStyle07 = "\
+    const QString MCustomStyle07 = " \
             border:1px solid #555555; background-color:rgba(0,0,0,40);";
 
-    const QString MCustomStyle08 = "\
-            text-align:left; font-weight:bold; font-size:15px;\
-            color:red; height:20px; border:none; background-color:white;";
+    const QString MCustomStyle08 = " \
+            text-align:left;font-size:12px; \
+            color:#888888; border:none; background-color:white;";
 
     const QString MCustomStyle09 = MBackgroundStyle10 + MCustomStyle05;
            

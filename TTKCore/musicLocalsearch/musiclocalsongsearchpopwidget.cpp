@@ -5,7 +5,6 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QDateTime>
-#include <QFontMetrics>
 
 MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -38,7 +37,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
 {
     setRowHeight(index, ROW_HEIGHT);
 
-    QTableWidgetItem *item0 = new QTableWidgetItem(name);
+    QTableWidgetItem *item0 = new QTableWidgetItem("  " + name);
     item0->setTextColor(QColor(50, 50, 50));
     item0->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 0, item0);
@@ -64,17 +63,25 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     move(545, 45);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
     m_popTableWidget = new MusicLocalSongSearchPopTableWidget(this);
-    m_clearButton = new QPushButton(tr("clear"), this);
+    m_clearButton = new QPushButton("   " + tr("clear"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
+    m_clearButton->setFixedHeight(35);
+    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle08);
+
+    QFrame *frame = new QFrame(this);
+    frame->setFixedHeight(1);
+    frame->setStyleSheet(MusicUIObject::MBackgroundStyle03);
+    frame->setFrameShape(QFrame::HLine);
+
     layout->addWidget(m_popTableWidget);
+    layout->addWidget(frame);
     layout->addWidget(m_clearButton);
     setLayout(layout);
 
-    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle08);
     connect(m_clearButton, SIGNAL(clicked()), SLOT(clearButtonClicked()));
     connect(m_popTableWidget, SIGNAL(setText(QString)), SIGNAL(setText(QString)));
 }
@@ -102,7 +109,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     MusicSearchRecords records;
     search.readSearchConfig( records );
     int count = records.count();
-    resize(285, count == 0 ? 40 : (count < 6 ? (count + 1)*ROW_HEIGHT : 7*ROW_HEIGHT - 10) );
+    resize(285, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 36 : 7*ROW_HEIGHT + 6) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)

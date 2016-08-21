@@ -12,7 +12,7 @@
 #include <QWidget>
 #include "musicabstracttablewidget.h"
 
-#define ROW_HEIGHT 25
+#define ROW_HEIGHT 30
 
 class QPushButton;
 
@@ -101,8 +101,8 @@ protected:
      * Transform utc time to local time before.
      */
 
-    MusicLocalSongSearchPopTableWidget *m_popTableWidget;
     QPushButton *m_clearButton;
+    MusicLocalSongSearchPopTableWidget *m_popTableWidget;
 
 };
 
