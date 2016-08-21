@@ -11,9 +11,9 @@
 
 #include "musiclrccontainer.h"
 
+#define TOOLBAR_MAIN_HEIGHT 35
 #define TOOLBAR_HEIGHT      23
 #define TOOLBAR_TEXT_LENGTH 58
-#define TOOLBAR_WIDTH       600
 
 class QPushButton;
 class QToolButton;
@@ -88,6 +88,10 @@ public Q_SLOTS:
     void setLrcSmallerChanged();
     /*!
      * Set lrc smaller changed.
+     */
+    void toolStyleChanged();
+    /*!
+     * Set current color style changed.
      */
 
 protected:
