@@ -191,7 +191,27 @@ void MusicSongsSummarizied::addNewRowItem()
 {
     if(m_songItems.count() < 10)
     {
-        addNewRowItem( tr("defaultItem") );
+        QString newName = tr("defaultItem");
+        for(int i=0; i<7; ++i)
+        {
+            bool hasName = false;
+            QString check = newName + QString::number(i);
+            foreach(const MusicSongItem &songItem, m_songItems)
+            {
+                if(check == songItem.m_itemName)
+                {
+                    hasName = true;
+                    break;
+                }
+            }
+
+            if(!hasName)
+            {
+                newName = check;
+                break;
+            }
+        }
+        addNewRowItem( newName );
     }
 }
 
