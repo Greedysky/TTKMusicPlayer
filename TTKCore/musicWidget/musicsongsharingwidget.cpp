@@ -70,7 +70,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         ///download art picture
         MusicTTDataDownloadThread *down = new MusicTTDataDownloadThread(
-                    SML_BG_ART_URL.arg(infos.front().trimmed()),
+                    TT_SONG_LRC_URL.arg(infos.front().trimmed()),
                     ART_DIR_FULL + TEMPORARY_DIR,
                     MusicDownLoadThreadAbstract::Download_SmlBG, this);
         connect(down, SIGNAL(urlHasChanged(QString)),

@@ -82,8 +82,6 @@ unix:!mac{
 }
 
 DEFINES += MUSIC_LIBRARY
-DEFINES += USE_MULTIPLE_QUERY
-
 
 #########################################
 HEADERS += $$PWD/musicglobal.h

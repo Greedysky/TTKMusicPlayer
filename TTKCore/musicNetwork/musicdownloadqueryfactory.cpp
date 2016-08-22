@@ -20,16 +20,19 @@ QString MusicDownLoadQueryFactory::getClassName()
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObject *parent)
 {
     MusicDownLoadQueryThreadAbstract *downLoadManager = nullptr;
-#ifndef USE_MULTIPLE_QUERY
-    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
-    switch( index )
+    if(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0)
     {
-        case 0: downLoadManager = new MusicDownLoadQueryWYThread(parent); break;
-        case 4: downLoadManager = new MusicDownLoadQueryTTThread(parent); break;
+        int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+        switch( index )
+        {
+            case 0: downLoadManager = new MusicDownLoadQueryWYThread(parent); break;
+            case 4: downLoadManager = new MusicDownLoadQueryTTThread(parent); break;
+        }
     }
-#else
-    downLoadManager = new MusicDownLoadQueryMultipleThread(parent);
-#endif
+    else
+    {
+        downLoadManager = new MusicDownLoadQueryMultipleThread(parent);
+    }
     return downLoadManager;
 }
 
@@ -37,14 +40,15 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(cons
                                                                             MusicDownLoadThreadAbstract::Download_Type type,
                                                                             QObject *parent)
 {
-#ifndef USE_MULTIPLE_QUERY
-    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
-    switch( index )
+    if(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0)
     {
-        case 0: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 4: return (new MusicTTDataDownloadThread(url, save, type, parent));
+        int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+        switch( index )
+        {
+            case 0: return (new MusicDataDownloadThread(url, save, type, parent));
+            case 4: return (new MusicTTDataDownloadThread(url, save, type, parent));
+        }
     }
-#endif
     return (new MusicDataDownloadThread(url, save, type, parent));
 }
 
@@ -52,13 +56,14 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrc(const QSt
                                                                        MusicDownLoadThreadAbstract::Download_Type type,
                                                                        QObject *parent)
 {
-#ifndef USE_MULTIPLE_QUERY
-    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
-    switch( index )
+    if(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0)
     {
-        case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
-        case 4: return (new MusicTTTextDownLoadThread(url, save, type, parent));
+        int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+        switch( index )
+        {
+            case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
+            case 4: return (new MusicTTTextDownLoadThread(url, save, type, parent));
+        }
     }
-#endif
     return (new MusicTextDownLoadThread(url, save, type, parent));
 }

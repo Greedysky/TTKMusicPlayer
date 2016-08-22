@@ -95,6 +95,7 @@ public:
         DownloadCacheSizeChoiced,       ///*Download Cache Size Parameter*/
         DownloadLimitChoiced,           ///*Download Limit Parameter*/
         DownloadServerChoiced,          ///*Download Server Parameter*/
+        DownloadServerMultipleChoiced,  ///*Download Multiple Server Parameter*/
         DownloadDLoadLimitChoiced,      ///*Download DLoad Limit Parameter*/
         DownloadULoadLimitChoiced       ///*Download ULoad Limit Parameter*/
 

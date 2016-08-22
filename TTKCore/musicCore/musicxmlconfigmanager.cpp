@@ -133,6 +133,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int downloadCacheSize = M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt();
     int downloadLimit = M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt();
     int downloadServer = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    int downloadServerMultiple = M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt();
     QString downloadDLoadLimit = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString();
     QString downloadULoadLimit = M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString();
     ///////////////////////////////////////////////////////////////////////////
@@ -231,6 +232,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(downloads, "downloadCacheSize", "value", downloadCacheSize);
     writeDomElement(downloads, "downloadLimit", "value", downloadLimit);
     writeDomElement(downloads, "downloadServer", "value", downloadServer);
+    writeDomElement(downloads, "downloadServerMultiple", "value", downloadServerMultiple);
     writeDomElement(downloads, "downloadDLoadLimit", "value", downloadDLoadLimit);
     writeDomElement(downloads, "downloadULoadLimit", "value", downloadULoadLimit);
     //Write to file
@@ -335,6 +337,8 @@ void MusicXMLConfigManager::readOtherLoadConfig() const
                      readXmlAttributeByTagNameValue("downloadLimit").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
                      readXmlAttributeByTagNameValue("downloadServer").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced,
+                     readXmlAttributeByTagNameValue("downloadServerMultiple").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadDLoadLimit"));
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced,

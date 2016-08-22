@@ -148,8 +148,8 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         {
                             emit createSearchedItems(songName, singerName, duration);
                         }
-                        musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                        musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                        musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                        musicInfo.m_smallPicUrl = TT_SONG_PIC_URL.arg(singerName);
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
                         m_musicSongInfos << musicInfo;

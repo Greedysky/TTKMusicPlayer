@@ -10,10 +10,17 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD \
+               $$PWD/tt \
+               $$PWD/wy \
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
+    $$PWD/tt/musicttdatadownloadthread.h \
+    $$PWD/tt/musictttextdownloadthread.h \
+    $$PWD/tt/musicdownloadqueryttthread.h \
+    $$PWD/wy/musicdownloadquerywythread.h \
+    $$PWD/wy/musicwytextdownloadthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicdatadownloadthread.h \
@@ -27,22 +34,22 @@ HEADERS  += \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadquerythreadabstract.h \
     $$PWD/musicdownloadquerymultiplethread.h \
-    $$PWD/musicdownloadqueryttthread.h \
-    $$PWD/musicdownloadquerywythread.h \
     $$PWD/musicradiochannelthread.h \
     $$PWD/musicradioplaylistthread.h \
     $$PWD/musicradiosongsthread.h \
     $$PWD/musicradiothreadabstract.h \
     $$PWD/musictranslationthread.h \
-    $$PWD/musicvoicettsthread.h \
-    $$PWD/musicttdatadownloadthread.h \
-    $$PWD/musictttextdownloadthread.h \
-    $$PWD/musicwytextdownloadthread.h
+    $$PWD/musicvoicettsthread.h
 
 }
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
+    $$PWD/tt/musicttdatadownloadthread.cpp \
+    $$PWD/tt/musictttextdownloadthread.cpp \
+    $$PWD/tt/musicdownloadqueryttthread.cpp \
+    $$PWD/wy/musicdownloadquerywythread.cpp \
+    $$PWD/wy/musicwytextdownloadthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicdatadownloadthread.cpp \
@@ -56,16 +63,11 @@ SOURCES += \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadquerythreadabstract.cpp \
     $$PWD/musicdownloadquerymultiplethread.cpp \
-    $$PWD/musicdownloadqueryttthread.cpp \
-    $$PWD/musicdownloadquerywythread.cpp \
     $$PWD/musicradiochannelthread.cpp \
     $$PWD/musicradioplaylistthread.cpp \
     $$PWD/musicradiosongsthread.cpp \
     $$PWD/musicradiothreadabstract.cpp \
     $$PWD/musictranslationthread.cpp \
-    $$PWD/musicvoicettsthread.cpp \
-    $$PWD/musicttdatadownloadthread.cpp \
-    $$PWD/musictttextdownloadthread.cpp \
-    $$PWD/musicwytextdownloadthread.cpp
+    $$PWD/musicvoicettsthread.cpp 
 
 }
