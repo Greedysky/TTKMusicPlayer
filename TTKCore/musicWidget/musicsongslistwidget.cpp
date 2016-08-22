@@ -214,7 +214,8 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
 bool MusicSongsListWidget::createUploadFileWidget()
 {
-    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST) //lovest not need that widget
+    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST &&
+                                  m_parentToolIndex != MUSIC_NETWORK_LIST )
     {
         setFixedSize(320, 100);
         if(m_uploadFileWidget == nullptr)

@@ -536,11 +536,11 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
     connect(w, SIGNAL(cellDoubleClicked(int,int)), m_supperClass, SLOT(musicPlayIndex(int,int)));
-//    connect(w, SIGNAL(musicPlayOrder()), m_supperClass, SLOT(musicPlayOrder()));
-//    connect(w, SIGNAL(musicPlayRandom()), m_supperClass, SLOT(musicPlayRandom()));
-//    connect(w, SIGNAL(musicPlayListLoop()), m_supperClass, SLOT(musicPlayListLoop()));
-//    connect(w, SIGNAL(musicPlayOneLoop()), m_supperClass, SLOT(musicPlayOneLoop()));
-//    connect(w, SIGNAL(musicPlayItemOnce()), m_supperClass, SLOT(musicPlayItemOnce()));
+    connect(w, SIGNAL(musicPlayOrder()), m_supperClass, SLOT(musicPlayOrder()));
+    connect(w, SIGNAL(musicPlayRandom()), m_supperClass, SLOT(musicPlayRandom()));
+    connect(w, SIGNAL(musicPlayListLoop()), m_supperClass, SLOT(musicPlayListLoop()));
+    connect(w, SIGNAL(musicPlayOneLoop()), m_supperClass, SLOT(musicPlayOneLoop()));
+    connect(w, SIGNAL(musicPlayItemOnce()), m_supperClass, SLOT(musicPlayItemOnce()));
     connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
     connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
