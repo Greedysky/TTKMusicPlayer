@@ -34,6 +34,10 @@ public:
      */
 
 Q_SIGNALS:
+    void urlHasChanged(const QString &url);
+    /*!
+     * Emit download finished.
+     */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
      * Update download percent\ total time and current time progress.

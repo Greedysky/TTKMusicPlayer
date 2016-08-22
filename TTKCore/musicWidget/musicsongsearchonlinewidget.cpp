@@ -1,7 +1,4 @@
 #include "musicsongsearchonlinewidget.h"
-#include "musictextdownloadthread.h"
-#include "musicdatadownloadthread.h"
-#include "musicdata2downloadthread.h"
 #include "musicbackgrounddownload.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicmessagebox.h"
@@ -10,6 +7,9 @@
 #include "musicitemdelegate.h"
 #include "musiccryptographichash.h"
 #include "musicsettingmanager.h"
+#include "musicconnectionpool.h"
+#include "musicdatadownloadthread.h"
+#include "musicdownloadqueryfactory.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -31,6 +31,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(5, 26);
 
     m_previousAuditionRow = -1;
+    M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
@@ -258,15 +259,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
 
-//    (new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, LRC_DIR_FULL + musicSong + LRC_FILE,
-//                                 MusicDownLoadThreadAbstract::Download_Lrc, this))->startToDownload();
-#ifndef USE_MULTIPLE_QUERY
-    (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                  MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
-#else
-    (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
-#endif
+    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPic(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
+                                              MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
     ///download big picture
     (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 

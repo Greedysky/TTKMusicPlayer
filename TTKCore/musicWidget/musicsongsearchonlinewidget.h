@@ -16,8 +16,6 @@
 #define AUDITION_STOP MStatic_cast(int, Qt::transparent)
 
 class MusicCoreMPlayer;
-class MusicDataDownloadThread;
-class MusicTextDownLoadThread;
 
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>

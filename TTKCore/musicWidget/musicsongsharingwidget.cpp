@@ -1,7 +1,7 @@
 #include "musicsongsharingwidget.h"
 #include "ui_musicsongsharingwidget.h"
 #include "musicdownloadqueryttthread.h"
-#include "musicdata2downloadthread.h"
+#include "musicttdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
@@ -69,12 +69,12 @@ void MusicSongSharingWidget::confirmButtonClicked()
     if(infos.count() != 0)
     {
         ///download art picture
-        MusicData2DownloadThread *down = new MusicData2DownloadThread(
+        MusicTTDataDownloadThread *down = new MusicTTDataDownloadThread(
                     SML_BG_ART_URL.arg(infos.front().trimmed()),
                     ART_DIR_FULL + TEMPORARY_DIR,
                     MusicDownLoadThreadAbstract::Download_SmlBG, this);
-        connect(down, SIGNAL(data2urlHasChanged(QString)),
-                      SLOT(data2urlHasChanged(QString)), Qt::QueuedConnection);
+        connect(down, SIGNAL(urlHasChanged(QString)),
+                      SLOT(urlHasChanged(QString)), Qt::QueuedConnection);
         down->startToDownload();
     }
     QTimer::singleShot(5*MT_S2MS, this, SLOT(queryUrlTimeout()));
@@ -87,7 +87,7 @@ void MusicSongSharingWidget::queryUrlTimeout()
     message.exec();
 }
 
-void MusicSongSharingWidget::data2urlHasChanged(const QString &imageUrl)
+void MusicSongSharingWidget::urlHasChanged(const QString &imageUrl)
 {
     QString url;
     if(ui->qqButton->isChecked())

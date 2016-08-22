@@ -1,4 +1,4 @@
-#include "musicdata2downloadthread.h"
+#include "musicttdatadownloadthread.h"
 
 #ifdef MUSIC_GREATER_NEW
 #   include <QJsonParseError>
@@ -8,8 +8,8 @@
 #   include "qjson/parser.h"
 #endif
 
-MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QString &save,
-                                                   Download_Type type, QObject *parent)
+MusicTTDataDownloadThread::MusicTTDataDownloadThread(const QString &url, const QString &save,
+                                                     Download_Type type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
     m_dataReply = nullptr;
@@ -21,12 +21,12 @@ MusicData2DownloadThread::MusicData2DownloadThread(const QString &url, const QSt
 #endif
 }
 
-QString MusicData2DownloadThread::getClassName()
+QString MusicTTDataDownloadThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicData2DownloadThread::startToDownload()
+void MusicTTDataDownloadThread::startToDownload()
 {
     m_timer.start(MT_S2MS);
     QNetworkRequest request;
@@ -43,7 +43,7 @@ void MusicData2DownloadThread::startToDownload()
     connect(m_dataReply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
 }
 
-void MusicData2DownloadThread::deleteAll()
+void MusicTTDataDownloadThread::deleteAll()
 {
     if(m_dataManager)
     {
@@ -58,7 +58,7 @@ void MusicData2DownloadThread::deleteAll()
     MusicDataDownloadThread::deleteAll();
 }
 
-void MusicData2DownloadThread::dataGetFinished()
+void MusicTTDataDownloadThread::dataGetFinished()
 {
     if(!m_dataReply)
     {
@@ -92,11 +92,11 @@ void MusicData2DownloadThread::dataGetFinished()
             value = value["data"].toMap();
             m_url = value["singerPic"].toString();
 #endif
-            emit data2urlHasChanged(m_url);
+            emit urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
         }
     }
-//    deleteAll();
+
     if(m_dataManager)
     {
         m_dataManager->deleteLater();;
@@ -109,17 +109,17 @@ void MusicData2DownloadThread::dataGetFinished()
     }
 }
 
-void MusicData2DownloadThread::dataReplyError(QNetworkReply::NetworkError)
+void MusicTTDataDownloadThread::dataReplyError(QNetworkReply::NetworkError)
 {
-    emit downLoadDataChanged("The data2 create failed");
+    emit downLoadDataChanged("The ttop data create failed");
     deleteAll();
 }
 
 #ifndef QT_NO_SSL
-void MusicData2DownloadThread::dataSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+void MusicTTDataDownloadThread::dataSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    emit downLoadDataChanged("The data2 create failed");
+    emit downLoadDataChanged("The ttop data create failed");
     deleteAll();
 }
 #endif

@@ -6,7 +6,7 @@
 #include "musicmydownloadrecordconfigmanager.h"
 #include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
-#include "musicdata2downloadthread.h"
+#include "musicttdatadownloadthread.h"
 #include "musicbackgrounddownload.h"
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"

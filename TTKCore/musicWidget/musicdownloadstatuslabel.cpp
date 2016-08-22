@@ -1,8 +1,5 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicapplication.h"
-#include "musictextdownloadthread.h"
-#include "musicdatadownloadthread.h"
-#include "musicdata2downloadthread.h"
 #include "musicbackgrounddownload.h"
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
@@ -121,6 +118,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
+
     MusicObject::MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
@@ -141,19 +139,11 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         }
 
         ///download lrc
-        MusicTextDownLoadThread* lrc = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl,
-                                 LRC_DIR_FULL + filename + LRC_FILE,
-                                 MusicDownLoadThreadAbstract::Download_Lrc, this);
-        lrc->startToDownload();
-
+        M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, LRC_DIR_FULL + filename + LRC_FILE,
+                                             MusicDownLoadThreadAbstract::Download_Lrc, this)->startToDownload();
         ///download art picture
-#ifndef USE_MULTIPLE_QUERY
-        (new MusicData2DownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
-                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
-#else
-        (new MusicDataDownloadThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
-                                 MusicDownLoadThreadAbstract::Download_SmlBG, this))->startToDownload();
-#endif
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPic(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
+                                                  MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
         ///download big picture
         (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this))->startToDownload();
     }

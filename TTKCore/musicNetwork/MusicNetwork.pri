@@ -16,7 +16,6 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
-    $$PWD/musicdata2downloadthread.h \
     $$PWD/musicdatadownloadthread.h \
     $$PWD/musictextdownloadthread.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -35,7 +34,10 @@ HEADERS  += \
     $$PWD/musicradiosongsthread.h \
     $$PWD/musicradiothreadabstract.h \
     $$PWD/musictranslationthread.h \
-    $$PWD/musicvoicettsthread.h
+    $$PWD/musicvoicettsthread.h \
+    $$PWD/musicttdatadownloadthread.h \
+    $$PWD/musictttextdownloadthread.h \
+    $$PWD/musicwytextdownloadthread.h
 
 }
 
@@ -43,7 +45,6 @@ contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
-    $$PWD/musicdata2downloadthread.cpp \
     $$PWD/musicdatadownloadthread.cpp \
     $$PWD/musictextdownloadthread.cpp \
     $$PWD/musicsourcedownloadthread.cpp \
@@ -62,5 +63,9 @@ SOURCES += \
     $$PWD/musicradiosongsthread.cpp \
     $$PWD/musicradiothreadabstract.cpp \
     $$PWD/musictranslationthread.cpp \
-    $$PWD/musicvoicettsthread.cpp
+    $$PWD/musicvoicettsthread.cpp \
+    $$PWD/musicttdatadownloadthread.cpp \
+    $$PWD/musictttextdownloadthread.cpp \
+    $$PWD/musicwytextdownloadthread.cpp
+
 }

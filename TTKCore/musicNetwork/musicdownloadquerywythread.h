@@ -65,11 +65,12 @@ protected:
     /*!
      * Encrypted music info id.
      */
-    int foundMusicInfoById(int id);
+    bool foundMusicInfoById(int id);
     /*!
      * Found music info id.
      */
 
+    QSet<QString> m_songIds;
     int m_index;
 
 };

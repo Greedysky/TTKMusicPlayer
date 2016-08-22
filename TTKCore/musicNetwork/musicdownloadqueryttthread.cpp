@@ -90,7 +90,6 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                 QJsonObject object = value.toObject();
 
                 MusicObject::MusicSongInfomation musicInfo;
-
                 QString songId = QString::number(object.take("song_id").toVariant().toULongLong());
                 QString songName = object.take("song_name").toString();
                 QString singerName = object.take("singer_name").toString();

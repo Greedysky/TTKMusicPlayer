@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicsingleton.h"
+#include "musicdownloadthreadabstract.h"
 
 #define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
 
@@ -21,15 +22,22 @@ class MusicDownLoadQueryThreadAbstract;
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory
 {
 public:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
     MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent);
     /*!
      * Get query thread by type.
      */
 
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
+    MusicDownLoadThreadAbstract *getDownloadSmallPic(const QString &url, const QString &save,
+                                                     MusicDownLoadThreadAbstract::Download_Type type,
+                                                     QObject *parent = 0);
+    MusicDownLoadThreadAbstract *getDownloadLrc(const QString &url, const QString &save,
+                                                MusicDownLoadThreadAbstract::Download_Type type,
+                                                QObject *parent = 0);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

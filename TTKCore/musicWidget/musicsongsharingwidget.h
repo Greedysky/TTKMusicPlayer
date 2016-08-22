@@ -62,9 +62,9 @@ public Q_SLOTS:
     /*!
      * Confirm button clicked.
      */
-    void data2urlHasChanged(const QString &imageUrl);
+    void urlHasChanged(const QString &imageUrl);
     /*!
-     * Data2 download finished and send to shared on web.
+     * Data download finished and send to shared on web.
      */
     void queryUrlTimeout();
     /*!

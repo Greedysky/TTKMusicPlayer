@@ -1,5 +1,5 @@
-#ifndef MUSICDATA2DOWNLOADTHREAD_H
-#define MUSICDATA2DOWNLOADTHREAD_H
+#ifndef MUSICTTDATADOWNLOADTHREAD_H
+#define MUSICTTDATADOWNLOADTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,15 +11,15 @@
 
 #include "musicdatadownloadthread.h"
 
-/*! @brief The class of downloading the type of data2.
+/*! @brief The class of downloading the type of ttop data.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicData2DownloadThread : public MusicDataDownloadThread
+class MUSIC_NETWORK_EXPORT MusicTTDataDownloadThread : public MusicDataDownloadThread
 {
     Q_OBJECT
 public:
-    MusicData2DownloadThread(const QString &url, const QString &save,
-                             Download_Type type, QObject *parent = 0);
+    MusicTTDataDownloadThread(const QString &url, const QString &save,
+                              Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
@@ -37,16 +37,10 @@ public:
      * Start to download data.
      */
 
-Q_SIGNALS:
-    void data2urlHasChanged(const QString &url);
-    /*!
-     * Emit data2 download finished.
-     */
-
 public Q_SLOTS:
     void dataGetFinished();
     /*!
-     * Data2 reply finished.
+     * Data reply finished.
      */
     void dataReplyError(QNetworkReply::NetworkError error);
     /*!
@@ -65,4 +59,4 @@ protected:
 
 };
 
-#endif // MUSICDATA2DOWNLOADTHREAD_H
+#endif // MUSICTTDATADOWNLOADTHREAD_H
