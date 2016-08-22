@@ -171,8 +171,9 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     info.m_songName = object.value("name").toString();
                     info.m_timeLength = MusicTime::msecTime2LabelJustified(object.value("duration").toInt());
                     info.m_lrcUrl = MY_SONG_LRC_URL.arg(object.value("id").toInt());
-                    qlonglong ids = object.value("picId").toVariant().toLongLong();
-                    info.m_smallPicUrl = MY_SONG_PIC_URL.arg(encryptedId(ids)).arg(ids);
+
+                    QJsonObject albumObject = object.value("album").toObject();
+                    info.m_smallPicUrl = albumObject.value("picUrl").toString();
 
                     QJsonArray artistsArray = object.value("artists").toArray();
                     foreach(QJsonValue artistValue, artistsArray)
@@ -181,13 +182,8 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         {
                            continue;
                         }
-
                         QJsonObject artistObject = artistValue.toObject();
                         info.m_singerName = artistObject.value("name").toString();
-                        if(ids == 0)
-                        {
-                            info.m_smallPicUrl = artistObject.value("picUrl").toString();
-                        }
                     }
 
                     if(m_queryAllRecords)
@@ -252,8 +248,9 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         info.m_songName = value["name"].toString();
                         info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                         info.m_lrcUrl = MY_SONG_LRC_URL.arg(value["id"].toInt());
-                        qlonglong ids = value["picId"].toLongLong();
-                        info.m_smallPicUrl = MY_SONG_PIC_URL.arg(encryptedId(ids)).arg(ids);
+
+                        QVariantMap albumObject = value["album"].toMap();
+                        info.m_smallPicUrl = albumObject["picUrl"].toString();
 
                         QVariantList artistsArray = value["artists"].toList();
                         foreach(QVariant artistValue, artistsArray)
@@ -262,13 +259,8 @@ void MusicDownLoadQueryWYThread::songListFinished()
                             {
                                 continue;
                             }
-
                             QVariantMap artistMap = artistValue.toMap();
                             info.m_singerName = artistMap["name"].toString();
-                            if(ids == 0)
-                            {
-                                info.m_smallPicUrl = artistMap["picUrl"].toString();
-                            }
                         }
 
                         if(m_queryAllRecords)
