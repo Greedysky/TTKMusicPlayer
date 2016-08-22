@@ -779,7 +779,7 @@ font-weight:bold;</string>
       <rect>
        <x>30</x>
        <y>245</y>
-       <width>111</width>
+       <width>110</width>
        <height>16</height>
       </rect>
      </property>
@@ -792,7 +792,7 @@ font-weight:bold;</string>
       <rect>
        <x>150</x>
        <y>245</y>
-       <width>131</width>
+       <width>110</width>
        <height>16</height>
       </rect>
      </property>
@@ -929,6 +929,19 @@ font-weight:bold;</string>
        <width>225</width>
        <height>22</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="downloadServerMultiple">
+     <property name="geometry">
+      <rect>
+       <x>265</x>
+       <y>245</y>
+       <width>130</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>混合查询</string>
      </property>
     </widget>
    </widget>
@@ -2110,7 +2123,7 @@ color:rgb(80,80,80);</string>
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>265</x>
+     <x>255</x>
      <y>370</y>
      <width>80</width>
      <height>25</height>
@@ -2123,7 +2136,7 @@ color:rgb(80,80,80);</string>
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>425</x>
+     <x>415</x>
      <y>370</y>
      <width>80</width>
      <height>25</height>

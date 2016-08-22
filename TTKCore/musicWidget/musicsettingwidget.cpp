@@ -276,6 +276,9 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
+    ui->downloadServerMultiple->setChecked(false);
+    ui->downloadServerMultiple->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
     ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("wangyiMusic"));
     ui->downloadServerComboBox->addItem(QIcon(":/server/lb_aiyinyue"), tr("dianxinMusic"));
     ui->downloadServerComboBox->addItem(QIcon(":/server/lb_qq"), tr("qqMusic"));
@@ -471,6 +474,7 @@ void MusicSettingWidget::initControllerParameter()
     MusicUtils::UWidget::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
+    ui->downloadServerMultiple->setChecked(!(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0));
     ///////////////////////////////////////////////////////////////////////////
 
     ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
@@ -542,6 +546,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced, ui->downloadSpinBox->value());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, ui->downloadFullRadioBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, ui->downloadServerComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, ui->downloadServerMultiple->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
 
