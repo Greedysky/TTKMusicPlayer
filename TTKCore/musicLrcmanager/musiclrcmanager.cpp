@@ -8,25 +8,19 @@ MusicLRCManager::MusicLRCManager(QWidget *parent)
 {
     m_intervalCount = 0.0f;
 
-    m_linearGradient.setStart(0, 10);//The starting point coordinates filled
-    m_linearGradient.setFinalStop(0, 40);//The coordinates of the end filling
-
-    //A linear gradient mask filling
+    m_linearGradient.setStart(0, 10);
     m_maskLinearGradient.setStart(0, 10);
-    m_maskLinearGradient.setFinalStop(0, 40);
 
-    //Set the font
     m_font.setFamily("Times New Roman");
     m_font.setBold(true);
 
-    //Set the timer
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(setUpdateMask()));
     m_lrcMaskWidth = 0;
     m_lrcMaskWidthInterval = 0;
     m_speedLeve = 1;
-
     m_transparent = 100;
+
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), SLOT(setUpdateMask()));
 }
 
 MusicLRCManager::~MusicLRCManager()
@@ -102,8 +96,8 @@ void MusicLRCManager::setLinearGradientColor(QColor color)
     //calculated in accordance with the proportion of
     color.setAlpha(m_transparent*2.55);
     m_linearGradient.setColorAt(0.1, color);
-    m_linearGradient.setColorAt(0.5, QColor(114, 232, 255, m_transparent*2.55));
-    m_linearGradient.setColorAt(0.9, color);
+    m_linearGradient.setColorAt(0.5, QColor(255, 255, 255, m_transparent*2.55));
+    m_linearGradient.setColorAt(1.0, color);
     update();
 }
 
@@ -111,8 +105,8 @@ void MusicLRCManager::setMaskLinearGradientColor(QColor color)
 {
     color.setAlpha(m_transparent*2.55);
     m_maskLinearGradient.setColorAt(0.1, color);
-    m_maskLinearGradient.setColorAt(0.5, QColor(255, 72, 16, m_transparent*2.55));
-    m_maskLinearGradient.setColorAt(0.9, color);
+    m_maskLinearGradient.setColorAt(0.5, QColor(255, 255, 255, m_transparent*2.55));
+    m_maskLinearGradient.setColorAt(1.0, color);
 }
 
 void MusicLRCManager::setUpdateMask()

@@ -18,11 +18,11 @@ void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor &bg)
     fg.setAlpha(m_transparent);
     bg.setAlpha(m_transparent);
     m_linearGradient.setColorAt(0.1, bg);
-    m_linearGradient.setColorAt(0.5, QColor(114, 232, 255));
-    m_linearGradient.setColorAt(0.9, bg);
+    m_linearGradient.setColorAt(0.5, QColor(255, 255, 255));
+    m_linearGradient.setColorAt(1.0, bg);
     m_maskLinearGradient.setColorAt(0.1, fg);
-    m_maskLinearGradient.setColorAt(0.5, QColor(255, 72, 16));
-    m_maskLinearGradient.setColorAt(0.9, fg);
+    m_maskLinearGradient.setColorAt(0.5, QColor(255, 255, 255));
+    m_maskLinearGradient.setColorAt(1.0, fg);
 }
 
 void MusicPreviewLabel::setParameter(const QStringList &para)

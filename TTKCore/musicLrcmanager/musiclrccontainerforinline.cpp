@@ -416,6 +416,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
+
     bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
     menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
@@ -433,7 +434,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
 
     changeLrcSize.addSeparator();
-    changeLrcSize.addAction(tr("custom"),this,SLOT(currentLrcCustom()));
+    changeLrcSize.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
     //////////////////////////////////////////////////
@@ -470,7 +471,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled( fileCheck );
 
     menu.addSeparator();
-    menu.addAction(tr("customSetting"),this,SLOT(currentLrcCustom()));
+    menu.addAction(tr("customSetting"), this, SLOT(currentLrcCustom()));
 
     menu.exec(QCursor::pos());
 }

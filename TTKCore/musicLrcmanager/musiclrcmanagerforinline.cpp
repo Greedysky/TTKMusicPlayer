@@ -33,6 +33,9 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setFont(font);
     m_geometry.setX(QFontMetrics(font).width( text() ));
 
+    m_linearGradient.setFinalStop(0, QFontMetrics(font).height());
+    m_maskLinearGradient.setFinalStop(0, QFontMetrics(font).height());
+
     if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth &&
        m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {

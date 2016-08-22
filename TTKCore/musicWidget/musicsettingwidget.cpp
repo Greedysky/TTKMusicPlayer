@@ -499,7 +499,7 @@ void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
 
 void MusicSettingWidget::changeInlineLrcWidget()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
