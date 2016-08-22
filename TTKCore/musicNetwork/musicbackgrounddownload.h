@@ -12,6 +12,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+#define BIG_ART_URL     QString("http://www.kuwo.cn/mingxing/%1/pic.htm")
+
 /*! @brief The class of downloading art background image.
  * @author Greedysky <greedysky@163.com>
  */

@@ -11,12 +11,9 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-//single query
-const QString MUSIC_REQUERY_URL = "http://search.dongting.com/song/search/old?q=%1&page=1&size=500";
-const QString MUSIC_LRC_URL = "http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&song_id=%3";
-const QString SML_BG_ART_URL = "http://lp.music.ttpod.com/pic/down?artist=%1";
-const QString BIG_BG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
-
+#define TT_SEARCH_URL         QString("http://search.dongting.com/song/search/old?q=%1&page=1&size=500")
+#define TT_SONG_LRC_URL       QString("http://lp.music.ttpod.com/lrc/down?lrcid=&artist=%1&title=%2&song_id=%3")
+#define TT_SONG_PIC_URL       QString("http://lp.music.ttpod.com/pic/down?artist=%1")
 
 /*! @brief The class to ttpod query download data from net.
  * @author Greedysky <greedysky@163.com>

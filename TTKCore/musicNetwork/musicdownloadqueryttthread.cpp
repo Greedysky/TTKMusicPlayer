@@ -29,7 +29,7 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = MUSIC_REQUERY_URL.arg(text);
+    QUrl musicUrl = TT_SEARCH_URL.arg(text);
     ///This is a ttop music API
 
     if(m_reply)
@@ -267,8 +267,8 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             {
                                 emit createSearchedItems(songName, singerName, duration);
                             }
-                            musicInfo.m_lrcUrl = MUSIC_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                            musicInfo.m_smallPicUrl = SML_BG_ART_URL.arg(singerName);
+                            musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                            musicInfo.m_smallPicUrl = TT_SONG_PIC_URL.arg(singerName);
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
                             m_musicSongInfos << musicInfo;
