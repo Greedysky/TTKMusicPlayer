@@ -8,8 +8,8 @@ MusicLRCManager::MusicLRCManager(QWidget *parent)
 {
     m_intervalCount = 0.0f;
 
-    m_linearGradient.setStart(0, 10);
-    m_maskLinearGradient.setStart(0, 10);
+    m_linearGradient.setStart(0, 0);
+    m_maskLinearGradient.setStart(0, 0);
 
     m_font.setFamily("Times New Roman");
     m_font.setBold(true);
