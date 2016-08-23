@@ -37,7 +37,8 @@
 #define LRC_FILE                ".lrc"
 #define KRC_FILE                ".krc"
 #define MP3_FILE                ".mp3"
-#define TMP_FILE                ".ttk"
+#define CFG_FILE                ".ttk"
+#define LST_FILE                ".lis"
 
 #define MAKE_TRANSFORM          "MPlugins/avconv.dll"
 #define MAKE_KRC2LRC            "MPlugins/avk2l.dll"
@@ -50,7 +51,7 @@
 
 #define COFIGPATH               "musicconfig.xml"
 #define NETDADIOPATH            "musicradio.dll"
-#define MUSICPATH               "music.dll"
+#define MUSICPATH               "music.lis"
 #define DOWNLOADINFO            "musicdown.ttk"
 #define MUSICSEARCH             "musichistory.ttk"
 #define DARABASEPATH            "musicuser.dll"
@@ -127,7 +128,6 @@ namespace MusicObject
     typedef struct MusicSongInfomation
     {
         MusicSongAttributes m_songAttrs;
-        QString m_id;
         QString m_lrcUrl;
         QString m_smallPicUrl;
         QString m_singerName;

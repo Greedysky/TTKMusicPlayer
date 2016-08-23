@@ -80,10 +80,6 @@ protected:
     /*!
      * Encrypted music info id.
      */
-    bool foundMusicInfoById(int id);
-    /*!
-     * Found music info id.
-     */
 
     QSet<QString> m_songIds;
     int m_index;

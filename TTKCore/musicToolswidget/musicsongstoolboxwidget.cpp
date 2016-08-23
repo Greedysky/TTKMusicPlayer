@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicsong.h"
 #include "musicutils.h"
+#include "musicapplication.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -113,6 +114,11 @@ void MusicSongsToolBoxTopWidget::addNewDir()
     emit addNewDir(m_index);
 }
 
+void MusicSongsToolBoxTopWidget::exportSongsItemList()
+{
+   MusicApplication::instance()->musicExportSongsItemList(m_index);
+}
+
 void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
@@ -127,6 +133,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("playLater"));
     menu.addAction(tr("addToPlayList"));
     menu.addAction(tr("collectAll"));
+    menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()))
+                   ->setEnabled(m_index != MUSIC_LOVEST_LIST && m_index != MUSIC_NETWORK_LIST);
     menu.addSeparator();
 
     bool disable = !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST);

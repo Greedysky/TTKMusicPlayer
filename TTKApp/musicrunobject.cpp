@@ -137,7 +137,7 @@ void MusicRunObject::checkTheFileNeededExist()
     }
     if(!QFile::exists(S_MUSICPATH_FULL))
     {
-        QFile::copy(":/data/music.dll", S_MUSICPATH_FULL);
+        QFile::copy(":/data/music.lis", S_MUSICPATH_FULL);
     }
     if(!QFile::exists(S_DOWNLOADINFO_FULL))
     {

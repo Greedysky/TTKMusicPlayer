@@ -35,7 +35,6 @@ public:
      * Get class object name.
      */
 
-protected:
     bool readConfig(const QString &name);
     /*!
      * Read datas from xml file by given name.
@@ -104,6 +103,7 @@ protected:
      * Append xml element nodes key name and value.
      */
 
+protected:
     QFile *m_file;
     QDomDocument *m_ddom;
 

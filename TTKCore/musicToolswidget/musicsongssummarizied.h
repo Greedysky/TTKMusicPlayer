@@ -13,6 +13,8 @@
 #include "musicobject.h"
 #include "musicsongstoolboxwidget.h"
 
+#define  ITEM_MAX_COUNT     10
+
 class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongsSummariziedFloatWidget;
@@ -34,9 +36,13 @@ public:
     /*!
      * Get class object name.
      */
-    void setMusicLists(const MusicSongItems &names);
+    void addMusicLists(const MusicSongItems &names);
     /*!
-     * Set music datas into container.
+     * Add music datas into container.
+     */
+    void appendMusicLists(const MusicSongItems &names);
+    /*!
+     * Append music datas into container.
      */
     inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
     /*!
@@ -228,6 +234,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void checkCurrentNameExist(QString &name);
+    /*!
+     * Check current name exist.
+     */
     void addNewRowItem(const QString &name);
     /*!
      * Add new play list item by name.
@@ -249,7 +259,6 @@ protected:
     int m_currentPlayToolIndex, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;
     bool m_toolDeleteChanged;
-    QObject *m_supperClass;
     MusicSongItems m_songItems;
     MusicObject::MIntsListMap m_searchfileListCache;
     MusicSongsSummariziedFloatWidget *m_floatWidget;

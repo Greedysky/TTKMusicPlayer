@@ -40,7 +40,8 @@ public:
     /*!
      * Write datas into xml file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics);
+    void writeMusicSongsConfig(const MusicSongItems &musics,
+                               const QString &path = MUSICPATH_FULL);
     /*!
      * Write music datas into xml file.
      */

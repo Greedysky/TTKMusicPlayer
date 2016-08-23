@@ -14,14 +14,14 @@ QString MusicXMLConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
+void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
 {
     if( musics.isEmpty() )
     {
         return;
     }
     //Open wirte file
-    if( !writeConfig(MUSICPATH_FULL) )
+    if( !writeConfig( path ) )
     {
         return;
     }

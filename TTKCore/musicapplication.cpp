@@ -119,6 +119,657 @@ MusicApplication *MusicApplication::instance()
     return m_instance;
 }
 
+QString MusicApplication::getCurrentFileName() const
+{
+    if(m_musicList->currentIndex() < 0 || m_currentMusicSongTreeIndex < 0)
+    {
+        return QString();
+    }
+
+    QStringList nanmes = m_musicSongTree->getMusicSongsFileName(m_currentMusicSongTreeIndex);
+    return (nanmes.count() > m_musicList->currentIndex()) ? nanmes[m_musicList->currentIndex()].trimmed() : QString();
+}
+
+bool MusicApplication::checkMusicListCurrentIndex() const
+{
+    return (m_musicList->currentIndex() == -1);
+}
+
+void MusicApplication::musicLoadCurrentSongLrc()
+{
+    //display current ArtTheme pic
+    m_topAreaWidget->musicBgThemeDownloadFinished();
+    //Loading the current song lrc
+    if(m_musicList->currentIndex() == -1)
+    {
+        return;
+    }
+
+    QString filename = getCurrentFileName();
+    QString path = QFile::exists(LRC_DIR_FULL + filename + LRC_FILE) ? (LRC_DIR_FULL + filename + LRC_FILE) : (LRC_DIR_FULL + filename + KRC_FILE);
+    m_rightAreaWidget->loadCurrentSongLrc(filename, path);
+}
+
+void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
+{
+    if(path.isEmpty())
+    {
+        return;
+    }
+
+    m_musicSongTree->importOtherMusicSongs(path);//append in songsList
+    if(m_currentMusicSongTreeIndex == 0)
+    {
+        m_musicList->appendMedia(path);
+    }
+    if(path.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
+    {
+        m_musicList->setCurrentIndex(0);
+    }
+}
+
+void MusicApplication::updateCurrentArtist()
+{
+    m_musicSongTree->updateCurrentArtist();
+}
+
+void MusicApplication::quitWindowClose()
+{
+    //Write configuration files
+    writeXMLConfigToText();
+    m_applicationObject->windowCloseAnimationOpacity();
+}
+
+void MusicApplication::positionChanged(qint64 position)
+{
+    m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), m_playControl);
+    ui->musicTimeWidget->setValue(position);
+    if(m_musicList->isEmpty())
+    {
+        ui->playCurrentTime->setText("00:00");
+    }
+    else
+    {
+        ui->playCurrentTime->setText(MusicTime::msecTime2LabelJustified(position));
+    }
+    //Show the current play time
+    m_musicSongTree->setTimerLabel(ui->playCurrentTime->text());
+#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+    m_bottomAreaWidget->setValue(position);
+#endif
+}
+
+void MusicApplication::durationChanged(qint64 duration)
+{
+    //Show the current play total time
+    ui->musicTimeWidget->setRange(0, duration);
+    ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
+    //Loading the current song lrc
+    musicLoadCurrentSongLrc();
+#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+    m_bottomAreaWidget->setRange(0, duration);
+#endif
+}
+
+void MusicApplication::stateChanged()
+{
+    m_playControl = true;
+    ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+}
+
+void MusicApplication::showCurrentSong(int index)
+{
+    QString name;
+    if( index > -1 ) //The list to end
+    {
+        QStringList songsFileNames = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex());
+        if(songsFileNames.count() > index)
+        {
+            name = songsFileNames[index].trimmed();
+            ///detecting whether the file has been downloaded
+            MusicSongs currentSongs = m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
+            QString path = QString("%1/%2.%3").arg(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
+                                              .arg(name).arg(currentSongs[index].getMusicType());
+            bool exist = QFile::exists(path);
+            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
+            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
+            ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
+            //////////////////////////////////////////
+            MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
+            exist = loveSongs.contains(currentSongs[index]);
+            M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
+            ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
+            //////////////////////////////////////////
+            m_musicSongTree->selectRow(index);
+        }
+    }
+    else
+    {
+        ui->musicBestLove->setStyleSheet(MusicUIObject::MKGBtnUnLove);
+        ui->musicDownload->setStyleSheet(MusicUIObject::MKGBtnUnDownload);
+        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+        m_playControl = true;
+        m_musicPlayer->stop();
+        m_rightAreaWidget->stopLrcMask();
+
+        m_bottomAreaWidget->showPlayStatus(m_playControl);
+        m_rightAreaWidget->showPlayStatus(m_playControl);
+        m_topAreaWidget->showPlayStatus(m_playControl);
+        ui->musicTimeWidget->setPlayState(m_playControl);
+
+        durationChanged(0);
+        positionChanged(0);
+        m_rightAreaWidget->loadCurrentSongLrc(name, name);
+    }
+    ui->showCurrentSong->setText(name);
+    ui->musicMoreFunction->setCurrentSongName(name);
+    //Show the current play song information
+    M_BACKGROUND_PTR->clearArtName();
+    m_rightAreaWidget->musicCheckHasLrcAlready();
+    m_bottomAreaWidget->setLabelText(name);
+    m_topAreaWidget->setLabelText(name);
+    //display current ArtTheme pic
+    M_BACKGROUND_PTR->setArtName( getCurrentFileName() );
+    m_topAreaWidget->musicBgThemeDownloadFinished();
+}
+
+void MusicApplication::musicStatePlay()
+{
+    if(m_musicList->isEmpty())
+    {
+        return;//The playlist is not performing space-time
+    }
+    if(m_playControl)
+    {
+        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPause);
+        m_playControl = false;
+        m_musicPlayer->play();
+        m_topAreaWidget->musicBgThemeDownloadFinished();
+        m_rightAreaWidget->startTimerClock();
+    }
+    else
+    {
+        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+        m_playControl = true;
+        m_musicPlayer->pause();
+        m_topAreaWidget->setTimerStop();
+        m_rightAreaWidget->stopLrcMask();
+    }
+    m_bottomAreaWidget->showPlayStatus(m_playControl);
+    m_rightAreaWidget->showPlayStatus(m_playControl);
+    m_topAreaWidget->showPlayStatus(m_playControl);
+    ui->musicTimeWidget->setPlayState(m_playControl);
+}
+
+void MusicApplication::musicPlayPrevious()
+{
+    if(m_musicList->isEmpty())
+    {
+        return;//The playlist is not performing space-time
+    }
+    if(m_musicList->playbackMode() == MusicObject::MC_PlayRandom)
+    {
+        m_musicList->setCurrentIndex();
+    }
+    else
+    {
+        m_musicPlayer->playPrevious();
+    }
+    m_playControl = true;
+    musicStatePlay();
+    m_playControl = false;
+}
+
+void MusicApplication::musicPlayNext()
+{
+    if(m_musicList->isEmpty())
+    {
+        return;//The playlist is not performing space-time
+    }
+    if(m_musicList->playbackMode() == MusicObject::MC_PlayRandom)
+    {
+        m_musicList->setCurrentIndex();
+    }
+    else
+    {
+        m_musicPlayer->playNext();
+    }
+    m_playControl = true;
+    musicStatePlay();
+    m_playControl = false;
+}
+
+void MusicApplication::musicPlayOrder()
+{
+    m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOrder);
+    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOrder);
+}
+
+void MusicApplication::musicPlayRandom()
+{
+    m_musicList->setPlaybackMode(MusicObject::MC_PlayRandom);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayRandom);
+    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayRandom);
+}
+
+void MusicApplication::musicPlayListLoop()
+{
+    m_musicList->setPlaybackMode(MusicObject::MC_PlayListLoop);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayListLoop);
+    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayListLoop);
+}
+
+void MusicApplication::musicPlayOneLoop()
+{
+    m_musicList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOneLoop);
+    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOneLoop);
+}
+
+void MusicApplication::musicPlayItemOnce()
+{
+    m_musicList->setPlaybackMode(MusicObject::MC_PlayOnce);
+    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOnce);
+    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOnce);
+}
+
+void MusicApplication::musicVolumeMute()
+{
+    m_musicPlayer->setMuted(!m_musicPlayer->isMuted());
+    int volume = m_musicPlayer->volume();
+    m_topAreaWidget->setVolumeValue(volume);
+    m_bottomAreaWidget->setVolumeValue(volume);
+    ui->musicSound->setValue(volume);
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
+}
+
+void MusicApplication::musicVolumeChanged(int volume)
+{
+    m_topAreaWidget->setVolumeValue(volume);
+    m_bottomAreaWidget->setVolumeValue(volume);
+    ui->musicSound->setValue(volume);
+    m_musicPlayer->setVolume(volume);
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
+}
+
+void MusicApplication::musicImportSongs()
+{
+    QMenu menu;
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
+    menu.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
+    menu.addSeparator();
+    menu.addAction(tr("dragAnddrop"))->setEnabled(false);
+    menu.exec(QCursor::pos());
+}
+
+void MusicApplication::musicImportSongsOnlyFile()
+{
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+    dialog.setViewMode(QFileDialog::Detail);
+    dialog.setNameFilters( MusicPlayer::supportFormatsFilterDialogString() );
+
+    if(dialog.exec())
+    {
+        musicImportSongsSettingPath(dialog.selectedFiles());
+    }
+}
+
+void MusicApplication::musicImportSongsOnlyDir()
+{
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setViewMode(QFileDialog::Detail);
+    if(dialog.exec())
+    {
+        QList<QFileInfo> file(dialog.directory().entryInfoList());
+        QStringList fileList;
+        foreach(const QFileInfo &info, file)
+        {
+            if( MusicPlayer::supportFormatsString().contains(info.suffix().toLower()) )
+            {
+               fileList << info.absoluteFilePath();
+            }
+        }
+        musicImportSongsSettingPath(fileList);
+    }
+}
+
+void MusicApplication::musicImportSongsItemList()
+{
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+    dialog.setViewMode(QFileDialog::Detail);
+    dialog.setNameFilters(QStringList() << "All File(*.*)" << "TTKList File(*.lis)");
+
+    if(dialog.exec())
+    {
+        MusicXMLConfigManager manager(this);
+        foreach(const QString &file, dialog.selectedFiles())
+        {
+            if(manager.readConfig(file))
+            {
+                MusicSongItems items;
+                manager.readMusicSongsConfig(items);
+                m_musicSongTree->appendMusicLists(items);
+            }
+        }
+    }
+}
+
+void MusicApplication::musicExportSongsItemList(int index)
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save List File"), QString(), "TTKList File(*.lis)");
+    if(!fileName.isEmpty())
+    {
+        MusicXMLConfigManager manager(this);
+        MusicSongItems items = m_musicSongTree->getMusicLists();
+        if(index < 0 || index >= items.count())
+        {
+            return;
+        }
+        manager.writeMusicSongsConfig(MusicSongItems() << items[index], fileName);
+    }
+}
+
+void MusicApplication::musicPlayIndex(int row)
+{
+    m_musicPlayer->stop();
+
+    m_musicList->clear();
+    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
+    m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
+    m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
+
+    if(row != -999)
+    {
+        m_musicList->setCurrentIndex(row);
+    }
+}
+
+void MusicApplication::musicPlayIndex(int row, int)
+{
+    musicPlayIndex(-999); //just invalid
+    if(!m_musicSongTree->searchFileListEmpty())
+    {
+        row = m_musicSongTree->getSearchFileListIndexAndClear(row);
+    }
+
+    m_musicList->setCurrentIndex(row);
+    m_playControl = true;
+    musicStatePlay();
+    m_playControl = false;
+}
+
+void MusicApplication::musicPlayAnyTimeAt(int posValue)
+{
+    //Drag the progress indicator to rewind or fast-forward through the current song
+    m_musicPlayer->setPosition(posValue);
+    //Set lrc corrent to show
+    m_rightAreaWidget->setSongSpeedAndSlow(posValue);
+}
+
+void MusicApplication::musicActionVolumeSub()
+{
+    int currentVol = m_musicPlayer->volume();
+    currentVol -= 15;
+    if( currentVol < 0)
+    {
+        currentVol = 0;   //reset music volume
+    }
+    musicVolumeChanged( currentVol );
+}
+
+void MusicApplication::musicActionVolumePlus()
+{
+    int currentVol = m_musicPlayer->volume();
+    currentVol += 15;
+    if( currentVol > 100)
+    {
+        currentVol = 100;   //reset music volume
+    }
+    musicVolumeChanged( currentVol );
+}
+
+void MusicApplication::musicSetting()
+{
+    m_rightAreaWidget->showSettingWidget();
+}
+
+void MusicApplication::musicCurrentPlayLocation()
+{
+    if(m_musicList->isEmpty())
+    {
+        return;
+    }
+    m_musicSongTree->playLocation(m_musicList->currentIndex());
+}
+
+void MusicApplication::musicAddSongToLovestListAt()
+{
+    int index = m_musicList->currentIndex();
+    if(m_musicList->isEmpty() || index < 0)
+    {
+        return;
+    }
+
+    m_leftAreaWidget->musictLoveStateClicked();
+    bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
+    state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
+
+    if(m_currentMusicSongTreeIndex == 1)
+    {
+        setDeleteItemAt(MusicObject::MIntList() << index, false);
+    }
+
+    MusicToastLabel *toast = new MusicToastLabel(this);
+    toast->setFontSize(25);
+    toast->setFontMargin(20, 20);
+    toast->setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
+    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
+    toast->move(globalPoint.x() + (width() - toast->width())/2, globalPoint.y() + (height() - toast->height())/2);
+    toast->show();
+}
+
+void MusicApplication::musicWindowConciseChanged()
+{
+    m_bottomAreaWidget->setWindowConcise();
+    m_topAreaWidget->musicBgThemeDownloadFinished();
+}
+
+void MusicApplication::musicEnhancedMusicChanged(int type)
+{
+    m_musicPlayer->setMusicEnhanced(MStatic_cast(MusicPlayer::Enhanced, type));
+}
+
+void MusicApplication::musicImportPlay()
+{
+    musicPlayIndex(m_musicList->mediaCount() - 1, 0);
+}
+
+void MusicApplication::musicCreateRightMenu()
+{
+    QMenu rightClickMenu(this);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),
+                             m_topAreaWidget, SLOT(musicUserContextLogin()));
+    rightClickMenu.addSeparator();
+
+    QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicAddNewFiles);
+    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
+    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
+
+    QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicPlaybackMode);
+
+    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
+    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
+    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
+    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
+    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
+    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
+    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/btn_selected")) : order->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/btn_selected")) : random->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : lCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : sCycle->setIcon(QIcon());
+    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/btn_selected")) : once->setIcon(QIcon());
+
+    rightClickMenu.addSeparator();
+    QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicRemoteControl);
+    musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
+    musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
+    musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
+    musicRemoteControl.addAction(tr("SimpleStyleRemote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));
+    musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
+    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
+    musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
+    rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
+    QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
+    spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
+    spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
+#if !defined Q_OS_WIN || defined MUSIC_GREATER_NEW
+    false);
+#else
+    true);
+#endif
+    rightClickMenu.addMenu(&spectrumControl);
+    rightClickMenu.addSeparator();
+
+    QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
+    window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/contextMenu/btn_selected" : QString()));
+    rightClickMenu.addAction(tr("resetWindow"), m_applicationObject, SLOT(musicResetWindow()));
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
+
+    QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
+                        m_applicationObject, SLOT(musicAboutUs()));
+
+    rightClickMenu.addSeparator();
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_quit"), tr("quit"), this, SLOT(quitWindowClose()));
+    rightClickMenu.exec(QCursor::pos());
+}
+
+void MusicApplication::musicSearchIndexChanged(int, int index)
+{
+    m_musicSongTree->searchFileListCache(index, m_bottomAreaWidget->getSearchedText());
+}
+
+void MusicApplication::getParameterSetting()
+{
+    m_applicationObject->getParameterSetting();
+    m_rightAreaWidget->getParameterSetting();
+    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
+    m_bottomAreaWidget->setSystemCloseConfig(config);
+         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+    m_bottomAreaWidget->setDestopLrcVisible(config);
+    //This attribute is effective immediately.
+}
+
+void MusicApplication::musicSetEqualizer()
+{
+    m_applicationObject->musicSetEqualizer();
+}
+
+void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool remove)
+{
+    if(index.isEmpty())
+    {
+        return;
+    }
+
+    QString prePlayName = m_musicList->currentMediaString();
+    bool contains = false; ///the play one is delete list
+    int oldIndex = m_musicList->currentIndex();
+    ///check if delete one that the play one
+    if(index.count() == 1 && index.first() == oldIndex)
+    {
+        contains = true;
+    }
+    ///other ways
+    for(int i=index.count() - 1; i>=0; --i)
+    {
+        m_musicList->removeMedia(index[i]);
+        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i-1])
+        {
+            oldIndex -= i;
+            contains = true;
+        }
+    }
+
+    if(!contains && m_musicList->currentIndex() > index[0])
+    {
+        oldIndex -= index.count();
+    }
+    if( oldIndex == m_musicList->mediaCount()) ///Play index error correction
+    {
+        --oldIndex;
+    }
+    m_musicList->setCurrentIndex(oldIndex);
+
+    if(contains)
+    {
+        //The corresponding item is deleted from the QMediaPlaylist
+        m_playControl = true;
+        musicStatePlay();
+        m_playControl = false;
+        if(remove)
+        {
+            QFile::remove(prePlayName);
+        }
+    }
+}
+
+void MusicApplication::musicCurrentLrcUpdated()
+{
+    QString filename = getCurrentFileName();
+    QFile file(LRC_DIR_FULL + filename + LRC_FILE);
+    if(file.exists())
+    {
+        file.remove();
+    }
+    m_rightAreaWidget->musicCheckHasLrcAlready();
+}
+
+void MusicApplication::updateCurrentTime(qint64 pos)
+{
+    if(!m_playControl) ///When pause just resume it
+    {
+        m_musicPlayer->setPosition(pos);
+    }
+}
+
+void MusicApplication::setPlaySongChanged(int index)
+{
+    if(m_musicList->isEmpty() || index <0 || index >= m_musicList->mediaCount())
+    {
+        return;
+    }
+    musicPlayIndex(index, 0);
+}
+
+
+void MusicApplication::setStopSongChanged()
+{
+    m_playControl = false;
+    musicStatePlay();
+}
+
+void MusicApplication::getCurrentPlayList(QStringList &list)
+{
+    list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
+}
+
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_GREATER_NEW
 bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
@@ -216,7 +867,7 @@ void MusicApplication::readXMLConfigFromText()
     {
         xml.readMusicSongsConfig(songs);
     }
-    m_musicSongTree->setMusicLists(songs);
+    m_musicSongTree->addMusicLists(songs);
     if(songs.count() > 0)
     {
         ui->musicPlayedList->setPlayListCount(songs.first().m_songs.count());
@@ -358,617 +1009,4 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTree->getMusicLists() );
-}
-
-void MusicApplication::quitWindowClose()
-{
-    //Write configuration files
-    writeXMLConfigToText();
-    m_applicationObject->windowCloseAnimationOpacity();
-}
-
-void MusicApplication::positionChanged(qint64 position)
-{
-    m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), m_playControl);
-    ui->musicTimeWidget->setValue(position);
-    if(m_musicList->isEmpty())
-    {
-        ui->playCurrentTime->setText("00:00");
-    }
-    else
-    {
-        ui->playCurrentTime->setText(MusicTime::msecTime2LabelJustified(position));
-    }
-    //Show the current play time
-    m_musicSongTree->setTimerLabel(ui->playCurrentTime->text());
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
-    m_bottomAreaWidget->setValue(position);
-#endif
-}
-
-void MusicApplication::durationChanged(qint64 duration)
-{
-    //Show the current play total time
-    ui->musicTimeWidget->setRange(0, duration);
-    ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
-    //Loading the current song lrc
-    musicLoadCurrentSongLrc();
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
-    m_bottomAreaWidget->setRange(0, duration);
-#endif
-}
-
-void MusicApplication::showCurrentSong(int index)
-{
-    QString name;
-    if( index > -1 ) //The list to end
-    {
-        QStringList songsFileNames = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex());
-        if(songsFileNames.count() > index)
-        {
-            name = songsFileNames[index].trimmed();
-            ///detecting whether the file has been downloaded
-            MusicSongs currentSongs = m_musicSongTree->getMusicLists()[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
-            QString path = QString("%1/%2.%3").arg(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
-                                              .arg(name).arg(currentSongs[index].getMusicType());
-            bool exist = QFile::exists(path);
-            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistPathChoiced, path);
-            M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
-            ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
-            //////////////////////////////////////////
-            MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
-            exist = loveSongs.contains(currentSongs[index]);
-            M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
-            ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
-            //////////////////////////////////////////
-            m_musicSongTree->selectRow(index);
-        }
-    }
-    else
-    {
-        ui->musicBestLove->setStyleSheet(MusicUIObject::MKGBtnUnLove);
-        ui->musicDownload->setStyleSheet(MusicUIObject::MKGBtnUnDownload);
-        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
-        m_playControl = true;
-        m_musicPlayer->stop();
-        m_rightAreaWidget->stopLrcMask();
-
-        m_bottomAreaWidget->showPlayStatus(m_playControl);
-        m_rightAreaWidget->showPlayStatus(m_playControl);
-        m_topAreaWidget->showPlayStatus(m_playControl);
-        ui->musicTimeWidget->setPlayState(m_playControl);
-
-        durationChanged(0);
-        positionChanged(0);
-        m_rightAreaWidget->loadCurrentSongLrc(name, name);
-    }
-    ui->showCurrentSong->setText(name);
-    ui->musicMoreFunction->setCurrentSongName(name);
-    //Show the current play song information
-    M_BACKGROUND_PTR->clearArtName();
-    m_rightAreaWidget->musicCheckHasLrcAlready();
-    m_bottomAreaWidget->setLabelText(name);
-    m_topAreaWidget->setLabelText(name);
-    //display current ArtTheme pic
-    M_BACKGROUND_PTR->setArtName( getCurrentFileName() );
-    m_topAreaWidget->musicBgThemeDownloadFinished();
-}
-
-void MusicApplication::stateChanged()
-{
-    m_playControl = true;
-    ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
-}
-
-void MusicApplication::musicImportPlay()
-{
-    musicPlayIndex(m_musicList->mediaCount() - 1, 0);
-}
-
-void MusicApplication::musicCreateRightMenu()
-{
-    QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"),
-                             m_topAreaWidget, SLOT(musicUserContextLogin()));
-    rightClickMenu.addSeparator();
-
-    QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
-    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
-
-    QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicPlaybackMode);
-
-    MusicObject::SongPlayType songplaymode = m_musicList->playbackMode();
-    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
-    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
-    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
-    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
-    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
-    (songplaymode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/btn_selected")) : order->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/btn_selected")) : random->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : lCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : sCycle->setIcon(QIcon());
-    (songplaymode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/btn_selected")) : once->setIcon(QIcon());
-
-    rightClickMenu.addSeparator();
-    QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicRemoteControl);
-    musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
-    musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
-    musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
-    musicRemoteControl.addAction(tr("SimpleStyleRemote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));
-    musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
-    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
-    musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
-
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
-    rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
-    rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
-    QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
-    spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
-    spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
-#if !defined Q_OS_WIN || defined MUSIC_GREATER_NEW
-    false);
-#else
-    true);
-#endif
-    rightClickMenu.addMenu(&spectrumControl);
-    rightClickMenu.addSeparator();
-
-    QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
-    window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/contextMenu/btn_selected" : QString()));
-    rightClickMenu.addAction(tr("resetWindow"), m_applicationObject, SLOT(musicResetWindow()));
-
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
-
-    QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
-    musicInfo.addAction(QIcon(":/contextMenu/btn_update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
-    musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
-                        m_applicationObject, SLOT(musicAboutUs()));
-
-    rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_quit"), tr("quit"), this, SLOT(quitWindowClose()));
-    rightClickMenu.exec(QCursor::pos());
-}
-
-void MusicApplication::musicStatePlay()
-{
-    if(m_musicList->isEmpty())
-    {
-        return;//The playlist is not performing space-time
-    }
-    if(m_playControl)
-    {
-        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPause);
-        m_playControl = false;
-        m_musicPlayer->play();
-        m_topAreaWidget->musicBgThemeDownloadFinished();
-        m_rightAreaWidget->startTimerClock();
-    }
-    else
-    {
-        ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
-        m_playControl = true;
-        m_musicPlayer->pause();
-        m_topAreaWidget->setTimerStop();
-        m_rightAreaWidget->stopLrcMask();
-    }
-    m_bottomAreaWidget->showPlayStatus(m_playControl);
-    m_rightAreaWidget->showPlayStatus(m_playControl);
-    m_topAreaWidget->showPlayStatus(m_playControl);
-    ui->musicTimeWidget->setPlayState(m_playControl);
-}
-
-void MusicApplication::musicPlayPrevious()
-{
-    if(m_musicList->isEmpty())
-    {
-        return;//The playlist is not performing space-time
-    }
-    if(m_musicList->playbackMode() == MusicObject::MC_PlayRandom)
-    {
-        m_musicList->setCurrentIndex();
-    }
-    else
-    {
-        m_musicPlayer->playPrevious();
-    }
-    m_playControl = true;
-    musicStatePlay();
-    m_playControl = false;
-}
-
-void MusicApplication::musicPlayNext()
-{
-    if(m_musicList->isEmpty())
-    {
-        return;//The playlist is not performing space-time
-    }
-    if(m_musicList->playbackMode() == MusicObject::MC_PlayRandom)
-    {
-        m_musicList->setCurrentIndex();
-    }
-    else
-    {
-        m_musicPlayer->playNext();
-    }
-    m_playControl = true;
-    musicStatePlay();
-    m_playControl = false;
-}
-
-void MusicApplication::musicPlayOrder()
-{
-    m_musicList->setPlaybackMode(MusicObject::MC_PlayOrder);
-    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOrder);
-    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOrder);
-}
-
-void MusicApplication::musicPlayRandom()
-{
-    m_musicList->setPlaybackMode(MusicObject::MC_PlayRandom);
-    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayRandom);
-    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayRandom);
-}
-
-void MusicApplication::musicPlayListLoop()
-{
-    m_musicList->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayListLoop);
-}
-
-void MusicApplication::musicPlayOneLoop()
-{
-    m_musicList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-}
-
-void MusicApplication::musicPlayItemOnce()
-{
-    m_musicList->setPlaybackMode(MusicObject::MC_PlayOnce);
-    ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOnce);
-    m_musicSongTree->setPlaybackMode(MusicObject::MC_PlayOnce);
-}
-
-void MusicApplication::musicVolumeMute()
-{
-    m_musicPlayer->setMuted(!m_musicPlayer->isMuted());
-    int volume = m_musicPlayer->volume();
-    m_topAreaWidget->setVolumeValue(volume);
-    m_bottomAreaWidget->setVolumeValue(volume);
-    ui->musicSound->setValue(volume);
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
-}
-
-void MusicApplication::musicVolumeChanged(int volume)
-{
-    m_topAreaWidget->setVolumeValue(volume);
-    m_bottomAreaWidget->setVolumeValue(volume);
-    ui->musicSound->setValue(volume);
-    m_musicPlayer->setVolume(volume);
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
-}
-
-void MusicApplication::musicActionVolumeSub()
-{
-    int currentVol = m_musicPlayer->volume();
-    currentVol -= 15;
-    if( currentVol < 0)
-    {
-        currentVol = 0;   //reset music volume
-    }
-    musicVolumeChanged( currentVol );
-}
-
-void MusicApplication::musicActionVolumePlus()
-{
-    int currentVol = m_musicPlayer->volume();
-    currentVol += 15;
-    if( currentVol > 100)
-    {
-        currentVol = 100;   //reset music volume
-    }
-    musicVolumeChanged( currentVol );
-}
-
-void MusicApplication::musicImportSongsOnlyFile()
-{
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles );
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters( MusicPlayer::supportFormatsFilterDialogString() );
-
-    if(dialog.exec())
-    {
-        musicImportSongsSettingPath(dialog.selectedFiles());
-    }
-}
-
-void MusicApplication::musicImportSongsOnlyDir()
-{
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory );
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
-    {
-        QList<QFileInfo> file(dialog.directory().entryInfoList());
-        QStringList fileList;
-        foreach(const QFileInfo &info, file)
-        {
-            if( MusicPlayer::supportFormatsString().contains(info.suffix().toLower()) )
-            {
-               fileList << info.absoluteFilePath();
-            }
-        }
-        musicImportSongsSettingPath(fileList);
-    }
-}
-
-void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
-{
-    if(path.isEmpty())
-    {
-        return;
-    }
-
-    m_musicSongTree->importOtherMusicSongs(path);//append in songsList
-    if(m_currentMusicSongTreeIndex == 0)
-    {
-        m_musicList->appendMedia(path);
-    }
-    if(path.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
-    {
-        m_musicList->setCurrentIndex(0);
-    }
-}
-
-void MusicApplication::musicImportSongs()
-{
-    QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
-    menu.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
-    menu.addSeparator();
-    menu.addAction(tr("dragAnddrop"))->setEnabled(false);
-    menu.exec(QCursor::pos());
-}
-
-void MusicApplication::musicPlayIndex(int row)
-{
-    m_musicPlayer->stop();
-
-    m_musicList->clear();
-    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
-    m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
-    m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
-
-    if(row != -999)
-    {
-        m_musicList->setCurrentIndex(row);
-    }
-}
-
-void MusicApplication::musicPlayIndex(int row, int)
-{
-    musicPlayIndex(-999); //just invalid
-    if(!m_musicSongTree->searchFileListEmpty())
-    {
-        row = m_musicSongTree->getSearchFileListIndexAndClear(row);
-    }
-
-    m_musicList->setCurrentIndex(row);
-    m_playControl = true;
-    musicStatePlay();
-    m_playControl = false;
-}
-
-void MusicApplication::musicPlayAnyTimeAt(int posValue)
-{
-    //Drag the progress indicator to rewind or fast-forward through the current song
-    m_musicPlayer->setPosition(posValue);
-    //Set lrc corrent to show
-    m_rightAreaWidget->setSongSpeedAndSlow(posValue);
-}
-
-void MusicApplication::musicSetting()
-{
-    m_rightAreaWidget->showSettingWidget();
-}
-
-void MusicApplication::musicCurrentPlayLocation()
-{
-    if(m_musicList->isEmpty())
-    {
-        return;
-    }
-    m_musicSongTree->playLocation(m_musicList->currentIndex());
-}
-
-void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool remove)
-{
-    if(index.isEmpty())
-    {
-        return;
-    }
-
-    QString prePlayName = m_musicList->currentMediaString();
-    bool contains = false; ///the play one is delete list
-    int oldIndex = m_musicList->currentIndex();
-    ///check if delete one that the play one
-    if(index.count() == 1 && index.first() == oldIndex)
-    {
-        contains = true;
-    }
-    ///other ways
-    for(int i=index.count() - 1; i>=0; --i)
-    {
-        m_musicList->removeMedia(index[i]);
-        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i-1])
-        {
-            oldIndex -= i;
-            contains = true;
-        }
-    }
-
-    if(!contains && m_musicList->currentIndex() > index[0])
-    {
-        oldIndex -= index.count();
-    }
-    if( oldIndex == m_musicList->mediaCount()) ///Play index error correction
-    {
-        --oldIndex;
-    }
-    m_musicList->setCurrentIndex(oldIndex);
-
-    if(contains)
-    {
-        //The corresponding item is deleted from the QMediaPlaylist
-        m_playControl = true;
-        musicStatePlay();
-        m_playControl = false;
-        if(remove)
-        {
-            QFile::remove(prePlayName);
-        }
-    }
-}
-
-void MusicApplication::getParameterSetting()
-{
-    m_applicationObject->getParameterSetting();
-    m_rightAreaWidget->getParameterSetting();
-    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
-    m_bottomAreaWidget->setSystemCloseConfig(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
-    m_bottomAreaWidget->setDestopLrcVisible(config);
-    //This attribute is effective immediately.
-}
-
-void MusicApplication::musicSetEqualizer()
-{
-    m_applicationObject->musicSetEqualizer();
-}
-
-void MusicApplication::musicSearchIndexChanged(int, int index)
-{
-    m_musicSongTree->searchFileListCache(index, m_bottomAreaWidget->getSearchedText());
-}
-
-void MusicApplication::musicLoadCurrentSongLrc()
-{
-    //display current ArtTheme pic
-    m_topAreaWidget->musicBgThemeDownloadFinished();
-    //Loading the current song lrc
-    if(m_musicList->currentIndex() == -1)
-    {
-        return;
-    }
-
-    QString filename = getCurrentFileName();
-    QString path = QFile::exists(LRC_DIR_FULL + filename + LRC_FILE) ? (LRC_DIR_FULL + filename + LRC_FILE) : (LRC_DIR_FULL + filename + KRC_FILE);
-    m_rightAreaWidget->loadCurrentSongLrc(filename, path);
-}
-
-QString MusicApplication::getCurrentFileName() const
-{
-    if(m_musicList->currentIndex() < 0 || m_currentMusicSongTreeIndex < 0)
-    {
-        return QString();
-    }
-
-    QStringList nanmes = m_musicSongTree->getMusicSongsFileName(m_currentMusicSongTreeIndex);
-    return (nanmes.count() > m_musicList->currentIndex()) ? nanmes[m_musicList->currentIndex()].trimmed() : QString();
-}
-
-bool MusicApplication::checkMusicListCurrentIndex() const
-{
-    return (m_musicList->currentIndex() == -1);
-}
-
-void MusicApplication::updateCurrentArtist()
-{
-    m_musicSongTree->updateCurrentArtist();
-}
-
-void MusicApplication::musicCurrentLrcUpdated()
-{
-    QString filename = getCurrentFileName();
-    QFile file(LRC_DIR_FULL + filename + LRC_FILE);
-    if(file.exists())
-    {
-        file.remove();
-    }
-    m_rightAreaWidget->musicCheckHasLrcAlready();
-}
-
-void MusicApplication::updateCurrentTime(qint64 pos)
-{
-    if(!m_playControl) ///When pause just resume it
-    {
-        m_musicPlayer->setPosition(pos);
-    }
-}
-
-void MusicApplication::musicAddSongToLovestListAt()
-{
-    int index = m_musicList->currentIndex();
-    if(m_musicList->isEmpty() || index < 0)
-    {
-        return;
-    }
-
-    m_leftAreaWidget->musictLoveStateClicked();
-    bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
-
-    if(m_currentMusicSongTreeIndex == 1)
-    {
-        setDeleteItemAt(MusicObject::MIntList() << index, false);
-    }
-
-    MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->setFontSize(25);
-    toast->setFontMargin(20, 20);
-    toast->setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
-    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
-    toast->move(globalPoint.x() + (width() - toast->width())/2, globalPoint.y() + (height() - toast->height())/2);
-    toast->show();
-}
-
-void MusicApplication::setPlaySongChanged(int index)
-{
-    if(m_musicList->isEmpty() || index <0 || index >= m_musicList->mediaCount())
-    {
-        return;
-    }
-    musicPlayIndex(index, 0);
-}
-
-void MusicApplication::setStopSongChanged()
-{
-    m_playControl = false;
-    musicStatePlay();
-}
-
-void MusicApplication::musicWindowConciseChanged()
-{
-    m_bottomAreaWidget->setWindowConcise();
-    m_topAreaWidget->musicBgThemeDownloadFinished();
-}
-
-void MusicApplication::musicEnhancedMusicChanged(int type)
-{
-    m_musicPlayer->setMusicEnhanced(MStatic_cast(MusicPlayer::Enhanced, type));
-}
-
-void MusicApplication::getCurrentPlayList(QStringList &list)
-{
-    list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
 }

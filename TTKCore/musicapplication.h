@@ -142,6 +142,14 @@ public Q_SLOTS:
     /*!
      * Import music songs by dir.
      */
+    void musicImportSongsItemList();
+    /*!
+     * Import music songs by item list.
+     */
+    void musicExportSongsItemList(int index);
+    /*!
+     * Export music songs by item list.
+     */
     void musicPlayIndex(int row);
     /*!
      * Set current row index music to play.
