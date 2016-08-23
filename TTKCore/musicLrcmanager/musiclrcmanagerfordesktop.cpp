@@ -24,7 +24,7 @@ void MusicLRCManagerForDesktop::setSelfGeometry(const QPoint &point)
 
 void MusicLRCManagerForDesktop::setSelfGeometry(int x, int y)
 {
-    m_geometry = QPoint(x,y);
+    m_geometry = QPoint(x, y);
     m_lrcPerWidth = x;
 }
 

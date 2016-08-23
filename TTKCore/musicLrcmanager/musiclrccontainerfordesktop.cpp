@@ -20,7 +20,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     //Move the QWidget in the appropriate location
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_geometry.setX(windowSize.width() - 300);
-    m_geometry.setY(80);
+    m_geometry.setY(60);
 
     creatToolBarWidget();
     QWidget *desktopWidget = new QWidget(this);
@@ -28,8 +28,8 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     m_musicLrcContainer << new MusicLRCManagerForDesktop(desktopWidget)
                         << new MusicLRCManagerForDesktop(desktopWidget);
 
-    setGeometry(200,  windowSize.height() - height() - 150, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
-    desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2*m_geometry.y());
+    setGeometry(200,  windowSize.height() - height() - 150, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
+    desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
     setSelfGeometry();
 
     m_reverse = false;
