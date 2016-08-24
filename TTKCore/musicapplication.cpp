@@ -909,6 +909,8 @@ void MusicApplication::readXMLConfigFromText()
     m_rightAreaWidget->setInlineLrcVisible(value);
     //////////////////////////////////////////////////////////////
     //Set the desktop lrc should be shown
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, xml.readDLrcWindowType());
+    m_rightAreaWidget->setWindowLrcTypeChanged();
     value = xml.readShowDesktopLrc();
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
     m_bottomAreaWidget->setDestopLrcVisible(value);

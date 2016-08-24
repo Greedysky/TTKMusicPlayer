@@ -66,6 +66,10 @@ public:
     /*!
      * Update current lrc by first and second and time.
      */
+    bool getWindowType() const { return m_verticalWindow;}
+    /*!
+     * Get current desktop lrc window type.
+     */
 
 Q_SIGNALS:
     void desktopLrcClosed();
@@ -75,6 +79,10 @@ Q_SIGNALS:
     void setWindowLockedChanged(bool lock);
     /*!
      * Lock current desktop lrc state changed emit.
+     */
+    void setWindowLrcTypeChanged();
+    /*!
+     * Set current desktop lrc window type changed.
      */
 
 public Q_SLOTS:

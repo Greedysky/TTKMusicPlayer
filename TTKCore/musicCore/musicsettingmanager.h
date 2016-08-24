@@ -64,6 +64,7 @@ public:
         DLrcFgColorChoiced,             ///*Desktop Lrc Fg Color Parameter*/
         DLrcBgColorChoiced,             ///*Desktop Lrc Bg Color Parameter*/
         DLrcColorTransChoiced,          ///*Desktop Lrc Color Trans Parameter*/
+        DLrcWindowTypeChoiced,          ///*Desktop Lrc Window Type Parameter*/
         DLrcLockedChoiced,              ///*Desktop Lrc Locked Parameter*/
         DLrcGeometryChoiced,            ///*Desktop Lrc Geometry Parameter*/
 

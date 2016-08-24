@@ -146,6 +146,10 @@ public Q_SLOTS:
     /*!
      * Lock current desktop lrc state changed.
      */
+    void setWindowLrcTypeChanged();
+    /*!
+     * Set current desktop lrc window type changed.
+     */
     void songResearchButtonSearched(const QString &name);
     /*!
      * Music song research button searched by name.
@@ -180,7 +184,7 @@ protected:
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;
-    MusicLrcContainerForDesktop *m_musiclrcfordesktop;
+    MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicDownloadStatusLabel *m_downloadStatusLabel;
 
     static MusicRightAreaWidget *m_instance;

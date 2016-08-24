@@ -154,6 +154,11 @@ public:
     /*!
      * Read Show Desktop Lrc Family Transparent Config.
      */
+    inline int readDLrcWindowType() const
+    { return readXmlAttributeByTagNameValue("lrcDWindowType").toInt(); }
+    /*!
+     * Read Show Desktop Lrc Locked Config.
+     */
     inline int readShowDLrcLocked() const
     { return readXmlAttributeByTagNameValue("lrcDLocked").toInt(); }
     /*!

@@ -153,6 +153,11 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarLayout->addWidget(showMainWindow, 0, Qt::AlignCenter);
     connect(showMainWindow, SIGNAL(clicked()), MusicApplication::instance(), SLOT(showNormal()));
 
+    QToolButton *toolWindowTypeButton = new QToolButton(m_toolBarWidget);
+    toolWindowTypeButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
+    m_toolBarLayout->addWidget(toolWindowTypeButton, 0, Qt::AlignCenter);
+    connect(toolWindowTypeButton, SIGNAL(clicked()), this, SIGNAL(setWindowLrcTypeChanged()));
+
     QToolButton *toolPreSongButton = new QToolButton(m_toolBarWidget);
     toolPreSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolPreSongButton, 0, Qt::AlignCenter);
@@ -222,6 +227,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
 
     showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
+    toolWindowTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolStyleButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolMakeLrcTextButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -237,6 +243,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolPlayButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    toolWindowTypeButton->setStyleSheet(MusicUIObject::MKGBtnTClose);
     toolCloseButton->setStyleSheet(MusicUIObject::MKGBtnTClose);
     toolStyleButton->setStyleSheet(MusicUIObject::MKGDeskTopStyle);
     toolMakeLrcTextButton->setStyleSheet(MusicUIObject::MKGDeskTopMakeLrc);
