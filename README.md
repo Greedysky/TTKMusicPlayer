@@ -7,7 +7,7 @@
 Usage
 ----
 **The music player use of qmmp core library based on Qt.
-Compiler tutorial I have written in the wiki.**
+Compiler tutorial I have written in the wiki.(See here)<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u>**
 
 #### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
  

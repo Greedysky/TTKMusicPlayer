@@ -358,10 +358,17 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
                 MStatic_cast(bool, M_SETTING_PTR->value(MusicSettingManager::DLrcWindowTypeChoiced).toInt());
 
     MusicLrcContainerForDesktop *deskLrc = m_musicLrcForDesktop;
-    m_musicLrcForDesktop = type ? new MusicLrcContainerHorizontalDesktop(this)
-                                : new MusicLrcContainerVerticalDesktop(this);
+    if(type)
+    {
+        m_musicLrcForDesktop = new MusicLrcContainerHorizontalDesktop(this);
+    }
+    else
+    {
+        m_musicLrcForDesktop = new MusicLrcContainerVerticalDesktop(this);
+    }
     m_musicLrcForDesktop->setSettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();
+    m_musicLrcForDesktop->setVisible(true);
     connect(m_musicLrcForDesktop, SIGNAL(setWindowLrcTypeChanged()), SLOT(setWindowLrcTypeChanged()));
     connect(m_musicLrcForDesktop, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));
