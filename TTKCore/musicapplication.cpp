@@ -911,10 +911,6 @@ void MusicApplication::readXMLConfigFromText()
     //Set the desktop lrc should be shown
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, xml.readDLrcWindowType());
     m_rightAreaWidget->setWindowLrcTypeChanged();
-    value = xml.readShowDesktopLrc();
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
-    m_bottomAreaWidget->setDestopLrcVisible(value);
-    m_rightAreaWidget->setDestopLrcVisible(value);
     //////////////////////////////////////////////////////////////
     //Set the current background color
     //Set the current alpha value
@@ -975,6 +971,12 @@ void MusicApplication::readXMLConfigFromText()
     m_bottomAreaWidget->lockDesktopLrc(xml.readShowDLrcLocked());
     m_rightAreaWidget->setSettingParameter();
     //////////////////////////////////////////////////////////////
+    value = xml.readShowDesktopLrc();
+    ///init or reset the window
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
+    m_bottomAreaWidget->setDestopLrcVisible(value);
+    m_rightAreaWidget->setDestopLrcVisible(value);
+    //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, xml.readEqualizerEnale());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
@@ -982,7 +984,6 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, xml.readLanguageIndex());
 
-    ///init or reset the window
     setGeometry( xml.readWindowGeometry() );
 }
 

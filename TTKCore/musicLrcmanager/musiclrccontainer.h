@@ -58,6 +58,10 @@ public:
      * Set setting parameter.
      */
 
+    inline QString getCurrentSongName() const { return m_currentSongName;}
+    /*!
+     * Set current song name.
+     */
     inline void setCurrentSongName(const QString &name) { m_currentSongName = name;}
     /*!
      * Set current song name.

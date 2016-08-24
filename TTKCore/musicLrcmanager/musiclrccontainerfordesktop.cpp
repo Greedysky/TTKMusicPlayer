@@ -82,6 +82,11 @@ void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
     m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MKGDeskTopPlay : MusicUIObject::MKGDeskTopPause);
 }
 
+bool MusicLrcContainerForDesktop::getPlayStatus() const
+{
+    return m_toolPlayButton->styleSheet().contains(MusicUIObject::MKGDeskTopPlay);
+}
+
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
     m_reverse = !m_reverse;
@@ -127,6 +132,7 @@ void MusicLrcContainerForDesktop::setLrcSmallerChanged()
 void MusicLrcContainerForDesktop::toolStyleChanged()
 {
     QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     createColorMenu(menu);
     menu.exec(QCursor::pos());
 }

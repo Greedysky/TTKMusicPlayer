@@ -366,9 +366,16 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     {
         m_musicLrcForDesktop = new MusicLrcContainerVerticalDesktop(this);
     }
+
+    if(deskLrc)
+    {
+        m_musicLrcForDesktop->setCurrentSongName( deskLrc->getCurrentSongName() );
+        m_musicLrcForDesktop->showPlayStatus( deskLrc->getPlayStatus() );
+    }
     m_musicLrcForDesktop->setSettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();
     m_musicLrcForDesktop->setVisible(true);
+
     connect(m_musicLrcForDesktop, SIGNAL(setWindowLrcTypeChanged()), SLOT(setWindowLrcTypeChanged()));
     connect(m_musicLrcForDesktop, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));

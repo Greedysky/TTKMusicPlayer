@@ -13,9 +13,7 @@
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
-///
-/// \brief MusicBottomAreaWidget::m_instance
-///
+
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)

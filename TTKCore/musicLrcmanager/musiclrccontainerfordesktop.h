@@ -64,6 +64,10 @@ public:
     /*!
      * Set current play state button.
      */
+    bool getPlayStatus() const;
+    /*!
+     * Get current play state button.
+     */
     void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
     /*!
      * Update current lrc by first and second and time.
