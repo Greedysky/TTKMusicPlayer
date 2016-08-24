@@ -67,7 +67,6 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     group->addButton(ui->musicLiveWidgetButton, 4);
     group->addButton(ui->musicLrcWidgetButton, 5);
     group->addButton(ui->musicSearchButton, 6);
-    group->addButton(ui->musicSearchRefreshButton, 6);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
 
     ///////////////////////////////////////////////////////
@@ -210,14 +209,14 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
         m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
-        m_ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
+        m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
     }
     else
     {
         musicButtonStyleClear(true);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
         m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
-        m_ui->musicSearchRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
+        m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
     }
 
     deleteStackedFuncWidget();

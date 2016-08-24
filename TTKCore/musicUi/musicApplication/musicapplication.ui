@@ -688,7 +688,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QToolButton" name="musicSearchRefreshButton">
+                <widget class="QToolButton" name="musicRefreshButton">
                  <property name="minimumSize">
                   <size>
                    <width>20</width>
