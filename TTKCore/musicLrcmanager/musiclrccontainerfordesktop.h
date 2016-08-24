@@ -16,7 +16,9 @@
 
 #define TOOLBAR_MAIN_HEIGHT 35
 #define TOOLBAR_HEIGHT      23
+#define TOOLBAR_WIDTH       31
 #define TOOLBAR_TEXT_LENGTH 58
+
 
 class MusicLRCManagerForDesktop;
 
