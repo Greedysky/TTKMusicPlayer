@@ -9,14 +9,15 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QBoxLayout>
+#include <QToolButton>
+#include <QPushButton>
 #include "musiclrccontainer.h"
 
 #define TOOLBAR_MAIN_HEIGHT 35
 #define TOOLBAR_HEIGHT      23
 #define TOOLBAR_TEXT_LENGTH 58
 
-class QPushButton;
-class QToolButton;
 class MusicLRCManagerForDesktop;
 
 /*! @brief The class of the desktop lrc container.
@@ -53,13 +54,13 @@ public:
      * Set setting parameter.
      */
 
+    virtual void initCurrentLrc() const;
+    /*!
+     * Init current lrc when the first show.
+     */
     void showPlayStatus(bool status) const;
     /*!
      * Set current play state button.
-     */
-    void initCurrentLrc() const;
-    /*!
-     * Init current lrc when the first show.
      */
     void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
     /*!
@@ -103,9 +104,10 @@ protected:
     /*!
      * Creat toolBar widget.
      */
-    void resizeLrcSizeArea();
+    virtual void resizeLrcSizeArea() = 0;
     /*!
      * Resize lrc size area by change size.
+     * Subclass should implement this function.
      */
     void resizeLrcSizeArea(bool resize);
     /*!
@@ -121,13 +123,73 @@ protected:
      * Override the widget event.
      */
 
+    bool m_verticalWindow;
     bool m_windowLocked, m_reverse;
     int m_currentLrcFontSize;
     QPoint m_offset, m_geometry;
 
-    QWidget *m_supperClass, *m_toolBarWidget;
+    QBoxLayout *m_toolBarLayout;
+    QWidget *m_toolBarWidget;
     QToolButton *m_toolPlayButton;
 
+};
+
+
+/*! @brief The class of the desktop horizontal lrc container.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcContainerHorizontalDesktop : public MusicLrcContainerForDesktop
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcContainerHorizontalDesktop(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+    virtual void initCurrentLrc() const override;
+    /*!
+     * Init current lrc when the first show.
+     */
+
+protected:
+    virtual void resizeLrcSizeArea() override;
+    /*!
+     * Resize lrc size area by change size.
+     */
+};
+
+
+/*! @brief The class of the desktop vertical lrc container.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcContainerVerticalDesktop : public MusicLrcContainerForDesktop
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcContainerVerticalDesktop(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+    virtual void initCurrentLrc() const override;
+    /*!
+     * Init current lrc when the first show.
+     */
+
+protected:
+    virtual void resizeLrcSizeArea() override;
+    /*!
+     * Resize lrc size area by change size.
+     */
 };
 
 #endif // MUSICLRCCONTAINERFORDESKTOP_H

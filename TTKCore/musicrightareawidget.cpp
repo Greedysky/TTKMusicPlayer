@@ -23,7 +23,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_instance = this;
     m_stackedFuncWidget = nullptr;
 
-    m_musiclrcfordesktop = new MusicLrcContainerForDesktop(parent);
+    m_musiclrcfordesktop = new MusicLrcContainerHorizontalDesktop(this);
     m_downloadStatusLabel = new MusicDownloadStatusLabel(parent);
     m_setting = new MusicSettingWidget(this);
     connect(m_setting, SIGNAL(parameterSettingChanged()), parent,

@@ -22,7 +22,6 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLRCManagerForDesktop();
 
     static QString getClassName();
     /*!
@@ -57,12 +56,56 @@ public:
      * Get current font szie.
      */
 
+};
+
+
+/*! @brief The class of the desktop horizontal lrc manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLRCManagerHorizontalDesktop : public MusicLRCManagerForDesktop
+{
+    Q_OBJECT
+public:
+    explicit MusicLRCManagerHorizontalDesktop(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+};
 
+
+/*! @brief The class of the desktop vertical lrc manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLRCManagerVerticalDesktop : public MusicLRCManagerForDesktop
+{
+    Q_OBJECT
+public:
+    explicit MusicLRCManagerVerticalDesktop(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 };
 
 #endif // MUSICLRCMANAGERFORDESKTOP_H
