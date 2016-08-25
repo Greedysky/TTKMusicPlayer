@@ -89,6 +89,10 @@ public Q_SLOTS:
     /*!
      * Upload files to server.
      */
+    void reuploadFileToServer();
+    /*!
+     * Reupload files to server.
+     */
 
     void openFileManagerDialog();
     /*!

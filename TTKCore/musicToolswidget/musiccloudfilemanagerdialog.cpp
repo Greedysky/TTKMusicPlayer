@@ -49,6 +49,7 @@ MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
 
     ui->reuploadButton->setEnabled(false);
     ui->reuploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    connect(ui->reuploadButton, SIGNAL(clicked()), parent, SLOT(reuploadFileToServer()));
 
 }
 

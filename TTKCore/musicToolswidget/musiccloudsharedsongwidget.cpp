@@ -271,6 +271,12 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     }
 }
 
+void MusicCloudSharedSongTableWidget::reuploadFileToServer()
+{
+    m_currentUploadIndex = 0;
+    startToUploadFile();
+}
+
 void MusicCloudSharedSongTableWidget::openFileManagerDialog()
 {
     m_fileDialog->creatFilesManager(m_waitedFiles);
