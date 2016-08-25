@@ -45,10 +45,6 @@ Q_SIGNALS:
     /*!
      * To update message label text.
      */
-    void uploadDone();
-    /*!
-     * One file upload finsihed.
-     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
@@ -77,6 +73,9 @@ public Q_SLOTS:
      * Delete file to server.
      */
     void downloadFileToServer();
+    /*!
+     * Download file to server.
+     */
 
     void uploadFileToServer();
     /*!
@@ -86,10 +85,6 @@ public Q_SLOTS:
     /*!
      * Upload files to server.
      */
-    void startToUploadFile();
-    /*!
-     * Start to upload files to server.
-     */
 
     void openFileManagerDialog();
     /*!
@@ -98,6 +93,10 @@ public Q_SLOTS:
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
     /*!
      * Show upload progress.
+     */
+    void uploadDone();
+    /*!
+     * All files upload finsihed.
      */
 
 protected:
@@ -109,11 +108,13 @@ protected:
     /*!
      * Create upload file widget.
      */
+    void startToUploadFile();
+    /*!
+     * Start to upload files to server.
+     */
 
     bool m_uploading;
-    QEventLoop m_eventLoop;
-    QTimer *m_timerToUpload;
-    UploadData m_currentUploadData;
+    int m_currentUploadIndex;
     UploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
     QNSimpleDeleteData *m_qnDeleteData;

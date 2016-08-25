@@ -58,30 +58,35 @@ QString MusicCloudFileManagerDialog::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicCloudFileManagerDialog::creatFileManager(const UploadDatas &datas)
+void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)
+{
+    int index = ui->uploadTableWidget->rowCount();
+    ui->uploadTableWidget->setRowCount(index + 1);
+    QTableWidgetItem *item = new QTableWidgetItem;
+    ui->uploadTableWidget->setItem(index, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(MusicUtils::UWidget::elidedText(font(), data.m_name, Qt::ElideRight, 260));
+    item->setToolTip(data.m_name);
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    ui->uploadTableWidget->setItem(index, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(MUSIC_PROCS_ROLE, (data.m_state == UploadData::Successed) ? 100 : 0);
+    ui->uploadTableWidget->setItem(index, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon( getIconByDataState(data.m_state) );
+    item->setTextAlignment(Qt::AlignCenter);
+    ui->uploadTableWidget->setItem(index, 3, item);
+}
+
+void MusicCloudFileManagerDialog::creatFilesManager(const UploadDatas &datas)
 {
     ui->uploadTableWidget->clear();
-    ui->uploadTableWidget->setRowCount(datas.count());
-    for(int i=0; i<datas.count(); ++i)
+    foreach(const UploadData &data, datas)
     {
-        UploadData data = datas[i];
-        QTableWidgetItem *item = new QTableWidgetItem;
-        ui->uploadTableWidget->setItem(i, 0, item);
-
-                          item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), data.m_name, Qt::ElideRight, 260));
-        item->setToolTip(data.m_name);
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        ui->uploadTableWidget->setItem(i, 1, item);
-
-                          item = new QTableWidgetItem;
-        item->setData(MUSIC_PROCS_ROLE, (data.m_state == UploadData::Successed) ? 100 : 0);
-        ui->uploadTableWidget->setItem(i, 2, item);
-
-                          item = new QTableWidgetItem;
-        item->setIcon( getIconByDataState(data.m_state) );
-        item->setTextAlignment(Qt::AlignCenter);
-        ui->uploadTableWidget->setItem(i, 3, item);
+        creatFileManager(data);
     }
 }
 

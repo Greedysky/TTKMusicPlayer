@@ -90,8 +90,18 @@ public:
      * Get class object name.
      */
 
-    void creatFileManager(const UploadDatas &datas);
+    void creatFileManager(const UploadData &data);
+    /*!
+     * Creat file manager item.
+     */
+    void creatFilesManager(const UploadDatas &datas);
+    /*!
+     * Creat file manager items.
+     */
     void updateItemProgress(int percent, const UploadData &data);
+    /*!
+     * Update item progress.
+     */
 
 public Q_SLOTS:
     virtual int exec();
@@ -105,6 +115,9 @@ public Q_SLOTS:
 
 protected:
     QIcon getIconByDataState(UploadData::State state);
+    /*!
+     * Get icon by data state.
+     */
 
     Ui::MusicCloudFileManagerDialog *ui;
 

@@ -104,9 +104,15 @@ public Q_SLOTS:
     /*!
      * Show projectM spectrum widget.
      */
+    void cloudSharedSongUploadAllDone();
+    /*!
+     * All files upload finsihed.
+     */
 
 protected:
     Ui::MusicApplication *m_ui;
+
+    int m_currentIndex;
     QWidget *m_stackedWidget;
     MusicQualityChoiceWidget *m_qualityChoiceWidget;
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
