@@ -21,11 +21,13 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_stackedWidget = nullptr;
+    m_cloudSharedSongWidget = nullptr;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
     delete m_qualityChoiceWidget;
+    delete m_cloudSharedSongWidget;
     delete m_stackedWidget;
 }
 
@@ -193,7 +195,7 @@ void MusicLeftAreaWidget::musicStackedToolsWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicToolSetsWidget(this);
-    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(5);
@@ -208,7 +210,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicWebRadioToolWidget(this);
-    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(1);
@@ -223,7 +225,7 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicMyDownloadRecordWidget(this);
-    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(2);
@@ -238,7 +240,7 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
 
     delete m_stackedWidget;
     m_stackedWidget = new MusicConnectMobileWidget(this);
-    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(3);
@@ -246,14 +248,22 @@ void MusicLeftAreaWidget::musicStackedMobileWidgetChanged()
 
 void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
 {
-    if(MObject_cast(MusicCloudSharedSongWidget*, m_stackedWidget))
+    QWidget *w = MObject_cast(QWidget*, m_stackedWidget);
+    if(w && w->objectName() == "CloudSharedSongWidget")
     {
         return;
     }
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicCloudSharedSongWidget(this);
-    m_ui->songsContainer->addWidget(m_stackedWidget);
+    m_stackedWidget = new QWidget(this);
+    m_stackedWidget->setObjectName("CloudSharedSongWidget");
+    m_stackedWidget->hide();
+
+    if(!m_cloudSharedSongWidget)
+    {
+        m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
+        m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
+    }
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(4);

@@ -13,6 +13,7 @@
 #include "musicglobaldefine.h"
 
 class MusicQualityChoiceWidget;
+class MusicCloudSharedSongWidget;
 
 namespace Ui {
     class MusicApplication;
@@ -108,6 +109,7 @@ protected:
     Ui::MusicApplication *m_ui;
     QWidget *m_stackedWidget;
     MusicQualityChoiceWidget *m_qualityChoiceWidget;
+    MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
 
     static MusicLeftAreaWidget *m_instance;
 };
