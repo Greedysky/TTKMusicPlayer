@@ -172,6 +172,30 @@ void MusicCloudSharedSongTableWidget::deleteFileToServer()
     data.m_state = UploadData::Successed;
     m_waitedFiles.removeOne(data);
     m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_name);
+
+    if(--m_currentUploadIndex < 0)
+    {
+        m_currentUploadIndex = 0;
+    }
+    if(m_fileDialog->isVisible())
+    {
+        m_fileDialog->creatFilesManager(m_waitedFiles);
+    }
+}
+
+void MusicCloudSharedSongTableWidget::deleteFilesToServer()
+{
+    foreach(const UploadData &data, m_waitedFiles)
+    {
+        m_waitedFiles.removeOne(data);
+        m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_name);
+    }
+
+    m_currentUploadIndex = 0;
+    if(m_fileDialog->isVisible())
+    {
+        m_fileDialog->creatFilesManager(m_waitedFiles);
+    }
 }
 
 void MusicCloudSharedSongTableWidget::downloadFileToServer()
@@ -267,6 +291,8 @@ void MusicCloudSharedSongTableWidget::uploadDone()
     m_uploading = false;
     m_currentUploadIndex = m_waitedFiles.count();
     updateListToServer();
+    m_fileDialog->setReuploadState( uploadHasFailed() );
+
     QTimer::singleShot(MT_MS, MusicLeftAreaWidget::instance(), SLOT(cloudSharedSongUploadAllDone()));
 }
 
@@ -283,6 +309,8 @@ void MusicCloudSharedSongTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addMenu(&uploadMenu);
     menu.addAction(tr("deleteFile"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("deleteFiles"), this, SLOT(deleteFilesToServer()))->setEnabled(!m_uploading);
+    menu.addSeparator();
     menu.addAction(tr("download"), this, SLOT(downloadFileToServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
     menu.addAction(tr("updateFiles"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
@@ -323,6 +351,18 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
 
     m_qnUploadData->uploadDataToServer(file.readAll(), QN_BUCKET, data.m_name, data.m_name);
     file.close();
+}
+
+bool MusicCloudSharedSongTableWidget::uploadHasFailed()
+{
+    foreach(const UploadData &data, m_waitedFiles)
+    {
+        if(data.m_state != UploadData::Successed)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 

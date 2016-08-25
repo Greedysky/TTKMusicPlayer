@@ -90,6 +90,10 @@ public:
      * Get class object name.
      */
 
+    void setReuploadState(bool state);
+    /*!
+     * Set reupload state.
+     */
     void creatFileManager(const UploadData &data);
     /*!
      * Creat file manager item.

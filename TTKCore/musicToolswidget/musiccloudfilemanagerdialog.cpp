@@ -1,6 +1,7 @@
 #include "musiccloudfilemanagerdialog.h"
 #include "ui_musiccloudfilemanagerdialog.h"
 #include "musicitemdelegate.h"
+#include "musicuiobject.h"
 
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -46,6 +47,9 @@ MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    ui->reuploadButton->setEnabled(false);
+    ui->reuploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
 }
 
 MusicCloudFileManagerDialog::~MusicCloudFileManagerDialog()
@@ -56,6 +60,11 @@ MusicCloudFileManagerDialog::~MusicCloudFileManagerDialog()
 QString MusicCloudFileManagerDialog::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicCloudFileManagerDialog::setReuploadState(bool state)
+{
+    ui->reuploadButton->setEnabled(state);
 }
 
 void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)

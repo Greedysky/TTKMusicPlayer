@@ -79,11 +79,25 @@ QLabel{background:transparent;}</string>
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="reuploadButton">
+   <property name="geometry">
+    <rect>
+     <x>445</x>
+     <y>60</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>重传</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>uploadTableWidget</zorder>
+  <zorder>reuploadButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

@@ -72,6 +72,10 @@ public Q_SLOTS:
     /*!
      * Delete file to server.
      */
+    void deleteFilesToServer();
+    /*!
+     * Delete files to server.
+     */
     void downloadFileToServer();
     /*!
      * Download file to server.
@@ -111,6 +115,10 @@ protected:
     void startToUploadFile();
     /*!
      * Start to upload files to server.
+     */
+    bool uploadHasFailed();
+    /*!
+     * Check upload has failed.
      */
 
     bool m_uploading;
