@@ -5,6 +5,8 @@
 #include "musicdownloadqueryttthread.h"
 #include "musicdownloadquerywythread.h"
 
+#include "musicdownloadqueryalbumthread.h"
+
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
 
@@ -32,6 +34,25 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
     else
     {
         downLoadManager = new MusicDownLoadQueryMultipleThread(parent);
+    }
+    return downLoadManager;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *downLoadManager = nullptr;
+    if(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0)
+    {
+        int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+        switch( index )
+        {
+            case 0: downLoadManager = new MusicDownLoadQueryAlbumThread(parent); break;
+            case 4: downLoadManager = new MusicDownLoadQueryAlbumThread(parent); break;
+        }
+    }
+    else
+    {
+        downLoadManager = new MusicDownLoadQueryAlbumThread(parent);
     }
     return downLoadManager;
 }

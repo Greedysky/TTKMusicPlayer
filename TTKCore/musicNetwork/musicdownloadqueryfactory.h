@@ -29,15 +29,24 @@ public:
 
     MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent);
     /*!
-     * Get query thread by type.
+     * Get query thread object by type.
      */
-
+    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent);
+    /*!
+     * Get album thread object by type.
+     */
     MusicDownLoadThreadAbstract *getDownloadSmallPic(const QString &url, const QString &save,
                                                      MusicDownLoadThreadAbstract::Download_Type type,
                                                      QObject *parent = 0);
+    /*!
+     * Get download small picture object by type.
+     */
     MusicDownLoadThreadAbstract *getDownloadLrc(const QString &url, const QString &save,
                                                 MusicDownLoadThreadAbstract::Download_Type type,
                                                 QObject *parent = 0);
+    /*!
+     * Get download lrc object by type.
+     */
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

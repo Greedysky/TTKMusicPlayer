@@ -33,16 +33,6 @@ public:
      * Set current song name.
      */
 
-Q_SIGNALS:
-    void musicSongMovieClicked(const QString &text);
-    /*!
-     * Video search that by string.
-     */
-    void musicSimilarFound(const QString &text);
-    /*!
-     * Music similar function that by string.
-     */
-
 private Q_SLOTS:
     void musicFunctionClicked(QAction *index);
     /*!

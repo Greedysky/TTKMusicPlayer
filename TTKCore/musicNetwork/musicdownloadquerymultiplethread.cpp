@@ -176,6 +176,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                 }
                 emit createSearchedItems(songName, singerName, duration);
 
+                musicInfo.m_songId = object.take("SongId").toString();
+                musicInfo.m_albumId = object.take("AlbumId").toString();
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
                 musicInfo.m_timeLength = duration;
@@ -199,6 +201,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                 }
                 emit createSearchedItems(songName, singerName, duration);
 
+                musicInfo.m_songId = object.take("SongId").toString();
+                musicInfo.m_albumId = object.take("AlbumId").toString();
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
                 musicInfo.m_timeLength = duration;
@@ -256,6 +260,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
+                    musicInfo.m_songId = value["SongId"].toString();
+                    musicInfo.m_albumId = value["AlbumId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
@@ -279,6 +285,8 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
+                    musicInfo.m_songId = value["SongId"].toString();
+                    musicInfo.m_albumId = value["AlbumId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;

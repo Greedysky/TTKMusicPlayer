@@ -462,6 +462,11 @@ void MusicSongsListWidget::musicSongMovieFound()
     MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
 }
 
+void MusicSongsListWidget::musicAlbumFoundWidget()
+{
+    MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName() );
+}
+
 void MusicSongsListWidget::musicSimilarFoundWidget()
 {
     MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );

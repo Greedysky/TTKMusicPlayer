@@ -130,6 +130,10 @@ public Q_SLOTS:
     /*!
      * Music similar function that by string.
      */
+    void musicAlbumFound(const QString &text);
+    /*!
+     * Music album function that by string.
+     */
     void musicLoadSongIndexWidget();
     /*!
      * Music load song index widget.

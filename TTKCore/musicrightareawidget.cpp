@@ -7,6 +7,7 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
+#include "musicalbumfoundwidget.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicttkuiobject.h"
@@ -82,9 +83,6 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
-    ///////////////////////////////////////////////////////
-    connect(ui->musicMoreFunction, SIGNAL(musicSimilarFound(QString)), SLOT(musicSimilarFound(QString)));
-    connect(ui->musicMoreFunction, SIGNAL(musicSongMovieClicked(QString)), SLOT(musicVideoButtonSearched(QString)));
     ///////////////////////////////////////////////////////
     QTimer::singleShot(MT_MS, this, SLOT(musicLoadSongIndexWidget()));
 }
@@ -312,8 +310,16 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 MusicSimilarFoundWidget *similarFoundWidget = new MusicSimilarFoundWidget(this);
                 m_ui->surfaceStackedWidget->addWidget(similarFoundWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(similarFoundWidget);
-//                similarFoundWidget->setSongName(m_ui->showCurrentSong->text().trimmed());
                 m_stackedFuncWidget = similarFoundWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
+        case 8: //insert album found widget
+            {
+                MusicAlbumFoundWidget *albumFoundWidget = new MusicAlbumFoundWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(albumFoundWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(albumFoundWidget);
+                m_stackedFuncWidget = albumFoundWidget;
                 emit updateBackgroundTheme();
                 break;
             }
@@ -325,6 +331,12 @@ void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     musicFunctionClicked(7);
     MStatic_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+}
+
+void MusicRightAreaWidget::musicAlbumFound(const QString &text)
+{
+    musicFunctionClicked(8);
+    MStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()

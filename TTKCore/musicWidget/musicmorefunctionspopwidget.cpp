@@ -1,5 +1,6 @@
 #include "musicmorefunctionspopwidget.h"
 #include "musicsongsharingwidget.h"
+#include "musicrightareawidget.h"
 #include "musicuiobject.h"
 
 MusicMoreFunctionsPopWidget::MusicMoreFunctionsPopWidget(QWidget *parent)
@@ -28,11 +29,12 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 1:
             {
-                emit musicSimilarFound(m_currentSongName);
+                MusicRightAreaWidget::instance()->musicSimilarFound(m_currentSongName);
                 break;
             }
         case 2:
             {
+                MusicRightAreaWidget::instance()->musicAlbumFound(m_currentSongName);
                 break;
             }
         case 3:
@@ -44,7 +46,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 4:
             {
-                emit musicSongMovieClicked(m_currentSongName);
+                MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
                 break;
             }
         default: break;

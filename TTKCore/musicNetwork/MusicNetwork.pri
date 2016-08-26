@@ -34,6 +34,7 @@ HEADERS  += \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadquerythreadabstract.h \
     $$PWD/musicdownloadquerymultiplethread.h \
+    $$PWD/musicdownloadqueryalbumthread.h \
     $$PWD/musicradiochannelthread.h \
     $$PWD/musicradioplaylistthread.h \
     $$PWD/musicradiosongsthread.h \
@@ -63,6 +64,7 @@ SOURCES += \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadquerythreadabstract.cpp \
     $$PWD/musicdownloadquerymultiplethread.cpp \
+    $$PWD/musicdownloadqueryalbumthread.cpp \
     $$PWD/musicradiochannelthread.cpp \
     $$PWD/musicradioplaylistthread.cpp \
     $$PWD/musicradiosongsthread.cpp \

@@ -193,6 +193,10 @@ public Q_SLOTS:
     /*!
      * To search song mv by song name.
      */
+    void musicAlbumFoundWidget();
+    /*!
+     * Open music album found widget.
+     */
     void musicSimilarFoundWidget();
     /*!
      * Open music similar found widget.
