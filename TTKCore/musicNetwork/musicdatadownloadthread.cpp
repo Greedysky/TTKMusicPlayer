@@ -74,7 +74,7 @@ void MusicDataDownloadThread::downLoadFinished()
     m_file->flush();
     m_file->close();
     QVariant redirectionTarget = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if(m_reply->error())
+    if(m_reply->error() != QNetworkReply::NoError)
     {
         m_file->remove();
     }

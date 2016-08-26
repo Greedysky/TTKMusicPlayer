@@ -66,61 +66,63 @@ void MusicTTTextDownLoadThread::downLoadFinished()
     }
     m_timer.stop();
 
-    ///Get all the data obtained by request
-    QByteArray bytes = m_reply->readAll();
-    if(!bytes.contains("\"code\":2"))
+    if(m_reply->error() == QNetworkReply::NoError)
     {
+        QByteArray bytes = m_reply->readAll();
+        if(!bytes.contains("\"code\":2"))
+        {
 #ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if(jsonError.error != QJsonParseError::NoError ||
-           !parseDoucment.isObject())
-        {
-            deleteAll();
-            return ;
-        }
-
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.contains("data"))
-        {
-            jsonObject = jsonObject.take("data").toObject();
-            if(jsonObject.contains("lrc"))
+            QJsonParseError jsonError;
+            QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
+            ///Put the data into Json
+            if(jsonError.error != QJsonParseError::NoError ||
+               !parseDoucment.isObject())
             {
-                QTextStream outstream(m_file);
-                outstream.setCodec("utf-8");
-                outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
-                m_file->close();
-                M_LOGGER_INFO("ttop text download  has finished!");
+                deleteAll();
+                return ;
             }
-        }
-#else
-        QJson::Parser parser;
-        bool ok;
-        QVariant data = parser.parse(bytes, &ok);
-        if(ok)
-        {
-            QVariantMap value = data.toMap();
-            value = value["data"].toMap();
-            if(!value.isEmpty())
+
+            QJsonObject jsonObject = parseDoucment.object();
+            if(jsonObject.contains("data"))
             {
-                if(!value["lrc"].toString().isEmpty())
+                jsonObject = jsonObject.take("data").toObject();
+                if(jsonObject.contains("lrc"))
                 {
                     QTextStream outstream(m_file);
                     outstream.setCodec("utf-8");
-                    outstream << value["lrc"].toString().remove("\r").toUtf8() << endl;
+                    outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
                     m_file->close();
                     M_LOGGER_INFO("ttop text download  has finished!");
                 }
             }
-        }
+#else
+            QJson::Parser parser;
+            bool ok;
+            QVariant data = parser.parse(bytes, &ok);
+            if(ok)
+            {
+                QVariantMap value = data.toMap();
+                value = value["data"].toMap();
+                if(!value.isEmpty())
+                {
+                    if(!value["lrc"].toString().isEmpty())
+                    {
+                        QTextStream outstream(m_file);
+                        outstream.setCodec("utf-8");
+                        outstream << value["lrc"].toString().remove("\r").toUtf8() << endl;
+                        m_file->close();
+                        M_LOGGER_INFO("ttop text download  has finished!");
+                    }
+                }
+            }
 #endif
-    }
-    else
-    {
-        M_LOGGER_ERROR("ttop text download file error!");
-        m_file->remove();
-        m_file->close();
+        }
+        else
+        {
+            M_LOGGER_ERROR("ttop text download file error!");
+            m_file->remove();
+            m_file->close();
+        }
     }
 
     emit downLoadDataChanged("Lrc");

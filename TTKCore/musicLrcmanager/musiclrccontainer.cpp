@@ -94,10 +94,8 @@ void MusicLrcContainer::changeCurrentLrcColor(int index)
 
 void MusicLrcContainer::searchMusicLrcs()
 {
-    if(m_musicLrcSearchWidget == nullptr)
-    {
-        m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
-    }
+    delete m_musicLrcSearchWidget;
+    m_musicLrcSearchWidget = new MusicLrcSearchWidget(this);
     m_musicLrcSearchWidget->setCurrentSongName(m_currentSongName);
     m_musicLrcSearchWidget->exec();
 }

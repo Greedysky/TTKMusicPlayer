@@ -66,21 +66,24 @@ void MusicTextDownLoadThread::downLoadFinished()
     }
     m_timer.stop();
 
-    ///Get all the data obtained by request
-    QByteArray bytes = m_reply->readAll();
-    if(!bytes.isEmpty())
+    if(m_reply->error() == QNetworkReply::NoError)
     {
-        QTextStream outstream(m_file);
-        outstream.setCodec("utf-8");
-        outstream << QString(bytes).remove("\r").toUtf8() << endl;
-        m_file->close();
-        M_LOGGER_INFO("text download has finished!");
-    }
-    else
-    {
-        M_LOGGER_ERROR("text download file error!");
-        m_file->remove();
-        m_file->close();
+        ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
+        if(!bytes.isEmpty())
+        {
+            QTextStream outstream(m_file);
+            outstream.setCodec("utf-8");
+            outstream << QString(bytes).remove("\r").toUtf8() << endl;
+            m_file->close();
+            M_LOGGER_INFO("text download has finished!");
+        }
+        else
+        {
+            M_LOGGER_ERROR("text download file error!");
+            m_file->remove();
+            m_file->close();
+        }
     }
 
     emit downLoadDataChanged("Lrc");

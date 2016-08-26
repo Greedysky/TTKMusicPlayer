@@ -38,16 +38,16 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MY_SEARCH_URL));
+    request.setUrl(QUrl(WY_SEARCH_URL));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MY_BASE_URL);
-    request.setRawHeader("Referer", MY_BASE_URL);
+    request.setRawHeader("Origin", WY_BASE_URL);
+    request.setRawHeader("Referer", WY_BASE_URL);
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    QNetworkReply *reply = m_manager->post(request, MY_SEARCH_QUERY_URL.arg(text).arg(0).toUtf8());
+    QNetworkReply *reply = m_manager->post(request, WY_SEARCH_QUERY_URL.arg(text).arg(0).toUtf8());
     connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -55,7 +55,7 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
 void MusicDownLoadQueryWYThread::downLoadFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
-    if(reply)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
 
@@ -133,12 +133,17 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 #endif
         (m_currentType != MovieQuery) ? startSongListQuery() : startMVListQuery();
     }
+    else
+    {
+        emit downLoadDataChanged(QString());
+        deleteAll();
+    }
 }
 
 void MusicDownLoadQueryWYThread::songListFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
-    if(reply)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
 #ifdef MUSIC_GREATER_NEW
@@ -168,7 +173,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                 MusicObject::MusicSongInfomation info;
                 info.m_songName = object.value("name").toString();
                 info.m_timeLength = MusicTime::msecTime2LabelJustified(object.value("duration").toInt());
-                info.m_lrcUrl = MY_SONG_LRC_URL.arg(object.value("id").toInt());
+                info.m_lrcUrl = WY_SONG_LRC_URL.arg(object.value("id").toInt());
 
                 QJsonObject albumObject = object.value("album").toObject();
                 info.m_smallPicUrl = albumObject.value("picUrl").toString();
@@ -214,11 +219,13 @@ void MusicDownLoadQueryWYThread::songListFinished()
                 if( ++m_index >= m_songIds.count())
                 {
                     emit downLoadDataChanged(QString());
+                    deleteAll();
                 }
             }
             if(m_musicSongInfos.count() == 0)
             {
                 emit downLoadDataChanged(QString());
+                deleteAll();
             }
         }
 #else
@@ -288,22 +295,29 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     if( ++m_index >= m_songIds.count())
                     {
                         emit downLoadDataChanged(QString());
+                        deleteAll();
                     }
                 }
                 if(m_musicSongInfos.count() == 0)
                 {
                     emit downLoadDataChanged(QString());
+                    deleteAll();
                 }
             }
         }
 #endif
+    }
+    else
+    {
+        emit downLoadDataChanged(QString());
+        deleteAll();
     }
 }
 
 void MusicDownLoadQueryWYThread::mvListFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
-    if(reply)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
 #ifdef MUSIC_GREATER_NEW
@@ -354,6 +368,7 @@ void MusicDownLoadQueryWYThread::mvListFinished()
             if( ++m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
             {
                 emit downLoadDataChanged(QString());
+                deleteAll();
             }
         }
 #else
@@ -400,10 +415,16 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                 if( ++m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
                 {
                     emit downLoadDataChanged(QString());
+                    deleteAll();
                 }
             }
         }
 #endif
+    }
+    else
+    {
+        emit downLoadDataChanged(QString());
+        deleteAll();
     }
 }
 
@@ -412,10 +433,10 @@ void MusicDownLoadQueryWYThread::startSongListQuery()
     foreach(const QString &id, m_songIds)
     {
         QNetworkRequest request;
-        request.setUrl(QUrl(MY_SONG_URL.arg(id)));
+        request.setUrl(QUrl(WY_SONG_URL.arg(id)));
         request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.setRawHeader("Origin", MY_BASE_URL);
-        request.setRawHeader("Referer", MY_BASE_URL);
+        request.setRawHeader("Origin", WY_BASE_URL);
+        request.setRawHeader("Referer", WY_BASE_URL);
     #ifndef QT_NO_SSL
         QSslConfiguration sslConfig = request.sslConfiguration();
         sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -432,10 +453,10 @@ void MusicDownLoadQueryWYThread::startMVListQuery()
     foreach(const QString &id, m_songIds)
     {
         QNetworkRequest request;
-        request.setUrl(QUrl(MY_SONG_MV_URL.arg(id)));
+        request.setUrl(QUrl(WY_SONG_MV_URL.arg(id)));
         request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.setRawHeader("Origin", MY_BASE_URL);
-        request.setRawHeader("Referer", MY_BASE_URL);
+        request.setRawHeader("Origin", WY_BASE_URL);
+        request.setRawHeader("Referer", WY_BASE_URL);
     #ifndef QT_NO_SSL
         QSslConfiguration sslConfig = request.sslConfiguration();
         sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -455,7 +476,7 @@ void MusicDownLoadQueryWYThread::readFromMusicSongAttribute(MusicObject::MusicSo
     attr.m_bitrate = bitrate;
     attr.m_format = key.value("extension").toString();
     attr.m_size = MusicUtils::UNumber::size2Label(key.value("size").toInt());
-    attr.m_url = MY_SONG_PATH_URL.arg(encryptedId(dfsId)).arg(dfsId);
+    attr.m_url = WY_SONG_PATH_URL.arg(encryptedId(dfsId)).arg(dfsId);
     info->m_songAttrs.append(attr);
 }
 
@@ -466,7 +487,7 @@ QString MusicDownLoadQueryWYThread::encryptedId(qlonglong id)
 
 QString MusicDownLoadQueryWYThread::encryptedId(const QString &string)
 {
-    QByteArray array1(MY_ENCRYPT_STRING);
+    QByteArray array1(WY_ENCRYPT_STRING);
     QByteArray array2 = string.toUtf8();
     int length = array1.length();
     for(int i=0; i<array2.length(); ++i)
