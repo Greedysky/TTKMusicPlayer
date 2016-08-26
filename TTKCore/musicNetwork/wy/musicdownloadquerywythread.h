@@ -11,16 +11,16 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-#define MY_SEARCH_URL         QString("http://music.163.com/api/search/get")
-#define MY_SEARCH_QUERY_URL   QString("s=%1&type=1&limit=40&offset=%2")
-#define MY_SONG_URL           QString("http://music.163.com/api/song/detail?ids=[%1]")
-#define MY_SONG_MV_URL        QString("http://music.163.com/api/mv/detail?id=%1&type=mp4")
-#define MY_SONG_PATH_URL      QString("http://m1.music.126.net/%1/%2.mp3")
-#define MY_SONG_PIC_URL       QString("http://p4.music.126.net/%1/%2.jpg")
-#define MY_SONG_LRC_URL       QString("http://music.163.com/api/song/lyric?lv=-1&id=%1")
+const QString MY_SEARCH_URL        = "http://music.163.com/api/search/get";
+const QString MY_SEARCH_QUERY_URL  = "s=%1&type=1&limit=40&offset=%2";
+const QString MY_SONG_URL          = "http://music.163.com/api/song/detail?ids=[%1]";
+const QString MY_SONG_MV_URL       = "http://music.163.com/api/mv/detail?id=%1&type=mp4";
+const QString MY_SONG_PATH_URL     = "http://m1.music.126.net/%1/%2.mp3";
+const QString MY_SONG_PIC_URL      = "http://p4.music.126.net/%1/%2.jpg";
+const QString MY_SONG_LRC_URL      = "http://music.163.com/api/song/lyric?lv=-1&id=%1";
 
-#define MY_BASE_URL           "http://music.163.com"
-#define MY_ENCRYPT_STRING     "3go8&$8*3*3h0k(2)2"
+const QByteArray MY_BASE_URL       = "http://music.163.com";
+const QByteArray MY_ENCRYPT_STRING = "3go8&$8*3*3h0k(2)2";
 
 /*! @brief The class to wangyi query download data from net.
  * @author Greedysky <greedysky@163.com>
