@@ -349,7 +349,7 @@ void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
 void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicLrcContainer::contextMenuEvent(event);
-    QMenu menu(this);
+    QMenu menu;
     QMenu changColorMenu(tr("changColorMenu"), this);
     changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);

@@ -55,7 +55,7 @@ void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrc
     }
 
     M_SETTING_PTR->setValue( (m_containerType == "DESKTOP") ? MusicSettingManager::DLrcColorChoiced :
-                                                          MusicSettingManager::LrcColorChoiced, lrcColorType);
+                                                              MusicSettingManager::LrcColorChoiced, lrcColorType);
 }
 
 void MusicLrcContainer::setSettingParameter()
