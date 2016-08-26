@@ -29,6 +29,10 @@ public:
     /*!
      * Object contsructor.
      */
+    MusicTime(const MusicTime &other);
+    /*!
+     * Object contsructor.
+     */
     MusicTime(qint64 value, Type type);
     /*!
      * Object contsructor by value and type.
@@ -205,6 +209,10 @@ protected:
     void init();
     /*!
      * Init parameters;
+     */
+    void copyToThis(const MusicTime &other);
+    /*!
+     * Copy other time data to this obejct;
      */
     void fromTimeStamp(qint64 value, int delta);
     /*!

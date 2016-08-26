@@ -9,6 +9,11 @@ MusicTime::MusicTime()
     init();
 }
 
+MusicTime::MusicTime(const MusicTime &other)
+{
+    copyToThis(other);
+}
+
 MusicTime::MusicTime(qint64 value, Type type)
     : MusicTime()
 {
@@ -33,15 +38,6 @@ QString MusicTime::getClassName()
     return "MusicTime";
 }
 
-void MusicTime::init()
-{
-    m_day = 0;
-    m_hour = 0;
-    m_min = 0;
-    m_sec = 0;
-    m_msec = 0;
-}
-
 void MusicTime::setHMSM(int day, int hour, int min, int sec, int msec)
 {
     init();
@@ -63,31 +59,6 @@ void MusicTime::setHMSM(int day, int hour, int min, int sec, int msec)
     m_hour = hour % MT_D2H;
 
     m_day += day;
-}
-
-void MusicTime::fromTimeStamp(qint64 value, int delta)
-{
-    if(value < 0)
-    {
-        init();
-        return;
-    }
-
-    m_day = value/MT_D2S/delta;
-    value -= m_day*MT_D2S*delta;
-
-    m_hour = value/MT_H2S/delta;
-    value -= m_hour*MT_H2S*delta;
-
-    m_min = value/MT_M2S/delta;
-    value -= m_min*MT_M2S*delta;
-
-    m_sec = value/delta;
-    if(delta == MT_S2MS)
-    {
-        value -= (m_sec*delta);
-        m_msec = value;
-    }
 }
 
 bool MusicTime::isNull() const
@@ -200,12 +171,7 @@ QString MusicTime::normalTime2Label(qint64 time)
 
 MusicTime& MusicTime::operator= (const MusicTime &other)
 {
-    m_defaultType = other.getType();
-    m_day = other.getDay();
-    m_hour = other.getHour();
-    m_min = other.getMinute();
-    m_sec = other.getSecond();
-    m_msec = other.getMillionSecond();
+    copyToThis(other);
     return *this;
 }
 
@@ -295,4 +261,48 @@ bool MusicTime::operator== (const MusicTime &other) const
 bool MusicTime::operator!= (const MusicTime &other) const
 {
     return getTimeStamp(All_Msec) != other.getTimeStamp(All_Msec);
+}
+
+void MusicTime::init()
+{
+    m_day = 0;
+    m_hour = 0;
+    m_min = 0;
+    m_sec = 0;
+    m_msec = 0;
+}
+
+void MusicTime::copyToThis(const MusicTime &other)
+{
+    m_defaultType = other.getType();
+    m_day = other.getDay();
+    m_hour = other.getHour();
+    m_min = other.getMinute();
+    m_sec = other.getSecond();
+    m_msec = other.getMillionSecond();
+}
+
+void MusicTime::fromTimeStamp(qint64 value, int delta)
+{
+    if(value < 0)
+    {
+        init();
+        return;
+    }
+
+    m_day = value/MT_D2S/delta;
+    value -= m_day*MT_D2S*delta;
+
+    m_hour = value/MT_H2S/delta;
+    value -= m_hour*MT_H2S*delta;
+
+    m_min = value/MT_M2S/delta;
+    value -= m_min*MT_M2S*delta;
+
+    m_sec = value/delta;
+    if(delta == MT_S2MS)
+    {
+        value -= (m_sec*delta);
+        m_msec = value;
+    }
 }
