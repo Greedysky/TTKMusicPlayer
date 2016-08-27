@@ -118,22 +118,22 @@ void MusicSimilarFoundWidget::createLabels()
     QGridLayout *grid = new QGridLayout(function);
     grid->setSpacing(15);
 
-    QLabel *firstLabel = new QLabel(m_mainWindow);
+    QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("Like \"<font color=#169AF3> %1 </font>\" also like this").arg(m_songNameFull));
     grid->addWidget(firstLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
-    QCheckBox *allCheckBox = new QCheckBox(tr("all"), m_mainWindow);
-    QPushButton *playButton = new QPushButton(tr("play"), m_mainWindow);
+    QCheckBox *allCheckBox = new QCheckBox("  " + tr("all"), function);
+    QPushButton *playButton = new QPushButton(tr("play"), function);
     playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playButton->setIconSize(QSize(14, 14));
     playButton->setFixedSize(55, 25);
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    QPushButton *addButton = new QPushButton(tr("add"), m_mainWindow);
+    QPushButton *addButton = new QPushButton(tr("add"), function);
     addButton->setFixedSize(55, 25);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    QPushButton *downloadButton = new QPushButton(tr("download"), m_mainWindow);
+    QPushButton *downloadButton = new QPushButton(tr("download"), function);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     grid->addWidget(allCheckBox, index, 0);
@@ -154,30 +154,28 @@ void MusicSimilarFoundWidget::createLabels()
             {
                 break;
             }
-            QCheckBox *box = new QCheckBox(m_mainWindow);
+            QCheckBox *box = new QCheckBox(function);
             m_checkBoxs << box;
             grid->addWidget(box, index, j*4);
-            QLabel *songLabel = new QLabel(m_mainWindow);
-            songLabel->setText(MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 130));
-            songLabel->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
-            grid->addWidget(songLabel, index, j*4 + 1, 1, 2, Qt::AlignLeft);
-            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, m_mainWindow), index, j*4 + 3);
+            box->setText("  " + MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 200));
+            box->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
+            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, function), index, j*4 + 3);
         }
         index++;
     }
     ////////////////////////////////////////////////////////////////////////////
     QString artName = m_downloadThread->getSearchedText();
-    QLabel *secondLabel = new QLabel(m_mainWindow);
+    QLabel *secondLabel = new QLabel(function);
     secondLabel->setText(tr("Other \"<font color=#169AF3> %1 </font>\" things").arg(artName));
     grid->addWidget(secondLabel, index++, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
-    QLabel *picLabel1 = new QLabel(m_mainWindow);
+    QLabel *picLabel1 = new QLabel(function);
     picLabel1->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel1->setFixedSize(100, 100);
-    QLabel *picLabel2 = new QLabel(m_mainWindow);
+    QLabel *picLabel2 = new QLabel(function);
     picLabel2->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel2->setFixedSize(100, 100);
-    QLabel *picLabel3 = new QLabel(m_mainWindow);
+    QLabel *picLabel3 = new QLabel(function);
     picLabel3->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel3->setFixedSize(100, 100);
     m_iconLabels << picLabel1 << picLabel2 << picLabel3;
@@ -186,9 +184,9 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel2, index, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel3, index++, 6, 1, 2, Qt::AlignCenter);
     QString artLimitString = MusicUtils::UWidget::elidedText(font(), artName, Qt::ElideRight, 90);
-    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 0, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index, 3, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artLimitString, m_mainWindow), index++, 6, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), index, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), index, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), index++, 6, 1, 2, Qt::AlignCenter);
 
     int downloadCounter = 0;
     foreach(DownloadData *data, m_likeDownloadDatas)

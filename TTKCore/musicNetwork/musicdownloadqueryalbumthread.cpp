@@ -1,5 +1,16 @@
 #include "musicdownloadqueryalbumthread.h"
 #include "musicsettingmanager.h"
+#include "musicnumberdefine.h"
+
+#ifdef MUSIC_GREATER_NEW
+#   include <QJsonArray>
+#   include <QJsonObject>
+#   include <QJsonValue>
+#   include <QJsonParseError>
+#else
+#   ///QJson import
+#   include "qjson/parser.h"
+#endif
 
 MusicDownLoadQueryAlbumThread::MusicDownLoadQueryAlbumThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
@@ -15,7 +26,7 @@ QString MusicDownLoadQueryAlbumThread::getClassName()
 void MusicDownLoadQueryAlbumThread::startSearchSong(QueryType type, const QString &text)
 {
     Q_UNUSED(type);
-    Q_UNUSED(text);
+    startSearchSong(text);
 }
 
 void MusicDownLoadQueryAlbumThread::startSearchSong(const QString &album)
@@ -55,12 +66,51 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-#ifdef MUSIC_GREATER_NEW
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-        qDebug() << bytes;
+#ifdef MUSIC_GREATER_NEW
         emit downLoadDataChanged(QString());
 #else
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantList datas = data.toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
 
+                QVariantMap value = var.toMap();
+                MusicObject::MusicSongInfomation musicInfo;
+                QString songName = value["SongName"].toString();
+                QString singerName = value["Artist"].toString();
+                QString duration = value["Length"].toString();
+                QString size = value["Size"].toString();
+
+                readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
+
+                if(musicInfo.m_songAttrs.isEmpty())
+                {
+                    continue;
+                }
+                emit createSearchedItems(songName, singerName, duration);
+
+                musicInfo.m_albumId = value["Album"].toString();
+                musicInfo.m_songName = songName;
+                musicInfo.m_singerName = singerName;
+                musicInfo.m_timeLength = duration;
+                musicInfo.m_lrcUrl = value["LrcUrl"].toString();
+                musicInfo.m_smallPicUrl = value["PicUrl"].toString();
+                m_musicSongInfos << musicInfo;
+            }
+        }
 #endif
     }
 }
@@ -85,4 +135,37 @@ QString MusicDownLoadQueryAlbumThread::getCurrentURL() const
         case 12: return MUSIC_ALBUM_YY;
     }
     return QString();
+}
+
+void MusicDownLoadQueryAlbumThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info,
+                                          const QString &size, int bit, const QString &url)
+{
+    if(!url.isEmpty())
+    {
+        QStringList list = url.split("/");
+        if(list.isEmpty())
+        {
+            return;
+        }
+
+        QString lastString = list.last();
+        MusicObject::MusicSongAttribute songAttr;
+        songAttr.m_url = url;
+        songAttr.m_size = size.isEmpty() ? "- " : size;
+
+        list = lastString.split(".");
+        if(list.isEmpty())
+        {
+            return;
+        }
+
+        lastString = list.last();
+        if(lastString.contains("?"))
+        {
+            lastString = lastString.split("?").front();
+        }
+        songAttr.m_format = lastString;
+        songAttr.m_bitrate = bit;
+        info.m_songAttrs << songAttr;
+    }
 }

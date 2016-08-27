@@ -10,9 +10,54 @@
    =================================================*/
 
 #include <QLabel>
+#include "musicabstracttablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
-class QCheckBox;
+class MusicQueryTableDelegate;
+
+/*! @brief The class of the album music found table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicAlbumFoundTableWidget();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+public Q_SLOTS:
+    void listCellClicked(int row, int column);
+    /*!
+     * Subclass should implement this function.
+     */
+    void clearAllItems();
+    /*!
+     * Clear All Items.
+     */
+    void createSearchedItems(const QString &songname, const QString &artistname,
+                             const QString &time);
+    /*!
+     * Create searched items.
+     */
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    MusicQueryTableDelegate *m_checkBoxDelegate;
+
+};
+
 
 /*! @brief The class of album music found widget.
  * @author Greedysky <greedysky@163.com>
@@ -43,10 +88,18 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QString m_songNameFull;
     QWidget *m_mainWindow;
     QLabel *m_statusLabel;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
+    QList<QWidget*> m_resizeWidget;
+    MusicAlbumFoundTableWidget *m_albumTableWidget;
+    MusicDownLoadQueryThreadAbstract *m_downloadThread, *m_albumThread;
 
 };
 

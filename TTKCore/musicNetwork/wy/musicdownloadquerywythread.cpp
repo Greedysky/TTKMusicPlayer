@@ -249,7 +249,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     MusicObject::MusicSongInfomation info;
                     info.m_songName = value["name"].toString();
                     info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    info.m_lrcUrl = MY_SONG_LRC_URL.arg(value["id"].toInt());
+                    info.m_lrcUrl = WY_SONG_LRC_URL.arg(value["id"].toInt());
 
                     QVariantMap albumObject = value["album"].toMap();
                     info.m_smallPicUrl = albumObject["picUrl"].toString();

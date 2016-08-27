@@ -25,7 +25,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 315);
-    headerview->resizeSection(2, 198);
+    headerview->resizeSection(2, 195);
     headerview->resizeSection(3, 60);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
@@ -152,7 +152,7 @@ void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 315);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 198);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 195);
     headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 60);
 
     for(int i=0; i<rowCount(); ++i)

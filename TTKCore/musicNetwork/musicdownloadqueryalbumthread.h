@@ -64,6 +64,11 @@ protected:
     /*!
      * Get current url the user selected from mutiple queue containers.
      */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info, const QString &size,
+                                    int bit, const QString &url);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
 
 };
 
