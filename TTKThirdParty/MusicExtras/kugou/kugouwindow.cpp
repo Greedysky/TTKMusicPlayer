@@ -86,7 +86,7 @@ void KugouWindow::kugouSongIndexChanged(int index)
         case 5: url = KugouUrl::getSongHeroesUrl(); break;
     }
 #ifdef MUSIC_WEBKIT
-    static_cast<QWebView*>(d->m_webView)->setUrl(QUrl( url ));
+    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
 #endif
 }
 
@@ -103,7 +103,7 @@ void KugouWindow::kugouRadioIndexChanged(int index)
         case 3: url = KugouUrl::getRadioHomeUrl(); break;
     }
 #ifdef MUSIC_WEBKIT
-    static_cast<QWebView*>(d->m_webView)->setUrl(QUrl( url ));
+    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
 #endif
 }
 
@@ -120,7 +120,7 @@ void KugouWindow::kugouMVIndexChanged(int index)
         case 3: url = KugouUrl::getMVStarMusicUrl(); break;
     }
 #ifdef MUSIC_WEBKIT
-    static_cast<QWebView*>(d->m_webView)->setUrl(QUrl( url ));
+    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
 #endif
 }
 

@@ -24,7 +24,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     QWidget *searchPair = new QWidget(this);
     searchPair->setStyleSheet(MusicUIObject::MCustomStyle06);
     QHBoxLayout *searchPairLayout = new QHBoxLayout(searchPair);
-    searchPairLayout->setContentsMargins(5, 0, 5, 0);
+    searchPairLayout->setContentsMargins(5, 2, 5, 0);
     QLabel *showIcon = new QLabel(searchPair);
     showIcon->setFixedSize(16, 16);
     showIcon->setStyleSheet(MusicUIObject::MBackgroundStyle01 +

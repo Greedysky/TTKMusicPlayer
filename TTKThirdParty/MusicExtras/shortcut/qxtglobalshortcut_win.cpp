@@ -29,7 +29,7 @@
 #if(QT_VERSION<0x050000)
 bool QxtGlobalShortcutPrivate::eventFilter(void* message)
 {
-    MSG* msg = static_cast<MSG*>(message);
+    MSG* msg = MStatic_cast(MSG*, message);
     if (msg->message == WM_HOTKEY)
     {
         const quint32 keycode = HIWORD(msg->lParam);
@@ -41,7 +41,7 @@ bool QxtGlobalShortcutPrivate::eventFilter(void* message)
 #else
 bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
 {
-    MSG* msg = static_cast<MSG*>(message);
+    MSG* msg = MStatic_cast(MSG*, message);
     if (msg->message == WM_HOTKEY)
     {
         const quint32 keycode = HIWORD(msg->lParam);

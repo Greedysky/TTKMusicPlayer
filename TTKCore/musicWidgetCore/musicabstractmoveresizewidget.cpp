@@ -32,7 +32,7 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
     QWidget::eventFilter(object, event);
     if(QEvent::MouseMove == event->type())
     {
-        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        QMouseEvent *mouseEvent = MStatic_cast(QMouseEvent*, event);
         QApplication::sendEvent(this, mouseEvent);
     }
     return false;
