@@ -9,11 +9,32 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadquerythreadabstract.h"
 #include "musicquerytablewidget.h"
+#include "musicdownloadquerythreadabstract.h"
 
 #define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
 #define AUDITION_STOP MStatic_cast(int, Qt::transparent)
+
+typedef struct MUSIC_NETWORK_EXPORT DownloadData
+{
+    QString m_songName;
+    QString m_time;
+    QString m_format;
+
+    void clear()
+    {
+        m_songName.clear();
+        m_time.clear();
+        m_format.clear();
+    }
+
+    bool isValid() const
+    {
+        return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
+    }
+
+}DownloadData;
+TTK_DECLARE_LISTS(DownloadData)
 
 class MusicCoreMPlayer;
 

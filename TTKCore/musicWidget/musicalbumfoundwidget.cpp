@@ -1,8 +1,13 @@
 #include "musicalbumfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicsourcedownloadthread.h"
+#include "musicdatadownloadthread.h"
+#include "musicsongsharingwidget.h"
+#include "musiccryptographichash.h"
+#include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
 #include "musicitemdelegate.h"
+#include "musicnetworkthread.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 
@@ -19,7 +24,7 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 451);
+    headerview->resizeSection(1, 449);
     headerview->resizeSection(2, 60);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -73,6 +78,18 @@ void MusicAlbumFoundTableWidget::listCellClicked(int row, int column)
         m_previousClickRow = row;
         item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
     }
+
+//    switch(column)
+//    {
+//        case 4:
+//            addSearchMusicToPlayList(row);
+//            break;
+//        case 5:
+//            musicDownloadLocal(row);
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 void MusicAlbumFoundTableWidget::clearAllItems()
@@ -129,7 +146,7 @@ void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
     MusicAbstractTableWidget::resizeEvent(event);
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 451);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 449);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
 
     for(int i=0; i<rowCount(); ++i)
@@ -231,6 +248,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
     }
     else
     {
+        m_albumDatas = musicSongInfos;
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
         QStringList lists = currentInfo.m_albumId.split("<>");
         if(lists.count() < 4)
@@ -428,6 +446,7 @@ void MusicAlbumFoundWidget::downLoadFinished(const QByteArray &data)
 void MusicAlbumFoundWidget::playAllButtonClicked()
 {
     m_albumTableWidget->setSelectedAllItems(true);
+    downloadDataFrom(true);
 }
 
 void MusicAlbumFoundWidget::shareButtonClicked()
@@ -437,17 +456,23 @@ void MusicAlbumFoundWidget::shareButtonClicked()
 
 void MusicAlbumFoundWidget::playButtonClicked()
 {
-
+    downloadDataFrom(true);
 }
 
 void MusicAlbumFoundWidget::downloadButtonClicked()
 {
-
+    foreach(int index, m_albumTableWidget->getSelectedItems())
+    {
+        MusicObject::MusicSongInfomation downloadInfo = m_albumDatas[ index ];
+        MusicDownloadWidget *download = new MusicDownloadWidget(this);
+        download->setSongName(downloadInfo, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        download->show();
+    }
 }
 
 void MusicAlbumFoundWidget::addButtonClicked()
 {
-
+    downloadDataFrom(false);
 }
 
 void MusicAlbumFoundWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -486,4 +511,35 @@ void MusicAlbumFoundWidget::createNoAlbumLabel()
     m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));
     MStatic_cast(QHBoxLayout*, m_mainWindow->layout())->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_albumTableWidget->hide();
+}
+
+void MusicAlbumFoundWidget::downloadDataFrom(bool play)
+{
+    MusicObject::MIntList list = m_albumTableWidget->getSelectedItems();
+    for(int i=0; i<list.count(); ++i)
+    {
+        if(!M_NETWORK_PTR->isOnline())
+        {
+            continue;
+        }
+
+        MusicObject::MusicSongInfomation downloadInfo = m_albumDatas[ list[i] ];
+        MusicObject::MusicSongAttributes attrs = downloadInfo.m_songAttrs;
+        MusicObject::MusicSongAttribute attr;
+        if(!attrs.isEmpty())
+        {
+            attr = attrs.first();
+        }
+        QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
+        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+
+        QEventLoop loop(this);
+        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
+                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        downSong->startToDownload();
+        loop.exec();
+
+        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play && (i == list.count() - 1));
+    }
 }

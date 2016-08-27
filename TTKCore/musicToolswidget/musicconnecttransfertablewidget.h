@@ -10,12 +10,12 @@
    =================================================*/
 
 #include "musicitemdelegate.h"
-#include "musicabstracttablewidget.h"
+#include "musicfillitemtablewidget.h"
 
 /*! @brief The class of the transfer file list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
 public:
@@ -23,29 +23,11 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicConnectTransferTableWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    void cancelAllSelectedItems();
-    /*!
-     * Cancel all selected items.
-     */
-    MusicObject::MIntList getSelectedItems() const;
-    /*!
-     * Get selected items.
-     */
-
-public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
-    /*!
-     * Table widget list cell click.
-     */
-
-protected:
-    MusicQueryTableDelegate *m_checkBoxDelegate;
 
 };
 

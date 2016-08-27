@@ -1,6 +1,6 @@
 #include "musicsimilarfoundwidget.h"
 #include "musicsourcedownloadthread.h"
-#include "musicdownloadmgmtwidget.h"
+#include "musicdownloadwidget.h"
 #include "musicdatadownloadthread.h"
 #include "musiccryptographichash.h"
 #include "musicsongssummarizied.h"
@@ -51,10 +51,6 @@ MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
     {
         delete m_iconLabels.takeLast();
     }
-    while(!m_likeDownloadDatas.isEmpty())
-    {
-        delete m_likeDownloadDatas.takeLast();
-    }
     delete m_downloadThread;
     delete m_statusLabel;
     delete m_mainWindow;
@@ -84,22 +80,7 @@ void MusicSimilarFoundWidget::queryAllFinished()
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
-        {
-            DownloadData *data = new DownloadData;
-            data->m_songName = info.m_songName;
-            data->m_songArtist = info.m_singerName;
-            data->m_time = info.m_timeLength;
-            data->m_picUrl = info.m_smallPicUrl;
-            if(!info.m_songAttrs.isEmpty())
-            {
-                MusicObject::MusicSongAttribute atrr = info.m_songAttrs.first();
-                data->m_songUrl = atrr.m_url;
-                data->m_format = atrr.m_format;
-            }
-            m_likeDownloadDatas << data;
-        }
-
+        m_likeDownloadDatas = musicSongInfos;
         createLabels();
     }
 }
@@ -157,9 +138,9 @@ void MusicSimilarFoundWidget::createLabels()
             QCheckBox *box = new QCheckBox(function);
             m_checkBoxs << box;
             grid->addWidget(box, index, j*4);
-            box->setText("  " + MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex]->m_songName, Qt::ElideRight, 200));
-            box->setToolTip(m_likeDownloadDatas[dIndex]->m_songName);
-            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex]->m_time, function), index, j*4 + 3);
+            box->setText("  " + MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex].m_songName, Qt::ElideRight, 200));
+            box->setToolTip(m_likeDownloadDatas[dIndex].m_songName);
+            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex].m_timeLength, function), index, j*4 + 3);
         }
         index++;
     }
@@ -189,14 +170,14 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(new QLabel(artLimitString, function), index++, 6, 1, 2, Qt::AlignCenter);
 
     int downloadCounter = 0;
-    foreach(DownloadData *data, m_likeDownloadDatas)
+    foreach(const MusicObject::MusicSongInfomation &data, m_likeDownloadDatas)
     {
-        if(data->m_songArtist.contains(artName) && downloadCounter < 3)
+        if(data.m_singerName.contains(artName) && downloadCounter < 3)
         {
             downloadCounter++;
             MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
             connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            download->startToDownload(data->m_picUrl);
+            download->startToDownload(data.m_smallPicUrl);
         }
     }
 
@@ -247,9 +228,10 @@ void MusicSimilarFoundWidget::downloadButtonClicked()
 {
     foreach(int index, foundCheckedItem())
     {
-        MusicDownloadMgmtWidget mgmt(this);
-        DownloadData *data = m_likeDownloadDatas[index];
-        mgmt.setSongName(data->m_songArtist + " - " + data->m_songName, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        MusicObject::MusicSongInfomation downloadInfo = m_likeDownloadDatas[ index ];
+        MusicDownloadWidget *download = new MusicDownloadWidget(this);
+        download->setSongName(downloadInfo, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        download->show();
     }
 }
 
@@ -267,17 +249,24 @@ void MusicSimilarFoundWidget::downloadDataFrom(bool play)
         {
             continue;
         }
-        DownloadData *data = m_likeDownloadDatas[ list[i] ];
-        QString musicEnSong = MusicCryptographicHash().encrypt(data->m_songArtist + " - " + data->m_songName, DOWNLOAD_KEY);
-        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(data->m_format);
+
+        MusicObject::MusicSongInfomation downloadInfo = m_likeDownloadDatas[ list[i] ];
+        MusicObject::MusicSongAttributes attrs = downloadInfo.m_songAttrs;
+        MusicObject::MusicSongAttribute attr;
+        if(!attrs.isEmpty())
+        {
+            attr = attrs.first();
+        }
+        QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
+        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
         QEventLoop loop(this);
-        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( data->m_songUrl, downloadName,
+        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
                                                                          MusicDownLoadThreadAbstract::Download_Music, this);
         connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         downSong->startToDownload();
         loop.exec();
 
-        emit muiscSongToPlayListChanged(musicEnSong, data->m_time, data->m_format, play && (i == list.count() - 1));
+        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play && (i == list.count() - 1));
     }
 }

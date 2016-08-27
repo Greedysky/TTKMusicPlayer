@@ -92,7 +92,7 @@ protected:
     QLabel *m_statusLabel;
     QList<QCheckBox*> m_checkBoxs;
     QList<QLabel*> m_iconLabels;
-    QList<DownloadData*> m_likeDownloadDatas;
+    MusicObject::MusicSongInfomations m_likeDownloadDatas;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };

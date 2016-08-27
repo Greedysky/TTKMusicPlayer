@@ -15,7 +15,6 @@ INCLUDEPATH += $$PWD
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicdownloadstatuslabel.h \
-    $$PWD/musicquerytablewidget.h \
     $$PWD/musicsettingwidget.h \
     $$PWD/musicbackgroundskindialog.h \
     $$PWD/musicsystemtraymenu.h \
@@ -49,7 +48,6 @@ HEADERS  += \
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicdownloadstatuslabel.cpp \
-    $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicsettingwidget.cpp \
     $$PWD/musicbackgroundskindialog.cpp \
     $$PWD/musicsystemtraymenu.cpp \

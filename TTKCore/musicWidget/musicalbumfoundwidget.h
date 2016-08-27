@@ -89,6 +89,13 @@ public:
      * Set current name to search founds.
      */
 
+Q_SIGNALS:
+    void muiscSongToPlayListChanged(const QString &name, const QString &time,
+                                    const QString &format, bool play);
+    /*!
+     * Add current network music to download to local.
+     */
+
 public Q_SLOTS:
     void queryAllFinished();
     /*!
@@ -133,6 +140,10 @@ protected:
     /*!
      * Create no album label widget.
      */
+    void downloadDataFrom(bool play);
+    /*!
+     * Download data from net and just play or not.
+     */
 
     QString m_songNameFull;
     QWidget *m_mainWindow;
@@ -140,6 +151,7 @@ protected:
     QList<QLabel*> m_resizeWidget;
     MusicAlbumFoundTableWidget *m_albumTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread, *m_albumThread;
+    MusicObject::MusicSongInfomations m_albumDatas;
 
 };
 

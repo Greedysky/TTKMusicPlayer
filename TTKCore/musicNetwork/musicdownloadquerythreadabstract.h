@@ -12,31 +12,6 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-typedef struct MUSIC_NETWORK_EXPORT DownloadData
-{
-    QString m_songName;
-    QString m_songArtist;
-    QString m_songUrl;
-    QString m_picUrl;
-    QString m_time;
-    QString m_format;
-
-    void clear()
-    {
-        m_songName.clear();
-        m_songArtist.clear();
-        m_songUrl.clear();
-        m_picUrl.clear();
-        m_time.clear();
-        m_format.clear();
-    }
-
-    bool isValid() const
-    {
-        return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
-    }
-
-}DownloadData;
 
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>

@@ -251,7 +251,7 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
     {
         ui->allSelectedcheckBox->click();
     }
-    ui->playListTableWidget->cancelAllSelectedItems();
+    ui->playListTableWidget->setSelectedAllItems(false);
 }
 
 void MusicConnectTransferWidget::startToTransferWIFIFiles()
@@ -285,7 +285,7 @@ void MusicConnectTransferWidget::startToTransferWIFIFiles()
     {
         ui->allSelectedcheckBox->click();
     }
-    ui->playListTableWidget->cancelAllSelectedItems();
+    ui->playListTableWidget->setSelectedAllItems(false);
 }
 
 void MusicConnectTransferWidget::reflashRemovableDir()

@@ -1,5 +1,5 @@
-#ifndef MUSICQUERYTABLEWIDGET_H
-#define MUSICQUERYTABLEWIDGET_H
+#ifndef MUSICQUERYITEMTABLEWIDGET_H
+#define MUSICQUERYITEMTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,31 +9,33 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstracttablewidget.h"
+#include <QMenu>
+#include <QActionGroup>
 #include "musicnetworkthread.h"
+#include "musicfillitemtablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
-#include <QMenu>
-
-class QActionGroup;
-class MusicQueryTableDelegate;
-
-/*! @brief The class of the query table widget.
+/*! @brief The class of the query item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicQueryItemTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicQueryTableWidget(QWidget *parent = 0);
+    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicQueryTableWidget();
+    virtual ~MusicQueryItemTableWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    /*!
+     * Set network query input.
      */
     virtual void startSearchQuery(const QString &text) = 0;
     /*!
@@ -44,10 +46,6 @@ public:
     /*!
      * Data download to local file.
      * Subclass should implement this function.
-     */
-    MusicObject::MIntList getSelectedItems() const;
-    /*!
-     * Get selected items.
      */
 
 Q_SIGNALS:
@@ -61,10 +59,6 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
-    /*!
-     * Table widget list cell click.
-     */
     virtual void clearAllItems() = 0;
     /*!
      * Clear All Items.
@@ -82,29 +76,50 @@ public Q_SLOTS:
      * Item has double clicked.
      * Subclass should implement this function.
      */
+
+protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    MusicDownLoadQueryThreadAbstract *m_downLoadManager;
+
+};
+
+
+
+class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicQueryItemTableWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicQueryTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicQueryTableWidget();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+public Q_SLOTS:
     virtual void actionGroupClick(QAction *action);
     /*!
      * Left context menu action group click by action.
      */
-    void setSelectedAllItems(bool all);
-    /*!
-     * Set select all items.
-     */
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *) override {}
-    /*!
-     * Override the widget event.
-     */
     void createContextMenu(QMenu &menu);
     /*!
      * Create context menu.
      */
 
     QActionGroup *m_actionGroup;
-    MusicDownLoadQueryThreadAbstract *m_downLoadManager;
-    MusicQueryTableDelegate *m_checkBoxDelegate;
 
 };
 
-#endif // MUSICQUERYTABLEWIDGET_H
+
+
+#endif // MUSICQUERYITEMTABLEWIDGET_H
