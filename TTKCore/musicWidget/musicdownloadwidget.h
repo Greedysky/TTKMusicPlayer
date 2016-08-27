@@ -120,6 +120,11 @@ public:
     /*!
      * Set current name to search and download musics.
      */
+    void setSongName(const MusicObject::MusicSongInfomation &info,
+                     MusicDownLoadQueryThreadAbstract::QueryType type);
+    /*!
+     * Set current name to search and download musics.
+     */
 
 Q_SIGNALS:
     void dataDownloadChanged();
@@ -175,7 +180,15 @@ protected:
     /*!
      * Query all quality that musics is finished.
      */
+    void queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs);
+    /*!
+     * Query all quality that musics is finished.
+     */
     void queryAllFinishedMovie();
+    /*!
+     * Query all quality that movies is finished.
+     */
+    void queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs);
     /*!
      * Query all quality that movies is finished.
      */
@@ -183,14 +196,24 @@ protected:
     /*!
      * Strat to download music.
      */
+    void startToDownloadMusic(const MusicObject::MusicSongInfomation &musicSongInfo);
+    /*!
+     * Strat to download music.
+     */
     void startToDownloadMovie();
+    /*!
+     * Strat to download movie.
+     */
+    void startToDownloadMovie(const MusicObject::MusicSongInfomation &musicSongInfo);
     /*!
      * Strat to download movie.
      */
 
     Ui::MusicDownloadWidget *ui;
+    bool m_querySingleInfo;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
+    MusicObject::MusicSongInfomation m_singleSongInfo;
 
 };
 

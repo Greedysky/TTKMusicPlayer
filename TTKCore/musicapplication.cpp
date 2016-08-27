@@ -146,7 +146,8 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     QString filename = getCurrentFileName();
-    QString path = QFile::exists(LRC_DIR_FULL + filename + LRC_FILE) ? (LRC_DIR_FULL + filename + LRC_FILE) : (LRC_DIR_FULL + filename + KRC_FILE);
+    QString prefix = MusicUtils::UCore::lrcPrefix();
+    QString path = QFile::exists(prefix + filename + LRC_FILE) ? (prefix + filename + LRC_FILE) : (prefix + filename + KRC_FILE);
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 }
 
@@ -733,7 +734,7 @@ void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool 
 void MusicApplication::musicCurrentLrcUpdated()
 {
     QString filename = getCurrentFileName();
-    QFile file(LRC_DIR_FULL + filename + LRC_FILE);
+    QFile file(MusicUtils::UCore::lrcPrefix() + filename + LRC_FILE);
     if(file.exists())
     {
         file.remove();

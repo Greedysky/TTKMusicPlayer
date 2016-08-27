@@ -22,6 +22,14 @@ namespace MusicUtils
 {
     namespace UCore
     {
+        MUSIC_CORE_EXPORT QString lrcPrefix();
+        /*!
+         * Get lrc dir prefix path.
+         */
+        MUSIC_CORE_EXPORT QString musicPrefix();
+        /*!
+         * Get music dir prefix path.
+         */
         MUSIC_CORE_EXPORT quint64 dirSize(const QString &dirName);
         /*!
          * Get given dir size.

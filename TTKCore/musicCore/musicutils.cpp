@@ -1,4 +1,5 @@
 #include "musicutils.h"
+#include "musicsettingmanager.h"
 
 #include <QComboBox>
 #include <QBitmap>
@@ -224,6 +225,40 @@ qreal MusicUtils::UNumber::sizeByte2MByte(qint64 size)
 qreal MusicUtils::UNumber::sizeByte2TByte(qint64 size)
 {
     return sizeByte2MByte(size) / MH_GB;
+}
+
+QString MusicUtils::UCore::lrcPrefix()
+{
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = LRC_DIR_FULL;
+    }
+    else
+    {
+        if(!QDir(path).exists())
+        {
+            QDir().mkpath(path);
+        }
+    }
+    return path;
+}
+
+QString MusicUtils::UCore::musicPrefix()
+{
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = MUSIC_DIR_FULL;
+    }
+    else
+    {
+        if(!QDir(path).exists())
+        {
+            QDir().mkpath(path);
+        }
+    }
+    return path;
 }
 
 quint64 MusicUtils::UCore::dirSize(const QString &dirName)

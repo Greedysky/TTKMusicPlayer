@@ -191,7 +191,7 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 {
     setRowCount( rowCount()  + 1);
     QString musicName = name;
-    musicName.remove(MUSIC_DIR_FULL).chop(4);
+    musicName.remove(MusicUtils::UCore::musicPrefix()).chop(4);
 
     MusicDownloadRecord record;
     record.m_name = musicName;

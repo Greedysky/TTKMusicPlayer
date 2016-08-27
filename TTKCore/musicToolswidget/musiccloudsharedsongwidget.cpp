@@ -212,7 +212,7 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
     }
 
     QString url = m_qnUploadData->getDownloadUrl(QN_PRFIX, it->toolTip());
-    (new MusicDataDownloadThread( url, MUSIC_DIR_FULL + it->toolTip(),
+    (new MusicDataDownloadThread( url, MusicUtils::UCore::musicPrefix() + it->toolTip(),
          MusicDownLoadThreadAbstract::Download_Music, this))->startToDownload();
 }
 

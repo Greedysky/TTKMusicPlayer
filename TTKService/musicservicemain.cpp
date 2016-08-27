@@ -1,6 +1,7 @@
 #include "musicapplication.h"
 #include "musicutils.h"
 #include "musicxmlconfigmanager.h"
+#include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 
 #include <QApplication>
@@ -43,12 +44,15 @@ int main(int argc, char *argv[])
     M_LOGGER_INFO("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
+    xml->readOtherLoadConfig();
+
     QTranslator translator;
     translator.load(MusicUtils::UCore::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
     MusicUtils::UCore::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
-                                      xml->readDownloadCacheLimit(), MUSIC_DIR_FULL);
+                                      xml->readDownloadCacheLimit(),
+    M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
     M_LOGGER_INFO("End load translation");

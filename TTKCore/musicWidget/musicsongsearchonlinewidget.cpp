@@ -3,7 +3,7 @@
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
-#include "musicdownloadmgmtwidget.h"
+#include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musiccryptographichash.h"
 #include "musicsettingmanager.h"
@@ -272,8 +272,15 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
-    MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
 }
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)

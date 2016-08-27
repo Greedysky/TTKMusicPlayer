@@ -6,6 +6,7 @@
 #include "musictime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
+#include "musicutils.h"
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -61,7 +62,7 @@ QString MusicLrcMakerWidget::getClassName()
 void MusicLrcMakerWidget::setCurrentSongName(const QString& name)
 {
     m_plainText.clear();
-    m_file.setFileName(QString("%1%2%3").arg(LRC_DIR_FULL).arg(name).arg(LRC_FILE));
+    m_file.setFileName(QString("%1%2%3").arg(MusicUtils::UCore::lrcPrefix()).arg(name).arg(LRC_FILE));
     QStringList ls = name.split('-');
     if(!ls.isEmpty())
     {
