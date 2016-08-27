@@ -274,19 +274,24 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         topLineLayout->setContentsMargins(10, 5, 5, 0);
         QLabel *albumLabel = new QLabel(topLineWidget);
         albumLabel->setStyleSheet(MusicUIObject::MCustomStyle01 + MusicUIObject::MCustomStyle04);
-        albumLabel->setText(lists[0]);
+        albumLabel->setText(MusicUtils::UWidget::elidedText(albumLabel->font(), lists[0], Qt::ElideRight, 220));
+        albumLabel->setToolTip(lists[0]);
         QLabel *singerLabel = new QLabel(topLineWidget);
         singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
-        singerLabel->setText(tr("Singer: %1").arg(currentInfo.m_singerName));
+        singerLabel->setToolTip(tr("Singer: %1").arg(currentInfo.m_singerName));
+        singerLabel->setText(MusicUtils::UWidget::elidedText(singerLabel->font(), singerLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *languageLabel = new QLabel(topLineWidget);
         languageLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
-        languageLabel->setText(tr("Language: %1").arg(lists[1]));
+        languageLabel->setToolTip(tr("Language: %1").arg(lists[1]));
+        languageLabel->setText(MusicUtils::UWidget::elidedText(languageLabel->font(), languageLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *companyLabel = new QLabel(topLineWidget);
         companyLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
-        companyLabel->setText(tr("Company: %1").arg(lists[2]));
+        companyLabel->setToolTip(tr("Company: %1").arg(lists[2]));
+        companyLabel->setText(MusicUtils::UWidget::elidedText(companyLabel->font(), companyLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *yearLabel = new QLabel(topLineWidget);
         yearLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
-        yearLabel->setText(tr("Year: %1").arg(lists[3]));
+        yearLabel->setToolTip(tr("Year: %1").arg(lists[3]));
+        yearLabel->setText(MusicUtils::UWidget::elidedText(yearLabel->font(), yearLabel->toolTip(), Qt::ElideRight, 220));
 
         topLineLayout->addWidget(albumLabel);
         topLineLayout->addWidget(singerLabel);
@@ -396,8 +401,9 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
 
         function->setLayout(grid);
         m_mainWindow->layout()->addWidget(function);
+
+        m_resizeWidget << albumLabel << singerLabel << languageLabel << companyLabel << yearLabel;
     }
-//        m_resizeWidget << allCheckBox;
 }
 
 void MusicAlbumFoundWidget::downLoadFinished(const QByteArray &data)
@@ -418,13 +424,24 @@ void MusicAlbumFoundWidget::contextMenuEvent(QContextMenuEvent *event)
 void MusicAlbumFoundWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
+    if(!m_resizeWidget.isEmpty())
+    {
+        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        width = width - WINDOW_WIDTH_MIN;
 
-//    if(!m_resizeWidget.isEmpty())
-//    {
-//        int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+        QLabel *label = m_resizeWidget[0];
+        label->setText(MusicUtils::UWidget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
 
-//        QWidget *w = m_resizeWidget.first();
-//        qDebug() << height - WINDOW_HEIGHT_MIN;
-//        w->move(w->x(), w->y() + height - WINDOW_HEIGHT_MIN);
-//    }
+        label = m_resizeWidget[1];
+        label->setText(MusicUtils::UWidget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[2];
+        label->setText(MusicUtils::UWidget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[3];
+        label->setText(MusicUtils::UWidget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[4];
+        label->setText(MusicUtils::UWidget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+    }
 }

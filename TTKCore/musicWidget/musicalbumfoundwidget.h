@@ -113,7 +113,7 @@ protected:
     QString m_songNameFull;
     QWidget *m_mainWindow;
     QLabel *m_statusLabel, *m_iconLabel;
-    QList<QWidget*> m_resizeWidget;
+    QList<QLabel*> m_resizeWidget;
     MusicAlbumFoundTableWidget *m_albumTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread, *m_albumThread;
 
