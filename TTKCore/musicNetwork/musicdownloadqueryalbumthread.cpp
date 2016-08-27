@@ -102,7 +102,10 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
                 }
                 emit createSearchedItems(songName, singerName, duration);
 
-                musicInfo.m_albumId = value["Album"].toString();
+                musicInfo.m_albumId = value["Album"].toString() + "<>" +
+                                      value["Language"].toString() + "<>" +
+                                      value["Company"].toString() + "<>" +
+                                      value["Year"].toString();
                 musicInfo.m_songName = songName;
                 musicInfo.m_singerName = singerName;
                 musicInfo.m_timeLength = duration;
@@ -113,6 +116,9 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
         }
 #endif
     }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
 }
 
 QString MusicDownLoadQueryAlbumThread::getCurrentURL() const

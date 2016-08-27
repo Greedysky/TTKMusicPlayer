@@ -1,8 +1,12 @@
 #include "musicalbumfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicsourcedownloadthread.h"
 #include "musicsettingmanager.h"
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
+#include "musictime.h"
+
+#include "qrcodewidget.h"
 
 #include <QCheckBox>
 #include <QBoxLayout>
@@ -15,7 +19,7 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 477);
+    headerview->resizeSection(1, 475);
     headerview->resizeSection(2, 60);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -38,9 +42,36 @@ QString MusicAlbumFoundTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
+MusicObject::MIntList MusicAlbumFoundTableWidget::getSelectedItems() const
+{
+    MusicObject::MIntList list;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)
+        {
+            list << i;
+        }
+    }
+    return list;
+}
+
 void MusicAlbumFoundTableWidget::listCellClicked(int row, int column)
 {
-
+    if(column == 0)
+    {
+        QTableWidgetItem *it = item(row, 0);
+        bool status = it->data(MUSIC_CHECK_ROLE).toBool();
+        it->setData(MUSIC_CHECK_ROLE, !status);
+    }
+    else
+    {
+        if(m_previousClickRow != -1)
+        {
+            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, false);
+        }
+        m_previousClickRow = row;
+        item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
+    }
 }
 
 void MusicAlbumFoundTableWidget::clearAllItems()
@@ -56,6 +87,7 @@ void MusicAlbumFoundTableWidget::createSearchedItems(const QString &songname, co
     setRowCount(count + 1);
 
     QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
@@ -77,6 +109,14 @@ void MusicAlbumFoundTableWidget::createSearchedItems(const QString &songname, co
     setItem(count, 4, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
+}
+
+void MusicAlbumFoundTableWidget::setSelectedAllItems(bool all)
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, all);
+    }
 }
 
 void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
@@ -109,6 +149,8 @@ MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
 
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(MusicUIObject::MCustomStyle04 + MusicUIObject::MCustomStyle01);
+    m_iconLabel = nullptr;
+
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
@@ -125,6 +167,7 @@ MusicAlbumFoundWidget::~MusicAlbumFoundWidget()
     delete m_downloadThread;
     delete m_albumThread;
     delete m_statusLabel;
+    delete m_iconLabel;
     delete m_mainWindow;
 }
 
@@ -152,17 +195,48 @@ void MusicAlbumFoundWidget::queryAllFinished()
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        MusicObject::MusicSongInfomation currentInfo;
         foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
         {
             if(m_songNameFull.contains(info.m_songName))
             {
-                currentInfo = info;
                 m_albumThread = M_DOWNLOAD_QUERY_PTR->getAlbumThread(this);
                 m_albumThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, info.m_albumId);
                 connect(m_albumThread, SIGNAL(createSearchedItems(QString,QString,QString)),
                         m_albumTableWidget, SLOT(createSearchedItems(QString,QString,QString)));
+                connect(m_albumThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
                 break;
+            }
+        }
+    }
+}
+
+void MusicAlbumFoundWidget::queryAlbumFinished()
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_albumThread->getMusicSongInfos());
+    if(musicSongInfos.isEmpty())
+    {
+        m_statusLabel = new QLabel(this);
+        m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));
+        layout()->addWidget(m_statusLabel);
+        m_albumTableWidget->hide();
+    }
+    else
+    {
+        MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
+        QStringList lists = currentInfo.m_albumId.split("<>");
+        if(lists.count() < 4)
+        {
+            m_statusLabel = new QLabel(this);
+            m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));
+            layout()->addWidget(m_statusLabel);
+            m_albumTableWidget->hide();
+            return;
+        }
+        for(int i=0; i<lists.count(); ++i)
+        {
+            if(lists[i].isEmpty())
+            {
+                lists[i] = "-";
             }
         }
 
@@ -180,29 +254,40 @@ void MusicAlbumFoundWidget::queryAllFinished()
         QVBoxLayout *grid = new QVBoxLayout(function);
 
         QLabel *firstLabel = new QLabel(function);
-        firstLabel->setText(QString("<font color=#169AF3> Alubm > %1 </font>").arg(currentInfo.m_albumId));
+        firstLabel->setText(QString("<font color=#169AF3> Alubm > %1 </font>").arg(lists[0]));
         grid->addWidget(firstLabel);
         ////////////////////////////////////////////////////////////////////////////
         QWidget *topFuncWidget = new QWidget(function);
         QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
 
-        QLabel *iconLabel = new QLabel(topFuncWidget);
-        iconLabel->setPixmap(QPixmap(":/image/lb_warning"));
-        iconLabel->setStyleSheet("background:red");
-        iconLabel->setFixedSize(250, 250);
+        m_iconLabel = new QLabel(topFuncWidget);
+        m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
+        m_iconLabel->setFixedSize(180, 180);
+
+        MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        download->startToDownload(currentInfo.m_smallPicUrl);
+        ////////////////////////////////////////////////////////////////////////////
 
         QWidget *topLineWidget = new QWidget(topFuncWidget);
         QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
+        topLineLayout->setContentsMargins(10, 5, 5, 0);
         QLabel *albumLabel = new QLabel(topLineWidget);
-        albumLabel->setText(currentInfo.m_albumId);
+        albumLabel->setStyleSheet(MusicUIObject::MCustomStyle01 + MusicUIObject::MCustomStyle04);
+        albumLabel->setText(lists[0]);
         QLabel *singerLabel = new QLabel(topLineWidget);
+        singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
         singerLabel->setText(tr("Singer: %1").arg(currentInfo.m_singerName));
         QLabel *languageLabel = new QLabel(topLineWidget);
-        languageLabel->setText(tr("Language: %1"));
+        languageLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        languageLabel->setText(tr("Language: %1").arg(lists[1]));
         QLabel *companyLabel = new QLabel(topLineWidget);
-        companyLabel->setText(tr("Company: %1"));
+        companyLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        companyLabel->setText(tr("Company: %1").arg(lists[2]));
         QLabel *yearLabel = new QLabel(topLineWidget);
-        yearLabel->setText(tr("Year: %1"));
+        yearLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        yearLabel->setText(tr("Year: %1").arg(lists[3]));
+
         topLineLayout->addWidget(albumLabel);
         topLineLayout->addWidget(singerLabel);
         topLineLayout->addWidget(languageLabel);
@@ -226,13 +311,54 @@ void MusicAlbumFoundWidget::queryAllFinished()
         topButtonLayout->addStretch(1);
         topButtonWidget->setLayout(topButtonLayout);
         topLineLayout->addWidget(topButtonWidget);
+        ////////////////////////////////////////////////////////////////////////////
+        QWidget *topRightWidget = new QWidget(topFuncWidget);
+        QGridLayout *topRightLayout = new QGridLayout(topRightWidget);
+        topRightLayout->setContentsMargins(0, 0, 0, 0);
+        topRightLayout->setSpacing(0);
 
-        topFuncLayout->addWidget(iconLabel);
+        MusicTime::timeSRand();
+        QLabel *numberLabel = new QLabel(topRightWidget);
+        numberLabel->setAlignment(Qt::AlignCenter);
+        numberLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+        numberLabel->setText(QString("%1.%2").arg(qrand()%10).arg(qrand()%10));
+        topRightLayout->addWidget(numberLabel, 0, 0);
+        for(int i=1; i<=5; ++i)
+        {
+            QLabel *label = new QLabel(topRightWidget);
+            label->setPixmap(QPixmap(qrand()%2 == 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
+            topRightLayout->addWidget(label, 0, i);
+        }
+
+        QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
+        topRightLayout->addWidget(numberTextLabel, 1, 0);
+        for(int i=1; i<=5; ++i)
+        {
+            QLabel *label = new QLabel(topRightWidget);
+            label->setFixedSize(26, 22);
+            label->setPixmap(QPixmap(":/tiny/lb_unstar"));
+            topRightLayout->addWidget(label, 1, i);
+        }
+
+        QLabel *marginBottmLabel = new QLabel(topRightWidget);
+        marginBottmLabel->setFixedHeight(40);
+        topRightLayout->addWidget(marginBottmLabel, 2, 0);
+        topRightWidget->setLayout(topRightLayout);
+
+        QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(90, 90), topRightWidget);
+        code->setMargin(2);
+        code->setIcon(":/image/lb_player_logo", 0.23);
+        topRightLayout->addWidget(code, 3, 2, 1, 6);
+
+        topFuncLayout->addWidget(m_iconLabel);
         topFuncLayout->addWidget(topLineWidget);
+        topFuncLayout->addWidget(topRightWidget);
         topFuncWidget->setLayout(topFuncLayout);
         grid->addWidget(topFuncWidget);
         ////////////////////////////////////////////////////////////////////////////
-        QLabel *songItems = new QLabel(tr("songItems") + QString("(%1)").arg(10), function);
+        QLabel *songItems = new QLabel("|" + tr("songItems") + QString("(%1)").arg(10), function);
+        songItems->setFixedHeight(50);
+        songItems->setStyleSheet(MusicUIObject::MCustomStyle03);
         grid->addWidget(songItems);
 
         QWidget *middleFuncWidget = new QWidget(function);
@@ -240,7 +366,7 @@ void MusicAlbumFoundWidget::queryAllFinished()
         middleFuncLayout->setContentsMargins(0, 0, 0, 0);
         QLabel *marginLabel = new QLabel(middleFuncWidget);
         marginLabel->setFixedWidth(1);
-        QCheckBox *allCheckBox = new QCheckBox(tr("all"), middleFuncWidget);
+        QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
         QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
         playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
         playButton->setIconSize(QSize(14, 14));
@@ -259,11 +385,10 @@ void MusicAlbumFoundWidget::queryAllFinished()
         middleFuncLayout->addWidget(playButton);
         middleFuncLayout->addWidget(addButton);
         middleFuncLayout->addWidget(downloadButton);
-        connect(allCheckBox, SIGNAL(clicked(bool)), SLOT(selectAllItems(bool)));
+        connect(allCheckBox, SIGNAL(clicked(bool)), m_albumTableWidget, SLOT(setSelectedAllItems(bool)));
         connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
         connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
         connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
-
         grid->addWidget(middleFuncWidget);
         //////////////////////////////////////////////////////////////////////
         grid->addWidget(m_albumTableWidget);
@@ -271,8 +396,17 @@ void MusicAlbumFoundWidget::queryAllFinished()
 
         function->setLayout(grid);
         m_mainWindow->layout()->addWidget(function);
-
+    }
 //        m_resizeWidget << allCheckBox;
+}
+
+void MusicAlbumFoundWidget::downLoadFinished(const QByteArray &data)
+{
+    if(m_iconLabel)
+    {
+        QPixmap pix;
+        pix.loadFromData(data);
+        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
     }
 }
 

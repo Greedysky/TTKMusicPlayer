@@ -32,6 +32,10 @@ public:
     /*!
      * Get class object name.
      */
+    MusicObject::MIntList getSelectedItems() const;
+    /*!
+     * Get selected items.
+     */
 
 public Q_SLOTS:
     void listCellClicked(int row, int column);
@@ -46,6 +50,10 @@ public Q_SLOTS:
                              const QString &time);
     /*!
      * Create searched items.
+     */
+    void setSelectedAllItems(bool all);
+    /*!
+     * Set select all items.
      */
 
 protected:
@@ -86,6 +94,14 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
+    void queryAlbumFinished();
+    /*!
+     * Query album musics is finished.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Send recieved data from net.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -96,7 +112,7 @@ protected:
 
     QString m_songNameFull;
     QWidget *m_mainWindow;
-    QLabel *m_statusLabel;
+    QLabel *m_statusLabel, *m_iconLabel;
     QList<QWidget*> m_resizeWidget;
     MusicAlbumFoundTableWidget *m_albumTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread, *m_albumThread;

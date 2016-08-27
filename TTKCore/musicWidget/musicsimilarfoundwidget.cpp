@@ -224,7 +224,7 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
         {
             QPixmap pix;
             pix.loadFromData(data);
-            m_iconLabels[i]->setPixmap(pix.scaled(100, 100));
+            m_iconLabels[i]->setPixmap(pix.scaled(m_iconLabels[i]->size()));
             return;
         }
     }

@@ -126,6 +126,9 @@ namespace MusicUIObject
     const QString MCustomStyle10 = MColorStyle01 + " \
             image:url(:/lrc/lb_shadow); text-align:center;";
 
+    const QString MCustomStyle11 = " \
+            font-size:25px; color:red;";
+
 
 ///ToolButton
 //////////////////////////////////////////////////////
