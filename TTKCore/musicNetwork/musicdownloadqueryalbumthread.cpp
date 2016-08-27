@@ -68,7 +68,52 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
 #ifdef MUSIC_GREATER_NEW
-        emit downLoadDataChanged(QString());
+        QJsonParseError jsonError;
+        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
+        ///Put the data into Json
+        if( jsonError.error != QJsonParseError::NoError )
+        {
+            emit downLoadDataChanged(QString());
+            deleteAll();
+            return;
+        }
+
+        foreach(const QJsonValue &value, parseDoucment.array())
+        {
+            if(!value.isObject())
+            {
+               continue;
+            }
+            QJsonObject object = value.toObject();
+            MusicObject::MusicSongInfomation musicInfo;
+            QString songName = object.value("SongName").toString();
+            QString singerName = object.value("Artist").toString();
+            QString duration = object.value("Length").toString();
+            QString size = object.value("Size").toString();
+
+            readFromMusicSongAttribute(musicInfo, size, MB_1000, object.value("FlacUrl").toString());
+            readFromMusicSongAttribute(musicInfo, size, MB_1000, object.value("AacUrl").toString());
+            readFromMusicSongAttribute(musicInfo, size, MB_320, object.value("SqUrl").toString());
+            readFromMusicSongAttribute(musicInfo, size, MB_192, object.value("HqUrl").toString());
+            readFromMusicSongAttribute(musicInfo, size, MB_128, object.value("LqUrl").toString());
+
+            if(musicInfo.m_songAttrs.isEmpty())
+            {
+                continue;
+            }
+            emit createSearchedItems(songName, singerName, duration);
+
+            musicInfo.m_albumId = object.value("Album").toString() + "<>" +
+                                  object.value("Language").toString() + "<>" +
+                                  object.value("Company").toString() + "<>" +
+                                  object.value("Year").toString();
+            musicInfo.m_songName = songName;
+            musicInfo.m_singerName = singerName;
+            musicInfo.m_timeLength = duration;
+            musicInfo.m_lrcUrl = object.value("LrcUrl").toString();
+            musicInfo.m_smallPicUrl = object.value("PicUrl").toString();
+            m_musicSongInfos << musicInfo;
+        }
 #else
         QJson::Parser parser;
         bool ok;

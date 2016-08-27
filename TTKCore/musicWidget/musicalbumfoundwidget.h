@@ -102,12 +102,36 @@ public Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
+    void playAllButtonClicked();
+    /*!
+     * Play all button clicked now.
+     */
+    void shareButtonClicked();
+    /*!
+     * Share button clicked now.
+     */
+    void playButtonClicked();
+    /*!
+     * Play button clicked now.
+     */
+    void downloadButtonClicked();
+    /*!
+     * Download button clicked now.
+     */
+    void addButtonClicked();
+    /*!
+     * Add button clicked now.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
+     */
+    void createNoAlbumLabel();
+    /*!
+     * Create no album label widget.
      */
 
     QString m_songNameFull;
