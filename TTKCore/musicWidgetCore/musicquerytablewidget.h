@@ -71,11 +71,6 @@ public Q_SLOTS:
      * Create searched items.
      * Subclass should implement this function.
      */
-    virtual void itemDoubleClicked(int row, int column) = 0;
-    /*!
-     * Item has double clicked.
-     * Subclass should implement this function.
-     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -88,7 +83,9 @@ protected:
 };
 
 
-
+/*! @brief The class of the query table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
@@ -108,6 +105,11 @@ public Q_SLOTS:
     virtual void actionGroupClick(QAction *action);
     /*!
      * Left context menu action group click by action.
+     */
+    virtual void itemDoubleClicked(int row, int column) = 0;
+    /*!
+     * Item has double clicked.
+     * Subclass should implement this function.
      */
 
 protected:

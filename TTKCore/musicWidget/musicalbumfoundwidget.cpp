@@ -4,10 +4,12 @@
 #include "musicdatadownloadthread.h"
 #include "musicsongsharingwidget.h"
 #include "musiccryptographichash.h"
+#include "musicsongssummarizied.h"
+#include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
+#include "musicmessagebox.h"
 #include "musicitemdelegate.h"
-#include "musicnetworkthread.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 
@@ -19,7 +21,7 @@
 #include <QScrollArea>
 
 MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicQueryItemTableWidget(parent)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -29,18 +31,11 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
-
-    MusicUtils::UWidget::setTransparent(this, 255);
-    setStyleSheet( styleSheet() + MusicUIObject::MTableWidgetStyle02);
-
-    m_checkBoxDelegate = new MusicQueryTableDelegate(this);
-    setItemDelegateForColumn(0, m_checkBoxDelegate);
 }
 
 MusicAlbumFoundTableWidget::~MusicAlbumFoundTableWidget()
 {
     clearAllItems();
-    delete m_checkBoxDelegate;
 }
 
 QString MusicAlbumFoundTableWidget::getClassName()
@@ -48,53 +43,67 @@ QString MusicAlbumFoundTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-MusicObject::MIntList MusicAlbumFoundTableWidget::getSelectedItems() const
+void MusicAlbumFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
-    MusicObject::MIntList list;
-    for(int i=0; i<rowCount(); ++i)
+    MusicQueryItemTableWidget::setQueryInput(query);
+    if(parent()->metaObject()->indexOfSlot("queryAlbumFinished()") != -1)
     {
-        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)
-        {
-            list << i;
-        }
+        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAlbumFinished()));
     }
-    return list;
+}
+
+void MusicAlbumFoundTableWidget::startSearchQuery(const QString &text)
+{
+    if(!M_NETWORK_PTR->isOnline())
+    {   //no network connection
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        return;
+    }
+    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+}
+
+void MusicAlbumFoundTableWidget::musicDownloadLocal(int row)
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget;
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+}
+
+const MusicObject::MusicSongInfomations& MusicAlbumFoundTableWidget::getMusicSongInfos() const
+{
+    Q_ASSERT(m_downLoadManager);
+    return m_downLoadManager->getMusicSongInfos();
 }
 
 void MusicAlbumFoundTableWidget::listCellClicked(int row, int column)
 {
-    if(column == 0)
-    {
-        QTableWidgetItem *it = item(row, 0);
-        bool status = it->data(MUSIC_CHECK_ROLE).toBool();
-        it->setData(MUSIC_CHECK_ROLE, !status);
-    }
-    else
-    {
-        if(m_previousClickRow != -1)
-        {
-            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, false);
-        }
-        m_previousClickRow = row;
-        item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
-    }
+    MusicQueryItemTableWidget::listCellClicked(row, column);
 
-//    switch(column)
-//    {
-//        case 4:
-//            addSearchMusicToPlayList(row);
-//            break;
-//        case 5:
-//            musicDownloadLocal(row);
-//            break;
-//        default:
-//            break;
-//    }
+    switch(column)
+    {
+        case 3:
+            emit addSearchMusicToPlayList(row, true);
+            break;
+        case 4:
+            emit addSearchMusicToPlayList(row, false);
+            break;
+        case 5:
+            musicDownloadLocal(row);
+            break;
+        default:
+            break;
+    }
 }
 
 void MusicAlbumFoundTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clear();
+    MusicQueryItemTableWidget::clear();
     setColumnCount(6);
 }
 
@@ -133,14 +142,6 @@ void MusicAlbumFoundTableWidget::createSearchedItems(const QString &songname, co
     setFixedHeight(rowHeight(0)*rowCount());
 }
 
-void MusicAlbumFoundTableWidget::setSelectedAllItems(bool all)
-{
-    for(int i=0; i<rowCount(); ++i)
-    {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, all);
-    }
-}
-
 void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicAbstractTableWidget::resizeEvent(event);
@@ -177,17 +178,20 @@ MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
 
-    m_albumThread = nullptr;
     m_albumTableWidget = new MusicAlbumFoundTableWidget(this);
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_albumTableWidget, SIGNAL(addSearchMusicToPlayList(int,bool)), SLOT(addSearchMusicToPlayList(int,bool)));
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicAlbumFoundWidget::~MusicAlbumFoundWidget()
 {
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
     delete m_albumTableWidget;
     delete m_downloadThread;
-    delete m_albumThread;
     delete m_statusLabel;
     delete m_iconLabel;
     delete m_mainWindow;
@@ -223,11 +227,8 @@ void MusicAlbumFoundWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
-                m_albumThread = M_DOWNLOAD_QUERY_PTR->getAlbumThread(this);
-                m_albumThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, info.m_albumId);
-                connect(m_albumThread, SIGNAL(createSearchedItems(QString,QString,QString)),
-                        m_albumTableWidget, SLOT(createSearchedItems(QString,QString,QString)));
-                connect(m_albumThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAlbumFinished()));
+                m_albumTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getAlbumThread(this));
+                m_albumTableWidget->startSearchQuery(info.m_albumId);
                 break;
             }
         }
@@ -241,14 +242,13 @@ void MusicAlbumFoundWidget::queryAllFinished()
 
 void MusicAlbumFoundWidget::queryAlbumFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_albumThread->getMusicSongInfos());
+    MusicObject::MusicSongInfomations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         createNoAlbumLabel();
     }
     else
     {
-        m_albumDatas = musicSongInfos;
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
         QStringList lists = currentInfo.m_albumId.split("<>");
         if(lists.count() < 4)
@@ -461,9 +461,10 @@ void MusicAlbumFoundWidget::playButtonClicked()
 
 void MusicAlbumFoundWidget::downloadButtonClicked()
 {
+    MusicObject::MusicSongInfomations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
     foreach(int index, m_albumTableWidget->getSelectedItems())
     {
-        MusicObject::MusicSongInfomation downloadInfo = m_albumDatas[ index ];
+        MusicObject::MusicSongInfomation downloadInfo = musicSongInfos[ index ];
         MusicDownloadWidget *download = new MusicDownloadWidget(this);
         download->setSongName(downloadInfo, MusicDownLoadQueryThreadAbstract::MusicQuery);
         download->show();
@@ -473,6 +474,25 @@ void MusicAlbumFoundWidget::downloadButtonClicked()
 void MusicAlbumFoundWidget::addButtonClicked()
 {
     downloadDataFrom(false);
+}
+
+void MusicAlbumFoundWidget::addSearchMusicToPlayList(int row, bool play)
+{
+    if(row < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    MusicObject::MusicSongInfomations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
+    if(row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    downloadDataFrom(musicSongInfos[row], play);
 }
 
 void MusicAlbumFoundWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -515,31 +535,49 @@ void MusicAlbumFoundWidget::createNoAlbumLabel()
 
 void MusicAlbumFoundWidget::downloadDataFrom(bool play)
 {
+    MusicObject::MusicSongInfomations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
     MusicObject::MIntList list = m_albumTableWidget->getSelectedItems();
     for(int i=0; i<list.count(); ++i)
     {
-        if(!M_NETWORK_PTR->isOnline())
+        if(downloadDataFrom(musicSongInfos[ list[i] ], play && (i == 0)))
         {
             continue;
         }
-
-        MusicObject::MusicSongInfomation downloadInfo = m_albumDatas[ list[i] ];
-        MusicObject::MusicSongAttributes attrs = downloadInfo.m_songAttrs;
-        MusicObject::MusicSongAttribute attr;
-        if(!attrs.isEmpty())
-        {
-            attr = attrs.first();
-        }
-        QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
-        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
-
-        QEventLoop loop(this);
-        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
-        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        downSong->startToDownload();
-        loop.exec();
-
-        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play && (i == list.count() - 1));
     }
+}
+
+bool MusicAlbumFoundWidget::downloadDataFrom(const MusicObject::MusicSongInfomation &downloadInfo, bool play)
+{
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return false;
+    }
+
+    QList<int> findMinTag;
+    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
+    {
+        findMinTag << attr.m_bitrate;
+    }
+    qSort(findMinTag);
+    //to find out the min bitrate
+
+    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
+    {
+        if(attr.m_bitrate == findMinTag.first())
+        {
+            QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
+            QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+
+            QEventLoop loop(this);
+            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
+                                                                             MusicDownLoadThreadAbstract::Download_Music, this);
+            connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            downSong->startToDownload();
+            loop.exec();
+
+            emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
+            return true;
+        }
+    }
+    return false;
 }

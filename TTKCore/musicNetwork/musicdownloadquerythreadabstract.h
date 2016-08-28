@@ -74,7 +74,7 @@ public:
     /*!
      * Return the current song container size.
      */
-    inline const MusicObject::MusicSongInfomations& getMusicSongInfos(){ return m_musicSongInfos;}
+    inline const MusicObject::MusicSongInfomations& getMusicSongInfos() const { return m_musicSongInfos;}
     /*!
      * Return the current song container.
      */

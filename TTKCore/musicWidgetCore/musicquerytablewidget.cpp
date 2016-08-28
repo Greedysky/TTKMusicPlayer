@@ -10,8 +10,6 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     m_downLoadManager = nullptr;
-
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
@@ -47,6 +45,7 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
 
     m_actionGroup = new QActionGroup(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
 MusicQueryTableWidget::~MusicQueryTableWidget()
