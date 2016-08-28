@@ -6,7 +6,7 @@
 #include "musictime.h"
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
-    : MusicQueryTableWidget(parent)
+    : MusicQueryItemTableWidget(parent)
 {
     setColumnCount(8);
     resizeWindow(0);
@@ -107,7 +107,7 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
 
 void MusicVideoTableWidget::listCellClicked(int row, int column)
 {
-    MusicQueryTableWidget::listCellClicked(row, column);
+    MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
     {
         case 5:
@@ -203,7 +203,7 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
 
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryTableWidget::contextMenuEvent(event);
+    MusicQueryItemTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 

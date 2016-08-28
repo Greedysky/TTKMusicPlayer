@@ -9,13 +9,13 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadquerythreadabstract.h"
 #include "musicquerytablewidget.h"
+#include "musicdownloadquerythreadabstract.h"
 
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryTableWidget
+class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
 public:

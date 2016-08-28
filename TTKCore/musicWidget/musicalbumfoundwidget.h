@@ -10,12 +10,12 @@
    =================================================*/
 
 #include <QLabel>
-#include "musicquerytablewidget.h"
+#include "musicqueryfoundtablewidget.h"
 
 /*! @brief The class of the album music found table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicQueryItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
 public:
@@ -33,39 +33,6 @@ public:
     void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set network query input.
-     */
-    virtual void startSearchQuery(const QString &text) override;
-    /*!
-     * Start search query by text.
-     */
-    virtual void musicDownloadLocal(int row) override;
-    /*!
-     * Data download to local file.
-     */
-    const MusicObject::MusicSongInfomations& getMusicSongInfos() const;
-    /*!
-     * Return the current song container.
-     */
-
-Q_SIGNALS:
-    void addSearchMusicToPlayList(int row, bool play);
-    /*!
-     * Add search music to play list by index.
-     */
-
-public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
-    /*!
-     * Subclass should implement this function.
-     */
-    virtual void clearAllItems() override;
-    /*!
-     * Clear All Items.
-     */
-    virtual void createSearchedItems(const QString &songname, const QString &artistname,
-                                     const QString &time) override;
-    /*!
-     * Create searched items.
      */
 
 protected:
@@ -139,10 +106,6 @@ public Q_SLOTS:
     /*!
      * Add button clicked now.
      */
-    void addSearchMusicToPlayList(int row, bool play);
-    /*!
-     * Add search music to play list by index.
-     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -153,14 +116,6 @@ protected:
     void createNoAlbumLabel();
     /*!
      * Create no album label widget.
-     */
-    void downloadDataFrom(bool play);
-    /*!
-     * Download data from net and just play or not.
-     */
-    bool downloadDataFrom(const MusicObject::MusicSongInfomation &downloadInfo, bool play);
-    /*!
-     * Download data from net and just play or not.
      */
 
     QString m_songNameFull;

@@ -1,5 +1,5 @@
-#ifndef MUSICLRCSEARCHTABLEWIDGET_H
-#define MUSICLRCSEARCHTABLEWIDGET_H
+#ifndef MUSICQUERYFOUNDTABLEWIDGET_H
+#define MUSICQUERYFOUNDTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,23 +11,24 @@
 
 #include "musicquerytablewidget.h"
 
-/*! @brief The class of the lrc search table widget.
+/*! @brief The class of the query found table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicQueryFoundTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
+    explicit MusicQueryFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLrcSearchTableWidget();
+    virtual ~MusicQueryFoundTableWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
+
     virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.
@@ -36,18 +37,20 @@ public:
     /*!
      * Data download to local file.
      */
-
-Q_SIGNALS:
-    void resolvedSuccess();
+    const MusicObject::MusicSongInfomations& getMusicSongInfos() const;
     /*!
-     * Lrc search state is finished.
+     * Return the current song container.
      */
-    void lrcDownloadStateChanged(const QString &name);
+    void downloadDataFrom(bool play);
     /*!
-     * Lrc download state is finished.
+     * Download data from net and just play or not.
      */
 
 public Q_SLOTS:
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Subclass should implement this function.
+     */
     virtual void clearAllItems() override;
     /*!
      * Clear All Items.
@@ -57,17 +60,17 @@ public Q_SLOTS:
     /*!
      * Create searched items.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
-    /*!
-     * Item has double clicked.
-     */
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    void addSearchMusicToPlayList(int row, bool play);
     /*!
-     * Override the widget event.
+     * Add search music to play list by index.
+     */
+    bool downloadDataFrom(const MusicObject::MusicSongInfomation &downloadInfo, bool play);
+    /*!
+     * Download data from net and just play or not.
      */
 
 };
 
-#endif // MUSICLRCSEARCHTABLEWIDGET_H
+#endif // MUSICQUERYFOUNDTABLEWIDGET_H

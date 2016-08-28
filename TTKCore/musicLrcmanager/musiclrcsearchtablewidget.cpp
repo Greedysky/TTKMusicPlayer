@@ -4,7 +4,7 @@
 #include "musicitemdelegate.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
-    : MusicQueryTableWidget(parent)
+    : MusicQueryItemTableWidget(parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -107,7 +107,7 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryTableWidget::contextMenuEvent(event);
+    MusicQueryItemTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 

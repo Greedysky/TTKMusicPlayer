@@ -19,7 +19,7 @@
 #include <QButtonGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
-    : MusicQueryTableWidget(parent), m_audition(nullptr)
+    : MusicQueryItemTableWidget(parent), m_audition(nullptr)
 {
     setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
@@ -131,7 +131,7 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
 
 void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
 {
-    MusicQueryTableWidget::listCellClicked(row, col);
+    MusicQueryItemTableWidget::listCellClicked(row, col);
     switch(col)
     {
         case 4:
@@ -167,7 +167,7 @@ void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
 
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryTableWidget::contextMenuEvent(event);
+    MusicQueryItemTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 
@@ -182,7 +182,7 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
 
 void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 {
-    MusicQueryTableWidget::actionGroupClick(action);
+    MusicQueryItemTableWidget::actionGroupClick(action);
     int row = currentRow();
     switch( action->data().toInt() )
     {

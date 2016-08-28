@@ -41,7 +41,7 @@ class MusicCoreMPlayer;
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicQueryTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
 public:
@@ -78,11 +78,6 @@ public:
      */
 
 Q_SIGNALS:
-    void muiscSongToPlayListChanged(const QString &name, const QString &time,
-                                    const QString &format, bool play);
-    /*!
-     * Add current network music to download to local.
-     */
     void auditionIsPlaying(bool play);
     /*!
      * Check current audtion is playing or not.

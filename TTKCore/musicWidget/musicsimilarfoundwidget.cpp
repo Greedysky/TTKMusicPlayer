@@ -1,20 +1,68 @@
 #include "musicsimilarfoundwidget.h"
 #include "musicsourcedownloadthread.h"
-#include "musicdownloadwidget.h"
-#include "musicdatadownloadthread.h"
-#include "musiccryptographichash.h"
 #include "musicsongssummarizied.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicnetworkthread.h"
+#include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
 
-#include <QBoxLayout>
-#include <QGridLayout>
-#include <QPushButton>
 #include <QCheckBox>
-#include <QEventLoop>
+#include <QBoxLayout>
+#include <QPushButton>
+#include <QScrollArea>
+
+MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
+    : MusicQueryFoundTableWidget(parent)
+{
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 460);
+    headerview->resizeSection(2, 60);
+    headerview->resizeSection(3, 26);
+    headerview->resizeSection(4, 26);
+    headerview->resizeSection(5, 26);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+}
+
+MusicSimilarFoundTableWidget::~MusicSimilarFoundTableWidget()
+{
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    clearAllItems();
+}
+
+QString MusicSimilarFoundTableWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+{
+    MusicQueryFoundTableWidget::setQueryInput(query);
+    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
+    {
+        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
+    }
+}
+
+void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryFoundTableWidget::resizeEvent(event);
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 460);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
+
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 400));
+    }
+}
+
+
 
 MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     : QWidget(parent)
@@ -23,35 +71,29 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
     m_mainWindow = new QWidget(this);
-    m_mainWindow->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    m_mainWindow->setObjectName("MainWindow");
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(MusicUIObject::MCustomStyle04 + MusicUIObject::MCustomStyle01);
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
+    mLayout->setContentsMargins(2, 2, 2, 2);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
 
-    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+    m_similarTableWidget = new MusicSimilarFoundTableWidget(this);
+    m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
-    while(!m_checkBoxs.isEmpty())
-    {
-        delete m_checkBoxs.takeLast();
-    }
     while(!m_iconLabels.isEmpty())
     {
         delete m_iconLabels.takeLast();
     }
-    delete m_downloadThread;
+    delete m_similarTableWidget;
     delete m_statusLabel;
     delete m_mainWindow;
 }
@@ -64,13 +106,12 @@ QString MusicSimilarFoundWidget::getClassName()
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;
-    m_downloadThread->setQueryAllRecords(false);
-    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name.split("-").front().trimmed());
+    m_similarTableWidget->startSearchQuery(name.split("-").back().trimmed());
 }
 
 void MusicSimilarFoundWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    MusicObject::MusicSongInfomations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noSimilar"));
@@ -80,7 +121,6 @@ void MusicSimilarFoundWidget::queryAllFinished()
         delete m_statusLabel;
         m_statusLabel = nullptr;
 
-        m_likeDownloadDatas = musicSongInfos;
         createLabels();
     }
 }
@@ -92,8 +132,16 @@ void MusicSimilarFoundWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicSimilarFoundWidget::createLabels()
 {
-    int index = 0;
+    layout()->removeWidget(m_mainWindow);
+    QScrollArea *scrollArea = new QScrollArea(this);
+    scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setFrameShape(QFrame::NoFrame);
+    scrollArea->setAlignment(Qt::AlignLeft);
+    scrollArea->setWidget(m_mainWindow);
+    layout()->addWidget(scrollArea);
 
+    MusicObject::MusicSongInfomations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
     QWidget *function = new QWidget(m_mainWindow);
     function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
     QGridLayout *grid = new QGridLayout(function);
@@ -101,54 +149,44 @@ void MusicSimilarFoundWidget::createLabels()
 
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("Like \"<font color=#169AF3> %1 </font>\" also like this").arg(m_songNameFull));
-    grid->addWidget(firstLabel, index++, 0, 1, 7);
+    grid->addWidget(firstLabel, 0, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
-    QCheckBox *allCheckBox = new QCheckBox("  " + tr("all"), function);
-    QPushButton *playButton = new QPushButton(tr("play"), function);
+    QWidget *middleFuncWidget = new QWidget(function);
+    QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
+    middleFuncLayout->setContentsMargins(0, 0, 0, 0);
+    QLabel *marginLabel = new QLabel(middleFuncWidget);
+    marginLabel->setFixedWidth(1);
+    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
+    QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
     playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playButton->setIconSize(QSize(14, 14));
     playButton->setFixedSize(55, 25);
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    QPushButton *addButton = new QPushButton(tr("add"), function);
+    QPushButton *addButton = new QPushButton(tr("add"), middleFuncWidget);
     addButton->setFixedSize(55, 25);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    QPushButton *downloadButton = new QPushButton(tr("download"), function);
+    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
-    grid->addWidget(allCheckBox, index, 0);
-    grid->addWidget(playButton, index, 5);
-    grid->addWidget(addButton, index, 6);
-    grid->addWidget(downloadButton, index++, 7);
-    connect(allCheckBox, SIGNAL(clicked(bool)), SLOT(selectAllItems(bool)));
+
+    middleFuncLayout->addWidget(marginLabel);
+    middleFuncLayout->addWidget(allCheckBox);
+    middleFuncLayout->addStretch(1);
+    middleFuncLayout->addWidget(playButton);
+    middleFuncLayout->addWidget(addButton);
+    middleFuncLayout->addWidget(downloadButton);
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_similarTableWidget, SLOT(setSelectedAllItems(bool)));
     connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
+    grid->addWidget(middleFuncWidget, 1, 0, 1, 8);
     ////////////////////////////////////////////////////////////////////////////
-    for(int i=0; i<4; ++i)
-    {
-        for(int j=0; j<2; j++)
-        {
-            int dIndex = 2*i + j;
-            if( dIndex >= m_likeDownloadDatas.count())
-            {
-                break;
-            }
-            QCheckBox *box = new QCheckBox(function);
-            m_checkBoxs << box;
-            grid->addWidget(box, index, j*4);
-            box->setText("  " + MusicUtils::UWidget::elidedText(font(), m_likeDownloadDatas[dIndex].m_songName, Qt::ElideRight, 200));
-            box->setToolTip(m_likeDownloadDatas[dIndex].m_songName);
-            grid->addWidget(new QLabel(m_likeDownloadDatas[dIndex].m_timeLength, function), index, j*4 + 3);
-        }
-        index++;
-    }
+    grid->addWidget(m_similarTableWidget, 2, 0, 1, 8);
     ////////////////////////////////////////////////////////////////////////////
-    QString artName = m_downloadThread->getSearchedText();
+    QString artName = m_songNameFull.split("-").front().trimmed();
     QLabel *secondLabel = new QLabel(function);
     secondLabel->setText(tr("Other \"<font color=#169AF3> %1 </font>\" things").arg(artName));
-    grid->addWidget(secondLabel, index++, 0, 1, 7);
+    grid->addWidget(secondLabel, 3, 0, 1, 7);
     ////////////////////////////////////////////////////////////////////////////
     QLabel *picLabel1 = new QLabel(function);
     picLabel1->setPixmap(QPixmap(":/image/lb_warning"));
@@ -161,16 +199,16 @@ void MusicSimilarFoundWidget::createLabels()
     picLabel3->setFixedSize(100, 100);
     m_iconLabels << picLabel1 << picLabel2 << picLabel3;
     ////////////////////////////////////////////////////////////////////////////
-    grid->addWidget(picLabel1, index, 0, 1, 2, Qt::AlignCenter);
-    grid->addWidget(picLabel2, index, 3, 1, 2, Qt::AlignCenter);
-    grid->addWidget(picLabel3, index++, 6, 1, 2, Qt::AlignCenter);
+    grid->addWidget(picLabel1, 4, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(picLabel2, 4, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(picLabel3, 4, 6, 1, 2, Qt::AlignCenter);
     QString artLimitString = MusicUtils::UWidget::elidedText(font(), artName, Qt::ElideRight, 90);
-    grid->addWidget(new QLabel(artLimitString, function), index, 0, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artLimitString, function), index, 3, 1, 2, Qt::AlignCenter);
-    grid->addWidget(new QLabel(artLimitString, function), index++, 6, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), 5, 0, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), 5, 3, 1, 2, Qt::AlignCenter);
+    grid->addWidget(new QLabel(artLimitString, function), 5, 6, 1, 2, Qt::AlignCenter);
 
     int downloadCounter = 0;
-    foreach(const MusicObject::MusicSongInfomation &data, m_likeDownloadDatas)
+    foreach(const MusicObject::MusicSongInfomation &data, musicSongInfos)
     {
         if(data.m_singerName.contains(artName) && downloadCounter < 3)
         {
@@ -182,19 +220,6 @@ void MusicSimilarFoundWidget::createLabels()
     }
 
     m_mainWindow->layout()->addWidget(function);
-}
-
-MusicObject::MIntList MusicSimilarFoundWidget::foundCheckedItem()
-{
-    MusicObject::MIntList list;
-    for(int i=0; i<m_checkBoxs.count(); ++i)
-    {
-        if(m_checkBoxs[i]->isChecked())
-        {
-            list << i;
-        }
-    }
-    return list;
 }
 
 void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
@@ -211,62 +236,20 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
     }
 }
 
-void MusicSimilarFoundWidget::selectAllItems(bool all)
-{
-    foreach(QCheckBox *v, m_checkBoxs)
-    {
-        v->setChecked(all);
-    }
-}
-
 void MusicSimilarFoundWidget::playButtonClicked()
 {
-    downloadDataFrom(true);
+    m_similarTableWidget->downloadDataFrom(true);
 }
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
 {
-    foreach(int index, foundCheckedItem())
+    foreach(int index, m_similarTableWidget->getSelectedItems())
     {
-        MusicObject::MusicSongInfomation downloadInfo = m_likeDownloadDatas[ index ];
-        MusicDownloadWidget *download = new MusicDownloadWidget(this);
-        download->setSongName(downloadInfo, MusicDownLoadQueryThreadAbstract::MusicQuery);
-        download->show();
+        m_similarTableWidget->musicDownloadLocal(index);
     }
 }
 
 void MusicSimilarFoundWidget::addButtonClicked()
 {
-    downloadDataFrom(false);
-}
-
-void MusicSimilarFoundWidget::downloadDataFrom(bool play)
-{
-    MusicObject::MIntList list = foundCheckedItem();
-    for(int i=0; i<list.count(); ++i)
-    {
-        if(!M_NETWORK_PTR->isOnline())
-        {
-            continue;
-        }
-
-        MusicObject::MusicSongInfomation downloadInfo = m_likeDownloadDatas[ list[i] ];
-        MusicObject::MusicSongAttributes attrs = downloadInfo.m_songAttrs;
-        MusicObject::MusicSongAttribute attr;
-        if(!attrs.isEmpty())
-        {
-            attr = attrs.first();
-        }
-        QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
-        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
-
-        QEventLoop loop(this);
-        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
-        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        downSong->startToDownload();
-        loop.exec();
-
-        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play && (i == list.count() - 1));
-    }
+    m_similarTableWidget->downloadDataFrom(false);
 }

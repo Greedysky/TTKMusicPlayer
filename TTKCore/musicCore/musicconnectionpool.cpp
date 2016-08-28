@@ -94,8 +94,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
     }
     else if((from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) ||
-            (from == MusicSimilarFoundWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) ||
-            (from == MusicAlbumFoundWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) )
+            (from == MusicSimilarFoundTableWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) ||
+            (from == MusicAlbumFoundTableWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) )
     {
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString,bool)));

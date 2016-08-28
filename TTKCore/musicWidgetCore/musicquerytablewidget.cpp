@@ -1,28 +1,26 @@
 #include "musicquerytablewidget.h"
-#include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 
-#include <QPainter>
 #include <QActionGroup>
 
-MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
+MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     m_downLoadManager = nullptr;
 }
 
-MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
+MusicQueryTableWidget::~MusicQueryTableWidget()
 {
     delete m_downLoadManager;
 }
 
-QString MusicQueryItemTableWidget::getClassName()
+QString MusicQueryTableWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicQueryItemTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+void MusicQueryTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     delete m_downLoadManager;
     m_downLoadManager = query;
@@ -31,15 +29,15 @@ void MusicQueryItemTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *
                                SLOT(createSearchedItems(QString,QString,QString)));
 }
 
-void MusicQueryItemTableWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
 }
 
 
 
-MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
-    : MusicQueryItemTableWidget(parent)
+MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
+    : MusicQueryTableWidget(parent)
 {
     setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
 
@@ -48,17 +46,17 @@ MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
 
-MusicQueryTableWidget::~MusicQueryTableWidget()
+MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
 {
     delete m_actionGroup;
 }
 
-QString MusicQueryTableWidget::getClassName()
+QString MusicQueryItemTableWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicQueryTableWidget::actionGroupClick(QAction *action)
+void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 {
     int row = currentRow();
     if( row < 0)
@@ -78,7 +76,7 @@ void MusicQueryTableWidget::actionGroupClick(QAction *action)
     }
 }
 
-void MusicQueryTableWidget::createContextMenu(QMenu &menu)
+void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
 {
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);

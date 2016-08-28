@@ -15,18 +15,18 @@
 #include "musicfillitemtablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class of the query item table widget.
+/*! @brief The class of the query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQueryItemTableWidget : public MusicFillItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
+    explicit MusicQueryTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicQueryItemTableWidget();
+    virtual ~MusicQueryTableWidget();
 
     static QString getClassName();
     /*!
@@ -49,6 +49,11 @@ public:
      */
 
 Q_SIGNALS:
+    void muiscSongToPlayListChanged(const QString &name, const QString &time,
+                                    const QString &format, bool play);
+    /*!
+     * Add current network music to download to local.
+     */
     void showDownLoadInfoFor(MusicObject::DownLoadType type);
     /*!
      * Show download state type.
@@ -83,18 +88,18 @@ protected:
 };
 
 
-/*! @brief The class of the query table widget.
+/*! @brief The class of the query item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicQueryItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicQueryItemTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicQueryTableWidget(QWidget *parent = 0);
+    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicQueryTableWidget();
+    virtual ~MusicQueryItemTableWidget();
 
     static QString getClassName();
     /*!
@@ -121,7 +126,5 @@ protected:
     QActionGroup *m_actionGroup;
 
 };
-
-
 
 #endif // MUSICQUERYITEMTABLEWIDGET_H
