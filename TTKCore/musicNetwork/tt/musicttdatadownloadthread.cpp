@@ -111,7 +111,7 @@ void MusicTTDataDownloadThread::dataGetFinished()
 
 void MusicTTDataDownloadThread::dataReplyError(QNetworkReply::NetworkError)
 {
-    emit downLoadDataChanged("The ttop data create failed");
+    emit downLoadDataChanged("The ttpod data create failed");
     deleteAll();
 }
 
@@ -119,7 +119,7 @@ void MusicTTDataDownloadThread::dataReplyError(QNetworkReply::NetworkError)
 void MusicTTDataDownloadThread::dataSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    emit downLoadDataChanged("The ttop data create failed");
+    emit downLoadDataChanged("The ttpod data create failed");
     deleteAll();
 }
 #endif

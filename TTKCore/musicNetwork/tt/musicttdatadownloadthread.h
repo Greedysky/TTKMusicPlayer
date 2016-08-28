@@ -11,7 +11,7 @@
 
 #include "musicdatadownloadthread.h"
 
-/*! @brief The class of downloading the type of ttop data.
+/*! @brief The class of downloading the type of ttpod data.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicTTDataDownloadThread : public MusicDataDownloadThread

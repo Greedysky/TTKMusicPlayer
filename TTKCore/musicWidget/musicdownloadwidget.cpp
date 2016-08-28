@@ -296,7 +296,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
         }
         else
         {
-            break;
+            continue;
         }
     }
     resizeWindow();
@@ -349,7 +349,7 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
         }
         else
         {
-            break;
+            continue;
         }
     }
     resizeWindow();

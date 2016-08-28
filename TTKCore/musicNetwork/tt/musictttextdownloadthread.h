@@ -11,7 +11,7 @@
 
 #include "musicdownloadthreadabstract.h"
 
-/*! @brief The class of downloading the type of ttop txt.
+/*! @brief The class of downloading the type of ttpod txt.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicTTTextDownLoadThread : public MusicDownLoadThreadAbstract

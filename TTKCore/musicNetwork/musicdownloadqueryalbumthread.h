@@ -30,7 +30,7 @@ const QString MUSIC_ALBUM_YY = "http://itwusun.com/search/yyt/album_%1.html?f=js
 /*! @brief The class to multiple query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicDownLoadQueryAlbumThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryAlbumThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:

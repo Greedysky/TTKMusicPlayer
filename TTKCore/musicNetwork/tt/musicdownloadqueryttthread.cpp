@@ -32,7 +32,6 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
     m_currentType = type;
 
     QUrl musicUrl = TT_SEARCH_URL.arg(text);
-    ///This is a ttop music API
 
     if(m_reply)
     {
@@ -150,10 +149,12 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
+                    musicInfo.m_albumId = QString::number(object.take("albumId").toVariant().toULongLong());
                     musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
                     musicInfo.m_smallPicUrl = object.take("picUrl").toString();
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_songName = songName;
+                    musicInfo.m_timeLength = duration;
                     m_musicSongInfos << musicInfo;
                 }
                 else
@@ -169,10 +170,14 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             songAttr.m_format = object.value("suffix").toString();
 
                             int key = object.value("bitRate").toVariant().toInt();
-                            if(key == 500)
+                            if(key > 375 && key <= 625)
                                 songAttr.m_bitrate = MB_500;
-                            else if(key == 998)
+                            else if(key > 625 && key <= 875)
+                                songAttr.m_bitrate = MB_750;
+                            else if(key > 875)
                                 songAttr.m_bitrate = MB_1000;
+                            else
+                                songAttr.m_bitrate = key;
 
                             songAttr.m_url = object.value("url").toString();
                             songAttr.m_size = MusicUtils::UNumber::size2Label(object.value("size").toVariant().toInt());
@@ -180,6 +185,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         }
                         emit createSearchedItems(songName, singerName,
                                                  MusicTime::msecTime2LabelJustified(object.value("duration").toVariant().toInt()));
+
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;
                         m_musicSongInfos << musicInfo;
@@ -191,10 +197,11 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
+
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["code"].toInt() == 1 || value["code"].toInt() == 200)
+            if(value.contains("data"))
             {
                 QVariantList datas = value["data"].toList();
                 foreach(const QVariant &var, datas)
@@ -207,15 +214,15 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     value = var.toMap();
                     MusicObject::MusicSongInfomation musicInfo;
 
-                    QString songId = QString::number(value["singer_id"].toULongLong());
-                    QString songName = value["song_name"].toString();
-                    QString singerName = value["singer_name"].toString();
+                    QString songId = QString::number(value["songId"].toULongLong());
+                    QString songName = value["name"].toString();
+                    QString singerName = value["singerName"].toString();
 
                     if(m_currentType != MovieQuery)
                     {
                         QString duration;
                         ///music normal songs urls
-                        QVariantList auditions = value["audition_list"].toList();
+                        QVariantList auditions = value["auditionList"].toList();
                         foreach(const QVariant &audition, auditions)
                         {
                             QVariantMap audUrlsValue = audition.toMap();
@@ -229,12 +236,12 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = audUrlsValue["url"].toString();
-                                songAttr.m_size = audUrlsValue["size"].toString();
+                                songAttr.m_size = MusicUtils::UNumber::size2Label(audUrlsValue["size"].toInt());
                                 songAttr.m_format = audUrlsValue["suffix"].toString();
                                 songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
                                 ////set duration
-                                duration = audUrlsValue["duration"].toString();
+                                duration = MusicTime::msecTime2LabelJustified(audUrlsValue["duration"].toInt());
                                 if(!m_queryAllRecords)
                                 {
                                     break;
@@ -242,7 +249,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             }
                         }
                         ///music cd songs urls
-                        QVariantList llUrls = value["ll_list"].toList();
+                        QVariantList llUrls = value["llList"].toList();
                         foreach(const QVariant &llUrl, llUrls)
                         {
                             QVariantMap llUrlValue = llUrl.toMap();
@@ -256,12 +263,12 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = llUrlValue["url"].toString();
-                                songAttr.m_size = llUrlValue["size"].toString();
+                                songAttr.m_size = MusicUtils::UNumber::size2Label(llUrlValue["size"].toInt());
                                 songAttr.m_format = llUrlValue["suffix"].toString();
                                 songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
                                 ////set duration
-                                duration = llUrlValue["duration"].toString();
+                                duration = MusicTime::msecTime2LabelJustified(llUrlValue["duration"].toInt());
                                 if(!m_queryAllRecords)
                                 {
                                     break;
@@ -269,22 +276,23 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             }
                         }
 
-                        if(!musicInfo.m_songAttrs.isEmpty())
+                        if(musicInfo.m_songAttrs.isEmpty())
                         {
-                            if(!m_queryAllRecords)
-                            {
-                                emit createSearchedItems(songName, singerName, duration);
-                            }
-                            musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                            musicInfo.m_smallPicUrl = TT_SONG_PIC_URL.arg(singerName);
-                            musicInfo.m_singerName = singerName;
-                            musicInfo.m_songName = songName;
-                            m_musicSongInfos << musicInfo;
+                            continue;
                         }
+                        emit createSearchedItems(songName, singerName, duration);
+
+                        musicInfo.m_albumId = QString::number(value["albumId"].toULongLong());
+                        musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                        musicInfo.m_smallPicUrl = value["picUrl"].toString();
+                        musicInfo.m_singerName = singerName;
+                        musicInfo.m_songName = songName;
+                        musicInfo.m_timeLength = duration;
+                        m_musicSongInfos << musicInfo;
                     }
                     else
                     {
-                        QVariantList mvs = value["mv_list"].toList();
+                        QVariantList mvs = value["mvList"].toList();
                         if(!mvs.isEmpty())
                         {
                             QString duration;
@@ -296,20 +304,31 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                                     continue;
                                 }
 
-                                duration = mvUrlValue["duration"].toString();
-                                int bitRate = mvUrlValue["bitrate"].toInt();
+                                int bitRate = mvUrlValue["bitRate"].toInt();
                                 if(bitRate == 0)
                                 {
                                     continue;
                                 }
+
+                                duration = MusicTime::msecTime2LabelJustified(mvUrlValue["duration"].toInt());
                                 MusicObject::MusicSongAttribute songAttr;
-                                songAttr.m_bitrate = bitRate;
+
+                                if(bitRate > 375 && bitRate <= 625)
+                                    songAttr.m_bitrate = MB_500;
+                                else if(bitRate > 625 && bitRate <= 875)
+                                    songAttr.m_bitrate = MB_750;
+                                else if(bitRate > 875)
+                                    songAttr.m_bitrate = MB_1000;
+                                else
+                                    songAttr.m_bitrate = bitRate;
+
                                 songAttr.m_format = mvUrlValue["suffix"].toString();
                                 songAttr.m_url = mvUrlValue["url"].toString();
-                                songAttr.m_size = mvUrlValue["size"].toString();
+                                songAttr.m_size = MusicUtils::UNumber::size2Label(mvUrlValue["size"].toInt());
                                 musicInfo.m_songAttrs << songAttr;
                             }
                             emit createSearchedItems(songName, singerName, duration);
+
                             musicInfo.m_singerName = singerName;
                             musicInfo.m_songName = songName;
                             m_musicSongInfos << musicInfo;
@@ -331,6 +350,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
             M_LOGGER_ERROR("not find the song_Id");
         }
     }
+
     emit downLoadDataChanged(QString());
     deleteAll();
 }

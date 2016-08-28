@@ -19,8 +19,10 @@ HEADERS  += \
     $$PWD/tt/musicttdatadownloadthread.h \
     $$PWD/tt/musictttextdownloadthread.h \
     $$PWD/tt/musicdownloadqueryttthread.h \
+    $$PWD/tt/musicdownloadqueryalbumttthread.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
+    $$PWD/wy/musicdownloadqueryalbumwythread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicdatadownloadthread.h \
@@ -49,8 +51,10 @@ SOURCES += \
     $$PWD/tt/musicttdatadownloadthread.cpp \
     $$PWD/tt/musictttextdownloadthread.cpp \
     $$PWD/tt/musicdownloadqueryttthread.cpp \
+    $$PWD/tt/musicdownloadqueryalbumttthread.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \
+    $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicdatadownloadthread.cpp \

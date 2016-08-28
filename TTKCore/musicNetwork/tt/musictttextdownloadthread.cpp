@@ -50,8 +50,8 @@ void MusicTTTextDownLoadThread::startToDownload()
         }
         else
         {
-            emit downLoadDataChanged("The ttop text file create failed");
-            M_LOGGER_ERROR("The ttop text file create failed!");
+            emit downLoadDataChanged("The ttpod text file create failed");
+            M_LOGGER_ERROR("The ttpod text file create failed!");
             deleteAll();
         }
     }
@@ -92,7 +92,7 @@ void MusicTTTextDownLoadThread::downLoadFinished()
                     outstream.setCodec("utf-8");
                     outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
                     m_file->close();
-                    M_LOGGER_INFO("ttop text download  has finished!");
+                    M_LOGGER_INFO("ttpod text download  has finished!");
                 }
             }
 #else
@@ -111,7 +111,7 @@ void MusicTTTextDownLoadThread::downLoadFinished()
                         outstream.setCodec("utf-8");
                         outstream << value["lrc"].toString().remove("\r").toUtf8() << endl;
                         m_file->close();
-                        M_LOGGER_INFO("ttop text download  has finished!");
+                        M_LOGGER_INFO("ttpod text download  has finished!");
                     }
                 }
             }
@@ -119,7 +119,7 @@ void MusicTTTextDownLoadThread::downLoadFinished()
         }
         else
         {
-            M_LOGGER_ERROR("ttop text download file error!");
+            M_LOGGER_ERROR("ttpod text download file error!");
             m_file->remove();
             m_file->close();
         }

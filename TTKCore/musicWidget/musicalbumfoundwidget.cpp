@@ -292,7 +292,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         topFuncWidget->setLayout(topFuncLayout);
         grid->addWidget(topFuncWidget);
         ////////////////////////////////////////////////////////////////////////////
-        QLabel *songItems = new QLabel("|" + tr("songItems") + QString("(%1)").arg(10), function);
+        QLabel *songItems = new QLabel("|" + tr("songItems") + QString("(%1)").arg(musicSongInfos.count()), function);
         songItems->setFixedHeight(50);
         songItems->setStyleSheet(MusicUIObject::MCustomStyle03);
         grid->addWidget(songItems);

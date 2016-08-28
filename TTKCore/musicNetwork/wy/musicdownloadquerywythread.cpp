@@ -177,6 +177,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
 
                 QJsonObject albumObject = object.value("album").toObject();
                 info.m_smallPicUrl = albumObject.value("picUrl").toString();
+                info.m_albumId = QString::number(albumObject.value("id").toVariant().toInt());
 
                 QJsonArray artistsArray = object.value("artists").toArray();
                 foreach(const QJsonValue &artistValue, artistsArray)
@@ -253,6 +254,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
 
                     QVariantMap albumObject = value["album"].toMap();
                     info.m_smallPicUrl = albumObject["picUrl"].toString();
+                    info.m_albumId = QString::number(albumObject["id"].toInt());
 
                     QVariantList artistsArray = value["artists"].toList();
                     foreach(const QVariant &artistValue, artistsArray)
@@ -342,15 +344,17 @@ void MusicDownLoadQueryWYThread::mvListFinished()
             QJsonObject brsObject = object.take("brs").toObject();
             foreach(const QString &key, brsObject.keys())
             {
+                int bit = key.toInt();
                 MusicObject::MusicSongAttribute attr;
-                if(key == "480")
+                if(bit > 375 && bit <= 625)
                     attr.m_bitrate = MB_500;
-                else if(key == "720")
+                else if(bit > 625 && bit <= 875)
                     attr.m_bitrate = MB_750;
-                else if(key == "1080")
+                else if(bit > 875)
                     attr.m_bitrate = MB_1000;
                 else
-                    attr.m_bitrate = key.toInt();
+                    attr.m_bitrate = bit;
+
                 attr.m_url = brsObject.value(key).toString();
                 attr.m_format = attr.m_url.right(3);
                 attr.m_size = QString();
@@ -389,15 +393,17 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                 value = value["brs"].toMap();
                 foreach(const QString &key, value.keys())
                 {
+                    int bit = key.toInt();
                     MusicObject::MusicSongAttribute attr;
-                    if(key == "480")
+                    if(bit > 375 && bit <= 625)
                         attr.m_bitrate = MB_500;
-                    else if(key == "720")
+                    else if(bit > 625 && bit <= 875)
                         attr.m_bitrate = MB_750;
-                    else if(key == "1080")
+                    else if(bit > 875)
                         attr.m_bitrate = MB_1000;
                     else
-                        attr.m_bitrate = key.toInt();
+                        attr.m_bitrate = bit;
+
                     attr.m_url = value[key].toString();
                     attr.m_format = attr.m_url.right(3);
                     attr.m_size = QString();
