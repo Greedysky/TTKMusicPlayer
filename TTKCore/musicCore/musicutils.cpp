@@ -158,19 +158,19 @@ QString MusicUtils::UNumber::size2Label(qint64 size)
     QString label = size2Number(size);
     if( size < MH_KB2B)
     {
-        return QString("%1 Byte").arg(label);
+        return QString("%1 B").arg(label);
     }
     else if( MH_KB2B <= size && size < MH_MB2B)
     {
-        return QString("%1 KByte").arg(label);
+        return QString("%1 KB").arg(label);
     }
     else if( MH_MB2B <= size && size < MH_GB2B)
     {
-        return QString("%1 MByte").arg(label);
+        return QString("%1 MB").arg(label);
     }
     else if( MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString("%1 TByte").arg(label);
+        return QString("%1 TB").arg(label);
     }
     else
     {

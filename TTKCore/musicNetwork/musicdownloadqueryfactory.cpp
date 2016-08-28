@@ -67,7 +67,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(cons
         switch( index )
         {
             case 0: return (new MusicDataDownloadThread(url, save, type, parent));
-            case 4: return (new MusicTTDataDownloadThread(url, save, type, parent));
+            case 4: return (new MusicDataDownloadThread(url, save, type, parent));
         }
     }
     return (new MusicDataDownloadThread(url, save, type, parent));

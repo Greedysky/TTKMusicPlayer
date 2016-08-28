@@ -1,11 +1,12 @@
 #include "musicsimilarfoundwidget.h"
-#include "musicsourcedownloadthread.h"
 #include "musicsongssummarizied.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+
+#include "musicsourcedownloadthread.h"
 
 #include <QCheckBox>
 #include <QBoxLayout>
@@ -47,6 +48,16 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
     }
 }
 
+void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
+                                                       const QString &time)
+{
+    if(rowCount() >= 20)
+    {
+        return;
+    }
+    MusicQueryFoundTableWidget::createSearchedItems(songname, artistname, time);
+}
+
 void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryFoundTableWidget::resizeEvent(event);
@@ -58,7 +69,7 @@ void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 400));
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
     }
 }
 
@@ -84,7 +95,6 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     m_mainWindow->setLayout(mLayout);
 
     m_similarTableWidget = new MusicSimilarFoundTableWidget(this);
-    m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
@@ -106,6 +116,7 @@ QString MusicSimilarFoundWidget::getClassName()
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;
+    m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
     m_similarTableWidget->startSearchQuery(name.split("-").back().trimmed());
 }
 
@@ -213,9 +224,7 @@ void MusicSimilarFoundWidget::createLabels()
         if(data.m_singerName.contains(artName) && downloadCounter < 3)
         {
             downloadCounter++;
-            MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-            connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-            download->startToDownload(data.m_smallPicUrl);
+            urlHasChanged(data.m_smallPicUrl);
         }
     }
 
@@ -234,6 +243,13 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
             return;
         }
     }
+}
+
+void MusicSimilarFoundWidget::urlHasChanged(const QString &imageUrl)
+{
+    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    download->startToDownload(imageUrl);
 }
 
 void MusicSimilarFoundWidget::playButtonClicked()

@@ -66,13 +66,6 @@ public:
      * Set current name to search founds.
      */
 
-Q_SIGNALS:
-    void muiscSongToPlayListChanged(const QString &name, const QString &time,
-                                    const QString &format, bool play);
-    /*!
-     * Add current network music to download to local.
-     */
-
 public Q_SLOTS:
     void queryAllFinished();
     /*!

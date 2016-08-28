@@ -105,6 +105,10 @@ public:
     /*!
      * Get class object name.
      */
+    virtual void startSearchQuery(const QString &text);
+    /*!
+     * Start search query by text.
+     */
 
 public Q_SLOTS:
     virtual void actionGroupClick(QAction *action);

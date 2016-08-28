@@ -13,8 +13,6 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(2, 193);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
-
-    connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
@@ -34,6 +32,8 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
+    MusicQueryItemTableWidget::startSearchQuery(text);
+    connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 

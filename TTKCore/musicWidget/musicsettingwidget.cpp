@@ -276,7 +276,6 @@ void MusicSettingWidget::initDownloadWidget()
     ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
-    ui->downloadServerMultiple->setEnabled(false);
     ui->downloadServerMultiple->setChecked(false);
     ui->downloadServerMultiple->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 

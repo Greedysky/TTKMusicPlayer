@@ -39,8 +39,6 @@ void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
-    setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
-
     m_actionGroup = new QActionGroup(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
@@ -54,6 +52,12 @@ MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
 QString MusicQueryItemTableWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
+{
+    Q_UNUSED(text);
+    setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
 }
 
 void MusicQueryItemTableWidget::actionGroupClick(QAction *action)

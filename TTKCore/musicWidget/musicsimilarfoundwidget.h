@@ -34,6 +34,13 @@ public:
      * Set network query input.
      */
 
+public Q_SLOTS:
+    virtual void createSearchedItems(const QString &songname, const QString &artistname,
+                                     const QString &time) override;
+    /*!
+     * Create searched items.
+     */
+
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     /*!
@@ -74,6 +81,10 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &data);
     /*!
      * Send recieved data from net.
+     */
+    void urlHasChanged(const QString &imageUrl);
+    /*!
+     * Data download finished and send to shared on web.
      */
     void playButtonClicked();
     /*!
