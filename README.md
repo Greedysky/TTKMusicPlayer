@@ -9,13 +9,13 @@ Usage
 **The music player use of qmmp core library based on Qt.
 Compiler tutorial I have written in the wiki.(See here)<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u>**
 
-#### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
+### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.5 for ubuntu-linux-gcc 64bit
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
