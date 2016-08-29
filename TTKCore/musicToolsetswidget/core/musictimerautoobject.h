@@ -15,6 +15,23 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+typedef struct MUSIC_TOOLSET_EXPORT TimeObjectPair
+{
+    int m_index;
+    int m_hour;
+    int m_minute;
+    bool m_state;
+
+    TimeObjectPair()
+    {
+        m_index = -1;
+        m_hour = -1;
+        m_minute = -1;
+        m_state = false;
+    }
+}TimeObjectPair;
+TTK_DECLARE_LISTS(TimeObjectPair)
+
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
@@ -37,16 +54,6 @@ public:
      * Run time auto from local file config.
      */
 
-Q_SIGNALS:
-    void setPlaySong(int index);
-    /*!
-     * Set current song to play in play list.
-     */
-    void setStopSong();
-    /*!
-     * Set current song to stop in play list.
-     */
-
 public Q_SLOTS:
     void timeout();
     /*!
@@ -54,19 +61,13 @@ public Q_SLOTS:
      */
 
 protected:
-    bool systemIs64bit() const;
-    /*!
-     * Check current system is 64 bit or not.
-     */
     void setShutdown();
     /*!
      * Set current system to shutdown.
      */
 
     QTimer m_timer;
-    int m_hour;
-    int m_second;
-    int m_funcIndex;
+    TimeObjectPairs m_timeObjects;
 
 };
 

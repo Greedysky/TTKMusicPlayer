@@ -63,9 +63,6 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     group3->addButton(ui->noSetRadioButton3, 4);
     group3->addButton(ui->setRadioButton3, 5);
     connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-
-    connect(this, SIGNAL(timerParameterChanged()), MusicApplicationObject::instance(),
-                  SLOT(musicToolSetsParameter()));
 }
 
 MusicTimerWidget::~MusicTimerWidget()
@@ -253,7 +250,7 @@ void MusicTimerWidget::initThreeWidget()
 void MusicTimerWidget::commitTheResults()
 {
     writeParemeter();
-    emit timerParameterChanged();
+    MusicApplicationObject::instance()->musicToolSetsParameter();
     close();
 }
 

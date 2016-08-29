@@ -39,12 +39,6 @@ public:
      * Set current songs path list.
      */
 
-Q_SIGNALS:
-    void timerParameterChanged();
-    /*!
-     * Timer parameter changed it emit.
-     */
-
 public Q_SLOTS:
     void changeFirstWidget();
     /*!

@@ -32,10 +32,6 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     windowStartAnimationOpacity();
 
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
-    connect(m_musicTimerAutoObj, SIGNAL(setPlaySong(int)), parent,
-                                 SLOT(setPlaySongChanged(int)));
-    connect(m_musicTimerAutoObj, SIGNAL(setStopSong()), parent,
-                                 SLOT(setStopSongChanged()));
 #ifdef Q_OS_UNIX
     m_mobileDevicesLinux = new MusicMobileDevicesThread(this);
     connect(m_mobileDevicesLinux, SIGNAL(devicesChanged(bool)), SLOT(musicDevicesLinuxChanged(bool)));
