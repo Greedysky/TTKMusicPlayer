@@ -13,6 +13,7 @@
 #include "musicutils.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
+#include "musicrightareawidget.h"
 
 #include <QTimer>
 
@@ -100,6 +101,10 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("gain"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_detect")
+                                                ,tr("detect"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/lb_soundtouch")
                                                 ,tr("soundtouch"), this);
     item->setSizeHint(QSize(80, 90));
@@ -167,6 +172,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 break;
             }
         case 10:
+            {
+                MusicRightAreaWidget::instance()->musicFunctionClicked(9);
+                break;
+            }
+        case 11:
             {
                 MusicSoundTouchWidget(this).exec();
                 break;

@@ -96,6 +96,7 @@
         <file alias="lb_speed">../TTKResource/tools/lb_speed.png</file>
         <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
         <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
+        <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -319,6 +320,15 @@
         <file alias="lb_wired">../TTKResource/toolSets/lb_wired.png</file>
         <file alias="lb_wireless">../TTKResource/toolSets/lb_wireless.png</file>
         <file alias="lb_wired_con">../TTKResource/toolSets/lb_wired_con.png</file>
+        <file alias="btn_detect_hover">../TTKResource/toolSets/btn_detect_hover.png</file>
+        <file alias="btn_detect_normal">../TTKResource/toolSets/btn_detect_normal.png</file>
+        <file alias="btn_detect_stop_hover">../TTKResource/toolSets/btn_detect_stop_hover.png</file>
+        <file alias="btn_detect_stop_normal">../TTKResource/toolSets/btn_detect_stop_normal.png</file>
+        <file alias="btn_redetect_disable">../TTKResource/toolSets/btn_redetect_disable.png</file>
+        <file alias="btn_redetect_hover">../TTKResource/toolSets/btn_redetect_hover.png</file>
+        <file alias="btn_redetect_normal">../TTKResource/toolSets/btn_redetect_normal.png</file>
+        <file alias="lb_radar">../TTKResource/toolSets/lb_radar.gif</file>
+        <file alias="lb_detect_error">../TTKResource/toolSets/lb_detect_error.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_arrow_up_normal">../TTKResource/tiny/lb_arrow_up_normal.png</file>

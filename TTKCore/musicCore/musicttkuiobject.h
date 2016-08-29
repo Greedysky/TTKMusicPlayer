@@ -356,6 +356,25 @@ namespace MusicUIObject
             QPushButton:hover{ background-image: url(:/video/lb_big_on_hover);}";
 
 
+///music tool sets button style
+/////////////////////////////////////////////////////
+    const QString MKGSongsDetectStartBtn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_detect_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_detect_hover);}";
+
+    const QString MKGSongsDetectStopBtn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_detect_stop_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_detect_stop_hover);}";
+
+    const QString MKGSongsRedetectBtn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_redetect_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_redetect_hover);} \
+            QPushButton:disabled{ background-image: url(:/toolSets/btn_redetect_hover);}";
+
+
 ///video float button style
 /////////////////////////////////////////////////////
     const QString MKGInlineFloatMore = " \

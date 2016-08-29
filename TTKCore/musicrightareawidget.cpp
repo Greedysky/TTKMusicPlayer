@@ -10,6 +10,7 @@
 #include "musicalbumfoundwidget.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
+#include "musicidentifysongswidget.h"
 #include "musicttkuiobject.h"
 
 #include "kugouwindow.h"
@@ -320,6 +321,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(albumFoundWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(albumFoundWidget);
                 m_stackedFuncWidget = albumFoundWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
+        case 9: //insert indentify songs widget
+            {
+                MusicIdentifySongsWidget *songsIdentifyWidget = new MusicIdentifySongsWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(songsIdentifyWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(songsIdentifyWidget);
+                m_stackedFuncWidget = songsIdentifyWidget;
                 emit updateBackgroundTheme();
                 break;
             }
