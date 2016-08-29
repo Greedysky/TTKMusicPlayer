@@ -102,7 +102,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongMovieFound()));
+    connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongMovieFoundPy()));
 
     connect(MusicLeftAreaWidget::instance(), SIGNAL(currentLoveStateChanged()), SLOT(currentLoveStateClicked()));
     connect(MusicLeftAreaWidget::instance(), SIGNAL(currentDownloadStateChanged()), SLOT(currentDownloadStateClicked()));
@@ -158,8 +158,8 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
 
     menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), parent(), SLOT(musicSongTransferWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), parent(), SLOT(musicSongTransferWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicSimilarFoundWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicSimilarFoundWidgetPy()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongSharedWidgetPy()));
     menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 }
 

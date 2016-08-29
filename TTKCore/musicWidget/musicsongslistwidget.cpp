@@ -462,6 +462,11 @@ void MusicSongsListWidget::musicSongMovieFound()
     MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
 }
 
+void MusicSongsListWidget::musicSongMovieFoundPy()
+{
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getSongName(m_playRowIndex) );
+}
+
 void MusicSongsListWidget::musicAlbumFoundWidget()
 {
     MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName() );
@@ -472,10 +477,22 @@ void MusicSongsListWidget::musicSimilarFoundWidget()
     MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );
 }
 
+void MusicSongsListWidget::musicSimilarFoundWidgetPy()
+{
+    MusicRightAreaWidget::instance()->musicSimilarFound( getSongName(m_playRowIndex) );
+}
+
 void MusicSongsListWidget::musicSongSharedWidget()
 {
     MusicSongSharingWidget shareWidget(this);
     shareWidget.setSongName( getCurrentSongName() );
+    shareWidget.exec();
+}
+
+void MusicSongsListWidget::musicSongSharedWidgetPy()
+{
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setSongName( getSongName(m_playRowIndex) );
     shareWidget.exec();
 }
 
@@ -747,7 +764,12 @@ QString MusicSongsListWidget::getCurrentSongPath() const
         return QString();
     }
 
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath().trimmed() : QString();
+    return getSongPath( currentRow() );
+}
+
+QString MusicSongsListWidget::getSongPath(int index) const
+{
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath().trimmed() : QString();
 }
 
 QString MusicSongsListWidget::getCurrentSongName() const
@@ -757,5 +779,10 @@ QString MusicSongsListWidget::getCurrentSongName() const
         return QString();
     }
 
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicName().trimmed() : QString();
+    return getSongName( currentRow() );
+}
+
+QString MusicSongsListWidget::getSongName(int index) const
+{
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName().trimmed() : QString();
 }

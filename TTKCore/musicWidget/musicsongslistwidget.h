@@ -193,6 +193,10 @@ public Q_SLOTS:
     /*!
      * To search song mv by song name.
      */
+    void musicSongMovieFoundPy();
+    /*!
+     * To search song mv by song name in play widget.
+     */
     void musicAlbumFoundWidget();
     /*!
      * Open music album found widget.
@@ -201,9 +205,17 @@ public Q_SLOTS:
     /*!
      * Open music similar found widget.
      */
+    void musicSimilarFoundWidgetPy();
+    /*!
+     * Open music similar found widget in play widget.
+     */
     void musicSongSharedWidget();
     /*!
      * Open music song shared widget.
+     */
+    void musicSongSharedWidgetPy();
+    /*!
+     * Open music song shared widget in play widget.
      */
     void musicSongTransferWidget();
     /*!
@@ -245,9 +257,17 @@ protected:
     /*!
      * Get current song path.
      */
+    QString getSongPath(int index) const;
+    /*!
+     * Get song path.
+     */
     QString getCurrentSongName() const;
     /*!
      * Get current song name.
+     */
+    QString getSongName(int index) const;
+    /*!
+     * Get song name.
      */
 
     int m_transparent, m_parentToolIndex;
