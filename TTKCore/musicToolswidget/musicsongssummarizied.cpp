@@ -22,7 +22,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
     connect(this, SIGNAL(musicPlayIndex(int)), parent, SLOT(musicPlayIndex(int)));
     connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
-    connect(this, SIGNAL(showCurrentSong(int)), parent, SLOT(showCurrentSong(int)));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
@@ -344,7 +343,7 @@ void MusicSongsSummarizied::setCurrentIndex()
     int index = keyList[2].toInt();
     MusicSongsToolBoxWidget::setCurrentIndex(index);
     setMusicPlayCount(index);
-    emit showCurrentSong(index);
+    MusicApplication::instance()->showCurrentSong(index);
 }
 
 void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
@@ -425,6 +424,19 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
     for(int i=index.count()-1; i>=0; --i)
     {
         MusicSong song = item->m_songs.takeAt(index[i]);
+        if( (m_currentDeleteIndex != -1 && m_currentDeleteIndex == MUSIC_LOVEST_LIST) ||
+            (m_currentIndex != m_currentPlayToolIndex && m_currentIndex == MUSIC_LOVEST_LIST) )
+        {
+            int playIndex = m_songItems[m_currentPlayToolIndex].m_itemObject->getPlayRowIndex();
+            MusicSongs songs = m_songItems[m_currentPlayToolIndex].m_songs;
+            if(playIndex > -1 || playIndex < songs.count())
+            {
+                if(songs[playIndex].getMusicPath() == song.getMusicPath())
+                {
+                    MusicApplication::instance()->musicAddSongToLovestListAt();
+                }
+            }
+        }
         if(fileRemove)
         {
             QFile::remove(song.getMusicPath());
@@ -432,7 +444,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
     }
     if(m_currentIndex == m_currentPlayToolIndex)
     {
-        emit deleteItemAt(index, fileRemove);
+        MusicApplication::instance()->setDeleteItemAt(index, fileRemove);
     }
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 

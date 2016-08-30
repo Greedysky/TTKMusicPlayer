@@ -71,7 +71,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), m_musicSongTree, SLOT(setMusicPlayCount(int)));
 
-    connect(m_musicSongTree, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
     connect(m_musicSongTree, SIGNAL(clearSearchText()), m_bottomAreaWidget, SLOT(clearSearchedText()));
     connect(m_musicSongTree, SIGNAL(updatePlayLists(QString)), m_musicList, SLOT(appendMedia(QString)));
     connect(m_musicSongTree, SIGNAL(updateMediaLists(QStringList, int)), m_musicList, SLOT(updateMediaLists(QStringList, int)));
@@ -560,7 +559,7 @@ void MusicApplication::musicAddSongToLovestListAt()
     bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
     state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
 
-    if(m_currentMusicSongTreeIndex == 1)
+    if(m_currentMusicSongTreeIndex == MUSIC_LOVEST_LIST)
     {
         setDeleteItemAt(MusicObject::MIntList() << index, false);
     }

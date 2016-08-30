@@ -108,17 +108,9 @@ public:
      */
 
 Q_SIGNALS:
-    void deleteItemAt(const MusicObject::MIntList &list, bool remove);
-    /*!
-     * Delete items from indexs if in current stack widget.
-     */
     void updatePlayLists(const QString &list);
     /*!
      * Update music song to lovest if in current stack widget.
-     */
-    void showCurrentSong(int index);
-    /*!
-     * Show current song some information.
      */
     void updateMediaLists(const QStringList &list, int index);
     /*!

@@ -60,6 +60,10 @@ public:
     /*!
      * Select the current play row.
      */
+    inline int getPlayRowIndex() const { return m_playRowIndex; }
+    /*!
+     * Get the current play row.
+     */
     inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
     /*!
      * Set current play mode.
