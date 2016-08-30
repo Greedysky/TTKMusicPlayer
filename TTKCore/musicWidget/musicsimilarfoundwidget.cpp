@@ -51,7 +51,7 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
                                                        const QString &time)
 {
-    if(rowCount() >= 20)
+    if(rowCount() >= 15)
     {
         return;
     }

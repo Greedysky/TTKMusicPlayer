@@ -211,6 +211,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
         m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
         m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
+        m_ui->line->hide();
     }
     else
     {
@@ -218,6 +219,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
         m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
         m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
+        m_ui->line->show();
     }
 
     deleteStackedFuncWidget();
