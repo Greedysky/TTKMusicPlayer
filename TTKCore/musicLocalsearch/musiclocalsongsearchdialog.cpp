@@ -1,7 +1,7 @@
 #include "musiclocalsongsearchdialog.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicuiobject.h"
-#include "musicttkuiobject.h"
+#include "musictinyuiobject.h"
 
 #include <QLabel>
 #include <QBoxLayout>

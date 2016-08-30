@@ -1,5 +1,5 @@
 #include "musicvideobarragestylepopwidget.h"
-#include "musicttkuiobject.h"
+#include "musicvideouiobject.h"
 #include "musicuiobject.h"
 
 #include <QLabel>

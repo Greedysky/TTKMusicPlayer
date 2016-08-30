@@ -10,6 +10,26 @@
 # * works are strictly forbiden.
 # =================================================
 
+INCLUDEPATH += $$PWD
+
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
+HEADERS  += \
+    $$PWD/musicuiobject.h \
+    $$PWD/musiccontextuiobject.h \
+    $$PWD/musicdesktoplrcuiobject.h \
+    $$PWD/musicfunctionlistuiobject.h \
+    $$PWD/musicfunctionuiobject.h \
+    $$PWD/musicinlinefloatuiobject.h \
+    $$PWD/musicinlinelrcuiobject.h \
+    $$PWD/musicleftitemlistuiobject.h \
+    $$PWD/musicmagicwidgetuiobject.h \
+    $$PWD/musicqualitywidgetuiobject.h \
+    $$PWD/musictinyuiobject.h \
+    $$PWD/musictoolsetsuiobject.h \
+    $$PWD/musicvideofloatuiobject.h \
+    $$PWD/musicvideouiobject.h
+}
+
 FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcmanager/musiclrcartphotoupload.ui \

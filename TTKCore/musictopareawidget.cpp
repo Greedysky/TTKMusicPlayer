@@ -11,7 +11,8 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicuiobject.h"
-#include "musicttkuiobject.h"
+#include "musictinyuiobject.h"
+#include "musicfunctionuiobject.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 

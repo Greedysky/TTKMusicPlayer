@@ -16,8 +16,6 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
-    $$PWD/musicuiobject.h \
-    $$PWD/musicttkuiobject.h \
     $$PWD/musicutils.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \

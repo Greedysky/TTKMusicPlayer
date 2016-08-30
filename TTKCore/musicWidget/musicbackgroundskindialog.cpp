@@ -2,7 +2,7 @@
 #include "ui_musicbackgroundskindialog.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundpalettewidget.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
 #include "musicobject.h"
 #include "musicutils.h"
 #include "musicapplicationobject.h"

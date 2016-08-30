@@ -1,5 +1,5 @@
 #include "musicplaybackmodewidget.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
 #include "musicuiobject.h"
 
 MusicPlayBackModeWidget::MusicPlayBackModeWidget(QWidget *parent)

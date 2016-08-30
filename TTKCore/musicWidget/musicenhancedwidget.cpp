@@ -1,7 +1,8 @@
 #include "musicenhancedwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
+#include "musicmagicwidgetuiobject.h"
 #include "musicapplicationobject.h"
 
 #include <QLabel>

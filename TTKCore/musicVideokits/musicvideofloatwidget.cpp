@@ -1,5 +1,5 @@
 #include "musicvideofloatwidget.h"
-#include "musicttkuiobject.h"
+#include "musicvideofloatuiobject.h"
 
 #include <QPushButton>
 

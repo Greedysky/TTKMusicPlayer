@@ -1,8 +1,8 @@
 #include "musicqualitychoicewidget.h"
 #include "musicuiobject.h"
+#include "musicqualitywidgetuiobject.h"
 #include "musicitemdelegate.h"
 #include "musicrightareawidget.h"
-#include "musicttkuiobject.h"
 
 #include <QBoxLayout>
 

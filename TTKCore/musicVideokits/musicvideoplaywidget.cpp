@@ -5,7 +5,8 @@
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicobject.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
+#include "musictinyuiobject.h"
 #include "musicsettingmanager.h"
 
 #include <QBoxLayout>

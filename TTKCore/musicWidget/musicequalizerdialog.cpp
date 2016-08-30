@@ -2,7 +2,7 @@
 #include "ui_musicequalizerdialog.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicttkuiobject.h"
+#include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicutils.h"
 #include "musicplayer.h"

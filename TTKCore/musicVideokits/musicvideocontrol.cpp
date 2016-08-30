@@ -1,7 +1,7 @@
 #include "musicvideocontrol.h"
 #include "musicdownloadwidget.h"
 #include "musicmovinglabelslider.h"
-#include "musicttkuiobject.h"
+#include "musicvideouiobject.h"
 #include "musicvolumepopwidget.h"
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"

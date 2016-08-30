@@ -9,7 +9,7 @@
 #include "musiclrcanalysis.h"
 #include "musicutils.h"
 #include "musicnumberdefine.h"
-#include "musicttkuiobject.h"
+#include "musicinlinelrcuiobject.h"
 #include "musicrightareawidget.h"
 
 #include <QPainter>

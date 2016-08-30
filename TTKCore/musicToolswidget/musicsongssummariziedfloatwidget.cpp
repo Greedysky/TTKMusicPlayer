@@ -2,7 +2,7 @@
 #include "musicnumberdefine.h"
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
-#include "musicttkuiobject.h"
+#include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
 

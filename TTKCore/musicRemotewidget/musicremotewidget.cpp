@@ -5,7 +5,7 @@
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
-#include "musicttkuiobject.h"
+#include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)

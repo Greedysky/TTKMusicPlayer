@@ -8,7 +8,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
 #include "musicversion.h"
-#include "musicuiobject.h"
+#include "musicfunctionuiobject.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicbottomareawidget.h"
@@ -17,7 +17,7 @@
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
 #include "musicglobalhotkey.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
 
 MusicApplication *MusicApplication::m_instance = nullptr;

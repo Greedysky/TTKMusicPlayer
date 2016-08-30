@@ -11,7 +11,9 @@
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicidentifysongswidget.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
+#include "musictinyuiobject.h"
+#include "musicfunctionlistuiobject.h"
 
 #include "kugouwindow.h"
 

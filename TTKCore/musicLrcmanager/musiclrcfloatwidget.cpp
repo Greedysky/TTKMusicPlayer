@@ -1,7 +1,7 @@
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatphotowidget.h"
 #include "musiclrcfloatsettingwidget.h"
-#include "musicttkuiobject.h"
+#include "musicinlinefloatuiobject.h"
 
 #include <QPushButton>
 

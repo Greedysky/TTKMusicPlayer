@@ -7,7 +7,7 @@
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
-#include "musicttkuiobject.h"
+#include "musictinyuiobject.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)

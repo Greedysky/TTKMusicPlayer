@@ -1,5 +1,5 @@
 #include "musicplayedlistwidget.h"
-#include "musicttkuiobject.h"
+#include "musicfunctionuiobject.h"
 #include "musicuiobject.h"
 
 #include <QLabel>
