@@ -1,10 +1,11 @@
 #include "musicidentifysongswidget.h"
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
+#include "musicnumberdefine.h"
 
 #include <QMovie>
 #include <QTimer>
-#include <QPainter>
+#include <QShortcut>
 #include <QBoxLayout>
 #include <QStackedWidget>
 
@@ -20,11 +21,19 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
+    m_timer = new QTimer(this);
+    m_timer->setInterval(15*MT_S2MS);
+    connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
+
+    QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
+    connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
+
     createDetectedWidget();
 }
 
 MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
 {
+    delete m_timer;
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
@@ -41,13 +50,14 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
     if(m_detectedButton->styleSheet().contains(MusicUIObject::MKGSongsDetectStartBtn))
     {
         m_detectedMovie->start();
+        m_timer->start();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStopBtn);
         m_detectedLabel->setText(tr("Recogniting the music being played"));
-        QTimer::singleShot(3000, this, SLOT(detectedTimeOut()));
     }
     else
     {
         m_detectedMovie->stop();
+        m_timer->stop();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStartBtn);
         m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
     }
@@ -55,7 +65,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 
 void MusicIdentifySongsWidget::detectedTimeOut()
 {
-    m_detectedMovie->stop();
+    detectedButtonClicked();
     createDetectedFailedWidget();
 }
 
@@ -83,7 +93,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     m_detectedLabel = new QLabel(widget);
     m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
 
-    QLabel *text = new QLabel(tr("ShotCut: AA + AA + A"), widget);
+    QLabel *text = new QLabel(tr("ShotCut:") + " Shift+Ctrl+T", widget);
     text->setStyleSheet(MusicUIObject::MCustomStyle02);
 
     widgetLayout->addStretch(2);
@@ -114,6 +124,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text1Label = new QLabel(tr("No Songs Identified"), widget);
     QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
+    text3Label->setStyleSheet(MusicUIObject::MCustomStyle02);
 
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);

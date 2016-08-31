@@ -36,13 +36,29 @@ public:
 
 public Q_SLOTS:
     void detectedButtonClicked();
+    /*!
+     * Detected the song button clicked.
+     */
     void detectedTimeOut();
+    /*!
+     * Detected the song finished.
+     */
 
 protected:
     void createDetectedWidget();
+    /*!
+     * Create the detected widget.
+     */
     void createDetectedSuccessedWidget();
+    /*!
+     * Create the detected successed widget.
+     */
     void createDetectedFailedWidget();
+    /*!
+     * Create the detected failed widget.
+     */
 
+    QTimer *m_timer;
     QStackedWidget *m_mainWindow;
     QLabel *m_detectedLabel;
     QMovie *m_detectedMovie;
