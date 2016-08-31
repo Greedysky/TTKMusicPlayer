@@ -34,6 +34,7 @@ public:
     static QString getClassName();
 
 public Q_SLOTS:
+    void goBack();
     void kugouSongIndexChanged(int index);
     void kugouRadioIndexChanged(int index);
     void kugouMVIndexChanged(int index);

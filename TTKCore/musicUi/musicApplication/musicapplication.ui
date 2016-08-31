@@ -666,7 +666,7 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="QToolButton" name="musicSearchBackButton">
+                <widget class="QToolButton" name="musicBackButton">
                  <property name="minimumSize">
                   <size>
                    <width>20</width>

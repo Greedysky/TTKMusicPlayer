@@ -95,3 +95,10 @@ QString KugouUrl::getMVStarMusicUrl()
 {
     return "http://www2.kugou.kugou.com/mv/v9/mtv/starmusic/getData.js?cdn=cdn";
 }
+
+
+
+QString KugouUrl::getWebPlayerUrl()
+{
+    return "http://web.kugou.com/index.html?";
+}

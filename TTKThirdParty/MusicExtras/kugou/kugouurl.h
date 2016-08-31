@@ -43,6 +43,9 @@ public:
     static QString getMVFanxingUrl();
     static QString getMVStarMusicUrl();
 
+    //kugou web
+    static QString getWebPlayerUrl();
+
 };
 
 #endif // KUGOUURL_H

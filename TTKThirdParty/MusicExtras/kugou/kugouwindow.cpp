@@ -47,6 +47,13 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
     : QWidget(parent)
 {
     TTK_INIT_PRIVATE;
+
+    QWebSettings *settings = QWebSettings::globalSettings();
+    settings->setAttribute(QWebSettings::PluginsEnabled, true);
+    settings->setAttribute(QWebSettings::JavascriptEnabled, true);
+    settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
+    settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+
     switch(type)
     {
         case KuGouSong:
@@ -69,6 +76,16 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 QString KugouWindow::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void KugouWindow::goBack()
+{
+    TTK_D(KugouWindow);
+    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->back();
+    }
 }
 
 void KugouWindow::kugouSongIndexChanged(int index)
@@ -170,6 +187,7 @@ void KugouWindow::createKugouSongWidget()
 
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
     layout->addWidget(d->m_topWidget);
     layout->addWidget(d->m_webView = view);
@@ -221,6 +239,7 @@ void KugouWindow::createKugouRadioWidget()
 
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
     layout->addWidget(d->m_topWidget);
     layout->addWidget(d->m_webView = view);
@@ -243,6 +262,7 @@ void KugouWindow::createKugouListWidget()
 #ifdef MUSIC_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     view->setUrl(QUrl( KugouUrl::getListUrl() ));
     layout->addWidget(d->m_webView = view);
 #else
@@ -291,6 +311,7 @@ void KugouWindow::createKugouMVWidget()
 
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
     layout->addWidget(d->m_topWidget);
     layout->addWidget(d->m_webView = view);

@@ -209,7 +209,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
-        m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
+        m_ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
         m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
         m_ui->line->hide();
     }
@@ -217,7 +217,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         musicButtonStyleClear(true);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
-        m_ui->musicSearchBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
+        m_ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
         m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
         m_ui->line->show();
     }
@@ -237,6 +237,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicSongWidgetButton->setStyleSheet(MusicUIObject::MKGFuncSongForeClicked);
+                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
                 break;
             }
@@ -246,6 +247,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicRadioWidgetButton->setStyleSheet(MusicUIObject::MKGFuncRadioForeClicked);
+                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
                 break;
             }
@@ -255,6 +257,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicListWidgetButton->setStyleSheet(MusicUIObject::MKGFuncListForeClicked);
+                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
                 break;
             }
@@ -279,6 +282,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->musicLiveWidgetButton->setStyleSheet(MusicUIObject::MKGFuncLiveForeClicked);
+                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
                 break;
             }
