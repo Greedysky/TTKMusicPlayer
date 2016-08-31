@@ -63,10 +63,20 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
     }
 }
 
+void MusicIdentifySongsWidget::reDetectButtonClicked()
+{
+    m_mainWindow->setCurrentIndex(0);
+}
+
 void MusicIdentifySongsWidget::detectedTimeOut()
 {
     detectedButtonClicked();
     createDetectedFailedWidget();
+}
+
+void MusicIdentifySongsWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
 }
 
 void MusicIdentifySongsWidget::createDetectedWidget()
@@ -130,10 +140,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
     reDetect->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(reDetect, &QPushButton::clicked, this, [&]()
-    {
-        m_mainWindow->setCurrentIndex(0);
-    });
+    connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
 
     widgetLayout->addStretch(2);
     widgetLayout->addWidget(iconLabel, 0, Qt::AlignCenter);

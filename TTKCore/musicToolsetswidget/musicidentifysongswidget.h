@@ -39,12 +39,20 @@ public Q_SLOTS:
     /*!
      * Detected the song button clicked.
      */
+    void reDetectButtonClicked();
+    /*!
+     * Retected the song button clicked.
+     */
     void detectedTimeOut();
     /*!
      * Detected the song finished.
      */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createDetectedWidget();
     /*!
      * Create the detected widget.
