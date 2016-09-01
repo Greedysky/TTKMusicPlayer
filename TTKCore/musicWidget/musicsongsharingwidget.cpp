@@ -47,6 +47,7 @@ QString MusicSongSharingWidget::getClassName()
 
 void MusicSongSharingWidget::setSongName(const QString &name)
 {
+    ui->sharedName->setToolTip(name);
     ui->sharedName->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
@@ -65,25 +66,17 @@ int MusicSongSharingWidget::exec()
 
 void MusicSongSharingWidget::confirmButtonClicked()
 {
-    QStringList infos = ui->sharedName->text().split('-');
-    if(infos.count() != 0)
+    MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
+    down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, ui->sharedName->text().trimmed());
+
+    QEventLoop loop;
+    connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!down->getMusicSongInfos().isEmpty())
     {
-        MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
-        down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, infos.front().trimmed());
-
-        QEventLoop loop;
-        connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        loop.exec();
-
-        if(!down->getMusicSongInfos().isEmpty())
-        {
-            MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
-            downLoadDataChanged(WEB_PLAYER + info.m_songId, info.m_smallPicUrl);
-        }
-        else
-        {
-            QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
-        }
+        MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
+        downLoadDataChanged(WEB_PLAYER + info.m_songId, info.m_smallPicUrl);
     }
     else
     {
