@@ -149,6 +149,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
+                    musicInfo.m_songId = songId;
                     musicInfo.m_albumId = QString::number(object.take("albumId").toVariant().toULongLong());
                     musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
                     musicInfo.m_smallPicUrl = object.take("picUrl").toString();
@@ -282,6 +283,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         }
                         emit createSearchedItems(songName, singerName, duration);
 
+                        musicInfo.m_songId = songId;
                         musicInfo.m_albumId = QString::number(value["albumId"].toULongLong());
                         musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
