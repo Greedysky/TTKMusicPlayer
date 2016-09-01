@@ -11,17 +11,20 @@
 
 #include "musicabstractmovedialog.h"
 
+#define WEB_PLAYER     "http://music.daoapp.io/player?song="
 
 #define QQ_SHARE       "http://connect.qq.com/widget/shareqq/index.html?" \
-                       "url=www.baidu.com&desc=%1&pics=%2&title=%3&summary=%4"
-#define RENREN_SHARE   "http://widget.renren.com/dialog/share?link=http:" \
-                       "//www.baidu.com&title=%1&image_src=%2"
-#define QQ_SPACE_SHARE "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey" \
-                       "?url=http://www.baidu.com&title=%1&pics=%2&summary=%3"
+                       "url=%1&desc=%2&pics=%3&title=%4&summary=%5"
+#define RENREN_SHARE   "http://widget.renren.com/dialog/share?link=%1" \
+                       "&title=%2&image_src=%3"
+#define QQ_SPACE_SHARE "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?" \
+                       "url=%1&title=%2&pics=%3&summary=%4"
 #define QQ_MICBG_SHARE "http://share.v.t.qq.com/index.php?c=share&a=index" \
-                       "&site=www.baidu.com&title=%1&pic=%2"
-#define SINA_SHARE     "http://service.weibo.com/share/share.php?pic=%1&title=%2"
+                       "&site=%1&title=%2&pic=%3"
+#define SINA_SHARE     "http://service.weibo.com/share/share.php?" \
+                       "url=%1&pic=%2&title=%3"
 
+class QRCodeQWidget;
 
 namespace Ui {
 class MusicSongSharingWidget;
@@ -62,7 +65,7 @@ public Q_SLOTS:
     /*!
      * Confirm button clicked.
      */
-    void urlHasChanged(const QString &imageUrl);
+    void downLoadDataChanged(const QString &playUrl, const QString &imageUrl);
     /*!
      * Data download finished and send to shared on web.
      */
@@ -77,6 +80,7 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicSongSharingWidget *ui;
+    QRCodeQWidget *m_qrCodeWidget;
 
 };
 

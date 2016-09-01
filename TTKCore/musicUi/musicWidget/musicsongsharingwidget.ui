@@ -165,7 +165,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_qq</normaloff>:/usermanager/lb_qq</iconset>
     </property>
    </widget>
@@ -182,7 +182,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_renren</normaloff>:/usermanager/lb_renren</iconset>
     </property>
    </widget>
@@ -199,7 +199,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_qq_space</normaloff>:/usermanager/lb_qq_space</iconset>
     </property>
    </widget>
@@ -216,7 +216,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_qqblog</normaloff>:/usermanager/lb_qqblog</iconset>
     </property>
    </widget>
@@ -271,7 +271,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="../../../TTKQrc/MusicPlayerUser.qrc">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_xinlang</normaloff>:/usermanager/lb_xinlang</iconset>
     </property>
    </widget>
@@ -286,10 +286,27 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     </property>
     <layout class="QVBoxLayout" name="QRCodeIconWidgetLayout"/>
    </widget>
+   <widget class="QRadioButton" name="weixingButton">
+    <property name="geometry">
+     <rect>
+      <x>385</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_weixing</normaloff>:/usermanager/lb_weixing</iconset>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayerUser.qrc"/>
+  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

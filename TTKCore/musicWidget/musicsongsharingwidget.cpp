@@ -1,7 +1,6 @@
 #include "musicsongsharingwidget.h"
 #include "ui_musicsongsharingwidget.h"
-#include "musicdownloadqueryttthread.h"
-#include "musicttdatadownloadthread.h"
+#include "musicdownloadquerywythread.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
@@ -24,10 +23,10 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     ui->qqButton->setChecked(true);
     ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01);
 
-    QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
-    code->setMargin(2);
-    code->setIcon(":/image/lb_player_logo", 0.23);
-    ui->QRCodeIconWidgetLayout->addWidget(code);
+    m_qrCodeWidget = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
+    m_qrCodeWidget->setMargin(2);
+    m_qrCodeWidget->setIcon(":/image/lb_player_logo", 0.23);
+    ui->QRCodeIconWidgetLayout->addWidget(m_qrCodeWidget);
 
     connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -37,6 +36,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 
 MusicSongSharingWidget::~MusicSongSharingWidget()
 {
+    delete m_qrCodeWidget;
     delete ui;
 }
 
@@ -68,16 +68,27 @@ void MusicSongSharingWidget::confirmButtonClicked()
     QStringList infos = ui->sharedName->text().split('-');
     if(infos.count() != 0)
     {
-        ///download art picture
-        MusicTTDataDownloadThread *down = new MusicTTDataDownloadThread(
-                    TT_SONG_LRC_URL.arg(infos.front().trimmed()),
-                    ART_DIR_FULL + TEMPORARY_DIR,
-                    MusicDownLoadThreadAbstract::Download_SmlBG, this);
-        connect(down, SIGNAL(urlHasChanged(QString)),
-                      SLOT(urlHasChanged(QString)), Qt::QueuedConnection);
-        down->startToDownload();
+        MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
+        down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, infos.front().trimmed());
+
+        QEventLoop loop;
+        connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        loop.exec();
+
+        if(!down->getMusicSongInfos().isEmpty())
+        {
+            MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
+            downLoadDataChanged(WEB_PLAYER + info.m_songId, info.m_smallPicUrl);
+        }
+        else
+        {
+            QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
+        }
     }
-    QTimer::singleShot(5*MT_S2MS, this, SLOT(queryUrlTimeout()));
+    else
+    {
+        QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
+    }
 }
 
 void MusicSongSharingWidget::queryUrlTimeout()
@@ -87,33 +98,41 @@ void MusicSongSharingWidget::queryUrlTimeout()
     message.exec();
 }
 
-void MusicSongSharingWidget::urlHasChanged(const QString &imageUrl)
+void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const QString &imageUrl)
 {
     QString url;
     if(ui->qqButton->isChecked())
     {
-        url = QString(QQ_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl)
+        url = QString(QQ_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl)
                                .arg(ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(ui->renrenButton->isChecked())
     {
-        url = QString(RENREN_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(RENREN_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->qqspaceButton->isChecked())
     {
-        url = QString(QQ_SPACE_SHARE).arg(tr("TTKMusicPlayer")).arg(imageUrl)
+        url = QString(QQ_SPACE_SHARE).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
                                      .arg(ui->textEdit->toPlainText());
     }
     else if(ui->qqblogButton->isChecked())
     {
-        url = QString(QQ_MICBG_SHARE).arg(ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(QQ_MICBG_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->sinaButton->isChecked())
     {
-        url = QString(SINA_SHARE).arg(imageUrl).arg(ui->textEdit->toPlainText());
+        url = QString(SINA_SHARE).arg(playUrl).arg(imageUrl).arg(ui->textEdit->toPlainText());
+    }
+    else if(ui->weixingButton->isChecked())
+    {
+        m_qrCodeWidget->setText(playUrl.toUtf8());
+        m_qrCodeWidget->update();
+        return;
     }
 
+    url.replace("player?song=", "player%3Fsong%3D");
     url.replace('#', "%23");
+
     MusicUtils::UCore::openUrl(url, false);
     QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
