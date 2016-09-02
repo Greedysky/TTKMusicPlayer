@@ -210,10 +210,6 @@ public Q_SLOTS:
     /*!
      * Get settings parameters.
      */
-    void musicSetEqualizer();
-    /*!
-     * Set music equalizer parameters.
-     */
     /////////////////////////////////////////////
     ///This is a slot by MusicSongsSummarizied's signal emit
     void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);

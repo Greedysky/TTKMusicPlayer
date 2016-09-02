@@ -396,6 +396,8 @@
         <file alias="lb_number7">../TTKResource/tiny/lb_number7.png</file>
         <file alias="lb_number8">../TTKResource/tiny/lb_number8.png</file>
         <file alias="lb_number9">../TTKResource/tiny/lb_number9.png</file>
+        <file alias="btn_effect_off">../TTKResource/tiny/btn_effect_off.png</file>
+        <file alias="btn_effect_on">../TTKResource/tiny/btn_effect_on.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>

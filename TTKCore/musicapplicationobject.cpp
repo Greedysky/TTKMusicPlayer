@@ -13,6 +13,7 @@
 #include "musicregeditmanager.h"
 #include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
+#include "musicsoundeffectswidget.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
 
@@ -208,6 +209,17 @@ void MusicApplicationObject::musicToolSetsParameter()
     m_musicTimerAutoObj->runTimerAutoConfig();
 }
 
+void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
+{
+    delete m_mobileDevices;
+    m_mobileDevices = nullptr;
+    if(state)
+    {
+        m_mobileDevices = new MusicMobileDevicesWidget;
+        m_mobileDevices->show();
+    }
+}
+
 void MusicApplicationObject::musicSetEqualizer()
 {
     if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
@@ -224,13 +236,8 @@ void MusicApplicationObject::musicSetEqualizer()
     eq.exec();
 }
 
-void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
+void MusicApplicationObject::musicSetSoundEffect()
 {
-    delete m_mobileDevices;
-    m_mobileDevices = nullptr;
-    if(state)
-    {
-        m_mobileDevices = new MusicMobileDevicesWidget;
-        m_mobileDevices->show();
-    }
+    MusicSoundEffectsWidget sound;
+    sound.exec();
 }

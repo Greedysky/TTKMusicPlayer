@@ -628,7 +628,8 @@ void MusicApplication::musicCreateRightMenu()
     musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), this, SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
+    rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));
     rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
@@ -674,11 +675,6 @@ void MusicApplication::getParameterSetting()
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     m_bottomAreaWidget->setDestopLrcVisible(config);
     //This attribute is effective immediately.
-}
-
-void MusicApplication::musicSetEqualizer()
-{
-    m_applicationObject->musicSetEqualizer();
 }
 
 void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool remove)

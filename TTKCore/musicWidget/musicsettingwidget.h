@@ -97,10 +97,6 @@ Q_SIGNALS:
     /*!
      * Parameters setting changed emit.
      */
-    void soundEqualizerClicked();
-    /*!
-     * Sound equalizer button clicked.
-     */
 
 public Q_SLOTS:
     void clearFunctionTableSelection();
@@ -204,13 +200,9 @@ public Q_SLOTS:
      * Test current network connection available changed.
      */
 
-    void soundEffectCheckBoxChanged();
+    void musicFadeInAndOutClicked(bool state);
     /*!
-     * Sound effect checkBox changed.
-     */
-    void soundEffectValueChanged(int index);
-    /*!
-     * Sound effect button value changed.
+     * Music fade in and out changed.
      */
 
     void commitTheResults();

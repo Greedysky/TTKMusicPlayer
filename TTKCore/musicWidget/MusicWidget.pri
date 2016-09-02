@@ -41,7 +41,8 @@ HEADERS  += \
     $$PWD/musicvolumepopwidget.h \
     $$PWD/musicmorefunctionspopwidget.h \
     $$PWD/musicplayedlistwidget.h \
-    $$PWD/musicalbumfoundwidget.h
+    $$PWD/musicalbumfoundwidget.h \
+    $$PWD/musicsoundeffectswidget.h
 
 }
 
@@ -74,6 +75,7 @@ SOURCES += \
     $$PWD/musicvolumepopwidget.cpp \
     $$PWD/musicmorefunctionspopwidget.cpp \
     $$PWD/musicplayedlistwidget.cpp \
-    $$PWD/musicalbumfoundwidget.cpp
+    $$PWD/musicalbumfoundwidget.cpp \
+    $$PWD/musicsoundeffectswidget.cpp
 
 }

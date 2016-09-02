@@ -6,10 +6,7 @@
 #include "musicnetworkoperator.h"
 #include "musicmessagebox.h"
 #include "musicglobalhotkey.h"
-///qmmp incldue
-#include "effect.h"
-#include "effectfactory.h"
-///
+#include "musicapplicationobject.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -323,55 +320,26 @@ void MusicSettingWidget::initSoundEffectWidget()
         ui->outputTypeComboBox->addItem(info.deviceName());
     }
 
-    ui->bs2bCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->crossfadeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->stereoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->ladspaCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->samplerateCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->fadeInAndOutCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    ui->fadeInSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    ui->fadeInSpinBox->setRange(1, 10*1000);
+    ui->fadeInSpinBox->setValue(600);
+    ui->fadeInSpinBox->setEnabled(false);
+
+    ui->fadeOutSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    ui->fadeOutSpinBox->setRange(1, 10*1000);
+    ui->fadeOutSpinBox->setValue(600);
+    ui->fadeOutSpinBox->setEnabled(false);
 
     ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->bs2bButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->bs2bButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->crossfadeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->crossfadeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->stereoButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->stereoButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->ladspaButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->ladspaButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->samplerateButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->samplerateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-
-    ui->bs2bButton->setEnabled(false);
-    ui->crossfadeButton->setEnabled(false);
-    ui->stereoButton->setEnabled(false);
-    ui->ladspaButton->setEnabled(false);
-    ui->samplerateButton->setEnabled(false);
-
-    connect(ui->equalizerButton, SIGNAL(clicked()), SIGNAL(soundEqualizerClicked()));
-    connect(ui->bs2bCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
-    connect(ui->crossfadeCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
-    connect(ui->stereoCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
-    connect(ui->ladspaCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
-    connect(ui->samplerateCheckBox, SIGNAL(clicked()), SLOT(soundEffectCheckBoxChanged()));
-
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(ui->bs2bButton, 0);
-    buttonGroup->addButton(ui->crossfadeButton, 1);
-    buttonGroup->addButton(ui->stereoButton, 2);
-    buttonGroup->addButton(ui->ladspaButton, 3);
-    buttonGroup->addButton(ui->samplerateButton, 4);
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(soundEffectValueChanged(int)));
-
-#ifdef Q_OS_WIN
-    ui->ladspaCheckBox->hide();
-    ui->samplerateCheckBox->hide();
-    ui->ladspaButton->hide();
-    ui->samplerateButton->hide();
-#endif
+    connect(ui->equalizerButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetEqualizer()));
+    connect(ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetSoundEffect()));
+    connect(ui->fadeInAndOutCheckBox, SIGNAL(clicked(bool)), SLOT(musicFadeInAndOutClicked(bool)));
 }
 
 void MusicSettingWidget::initNetworkWidget()
@@ -838,62 +806,8 @@ void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
     ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
 }
 
-void MusicSettingWidget::soundEffectCheckBoxChanged()
+void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
 {
-    ui->bs2bButton->setEnabled(ui->bs2bCheckBox->isChecked());
-    ui->crossfadeButton->setEnabled(ui->crossfadeCheckBox->isChecked());
-    ui->stereoButton->setEnabled(ui->stereoCheckBox->isChecked());
-    ui->ladspaButton->setEnabled(ui->ladspaCheckBox->isChecked());
-    ui->samplerateButton->setEnabled(ui->samplerateCheckBox->isChecked());
-
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        Effect::setEnabled(factory, false);
-    }
-
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        if(factory->properties().name.contains("BS2B") && ui->bs2bCheckBox->isChecked())
-        {
-            Effect::setEnabled(factory, true);
-        }
-        else if(factory->properties().name.contains("Crossfade") && ui->crossfadeCheckBox->isChecked())
-        {
-            Effect::setEnabled(factory, true);
-        }
-        else if(factory->properties().name.contains("Stereo") && ui->stereoCheckBox->isChecked())
-        {
-            Effect::setEnabled(factory, true);
-        }
-        else if(factory->properties().name.contains("LADSPA") && ui->ladspaCheckBox->isChecked())
-        {
-            Effect::setEnabled(factory, true);
-        }
-        else if(factory->properties().name.contains("SRC") && ui->samplerateCheckBox->isChecked())
-        {
-            Effect::setEnabled(factory, true);
-        }
-    }
-}
-
-void MusicSettingWidget::soundEffectValueChanged(int index)
-{
-    QString plugin;
-    switch(index)
-    {
-        case 0: plugin = "BS2B"; break;
-        case 1: plugin = "Crossfade"; break;
-        case 2: plugin = "Stereo"; break;
-        case 3: plugin = "LADSPA"; break;
-        case 4: plugin = "SRC"; break;
-        default: break;
-    }
-
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        if(factory->properties().name.contains(plugin))
-        {
-            factory->showSettings(this);
-        }
-    }
+    ui->fadeInSpinBox->setEnabled(state);
+    ui->fadeOutSpinBox->setEnabled(state);
 }

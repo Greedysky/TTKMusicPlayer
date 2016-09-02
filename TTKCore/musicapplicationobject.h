@@ -70,10 +70,6 @@ public:
     /*!
      * Window close animation opacity.
      */
-    void musicSetEqualizer();
-    /*!
-     * Show set equalizer widget.
-     */
 
 Q_SIGNALS:
     void enhancedMusicChanged(int type);
@@ -113,6 +109,14 @@ public Q_SLOTS:
     void musicDevicesLinuxChanged(bool state);
     /*!
      * Detect mobile devices on linux.
+     */
+    void musicSetEqualizer();
+    /*!
+     * Show set equalizer widget.
+     */
+    void musicSetSoundEffect();
+    /*!
+     * Show set sound effect widget.
      */
 
 protected:

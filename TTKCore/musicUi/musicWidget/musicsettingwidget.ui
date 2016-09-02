@@ -1581,49 +1581,10 @@ font-weight:bold;</string>
       <string>音效设置</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="crossfadeCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>190</y>
-       <width>130</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>crossfade音效</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="bs2bCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>190</y>
-       <width>100</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>bs2b音效</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="stereoCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>225</y>
-       <width>100</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>stereo音效</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="equalizerButton">
      <property name="geometry">
       <rect>
-       <x>230</x>
+       <x>30</x>
        <y>260</y>
        <width>80</width>
        <height>25</height>
@@ -1636,7 +1597,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="equalizerPluginsButton">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>130</x>
        <y>260</y>
        <width>80</width>
        <height>25</height>
@@ -1646,95 +1607,89 @@ font-weight:bold;</string>
       <string>设置音效插件</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="bs2bButton">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>187</y>
-       <width>35</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>调整</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="crossfadeButton">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>187</y>
-       <width>35</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>调整</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="stereoButton">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>222</y>
-       <width>35</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>调整</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ladspaCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>225</y>
-       <width>130</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>ladspa音效</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="ladspaButton">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>222</y>
-       <width>35</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>调整</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="samplerateCheckBox">
+    <widget class="QCheckBox" name="fadeInAndOutCheckBox">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>260</y>
-       <width>131</width>
+       <y>190</y>
+       <width>230</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>samplerate音效</string>
+      <string>激活声音淡入淡出功能</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="samplerateButton">
+    <widget class="QLabel" name="sizeTipLabel">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>258</y>
-       <width>35</width>
-       <height>25</height>
+       <x>175</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>调整</string>
+      <string>毫秒</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="fadeInSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>218</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fadeInLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>淡入</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="fadeOutSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>255</x>
+       <y>218</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fadeOutLabel">
+     <property name="geometry">
+      <rect>
+       <x>215</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>淡出</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="sizeTipLabel2">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>毫秒</string>
      </property>
     </widget>
    </widget>
