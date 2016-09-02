@@ -128,14 +128,6 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_top_off_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_top_off_hover);}";
-            
-    const QString MKGTinyBtnEffectOn = " \
-            QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_effect_on);}";
-
-    const QString MKGTinyBtnEffectOff = " \
-            QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_effect_off);}";
 
 }
 

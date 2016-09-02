@@ -51,6 +51,11 @@ public:
      * Set sound effect plugin type.
      */
 
+    void setPluginEnable(bool enable);
+    /*!
+     * Set plugin enable or not.
+     */
+
 public Q_SLOTS:
     void setPluginEnable();
     /*!
@@ -72,6 +77,7 @@ protected:
      */
 
     Type m_type;
+    bool m_enable;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;
 
@@ -98,6 +104,10 @@ public:
      */
 
 public Q_SLOTS:
+    void stateComboBoxChanged(int index);
+    /*!
+     * State combobox index changed.
+     */
     void volumeSliderChanged(int value);
     /*!
      * Volume slider changed.
