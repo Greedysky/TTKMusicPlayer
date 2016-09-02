@@ -4,72 +4,72 @@
 <context>
     <name>KugouWindow</name>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="142"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="159"/>
         <source> SongRecommend </source>
         <translation>Recommend</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="145"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="162"/>
         <source> SongRank </source>
         <translation>Rank</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="148"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="165"/>
         <source> SongSinger </source>
         <translation>Singer</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="151"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="168"/>
         <source> SongCategory </source>
         <translation>Category</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="154"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="171"/>
         <source> SongShow </source>
         <translation>Show</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="157"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="174"/>
         <source> SongHeroes </source>
         <translation>Category</translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="201"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="219"/>
         <source> RadioPublic </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="204"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="222"/>
         <source> RadioHigh </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="207"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="225"/>
         <source> RadioFx </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="210"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="228"/>
         <source> RadioHome </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="271"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="291"/>
         <source> MVRadio </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="274"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="294"/>
         <source> MVRecommend </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="277"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="297"/>
         <source> MVFanxing </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="280"/>
+        <location filename="../TTKThirdParty/MusicExtras/kugou/kugouwindow.cpp" line="300"/>
         <source> MVStarMusic </source>
         <translation type="unfinished"></translation>
     </message>
@@ -150,7 +150,7 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="805"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="801"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
@@ -165,12 +165,12 @@
         <translation>Logout</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="806"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="802"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>TTKMusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="846"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="842"/>
         <source>not supported</source>
         <translation>Audio Formats Does&apos;t support</translation>
     </message>
@@ -220,42 +220,47 @@
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="633"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="632"/>
+        <source>SoundEffect</source>
+        <translation >Sound Effect</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicapplication.cpp" line="634"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="634"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="635"/>
         <source>ShowingSpectrum</source>
         <translation>Spectrum</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="635"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="636"/>
         <source>AnalyzerSpectrum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="636"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="637"/>
         <source>ProjectMSpectrum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="652"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="653"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="655"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="656"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="654"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="655"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="659"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="660"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
@@ -295,12 +300,12 @@
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="649"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="650"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="650"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="651"/>
         <source>musicLocation</source>
         <translation>Music Locate</translation>
     </message>
@@ -332,17 +337,17 @@
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="632"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="633"/>
         <source>AudioRecorder</source>
         <translation>Audio Recorder</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="645"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="646"/>
         <source>windowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="647"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="648"/>
         <source>resetWindow</source>
         <translation>Reset Window</translation>
     </message>
@@ -375,17 +380,17 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="158"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="159"/>
         <source>TTK Music Player</source>
         <translation>TTKMusicPlayer</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="159"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="160"/>
         <source>Directed By Greedysky</source>
         <translation>Directed By Greedysky</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplicationobject.cpp" line="216"/>
+        <location filename="../TTKCore/musicapplicationobject.cpp" line="228"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1013,26 +1018,26 @@
 <context>
     <name>MusicDownLoadQueryWYThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="202"/>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="279"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="203"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="281"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="204"/>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="281"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="205"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="283"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="206"/>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="283"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="207"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="285"/>
         <source>HD</source>
         <translation>高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="208"/>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="285"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="209"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="287"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
@@ -1471,33 +1476,33 @@
 <context>
     <name>MusicIdentifySongsWidget</name>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="45"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="55"/>
         <source>Recogniting the music being played</source>
         <translation>Recogniting The Music Being Played</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="52"/>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="84"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="62"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="104"/>
         <source>Intelligent Recognition Of The Music Being Played</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="86"/>
-        <source>ShotCut: AA + AA + A</source>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="106"/>
+        <source>ShotCut:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="114"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="134"/>
         <source>No Songs Identified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="115"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="135"/>
         <source>Only The Music Being Played Can Be Recognized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="116"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicidentifysongswidget.cpp" line="136"/>
         <source>Redetect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2934,17 +2939,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="173"/>
         <source>unFoundLrc</source>
         <translation> --- No Lrc File Found！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="301"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="303"/>
         <source>please input search text</source>
         <translation>Please Input Search Words!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="308"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="310"/>
         <source>enter input search text first</source>
         <translation>Please Enter Input Search Text First!</translation>
     </message>
@@ -2952,308 +2957,308 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicSettingWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="86"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="83"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="93"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="90"/>
         <source>Normal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="93"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="90"/>
         <source>Hotkey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="93"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="90"/>
         <source>Dwonload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="97"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="94"/>
         <source>Inline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="97"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="94"/>
         <source>Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="98"/>
         <source>Equalizer</source>
         <translation>Effect</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="98"/>
         <source>NetWork</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="148"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="145"/>
         <source>0</source>
         <translation>中文简体</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="148"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="145"/>
         <source>1</source>
         <translation>中文繁體</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="148"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="145"/>
         <source>2</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="170"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="215"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="167"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="212"/>
         <source>smaller</source>
         <translation>Smaller</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="170"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="167"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>small</source>
         <translation>Small</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="168"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>middle</source>
         <translation>Middle</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="168"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>big</source>
         <translation>Big</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="168"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="214"/>
         <source>bigger</source>
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="173"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="219"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="170"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
         <source>origin</source>
         <translation>Origin</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="173"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="219"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="170"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
         <source>red</source>
         <translation>Red</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="173"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="219"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="170"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
         <source>orange</source>
         <translation>Orange</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="174"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="220"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
         <source>yellow</source>
         <translation>Yellow</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="174"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="220"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
         <source>green</source>
         <translation>Green</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="174"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="220"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
         <source>blue</source>
         <translation>Blue</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="174"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="220"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
         <source>indigo</source>
         <translation>Indigo</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="175"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="220"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
         <source>purple</source>
         <translation>Purple</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="175"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="221"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="218"/>
         <source>white</source>
         <translation>White</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="175"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="221"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="218"/>
         <source>black</source>
         <translation>Black</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="215"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="212"/>
         <source>smaller3</source>
         <translation>Smallist</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="215"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="212"/>
         <source>smaller2</source>
         <translation>Smaller</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="215"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="212"/>
         <source>small3</source>
         <translation>Small</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>small2</source>
         <translation>M-Small</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>big2</source>
         <translation>M-Big</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="216"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="213"/>
         <source>big3</source>
         <translation>Big</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="214"/>
         <source>bigger2</source>
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="217"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="214"/>
         <source>bigger3</source>
         <translation>Biggist</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="282"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="279"/>
         <source>wangyiMusic</source>
         <translation>Wang Yi Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="283"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="280"/>
         <source>dianxinMusic</source>
         <translation>Dian Xin Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="284"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="281"/>
         <source>qqMusic</source>
         <translation>QQ Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="285"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="282"/>
         <source>xiamiMusic</source>
         <translation>Xia Mi Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="286"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="283"/>
         <source>ttpodMusic</source>
         <translation>TTPod Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="287"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="284"/>
         <source>baiduMusic</source>
         <translation>Baidu Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="288"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="285"/>
         <source>kuwoMusic</source>
         <translation>Ku Wo Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="289"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="286"/>
         <source>kuhouMusic</source>
         <translation>Ku Gou Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="290"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="287"/>
         <source>duomiMusic</source>
         <translation>Duo Mi Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="291"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="288"/>
         <source>miguMusic</source>
         <translation>Mi Gu Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="292"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="289"/>
         <source>dingdongMusic</source>
         <translation>Ding Dong Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="293"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="290"/>
         <source>echoMusic</source>
         <translation>Echo Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="294"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="291"/>
         <source>yinyuetaiMusic</source>
         <translation>Yin Yue Tai Music</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="393"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="361"/>
         <source>DefaultProxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="393"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="361"/>
         <source>Socks5Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="394"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="362"/>
         <source>NoProxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="394"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="362"/>
         <source>HttpProxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="394"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="362"/>
         <source>HttpCachingProxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="394"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="362"/>
         <source>FtpCachingProxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="777"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="745"/>
         <source>proxy hostname is empty</source>
         <translation>Proxy Hostname Is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="786"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="754"/>
         <source>proxy port is empty</source>
         <translation>Proxy Port Is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="823"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="791"/>
         <source>Test Successed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="823"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="791"/>
         <source>Test Failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="837"/>
-        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="838"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="805"/>
+        <location filename="../TTKCore/musicWidget/musicsettingwidget.cpp" line="806"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3311,7 +3316,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="314"/>
         <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="626"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2053"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2008"/>
         <source>基本设置</source>
         <translation>Basic</translation>
     </message>
@@ -3478,6 +3483,27 @@ p, li { white-space: pre-wrap; }
         <translation>Inline Lrc</translation>
     </message>
     <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1620"/>
+        <source>激活声音淡入淡出功能</source>
+        <translation>Activate Voice Fade Function</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1633"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1692"/>
+        <source>毫秒</source>
+        <translation>MS</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1656"/>
+        <source>淡入</source>
+        <translation>FadeIn</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1679"/>
+        <source>淡出</source>
+        <translation>FadeOut</translation>
+    </message>
+    <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1208"/>
         <source>显示桌面歌词</source>
         <translation>Desktop Lrc</translation>
@@ -3581,122 +3607,88 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1594"/>
-        <source>crossfade音效</source>
-        <translation>Crossfade Effect</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1607"/>
-        <source>bs2b音效</source>
-        <translation>Bs2b Effect</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1620"/>
-        <source>stereo音效</source>
-        <translation>Stereo Effect</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1633"/>
         <source>设置均衡器</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1646"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1607"/>
         <source>设置音效插件</source>
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1659"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1672"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1685"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1711"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1737"/>
-        <source>调整</source>
-        <translation>Op</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1698"/>
-        <source>ladspa音效</source>
-        <translation>Ladspa Effect</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1724"/>
-        <source>samplerate音效</source>
-        <translation>Samplerate Effect</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1757"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1712"/>
         <source>代理设置</source>
         <translation>Proxy</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1793"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1748"/>
         <source>代理类型</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1809"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2021"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1764"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1976"/>
         <source>测试</source>
         <translation>Test</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1822"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1777"/>
         <source>代理地址</source>
         <translation>Address</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1848"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1803"/>
         <source>端口</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1874"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1829"/>
         <source>用户名</source>
         <translation>UserName</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1900"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1855"/>
         <source>密码</source>
         <translation>Password</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1931"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1886"/>
         <source>网络连接</source>
         <translation>Network</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1957"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1912"/>
         <source>您当前的网络运营商是</source>
         <translation>Network Operator Is</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1973"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1928"/>
         <source>您当前的网络连接方式是</source>
         <translation>Network Connection Is</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1989"/>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2005"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1944"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="1960"/>
         <source>未知</source>
         <translation>Un</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2071"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2026"/>
         <source>歌词设置</source>
         <translation>Lyrics</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2109"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2064"/>
         <source>高级设置</source>
         <translation>Super</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2133"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2088"/>
         <source>确认</source>
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2146"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsettingwidget.ui" line="2101"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
@@ -3985,33 +3977,33 @@ p, li { white-space: pre-wrap; }
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="22"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="21"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="56"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="57"/>
         <source>I used to listen music #%1# by TTKMusicPlayer,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="57"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="58"/>
         <source>and recommend it to you! (From #TTKMusicPlayer#)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="96"/>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="104"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="100"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="108"/>
         <source>TTKMusicPlayer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="86"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="90"/>
         <source>Song does not support sharing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="144"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="156"/>
         <source>You can enter %1 characters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4399,6 +4391,94 @@ p, li { white-space: pre-wrap; }
         <location filename="../TTKCore/musicToolswidget/musicsongstoolboxwidget.cpp" line="143"/>
         <source>changItemName</source>
         <translation>Rename</translation>
+    </message>
+</context>
+<context>
+    <name>MusicSoundEffectsItemWidget</name>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="24"/>
+        <source>null</source>
+        <translation >Null</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="36"/>
+        <source>Sets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="108"/>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="100"/>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicSoundEffectsWidget</name>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="14"/>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="45"/>
+        <source>音效插件</source>
+        <translation>Sound Effect</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="58"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="93"/>
+        <source>均衡器: </source>
+        <translation>Equalize:</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="106"/>
+        <source>声音平衡: </source>
+        <translation>Balance:</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="119"/>
+        <source>禁用</source>
+        <translation>Off</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="132"/>
+        <source>调整</source>
+        <translation>Op</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="145"/>
+        <source>左</source>
+        <translation>L</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicWidget/musicsoundeffectswidget.ui" line="158"/>
+        <source>右</source>
+        <translation>R</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="168"/>
+        <source>Close</source>
+        <translation type="unfinished">Close</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="184"/>
+        <source>OperatorAll</source>
+        <translation>Operator All</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="184"/>
+        <source>All On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicsoundeffectswidget.cpp" line="184"/>
+        <source>All Off</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
