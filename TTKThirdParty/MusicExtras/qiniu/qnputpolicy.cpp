@@ -2,14 +2,9 @@
 #include "qnutils.h"
 #include "qnmac.h"
 #include "qnconf.h"
+#///QJson import
+#include "qjson/serializer.h"
 
-#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
-#   include <QJsonObject>
-#   include <QJsonDocument>
-#else
-#   ///QJson import
-#   include "qjson/serializer.h"
-#endif
 #include <QStringList>
 
 class QNPutPolicyPrivate : public TTKPrivate<QNPutPolicy>
@@ -65,11 +60,7 @@ QNPutPolicyPrivate::QNPutPolicyPrivate()
 
 QByteArray QNPutPolicyPrivate::toJSON(bool compact)
 {
-#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
-    QJsonObject json;
-#else
     QMap<QString, QVariant> json;
-#endif
     json["scope"] = m_scope;
     json["deadline"] = m_deadline;
 
@@ -134,11 +125,6 @@ QByteArray QNPutPolicyPrivate::toJSON(bool compact)
         json["persistentPipeline"] = m_persistentPipeline;
     }
 
-#if defined MUSIC_GREATER_NEW && !defined MUSIC_GREATER_FIVE_ZERO
-    QJsonDocument doc = QJsonDocument(json);
-    QByteArray data = doc.toJson(compact ? QJsonDocument::Compact :
-                                           QJsonDocument::Indented);
-#else
     Q_UNUSED(compact);
     QJson::Serializer serializer;
     bool ok;
@@ -147,7 +133,7 @@ QByteArray QNPutPolicyPrivate::toJSON(bool compact)
     {
         data = "{}";
     }
-#endif
+
     return data;
 }
 

@@ -1,16 +1,9 @@
 #include "qnsimplelistdata.h"
 #include "qnmac.h"
 #include "qniohelper.h"
+#///QJson import
+#include "qjson/parser.h"
 
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonParseError>
-#   include <QJsonDocument>
-#   include <QJsonObject>
-#   include <QJsonArray>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
 #include <QDebug>
 
 class QNSimpleListDataPrivate : public TTKPrivate<QNSimpleListData>
@@ -57,39 +50,6 @@ void QNSimpleListData::receiveDataFromServer()
         QNDataItems items;
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200)
         {
-#ifdef MUSIC_GREATER_NEW
-            QJsonParseError jsonError;
-            QJsonDocument parseDoucment = QJsonDocument::fromJson(reply->readAll(), &jsonError);
-            ///Put the data into Json
-            if(jsonError.error != QJsonParseError::NoError ||
-               !parseDoucment.isObject())
-            {
-                emit receiveFinshed( QNDataItems() );
-                return ;
-            }
-
-            QJsonObject jsonObject = parseDoucment.object();
-            if(jsonObject.contains("items"))
-            {
-                QJsonArray array = jsonObject.take("items").toArray();
-                foreach(const QJsonValue &value, array)
-                {
-                    if(!value.isObject())
-                    {
-                       continue;
-                    }
-                    QJsonObject object = value.toObject();
-
-                    QNDataItem item;
-                    item.m_name = object.value("key").toString();
-                    item.m_hash = object.value("hash").toString();
-                    item.m_mimeType = object.value("mimeType").toString();
-                    item.m_size = object.value("fsize").toVariant().toInt();
-                    item.m_putTime = object.value("putTime").toVariant().toInt();
-                    items << item;
-                }
-            }
-#else
             QJson::Parser parser;
             bool ok;
             QVariant data = parser.parse(reply->readAll(), &ok);
@@ -109,7 +69,6 @@ void QNSimpleListData::receiveDataFromServer()
                     items << item;
                 }
             }
-#endif
         }
         reply->deleteLater();
         emit receiveFinshed( items );

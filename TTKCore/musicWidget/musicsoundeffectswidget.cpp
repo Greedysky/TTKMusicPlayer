@@ -199,7 +199,13 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 
     ui->StereoWidget->setText("Stereo");
     ui->StereoWidget->setType(MusicSoundEffectsItemWidget::Stereo);
+#ifdef Q_OS_UNIX
+    ui->LADSPAWidget->setText("LADSPA");
+    ui->LADSPAWidget->setType(MusicSoundEffectsItemWidget::LADSPA);
 
+    ui->SRCWidget->setText("SRC");
+    ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SRC);
+#endif
 }
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
@@ -223,12 +229,20 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         ui->BS2BWidget->setPluginEnable(true);
         ui->CrossfadeWidget->setPluginEnable(true);
         ui->StereoWidget->setPluginEnable(true);
+#ifdef Q_OS_UNIX
+        ui->LADSPAWidget->setPluginEnable(true);
+        ui->SRCWidget->setPluginEnable(true);
+#endif
     }
     else if(index == 2)
     {
         ui->BS2BWidget->setPluginEnable(false);
         ui->CrossfadeWidget->setPluginEnable(false);
         ui->StereoWidget->setPluginEnable(false);
+#ifdef Q_OS_UNIX
+        ui->LADSPAWidget->setPluginEnable(false);
+        ui->SRCWidget->setPluginEnable(false);
+#endif
     }
 }
 

@@ -1,13 +1,6 @@
 #include "musictextdownloadthread.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)

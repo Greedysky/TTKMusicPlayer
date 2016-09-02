@@ -6,16 +6,10 @@
 #include "musicuiobject.h"
 #include "musicutils.h"
 #include "musicversion.h"
+#///QJson import
+#include "qjson/parser.h"
 
 #include <QProcess>
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonParseError>
-#   include <QJsonObject>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -61,19 +55,6 @@ void MusicSourceUpdateWidget::upgradeFailedClicked()
 
 void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 {
-#ifdef MUSIC_GREATER_NEW
-    QJsonParseError jsonError;
-    QJsonDocument parseDoucment = QJsonDocument::fromJson(data, &jsonError);
-    ///Put the data into Json
-    if( jsonError.error != QJsonParseError::NoError ||
-        !parseDoucment.isObject())
-    {
-        return;
-    }
-
-    QJsonObject jsonObject = parseDoucment.object();
-    m_newVersionStr = jsonObject.value("version").toString();
-#else
     QJson::Parser parser;
     bool ok;
     QVariant parseData = parser.parse(data, &ok);
@@ -84,17 +65,13 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
 
     QVariantMap value = parseData.toMap();
     m_newVersionStr = value["version"].toString();
-#endif
+
     QString text;
     if(m_newVersionStr != TTKMUSIC_VERSION_STR)
     {
         text.append(m_newVersionStr);
         text.append("\r\n");
-#ifdef MUSIC_GREATER_NEW
-        text.append(jsonObject.value("data").toString());
-#else
         text.append(value["data"].toString());
-#endif
         ui->upgradeButton->setEnabled(true);
         ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }

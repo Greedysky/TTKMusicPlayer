@@ -1,13 +1,6 @@
 #include "musictttextdownloadthread.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 MusicTTTextDownLoadThread::MusicTTTextDownLoadThread(const QString &url, const QString &save,
                                                      Download_Type type, QObject *parent)
@@ -71,31 +64,6 @@ void MusicTTTextDownLoadThread::downLoadFinished()
         QByteArray bytes = m_reply->readAll();
         if(!bytes.contains("\"code\":2"))
         {
-#ifdef MUSIC_GREATER_NEW
-            QJsonParseError jsonError;
-            QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-            ///Put the data into Json
-            if(jsonError.error != QJsonParseError::NoError ||
-               !parseDoucment.isObject())
-            {
-                deleteAll();
-                return ;
-            }
-
-            QJsonObject jsonObject = parseDoucment.object();
-            if(jsonObject.contains("data"))
-            {
-                jsonObject = jsonObject.take("data").toObject();
-                if(jsonObject.contains("lrc"))
-                {
-                    QTextStream outstream(m_file);
-                    outstream.setCodec("utf-8");
-                    outstream << jsonObject.take("lrc").toString().remove("\r").toUtf8() << endl;
-                    m_file->close();
-                    M_LOGGER_INFO("ttpod text download  has finished!");
-                }
-            }
-#else
             QJson::Parser parser;
             bool ok;
             QVariant data = parser.parse(bytes, &ok);
@@ -115,7 +83,6 @@ void MusicTTTextDownLoadThread::downLoadFinished()
                     }
                 }
             }
-#endif
         }
         else
         {

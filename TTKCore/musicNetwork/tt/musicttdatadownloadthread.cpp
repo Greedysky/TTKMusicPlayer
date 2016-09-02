@@ -1,12 +1,6 @@
 #include "musicttdatadownloadthread.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonParseError>
-#   include <QJsonObject>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 MusicTTDataDownloadThread::MusicTTDataDownloadThread(const QString &url, const QString &save,
                                                      Download_Type type, QObject *parent)
@@ -69,20 +63,7 @@ void MusicTTDataDownloadThread::dataGetFinished()
     if(m_dataReply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_dataReply->readAll();
-#ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        if(jsonError.error != QJsonParseError::NoError || !parseDoucment.isObject())
-        {
-            deleteAll();
-            return ;
-        }
 
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.value("code").toVariant().toInt() == 1)
-        {
-            m_url = jsonObject.value("data").toObject().value("singerPic").toString();
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -91,7 +72,7 @@ void MusicTTDataDownloadThread::dataGetFinished()
             QVariantMap value = data.toMap();
             value = value["data"].toMap();
             m_url = value["singerPic"].toString();
-#endif
+
             emit urlHasChanged(m_url);
             MusicDataDownloadThread::startToDownload();
         }

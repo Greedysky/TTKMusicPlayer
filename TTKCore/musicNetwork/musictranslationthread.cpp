@@ -1,15 +1,7 @@
 #include "musictranslationthread.h"
 #include "musicobject.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonArray>
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 MusicTranslationThread::MusicTranslationThread(QObject *parent)
     : MusicNetworkAbstract(parent)
@@ -79,45 +71,7 @@ void MusicTranslationThread::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-#ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if(jsonError.error != QJsonParseError::NoError ||
-           !parseDoucment.isObject())
-        {
-            deleteAll();
-            emit downLoadDataChanged(QString());
-            return ;
-        }
 
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.contains("error"))
-        {
-            emit downLoadDataChanged(QString());
-            deleteAll();
-            return ;
-        }
-
-        if(jsonObject.contains("trans_result"))
-        {
-            jsonObject = jsonObject.value("trans_result").toObject();
-            if(jsonObject.contains("data"))
-            {
-                QJsonArray array = jsonObject.value("data").toArray();
-                foreach(const QJsonValue &value, array)
-                {
-                    if(!value.isObject())
-                    {
-                       continue;
-                    }
-                    QJsonObject obj = value.toObject();
-                    emit downLoadDataChanged(obj.value("dst").toString());
-                    break;
-                }
-            }
-        }
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -137,7 +91,10 @@ void MusicTranslationThread::downLoadFinished()
                 break;
             }
         }
-#endif
+        else
+        {
+            emit downLoadDataChanged(QString());
+        }
     }
     else
     {

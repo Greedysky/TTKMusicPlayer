@@ -109,7 +109,7 @@
    <widget class="QPushButton" name="eqButton">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>427</y>
       <width>35</width>
       <height>25</height>
@@ -122,7 +122,7 @@
    <widget class="QPushButton" name="eqEffectButton">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>120</x>
       <y>427</y>
       <width>35</width>
       <height>25</height>
@@ -201,7 +201,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="widget_4" native="true">
+   <widget class="MusicSoundEffectsItemWidget" name="LADSPAWidget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -211,7 +211,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="widget_5" native="true">
+   <widget class="MusicSoundEffectsItemWidget" name="SRCWidget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>

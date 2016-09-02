@@ -2,16 +2,9 @@
 #include "musicdownloadthreadabstract.h"
 #include "musicutils.h"
 #include "musictime.h"
+#///QJson import
+#include "qjson/parser.h"
 
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonArray>
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 
@@ -66,135 +59,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
-#ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if( jsonError.error != QJsonParseError::NoError ||
-            !parseDoucment.isObject())
-        {
-            emit downLoadDataChanged(QString());
-            deleteAll();
-            return;
-        }
 
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.contains("data"))
-        {
-            QJsonArray array = jsonObject.take("data").toArray();
-            foreach(const QJsonValue &value, array)
-            {
-                if(!value.isObject())
-                {
-                   continue;
-                }
-                QJsonObject object = value.toObject();
-
-                MusicObject::MusicSongInfomation musicInfo;
-                QString songId = QString::number(object.take("songId").toVariant().toULongLong());
-                QString songName = object.take("name").toString();
-                QString singerName = object.take("singerName").toString();
-
-                if(m_currentType != MovieQuery)
-                {
-                    QString duration;
-                    ///music normal songs urls
-                    QJsonArray audUrls = object.value("auditionList").toArray();
-                    foreach(const QJsonValue &url, audUrls)
-                    {
-                        QJsonObject urlObject = url.toObject();
-                        if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                           urlObject.value("typeDescription").toString() == m_searchQuality))
-                        {
-                            MusicObject::MusicSongAttribute songAttr;
-                            songAttr.m_url = urlObject.value("url").toString();
-                            songAttr.m_size = MusicUtils::UNumber::size2Label(urlObject.value("size").toVariant().toInt());
-                            songAttr.m_format = urlObject.value("suffix").toString();
-                            songAttr.m_bitrate = urlObject.value("bitRate").toVariant().toInt();
-                            musicInfo.m_songAttrs << songAttr;
-                            ////set duration
-                            duration = MusicTime::msecTime2LabelJustified(urlObject.value("duration").toVariant().toInt());
-                            if(!m_queryAllRecords)
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    ///music cd songs urls
-                    QJsonArray llUrls = object.value("llList").toArray();
-                    foreach(const QJsonValue &url, llUrls)
-                    {
-                        QJsonObject urlObject = url.toObject();
-                        if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                           urlObject.value("typeDescription").toString() == m_searchQuality))
-                        {
-                            MusicObject::MusicSongAttribute songAttr;
-                            songAttr.m_url = urlObject.value("url").toString();
-                            songAttr.m_size = MusicUtils::UNumber::size2Label(urlObject.value("size").toVariant().toInt());
-                            songAttr.m_format = urlObject.value("suffix").toString();
-                            songAttr.m_bitrate = urlObject.value("bitRate").toVariant().toInt();
-                            musicInfo.m_songAttrs << songAttr;
-                            ////set duration
-                            duration = MusicTime::msecTime2LabelJustified(urlObject.value("duration").toVariant().toInt());
-                            if(!m_queryAllRecords)
-                            {
-                                break;
-                            }
-                        }
-                    }
-
-                    if(musicInfo.m_songAttrs.isEmpty())
-                    {
-                        continue;
-                    }
-                    emit createSearchedItems(songName, singerName, duration);
-
-                    musicInfo.m_songId = songId;
-                    musicInfo.m_albumId = QString::number(object.take("albumId").toVariant().toULongLong());
-                    musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
-                    musicInfo.m_smallPicUrl = object.take("picUrl").toString();
-                    musicInfo.m_singerName = singerName;
-                    musicInfo.m_songName = songName;
-                    musicInfo.m_timeLength = duration;
-                    m_musicSongInfos << musicInfo;
-                }
-                else
-                {
-                    ///music mv urls
-                    QJsonArray mvUrls = object.value("mvList").toArray();
-                    if(!mvUrls.isEmpty())
-                    {
-                        foreach(const QJsonValue &url, mvUrls)
-                        {
-                            object = url.toObject();
-                            MusicObject::MusicSongAttribute songAttr;
-                            songAttr.m_format = object.value("suffix").toString();
-
-                            int key = object.value("bitRate").toVariant().toInt();
-                            if(key > 375 && key <= 625)
-                                songAttr.m_bitrate = MB_500;
-                            else if(key > 625 && key <= 875)
-                                songAttr.m_bitrate = MB_750;
-                            else if(key > 875)
-                                songAttr.m_bitrate = MB_1000;
-                            else
-                                songAttr.m_bitrate = key;
-
-                            songAttr.m_url = object.value("url").toString();
-                            songAttr.m_size = MusicUtils::UNumber::size2Label(object.value("size").toVariant().toInt());
-                            musicInfo.m_songAttrs << songAttr;
-                        }
-                        emit createSearchedItems(songName, singerName,
-                                                 MusicTime::msecTime2LabelJustified(object.value("duration").toVariant().toInt()));
-
-                        musicInfo.m_singerName = singerName;
-                        musicInfo.m_songName = songName;
-                        m_musicSongInfos << musicInfo;
-                    }
-                }
-            }
-        }
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -339,7 +204,6 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                 }
             }
         }
-#endif
         ///If there is no search to song_id, is repeated several times in the search
         ///If more than 5 times or no results give up
         static int counter = 5;

@@ -500,7 +500,7 @@ void MusicLrcAnalysis::getTranslatedLrc()
     foreach(const QString &s, m_lrcContainer.values())
     {
         data.append(s);
-#ifdef Q_OS_LINUX
+#ifdef Q_OS_UNIX
         data.append("\r");
 #endif
     }

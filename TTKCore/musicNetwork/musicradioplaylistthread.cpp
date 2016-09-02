@@ -1,14 +1,6 @@
 #include "musicradioplaylistthread.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonParseError>
-#   include <QJsonDocument>
-#   include <QJsonObject>
-#   include <QJsonArray>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -73,32 +65,7 @@ void MusicRadioPlayListThread::downLoadFinished()
     {
         QByteArray bytes = m_reply->readAll();
         m_playList.clear();
-#ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if(jsonError.error != QJsonParseError::NoError ||
-           !parseDoucment.isObject())
-        {
-            deleteAll();
-            return ;
-        }
 
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.contains("list"))
-        {
-            QJsonArray array = jsonObject.value("list").toArray();
-            foreach(const QJsonValue &value, array)
-            {
-                if(!value.isObject())
-                {
-                   continue;
-                }
-                QJsonObject object = value.toObject();
-                m_playList << QString::number(object.value("id").toVariant().toInt());
-            }
-        }
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -112,7 +79,6 @@ void MusicRadioPlayListThread::downLoadFinished()
                 m_playList << QString::number(value["id"].toInt());
             }
         }
-#endif
     }
     emit downLoadDataChanged("query finished!");
     deleteAll();

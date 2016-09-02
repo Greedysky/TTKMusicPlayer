@@ -1,12 +1,6 @@
 #include "qnputret.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonDocument>
-#   include <QJsonObject>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 class QNPutRetPrivate : public TTKPrivate<QNPutRet>
 {
@@ -33,12 +27,6 @@ QNPutRet::QNPutRet()
 QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
 {
     QNPutRet *putRet = new QNPutRet;
-#ifdef MUSIC_GREATER_NEW
-    QJsonDocument doc = QJsonDocument::fromJson(jsonData);//check error
-    QJsonObject json = doc.object();
-    putRet->setHash(json["hash"].toString());
-    putRet->setKey(json["key"].toString());
-#else
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(jsonData, &ok);
@@ -48,7 +36,6 @@ QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
         putRet->setHash(value["hash"].toString());
         putRet->setKey(value["key"].toString());
     }
-#endif
     return putRet;
 }
 

@@ -2,18 +2,11 @@
 #include "musicdownloadquerywythread.h"
 #include "musicutils.h"
 #include "musictime.h"
-
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonArray>
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
+#///QJson import
+#include "qjson/parser.h"
 
 #include <QDateTime>
+
 MusicDownLoadQueryAlbumWYThread::MusicDownLoadQueryAlbumWYThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
@@ -71,83 +64,7 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-#ifdef MUSIC_GREATER_NEW
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if( jsonError.error != QJsonParseError::NoError )
-        {
-            emit downLoadDataChanged(QString());
-            deleteAll();
-            return;
-        }
 
-        QJsonObject jsonObject = parseDoucment.object();
-        if(jsonObject.value("code").toInt() == 200 && jsonObject.contains("album"))
-        {
-            jsonObject = jsonObject.take("album").toObject();
-            QString albumInfo = jsonObject.value("name").toString() + "<>" +
-                                jsonObject.value("language").toString() + "<>" +
-                                jsonObject.value("company").toString() + "<>" +
-                    QDateTime::fromMSecsSinceEpoch(jsonObject.value("publishTime").toVariant().toULongLong())
-                                 .toString("yyyy-MM-dd");
-            foreach(const QJsonValue &value, jsonObject.take("songs").toArray())
-            {
-                if(!value.isObject())
-                {
-                   continue;
-                }
-
-                QJsonObject object = value.toObject();
-                MusicObject::MusicSongInfomation info;
-                info.m_songName = object.value("name").toString();
-                info.m_timeLength = MusicTime::msecTime2LabelJustified(object.value("duration").toInt());
-                info.m_lrcUrl = WY_SONG_LRC_URL.arg(object.value("id").toInt());
-
-                QJsonObject albumObject = object.value("album").toObject();
-                info.m_smallPicUrl = albumObject.value("picUrl").toString();
-                info.m_albumId = albumInfo;
-
-                QJsonArray artistsArray = object.value("artists").toArray();
-                foreach(const QJsonValue &artistValue, artistsArray)
-                {
-                    if(!artistValue.isObject())
-                    {
-                       continue;
-                    }
-                    QJsonObject artistObject = artistValue.toObject();
-                    info.m_singerName = artistObject.value("name").toString();
-                }
-
-                if(m_queryAllRecords)
-                {
-                    readFromMusicSongAttribute(&info, object.value("lMusic").toVariant().toMap(), MB_32);
-                    readFromMusicSongAttribute(&info, object.value("bMusic").toVariant().toMap(), MB_128);
-                    readFromMusicSongAttribute(&info, object.value("mMusic").toVariant().toMap(), MB_192);
-                    readFromMusicSongAttribute(&info, object.value("hMusic").toVariant().toMap(), MB_320);
-                }
-                else
-                {
-                    if(m_searchQuality == tr("ST"))
-                        readFromMusicSongAttribute(&info, object.value("lMusic").toVariant().toMap(), MB_32);
-                    if(m_searchQuality == tr("SD"))
-                        readFromMusicSongAttribute(&info, object.value("bMusic").toVariant().toMap(), MB_128);
-                    else if(m_searchQuality == tr("HD"))
-                        readFromMusicSongAttribute(&info, object.value("mMusic").toVariant().toMap(), MB_192);
-                    else if(m_searchQuality == tr("SQ"))
-                        readFromMusicSongAttribute(&info, object.value("hMusic").toVariant().toMap(), MB_320);
-                }
-
-                if(info.m_songAttrs.isEmpty())
-                {
-                    continue;
-                }
-
-                emit createSearchedItems(info.m_songName, info.m_singerName, info.m_timeLength);
-                m_musicSongInfos << info;
-            }
-        }
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -220,7 +137,11 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
                 }
             }
         }
-#endif
+        else
+        {
+            emit downLoadDataChanged(QString());
+            deleteAll();
+        }
     }
 
     emit downLoadDataChanged(QString());

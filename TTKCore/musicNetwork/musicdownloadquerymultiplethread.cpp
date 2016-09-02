@@ -1,16 +1,9 @@
 #include "musicdownloadquerymultiplethread.h"
 #include "musicdownloadthreadabstract.h"
 #include "musicsettingmanager.h"
+#///QJson import
+#include "qjson/parser.h"
 
-#ifdef MUSIC_GREATER_NEW
-#   include <QJsonArray>
-#   include <QJsonObject>
-#   include <QJsonValue>
-#   include <QJsonParseError>
-#else
-#   ///QJson import
-#   include "qjson/parser.h"
-#endif
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 
@@ -120,96 +113,6 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-#ifdef MUSIC_GREATER_NEW
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-        QJsonParseError jsonError;
-        QJsonDocument parseDoucment = QJsonDocument::fromJson(bytes, &jsonError);
-        ///Put the data into Json
-        if( jsonError.error != QJsonParseError::NoError )
-        {
-            emit downLoadDataChanged(QString());
-            deleteAll();
-            return;
-        }
-
-        foreach(const QJsonValue &value, parseDoucment.array())
-        {
-            if(!value.isObject())
-            {
-               continue;
-            }
-            QJsonObject object = value.toObject();
-
-            MusicObject::MusicSongInfomation musicInfo;
-            if(m_currentType != MovieQuery)
-            {
-                QString songName = object.take("SongName").toString();
-                QString singerName = object.take("Artist").toString();
-                QString duration = object.take("Length").toString();
-                QString size = object.take("Size").toString();
-
-                if(m_queryAllRecords)
-                {
-                    readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("FlacUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("AacUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_320, object.take("SqUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_192, object.take("HqUrl").toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_128, object.take("LqUrl").toString());
-                }
-                else
-                {
-                    if(m_searchQuality == tr("SD"))
-                        readFromMusicSongAttribute(musicInfo, size, MB_128, object.take("LqUrl").toString());
-                    else if(m_searchQuality == tr("HD"))
-                        readFromMusicSongAttribute(musicInfo, size, MB_192, object.take("HqUrl").toString());
-                    else if(m_searchQuality == tr("SQ"))
-                        readFromMusicSongAttribute(musicInfo, size, MB_320, object.take("SqUrl").toString());
-                    else if(m_searchQuality == tr("CD"))
-                    {
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("FlacUrl").toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, object.take("AacUrl").toString());
-                    }
-                }
-                if(musicInfo.m_songAttrs.isEmpty())
-                {
-                    continue;
-                }
-                emit createSearchedItems(songName, singerName, duration);
-
-                musicInfo.m_songId = object.take("SongId").toString();
-                musicInfo.m_albumId = object.take("AlbumId").toString();
-                musicInfo.m_songName = songName;
-                musicInfo.m_singerName = singerName;
-                musicInfo.m_timeLength = duration;
-                musicInfo.m_lrcUrl = object.take("LrcUrl").toString();
-                musicInfo.m_smallPicUrl = object.take("PicUrl").toString();
-                m_musicSongInfos << musicInfo;
-            }
-            else
-            {
-                QString songName = object.take("SongName").toString();
-                QString singerName = object.take("Artist").toString();
-                QString duration = object.take("Length").toString();
-                QString size = object.take("Size").toString();
-
-                readFromMusicSongAttribute(musicInfo, size, MB_750, object.take("MvUrl").toString());
-                readFromMusicSongAttribute(musicInfo, size, MB_500, object.take("VideoUrl").toString());
-
-                if(musicInfo.m_songAttrs.isEmpty())
-                {
-                    continue;
-                }
-                emit createSearchedItems(songName, singerName, duration);
-
-                musicInfo.m_songId = object.take("SongId").toString();
-                musicInfo.m_albumId = object.take("AlbumId").toString();
-                musicInfo.m_songName = songName;
-                musicInfo.m_singerName = singerName;
-                musicInfo.m_timeLength = duration;
-                m_musicSongInfos << musicInfo;
-            }
-        }
-#else
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(m_reply->readAll(), &ok);
@@ -294,7 +197,6 @@ void MusicDownLoadQueryMultipleThread::downLoadFinished()
                 }
             }
         }
-#endif
         ///If there is no search to song_id, is repeated several times in the search
         ///If more than 5 times or no results give up
         static int counter = 5;
