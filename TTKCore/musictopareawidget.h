@@ -172,6 +172,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void createRemoteWidget();
+    /*!
+     * Create remote widget.
+     */
     void drawWindowBackgroundRect();
     /*!
      * Draw window background rect.
@@ -180,9 +184,13 @@ protected:
     /*!
      * Draw window background rect by picture.
      */
-    void createRemoteWidget();
+    void reRenderImage(int delta, const QImage *input, QImage *output);
     /*!
-     * Create remote widget.
+     * Rerender the image by color burn transform.
+     */
+    uint colorBurnTransform(int c, int delta);
+    /*!
+     * Image color burn transform.
      */
 
     Ui::MusicApplication *m_ui;
