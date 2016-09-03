@@ -17,7 +17,7 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
 
 MusicVideoTableWidget::~MusicVideoTableWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 

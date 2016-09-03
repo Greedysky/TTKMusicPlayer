@@ -20,7 +20,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     delete m_actionGroup;
 }
 

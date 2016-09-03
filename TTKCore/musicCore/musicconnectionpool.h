@@ -75,13 +75,13 @@ public:
     /*!
      * Set connection by two object type name.
      */
-    void poolDisConnect(const QObject *object);
+    void removeValue(const QObject *object);
     /*!
-     * set disconnection by two object.
+     * Remove connection object by object.
      */
-    void poolDisConnect(const QString &name);
+    void removeValue(const QString &name);
     /*!
-     * set disconnection by two object type name.
+     * Remove connection object by object name.
      */
 
 protected:

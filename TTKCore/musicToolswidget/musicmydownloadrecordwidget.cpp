@@ -30,7 +30,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName() );
+    M_CONNECTION_PTR->removeValue(getClassName() );
     delete m_delegate;
     clearAllItems();
 

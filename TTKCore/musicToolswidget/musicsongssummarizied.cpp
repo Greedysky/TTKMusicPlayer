@@ -29,7 +29,7 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
 
 MusicSongsSummarizied::~MusicSongsSummarizied()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
     delete m_floatWidget;
 }

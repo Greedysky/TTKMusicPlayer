@@ -140,12 +140,12 @@ void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)
     QObject::connect(from, SIGNAL(sender()), to, SLOT(receiver()));
 }
 
-void MusicConnectionPool::poolDisConnect(const QString &name)
+void MusicConnectionPool::removeValue(const QString &name)
 {
     m_para.take(name);
 }
 
-void MusicConnectionPool::poolDisConnect(const QObject *object)
+void MusicConnectionPool::removeValue(const QObject *object)
 {
     QMapIterator<QString, QObject*> i(m_para);
     while(i.hasNext())
@@ -153,7 +153,7 @@ void MusicConnectionPool::poolDisConnect(const QObject *object)
         i.next();
         if(i.value() == object)
         {
-            poolDisConnect(i.key());
+            removeValue(i.key());
             break;
         }
     }

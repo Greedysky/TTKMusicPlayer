@@ -88,7 +88,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName() );
+    M_CONNECTION_PTR->removeValue(getClassName() );
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;

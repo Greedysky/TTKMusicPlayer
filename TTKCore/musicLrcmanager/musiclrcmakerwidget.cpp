@@ -51,7 +51,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName() );
+    M_CONNECTION_PTR->removeValue(getClassName() );
 }
 
 QString MusicLrcMakerWidget::getClassName()

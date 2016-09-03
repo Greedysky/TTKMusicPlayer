@@ -95,7 +95,7 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     delete ui;
 }
 

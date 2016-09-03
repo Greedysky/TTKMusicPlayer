@@ -119,10 +119,6 @@ void MusicSoundEffectsItemWidget::setPluginEnable()
 
 void MusicSoundEffectsItemWidget::soundEffectCheckBoxChanged(bool state)
 {
-//    foreach(EffectFactory *factory, Effect::factories())
-//    {
-//        Effect::setEnabled(factory, false);
-//    }
     QString plugin( transformQStringFromEnum() );
     foreach(EffectFactory *factory, Effect::factories())
     {
@@ -222,7 +218,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     writeSoundEffect();
 
     delete ui;

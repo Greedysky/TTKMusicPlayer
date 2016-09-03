@@ -51,7 +51,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     writeEqInformation();
     delete m_signalMapper;
     delete ui;

@@ -30,7 +30,7 @@ MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
 
 MusicSimilarFoundTableWidget::~MusicSimilarFoundTableWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 

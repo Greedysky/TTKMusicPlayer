@@ -31,7 +31,7 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
 
 MusicAlbumFoundTableWidget::~MusicAlbumFoundTableWidget()
 {
-    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 
