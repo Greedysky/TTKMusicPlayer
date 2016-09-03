@@ -48,11 +48,13 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 {
     TTK_INIT_PRIVATE;
 
+#ifdef MUSIC_WEBKIT
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+#endif
 
     switch(type)
     {
@@ -81,11 +83,13 @@ QString KugouWindow::getClassName()
 void KugouWindow::goBack()
 {
     TTK_D(KugouWindow);
+#ifdef MUSIC_WEBKIT
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
+#endif
 }
 
 void KugouWindow::kugouSongIndexChanged(int index)
