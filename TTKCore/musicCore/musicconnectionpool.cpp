@@ -17,6 +17,7 @@
 #include "musicdownloadmgmtwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicalbumfoundwidget.h"
+#include "musicsoundeffectswidget.h"
 
 MusicConnectionPool::MusicConnectionPool()
     : QObject(nullptr)
@@ -87,6 +88,18 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(setEqEffect(MusicObject::MIntList)));
         QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second,
                                 SLOT(setEnaleEffect(bool)));
+    }
+    else if(from == MusicEqualizerDialog::getClassName() && to == MusicSoundEffectsWidget::getClassName() )
+    {
+        QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second,
+                                SLOT(equalizerButtonChanged(bool)));
+    }
+    else if(from == MusicSoundEffectsWidget::getClassName() && to == MusicPlayer::getClassName() )
+    {
+        QObject::connect(first, SIGNAL(volumeChanged(int)), second,
+                                SLOT(setSoundEffectVolume(int)));
+        QObject::connect(first, SIGNAL(setEqInformation()), second,
+                                SLOT(setEqInformation()));
     }
     else if(from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicDownloadStatusLabel::getClassName() )
     {

@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
+#include "musicsoundeffectswidget.h"
 #include "musicutils.h"
 #include "musicplayer.h"
 
@@ -39,12 +40,13 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     ui->showEqButton->setStyleSheet(MusicUIObject::MKGEqualizerOff);
 
+    setControlEnable(false);
     initEqualizeValue();
     readEqInformation();
-    setControlEnable(false);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSoundEffectsWidget::getClassName());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()

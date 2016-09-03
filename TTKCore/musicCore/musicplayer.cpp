@@ -7,16 +7,17 @@
 #include "soundcore.h"
 ///
 #include <qmath.h>
-
+#include<QDebug>
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
-    m_playlist = new MusicPlaylist(this);
+    m_playlist = nullptr;
     m_state = StoppedState;
     m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
+    m_balance = 0;
     m_duration = 0;
     m_tryTimes = 0;
 
@@ -41,6 +42,12 @@ MusicPlayer::State MusicPlayer::state() const
     return m_state;
 }
 
+void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
+{
+    delete m_playlist;
+    m_playlist = playlist;
+}
+
 MusicPlaylist *MusicPlayer::playlist() const
 {
     return m_playlist;
@@ -56,14 +63,43 @@ qint64 MusicPlayer::position() const
     return m_music->elapsed();
 }
 
+void MusicPlayer::playNext()
+{
+    int index = m_playlist->currentIndex();
+    m_playlist->setCurrentIndex((++index >= m_playlist->mediaCount()) ? 0 : index);
+}
+
+void MusicPlayer::playPrevious()
+{
+    int index = m_playlist->currentIndex();
+    m_playlist->setCurrentIndex((--index < 0) ? 0 : index );
+}
+
 int MusicPlayer::volume() const
 {
     return isMuted() ? 0 : m_music->volume();
 }
 
+void MusicPlayer::setVolume(int volume)
+{
+    m_volumeMusic3D = volume;
+    m_music->setVolume(volume);
+}
+
 bool MusicPlayer::isMuted() const
 {
     return m_music->isMuted();
+}
+
+void MusicPlayer::setMuted(bool muted)
+{
+    m_volumeMusic3D = muted ? 0 : m_music->volume();
+    m_music->setMuted(muted);
+}
+
+void MusicPlayer::setPosition(qint64 position)
+{
+    m_music->seek(position);
 }
 
 void MusicPlayer::setMusicEnhanced(Enhanced type)
@@ -74,9 +110,15 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     {
         m_volumeMusic3D = volume();
     }
+    else if(m_musicEnhanced == EnhancedOff)
+    {
+        return;
+    }
     else
     {
+        m_music->setBalance(0);
         m_music->setVolume(m_volumeMusic3D, m_volumeMusic3D);
+        m_music->setBalance(m_balance);
         setMusicEnhancedCase();
     }
 }
@@ -175,19 +217,8 @@ void MusicPlayer::play()
     {
         setVolume(volume);
     }
+    setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
     ////////////////////////////////////////////////
-}
-
-void MusicPlayer::playNext()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((++index >= m_playlist->mediaCount()) ? 0 : index);
-}
-
-void MusicPlayer::playPrevious()
-{
-    int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((--index < 0) ? 0 : index );
 }
 
 void MusicPlayer::pause()
@@ -202,108 +233,6 @@ void MusicPlayer::stop()
     m_music->stop();
     m_timer.stop();
     m_state = StoppedState;
-}
-
-void MusicPlayer::setPosition(qint64 position)
-{
-    m_music->seek(position);
-}
-
-void MusicPlayer::setVolume(int volume)
-{
-    m_volumeMusic3D = volume;
-    m_music->setVolume(volume);
-}
-
-void MusicPlayer::setMuted(bool muted)
-{
-    m_volumeMusic3D = muted ? 0 : m_music->volume();
-    m_music->setMuted(muted);
-}
-
-void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
-{
-//    delete m_playlist;
-    m_playlist = playlist;
-}
-
-void MusicPlayer::update()
-{
-    emit positionChanged( position() );
-
-    if(m_musicEnhanced == Music3D && !m_music->isMuted())
-    {
-        ///3D music settings
-        setEnaleEffect(false);
-        m_posOnCircle += 0.5f;
-        m_music->setVolume(abs(100 * cosf(m_posOnCircle)), abs(100 * sinf(m_posOnCircle * 0.5f)));
-    }
-
-    Qmmp::State state = m_music->state();
-    if(state != Qmmp::Playing && state != Qmmp::Paused)
-    {
-        m_timer.stop();
-        if(m_playlist->playbackMode() == MusicObject::MC_PlayOnce)
-        {
-            m_music->stop();
-            emit positionChanged(0);
-            emit stateChanged(StoppedState);
-            return;
-        }
-        m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MusicObject::MC_PlayOrder &&
-           m_playlist->currentIndex() == -1)
-        {
-            m_music->stop();
-            emit positionChanged(0);
-            emit stateChanged(StoppedState);
-            return;
-        }
-        play();
-    }
-}
-
-void MusicPlayer::setMusicEnhancedCase()
-{
-    switch(m_musicEnhanced)
-    {
-        case EnhancedOff:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
-            break;
-        case MusicVocal:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
-            break;
-        case MusicNICAM:
-            setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
-            break;
-        case MusicSubwoofer:
-            setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
-            break;
-        default:
-            break;
-    }
-}
-
-void MusicPlayer::removeCurrentMedia()
-{
-    if(m_music)
-    {
-        m_timer.stop();
-        m_music->stop();
-    }
-}
-
-void MusicPlayer::getCurrentDuration()
-{
-    qint64 dur = duration();
-    if( (dur == 0 || m_duration == dur) && m_tryTimes++ < 10 )
-    {
-        QTimer::singleShot(50*MT_MS, this, SLOT(getCurrentDuration()));
-    }
-    else
-    {
-        emit durationChanged( m_duration = dur );
-    }
 }
 
 void MusicPlayer::setEqEffect(const MusicObject::MIntList &hz)
@@ -348,5 +277,90 @@ void MusicPlayer::setEqInformation()
             setEqEffect(hz);
         }
     }
+    else
+    {
+        setEnaleEffect(false);
+    }
 }
 
+void MusicPlayer::setSoundEffectVolume(int value)
+{
+    m_balance = value;
+    m_music->setBalance(value);
+}
+
+void MusicPlayer::removeCurrentMedia()
+{
+    m_timer.stop();
+    m_music->stop();
+}
+
+void MusicPlayer::update()
+{
+    emit positionChanged( position() );
+
+    if(m_musicEnhanced == Music3D && !m_music->isMuted())
+    {
+        ///3D music settings
+        setEnaleEffect(false);
+        m_posOnCircle += 0.5f;
+        m_music->setVolume(abs(100 * cosf(m_posOnCircle)), abs(100 * sinf(m_posOnCircle * 0.5f)));
+    }
+
+    Qmmp::State state = m_music->state();
+    if(state != Qmmp::Playing && state != Qmmp::Paused)
+    {
+        m_timer.stop();
+        if(m_playlist->playbackMode() == MusicObject::MC_PlayOnce)
+        {
+            m_music->stop();
+            emit positionChanged(0);
+            emit stateChanged(StoppedState);
+            return;
+        }
+        m_playlist->setCurrentIndex();
+        if(m_playlist->playbackMode() == MusicObject::MC_PlayOrder &&
+           m_playlist->currentIndex() == -1)
+        {
+            m_music->stop();
+            emit positionChanged(0);
+            emit stateChanged(StoppedState);
+            return;
+        }
+        play();
+    }
+}
+
+void MusicPlayer::getCurrentDuration()
+{
+    qint64 dur = duration();
+    if( (dur == 0 || m_duration == dur) && m_tryTimes++ < 10 )
+    {
+        QTimer::singleShot(50*MT_MS, this, SLOT(getCurrentDuration()));
+    }
+    else
+    {
+        emit durationChanged( m_duration = dur );
+    }
+}
+
+void MusicPlayer::setMusicEnhancedCase()
+{
+    switch(m_musicEnhanced)
+    {
+        case EnhancedOff:
+            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
+            break;
+        case MusicVocal:
+            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
+            break;
+        case MusicNICAM:
+            setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
+            break;
+        case MusicSubwoofer:
+            setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
+            break;
+        default:
+            break;
+    }
+}

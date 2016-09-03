@@ -4,7 +4,6 @@
 #include "musicapplication.h"
 
 #include <QTime>
-#include <QDebug>
 #ifdef Q_OS_WIN
 #  include <windows.h>
 #else

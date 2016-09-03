@@ -874,6 +874,27 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
 
+    switch( xml.readMusicPlayModeConfig() )
+    {
+        case MusicObject::MC_PlayOrder:
+            musicPlayOrder();break;
+        case MusicObject::MC_PlayRandom:
+            musicPlayRandom();break;
+        case MusicObject::MC_PlayListLoop:
+            musicPlayListLoop();break;
+        case MusicObject::MC_PlayOneLoop:
+            musicPlayOneLoop();break;
+        case MusicObject::MC_PlayOnce:
+            musicPlayItemOnce();break;
+        default:break;
+    }
+    //////////////////////////////////////////////////////////////
+    //The size of the volume of the allocation of songs
+    value = xml.readMusicPlayVolumeConfig();
+    musicVolumeChanged(value);
+    m_musicPlayer->setSoundEffectVolume(xml.readEnhancedBalance());
+
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, xml.readEqualizerEnable());
@@ -893,25 +914,6 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     xml.readOtherLoadConfig();
 
-    switch( xml.readMusicPlayModeConfig() )
-    {
-        case MusicObject::MC_PlayOrder:
-            musicPlayOrder();break;
-        case MusicObject::MC_PlayRandom:
-            musicPlayRandom();break;
-        case MusicObject::MC_PlayListLoop:
-            musicPlayListLoop();break;
-        case MusicObject::MC_PlayOneLoop:
-            musicPlayOneLoop();break;
-        case MusicObject::MC_PlayOnce:
-            musicPlayItemOnce();break;
-        default:break;
-    }
-    //////////////////////////////////////////////////////////////
-    //The size of the volume of the allocation of songs
-    value = xml.readMusicPlayVolumeConfig();
-    musicVolumeChanged(value);
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown

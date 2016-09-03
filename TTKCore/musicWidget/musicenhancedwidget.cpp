@@ -4,6 +4,9 @@
 #include "musicfunctionuiobject.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicapplicationobject.h"
+///qmmp incldue
+#include "effect.h"
+#include "effectfactory.h"
 
 #include <QLabel>
 #include <QButtonGroup>
@@ -142,6 +145,14 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
+
+    ////////////////////////////////////////////////////////////////////
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        Effect::setEnabled(factory, false);
+    }
+    ////////////////////////////////////////////////////////////////////
+
     emit enhancedMusicChanged(type);
 
     m_menu->close();

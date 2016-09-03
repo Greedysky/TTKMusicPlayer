@@ -1,7 +1,9 @@
 #include "musicsoundeffectswidget.h"
 #include "ui_musicsoundeffectswidget.h"
 #include "musicsettingmanager.h"
+#include "musicconnectionpool.h"
 #include "musicuiobject.h"
+#include "musicplayer.h"
 ///qmmp incldue
 #include "effect.h"
 #include "effectfactory.h"
@@ -88,6 +90,11 @@ void MusicSoundEffectsItemWidget::setPluginEnable(bool enable)
 {
     m_enable = !enable;
     setPluginEnable();
+}
+
+bool MusicSoundEffectsItemWidget::pluginEnable() const
+{
+    return m_enable;
 }
 
 void MusicSoundEffectsItemWidget::setPluginEnable()
@@ -206,10 +213,18 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     ui->SRCWidget->setText("SRC");
     ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SRC);
 #endif
+
+    readSoundEffect();
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
 }
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
+    M_CONNECTION_PTR->poolDisConnect(getClassName());
+    writeSoundEffect();
+
     delete ui;
 }
 
@@ -235,18 +250,19 @@ void MusicSoundEffectsWidget::setParentConnect(QObject *object)
     connect(ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(musicSetEqualizer()));
 }
 
+void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
+{
+    ui->eqButton->setText(state ? tr("Off") : tr("On"));
+}
+
 void MusicSoundEffectsWidget::equalizerButtonChanged()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
-    {
-        ui->eqButton->setText(tr("On"));
-        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
-    }
-    else
-    {
-        ui->eqButton->setText(tr("Off"));
-        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 1);
-    }
+    int state = !M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+    equalizerButtonChanged(state);
+
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, state);
+
+    emit setEqInformation();
 }
 
 void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
@@ -281,10 +297,33 @@ void MusicSoundEffectsWidget::volumeSliderChanged(int value)
 {
     ui->volumeSlider->setToolTip(QString::number(value));
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, value);
+    emit volumeChanged(value);
 }
 
 int MusicSoundEffectsWidget::exec()
 {
     setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicSoundEffectsWidget::readSoundEffect()
+{
+    ui->BS2BWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2BChoiced).toInt());
+    ui->CrossfadeWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt());
+    ui->StereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt());
+#ifdef Q_OS_UNIX
+    ui->LADSPAWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt());
+    ui->SRCWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt());
+#endif
+}
+
+void MusicSoundEffectsWidget::writeSoundEffect()
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced, ui->BS2BWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, ui->CrossfadeWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, ui->StereoWidget->pluginEnable());
+#ifdef Q_OS_UNIX
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, ui->LADSPAWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced, ui->SRCWidget->pluginEnable());
+#endif
 }

@@ -232,7 +232,7 @@ void MusicXMLConfigManager::writeXMLConfig()
 
     ///////////////////////////////////////////////
     writeDomElement(equalizer, "enhancedMusic", "value", enhancedMusicChoiced);
-    writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
+    writeDomElement(equalizer, "equalizerEnable", "value", equalizerEnableChoiced);
     writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
     writeDomElement(equalizer, "enhancedBalance", "value", enhancedBalanceChoiced);

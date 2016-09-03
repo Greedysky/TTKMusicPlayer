@@ -55,6 +55,10 @@ public:
     /*!
      * Set plugin enable or not.
      */
+    bool pluginEnable() const;
+    /*!
+     * Get plugin enable or not.
+     */
 
 public Q_SLOTS:
     void setPluginEnable();
@@ -107,7 +111,21 @@ public:
      * Set parent connection.
      */
 
+Q_SIGNALS:
+    void volumeChanged(int value);
+    /*!
+     * Set current player volume.
+     */
+    void setEqInformation();
+    /*!
+     * Read equalizer effect from config file.
+     */
+
 public Q_SLOTS:
+    void equalizerButtonChanged(bool state);
+    /*!
+     * Equalizer button state changed.
+     */
     void equalizerButtonChanged();
     /*!
      * Equalizer button state changed.
@@ -126,6 +144,15 @@ public Q_SLOTS:
      */
 
 protected:
+    void readSoundEffect();
+    /*!
+     * Read sound effect function.
+     */
+    void writeSoundEffect();
+    /*!
+     * Write sound effect function.
+     */
+
     Ui::MusicSoundEffectsWidget *ui;
 
 };

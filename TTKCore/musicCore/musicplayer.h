@@ -86,11 +86,11 @@ public:
 
     int volume() const;
     /*!
-     * Set current player volume.
+     * Get current player volume.
      */
     void setVolume(int volume);
     /*!
-     * Get current player volume.
+     * Set current player volume.
      */
     bool isMuted() const;
     /*!
@@ -174,6 +174,10 @@ public Q_SLOTS:
     /*!
      * Read equalizer effect from config file.
      */
+    void setSoundEffectVolume(int value);
+    /*!
+     * Set current player volume.
+     */
     void removeCurrentMedia();
     /*!
      * Remove current music media data.
@@ -204,7 +208,7 @@ protected:
     qint64 m_duration;
 
     int m_tryTimes;
-    int m_volumeMusic3D;
+    int m_volumeMusic3D, m_balance;
     float m_posOnCircle;
 
 };
