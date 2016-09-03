@@ -70,10 +70,6 @@ public:
     /*!
      * Return the current song name.
      */
-    inline int getSongIdIndex() const { return m_musicSongInfos.size() + 1;}
-    /*!
-     * Return the current song container size.
-     */
     inline const MusicObject::MusicSongInfomations& getMusicSongInfos() const { return m_musicSongInfos;}
     /*!
      * Return the current song container.
