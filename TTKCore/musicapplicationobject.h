@@ -120,6 +120,11 @@ public Q_SLOTS:
      */
 
 protected:
+    bool closeCurrentEqualizer();
+    /*!
+     * Close current equalizer.
+     */
+
     bool m_setWindowToTop;
     QPropertyAnimation *m_animation;
     MusicTimerAutoObject *m_musicTimerAutoObj;

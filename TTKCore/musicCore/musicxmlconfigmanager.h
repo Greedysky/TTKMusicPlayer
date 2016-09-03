@@ -59,11 +59,6 @@ public:
     /*!
      * Read Music Play Volume Config.
      */
-    inline int readEnhancedMusicConfig() const
-    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
-    /*!
-     * Read Enhanced Music Config.
-     */
     inline int readSystemCloseConfig() const
     { return readXmlAttributeByTagNameValue("closeEvent").toInt(); }
     /*!
@@ -164,13 +159,18 @@ public:
     /*!
      * Read Show Desktop Lrc Locked Config.
      */
+    inline int readEnhancedMusicConfig() const
+    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
+    /*!
+     * Read Enhanced Music Config.
+     */
     inline int readEqualizerIndex() const
     { return readXmlAttributeByTagNameValue("equalizerIndex").toInt(); }
     /*!
      * Read Equalizer Index Config.
      */
-    inline int readEqualizerEnale() const
-    { return readXmlAttributeByTagNameValue("equalizerEnale").toInt(); }
+    inline int readEqualizerEnable() const
+    { return readXmlAttributeByTagNameValue("equalizerEnable").toInt(); }
     /*!
      * Read Equalizer Enale Config.
      */
@@ -178,6 +178,51 @@ public:
     { return readXmlAttributeByTagNameValue("equalizerValue"); }
     /*!
      * Read Equalizer Value Config.
+     */
+    inline int readEnhancedBalance() const
+    { return readXmlAttributeByTagNameValue("enhancedBalance").toInt(); }
+    /*!
+     * Read Enhanced Volume Balance.
+     */
+    inline int readEnhancedFadeEnable() const
+    { return readXmlAttributeByTagNameValue("enhancedFadeEnable").toInt(); }
+    /*!
+     * Read Enhanced Fade Enable.
+     */
+    inline int readEnhancedFadeInValue() const
+    { return readXmlAttributeByTagNameValue("enhancedFadeInValue").toInt(); }
+    /*!
+     * Read Enhanced Fade In Value.
+     */
+    inline int readEnhancedFadeOutValue() const
+    { return readXmlAttributeByTagNameValue("enhancedFadeOutValue").toInt(); }
+    /*!
+     * Read Enhanced Fade Out Value.
+     */
+    inline int readEnhancedBS2B() const
+    { return readXmlAttributeByTagNameValue("enhancedBS2B").toInt(); }
+    /*!
+     * Read Enhanced BS2B.
+     */
+    inline int readEnhancedCrossfade() const
+    { return readXmlAttributeByTagNameValue("enhancedCrossfade").toInt(); }
+    /*!
+     * Read Enhanced Crossfade.
+     */
+    inline int readEnhancedStereo() const
+    { return readXmlAttributeByTagNameValue("enhancedStereo").toInt(); }
+    /*!
+     * Read Enhanced Stereo.
+     */
+    inline int readEnhancedLADSPA() const
+    { return readXmlAttributeByTagNameValue("enhancedLADSPA").toInt(); }
+    /*!
+     * Read Enhanced LADSPA.
+     */
+    inline int readEnhancedSRC() const
+    { return readXmlAttributeByTagNameValue("enhancedSRC").toInt(); }
+    /*!
+     * Read Enhanced SRC.
      */
     inline int readLanguageIndex() const
     { return readXmlAttributeByTagNameValue("language").toInt(); }

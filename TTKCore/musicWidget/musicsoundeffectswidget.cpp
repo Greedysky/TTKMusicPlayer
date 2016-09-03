@@ -1,5 +1,6 @@
 #include "musicsoundeffectswidget.h"
 #include "ui_musicsoundeffectswidget.h"
+#include "musicsettingmanager.h"
 #include "musicuiobject.h"
 ///qmmp incldue
 #include "effect.h"
@@ -185,10 +186,9 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     connect(ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
     ui->eqButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->eqEffectButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->eqButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->eqEffectButton->setCursor(QCursor(Qt::PointingHandCursor));
-
+    ui->eqEffectButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     ////////////////////////////////////////////////////////////////////
     ui->BS2BWidget->setText("BS2B");
@@ -216,6 +216,37 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 QString MusicSoundEffectsWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSoundEffectsWidget::setParentConnect(QObject *object)
+{
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    {
+        ui->eqButton->setText(tr("Off"));
+    }
+    else
+    {
+        ui->eqButton->setText(tr("On"));
+    }
+
+    ui->volumeSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
+
+    connect(ui->eqButton, SIGNAL(clicked()), SLOT(equalizerButtonChanged()));
+    connect(ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(musicSetEqualizer()));
+}
+
+void MusicSoundEffectsWidget::equalizerButtonChanged()
+{
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    {
+        ui->eqButton->setText(tr("On"));
+        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
+    }
+    else
+    {
+        ui->eqButton->setText(tr("Off"));
+        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 1);
+    }
 }
 
 void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
@@ -249,6 +280,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
 void MusicSoundEffectsWidget::volumeSliderChanged(int value)
 {
     ui->volumeSlider->setToolTip(QString::number(value));
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, value);
 }
 
 int MusicSoundEffectsWidget::exec()

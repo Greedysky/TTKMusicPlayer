@@ -876,6 +876,21 @@ void MusicApplication::readXMLConfigFromText()
 
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, xml.readEqualizerEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
+    m_musicPlayer->setEqInformation();
+
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, xml.readEnhancedBalance());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, xml.readEnhancedFadeEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, xml.readEnhancedFadeInValue());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, xml.readEnhancedFadeOutValue());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced, xml.readEnhancedBS2B());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, xml.readEnhancedCrossfade());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, xml.readEnhancedStereo());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, xml.readEnhancedLADSPA());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced, xml.readEnhancedSRC());
+    //////////////////////////////////////////////////////////////
     xml.readOtherLoadConfig();
 
     switch( xml.readMusicPlayModeConfig() )
@@ -972,11 +987,7 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
     m_bottomAreaWidget->setDestopLrcVisible(value);
     m_rightAreaWidget->setDestopLrcVisible(value);
-    //////////////////////////////////////////////////////////////
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, xml.readEqualizerEnale());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
-    m_musicPlayer->setEqInformation();
+
     //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, xml.readLanguageIndex());
 

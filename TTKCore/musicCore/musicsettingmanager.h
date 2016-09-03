@@ -34,7 +34,6 @@ public:
         VolumeChoiced,                  ///*Volume Parameter*/
 
         AutoPlayChoiced,                ///*Auto Play Parameter*/
-        EnhancedMusicChoiced,           ///*Enhanced Music Parameter*/
         CurrentLanIndexChoiced,         ///*Current LanIndex Parameter*/
         CloseEventChoiced,              ///*Close Event Parameter*/
         LastPlayIndexChoiced,           ///*Last Play Index Parameter*/
@@ -71,6 +70,16 @@ public:
         EqualizerEnableChoiced,         ///*Equalizer Enable Parameter*/
         EqualizerValueChoiced,          ///*Equalizer Value Parameter*/
         EqualizerIndexChoiced,          ///*Equalizer Index Parameter*/
+        EnhancedMusicChoiced,           ///*Enhanced Music Parameter*/
+        EnhancedBalanceChoiced,         ///*Enhanced Balance Parameter*/
+        EnhancedFadeEnableChoiced,      ///*Enhanced Fade Enable Parameter*/
+        EnhancedFadeInValueChoiced,     ///*Enhanced Fade In Value Parameter*/
+        EnhancedFadeOutValueChoiced,    ///*Enhanced Fade Out Value Parameter*/
+        EnhancedBS2BChoiced,            ///*Enhanced BS2B Parameter*/
+        EnhancedCrossfadeChoiced,       ///*Enhanced Crossfade Parameter*/
+        EnhancedStereoChoiced,          ///*Enhanced Stereo Parameter*/
+        EnhancedLADSPAChoiced,          ///*Enhanced LADSPA Parameter*/
+        EnhancedSRCChoiced,             ///*Enhanced SRC Parameter*/
 
         TimerAutoIndexChoiced,          ///*Timer Auto Index Parameter*/
         TimerAutoPlayChoiced,           ///*Timer Auto Play Parameter*/

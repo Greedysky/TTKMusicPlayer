@@ -102,8 +102,16 @@ public:
     /*!
      * Get class object name.
      */
+    void setParentConnect(QObject *object);
+    /*!
+     * Set parent connection.
+     */
 
 public Q_SLOTS:
+    void equalizerButtonChanged();
+    /*!
+     * Equalizer button state changed.
+     */
     void stateComboBoxChanged(int index);
     /*!
      * State combobox index changed.

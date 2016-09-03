@@ -65,7 +65,6 @@ void MusicXMLConfigManager::writeXMLConfig()
 {
     int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
-    int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
 
     ///////////////////////////////////////////////////////////////////////////
@@ -106,9 +105,19 @@ void MusicXMLConfigManager::writeXMLConfig()
     QPoint DLrcGeometry = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
 
     ///////////////////////////////////////////////////////////////////////////
+    int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     int equalizerEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
     QString equalizerValueChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString();
     int equalizerIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
+    int enhancedBalanceChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt();
+    int enhancedFadeEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnableChoiced).toInt();
+    int enhancedFadeInValueChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt();
+    int enhancedFadeOutValueChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt();
+    int enhancedBS2BChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2BChoiced).toInt();
+    int enhancedCrossfadeChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt();
+    int enhancedStereoChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt();
+    int enhancedLADSPAChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt();
+    int enhancedSRCChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int timeAutoIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
@@ -159,7 +168,6 @@ void MusicXMLConfigManager::writeXMLConfig()
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
-    writeDomElement(music, "enhancedMusic", "value", enhancedMusicChoiced);
     writeDomElementText(music, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
@@ -223,9 +231,19 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y()));
 
     ///////////////////////////////////////////////
+    writeDomElement(equalizer, "enhancedMusic", "value", enhancedMusicChoiced);
     writeDomElement(equalizer, "equalizerEnale", "value", equalizerEnableChoiced);
     writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
+    writeDomElement(equalizer, "enhancedBalance", "value", enhancedBalanceChoiced);
+    writeDomElement(equalizer, "enhancedFadeEnable", "value", enhancedFadeEnableChoiced);
+    writeDomElement(equalizer, "enhancedFadeInValue", "value", enhancedFadeInValueChoiced);
+    writeDomElement(equalizer, "enhancedFadeOutValue", "value", enhancedFadeOutValueChoiced);
+    writeDomElement(equalizer, "enhancedBS2B", "value", enhancedBS2BChoiced);
+    writeDomElement(equalizer, "enhancedCrossfade", "value", enhancedCrossfadeChoiced);
+    writeDomElement(equalizer, "enhancedStereo", "value", enhancedStereoChoiced);
+    writeDomElement(equalizer, "enhancedLADSPA", "value", enhancedLADSPAChoiced);
+    writeDomElement(equalizer, "enhancedSRC", "value", enhancedSRCChoiced);
 
     ///////////////////////////////////////////////
     writeDomElement(downloads, "downloadMusicPath", "value", downloadMusicPath);

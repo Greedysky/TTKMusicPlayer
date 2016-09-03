@@ -222,22 +222,36 @@ void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
 
 void MusicApplicationObject::musicSetEqualizer()
 {
+    if(!closeCurrentEqualizer())
+    {
+        return;
+    }
+    MusicEqualizerDialog equalizer;
+    equalizer.exec();
+}
+
+void MusicApplicationObject::musicSetSoundEffect()
+{
+    if(!closeCurrentEqualizer())
+    {
+        return;
+    }
+    MusicSoundEffectsWidget sound;
+    sound.setParentConnect(this);
+    sound.exec();
+}
+
+bool MusicApplicationObject::closeCurrentEqualizer()
+{
     if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
     {
         MusicMessageBox message;
         message.setText(tr("we are opening the magic sound, if you want to close?"));
         if(message.exec())
         {
-            return;
+            return false;
         }
         emit enhancedMusicChanged(0);
     }
-    MusicEqualizerDialog eq;
-    eq.exec();
-}
-
-void MusicApplicationObject::musicSetSoundEffect()
-{
-    MusicSoundEffectsWidget sound;
-    sound.exec();
+    return true;
 }
