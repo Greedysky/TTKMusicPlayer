@@ -28,6 +28,10 @@ MusicApplication::MusicApplication(QWidget *parent)
 {
     m_instance = this;
     m_applicationObject = new MusicApplicationObject(this);
+    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
+    m_topAreaWidget = new MusicTopAreaWidget(this);
+    m_rightAreaWidget = new MusicRightAreaWidget(this);
+    m_leftAreaWidget = new MusicLeftAreaWidget(this);
     ////////////////////////////////////////////////
     ui->setupUi(this);
 
@@ -36,14 +40,11 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_musicSongTree = new MusicSongsSummarizied(this);
     ui->songsContainer->addWidget(m_musicSongTree);
 
-    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_bottomAreaWidget->setupUi(ui);
-    m_topAreaWidget = new MusicTopAreaWidget(this);
     m_topAreaWidget->setupUi(ui);
-    m_rightAreaWidget = new MusicRightAreaWidget(this);
     m_rightAreaWidget->setupUi(ui);
-    m_leftAreaWidget = new MusicLeftAreaWidget(this);
     m_leftAreaWidget->setupUi(ui);
+
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTree, SLOT(setTransparent(int)));
     connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));
