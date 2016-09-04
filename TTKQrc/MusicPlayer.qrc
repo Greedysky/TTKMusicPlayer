@@ -43,6 +43,11 @@
         <file alias="lb_slider_disable">../TTKResource/controls/lb_slider_disable.png</file>
         <file alias="lb_slider_handle_hover">../TTKResource/controls/lb_slider_handle_hover.png</file>
         <file alias="lb_slider_handle_normal">../TTKResource/controls/lb_slider_handle_normal.png</file>
+        <file alias="lb_make_back">../TTKResource/controls/lb_make_back.png</file>
+        <file alias="lb_make_fore">../TTKResource/controls/lb_make_fore.png</file>
+        <file alias="lb_make_slider_disable">../TTKResource/controls/lb_make_slider_disable.png</file>
+        <file alias="lb_make_slider_handle_hover">../TTKResource/controls/lb_make_slider_handle_hover.png</file>
+        <file alias="lb_make_slider_handle_normal">../TTKResource/controls/lb_make_slider_handle_normal.png</file>
     </qresource>
     <qresource prefix="/desktopTool">
         <file alias="btn_next_normal">../TTKResource/desktopTool/btn_next_normal.png</file>
@@ -189,6 +194,19 @@
         <file alias="btn_message_hover">../TTKResource/lrc/btn_message_hover.png</file>
         <file alias="btn_microphone_normal">../TTKResource/lrc/btn_microphone_normal.png</file>
         <file alias="btn_microphone_hover">../TTKResource/lrc/btn_microphone_hover.png</file>
+        <file alias="lb_make_background1">../TTKResource/lrc/lb_make_background1.png</file>
+        <file alias="lb_make_background2">../TTKResource/lrc/lb_make_background2.png</file>
+        <file alias="lb_make_background3">../TTKResource/lrc/lb_make_background3.png</file>
+        <file alias="lb_make_arrow">../TTKResource/lrc/lb_make_arrow.png</file>
+        <file alias="lb_make_first">../TTKResource/lrc/lb_make_first.png</file>
+        <file alias="lb_make_second">../TTKResource/lrc/lb_make_second.png</file>
+        <file alias="lb_make_third">../TTKResource/lrc/lb_make_third.png</file>
+        <file alias="lb_make_title">../TTKResource/lrc/lb_make_title.png</file>
+        <file alias="lb_make_left">../TTKResource/lrc/lb_make_left.png</file>
+        <file alias="lb_make_right">../TTKResource/lrc/lb_make_right.png</file>
+        <file alias="lb_make_up">../TTKResource/lrc/lb_make_up.png</file>
+        <file alias="lb_make_down">../TTKResource/lrc/lb_make_down.png</file>
+        <file alias="lb_make_space">../TTKResource/lrc/lb_make_space.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>

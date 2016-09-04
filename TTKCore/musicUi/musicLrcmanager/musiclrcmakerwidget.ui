@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
-    <height>375</height>
+    <width>750</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>505</width>
-     <height>335</height>
+     <width>711</width>
+     <height>621</height>
     </rect>
    </property>
    <property name="text">
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>20</y>
+     <y>21</y>
      <width>71</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>503</x>
-     <y>22</y>
+     <x>707</x>
+     <y>27</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -55,205 +55,818 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>335</y>
-     <width>485</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="artNameLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>120</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>歌手名：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="artNameEdit">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>118</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="songNameLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>80</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>歌曲名：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="songNameEdit">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>78</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="authorNameLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>160</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>制作者：</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="authorNameEdit">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>158</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="lrcTextEdit">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>78</y>
-     <width>291</width>
-     <height>201</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="introductionTextEdit">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>198</y>
-     <width>111</width>
-     <height>81</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="introductionLabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>200</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>说　明：</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="makeButton">
-   <property name="geometry">
-    <rect>
-     <x>135</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>开始制作</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="saveButton">
-   <property name="geometry">
-    <rect>
-     <x>235</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>保存本地</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="reviewButton">
-   <property name="geometry">
-    <rect>
-     <x>335</x>
-     <y>300</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>重置</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="llrcIntroductionLabel">
-   <property name="geometry">
-    <rect>
-     <x>65</x>
-     <y>55</y>
-     <width>400</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>请输入着正确的歌词文本，否则会制作失败！跟着节奏按A键开始记录！</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="backgroundMask" native="true">
+  <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>45</y>
-     <width>505</width>
-     <height>310</height>
+     <y>50</y>
+     <width>710</width>
+     <height>590</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+   <property name="currentIndex">
+    <number>1</number>
    </property>
+   <widget class="QWidget" name="pageMain">
+    <widget class="QLabel" name="label_M2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>670</width>
+       <height>315</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background1</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>50</y>
+       <width>371</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_title</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M1">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>140</y>
+       <width>451</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>只需轻轻按动手指，就能制作出卡拉OK的精准桌面歌词，还能加入你的个性化信息。</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M4">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>187</y>
+       <width>110</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#0091ff;&quot;&gt;动感歌词制作方法&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M3">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>190</y>
+       <width>18</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_arrow</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M_Up">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>280</y>
+       <width>73</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_up</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M_Left">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>340</y>
+       <width>73</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_left</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M_Down">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>340</y>
+       <width>73</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_down</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M_Right">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>340</y>
+       <width>73</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_right</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M_Space">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>400</y>
+       <width>251</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_space</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M5">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>280</y>
+       <width>200</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;按歌词节奏敲击&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;右键头&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M6">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>315</y>
+       <width>200</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;歌词有停顿敲击&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;下&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;键头&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M7">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>350</y>
+       <width>200</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;回到上一字敲击&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;左&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;键头&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M8">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>385</y>
+       <width>200</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;回到上一行敲击&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;上&lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;键头&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_M9">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>420</y>
+       <width>200</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;暂停/继续敲击 &lt;/span&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ff5500;&quot;&gt;空格键&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nextButton_M">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下一步</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancelButton_M">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pageFirst">
+    <widget class="QLabel" name="label_F">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>40</y>
+       <width>650</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_first</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F1">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>100</y>
+       <width>651</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stopButton_F">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>112</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>停止</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stateButton_F">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>112</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>暂停</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="timeSlider_F">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>115</y>
+       <width>321</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="lrcTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>200</y>
+       <width>420</width>
+       <height>320</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="artNameEdit">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>260</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="authorNameEdit">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>320</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>322</y>
+       <width>50</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>制作者：</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="introductionTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>380</y>
+       <width>150</width>
+       <height>141</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>202</y>
+       <width>50</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>歌曲名：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>262</y>
+       <width>50</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>歌手名：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>382</y>
+       <width>50</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>说　明：</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_F2">
+     <property name="geometry">
+      <rect>
+       <x>251</x>
+       <y>175</y>
+       <width>400</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>请输入着正确的歌词文本，否则会制作失败！跟着节奏按A键开始记录！</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="songNameEdit">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>200</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="previousButton_F">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上一步</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nextButton_F">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下一步</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancelButton_F">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelTime_F">
+     <property name="geometry">
+      <rect>
+       <x>573</x>
+       <y>112</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>00:00/00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pageSecond">
+    <widget class="QLabel" name="label_S">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>40</y>
+       <width>650</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_second</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_S1">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>100</y>
+       <width>650</width>
+       <height>87</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background3</pixmap>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>230</y>
+       <width>640</width>
+       <height>280</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSlider" name="timeSlider_S">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>200</y>
+       <width>541</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancelButton_S">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="previousButton_S">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上一步</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nextButton_S">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下一步</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelTime_S">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>200</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>00:00/00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pageThird">
+    <widget class="QLabel" name="label_T">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>40</y>
+       <width>650</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_third</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_T1">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>110</y>
+       <width>460</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;恭喜你，歌词制作完成，记得上传歌词分享哦&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="previousButton_T">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上一步</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="saveButton_T">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>本地保存</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cancelButton_T">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>240</y>
+       <width>645</width>
+       <height>280</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="remakeButton_T">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>重新制作</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="uploadButton_T">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>540</y>
+       <width>90</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上传歌词</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stopButton_T">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>170</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>停止</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelTime_T">
+     <property name="geometry">
+      <rect>
+       <x>573</x>
+       <y>170</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>00:00/00:00</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_T2">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>158</y>
+       <width>651</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
+     </property>
+    </widget>
+    <widget class="QSlider" name="timeSlider_T">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>173</y>
+       <width>321</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stateButton_T">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>170</y>
+       <width>75</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>暂停</string>
+     </property>
+    </widget>
+    <zorder>label_T</zorder>
+    <zorder>label_T1</zorder>
+    <zorder>previousButton_T</zorder>
+    <zorder>saveButton_T</zorder>
+    <zorder>cancelButton_T</zorder>
+    <zorder>tableView_2</zorder>
+    <zorder>remakeButton_T</zorder>
+    <zorder>uploadButton_T</zorder>
+    <zorder>label_T2</zorder>
+    <zorder>timeSlider_T</zorder>
+    <zorder>stateButton_T</zorder>
+    <zorder>stopButton_T</zorder>
+    <zorder>labelTime_T</zorder>
+   </widget>
   </widget>
   <zorder>background</zorder>
-  <zorder>backgroundMask</zorder>
-  <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>line_2</zorder>
-  <zorder>artNameLabel</zorder>
-  <zorder>artNameEdit</zorder>
-  <zorder>songNameLabel</zorder>
-  <zorder>songNameEdit</zorder>
-  <zorder>authorNameLabel</zorder>
-  <zorder>authorNameEdit</zorder>
-  <zorder>lrcTextEdit</zorder>
-  <zorder>introductionTextEdit</zorder>
-  <zorder>introductionLabel</zorder>
-  <zorder>makeButton</zorder>
-  <zorder>saveButton</zorder>
-  <zorder>reviewButton</zorder>
-  <zorder>llrcIntroductionLabel</zorder>
+  <zorder>stackedWidget</zorder>
+  <zorder>topTitleName</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
+ </resources>
  <connections/>
 </ui>

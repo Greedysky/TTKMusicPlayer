@@ -354,6 +354,15 @@ namespace MusicUIObject
             background-image:url(:/control/lb_volume_handle_normal); width:13px;} \
             QSlider::handle:horizontal:hover{ background-image:url(:/control/lb_volume_handle_hover);}";
 
+    const QString MSliderStyle07 = " \
+            QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back);} \
+            QSlider::sub-page:horizontal{ border-image:url(:/control/lb_make_fore);} \
+            QSlider::add-page:horizontal{ border-image:url(:/control/lb_make_back);} \
+            QSlider::handle:horizontal{ margin:0px -1px 0px -1x; \
+            border-image:url(:/control/lb_make_slider_handle_normal); width:18px;} \
+            QSlider::handle:horizontal:hover{ border-image:url(:/control/lb_make_slider_handle_hover);} \
+            QSlider::handle:horizontal:disabled{ border-image:url(:/control/lb_make_slider_disable);}";
+
 
 ///ComboBox
 //////////////////////////////////////////////////////
