@@ -261,7 +261,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case 3: //insert video widget
             {
-                MusicVideoPlayWidget *videoPlayer = new MusicVideoPlayWidget(false);
+                MusicVideoPlayWidget *videoPlayer = new MusicVideoPlayWidget(false, this);
                 videoPlayer->setObjectToClose(this);
                 videoPlayer->blockMoveOption(true);
                 connect(videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));

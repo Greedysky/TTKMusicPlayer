@@ -34,8 +34,6 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     connect(ui->tableWidget, SIGNAL(resolvedSuccess()), SLOT(lrcSearchFinished()));
     connect(ui->tableWidget, SIGNAL(lrcDownloadStateChanged(QString)),
                              SLOT(lrcDownloadStateChanged(QString)));
-    connect(ui->tableWidget, SIGNAL(restartSearchQuery(QString)),
-                             SLOT(setCurrentSongName(QString)));
 }
 
 MusicLrcSearchWidget::~MusicLrcSearchWidget()

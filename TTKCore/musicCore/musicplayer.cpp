@@ -7,7 +7,7 @@
 #include "soundcore.h"
 ///
 #include <qmath.h>
-#include<QDebug>
+
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {

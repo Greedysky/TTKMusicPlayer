@@ -130,10 +130,23 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count, 5, item);
 }
 
-void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int col)
+void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellClicked(row, col);
-    switch(col)
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+    if(column == 4 || column == 5)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
+    }
+}
+
+void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellClicked(row, column);
+    switch(column)
     {
         case 4:
             addSearchMusicToPlayList(row);

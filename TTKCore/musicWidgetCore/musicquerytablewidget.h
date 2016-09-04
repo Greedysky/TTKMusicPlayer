@@ -58,10 +58,6 @@ Q_SIGNALS:
     /*!
      * Show download state type.
      */
-    void restartSearchQuery(const QString &name);
-    /*!
-     * Restart search query by name.
-     */
 
 public Q_SLOTS:
     virtual void clearAllItems() = 0;
@@ -120,6 +116,7 @@ public Q_SLOTS:
      * Item has double clicked.
      * Subclass should implement this function.
      */
+    void createFinishedItem();
 
 protected:
     void createContextMenu(QMenu &menu);

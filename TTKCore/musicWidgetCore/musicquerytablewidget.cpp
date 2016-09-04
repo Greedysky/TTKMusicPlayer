@@ -57,7 +57,9 @@ QString MusicQueryItemTableWidget::getClassName()
 void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
 {
     Q_UNUSED(text);
-    setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
 }
 
 void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
@@ -78,6 +80,11 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
         case 2: MusicRightAreaWidget::instance()->songResearchButtonSearched(artistName); break;
         case 3: MusicRightAreaWidget::instance()->songResearchButtonSearched(songName + "-" + artistName); break;
     }
+}
+
+void MusicQueryItemTableWidget::createFinishedItem()
+{
+    qDebug() << "Sdfsdfsdfsdfsdfsdf";
 }
 
 void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)

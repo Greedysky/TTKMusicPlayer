@@ -107,6 +107,19 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 7, item);
 }
 
+void MusicVideoTableWidget::listCellEntered(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+    if(column == 5 || column == 6 || column == 7)
+    {
+       setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+       unsetCursor();
+    }
+}
+
 void MusicVideoTableWidget::listCellClicked(int row, int column)
 {
     MusicQueryItemTableWidget::listCellClicked(row, column);

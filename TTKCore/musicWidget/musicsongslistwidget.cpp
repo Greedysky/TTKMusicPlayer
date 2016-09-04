@@ -263,6 +263,14 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
         it->setIcon(QIcon(":/tiny/btn_delete_hover"));
     }
 
+    if(column == 0 || column == 2)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
+    }
     ///current play table item should not clear something
     bool isCurrentIndex;
     emit isCurrentIndexs(isCurrentIndex);
