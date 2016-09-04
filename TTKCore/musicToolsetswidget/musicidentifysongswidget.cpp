@@ -5,6 +5,7 @@
 
 #include <QMovie>
 #include <QTimer>
+#include <QProcess>
 #include <QShortcut>
 #include <QBoxLayout>
 #include <QStackedWidget>
@@ -21,6 +22,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
+    m_process = nullptr;
     m_timer = new QTimer(this);
     m_timer->setInterval(15*MT_S2MS);
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
@@ -37,6 +39,7 @@ MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
+    delete m_process;
     delete m_mainWindow;
 }
 
@@ -49,6 +52,10 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 {
     if(m_detectedButton->styleSheet().contains(MusicUIObject::MKGSongsDetectStartBtn))
     {
+        m_process = new QProcess(this);
+//        m_process->start("MPlugins/avcode.dll", QStringList() << "E:/1.mp3" << "10" << "20");
+        connect(m_process, SIGNAL(readyRead()), SLOT(detectedOutput()));
+
         m_detectedMovie->start();
         m_timer->start();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStopBtn);
@@ -56,6 +63,9 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
     }
     else
     {
+        delete m_process;
+        m_process = nullptr;
+
         m_detectedMovie->stop();
         m_timer->stop();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStartBtn);
@@ -72,6 +82,14 @@ void MusicIdentifySongsWidget::detectedTimeOut()
 {
     detectedButtonClicked();
     createDetectedFailedWidget();
+}
+
+void MusicIdentifySongsWidget::detectedOutput()
+{
+    while(m_process->canReadLine())
+    {
+        m_process->readAll();
+    }
 }
 
 void MusicIdentifySongsWidget::contextMenuEvent(QContextMenuEvent *event)

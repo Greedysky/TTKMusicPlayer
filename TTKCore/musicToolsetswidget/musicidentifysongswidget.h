@@ -14,6 +14,7 @@
 #include "musicglobaldefine.h"
 
 class QMovie;
+class QProcess;
 class QStackedWidget;
 
 /*! @brief The class of the song identify widget.
@@ -47,6 +48,10 @@ public Q_SLOTS:
     /*!
      * Detected the song finished.
      */
+    void detectedOutput();
+    /*!
+     * Detected the song output finished.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -70,6 +75,7 @@ protected:
     QStackedWidget *m_mainWindow;
     QLabel *m_detectedLabel;
     QMovie *m_detectedMovie;
+    QProcess *m_process;
     QPushButton *m_detectedButton;
 
 };

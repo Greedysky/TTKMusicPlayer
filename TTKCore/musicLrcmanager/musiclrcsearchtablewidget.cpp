@@ -37,9 +37,28 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
+void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
+{
+    if( row < 0 || (row >= rowCount() - 1))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
+                             MusicUtils::UCore::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
+                             MusicDownLoadThreadAbstract::Download_Lrc, this);
+    connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)),
+                         SIGNAL(lrcDownloadStateChanged(QString)));
+    lrcDownload->startToDownload();
+}
+
 void MusicLrcSearchTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clear();
+    MusicQueryItemTableWidget::clearAllItems();
     setColumnCount(5);
 }
 
@@ -75,25 +94,6 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_star")));
     setItem(count, 4, item);
-}
-
-void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
-{
-    if(row < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
-        return;
-    }
-
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
-                             MusicUtils::UCore::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
-                             MusicDownLoadThreadAbstract::Download_Lrc, this);
-    connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)),
-                         SIGNAL(lrcDownloadStateChanged(QString)));
-    lrcDownload->startToDownload();
 }
 
 void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)

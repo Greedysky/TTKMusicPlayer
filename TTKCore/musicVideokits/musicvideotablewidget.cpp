@@ -37,23 +37,75 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
-void MusicVideoTableWidget::clearAllItems()
+void MusicVideoTableWidget::musicDownloadLocal(int row)
 {
-    MusicAbstractTableWidget::clear();
-    setColumnCount(8);
+    if(row < 0 || (row >= rowCount() - 1))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+    downloadLocalMovie(row);
 }
 
-QString MusicVideoTableWidget::randToGetStrength() const
+void MusicVideoTableWidget::resizeWindow(int delta)
 {
-    switch(qrand()%5)
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 305 + delta*0.4);
+    headerview->resizeSection(2, 160 + delta*0.4);
+    headerview->resizeSection(3, 31 + delta*0.1);
+    headerview->resizeSection(4, 55 + delta*0.1);
+    headerview->resizeSection(5, 24);
+    headerview->resizeSection(6, 24);
+    headerview->resizeSection(7, 24);
+
+    //resize row
+    for(int i=0; i<rowCount(); ++i)
     {
-        case 0: return QString::fromUtf8(":/video/video_1");
-        case 1: return QString::fromUtf8(":/video/video_2");
-        case 2: return QString::fromUtf8(":/video/video_3");
-        case 3: return QString::fromUtf8(":/video/video_4");
-        case 4: return QString::fromUtf8(":/video/video_5");
-        default:return QString::fromUtf8(":/video/video_5");
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
+                                                   headerview->sectionSize(1) - 5));
+        it = item(i, 2);
+        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
+                                                   headerview->sectionSize(2) - 5));
     }
+}
+
+void MusicVideoTableWidget::listCellEntered(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+    if(column == 5 || column == 6 || column == 7)
+    {
+       setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+       unsetCursor();
+    }
+}
+
+void MusicVideoTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 5:
+        case 6:
+            itemDoubleClicked(row, 999);
+            break;
+        case 7:
+            musicDownloadLocal(row);
+            break;
+        default:break;
+    }
+}
+
+void MusicVideoTableWidget::clearAllItems()
+{
+    MusicQueryItemTableWidget::clearAllItems();
+    setColumnCount(8);
 }
 
 void MusicVideoTableWidget::createSearchedItems(const QString &songname,
@@ -107,95 +159,9 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 7, item);
 }
 
-void MusicVideoTableWidget::listCellEntered(int row, int column)
-{
-    MusicQueryItemTableWidget::listCellEntered(row, column);
-    if(column == 5 || column == 6 || column == 7)
-    {
-       setCursor(QCursor(Qt::PointingHandCursor));
-    }
-    else
-    {
-       unsetCursor();
-    }
-}
-
-void MusicVideoTableWidget::listCellClicked(int row, int column)
-{
-    MusicQueryItemTableWidget::listCellClicked(row, column);
-    switch(column)
-    {
-        case 5:
-        case 6:
-            itemDoubleClicked(row, 999);
-            break;
-        case 7:
-            musicDownloadLocal(row);
-            break;
-        default:break;
-    }
-}
-
-void MusicVideoTableWidget::musicDownloadLocal(int row)
-{
-    if(row < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
-        return;
-    }
-    downloadLocalMovie(row);
-}
-
-void MusicVideoTableWidget::downloadLocalFromControl()
-{
-    if( m_previousClickRow != -1 && currentRow() != -1)
-    {
-        downloadLocalMovie(currentRow());
-    }
-}
-
-void MusicVideoTableWidget::downloadLocalMovie(int row)
-{
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    if(row < 0 || row >= musicSongInfos.count())
-    {
-        return;
-    }
-
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MovieQuery);
-    download->show();
-}
-
-void MusicVideoTableWidget::resizeWindow(int delta)
-{
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 305 + delta*0.4);
-    headerview->resizeSection(2, 160 + delta*0.4);
-    headerview->resizeSection(3, 31 + delta*0.1);
-    headerview->resizeSection(4, 55 + delta*0.1);
-    headerview->resizeSection(5, 24);
-    headerview->resizeSection(6, 24);
-    headerview->resizeSection(7, 24);
-
-    //resize row
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
-                                                   headerview->sectionSize(1) - 5));
-        it = item(i, 2);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
-                                                   headerview->sectionSize(2) - 5));
-    }
-}
-
 void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
 {
-    if(column <= 0 || row < 0)
+    if(column <= 0 || row < 0 || (row >= rowCount() - 1))
     {
         return;
     }
@@ -216,6 +182,14 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
+void MusicVideoTableWidget::downloadLocalFromControl()
+{
+    if( m_previousClickRow != -1 && currentRow() != -1)
+    {
+        downloadLocalMovie(currentRow());
+    }
+}
+
 void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicQueryItemTableWidget::contextMenuEvent(event);
@@ -223,4 +197,30 @@ void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     createContextMenu(rightClickMenu);
 
     rightClickMenu.exec(QCursor::pos());
+}
+
+QString MusicVideoTableWidget::randToGetStrength() const
+{
+    switch(qrand()%5)
+    {
+        case 0: return QString::fromUtf8(":/video/video_1");
+        case 1: return QString::fromUtf8(":/video/video_2");
+        case 2: return QString::fromUtf8(":/video/video_3");
+        case 3: return QString::fromUtf8(":/video/video_4");
+        case 4: return QString::fromUtf8(":/video/video_5");
+        default:return QString::fromUtf8(":/video/video_5");
+    }
+}
+
+void MusicVideoTableWidget::downloadLocalMovie(int row)
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MovieQuery);
+    download->show();
 }

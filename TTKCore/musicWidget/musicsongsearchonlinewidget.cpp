@@ -70,24 +70,99 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
+void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+}
+
+void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(musicSongInfos.isEmpty() || row < 0 || (row >= rowCount() - 1))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+    if(m_audition == nullptr)
+    {
+        m_audition = new MusicCoreMPlayer(this);
+    }
+    m_audition->setMedia(MusicCoreMPlayer::MusicCategory, musicSongInfos[row].m_songAttrs.first().m_url);
+
+    if(m_previousAuditionRow != -1)
+    {
+        item(m_previousAuditionRow, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
+    }
+    item(m_previousAuditionRow = row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_PLAY);
+    emit auditionIsPlaying(false);
+}
+
+void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
+{
+    if(m_audition)
+    {
+        m_audition->stop();
+    }
+    if(row < 0 || (row >= rowCount() - 1))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+    item(row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
+    emit auditionIsPlaying(true);
+}
+
 void MusicSongSearchOnlineTableWidget::setSearchQuality(const QString &quality)
 {
     m_downLoadManager->setSearchQuality(quality);
 }
 
-void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
+void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
 {
-    if(m_downloadData.isValid())
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+    if(column == 4 || column == 5)
     {
-        emit muiscSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time,
-                                        m_downloadData.m_format, true);
+        setCursor(QCursor(Qt::PointingHandCursor));
     }
-    m_downloadData.clear();
+    else
+    {
+        unsetCursor();
+    }
+}
+
+void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 4:
+            addSearchMusicToPlayList(row);
+            break;
+        case 5:
+            musicDownloadLocal(row);
+            break;
+        default:
+            break;
+    }
+
+    emit auditionIsPlaying( item(row, 0)->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP );
 }
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
-    MusicAbstractTableWidget::clear();
+    MusicQueryItemTableWidget::clearAllItems();
     setColumnCount(6);
 }
 
@@ -130,34 +205,34 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count, 5, item);
 }
 
-void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
+void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellEntered(row, column);
-    if(column == 4 || column == 5)
+    if(column <= 0 || row < 0|| (row >= rowCount() - 1))
     {
-        setCursor(QCursor(Qt::PointingHandCursor));
+        return;
     }
-    else
+    addSearchMusicToPlayList(row);
+}
+
+void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
+{
+    MusicQueryItemTableWidget::actionGroupClick(action);
+    int row = currentRow();
+    switch( action->data().toInt() )
     {
-        unsetCursor();
+        case 4: auditionToMusic(row); break;
+        case 5: addSearchMusicToPlayList(row); break;
     }
 }
 
-void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
+void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
 {
-    MusicQueryItemTableWidget::listCellClicked(row, column);
-    switch(column)
+    if(m_downloadData.isValid())
     {
-        case 4:
-            addSearchMusicToPlayList(row);
-            break;
-        case 5:
-            musicDownloadLocal(row);
-            break;
-        default:
-            break;
+        emit muiscSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time,
+                                        m_downloadData.m_format, true);
     }
-    emit auditionIsPlaying( item(row, 0)->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP );
+    m_downloadData.clear();
 }
 
 void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
@@ -194,58 +269,6 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
-{
-    MusicQueryItemTableWidget::actionGroupClick(action);
-    int row = currentRow();
-    switch( action->data().toInt() )
-    {
-        case 4: auditionToMusic(row); break;
-        case 5: addSearchMusicToPlayList(row); break;
-    }
-}
-
-void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
-{
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    if(musicSongInfos.isEmpty() || row < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
-        return;
-    }
-    if(m_audition == nullptr)
-    {
-        m_audition = new MusicCoreMPlayer(this);
-    }
-    m_audition->setMedia(MusicCoreMPlayer::MusicCategory, musicSongInfos[row].m_songAttrs.first().m_url);
-
-    if(m_previousAuditionRow != -1)
-    {
-        item(m_previousAuditionRow, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
-    }
-    item(m_previousAuditionRow = row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_PLAY);
-    emit auditionIsPlaying(false);
-}
-
-void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
-{
-    if(m_audition)
-    {
-        m_audition->stop();
-    }
-    if(row < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
-        return;
-    }
-    item(row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
-    emit auditionIsPlaying(true);
-}
-
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
     if(!M_NETWORK_PTR->isOnline())
@@ -253,7 +276,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    if(row < 0)
+    if(row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;
         message.setText(tr("Please Select One Item First!"));
@@ -282,28 +305,6 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     m_downloadData.m_songName = musicEnSong;
     m_downloadData.m_time =  item(row, 3)->text();
     m_downloadData.m_format = musicSongAttr.m_format;
-}
-
-void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
-{
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    if(row < 0 || row >= musicSongInfos.count())
-    {
-        return;
-    }
-
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
-    download->show();
-}
-
-void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
-{
-    if(column <= 0 || row < 0)
-    {
-        return;
-    }
-    addSearchMusicToPlayList(row);
 }
 
 
@@ -358,6 +359,7 @@ void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, co
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
     MusicObject::MIntList list = m_searchTableWidget->getSelectedItems();
+    list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -365,6 +367,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         message.exec();
         return;
     }
+
     foreach(int row, list)
     {
         switch(index)

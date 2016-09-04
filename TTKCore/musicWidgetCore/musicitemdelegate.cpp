@@ -2,6 +2,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 
+#include <QLabel>
 #include <QPainter>
 #include <QCheckBox>
 #include <QRadioButton>
@@ -48,8 +49,7 @@ void MusicRadioButtonDelegate::paint(QPainter *painter,
     m_radioButton->resize(minSize, minSize);
     m_radioButton->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
     painter->translate((option.rect.width() - 16)/2, 0); // top left
-    m_radioButton->render(painter, option.rect.topLeft(), QRegion(),
-                          QWidget::DrawChildren);
+    m_radioButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
 
@@ -95,8 +95,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter,
     m_checkBox->resize(minSize, minSize);
     m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
     painter->translate((option.rect.width() - 16)/2, 0); // top left
-    m_checkBox->render(painter, option.rect.topLeft(), QRegion(),
-                       QWidget::DrawChildren);
+    m_checkBox->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
 
@@ -125,6 +124,7 @@ void MusicQueryTableDelegate::paint(QPainter *painter,
                       MStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
     MusicCheckBoxDelegate::paint(painter, option, index);
 }
+
 
 
 MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
@@ -167,8 +167,53 @@ void MusicProgressBarDelegate::paint(QPainter *painter,
     m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
     m_progress->setValue(index.data(MUSIC_PROCS_ROLE).toInt());
     painter->translate(10, 10);
-    m_progress->render(painter, option.rect.topLeft(), QRegion(),
-                       QWidget::DrawChildren);
+    m_progress->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
 
+
+MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
+    : QItemDelegate(parent)
+{
+    m_label  = new QLabel;
+    m_label->setAlignment(Qt::AlignCenter);
+    m_label->setStyleSheet(MusicUIObject::MBackgroundStyle18);
+}
+
+MusicLabelDelegate::~MusicLabelDelegate()
+{
+    delete m_label;
+}
+
+QString MusicLabelDelegate::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicLabelDelegate::setStyleSheet(const QString &style)
+{
+    m_label->setStyleSheet(style);
+}
+
+QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option,
+                                   const QModelIndex &) const
+{
+    QSize size = option.rect.size();
+    size.setHeight(25);
+    return size;
+}
+
+void MusicLabelDelegate::paint(QPainter *painter,
+                               const QStyleOptionViewItem &option,
+                               const QModelIndex &index) const
+{
+    QItemDelegate::paint(painter, option, index);
+
+    painter->save();
+    m_label->setText(index.data(MUSIC_TEXTS_ROLE).toString());
+    QFontMetrics metrics(m_label->font());
+    painter->translate((option.rect.width() - metrics.width(m_label->text()))/2,
+                       (option.rect.size().height() - metrics.height())/2);
+    m_label->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
+    painter->restore();
+}

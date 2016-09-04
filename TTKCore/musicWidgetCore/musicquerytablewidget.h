@@ -84,6 +84,7 @@ protected:
 };
 
 
+class MusicLabelDelegate;
 /*! @brief The class of the query item table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -107,6 +108,10 @@ public:
      */
 
 public Q_SLOTS:
+    virtual void clearAllItems() override;
+    /*!
+     * Clear All Items.
+     */
     virtual void actionGroupClick(QAction *action);
     /*!
      * Left context menu action group click by action.
@@ -117,6 +122,9 @@ public Q_SLOTS:
      * Subclass should implement this function.
      */
     void createFinishedItem();
+    /*!
+     * Create the search finished item.
+     */
 
 protected:
     void createContextMenu(QMenu &menu);
@@ -125,6 +133,7 @@ protected:
      */
 
     QActionGroup *m_actionGroup;
+    MusicLabelDelegate *m_labelDelegate;
 
 };
 

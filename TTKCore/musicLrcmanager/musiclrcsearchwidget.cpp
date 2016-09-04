@@ -68,8 +68,8 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
-    ui->stateLabel->setText(tr("lrc is downloading now!"));
     MusicObject::MIntList list = ui->tableWidget->getSelectedItems();
+    list.removeOne(ui->tableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -77,10 +77,12 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
         message.exec();
         return;
     }
+
     foreach(int row, list)
     {
         ui->tableWidget->musicDownloadLocal(row);
     }
+    ui->stateLabel->setText(tr("lrc is downloading now!"));
 }
 
 void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)

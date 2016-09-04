@@ -1,6 +1,7 @@
 #include "musicquerytablewidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
+#include "musicitemdelegate.h"
 
 #include <QActionGroup>
 
@@ -40,6 +41,7 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
     m_actionGroup = new QActionGroup(this);
+    m_labelDelegate = new MusicLabelDelegate(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
@@ -47,6 +49,7 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
 MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
 {
     delete m_actionGroup;
+    delete m_labelDelegate;
 }
 
 QString MusicQueryItemTableWidget::getClassName()
@@ -62,10 +65,19 @@ void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
     setQueryInput( d );
 }
 
+void MusicQueryItemTableWidget::clearAllItems()
+{
+    if(rowCount() > 0)
+    {
+        setItemDelegateForRow(rowCount() - 1, nullptr);
+    }
+    MusicAbstractTableWidget::clear();
+}
+
 void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 {
     int row = currentRow();
-    if( row < 0)
+    if( row < 0 || (row >= rowCount() - 1))
     {
         return;
     }
@@ -84,7 +96,20 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 
 void MusicQueryItemTableWidget::createFinishedItem()
 {
-    qDebug() << "Sdfsdfsdfsdfsdfsdf";
+    int count = rowCount() - 1;
+    setSpan(count, 0, 1, columnCount());
+
+    for(int i=0; i<columnCount(); ++i)
+    {
+        setItem(count, i, new QTableWidgetItem);
+    }
+
+    QTableWidgetItem *it = item(count, 0);
+    if(it)
+    {
+        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        setItemDelegateForRow(count, m_labelDelegate);
+    }
 }
 
 void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)

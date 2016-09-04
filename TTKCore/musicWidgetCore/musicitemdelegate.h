@@ -16,7 +16,9 @@
 #define MUSIC_QUERY_ROLE Qt::UserRole + 2
 #define MUSIC_PROCS_ROLE Qt::UserRole + 3
 #define MUSIC_AUDIT_ROLE Qt::UserRole + 4
+#define MUSIC_TEXTS_ROLE Qt::UserRole + 5
 
+class QLabel;
 class QCheckBox;
 class QRadioButton;
 class QProgressBar;
@@ -165,6 +167,46 @@ public:
 
 private:
     QProgressBar *m_progress;
+
+};
+
+
+/*! @brief The class of the label item delegate.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicLabelDelegate : public QItemDelegate
+{
+    Q_OBJECT
+public:
+    explicit MusicLabelDelegate(QObject* parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicLabelDelegate();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void setStyleSheet(const QString &style);
+    /*!
+     * Set delegate item style.
+     */
+    QSize sizeHint(const QStyleOptionViewItem &option,
+                   const QModelIndex &) const;
+    /*!
+     * Override size hint.
+     */
+    void paint(QPainter *painter,
+               const QStyleOptionViewItem &option,
+               const QModelIndex &index) const;
+    /*!
+     * Override paint.
+     */
+
+protected:
+    QLabel *m_label;
 
 };
 
