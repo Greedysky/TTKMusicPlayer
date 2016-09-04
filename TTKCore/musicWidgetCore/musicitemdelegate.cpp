@@ -211,9 +211,8 @@ void MusicLabelDelegate::paint(QPainter *painter,
 
     painter->save();
     m_label->setText(index.data(MUSIC_TEXTS_ROLE).toString());
-    QFontMetrics metrics(m_label->font());
-    painter->translate((option.rect.width() - metrics.width(m_label->text()))/2,
-                       (option.rect.size().height() - metrics.height())/2);
+    m_label->resize(option.rect.size());
+    painter->translate(0, 0);
     m_label->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }

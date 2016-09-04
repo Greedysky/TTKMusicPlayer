@@ -10,6 +10,7 @@
 #include "musicconnectionpool.h"
 #include "musicdatadownloadthread.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicrightareawidget.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
@@ -330,6 +331,8 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
     createToolWidget(toolWidget);
     connect(m_searchTableWidget, SIGNAL(auditionIsPlaying(bool)), SLOT(auditionIsPlaying(bool)));
+    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(),
+                                 SLOT(songResearchButtonSearched(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()

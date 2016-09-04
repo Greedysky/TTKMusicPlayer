@@ -58,6 +58,10 @@ Q_SIGNALS:
     /*!
      * Show download state type.
      */
+    void restartSearchQuery(const QString &name);
+    /*!
+     * Restart search query by name.
+     */
 
 public Q_SLOTS:
     virtual void clearAllItems() = 0;
