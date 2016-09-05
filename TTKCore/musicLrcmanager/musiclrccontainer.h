@@ -66,9 +66,13 @@ public:
     /*!
      * Set current song name.
      */
-    inline void setCurrentTime(qint64 time) { m_currentTime = time;}
+    void setCurrentTime(qint64 time, qint64 total);
     /*!
-     * Set current time.
+     * Set current play total time.
+     */
+    qint64 getTotalTime() const;
+    /*!
+     * Get current play total time.
      */
 
 Q_SIGNALS:
@@ -130,7 +134,7 @@ protected:
      */
 
     bool m_linkLocalLrc;
-    qint64 m_currentTime;
+    qint64 m_currentTime, m_totalTime;
     QString m_currentSongName, m_containerType;
     QList<MusicLRCManager*> m_musicLrcContainer;
     MusicLrcSearchWidget *m_musicLrcSearchWidget;

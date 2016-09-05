@@ -38,10 +38,20 @@ public:
      */
 
 public Q_SLOTS:
-    void setCurrentPosition(qint64 pos) ;
+    void positionChanged(qint64 position);
     /*!
-     * Save player current play position.
+     * Set current player position.
      */
+    void durationChanged(qint64 duration);
+    /*!
+     * Set current player duration.
+     */
+    void show();
+    /*!
+     * Override show function.
+     */
+
+private Q_SLOTS:
     void makeButtonClicked();
     /*!
      * make lrc button clicked.
@@ -54,10 +64,12 @@ public Q_SLOTS:
     /*!
      * Review lrc button clicked.
      */
-    void show();
-    /*!
-     * Override show function.
-     */
+    void firstWidgetStateButtonClicked();
+    void thirdWidgetStateButtonClicked();
+    void setCurrentMainWidget();
+    void setCurrentFirstWidget();
+    void setCurrentSecondWidget();
+    void setCurrentThirdWidget();
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -65,6 +77,11 @@ protected:
     /*!
      * Override the widget event.
      */
+    void createMainWidget();
+    void createFirstWidget();
+    void createSecondWidget();
+    void createThirdWidget();
+
     void setControlEnable(bool enable) const;
     /*!
      * Set controller enable or disable.

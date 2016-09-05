@@ -140,7 +140,7 @@ bool MusicRightAreaWidget::checkSettingParameterValue() const
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
 {
-    m_ui->musiclrccontainerforinline->setCurrentTime(current);
+    m_ui->musiclrccontainerforinline->setCurrentTime(current, total);
     //Direct access to the audio file is the total time, in milliseconds
     QString currentLrc, laterLrc;
     qint64 intervalTime;
@@ -152,7 +152,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
             {
                 m_ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
             }
-            m_musicLrcForDesktop->setCurrentTime(intervalTime);
+            m_musicLrcForDesktop->setCurrentTime(intervalTime, total);
             m_musicLrcForDesktop->updateCurrentLrc(currentLrc, laterLrc, intervalTime);
         }
     }

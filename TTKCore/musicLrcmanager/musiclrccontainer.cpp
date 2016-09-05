@@ -8,10 +8,11 @@
 MusicLrcContainer::MusicLrcContainer(QWidget *parent)
     : QWidget(parent)
 {
+    m_currentTime = 0;
+    m_totalTime = 0;
     m_linkLocalLrc = true;
     m_musicLrcSearchWidget = nullptr;
     m_makerWidget = nullptr;
-    m_currentTime = 0;
 }
 
 MusicLrcContainer::~MusicLrcContainer()
@@ -63,6 +64,17 @@ void MusicLrcContainer::setSettingParameter()
     setSettingParameter(m_containerType == "DESKTOP" ? "D" : QString() );
 }
 
+void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
+{
+    m_currentTime = time;
+    m_totalTime = total;
+}
+
+qint64 MusicLrcContainer::getTotalTime() const
+{
+    return m_totalTime;
+}
+
 void MusicLrcContainer::currentLrcCustom()
 {
     emit changeCurrentLrcColorCustom();
@@ -105,6 +117,7 @@ void MusicLrcContainer::theCurrentLrcMaked()
     delete m_makerWidget;
     m_makerWidget = new MusicLrcMakerWidget(this);
     m_makerWidget->setCurrentSongName(m_currentSongName);
+    m_makerWidget->durationChanged(m_totalTime);
     m_makerWidget->show();
 }
 

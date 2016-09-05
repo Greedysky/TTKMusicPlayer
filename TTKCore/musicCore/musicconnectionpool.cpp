@@ -74,7 +74,9 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     if(from == MusicPlayer::getClassName() && to == MusicLrcMakerWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second,
-                                SLOT(setCurrentPosition(qint64)));
+                                SLOT(positionChanged(qint64)));
+        QObject::connect(first, SIGNAL(durationChanged(qint64)), second,
+                                SLOT(durationChanged(qint64)));
     }
     else if( (from == MusicLocalSongsManagerWidget::getClassName() && to == MusicSongsSummarizied::getClassName() ) ||
              (from == MusicMyDownloadRecordWidget::getClassName() && to == MusicSongsSummarizied::getClassName()) )
