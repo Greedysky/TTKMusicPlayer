@@ -12,6 +12,8 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 
+#include <QDebug>
+
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicLrcMakerWidget)
@@ -27,7 +29,6 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
     ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
 
-    m_position = 0;
     m_currentLine = 0;
 
     createMainWidget();
@@ -85,41 +86,6 @@ void MusicLrcMakerWidget::show()
 {
     setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveWidget::show();
-}
-
-void MusicLrcMakerWidget::makeButtonClicked()
-{
-    bool errorFlag = false;
-    QString msg;
-    if(ui->artNameEdit->text().isEmpty())
-    {
-        errorFlag = true;
-        msg = tr("Art name is empty!");
-    }
-    if(ui->songNameEdit->text().isEmpty())
-    {
-        errorFlag = true;
-        msg = tr("song name is empty!");
-    }
-    if(ui->lrcTextEdit->toPlainText().isEmpty())
-    {
-        errorFlag = true;
-        msg = tr("lrc text is empty!");
-    }
-    if(errorFlag)
-    {
-        MusicMessageBox message;
-        message.setText(msg);
-        message.exec();
-        return;
-    }
-
-//    ui->makeButton->setEnabled(false);
-    setControlEnable(false);
-    m_plainText = ui->lrcTextEdit->toPlainText().split("\n");
-    QTextCursor cursor = ui->lrcTextEdit->textCursor();
-    cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor, 1);
-    ui->lrcTextEdit->setTextCursor(cursor);
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -184,41 +150,68 @@ void MusicLrcMakerWidget::setCurrentFirstWidget()
 
 void MusicLrcMakerWidget::setCurrentSecondWidget()
 {
+    if(ui->stackedWidget->currentIndex() == 1 && !checkInputValid())
+    {
+        return;
+    }
+
+    m_plainText = ui->lrcTextEdit->toPlainText().split("\n");
+    ui->makeTextEdit->setText(ui->lrcTextEdit->toPlainText());
+    QTextCursor cursor = ui->makeTextEdit->textCursor();
+    if(!cursor.atEnd())
+    {
+        QTextBlockFormat textBlockFormat = cursor.blockFormat();
+        textBlockFormat.setBottomMargin(10);
+        cursor.setBlockFormat(textBlockFormat);
+        cursor.select(QTextCursor::LineUnderCursor);
+        cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
+        ui->makeTextEdit->setTextCursor(cursor);
+    }
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 void MusicLrcMakerWidget::setCurrentThirdWidget()
 {
+    if(ui->stackedWidget->currentIndex() == 2 &&
+       m_plainText.count() > ui->makeTextEdit->textCursor().blockNumber())
+    {
+        return;
+    }
     ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 {
     MusicAbstractMoveWidget::keyPressEvent(event);
-//    if(!ui->makeButton->isEnabled() && event->key() == Qt::Key_A)
-//    {
-//        if(m_plainText.count() > m_currentLine)
-//        {
-//            m_plainText[m_currentLine++].insert(0, translateTimeString(m_position) );
-//            QTextCursor cursor = ui->lrcTextEdit->textCursor();
-//            if(!cursor.atEnd())
-//            {
-//                QTextBlockFormat textBlockFormat = cursor.blockFormat();
-//                textBlockFormat.setBottomMargin(5);
-//                cursor.setBlockFormat(textBlockFormat);
-//                cursor.select(QTextCursor::LineUnderCursor);
-//                cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
-//                ui->lrcTextEdit->setTextCursor(cursor);
-//            }
+    if(ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine)
+    {
+        switch(event->key())
+        {
+            case Qt::Key_Left: break;
+            case Qt::Key_Up: break;
+            case Qt::Key_Right: break;
+            case Qt::Key_Down: break;
+        }
+        qDebug() << event->key();
+        m_plainText[m_currentLine++].insert(0, translateTimeString(ui->timeSlider_S->value()) );
+        QTextCursor cursor = ui->makeTextEdit->textCursor();
+        if(!cursor.atEnd())
+        {
+            QTextBlockFormat textBlockFormat = cursor.blockFormat();
+            textBlockFormat.setBottomMargin(10);
+            cursor.setBlockFormat(textBlockFormat);
+            cursor.select(QTextCursor::LineUnderCursor);
+            cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, 1);
+            ui->makeTextEdit->setTextCursor(cursor);
+        }
 //        }
 //        else
 //        {
-//            ui->saveButton->setEnabled(true);
 //            MusicMessageBox message;
 //            message.setText(tr("lrc make finished"));
 //            message.exec();
 //        }
-//    }
+    }
 }
 
 void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
@@ -275,17 +268,20 @@ void MusicLrcMakerWidget::createMainWidget()
 
 void MusicLrcMakerWidget::createFirstWidget()
 {
-
     ui->stateButton_F->setText(MusicApplication::instance()->getPlayState() ? tr("Play") : tr("Stop"));
-    ui->lrcTextEdit->setFontPointSize(11);
-    ui->lrcTextEdit->setAlignment(Qt::AlignLeft);
 
     ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
-    ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 + \
-                                    MusicUIObject::MScrollBarStyle01 );
+    ui->lrcTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01 );
+    ui->lrcTextEdit->setAcceptRichText(false);
+
+    QTextBlockFormat fmt;
+    fmt.setLineHeight(30, QTextBlockFormat::FixedHeight);
+    QTextCursor cur = ui->lrcTextEdit->textCursor();
+    cur.setBlockFormat(fmt);
+    ui->lrcTextEdit->setTextCursor(cur);
 
     ui->timeSlider_F->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->stopButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -298,11 +294,20 @@ void MusicLrcMakerWidget::createFirstWidget()
     connect(ui->cancelButton_F, SIGNAL(clicked()), SLOT(close()));
     connect(ui->nextButton_F, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
     connect(ui->previousButton_F, SIGNAL(clicked()), SLOT(setCurrentMainWidget()));
-
 }
 
 void MusicLrcMakerWidget::createSecondWidget()
 {
+    ui->makeTextEdit->setReadOnly(true);
+    ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01 );
+    ui->makeTextEdit->setAcceptRichText(false);
+
+    QTextBlockFormat fmt;
+    fmt.setLineHeight(30, QTextBlockFormat::FixedHeight);
+    QTextCursor cur = ui->makeTextEdit->textCursor();
+    cur.setBlockFormat(fmt);
+    ui->makeTextEdit->setTextCursor(cur);
+
     ui->timeSlider_S->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->previousButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->nextButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -311,7 +316,6 @@ void MusicLrcMakerWidget::createSecondWidget()
     connect(ui->cancelButton_S, SIGNAL(clicked()), SLOT(close()));
     connect(ui->nextButton_S, SIGNAL(clicked()), SLOT(setCurrentThirdWidget()));
     connect(ui->previousButton_S, SIGNAL(clicked()), SLOT(setCurrentFirstWidget()));
-
 }
 
 void MusicLrcMakerWidget::createThirdWidget()
@@ -330,17 +334,36 @@ void MusicLrcMakerWidget::createThirdWidget()
     connect(ui->stateButton_T, SIGNAL(clicked(bool)), SLOT(thirdWidgetStateButtonClicked()));
     connect(ui->cancelButton_T, SIGNAL(clicked()), SLOT(close()));
     connect(ui->previousButton_T, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
-    //    ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle04);
-    //    ui->saveButton->setStyleSheet( MusicUIObject::MPushButtonStyle04);
-    //    ui->reviewButton->setStyleSheet( MusicUIObject::MPushButtonStyle04);
-    //    ui->makeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    //    ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
-    //    ui->reviewButton->setCursor(QCursor(Qt::PointingHandCursor));
-    //    connect(ui->makeButton, SIGNAL(clicked()), SLOT(makeButtonClicked()));
-    //    connect(ui->saveButton, SIGNAL(clicked()), SLOT(saveButtonClicked()));
-    //    connect(ui->reviewButton, SIGNAL(clicked()), SLOT(reviewButtonClicked()));
+}
 
-    //    ui->saveButton->setEnabled(false);
+bool MusicLrcMakerWidget::checkInputValid()
+{
+    bool errorFlag = false;
+    QString msg;
+    if(ui->artNameEdit->text().isEmpty())
+    {
+        errorFlag = true;
+        msg = tr("Art name is empty!");
+    }
+    if(ui->songNameEdit->text().isEmpty())
+    {
+        errorFlag = true;
+        msg = tr("song name is empty!");
+    }
+    if(ui->lrcTextEdit->toPlainText().isEmpty())
+    {
+        errorFlag = true;
+        msg = tr("lrc text is empty!");
+    }
+
+    if(errorFlag)
+    {
+        MusicMessageBox message;
+        message.setText(msg);
+        message.exec();
+        return false;
+    }
+    return true;
 }
 
 void MusicLrcMakerWidget::setControlEnable(bool enable) const

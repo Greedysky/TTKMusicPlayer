@@ -56,6 +56,3 @@ win32:{
     system(for /r %i in (*.qm) do ren %i *.ln)
     system(for /r %i in (*.ln) do move /y %i $$output)
 }
-
-RESOURCES += \
-    TTKQrc/MusicPlayerUser.qrc

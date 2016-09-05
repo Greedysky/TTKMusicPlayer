@@ -421,7 +421,7 @@
       <rect>
        <x>250</x>
        <y>200</y>
-       <width>420</width>
+       <width>435</width>
        <height>320</height>
       </rect>
      </property>
@@ -513,12 +513,12 @@
       <rect>
        <x>251</x>
        <y>175</y>
-       <width>400</width>
-       <height>15</height>
+       <width>261</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>请输入着正确的歌词文本，否则会制作失败！跟着节奏按A键开始记录！</string>
+      <string>请输入着正确的歌词文本，否则会制作失败！</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="songNameEdit">
@@ -629,16 +629,6 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background3</pixmap>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>230</y>
-       <width>640</width>
-       <height>280</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QSlider" name="timeSlider_S">
      <property name="geometry">
       <rect>
@@ -714,6 +704,16 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="makeTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>240</y>
+       <width>660</width>
+       <height>280</height>
+      </rect>
      </property>
     </widget>
    </widget>

@@ -52,10 +52,6 @@ public Q_SLOTS:
      */
 
 private Q_SLOTS:
-    void makeButtonClicked();
-    /*!
-     * make lrc button clicked.
-     */
     void saveButtonClicked();
     /*!
      * Save lrc button clicked.
@@ -82,6 +78,8 @@ protected:
     void createSecondWidget();
     void createThirdWidget();
 
+    bool checkInputValid();
+
     void setControlEnable(bool enable) const;
     /*!
      * Set controller enable or disable.
@@ -91,11 +89,11 @@ protected:
      * Translate current long time to string.
      */
 
-    int m_currentLine;
     Ui::MusicLrcMakerWidget *ui;
+
+    int m_currentLine;
     QFile m_file;
     QStringList m_plainText;
-    qint64 m_position;
 
 };
 
