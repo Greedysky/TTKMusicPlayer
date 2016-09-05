@@ -288,10 +288,10 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     m_geometry.setY(resize ? m_geometry.y() + 1 : m_geometry.y() - 1);
     setSelfGeometry();
 
+    int size = resize ? ++m_currentLrcFontSize : --m_currentLrcFontSize;
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(resize ? ++m_currentLrcFontSize
-                                                                                 : --m_currentLrcFontSize);
+        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(size);
     }
     m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
 

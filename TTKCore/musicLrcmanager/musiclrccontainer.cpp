@@ -102,10 +102,8 @@ void MusicLrcContainer::searchMusicLrcs()
 
 void MusicLrcContainer::theCurrentLrcMaked()
 {
-    if(m_makerWidget == nullptr)
-    {
-        m_makerWidget = new MusicLrcMakerWidget(this);
-    }
+    delete m_makerWidget;
+    m_makerWidget = new MusicLrcMakerWidget(this);
     m_makerWidget->setCurrentSongName(m_currentSongName);
     m_makerWidget->show();
 }

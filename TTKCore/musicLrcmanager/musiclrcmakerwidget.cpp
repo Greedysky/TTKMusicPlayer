@@ -8,6 +8,9 @@
 #include "musicplayer.h"
 #include "musicutils.h"
 
+#include <QPropertyAnimation>
+#include <QSequentialAnimationGroup>
+
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicLrcMakerWidget)
@@ -32,6 +35,44 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
     ui->lrcTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 + \
                                     MusicUIObject::MScrollBarStyle01 );
+
+    QPropertyAnimation *anim1 = new QPropertyAnimation(ui->label_M5, "pos", this);
+    anim1->setDuration(500);
+    anim1->setStartValue(QPoint(630, 280));
+    anim1->setEndValue(QPoint(400, 280));
+    anim1->setEasingCurve(QEasingCurve::Linear);
+
+    QPropertyAnimation *anim2 = new QPropertyAnimation(ui->label_M6, "pos", this);
+    anim2->setDuration(500);
+    anim2->setStartValue(QPoint(630, 315));
+    anim2->setEndValue(QPoint(400, 315));
+    anim2->setEasingCurve(QEasingCurve::Linear);
+
+    QPropertyAnimation *anim3 = new QPropertyAnimation(ui->label_M7, "pos", this);
+    anim3->setDuration(500);
+    anim3->setStartValue(QPoint(630, 350));
+    anim3->setEndValue(QPoint(400, 350));
+    anim3->setEasingCurve(QEasingCurve::Linear);
+
+    QPropertyAnimation *anim4 = new QPropertyAnimation(ui->label_M8, "pos", this);
+    anim4->setDuration(500);
+    anim4->setStartValue(QPoint(630, 385));
+    anim4->setEndValue(QPoint(400, 385));
+    anim4->setEasingCurve(QEasingCurve::Linear);
+
+    QPropertyAnimation *anim5 = new QPropertyAnimation(ui->label_M9, "pos", this);
+    anim5->setDuration(500);
+    anim5->setStartValue(QPoint(630, 420));
+    anim5->setEndValue(QPoint(400, 420));
+    anim5->setEasingCurve(QEasingCurve::Linear);
+
+    QSequentialAnimationGroup *group = new QSequentialAnimationGroup(this);
+    group->addAnimation(anim1);
+    group->addAnimation(anim2);
+    group->addAnimation(anim3);
+    group->addAnimation(anim4);
+    group->addAnimation(anim5);
+    group->start();
 
     ui->timeSlider_F->setStyleSheet(MusicUIObject::MSliderStyle07);
 //    ui->makeButton->setStyleSheet( MusicUIObject::MPushButtonStyle04);

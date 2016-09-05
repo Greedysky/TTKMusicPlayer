@@ -359,6 +359,10 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
 
     QImage origin(path);
+    if(!origin.colorTable().isEmpty())
+    {
+        origin = origin.convertToFormat(QImage::Format_ARGB32);
+    }
     reRenderImage(35, &origin, &origin);
 
     QPixmap afterDeal( size );
@@ -390,7 +394,6 @@ void MusicTopAreaWidget::reRenderImage(int delta, const QImage *input, QImage *o
 }
 
 uint MusicTopAreaWidget::colorBurnTransform(int c, int delta)
-
 {
     Q_ASSERT(0 <= delta && delta < 255);
 
@@ -402,8 +405,5 @@ uint MusicTopAreaWidget::colorBurnTransform(int c, int delta)
     {
         result = 0;
     }
-
     return result;
 }
-
-
