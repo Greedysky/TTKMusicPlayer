@@ -174,6 +174,16 @@ void MusicApplication::updateCurrentArtist()
     m_musicSongTree->updateCurrentArtist();
 }
 
+int MusicApplication::getPlayState() const
+{
+    return m_musicPlayer->state();
+}
+
+int MusicApplication::getPlayMode() const
+{
+    return m_musicList->playbackMode();
+}
+
 void MusicApplication::quitWindowClose()
 {
     //Write configuration files

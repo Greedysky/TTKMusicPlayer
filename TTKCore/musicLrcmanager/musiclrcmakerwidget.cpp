@@ -12,14 +12,14 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 
-#include <QDebug>
-
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicLrcMakerWidget)
 {
     ui->setupUi(this);
+
     setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_DeleteOnClose, true);
 
     ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -37,12 +37,16 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     createSecondWidget();
     createThirdWidget();
 
+    m_playMode = MusicApplication::instance()->getPlayMode();
+    MusicApplication::instance()->musicPlayOneLoop();
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicPlayer::getClassName(), getClassName());
 }
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
+    resetToOriginPlayMode();
     M_CONNECTION_PTR->removeValue(getClassName());
 }
 
@@ -118,6 +122,29 @@ void MusicLrcMakerWidget::saveButtonClicked()
     }
 }
 
+void MusicLrcMakerWidget::reMakeButtonClicked()
+{
+    MusicMessageBox message;
+    message.setText(tr("Are you sure you want to remake lyrics?"));
+    if(message.exec() == 0)
+    {
+        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+        setCurrentFirstWidget();
+    }
+}
+
+void MusicLrcMakerWidget::backToMakeLrcWidget()
+{
+    MusicMessageBox message;
+    message.setText(tr("Go back and lyrics will be lost!"));
+    message.exec();
+    if(message.exec() == 0)
+    {
+        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+        setCurrentSecondWidget();
+    }
+}
+
 void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
 {
     QString text = (ui->stateButton_F->text() == tr("Play")) ? tr("Stop") : tr("Play");
@@ -153,6 +180,15 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
         return;
     }
 
+    if(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState)
+    {
+        firstWidgetStateButtonClicked();
+    }
+    else
+    {
+        MusicApplication::instance()->musicPlayAnyTimeAt(0);
+    }
+
     m_plainText = ui->lrcTextEdit->toPlainText().split("\n", QString::SkipEmptyParts);
     m_times.clear();
     m_currentLine = 0;
@@ -178,6 +214,9 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
     if(ui->stackedWidget->currentIndex() == 2 &&
        m_plainText.count() > ui->makeTextEdit->textCursor().blockNumber())
     {
+        MusicMessageBox message;
+        message.setText(tr("Lyrics make has not been completed!"));
+        message.exec();
         return;
     }
 
@@ -225,6 +264,11 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
                     break;
                 }
         }
+    }
+
+    if(event->key() == Qt::Key_Space)
+    {
+        firstWidgetStateButtonClicked();
     }
 }
 
@@ -277,7 +321,7 @@ void MusicLrcMakerWidget::createMainWidget()
 
 void MusicLrcMakerWidget::createFirstWidget()
 {
-    ui->stateButton_F->setText(MusicApplication::instance()->getPlayState() ? tr("Play") : tr("Stop"));
+    ui->stateButton_F->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState ? tr("Play") : tr("Stop"));
 
     ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
@@ -329,7 +373,7 @@ void MusicLrcMakerWidget::createSecondWidget()
 
 void MusicLrcMakerWidget::createThirdWidget()
 {
-    ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() ? tr("Play") : tr("Stop"));
+    ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
 
     ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->stopButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -340,11 +384,11 @@ void MusicLrcMakerWidget::createThirdWidget()
     ui->previousButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
-    connect(ui->remakeButton_T, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
+    connect(ui->remakeButton_T, SIGNAL(clicked()), SLOT(reMakeButtonClicked()));
     connect(ui->saveButton_T, SIGNAL(clicked()), SLOT(saveButtonClicked()));
     connect(ui->stateButton_T, SIGNAL(clicked()), SLOT(thirdWidgetStateButtonClicked()));
     connect(ui->cancelButton_T, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->previousButton_T, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
+    connect(ui->previousButton_T, SIGNAL(clicked()), SLOT(backToMakeLrcWidget()));
 }
 
 bool MusicLrcMakerWidget::checkInputValid()
@@ -390,5 +434,23 @@ QString MusicLrcMakerWidget::translateTimeString(qint64 time)
 {
     MusicTime t(time, MusicTime::All_Msec);
     return QString("[%1.%2]").arg(t.toString("mm:ss")).arg(
-           QString::number(t.getMillionSecond()).rightJustified(3, '0').left(2));
+           QString::number(t.getMillionSecond()).rightJustified(3, '0'));
+}
+
+void MusicLrcMakerWidget::resetToOriginPlayMode()
+{
+    MusicApplication *w = MusicApplication::instance();
+    switch(m_playMode)
+    {
+        case MusicObject::MC_PlayOrder:
+            w->musicPlayOrder(); break;
+        case MusicObject::MC_PlayRandom:
+            w->musicPlayRandom(); break;
+        case MusicObject::MC_PlayListLoop:
+            w->musicPlayListLoop(); break;
+        case MusicObject::MC_PlayOneLoop:
+            w->musicPlayOneLoop(); break;
+        case MusicObject::MC_PlayOnce:
+            w->musicPlayItemOnce(); break;
+    }
 }

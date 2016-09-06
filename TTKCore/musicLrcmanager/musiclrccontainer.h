@@ -15,7 +15,6 @@
 #include "musicsettingmanager.h"
 
 class MusicLrcSearchWidget;
-class MusicLrcMakerWidget;
 
 /*! @brief The class of the lrc container base.
  * @author Greedysky <greedysky@163.com>
@@ -138,7 +137,6 @@ protected:
     QString m_currentSongName, m_containerType;
     QList<MusicLRCManager*> m_musicLrcContainer;
     MusicLrcSearchWidget *m_musicLrcSearchWidget;
-    MusicLrcMakerWidget *m_makerWidget;
 
 };
 

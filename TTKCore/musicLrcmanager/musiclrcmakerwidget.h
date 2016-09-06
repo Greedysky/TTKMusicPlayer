@@ -56,12 +56,38 @@ private Q_SLOTS:
     /*!
      * Save lrc button clicked.
      */
+    void reMakeButtonClicked();
+    /*!
+     * Save lrc button clicked.
+     */
+    void backToMakeLrcWidget();
+    /*!
+     * Back to make lrc widget.
+     */
     void firstWidgetStateButtonClicked();
+    /*!
+     * First widget state changed.
+     */
     void thirdWidgetStateButtonClicked();
+    /*!
+     * Third widget state changed.
+     */
     void setCurrentMainWidget();
+    /*!
+     * Change current widget to main widget.
+     */
     void setCurrentFirstWidget();
+    /*!
+     * Change current widget to first widget.
+     */
     void setCurrentSecondWidget();
+    /*!
+     * Change current widget to second widget.
+     */
     void setCurrentThirdWidget();
+    /*!
+     * Change current widget to third widget.
+     */
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -70,12 +96,26 @@ protected:
      * Override the widget event.
      */
     void createMainWidget();
+    /*!
+     * Create current main widget.
+     */
     void createFirstWidget();
+    /*!
+     * Create current first widget.
+     */
     void createSecondWidget();
+    /*!
+     * Create current second widget.
+     */
     void createThirdWidget();
+    /*!
+     * Create current third widget.
+     */
 
     bool checkInputValid();
-
+    /*!
+     * Check input valid or not.
+     */
     void setControlEnable(bool enable) const;
     /*!
      * Set controller enable or disable.
@@ -84,13 +124,16 @@ protected:
     /*!
      * Translate current long time to string.
      */
+    void resetToOriginPlayMode();
+    /*!
+     * Reset to origin play mode.
+     */
 
     Ui::MusicLrcMakerWidget *ui;
-
-    int m_currentLine;
     QFile m_file;
     QStringList m_plainText;
     QMap<int, QString> m_times;
+    int m_currentLine, m_playMode;
 
 };
 

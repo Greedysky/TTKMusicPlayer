@@ -68,7 +68,14 @@ public:
     /*!
      * Update current artist when it download finished.
      */
-    bool getPlayState() const { return m_playControl; }
+    int getPlayState() const;
+    /*!
+     * Get current play state.
+     */
+    int getPlayMode() const;
+    /*!
+     * Get current play mode.
+     */
 
 public Q_SLOTS:
     void quitWindowClose();
