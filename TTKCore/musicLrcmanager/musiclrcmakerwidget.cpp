@@ -11,7 +11,7 @@
 
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
-
+#include <QDebug>
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicLrcMakerWidget)
@@ -137,7 +137,6 @@ void MusicLrcMakerWidget::backToMakeLrcWidget()
 {
     MusicMessageBox message;
     message.setText(tr("Go back and lyrics will be lost!"));
-    message.exec();
     if(message.exec() == 0)
     {
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
@@ -354,7 +353,11 @@ void MusicLrcMakerWidget::createSecondWidget()
     ui->makeTextEdit->setReadOnly(true);
     ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01 );
     ui->makeTextEdit->setAcceptRichText(false);
+#ifdef MUSIC_GREATER_NEW
     ui->makeTextEdit->setAutoFormatting(false);
+#else
+    ui->makeTextEdit->setAutoFormatting(QTextEdit::AutoNone);
+#endif
     ui->makeTextEdit->setEnabled(false);
 
     QFont font = ui->makeTextEdit->font();
