@@ -56,10 +56,6 @@ private Q_SLOTS:
     /*!
      * Save lrc button clicked.
      */
-    void reviewButtonClicked();
-    /*!
-     * Review lrc button clicked.
-     */
     void firstWidgetStateButtonClicked();
     void thirdWidgetStateButtonClicked();
     void setCurrentMainWidget();
@@ -94,6 +90,7 @@ protected:
     int m_currentLine;
     QFile m_file;
     QStringList m_plainText;
+    QMap<int, QString> m_times;
 
 };
 
