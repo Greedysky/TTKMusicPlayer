@@ -65,6 +65,19 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
     }
 }
 
+void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
+{
+    MusicQueryTableWidget::listCellEntered(row, column);
+    if(column == 3 || column == 4 || column == 5)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
+    }
+}
+
 void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
 {
     MusicQueryTableWidget::listCellClicked(row, column);
