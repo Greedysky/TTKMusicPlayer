@@ -371,7 +371,7 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
      </property>
     </widget>
-    <widget class="QPushButton" name="stopButton_F">
+    <widget class="QPushButton" name="stateButton_F">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -384,31 +384,15 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="text">
-      <string>停止</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="stateButton_F">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>112</y>
-       <width>75</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="text">
       <string>Play</string>
      </property>
     </widget>
-    <widget class="QSlider" name="timeSlider_F">
+    <widget class="MusicClickedSlider" name="timeSlider_F">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>140</x>
        <y>115</y>
-       <width>321</width>
+       <width>421</width>
        <height>22</height>
       </rect>
      </property>
@@ -629,7 +613,7 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background3</pixmap>
      </property>
     </widget>
-    <widget class="QSlider" name="timeSlider_S">
+    <widget class="MusicClickedSlider" name="timeSlider_S">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -837,22 +821,6 @@
       <string>上传歌词</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="stopButton_T">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>170</y>
-       <width>75</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="text">
-      <string>停止</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="labelTime_T">
      <property name="geometry">
       <rect>
@@ -885,12 +853,12 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
      </property>
     </widget>
-    <widget class="QSlider" name="timeSlider_T">
+    <widget class="MusicClickedSlider" name="timeSlider_T">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>140</x>
        <y>173</y>
-       <width>321</width>
+       <width>421</width>
        <height>22</height>
       </rect>
      </property>
@@ -901,7 +869,7 @@
     <widget class="QPushButton" name="stateButton_T">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>50</x>
        <y>170</y>
        <width>75</width>
        <height>25</height>
@@ -925,7 +893,6 @@
     <zorder>label_T2</zorder>
     <zorder>timeSlider_T</zorder>
     <zorder>stateButton_T</zorder>
-    <zorder>stopButton_T</zorder>
     <zorder>labelTime_T</zorder>
    </widget>
   </widget>
@@ -934,6 +901,13 @@
   <zorder>stackedWidget</zorder>
   <zorder>topTitleName</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../../TTKQrc/MusicPlayer.qrc"/>
  </resources>

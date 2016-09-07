@@ -11,7 +11,7 @@
 
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
-#include <QDebug>
+
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       ui(new Ui::MusicLrcMakerWidget)
@@ -69,9 +69,17 @@ void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 
 void MusicLrcMakerWidget::positionChanged(qint64 position)
 {
+    ui->timeSlider_F->blockSignals(true);
+    ui->timeSlider_S->blockSignals(true);
+    ui->timeSlider_T->blockSignals(true);
+
     ui->timeSlider_F->setValue(position);
     ui->timeSlider_S->setValue(position);
     ui->timeSlider_T->setValue(position);
+
+    ui->timeSlider_F->blockSignals(false);
+    ui->timeSlider_S->blockSignals(false);
+    ui->timeSlider_T->blockSignals(false);
 
     QString t = QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position))
      .arg(MusicTime::msecTime2LabelJustified(ui->timeSlider_F->maximum()));
@@ -91,6 +99,11 @@ void MusicLrcMakerWidget::show()
 {
     setBackgroundPixmap(ui->background, size());
     MusicAbstractMoveWidget::show();
+}
+
+void MusicLrcMakerWidget::timeSliderValueChanged(int value)
+{
+    MusicApplication::instance()->musicPlayAnyTimeAt(value);
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -219,6 +232,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         return;
     }
 
+    MusicApplication::instance()->musicPlayAnyTimeAt(0);
     ui->stackedWidget->setCurrentIndex(3);
 }
 
@@ -335,13 +349,14 @@ void MusicLrcMakerWidget::createFirstWidget()
     cur.setBlockFormat(fmt);
     ui->lrcTextEdit->setTextCursor(cur);
 
+    ui->timeSlider_F->setFocusPolicy(Qt::NoFocus);
     ui->timeSlider_F->setStyleSheet(MusicUIObject::MSliderStyle07);
-    ui->stopButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->stateButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->previousButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->nextButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
+    connect(ui->timeSlider_F, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
     connect(ui->stateButton_F, SIGNAL(clicked(bool)), SLOT(firstWidgetStateButtonClicked()));
     connect(ui->cancelButton_F, SIGNAL(clicked()), SLOT(close()));
     connect(ui->nextButton_F, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
@@ -364,11 +379,13 @@ void MusicLrcMakerWidget::createSecondWidget()
     font.setPointSize(15);
     ui->makeTextEdit->setFont( font );
 
+    ui->timeSlider_S->setFocusPolicy(Qt::NoFocus);
     ui->timeSlider_S->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->previousButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->nextButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
+    connect(ui->timeSlider_S, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
     connect(ui->cancelButton_S, SIGNAL(clicked()), SLOT(close()));
     connect(ui->nextButton_S, SIGNAL(clicked()), SLOT(setCurrentThirdWidget()));
     connect(ui->previousButton_S, SIGNAL(clicked()), SLOT(setCurrentFirstWidget()));
@@ -378,8 +395,8 @@ void MusicLrcMakerWidget::createThirdWidget()
 {
     ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
 
+    ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
-    ui->stopButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->stateButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->remakeButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->uploadButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -387,6 +404,7 @@ void MusicLrcMakerWidget::createThirdWidget()
     ui->previousButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->cancelButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
+    connect(ui->timeSlider_T, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
     connect(ui->remakeButton_T, SIGNAL(clicked()), SLOT(reMakeButtonClicked()));
     connect(ui->saveButton_T, SIGNAL(clicked()), SLOT(saveButtonClicked()));
     connect(ui->stateButton_T, SIGNAL(clicked()), SLOT(thirdWidgetStateButtonClicked()));

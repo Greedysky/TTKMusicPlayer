@@ -52,6 +52,10 @@ public Q_SLOTS:
      */
 
 private Q_SLOTS:
+    void timeSliderValueChanged(int value);
+    /*!
+     * Time slider value changed.
+     */
     void saveButtonClicked();
     /*!
      * Save lrc button clicked.
