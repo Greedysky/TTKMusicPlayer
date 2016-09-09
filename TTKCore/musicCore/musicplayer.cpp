@@ -110,10 +110,6 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     {
         m_volumeMusic3D = volume();
     }
-    else if(m_musicEnhanced == EnhancedOff)
-    {
-        return;
-    }
     else
     {
         m_music->setBalance(0);

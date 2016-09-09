@@ -98,6 +98,10 @@ public Q_SLOTS:
     /*!
      * Show current song some information.
      */
+    void musicStopPlay();
+    /*!
+     * Set current player to stop.
+     */
     void musicStatePlay();
     /*!
      * Set current player to play or not.

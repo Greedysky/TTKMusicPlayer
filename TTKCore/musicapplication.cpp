@@ -284,6 +284,12 @@ void MusicApplication::showCurrentSong(int index)
     m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 
+void MusicApplication::musicStopPlay()
+{
+    m_musicPlayer->stop();
+    musicPlayIndex(-1);
+}
+
 void MusicApplication::musicStatePlay()
 {
     if(m_musicList->isEmpty())

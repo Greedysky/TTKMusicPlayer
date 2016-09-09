@@ -1,8 +1,5 @@
 #include "musictime.h"
 
-#include <QFileInfo>
-#include <QDir>
-
 MusicTime::MusicTime()
 {
     m_defaultType = All_Msec;
