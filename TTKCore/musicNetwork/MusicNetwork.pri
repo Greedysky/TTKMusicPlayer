@@ -42,7 +42,8 @@ HEADERS  += \
     $$PWD/musicradiosongsthread.h \
     $$PWD/musicradiothreadabstract.h \
     $$PWD/musictranslationthread.h \
-    $$PWD/musicvoicettsthread.h
+    $$PWD/musicvoicettsthread.h \
+    $$PWD/musicidentifysongsthread.h
 
 }
 
@@ -74,6 +75,7 @@ SOURCES += \
     $$PWD/musicradiosongsthread.cpp \
     $$PWD/musicradiothreadabstract.cpp \
     $$PWD/musictranslationthread.cpp \
-    $$PWD/musicvoicettsthread.cpp 
+    $$PWD/musicvoicettsthread.cpp \
+    $$PWD/musicidentifysongsthread.cpp
 
 }

@@ -2,10 +2,11 @@
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
+#include "musicidentifysongsthread.h"
+#include "musicaudiorecordercore.h"
 
 #include <QMovie>
 #include <QTimer>
-#include <QProcess>
 #include <QShortcut>
 #include <QBoxLayout>
 #include <QStackedWidget>
@@ -22,24 +23,30 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     layout->addWidget(m_mainWindow);
     setLayout(layout);
 
-    m_process = nullptr;
     m_timer = new QTimer(this);
-    m_timer->setInterval(15*MT_S2MS);
+    m_timer->setInterval(10*MT_S2MS);
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
+
+    m_recordCore = new MusicAudioRecorderCore(this);
+    m_detectedThread = new MusicIdentifySongsThread(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
 
     createDetectedWidget();
+
+    m_detectedButton->setEnabled(false);
+    getKey();
 }
 
 MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
 {
     delete m_timer;
+    delete m_recordCore;
+    delete m_detectedThread;
     delete m_detectedButton;
     delete m_detectedLabel;
     delete m_detectedMovie;
-    delete m_process;
     delete m_mainWindow;
 }
 
@@ -48,14 +55,19 @@ QString MusicIdentifySongsWidget::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicIdentifySongsWidget::getKey()
+{
+    if(m_detectedThread->getKey())
+    {
+        m_detectedButton->setEnabled(true);
+    }
+}
+
 void MusicIdentifySongsWidget::detectedButtonClicked()
 {
     if(m_detectedButton->styleSheet().contains(MusicUIObject::MKGSongsDetectStartBtn))
     {
-        m_process = new QProcess(this);
-//        m_process->start("MPlugins/avcode.dll", QStringList() << "E:/1.mp3" << "10" << "20");
-        connect(m_process, SIGNAL(readyRead()), SLOT(detectedOutput()));
-
+        m_recordCore->onRecordStart();
         m_detectedMovie->start();
         m_timer->start();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStopBtn);
@@ -63,9 +75,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
     }
     else
     {
-        delete m_process;
-        m_process = nullptr;
-
+        m_recordCore->onRecordStop();
         m_detectedMovie->stop();
         m_timer->stop();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStartBtn);
@@ -80,15 +90,21 @@ void MusicIdentifySongsWidget::reDetectButtonClicked()
 
 void MusicIdentifySongsWidget::detectedTimeOut()
 {
-    detectedButtonClicked();
-    createDetectedFailedWidget();
-}
+    m_recordCore->addWavHeader(RECORD_IN_FILE);
 
-void MusicIdentifySongsWidget::detectedOutput()
-{
-    while(m_process->canReadLine())
+    QEventLoop loop;
+    m_detectedThread->query("21.mp3");
+    connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    loop.exec();
+
+    detectedButtonClicked();
+    if(m_detectedThread->getIdentifySongs().isEmpty())
     {
-        m_process->readAll();
+        createDetectedFailedWidget();
+    }
+    else
+    {
+        createDetectedSuccessedWidget();
     }
 }
 

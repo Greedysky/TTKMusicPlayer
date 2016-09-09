@@ -14,8 +14,9 @@
 #include "musicglobaldefine.h"
 
 class QMovie;
-class QProcess;
 class QStackedWidget;
+class MusicAudioRecorderCore;
+class MusicIdentifySongsThread;
 
 /*! @brief The class of the song identify widget.
  * @author Greedysky <greedysky@163.com>
@@ -34,6 +35,10 @@ public:
     /*!
      * Get class object name.
      */
+    void getKey();
+    /*!
+     * Get query song id keys.
+     */
 
 public Q_SLOTS:
     void detectedButtonClicked();
@@ -47,10 +52,6 @@ public Q_SLOTS:
     void detectedTimeOut();
     /*!
      * Detected the song finished.
-     */
-    void detectedOutput();
-    /*!
-     * Detected the song output finished.
      */
 
 protected:
@@ -75,8 +76,9 @@ protected:
     QStackedWidget *m_mainWindow;
     QLabel *m_detectedLabel;
     QMovie *m_detectedMovie;
-    QProcess *m_process;
     QPushButton *m_detectedButton;
+    MusicAudioRecorderCore *m_recordCore;
+    MusicIdentifySongsThread *m_detectedThread;
 
 };
 
