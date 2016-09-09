@@ -347,6 +347,21 @@
         <file alias="btn_redetect_normal">../TTKResource/toolSets/btn_redetect_normal.png</file>
         <file alias="lb_radar">../TTKResource/toolSets/lb_radar.gif</file>
         <file alias="lb_detect_error">../TTKResource/toolSets/lb_detect_error.png</file>
+        <file alias="btn_detect_download_normal">../TTKResource/toolSets/btn_detect_download_normal.png</file>
+        <file alias="btn_detect_download_hover">../TTKResource/toolSets/btn_detect_download_hover.png</file>
+        <file alias="btn_detect_download_disable">../TTKResource/toolSets/btn_detect_download_disable.png</file>
+        <file alias="btn_detect_love_normal ">../TTKResource/toolSets/btn_detect_love_normal.png</file>
+        <file alias="btn_detect_love_hover">../TTKResource/toolSets/btn_detect_love_hover.png</file>
+        <file alias="btn_detect_love_disable">../TTKResource/toolSets/btn_detect_love_disable.png</file>
+        <file alias="btn_detect_play_normal">../TTKResource/toolSets/btn_detect_play_normal.png</file>
+        <file alias="btn_detect_play_hover">../TTKResource/toolSets/btn_detect_play_hover.png</file>
+        <file alias="btn_detect_play_disable">../TTKResource/toolSets/btn_detect_play_disable.png</file>
+        <file alias="btn_detect_share_normal">../TTKResource/toolSets/btn_detect_share_normal.png</file>
+        <file alias="btn_detect_share_hover">../TTKResource/toolSets/btn_detect_share_hover.png</file>
+        <file alias="btn_detect_share_disable">../TTKResource/toolSets/btn_detect_share_disable.png</file>
+        <file alias="btn_detect_unlove_normal">../TTKResource/toolSets/btn_detect_unlove_normal.png</file>
+        <file alias="btn_detect_unlove_hover">../TTKResource/toolSets/btn_detect_unlove_hover.png</file>
+        <file alias="btn_detect_unlove_disable">../TTKResource/toolSets/btn_detect_unlove_disable.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_arrow_up_normal">../TTKResource/tiny/lb_arrow_up_normal.png</file>

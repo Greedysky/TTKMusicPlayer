@@ -159,7 +159,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     widgetLayout->addStretch(1);
     widgetLayout->addWidget(text, 0, Qt::AlignCenter);
     widget->setLayout(widgetLayout);
-
+    /////////////////////////////////////////////////////////////////////
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -173,16 +173,69 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
+    widgetLayout->setContentsMargins(2, 2, 2, 2);
+    /////////////////////////////////////////////////////////////////////
+    QWidget *infoWidget = new QWidget(widget);
+    QHBoxLayout *infoWidgetLayout = new QHBoxLayout(infoWidget);
+    infoWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    infoWidgetLayout->setSpacing(50);
 
+    QWidget *infoFuncWidget = new QWidget(infoWidget);
+    QGridLayout *infoFuncWidgetLayout = new QGridLayout(infoFuncWidget);
+    infoFuncWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    QLabel *iconLabel = new QLabel(widget);
+    iconLabel->setMinimumSize(250, 250);
+    iconLabel->setStyleSheet("background:red");
+
+    QPushButton *playButton = new QPushButton(infoFuncWidget);
+    QPushButton *loveButton = new QPushButton(infoFuncWidget);
+    QPushButton *downButton = new QPushButton(infoFuncWidget);
+    QPushButton *shareButton = new QPushButton(infoFuncWidget);
+    playButton->setFixedSize(25, 25);
+    loveButton->setFixedSize(25, 25);
+    downButton->setFixedSize(25, 25);
+    shareButton->setFixedSize(25, 25);
+    playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    loveButton->setCursor(QCursor(Qt::PointingHandCursor));
+    downButton->setCursor(QCursor(Qt::PointingHandCursor));
+    shareButton->setCursor(QCursor(Qt::PointingHandCursor));
+    playButton->setStyleSheet(MusicUIObject::MKGSongsDetectPlayBtn);
+    loveButton->setStyleSheet(MusicUIObject::MKGSongsDetectUnloveBtn);
+    downButton->setStyleSheet(MusicUIObject::MKGSongsDetectDownloadBtn);
+    shareButton->setStyleSheet(MusicUIObject::MKGSongsDetectShareBtn);
+
+    infoFuncWidgetLayout->addWidget(iconLabel, 0, 0, 1, 4);
+    infoFuncWidgetLayout->addWidget(playButton, 1, 0, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(loveButton, 1, 1, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(downButton, 1, 2, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(shareButton, 1, 3, Qt::AlignCenter);
+    infoFuncWidget->setLayout(infoFuncWidgetLayout);
+    /////////////////////////////////////////////////////////////////////
+    QLabel *iconLabel2 = new QLabel(widget);
+    iconLabel2->setMinimumSize(250, 250);
+    iconLabel2->setStyleSheet("background:blue");
+
+    infoWidgetLayout->addWidget(infoFuncWidget);
+    infoWidgetLayout->addWidget(iconLabel2);
+    infoWidget->setLayout(infoWidgetLayout);
+    /////////////////////////////////////////////////////////////////////
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
     reDetect->setCursor(QCursor(Qt::PointingHandCursor));
     connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
 
-    widgetLayout->addWidget(reDetect, 0, Qt::AlignCenter);
-    widget->setLayout(widgetLayout);
+    QLabel *text3Label = new QLabel(tr("Redetect"), widget);
+    text3Label->setStyleSheet(MusicUIObject::MCustomStyle02);
 
+    widgetLayout->addStretch(1);
+    widgetLayout->addWidget(infoWidget, 1, Qt::AlignCenter);
+    widgetLayout->addStretch(1);
+    widgetLayout->addWidget(reDetect, 0, Qt::AlignCenter);
+    widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
+    widgetLayout->addStretch(1);
+    widget->setLayout(widgetLayout);
+    /////////////////////////////////////////////////////////////////////
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -203,7 +256,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
     text3Label->setStyleSheet(MusicUIObject::MCustomStyle02);
-
+    /////////////////////////////////////////////////////////////////////
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
@@ -221,7 +274,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
-
+    /////////////////////////////////////////////////////////////////////
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
