@@ -335,6 +335,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 MusicIdentifySongsWidget *songsIdentifyWidget = new MusicIdentifySongsWidget(this);
                 m_ui->surfaceStackedWidget->addWidget(songsIdentifyWidget);
                 m_ui->surfaceStackedWidget->setCurrentWidget(songsIdentifyWidget);
+                songsIdentifyWidget->getKey();
                 m_stackedFuncWidget = songsIdentifyWidget;
                 emit updateBackgroundTheme();
                 break;

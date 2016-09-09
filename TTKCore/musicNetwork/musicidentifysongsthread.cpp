@@ -1,10 +1,13 @@
 #include "musicidentifysongsthread.h"
+#include "musicsourcedownloadthread.h"
 #///QJson import
 #include "qjson/parser.h"
 
+#include <QEventLoop>
 #include <QCryptographicHash>
 
-#define QUERY_URL "http://ap-southeast-1.api.acrcloud.com/v1/identify"
+#define QUERY_URL     "http://ap-southeast-1.api.acrcloud.com/v1/identify"
+#define ACRUA_URL     "http://7xpa0g.com1.z0.glb.clouddn.com/acrcloud"
 
 MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
     : MusicNetworkAbstract(parent)
@@ -24,10 +27,16 @@ QString MusicIdentifySongsThread::getClassName()
 
 bool MusicIdentifySongsThread::getKey()
 {
-    m_accessKey = "e3f81681523c9a94af5a8e7ba4bfe478";
-    m_accessSecret = "gdMQaPzspmsr035r4STe83Th81rJApSFd3gMV1ao";
+    QEventLoop loop;
+    connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
-    return true;
+    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
+    download->startToDownload(ACRUA_URL);
+
+    loop.exec();
+
+    return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
 void MusicIdentifySongsThread::query(const QString &path)
@@ -113,7 +122,37 @@ void MusicIdentifySongsThread::downLoadFinished()
     }
 
     emit downLoadDataChanged( QString() );
-    deleteAll();
+    if(m_reply)
+    {
+        m_reply->deleteLater();
+        m_reply = nullptr;
+    }
+}
+
+void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
+{
+    QJson::Parser parser;
+    bool ok;
+    QVariant dt = parser.parse(data, &ok);
+    if(ok)
+    {
+        foreach(const QVariant &var, dt.toList())
+        {
+            QVariantMap value = var.toMap();
+            if( QDateTime::fromString( value["time"].toString(), "yyyy-MM-dd HH:mm:ss") <=
+                QDateTime::currentDateTime())
+            {
+                continue;
+            }
+            else
+            {
+                m_accessKey = value["key"].toString();
+                m_accessSecret = value["secret"].toString();
+                break;
+            }
+        }
+    }
+    emit getKeyFinished();
 }
 
 QByteArray MusicIdentifySongsThread::hmacSha1(const QByteArray &data, const QByteArray &secretKey)

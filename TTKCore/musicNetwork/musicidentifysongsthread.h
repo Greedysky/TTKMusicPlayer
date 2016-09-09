@@ -1,6 +1,14 @@
 #ifndef MUSICIDENTIFYSONGSTHREAD_H
 #define MUSICIDENTIFYSONGSTHREAD_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include "musicglobal.h"
 #include "musicnetworkabstract.h"
 
@@ -12,7 +20,7 @@ typedef struct MusicSongIdentify
 }MusicSongIdentify;
 TTK_DECLARE_LISTS(MusicSongIdentify)
 
-/*! @brief The class of abstract downloading data.
+/*! @brief The class of the song identify query thread.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicIdentifySongsThread : public MusicNetworkAbstract
@@ -39,10 +47,20 @@ public:
      * Get identify songs.
      */
 
+Q_SIGNALS:
+    void getKeyFinished();
+    /*!
+     * Get key data from net finished.
+     */
+
 public Q_SLOTS:
     virtual void downLoadFinished();
     /*!
      * Download data from net finished.
+     */
+    void keyDownLoadFinished(const QByteArray &data);
+    /*!
+     * Download key data from net finished.
      */
 
 protected:

@@ -4,6 +4,7 @@
 #include "musicnumberdefine.h"
 #include "musicidentifysongsthread.h"
 #include "musicaudiorecordercore.h"
+#include "musictoastlabel.h"
 
 #include <QMovie>
 #include <QTimer>
@@ -36,7 +37,6 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     createDetectedWidget();
 
     m_detectedButton->setEnabled(false);
-    getKey();
 }
 
 MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
@@ -60,6 +60,18 @@ void MusicIdentifySongsWidget::getKey()
     if(m_detectedThread->getKey())
     {
         m_detectedButton->setEnabled(true);
+    }
+    else
+    {
+        MusicToastLabel *toast = new MusicToastLabel(this);
+        toast->setFontSize(15);
+        toast->setFontMargin(20, 20);
+        toast->setText(tr("Init Identify Error!"));
+
+        QPoint globalPoint = mapToGlobal(QPoint(0, 0));
+        toast->move(globalPoint.x() + (width() - toast->width())/2,
+                    globalPoint.y() + (height() - toast->height())/2);
+        toast->show();
     }
 }
 
@@ -93,7 +105,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     m_recordCore->addWavHeader(RECORD_IN_FILE);
 
     QEventLoop loop;
-    m_detectedThread->query("21.mp3");
+    m_detectedThread->query(RECORD_IN_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -154,11 +166,33 @@ void MusicIdentifySongsWidget::createDetectedWidget()
 
 void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 {
+    if(m_mainWindow->count() > 1)
+    {
+        delete m_mainWindow->widget(1);
+    }
+    QWidget *widget = new QWidget(m_mainWindow);
+    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
+    QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
+    QPushButton *reDetect = new QPushButton(widget);
+    reDetect->setFixedSize(56, 56);
+    reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
+    reDetect->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
+
+    widgetLayout->addWidget(reDetect, 0, Qt::AlignCenter);
+    widget->setLayout(widgetLayout);
+
+    m_mainWindow->addWidget(widget);
+    m_mainWindow->setCurrentWidget(widget);
 }
 
 void MusicIdentifySongsWidget::createDetectedFailedWidget()
 {
+    if(m_mainWindow->count() > 1)
+    {
+        delete m_mainWindow->widget(1);
+    }
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
