@@ -12,8 +12,6 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setStyleSheet(MusicUIObject::MColorStyle01);
-
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
     m_timer.setInterval(2*MT_S2MS);
@@ -96,8 +94,14 @@ void MusicToastLabel::closeAnimation()
 void MusicToastLabel::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
+
     QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), QColor(0, 0, 0, 160));
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(QColor(0, 0, 0, 175));
+    painter.drawRoundRect(rect(), 6, 6);
+
+    painter.setPen(QColor(255, 255, 255));
     painter.drawText(rect(), Qt::AlignCenter, text());
     painter.end();
 }
