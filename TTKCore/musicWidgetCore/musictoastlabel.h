@@ -77,6 +77,11 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QTimer m_timer;
     QFont m_font;
     QPoint m_margin;

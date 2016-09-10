@@ -2,15 +2,17 @@
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
 
+#include <QPainter>
 #include <QPropertyAnimation>
 
 MusicToastLabel::MusicToastLabel(QWidget *parent)
     : QLabel(parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
-    setStyleSheet(MusicUIObject::MBackgroundStyle16 + MusicUIObject::MColorStyle01);
-    setAlignment(Qt::AlignCenter);
+
+    setStyleSheet(MusicUIObject::MColorStyle01);
 
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
@@ -89,4 +91,13 @@ void MusicToastLabel::closeAnimation()
     animation->setEndValue(0);
     animation->start();
     connect(animation, SIGNAL(finished()), SLOT(close()));
+}
+
+void MusicToastLabel::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), QColor(0, 0, 0, 160));
+    painter.drawText(rect(), Qt::AlignCenter, text());
+    painter.end();
 }

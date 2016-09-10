@@ -340,7 +340,8 @@ void MusicLrcMakerWidget::createFirstWidget()
     ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
-    ui->lrcTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01 );
+    ui->lrcTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->lrcTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     ui->lrcTextEdit->setAcceptRichText(false);
 
     QTextBlockFormat fmt;
@@ -366,7 +367,8 @@ void MusicLrcMakerWidget::createFirstWidget()
 void MusicLrcMakerWidget::createSecondWidget()
 {
     ui->makeTextEdit->setReadOnly(true);
-    ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01 );
+    ui->makeTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     ui->makeTextEdit->setAcceptRichText(false);
 #ifdef MUSIC_GREATER_NEW
     ui->makeTextEdit->setAutoFormatting(false);
