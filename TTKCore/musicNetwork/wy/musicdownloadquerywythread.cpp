@@ -114,6 +114,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
+                    ++m_index;
                     if(var.isNull())
                     {
                         continue;
@@ -168,7 +169,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     emit createSearchedItems(info.m_songName, info.m_singerName, info.m_timeLength);
                     m_musicSongInfos << info;
 
-                    if( ++m_index >= m_songIds.count())
+                    if( m_index >= m_songIds.count())
                     {
                         emit downLoadDataChanged(QString());
                         deleteAll();
@@ -179,6 +180,11 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     emit downLoadDataChanged(QString());
                     deleteAll();
                 }
+            }
+            else
+            {
+                emit downLoadDataChanged(QString());
+                deleteAll();
             }
         }
         else
@@ -209,6 +215,7 @@ void MusicDownLoadQueryWYThread::mvListFinished()
             QVariantMap value = data.toMap();
             if(value.contains("code") && value["code"].toInt() == 200)
             {
+                ++m_index;
                 value = value["data"].toMap();
                 MusicObject::MusicSongInfomation info;
                 info.m_songName = value["name"].toString();
@@ -243,7 +250,7 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                 emit createSearchedItems(info.m_songName, info.m_singerName, info.m_timeLength);
                 m_musicSongInfos << info;
 
-                if( ++m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
+                if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
                 {
                     emit downLoadDataChanged(QString());
                     deleteAll();

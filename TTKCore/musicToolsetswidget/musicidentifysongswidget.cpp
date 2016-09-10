@@ -5,12 +5,14 @@
 #include "musicwytextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicaudiorecordercore.h"
+#include "musicsongsharingwidget.h"
+#include "musicdownloadwidget.h"
+#include "musicnumberdefine.h"
 #include "musiccoremplayer.h"
 #include "musiclrcanalysis.h"
 #include "musictoastlabel.h"
-#include "musicutils.h"
 #include "musicuiobject.h"
-#include "musicnumberdefine.h"
+#include "musicutils.h"
 
 #include <QMovie>
 #include <QTimer>
@@ -140,9 +142,37 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     }
 }
 
-void MusicIdentifySongsWidget::muisicSongPlay()
+void MusicIdentifySongsWidget::musicSongPlay()
 {
+    if(!m_songPlayer)
+    {
+        return;
+    }
 
+    if(!m_currentSong.m_songAttrs.isEmpty())
+    {
+        m_songPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songAttrs.first().m_url);
+    }
+}
+
+void MusicIdentifySongsWidget::musicSongDownload()
+{
+    if(!m_currentSong.m_singerName.isEmpty())
+    {
+        MusicDownloadWidget *download = new MusicDownloadWidget(this);
+        download->setSongName(m_currentSong, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        download->show();
+    }
+}
+
+void MusicIdentifySongsWidget::musicSongShare()
+{
+    if(!m_currentSong.m_singerName.isEmpty())
+    {
+        MusicSongSharingWidget shareWidget(this);
+        shareWidget.setSongName( m_currentSong.m_songName );
+        shareWidget.exec();
+    }
 }
 
 void MusicIdentifySongsWidget::positionChanged(qint64 position)
@@ -229,8 +259,8 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 {
     if(m_mainWindow->count() > 1)
     {
-        delete m_mainWindow->widget(1);
         delete m_lrcLabel;
+        delete m_mainWindow->widget(1);
     }
     else
     {
@@ -312,6 +342,10 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     loveButton->setStyleSheet(MusicUIObject::MKGSongsDetectUnloveBtn);
     downButton->setStyleSheet(MusicUIObject::MKGSongsDetectDownloadBtn);
     shareButton->setStyleSheet(MusicUIObject::MKGSongsDetectShareBtn);
+    connect(playButton, SIGNAL(clicked()), SLOT(musicSongPlay()));
+//    connect(loveButton, SIGNAL(clicked()), SLOT(musicSongShare()));
+    connect(downButton, SIGNAL(clicked()), SLOT(musicSongDownload()));
+    connect(shareButton, SIGNAL(clicked()), SLOT(musicSongShare()));
 
     infoFuncWidgetLayout->addWidget(textLabel, 0, 0, 1, 4);
     infoFuncWidgetLayout->addWidget(iconLabel, 1, 0, 1, 4);

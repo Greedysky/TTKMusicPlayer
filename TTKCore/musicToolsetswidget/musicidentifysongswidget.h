@@ -56,9 +56,17 @@ public Q_SLOTS:
     /*!
      * Detected the song finished.
      */
-    void muisicSongPlay();
+    void musicSongPlay();
     /*!
      * Set music song to play.
+     */
+    void musicSongDownload();
+    /*!
+     * Set music song to download.
+     */
+    void musicSongShare();
+    /*!
+     * Set music song to share.
      */
     void positionChanged(qint64 position);
     /*!
