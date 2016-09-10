@@ -1,10 +1,16 @@
 #include "musicidentifysongswidget.h"
 #include "musictoolsetsuiobject.h"
+#include "musicidentifysongsthread.h"
+#include "musicdownloadquerywythread.h"
+#include "musicwytextdownloadthread.h"
+#include "musicdatadownloadthread.h"
+#include "musicaudiorecordercore.h"
+#include "musiccoremplayer.h"
+#include "musiclrcanalysis.h"
+#include "musictoastlabel.h"
+#include "musicutils.h"
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
-#include "musicidentifysongsthread.h"
-#include "musicaudiorecordercore.h"
-#include "musictoastlabel.h"
 
 #include <QMovie>
 #include <QTimer>
@@ -28,6 +34,9 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     m_timer->setInterval(10*MT_S2MS);
     connect(m_timer, SIGNAL(timeout()), SLOT(detectedTimeOut()));
 
+    m_lrcLabel = nullptr;
+    m_songPlayer = nullptr;
+    m_analysis = nullptr;
     m_recordCore = new MusicAudioRecorderCore(this);
     m_detectedThread = new MusicIdentifySongsThread(this);
 
@@ -42,6 +51,8 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
 MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
 {
     delete m_timer;
+    delete m_songPlayer;
+    delete m_analysis;
     delete m_recordCore;
     delete m_detectedThread;
     delete m_detectedButton;
@@ -77,6 +88,11 @@ void MusicIdentifySongsWidget::getKey()
 
 void MusicIdentifySongsWidget::detectedButtonClicked()
 {
+    if(!m_detectedButton->isEnabled())
+    {
+        return;
+    }
+
     if(m_detectedButton->styleSheet().contains(MusicUIObject::MKGSongsDetectStartBtn))
     {
         m_recordCore->onRecordStart();
@@ -98,6 +114,10 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 void MusicIdentifySongsWidget::reDetectButtonClicked()
 {
     m_mainWindow->setCurrentIndex(0);
+    if(m_songPlayer)
+    {
+        m_songPlayer->stop();
+    }
 }
 
 void MusicIdentifySongsWidget::detectedTimeOut()
@@ -117,6 +137,47 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     else
     {
         createDetectedSuccessedWidget();
+    }
+}
+
+void MusicIdentifySongsWidget::muisicSongPlay()
+{
+
+}
+
+void MusicIdentifySongsWidget::positionChanged(qint64 position)
+{
+    if(!m_songPlayer)
+    {
+        return;
+    }
+
+    if(m_analysis->isEmpty())
+    {
+        QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
+        m_lrcLabel->setText(lrc);
+        return;
+    }
+    int index = m_analysis->getCurrentIndex();
+    qint64 time = m_analysis->findTime(index);
+    if(time < position*MT_S2MS && time != -1)
+    {
+        QString lrc;
+        for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
+        {
+            if(i == LRC_CURRENT_LINR)
+            {
+                lrc += QString("<p style='font-weight:700;' align='center'>");
+            }
+            else
+            {
+                lrc += QString("<p align='center'>");
+            }
+            lrc += m_analysis->getText(i);
+            lrc += QString("</p>");
+        }
+        m_lrcLabel->setText(lrc);
+        m_analysis->setCurrentIndex(++index);
     }
 }
 
@@ -169,23 +230,71 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     if(m_mainWindow->count() > 1)
     {
         delete m_mainWindow->widget(1);
+        delete m_lrcLabel;
     }
+    else
+    {
+        m_songPlayer = new MusicCoreMPlayer(this);
+        m_analysis = new  MusicLrcAnalysis(this);
+        connect(m_songPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    }
+    MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());
+
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
-    widgetLayout->setContentsMargins(2, 2, 2, 2);
     /////////////////////////////////////////////////////////////////////
     QWidget *infoWidget = new QWidget(widget);
     QHBoxLayout *infoWidgetLayout = new QHBoxLayout(infoWidget);
     infoWidgetLayout->setContentsMargins(0, 0, 0, 0);
-    infoWidgetLayout->setSpacing(50);
+    infoWidgetLayout->setSpacing(25);
 
     QWidget *infoFuncWidget = new QWidget(infoWidget);
     QGridLayout *infoFuncWidgetLayout = new QGridLayout(infoFuncWidget);
     infoFuncWidgetLayout->setContentsMargins(0, 0, 0, 0);
+
+    QLabel *textLabel = new QLabel(widget);
+    textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName).arg(songIdentify.m_songName));
+    textLabel->setAlignment(Qt::AlignCenter);
+    /////////////////////////////////////////////////////////////////////
+    QEventLoop loop;
+    MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
+    connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
+    loop.exec();
+
+    if(!down->getMusicSongInfos().isEmpty())
+    {
+        foreach(const MusicObject::MusicSongInfomation &info, down->getMusicSongInfos())
+        {
+            if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
+               info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive) )
+            {
+                m_currentSong = info;
+                break;
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////
     QLabel *iconLabel = new QLabel(widget);
-    iconLabel->setMinimumSize(250, 250);
-    iconLabel->setStyleSheet("background:red");
+    iconLabel->setMinimumSize(280, 280);
+    if(!m_currentSong.m_singerName.isEmpty())
+    {
+        QString name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
+        if(!QFile::exists(name))
+        {
+            MusicDataDownloadThread *smallPic = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name,
+                                                                            MusicDownLoadThreadAbstract::Download_SmlBG, this);
+            connect(smallPic, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            smallPic->startToDownload();
+            loop.exec();
+        }
+        iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));
+    }
+    else
+    {
+        iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(iconLabel->size()));
+    }
 
     QPushButton *playButton = new QPushButton(infoFuncWidget);
     QPushButton *loveButton = new QPushButton(infoFuncWidget);
@@ -204,19 +313,38 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     downButton->setStyleSheet(MusicUIObject::MKGSongsDetectDownloadBtn);
     shareButton->setStyleSheet(MusicUIObject::MKGSongsDetectShareBtn);
 
-    infoFuncWidgetLayout->addWidget(iconLabel, 0, 0, 1, 4);
-    infoFuncWidgetLayout->addWidget(playButton, 1, 0, Qt::AlignCenter);
-    infoFuncWidgetLayout->addWidget(loveButton, 1, 1, Qt::AlignCenter);
-    infoFuncWidgetLayout->addWidget(downButton, 1, 2, Qt::AlignCenter);
-    infoFuncWidgetLayout->addWidget(shareButton, 1, 3, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(textLabel, 0, 0, 1, 4);
+    infoFuncWidgetLayout->addWidget(iconLabel, 1, 0, 1, 4);
+    infoFuncWidgetLayout->addWidget(playButton, 2, 0, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(loveButton, 2, 1, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(downButton, 2, 2, Qt::AlignCenter);
+    infoFuncWidgetLayout->addWidget(shareButton, 2, 3, Qt::AlignCenter);
     infoFuncWidget->setLayout(infoFuncWidgetLayout);
     /////////////////////////////////////////////////////////////////////
-    QLabel *iconLabel2 = new QLabel(widget);
-    iconLabel2->setMinimumSize(250, 250);
-    iconLabel2->setStyleSheet("background:blue");
+    m_lrcLabel = new QLabel(widget);
+    m_lrcLabel->setMinimumWidth(280);
+
+    if(!m_currentSong.m_singerName.isEmpty())
+    {
+        QString name = MusicUtils::UCore::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
+        if(!QFile::exists(name))
+        {
+            MusicWYTextDownLoadThread* lrcDownload = new MusicWYTextDownLoadThread(m_currentSong.m_lrcUrl, name,
+                                                                        MusicDownLoadThreadAbstract::Download_Lrc, this);
+            connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            lrcDownload->startToDownload();
+            loop.exec();
+        }
+        m_analysis->transLrcFileToTime(name);
+
+        if(!m_currentSong.m_songAttrs.isEmpty())
+        {
+            m_songPlayer->setMedia(MusicCoreMPlayer::MusicCategory, m_currentSong.m_songAttrs.first().m_url);
+        }
+    }
 
     infoWidgetLayout->addWidget(infoFuncWidget);
-    infoWidgetLayout->addWidget(iconLabel2);
+    infoWidgetLayout->addWidget(m_lrcLabel);
     infoWidget->setLayout(infoWidgetLayout);
     /////////////////////////////////////////////////////////////////////
     QPushButton *reDetect = new QPushButton(widget);

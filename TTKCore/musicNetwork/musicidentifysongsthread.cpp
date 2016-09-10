@@ -112,10 +112,15 @@ void MusicIdentifySongsThread::downLoadFinished()
                     value = var.toMap();
 
                     MusicSongIdentify song;
-                    song.m_singerName = value["label"].toString();
                     song.m_songName = value["title"].toString();
-                    song.m_timeLength = value["duration_ms"].toString();
+                    foreach(const QVariant &artists, value["artists"].toList())
+                    {
+                        value = artists.toMap();
+                        song.m_singerName = value["name"].toString();
+                        break;
+                    }
                     m_songIdentifys << song;
+                    break;
                 }
             }
         }

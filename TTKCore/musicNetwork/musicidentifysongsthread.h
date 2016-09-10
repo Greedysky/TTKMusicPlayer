@@ -16,7 +16,6 @@ typedef struct MusicSongIdentify
 {
     QString m_singerName;
     QString m_songName;
-    QString m_timeLength;
 }MusicSongIdentify;
 TTK_DECLARE_LISTS(MusicSongIdentify)
 

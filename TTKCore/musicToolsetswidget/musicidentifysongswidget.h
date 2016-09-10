@@ -11,10 +11,13 @@
 
 #include <QLabel>
 #include <QPushButton>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 class QMovie;
 class QStackedWidget;
+class MusicCoreMPlayer;
+class MusicLrcAnalysis;
 class MusicAudioRecorderCore;
 class MusicIdentifySongsThread;
 
@@ -53,6 +56,14 @@ public Q_SLOTS:
     /*!
      * Detected the song finished.
      */
+    void muisicSongPlay();
+    /*!
+     * Set music song to play.
+     */
+    void positionChanged(qint64 position);
+    /*!
+     * Current position changed.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -74,11 +85,14 @@ protected:
 
     QTimer *m_timer;
     QStackedWidget *m_mainWindow;
-    QLabel *m_detectedLabel;
+    QLabel *m_detectedLabel, *m_lrcLabel;
     QMovie *m_detectedMovie;
     QPushButton *m_detectedButton;
+    MusicCoreMPlayer *m_songPlayer;
+    MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderCore *m_recordCore;
     MusicIdentifySongsThread *m_detectedThread;
+    MusicObject::MusicSongInfomation m_currentSong;
 
 };
 
