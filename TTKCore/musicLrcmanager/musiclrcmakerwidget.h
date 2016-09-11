@@ -15,6 +15,44 @@ namespace Ui {
 class MusicLrcMakerWidget;
 }
 
+/*! @brief The class of the lrc maker widget item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcMakerWidgetItem : public QLabel
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcMakerWidgetItem(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    bool biggerThan(int value);
+
+    void reset();
+    /*!
+     * Item move reset.
+     */
+    void moveUp();
+    /*!
+     * Item move up.
+     */
+    void moveDown();
+    /*!
+     * Item move down.
+     */
+
+private:
+    int m_currentIndex;
+
+};
+
+
 /*! @brief The class of the lrc maker widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -138,6 +176,7 @@ protected:
     QStringList m_plainText;
     QMap<int, QString> m_times;
     int m_currentLine, m_playMode;
+    MusicLrcMakerWidgetItem *m_lineItem;
 
 };
 

@@ -9,8 +9,54 @@
 #include "musicutils.h"
 #include "musicapplication.h"
 
+#include <QDebug>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
+
+#define ITEM_HEIGHT     40
+
+MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *parent)
+    : QLabel(parent)
+{
+    setStyleSheet(MusicUIObject::MCustomStyle06);
+    m_currentIndex = 0;
+}
+
+QString MusicLrcMakerWidgetItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+bool MusicLrcMakerWidgetItem::biggerThan(int value)
+{
+    return m_currentIndex > value;
+}
+
+void MusicLrcMakerWidgetItem::reset()
+{
+    m_currentIndex = 0;
+    move(0, 0);
+}
+
+void MusicLrcMakerWidgetItem::moveUp()
+{
+    if(--m_currentIndex  < 0)
+    {
+        m_currentIndex = 0;
+    }
+    move(0, ITEM_HEIGHT*m_currentIndex);
+}
+
+void MusicLrcMakerWidgetItem::moveDown()
+{
+    if(++m_currentIndex >= 6)
+    {
+        m_currentIndex = 6;
+    }
+    move(0, ITEM_HEIGHT*m_currentIndex);
+}
+
+
 
 MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -46,6 +92,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
+    delete m_lineItem;
     resetToOriginPlayMode();
     M_CONNECTION_PTR->removeValue(getClassName());
 }
@@ -204,13 +251,14 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     m_plainText = ui->lrcTextEdit->toPlainText().split("\n", QString::SkipEmptyParts);
     m_times.clear();
     m_currentLine = 0;
+    m_lineItem->reset();
 
     ui->makeTextEdit->setText(ui->lrcTextEdit->toPlainText() + "\n");
     QTextCursor cursor = ui->makeTextEdit->textCursor();
     for(int i=0; i<m_plainText.count(); ++i)
     {
         QTextBlockFormat textBlockFormat = cursor.blockFormat();
-        textBlockFormat.setBottomMargin(20);
+        textBlockFormat.setBottomMargin(18);
         cursor.setBlockFormat(textBlockFormat);
         cursor.movePosition(QTextCursor::NextBlock);
     }
@@ -244,40 +292,50 @@ void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
 void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 {
     MusicAbstractMoveWidget::keyReleaseEvent(event);
-    if(ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine)
+
+    QTextCursor cursor = ui->makeTextEdit->textCursor();
+    if(ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine )
     {
         switch(event->key())
         {
             case Qt::Key_Left: break;
             case Qt::Key_Up:
                 {
-                    QTextCursor cursor = ui->makeTextEdit->textCursor();
                     cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
-                    ui->makeTextEdit->setTextCursor(cursor);
                     m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
-                    m_currentLine--;
-                    if(m_currentLine < 0)
+
+                    if(--m_currentLine < 0)
                     {
                         m_currentLine = 0;
                     }
+                    m_lineItem->moveUp();
+
                     break;
                 }
             case Qt::Key_Right: break;
             case Qt::Key_Down:
                 {
-                    QTextCursor cursor = ui->makeTextEdit->textCursor();
                     cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-                    ui->makeTextEdit->setTextCursor(cursor);
                     m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
-                    m_currentLine++;
-                    if(m_currentLine >= m_plainText.count())
+
+                    if(++m_currentLine >= m_plainText.count())
                     {
                         m_currentLine = m_currentLine - 1;
+                        if(!m_lineItem->biggerThan(m_currentLine))
+                        {
+                            m_lineItem->moveDown();
+                        }
                     }
+                    else
+                    {
+                        m_lineItem->moveDown();
+                    }
+
                     break;
                 }
         }
     }
+    ui->makeTextEdit->setTextCursor(cursor);
 
     if(event->key() == Qt::Key_Space)
     {
@@ -366,6 +424,10 @@ void MusicLrcMakerWidget::createFirstWidget()
 
 void MusicLrcMakerWidget::createSecondWidget()
 {
+    m_lineItem = new  MusicLrcMakerWidgetItem(ui->makeTextEdit);
+    m_lineItem->setGeometry(0, 0, 650, ITEM_HEIGHT);
+    m_lineItem->show();
+
     ui->makeTextEdit->setReadOnly(true);
     ui->makeTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
