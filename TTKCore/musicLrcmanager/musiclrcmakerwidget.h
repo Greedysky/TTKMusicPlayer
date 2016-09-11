@@ -32,8 +32,14 @@ public:
      * Get class object name.
      */
 
-    bool biggerThan(int value);
-
+    bool biggerThan(int value) const;
+    /*!
+     * Check the last index.
+     */
+    bool done() const;
+    /*!
+     * Current text line make done.
+     */
     void reset();
     /*!
      * Item move reset.
@@ -46,9 +52,24 @@ public:
     /*!
      * Item move down.
      */
+    void moveLeft();
+    /*!
+     * Item move left.
+     */
+    void moveRight();
+    /*!
+     * Item move right.
+     */
 
 private:
-    int m_currentIndex;
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    bool m_leftDirection, m_painetLineDone;
+    int m_intervalCount;
+    int m_currentIndex, m_paintIndex;
 
 };
 

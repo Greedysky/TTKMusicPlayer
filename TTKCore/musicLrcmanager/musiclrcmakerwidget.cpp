@@ -9,17 +9,25 @@
 #include "musicutils.h"
 #include "musicapplication.h"
 
-#include <QDebug>
+#include <QPainter>
+#include <QTextBlock>
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 
+#define ITEM_DELTA      40
 #define ITEM_HEIGHT     40
 
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *parent)
     : QLabel(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle06);
-    m_currentIndex = 0;
+    setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle17);
+    setFixedSize(650, ITEM_HEIGHT);
+
+    reset();
+
+    QFont ft = font();
+    ft.setPointSize(18);
+    setFont(ft);
 }
 
 QString MusicLrcMakerWidgetItem::getClassName()
@@ -27,14 +35,24 @@ QString MusicLrcMakerWidgetItem::getClassName()
     return staticMetaObject.className();
 }
 
-bool MusicLrcMakerWidgetItem::biggerThan(int value)
+bool MusicLrcMakerWidgetItem::biggerThan(int value) const
 {
     return m_currentIndex > value;
 }
 
+bool MusicLrcMakerWidgetItem::done() const
+{
+    return m_painetLineDone;
+}
+
 void MusicLrcMakerWidgetItem::reset()
 {
+    m_leftDirection = false;
+    m_painetLineDone = false;
+    m_intervalCount = 5;
     m_currentIndex = 0;
+    m_paintIndex = 0;
+
     move(0, 0);
 }
 
@@ -43,7 +61,11 @@ void MusicLrcMakerWidgetItem::moveUp()
     if(--m_currentIndex  < 0)
     {
         m_currentIndex = 0;
+        return;
     }
+    m_paintIndex = 0;
+    m_intervalCount = 5;
+    m_painetLineDone = false;
     move(0, ITEM_HEIGHT*m_currentIndex);
 }
 
@@ -53,7 +75,60 @@ void MusicLrcMakerWidgetItem::moveDown()
     {
         m_currentIndex = 6;
     }
+    m_paintIndex = 0;
+    m_intervalCount = 5;
+    m_painetLineDone = false;
     move(0, ITEM_HEIGHT*m_currentIndex);
+}
+
+void MusicLrcMakerWidgetItem::moveLeft()
+{
+    m_leftDirection = true;
+    m_painetLineDone = false;
+    m_paintIndex -= ITEM_DELTA;
+
+    if(m_paintIndex  < 0)
+    {
+        m_paintIndex = 0;
+    }
+    update();
+}
+
+void MusicLrcMakerWidgetItem::moveRight()
+{
+    m_leftDirection = false;
+    int w = QFontMetrics(font()).width(text());
+    m_paintIndex += ITEM_DELTA;
+
+    if(m_paintIndex > w)
+    {
+        m_painetLineDone = true;
+        m_paintIndex = w;
+    }
+    update();
+}
+
+void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
+    int w = QFontMetrics(font()).width(text());
+    if(!m_leftDirection && m_intervalCount + w >= width() && m_paintIndex >= width() / 2)
+    {
+        m_intervalCount -= ITEM_DELTA;
+    }
+    if( m_leftDirection && m_intervalCount < 0)
+    {
+        m_intervalCount += ITEM_DELTA;
+    }
+
+    QPainter painter(this);
+    painter.setPen(QColor(0, 0, 0));
+    painter.drawText(m_intervalCount, -10, w, 60, Qt::AlignLeft | Qt::AlignVCenter, text());
+
+    painter.setPen(QColor(144, 184, 214));
+    painter.drawText(m_intervalCount, -10, m_paintIndex, 60, Qt::AlignLeft | Qt::AlignVCenter, text());
+    painter.end();
 }
 
 
@@ -265,6 +340,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     cursor.movePosition(QTextCursor::Start);
     ui->makeTextEdit->setTextCursor(cursor);
     ui->makeTextEdit->setCurrentCharFormat(QTextCharFormat());
+    m_lineItem->setText( cursor.block().text() );
 
     ui->stackedWidget->setCurrentIndex(2);
 }
@@ -298,11 +374,16 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
     {
         switch(event->key())
         {
-            case Qt::Key_Left: break;
+            case Qt::Key_Left:
+                {
+                    MusicApplication::instance()->musicPlayAnyTimeAt(ui->timeSlider_F->value() - 2222);
+                    m_lineItem->moveLeft(); break;
+                }
             case Qt::Key_Up:
                 {
                     cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
                     m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
+                    m_lineItem->setText( cursor.block().text() );
 
                     if(--m_currentLine < 0)
                     {
@@ -312,11 +393,20 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 
                     break;
                 }
-            case Qt::Key_Right: break;
+            case Qt::Key_Right:
+                {
+                    m_lineItem->moveRight();
+                    break;
+                }
             case Qt::Key_Down:
                 {
+                    if(!m_lineItem->done())
+                    {
+                        return;
+                    }
                     cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
                     m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
+                    m_lineItem->setText( cursor.block().text() );
 
                     if(++m_currentLine >= m_plainText.count())
                     {
@@ -399,8 +489,10 @@ void MusicLrcMakerWidget::createFirstWidget()
     ui->authorNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->introductionTextEdit->setStyleSheet( MusicUIObject::MTextEditStyle01 );
     ui->lrcTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->lrcTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->lrcTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     ui->lrcTextEdit->setAcceptRichText(false);
+    ui->lrcTextEdit->setLineWrapMode(QTextEdit::NoWrap);
 
     QTextBlockFormat fmt;
     fmt.setLineHeight(30, QTextBlockFormat::FixedHeight);
@@ -425,11 +517,12 @@ void MusicLrcMakerWidget::createFirstWidget()
 void MusicLrcMakerWidget::createSecondWidget()
 {
     m_lineItem = new  MusicLrcMakerWidgetItem(ui->makeTextEdit);
-    m_lineItem->setGeometry(0, 0, 650, ITEM_HEIGHT);
     m_lineItem->show();
 
     ui->makeTextEdit->setReadOnly(true);
+    ui->makeTextEdit->setLineWrapMode(QTextEdit::NoWrap);
     ui->makeTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->makeTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     ui->makeTextEdit->setAcceptRichText(false);
 #ifdef MUSIC_GREATER_NEW
