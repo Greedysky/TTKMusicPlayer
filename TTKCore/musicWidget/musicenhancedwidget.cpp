@@ -4,6 +4,7 @@
 #include "musicfunctionuiobject.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicapplicationobject.h"
+#include "musicrightareawidget.h"
 ///qmmp incldue
 #include "effect.h"
 #include "effectfactory.h"
@@ -175,6 +176,12 @@ void MusicEnhancedWidget::buttonAnimationChanged(bool state)
     state ? m_buttons[index - 1]->start() : m_buttons[index - 1]->stop();
 }
 
+void MusicEnhancedWidget::helpButtonClicked()
+{
+    MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::KuiSheWidget);
+    m_menu->close();
+}
+
 void MusicEnhancedWidget::initWidget()
 {
     m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
@@ -195,6 +202,7 @@ void MusicEnhancedWidget::initWidget()
     helpButton->setGeometry(205, 3, 24, 24);
     helpButton->setStyleSheet(MusicUIObject::MKGEnhanceHelp);
     helpButton->setCursor(Qt::PointingHandCursor);
+    connect(helpButton, SIGNAL(clicked()), SLOT(helpButtonClicked()));
 
     QToolButton *shareButton = new QToolButton(m_containWidget);
     shareButton->setGeometry(230, 3, 24, 24);

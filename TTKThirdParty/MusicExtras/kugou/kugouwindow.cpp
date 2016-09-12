@@ -70,6 +70,9 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
         case KugouMv:
                 createKugouMVWidget();
                 break;
+        case KuGouSingle:
+                createKugouSingleWidget();
+                break;
         case KuGouLive: break;
         case KuGouLrc: break;
     }
@@ -80,10 +83,22 @@ QString KugouWindow::getClassName()
     return staticMetaObject.className();
 }
 
+void KugouWindow::setUrl(const QString &url)
+{
+#ifdef MUSIC_WEBKIT
+    TTK_D(KugouWindow);
+    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+#endif
+}
+
 void KugouWindow::goBack()
 {
-    TTK_D(KugouWindow);
 #ifdef MUSIC_WEBKIT
+    TTK_D(KugouWindow);
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
     {
@@ -324,6 +339,25 @@ void KugouWindow::createKugouMVWidget()
 #else
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/lb_no_webkit_mv"));
+    layout->addWidget(pix);
+#endif
+    setLayout(layout);
+}
+
+void KugouWindow::createKugouSingleWidget()
+{
+    TTK_D(KugouWindow);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+#ifdef MUSIC_WEBKIT
+    QWebView *view = new QWebView(this);
+    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    layout->addWidget(d->m_webView = view);
+#else
+    QLabel *pix = new QLabel(this);
+    pix->setStyleSheet("background:white;");
     layout->addWidget(pix);
 #endif
     setLayout(layout);

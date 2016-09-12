@@ -26,12 +26,14 @@ public:
         KuGouList,
         KugouMv,
         KuGouLive,
-        KuGouLrc
+        KuGouLrc,
+        KuGouSingle
     };
 
     explicit KugouWindow(KuGouType type, QWidget *parent = 0);
 
     static QString getClassName();
+    void setUrl(const QString &url);
 
 public Q_SLOTS:
     void goBack();
@@ -44,6 +46,7 @@ protected:
     void createKugouRadioWidget();
     void createKugouListWidget();
     void createKugouMVWidget();
+    void createKugouSingleWidget();
 
     void changeClickedButtonStyle(int index);
 

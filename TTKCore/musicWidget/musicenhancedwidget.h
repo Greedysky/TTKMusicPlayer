@@ -102,6 +102,11 @@ public Q_SLOTS:
      * Button animation state changed.
      */
 
+    void helpButtonClicked();
+    /*!
+     * Help button clicked.
+     */
+
 protected:
     void initWidget();
     /*!

@@ -46,6 +46,9 @@ public:
     //kugou web
     static QString getWebPlayerUrl();
 
+    //kuishe web
+    static QString getKuiSheUrl();
+
 };
 
 #endif // KUGOUURL_H

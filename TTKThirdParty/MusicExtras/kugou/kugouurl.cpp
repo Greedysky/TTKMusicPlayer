@@ -102,3 +102,10 @@ QString KugouUrl::getWebPlayerUrl()
 {
     return "http://web.kugou.com/index.html?";
 }
+
+
+
+QString KugouUrl::getKuiSheUrl()
+{
+    return "http://huodong.kugou.com/2014/html/kuishe.html?ver=8090";
+}

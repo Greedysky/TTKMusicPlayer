@@ -173,7 +173,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 10:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(9);
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
         case 11:

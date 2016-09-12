@@ -27,6 +27,20 @@ class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
+    enum MusicFunction{
+        KugGouSongWidget = 0,   ///*insert kugou song widget*/
+        KugGouRadioWidget,  ///*insert kugou radio widget*/
+        kugouListWidget,    ///*insert kugou list widget*/
+        VideoWidget,        ///*insert video widget*/
+        kugouLiveWidget,    ///*insert kugou live widget*/
+        LrcWidget,          ///*insert lrc display widget*/
+        SearchWidget,       ///*insert search display widget*/
+        SimilarWidget,      ///*insert similar found widget*/
+        AlbumWidget,        ///*insert album found widget*/
+        IndentifyWidget,    ///*insert indentify songs widget*/
+        KuiSheWidget        ///*insert kugou kuishe widget*/
+    };
+
     explicit MusicRightAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
