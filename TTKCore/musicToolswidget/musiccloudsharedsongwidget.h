@@ -35,6 +35,10 @@ public:
      * Get class object name.
      */
 
+    bool getKey();
+    /*!
+     * Get query cloud id keys.
+     */
     inline const UploadDatas& getUploadDatas() const { return m_waitedFiles;}
     /*!
      * Get upload datas.
@@ -45,11 +49,19 @@ Q_SIGNALS:
     /*!
      * To update message label text.
      */
+    void getKeyFinished();
+    /*!
+     * Get key data from net finished.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
+     */
+    void keyDownLoadFinished(const QByteArray &data);
+    /*!
+     * Download key data from net finished.
      */
     void receiveDataFinshed(const QNDataItems &items);
     /*!
@@ -154,6 +166,10 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+    void getKey();
+    /*!
+     * Get query cloud id keys.
      */
 
 protected:

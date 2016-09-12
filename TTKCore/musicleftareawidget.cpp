@@ -245,6 +245,7 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     {
         m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
         m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
+        m_cloudSharedSongWidget->getKey();
     }
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

@@ -141,20 +141,12 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
     QVariant dt = parser.parse(data, &ok);
     if(ok)
     {
-        foreach(const QVariant &var, dt.toList())
+        QVariantMap value = dt.toMap();
+        if( QDateTime::fromString( value["time"].toString(), "yyyy-MM-dd HH:mm:ss") >
+            QDateTime::currentDateTime())
         {
-            QVariantMap value = var.toMap();
-            if( QDateTime::fromString( value["time"].toString(), "yyyy-MM-dd HH:mm:ss") <=
-                QDateTime::currentDateTime())
-            {
-                continue;
-            }
-            else
-            {
-                m_accessKey = value["key"].toString();
-                m_accessSecret = value["secret"].toString();
-                break;
-            }
+            m_accessKey = value["key"].toString();
+            m_accessSecret = value["secret"].toString();
         }
     }
     emit getKeyFinished();

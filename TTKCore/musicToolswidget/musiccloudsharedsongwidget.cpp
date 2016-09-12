@@ -1,5 +1,6 @@
 #include "musiccloudsharedsongwidget.h"
 #include "musicdatadownloadthread.h"
+#include "musicsourcedownloadthread.h"
 #include "musicuploadfilewidget.h"
 #include "musicleftareawidget.h"
 #include "musicnumberdefine.h"
@@ -7,6 +8,8 @@
 #include "musicuiobject.h"
 #include "musicplayer.h"
 #include "qnconf.h"
+#///QJson import
+#include "qjson/parser.h"
 
 #include <QPainter>
 #include <QBoxLayout>
@@ -17,8 +20,7 @@
 
 #define QN_BUCKET       "music"
 #define QN_PRFIX        "http://o9zmxm4rh.bkt.clouddn.com"
-#define QN_ACCESS_KEY   "L2GGQ-ttIlTScXVtXOdwPF2ftQAEiVK1qor5KCu3"
-#define QN_SECRET_KEY   "FXiQ8EWibo-9tIlWRS3UAJOqv94pM1QViU2Gw25y"
+#define QN_UA_URL       "http://7xpa0g.com1.z0.glb.clouddn.com/cloud"
 
 MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -28,9 +30,6 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     headerview->resizeSection(0, 10);
     headerview->resizeSection(1, 266);
     headerview->resizeSection(2, 35);
-
-    QNConf::ACCESS_KEY = QN_ACCESS_KEY;
-    QNConf::SECRET_KEY = QN_SECRET_KEY;
 
     m_uploading = false;
     m_uploadFileWidget = nullptr;
@@ -63,10 +62,38 @@ QString MusicCloudSharedSongTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
+bool MusicCloudSharedSongTableWidget::getKey()
+{
+    QEventLoop loop;
+    connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
+
+    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
+    download->startToDownload(QN_UA_URL);
+
+    loop.exec();
+
+    return !QNConf::ACCESS_KEY.isEmpty() && !QNConf::SECRET_KEY.isEmpty();
+}
+
 void MusicCloudSharedSongTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicCloudSharedSongTableWidget::keyDownLoadFinished(const QByteArray &data)
+{
+    QJson::Parser parser;
+    bool ok;
+    QVariant dt = parser.parse(data, &ok);
+    if(ok)
+    {
+        QVariantMap value = dt.toMap();
+        QNConf::ACCESS_KEY = value["key"].toString();
+        QNConf::SECRET_KEY = value["secret"].toByteArray();
+    }
+    emit getKeyFinished();
 }
 
 void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &items)
@@ -415,6 +442,14 @@ MusicCloudSharedSongWidget::~MusicCloudSharedSongWidget()
 QString MusicCloudSharedSongWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicCloudSharedSongWidget::getKey()
+{
+    if(!m_tableWidget->getKey())
+    {
+
+    }
 }
 
 void MusicCloudSharedSongWidget::paintEvent(QPaintEvent *event)
