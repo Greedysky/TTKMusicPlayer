@@ -79,7 +79,7 @@ void MusicIdentifySongsWidget::getKey()
         MusicToastLabel *toast = new MusicToastLabel(this);
         toast->setFontSize(15);
         toast->setFontMargin(20, 20);
-        toast->setText(tr("Init Identify Error!"));
+        toast->setText(tr("Init Error!"));
 
         QPoint globalPoint = mapToGlobal(QPoint(0, 0));
         toast->move(globalPoint.x() + (width() - toast->width())/2,
