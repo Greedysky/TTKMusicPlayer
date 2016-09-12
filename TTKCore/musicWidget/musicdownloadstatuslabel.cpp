@@ -1,5 +1,6 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicapplication.h"
+#include "musicbottomareawidget.h"
 #include "musicbackgrounddownload.h"
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
@@ -11,6 +12,7 @@
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)
 {
+    m_previousState = true;
     m_parentWidget = MStatic_cast(MusicApplication*, w);
     m_downloadLrcThread = nullptr;
 
@@ -66,6 +68,15 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
+    if(m_previousState != state)
+    {
+        MusicBottomAreaWidget *w = MusicBottomAreaWidget::instance();
+        m_previousState ? w->showMessage(tr("TTKMusicPlayer"),
+                                         tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
+                        : w->showMessage(tr("TTKMusicPlayer"),
+                                         tr("Network Connection Has Been Restored."));
+    }
+    m_previousState = state;
     showDownLoadInfoFor(state ? MusicObject::DW_Null : MusicObject::DW_DisConnection);
 }
 
