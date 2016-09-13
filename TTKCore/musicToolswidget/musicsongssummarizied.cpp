@@ -420,16 +420,16 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
         return;
     }
 
-    MusicSongItem *item = &m_songItems[m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex];
+    int cIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
+    MusicSongItem *item = &m_songItems[cIndex];
     for(int i=index.count()-1; i>=0; --i)
     {
         MusicSong song = item->m_songs.takeAt(index[i]);
-        if( (m_currentDeleteIndex != -1 && m_currentDeleteIndex == MUSIC_LOVEST_LIST) ||
-            (m_currentIndex != m_currentPlayToolIndex && m_currentIndex == MUSIC_LOVEST_LIST) )
+        if( cIndex != m_currentPlayToolIndex && cIndex == MUSIC_LOVEST_LIST )
         {
             int playIndex = m_songItems[m_currentPlayToolIndex].m_itemObject->getPlayRowIndex();
             MusicSongs songs = m_songItems[m_currentPlayToolIndex].m_songs;
-            if(playIndex > -1 || playIndex < songs.count())
+            if(playIndex > -1 && playIndex < songs.count())
             {
                 if(songs[playIndex].getMusicPath() == song.getMusicPath())
                 {
@@ -442,7 +442,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
             QFile::remove(song.getMusicPath());
         }
     }
-    if(m_currentIndex == m_currentPlayToolIndex)
+    if(cIndex == m_currentPlayToolIndex)
     {
         MusicApplication::instance()->setDeleteItemAt(index, fileRemove);
     }
