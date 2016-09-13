@@ -73,7 +73,7 @@ void MusicSongsSummarizied::appendMusicLists(const MusicSongItems &names)
     }
 }
 
-void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
+void MusicSongsSummarizied::importOtherMusicSongs(QStringList &filelist)
 {
     MusicProgressWidget progress;
     progress.show();
@@ -82,11 +82,18 @@ void MusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 
     MusicSongTag tag;
     MusicSongItem *item = &m_songItems[m_currentImportIndex];
-    for(int i=0; i<filelist.count(); ++i)
+    int i=0;
+
+    foreach(const QString &path, filelist)
     {
-        QString time = tag.readFile(filelist[i]) ? tag.getLengthString() : "-";
-        item->m_songs << MusicSong(filelist[i], 0, time, QString());
-        progress.setValue(i + 1);
+        if(item->m_songs.contains(MusicSong(path)))
+        {
+            filelist.removeAll(path);
+            continue;
+        }
+        QString time = tag.readFile(path) ? tag.getLengthString() : "-";
+        item->m_songs << MusicSong(path, 0, time, QString());
+        progress.setValue(++i);
     }
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
@@ -400,10 +407,11 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
         return;
     }
 
-    importOtherMusicSongs(items);
+    QStringList files(items);
+    importOtherMusicSongs(files);
     if(m_currentPlayToolIndex == MUSIC_NORMAL_LIST)
     {
-        foreach(const QString &var, items)
+        foreach(const QString &var, files)
         {
             emit updatePlayLists(var);
         }

@@ -48,7 +48,7 @@ public:
     /*!
      * Get music datas from container.
      */
-    void importOtherMusicSongs(const QStringList &filelist);
+    void importOtherMusicSongs(QStringList &filelist);
     /*!
      * Input orther imported music datas into container.
      */

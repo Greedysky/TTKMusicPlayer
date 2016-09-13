@@ -189,7 +189,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
 
 void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64 time)
 {
-    setRowCount( rowCount()  + 1);
+    setRowCount( rowCount() + 1);
     QString musicName = name;
     musicName.remove(MusicUtils::UCore::musicPrefix()).chop(4);
 

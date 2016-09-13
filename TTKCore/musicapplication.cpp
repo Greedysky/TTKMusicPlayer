@@ -151,19 +151,20 @@ void MusicApplication::musicLoadCurrentSongLrc()
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 }
 
-void MusicApplication::musicImportSongsSettingPath(const QStringList &path)
+void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
 {
-    if(path.isEmpty())
+    if(items.isEmpty())
     {
         return;
     }
 
-    m_musicSongTree->importOtherMusicSongs(path);//append in songsList
-    if(m_currentMusicSongTreeIndex == 0)
+    QStringList files(items);
+    m_musicSongTree->importOtherMusicSongs(files);
+    if(m_currentMusicSongTreeIndex == MUSIC_NORMAL_LIST)
     {
-        m_musicList->appendMedia(path);
+        m_musicList->appendMedia(files);
     }
-    if(path.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
+    if(files.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
     {
         m_musicList->setCurrentIndex(0);
     }
