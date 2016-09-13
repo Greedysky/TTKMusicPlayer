@@ -1,7 +1,7 @@
 *.user
 *.user.*
 *.aps
-build-TTKMusicplayer-*/
+build-*/
 *.*-pre1
 *.autosave
 *.*~

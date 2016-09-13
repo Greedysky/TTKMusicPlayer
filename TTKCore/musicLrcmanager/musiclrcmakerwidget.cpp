@@ -323,12 +323,13 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
     }
 
-    m_plainText = ui->lrcTextEdit->toPlainText().split("\n", QString::SkipEmptyParts);
+    m_plainText = ui->lrcTextEdit->toPlainText().trimmed().split("\n");
     m_times.clear();
     m_currentLine = 0;
     m_lineItem->reset();
+    m_times[m_currentLine] = translateTimeString(0);
 
-    ui->makeTextEdit->setText(ui->lrcTextEdit->toPlainText() + "\n");
+    ui->makeTextEdit->setText(ui->lrcTextEdit->toPlainText().trimmed() + "\n");
     QTextCursor cursor = ui->makeTextEdit->textCursor();
     for(int i=0; i<m_plainText.count(); ++i)
     {
@@ -382,7 +383,6 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
             case Qt::Key_Up:
                 {
                     cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
-                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
                     m_lineItem->setText( cursor.block().text() );
 
                     if(--m_currentLine < 0)
@@ -391,6 +391,7 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
                     }
                     m_lineItem->moveUp();
 
+                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
                     break;
                 }
             case Qt::Key_Right:
@@ -405,7 +406,6 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
                         return;
                     }
                     cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
                     m_lineItem->setText( cursor.block().text() );
 
                     if(++m_currentLine >= m_plainText.count())
@@ -421,6 +421,7 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
                         m_lineItem->moveDown();
                     }
 
+                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
                     break;
                 }
         }
