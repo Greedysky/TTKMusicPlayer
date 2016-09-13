@@ -14,7 +14,7 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
 
     m_font = font();
     connect(&m_timer, SIGNAL(timeout()), SLOT(closeAnimation()));
-    m_timer.setInterval(2*MT_S2MS);
+    m_timer.setInterval(MT_S2MS);
     m_timer.start();
 }
 

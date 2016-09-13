@@ -882,6 +882,19 @@
       <string>Play</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_T3">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>103</y>
+       <width>38</width>
+       <height>38</height>
+      </rect>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_finish</pixmap>
+     </property>
+    </widget>
     <zorder>label_T</zorder>
     <zorder>label_T1</zorder>
     <zorder>previousButton_T</zorder>
@@ -894,6 +907,7 @@
     <zorder>timeSlider_T</zorder>
     <zorder>stateButton_T</zorder>
     <zorder>labelTime_T</zorder>
+    <zorder>label_T3</zorder>
    </widget>
   </widget>
   <zorder>background</zorder>

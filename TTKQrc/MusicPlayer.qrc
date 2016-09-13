@@ -207,6 +207,7 @@
         <file alias="lb_make_up">../TTKResource/lrc/lb_make_up.png</file>
         <file alias="lb_make_down">../TTKResource/lrc/lb_make_down.png</file>
         <file alias="lb_make_space">../TTKResource/lrc/lb_make_space.png</file>
+        <file alias="lb_make_finish">../TTKResource/lrc/lb_make_finish.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>
@@ -370,6 +371,7 @@
         <file alias="lb_unstar">../TTKResource/tiny/lb_unstar.png</file>
         <file alias="lb_transparent">../TTKResource/tiny/lb_transparent.png</file>
         <file alias="lb_right">../TTKResource/tiny/lb_right.png</file>
+        <file alias="lb_right2">../TTKResource/tiny/lb_right2.png</file>
         <file alias="lb_error">../TTKResource/tiny/lb_error.png</file>
         <file alias="lb_wait">../TTKResource/tiny/lb_wait.png</file>
         <file alias="btn_play_later_normal">../TTKResource/tiny/btn_play_later_normal.png</file>

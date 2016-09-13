@@ -10,6 +10,7 @@
 #include "musicsongssummariziedfloatwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicapplication.h"
+#include "musictoastlabel.h"
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
@@ -98,6 +99,16 @@ void MusicSongsSummarizied::importOtherMusicSongs(QStringList &filelist)
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentImportIndex);
+
+    MusicToastLabel *toast = new MusicToastLabel(MusicApplication::instance());
+    toast->setFontSize(15);
+    toast->setFontMargin(20, 20);
+    toast->setText(tr("Import Music Songs Done!"));
+
+    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
+    toast->move(globalPoint.x() + (width() - toast->width())/2,
+                globalPoint.y() + (height() - toast->height())/2);
+    toast->show();
 }
 
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const
