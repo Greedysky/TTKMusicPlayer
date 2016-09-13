@@ -17,8 +17,8 @@
 #define ITEM_DELTA      40
 #define ITEM_HEIGHT     40
 
-MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *parent)
-    : QLabel(parent)
+MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
+    : QLabel(ui), m_parentObject(parent)
 {
     setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle17);
     setFixedSize(650, ITEM_HEIGHT);
@@ -104,6 +104,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
+        QTimer::singleShot(1, m_parentObject, SLOT(currentLineFinished()));
     }
     update();
 }
@@ -215,6 +216,11 @@ void MusicLrcMakerWidget::durationChanged(qint64 position)
     ui->timeSlider_F->setRange(0, position);
     ui->timeSlider_S->setRange(0, position);
     ui->timeSlider_T->setRange(0, position);
+}
+
+void MusicLrcMakerWidget::currentLineFinished()
+{
+    createCurrentLine(Qt::Key_Down);
 }
 
 void MusicLrcMakerWidget::show()
@@ -370,10 +376,19 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 {
     MusicAbstractMoveWidget::keyReleaseEvent(event);
 
+    createCurrentLine(event->key());
+    if(event->key() == Qt::Key_Space)
+    {
+        firstWidgetStateButtonClicked();
+    }
+}
+
+void MusicLrcMakerWidget::createCurrentLine(int key)
+{
     QTextCursor cursor = ui->makeTextEdit->textCursor();
     if(ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine )
     {
-        switch(event->key())
+        switch(key)
         {
             case Qt::Key_Left:
                 {
@@ -427,11 +442,6 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
         }
     }
     ui->makeTextEdit->setTextCursor(cursor);
-
-    if(event->key() == Qt::Key_Space)
-    {
-        firstWidgetStateButtonClicked();
-    }
 }
 
 void MusicLrcMakerWidget::createMainWidget()
@@ -517,7 +527,7 @@ void MusicLrcMakerWidget::createFirstWidget()
 
 void MusicLrcMakerWidget::createSecondWidget()
 {
-    m_lineItem = new  MusicLrcMakerWidgetItem(ui->makeTextEdit);
+    m_lineItem = new  MusicLrcMakerWidgetItem(ui->makeTextEdit, this);
     m_lineItem->show();
 
     ui->makeTextEdit->setReadOnly(true);

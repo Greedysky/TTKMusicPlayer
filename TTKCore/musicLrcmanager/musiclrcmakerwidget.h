@@ -22,7 +22,7 @@ class MUSIC_LRC_EXPORT MusicLrcMakerWidgetItem : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcMakerWidgetItem(QWidget *parent = 0);
+    explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -67,6 +67,7 @@ private:
      * Override the widget event.
      */
 
+    QObject *m_parentObject;
     bool m_leftDirection, m_painetLineDone;
     int m_intervalCount;
     int m_currentIndex, m_paintIndex;
@@ -104,6 +105,10 @@ public Q_SLOTS:
     void durationChanged(qint64 duration);
     /*!
      * Set current player duration.
+     */
+    void currentLineFinished();
+    /*!
+     * Create current line finished.
      */
     void show();
     /*!
@@ -157,6 +162,10 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     /*!
      * Override the widget event.
+     */
+    void createCurrentLine(int key);
+    /*!
+     * Create current line.
      */
     void createMainWidget();
     /*!
