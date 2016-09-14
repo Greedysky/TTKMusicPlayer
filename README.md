@@ -63,8 +63,7 @@ TTKMusicPlayer can meet your most demands
                 *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
- * 
-Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
+ * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
  * Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
  * User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
  * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones Yang Hyun.
@@ -73,7 +72,10 @@ Search and high-speed downloads. Song search accuracy optimization, intelligent 
  * Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
  * Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
  * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
-
+ * Local music search, and cloud music library and interactive, custom ringtone.
+ * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
+ * Local music transferred to the cloud or mobile device.
+ * Local music and the human voice humming recognition.
 Screenshots
 ----
 
