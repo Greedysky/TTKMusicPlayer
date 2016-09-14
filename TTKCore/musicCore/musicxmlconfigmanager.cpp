@@ -88,8 +88,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     int lrcSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
     int lrcTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt();
     int lrcFamilyChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt();
-    QColor lrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).value<QColor>();
-    QColor lrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcBgColorChoiced).value<QColor>();
+    QString lrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
+    QString lrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcBgColorChoiced).toString();
     int lrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
@@ -97,8 +97,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     int DLrcSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt();
     int DLrcTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt();
     int DLrcFamilyChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt();
-    QColor DLrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFgColorChoiced).value<QColor>();
-    QColor DLrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).value<QColor>();
+    QString DLrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFgColorChoiced).toString();
+    QString DLrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).toString();
     int DLrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     int DLrcWindowTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcWindowTypeChoiced).toInt();
     int DLrcLockedChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt();
@@ -209,10 +209,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(showLrc, "lrcFamily", "value", lrcFamilyChoiced);
     writeDomElement(showLrc, "lrcType", "value", lrcTypeChoiced);
     writeDomElement(showLrc, "lrcTransparent", "value", lrcTransparentChoiced);
-    writeDomElement(showLrc, "lrcFgColor", "value", QString("%1,%2,%3").arg(lrcFgColorChoiced.red())
-                                        .arg(lrcFgColorChoiced.green()).arg(lrcFgColorChoiced.blue()));
-    writeDomElement(showLrc, "lrcBgColor", "value", QString("%1,%2,%3").arg(lrcBgColorChoiced.red())
-                                        .arg(lrcBgColorChoiced.green()).arg(lrcBgColorChoiced.blue()));
+    writeDomElement(showLrc, "lrcFgColor", "value", lrcFgColorChoiced);
+    writeDomElement(showLrc, "lrcBgColor", "value", lrcBgColorChoiced);
 
     ///////////////////////////////////////////////
     writeDomElement(showDLrc, "showDesktopLrc", "value", showDesktopLrcChoiced);
@@ -221,10 +219,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(showDLrc, "lrcDFamily", "value", DLrcFamilyChoiced);
     writeDomElement(showDLrc, "lrcDType", "value", DLrcTypeChoiced);
     writeDomElement(showDLrc, "lrcDTransparent", "value", DLrcTransparentChoiced);
-    writeDomElement(showDLrc, "lrcDFgColor", "value", QString("%1,%2,%3").arg(DLrcFgColorChoiced.red())
-                                         .arg(DLrcFgColorChoiced.green()).arg(DLrcFgColorChoiced.blue()));
-    writeDomElement(showDLrc, "lrcDBgColor", "value", QString("%1,%2,%3").arg(DLrcBgColorChoiced.red())
-                                        .arg(DLrcBgColorChoiced.green()).arg(DLrcBgColorChoiced.blue()));
+    writeDomElement(showDLrc, "lrcDFgColor", "value", DLrcFgColorChoiced);
+    writeDomElement(showDLrc, "lrcDBgColor", "value", DLrcBgColorChoiced);
 
     writeDomElement(showDLrc, "lrcDWindowType", "value", DLrcWindowTypeChoiced);
     writeDomElement(showDLrc, "lrcDLocked", "value", DLrcLockedChoiced);
@@ -383,14 +379,4 @@ MusicSongs MusicXMLConfigManager::readMusicFilePath(const QDomNode &node) const
                            element.attribute("name"));
     }
     return songs;
-}
-
-QColor MusicXMLConfigManager::readColorConfig(const QString &value) const
-{
-    QStringList rgb = readXmlAttributeByTagNameValue(value).split(',');
-    if(rgb.count() != 3)
-    {
-        return QColor();
-    }
-    return QColor(rgb[0].toInt(), rgb[1].toInt(), rgb[2].toInt());
 }

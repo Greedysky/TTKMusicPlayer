@@ -239,7 +239,7 @@ protected:
     /*!
      * Init network stack widget.
      */
-    void lcrColorValue(Type key, const QString &type, QPushButton *obj);
+    void lcrColorValue(Type key, const QString &type, QLabel *obj);
     /*!
      * Set lrc color value by type and value type.
      */
@@ -261,8 +261,8 @@ protected:
      */
 
     Ui::MusicSettingWidget *ui;
-    QColor m_lrcSelectedFg, m_lrcSelectedBg;
-    QColor m_DlrcSelectedFg, m_DlrcSelectedBg;
+    QList<QColor> m_lrcSelectedFg, m_lrcSelectedBg;
+    QList<QColor> m_DlrcSelectedFg, m_DlrcSelectedBg;
 
 };
 

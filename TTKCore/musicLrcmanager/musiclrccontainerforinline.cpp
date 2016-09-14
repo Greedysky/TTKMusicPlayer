@@ -109,9 +109,9 @@ QString MusicLrcContainerForInline::text() const
     return m_musicLrcContainer[LRC_CURRENT_LINR]->text();
 }
 
-void MusicLrcContainerForInline::setMaskLinearGradientColor(QColor color) const
+void MusicLrcContainerForInline::setMaskLinearGradientColor(const QList<QColor> &colors) const
 {
-    m_musicLrcContainer[LRC_CURRENT_LINR]->setMaskLinearGradientColor(color);
+    m_musicLrcContainer[LRC_CURRENT_LINR]->setMaskLinearGradientColor(colors);
 }
 
 void MusicLrcContainerForInline::setSettingParameter()
@@ -147,12 +147,12 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
         setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt());
-        setMaskLinearGradientColor();
+        setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
     }
     else
     {
-        w->setLinearGradientColor(M_SETTING_PTR->value("LrcBgColorChoiced").value<QColor>());
-        setMaskLinearGradientColor(M_SETTING_PTR->value("LrcFgColorChoiced").value<QColor>());
+        w->setLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        setMaskLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
     }
 }
 

@@ -168,6 +168,14 @@ namespace MusicUtils
          */
 
     }
+
+    namespace UString
+    {
+        MUSIC_CORE_EXPORT QList<QColor> readColorConfig(const QString &value);
+        MUSIC_CORE_EXPORT QString writeColorConfig(const QColor &color);
+        MUSIC_CORE_EXPORT QString writeColorConfig(const QList<QColor> &colors);
+    }
+
 }
 
 

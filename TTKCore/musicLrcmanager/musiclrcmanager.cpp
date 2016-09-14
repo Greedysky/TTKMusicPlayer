@@ -93,23 +93,32 @@ void MusicLRCManager::stopLrcMask()
     update();
 }
 
-void MusicLRCManager::setLinearGradientColor(QColor color)
+void MusicLRCManager::setLinearGradientColor(const QList<QColor> &colors)
 {
     //The first parameter coordinates relative to the US, the area above,
     //calculated in accordance with the proportion of
-    color.setAlpha(m_transparent*2.55);
-    m_linearGradient.setColorAt(0.1, color);
-    m_linearGradient.setColorAt(0.5, QColor(255, 255, 255, m_transparent*2.55));
-    m_linearGradient.setColorAt(1.0, color);
+    QLinearGradient linearGradient;
+    for(int i=0; i<colors.count(); ++i)
+    {
+        QColor rgb = colors[i];
+        rgb.setAlpha(m_transparent*2.55);
+        linearGradient.setColorAt((i+1)*1.0/colors.count(), rgb);
+    }
+    m_linearGradient = linearGradient;
     update();
 }
 
-void MusicLRCManager::setMaskLinearGradientColor(QColor color)
+void MusicLRCManager::setMaskLinearGradientColor(const QList<QColor> &colors)
 {
-    color.setAlpha(m_transparent*2.55);
-    m_maskLinearGradient.setColorAt(0.1, color);
-    m_maskLinearGradient.setColorAt(0.5, QColor(255, 255, 255, m_transparent*2.55));
-    m_maskLinearGradient.setColorAt(1.0, color);
+    QLinearGradient maskLinearGradient;
+    for(int i=0; i<colors.count(); ++i)
+    {
+        QColor rgb = colors[i];
+        rgb.setAlpha(m_transparent*2.55);
+        maskLinearGradient.setColorAt((i+1)*1.0/colors.count(), rgb);
+    }
+    m_maskLinearGradient = maskLinearGradient;
+    update();
 }
 
 void MusicLRCManager::setUpdateMask()

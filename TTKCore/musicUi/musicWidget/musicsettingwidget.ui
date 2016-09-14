@@ -1107,7 +1107,7 @@ font-weight:bold;</string>
       <string>颜色</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="DnoPlayedPushButton">
+    <widget class="MusicColorPreviewLabel" name="DnoPlayedPushButton">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -1117,10 +1117,10 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>未播放</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="DplayedPushButton">
+    <widget class="MusicColorPreviewLabel" name="DplayedPushButton">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1130,7 +1130,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>已播放</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="DfontDefaultColorLabel">
@@ -1371,7 +1371,7 @@ font-weight:bold;</string>
       <string>颜色</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="noPlayedPushButton">
+    <widget class="MusicColorPreviewLabel" name="noPlayedPushButton">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -1381,10 +1381,10 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>未播放</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="playedPushButton">
+    <widget class="MusicColorPreviewLabel" name="playedPushButton">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1394,7 +1394,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>已播放</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="fontDefaultColorLabel">
@@ -2158,6 +2158,12 @@ color:rgb(80,80,80);</string>
    <class>MusicGlobalHotKeyEdit</class>
    <extends>QLineEdit</extends>
    <header>musicglobalhotkeyedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicColorPreviewLabel</class>
+   <extends>QLabel</extends>
+   <header>musicpreviewlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

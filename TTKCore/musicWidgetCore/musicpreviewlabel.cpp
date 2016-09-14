@@ -1,11 +1,58 @@
 #include "musicpreviewlabel.h"
 
 #include <QPainter>
+#include <QBoxLayout>
+
+MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
+    : MusicClickedLabel(parent)
+{
+    m_linearGradient.setStart(0, 0);
+}
+
+QString MusicColorPreviewLabel::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicColorPreviewLabel::setLinearGradient(const QList<QColor> &colors)
+{
+    QLinearGradient linearGradient;
+    for(int i=0; i<colors.count(); ++i)
+    {
+        linearGradient.setColorAt((i+1)*1.0/colors.count(), colors[i]);
+    }
+    m_linearGradient = linearGradient;
+    update();
+}
+
+void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+
+    int h = height() - 4*2;
+    m_linearGradient.setFinalStop(0, height());
+
+    painter.setFont(font());
+    painter.setPen(QPen(Qt::black, 0));
+    painter.drawRect(0, 0, width() - 1, height() - 1);
+
+    painter.setBrush(m_linearGradient);
+    painter.drawRect(4, 4, h, h);
+
+    painter.setPen(QPen(Qt::black, 0));
+    painter.drawText(h + 2*4, 4, width() - h - 3*4, h, Qt::AlignCenter, text());
+
+    painter.end();
+}
+
+
 
 MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
     : QLabel(parent)
 {
     m_transparent = 255;
+    m_linearGradient.setStart(0, 0);
+    m_maskLinearGradient.setStart(0, 0);
 }
 
 QString MusicPreviewLabel::getClassName()
@@ -13,16 +60,23 @@ QString MusicPreviewLabel::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPreviewLabel::setLinearGradient(QColor &fg, QColor &bg)
+void MusicPreviewLabel::setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg)
 {
-    fg.setAlpha(m_transparent);
-    bg.setAlpha(m_transparent);
-    m_linearGradient.setColorAt(0.1, bg);
-    m_linearGradient.setColorAt(0.5, QColor(255, 255, 255));
-    m_linearGradient.setColorAt(1.0, bg);
-    m_maskLinearGradient.setColorAt(0.1, fg);
-    m_maskLinearGradient.setColorAt(0.5, QColor(255, 255, 255));
-    m_maskLinearGradient.setColorAt(1.0, fg);
+    QLinearGradient linearGradient, maskLinearGradient;
+    for(int i=0; i<fg.count(); ++i)
+    {
+        QColor rgb = fg[i];
+        rgb.setAlpha(m_transparent);
+        linearGradient.setColorAt((i+1)*1.0/fg.count(), rgb);
+    }
+    for(int i=0; i<bg.count(); ++i)
+    {
+        QColor rgb = bg[i];
+        rgb.setAlpha(m_transparent);
+        maskLinearGradient.setColorAt((i+1)*1.0/bg.count(), rgb);
+    }
+    m_linearGradient = linearGradient;
+    m_maskLinearGradient = maskLinearGradient;
 }
 
 void MusicPreviewLabel::setParameter(const QStringList &para)
@@ -38,6 +92,12 @@ void MusicPreviewLabel::setParameter(const QStringList &para)
 void MusicPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+
+    int h = QFontMetrics(m_font).height();
+    int begin = (rect().height() - h)/2;
+    m_linearGradient.setFinalStop(0, h + begin);
+    m_maskLinearGradient.setFinalStop(0, h + begin);
+
     painter.setFont(m_font);
     painter.drawText(rect(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
 

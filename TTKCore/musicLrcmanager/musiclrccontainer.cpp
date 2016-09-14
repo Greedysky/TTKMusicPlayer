@@ -2,6 +2,7 @@
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
 #include "musiclrcerrorwidget.h"
+#include "musicutils.h"
 
 #include <QActionGroup>
 
@@ -31,29 +32,28 @@ void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrc
         switch(lrcColorType)
         {
             case MusicLRCManager::Origin:
-                manager->setLinearGradientColor(CL_Origin);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Origin << CL_White << CL_Origin);break;
             case MusicLRCManager::Red:
-                manager->setLinearGradientColor(CL_Red);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Red << CL_White << CL_Red);break;
             case MusicLRCManager::Orange:
-                manager->setLinearGradientColor(CL_Orange);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Orange << CL_White << CL_Orange);break;
             case MusicLRCManager::Yellow:
-                manager->setLinearGradientColor(CL_Yellow);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Yellow << CL_White << CL_Yellow);break;
             case MusicLRCManager::Green:
-                manager->setLinearGradientColor(CL_Green);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Green << CL_White << CL_Green);break;
             case MusicLRCManager::Blue:
-                manager->setLinearGradientColor(CL_Blue);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Blue << CL_White << CL_Blue);break;
             case MusicLRCManager::Indigo:
-                manager->setLinearGradientColor(CL_Indigo);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Indigo << CL_White << CL_Indigo);break;
             case MusicLRCManager::Purple:
-                manager->setLinearGradientColor(CL_Purple);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Purple << CL_White << CL_Purple);break;
             case MusicLRCManager::White:
-                manager->setLinearGradientColor(CL_White);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_White << CL_White << CL_White);break;
             case MusicLRCManager::Black:
-                manager->setLinearGradientColor(CL_Black);break;
+                manager->setLinearGradientColor(QList<QColor>() << CL_Black << CL_White << CL_Black);break;
             default:break;
         }
     }
-
     M_SETTING_PTR->setValue( (m_containerType == "DESKTOP") ? MusicSettingManager::DLrcColorChoiced :
                                                               MusicSettingManager::LrcColorChoiced, lrcColorType);
 }
@@ -171,14 +171,14 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
     if(M_SETTING_PTR->value(t + "LrcColorChoiced").toInt() != -1)
     {
         setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING_PTR->value(t + "LrcColorChoiced").toInt());
-        setMaskLinearGradientColor();
+        setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
     }
     else
     {
         foreach(MusicLRCManager *manager, m_musicLrcContainer)
         {
-            manager->setLinearGradientColor(M_SETTING_PTR->value(t + "LrcBgColorChoiced").value<QColor>());
+            manager->setLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
         }
-        setMaskLinearGradientColor(M_SETTING_PTR->value(t + "LrcFgColorChoiced").value<QColor>());
+        setMaskLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()));
     }
 }

@@ -240,23 +240,23 @@ public:
      * Read Download Cache Size Config.
      */
 
-    inline QColor readShowLrcFgColor() const
-    { return readColorConfig("lrcFgColor");}
+    inline QString readShowLrcFgColor() const
+    { return readXmlAttributeByTagNameValue("lrcFgColor");}
     /*!
      * Read Show Lrc Fg Color Config.
      */
-    inline QColor readShowLrcBgColor() const
-    { return readColorConfig("lrcBgColor");}
+    inline QString readShowLrcBgColor() const
+    { return readXmlAttributeByTagNameValue("lrcBgColor");}
     /*!
      * Read Show Lrc Bg Color Config.
      */
-    inline QColor readShowDLrcFgColor() const
-    { return readColorConfig("lrcDFgColor");}
+    inline QString readShowDLrcFgColor() const
+    { return readXmlAttributeByTagNameValue("lrcDFgColor");}
     /*!
      * Read Show Desktop Lrc Fg Color Config.
      */
-    inline QColor readShowDLrcBgColor() const
-    { return readColorConfig("lrcDBgColor");}
+    inline QString readShowDLrcBgColor() const
+    { return readXmlAttributeByTagNameValue("lrcDBgColor");}
     /*!
      * Read Show Desktop Lrc Bg Color Config.
      */
@@ -282,10 +282,6 @@ protected:
     MusicSongs readMusicFilePath(const QDomNode &node) const;
     /*!
      * Read Music File Path.
-     */
-    QColor readColorConfig(const QString &value) const;
-    /*!
-     * Read Color Config base.
      */
 
 };

@@ -84,11 +84,11 @@ public:
     /*!
      * Stop timer clock to draw lrc mask.
      */
-    void setLinearGradientColor(QColor = CL_Origin);
+    void setLinearGradientColor(const QList<QColor> &colors);
     /*!
      * Set linear gradient color.
      */
-    void setMaskLinearGradientColor(QColor = CL_Mask);
+    void setMaskLinearGradientColor(const QList<QColor> &colors);
     /*!
      * Set mask linear gradient color.
      */

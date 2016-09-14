@@ -43,7 +43,7 @@ public:
      * Stop timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void setMaskLinearGradientColor(QColor = CL_Mask) const = 0;
+    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) const = 0;
     /*!
      * Set mask linear gradient color.
      * Subclass should implement this function.

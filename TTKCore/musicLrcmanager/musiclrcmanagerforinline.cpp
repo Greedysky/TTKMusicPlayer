@@ -33,6 +33,7 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setFont(font);
     m_geometry.setX(QFontMetrics(font).width( text() ));
 
+    int begin = (rect().height() - QFontMetrics(font).height())/2;
     m_linearGradient.setFinalStop(0, QFontMetrics(font).height());
     m_maskLinearGradient.setFinalStop(0, QFontMetrics(font).height());
 
@@ -47,11 +48,11 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
 
     if((ttplus = (m_lrcPerWidth - m_geometry.x()) / 2.0) < 0)
     {
-        painter.drawText(m_intervalCount + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
+        painter.drawText(m_intervalCount + 1, begin + 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
     }
     else
     {
-        painter.drawText(ttplus + 1, 1, m_geometry.x(), m_geometry.y(),
+        painter.drawText(ttplus + 1, begin + 1, m_geometry.x(), m_geometry.y(),
                          m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
     }
 
@@ -59,11 +60,11 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_linearGradient, 0));
     if(ttplus < 0)
     {
-        painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
+        painter.drawText(m_intervalCount, begin, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
     }
     else
     {
-        painter.drawText(ttplus, 0, m_geometry.x(), m_geometry.y(),
+        painter.drawText(ttplus, begin, m_geometry.x(), m_geometry.y(),
                          m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
     }
 
@@ -71,11 +72,11 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_maskLinearGradient, 0));
     if(ttplus < 0)
     {
-        painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+        painter.drawText(m_intervalCount, begin, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
     }
     else
     {
-        painter.drawText(ttplus, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+        painter.drawText(ttplus, begin, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
     }
     painter.end();
 
