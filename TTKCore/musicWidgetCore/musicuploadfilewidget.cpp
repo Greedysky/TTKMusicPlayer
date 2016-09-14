@@ -14,14 +14,14 @@ MusicUploadFileWidget::MusicUploadFileWidget(QWidget *parent)
     uploadFileIcon->setPixmap(QPixmap(":/tiny/btn_open_file"));
     MusicClickedLabel *uploadFile = new MusicClickedLabel(this);
     uploadFile->setText(tr("OpenFile"));
-    MusicUtils::UWidget::setLabelFontStyle(uploadFile, MusicObject::FT_Underline);
+    MusicUtils::Widget::setLabelFontStyle(uploadFile, MusicObject::FT_Underline);
     connect(uploadFile, SIGNAL(clicked()), SIGNAL(uploadFileClicked()));
 
     QLabel *uploadDirIcon = new QLabel(this);
     uploadDirIcon->setPixmap(QPixmap(":/tiny/btn_open_files"));
     MusicClickedLabel *uploadDir = new MusicClickedLabel(this);
     uploadDir->setText(tr("OpenFiles"));
-    MusicUtils::UWidget::setLabelFontStyle(uploadDir, MusicObject::FT_Underline);
+    MusicUtils::Widget::setLabelFontStyle(uploadDir, MusicObject::FT_Underline);
     connect(uploadDir, SIGNAL(clicked()), SIGNAL(uploadFilesClicked()));
 
     layout->addWidget(uploadFileIcon, 0, 0, Qt::AlignRight);

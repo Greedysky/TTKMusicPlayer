@@ -4,7 +4,7 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
-    MusicUtils::UWidget::setTransparent(this, 150);
+    MusicUtils::Widget::setTransparent(this, 150);
 }
 
 QString MusicLocalSongsTableWidget::getClassName()

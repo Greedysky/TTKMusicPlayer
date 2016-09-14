@@ -233,7 +233,7 @@ void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 
 void MusicVideoPlayWidget::mvURLNameChanged(const QString &name, const QString &data)
 {
-    m_textLabel->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 275));
+    m_textLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 275));
     mvURLChanged(data);
 }
 

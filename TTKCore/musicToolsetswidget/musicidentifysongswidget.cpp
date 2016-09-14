@@ -360,7 +360,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!m_currentSong.m_singerName.isEmpty())
     {
-        QString name = MusicUtils::UCore::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
+        QString name = MusicUtils::Core::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicWYTextDownLoadThread* lrcDownload = new MusicWYTextDownLoadThread(m_currentSong.m_lrcUrl, name,

@@ -20,7 +20,7 @@ class QComboBox;
  */
 namespace MusicUtils
 {
-    namespace UCore
+    namespace Core
     {
         MUSIC_CORE_EXPORT QString lrcPrefix();
         /*!
@@ -80,7 +80,7 @@ namespace MusicUtils
 
     }
 
-    namespace UWidget
+    namespace Widget
     {
         MUSIC_CORE_EXPORT void setLabelFontSize(QWidget *widget, int size);
         /*!
@@ -126,7 +126,7 @@ namespace MusicUtils
 
     }
 
-    namespace UNumber
+    namespace Number
     {
         MUSIC_CORE_EXPORT QString size2Number(qint64 size);
         /*!
@@ -169,11 +169,20 @@ namespace MusicUtils
 
     }
 
-    namespace UString
+    namespace String
     {
         MUSIC_CORE_EXPORT QList<QColor> readColorConfig(const QString &value);
+        /*!
+         * Transform colors string to color list.
+         */
         MUSIC_CORE_EXPORT QString writeColorConfig(const QColor &color);
+        /*!
+         * Transform color to color string.
+         */
         MUSIC_CORE_EXPORT QString writeColorConfig(const QList<QColor> &colors);
+        /*!
+         * Transform color list to colors string.
+         */
     }
 
 }

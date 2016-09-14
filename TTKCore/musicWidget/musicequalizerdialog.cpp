@@ -83,17 +83,17 @@ void MusicEqualizerDialog::init()
     ui->resetButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_21, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_22, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_23, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_24, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_25, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_26, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_27, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_28, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_29, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_30, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->showPerArea_31, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_21, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_22, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_23, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_24, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_25, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_26, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_27, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_28, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_29, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_30, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->showPerArea_31, 9);
 #endif
 }
 

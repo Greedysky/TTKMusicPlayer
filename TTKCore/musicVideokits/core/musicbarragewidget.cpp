@@ -162,7 +162,7 @@ QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
     label->setStyleSheet(QString("QLabel{ color:%1}").arg(record.m_color));
     label->setText(record.m_value);
 
-    MusicUtils::UWidget::setLabelFontSize(label, record.m_size);
+    MusicUtils::Widget::setLabelFontSize(label, record.m_size);
     QFontMetrics ftMcs(label->font());
     label->resize(ftMcs.width(label->text()), ftMcs.height());
 

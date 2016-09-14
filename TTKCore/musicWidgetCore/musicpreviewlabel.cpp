@@ -1,7 +1,6 @@
 #include "musicpreviewlabel.h"
 
 #include <QPainter>
-#include <QBoxLayout>
 
 MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
     : MusicClickedLabel(parent)
@@ -33,6 +32,9 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
     m_linearGradient.setFinalStop(0, height());
 
     painter.setFont(font());
+    painter.setBrush(Qt::white);
+    painter.drawRect(0, 0, width(), height());
+
     painter.setPen(QPen(Qt::black, 0));
     painter.drawRect(0, 0, width() - 1, height() - 1);
 

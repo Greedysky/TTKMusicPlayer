@@ -119,10 +119,10 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
         QSize size = ui->userIconU->size();
         QPixmap background(size), foreground(size - QSize(2, 2));
         background.fill(QColor(230, 230, 230));
-        background = MusicUtils::UWidget::pixmapToRound(background, size, size.width()/2 + 1, size.height()/2 + 1);
-        foreground = MusicUtils::UWidget::pixmapToRound(QPixmap(":/image/lb_player_logo"),
+        background = MusicUtils::Widget::pixmapToRound(background, size, size.width()/2 + 1, size.height()/2 + 1);
+        foreground = MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_player_logo"),
                                                         foreground.size(), foreground.width()/2, foreground.height()/2);
-        MusicUtils::UWidget::fusionPixmap(background, foreground, QPoint(1, 1));
+        MusicUtils::Widget::fusionPixmap(background, foreground, QPoint(1, 1));
         ui->userIconU->setPixmap(background);
         ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
@@ -133,12 +133,12 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
         m_userManager->setUserUID(uid);
         QPixmap background(size), foreground(size - QSize(2, 2));
         background.fill(QColor(230, 230, 230));
-        background = MusicUtils::UWidget::pixmapToRound(background, size, size.width()/2 + 1, size.height()/2 + 1);
-        foreground = MusicUtils::UWidget::pixmapToRound(icon,
+        background = MusicUtils::Widget::pixmapToRound(background, size, size.width()/2 + 1, size.height()/2 + 1);
+        foreground = MusicUtils::Widget::pixmapToRound(icon,
                                                         foreground.size(), foreground.width()/2, foreground.height()/2);
-        MusicUtils::UWidget::fusionPixmap(background, foreground, QPoint(1, 1));
+        MusicUtils::Widget::fusionPixmap(background, foreground, QPoint(1, 1));
         ui->userIconL->setPixmap(background);
-        ui->userNameL->setText(MusicUtils::UWidget::elidedText(font(), uid, Qt::ElideRight, 44));
+        ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), uid, Qt::ElideRight, 44));
         ui->userNameL->setToolTip(uid);
         setCurrentIndex(1);
     }

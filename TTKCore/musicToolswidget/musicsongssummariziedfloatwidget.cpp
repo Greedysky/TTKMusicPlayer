@@ -17,7 +17,7 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     setStyleSheet(QString("#MainWidget{%1}").arg(MusicUIObject::MBackgroundStyle12));
 
     resize(55, 26);
-    MusicUtils::UWidget::widgetToRound(this, 10, 10);
+    MusicUtils::Widget::widgetToRound(this, 10, 10);
 
     QToolButton *locationButton = new QToolButton(this);
     QToolButton *searchButton = new QToolButton(this);

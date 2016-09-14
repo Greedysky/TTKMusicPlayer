@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 #endif
     ///////////////////////////////////////////////////////
 #ifndef MUSIC_GREATER_NEW
-    MusicUtils::UCore::setLocalCodec();
+    MusicUtils::Core::setLocalCodec();
 #endif
 #ifdef Q_OS_UNIX
     QFont font;
@@ -47,10 +47,10 @@ int main(int argc, char *argv[])
     xml->readOtherLoadConfig();
 
     QTranslator translator;
-    translator.load(MusicUtils::UCore::getLanguageName(xml->readLanguageIndex()));
+    translator.load(MusicUtils::Core::getLanguageName(xml->readLanguageIndex()));
     a.installTranslator(&translator);
 
-    MusicUtils::UCore::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
+    MusicUtils::Core::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
                                       xml->readDownloadCacheLimit(),
     M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());

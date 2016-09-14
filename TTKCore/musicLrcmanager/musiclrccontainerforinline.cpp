@@ -151,8 +151,8 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     }
     else
     {
-        w->setLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
-        setMaskLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
+        w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
     }
 }
 
@@ -213,8 +213,8 @@ int MusicLrcContainerForInline::getLrcSize() const
 void MusicLrcContainerForInline::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
-    MusicUtils::UWidget::setLabelFontSize(m_noLrcCurrentInfo, 15);
-    MusicUtils::UWidget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
+    MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
+    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MColorStyle06);
     m_noLrcCurrentInfo->setText(tr("makeLrc"));
 
@@ -558,7 +558,7 @@ void MusicLrcContainerForInline::theArtBgUploaded()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    MusicUtils::UCore::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
+    MusicUtils::Core::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const

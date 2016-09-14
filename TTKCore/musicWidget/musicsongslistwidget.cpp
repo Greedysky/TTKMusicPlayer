@@ -38,7 +38,7 @@ MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    MusicUtils::UWidget::setTransparent(this, 0);
+    MusicUtils::Widget::setTransparent(this, 0);
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
                   MusicUIObject::MLineEditStyle01 + \
                   MusicUIObject::MTableWidgetStyle04);
@@ -82,7 +82,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
         //To get the song name
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
+        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -196,7 +196,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 242));
+    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 242));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);
@@ -440,7 +440,7 @@ void MusicSongsListWidget::musicOpenFileDir()
     }
 
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(!MusicUtils::UCore::openUrl(QFileInfo(path).absoluteFilePath(), true))
+    if(!MusicUtils::Core::openUrl(QFileInfo(path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
@@ -569,7 +569,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     if(m_renameActived)
     {
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::UWidget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
+        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 243));
         m_renameActived = false;
         m_renameItem = nullptr;
     }

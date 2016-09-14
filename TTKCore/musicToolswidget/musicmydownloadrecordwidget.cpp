@@ -66,7 +66,7 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 160));
+    item->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( name );
@@ -152,7 +152,7 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
         return;
     }
 
-    if(!MusicUtils::UCore::openUrl(QFileInfo(m_musicRecords[currentRow()].m_path).absoluteFilePath(), true))
+    if(!MusicUtils::Core::openUrl(QFileInfo(m_musicRecords[currentRow()].m_path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));
@@ -191,7 +191,7 @@ void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64
 {
     setRowCount( rowCount() + 1);
     QString musicName = name;
-    musicName.remove(MusicUtils::UCore::musicPrefix()).chop(4);
+    musicName.remove(MusicUtils::Core::musicPrefix()).chop(4);
 
     MusicDownloadRecord record;
     record.m_name = musicName;

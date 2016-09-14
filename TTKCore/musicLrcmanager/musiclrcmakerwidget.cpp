@@ -181,7 +181,7 @@ QString MusicLrcMakerWidget::getClassName()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_file.setFileName(QString("%1%2%3").arg(MusicUtils::UCore::lrcPrefix()).arg(name).arg(LRC_FILE));
+    m_file.setFileName(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(name).arg(LRC_FILE));
     QStringList ls = name.split('-');
     if(!ls.isEmpty())
     {

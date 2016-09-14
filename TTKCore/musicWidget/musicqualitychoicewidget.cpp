@@ -17,7 +17,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(1, 25);
     headerview->resizeSection(2, 25);
 
-    MusicUtils::UWidget::setTransparent(this, 0);
+    MusicUtils::Widget::setTransparent(this, 0);
     setStyleSheet(MusicUIObject::MTableWidgetStyle03 + \
                   MusicUIObject::MLineEditStyle01 + \
                   MusicUIObject::MTableWidgetStyle04);

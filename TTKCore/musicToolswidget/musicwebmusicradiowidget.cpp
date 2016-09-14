@@ -211,7 +211,7 @@ void MusicWebMusicRadioWidget::startToPlay()
     ui->volumeSlider->setValue(0);
     ui->volumeSlider->setValue(v);
 
-    QString name = MusicUtils::UCore::lrcPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
+    QString name = MusicUtils::Core::lrcPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
@@ -253,7 +253,7 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
     QString name = info.m_artistName + " - " + info.m_songName;
     name = name.trimmed();
     ui->titleWidget->setText(name);
-    m_analysis->transLrcFileToTime(MusicUtils::UCore::lrcPrefix() + name + LRC_FILE);
+    m_analysis->transLrcFileToTime(MusicUtils::Core::lrcPrefix() + name + LRC_FILE);
 }
 
 void MusicWebMusicRadioWidget::picDownloadStateChanged()
@@ -274,7 +274,7 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
     {
         pix.load(":/image/lb_defaultArt");
     }
-    pix = MusicUtils::UWidget::pixmapToRound(pix, QSize(150, 150), 100, 100);
+    pix = MusicUtils::Widget::pixmapToRound(pix, QSize(150, 150), 100, 100);
     ui->artistLabel->setPixmap(pix);
     ui->artistLabel->start();
 }

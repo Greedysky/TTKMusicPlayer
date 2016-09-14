@@ -16,8 +16,8 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     ui->setupUi(this);
 
 #ifdef Q_OS_UNIX
-    MusicUtils::UWidget::setLabelFontSize(ui->label_5T, 9);
-    MusicUtils::UWidget::setLabelFontSize(ui->label_6T, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->label_5T, 9);
+    MusicUtils::Widget::setLabelFontSize(ui->label_6T, 9);
 #endif
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -82,13 +82,13 @@ void MusicUserRecordWidget::initTabF()
     string = m_userModel->getUserCity(uid);
     if(!string.isEmpty())
     {
-        MusicUtils::UWidget::setComboboxText(ui->cityComboBox_F, string);
+        MusicUtils::Widget::setComboboxText(ui->cityComboBox_F, string);
     }
 
     string = m_userModel->getUserCountry(uid);
     if(!string.isEmpty())
     {
-        MusicUtils::UWidget::setComboboxText(ui->countryComboBox_F, string);
+        MusicUtils::Widget::setComboboxText(ui->countryComboBox_F, string);
     }
     ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
     ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle06);

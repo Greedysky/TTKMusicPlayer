@@ -12,7 +12,7 @@
 #include <shellapi.h>
 #endif
 
-QString MusicUtils::UCore::lrcPrefix()
+QString MusicUtils::Core::lrcPrefix()
 {
     QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
     if(path.isEmpty())
@@ -29,7 +29,7 @@ QString MusicUtils::UCore::lrcPrefix()
     return path;
 }
 
-QString MusicUtils::UCore::musicPrefix()
+QString MusicUtils::Core::musicPrefix()
 {
     QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     if(path.isEmpty())
@@ -46,7 +46,7 @@ QString MusicUtils::UCore::musicPrefix()
     return path;
 }
 
-quint64 MusicUtils::UCore::dirSize(const QString &dirName)
+quint64 MusicUtils::Core::dirSize(const QString &dirName)
 {
     quint64 size = 0;
     if(QFileInfo(dirName).isDir())
@@ -69,7 +69,7 @@ quint64 MusicUtils::UCore::dirSize(const QString &dirName)
     return size;
 }
 
-void MusicUtils::UCore::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
+void MusicUtils::Core::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
 {
     if(disabled)
     {
@@ -90,7 +90,7 @@ void MusicUtils::UCore::checkCacheSize(quint64 cacheSize, bool disabled, const Q
     }
 }
 
-QFileInfoList MusicUtils::UCore::findFile(const QString &path, const QStringList &filter)
+QFileInfoList MusicUtils::Core::findFile(const QString &path, const QStringList &filter)
 {
     ///Find the corresponding suffix name
     QDir dir(path);
@@ -109,7 +109,7 @@ QFileInfoList MusicUtils::UCore::findFile(const QString &path, const QStringList
     return fileList;
 }
 
-QString MusicUtils::UCore::getLanguageName(int index)
+QString MusicUtils::Core::getLanguageName(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)
@@ -121,7 +121,7 @@ QString MusicUtils::UCore::getLanguageName(int index)
     }
 }
 
-bool MusicUtils::UCore::openUrl(const QString &path, bool local)
+bool MusicUtils::Core::openUrl(const QString &path, bool local)
 {
 #ifdef Q_OS_WIN
     if(path.isEmpty())
@@ -142,25 +142,25 @@ bool MusicUtils::UCore::openUrl(const QString &path, bool local)
 #endif
     return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
 }
-QString MusicUtils::UCore::toUnicode(const char *chars, const char *format)
+QString MusicUtils::Core::toUnicode(const char *chars, const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
     return codec->toUnicode(chars);
 }
 
-QString MusicUtils::UCore::toUnicode(const QByteArray &chars, const char *format)
+QString MusicUtils::Core::toUnicode(const QByteArray &chars, const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
     return codec->toUnicode(chars);
 }
 
-QByteArray MusicUtils::UCore::fromUnicode(const QString &chars, const char *format)
+QByteArray MusicUtils::Core::fromUnicode(const QString &chars, const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
     return codec->fromUnicode(chars);
 }
 
-void MusicUtils::UCore::setLocalCodec(const char *format)
+void MusicUtils::Core::setLocalCodec(const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
     QTextCodec::setCodecForLocale(codec);
@@ -170,26 +170,26 @@ void MusicUtils::UCore::setLocalCodec(const char *format)
 #endif
 }
 
-const char* MusicUtils::UCore::toLocal8Bit(const QString &str)
+const char* MusicUtils::Core::toLocal8Bit(const QString &str)
 {
     return str.toLocal8Bit().constData();
 }
 
-const char* MusicUtils::UCore::toUtf8(const QString &str)
+const char* MusicUtils::Core::toUtf8(const QString &str)
 {
     return str.toUtf8().constData();
 }
 
 
 
-void MusicUtils::UWidget::setLabelFontSize(QWidget *widget, int size)
+void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
 {
     QFont font = widget->font();
     font.setPointSize(size);
     widget->setFont(font);
 }
 
-void MusicUtils::UWidget::setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type)
+void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type)
 {
     QFont font = widget->font();
     switch(type)
@@ -206,21 +206,21 @@ void MusicUtils::UWidget::setLabelFontStyle(QWidget *widget, MusicObject::FontSt
     widget->setFont(font);
 }
 
-QString MusicUtils::UWidget::elidedText(const QFont &font, const QString &text,
+QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text,
                                         Qt::TextElideMode mode, int width)
 {
     QFontMetrics ft(font);
     return ft.elidedText(text, mode, width);
 }
 
-void MusicUtils::UWidget::setTransparent(QWidget *widget, int alpha)
+void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
 {
     QPalette pal = widget->palette();
     pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
     widget->setPalette(pal);
 }
 
-void MusicUtils::UWidget::setComboboxText(QComboBox *object, const QString &text)
+void MusicUtils::Widget::setComboboxText(QComboBox *object, const QString &text)
 {
     if(object->isEditable())
     {
@@ -236,12 +236,12 @@ void MusicUtils::UWidget::setComboboxText(QComboBox *object, const QString &text
     }
 }
 
-void MusicUtils::UWidget::widgetToRound(QWidget *w, int ratioX, int ratioY)
+void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
 {
     w->setMask( getBitmapMask(w->rect(), ratioX, ratioY) );
 }
 
-void MusicUtils::UWidget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt)
+void MusicUtils::Widget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt)
 {
     QPainter painter(&bg);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
@@ -249,12 +249,12 @@ void MusicUtils::UWidget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPo
     painter.end();
 }
 
-QPixmap MusicUtils::UWidget::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
+QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
 {
     return pixmapToRound(src, QRect(QPoint(0, 0), size), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::UWidget::pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY)
+QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY)
 {
     if(src.isNull())
     {
@@ -266,7 +266,7 @@ QPixmap MusicUtils::UWidget::pixmapToRound(const QPixmap &src, const QRect &rect
     return image;
 }
 
-QBitmap MusicUtils::UWidget::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
+QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());
     QPainter painter(&mask);
@@ -279,7 +279,7 @@ QBitmap MusicUtils::UWidget::getBitmapMask(const QRect &rect, int ratioX, int ra
 
 
 
-QString MusicUtils::UNumber::size2Number(qint64 size)
+QString MusicUtils::Number::size2Number(qint64 size)
 {
     if( size < MH_KB2B)
     {
@@ -303,7 +303,7 @@ QString MusicUtils::UNumber::size2Number(qint64 size)
     }
 }
 
-QString MusicUtils::UNumber::size2NumberInt(qint64 size)
+QString MusicUtils::Number::size2NumberInt(qint64 size)
 {
     QString label = size2Number(size);
     if(label.contains("."))
@@ -313,7 +313,7 @@ QString MusicUtils::UNumber::size2NumberInt(qint64 size)
     return label;
 }
 
-QString MusicUtils::UNumber::size2Label(qint64 size)
+QString MusicUtils::Number::size2Label(qint64 size)
 {
     QString label = size2Number(size);
     if( size < MH_KB2B)
@@ -338,32 +338,32 @@ QString MusicUtils::UNumber::size2Label(qint64 size)
     }
 }
 
-QString MusicUtils::UNumber::speed2Label(qint64 size)
+QString MusicUtils::Number::speed2Label(qint64 size)
 {
     return speed2LabelFromLabel(size, size2Number(size));
 }
 
-QString MusicUtils::UNumber::speed2LabelInt(qint64 size)
+QString MusicUtils::Number::speed2LabelInt(qint64 size)
 {
     return speed2LabelFromLabel(size, size2NumberInt(size));
 }
 
-qreal MusicUtils::UNumber::sizeByte2KByte(qint64 size)
+qreal MusicUtils::Number::sizeByte2KByte(qint64 size)
 {
     return size*1.0 / MH_KB;
 }
 
-qreal MusicUtils::UNumber::sizeByte2MByte(qint64 size)
+qreal MusicUtils::Number::sizeByte2MByte(qint64 size)
 {
     return sizeByte2KByte(size) / MH_MB;
 }
 
-qreal MusicUtils::UNumber::sizeByte2TByte(qint64 size)
+qreal MusicUtils::Number::sizeByte2TByte(qint64 size)
 {
     return sizeByte2MByte(size) / MH_GB;
 }
 
-QString MusicUtils::UNumber::speed2LabelFromLabel(qint64 size, const QString &label)
+QString MusicUtils::Number::speed2LabelFromLabel(qint64 size, const QString &label)
 {
     if( size < MH_KB2B)
     {
@@ -389,7 +389,7 @@ QString MusicUtils::UNumber::speed2LabelFromLabel(qint64 size, const QString &la
 
 
 
-QList<QColor> MusicUtils::UString::readColorConfig(const QString &value)
+QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 {
     QList<QColor> colors;
     QStringList rgbs = value.split(';', QString::SkipEmptyParts);
@@ -405,14 +405,14 @@ QList<QColor> MusicUtils::UString::readColorConfig(const QString &value)
     return colors;
 }
 
-QString MusicUtils::UString::writeColorConfig(const QColor &color)
+QString MusicUtils::String::writeColorConfig(const QColor &color)
 {
     QString value;
     value.append(QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue()));
     return value;
 }
 
-QString MusicUtils::UString::writeColorConfig(const QList<QColor> &colors)
+QString MusicUtils::String::writeColorConfig(const QList<QColor> &colors)
 {
     QString value;
     foreach(const QColor &rgb, colors)

@@ -119,15 +119,15 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), dataItem.m_name, Qt::ElideRight, 260));
+        item->setText(MusicUtils::Widget::elidedText(font(), dataItem.m_name, Qt::ElideRight, 260));
         item->setToolTip(dataItem.m_name);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), MusicUtils::UNumber::size2Number(dataItem.m_size),
+        item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Number(dataItem.m_size),
                                                               Qt::ElideRight, 30));
-        item->setToolTip(MusicUtils::UNumber::size2Label(dataItem.m_size));
+        item->setToolTip(MusicUtils::Number::size2Label(dataItem.m_size));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -240,7 +240,7 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
     }
 
     QString url = m_qnUploadData->getDownloadUrl(QN_PRFIX, it->toolTip());
-    (new MusicDataDownloadThread( url, MusicUtils::UCore::musicPrefix() + it->toolTip(),
+    (new MusicDataDownloadThread( url, MusicUtils::Core::musicPrefix() + it->toolTip(),
          MusicDownLoadThreadAbstract::Download_Music, this))->startToDownload();
 }
 
@@ -277,7 +277,7 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        foreach(const QFileInfo &file, MusicUtils::UCore::findFile(path, MusicPlayer::supportFormatsFilterString()))
+        foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicPlayer::supportFormatsFilterString()))
         {
             UploadData data;
             data.m_path = file.absoluteFilePath().trimmed();

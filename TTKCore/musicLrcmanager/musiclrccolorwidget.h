@@ -33,14 +33,35 @@ public:
      * Get class object name.
      */
     void setColors(const QList<QColor> &colors);
+    /*!
+     * Set current colors.
+     */
     QList<QColor> getColors();
+    /*!
+     * Get selected colors.
+     */
 
 public Q_SLOTS:
     void addButtonClicked();
+    /*!
+     * Add button clicked.
+     */
     void deleteButtonClicked();
+    /*!
+     * Delete button clicked.
+     */
     void modifyButtonClicked();
+    /*!
+     * Modify button clicked.
+     */
     void upButtonClicked();
+    /*!
+     * Up button clicked.
+     */
     void downButtonClicked();
+    /*!
+     * Down button clicked.
+     */
     virtual int exec();
     /*!
      * Override exec function.

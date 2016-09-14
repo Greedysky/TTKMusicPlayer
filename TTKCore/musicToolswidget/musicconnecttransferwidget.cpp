@@ -128,13 +128,13 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
         ui->playListTableWidget->setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 245));
+        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 245));
         item->setToolTip(song.getMusicPath());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         ui->playListTableWidget->setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), song.getMusicTime(), Qt::ElideRight, 40));
+        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicTime(), Qt::ElideRight, 40));
         item->setToolTip(song.getMusicTime());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         ui->playListTableWidget->setItem(i, 2, item);

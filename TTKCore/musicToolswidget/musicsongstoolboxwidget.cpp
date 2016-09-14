@@ -26,7 +26,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
     m_labelText = new QLabel(this);
     m_labelText->setText(text);
-    MusicUtils::UWidget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
+    MusicUtils::Widget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
 
     MusicClickedLabel *menuLabel = new MusicClickedLabel(this);
     connect(menuLabel, SIGNAL(clicked()), SLOT(showMenu()));

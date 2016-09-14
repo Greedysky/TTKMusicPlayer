@@ -34,7 +34,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setSpacing(16);
     QTimer::singleShot(MT_MS, this, SLOT(addListWidgetItem()));
 #endif
-    MusicUtils::UWidget::setTransparent(this, 50);
+    MusicUtils::Widget::setTransparent(this, 50);
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
                   SLOT(itemHasClicked(QListWidgetItem*)));
 }

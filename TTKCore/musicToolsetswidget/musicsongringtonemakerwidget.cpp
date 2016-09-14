@@ -97,7 +97,7 @@ void MusicSongRingtoneMaker::initInputPath()
     {
         QString name = QFileInfo(m_inputFilePath).fileName();
         ui->songLabelValue->setToolTip( name );
-        name = MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 220);
+        name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
         ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name)
                 .arg(tag.getLengthString()).arg(tag.getSamplingRate()).arg(tag.getBitrate()));
     }

@@ -52,6 +52,6 @@ QString MusicRemoteWidgetForRectangle::getClassName()
 
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::UWidget::elidedText(font(), value,
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value,
                              Qt::ElideRight, 350));
 }

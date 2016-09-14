@@ -50,7 +50,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 
 void MusicSourceUpdateWidget::upgradeFailedClicked()
 {
-    MusicUtils::UCore::openUrl(CSDN_URL, false);
+    MusicUtils::Core::openUrl(CSDN_URL, false);
 }
 
 void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)

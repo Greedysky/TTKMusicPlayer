@@ -104,8 +104,8 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
 
        QString filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
-       if( QFile::exists(MusicUtils::UCore::lrcPrefix() + filename + LRC_FILE) ||
-           QFile::exists(MusicUtils::UCore::lrcPrefix() + filename + KRC_FILE) )
+       if( QFile::exists(MusicUtils::Core::lrcPrefix() + filename + LRC_FILE) ||
+           QFile::exists(MusicUtils::Core::lrcPrefix() + filename + KRC_FILE) )
        {
            return;
        }
@@ -151,7 +151,7 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
         }
 
         ///download lrc
-        M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, MusicUtils::UCore::lrcPrefix() + filename + LRC_FILE,
+        M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE,
                                              MusicDownLoadThreadAbstract::Download_Lrc, this)->startToDownload();
         ///download art picture
         M_DOWNLOAD_QUERY_PTR->getDownloadSmallPic(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,

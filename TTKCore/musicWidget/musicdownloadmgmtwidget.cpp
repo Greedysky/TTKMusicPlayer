@@ -71,7 +71,7 @@ void MusicDownloadResetWidget::openDetailInfo()
 
 void MusicDownloadResetWidget::openFileLocation()
 {
-    MusicUtils::UCore::openUrl(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString(), true);
+    MusicUtils::Core::openUrl(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistPathChoiced).toString(), true);
     close();
 }
 

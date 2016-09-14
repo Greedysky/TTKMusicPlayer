@@ -49,7 +49,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
-                             MusicUtils::UCore::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
+                             MusicUtils::Core::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
                              MusicDownLoadThreadAbstract::Download_Lrc, this);
     connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)),
                          SIGNAL(lrcDownloadStateChanged(QString)));
@@ -73,14 +73,14 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight, 170));
+    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight, 170));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight, 144));
+    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight, 144));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);

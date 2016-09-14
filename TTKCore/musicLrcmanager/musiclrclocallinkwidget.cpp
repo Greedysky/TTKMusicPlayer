@@ -41,13 +41,13 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
     for(int i=0; i<items.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
+        item->setText(MusicUtils::Widget::elidedText(font(), items[i].m_name, Qt::ElideRight, 128));
         item->setToolTip( items[i].m_name );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::UWidget::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
+        item->setText(MusicUtils::Widget::elidedText(font(), items[i].m_path, Qt::ElideRight, 195));
         item->setToolTip( items[i].m_path );
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
@@ -119,7 +119,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
     }
 
     ui->fuzzyButton->isChecked();
-    QStringList list = QDir(MusicUtils::UCore::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden |
+    QStringList list = QDir(MusicUtils::Core::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden |
                                                        QDir::NoSymLinks | QDir::NoDotAndDotDot);
     LocalDataItems items;
     foreach(const QString &var, list)
@@ -128,7 +128,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
         {
             LocalDataItem item;
             item.m_name = var;
-            item.m_path = MusicUtils::UCore::lrcPrefix() + var;
+            item.m_path = MusicUtils::Core::lrcPrefix() + var;
             items << item;
         }
     }

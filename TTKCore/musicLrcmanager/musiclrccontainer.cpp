@@ -177,8 +177,8 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
     {
         foreach(MusicLRCManager *manager, m_musicLrcContainer)
         {
-            manager->setLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
+            manager->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
         }
-        setMaskLinearGradientColor(MusicUtils::UString::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()));
+        setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()));
     }
 }

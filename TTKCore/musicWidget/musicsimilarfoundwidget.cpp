@@ -69,7 +69,7 @@ void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
     }
 }
 
@@ -213,7 +213,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(picLabel1, 4, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel2, 4, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel3, 4, 6, 1, 2, Qt::AlignCenter);
-    QString artLimitString = MusicUtils::UWidget::elidedText(font(), artName, Qt::ElideRight, 90);
+    QString artLimitString = MusicUtils::Widget::elidedText(font(), artName, Qt::ElideRight, 90);
     grid->addWidget(new QLabel(artLimitString, function), 5, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, function), 5, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, function), 5, 6, 1, 2, Qt::AlignCenter);

@@ -116,7 +116,7 @@ void MusicQueryFoundTableWidget::createSearchedItems(const QString &songname, co
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(artistname + " - " + songname);
-    item->setText(MusicUtils::UWidget::elidedText(font(), item->toolTip(), Qt::ElideRight, 440));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 440));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem(time);

@@ -102,7 +102,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = audUrlsValue["url"].toString();
-                                songAttr.m_size = MusicUtils::UNumber::size2Label(audUrlsValue["size"].toInt());
+                                songAttr.m_size = MusicUtils::Number::size2Label(audUrlsValue["size"].toInt());
                                 songAttr.m_format = audUrlsValue["suffix"].toString();
                                 songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
@@ -129,7 +129,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = llUrlValue["url"].toString();
-                                songAttr.m_size = MusicUtils::UNumber::size2Label(llUrlValue["size"].toInt());
+                                songAttr.m_size = MusicUtils::Number::size2Label(llUrlValue["size"].toInt());
                                 songAttr.m_format = llUrlValue["suffix"].toString();
                                 songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
@@ -191,7 +191,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
 
                                 songAttr.m_format = mvUrlValue["suffix"].toString();
                                 songAttr.m_url = mvUrlValue["url"].toString();
-                                songAttr.m_size = MusicUtils::UNumber::size2Label(mvUrlValue["size"].toInt());
+                                songAttr.m_size = MusicUtils::Number::size2Label(mvUrlValue["size"].toInt());
                                 musicInfo.m_songAttrs << songAttr;
                             }
                             emit createSearchedItems(songName, singerName, duration);

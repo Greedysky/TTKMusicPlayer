@@ -101,7 +101,7 @@ void MusicDownLoadQueryAlbumTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = audUrlsValue["url"].toString();
-                                songAttr.m_size = MusicUtils::UNumber::size2Label(audUrlsValue["size"].toInt());
+                                songAttr.m_size = MusicUtils::Number::size2Label(audUrlsValue["size"].toInt());
                                 songAttr.m_format = audUrlsValue["suffix"].toString();
                                 songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;
@@ -128,7 +128,7 @@ void MusicDownLoadQueryAlbumTTThread::downLoadFinished()
                             {
                                 MusicObject::MusicSongAttribute songAttr;
                                 songAttr.m_url = llUrlValue["url"].toString();
-                                songAttr.m_size = MusicUtils::UNumber::size2Label(llUrlValue["size"].toInt());
+                                songAttr.m_size = MusicUtils::Number::size2Label(llUrlValue["size"].toInt());
                                 songAttr.m_format = llUrlValue["suffix"].toString();
                                 songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
                                 musicInfo.m_songAttrs << songAttr;

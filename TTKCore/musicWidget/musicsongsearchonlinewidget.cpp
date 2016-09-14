@@ -179,14 +179,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight, 300));
+    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight, 300));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight, 180));
+    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight, 180));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -248,10 +248,10 @@ void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 300));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 300));
 
         it = item(i, 2);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 180));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 180));
     }
 }
 
@@ -481,6 +481,6 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     width = width - WINDOW_WIDTH_MIN + 240;
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
-                         .arg(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, width)));
+                         .arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
     m_textLabel->setToolTip(name);
 }

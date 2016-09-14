@@ -176,6 +176,6 @@ void MusicSoundTouchWidget::finished(int code)
 
 void MusicSoundTouchWidget::setText(const QString &text)
 {
-    ui->pathLabel->setText(MusicUtils::UWidget::elidedText(font(), text, Qt::ElideLeft, 390) );
+    ui->pathLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideLeft, 390) );
     ui->pathLabel->setToolTip(text);
 }

@@ -65,10 +65,10 @@ void MusicVideoTableWidget::resizeWindow(int delta)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight,
                                                    headerview->sectionSize(1) - 5));
         it = item(i, 2);
-        it->setText(MusicUtils::UWidget::elidedText(font(), it->toolTip(), Qt::ElideRight,
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight,
                                                    headerview->sectionSize(2) - 5));
     }
 }
@@ -122,7 +122,7 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), songname, Qt::ElideRight,
+    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight,
                                                  headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
@@ -130,7 +130,7 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::UWidget::elidedText(font(), artistname, Qt::ElideRight,
+    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight,
                                                  headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);

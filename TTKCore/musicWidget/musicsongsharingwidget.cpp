@@ -48,7 +48,7 @@ QString MusicSongSharingWidget::getClassName()
 void MusicSongSharingWidget::setSongName(const QString &name)
 {
     ui->sharedName->setToolTip(name);
-    ui->sharedName->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 200));
+    ui->sharedName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
@@ -126,7 +126,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     url.replace("player?song=", "player%3Fsong%3D");
     url.replace('#', "%23");
 
-    MusicUtils::UCore::openUrl(url, false);
+    MusicUtils::Core::openUrl(url, false);
     QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
 

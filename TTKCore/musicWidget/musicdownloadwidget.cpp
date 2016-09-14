@@ -61,7 +61,7 @@ MusicDownloadTableWidget::MusicDownloadTableWidget(QWidget *parent)
     setColumnCount(1);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 400);
-    MusicUtils::UWidget::setTransparent(this, 255);
+    MusicUtils::Widget::setTransparent(this, 255);
 }
 
 MusicDownloadTableWidget::~MusicDownloadTableWidget()
@@ -188,7 +188,7 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
     m_queryType = type;
     initWidget();
 
-    ui->downloadName->setText(MusicUtils::UWidget::elidedText(font(), name, Qt::ElideRight, 200));
+    ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
     m_downloadThread->setQueryAllRecords(true);
     m_downloadThread->startSearchSong(type, name);
 }
@@ -201,7 +201,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInfomation &in
     m_querySingleInfo = true;
 
     initWidget();
-    ui->downloadName->setText(MusicUtils::UWidget::elidedText(font(), info.m_songName, Qt::ElideRight, 200));
+    ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), info.m_songName, Qt::ElideRight, 200));
 
     if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {

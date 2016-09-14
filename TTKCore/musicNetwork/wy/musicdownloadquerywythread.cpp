@@ -317,7 +317,7 @@ void MusicDownLoadQueryWYThread::readFromMusicSongAttribute(MusicObject::MusicSo
     qlonglong dfsId = key.value("dfsId").toLongLong();
     attr.m_bitrate = bitrate;
     attr.m_format = key.value("extension").toString();
-    attr.m_size = MusicUtils::UNumber::size2Label(key.value("size").toInt());
+    attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
     attr.m_url = WY_SONG_PATH_URL.arg(encryptedId(dfsId)).arg(dfsId);
     info->m_songAttrs.append(attr);
 }

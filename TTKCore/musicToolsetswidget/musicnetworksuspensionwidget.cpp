@@ -113,8 +113,8 @@ void MusicNetworkSuspensionWidget::setAvailableNewtworkNames(const QStringList &
 
 void MusicNetworkSuspensionWidget::networkData(ulong upload, ulong download)
 {
-    m_upload = MusicUtils::UNumber::speed2Label(upload);
-    m_download = MusicUtils::UNumber::speed2Label(download);
+    m_upload = MusicUtils::Number::speed2Label(upload);
+    m_download = MusicUtils::Number::speed2Label(download);
     update();
 }
 
