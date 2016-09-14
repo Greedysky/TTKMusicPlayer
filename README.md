@@ -30,7 +30,7 @@ Compiler tutorial I have written in the wiki.(See here)<u>https://github.com/Gre
 
 License
 ---
-TTKMusicPlayer is free software licensed under the term of GPL v2. If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
+TTKMusicPlayer is free software licensed under the term of [Licence GPL v2](https://github.com/Greedysky/TTKMusicplayer/blob/master/README.md). If you use TTKMusicPlayer or its constituent libraries, you must adhere to the terms of the license in question.
 
 Download
 ---
@@ -76,6 +76,7 @@ Screenshots.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
+
 Screenshots
 ----
 
