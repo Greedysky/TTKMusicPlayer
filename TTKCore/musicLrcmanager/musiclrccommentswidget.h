@@ -12,7 +12,8 @@
 #include <QLabel>
 #include "musicwycommentsthread.h"
 
-class QPushButton;
+class QTextEdit;
+class MusicClickedLabel;
 
 /*! @brief The class of the song comment widget.
  * @author Greedysky <greedysky@163.com>
@@ -45,8 +46,8 @@ private Q_SLOTS:
      */
 
 protected:
-    QLabel *m_userName, *m_userCommit;
-    QLabel *m_timerLabel, *m_iconLabel, *m_starLabel;
+    QTextEdit *m_userCommit;
+    QLabel *m_userName, *m_timerLabel, *m_iconLabel, *m_starLabel;
 
 };
 
@@ -100,7 +101,7 @@ protected:
     QWidget *m_messageComments;
     MusicWYCommentsThread *m_commentsThread;
     QList<MusicLrcCommentsItem*> m_commentsItems;
-    QList<QPushButton*> m_pagingItems;
+    QList<MusicClickedLabel*> m_pagingItems;
 
 };
 
