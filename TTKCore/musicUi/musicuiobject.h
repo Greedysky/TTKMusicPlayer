@@ -96,6 +96,9 @@ namespace MusicUIObject
     const QString MBackgroundStyle18 = " \
             background:rgb(254, 249, 229);";
 
+    const QString MBackgroundStyle19 = " \
+            background:rgba(0, 0, 0, 175);";
+
 
 ///Custom
 //////////////////////////////////////////////////////

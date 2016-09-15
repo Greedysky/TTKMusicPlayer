@@ -15,6 +15,8 @@
 class MusicLrcFloatWidget;
 class MusicClickedLabel;
 class MusicLrcAnalysis;
+class MusicLrcCommentsWidget;
+class MusicLrcTranslatedWidget;
 
 /*! @brief The class of the inline lrc container.
  * @author Greedysky <greedysky@163.com>
@@ -139,6 +141,10 @@ public Q_SLOTS:
     /*!
      * Show local link widget.
      */
+    void showSongCommentsWidget();
+    /*!
+     * Show song comments widget.
+     */
 
 private Q_SLOTS:
     void getTranslatedLrcFinished(const QString &data);
@@ -193,7 +199,7 @@ protected:
     /*!
      * Set per lrc line style sheet by index and size and transparent.
      */
-    void resizeWidth(int width, int height);
+    void resizeWidth(int w, int h);
     /*!
      * Resize width bound by given width.
      */
@@ -206,6 +212,8 @@ protected:
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
     MusicLrcAnalysis *m_lrcAnalysis;
+    MusicLrcCommentsWidget *m_commentsWidget;
+    MusicLrcTranslatedWidget *m_translatedWidget;
 
 };
 

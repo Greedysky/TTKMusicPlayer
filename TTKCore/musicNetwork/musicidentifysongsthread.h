@@ -12,7 +12,7 @@
 #include "musicglobal.h"
 #include "musicnetworkabstract.h"
 
-typedef struct MusicSongIdentify
+typedef struct MUSIC_NETWORK_EXPORT MusicSongIdentify
 {
     QString m_singerName;
     QString m_songName;

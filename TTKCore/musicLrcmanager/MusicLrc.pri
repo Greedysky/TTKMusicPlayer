@@ -32,7 +32,9 @@ HEADERS  += \
     $$PWD/musiclrcerrorwidget.h \
     $$PWD/musiclrclocallinkwidget.h \
     $$PWD/musiclrcfromkrc.h \
-    $$PWD/musiclrccolorwidget.h
+    $$PWD/musiclrccolorwidget.h \
+    $$PWD/musiclrccommentswidget.h \
+    $$PWD/musiclrctranslatedwidget.h
 
 }
 
@@ -56,6 +58,8 @@ SOURCES += \
     $$PWD/musiclrcerrorwidget.cpp \
     $$PWD/musiclrclocallinkwidget.cpp \
     $$PWD/musiclrcfromkrc.cpp \
-    $$PWD/musiclrccolorwidget.cpp
+    $$PWD/musiclrccolorwidget.cpp \
+    $$PWD/musiclrccommentswidget.cpp \
+    $$PWD/musiclrctranslatedwidget.cpp
 
 }
