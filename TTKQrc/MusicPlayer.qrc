@@ -167,6 +167,11 @@
         <file alias="lb_rice_font_white">../TTKResource/gif/lb_rice_font_white.png</file>
     </qresource>
     <qresource prefix="/lrc">
+        <file alias="btn_star_clicked">../TTKResource/lrc/btn_star_clicked.png</file>
+        <file alias="btn_star_normal">../TTKResource/lrc/btn_star_normal.png</file>
+        <file alias="btn_star_hover">../TTKResource/lrc/btn_star_hover.png</file>
+        <file alias="lb_emoji">../TTKResource/lrc/lb_emoji.png</file>
+        <file alias="lb_no_results">../TTKResource/lrc/lb_no_results.png</file>
         <file alias="lb_more_normal">../TTKResource/lrc/lb_more_normal.png</file>
         <file alias="lb_more_hover">../TTKResource/lrc/lb_more_hover.png</file>
         <file alias="lb_search_hover">../TTKResource/lrc/lb_search_hover.png</file>

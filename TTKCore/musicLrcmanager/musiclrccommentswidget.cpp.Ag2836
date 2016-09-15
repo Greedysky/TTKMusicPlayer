@@ -88,8 +88,8 @@ MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
     //////////////////////////////////////////////////////////////////////
     m_iconLabel = new QLabel(centerWidget);
     m_iconLabel->setFixedSize(40, 40);
-    m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(m_iconLabel->size()));
-    centerWidgetLayout->addWidget(m_iconLabel);
+    m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(m_iconLaebl->size()));
+    centerWidgetLayout->addWidget(m_iconLaebl);
     centerWidgetLayout->addWidget(textWidget);
     centerWidget->setLayout(centerWidgetLayout);
     //////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ void MusicLrcCommentsItem::createSearchedItems(const MusicSongComment &comments)
     m_starLabel->setText(QString("(%1)").arg(comments.m_likedCount));
 
     MusicSourceDownloadThread *thread = new MusicSourceDownloadThread(this);
-    connect(thread, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(iconDataDownloadFinished(QByteArray)));
+    connect(thread, SIGNAL(downLoadByteDataChanged(QByteArray)),
     thread->startToDownload(comments.m_avatarUrl);
 }
 

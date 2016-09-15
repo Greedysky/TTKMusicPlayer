@@ -261,11 +261,16 @@ void MusicLrcContainerForInline::showLocalLinkWidget()
 
 void MusicLrcContainerForInline::showSongCommentsWidget()
 {
+    if(m_currentSongName.isEmpty())
+    {
+        return;
+    }
+
     delete m_commentsWidget;
     m_commentsWidget = new MusicLrcCommentsWidget(this);
     m_commentsWidget->setGeometry(0, height()/5, width(), height()*4/5);
-    m_commentsWidget->setCurrentSongName(m_currentSongName);
     m_commentsWidget->show();
+    m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
 
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)

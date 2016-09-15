@@ -20,6 +20,7 @@ class MUSIC_WIDGET_EXPORT MusicClickedLabel : public QLabel
     Q_OBJECT
 public:
     explicit MusicClickedLabel(QWidget *parent = 0);
+    explicit MusicClickedLabel(const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */

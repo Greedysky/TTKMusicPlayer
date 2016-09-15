@@ -10,7 +10,46 @@
    =================================================*/
 
 #include <QLabel>
-#include "musicglobaldefine.h"
+#include "musicwycommentsthread.h"
+
+class QPushButton;
+
+/*! @brief The class of the song comment widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcCommentsItem : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcCommentsItem(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    ~MusicLrcCommentsItem();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void createSearchedItems(const MusicSongComment &comments);
+    /*!
+     * Create the current song comment.
+     */
+
+private Q_SLOTS:
+    void iconDataDownloadFinished(const QByteArray &data);
+    /*!
+     * Icon data download finished.
+     */
+
+protected:
+    QLabel *m_userName, *m_userCommit;
+    QLabel *m_timerLabel, *m_iconLabel, *m_starLabel;
+
+};
+
 
 /*! @brief The class of the song comment widget.
  * @author Greedysky <greedysky@163.com>
@@ -36,6 +75,14 @@ public:
      */
 
 public Q_SLOTS:
+    void createSearchedItems(const MusicSongComment &comments);
+    /*!
+     * Create the current song comment.
+     */
+    void buttonClicked(int index);
+    /*!
+     * Paging widget button has changed.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -44,8 +91,16 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
 
-    QLabel *m_topLabel;
-    QString m_currentSongName;
+    void initLabel(const QString &name, int total);
+    void deleteCommentsItems();
+    void createPagingWidget();
+
+    int m_currentPage;
+    QLabel *m_topLabel, *m_commentsLabel;
+    QWidget *m_messageComments;
+    MusicWYCommentsThread *m_commentsThread;
+    QList<MusicLrcCommentsItem*> m_commentsItems;
+    QList<QPushButton*> m_pagingItems;
 
 };
 

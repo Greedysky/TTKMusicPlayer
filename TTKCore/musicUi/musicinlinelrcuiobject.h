@@ -35,6 +35,12 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_mv_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover);}";
+            
+    const QString MKGInlineStar = " \
+            QPushButton{ border:none; \
+            background-image: url(:/lrc/btn_star_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/btn_star_hover);} \
+            QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked);}";
 
 }
 

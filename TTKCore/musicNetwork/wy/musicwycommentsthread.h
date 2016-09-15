@@ -20,6 +20,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
     QString m_likedCount;
 }MusicSongInfomation;
 
+#define COMMIT_PAGE_SIZE    10
 const QString WY_SONG_COMMIT_URL    = "http://music.163.com/api/v1/resource/comments/R_SO_4_%1/?"
                                       "rid=R_SO_4_%1&offset=%2&total=false&limit=10";
 
@@ -46,9 +47,13 @@ public:
     /*!
      * Release the network object.
      */
-    void startSearchSong(const QString &songID, int index);
+    void startSearchSong(const QString &name);
     /*!
-     * Start to Search data from name and type.
+     * Start to Search data from name.
+     */
+    void startSearchSong(int index);
+    /*!
+     * Start to Search data from page index.
      */
     inline int total() const { return m_count;}
     /*!
@@ -56,10 +61,6 @@ public:
      */
 
 Q_SIGNALS:
-    void clearAllItems();
-    /*!
-     * Clear all items before the new query start.
-     */
     void createSearchedItems(const MusicSongComment &comments);
     /*!
      * Create the current song comment.
@@ -72,7 +73,7 @@ public Q_SLOTS:
      */
 
 protected:
-    int m_count;
+    int m_count, m_songID;
 
 };
 
