@@ -128,7 +128,7 @@ void MusicLrcCommentsItem::createSearchedItems(const MusicSongComment &comments)
     m_starLabel->setText(QString("(%1)").arg(comments.m_likedCount));
 
     m_userCommit->setText(comments.m_content);
-    int w = 10 + m_iconLabel->width() + m_userName->width();
+    int w = 60 + m_iconLabel->width() + m_userName->width();
     w = MStatic_cast(QWidget*, parent())->width() - w;
     int acWidth = QFontMetrics(m_userCommit->font()).width(comments.m_content);
     setFixedHeight(height() + QFontMetrics(m_userCommit->font()).height()*(acWidth/w));
@@ -230,7 +230,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     //////////////////////////////////////////////////////////////////////
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);

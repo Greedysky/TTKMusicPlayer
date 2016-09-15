@@ -248,6 +248,10 @@ namespace MusicUIObject
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;} \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none;}";
 
+    const QString MScrollBarStyle02 = MScrollBarStyle01 + " \
+            QScrollBar{ background:transparent;}";
+
+
 ///Label
 //////////////////////////////////////////////////////
     const QString MLabelStyle01 = " \
