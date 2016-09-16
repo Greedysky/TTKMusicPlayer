@@ -127,6 +127,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
 
 void MusicSongSearchOnlineTableWidget::setSearchQuality(const QString &quality)
 {
+    MusicQueryItemTableWidget::startSearchQuery(QString());
     m_downLoadManager->setSearchQuality(quality);
 }
 

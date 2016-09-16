@@ -4,7 +4,6 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicmydownloadrecordconfigmanager.h"
-#include "musictextdownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicttdatadownloadthread.h"
 #include "musicbackgrounddownload.h"

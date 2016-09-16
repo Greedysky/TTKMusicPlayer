@@ -67,7 +67,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     m_mpAudioOutputSound = nullptr;
 
     m_mpInputDevSound = nullptr;
-    m_mpInputDevSound = nullptr;
+    m_mpOutputDevSound = nullptr;
 
     m_recordCore = new MusicAudioRecorderCore(this);
 
@@ -183,10 +183,10 @@ void MusicAudioRecorderWidget::onStateChange(QAudio::State state)
 
 void MusicAudioRecorderWidget::createAudioInput()
 {
-    if (m_mpInputDevSound != 0)
+    if (m_mpInputDevSound != nullptr)
     {
         disconnect(m_mpInputDevSound, 0, this, 0);
-        m_mpInputDevSound = 0;
+        m_mpInputDevSound = nullptr;
     }
     QAudioDeviceInfo inputDevice(QAudioDeviceInfo::defaultInputDevice());
     m_mpAudioInputSound = new QAudioInput(inputDevice, m_mFormatSound, this);

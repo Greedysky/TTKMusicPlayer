@@ -1,7 +1,7 @@
 #include "musiclrcsearchtablewidget.h"
-#include "musictextdownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicitemdelegate.h"
+#include "musicdownloadqueryfactory.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)
@@ -48,7 +48,8 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     }
 
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(musicSongInfos[row].m_lrcUrl,
+    ///download lrc
+    MusicDownLoadThreadAbstract *lrcDownload = M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfos[row].m_lrcUrl,
                              MusicUtils::Core::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
                              MusicDownLoadThreadAbstract::Download_Lrc, this);
     connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)),
