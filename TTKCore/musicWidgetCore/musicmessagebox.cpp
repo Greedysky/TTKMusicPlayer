@@ -23,6 +23,11 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    QFont f = font();
+    f.setFamily("Times New Roman");
+    setFont(f);
+    ui->textLabel->setFont(f);
+
     QButtonGroup *groupButton = new QButtonGroup(this);
     groupButton->addButton(ui->topTitleCloseButton, 0);
     groupButton->addButton(ui->confirmButton, 1);
