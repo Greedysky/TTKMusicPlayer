@@ -354,6 +354,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     }
 }
 
+void MusicRightAreaWidget::musicSongCommentsWidget()
+{
+    if(m_ui->surfaceStackedWidget->currentIndex() != 1)
+    {
+        musicFunctionClicked(LrcWidget);
+    }
+    m_ui->musiclrccontainerforinline->showSongCommentsWidget();
+}
+
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     musicFunctionClicked(MusicRightAreaWidget::SimilarWidget);

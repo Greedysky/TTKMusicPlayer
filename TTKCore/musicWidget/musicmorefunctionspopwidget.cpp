@@ -25,6 +25,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
     {
         case 0:
             {
+                MusicRightAreaWidget::instance()->musicSongCommentsWidget();
                 break;
             }
         case 1:

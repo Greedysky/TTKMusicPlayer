@@ -140,6 +140,10 @@ public Q_SLOTS:
     /*!
      * Music function button clicked.
      */
+    void musicSongCommentsWidget();
+    /*!
+     * Music song comments widget.
+     */
     void musicSimilarFound(const QString &text);
     /*!
      * Music similar function that by string.
