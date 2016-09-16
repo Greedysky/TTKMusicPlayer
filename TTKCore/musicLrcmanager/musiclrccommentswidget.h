@@ -15,7 +15,7 @@
 class QTextEdit;
 class MusicClickedLabel;
 
-/*! @brief The class of the song comment widget.
+/*! @brief The class of the song comment item.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_LRC_EXPORT MusicLrcCommentsItem : public QWidget
@@ -91,11 +91,25 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
-
+    /*!
+     * Override the widget event.
+     */
     void initLabel(const QString &name, int total);
+    /*!
+     * Int current comment label text.
+     */
     void deleteCommentsItems();
+    /*!
+     * Delete comments items.
+     */
     void deletePagingItems();
+    /*!
+     * Delete paging items.
+     */
     void createPagingWidget();
+    /*!
+     * Create paging items.
+     */
 
     int m_currentPage;
     QLabel *m_topLabel, *m_commentsLabel;
