@@ -94,11 +94,12 @@ protected:
 
     void initLabel(const QString &name, int total);
     void deleteCommentsItems();
+    void deletePagingItems();
     void createPagingWidget();
 
     int m_currentPage;
     QLabel *m_topLabel, *m_commentsLabel;
-    QWidget *m_messageComments;
+    QWidget *m_messageComments, *m_pagingWidget;
     MusicWYCommentsThread *m_commentsThread;
     QList<MusicLrcCommentsItem*> m_commentsItems;
     QList<MusicClickedLabel*> m_pagingItems;
