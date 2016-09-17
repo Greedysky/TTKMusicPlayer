@@ -89,8 +89,8 @@ Screenshots
 ### Lrc
 ![Lrc](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
 
-### Desktop-lrc
-![Desktop-lrc](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
+### Desktop Lrc
+![Desktop Lrc](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
 
 ### Remote Controller
 ![Remote Controller](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
@@ -102,10 +102,13 @@ Screenshots
 ![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
 
 ### Video Barrage
-![Rungholt](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
+![Video Barrage](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
 
 ### Magic Music
 ![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
+
+### Other Tools
+![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
 Copyright
 -------
