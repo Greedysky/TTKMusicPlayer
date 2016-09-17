@@ -43,7 +43,7 @@ MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
     m_userCommit = new QTextEdit(userWidget);
     m_userCommit->setReadOnly(true);
     m_userCommit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_userCommit->setStyleSheet(MusicUIObject::MCustomStyle05 + MusicUIObject::MBackgroundStyle01 +
+    m_userCommit->setStyleSheet(MusicUIObject::MBorderStyle01 + MusicUIObject::MBackgroundStyle01 +
                                 MusicUIObject::MColorStyle04);
     m_userCommit->viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle04);
     m_userName->setStyleSheet(MusicUIObject::MColorStyle03);
@@ -189,7 +189,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     m_messageEdit = new QTextEdit(messageBox);
     m_messageEdit->setFixedHeight(75);
     m_messageEdit->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_messageEdit->setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle01 +
+    m_messageEdit->setStyleSheet(MusicUIObject::MBorderStyle02 + MusicUIObject::MBackgroundStyle01 +
                                  MusicUIObject::MColorStyle04);
     m_messageEdit->viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle04);
     messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
@@ -379,7 +379,7 @@ void MusicLrcCommentsWidget::buttonClicked(int index)
         MusicClickedLabel *w = m_pagingItems[i];
         w->setFixedWidth(QFontMetrics(w->font()).width(w->text()));
     }
-    m_pagingItems[m_currentPage]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle01);
+    m_pagingItems[m_currentPage]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
     m_commentsThread->startSearchSong(m_pagingItems[m_currentPage]->text().toInt() - 1);
 }
 
@@ -488,7 +488,7 @@ void MusicLrcCommentsWidget::createPagingWidget()
             m_pagingItems[i]->hide();
         }
     }
-    page1Button->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle01);
+    page1Button->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
 
     layout->addStretch(1);
     if(count != 0)
@@ -508,7 +508,7 @@ void MusicLrcCommentsWidget::createPagingWidget()
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
         QLabel *text = new QLabel(tr("There Is Empty!"), func);
-        text->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle04);
+        text->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle05);
         text->setAlignment(Qt::AlignCenter);
         funcLayout->addWidget(icon, 0, Qt::AlignCenter);
         funcLayout->addWidget(text, 0, Qt::AlignCenter);

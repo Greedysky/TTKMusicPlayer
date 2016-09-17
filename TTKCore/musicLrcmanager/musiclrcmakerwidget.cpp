@@ -20,7 +20,7 @@
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     : QLabel(ui), m_parentObject(parent)
 {
-    setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle17);
+    setStyleSheet(MusicUIObject::MBorderStyle02 + MusicUIObject::MBackgroundStyle17);
     setFixedSize(650, ITEM_HEIGHT);
 
     reset();

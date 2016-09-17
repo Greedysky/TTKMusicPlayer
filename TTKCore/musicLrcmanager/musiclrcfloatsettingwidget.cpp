@@ -15,9 +15,12 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *bgLabel = new QLabel(tr("Background"), this);
-    colorLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
-    sizeLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
-    bgLabel->setStyleSheet( MusicUIObject::MCustomStyle10 );
+
+    const QString labelStyle = MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle02 + "\
+                               image:url(:/lrc/lb_shadow);";
+    colorLabel->setStyleSheet(labelStyle);
+    sizeLabel->setStyleSheet(labelStyle);
+    bgLabel->setStyleSheet(labelStyle);
     colorLabel->setAlignment(Qt::AlignCenter);
     sizeLabel->setAlignment(Qt::AlignCenter);
     bgLabel->setAlignment(Qt::AlignCenter);

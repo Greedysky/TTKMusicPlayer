@@ -462,15 +462,15 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     labelLayout->addWidget(label_checkBox, 3);
 
     QLabel *Label1 = new QLabel(tr("Song"), this);
-    Label1->setStyleSheet(MusicUIObject::MCustomStyle01);
+    Label1->setStyleSheet(MusicUIObject::MFontStyle01);
     labelLayout->addWidget(Label1, 5);
 
     QLabel *Label2 = new QLabel(tr("Artist"), this);
-    Label2->setStyleSheet(MusicUIObject::MCustomStyle01);
+    Label2->setStyleSheet(MusicUIObject::MFontStyle01);
     labelLayout->addWidget(Label2, 3);
 
     QLabel *Label3 = new QLabel(tr("Operator"), this);
-    Label3->setStyleSheet(MusicUIObject::MCustomStyle01);
+    Label3->setStyleSheet(MusicUIObject::MFontStyle01);
     labelLayout->addWidget(Label3, 1);
 
     labelWidget->setLayout(labelLayout);

@@ -52,8 +52,8 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_previous->setStyleSheet(MusicUIObject::MCustomStyle09);
-    m_next->setStyleSheet(MusicUIObject::MCustomStyle09);
+    m_previous->setStyleSheet(MusicUIObject::MBackgroundStyle10 + MusicUIObject::MBorderStyle01);
+    m_next->setStyleSheet(MusicUIObject::MBackgroundStyle10 + MusicUIObject::MBorderStyle01);
 
     m_currentIndex = 0;
 

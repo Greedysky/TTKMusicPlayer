@@ -32,7 +32,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
-    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + MusicUIObject::MCustomStyle05);
+    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + MusicUIObject::MBorderStyle01);
 
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setContentsMargins(9, 4, 9, 4);
@@ -90,7 +90,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     m_topWidget->setFixedHeight(35);
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setStyleSheet(MusicUIObject::MCustomStyle05);
+    m_stackedWidget->setStyleSheet(MusicUIObject::MBorderStyle01);
     layout->addWidget(m_topWidget);
     layout->addWidget(m_stackedWidget);
     setLayout(layout);

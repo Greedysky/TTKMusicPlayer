@@ -219,7 +219,7 @@ void MusicIdentifySongsWidget::contextMenuEvent(QContextMenuEvent *event)
 void MusicIdentifySongsWidget::createDetectedWidget()
 {
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
+    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     m_detectedMovie = new QMovie(":/toolSets/lb_radar", QByteArray(), widget);
@@ -241,7 +241,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
 
     QLabel *text = new QLabel(tr("ShotCut:") + " Shift+Ctrl+T", widget);
-    text->setStyleSheet(MusicUIObject::MCustomStyle02);
+    text->setStyleSheet(MusicUIObject::MFontStyle03);
 
     widgetLayout->addStretch(2);
     widgetLayout->addWidget(iconLabel, 0, Qt::AlignCenter);
@@ -271,7 +271,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());
 
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
+    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
     /////////////////////////////////////////////////////////////////////
     QWidget *infoWidget = new QWidget(widget);
@@ -388,7 +388,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
 
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
-    text3Label->setStyleSheet(MusicUIObject::MCustomStyle02);
+    text3Label->setStyleSheet(MusicUIObject::MFontStyle03);
 
     widgetLayout->addStretch(1);
     widgetLayout->addWidget(infoWidget, 1, Qt::AlignCenter);
@@ -409,7 +409,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
         delete m_mainWindow->widget(1);
     }
     QWidget *widget = new QWidget(m_mainWindow);
-    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MCustomStyle04);
+    widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
 
     QLabel *iconLabel = new QLabel(widget);
@@ -417,7 +417,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text1Label = new QLabel(tr("No Songs Identified"), widget);
     QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
-    text3Label->setStyleSheet(MusicUIObject::MCustomStyle02);
+    text3Label->setStyleSheet(MusicUIObject::MFontStyle03);
     /////////////////////////////////////////////////////////////////////
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);

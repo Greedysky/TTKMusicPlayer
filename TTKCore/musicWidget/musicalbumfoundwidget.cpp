@@ -80,7 +80,7 @@ MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
     setLayout(layout);
 
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MCustomStyle04 + MusicUIObject::MCustomStyle01);
+    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
     m_iconLabel = nullptr;
 
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
@@ -202,23 +202,23 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
         topLineLayout->setContentsMargins(10, 5, 5, 0);
         QLabel *albumLabel = new QLabel(topLineWidget);
-        albumLabel->setStyleSheet(MusicUIObject::MCustomStyle01 + MusicUIObject::MCustomStyle04);
+        albumLabel->setStyleSheet(MusicUIObject::MFontStyle01 + MusicUIObject::MFontStyle05);
         albumLabel->setText(MusicUtils::Widget::elidedText(albumLabel->font(), lists[0], Qt::ElideRight, 220));
         albumLabel->setToolTip(lists[0]);
         QLabel *singerLabel = new QLabel(topLineWidget);
-        singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         singerLabel->setToolTip(tr("Singer: %1").arg(currentInfo.m_singerName));
         singerLabel->setText(MusicUtils::Widget::elidedText(singerLabel->font(), singerLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *languageLabel = new QLabel(topLineWidget);
-        languageLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        languageLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         languageLabel->setToolTip(tr("Language: %1").arg(lists[1]));
         languageLabel->setText(MusicUtils::Widget::elidedText(languageLabel->font(), languageLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *companyLabel = new QLabel(topLineWidget);
-        companyLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        companyLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         companyLabel->setToolTip(tr("Company: %1").arg(lists[2]));
         companyLabel->setText(MusicUtils::Widget::elidedText(companyLabel->font(), companyLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *yearLabel = new QLabel(topLineWidget);
-        yearLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle02);
+        yearLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         yearLabel->setToolTip(tr("Year: %1").arg(lists[3]));
         yearLabel->setText(MusicUtils::Widget::elidedText(yearLabel->font(), yearLabel->toolTip(), Qt::ElideRight, 220));
 
@@ -256,7 +256,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         MusicTime::timeSRand();
         QLabel *numberLabel = new QLabel(topRightWidget);
         numberLabel->setAlignment(Qt::AlignCenter);
-        numberLabel->setStyleSheet(MusicUIObject::MCustomStyle11);
+        numberLabel->setStyleSheet(MusicUIObject::MFontStyle06 + MusicUIObject::MColorStyle08);
         int number = qrand()%10;
         numberLabel->setText(QString("%1.%2").arg(number).arg(qrand()%10));
         topRightLayout->addWidget(numberLabel, 0, 0);
@@ -295,7 +295,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         ////////////////////////////////////////////////////////////////////////////
         QLabel *songItems = new QLabel("|" + tr("songItems") + QString("(%1)").arg(musicSongInfos.count()), function);
         songItems->setFixedHeight(50);
-        songItems->setStyleSheet(MusicUIObject::MCustomStyle03);
+        songItems->setStyleSheet(MusicUIObject::MFontStyle04);
         grid->addWidget(songItems);
 
         QWidget *middleFuncWidget = new QWidget(function);

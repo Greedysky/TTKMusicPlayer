@@ -70,7 +70,9 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     m_clearButton = new QPushButton("   " + tr("clear"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
-    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle08);
+    m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle01 + MusicUIObject::MFontStyle02 +
+                                 MusicUIObject::MColorStyle03 + MusicUIObject::MBorderStyle01 +
+                                 MusicUIObject::MBackgroundStyle17);
 
     QFrame *frame = new QFrame(this);
     frame->setFixedHeight(1);

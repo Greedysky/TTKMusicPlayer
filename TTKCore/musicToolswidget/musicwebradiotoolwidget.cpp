@@ -23,8 +23,8 @@ MusicWebRadioToolWidget::MusicWebRadioToolWidget(QWidget *parent)
     toolLayout->setContentsMargins(0, 0, 0, 0);
     m_netRadioButton1 = new QPushButton(tr("entertainmentRadio"), toolWidget);
     m_netRadioButton2 = new QPushButton(tr("musicRadio"), toolWidget);
-    m_netRadioButton1->setStyleSheet(MusicUIObject::MCustomStyle05 + "background:url(':/toolSets/btn_tool_on');");
-    m_netRadioButton2->setStyleSheet(MusicUIObject::MCustomStyle05 + "background:url(':/toolSets/btn_tool_off');");
+    m_netRadioButton1->setStyleSheet(MusicUIObject::MBorderStyle01 + "background:url(':/toolSets/btn_tool_on');");
+    m_netRadioButton2->setStyleSheet(MusicUIObject::MBorderStyle01 + "background:url(':/toolSets/btn_tool_off');");
     toolLayout->addWidget(m_netRadioButton1);
     toolLayout->addWidget(m_netRadioButton2);
     toolWidget->setLayout(toolLayout);
@@ -68,8 +68,8 @@ void MusicWebRadioToolWidget::buttonClicked(int index)
 {
     m_stackedWidget->start(index);
 
-    QString on = MusicUIObject::MCustomStyle05 + "background:url(':/toolSets/btn_tool_on');";
-    QString off = MusicUIObject::MCustomStyle05 + "background:url(':/toolSets/btn_tool_off');";
+    QString on = MusicUIObject::MBorderStyle01 + "background:url(':/toolSets/btn_tool_on');";
+    QString off = MusicUIObject::MBorderStyle01 + "background:url(':/toolSets/btn_tool_off');";
     if(index == 0)
     {
         m_netRadioButton1->setStyleSheet(on);

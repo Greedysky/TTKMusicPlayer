@@ -39,6 +39,9 @@ namespace MusicUIObject
     const QString MColorStyle07 = " \
             color:rgb(160, 99, 11);";
 
+    const QString MColorStyle08 = " \
+            color:rgb(255, 0, 0);";
+
 
 ///Background
 //////////////////////////////////////////////////////
@@ -100,6 +103,7 @@ namespace MusicUIObject
             background:rgba(0, 0, 0, 175);";
 
 ///border
+//////////////////////////////////////////////////////
     const QString MBorderStyle01 = " \
             border:none;";
 
@@ -113,46 +117,40 @@ namespace MusicUIObject
             border:1px solid gray;";
 
     const QString MBorderStyle05 = " \
-            border:1px solid #0095CD";
+            border:1px solid #0095CD;";
 
     const QString MBorderStyle06 = " \
-            border-top: 1px dashed gray";
+            border-top: 1px dashed gray;";
+
+
+///Font
+//////////////////////////////////////////////////////
+    const QString MFontStyle01 = " \
+            font-weight:bold;";
+
+    const QString MFontStyle02 = " \
+            font-size:12px;";
+
+    const QString MFontStyle03 = " \
+            font-size:15px;";
+
+    const QString MFontStyle04 = " \
+            font-size:18px;";
+
+    const QString MFontStyle05 = " \
+            font-size:20px;";
+
+    const QString MFontStyle06 = " \
+            font-size:25px;";
 
 
 ///Custom
 //////////////////////////////////////////////////////
     const QString MCustomStyle01 = " \
-            font-weight:bold;";
+            text-align:left;";
 
     const QString MCustomStyle02 = " \
-            font-size:15px;";
-
-    const QString MCustomStyle03 = " \
-            font-size:18px;";
-
-    const QString MCustomStyle04 = " \
-            font-size:20px;";
-
-    const QString MCustomStyle05 = " \
-            border:none;";
-
-    const QString MCustomStyle06 = " \
-            border:1px solid #666666;";
-
-    const QString MCustomStyle07 = " \
-            border:1px solid #555555; background-color:rgba(0,0,0,40);";
-
-    const QString MCustomStyle08 = " \
-            text-align:left;font-size:12px; \
-            color:#888888; border:none; background-color:white;";
-
-    const QString MCustomStyle09 = MBackgroundStyle10 + MCustomStyle05;
-           
-    const QString MCustomStyle10 = MColorStyle01 + " \
-            image:url(:/lrc/lb_shadow); text-align:center;";
-
-    const QString MCustomStyle11 = " \
-            font-size:25px; color:red;";
+            text-align:center;";
 
 
 ///ToolButton

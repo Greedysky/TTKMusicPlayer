@@ -88,7 +88,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     setLayout(layout);
 
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MCustomStyle04 + MusicUIObject::MCustomStyle01);
+    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
     mLayout->setContentsMargins(2, 2, 2, 2);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);

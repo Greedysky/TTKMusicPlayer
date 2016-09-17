@@ -55,7 +55,7 @@ void MusicConnectMobileWidget::initFirstWidget()
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(MusicUIObject::MCustomStyle04);
+    textLabel->setStyleSheet(MusicUIObject::MFontStyle05);
 
     QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
     firButton->setStyleSheet(MusicUIObject::MPushButtonStyle11);
@@ -99,9 +99,9 @@ void MusicConnectMobileWidget::initSecondWidget()
     pixLabel->setPixmap(QPixmap(":/toolSets/lb_wired_con"));
 
     QLabel *label1 = new QLabel(tr("use Wired Mode"), secondWidget);
-    label1->setStyleSheet(MusicUIObject::MCustomStyle03);
+    label1->setStyleSheet(MusicUIObject::MFontStyle03);
     QLabel *label2 = new QLabel(tr("android phone open usb debug"), secondWidget);
-    label2->setStyleSheet(MusicUIObject::MCustomStyle02);
+    label2->setStyleSheet(MusicUIObject::MFontStyle03);
 
     QPushButton *openButton = new QPushButton(tr("transfer"), secondWidget);
     openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
@@ -135,16 +135,16 @@ void MusicConnectMobileWidget::initThirdWidget()
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
 
     QLabel *label1 = new QLabel(tr("use mobile app to connect"), thirdWidget);
-    label1->setStyleSheet(MusicUIObject::MCustomStyle04);
+    label1->setStyleSheet(MusicUIObject::MFontStyle05);
 
     QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
     code->setMargin(8);
     code->setIcon(":/image/lb_player_logo", 0.23);
 
     QLabel *label2 = new QLabel(tr("\t1. client and app must in the same wifi"), thirdWidget);
-    label1->setStyleSheet(MusicUIObject::MCustomStyle02);
+    label2->setStyleSheet(MusicUIObject::MFontStyle03);
     QLabel *label3 = new QLabel(tr("\t2. use scanning by mobile app"), thirdWidget);
-    label1->setStyleSheet(MusicUIObject::MCustomStyle02);
+    label3->setStyleSheet(MusicUIObject::MFontStyle03);
 
     QPushButton *openButton = new QPushButton(tr("transfer"), thirdWidget);
     openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
