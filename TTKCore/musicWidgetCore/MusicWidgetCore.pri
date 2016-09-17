@@ -39,7 +39,8 @@ HEADERS  += \
     $$PWD/musicanimationstackedwidget.h \
     $$PWD/musicuploadfilewidget.h \
     $$PWD/musictoolmenuwidget.h \
-    $$PWD/musicgiflabelwidget.h
+    $$PWD/musicgiflabelwidget.h \
+    $$PWD/musicemojilabelwidget.h
     
 }
 
@@ -70,6 +71,7 @@ SOURCES += \
     $$PWD/musicanimationstackedwidget.cpp \
     $$PWD/musicuploadfilewidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
-    $$PWD/musicgiflabelwidget.cpp
+    $$PWD/musicgiflabelwidget.cpp \
+    $$PWD/musicemojilabelwidget.cpp
 
 }

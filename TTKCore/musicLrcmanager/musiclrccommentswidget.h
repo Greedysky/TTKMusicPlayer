@@ -84,6 +84,14 @@ public Q_SLOTS:
     /*!
      * Paging widget button has changed.
      */
+    void createEMOJILabelWidget();
+    /*!
+     * Create emoji label widget.
+     */
+    void currentEMOJIchanged(const QString &data);
+    /*!
+     * Current EMOJI changed.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -112,6 +120,7 @@ protected:
      */
 
     int m_currentPage;
+    QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments, *m_pagingWidget;
     MusicWYCommentsThread *m_commentsThread;

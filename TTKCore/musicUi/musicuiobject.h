@@ -99,6 +99,25 @@ namespace MusicUIObject
     const QString MBackgroundStyle19 = " \
             background:rgba(0, 0, 0, 175);";
 
+///border
+    const QString MBorderStyle01 = " \
+            border:none;";
+
+    const QString MBorderStyle02 = " \
+            border:1px solid #666666;";
+
+    const QString MBorderStyle03 = " \
+            border:1px solid #55555;";
+
+    const QString MBorderStyle04 = " \
+            border:1px solid gray;";
+
+    const QString MBorderStyle05 = " \
+            border:1px solid #0095CD";
+
+    const QString MBorderStyle06 = " \
+            border-top: 1px dashed gray";
+
 
 ///Custom
 //////////////////////////////////////////////////////

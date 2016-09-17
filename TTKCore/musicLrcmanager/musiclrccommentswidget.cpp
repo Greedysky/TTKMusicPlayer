@@ -1,5 +1,6 @@
 #include "musiclrccommentswidget.h"
 #include "musicsourcedownloadthread.h"
+#include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinlinelrcuiobject.h"
 #include "musicclickedlabel.h"
@@ -99,7 +100,7 @@ MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
     //////////////////////////////////////////////////////////////////////
     QFrame *solidLine = new QFrame(this);
     solidLine->setFixedHeight(1);
-    solidLine->setStyleSheet("border-top: 1px dashed gray;" + MusicUIObject::MColorStyle03);
+    solidLine->setStyleSheet(MusicUIObject::MBorderStyle06 + MusicUIObject::MColorStyle03);
     //////////////////////////////////////////////////////////////////////
     layout->addWidget(solidLine);
     layout->addWidget(centerWidget);
@@ -185,11 +186,12 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     QVBoxLayout *messageBoxLayout = new QVBoxLayout(messageBox);
     messageBoxLayout->setContentsMargins(10, 10, 10, 3);
     messageBox->setAttribute(Qt::WA_TranslucentBackground, false);
-    QTextEdit *textEdit = new QTextEdit(messageBox);
-    textEdit->setFixedHeight(75);
-    textEdit->setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle01 +
-                            MusicUIObject::MColorStyle04);
-    textEdit->viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle04);
+    m_messageEdit = new QTextEdit(messageBox);
+    m_messageEdit->setFixedHeight(75);
+    m_messageEdit->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_messageEdit->setStyleSheet(MusicUIObject::MCustomStyle06 + MusicUIObject::MBackgroundStyle01 +
+                                 MusicUIObject::MColorStyle04);
+    m_messageEdit->viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle04);
     messageBox->setAttribute(Qt::WA_TranslucentBackground, true);
     m_commentsLabel = new QLabel(contentsWidget);
     m_commentsLabel->setStyleSheet(MusicUIObject::MColorStyle04);
@@ -206,6 +208,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     emojiButton->setIcon(QIcon(":/lrc/lb_emoji"));
     emojiButton->setCursor(QCursor(Qt::PointingHandCursor));
     emojiButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    connect(emojiButton, SIGNAL(clicked()), SLOT(createEMOJILabelWidget()));
     sendButton->setFixedSize(65, 25);
     sendButton->setCursor(QCursor(Qt::PointingHandCursor));
     sendButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
@@ -214,7 +217,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     messageMiddleLayout->addWidget(sendButton);
     messageMiddle->setLayout(messageMiddleLayout);
     //////////////////////////////////////////////////////////////////////
-    messageBoxLayout->addWidget(textEdit);
+    messageBoxLayout->addWidget(m_messageEdit);
     messageBoxLayout->addWidget(messageMiddle);
     messageBoxLayout->addWidget(m_commentsLabel);
     messageBoxLayout->addWidget(solidLine);
@@ -262,6 +265,7 @@ MusicLrcCommentsWidget::~MusicLrcCommentsWidget()
     deleteCommentsItems();
     delete m_topLabel;
     delete m_commentsLabel;
+    delete m_messageEdit;
     delete m_pagingWidget;
     delete m_messageComments;
     delete m_commentsThread;
@@ -377,6 +381,19 @@ void MusicLrcCommentsWidget::buttonClicked(int index)
     }
     m_pagingItems[m_currentPage]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MCustomStyle01);
     m_commentsThread->startSearchSong(m_pagingItems[m_currentPage]->text().toInt() - 1);
+}
+
+void MusicLrcCommentsWidget::createEMOJILabelWidget()
+{
+    MusicEMOJILabelWidget *w = new MusicEMOJILabelWidget(this);
+    connect(w, SIGNAL(dataChanged(QString)), SLOT(currentEMOJIchanged(QString)));
+    w->move(15, 160);
+    w->show();
+}
+
+void MusicLrcCommentsWidget::currentEMOJIchanged(const QString &data)
+{
+    m_messageEdit->insertPlainText(data);
 }
 
 void MusicLrcCommentsWidget::contextMenuEvent(QContextMenuEvent *event)
