@@ -116,11 +116,6 @@ PinyinHelper::PinyinHelper()
     TTK_INIT_PRIVATE;
 }
 
-QString PinyinHelper::getClassName()
-{
-    return "PinyinHelper";
-}
-
 QStringList PinyinHelper::convertToPinyinArray(const QChar &c)
 {
     return convertToPinyinArray(c, WITH_TONE_MARK);

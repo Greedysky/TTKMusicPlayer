@@ -5,11 +5,6 @@ KugouUrl::KugouUrl()
 
 }
 
-QString KugouUrl::getClassName()
-{
-    return "KugouUrl";
-}
-
 QString KugouUrl::getSongYuekuUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/html/default.html?ver=8010";

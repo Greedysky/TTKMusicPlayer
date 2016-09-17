@@ -9,16 +9,6 @@ const char QNUtils::KEY_ESCAPE_UNRESERVE_BYTES[] = {'!', '*', '\'', '(', ')', ';
                                                     '&', '=', '+', '$', ',', '/', '#', '[', ']' };
 const char QNUtils::KEY_ESCAPE_RESERVE_BYTES[] = {'?'};
 
-QNUtils::QNUtils()
-{
-
-}
-
-QNUtils::~QNUtils()
-{
-
-}
-
 // Url safe base64 encode
 QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 {

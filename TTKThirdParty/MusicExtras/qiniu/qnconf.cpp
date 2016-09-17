@@ -1,10 +1,5 @@
 #include "qnconf.h"
 
-QNConf::QNConf()
-{
-
-}
-
 // Upload & Resource Management Host
 QString QNConf::UPLOAD_HOST = QString("http://upload.qiniu.com");
 QString QNConf::RS_HOST = QString("http://rs.qbox.me");

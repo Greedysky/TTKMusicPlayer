@@ -15,7 +15,7 @@
 
 class QNSimpleListDataPrivate;
 
-typedef struct QNDataItem
+typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
 {
     QString m_name;
     QString m_hash;
@@ -25,20 +25,39 @@ typedef struct QNDataItem
 }QNDataItem;
 TTK_DECLARE_LISTS(QNDataItem)
 
+/*! @brief The namespace of the qiniu simple list data.
+ * @author Jemy Graw <jemygraw@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QNSimpleListData : public QObject
 {
     Q_OBJECT
 public:
     explicit QNSimpleListData(QNetworkAccessManager *networkManager,
                               QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
     void listDataToServer(const QString &bucket);
+    /*!
+     * List data to server.
+     */
 
 Q_SIGNALS:
     void receiveFinshed(const QNDataItems &items);
+    /*!
+     * Receive data finshed.
+     */
 
 private Q_SLOTS:
     void receiveDataFromServer();
+    /*!
+     * Receive data from server finshed.
+     */
     void handleError(QNetworkReply::NetworkError error);
+    /*!
+     * Get handle error.
+     */
 
 private:
     TTK_DECLARE_PRIVATE(QNSimpleListData)

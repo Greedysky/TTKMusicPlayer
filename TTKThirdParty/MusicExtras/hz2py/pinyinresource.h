@@ -14,20 +14,26 @@
 #include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
 
-/**
- * Pinyin resource class
+/*! @brief The class of the pinyin resource.
+ * @author jiangXiaoBai <2499971906@qq.com>
  */
 class MUSIC_EXTRAS_EXPORT PinyinResource
 {
 public:
-    static QString getClassName();
     static QMap<QString, QString> getPinyinResource();
+    /*!
+     * Get pinyin resource.
+     */
     static QMap<QString, QString> getMutilPinyinResource();
+    /*!
+     * Get mutil pinyin resource.
+     */
     static QMap<QString, QString> getChineseResource();
+    /*!
+     * Get chinese resource.
+     */
 
 private:
-    PinyinResource() {}
-
     static QMap<QString, QString> getResource(const QString &resourceName);
 
 };

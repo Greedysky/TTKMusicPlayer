@@ -50,11 +50,6 @@ QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget 
 
 }
 
-QString QRCodeQWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void QRCodeQWidget::setMargin(const int margin)
 {
     TTK_D(QRCodeQWidget);

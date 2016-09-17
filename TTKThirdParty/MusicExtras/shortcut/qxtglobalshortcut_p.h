@@ -41,6 +41,9 @@
 #include <QAbstractNativeEventFilter>
 #endif
 
+/*! @brief The namespace of the qxt global shortcut private.
+ * @author libqxt <foundation@libqxt.org>
+ */
 class MUSIC_EXTRAS_EXPORT QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobalShortcut>
 #if(QT_VERSION>=0x050000)
         , public QAbstractNativeEventFilter
@@ -49,6 +52,9 @@ class MUSIC_EXTRAS_EXPORT QxtGlobalShortcutPrivate : public QxtPrivate<QxtGlobal
 public:
     QXT_DECLARE_PUBLIC(QxtGlobalShortcut)
     QxtGlobalShortcutPrivate();
+    /*!
+     * Object contsructor.
+     */
     ~QxtGlobalShortcutPrivate();
 
     bool enabled;
@@ -56,7 +62,13 @@ public:
     Qt::KeyboardModifiers mods;
 
     bool setShortcut(const QKeySequence& shortcut);
+    /*!
+     * Set current shortcut.
+     */
     bool unsetShortcut();
+    /*!
+     * Unset current shortcut.
+     */
 
     static bool error;
     static int ref;
@@ -66,13 +78,32 @@ public:
 #else
     bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 #endif
+    /*!
+     * Override the widget event.
+     */
+
 private:
     static quint32 nativeKeycode(Qt::Key keycode);
+    /*!
+     * Get native key code.
+     */
     static quint32 nativeModifiers(Qt::KeyboardModifiers modifiers);
+    /*!
+     * Get native modifiers.
+     */
 
     static bool registerShortcut(quint32 nativeKey, quint32 nativeMods);
+    /*!
+     * Register shortcut.
+     */
     static bool unregisterShortcut(quint32 nativeKey, quint32 nativeMods);
+    /*!
+     * Unregister shortcut.
+     */
     static void activateShortcut(quint32 nativeKey, quint32 nativeMods);
+    /*!
+     * Activate shortcut.
+     */
 
     static QHash<QPair<quint32, quint32>, QxtGlobalShortcut*> shortcuts;
 };

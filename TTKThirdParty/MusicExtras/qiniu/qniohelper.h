@@ -15,6 +15,9 @@
 class QNMac;
 class QNPutExtra;
 
+/*! @brief The namespace of the qiniu io helper.
+ * @author Jemy Graw <jemygraw@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QNIOHelper
 {
 
@@ -22,8 +25,17 @@ public:
     static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
                                                   const QString &key = 0, const QString &fileName = 0,
                                                   const QNPutExtra *putExtra = 0);
+    /*!
+     * Create put data multi part.
+     */
     static QNetworkRequest listRequest(const QString &bucket, const QNMac *mac = 0);
+    /*!
+     * List request.
+     */
     static QNetworkRequest deleteRequest(const QString &bucket, const QString &key, const QNMac *mac = 0);
+    /*!
+     * Delete requestt.
+     */
 
 };
 

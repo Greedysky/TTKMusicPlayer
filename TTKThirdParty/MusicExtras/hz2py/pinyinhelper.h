@@ -12,8 +12,9 @@
 #include "pinyinresource.h"
 
 class PinyinHelperPrivate;
-/**
- * Chinese characters to Pinyin Class
+
+/*! @brief The class of the chinese characters to pinyin.
+ * @author jiangXiaoBai <2499971906@qq.com>
  */
 class MUSIC_EXTRAS_EXPORT PinyinHelper
 {
@@ -25,24 +26,20 @@ public:
         WITHOUT_TONE        ///Without tone
     };
 
+    PinyinHelper();
     /*!
      * Object contsructor.
      */
-    PinyinHelper();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
+    QStringList convertToPinyinArray(const QChar &c);
     /**
      * Converting a single Chinese character into a tone format
      *
      * @param c Needs to be converted into phonetic characters
      * @return String Pinyin
      */
-    QStringList convertToPinyinArray(const QChar &c);
 
+    QString convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat);
     /**
      * Convert the string into the corresponding format of the Pinyin
      *
@@ -51,8 +48,8 @@ public:
      * @param pinyinFormat
      * @return String Pinyin
      */
-    QString convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat);
 
+    QString convertToPinyinString(const QString &str, const QString &separator);
     /**
      * Converts a string into a tone format
      *
@@ -60,24 +57,17 @@ public:
      * @param separator Phonetic separator
      * @return Pinyin with tone after conversion
      */
-    QString convertToPinyinString(const QString &str, const QString &separator);
 
+    bool hasMultiPinyin(char c);
     /**
      * A judge whether the Chinese Chinese characters
      *
      * @param c chinese characters
      * @return Judge the result, is the Chinese character returns true, otherwise returns false
      */
-    bool hasMultiPinyin(char c);
-
-    /**
-     * Gets the string corresponding to the first letter of the alphabet.
-     *
-     * @param str String that needs to be converted
-     * @return Corresponding to the first letter of the alphabet
-     */
 
 private:
+    QStringList formatPinyin(QString pinyinString, Format pinyinFormat);
     /**
      * The phonetic alphabet is formatted into the corresponding format
      *
@@ -85,8 +75,8 @@ private:
      * @param pinyinFormat
      * @return Pinyin after format conversion
      */
-    QStringList formatPinyin(QString pinyinString, Format pinyinFormat);
 
+    QStringList convertToPinyinArray(const QChar &c, Format pinyinFormat);
     /**
      * Converting a single Chinese character into the corresponding format
      *
@@ -94,7 +84,6 @@ private:
      * @param pinyinFormat
      * @return Pinyin of Chinese characters
      */
-    QStringList convertToPinyinArray(const QChar &c, Format pinyinFormat);
 
     TTK_DECLARE_PRIVATE(PinyinHelper)
 

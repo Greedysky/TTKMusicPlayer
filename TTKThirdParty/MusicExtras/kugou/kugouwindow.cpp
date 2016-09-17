@@ -78,11 +78,6 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
     }
 }
 
-QString KugouWindow::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void KugouWindow::setUrl(const QString &url)
 {
 #ifdef MUSIC_WEBKIT

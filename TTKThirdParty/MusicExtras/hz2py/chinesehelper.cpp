@@ -26,11 +26,6 @@ ChineseHelper::ChineseHelper()
     TTK_INIT_PRIVATE;
 }
 
-QString ChineseHelper::getClassName()
-{
-    return "ChineseHelper";
-}
-
 QChar ChineseHelper::convertToSimplifiedChinese(const QChar &c)
 {
     TTK_D(ChineseHelper);

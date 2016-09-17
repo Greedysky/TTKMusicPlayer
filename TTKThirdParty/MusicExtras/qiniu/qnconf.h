@@ -12,11 +12,12 @@
 #include <QObject>
 #include "musicextrasglobaldefine.h"
 
+/*! @brief The namespace of the qiniu config.
+ * @author Jemy Graw <jemygraw@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QNConf
 {
 public:
-    QNConf();
-
     static QString UPLOAD_HOST;
     static QString RS_HOST;
     static QString RSF_HOST;

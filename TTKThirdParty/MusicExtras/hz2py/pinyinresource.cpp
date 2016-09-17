@@ -3,11 +3,6 @@
 #include <QFile>
 #include <QTextStream>
 
-QString PinyinResource::getClassName()
-{
-    return "PinyinResource";
-}
-
 QMap<QString, QString> PinyinResource::getPinyinResource()
 {
     return getResource(":/data/pinyin");

@@ -155,6 +155,9 @@ QXT_CORE_EXPORT const char* qxtVersion();
 #define QXT_D(PUB) PUB##Private& d = qxt_d()
 #define QXT_P(PUB) PUB& p = qxt_p()
 
+/*! @brief The namespace of the qxt private.
+ * @author libqxt <foundation@libqxt.org>
+ */
 template <typename PUB>
 class MUSIC_EXTRAS_EXPORT QxtPrivate
 {
@@ -180,6 +183,9 @@ private:
     PUB* qxt_p_ptr;
 };
 
+/*! @brief The namespace of the qxt private interface.
+ * @author libqxt <foundation@libqxt.org>
+ */
 template <typename PUB, typename PVT>
 class MUSIC_EXTRAS_EXPORT QxtPrivateInterface
 {
