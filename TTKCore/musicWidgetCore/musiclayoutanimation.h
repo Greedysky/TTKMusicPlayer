@@ -60,10 +60,9 @@ protected:
 
     bool m_isAnimating;
     float m_currentValue;
-    QPropertyAnimation *m_animation;
-    QList<QWidget*> m_widgetItems;
     QWidget *m_mainWidget;
     QVBoxLayout *m_widgetLayout;
+    QPropertyAnimation *m_animation;
 
 };
 

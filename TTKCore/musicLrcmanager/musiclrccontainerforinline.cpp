@@ -52,8 +52,8 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     initFunctionLabel();
 
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
-    createNoLrcCurrentInfo();
     initCurrentLrc(tr("noCurrentSongPlay"));
+    createNoLrcCurrentInfo();
 
     m_commentsWidget = nullptr;
     m_translatedWidget = nullptr;

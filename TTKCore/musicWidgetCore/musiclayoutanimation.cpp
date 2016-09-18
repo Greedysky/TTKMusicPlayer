@@ -67,7 +67,7 @@ void MusicLayoutAnimation::start()
     }
 
     m_animation->setStartValue(0);
-    m_animation->setEndValue(height()/m_widgetItems.count());
+    m_animation->setEndValue(height()/m_widgetLayout->count());
 
     m_mainWidget->hide();
     m_isAnimating = true;
@@ -83,7 +83,6 @@ void MusicLayoutAnimation::stop()
 
 void MusicLayoutAnimation::addWidget(QWidget *widget)
 {
-    m_widgetItems << widget;
     m_widgetLayout->addWidget(widget);
 }
 
