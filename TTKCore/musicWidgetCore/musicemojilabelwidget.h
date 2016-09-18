@@ -49,6 +49,11 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void leaveEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     int m_currentPage;
     QList<QLabel*> m_labelItems;
     QList<QToolButton*> m_buttonItems;
