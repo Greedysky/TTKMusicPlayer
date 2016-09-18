@@ -2,7 +2,6 @@
 #include "musicnumberdefine.h"
 
 #include <QPixmap>
-#include <QTransform>
 
 MusicAnimationStackedWidget::MusicAnimationStackedWidget(QWidget *parent)
     : QStackedWidget(parent)
@@ -36,9 +35,8 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
     if(m_isAnimating)
     {
         QPainter painter(this);
-        QTransform transform;
-        renderCurrentWidget(painter, transform);
-        renderPreviousWidget(painter, transform);
+        renderCurrentWidget(painter);
+        renderPreviousWidget(painter);
     }
     else
     {
@@ -46,7 +44,7 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
     }
 }
 
-void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter, QTransform &transform)
+void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 {
     QWidget *w = widget(m_previousIndex);
     QPixmap pixmap( w->size() );
@@ -55,7 +53,6 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter, QTrans
     w->render(&pixmap);
     w->setAttribute(Qt::WA_TranslucentBackground, false);
 
-    Q_UNUSED(transform);
     switch(m_type)
     {
         case BottomToTop :
@@ -82,7 +79,7 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter, QTrans
     }
 }
 
-void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter, QTransform &transform)
+void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter)
 {
     QWidget *w = widget(m_currentIndex);
     QPixmap pixmap( w->size() );
@@ -95,29 +92,25 @@ void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter, QTransf
     {
         case BottomToTop :
                 {
-                    transform.translate(0, m_currentValue);
-                    painter.setTransform(transform);
+                    painter.translate(0, m_currentValue);
                     painter.drawPixmap(0, -height()/2, pixmap);
                     break;
                 }
         case TopToBottom :
                 {
-                    transform.translate(0, m_currentValue);
-                    painter.setTransform(transform);
+                    painter.translate(0, m_currentValue);
                     painter.drawPixmap(0, height()/2, pixmap);
                     break;
                 }
         case LeftToRight :
                 {
-                    transform.translate(m_currentValue, 0);
-                    painter.setTransform(transform);
+                    painter.translate(m_currentValue, 0);
                     painter.drawPixmap(-width()/2, 0, pixmap);
                     break;
                 }
         case RightToLeft :
                 {
-                    transform.translate(m_currentValue, 0);
-                    painter.setTransform(transform);
+                    painter.translate(m_currentValue, 0);
                     painter.drawPixmap(width()/2, 0, pixmap);
                     break;
                 }
@@ -191,9 +184,11 @@ void MusicAnimationStackedWidget::animationFinished()
 {
     m_currentValue = 0;
     m_isAnimating = false;
+
     QWidget *w = widget(m_currentIndex);
     w->show();
     w->raise();
+
     setCurrentWidget( w );
     update();
 }

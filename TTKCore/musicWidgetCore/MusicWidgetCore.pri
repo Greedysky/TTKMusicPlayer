@@ -37,6 +37,7 @@ HEADERS  += \
     $$PWD/musictimersliderwidget.h \
     $$PWD/musiccutsliderwidget.h \
     $$PWD/musicanimationstackedwidget.h \
+    $$PWD/musiclayoutanimation.h \
     $$PWD/musicuploadfilewidget.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
@@ -69,6 +70,7 @@ SOURCES += \
     $$PWD/musictimersliderwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
     $$PWD/musicanimationstackedwidget.cpp \
+    $$PWD/musiclayoutanimation.cpp \
     $$PWD/musicuploadfilewidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \

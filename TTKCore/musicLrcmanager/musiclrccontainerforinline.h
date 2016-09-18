@@ -17,6 +17,7 @@ class MusicClickedLabel;
 class MusicLrcAnalysis;
 class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
+class MusicLayoutAnimation;
 
 /*! @brief The class of the inline lrc container.
  * @author Greedysky <greedysky@163.com>
@@ -155,6 +156,10 @@ private Q_SLOTS:
     /*!
      * Video button clicked.
      */
+    void updateAnimationLrc();
+    /*!
+     * Animation finished.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -207,13 +212,14 @@ protected:
     QPoint m_mousePressedAt, m_mouseMovedAt;
     bool m_mouseLeftPressed, m_showArtBackground;
     bool m_lrcDisplayAll;
+    int m_animationFreshTime;
     qint64 m_changeSpeedValue;
-    QVBoxLayout *m_vBoxLayout;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
     MusicLrcAnalysis *m_lrcAnalysis;
     MusicLrcCommentsWidget *m_commentsWidget;
     MusicLrcTranslatedWidget *m_translatedWidget;
+    MusicLayoutAnimation *m_layoutWidget;
 
 };
 

@@ -77,11 +77,11 @@ protected:
     /*!
      * Override the widget event.
      */
-    void renderPreviousWidget(QPainter &painter, QTransform &transform);
+    void renderPreviousWidget(QPainter &painter);
     /*!
      * Render previous widget.
      */
-    void renderCurrentWidget(QPainter &painter, QTransform &transform);
+    void renderCurrentWidget(QPainter &painter);
     /*!
      * Render current widget.
      */

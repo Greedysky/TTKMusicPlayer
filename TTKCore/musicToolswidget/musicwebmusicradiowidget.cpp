@@ -303,7 +303,7 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
         QString lrc;
         for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
         {
-            if(i == LRC_CURRENT_LINR)
+            if(i == LRC_CURRENT_LINE)
             {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
             }

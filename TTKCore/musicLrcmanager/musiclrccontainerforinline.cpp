@@ -13,6 +13,7 @@
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"
 #include "musiclrctranslatedwidget.h"
+#include "musiclayoutanimation.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -24,17 +25,19 @@
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
-    m_vBoxLayout = new QVBoxLayout(this);
-    m_vBoxLayout->setMargin(0);
+    QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
+    vBoxLayout->setMargin(0);
+    setLayout(vBoxLayout);
 
-    setLayout(m_vBoxLayout);
     m_containerType = "INLINE";
+    m_layoutWidget = new MusicLayoutAnimation(this);
     for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
     {
        MusicLRCManager *w = new MusicLRCManagerForInline(this);
-       m_vBoxLayout->addWidget(w);
+       m_layoutWidget->addWidget(w);
        m_musicLrcContainer.append(w);
     }
+    vBoxLayout->addWidget(m_layoutWidget);
 
     setLinearGradientColor(MusicLRCManager::Origin);
     m_mouseMovedAt = QPoint(-1, -1);
@@ -43,6 +46,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_showArtBackground = true;
     m_lrcDisplayAll = false;
     m_changeSpeedValue = 0;
+    m_animationFreshTime = 0;
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
     initFunctionLabel();
@@ -58,12 +62,12 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
 MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
-    delete m_vBoxLayout;
     delete m_lrcAnalysis;
     delete m_lrcFloatWidget;
     delete m_noLrcCurrentInfo;
     delete m_commentsWidget;
     delete m_translatedWidget;
+    delete m_layoutWidget;
 }
 
 QString MusicLrcContainerForInline::getClassName()
@@ -73,17 +77,18 @@ QString MusicLrcContainerForInline::getClassName()
 
 void MusicLrcContainerForInline::startTimerClock()
 {
-    m_musicLrcContainer[LRC_CURRENT_LINR]->startTimerClock();
+    m_musicLrcContainer[LRC_CURRENT_LINE]->startTimerClock();
 }
 
 void MusicLrcContainerForInline::stopLrcMask()
 {
-    m_musicLrcContainer[LRC_CURRENT_LINR]->stopLrcMask();
+    m_musicLrcContainer[LRC_CURRENT_LINE]->stopLrcMask();
+    m_layoutWidget->stop();
 }
 
 void MusicLrcContainerForInline::setMaskLinearGradientColor(const QList<QColor> &colors) const
 {
-    m_musicLrcContainer[LRC_CURRENT_LINR]->setMaskLinearGradientColor(colors);
+    m_musicLrcContainer[LRC_CURRENT_LINE]->setMaskLinearGradientColor(colors);
 }
 
 void MusicLrcContainerForInline::setSettingParameter()
@@ -96,19 +101,15 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
 {
     if(m_lrcAnalysis->valid())
     {
-        for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
-        {
-            m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
-        }
-        m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() + 1);
-        m_musicLrcContainer[LRC_CURRENT_LINR]->startLrcMask(time);
-
-        setItemStyleSheet();
+        m_animationFreshTime = time;
+        m_layoutWidget->start();
     }
 }
 
 bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName)
 {
+    m_layoutWidget->stop();
+
     MusicLrcAnalysis::State state;
     if(QFileInfo(lrcFileName).suffix() == "krc")
     {
@@ -127,19 +128,19 @@ bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName
     }
     if(state == MusicLrcAnalysis::OpenFileFail)
     {
-        m_musicLrcContainer[LRC_CURRENT_LINR]->setText(tr("unFoundLrc"));
+        m_musicLrcContainer[LRC_CURRENT_LINE]->setText(tr("unFoundLrc"));
         showNoLrcCurrentInfo();
         return false;
     }
     if(state == MusicLrcAnalysis::LrcEmpty)
     {
-        m_musicLrcContainer[LRC_CURRENT_LINR]->setText(tr("lrcFileError"));
+        m_musicLrcContainer[LRC_CURRENT_LINE]->setText(tr("lrcFileError"));
         showNoLrcCurrentInfo();
         return false;
     }
     else
     {
-        m_musicLrcContainer[LRC_CURRENT_LINR]->setText(tr("noCurrentSongPlay"));
+        m_musicLrcContainer[LRC_CURRENT_LINE]->setText(tr("noCurrentSongPlay"));
     }
 
     m_noLrcCurrentInfo->hide(); ///hide error make lrc widget
@@ -148,7 +149,7 @@ bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName
 
 QString MusicLrcContainerForInline::text() const
 {
-    return m_musicLrcContainer[LRC_CURRENT_LINR]->text();
+    return m_musicLrcContainer[LRC_CURRENT_LINE]->text();
 }
 
 qint64 MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
@@ -291,6 +292,17 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 void MusicLrcContainerForInline::musicSongMovieClicked()
 {
     MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
+}
+
+void MusicLrcContainerForInline::updateAnimationLrc()
+{
+    for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
+    {
+        m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
+    }
+    m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() + 1);
+    m_musicLrcContainer[LRC_CURRENT_LINE]->startLrcMask(m_animationFreshTime);
+    setItemStyleSheet();
 }
 
 void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
@@ -496,7 +508,7 @@ void MusicLrcContainerForInline::createNoLrcCurrentInfo()
 
 void MusicLrcContainerForInline::showNoLrcCurrentInfo()
 {
-    QRect rect = m_musicLrcContainer[LRC_CURRENT_LINR + 1]->geometry();
+    QRect rect = m_musicLrcContainer[LRC_CURRENT_LINE + 1]->geometry();
     QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
     int w = me.width(m_noLrcCurrentInfo->text());
     int h = me.height();
@@ -511,12 +523,13 @@ void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    m_musicLrcContainer[LRC_CURRENT_LINR]->setText(str);
+    m_musicLrcContainer[LRC_CURRENT_LINE]->setText(str);
 }
 
 void MusicLrcContainerForInline::initFunctionLabel()
 {
     QWidget *functionLabel = new QWidget(this);
+    functionLabel->setFixedHeight(40);
     QHBoxLayout *functionLayout = new QHBoxLayout(functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -557,7 +570,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     functionLayout->addStretch(1);
     functionLabel->setLayout(functionLayout);
 
-    m_vBoxLayout->addWidget(functionLabel);
+    layout()->addWidget(functionLabel);
 }
 
 void MusicLrcContainerForInline::setItemStyleSheet()

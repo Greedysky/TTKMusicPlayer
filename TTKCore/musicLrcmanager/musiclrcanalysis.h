@@ -13,7 +13,7 @@
 #include "musicglobaldefine.h"
 
 #define LRC_LINEMAX_COUNT   11
-#define LRC_CURRENT_LINR    5
+#define LRC_CURRENT_LINE    5
 
 class MusicTranslationThread;
 
