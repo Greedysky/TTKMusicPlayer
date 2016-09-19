@@ -97,9 +97,9 @@ QString MusicSongTag::getNotSupportedPluginPath(const QString &format)
 #  endif
 #elif defined Q_OS_UNIX
 #  ifdef MUSIC_GREATER_NEW
-    path = QString("qmmp/Input/%1.dll").arg(format);
+    path = QString("qmmp/Input/%1.so").arg(format);
 #  else
-    path = QString("../lib/qmmp/Input/%1.dll").arg(format);
+    path = QString("../lib/qmmp/Input/%1.so").arg(format);
 #  endif
 #endif
     return path;
