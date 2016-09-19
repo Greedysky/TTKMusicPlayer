@@ -508,12 +508,12 @@ void MusicLrcContainerForInline::createNoLrcCurrentInfo()
 
 void MusicLrcContainerForInline::showNoLrcCurrentInfo()
 {
-    QRect rect = m_musicLrcContainer[LRC_CURRENT_LINE + 1]->geometry();
     QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
     int w = me.width(m_noLrcCurrentInfo->text());
     int h = me.height();
+    int offset = (height() - 40)*(LRC_CURRENT_LINE + 1)/m_musicLrcContainer.count();
 
-    m_noLrcCurrentInfo->setGeometry((rect.width() - w)/2, rect.y(), w, h);
+    m_noLrcCurrentInfo->setGeometry((width() - w)/2, offset, w, h);
     m_noLrcCurrentInfo->show();
 }
 
