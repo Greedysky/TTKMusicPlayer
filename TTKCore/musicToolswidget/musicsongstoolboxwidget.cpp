@@ -283,7 +283,6 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     contentsWidget->setLayout(m_layout);
 
     m_scrollArea = new QScrollArea(this);
-    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_scrollArea->setWidgetResizable(true);
     m_scrollArea->setFrameShape(QFrame::NoFrame);
     m_scrollArea->setAlignment(Qt::AlignLeft);

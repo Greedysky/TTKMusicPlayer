@@ -12,6 +12,8 @@
 #include "musicapplication.h"
 #include "musictoastlabel.h"
 
+#include <QScrollArea>
+
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
 {
@@ -513,6 +515,8 @@ void MusicSongsSummarizied::setTransparent(int alpha)
         item.m_itemObject->setTransparent(alpha*2.55);
         item.m_itemObject->update();
     }
+    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01 +
+                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(50 + alpha*2.05));
 }
 
 void MusicSongsSummarizied::setMusicPlayCount(int index)

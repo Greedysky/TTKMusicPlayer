@@ -623,7 +623,7 @@ void MusicSongsListWidget::paintEvent(QPaintEvent *event)
 {
     QWidget *w = viewport();
     QPainter painter(w);
-    painter.fillRect(0, 0, w->width(), w->height(), QColor(255, 255, 255, m_transparent));
+    painter.fillRect(w->rect(), QColor(255, 255, 255, m_transparent));
     painter.end();
 
     MusicAbstractTableWidget::paintEvent(event);
