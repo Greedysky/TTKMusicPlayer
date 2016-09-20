@@ -15,7 +15,7 @@
 #include "qnsimpledeletedata.h"
 #include "musiccloudfilemanagerdialog.h"
 
-class MusicUploadFileWidget;
+class MusicOpenFileWidget;
 
 /*! @brief The class of the cloud shared song table widget.
  * @author Greedysky <greedysky@163.com>
@@ -144,7 +144,7 @@ protected:
     QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
-    MusicUploadFileWidget *m_uploadFileWidget;
+    MusicOpenFileWidget *m_uploadFileWidget;
     MusicCloudFileManagerDialog *m_fileDialog;
 
 };

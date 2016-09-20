@@ -14,7 +14,7 @@
 #include "musicsong.h"
 #include "musicabstracttablewidget.h"
 
-class MusicUploadFileWidget;
+class MusicOpenFileWidget;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
 
@@ -281,7 +281,7 @@ protected:
 
     QTimer m_timerShow, m_timerStay;
     MusicSongs *m_musicSongs;
-    MusicUploadFileWidget *m_uploadFileWidget;
+    MusicOpenFileWidget *m_uploadFileWidget;
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 

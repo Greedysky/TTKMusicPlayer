@@ -1,5 +1,5 @@
-#ifndef MUSICUPLOADFILEWIDGET_H
-#define MUSICUPLOADFILEWIDGET_H
+#ifndef MUSICOPENFILEWIDGET_H
+#define MUSICOPENFILEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,14 +12,14 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the upload file widget.
+/*! @brief The class of the open file widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicUploadFileWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicOpenFileWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicUploadFileWidget(QWidget *parent = 0);
+    explicit MusicOpenFileWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -46,4 +46,4 @@ Q_SIGNALS:
 
 };
 
-#endif // MUSICUPLOADFILEWIDGET_H
+#endif // MUSICOPENFILEWIDGET_H

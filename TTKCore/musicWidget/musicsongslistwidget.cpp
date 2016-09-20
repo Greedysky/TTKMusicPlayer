@@ -12,7 +12,7 @@
 #include "musicconnecttransferwidget.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
-#include "musicuploadfilewidget.h"
+#include "musicopenfilewidget.h"
 
 #include <QUrl>
 #include <QAction>
@@ -220,7 +220,7 @@ bool MusicSongsListWidget::createUploadFileWidget()
         setFixedSize(320, 100);
         if(m_uploadFileWidget == nullptr)
         {
-            m_uploadFileWidget = new MusicUploadFileWidget(this);
+            m_uploadFileWidget = new MusicOpenFileWidget(this);
             connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SIGNAL(musicAddNewFiles()));
             connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SIGNAL(musicAddNewDir()));
             m_uploadFileWidget->adjustRect(width(), height());

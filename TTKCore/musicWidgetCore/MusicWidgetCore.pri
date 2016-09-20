@@ -38,10 +38,10 @@ HEADERS  += \
     $$PWD/musiccutsliderwidget.h \
     $$PWD/musicanimationstackedwidget.h \
     $$PWD/musiclayoutanimation.h \
-    $$PWD/musicuploadfilewidget.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
-    $$PWD/musicemojilabelwidget.h
+    $$PWD/musicemojilabelwidget.h \
+    $$PWD/musicopenfilewidget.h
     
 }
 
@@ -71,9 +71,9 @@ SOURCES += \
     $$PWD/musiccutsliderwidget.cpp \
     $$PWD/musicanimationstackedwidget.cpp \
     $$PWD/musiclayoutanimation.cpp \
-    $$PWD/musicuploadfilewidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
-    $$PWD/musicemojilabelwidget.cpp
+    $$PWD/musicemojilabelwidget.cpp \
+    $$PWD/musicopenfilewidget.cpp
 
 }
