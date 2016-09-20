@@ -1,10 +1,10 @@
-#include "musicuploadfilewidget.h"
+#include "musicopenfilewidget.h"
 #include "musicclickedlabel.h"
 #include "musicutils.h"
 
 #include <QGridLayout>
 
-MusicUploadFileWidget::MusicUploadFileWidget(QWidget *parent)
+MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     : QWidget(parent)
 {
     QGridLayout *layout = new QGridLayout(this);
@@ -33,12 +33,12 @@ MusicUploadFileWidget::MusicUploadFileWidget(QWidget *parent)
     resize(150, 50);
 }
 
-QString MusicUploadFileWidget::getClassName()
+QString MusicOpenFileWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicUploadFileWidget::adjustRect(int w, int h)
+void MusicOpenFileWidget::adjustRect(int w, int h)
 {
     int x = (w - width() - 60)/2;
     int y = (h - height())/2;

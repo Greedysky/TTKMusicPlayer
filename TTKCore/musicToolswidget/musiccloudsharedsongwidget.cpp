@@ -1,7 +1,7 @@
 #include "musiccloudsharedsongwidget.h"
 #include "musicdatadownloadthread.h"
 #include "musicsourcedownloadthread.h"
-#include "musicuploadfilewidget.h"
+#include "musicopenfilewidget.h"
 #include "musicleftareawidget.h"
 #include "musicnumberdefine.h"
 #include "musicmessagebox.h"
@@ -44,8 +44,6 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     connect(m_qnListData, SIGNAL(receiveFinshed(QNDataItems)), SLOT(receiveDataFinshed(QNDataItems)));
     connect(m_qnDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_qnUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
-
-    QTimer::singleShot(MT_MS*100, this, SLOT(updateListToServer()));
 }
 
 MusicCloudSharedSongTableWidget::~MusicCloudSharedSongTableWidget()
@@ -73,6 +71,7 @@ bool MusicCloudSharedSongTableWidget::getKey()
     download->startToDownload(QN_UA_URL);
 
     loop.exec();
+    updateListToServer();
 
     return !QNConf::ACCESS_KEY.isEmpty() && !QNConf::SECRET_KEY.isEmpty();
 }
@@ -355,7 +354,7 @@ void MusicCloudSharedSongTableWidget::createUploadFileWidget()
 {
     if(m_uploadFileWidget == nullptr)
     {
-        m_uploadFileWidget = new MusicUploadFileWidget(this);
+        m_uploadFileWidget = new MusicOpenFileWidget(this);
         connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFileToServer()));
         connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFilesToServer()));
         m_uploadFileWidget->adjustRect(width(), height());
