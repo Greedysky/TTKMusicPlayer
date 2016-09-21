@@ -111,7 +111,8 @@ void MusicAlbumFoundWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;
     m_downloadThread->setQueryAllRecords(false);
-    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name.split("-").front().trimmed());
+    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery,
+                                      MusicUtils::Core::artistName(name));
 }
 
 void MusicAlbumFoundWidget::queryAllFinished()

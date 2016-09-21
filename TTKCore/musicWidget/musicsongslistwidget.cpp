@@ -526,7 +526,7 @@ void MusicSongsListWidget::musicSearchQuery(QAction *action)
     }
 
     QString songName = getCurrentSongName();
-    QStringList names = songName.split("-");
+    QStringList names(MusicUtils::Core::splitString(songName));
     switch(action->data().toInt())
     {
         case 0:
@@ -757,7 +757,7 @@ void MusicSongsListWidget::startToDrag()
 void MusicSongsListWidget::createContextMenu(QMenu &menu)
 {
     QString songName = getCurrentSongName();
-    QStringList names = songName.split("-");
+    QStringList names(MusicUtils::Core::splitString(songName));
     for(int i=0; i<names.count(); ++i)
     {
         menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i);

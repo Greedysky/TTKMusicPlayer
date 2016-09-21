@@ -135,9 +135,9 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
-        int count = filename.split('-').count();
-        QString artistName = filename.split('-').front().trimmed();
-        QString songName = filename.split('-').back().trimmed();
+        int count = MusicUtils::Core::splitString(filename).count();
+        QString artistName = MusicUtils::Core::artistName(filename);
+        QString songName = MusicUtils::Core::songName(filename);
 
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)

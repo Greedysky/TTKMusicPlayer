@@ -1,4 +1,5 @@
 #include "musicsong.h"
+#include "musicutils.h"
 
 #include <QFileInfo>
 #include <QStringList>
@@ -60,12 +61,12 @@ QString MusicSong::getClassName()
 
 QString MusicSong::getMusicArtistFront() const
 {
-    return m_musicName.split('-').front().trimmed();
+    return MusicUtils::Core::artistName(m_musicName);
 }
 
 QString MusicSong::getMusicArtistBack() const
 {
-    return m_musicName.split('-').back().trimmed();
+    return MusicUtils::Core::songName(m_musicName);
 }
 
 bool MusicSong::operator== (const MusicSong &other) const

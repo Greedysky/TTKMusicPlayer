@@ -50,7 +50,7 @@ void MusicSongSharingWidget::setSongName(const QString &name)
     ui->sharedName->setToolTip(name);
     ui->sharedName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
-    QString path = ART_DIR_FULL + name.split('-').front().trimmed() + SKN_FILE;
+    QString path = ART_DIR_FULL + MusicUtils::Core::artistName(name) + SKN_FILE;
     ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
                                   ? path : ":/image/lb_defaultArt").scaled(50, 50));
 

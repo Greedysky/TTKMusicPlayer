@@ -1,4 +1,5 @@
 #include "musicbackgroundmanager.h"
+#include "musicutils.h"
 
 MusicBackgroundManager::MusicBackgroundManager()
 {
@@ -12,7 +13,7 @@ QString MusicBackgroundManager::getClassName()
 
 void MusicBackgroundManager::setArtName(const QString &name)
 {
-    QString sName = name.split('-').front().trimmed();
+    QString sName = MusicUtils::Core::artistName(name);
     if(!m_currentArtName.isEmpty() && m_currentArtName != sName)
     {
         return;

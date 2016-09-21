@@ -1,10 +1,10 @@
 #include "musicutils.h"
 #include "musicsettingmanager.h"
 
+#include <QUrl>
 #include <QComboBox>
 #include <QBitmap>
 #include <QPainter>
-#include <QUrl>
 #include <QDesktopServices>
 #include <QTextCodec>
 #ifdef Q_OS_WIN
@@ -44,6 +44,41 @@ QString MusicUtils::Core::musicPrefix()
         }
     }
     return path;
+}
+
+QStringList MusicUtils::Core::splitString(const QString &value)
+{
+    QStringList strings = value.split(" - ");
+    if(strings.isEmpty())
+    {
+        strings = value.split("-");
+    }
+    return strings;
+}
+
+QString MusicUtils::Core::artistName(const QString &value, bool all)
+{
+    QString v = splitString(value).front().trimmed();
+
+    if(!all)
+    {
+        QStringList splits;
+        splits << "、" << "&" << "_" << "#";
+        foreach(const QString &var, splits)
+        {
+            QStringList vs = v.split(var);
+            if(!vs.isEmpty())
+            {
+                return vs.front().trimmed();
+            }
+        }
+    }
+    return v;
+}
+
+QString MusicUtils::Core::songName(const QString &value)
+{
+    return splitString(value).back().trimmed();
 }
 
 quint64 MusicUtils::Core::dirSize(const QString &dirName)

@@ -117,7 +117,7 @@ void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;
     m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
-    m_similarTableWidget->startSearchQuery(name.split("-").back().trimmed());
+    m_similarTableWidget->startSearchQuery(MusicUtils::Core::songName(name));
 }
 
 void MusicSimilarFoundWidget::queryAllFinished()
@@ -194,7 +194,7 @@ void MusicSimilarFoundWidget::createLabels()
     ////////////////////////////////////////////////////////////////////////////
     grid->addWidget(m_similarTableWidget, 2, 0, 1, 8);
     ////////////////////////////////////////////////////////////////////////////
-    QString artName = m_songNameFull.split("-").front().trimmed();
+    QString artName = MusicUtils::Core::artistName(m_songNameFull);
     QLabel *secondLabel = new QLabel(function);
     secondLabel->setText(tr("Other \"<font color=#169AF3> %1 </font>\" things").arg(artName));
     grid->addWidget(secondLabel, 3, 0, 1, 7);

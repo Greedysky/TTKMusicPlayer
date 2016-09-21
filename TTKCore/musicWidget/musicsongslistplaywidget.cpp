@@ -142,8 +142,8 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
 void MusicSongsListPlayWidget::updateCurrentArtist()
 {
     QString name = m_songNameLabel->toolTip();
-    if(!showArtPicture(name.split('-').front().trimmed()) &&
-       !showArtPicture(name.split('-').back().trimmed()) )
+    if(!showArtPicture(MusicUtils::Core::artistName(name)) &&
+       !showArtPicture(MusicUtils::Core::songName(name)))
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
@@ -185,8 +185,8 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
-    if(!showArtPicture(name.split('-').front().trimmed()) &&
-       !showArtPicture(name.split('-').back().trimmed()) )
+    if(!showArtPicture(MusicUtils::Core::artistName(name)) &&
+       !showArtPicture(MusicUtils::Core::songName(name)))
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }

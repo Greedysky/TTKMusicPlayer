@@ -6,7 +6,6 @@
 #include "musicmydownloadrecordconfigmanager.h"
 #include "musicdatadownloadthread.h"
 #include "musicttdatadownloadthread.h"
-#include "musicbackgrounddownload.h"
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"
 
@@ -242,8 +241,8 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_downloadThread->getSearchedText();
-        QString artistName = filename.split('-').front().trimmed();
-        QString songName = filename.split('-').back().trimmed();
+        QString artistName = MusicUtils::Core::artistName(filename);
+        QString songName = MusicUtils::Core::songName(filename);
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
@@ -307,8 +306,8 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_downloadThread->getSearchedText();
-        QString artistName = filename.split('-').front().trimmed();
-        QString songName = filename.split('-').back().trimmed();
+        QString artistName = MusicUtils::Core::artistName(filename);
+        QString songName = MusicUtils::Core::songName(filename);
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
