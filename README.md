@@ -10,7 +10,7 @@
 Usage
 ----
 **The music player use of qmmp core library based on Qt.
-Compiler tutorial I have written in the wiki.(See here)<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u>**
+Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
  
@@ -39,6 +39,8 @@ Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
 Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
+
+KuGou Resource Download URL: **<u>https://github.com/Greedysky/KugouResource</u>**
 
 Features
 -------
