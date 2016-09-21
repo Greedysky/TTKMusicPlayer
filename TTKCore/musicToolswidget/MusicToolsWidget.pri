@@ -21,7 +21,6 @@ HEADERS  += \
     $$PWD/core/musicfilereceiveserver.h \
     $$PWD/musicsongstoolboxwidget.h \
     $$PWD/musicsongssummarizied.h \
-    $$PWD/musicsongssummariziedfloatwidget.h \
     $$PWD/musictoolsetswidget.h \
     $$PWD/musicmydownloadrecordwidget.h \
     $$PWD/musicconnectmobilewidget.h \
@@ -45,7 +44,6 @@ SOURCES += \
     $$PWD/core/musicfilereceiveserver.cpp \
     $$PWD/musicsongstoolboxwidget.cpp \
     $$PWD/musicsongssummarizied.cpp \
-    $$PWD/musicsongssummariziedfloatwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \
     $$PWD/musicmydownloadrecordwidget.cpp \
     $$PWD/musicconnectmobilewidget.cpp \

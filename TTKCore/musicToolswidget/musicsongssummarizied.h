@@ -17,7 +17,6 @@
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
-class MusicSongsSummariziedFloatWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -212,10 +211,6 @@ public Q_SLOTS:
     /*!
      * Set current music song play count by given song index.
      */
-    void deleteFloatWidget();
-    /*!
-     * Delete the float function widget.
-     */
     void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.
@@ -242,7 +237,6 @@ protected:
     /*!
      * Delete all objects.
      */
-    virtual void wheelEvent(QWheelEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
@@ -253,7 +247,6 @@ protected:
     bool m_toolDeleteChanged;
     MusicSongItems m_songItems;
     MusicObject::MIntsListMap m_searchfileListCache;
-    MusicSongsSummariziedFloatWidget *m_floatWidget;
 
 };
 

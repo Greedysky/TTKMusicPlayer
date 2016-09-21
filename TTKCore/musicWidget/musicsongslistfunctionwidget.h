@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSSUMMARIZIEDFLOATWIDGET_H
-#define MUSICSONGSSUMMARIZIEDFLOATWIDGET_H
+#ifndef MUSICSONGSLISTFUNCTIONWIDGET_H
+#define MUSICSONGSLISTFUNCTIONWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,24 +15,29 @@
 
 class QPropertyAnimation;
 
-/*! @brief The class of the songs summarizied float function widget.
+/*! @brief The class of the songs list function widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsSummariziedFloatWidget : public QLabel
+class MUSIC_TOOL_EXPORT MusicSongsListFunctionWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicSongsSummariziedFloatWidget(QWidget *parent = 0);
+    explicit MusicSongsListFunctionWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongsSummariziedFloatWidget();
+    virtual ~MusicSongsListFunctionWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setGeometry(QObject *object);
+
+    void active();
+    /*!
+     * Set current animation active.
+     */
+    void setGeometry();
     /*!
      * Set current geometry position.
      */
@@ -78,4 +83,4 @@ protected:
 
 };
 
-#endif // MUSICSONGSSUMMARIZIEDFLOATWIDGET_H
+#endif // MUSICSONGSLISTFUNCTIONWIDGET_H

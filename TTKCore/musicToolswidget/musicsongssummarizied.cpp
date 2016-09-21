@@ -7,7 +7,6 @@
 #include "musicsongtag.h"
 #include "musicprogresswidget.h"
 #include "musiccryptographichash.h"
-#include "musicsongssummariziedfloatwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
@@ -15,7 +14,7 @@
 #include <QScrollArea>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
-    : MusicSongsToolBoxWidget(parent), m_floatWidget(nullptr)
+    : MusicSongsToolBoxWidget(parent)
 {
     m_currentPlayToolIndex = MUSIC_NORMAL_LIST;
     m_searchFileListIndex = -1;
@@ -34,7 +33,6 @@ MusicSongsSummarizied::~MusicSongsSummarizied()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
-    delete m_floatWidget;
 }
 
 QString MusicSongsSummarizied::getClassName()
@@ -535,12 +533,6 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
     }
 }
 
-void MusicSongsSummarizied::deleteFloatWidget()
-{
-    delete m_floatWidget;
-    m_floatWidget = nullptr;
-}
-
 void MusicSongsSummarizied::getMusicLists(MusicSongItems &songs)
 {
     songs = m_songItems;
@@ -625,18 +617,6 @@ void MusicSongsSummarizied::clearAllLists()
         MusicSongsListWidget *w = m_songItems.takeLast().m_itemObject;
         delete w;
         w = nullptr;
-    }
-}
-
-void MusicSongsSummarizied::wheelEvent(QWheelEvent *event)
-{
-    MusicSongsToolBoxWidget::wheelEvent(event);
-    if(m_floatWidget == nullptr)
-    {
-        m_floatWidget = new MusicSongsSummariziedFloatWidget(this);
-        connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
-        m_floatWidget->setGeometry(this);
-        m_floatWidget->show();
     }
 }
 

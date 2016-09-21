@@ -1,15 +1,16 @@
-#include "musicsongssummariziedfloatwidget.h"
+#include "musicsongslistfunctionwidget.h"
 #include "musicnumberdefine.h"
 #include "musicbottomareawidget.h"
 #include "musicapplication.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicutils.h"
+#include "musicapplication.h"
 
 #include <QToolButton>
 #include <QPropertyAnimation>
 
-MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *parent)
+MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     : QLabel(parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
@@ -41,30 +42,37 @@ MusicSongsSummariziedFloatWidget::MusicSongsSummariziedFloatWidget(QWidget *pare
     m_timer.start();
 }
 
-MusicSongsSummariziedFloatWidget::~MusicSongsSummariziedFloatWidget()
+MusicSongsListFunctionWidget::~MusicSongsListFunctionWidget()
 {
     delete m_animation;
 }
 
-QString MusicSongsSummariziedFloatWidget::getClassName()
+QString MusicSongsListFunctionWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSongsSummariziedFloatWidget::setGeometry(QObject *object)
+void MusicSongsListFunctionWidget::active()
 {
-    QWidget *parent = MStatic_cast(QWidget*, object);
-    QPoint global(parent->size().width(), parent->size().height());
-    global = parent->mapToGlobal( global );
-    move(global.x() - width() - height(), global.y() - 2*height());
+    m_timer.stop();
+    m_timer.start();
 }
 
-void MusicSongsSummariziedFloatWidget::start(bool play, int end)
+void MusicSongsListFunctionWidget::setGeometry()
+{
+    QWidget *parent = MusicApplication::instance();
+    QPoint global(0, parent->size().height());
+    global = parent->mapToGlobal( global );
+    move(global.x() + 5.5*width(), global.y() - 5*height());
+}
+
+void MusicSongsListFunctionWidget::start(bool play, int end)
 {
     if(m_animation->state() == QAbstractAnimation::Running)
     {
         m_currentAnimationValue = m_animation->currentValue().toFloat();
     }
+
     m_animation->stop();
     play ? m_timer.start() : m_timer.stop();
     m_animation->setStartValue(m_currentAnimationValue);
@@ -72,13 +80,13 @@ void MusicSongsSummariziedFloatWidget::start(bool play, int end)
     m_animation->start();
 }
 
-void MusicSongsSummariziedFloatWidget::leaveTimeout()
+void MusicSongsListFunctionWidget::leaveTimeout()
 {
     m_currentAnimationValue = 1;
     start(false, 0);
 }
 
-void MusicSongsSummariziedFloatWidget::animationFinished()
+void MusicSongsListFunctionWidget::animationFinished()
 {
     m_currentAnimationValue = m_animation->currentValue().toFloat();
     if(m_currentAnimationValue == 0)
@@ -87,7 +95,7 @@ void MusicSongsSummariziedFloatWidget::animationFinished()
     }
 }
 
-void MusicSongsSummariziedFloatWidget::enterEvent(QEvent *event)
+void MusicSongsListFunctionWidget::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
     if(m_currentAnimationValue != 0)
@@ -96,7 +104,7 @@ void MusicSongsSummariziedFloatWidget::enterEvent(QEvent *event)
     }
 }
 
-void MusicSongsSummariziedFloatWidget::leaveEvent(QEvent *event)
+void MusicSongsListFunctionWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     start(true, 0);

@@ -17,6 +17,7 @@
 class MusicOpenFileWidget;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
+class MusicSongsListFunctionWidget;
 
 /*! @brief The class of the songs list widget.
  * @author Greedysky <greedysky@163.com>
@@ -237,6 +238,10 @@ public Q_SLOTS:
     /*!
      * Rename item artist label is finised.
      */
+    void deleteFloatWidget();
+    /*!
+     * Delete the float function widget.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -284,6 +289,7 @@ protected:
     MusicOpenFileWidget *m_uploadFileWidget;
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
+    MusicSongsListFunctionWidget *m_floatWidget;
 
     bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
