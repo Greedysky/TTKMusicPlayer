@@ -1,7 +1,7 @@
 #include "musicsettingwidget.h"
 #include "ui_musicsettingwidget.h"
 #include "musicnetworkthread.h"
-#include "musicutils.h"
+#include "musicstringutils.h"
 #include "musicnetworkproxy.h"
 #include "musicnetworkoperator.h"
 #include "musicmessagebox.h"

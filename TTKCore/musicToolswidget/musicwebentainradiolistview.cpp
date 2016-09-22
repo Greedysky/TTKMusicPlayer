@@ -1,6 +1,6 @@
 #include "musicwebentainradiolistview.h"
 #include "musicwebentainradiowidget.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 #include <QTimer>
 

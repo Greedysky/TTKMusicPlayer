@@ -5,7 +5,7 @@
 #include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicsoundeffectswidget.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 #include "musicplayer.h"
 
 #include <QSignalMapper>

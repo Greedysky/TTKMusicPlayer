@@ -1,6 +1,6 @@
 #include "musiclocalsongsmanagerthread.h"
 #include "musicplayer.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
     : QThread(parent)

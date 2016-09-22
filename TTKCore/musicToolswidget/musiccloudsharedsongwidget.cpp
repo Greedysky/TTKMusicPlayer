@@ -7,8 +7,11 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicplayer.h"
-#include "qnconf.h"
+#include "musicnumberutils.h"
+#include "musiccoreutils.h"
 #include "musictoastlabel.h"
+
+#include "qnconf.h"
 #///QJson import
 #include "qjson/parser.h"
 

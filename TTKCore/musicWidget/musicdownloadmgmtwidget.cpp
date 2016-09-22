@@ -3,7 +3,7 @@
 #include "musicdownloadwidget.h"
 #include "musicsettingmanager.h"
 #include "musicleftareawidget.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),

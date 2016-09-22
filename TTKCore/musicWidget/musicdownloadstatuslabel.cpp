@@ -8,6 +8,7 @@
 #include "musicnetworkthread.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicdownloadqueryfactory.h"
+#include "musiccoreutils.h"
 
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     : QObject(w)

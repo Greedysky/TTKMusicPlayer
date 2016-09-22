@@ -4,7 +4,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 #include "musicversion.h"
 #///QJson import
 #include "qjson/parser.h"

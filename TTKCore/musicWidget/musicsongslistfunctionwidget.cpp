@@ -4,7 +4,7 @@
 #include "musicapplication.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 #include "musicapplication.h"
 
 #include <QToolButton>
