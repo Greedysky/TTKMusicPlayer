@@ -4,7 +4,8 @@
 #include "musiclocalsongstablewidget.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
+#include "musicnumberutils.h"
 #include "musicsongssummarizied.h"
 
 #include <QDateTime>

@@ -19,6 +19,7 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadqueryalbumwythread.h
+    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
     ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.h
@@ -40,9 +41,12 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/musictranslationthread.h
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.h
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.h
-    ${MUSIC_CORE_DIR}/musiclogger.h
+    ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
+    ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
+    ${MUSIC_CORE_DIR}/utils/musicwidgetutils.h
+    ${MUSIC_CORE_DIR}/utils/musicnumberutils.h
+    ${MUSIC_CORE_DIR}/utils/musicstringutils.h
     ${MUSIC_CORE_DIR}/musicobject.h
-    ${MUSIC_CORE_DIR}/musicutils.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
     ${MUSIC_CORE_DIR}/musicglobalhotkey.h
     ${MUSIC_CORE_DIR}/musicversion.h
@@ -82,6 +86,9 @@ set(MUSIC_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfromkrc.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccommentswidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrctranslatedwidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccolorwidget.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.h
@@ -117,7 +124,6 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
@@ -169,9 +175,12 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.h
-    ${MUSIC_WIDGETCORE_DIR}/musicuploadfilewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimation.h
+    ${MUSIC_WIDGETCORE_DIR}/musicopenfilewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.h
@@ -183,6 +192,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
@@ -231,6 +241,7 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadqueryalbumwythread.cpp
+    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.cpp
@@ -252,7 +263,11 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/musictranslationthread.cpp
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.cpp
-    ${MUSIC_CORE_DIR}/musicutils.cpp
+    ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
+    ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
+    ${MUSIC_CORE_DIR}/utils/musicwidgetutils.cpp
+    ${MUSIC_CORE_DIR}/utils/musicnumberutils.cpp
+    ${MUSIC_CORE_DIR}/utils/musicstringutils.cpp
     ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
@@ -288,6 +303,9 @@ set(MUSIC_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfromkrc.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccommentswidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrctranslatedwidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccolorwidget.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidget.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsquare.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforrectangle.cpp
@@ -331,7 +349,6 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedfloatwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.cpp
@@ -375,9 +392,12 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.cpp
-    ${MUSIC_WIDGETCORE_DIR}/musicuploadfilewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimation.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicopenfilewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.cpp
@@ -389,6 +409,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
@@ -422,6 +443,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcsearchwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcerrorwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrclocallinkwidget.ui
+    ${MUSIC_UI_DIR}/musicLrcmanager/musiclrccolorwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicaudiorecorderwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicdesktopwallpaperwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicfileinformationwidget.ui

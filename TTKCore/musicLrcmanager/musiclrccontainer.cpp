@@ -2,7 +2,7 @@
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
 #include "musiclrcerrorwidget.h"
-#include "musicutils.h"
+#include "musicstringutils.h"
 
 #include <QActionGroup>
 

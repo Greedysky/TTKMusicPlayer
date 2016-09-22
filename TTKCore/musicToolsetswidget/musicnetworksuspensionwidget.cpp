@@ -1,7 +1,7 @@
 #include "musicnetworksuspensionwidget.h"
 #include "musicnetworktestthread.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musicnumberutils.h"
 
 #include <QMenu>
 #include <QApplication>

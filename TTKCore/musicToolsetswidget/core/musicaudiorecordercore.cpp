@@ -1,5 +1,5 @@
 #include "musicaudiorecordercore.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     : QObject(parent)

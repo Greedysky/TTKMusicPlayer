@@ -4,7 +4,6 @@
 #include "musicbackgroundpalettewidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicobject.h"
-#include "musicutils.h"
 #include "musicapplicationobject.h"
 
 #include <QFileDialog>

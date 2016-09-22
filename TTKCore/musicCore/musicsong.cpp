@@ -1,5 +1,5 @@
 #include "musicsong.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 #include <QFileInfo>
 #include <QStringList>

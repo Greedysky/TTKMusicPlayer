@@ -10,7 +10,6 @@
 #include "musicsoundtouchwidget.h"
 #include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
-#include "musicutils.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 #include "musicrightareawidget.h"

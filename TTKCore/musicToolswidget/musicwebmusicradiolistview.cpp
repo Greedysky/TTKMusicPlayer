@@ -1,7 +1,7 @@
 #include "musicwebmusicradiolistview.h"
 #include "musicradiochannelthread.h"
 #include "musicwebmusicradiowidget.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 #include "musicuiobject.h"
 
 #include <QNetworkCookieJar>

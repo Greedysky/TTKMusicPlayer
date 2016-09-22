@@ -1,6 +1,6 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicsettingmanager.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *parent)
     : MusicRemoteWidget(parent)

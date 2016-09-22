@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 #include "musicsongssummarizied.h"
+#include "musiccoreutils.h"
 
 #include <QMenu>
 #include <QContextMenuEvent>

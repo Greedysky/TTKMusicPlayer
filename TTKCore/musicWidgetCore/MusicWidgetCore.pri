@@ -41,7 +41,8 @@ HEADERS  += \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
     $$PWD/musicemojilabelwidget.h \
-    $$PWD/musicopenfilewidget.h
+    $$PWD/musicopenfilewidget.h \
+    $$PWD/musicsplititemclickedlabel.h
     
 }
 
@@ -74,6 +75,7 @@ SOURCES += \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
     $$PWD/musicemojilabelwidget.cpp \
-    $$PWD/musicopenfilewidget.cpp
+    $$PWD/musicopenfilewidget.cpp \
+    $$PWD/musicsplititemclickedlabel.cpp
 
 }

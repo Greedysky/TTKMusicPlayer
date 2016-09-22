@@ -1,6 +1,6 @@
 #include "musicopenfilewidget.h"
 #include "musicclickedlabel.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 #include <QGridLayout>
 

@@ -15,7 +15,7 @@
 #include "musicglobaldefine.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 /*! @brief The class of the table widget base.
  * @author Greedysky <greedysky@163.com>

@@ -8,7 +8,8 @@
 #include "musicdatadownloadthread.h"
 #include "musiclrcanalysis.h"
 #include "musictime.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
+#include "musicwidgetutils.h"
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),

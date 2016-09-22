@@ -1,7 +1,7 @@
 #include "musicbarragewidget.h"
 #include "musictime.h"
 #include "musicobject.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     : QPropertyAnimation(parent)

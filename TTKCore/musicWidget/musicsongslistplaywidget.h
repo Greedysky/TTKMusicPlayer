@@ -15,6 +15,7 @@
 #include <QLabel>
 #include "musicglobaldefine.h"
 
+class MusicSplitItemClickedLabel;
 class MusicSongsToolItemRenamedWidget;
 
 /*! @brief The class of the song enter item widget.
@@ -136,7 +137,8 @@ protected:
      */
 
     QString m_totalTime;
-    QLabel *m_artPictureLabel, *m_songNameLabel, *m_timeLabel;
+    QLabel *m_artPictureLabel, *m_timeLabel;
+    MusicSplitItemClickedLabel *m_songNameLabel;
     MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;

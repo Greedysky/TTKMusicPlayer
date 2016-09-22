@@ -3,11 +3,14 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
+#include "musicwidgetutils.h"
+#include "musicnumberdefine.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 #include "musictinyuiobject.h"
+#include "musicsplititemclickedlabel.h"
 
 MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_currentPlayIndex(index)
@@ -40,7 +43,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_artPictureLabel->setAttribute(Qt::WA_TranslucentBackground);
     m_artPictureLabel->setGeometry(0, 0, 60, 60);
 
-    m_songNameLabel = new QLabel(this);
+    m_songNameLabel = new MusicSplitItemClickedLabel(this);
     m_songNameLabel->setFixedSize(202, 25);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
     m_songNameLabel->setStyleSheet(MusicUIObject::MColorStyle01);

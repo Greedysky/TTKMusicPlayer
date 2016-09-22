@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 #include <QFileDialog>
 #include <QCryptographicHash>
