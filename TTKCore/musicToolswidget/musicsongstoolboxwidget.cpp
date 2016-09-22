@@ -3,7 +3,7 @@
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicsong.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 #include "musicapplication.h"
 
 #include <QMenu>

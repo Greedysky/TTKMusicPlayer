@@ -12,7 +12,7 @@
 #include "musiclrcanalysis.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 #include <QMovie>
 #include <QTimer>

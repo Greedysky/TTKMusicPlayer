@@ -8,6 +8,7 @@
 #include "musicttdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"
+#include "musiccoreutils.h"
 
 #include <QFileDialog>
 #include <QLabel>

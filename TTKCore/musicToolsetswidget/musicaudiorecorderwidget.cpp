@@ -1,7 +1,7 @@
 #include "musicaudiorecorderwidget.h"
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
 

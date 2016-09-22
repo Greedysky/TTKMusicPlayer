@@ -2,7 +2,7 @@
 #include "ui_musicnetworktestwidget.h"
 #include "musicuiobject.h"
 #include "musicnetworktestthread.h"
-#include "musicutils.h"
+#include "musicnumberutils.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicnetworksuspensionwidget.h"

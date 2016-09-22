@@ -4,7 +4,7 @@
 #include "musicmessagebox.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 #include <QSound>
 #include <QProcess>

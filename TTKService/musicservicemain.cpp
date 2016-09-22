@@ -1,5 +1,5 @@
 #include "musicapplication.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 #include "musicxmlconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"

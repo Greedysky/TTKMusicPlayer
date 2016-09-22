@@ -2,6 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
+#include "musiccoreutils.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)

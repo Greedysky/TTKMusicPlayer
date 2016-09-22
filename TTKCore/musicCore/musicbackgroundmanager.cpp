@@ -1,5 +1,5 @@
 #include "musicbackgroundmanager.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 MusicBackgroundManager::MusicBackgroundManager()
 {

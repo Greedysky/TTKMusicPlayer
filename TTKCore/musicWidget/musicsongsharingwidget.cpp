@@ -4,7 +4,8 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
+#include "musicwidgetutils.h"
 
 #include "qrcodewidget.h"
 

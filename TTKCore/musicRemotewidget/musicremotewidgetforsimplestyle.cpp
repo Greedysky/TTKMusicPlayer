@@ -1,7 +1,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicsettingmanager.h"
 #include "musicmarqueewidget.h"
-#include "musicutils.h"
+#include "musicwidgetutils.h"
 
 MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent)
     : MusicRemoteWidget(parent)

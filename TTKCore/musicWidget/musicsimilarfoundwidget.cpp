@@ -4,7 +4,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 #include "musicsourcedownloadthread.h"
 

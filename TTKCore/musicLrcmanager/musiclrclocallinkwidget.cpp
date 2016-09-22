@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musiccoreutils.h"
 #include "musicdownloadstatuslabel.h"
 
 #include <QDir>

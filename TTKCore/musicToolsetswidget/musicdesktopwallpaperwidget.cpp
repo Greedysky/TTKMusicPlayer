@@ -6,7 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicregeditmanager.h"
 #include "musicnumberdefine.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 
 #include <QFileDialog>
 #include <QStyledItemDelegate>

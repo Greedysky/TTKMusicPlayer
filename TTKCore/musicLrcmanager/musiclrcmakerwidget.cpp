@@ -6,7 +6,7 @@
 #include "musictime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
-#include "musicutils.h"
+#include "musiccoreutils.h"
 #include "musicapplication.h"
 
 #include <QPainter>

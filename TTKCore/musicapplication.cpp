@@ -19,6 +19,7 @@
 #include "musicglobalhotkey.h"
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
+#include "musiccoreutils.h"
 
 MusicApplication *MusicApplication::m_instance = nullptr;
 
