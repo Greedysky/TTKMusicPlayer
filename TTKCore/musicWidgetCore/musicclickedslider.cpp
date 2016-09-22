@@ -33,18 +33,21 @@ bool MusicClickedSlider::event(QEvent *event)
 void MusicClickedSlider::mousePressEvent(QMouseEvent *event)
 {
     QSlider::mousePressEvent(event);
-    m_mousePress = true;
+    if(event->button() == Qt::LeftButton)
+    {
+        m_mousePress = true;
 
-    double pos;
-    if(orientation() == Qt::Horizontal)
-    {
-        pos = event->pos().x()*1.0 / width();
-        m_value = pos * (maximum() - minimum()) + minimum();
-    }
-    else
-    {
-        pos = event->pos().y()*1.0 / height();
-        m_value = maximum() - pos * (maximum() - minimum());
+        double pos;
+        if(orientation() == Qt::Horizontal)
+        {
+            pos = event->pos().x()*1.0 / width();
+            m_value = pos * (maximum() - minimum()) + minimum();
+        }
+        else
+        {
+            pos = event->pos().y()*1.0 / height();
+            m_value = maximum() - pos * (maximum() - minimum());
+        }
     }
 }
 
