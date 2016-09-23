@@ -37,6 +37,10 @@ public:
      * Stop to anmiation.
      */
 
+    void connectTo(QObject *parent);
+    /*!
+     * Connect to parent.
+     */
     void addWidget(QWidget *widget);
     /*!
      * Add widget to container.

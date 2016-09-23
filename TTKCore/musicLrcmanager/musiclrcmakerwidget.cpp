@@ -8,6 +8,10 @@
 #include "musicplayer.h"
 #include "musiccoreutils.h"
 #include "musicapplication.h"
+#include "musiclrcanalysis.h"
+#include "musiclrcmanagerforinline.h"
+#include "musicsettingmanager.h"
+#include "musicstringutils.h"
 
 #include <QPainter>
 #include <QTextBlock>
@@ -153,6 +157,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     ui->stackedWidget->setStyleSheet(QString("#stackedWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
 
     m_currentLine = 0;
+    m_intervalTime = 0;
 
     createMainWidget();
     createFirstWidget();
@@ -168,7 +173,12 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
+    while(!m_musicLrcContainer.isEmpty())
+    {
+        delete m_musicLrcContainer.takeLast();
+    }
     delete m_lineItem;
+    delete m_analysis;
     resetToOriginPlayMode();
     M_CONNECTION_PTR->removeValue(getClassName());
 }
@@ -201,10 +211,27 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
     ui->timeSlider_T->blockSignals(false);
 
     QString t = QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position))
-     .arg(MusicTime::msecTime2LabelJustified(ui->timeSlider_F->maximum()));
+                                .arg(MusicTime::msecTime2LabelJustified(ui->timeSlider_F->maximum()));
     ui->labelTime_F->setText(t);
     ui->labelTime_S->setText(t);
     ui->labelTime_T->setText(t);
+
+    if(ui->stackedWidget->currentIndex() == 3)
+    {
+        if(m_analysis->isEmpty())
+        {
+            return;
+        }
+
+        QString currentLrc, laterLrc;
+        if(m_analysis->findText(position, ui->timeSlider_F->maximum(), currentLrc, laterLrc, m_intervalTime))
+        {
+            if(currentLrc != m_musicLrcContainer[m_analysis->getMiddle()]->text())
+            {
+                ui->lrcViewer->start();
+            }
+        }
+    }
 }
 
 void MusicLrcMakerWidget::durationChanged(qint64 position)
@@ -228,6 +255,7 @@ void MusicLrcMakerWidget::show()
 void MusicLrcMakerWidget::timeSliderValueChanged(int value)
 {
     MusicApplication::instance()->musicPlayAnyTimeAt(value);
+    m_analysis->setSongSpeedAndSlow(value);
 }
 
 void MusicLrcMakerWidget::saveButtonClicked()
@@ -245,7 +273,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
                 .arg(ui->authorNameEdit->text()));
         for(int i=0; i<m_times.count(); ++i)
         {
-            array.append(m_times.value(i) + m_plainText[i] + "\n");
+            array.append(translateTimeString(m_times.value(i)) + m_plainText[i] + "\n");
         }
 
         QTextStream outstream(&m_file);
@@ -292,11 +320,21 @@ void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
 
 void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
 {
-    QString text = (ui->stateButton_T->text() == tr("Play")) ? tr("Stop") : tr("Play");
+    bool state = ui->stateButton_T->text() == tr("Play");
+    QString text = state ? tr("Stop") : tr("Play");
     ui->stateButton_F->setText(text);
     ui->stateButton_T->setText(text);
 
     MusicApplication::instance()->musicStatePlay();
+    if(state)
+    {
+        m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
+    }
+    else
+    {
+        m_musicLrcContainer[m_analysis->getMiddle()]->stopLrcMask();
+        ui->lrcViewer->stop();
+    }
 }
 
 void MusicLrcMakerWidget::setCurrentMainWidget()
@@ -329,7 +367,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     m_times.clear();
     m_currentLine = 0;
     m_lineItem->reset();
-    m_times[m_currentLine] = translateTimeString(0);
+    m_times[m_currentLine] = 0;
 
     ui->makeTextEdit->setText(ui->lrcTextEdit->toPlainText().trimmed() + "\n");
     QTextCursor cursor = ui->makeTextEdit->textCursor();
@@ -361,6 +399,32 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
     MusicApplication::instance()->musicPlayAnyTimeAt(0);
     ui->stackedWidget->setCurrentIndex(3);
+
+    if(m_times.count() == m_plainText.count())
+    {
+        MusicObject::MIntStringMap data;
+        for(int i=0; i<m_times.count(); ++i)
+        {
+            data.insert(m_times.value(i), m_plainText[i]);
+        }
+        m_analysis->setLrcData(data);
+
+        setItemStyleSheet(0, -3, 90);
+        setItemStyleSheet(1, -6, 35);
+        setItemStyleSheet(2, -10, 0);
+        setItemStyleSheet(3, -6, 35);
+        setItemStyleSheet(4, -3, 90);
+    }
+}
+
+void MusicLrcMakerWidget::updateAnimationLrc()
+{
+    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    {
+        m_musicLrcContainer[i]->setText(m_analysis->getText(i));
+    }
+    m_analysis->setCurrentIndex(m_analysis->getCurrentIndex() + 1);
+    m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
@@ -402,7 +466,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                     }
                     m_lineItem->moveUp();
 
-                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
+                    m_times[m_currentLine] = ui->timeSlider_S->value();
                     break;
                 }
             case Qt::Key_Right:
@@ -432,7 +496,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                         m_lineItem->moveDown();
                     }
 
-                    m_times[m_currentLine] = translateTimeString(ui->timeSlider_S->value());
+                    m_times[m_currentLine] = ui->timeSlider_S->value();
                     break;
                 }
         }
@@ -557,8 +621,19 @@ void MusicLrcMakerWidget::createSecondWidget()
 
 void MusicLrcMakerWidget::createThirdWidget()
 {
-    ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
+    m_analysis = new MusicLrcAnalysis(this);
+    m_analysis->setLineMax(5);
+    ui->lrcViewer->connectTo(this);
+    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    {
+        MusicLRCManagerForInline *w = new MusicLRCManagerForInline(this);
+        w->setLrcPerWidth(-20);
+        ui->lrcViewer->addWidget(w);
+        m_musicLrcContainer.append(w);
+    }
+    ///////////////////////////////////////////////////////////////
 
+    ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
     ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->stateButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -637,5 +712,51 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
             w->musicPlayOneLoop(); break;
         case MusicObject::MC_PlayOnce:
             w->musicPlayItemOnce(); break;
+    }
+}
+
+void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent)
+{
+    MusicLRCManagerForInline *w = m_musicLrcContainer[index];
+    w->setCenterOnLrc(false);
+    w->setFontSize(size);
+
+    int value = 100 - transparent;
+    value = (value < 0) ? 0 : value;
+    value = (value > 100) ? 100 : value;
+    w->setFontTransparent(value);
+    w->setTransparent(value);
+    if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
+    {
+        switch((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt())
+        {
+            case MusicLRCManager::Origin:
+                w->setLinearGradientColor(QList<QColor>() << CL_Origin << CL_White << CL_Origin);break;
+            case MusicLRCManager::Red:
+                w->setLinearGradientColor(QList<QColor>() << CL_Red << CL_White << CL_Red);break;
+            case MusicLRCManager::Orange:
+                w->setLinearGradientColor(QList<QColor>() << CL_Orange << CL_White << CL_Orange);break;
+            case MusicLRCManager::Yellow:
+                w->setLinearGradientColor(QList<QColor>() << CL_Yellow << CL_White << CL_Yellow);break;
+            case MusicLRCManager::Green:
+                w->setLinearGradientColor(QList<QColor>() << CL_Green << CL_White << CL_Green);break;
+            case MusicLRCManager::Blue:
+                w->setLinearGradientColor(QList<QColor>() << CL_Blue << CL_White << CL_Blue);break;
+            case MusicLRCManager::Indigo:
+                w->setLinearGradientColor(QList<QColor>() << CL_Indigo << CL_White << CL_Indigo);break;
+            case MusicLRCManager::Purple:
+                w->setLinearGradientColor(QList<QColor>() << CL_Purple << CL_White << CL_Purple);break;
+            case MusicLRCManager::White:
+                w->setLinearGradientColor(QList<QColor>() << CL_White << CL_White << CL_White);break;
+            case MusicLRCManager::Black:
+                w->setLinearGradientColor(QList<QColor>() << CL_Black << CL_White << CL_Black);break;
+            default: break;
+        }
+        w->setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
+    }
+    else
+    {
+        w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        w->setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
     }
 }

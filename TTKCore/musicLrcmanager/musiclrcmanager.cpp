@@ -16,7 +16,7 @@ MusicLRCManager::MusicLRCManager(QWidget *parent)
 
     m_lrcMaskWidth = 0;
     m_lrcMaskWidthInterval = 0;
-    m_speedLeve = 1;
+    m_speedLevel = 1;
     m_transparent = 100;
 
     m_timer = new QTimer(this);
@@ -81,7 +81,7 @@ void MusicLRCManager::startLrcMask(qint64 intervaltime)
     */
     m_intervalCount = 0.0f;
     m_geometry.setX(QFontMetrics(m_font).width(text()));
-    qreal count = intervaltime / m_speedLeve;
+    qreal count = intervaltime / m_speedLevel;
     m_lrcMaskWidthInterval = m_geometry.x() / count;
     m_lrcMaskWidth = 0;
     m_timer->start(LRC_PER_TIME);

@@ -6,16 +6,11 @@ MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent)
     setAlignment(Qt::AlignCenter);
     m_geometry.setX(m_lrcPerWidth = LRC_PER_WIDTH);
     m_font.setPointSize(15);
-    m_speedLeve = 40;
+    m_speedLevel = 40;
     m_geometry.setY(35);
     m_gradientFontSize = 0;
     m_gradientTransparent = 100;
     m_centerOnLrc = false;
-}
-
-MusicLRCManagerForInline::~MusicLRCManagerForInline()
-{
-
 }
 
 QString MusicLRCManagerForInline::getClassName()

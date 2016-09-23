@@ -14,6 +14,8 @@
 namespace Ui {
 class MusicLrcMakerWidget;
 }
+class MusicLrcAnalysis;
+class MusicLRCManagerForInline;
 
 /*! @brief The class of the lrc maker widget item.
  * @author Greedysky <greedysky@163.com>
@@ -126,7 +128,7 @@ private Q_SLOTS:
      */
     void reMakeButtonClicked();
     /*!
-     * Save lrc button clicked.
+     * Remake lrc button clicked.
      */
     void backToMakeLrcWidget();
     /*!
@@ -155,6 +157,10 @@ private Q_SLOTS:
     void setCurrentThirdWidget();
     /*!
      * Change current widget to third widget.
+     */
+    void updateAnimationLrc();
+    /*!
+     * Animation finished.
      */
 
 protected:
@@ -200,13 +206,21 @@ protected:
     /*!
      * Reset to origin play mode.
      */
+    void setItemStyleSheet(int index, int size, int transparent);
+    /*!
+     * Set per lrc line style sheet.
+     */
 
     Ui::MusicLrcMakerWidget *ui;
     QFile m_file;
     QStringList m_plainText;
-    QMap<int, QString> m_times;
+    QMap<int, qint64> m_times;
+
     int m_currentLine, m_playMode;
+    qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
+    MusicLrcAnalysis *m_analysis;
+    QList<MusicLRCManagerForInline*> m_musicLrcContainer;
 
 };
 

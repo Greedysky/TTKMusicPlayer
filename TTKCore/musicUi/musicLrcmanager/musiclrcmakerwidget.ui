@@ -779,14 +779,17 @@
       <string>取消</string>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_2">
+    <widget class="MusicLayoutAnimation" name="lrcViewer" native="true">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>240</y>
-       <width>645</width>
-       <height>280</height>
+       <y>255</y>
+       <width>650</width>
+       <height>250</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#9DBBD4;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="remakeButton_T">
@@ -895,12 +898,12 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_finish</pixmap>
      </property>
     </widget>
+    <zorder>lrcViewer</zorder>
     <zorder>label_T</zorder>
     <zorder>label_T1</zorder>
     <zorder>previousButton_T</zorder>
     <zorder>saveButton_T</zorder>
     <zorder>cancelButton_T</zorder>
-    <zorder>tableView_2</zorder>
     <zorder>remakeButton_T</zorder>
     <zorder>uploadButton_T</zorder>
     <zorder>label_T2</zorder>
@@ -920,6 +923,12 @@
    <class>MusicClickedSlider</class>
    <extends>QSlider</extends>
    <header>musicclickedslider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicLayoutAnimation</class>
+   <extends>QWidget</extends>
+   <header>musiclayoutanimation.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

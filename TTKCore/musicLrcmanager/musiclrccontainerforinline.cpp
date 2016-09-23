@@ -35,6 +35,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
 
     m_containerType = "INLINE";
     m_layoutWidget = new MusicLayoutAnimation(this);
+    m_layoutWidget->connectTo(this);
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
        MusicLRCManager *w = new MusicLRCManagerForInline(this);

@@ -21,10 +21,39 @@ QString MusicLrcAnalysis::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicLrcAnalysis::setLrcData(const MusicObject::MIntStringMap &data)
+{
+    m_lrcContainer = data;
+    m_currentLrcIndex = 0;
+    m_currentShowLrcContainer.clear();
+
+    for(int i=0; i<getMiddle(); ++i)
+    {
+        m_currentShowLrcContainer << QString();
+    }
+    if(m_lrcContainer.find(0) == m_lrcContainer.end())
+    {
+       m_lrcContainer.insert(0, QString());
+    }
+
+    MusicObject::MIntStringMapIterator it(m_lrcContainer);
+    while(it.hasNext())
+    {
+        it.next();
+        m_currentShowLrcContainer << it.value();
+    }
+    for(int i=0; i<getMiddle(); ++i)
+    {
+        m_currentShowLrcContainer << QString();
+    }
+}
+
 MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcFileName)
 {
+    m_currentLrcIndex = 0;
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
+
     QFile file(m_currentLrcFileName = lrcFileName);
 
     if(!file.open(QIODevice::ReadOnly))
@@ -45,9 +74,6 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     {
         return LrcEmpty;
     }
-
-    m_currentShowLrcContainer.clear();
-    m_currentLrcIndex = 0;
 
     for(int i=0; i<getMiddle(); ++i)
     {
@@ -76,6 +102,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 {
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
+    m_currentLrcIndex = 0;
     m_currentLrcFileName = krcFileName;
 
     MusicLrcFromKrc krc;
@@ -96,9 +123,6 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
     {
         return LrcEmpty;
     }
-
-    m_currentShowLrcContainer.clear();
-    m_currentLrcIndex = 0;
 
     for(int i=0; i<getMiddle(); ++i)
     {

@@ -69,6 +69,11 @@ public:
     /*!
      * Get current line middle number.
      */
+
+    void setLrcData(const MusicObject::MIntStringMap &data);
+    /*!
+     * Set lrc container data from other raw data.
+     */
     State transLrcFileToTime(const QString &lrcFileName);
     /*!
      * Analysis lrc file to map return the state.
@@ -77,6 +82,7 @@ public:
     /*!
      * Analysis krc file to map return the state.
      */
+
     qint64 setSongSpeedAndSlow(qint64 time);
     /*!
      * Set song speed and slow by given time, return new time.

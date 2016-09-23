@@ -29,7 +29,6 @@ MusicLayoutAnimation::MusicLayoutAnimation(QWidget *parent)
     m_animation->setEndValue(0.0f);
     connect(m_animation, SIGNAL(valueChanged(QVariant)), SLOT(valueChanged(QVariant)));
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
-    connect(m_animation, SIGNAL(finished()), parent, SLOT(updateAnimationLrc()));
 }
 
 MusicLayoutAnimation::~MusicLayoutAnimation()
@@ -79,6 +78,11 @@ void MusicLayoutAnimation::stop()
     m_isAnimating = false;
     m_animation->stop();
     m_mainWidget->show();
+}
+
+void MusicLayoutAnimation::connectTo(QObject *parent)
+{
+    connect(m_animation, SIGNAL(finished()), parent, SLOT(updateAnimationLrc()));
 }
 
 void MusicLayoutAnimation::addWidget(QWidget *widget)

@@ -4,7 +4,7 @@ MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent)
     : MusicLRCManager(parent)
 {
     m_font.setPointSize(30);
-    m_speedLeve = 50;
+    m_speedLevel = 50;
 }
 
 QString MusicLRCManagerForDesktop::getClassName()
