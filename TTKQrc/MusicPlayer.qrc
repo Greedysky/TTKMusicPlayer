@@ -213,6 +213,10 @@
         <file alias="lb_make_down">../TTKResource/lrc/lb_make_down.png</file>
         <file alias="lb_make_space">../TTKResource/lrc/lb_make_space.png</file>
         <file alias="lb_make_finish">../TTKResource/lrc/lb_make_finish.png</file>
+        <file alias="lb_make_up_normal">../TTKResource/lrc/lb_make_up_normal.png</file>
+        <file alias="lb_make_up_hover">../TTKResource/lrc/lb_make_up_hover.png</file>
+        <file alias="lb_make_down_normal">../TTKResource/lrc/lb_make_down_normal.png</file>
+        <file alias="lb_make_down_hover">../TTKResource/lrc/lb_make_down_hover.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>

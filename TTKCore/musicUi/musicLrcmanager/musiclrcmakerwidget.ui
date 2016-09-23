@@ -783,7 +783,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>255</y>
+       <y>270</y>
        <width>650</width>
        <height>250</height>
       </rect>
@@ -898,6 +898,39 @@
       <pixmap resource="../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_finish</pixmap>
      </property>
     </widget>
+    <widget class="QLabel" name="label_T4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>240</y>
+       <width>650</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#9DBBD4;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="lrc_make_up_T">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>280</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="lrc_make_down_T">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>320</y>
+       <width>28</width>
+       <height>28</height>
+      </rect>
+     </property>
+    </widget>
     <zorder>lrcViewer</zorder>
     <zorder>label_T</zorder>
     <zorder>label_T1</zorder>
@@ -911,6 +944,9 @@
     <zorder>stateButton_T</zorder>
     <zorder>labelTime_T</zorder>
     <zorder>label_T3</zorder>
+    <zorder>label_T4</zorder>
+    <zorder>lrc_make_down_T</zorder>
+    <zorder>lrc_make_up_T</zorder>
    </widget>
   </widget>
   <zorder>background</zorder>

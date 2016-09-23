@@ -41,6 +41,16 @@ namespace MusicUIObject
             background-image: url(:/lrc/btn_star_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_star_hover);} \
             QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked);}";
+            
+    const QString MKGInlineMakeUp = " \
+            QPushButton{ border:none; \
+            background-image: url(:/lrc/lb_make_up_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover);}";
+            
+    const QString MKGInlineMakeDown = " \
+            QPushButton{ border:none; \
+            background-image: url(:/lrc/lb_make_down_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover);}";
 
 }
 

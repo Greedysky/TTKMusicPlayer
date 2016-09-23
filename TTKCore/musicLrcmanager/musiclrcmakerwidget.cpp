@@ -2,6 +2,7 @@
 #include "ui_musiclrcmakerwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
+#include "musicinlinelrcuiobject.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicconnectionpool.h"
@@ -18,7 +19,6 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 
-#define ITEM_DELTA      40
 #define ITEM_HEIGHT     40
 
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
@@ -56,6 +56,7 @@ void MusicLrcMakerWidgetItem::reset()
     m_intervalCount = 5;
     m_currentIndex = 0;
     m_paintIndex = 0;
+    m_itemDelta = 0;
 
     move(0, 0);
 }
@@ -89,7 +90,7 @@ void MusicLrcMakerWidgetItem::moveLeft()
 {
     m_leftDirection = true;
     m_painetLineDone = false;
-    m_paintIndex -= ITEM_DELTA;
+    m_paintIndex -= m_itemDelta;
 
     if(m_paintIndex  < 0)
     {
@@ -102,7 +103,7 @@ void MusicLrcMakerWidgetItem::moveRight()
 {
     m_leftDirection = false;
     int w = QFontMetrics(font()).width(text());
-    m_paintIndex += ITEM_DELTA;
+    m_paintIndex += m_itemDelta;
 
     if(m_paintIndex > w)
     {
@@ -113,6 +114,13 @@ void MusicLrcMakerWidgetItem::moveRight()
     update();
 }
 
+void MusicLrcMakerWidgetItem::setText(const QString &string)
+{
+    QLabel::setText(string);
+    int len = string.isEmpty() ? 1 : string.length();
+    m_itemDelta = QFontMetrics(font()).width(string)/len;
+}
+
 void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
@@ -120,11 +128,11 @@ void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
     int w = QFontMetrics(font()).width(text());
     if(!m_leftDirection && m_intervalCount + w >= width() && m_paintIndex >= width() / 2)
     {
-        m_intervalCount -= ITEM_DELTA;
+        m_intervalCount -= m_itemDelta;
     }
     if( m_leftDirection && m_intervalCount < 0)
     {
-        m_intervalCount += ITEM_DELTA;
+        m_intervalCount += m_itemDelta;
     }
 
     QPainter painter(this);
@@ -409,6 +417,10 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
         }
         m_analysis->setLrcData(data);
 
+        for(int i=0; i<m_analysis->getLineMax(); ++i)
+        {
+            m_musicLrcContainer[i]->setText( QString() );
+        }
         setItemStyleSheet(0, -3, 90);
         setItemStyleSheet(1, -6, 35);
         setItemStyleSheet(2, -10, 0);
@@ -494,9 +506,8 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                     else
                     {
                         m_lineItem->moveDown();
+                        m_times[m_currentLine] = ui->timeSlider_S->value();
                     }
-
-                    m_times[m_currentLine] = ui->timeSlider_S->value();
                     break;
                 }
         }
@@ -632,9 +643,11 @@ void MusicLrcMakerWidget::createThirdWidget()
         m_musicLrcContainer.append(w);
     }
     ///////////////////////////////////////////////////////////////
-
     ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
+    ui->lrc_make_up_T->setStyleSheet(MusicUIObject::MKGInlineMakeUp);
+    ui->lrc_make_down_T->setStyleSheet(MusicUIObject::MKGInlineMakeDown);
     ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
+
     ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->stateButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->remakeButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);

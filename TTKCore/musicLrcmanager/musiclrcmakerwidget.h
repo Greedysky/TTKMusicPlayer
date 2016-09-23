@@ -63,6 +63,12 @@ public:
      * Item move right.
      */
 
+public Q_SLOTS:
+    void setText(const QString &string);
+    /*!
+     * Override the setText.
+     */
+
 private:
     virtual void paintEvent(QPaintEvent *event) override;
     /*!
@@ -71,7 +77,7 @@ private:
 
     QObject *m_parentObject;
     bool m_leftDirection, m_painetLineDone;
-    int m_intervalCount;
+    int m_intervalCount, m_itemDelta;
     int m_currentIndex, m_paintIndex;
 
 };
