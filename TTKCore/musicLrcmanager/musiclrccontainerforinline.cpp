@@ -225,7 +225,6 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed()
         return;
     }
     revertLrcTimeSpeed( -m_changeSpeedValue );
-    m_changeSpeedValue = 0;
 }
 
 void MusicLrcContainerForInline::saveLrcTimeChanged()
@@ -485,12 +484,22 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
     updateCurrentLrc(beforeTime);
 
+    if(m_changeSpeedValue + pos == 0)
+    {
+        m_changeSpeedValue = 0;
+    }
     /////////////////////////////////////////////////////////
     MusicToastLabel *toast = new MusicToastLabel(this);
     toast->setFontSize(15);
     toast->setFontMargin(10, 10);
-    toast->setText(m_changeSpeedValue >= 0 ? tr("after%1s").arg(m_changeSpeedValue/MT_S2MS*1.0) :
-                                             tr("before%1s").arg(-m_changeSpeedValue/MT_S2MS*1.0));
+
+    if(m_changeSpeedValue > 0)
+        toast->setText(tr("after%1s").arg(m_changeSpeedValue*1.0/MT_S2MS));
+    else if(m_changeSpeedValue < 0)
+        toast->setText(tr("before%1s").arg(-m_changeSpeedValue*1.0/MT_S2MS));
+    else
+        toast->setText(tr("Restore"));
+
     QPoint globalPoint = mapToGlobal(QPoint(0, 0));
     toast->move(globalPoint.x() + (width() - toast->width())/2,
                 globalPoint.y() + height() - toast->height() - 40);
