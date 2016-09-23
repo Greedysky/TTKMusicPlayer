@@ -22,6 +22,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     m_currentPlayListIndex = 0;
     m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
+    m_analysis->setLineMax(9);
 
     m_autoNextTimer.setInterval(3*MT_S2MS);
     connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
@@ -302,9 +303,9 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
     if(time < position*MT_S2MS && time != -1)
     {
         QString lrc;
-        for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
+        for(int i=0; i<m_analysis->getLineMax(); ++i)
         {
-            if(i == LRC_CURRENT_LINE)
+            if(i == m_analysis->getMiddle())
             {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
             }

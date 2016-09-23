@@ -193,9 +193,9 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
     if(time < position*MT_S2MS && time != -1)
     {
         QString lrc;
-        for(int i=0; i<LRC_LINEMAX_COUNT; ++i)
+        for(int i=0; i<m_analysis->getLineMax(); ++i)
         {
-            if(i == LRC_CURRENT_LINE)
+            if(i == m_analysis->getMiddle())
             {
                 lrc += QString("<p style='font-weight:700;' align='center'>");
             }
@@ -266,6 +266,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     {
         m_songPlayer = new MusicCoreMPlayer(this);
         m_analysis = new  MusicLrcAnalysis(this);
+        m_analysis->setLineMax(11);
         connect(m_songPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
     MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());

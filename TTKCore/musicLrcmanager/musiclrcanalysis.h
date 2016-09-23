@@ -12,9 +12,6 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#define LRC_LINEMAX_COUNT   11
-#define LRC_CURRENT_LINE    5
-
 class MusicTranslationThread;
 
 /*! @brief The class of the core lrc analysis.
@@ -58,6 +55,19 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    inline void setLineMax(int max) { m_lineMax = max;}
+    /*!
+     * Set current line maximum value.
+     */
+    inline int getLineMax() const { return m_lineMax;}
+    /*!
+     * Get current line maximum value.
+     */
+    inline int getMiddle() const { return m_lineMax/2;}
+    /*!
+     * Get current line middle number.
      */
     State transLrcFileToTime(const QString &lrcFileName);
     /*!
@@ -151,7 +161,7 @@ protected:
      * Lrc analysis by match lrc line three[xx.(:)xx.(:)x(xx)].
      */
 
-    int m_currentLrcIndex;
+    int m_lineMax, m_currentLrcIndex;
     QString m_currentLrcFileName;
     MusicObject::MIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
