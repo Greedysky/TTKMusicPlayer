@@ -25,11 +25,6 @@ MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
     setHMSM(day, hour, min, sec, msec);
 }
 
-MusicTime::~MusicTime()
-{
-
-}
-
 QString MusicTime::getClassName()
 {
     return "MusicTime";
@@ -70,10 +65,10 @@ bool MusicTime::isValid() const
 
 MusicTime MusicTime::fromString(const QString &s, const QString &format)
 {
-    MusicTime musicTime;
+    MusicTime time;
     QTime t = QTime::fromString(s, format);
-    musicTime.setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
-    return musicTime;
+    time.setHMSM(0, t.hour(), t.minute(), t.second(), t.msec());
+    return time;
 }
 
 QString MusicTime::toString(qint64 value, Type type, const QString &format)
@@ -83,15 +78,13 @@ QString MusicTime::toString(qint64 value, Type type, const QString &format)
 
 QString MusicTime::toString(const QString &format)
 {
-    return QLocale::system().toString(
-           QTime(m_hour, m_min, m_sec, m_msec), format);
+    return QTime(m_hour, m_min, m_sec, m_msec).toString(format);
 }
 
 qint64 MusicTime::getTimeStamp(Type type) const
 {
     qint64 delta = (type == All_Sec) ? MT_S : MT_S2MS;
-           delta = (m_day*MT_D2S + m_hour*MT_H2S + m_min*MT_M2S +
-                    m_sec)*delta;
+           delta = (m_day*MT_D2S + m_hour*MT_H2S + m_min*MT_M2S + m_sec)*delta;
     return (type == All_Sec) ? delta : (delta + m_msec);
 }
 

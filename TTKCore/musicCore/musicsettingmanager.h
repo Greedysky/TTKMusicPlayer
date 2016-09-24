@@ -79,7 +79,7 @@ public:
         EnhancedCrossfadeChoiced,       ///*Enhanced Crossfade Parameter*/
         EnhancedStereoChoiced,          ///*Enhanced Stereo Parameter*/
         EnhancedLADSPAChoiced,          ///*Enhanced LADSPA Parameter*/
-        EnhancedSRCChoiced,             ///*Enhanced SRC Parameter*/
+        EnhancedSOXChoiced,             ///*Enhanced SOX Parameter*/
 
         TimerAutoIndexChoiced,          ///*Timer Auto Index Parameter*/
         TimerAutoPlayChoiced,           ///*Timer Auto Play Parameter*/

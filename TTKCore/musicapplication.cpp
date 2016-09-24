@@ -929,7 +929,7 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, xml.readEnhancedCrossfade());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, xml.readEnhancedStereo());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, xml.readEnhancedLADSPA());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced, xml.readEnhancedSRC());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced, xml.readEnhancedSOX());
     //////////////////////////////////////////////////////////////
     xml.readOtherLoadConfig();
 

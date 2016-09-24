@@ -219,10 +219,10 @@ public:
     /*!
      * Read Enhanced LADSPA.
      */
-    inline int readEnhancedSRC() const
-    { return readXmlAttributeByTagNameValue("enhancedSRC").toInt(); }
+    inline int readEnhancedSOX() const
+    { return readXmlAttributeByTagNameValue("enhancedSOX").toInt(); }
     /*!
-     * Read Enhanced SRC.
+     * Read Enhanced SOX.
      */
     inline int readLanguageIndex() const
     { return readXmlAttributeByTagNameValue("language").toInt(); }

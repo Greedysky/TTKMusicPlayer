@@ -211,7 +211,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="SRCWidget" native="true">
+   <widget class="MusicSoundEffectsItemWidget" name="SOXWidget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>

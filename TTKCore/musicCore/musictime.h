@@ -41,7 +41,6 @@ public:
     /*!
      * Object contsructor by day and hour and min and sec and msec.
      */
-    ~MusicTime();
 
     static QString getClassName();
     /*!
@@ -60,52 +59,52 @@ public:
      * Check current time is valid.
      */
 
-    void setType(Type type) { m_defaultType = type; }
+    inline void setType(Type type) { m_defaultType = type; }
     /*!
      * Set current time type, see Type.
      */
-    Type getType() const { return m_defaultType; }
+    inline Type getType() const { return m_defaultType; }
     /*!
      * Get current time type, see Type.
      */
 
-    void setDay(int day) { m_day = day; }
+    inline void setDay(int day) { m_day = day; }
     /*!
      * Set current day.
      */
-    void setHour(int hour) { m_hour = hour; }
+    inline void setHour(int hour) { m_hour = hour; }
     /*!
      * Set current hour.
      */
-    void setMinute(int min) { m_min = min; }
+    inline void setMinute(int min) { m_min = min; }
     /*!
      * Set current minute.
      */
-    void setSecond(int sec) { m_sec = sec; }
+    inline void setSecond(int sec) { m_sec = sec; }
     /*!
      * Set current second.
      */
-    void setMillionSecond(int msec) { m_msec = msec; }
+    inline void setMillionSecond(int msec) { m_msec = msec; }
     /*!
      * Set current millionSecond.
      */
-    int getDay() const { return m_day; }
+    inline int getDay() const { return m_day; }
     /*!
      * Get current day.
      */
-    int getHour() const { return m_hour; }
+    inline int getHour() const { return m_hour; }
     /*!
      * Get current hour.
      */
-    int getMinute() const { return m_min; }
+    inline int getMinute() const { return m_min; }
     /*!
      * Get current second.
      */
-    int getSecond() const { return m_sec; }
+    inline int getSecond() const { return m_sec; }
     /*!
      * Get current second.
      */
-    int getMillionSecond() const { return m_msec; }
+    inline int getMillionSecond() const { return m_msec; }
     /*!
      * Get current millionSecond.
      */
@@ -190,14 +189,14 @@ public:
     bool operator== (const MusicTime &other) const;
     bool operator!= (const MusicTime &other) const;
 
-    friend QDataStream& operator<<(QDataStream &stream, const MusicTime &other)
+    inline friend QDataStream& operator<<(QDataStream &stream, const MusicTime &other)
     {
         stream << other.getDay() << other.getHour() << other.getMinute()
                << other.getSecond() << other.getMillionSecond();
         return stream;
     }
 
-    friend QDataStream& operator>>(QDataStream &stream, MusicTime &other)
+    inline friend QDataStream& operator>>(QDataStream &stream, MusicTime &other)
     {
         int x[5];
         stream >> x[0] >> x[1] >> x[2] >> x[3] >> x[4];

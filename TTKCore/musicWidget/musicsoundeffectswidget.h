@@ -29,7 +29,7 @@ public:
         Crossfade,  /// sound Crossfade effect
         Stereo,     /// sound Stereo effect
         LADSPA,     /// sound LADSPA effect
-        SRC         /// sound SRC effect
+        SoX         /// sound SoX Resampler effect
     };
     explicit MusicSoundEffectsItemWidget(QWidget *parent = 0);
     /*!

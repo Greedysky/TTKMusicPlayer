@@ -117,7 +117,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int enhancedCrossfadeChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt();
     int enhancedStereoChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt();
     int enhancedLADSPAChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt();
-    int enhancedSRCChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt();
+    int enhancedSOXChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int timeAutoIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
@@ -239,7 +239,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(equalizer, "enhancedCrossfade", "value", enhancedCrossfadeChoiced);
     writeDomElement(equalizer, "enhancedStereo", "value", enhancedStereoChoiced);
     writeDomElement(equalizer, "enhancedLADSPA", "value", enhancedLADSPAChoiced);
-    writeDomElement(equalizer, "enhancedSRC", "value", enhancedSRCChoiced);
+    writeDomElement(equalizer, "enhancedSOX", "value", enhancedSOXChoiced);
 
     ///////////////////////////////////////////////
     writeDomElement(downloads, "downloadMusicPath", "value", downloadMusicPath);
