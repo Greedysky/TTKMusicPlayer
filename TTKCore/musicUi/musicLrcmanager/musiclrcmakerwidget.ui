@@ -920,6 +920,9 @@
        <height>28</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
     </widget>
     <widget class="QPushButton" name="lrc_make_down_T">
      <property name="geometry">
@@ -929,6 +932,9 @@
        <width>28</width>
        <height>28</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
     </widget>
     <zorder>lrcViewer</zorder>

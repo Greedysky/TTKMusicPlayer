@@ -104,7 +104,11 @@ public:
     /*!
      * Get current middle index.
      */
-    QString getCurrentFileName() const { return m_currentLrcFileName;}
+    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name;}
+    /*!
+     * Set current file name.
+     */
+    inline QString getCurrentFileName() const { return m_currentLrcFileName;}
     /*!
      * Get current file name.
      */

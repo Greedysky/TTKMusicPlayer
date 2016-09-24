@@ -55,12 +55,12 @@ void MusicSplitItemClickedLabel::mouseMoveEvent(QMouseEvent *event)
     int offset = 0;
     foreach(const QString &var, data)
     {
-        int fs = metrics.width(var);
+        int fs = metrics.width(var.trimmed());
         if(offset <= event->pos().x() && event->pos().x() <= offset + fs)
         {
             setCursor(QCursor(Qt::PointingHandCursor));
             m_lineGeometry = QRectF(offset, height() - 3, fs, 0.5);
-            m_currentString = var;
+            m_currentString = var.trimmed();
             break;
         }
         offset += (fs + metrics.width(" - "));

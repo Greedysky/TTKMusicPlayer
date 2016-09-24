@@ -168,6 +168,14 @@ private Q_SLOTS:
     /*!
      * Animation finished.
      */
+    void lrcSpeedSlower();
+    /*!
+     * Set lrc time speed changed slower.
+     */
+    void lrcSpeedFaster();
+    /*!
+     * Set lrc time speed changed faster.
+     */
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -212,13 +220,16 @@ protected:
     /*!
      * Reset to origin play mode.
      */
+    void updateCurrentLrc(qint64 time);
+    /*!
+     * Update current lrc by given time.
+     */
     void setItemStyleSheet(int index, int size, int transparent);
     /*!
      * Set per lrc line style sheet.
      */
 
     Ui::MusicLrcMakerWidget *ui;
-    QFile m_file;
     QStringList m_plainText;
     QMap<int, qint64> m_times;
 

@@ -92,7 +92,7 @@ void MusicLrcMakerWidgetItem::moveLeft()
     m_painetLineDone = false;
     m_paintIndex -= m_itemDelta;
 
-    if(m_paintIndex  < 0)
+    if(m_paintIndex <= 0)
     {
         m_paintIndex = 0;
     }
@@ -105,7 +105,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     int w = QFontMetrics(font()).width(text());
     m_paintIndex += m_itemDelta;
 
-    if(m_paintIndex > w)
+    if(m_paintIndex >= w)
     {
         m_painetLineDone = true;
         m_paintIndex = w;
@@ -199,7 +199,7 @@ QString MusicLrcMakerWidget::getClassName()
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
-    m_file.setFileName(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(name).arg(LRC_FILE));
+    m_analysis->setCurrentFileName(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(name).arg(LRC_FILE));
     ui->songNameEdit->setText(MusicUtils::Core::songName(name));
     ui->artNameEdit->setText(MusicUtils::Core::artistName(name));
 }
@@ -236,7 +236,7 @@ void MusicLrcMakerWidget::positionChanged(qint64 position)
         {
             if(currentLrc != m_musicLrcContainer[m_analysis->getMiddle()]->text())
             {
-                ui->lrcViewer->start();
+                updateCurrentLrc(m_intervalTime);
             }
         }
     }
@@ -273,26 +273,10 @@ void MusicLrcMakerWidget::saveButtonClicked()
         return;
     }
 
-    if( m_file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) )
-    {
-        QByteArray array;
-        array.append(QString("[ti:%1]\n[ar:%2]\n[by:%3]\n")
-                .arg(ui->songNameEdit->text()).arg(ui->artNameEdit->text())
-                .arg(ui->authorNameEdit->text()));
-        for(int i=0; i<m_times.count(); ++i)
-        {
-            array.append(translateTimeString(m_times.value(i)) + m_plainText[i] + "\n");
-        }
-
-        QTextStream outstream(&m_file);
-        outstream.setCodec("utf-8");
-        outstream << array << endl;
-        m_file.close();
-
-        MusicMessageBox message;
-        message.setText(tr("save file finished"));
-        message.exec();
-    }
+    m_analysis->saveLrcTimeChanged();
+    MusicMessageBox message;
+    message.setText(tr("save file finished"));
+    message.exec();
 }
 
 void MusicLrcMakerWidget::reMakeButtonClicked()
@@ -437,6 +421,18 @@ void MusicLrcMakerWidget::updateAnimationLrc()
     }
     m_analysis->setCurrentIndex(m_analysis->getCurrentIndex() + 1);
     m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
+}
+
+void MusicLrcMakerWidget::lrcSpeedSlower()
+{
+    m_analysis->revertLrcTime(MT_S2MS);
+    updateCurrentLrc( m_analysis->setSongSpeedAndSlow(ui->timeSlider_T->value()) );
+}
+
+void MusicLrcMakerWidget::lrcSpeedFaster()
+{
+    m_analysis->revertLrcTime(-MT_S2MS);
+    updateCurrentLrc( m_analysis->setSongSpeedAndSlow(ui->timeSlider_T->value()) );
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
@@ -644,9 +640,13 @@ void MusicLrcMakerWidget::createThirdWidget()
     }
     ///////////////////////////////////////////////////////////////
     ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
+    ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
+    ui->lrc_make_up_T->setToolTip(tr("Before 1s"));
+    ui->lrc_make_down_T->setToolTip(tr("After 1s"));
     ui->lrc_make_up_T->setStyleSheet(MusicUIObject::MKGInlineMakeUp);
     ui->lrc_make_down_T->setStyleSheet(MusicUIObject::MKGInlineMakeDown);
-    ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
+    connect(ui->lrc_make_up_T, SIGNAL(clicked()), SLOT(lrcSpeedSlower()));
+    connect(ui->lrc_make_down_T, SIGNAL(clicked()), SLOT(lrcSpeedFaster()));
 
     ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
     ui->stateButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -725,6 +725,15 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
             w->musicPlayOneLoop(); break;
         case MusicObject::MC_PlayOnce:
             w->musicPlayItemOnce(); break;
+    }
+}
+
+void MusicLrcMakerWidget::updateCurrentLrc(qint64 time)
+{
+    if(m_analysis->valid())
+    {
+        m_intervalTime = time;
+        ui->lrcViewer->start();
     }
 }
 
