@@ -177,6 +177,10 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &data)
 {
+    if(!m_downLoadManager)
+    {
+        return;
+    }
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
