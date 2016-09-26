@@ -16,7 +16,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += musicmobilemain.cpp
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
 # Default rules for deployment.
@@ -33,4 +33,4 @@ OTHER_FILES += \
     android/src/org/greedysky/ttkmobile/SplashScreen.java
 }
 
-RESOURCES += qml.qrc
+RESOURCES += TTKMobile.qrc

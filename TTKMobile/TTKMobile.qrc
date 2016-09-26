@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/image">
+        <file alias="test">images/test.jpg</file>
+        <file alias="top_tab_more_selected">images/top_tab_more_selected.png</file>
+        <file alias="top_tab_search_selected">images/top_tab_search_selected.png</file>
+        <file alias="tital_bar_back">images/tital_bar_back.png</file>
+        <file alias="mymusic_icon_allsongs_highlight">images/mymusic_icon_allsongs_highlight.png</file>
+        <file alias="mymusic_icon_download_normal">images/mymusic_icon_download_normal.png</file>
+        <file alias="mymusic_icon_history_highlight">images/mymusic_icon_history_highlight.png</file>
+        <file alias="mymusic_icon_favorite_normal">images/mymusic_icon_favorite_normal.png</file>
+        <file alias="mymusic_icon_mv_highlight">images/mymusic_icon_mv_highlight.png</file>
+        <file alias="mymusic_icon_recognizer_normal">images/mymusic_icon_recognizer_normal.png</file>
+        <file alias="landscape_check_album_normal">images/landscape_check_album_normal.png</file>
+        <file alias="landscape_player_btn_pause_normal">images/landscape_player_btn_pause_normal.png</file>
+        <file alias="landscape_player_btn_play_normal">images/landscape_player_btn_play_normal.png</file>
+        <file alias="minibar_btn_playlist_normal">images/minibar_btn_playlist_normal.png</file>
+        <file alias="player_btn_next_normal">images/player_btn_next_normal.png</file>
+        <file alias="player_btn_pre_normal">images/player_btn_pre_normal.png</file>
+        <file alias="player_btn_pause_normal">images/player_btn_pause_normal.png</file>
+        <file alias="player_btn_play_normal">images/player_btn_play_normal.png</file>
+        <file alias="player_btn_close_normal">images/player_btn_close_normal.png</file>
+        <file alias="player_btn_more_normal">images/player_btn_more_normal.png</file>
+        <file alias="widget_default_album_middle">images/widget_default_album_middle.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>qmls/main.qml</file>
+        <file>qmls/Core/TTKMessageBox.qml</file>
+        <file>qmls/Core/TTKButton.qml</file>
+        <file>qmls/Core/TTKLineInput.qml</file>
+        <file>qmls/TTKMainPage.qml</file>
+        <file>qmls/TTKMainFunctionItem.qml</file>
+        <file>qmls/TTKOnlineSearchPage.qml</file>
+        <file>qmls/TTKTheme.qml</file>
+        <file>qmls/TTKMusicBar.qml</file>
+        <file>qmls/TTKMusicPlayerCenter.qml</file>
+    </qresource>
+</RCC>
