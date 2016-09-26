@@ -31,9 +31,6 @@ QString MusicVideoQualityPopWidget::getClassName()
 
 void MusicVideoQualityPopWidget::setQualityActionState()
 {
-    MusicObject::MusicSongAttributes data;
-    emit getMusicMvInfo(data);
-
     QList<QAction*> actions = m_actionGroup->actions();
     if(actions.count() >= 3)
     {
