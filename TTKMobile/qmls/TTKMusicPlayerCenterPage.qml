@@ -48,7 +48,6 @@ Item {
                 Text {
                     id: musicPlayerShowTitle
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(mainMenubar.width)
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter

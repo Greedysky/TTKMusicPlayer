@@ -19,7 +19,7 @@ Rectangle {
 
     visible: false
     anchors.fill: parent
-    color: "#80000000"
+    color: ttkTheme.alphaLv12
 
     MouseArea {
         anchors.fill: parent

@@ -13,6 +13,10 @@ Item {
         spacing: 0
         anchors.fill: parent
 
+        TTKMusicListsPageMore {
+            id: ttkMusicListsPageMore
+        }
+
         ///top bar
         Rectangle {
             id: mainMenubar
@@ -50,7 +54,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
-
+                        ttkMusicListsPageMore.visible = true;
                     }
                 }
             }
@@ -63,28 +67,69 @@ Item {
             color: ttkTheme.white
 
             ListView {
-                anchors.top: parent.top
-                width: ttkMainWindow.width
-                height: 300
-
-                snapMode: ListView.SnapOneItem
-                highlightRangeMode: ListView.StrictlyEnforceRange
-                boundsBehavior: Flickable.StopAtBounds
+                anchors.fill: parent
+                clip: true
 
                 delegate: Component {
                     Rectangle {
                         id: wrapper
                         width: ttkMainWindow.width
-                        height: 50
-                        color: ListView.isCurrentItem ? "black" : "red"
+                        height: dpHeight(70)
+                        color: ttkTheme.white
 
                         Rectangle {
                             width: ttkMainWindow.width
                             height: 1
+                            color: ttkTheme.alphaLv9
                         }
 
                         Text {
-                            text: name
+                            id: titleArea
+                            text: title
+                            anchors {
+                                top: parent.top
+                                topMargin: dpHeight(5)
+                                left: parent.left
+                                leftMargin: dpHeight(20)
+                            }
+                            font.pixelSize: parent.height/3
+                        }
+
+                        Image {
+                            id: iconArea
+                            width: parent.height/3
+                            height: parent.height/3
+                            anchors {
+                                top: titleArea.bottom
+                                left: parent.left
+                                leftMargin: dpHeight(20)
+                            }
+                            source: "qrc:/image/ic_playlist_normal"
+                        }
+
+                        TTKButton {
+                            id: moreFuncArea
+                            width: parent.height/2
+                            height: parent.height/2
+                            anchors {
+                                top: parent.top
+                                right: parent.right
+                                topMargin: dpHeight(20)
+                                rightMargin: dpHeight(20)
+                            }
+                            source: "qrc:/image/ic_playlist_more_normal"
+                        }
+
+                        Text {
+                            id: artistArea
+                            text: artist
+                            anchors {
+                                top: titleArea.bottom
+                                left: iconArea.right
+                                leftMargin: dpHeight(10)
+                            }
+                            font.pixelSize: parent.height/4
+                            color: "gray"
                         }
                     }
                 }
@@ -96,7 +141,7 @@ Item {
 
             Component.onCompleted: {
                 for(var i=0; i<100; ++i) {
-                    testModel.append({"name": i});
+                    testModel.append({"title": "埃文啊我", "artist": "test"});
                 }
             }
         }

@@ -5,6 +5,7 @@ ListView{
     width: parent.width
     height: parent.height
     model: pageModel
+    clip: true
 
     default property alias content: pageModel.children
 

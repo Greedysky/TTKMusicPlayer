@@ -35,6 +35,14 @@
         <file alias="radius_big_mask">images/radius_big_mask.png</file>
         <file alias="radius_mask">images/radius_mask.png</file>
         <file alias="icon_local_song">images/icon_local_song.png</file>
+        <file alias="ic_playlist_normal">images/ic_playlist_normal.png</file>
+        <file alias="ic_playlist_more_normal">images/ic_playlist_more_normal.png</file>
+        <file alias="icon_download_lyric">images/icon_download_lyric.png</file>
+        <file alias="local_cloud_music_icon">images/local_cloud_music_icon.png</file>
+        <file alias="local_music_sorted_by_time_icon">images/local_music_sorted_by_time_icon.png</file>
+        <file alias="local_music_scan_icon">images/local_music_scan_icon.png</file>
+        <file alias="local_music_sorted_by_name_icon">images/local_music_sorted_by_name_icon.png</file>
+        <file alias="local_music_upgrade_song_quality_icon">images/local_music_upgrade_song_quality_icon.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -51,5 +59,6 @@
         <file>qmls/TTKMusicBar.qml</file>
         <file>qmls/TTKMusicPlayerCenterPage.qml</file>
         <file>qmls/TTKMusicListsPage.qml</file>
+        <file>qmls/TTKMusicListsPageMore.qml</file>
     </qresource>
 </RCC>
