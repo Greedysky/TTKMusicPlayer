@@ -3,7 +3,7 @@
         <file alias="test">images/test.jpg</file>
         <file alias="top_tab_more_selected">images/top_tab_more_selected.png</file>
         <file alias="top_tab_search_selected">images/top_tab_search_selected.png</file>
-        <file alias="tital_bar_back">images/tital_bar_back.png</file>
+        <file alias="title_bar_back">images/title_bar_back.png</file>
         <file alias="mymusic_icon_allsongs_highlight">images/mymusic_icon_allsongs_highlight.png</file>
         <file alias="mymusic_icon_download_normal">images/mymusic_icon_download_normal.png</file>
         <file alias="mymusic_icon_history_highlight">images/mymusic_icon_history_highlight.png</file>
@@ -32,6 +32,9 @@
         <file alias="player_btn_repeatone_normal">images/player_btn_repeatone_normal.png</file>
         <file alias="ic_toolbar_advance">images/ic_toolbar_advance.png</file>
         <file alias="ic_add_folder">images/ic_add_folder.png</file>
+        <file alias="radius_big_mask">images/radius_big_mask.png</file>
+        <file alias="radius_mask">images/radius_mask.png</file>
+        <file alias="icon_local_song">images/icon_local_song.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -40,11 +43,13 @@
         <file>qmls/Core/TTKLineInput.qml</file>
         <file>qmls/Core/TTKPageView.qml</file>
         <file>qmls/Core/TTKListViewIndicator.qml</file>
+        <file>qmls/Core/TTKRadiusImage.qml</file>
         <file>qmls/TTKMainPage.qml</file>
         <file>qmls/TTKMainFunctionItem.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>
         <file>qmls/TTKTheme.qml</file>
         <file>qmls/TTKMusicBar.qml</file>
-        <file>qmls/TTKMusicPlayerCenter.qml</file>
+        <file>qmls/TTKMusicPlayerCenterPage.qml</file>
+        <file>qmls/TTKMusicListsPage.qml</file>
     </qresource>
 </RCC>

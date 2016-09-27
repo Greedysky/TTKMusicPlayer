@@ -26,7 +26,7 @@ Item {
                 anchors.fill: parent
 
                 TTKButton {
-                    source: "qrc:/image/tital_bar_back"
+                    source: "qrc:/image/title_bar_back"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
                     anchors.left: parent.left
@@ -58,7 +58,7 @@ Item {
         Rectangle {
             width: ttkMainWindow.width
             height: ttkMainStackView.height - ttkMainMenubar.height
-            color: "#897987"
+            color: ttkTheme.white
         }
     }
 }

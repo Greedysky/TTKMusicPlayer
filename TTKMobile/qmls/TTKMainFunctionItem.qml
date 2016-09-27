@@ -10,6 +10,15 @@ Rectangle {
     property alias mainTitle: mainTitle.text
     property alias subTitle: subTitle.text
 
+    signal pressed
+
+    MouseArea {
+        anchors.fill: parent
+        onPressed: {
+            ttkMainFunctionItem.pressed();
+        }
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent

@@ -33,6 +33,8 @@ ApplicationWindow {
         height: parent.height
         focus: true
 
+        delegate: StackViewDelegate { }
+
         initialItem: ColumnLayout {
             spacing: 0
 

@@ -20,11 +20,11 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onPressed: {
-            ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenter.qml");
+            ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
         }
     }
 
-    Rectangle {
+    TTKRadiusImage {
         id: radioImage
         width: parent.height
         height: parent.height
@@ -34,12 +34,8 @@ Rectangle {
             leftMargin: dpHeight(10)
         }
         color: ttkTheme.alphaLv0
-
-        Image {
-            anchors.fill: parent
-            smooth: true
-            source: "qrc:/image/landscape_check_album_normal"
-        }
+        foreground: "qrc:/image/landscape_check_album_normal"
+        background: "qrc:/image/radius_mask"
     }
 
     Text {

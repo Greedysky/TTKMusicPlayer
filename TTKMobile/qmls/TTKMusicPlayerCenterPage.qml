@@ -45,9 +45,20 @@ Item {
                     }
                 }
 
+                Text {
+                    id: musicPlayerShowTitle
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: dpWidth(mainMenubar.width)
+                    Layout.fillHeight: true
+                    color: ttkTheme.white
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    text: "SDfsdfsdf"
+                }
+
                 TTKButton {
                     source: "qrc:/image/player_btn_more_normal"
-                    Layout.preferredWidth: dpWidth(50*1.36)
+                    Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
@@ -62,6 +73,7 @@ Item {
             id: playCenterPageView
             Layout.fillWidth: true
             height: ttkMusicPlayerCenter.height - mainMenubar.height - playerComponent.height
+            currentIndex: 1
 
             Rectangle {
                 id: musicAlbumShow
@@ -75,6 +87,45 @@ Item {
                 width: playCenterPageView.width
                 height: playCenterPageView.height
                 color: ttkTheme.alphaLv14
+
+                ColumnLayout {
+                    spacing: 0
+                    anchors.fill: parent
+
+                    Text {
+                        id: musicPlayerShowArtist
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: dpHeight(50)
+                        color: ttkTheme.white
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        text: "-SDfsdfsdf-"
+                    }
+
+                    Rectangle {
+                        id: musicPlayerShowCenter
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: dpHeight(270)
+                        color: ttkTheme.alphaLv0
+
+                        TTKRadiusImage {
+                            id: radioImage
+                            anchors.centerIn: parent;
+                            width: parent.height
+                            height: parent.height
+                            color: ttkTheme.alphaLv0
+                            foreground: "qrc:/image/widget_default_album_middle"
+                            background: "qrc:/image/radius_big_mask"
+                        }
+                    }
+
+                    Rectangle {
+                        id: musicPlayerShowLrc
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: dpHeight(80)
+                        color: "yellow"
+                    }
+                }
             }
 
             Rectangle {

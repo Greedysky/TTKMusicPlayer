@@ -75,7 +75,7 @@ Item {
                         anchors.left: parent.left
                         color: ttkTheme.white
 
-                        Rectangle {
+                        TTKRadiusImage {
                             id: userImage
                             width: parent.height
                             height: parent.height
@@ -85,11 +85,8 @@ Item {
                                 leftMargin: dpHeight(10)
                             }
                             color: ttkTheme.alphaLv0
-
-                            Image {
-                                anchors.fill: parent
-                                source: "qrc:/image/test"
-                            }
+                            foreground: "qrc:/image/test"
+                            background: "qrc:/image/radius_mask"
                         }
 
                         Text {
@@ -138,6 +135,9 @@ Item {
                             source: "qrc:/image/mymusic_icon_allsongs_highlight"
                             mainTitle: "本地歌曲"
                             subTitle: "749"
+                            onPressed: {
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml")
+                            }
                         }
 
                         TTKMainFunctionItem {
