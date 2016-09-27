@@ -60,7 +60,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: dpHeight(700)
+                height: dpHeight(800)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -102,7 +102,7 @@ Item {
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            font.pixelSize: 15
+                            font.pixelSize: parent.height/4
                             text: "个性电台"
                         }
 
@@ -228,7 +228,7 @@ Item {
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            font.pixelSize: 15
+                            font.pixelSize: parent.height/4
                             text: "个性电台"
                         }
 
@@ -251,10 +251,79 @@ Item {
                     Rectangle {
                         id: songsWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(200)
-                        anchors.left: parent.left
-                        color: "yellow"
+                        Layout.preferredHeight: dpHeight(300)
+
+                        ColumnLayout {
+                            spacing: 0
+                            anchors.fill: parent
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                height: dpHeight(50)
+                                Layout.alignment: Qt.AlignCenter
+
+                                Text {
+                                    text: "我 的 歌 单"
+                                    horizontalAlignment: Qt.AlignHCenter
+                                    verticalAlignment: Qt.AlignVCenter
+                                    width: songsWidget.width
+                                    height: parent.height
+                                }
+
+                                Image {
+                                    id: image
+                                    anchors.right: parent.right
+                                    width: parent.height
+                                    height: parent.height
+                                    source: "qrc:/image/ic_toolbar_advance"
+                                }
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                color: ttkTheme.alphaLv10
+                                height: 1
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: dpHeight(150)
+
+                                Rectangle {
+                                    id: songsItemWidget
+                                    height: dpHeight(70)
+                                    width: dpWidth(70)
+                                    color: ttkTheme.alphaLv11
+                                    anchors {
+                                        left: parent.left
+                                        top: parent.top
+                                        leftMargin: dpHeight(10)
+                                        topMargin: dpHeight(10)
+                                    }
+
+                                    Image {
+                                        id: songsItemImage
+                                        anchors.fill: parent
+                                        source: "qrc:/image/ic_add_folder"
+                                    }
+
+                                    Text {
+                                        text: "新建歌单"
+                                        anchors {
+                                            left: songsItemImage.right
+                                            top: parent.top
+                                            leftMargin: dpHeight(10)
+                                        }
+                                        horizontalAlignment: Qt.AlignHCenter
+                                        verticalAlignment: Qt.AlignVCenter
+                                        width: parent.width
+                                        height: parent.height
+                                    }
+                                }
+                            }
+                        }
                     }
+
                 }
             }
         }

@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 
 QtObject {
-    property color topbar_background: "#90EE90"
+    property color topbar_background: "#31C27B"
     property int   topbar_height: 50
 
     property color white: "#FFFFFF"

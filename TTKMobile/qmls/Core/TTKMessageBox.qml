@@ -85,7 +85,7 @@ Rectangle {
                 anchors {
                     left: parent.left
                     bottom: parent.bottom
-                    leftMargin: dpWidth(width/6)
+                    leftMargin: dpWidth(width/7)
                     bottomMargin: dpWidth(height/6)
                 }
                 color: ttkTheme.topbar_background
@@ -111,7 +111,7 @@ Rectangle {
                 anchors {
                     right: parent.right
                     bottom: parent.bottom
-                    rightMargin: dpWidth(width/6)
+                    rightMargin: dpWidth(width/7)
                     bottomMargin: dpWidth(height/6)
                 }
                 color: ttkTheme.topbar_background

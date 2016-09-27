@@ -23,6 +23,6 @@ public class SplashScreen extends Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        timer.schedule(task, 3000);
+        timer.schedule(task, 1500);
     }
 }

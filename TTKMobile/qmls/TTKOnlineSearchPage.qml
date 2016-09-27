@@ -36,10 +36,10 @@ Item {
                 }
 
                 TTKLineInput {
-                    width: dpWidth(320)
-                    height: dpHeight(33)
+                    Layout.preferredWidth: dpWidth(ttkMainWindow.width - 200)
+                    Layout.preferredHeight: dpHeight(33)
                     hint: "Big Bang"
-                    fontSize: 13
+                    fontSize: parent.height/3
                 }
 
                 Text {

@@ -21,12 +21,25 @@
         <file alias="player_btn_close_normal">images/player_btn_close_normal.png</file>
         <file alias="player_btn_more_normal">images/player_btn_more_normal.png</file>
         <file alias="widget_default_album_middle">images/widget_default_album_middle.png</file>
+        <file alias="player_btn_favorite_normal">images/player_btn_favorite_normal.png</file>
+        <file alias="player_btn_favorited_normal">images/player_btn_favorited_normal.png</file>
+        <file alias="play_downloaded_btn">images/play_downloaded_btn.png</file>
+        <file alias="player_btn_download_normal">images/player_btn_download_normal.png</file>
+        <file alias="player_btn_playlist_normal">images/player_btn_playlist_normal.png</file>
+        <file alias="player_btn_share_normal">images/player_btn_share_normal.png</file>
+        <file alias="player_btn_random_normal">images/player_btn_random_normal.png</file>
+        <file alias="player_btn_repeat_normal">images/player_btn_repeat_normal.png</file>
+        <file alias="player_btn_repeatone_normal">images/player_btn_repeatone_normal.png</file>
+        <file alias="ic_toolbar_advance">images/ic_toolbar_advance.png</file>
+        <file alias="ic_add_folder">images/ic_add_folder.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
         <file>qmls/Core/TTKMessageBox.qml</file>
         <file>qmls/Core/TTKButton.qml</file>
         <file>qmls/Core/TTKLineInput.qml</file>
+        <file>qmls/Core/TTKPageView.qml</file>
+        <file>qmls/Core/TTKListViewIndicator.qml</file>
         <file>qmls/TTKMainPage.qml</file>
         <file>qmls/TTKMainFunctionItem.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>

@@ -15,8 +15,8 @@ Rectangle {
         anchors.fill: parent
 
         Rectangle {
-            Layout.preferredWidth: dpWidth(80)
-            Layout.preferredHeight: dpHeight(80)
+            Layout.preferredWidth: dpWidth(60)
+            Layout.preferredHeight: dpHeight(60)
             Layout.alignment: Qt.AlignCenter
             color: ttkTheme.alphaLv0
 
@@ -31,7 +31,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 15
+            font.pixelSize: parent.height/8
         }
 
         Text {

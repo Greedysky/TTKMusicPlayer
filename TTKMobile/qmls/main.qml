@@ -62,7 +62,7 @@ ApplicationWindow {
         id: ttkMessageBox
         title: "提示"
         content: "是否继续退出"
-        okText: "继续"
+        okText: "退出"
         cancelText: "取消"
         onResult: {
             if(val === 1) {
