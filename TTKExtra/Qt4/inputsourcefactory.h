@@ -66,10 +66,6 @@ public:
      * @param parent Parent object.
      */
     virtual InputSource *create(const QString &url, QObject *parent = 0) = 0;
-    /*!
-     * Shows settings dialog.
-     * @param parent Parent widget.
-     */
 
 };
 

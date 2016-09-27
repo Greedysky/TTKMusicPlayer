@@ -108,10 +108,6 @@ public:
      * @return MetaDataModel pointer.
      */
     virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0) = 0;
-    /*!
-     * Shows settings dialog.
-     * @param parent Parent widget.
-     */
 
 };
 

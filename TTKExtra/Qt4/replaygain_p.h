@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,24 +23,23 @@
 
 #include <QtGlobal>
 #include <QMap>
-#include "decoder.h"
+#include "effect.h"
 #include "qmmpsettings.h"
 #include "qmmp.h"
 
 /*! @internal
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class ReplayGain
+class ReplayGain : public Effect
 {
 public:
     ReplayGain();
     ~ReplayGain();
 
-    void configure(const AudioParameters &p);
     void updateSettings(QmmpSettings::ReplayGainMode mode, double preamp,
                         double default_gain, bool clip);
-    void setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info, bool headroom);
-    qint64 read(Decoder *decoder, char *data, qint64 size);
+    void setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info);
+    void applyEffect(Buffer *b);
 
 private:
     void updateScale();
@@ -49,12 +48,9 @@ private:
     double m_scale;
     double m_preamp;
     double m_default_gain;
-    float *m_prebuf;
     bool m_prevent_clipping;
-    Qmmp::AudioFormat m_format;
     bool m_disabled;
-    bool m_headroom;
-    int m_sample_size;
+    bool m_update;
 };
 
 #endif // REPLAYGAIN_H

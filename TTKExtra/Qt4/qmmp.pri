@@ -19,7 +19,6 @@ HEADERS += \
     $$PWD/fileinfo.h \
     $$PWD/metadatamodel.h \
     $$PWD/tagmodel.h \
-    $$PWD/tagreadandwrite.h \
     $$PWD/abstractengine.h \
     $$PWD/qmmpaudioengine_p.h \
     $$PWD/audioparameters.h \
@@ -30,7 +29,6 @@ HEADERS += \
     $$PWD/enginefactory.h \
     $$PWD/metadatamanager.h \
     $$PWD/replaygain_p.h \
-    $$PWD/audioconverter_p.h \
     $$PWD/qmmpsettings.h \
     $$PWD/eqsettings.h \
     $$PWD/qmmpevents_p.h \
@@ -40,4 +38,8 @@ HEADERS += \
     $$PWD/recycler_p.h \
     $$PWD/qmmpplugincache_p.h \
     $$PWD/channelmap.h \
-    $$PWD/channelconverter_p.h
+    $$PWD/channelconverter_p.h \
+    $$PWD/audioconverter.h \
+    $$PWD/dithering_p.h \
+    $$PWD/tagreadandwrite.h
+    

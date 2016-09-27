@@ -7,6 +7,9 @@
 #ifndef   __buffer_h
 #define   __buffer_h
 
+#include <string.h>
+#include <stddef.h>
+
 #define QMMP_BLOCK_FRAMES 512
 
 /*! @brief Audio buffer class.
@@ -17,12 +20,12 @@ class Buffer
 public:
     /*!
      * Constructs an empty buffer object.
-     * @param sz Size in bytes;
+     * @param sz Size in samples;
      */
-    Buffer(unsigned long sz)
+    Buffer(size_t sz)
     {
-        data = new unsigned char[sz];
-        nbytes = 0;
+        data = new float[sz];
+        samples = 0;
         rate = 0;
         size = sz;
     }
@@ -33,15 +36,15 @@ public:
     {
         delete[] data;
         data = 0;
-        nbytes = 0;
+        samples = 0;
         rate = 0;
         size = 0;
     }
 
-    unsigned char *data;      /*!< Audio data */
-    unsigned long nbytes;     /*!< Audio data size */
-    unsigned long rate;       /*!< Buffer bitrate */
-    unsigned long size;       /*!< Buffer size */
+    float *data;         /*!< Audio data */
+    size_t samples;      /*!< Audio data size in samples */
+    size_t size;         /*!< Buffer size in samples */
+    unsigned int rate;   /*!< Buffer bitrate */
 };
 
 

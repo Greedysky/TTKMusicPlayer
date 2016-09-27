@@ -31,6 +31,7 @@ class QIODevice;
 class InputSource;
 class QmmpPluginCache;
 
+
 /*! @brief The AbstractEngine class provides the base interface class of audio audio engines.
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
@@ -39,7 +40,7 @@ class Q_DECL_EXPORT AbstractEngine : public QThread
  Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      * @param parent Parent object.
      */
     AbstractEngine(QObject *parent = 0);

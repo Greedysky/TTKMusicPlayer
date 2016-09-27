@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2012 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -131,7 +131,7 @@ public:
 
     void setVolume(const VolumeSettings &v);
     VolumeSettings volume() const;
-    void changeVolume(Buffer *b, int chan, Qmmp::AudioFormat format);
+    void changeVolume(Buffer *b, int chan);
 
     static SoftwareVolume *instance();
 

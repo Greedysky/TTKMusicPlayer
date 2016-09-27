@@ -66,9 +66,7 @@ void set_gain(int index, int chn, float val);
 void set_preamp(int chn, float val);
 
 
-int iir(void * d, int length, int nch);
-int iir32(void * d, int length, int nch);
-int iir24(void * d, int length, int nch);
+int iir(float * d, int samples, int nch);
 
 #ifdef ARCH_X86
 __inline__ int round_trick(float floatvalue_to_round);

@@ -65,11 +65,6 @@ public:
      * @param parent Parent object.
      */
     virtual Visual *create(QWidget *parent) = 0;
-    /*!
-     * Creates configuration dialog.
-     * @param parent Parent widget.
-     * @return Configuration dialog pointer.
-     */
 
 };
 

@@ -53,9 +53,8 @@ public:
      * Subclasses that reimplement this function must call the base implementation.
      * @param srate Sample rate.
      * @param map Map of channels.
-     * @param f Audio format.
      */
-    virtual void configure(quint32 srate, ChannelMap map, Qmmp::AudioFormat f = Qmmp::PCM_S16LE);
+    virtual void configure(quint32 srate, ChannelMap map);
     /*!
      * Returns samplerate.
      */
@@ -68,10 +67,6 @@ public:
      * Returns map of channels
      */
      const ChannelMap channelMap() const;
-    /*!
-     * Returns audio format.
-     */
-    Qmmp::AudioFormat format() const;
     /*!
      * Returns audio parameters for output data.
      */
@@ -115,7 +110,6 @@ private:
     quint32 m_freq;
     int m_channels;
     ChannelMap m_chan_map;
-    Qmmp::AudioFormat m_format;
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_enabledNames;

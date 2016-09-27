@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2012 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,63 +18,46 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OUTPUTFACTORY_H
-#define OUTPUTFACTORY_H
+#ifndef AUDIOCONVERTER_H
+#define AUDIOCONVERTER_H
 
-class QObject;
-class QString;
-class QIODevice;
-class QWidget;
-class QTranslator;
-class Volume;
-class Decoder;
-class Output;
+#include <stddef.h>
+#include "qmmp.h"
 
-/*! @brief Helper class to store output plugin properies.
+/*! @brief The AbstractEngine class provides the internal audio converter
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class OutputProperties
+class Q_DECL_EXPORT AudioConverter
 {
 public:
     /*!
-     * Constructor
+     * Object constructor.
      */
-    OutputProperties()
-    {
-        hasAbout = false;
-        hasSettings = false;
-    }
-    QString name;      /*!< Effect plugin full name */
-    QString shortName; /*!< Effect plugin short name for internal usage */
-    bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
-    bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
-};
-/*! @brief %Output plugin interface (output factory).
- * @author Ilya Kotov <forkotov02@hotmail.ru>
- */
-class OutputFactory
-{
-public:
+    AudioConverter();
     /*!
-     * Destructor.
+     * Sets working audio format.
+     * This function should be called before object usage.
+     * \param f Audio format.
      */
-    virtual ~OutputFactory() {}
+    void configure(Qmmp::AudioFormat f);
     /*!
-     * Returns output plugin properties.
+     * Converts samples from specified working format to \b Qmmp::PCM_FLOAT format.
+     * \param in Input buffer.
+     * \param out Output buffer.
+     * \param samples Number of samples.
      */
-    virtual const OutputProperties properties() const = 0;
+    void toFloat(const unsigned char *in, float *out, size_t samples);
     /*!
-     * Creates output provided by plugin.
+     * Converts samples from \b Qmmp::PCM_FLOAT format to specified working format.
+     * \param in Input buffer.
+     * \param out Output buffer.
+     * \param samples Number of samples.
      */
-    virtual Output *create() = 0;
-    /*!
-     * Creates volume control object provided by plugin.
-     * Returns \b 0 if volume control is not supported by plugin.
-     */
-    virtual Volume *createVolume() = 0;
+    void fromFloat(const float *in, const unsigned char *out, size_t samples);
 
+
+private:
+    Qmmp::AudioFormat m_format;
 };
 
-Q_DECLARE_INTERFACE(OutputFactory, "OutputFactory/1.0")
-
-#endif
+#endif // AUDIOCONVERTER_H

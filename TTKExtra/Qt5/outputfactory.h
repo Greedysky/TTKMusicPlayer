@@ -73,10 +73,6 @@ public:
      * Returns \b 0 if volume control is not supported by plugin.
      */
     virtual Volume *createVolume() = 0;
-    /*!
-     * Shows settings dialog.
-     * @param parent Parent widget.
-     */
 
 };
 

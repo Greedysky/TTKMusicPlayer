@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ class AudioParameters
 {
 public:
     /*!
-     * Contsructor.
+     * Constructor.
      */
     AudioParameters();
     /*!
@@ -79,6 +79,11 @@ public:
      */
     int sampleSize() const;
     /*!
+     * Returns string represention of the audio parameters.
+     * May be useful for debug purposes.
+     */
+    const QString toString() const;
+    /*!
      * Returns sample size in bytes of the given pcm data \b format.
      */
     static int sampleSize(Qmmp::AudioFormat format);
@@ -87,6 +92,7 @@ private:
     quint32 m_srate;
     ChannelMap m_chan_map;
     Qmmp::AudioFormat m_format;
+    int m_sz;
 };
 
 #endif // AUDIOPARAMETERS_H

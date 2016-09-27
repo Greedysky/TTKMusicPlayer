@@ -35,13 +35,6 @@
 /***************************
  * IIR filter coefficients *
  ***************************/
-#ifdef _MSC_VER
-# define __attribute__(X)
-# pragma pack(4)
-# define M_PI       3.14159265358979323846
-# define M_SQRT2    1.41421356237309504880
-#endif
-
 static sIIRCoefficients iir_cf10_11k_11025[10] __attribute__((aligned));
 static sIIRCoefficients iir_cf10_22k_22050[10] __attribute__((aligned));
 static sIIRCoefficients iir_cforiginal10_44100[10] __attribute__((aligned));

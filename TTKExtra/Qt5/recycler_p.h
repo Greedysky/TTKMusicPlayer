@@ -31,9 +31,8 @@ public:
      * Setups audio parameters of output interface.
      * @param freq Sample rate.
      * @param chan Number of channels.
-     * @param format Audio format
      */
-    void configure(quint32 freq, int chan, Qmmp::AudioFormat format);
+    void configure(quint32 freq, int chan);
     /*!
      * Returns \b true if queue if full, otherwise returns \b false
      */
@@ -71,13 +70,13 @@ public:
      */
     void clear(); // clear queue
     /*!
-     * Returns size of all buffers in bytes.
+     * Returns size of all buffers in samples.
      */
-    unsigned long size() const; // size in bytes
+    size_t samples() const; // size in samples
     /*!
-     * Returns block size in bytes.
+     * Returns block size in samples.
      */
-    unsigned long blockSize() const; // size in bytes
+    size_t blockSamples() const; // size in samples
 
     /*!
     * Returns mutex pointer.
@@ -100,7 +99,7 @@ public:
 
 private:
     unsigned int m_buffer_count, m_add_index, m_done_index, m_current_count;
-    unsigned long m_block_size;
+    size_t m_block_samples;
     Buffer **m_buffers;
     QMutex m_mtx;
     QWaitCondition m_cnd;

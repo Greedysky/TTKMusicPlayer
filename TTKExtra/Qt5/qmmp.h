@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,11 +23,20 @@
 #include <QString>
 
 #define QMMP_VERSION_MAJOR 1
-#define QMMP_VERSION_MINOR 0
-#define QMMP_VERSION_PATCH 5
+#define QMMP_VERSION_MINOR 1
+#define QMMP_VERSION_PATCH 3
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
+
+/*!
+ * Converts a \b QString to a \b TagLib::FileName
+ */
+#ifdef Q_OS_WIN
+#define QStringToFileName(s) TagLib::FileName(reinterpret_cast<const wchar_t *>(s.utf16()))
+#else
+#define QStringToFileName(s) s.toLocal8Bit().constData()
+#endif
 
 
 /*! @brief The Qmmp class stores global settings and enums.
@@ -83,9 +92,20 @@ public:
     {
         PCM_UNKNOWM = -1, /*!< Unknown format */
         PCM_S8 = 0, /*!< Signed 8 bit */
+        PCM_U8,     /*!< Unsigned 8 bit */
         PCM_S16LE,  /*!< Signed 16 bit Little Endian */
+        PCM_S16BE,  /*!< Signed 16 bit Big Endian */
+        PCM_U16LE,  /*!< Unsigned 16 bit Little Endian */
+        PCM_U16BE,  /*!< Unsigned 16 bit Big Endian */
         PCM_S24LE,  /*!< Signed 24 bit Little Endian using low three bytes in 32-bit word */
-        PCM_S32LE   /*!< Signed 32 bit Little Endian */
+        PCM_S24BE,  /*!< Signed 24 bit Big Endian using low three bytes in 32-bit word */
+        PCM_U24LE,  /*!< Unsigned 24 bit Little Endian using low three bytes in 32-bit word */
+        PCM_U24BE,  /*!< Unsigned 24 bit Big Endian using low three bytes in 32-bit word */
+        PCM_S32LE,  /*!< Signed 32 bit Little Endian */
+        PCM_S32BE,  /*!< Signed 32 bit Big Endian */
+        PCM_U32LE,  /*!< Unsigned 32 bit Little Endian */
+        PCM_U32BE,  /*!< Unsigned 32 bit Big Endian */
+        PCM_FLOAT   /*!< Float 32 bit Native Endian, range: -1.0 to 1.0 */
     };
 
     /*!
@@ -138,10 +158,19 @@ public:
      * @param code Language code; code "auto" means autodetection.
      */
     static void setUiLanguageID(const QString &code);
+#ifdef Q_OS_WIN
+    /*!
+     * Returns \b true if portable mode is enabled. Otherwise returns \b false.
+     */
+    static bool isPortable();
+#endif
 
 private:
     static QString m_configDir;
     static QString m_langID;
+#ifdef Q_OS_WIN
+    static QString m_appDir;
+#endif
 
 };
 

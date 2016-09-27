@@ -40,7 +40,7 @@ class AbstractEngine : public QThread
  Q_OBJECT
 public:
     /*!
-     * Object contsructor.
+     * Object constructor.
      * @param parent Parent object.
      */
     AbstractEngine(QObject *parent = 0);

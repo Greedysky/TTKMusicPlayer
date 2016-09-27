@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2016 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,6 +32,8 @@ class QmmpSettings;
 class StateHandler;
 class Output;
 class Effect;
+class AudioConverter;
+class ChannelConverter;
 
 /** @internal
     @brief Output thread.
@@ -48,10 +50,9 @@ public:
      * Prepares object for usage and setups required audio parameters.
      * @param freq Sample rate.
      * @param map Map of channels.
-     * @param format Audio format
      * @return initialization result (\b true - success, \b false - failure)
      */
-    bool initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format);
+    bool initialize(quint32 freq, ChannelMap map);
     /*!
      * Requests playback to pause. If it was paused already, playback should resume.
      */
@@ -96,7 +97,7 @@ public:
      */
     int channels();
     /*!
-     * Returns selected audio format.
+     * Returns input audio format.
      */
     Qmmp::AudioFormat format() const;
     const ChannelMap channelMap() const;
@@ -116,7 +117,6 @@ private:
                   int channels);
     void dispatch(const Qmmp::State &state);
     void dispatchVisual(Buffer *buffer);
-    void applyConverters(Buffer *buffer);
     void clearVisuals();
     bool prepareConverters();
 
@@ -134,13 +134,14 @@ private:
     bool m_finish;
     bool m_useEq;
     qint64 m_totalWritten, m_currentMilliseconds;
-    unsigned char *m_visBuffer;
-    qint64 m_visBufferSize;
     QmmpSettings *m_settings;
     Output *m_output;
     bool m_muted;
-    QList<Effect *> m_converters;
-
+    AudioParameters m_in_params;
+    AudioConverter *m_format_converter;
+    ChannelConverter *m_channel_converter;
+    unsigned char *m_output_buf;
+    size_t m_output_size; //samples
 };
 
 #endif // OUTPUTWRITER_P_H

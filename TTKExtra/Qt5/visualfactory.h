@@ -50,7 +50,7 @@ public:
 /*! @brief %Visual plugin interface (visual factory).
  * @author Ilya Kotov <forkotov02@hotmail.ru>
  */
-class Q_DECL_EXPORT VisualFactory
+class VisualFactory
 {
 public:
     /*!
@@ -66,11 +66,6 @@ public:
      * @param parent Parent object.
      */
     virtual Visual *create(QWidget *parent) = 0;
-    /*!
-     * Creates configuration dialog.
-     * @param parent Parent widget.
-     * @return Configuration dialog pointer.
-     */
 
 };
 

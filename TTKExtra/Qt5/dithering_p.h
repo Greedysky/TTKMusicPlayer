@@ -1,6 +1,8 @@
 /***************************************************************************
- *   Copyright (C) 2014-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *  Based on madplay project                                               *
+ *                                                                         *
+ * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
+ * Copyright (C) 2016 Ilya Kotov forkotov02@hotmail.ru                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -18,28 +20,42 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef CHANNELCONVERTER_P_H
-#define CHANNELCONVERTER_P_H
+
+#ifndef DITHERING_P_H
+#define DITHERING_P_H
 
 #include "effect.h"
 
-/*! @internal
- * @author Ilya Kotov <forkotov02@hotmail.ru>
- */
-class ChannelConverter : public Effect
+/** @internal
+    @author Ilya Kotov <forkotov02@hotmail.ru>
+*/
+class Q_DECL_EXPORT Dithering : public Effect
 {
 public:
-    ChannelConverter(ChannelMap out_map);
-    ~ChannelConverter();
-    void configure(quint32 srate, ChannelMap in_map);
+    Dithering();
+
+    void configure(quint32 srate, ChannelMap map);
+    void setFormats(Qmmp::AudioFormat in, Qmmp::AudioFormat out);
     void applyEffect(Buffer *b);
+    void setEnabled(bool enabled);
 
 private:
-    bool m_disabled;
-    int m_reorder_array[9];
-    float *m_tmp_buf;
-    int m_channels;
-    ChannelMap m_out_map;
+    int m_chan;
+
+    typedef struct
+    {
+        float error[3];
+        quint32 random;
+
+    } AudioDither;
+
+    AudioDither m_dither[9];
+    float m_lsb;
+    bool m_required, m_enabled;
+
+
+    quint32 prng(quint32 state);
+    float audioLinearDither(float sample, AudioDither *dither);
 };
 
-#endif // CHANNELCONVERTER_P_H
+#endif // DITHERING_P_H
