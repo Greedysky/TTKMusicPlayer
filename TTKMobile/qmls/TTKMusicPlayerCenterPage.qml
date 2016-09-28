@@ -26,7 +26,7 @@ Item {
         ///top bar
         Rectangle {
             id: mainMenubar
-            width: ttkMusicPlayerCenter.width
+            Layout.fillWidth: true
             height: dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.alphaLv14
 
@@ -35,7 +35,7 @@ Item {
                 spacing: 2
                 anchors.fill: parent
 
-                TTKButton {
+                TTKImageButton {
                     source: "qrc:/image/player_btn_close_normal"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
@@ -55,7 +55,7 @@ Item {
                     text: "SDfsdfsdf"
                 }
 
-                TTKButton {
+                TTKImageButton {
                     source: "qrc:/image/player_btn_more_normal"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
@@ -214,7 +214,7 @@ Item {
                             Layout.preferredWidth: dpWidth(20)
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_pre_normal"
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
@@ -224,7 +224,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_play_normal"
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
@@ -234,7 +234,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_next_normal"
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
@@ -260,7 +260,7 @@ Item {
                         spacing: 0
                         anchors.fill: parent
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_favorite_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
@@ -270,7 +270,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_random_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
@@ -280,7 +280,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_download_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
@@ -290,7 +290,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_share_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
@@ -300,7 +300,7 @@ Item {
                             }
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             source: "qrc:/image/player_btn_playlist_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)

@@ -19,7 +19,7 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onPressed: {
+        onClicked: {
             ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
         }
     }
@@ -66,7 +66,7 @@ Rectangle {
         text: "偶遇身边好音乐"
     }
 
-    TTKButton {
+    TTKImageButton {
         id: barPlayListButton
         source: "qrc:/image/minibar_btn_playlist_normal"
         anchors {
@@ -79,7 +79,7 @@ Rectangle {
         height: dpHeight(60)
     }
 
-    TTKButton {
+    TTKImageButton {
         id: barPlayButton
         source: "qrc:/image/landscape_player_btn_play_normal"
         anchors {

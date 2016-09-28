@@ -1,7 +1,8 @@
 import QtQuick 2.5
 
 Rectangle {
-    id: ttkButton
+    id: ttkImageButton
+
     property alias source: image.source
 
     signal pressed
@@ -14,8 +15,8 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onPressed: {
-            ttkButton.pressed();
+        onClicked: {
+            ttkImageButton.pressed();
         }
     }
     color: ttkTheme.alphaLv0

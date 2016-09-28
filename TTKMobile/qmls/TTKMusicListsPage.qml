@@ -20,7 +20,7 @@ Item {
         ///top bar
         Rectangle {
             id: mainMenubar
-            width: ttkMainWindow.width
+            Layout.fillWidth: true
             height: dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
@@ -28,7 +28,7 @@ Item {
                 spacing: 2
                 anchors.fill: parent
 
-                TTKButton {
+                TTKImageButton {
                     source: "qrc:/image/title_bar_back"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
@@ -48,7 +48,7 @@ Item {
                     text: "本地歌曲"
                 }
 
-                TTKButton {
+                TTKImageButton {
                     source: "qrc:/image/player_btn_more_normal"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
@@ -107,7 +107,7 @@ Item {
                             source: "qrc:/image/ic_playlist_normal"
                         }
 
-                        TTKButton {
+                        TTKImageButton {
                             id: moreFuncArea
                             width: parent.height/2
                             height: parent.height/2

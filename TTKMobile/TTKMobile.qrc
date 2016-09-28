@@ -47,7 +47,8 @@
     <qresource prefix="/">
         <file>qmls/main.qml</file>
         <file>qmls/Core/TTKMessageBox.qml</file>
-        <file>qmls/Core/TTKButton.qml</file>
+        <file>qmls/Core/TTKImageButton.qml</file>
+        <file>qmls/Core/TTKTextButton.qml</file>
         <file>qmls/Core/TTKLineInput.qml</file>
         <file>qmls/Core/TTKPageView.qml</file>
         <file>qmls/Core/TTKListViewIndicator.qml</file>
@@ -60,5 +61,6 @@
         <file>qmls/TTKMusicPlayerCenterPage.qml</file>
         <file>qmls/TTKMusicListsPage.qml</file>
         <file>qmls/TTKMusicListsPageMore.qml</file>
+        <file>qmls/TTKMusicListsScanPage.qml</file>
     </qresource>
 </RCC>

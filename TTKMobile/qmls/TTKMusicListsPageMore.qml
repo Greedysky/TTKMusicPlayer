@@ -24,11 +24,10 @@ Rectangle{
         anchors.topMargin: dpHeight(ttkTheme.topbar_height)
         anchors.right: parent.right
         width: dpWidth(250)
-        height: parent.height
+        height: dpHeight(55)*6
         clip: true
 
-        delegate: Component {
-            Rectangle {
+        delegate: Rectangle {
                 id: wrapper
                 width: listView.width
                 height: dpHeight(55)
@@ -64,8 +63,32 @@ Rectangle{
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: height/3
                 }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        switch(index)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                ttkMusicListsPageMore.visible = false;
+                                ttkOutStackView.push("qrc:/qmls/TTKMusicListsScanPage.qml");
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
             }
-        }
 
         model: ListModel {
             ListElement {

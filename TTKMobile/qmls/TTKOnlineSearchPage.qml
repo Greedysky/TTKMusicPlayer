@@ -16,7 +16,7 @@ Item {
         ///top bar
         Rectangle {
             id: ttkMainMenubar
-            width: ttkMainWindow.width
+            Layout.fillWidth: true
             height: dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
@@ -25,7 +25,7 @@ Item {
                 spacing: 2
                 anchors.fill: parent
 
-                TTKButton {
+                TTKImageButton {
                     source: "qrc:/image/title_bar_back"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
@@ -42,14 +42,16 @@ Item {
                     fontSize: parent.height/3
                 }
 
-                Text {
+                TTKTextButton {
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    color: ttkTheme.white
+                    textColor: ttkTheme.white
                     text: "搜索"
+
+                    onPressed: {
+                        ttkMainStackView.pop();
+                    }
                 }
             }
         }

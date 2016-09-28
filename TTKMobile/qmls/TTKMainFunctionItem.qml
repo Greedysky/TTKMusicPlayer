@@ -14,7 +14,7 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onPressed: {
+        onClicked: {
             ttkMainFunctionItem.pressed();
         }
     }
