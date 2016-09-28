@@ -43,6 +43,13 @@
         <file alias="local_music_scan_icon">images/local_music_scan_icon.png</file>
         <file alias="local_music_sorted_by_name_icon">images/local_music_sorted_by_name_icon.png</file>
         <file alias="local_music_upgrade_song_quality_icon">images/local_music_upgrade_song_quality_icon.png</file>
+        <file alias="ic_lyric_poster_lyric_select">images/ic_lyric_poster_lyric_select.png</file>
+        <file alias="ic_lyric_poster_lyric_unselect">images/ic_lyric_poster_lyric_unselect.png</file>
+        <file alias="scanning_animation">images/scanning_animation.png</file>
+        <file alias="scanning_forlder_icon">images/scanning_forlder_icon.png</file>
+        <file alias="custom_file_type_dir">images/custom_file_type_dir.png</file>
+        <file alias="scanning_icon_up">images/scanning_icon_up.png</file>
+        <file alias="scanning_icon_up_disable">images/scanning_icon_up_disable.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -62,5 +69,6 @@
         <file>qmls/TTKMusicListsPage.qml</file>
         <file>qmls/TTKMusicListsPageMore.qml</file>
         <file>qmls/TTKMusicListsScanPage.qml</file>
+        <file>qmls/TTKScanFolderPage.qml</file>
     </qresource>
 </RCC>

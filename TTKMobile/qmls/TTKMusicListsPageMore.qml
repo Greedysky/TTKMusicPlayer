@@ -23,14 +23,14 @@ Rectangle{
         anchors.top: parent.top
         anchors.topMargin: dpHeight(ttkTheme.topbar_height)
         anchors.right: parent.right
-        width: dpWidth(250)
-        height: dpHeight(55)*6
+        width: dpWidth(240)
+        height: dpHeight(60)*6
         clip: true
 
         delegate: Rectangle {
                 id: wrapper
                 width: listView.width
-                height: dpHeight(55)
+                height: dpHeight(60)
                 color: ttkTheme.white
 
                 Rectangle {
@@ -46,7 +46,7 @@ Rectangle{
                     anchors {
                         top: parent.top
                         left: parent.left
-                        leftMargin: dpHeight(15)
+                        leftMargin: dpHeight(5)
                     }
                     source: imgSource
                 }
@@ -56,7 +56,7 @@ Rectangle{
                     text: title
                     anchors {
                         left: iconArea.right
-                        leftMargin: dpHeight(15)
+                        leftMargin: dpHeight(5)
                     }
                     height: wrapper.height
                     horizontalAlignment: Qt.AlignHCenter

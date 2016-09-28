@@ -45,6 +45,7 @@ Item {
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
+                    font.pixelSize: mainMenubar.height/2
                     text: "本地歌曲"
                 }
 

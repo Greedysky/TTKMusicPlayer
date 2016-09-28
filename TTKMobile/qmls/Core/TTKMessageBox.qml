@@ -31,7 +31,7 @@ Rectangle {
 
     Rectangle {
         color: ttkTheme.topbar_background
-        radius: 5
+        radius: 10
         width: 0.7*parent.width
         height: 0.3*parent.height
         anchors {
@@ -41,20 +41,20 @@ Rectangle {
         Rectangle {
             anchors.fill: parent
             color: ttkTheme.alphaLv4
-            radius: 5
+            radius: 10
         }
 
         Column {
             anchors.fill: parent
             Rectangle {
-                radius: 5
+                radius: 10
                 width: parent.width
                 height: 0.25*parent.height
                 color: ttkTheme.topbar_background
                 Rectangle {
                     anchors.fill: parent
                     color: ttkTheme.alphaLv3
-                    radius: 5
+                    radius: 10
                 }
 
                 Text {
