@@ -8,7 +8,7 @@ Rectangle{
     property Item target
 
     FastBlur {
-        id: blur
+        id: fastBlur
         source: parent.target
         width: source.width
         height: source.height
@@ -20,7 +20,7 @@ Rectangle{
     Component.onCompleted: setBlurPosition()
 
     function setBlurPosition() {
-        blur.x = target.x - x;
-        blur.y = target.y - y;
+        fastBlur.x = target.x - x;
+        fastBlur.y = target.y - y;
     }
 }

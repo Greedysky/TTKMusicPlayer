@@ -3,6 +3,8 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 
+import TTKMusicPlaylist 1.0
+import TTKMusicPlayer 1.0
 import "Core"
 
 ApplicationWindow {
@@ -20,11 +22,19 @@ ApplicationWindow {
         return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
     }
     function dpWidth(numbers) {
-        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
+        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierWidth);
     }
 
     TTKTheme {
         id: ttkTheme
+    }
+
+    TTKMusicPlaylist {
+        id: ttkMusicPlaylist
+    }
+
+    TTKMusicPlayer {
+        id: ttkMusicPlayer
     }
 
     StackView {
@@ -40,12 +50,6 @@ ApplicationWindow {
                 width: ttkMainWindow.width
                 height: ttkMainWindow.height - ttkMusicBar.height
                 focus: true
-//                Keys.onReleased:
-//                    if(event.key === Qt.Key_Back && ttkMainStackView.depth > 1)
-//                    {
-//                         ttkMainStackView.pop();
-//                         event.accepted = true;
-//                    }
                 initialItem: TTKMainPage {
 
                 }

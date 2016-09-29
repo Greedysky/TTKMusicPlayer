@@ -12,8 +12,8 @@ Item {
     width: parent.width
     height: parent.height
 
-    property variant paths: []
-    signal pathChanged(variant path)
+    property variant scanPaths: []
+    signal pathChanged(variant scanPath)
 
     TTKFileSearchCore {
         id: searchCore
@@ -156,9 +156,9 @@ Item {
                             }
                             onClicked: {
                                 if(checkBoxArea.checked) {
-                                    paths.push(fileURL);
+                                    scanPaths.push(fileURL);
                                 }else{
-                                    paths.pop(fileURL);
+                                    scanPaths.pop(fileURL);
                                 }
                             }
                         }
@@ -190,7 +190,7 @@ Item {
                             MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-                                    paths = [];
+                                    scanPaths = [];
                                     listView.currentIndex = index;
                                     folderModel.folder = folderModel.get(index, "fileURL");
                                 }
@@ -229,8 +229,8 @@ Item {
                 text: "开始扫描"
 
                 onPressed: {
-                    if(paths.length != 0) {
-                        ttkScanFolderPage.pathChanged(paths);
+                    if(scanPaths.length !== 0) {
+                        ttkScanFolderPage.pathChanged(scanPaths);
                     }
                 }
             }

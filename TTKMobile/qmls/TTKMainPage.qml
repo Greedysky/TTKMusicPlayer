@@ -134,7 +134,7 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_allsongs_highlight"
                             mainTitle: "本地歌曲"
-                            subTitle: "749"
+                            subTitle: ttkMusicPlaylist.mediaCount()
                             onPressed: {
                                 ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml")
                             }
@@ -323,7 +323,6 @@ Item {
                             }
                         }
                     }
-
                 }
             }
         }

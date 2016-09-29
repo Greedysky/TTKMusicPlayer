@@ -1,5 +1,7 @@
 #include "musictime.h"
 
+#include <QDateTime>
+
 MusicTime::MusicTime()
 {
     m_defaultType = All_Msec;

@@ -12,9 +12,44 @@ Item {
     height: parent.height
 
     property var scanFolderObj;
+    property variant scanedPaths: []
 
     TTKFileSearchCore {
         id: searchCore
+    }
+
+    Connections {
+        target: scanFolderObj
+        onPathChanged: {
+            bottomBody.visible = false;
+            scanMainPage.visible = false;
+            bottomBodyCancel.visible = true;
+            scanningPage.visible = true;
+            rotationAnimation.start();
+
+            ttkOutStackView.pop();
+            searchCore.search(scanPath);
+        }
+    }
+
+    Connections {
+        target: searchCore
+        onFinished: {
+            scanedPaths = path;
+            rotationAnimation.stop();
+            bottomBodyCancel.visible = false;
+            bottomBodyFinished.visible = true;
+
+            scanningPageText.text = "扫描完成"
+            bottomBodyFinishedButton.text = "添加歌曲至本地歌曲(" + scanedPaths.length + ")";
+        }
+    }
+
+    Connections {
+        target: searchCore
+        onFindFilePath: {
+            filePathScaned.text = path;
+        }
     }
 
     ColumnLayout {
@@ -159,6 +194,7 @@ Item {
             height: ttkMusicListsScanPage.height - mainMenubar.height - bottomBody.height
             color: ttkTheme.alphaLv9
             visible: false
+            clip: true
 
             ColumnLayout {
                 spacing: 0
@@ -171,13 +207,14 @@ Item {
                     source: "qrc:/image/scanning_forlder_icon"
 
                     Image {
-                        id: scanningAnimation
+                        id: scanningImage
                         anchors.fill: parent
                         source: "qrc:/image/scanning_animation"
 
                         RotationAnimation {
                             id: rotationAnimation
-                            target: scanningAnimation
+                            target: scanningImage
+                            property: "rotation"
                             from: 0
                             to: 360
                             direction: RotationAnimation.Clockwise
@@ -188,7 +225,53 @@ Item {
                 }
 
                 Rectangle {
-                    Layout.preferredHeight: dpHeight(220)
+                    Layout.preferredHeight: dpHeight(100)
+                    Layout.fillWidth: true
+
+                    ColumnLayout {
+                        spacing: 0
+                        anchors.fill: parent
+
+                        Text {
+                            id: scanningPageText
+                            Layout.alignment: Qt.AlignCenter
+                            font.pixelSize: mainMenubar.height*0.6
+                            horizontalAlignment: Qt.AlignHCenter
+                            text: "正在扫描..."
+                        }
+
+                        Text {
+                            id: filePathScaned
+                            Layout.alignment: Qt.AlignCenter
+                            Layout.preferredWidth: mainMenubar.width*2/3
+                            font.pixelSize: mainMenubar.height/2
+                            horizontalAlignment: Qt.AlignHCenter
+                            elide: Text.ElideLeft
+                        }
+                    }
+                }
+            }
+        }
+
+        ///bottom body finished
+        Rectangle {
+            id: bottomBodyFinished
+            Layout.fillWidth: true
+            height: dpHeight(60)
+            visible: false
+
+            TTKTextButton {
+                id: bottomBodyFinishedButton
+                width: dpWidth(220)
+                height: dpHeight(40)
+                anchors.centerIn: parent
+                textColor: ttkTheme.white
+                color: ttkTheme.topbar_background
+                radius: 10
+
+                onPressed: {
+                    ttkMusicPlaylist.appendMedia(scanedPaths);
+                    ttkOutStackView.pop();
                 }
             }
         }
@@ -238,30 +321,6 @@ Item {
 
                 onPressed: {
                     scanFolderObj = ttkOutStackView.push("qrc:/qmls/TTKScanFolderPage.qml");
-                }
-                Connections {
-                    target: scanFolderObj
-                    onPathChanged: {
-                        bottomBody.visible = false;
-                        scanMainPage.visible = false;
-                        bottomBodyCancel.visible = true;
-                        scanningPage.visible = true;
-                        rotationAnimation.start();
-
-                        ttkOutStackView.pop();
-                        searchCore.search(path);
-                    }
-                }
-                Connections {
-                    target: searchCore
-                    onFinished: {
-                        rotationAnimation.stop();
-
-                        bottomBody.visible = true;
-                        scanMainPage.visible = true;
-                        bottomBodyCancel.visible = false;
-                        scanningPage.visible = false;
-                    }
                 }
             }
 

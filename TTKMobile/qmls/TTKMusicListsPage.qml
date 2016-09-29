@@ -9,6 +9,27 @@ Item {
     width: parent.width
     height: parent.height
 
+    Connections {
+        target: ttkMusicPlaylist
+        onUpdateMedia: {
+            for(var i=0; i<titles.length; ++i) {
+                var info = {
+                    title: titles[i],
+                    artist: artists[i]
+                }
+                testModel.append(info);
+            }
+        }
+        onCurrentIndexChanged: {
+            ttkMusicPlayer.setMedia(ttkMusicPlaylist.media(index));
+            ttkMusicPlayer.play();
+
+            ttkMusicBar.nameTitle = ttkMusicPlaylist.mediaName(index);
+            ttkMusicBar.artistTitle = ttkMusicPlaylist.mediaArtist(index);
+            ttkMusicBar.playStateChanged();
+        }
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -89,10 +110,11 @@ Item {
                             text: title
                             anchors {
                                 top: parent.top
-                                topMargin: dpHeight(5)
+                                topMargin: dpHeight(10)
                                 left: parent.left
                                 leftMargin: dpHeight(20)
                             }
+                            verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height*3/10
                         }
 
@@ -102,6 +124,7 @@ Item {
                             height: parent.height/3
                             anchors {
                                 top: titleArea.bottom
+                                topMargin: dpHeight(5)
                                 left: parent.left
                                 leftMargin: dpHeight(20)
                             }
@@ -126,23 +149,28 @@ Item {
                             text: artist
                             anchors {
                                 top: titleArea.bottom
+                                topMargin: dpHeight(10)
                                 left: iconArea.right
                                 leftMargin: dpHeight(10)
                             }
+                            verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
                             color: "gray"
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                if(ttkMusicPlaylist.currentIndex() !== index) {
+                                    ttkMusicPlaylist.setCurrentIndex(index);
+                                }
+                            }
                         }
                     }
                 }
 
                 model: ListModel {
                     id: testModel
-                }
-            }
-
-            Component.onCompleted: {
-                for(var i=0; i<100; ++i) {
-                    testModel.append({"title": "埃文啊我", "artist": "test"});
                 }
             }
         }

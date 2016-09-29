@@ -10,19 +10,44 @@
 # * works are strictly forbiden.
 # =================================================
 
-QT       += core gui qml quick
+QT       += core gui qml quick multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -std=c++11
+
+DEFINES += \
+    MUSIC_LIBRARY \
+    MUSIC_MOBILE
+
+INCLUDEPATH += \
+    ../ \
+    ../TTKCore/musicCore \
+    ../TTKCore/musicCore/utils
 
 HEADERS += \
-    Core/ttkfilesearchcore.h
+    musicmobileglobaldefine.h \
+    ../TTKCore/musicCore/musicsong.h \
+    ../TTKCore/musicCore/musictime.h \
+    ../TTKCore/musicCore/musicsettingmanager.h \
+    ../TTKCore/musicCore/utils/musiccoreutils.h \
+    core/ttkfilesearchcore.h \
+    core/ttkmusicplaylist.h \
+    core/ttkmusicplayer.h \
+    core/ttkmusicutils.h
 
 
-SOURCES += musicmobilemain.cpp \
-    Core/ttkfilesearchcore.cpp
+SOURCES += \
+    musicmobilemain.cpp \
+    ../TTKCore/musicCore/musicsong.cpp \
+    ../TTKCore/musicCore/musictime.cpp \
+    ../TTKCore/musicCore/utils/musiccoreutils.cpp \
+    core/ttkfilesearchcore.cpp \
+    core/ttkmusicplaylist.cpp \
+    core/ttkmusicplayer.cpp \
+    core/ttkmusicutils.cpp
 
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {

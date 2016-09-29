@@ -6,6 +6,21 @@ import "Core"
 
 Rectangle {
     id: ttkMusicBar
+
+    property alias nameTitle: musicNameTitle.text
+    property alias artistTitle: musicArtistTitle.text
+
+    function playStateChanged() {
+        if(ttkMusicPlayer.state() === 1) {
+            barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
+            musicBarImageAnimation.resume();
+            musicBarImageAnimation.start();
+        }else{
+            barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
+            musicBarImageAnimation.pause();
+        }
+    }
+
     anchors.right: ttkMainWindow.right
     anchors.bottom: ttkMainWindow.bottom
     width: ttkMainWindow.width
@@ -20,12 +35,14 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onClicked: {
-            ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
+            if(ttkMusicPlaylist.currentIndex() !== -1) {
+                ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
+            }
         }
     }
 
     TTKRadiusImage {
-        id: radioImage
+        id: musicBarImage
         width: parent.height
         height: parent.height
         anchors {
@@ -36,12 +53,23 @@ Rectangle {
         color: ttkTheme.alphaLv0
         foreground: "qrc:/image/landscape_check_album_normal"
         background: "qrc:/image/radius_mask"
+
+        RotationAnimation {
+            id: musicBarImageAnimation
+            target: musicBarImage
+            property: "rotation"
+            from: 0
+            to: 360
+            direction: RotationAnimation.Clockwise
+            duration: 4000
+            loops: Animation.Infinite
+        }
     }
 
     Text {
-        id: radioMainTitle
+        id: musicNameTitle
         anchors {
-            left: radioImage.right
+            left: musicBarImage.right
             top: parent.top
             leftMargin: dpHeight(10)
             topMargin: dpHeight(10)
@@ -49,21 +77,21 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: parent.height/4
-        text: "个性电台"
+        text: "天天酷音"
     }
 
     Text {
-        id: radioSubTitle
+        id: musicArtistTitle
         anchors {
-            left: radioImage.right
-            top: radioMainTitle.bottom
+            left: musicBarImage.right
+            top: musicNameTitle.bottom
             leftMargin: dpHeight(10)
             topMargin: dpHeight(10)
         }
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         color: "gray"
-        text: "偶遇身边好音乐"
+        text: "天天酷音"
     }
 
     TTKImageButton {
@@ -91,7 +119,19 @@ Rectangle {
         width: height*1.2
         height: dpHeight(50)
         onPressed: {
-            barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal"
+            if(ttkMusicPlaylist.currentIndex() === -1) {
+                return;
+            }
+            if(ttkMusicPlayer.state() === 1) {
+                barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
+                ttkMusicPlayer.pause();
+                musicBarImageAnimation.pause();
+            }else{
+                barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
+                ttkMusicPlayer.play();
+                musicBarImageAnimation.resume();
+                musicBarImageAnimation.start();
+            }
         }
     }
 }

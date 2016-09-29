@@ -10,18 +10,52 @@ Item {
     width: parent.width
     height: parent.height
 
-    Rectangle {
-        anchors.fill: parent
-        Image {
-            id: image
-            anchors.fill: parent
-            source: "qrc:/image/test"
+    function playStateChanged() {
+        if(ttkMusicPlayer.state() === 1) {
+            playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
+            artistImageAnimation.resume();
+            artistImageAnimation.start();
+        }else{
+            playerPlayButton.source = "qrc:/image/player_btn_play_normal";
+            artistImageAnimation.pause();
         }
     }
 
-    TTKBlurImage {
+    Connections {
+        target: ttkMusicPlayer
+        onDurationChanged: {
+            musicTimeSlider.maximumValue = duration;
+            musicTimeSlider.value = 0;
+            durationLabel.text = TTK_UTILS.normalizeTime(duration, "mm:ss");
+        }
+        onPositionChanged: {
+            musicTimeSlider.maximumValue = ttkMusicPlayer.duration();
+            musicTimeSlider.value = position;
+            durationLabel.text = TTK_UTILS.normalizeTime(ttkMusicPlayer.duration(), "mm:ss");
+            positionLabel.text = TTK_UTILS.normalizeTime(position, "mm:ss");
+        }
+    }
+
+    Connections {
+        target: ttkMusicPlaylist
+        onCurrentIndexChanged: {
+            musicPlayerShowTitle.text = ttkMusicPlaylist.mediaName(index);
+            musicPlayerShowArtist.text = ttkMusicPlaylist.mediaArtist(index);
+        }
+    }
+
+    Rectangle {
         anchors.fill: parent
-        target: image
+        Image {
+            id: playBackgroundImage
+            anchors.fill: parent
+            source: "qrc:/image/test"
+        }
+
+        TTKBlurImage {
+            anchors.fill: parent
+            target: playBackgroundImage
+        }
     }
 
     ColumnLayout {
@@ -58,7 +92,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
-                    text: "SDfsdfsdf"
+                    text: ttkMusicPlaylist.mediaName(ttkMusicPlaylist.currentIndex())
                 }
 
                 TTKImageButton {
@@ -104,7 +138,7 @@ Item {
                         color: ttkTheme.white
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
-                        text: "-SDfsdfsdf-"
+                        text: "- " + ttkMusicPlaylist.mediaArtist(ttkMusicPlaylist.currentIndex()) + " -"
                     }
 
                     Rectangle {
@@ -114,13 +148,24 @@ Item {
                         color: ttkTheme.alphaLv0
 
                         TTKRadiusImage {
-                            id: radioImage
+                            id: artistImage
                             anchors.centerIn: parent;
                             width: parent.height
                             height: parent.height
                             color: ttkTheme.alphaLv0
                             foreground: "qrc:/image/widget_default_album_middle"
                             background: "qrc:/image/radius_big_mask"
+
+                            RotationAnimation {
+                                id: artistImageAnimation
+                                target: artistImage
+                                property: "rotation"
+                                from: 0
+                                to: 360
+                                direction: RotationAnimation.Clockwise
+                                duration: 8000
+                                loops: Animation.Infinite
+                            }
                         }
                     }
 
@@ -167,6 +212,7 @@ Item {
                         }
 
                         Text {
+                            id: positionLabel
                             text: "00:00"
                             color: ttkTheme.white
                         }
@@ -175,8 +221,9 @@ Item {
                             id: musicTimeSlider
                             Layout.fillWidth: true
                             height: 30
-                            stepSize: 0.01
-                            value: 1
+                            minimumValue: 0
+                            value: 0
+
                             style: SliderStyle{
                                 groove: Rectangle{
                                     implicitWidth: musicTimeSlider.width
@@ -195,6 +242,7 @@ Item {
                         }
 
                         Text {
+                            id: durationLabel
                             text: "00:00"
                             color: ttkTheme.white
                         }
@@ -204,7 +252,6 @@ Item {
                         }
                     }
                 }
-
 
                 ///control component
                 Rectangle {
@@ -221,32 +268,44 @@ Item {
                         }
 
                         TTKImageButton {
+                            id: playerPreButton
                             source: "qrc:/image/player_btn_pre_normal"
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                ttkMusicPlaylist.playPrevious();
                             }
                         }
-
                         TTKImageButton {
-                            source: "qrc:/image/player_btn_play_normal"
+                            id: playerPlayButton
+                            source: playStateChanged()
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                if(ttkMusicPlayer.state() === 1) {
+                                    playerPlayButton.source = "qrc:/image/player_btn_play_normal";
+                                    ttkMusicPlayer.pause();
+                                    artistImageAnimation.pause();
+                                }else{
+                                    playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
+                                    ttkMusicPlayer.play();
+                                    artistImageAnimation.resume();
+                                    artistImageAnimation.start();
+                                }
+                                ttkMusicBar.playStateChanged();
                             }
                         }
 
                         TTKImageButton {
+                            id: playerNextButton
                             source: "qrc:/image/player_btn_next_normal"
                             Layout.preferredWidth: dpWidth(120)
                             Layout.preferredHeight: dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                ttkMusicPlaylist.playNext();
                             }
                         }
 
