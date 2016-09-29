@@ -32,7 +32,6 @@ ApplicationWindow {
         width: parent.width
         height: parent.height
         focus: true
-
         initialItem: ColumnLayout {
             spacing: 0
 

@@ -60,6 +60,7 @@
         <file>qmls/Core/TTKPageView.qml</file>
         <file>qmls/Core/TTKListViewIndicator.qml</file>
         <file>qmls/Core/TTKRadiusImage.qml</file>
+        <file>qmls/Core/TTKBlurImage.qml</file>
         <file>qmls/TTKMainPage.qml</file>
         <file>qmls/TTKMainFunctionItem.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>

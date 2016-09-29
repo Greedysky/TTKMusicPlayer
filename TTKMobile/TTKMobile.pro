@@ -16,7 +16,14 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 
-SOURCES += musicmobilemain.cpp
+
+HEADERS += \
+    Core/ttkfilesearchcore.h
+
+
+SOURCES += musicmobilemain.cpp \
+    Core/ttkfilesearchcore.cpp
+
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
 # Default rules for deployment.

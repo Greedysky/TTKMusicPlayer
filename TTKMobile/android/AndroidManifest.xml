@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <manifest package="org.greedysky.ttkmobile" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" android:versionCode="0" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="天天酷音">
-             <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.greedysky.ttkmobile.SplashScreen" android:label="天天酷音" android:screenOrientation="portrait" android:launchMode="singleTop" android:theme="@android:style/Theme.NoTitleBar">
+             <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.greedysky.ttkmobile.SplashScreen" android:label="天天酷音" android:screenOrientation="portrait" android:launchMode="singleTop" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -26,7 +26,7 @@
             <meta-data android:value="@string/ministro_needed_msg" android:name="android.app.ministro_needed_msg"/>
             <meta-data android:value="@string/fatal_error_msg" android:name="android.app.fatal_error_msg"/>
         </activity>
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.greedysky.ttkmobile.TTKMobile" android:label="天天酷音" android:screenOrientation="portrait" android:launchMode="singleTop">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.greedysky.ttkmobile.TTKMobile" android:label="天天酷音" android:screenOrientation="portrait" android:launchMode="singleTop" android:theme="@style/AppTheme">
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
             <meta-data android:name="android.app.qt_sources_resource_id" android:resource="@array/qt_sources"/>
             <meta-data android:name="android.app.repository" android:value="default"/>

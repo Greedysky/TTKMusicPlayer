@@ -4,6 +4,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import Qt.labs.folderlistmodel 2.1
 
+import TTKFileSearchCore 1.0
 import "Core"
 
 Item {
@@ -13,6 +14,10 @@ Item {
 
     property variant paths: []
     signal pathChanged(variant path)
+
+    TTKFileSearchCore {
+        id: searchCore
+    }
 
     ColumnLayout {
         spacing: 0
@@ -40,8 +45,8 @@ Item {
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
-                    font.pixelSize: mainMenubar.height/2
-                    text: "本地歌曲"
+                    font.pixelSize: mainMenubar.height*2/5
+                    text: "扫描指定的文件夹"
                 }
 
                 TTKTextButton {
@@ -62,7 +67,7 @@ Item {
         Rectangle {
             id: functionArea
             Layout.fillWidth: true
-            height: dpHeight(80)
+            height: dpHeight(60)
             color: ttkTheme.white
 
             RowLayout {
@@ -71,8 +76,8 @@ Item {
 
                 TTKImageButton {
                     id: goBackButton
-                    Layout.preferredWidth: dpWidth(functionArea.height)
-                    Layout.preferredHeight: dpHeight(functionArea.height)
+                    Layout.preferredWidth: dpWidth(40)
+                    Layout.preferredHeight: dpHeight(40)
                     anchors {
                         left: parent.left
                         leftMargin: dpHeight(5)
@@ -89,14 +94,15 @@ Item {
                 Text {
                     id: filePathArea
                     text: folderModel.folder;
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: ttkScanFolderPage.width - dpWidth(80)
                     Layout.fillHeight: true
                     anchors {
                         left: goBackButton.right
                         leftMargin: dpWidth(5)
                     }
                     verticalAlignment: Qt.AlignVCenter
-                    font.pixelSize: functionArea.height/4
+                    font.pixelSize: functionArea.height/3
+                    elide: Text.ElideLeft
                     color: "gray"
                 }
             }
@@ -117,6 +123,8 @@ Item {
                 FolderListModel {
                     id: folderModel
                     showFiles: false
+                    showHidden: true
+                    folder: "file://" + searchCore.getRoot() + "/"
                 }
 
                 model: folderModel
@@ -157,8 +165,9 @@ Item {
 
                         Image {
                             id: iconArea
-                            Layout.preferredWidth: dpWidth(wrapper.height)
-                            Layout.preferredHeight: dpHeight(wrapper.height)
+                            Layout.preferredWidth: dpWidth(40)
+                            Layout.preferredHeight: dpHeight(40)
+                            Layout.alignment: Qt.AlignCenter
                             anchors {
                                 left: checkBoxArea.right
                                 leftMargin: dpHeight(10)
@@ -181,6 +190,7 @@ Item {
                             MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
+                                    paths = [];
                                     listView.currentIndex = index;
                                     folderModel.folder = folderModel.get(index, "fileURL");
                                 }
@@ -211,7 +221,7 @@ Item {
 
             TTKTextButton {
                 anchors.centerIn: parent
-                width: dpWidth(200)
+                width: dpWidth(180)
                 height: dpHeight(40)
                 textColor: ttkTheme.white
                 color: ttkTheme.topbar_background
@@ -219,7 +229,9 @@ Item {
                 text: "开始扫描"
 
                 onPressed: {
-                    ttkScanFolderPage.pathChanged(paths);
+                    if(paths.length != 0) {
+                        ttkScanFolderPage.pathChanged(paths);
+                    }
                 }
             }
         }

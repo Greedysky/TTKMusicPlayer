@@ -1,5 +1,8 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QQuickWindow>
+
+#include "Core/ttkfilesearchcore.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +11,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("TTKMusicPlayer");
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
+
+    qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/qmls/main.qml"));

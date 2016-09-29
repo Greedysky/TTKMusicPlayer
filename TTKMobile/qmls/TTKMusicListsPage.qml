@@ -40,7 +40,7 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(mainMenubar.width)
+                    Layout.preferredWidth: dpWidth(ttkMusicListsPage.width)
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
@@ -93,7 +93,7 @@ Item {
                                 left: parent.left
                                 leftMargin: dpHeight(20)
                             }
-                            font.pixelSize: parent.height/3
+                            font.pixelSize: parent.height*3/10
                         }
 
                         Image {

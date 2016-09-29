@@ -19,6 +19,11 @@ Item {
         }
     }
 
+    TTKBlurImage {
+        anchors.fill: parent
+        target: image
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -52,7 +57,7 @@ Item {
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
-                    font.pixelSize: mainMenubar.height*2/3
+                    font.pixelSize: mainMenubar.height/2
                     text: "SDfsdfsdf"
                 }
 
