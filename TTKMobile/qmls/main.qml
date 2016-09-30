@@ -22,7 +22,7 @@ ApplicationWindow {
         return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
     }
     function dpWidth(numbers) {
-        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierWidth);
+        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
     }
 
     TTKTheme {

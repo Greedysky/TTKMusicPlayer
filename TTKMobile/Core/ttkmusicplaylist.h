@@ -16,11 +16,11 @@ public:
      * Object contsructor.
      */
 
-    Q_INVOKABLE MusicObject::SongPlayType playbackMode() const;
+    Q_INVOKABLE int playbackMode() const;
     /*!
      * Get current play mode.
      */
-    Q_INVOKABLE void setPlaybackMode(MusicObject::SongPlayType mode);
+    Q_INVOKABLE void setPlaybackMode(int mode);
     /*!
      * Set current play mode.
      */
@@ -97,7 +97,7 @@ public Q_SLOTS:
 protected:
     int m_currentIndex;
     MusicSongs m_mediaList;
-    MusicObject::SongPlayType m_playbackMode;
+    int m_playbackMode;
 
 };
 

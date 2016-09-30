@@ -5,9 +5,11 @@
 #if defined (Q_OS_ANDROID)
 #include <QtAndroidExtras/QtAndroid>
 #include <QtAndroidExtras/QAndroidJniEnvironment>
-#endif
 
+#define QML_FILE_PREFIX  "file://"
+#else
 #define QML_FILE_PREFIX  "file:///"
+#endif
 
 TTKFileSearchCore::TTKFileSearchCore(QObject *parent)
     : QThread(parent)

@@ -17,7 +17,7 @@ Item {
                     title: titles[i],
                     artist: artists[i]
                 }
-                testModel.append(info);
+                playlistModel.append(info);
             }
         }
         onCurrentIndexChanged: {
@@ -27,6 +27,16 @@ Item {
             ttkMusicBar.nameTitle = ttkMusicPlaylist.mediaName(index);
             ttkMusicBar.artistTitle = ttkMusicPlaylist.mediaArtist(index);
             ttkMusicBar.playStateChanged();
+        }
+    }
+
+    Component.onCompleted: {
+        for(var i=0; i<ttkMusicPlaylist.mediaCount(); ++i) {
+            var info = {
+                title: ttkMusicPlaylist.mediaName(i),
+                artist: ttkMusicPlaylist.mediaArtist(i)
+            }
+            playlistModel.append(info);
         }
     }
 
@@ -108,12 +118,14 @@ Item {
                         Text {
                             id: titleArea
                             text: title
+                            width: ttkMusicListsPage.width - iconArea.width - dpHeight(60)
                             anchors {
                                 top: parent.top
                                 topMargin: dpHeight(10)
                                 left: parent.left
                                 leftMargin: dpHeight(20)
                             }
+                            elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height*3/10
                         }
@@ -147,12 +159,14 @@ Item {
                         Text {
                             id: artistArea
                             text: artist
+                            width: titleArea.width - iconArea.width
                             anchors {
                                 top: titleArea.bottom
                                 topMargin: dpHeight(10)
                                 left: iconArea.right
                                 leftMargin: dpHeight(10)
                             }
+                            elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
                             color: "gray"
@@ -170,7 +184,7 @@ Item {
                 }
 
                 model: ListModel {
-                    id: testModel
+                    id: playlistModel
                 }
             }
         }

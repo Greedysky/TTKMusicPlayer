@@ -6,15 +6,15 @@ TTKMusicPlaylist::TTKMusicPlaylist(QObject *parent)
 {
     MusicTime::timeSRand();
     m_currentIndex = -1;
-    m_playbackMode = MusicObject::MC_PlayOrder;
+    m_playbackMode = MusicObject::MC_PlayRandom;
 }
 
-MusicObject::SongPlayType TTKMusicPlaylist::playbackMode() const
+int TTKMusicPlaylist::playbackMode() const
 {
     return m_playbackMode;
 }
 
-void TTKMusicPlaylist::setPlaybackMode(MusicObject::SongPlayType mode)
+void TTKMusicPlaylist::setPlaybackMode(int mode)
 {
     m_playbackMode = mode;
 }

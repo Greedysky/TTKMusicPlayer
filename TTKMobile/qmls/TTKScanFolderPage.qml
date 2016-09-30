@@ -178,7 +178,7 @@ Item {
                         Text {
                             id: titleArea
                             text: fileName
-                            Layout.fillWidth: true
+                            Layout.preferredWidth: ttkScanFolderPage.width - dpHeight(140)
                             Layout.fillHeight: true
                             anchors {
                                 left: iconArea.right
@@ -186,6 +186,7 @@ Item {
                             }
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: wrapper.height/3
+                            elide: Text.ElideRight
 
                             MouseArea {
                                 anchors.fill: parent
@@ -231,9 +232,17 @@ Item {
                 onPressed: {
                     if(scanPaths.length !== 0) {
                         ttkScanFolderPage.pathChanged(scanPaths);
+                    }else{
+                        ttkFlyInOutBox.color = "red"
+                        ttkFlyInOutBox.text = "请选择扫描的文件夹"
+                        ttkFlyInOutBox.start();
                     }
                 }
             }
         }
+    }
+
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
     }
 }

@@ -10,6 +10,8 @@ Item {
     width: parent.width
     height: parent.height
 
+    property int playMode: ttkMusicPlaylist.playbackMode()
+
     function playStateChanged() {
         if(ttkMusicPlayer.state() === 1) {
             playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
@@ -87,11 +89,12 @@ Item {
                 Text {
                     id: musicPlayerShowTitle
                     Layout.alignment: Qt.AlignCenter
-                    Layout.fillHeight: true
-                    color: ttkTheme.white
+                    Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(100)
                     horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
+                    verticalAlignment: Qt.AlignHCenter
                     font.pixelSize: mainMenubar.height/2
+                    color: ttkTheme.white
+                    elide: Text.ElideRight
                     text: ttkMusicPlaylist.mediaName(ttkMusicPlaylist.currentIndex())
                 }
 
@@ -133,8 +136,9 @@ Item {
 
                     Text {
                         id: musicPlayerShowArtist
-                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignCenter
                         Layout.preferredHeight: dpHeight(50)
+                        Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(100)
                         color: ttkTheme.white
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
@@ -173,7 +177,7 @@ Item {
                         id: musicPlayerShowLrc
                         Layout.fillWidth: true
                         Layout.preferredHeight: dpHeight(80)
-                        color: "yellow"
+                        color: ttkTheme.alphaLv0
                     }
                 }
             }
@@ -336,12 +340,32 @@ Item {
                         }
 
                         TTKImageButton {
+                            id: playerMode
                             source: "qrc:/image/player_btn_random_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                ttkFlyInOutBox.start();
+                                ++playMode;
+                                if(playMode >= 5) {
+                                    playMode = 2;
+                                }
+                                switch(playMode) {
+                                    case 2:
+                                        ttkFlyInOutBox.text = "已切换至随机播放"
+                                        playerMode.source = "qrc:/image/player_btn_random_normal";
+                                        break;
+                                    case 3:
+                                        ttkFlyInOutBox.text = "已切换至顺序播放"
+                                        playerMode.source = "qrc:/image/player_btn_repeat_normal";
+                                        break;
+                                    case 4:
+                                        ttkFlyInOutBox.text = "已切换至单曲播放"
+                                        playerMode.source = "qrc:/image/player_btn_repeatone_normal";
+                                        break;
+                                }
+                                ttkMusicPlaylist.setPlaybackMode(playMode);
                             }
                         }
 
@@ -376,8 +400,11 @@ Item {
                         }
                     }
                 }
-
             }
         }
+    }
+
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
     }
 }

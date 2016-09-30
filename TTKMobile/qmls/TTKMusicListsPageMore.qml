@@ -26,6 +26,7 @@ Rectangle{
         width: dpWidth(240)
         height: dpHeight(60)*6
         clip: true
+        boundsBehavior: Flickable.StopAtBounds
 
         delegate: Rectangle {
                 id: wrapper
@@ -67,8 +68,7 @@ Rectangle{
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        switch(index)
-                        {
+                        switch(index) {
                             case 0:
                                 break;
                             case 1:

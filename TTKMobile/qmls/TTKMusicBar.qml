@@ -6,6 +6,15 @@ import "Core"
 
 Rectangle {
     id: ttkMusicBar
+    anchors.right: ttkMainWindow.right
+    anchors.bottom: ttkMainWindow.bottom
+    width: ttkMainWindow.width
+    height: dpHeight(70)
+    border {
+        color: ttkTheme.alphaLv9
+        width: 1
+    }
+    color: ttkTheme.white
 
     property alias nameTitle: musicNameTitle.text
     property alias artistTitle: musicArtistTitle.text
@@ -20,16 +29,6 @@ Rectangle {
             musicBarImageAnimation.pause();
         }
     }
-
-    anchors.right: ttkMainWindow.right
-    anchors.bottom: ttkMainWindow.bottom
-    width: ttkMainWindow.width
-    height: dpHeight(70)
-    border {
-        color: ttkTheme.alphaLv9
-        width: 1
-    }
-    color: ttkTheme.white
 
     MouseArea {
         id: mouseArea
@@ -68,28 +67,30 @@ Rectangle {
 
     Text {
         id: musicNameTitle
+        width: ttkMusicBar.width - barPlayButton.width - barPlayListButton.width - musicBarImage.width - dpHeight(30)
         anchors {
             left: musicBarImage.right
             top: parent.top
-            leftMargin: dpHeight(10)
+            leftMargin: dpHeight(5)
             topMargin: dpHeight(10)
         }
         verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
+        elide: Text.ElideRight
         font.pixelSize: parent.height/4
         text: "天天酷音"
     }
 
     Text {
         id: musicArtistTitle
+        width: musicNameTitle.width
         anchors {
             left: musicBarImage.right
             top: musicNameTitle.bottom
-            leftMargin: dpHeight(10)
+            leftMargin: dpHeight(5)
             topMargin: dpHeight(10)
         }
         verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
+        elide: Text.ElideRight
         color: "gray"
         text: "天天酷音"
     }
