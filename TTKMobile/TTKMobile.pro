@@ -66,3 +66,7 @@ OTHER_FILES += \
 }
 
 RESOURCES += TTKMobile.qrc
+
+win32{
+    RC_FILE = TTKMobile.rc
+}

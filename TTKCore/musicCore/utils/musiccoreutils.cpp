@@ -174,6 +174,7 @@ bool MusicUtils::Core::openUrl(const QString &path, bool local)
 #endif
     return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
 }
+
 QString MusicUtils::Core::toUnicode(const char *chars, const char *format)
 {
     QTextCodec *codec = QTextCodec::codecForName(format);
