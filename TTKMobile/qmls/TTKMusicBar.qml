@@ -20,7 +20,7 @@ Rectangle {
     property alias artistTitle: musicArtistTitle.text
 
     function playStateChanged() {
-        if(ttkMusicPlayer.state() === 1) {
+        if(TTK_PLAYER.state() === 1) {
             barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
             musicBarImageAnimation.resume();
             musicBarImageAnimation.start();
@@ -34,7 +34,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onClicked: {
-            if(ttkMusicPlaylist.currentIndex() !== -1) {
+            if(!TTK_APP.empty()) {
                 ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
             }
         }
@@ -120,16 +120,16 @@ Rectangle {
         width: height*1.2
         height: dpHeight(50)
         onPressed: {
-            if(ttkMusicPlaylist.currentIndex() === -1) {
+            if(TTK_APP.empty()) {
                 return;
             }
-            if(ttkMusicPlayer.state() === 1) {
+            if(TTK_PLAYER.state() === 1) {
                 barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
-                ttkMusicPlayer.pause();
+                TTK_PLAYER.pause();
                 musicBarImageAnimation.pause();
             }else{
                 barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
-                ttkMusicPlayer.play();
+                TTK_PLAYER.play();
                 musicBarImageAnimation.resume();
                 musicBarImageAnimation.start();
             }

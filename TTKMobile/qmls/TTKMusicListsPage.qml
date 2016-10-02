@@ -10,31 +10,36 @@ Item {
     height: parent.height
 
     Connections {
-        target: ttkMusicPlaylist
-        onUpdateMedia: {
-            for(var i=0; i<titles.length; ++i) {
+        target: TTK_APP
+        onImportSongFinished: {
+            playlistModel.clear();
+            var names = TTK_APP.mediaNames(0);
+            var artists = TTK_APP.mediaArtists(0);
+            for(var i=0; i<names.length; ++i) {
                 var info = {
-                    title: titles[i],
+                    title: names[i],
                     artist: artists[i]
                 }
                 playlistModel.append(info);
             }
         }
         onCurrentIndexChanged: {
-            ttkMusicPlayer.setMedia(ttkMusicPlaylist.media(index));
-            ttkMusicPlayer.play();
+            TTK_PLAYER.play();
 
-            ttkMusicBar.nameTitle = ttkMusicPlaylist.mediaName(index);
-            ttkMusicBar.artistTitle = ttkMusicPlaylist.mediaArtist(index);
+            ttkMusicBar.nameTitle = TTK_APP.mediaName();
+            ttkMusicBar.artistTitle = TTK_APP.mediaArtist();
             ttkMusicBar.playStateChanged();
         }
     }
 
     Component.onCompleted: {
-        for(var i=0; i<ttkMusicPlaylist.mediaCount(); ++i) {
+        playlistModel.clear();
+        var names = TTK_APP.mediaNames(0);
+        var artists = TTK_APP.mediaArtists(0);
+        for(var i=0; i<names.length; ++i) {
             var info = {
-                title: ttkMusicPlaylist.mediaName(i),
-                artist: ttkMusicPlaylist.mediaArtist(i)
+                title: names[i],
+                artist: artists[i]
             }
             playlistModel.append(info);
         }
@@ -175,9 +180,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                if(ttkMusicPlaylist.currentIndex() !== index) {
-                                    ttkMusicPlaylist.setCurrentIndex(index);
-                                }
+                                TTK_APP.setCurrentIndex(index);
                             }
                         }
                     }

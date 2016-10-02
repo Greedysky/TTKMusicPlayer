@@ -1,14 +1,11 @@
 #include "ttkfilesearchcore.h"
+#include "ttkmusicplayer.h"
 
-#include <QApplication>
 #include <QDir>
 #if defined (Q_OS_ANDROID)
-#include <QtAndroidExtras/QtAndroid>
-#include <QtAndroidExtras/QAndroidJniEnvironment>
-
-#define QML_FILE_PREFIX  "file://"
+#   define QML_FILE_PREFIX  "file://"
 #else
-#define QML_FILE_PREFIX  "file:///"
+#   define QML_FILE_PREFIX  "file:///"
 #endif
 
 TTKFileSearchCore::TTKFileSearchCore(QObject *parent)
@@ -20,19 +17,6 @@ TTKFileSearchCore::TTKFileSearchCore(QObject *parent)
 TTKFileSearchCore::~TTKFileSearchCore()
 {
     stopAndQuitThread();
-}
-
-QString TTKFileSearchCore::getRoot() const
-{
-#if defined (Q_OS_ANDROID)
-    QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("android/os/Environment",
-                                                                           "getExternalStorageDirectory",
-                                                                           "()Ljava/io/File;");
-    QAndroidJniObject mediaPath = mediaDir.callObjectMethod( "getAbsolutePath", "()Ljava/lang/String;" );
-    return mediaPath.toString();
-#else
-    return QApplication::applicationDirPath() + "/";
-#endif
 }
 
 void TTKFileSearchCore::search(const QStringList &path)
@@ -62,14 +46,15 @@ void TTKFileSearchCore::run()
     {
         if(m_run)
         {
-            list << findFile(path, QStringList());
+            list << findFile(path, TTKMusicPlayer::supportFormatsFilterString());
         }
     }
     ///The name and path search ended when sending the corresponding
+
     QStringList pathes;
     foreach(const QFileInfo &var, list)
     {
-        pathes << (QML_FILE_PREFIX + var.absoluteFilePath());
+        pathes << var.absoluteFilePath();
     }
     emit finished(pathes);
 }

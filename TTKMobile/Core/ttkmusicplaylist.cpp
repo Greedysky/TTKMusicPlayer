@@ -30,31 +30,14 @@ void TTKMusicPlaylist::addMedia(const QStringList &items)
     appendMedia(items);
 }
 
-QString TTKMusicPlaylist::media(int index) const
+QString TTKMusicPlaylist::currentMediaString() const
 {
-    if(index < 0 || index >= m_mediaList.count())
+    if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
     {
         return QString();
     }
-    return m_mediaList[index].getMusicPath();
-}
-
-QString TTKMusicPlaylist::mediaName(int index) const
-{
-    if(index < 0 || index >= m_mediaList.count())
-    {
-        return QString();
-    }
-    return m_mediaList[index].getMusicArtistBack();
-}
-
-QString TTKMusicPlaylist::mediaArtist(int index) const
-{
-    if(index < 0 || index >= m_mediaList.count())
-    {
-        return QString();
-    }
-    return m_mediaList[index].getMusicArtistFront();
+    return m_mediaList.isEmpty() ? QString()
+                                 : m_mediaList[m_currentIndex];
 }
 
 int TTKMusicPlaylist::currentIndex() const
@@ -79,14 +62,36 @@ bool TTKMusicPlaylist::clear()
 
 void TTKMusicPlaylist::playNext()
 {
-    int index = ++m_currentIndex;
-    setCurrentIndex((index >= mediaCount()) ? 0 : index);
+    if(isEmpty())
+    {
+        return;
+    }
+    if(playbackMode() == MusicObject::MC_PlayRandom)
+    {
+        setCurrentIndex();
+    }
+    else
+    {
+        int index = ++m_currentIndex;
+        setCurrentIndex((index >= mediaCount()) ? 0 : index);
+    }
 }
 
 void TTKMusicPlaylist::playPrevious()
 {
-    int index = --m_currentIndex;
-    setCurrentIndex((index < 0) ? 0 : index);
+    if(isEmpty())
+    {
+        return;
+    }
+    if(playbackMode() == MusicObject::MC_PlayRandom)
+    {
+        setCurrentIndex();
+    }
+    else
+    {
+        int index = --m_currentIndex;
+        setCurrentIndex((index < 0) ? 0 : index);
+    }
 }
 
 void TTKMusicPlaylist::setCurrentIndex(int index)
@@ -129,13 +134,5 @@ void TTKMusicPlaylist::appendMedia(const QString &content)
 
 void TTKMusicPlaylist::appendMedia(const QStringList &items)
 {
-    QStringList names, artist;
-    foreach(const QString &item, items)
-    {
-        MusicSong song(item);
-        names << song.getMusicArtistBack();
-        artist << song.getMusicArtistFront();
-        m_mediaList << song;
-    }
-    emit updateMedia(names, artist);
+    m_mediaList << items;
 }

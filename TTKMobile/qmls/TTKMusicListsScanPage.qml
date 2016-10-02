@@ -270,7 +270,7 @@ Item {
                 radius: 10
 
                 onPressed: {
-                    ttkMusicPlaylist.appendMedia(scanedPaths);
+                    TTK_APP.importOtherMusicSongs(scanedPaths);
                     ttkOutStackView.pop();
                 }
             }

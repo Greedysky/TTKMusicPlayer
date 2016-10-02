@@ -124,7 +124,7 @@ Item {
                     id: folderModel
                     showFiles: false
                     showHidden: true
-                    folder: "file://" + searchCore.getRoot() + "/"
+                    folder: "file://" + TTK_UTILS.getRoot() + "/"
                 }
 
                 model: folderModel

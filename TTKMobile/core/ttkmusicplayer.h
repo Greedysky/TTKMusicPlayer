@@ -1,10 +1,11 @@
 #ifndef TTKMUSICPLAYER_H
 #define TTKMUSICPLAYER_H
 
-#include <QObject>
+#include <QTimer>
 #include "musicmobileglobaldefine.h"
 
-class QMediaPlayer;
+class SoundCore;
+class TTKMusicPlaylist;
 
 /*! @brief The class of the music player.
  * @author Greedysky <greedysky@163.com>
@@ -29,6 +30,14 @@ public:
     /*!
      * Get current player state.
      */
+    Q_INVOKABLE void setPlaylist(TTKMusicPlaylist *playlist);
+    /*!
+     * Set current play list.
+     */
+    Q_INVOKABLE TTKMusicPlaylist *playlist() const;
+    /*!
+     * Get current play list.
+     */
 
     Q_INVOKABLE qint64 duration() const;
     /*!
@@ -43,18 +52,24 @@ public:
      * Set current play pos.
      */
 
-    Q_INVOKABLE int volume() const;
+    static QStringList supportFormatsString();
     /*!
-     * Get current player volume.
+     * Get player supported formats.
      */
-    Q_INVOKABLE void setVolume(int volume);
+    static QStringList supportFormatsFilterString();
     /*!
-     * Set current player volume.
+     * Get player supported formats filter.
      */
-
-    Q_INVOKABLE void setMedia(const QString &url);
+    static QStringList supportFormatsFilterDialogString();
+    /*!
+     * Get player supported formats filter dialog.
+     */
 
 Q_SIGNALS:
+    void stateChanged(int newState);
+    /*!
+     * Current state changed.
+     */
     void durationChanged(qint64 duration);
     /*!
      * Current duration changed.
@@ -78,9 +93,25 @@ public Q_SLOTS:
      * Player to stop.
      */
 
+private Q_SLOTS:
+    void update();
+    /*!
+     * Player one second time out.
+     */
+    void getCurrentDuration();
+    /*!
+     * Get current duration by time out.
+     */
+
 private:
+    TTKMusicPlaylist *m_playlist;
     State m_state;
-    QMediaPlayer *m_player;
+    SoundCore *m_music;
+    QTimer m_timer;
+    QString m_currentMedia;
+    qint64 m_duration;
+
+    int m_tryTimes;
 
 };
 

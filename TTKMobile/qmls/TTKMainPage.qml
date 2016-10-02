@@ -9,6 +9,13 @@ Item {
     width: parent.width
     height: parent.height
 
+    Connections {
+        target: TTK_APP
+        onImportSongFinished: {
+            funcLocalMusic.subTitle = TTK_APP.mediaCount(0);
+        }
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -134,9 +141,11 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_allsongs_highlight"
                             mainTitle: "本地歌曲"
-                            subTitle: ttkMusicPlaylist.mediaCount()
+                            subTitle: TTK_APP.mediaCount(0)
                             onPressed: {
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml")
+                                TTK_APP.setToolBoxIndex(0);
+                                TTK_APP.setCurrentIndex(-1);
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml");
                             }
                         }
 

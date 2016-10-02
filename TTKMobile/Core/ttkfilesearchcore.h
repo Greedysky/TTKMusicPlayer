@@ -18,7 +18,6 @@ public:
      */
     ~TTKFileSearchCore();
 
-    Q_INVOKABLE QString getRoot() const;
     Q_INVOKABLE void search(const QStringList &path);
     Q_INVOKABLE void search(const QString &path);
 

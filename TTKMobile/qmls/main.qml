@@ -3,8 +3,6 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 
-import TTKMusicPlaylist 1.0
-import TTKMusicPlayer 1.0
 import "Core"
 
 ApplicationWindow {
@@ -27,14 +25,6 @@ ApplicationWindow {
 
     TTKTheme {
         id: ttkTheme
-    }
-
-    TTKMusicPlaylist {
-        id: ttkMusicPlaylist
-    }
-
-    TTKMusicPlayer {
-        id: ttkMusicPlayer
     }
 
     StackView {

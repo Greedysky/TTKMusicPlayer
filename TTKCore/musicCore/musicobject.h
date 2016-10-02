@@ -11,6 +11,10 @@
 
 #include <QDir>
 #include <QApplication>
+#if defined (Q_OS_ANDROID)
+#include <QtAndroidExtras/QtAndroid>
+#include <QtAndroidExtras/QAndroidJniEnvironment>
+#endif
 #include "musicglobal.h"
 
 #define APPNAME                 "TTKMusicPlayer"
@@ -64,8 +68,13 @@
 #define OCI_DATABASE            "QOCI"
 
 ///////////////////////////////////////
-#define APPDATA_DIR_FULL        MusicObject::getAppDir() + QString("../") + APPDATA_DIR
-#define DOWNLOADS_DIR_FULL      MusicObject::getAppDir() + QString("../") + DOWNLOADS_DIR
+#if defined (Q_OS_ANDROID)
+#  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
+#  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
+#else
+#  define APPDATA_DIR_FULL      MusicObject::getAppDir() + QString("../") + APPDATA_DIR
+#  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + QString("../") + DOWNLOADS_DIR
+#endif
 
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
@@ -170,7 +179,20 @@ namespace MusicObject
 
     static QString getAppDir()
     {
+#if defined (Q_OS_ANDROID)
+        QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("android/os/Environment",
+                                                                           "getExternalStorageDirectory",
+                                                                           "()Ljava/io/File;");
+        QAndroidJniObject mediaPath = mediaDir.callObjectMethod( "getAbsolutePath", "()Ljava/lang/String;" );
+        QString path = mediaPath.toString() + "TTKMobile/";
+        if(!QDir().exists(path))
+        {
+            QDir().mkpath(path);
+        }
+        return mediaPath.toString();
+#else
         return QApplication::applicationDirPath() + "/";
+#endif
     }
     /*!
      * Get application dir.

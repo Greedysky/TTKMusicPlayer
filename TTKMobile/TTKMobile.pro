@@ -10,11 +10,18 @@
 # * works are strictly forbiden.
 # =================================================
 
-QT       += core gui qml quick multimedia
+TTKMusicPlayer = 2.4.0.0
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui xml qml quick multimedia
+
+greaterThan(QT_MAJOR_VERSION, 4){
+    QT += widgets
+    include(../TTKExtra/Qt5/qmmp.pri)
+    win32:LIBS += -Lbin/$$TTKMusicPlayer -lqmmp1
+}
 
 TEMPLATE = app
+win32:TARGET = ../bin/$$TTKMusicPlayer/TTKMobile
 
 QMAKE_CXXFLAGS += -std=c++11
 
@@ -25,7 +32,8 @@ DEFINES += \
 INCLUDEPATH += \
     ../ \
     ../TTKCore/musicCore \
-    ../TTKCore/musicCore/utils
+    ../TTKCore/musicCore/utils \
+    ../TTKCore/musicToolsetswidget/core
 
 HEADERS += \
     musicmobileglobaldefine.h \
@@ -33,10 +41,15 @@ HEADERS += \
     ../TTKCore/musicCore/musictime.h \
     ../TTKCore/musicCore/musicsettingmanager.h \
     ../TTKCore/musicCore/utils/musiccoreutils.h \
+    ../TTKCore/musicCore/musicabstractxml.h \
+    ../TTKCore/musicToolsetswidget/core/musicsongtag.h \
     core/ttkfilesearchcore.h \
     core/ttkmusicplaylist.h \
     core/ttkmusicplayer.h \
-    core/ttkmusicutils.h
+    core/ttkmusicutils.h \
+    core/ttkmusicconfigmanager.h \
+    core/ttkmusicsongssummarizied.h \
+    musicapplication.h
 
 
 SOURCES += \
@@ -44,10 +57,15 @@ SOURCES += \
     ../TTKCore/musicCore/musicsong.cpp \
     ../TTKCore/musicCore/musictime.cpp \
     ../TTKCore/musicCore/utils/musiccoreutils.cpp \
+    ../TTKCore/musicCore/musicabstractxml.cpp \
+    ../TTKCore/musicToolsetswidget/core/musicsongtag.cpp \
     core/ttkfilesearchcore.cpp \
     core/ttkmusicplaylist.cpp \
     core/ttkmusicplayer.cpp \
-    core/ttkmusicutils.cpp
+    core/ttkmusicutils.cpp \
+    core/ttkmusicconfigmanager.cpp \
+    core/ttkmusicsongssummarizied.cpp \
+    musicapplication.cpp
 
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
@@ -56,6 +74,7 @@ include(deployment.pri)
 QT += androidextras
 #    ANDROID_EXTRA_LIBS = \
 
+LIBS += -Lbin/ -lqmmp
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
@@ -63,6 +82,34 @@ OTHER_FILES += \
     android/AndroidManifest.xml \
     android/src/org/greedysky/ttkmobile/TTKMobile.java \
     android/src/org/greedysky/ttkmobile/SplashScreen.java
+
+DISTFILES += \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+    ANDROID_EXTRA_LIBS = \
+        bin/libplugin_input_aac.so \
+        bin/libplugin_input_cue.so \
+        bin/libplugin_input_ffmpeg.so \
+        bin/libplugin_input_flac.so \
+        bin/libplugin_input_gme.so \
+        bin/libplugin_input_mad.so \
+        bin/libplugin_input_modplug.so \
+        bin/libplugin_input_mpc.so \
+        bin/libplugin_input_opus.so \
+        bin/libplugin_input_sndfile.so \
+        bin/libplugin_input_vorbis.so \
+        bin/libplugin_input_wavpack.so \
+        bin/libplugin_output_qtmultimedia.so \
+        bin/libqmmp.so \
+        bin/libtag.so \
+        bin/libavcodec.so \
+        bin/libavformat.so \
+        bin/libavutil.so
 }
 
 RESOURCES += TTKMobile.qrc
