@@ -143,8 +143,6 @@ Item {
                             mainTitle: "本地歌曲"
                             subTitle: TTK_APP.mediaCount(0)
                             onPressed: {
-                                TTK_APP.setToolBoxIndex(0);
-                                TTK_APP.setCurrentIndex(-1);
                                 ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml");
                             }
                         }
@@ -167,7 +165,7 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_history_highlight"
                             mainTitle: "最近播放"
-                            subTitle: "20"
+                            subTitle: TTK_APP.mediaCount(2)
                         }
 
                         TTKMainFunctionItem {

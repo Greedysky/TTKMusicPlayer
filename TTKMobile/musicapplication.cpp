@@ -1,6 +1,7 @@
 #include "musicapplication.h"
+#include "musicsettingmanager.h"
 #include <QQmlContext>
-#include <QDebug>
+
 #include "core/ttkmusicsongssummarizied.h"
 #include "core/ttkmusicplaylist.h"
 #include "core/ttkmusicplayer.h"
@@ -158,11 +159,35 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
 
-    m_ttkPlaylist->addMedia(m_songsSummarizied->getMusicSongsFilePath(0));
+    setPlaybackMode(xml.readMusicPlayModeConfig());
+    //Configuration from next time also stopped at the last record.
+    QStringList keyList;
+    xml.readSystemLastPlayIndexConfig(keyList);
+    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, keyList);
+    //add new music file to playlist
+    m_ttkPlaylist->addMedia(m_songsSummarizied->getMusicSongsFilePath(keyList[1].toInt()));
+    if(keyList[0] == "1")
+    {
+        m_songsSummarizied->setToolBoxIndex(keyList[1].toInt());
+        m_songsSummarizied->setCurrentIndex(keyList[1].toInt());
+        m_ttkPlaylist->setCurrentIndex(keyList[2].toInt());
+    }
 }
 
 void MusicApplication::writeXMLConfigToText()
 {
     TTKMusicConfigManager xml;
-    xml.writeMusicSongsConfig( m_songsSummarizied->getMusicLists(), MUSICPATH_FULL);
+    M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, playbackMode());
+    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    if(lastPlayIndexChoiced.isEmpty())
+    {
+        lastPlayIndexChoiced << "0" << "0" << "-1";
+    }
+    else
+    {
+        lastPlayIndexChoiced[1] = QString::number(m_songsSummarizied->getCurrentIndex());
+        lastPlayIndexChoiced[2] = QString::number(m_ttkPlaylist->currentIndex());
+    }
+    xml.writeXMLConfig();
+    xml.writeMusicSongsConfig(m_songsSummarizied->getMusicLists(), MUSICPATH_FULL);
 }

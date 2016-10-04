@@ -10,7 +10,24 @@ Item {
     width: parent.width
     height: parent.height
 
-    property int playMode: TTK_APP.playbackMode()
+    property int playMode: showPlayModeText(TTK_APP.playbackMode())
+
+    function showPlayModeText(value) {
+        switch(value) {
+            case 2:
+                ttkFlyInOutBox.text = "已切换至随机播放"
+                playerMode.source = "qrc:/image/player_btn_random_normal";
+                break;
+            case 3:
+                ttkFlyInOutBox.text = "已切换至顺序播放"
+                playerMode.source = "qrc:/image/player_btn_repeat_normal";
+                break;
+            case 4:
+                ttkFlyInOutBox.text = "已切换至单曲播放"
+                playerMode.source = "qrc:/image/player_btn_repeatone_normal";
+                break;
+        }
+    }
 
     function playStateChanged() {
         if(TTK_PLAYER.state() === 1) {
@@ -351,20 +368,7 @@ Item {
                                 if(playMode >= 5) {
                                     playMode = 2;
                                 }
-                                switch(playMode) {
-                                    case 2:
-                                        ttkFlyInOutBox.text = "已切换至随机播放"
-                                        playerMode.source = "qrc:/image/player_btn_random_normal";
-                                        break;
-                                    case 3:
-                                        ttkFlyInOutBox.text = "已切换至顺序播放"
-                                        playerMode.source = "qrc:/image/player_btn_repeat_normal";
-                                        break;
-                                    case 4:
-                                        ttkFlyInOutBox.text = "已切换至单曲播放"
-                                        playerMode.source = "qrc:/image/player_btn_repeatone_normal";
-                                        break;
-                                }
+                                showPlayModeText(playMode);
                                 TTK_APP.setPlaybackMode(playMode);
                             }
                         }

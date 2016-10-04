@@ -1,4 +1,5 @@
 #include "ttkmusicconfigmanager.h"
+#include "musicsettingmanager.h"
 
 TTKMusicConfigManager::TTKMusicConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -8,7 +9,32 @@ TTKMusicConfigManager::TTKMusicConfigManager(QObject *parent)
 
 void TTKMusicConfigManager::writeXMLConfig()
 {
+    int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
+    int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
+    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
 
+    ///////////////////////////////////////////////////////////////////////////
+    //Open wirte file
+    if( !writeConfig(COFIGPATH_FULL) )
+    {
+        return;
+    }
+    ///////////////////////////////////////////////////////
+    createProcessingInstruction();
+    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
+    //Class A
+    QDomElement music = writeDom(musicPlayer, "music");
+    //Class B
+    writeDomElement(music, "playMode", "value", playModeChoiced);
+    writeDomElement(music, "playVolume", "value", volumeChoiced);
+    writeDomElementText(music, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+                        QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Write to file
+    QTextStream out(m_file);
+    m_ddom->save(out, 4);
 }
 
 void TTKMusicConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
@@ -55,6 +81,24 @@ void TTKMusicConfigManager::readMusicSongsConfig(MusicSongItems &musics)
         item.m_itemIndex = element.attribute("index").toInt();
         item.m_itemName = element.attribute("name");
         musics << item;
+    }
+}
+
+void TTKMusicConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
+{
+    QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
+    if(nodelist.isEmpty())
+    {
+        key << "0" << "0" << "-1";
+        return;
+    }
+
+    QDomElement element = nodelist.at(0).toElement();
+    key << element.attribute("value") << element.text().split(',');
+    if(key.count() != 3)
+    {
+        key.clear();
+        key << "0" << "0" << "-1";
     }
 }
 

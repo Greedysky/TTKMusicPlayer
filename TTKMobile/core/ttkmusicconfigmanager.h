@@ -30,6 +30,16 @@ public:
     /*!
      * Read music datas into xml file.
      */
+    inline int readMusicPlayModeConfig() const
+    { return readXmlAttributeByTagNameValue("playMode").toInt(); }
+    /*!
+     * Read Music Play Mode Config.
+     */
+
+    void readSystemLastPlayIndexConfig(QStringList &key) const;
+   /*!
+    * Read System Last Play Index Config.
+    */
 
 protected:
     MusicSongs readMusicFilePath(const QDomNode &node) const;

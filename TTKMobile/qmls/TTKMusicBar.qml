@@ -15,6 +15,10 @@ Rectangle {
         width: 1
     }
     color: ttkTheme.white
+    Component.onCompleted: {
+        nameTitle = TTK_APP.empty() ? "天天酷音" : TTK_APP.mediaName();
+        artistTitle = TTK_APP.empty() ? "天天酷音" : TTK_APP.mediaArtist();
+    }
 
     property alias nameTitle: musicNameTitle.text
     property alias artistTitle: musicArtistTitle.text
