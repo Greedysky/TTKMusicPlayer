@@ -19,16 +19,16 @@ Item {
                 var info = {
                     title: names[i],
                     artist: artists[i]
-                }
+                };
                 playlistModel.append(info);
             }
         }
         onCurrentIndexChanged: {
-            TTK_PLAYER.play();
-
-            ttkMusicBar.nameTitle = TTK_APP.mediaName();
-            ttkMusicBar.artistTitle = TTK_APP.mediaArtist();
-            ttkMusicBar.playStateChanged();
+            if(TTK_PLAYER.state() === 1) {
+                TTK_PLAYER.pause();
+            }else{
+                TTK_PLAYER.play()
+            }
         }
     }
 

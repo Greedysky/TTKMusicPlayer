@@ -7,6 +7,7 @@ class QQmlContext;
 class TTKMusicUtils;
 class TTKMusicPlaylist;
 class TTKMusicPlayer;
+class TTKNetworkHelper;
 class TTKMusicSongsSummarizied;
 
 class MusicApplication : public QObject
@@ -90,6 +91,7 @@ protected:
     TTKMusicUtils *m_ttkUtils;
     TTKMusicPlaylist *m_ttkPlaylist;
     TTKMusicPlayer *m_ttkPlayer;
+    TTKNetworkHelper *m_networkHelper;
     TTKMusicSongsSummarizied *m_songsSummarizied;
 
 };

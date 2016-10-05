@@ -120,10 +120,8 @@
 #  endif
 #endif
 
-#ifndef MUSIC_MOBILE
 //////////////////////////////////////
 ///load logger
 #include "musiclogger.h"
-#endif
 
 #endif // MUSICGLOBALDEFINE_H

@@ -29,7 +29,7 @@ void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontSty
 }
 
 QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text,
-                                        Qt::TextElideMode mode, int width)
+                                       Qt::TextElideMode mode, int width)
 {
     QFontMetrics ft(font);
     return ft.elidedText(text, mode, width);
@@ -51,7 +51,7 @@ void MusicUtils::Widget::setComboboxText(QComboBox *object, const QString &text)
     else
     {
         const int i = object->findText(text);
-        if (i > -1)
+        if(i > -1)
         {
             object->setCurrentIndex(i);
         }

@@ -27,6 +27,7 @@ Item {
                 playerMode.source = "qrc:/image/player_btn_repeatone_normal";
                 break;
         }
+        return value;
     }
 
     function playStateChanged() {
@@ -315,7 +316,7 @@ Item {
                                     artistImageAnimation.resume();
                                     artistImageAnimation.start();
                                 }
-                                ttkMusicBar.playStateChanged();
+                                //ttkMusicBar.playStateChanged();
                             }
                         }
 

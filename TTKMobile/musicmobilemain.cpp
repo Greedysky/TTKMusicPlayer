@@ -1,10 +1,9 @@
 #include <QApplication>
 #include <QQmlContext>
-#include <QQuickWindow>
+#include <QTranslator>
 #include <QQmlApplicationEngine>
 
 #include "musicapplication.h"
-#include "core/ttkfilesearchcore.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,9 +13,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
 
+    QTranslator translator;
+    translator.load("MLanguage/TTKMobile.ln");
+    app.installTranslator(&translator);
     //////////////////////////////////////////////////////////////
-    qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
-
     QQmlApplicationEngine engine;
     QQmlContext *qmlContext = engine.rootContext();
     if(qmlContext)

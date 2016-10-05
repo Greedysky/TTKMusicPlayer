@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#ifndef MUSIC_MOBILE
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
@@ -165,5 +166,13 @@ private:
     QFile m_file;
 
 };
+#else
+    #define M_LOGGER_INFO(str)  Q_UNUSED(str)
+    #define M_LOGGER_DEBUG(str) Q_UNUSED(str)
+    #define M_LOGGER_WARN(str)  Q_UNUSED(str)
+    #define M_LOGGER_TRACE(str) Q_UNUSED(str)
+    #define M_LOGGER_ERROR(str) Q_UNUSED(str)
+    #define M_LOGGER_FATAL(str) Q_UNUSED(str)
+#endif
 
 #endif // MUSICLOGGER_H

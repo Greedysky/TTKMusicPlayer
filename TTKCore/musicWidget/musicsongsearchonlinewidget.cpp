@@ -98,6 +98,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
     {
         m_audition = new MusicCoreMPlayer(this);
     }
+    qDebug() << musicSongInfos[row].m_songAttrs.first().m_url;
     m_audition->setMedia(MusicCoreMPlayer::MusicCategory, musicSongInfos[row].m_songAttrs.first().m_url);
 
     if(m_previousAuditionRow != -1)

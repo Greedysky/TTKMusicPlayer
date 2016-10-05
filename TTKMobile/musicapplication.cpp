@@ -1,5 +1,6 @@
 #include "musicapplication.h"
 #include "musicsettingmanager.h"
+#include <QQuickWindow>
 #include <QQmlContext>
 
 #include "core/ttkmusicsongssummarizied.h"
@@ -7,13 +8,19 @@
 #include "core/ttkmusicplayer.h"
 #include "core/ttkmusicutils.h"
 #include "core/ttkmusicconfigmanager.h"
+#include "core/ttknetworkhelper.h"
+#include "core/ttkfilesearchcore.h"
+#include <QDebug>
 
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)
 {
+    qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
+    ///////////////////////////////////////////////////////////////////////////////////
     m_ttkUtils =  new TTKMusicUtils(this);
     m_ttkPlaylist = new TTKMusicPlaylist(this);
     m_ttkPlayer = new TTKMusicPlayer(this);
+    m_networkHelper = new TTKNetworkHelper(this);
     m_ttkPlayer->setPlaylist(m_ttkPlaylist);
 
     m_songsSummarizied = new TTKMusicSongsSummarizied(this);
@@ -21,6 +28,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     parent->setContextProperty("TTK_APP", this);
     parent->setContextProperty("TTK_UTILS", m_ttkUtils);
     parent->setContextProperty("TTK_PLAYER", m_ttkPlayer);
+    parent->setContextProperty("TTK_NETWORK", m_networkHelper);
 
     connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SIGNAL(currentIndexChanged(int)));
     readXMLConfigFromText();
@@ -29,6 +37,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
 MusicApplication::~MusicApplication()
 {
     writeXMLConfigToText();
+    delete m_networkHelper;
     delete m_ttkUtils;
     delete m_ttkPlaylist;
     delete m_ttkPlayer;
@@ -172,6 +181,7 @@ void MusicApplication::readXMLConfigFromText()
         m_songsSummarizied->setCurrentIndex(keyList[1].toInt());
         m_ttkPlaylist->setCurrentIndex(keyList[2].toInt());
     }
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, 0);
 }
 
 void MusicApplication::writeXMLConfigToText()

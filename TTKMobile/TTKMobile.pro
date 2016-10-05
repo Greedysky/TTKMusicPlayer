@@ -20,6 +20,44 @@ greaterThan(QT_MAJOR_VERSION, 4){
     win32:LIBS += -Lbin/$$TTKMusicPlayer -lqmmp1
 }
 
+TRANSLATIONS += TTKMobile.ts
+##update translation
+unix:exists($$[QT_INSTALL_BINS]/lrelease){
+LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease
+}
+
+unix:exists($$[QT_INSTALL_BINS]/lrelease-qt5){
+LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease-qt5
+}
+
+win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
+LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease.exe
+}
+isEmpty(LRELEASE_EXECUTABLE){
+  error(Could not find lrelease executable)
+}
+else{
+  message(Found lrelease executable: $$LRELEASE_EXECUTABLE)
+}
+
+unix:{
+    output = $$OUT_PWD/lib/$$TTKMusicPlayer/MLanguage
+    !exists($$output):system(mkdir $$output)
+
+    system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
+    system(find . -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
+    system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
+}
+win32:{
+    output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
+    output = $$replace(output, /, \\)
+    !exists($$output):system(md $$output)
+
+    system(for /r %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
+    system(for /r %i in (*.qm) do ren %i *.ln)
+    system(for /r %i in (*.ln) do move /y %i $$output)
+}
+
 TEMPLATE = app
 win32:TARGET = ../bin/$$TTKMusicPlayer/TTKMobile
 
@@ -33,7 +71,10 @@ INCLUDEPATH += \
     ../ \
     ../TTKCore/musicCore \
     ../TTKCore/musicCore/utils \
-    ../TTKCore/musicToolsetswidget/core
+    ../TTKCore/musicNetwork \
+    ../TTKCore/musicToolsetswidget/core \
+    ../TTKThirdParty/MusicExtras
+
 
 HEADERS += \
     musicmobileglobaldefine.h \
@@ -42,6 +83,12 @@ HEADERS += \
     ../TTKCore/musicCore/musicsettingmanager.h \
     ../TTKCore/musicCore/utils/musiccoreutils.h \
     ../TTKCore/musicCore/musicabstractxml.h \
+    ../TTKCore/musicCore/musiccryptographichash.h \
+    ../TTKCore/musicNetwork/musicnetworkabstract.h \
+    ../TTKCore/musicNetwork/musicdatadownloadthread.h \
+    ../TTKCore/musicNetwork/musicdownloadthreadabstract.h \
+    ../TTKCore/musicNetwork/musicdownloadquerythreadabstract.h \
+    ../TTKCore/musicNetwork/musicdownloadquerymultiplethread.h \
     ../TTKCore/musicToolsetswidget/core/musicsongtag.h \
     core/ttkfilesearchcore.h \
     core/ttkmusicplaylist.h \
@@ -49,7 +96,8 @@ HEADERS += \
     core/ttkmusicutils.h \
     core/ttkmusicconfigmanager.h \
     core/ttkmusicsongssummarizied.h \
-    musicapplication.h
+    musicapplication.h \
+    core/ttknetworkhelper.h
 
 
 SOURCES += \
@@ -58,6 +106,12 @@ SOURCES += \
     ../TTKCore/musicCore/musictime.cpp \
     ../TTKCore/musicCore/utils/musiccoreutils.cpp \
     ../TTKCore/musicCore/musicabstractxml.cpp \
+    ../TTKCore/musicCore/musiccryptographichash.cpp \
+    ../TTKCore/musicNetwork/musicnetworkabstract.cpp \
+    ../TTKCore/musicNetwork/musicdatadownloadthread.cpp \
+    ../TTKCore/musicNetwork/musicdownloadthreadabstract.cpp \
+    ../TTKCore/musicNetwork/musicdownloadquerythreadabstract.cpp \
+    ../TTKCore/musicNetwork/musicdownloadquerymultiplethread.cpp \
     ../TTKCore/musicToolsetswidget/core/musicsongtag.cpp \
     core/ttkfilesearchcore.cpp \
     core/ttkmusicplaylist.cpp \
@@ -65,8 +119,10 @@ SOURCES += \
     core/ttkmusicutils.cpp \
     core/ttkmusicconfigmanager.cpp \
     core/ttkmusicsongssummarizied.cpp \
-    musicapplication.cpp
+    musicapplication.cpp \
+    core/ttknetworkhelper.cpp
 
+include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
 # Default rules for deployment.

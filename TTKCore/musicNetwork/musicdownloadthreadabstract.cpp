@@ -1,6 +1,8 @@
 #include "musicdownloadthreadabstract.h"
-#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
+#ifndef MUSIC_MOBILE
+#include "musicconnectionpool.h"
+#endif
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -26,14 +28,18 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
     }
     m_file = new QFile(save, this);
 
+#ifndef MUSIC_MOBILE
     M_CONNECTION_PTR->setNetworkMultiValue(this);
+#endif
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
+#ifndef MUSIC_MOBILE
     M_CONNECTION_PTR->removeNetworkMultiValue(this);
+#endif
 }
 
 QString MusicDownLoadThreadAbstract::getClassName()

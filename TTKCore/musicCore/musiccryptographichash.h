@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QString>
 #include "musicglobaldefine.h"
 
 #define DOWNLOAD_KEY "5024FRSDF40"
