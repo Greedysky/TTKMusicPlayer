@@ -53,10 +53,10 @@ ApplicationWindow {
 
     TTKMessageBox {
         id: ttkMessageBox
-        title: "提示"
-        content: "是否继续退出"
-        okText: "退出"
-        cancelText: "取消"
+        title: qsTr("提示")
+        content: qsTr("是否继续退出")
+        okText: qsTr("退出")
+        cancelText: qsTr("取消")
         onResult: {
             if(val === 1) {
                 ttkMainWindow.exitApp = true;

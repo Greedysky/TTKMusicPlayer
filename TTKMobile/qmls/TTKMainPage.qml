@@ -107,7 +107,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.pixelSize: parent.height/4
-                            text: "个性电台"
+                            text: qsTr("个性电台")
                         }
 
                         Text {
@@ -121,7 +121,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             color: "gray"
-                            text: "偶遇身边好音乐"
+                            text: qsTr("偶遇身边好音乐")
                         }
                     }
 
@@ -140,7 +140,7 @@ Item {
                                 top: parent.top
                             }
                             source: "qrc:/image/mymusic_icon_allsongs_highlight"
-                            mainTitle: "本地歌曲"
+                            mainTitle: qsTr("本地歌曲")
                             subTitle: TTK_APP.mediaCount(0)
                             onPressed: {
                                 ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml");
@@ -154,7 +154,7 @@ Item {
                                 top: parent.top
                             }
                             source: "qrc:/image/mymusic_icon_download_normal"
-                            mainTitle: "下载歌曲"
+                            mainTitle: qsTr("下载歌曲")
                         }
 
                         TTKMainFunctionItem {
@@ -164,7 +164,7 @@ Item {
                                 top: parent.top
                             }
                             source: "qrc:/image/mymusic_icon_history_highlight"
-                            mainTitle: "最近播放"
+                            mainTitle: qsTr("最近播放")
                             subTitle: TTK_APP.mediaCount(2)
                         }
 
@@ -175,7 +175,7 @@ Item {
                                 top: funcLocalMusic.bottom
                             }
                             source: "qrc:/image/mymusic_icon_favorite_normal"
-                            mainTitle: "我喜欢"
+                            mainTitle: qsTr("我喜欢")
                         }
 
                         TTKMainFunctionItem {
@@ -185,7 +185,7 @@ Item {
                                 top: funcLocalMusic.bottom
                             }
                             source: "qrc:/image/mymusic_icon_mv_highlight"
-                            mainTitle: "下载MV"
+                            mainTitle: qsTr("下载MV")
                         }
 
                         TTKMainFunctionItem {
@@ -195,8 +195,8 @@ Item {
                                 top: funcLocalMusic.bottom
                             }
                             source: "qrc:/image/mymusic_icon_recognizer_normal"
-                            mainTitle: "听歌识曲"
-                            subTitle: "[绿旋风]"
+                            mainTitle: qsTr("听歌识曲")
+                            subTitle: qsTr("[绿旋风]")
                         }
                     }
 
@@ -236,7 +236,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.pixelSize: parent.height/4
-                            text: "个性电台"
+                            text: qsTr("个性电台")
                         }
 
                         Text {
@@ -250,7 +250,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             color: "gray"
-                            text: "偶遇身边好音乐"
+                            text: qsTr("偶遇身边好音乐")
                         }
                     }
 
@@ -270,7 +270,7 @@ Item {
                                 Layout.alignment: Qt.AlignCenter
 
                                 Text {
-                                    text: "我 的 歌 单"
+                                    text: qsTr("我 的 歌 单")
                                     horizontalAlignment: Qt.AlignHCenter
                                     verticalAlignment: Qt.AlignVCenter
                                     width: songsWidget.width
@@ -315,7 +315,7 @@ Item {
                                     }
 
                                     Text {
-                                        text: "新建歌单"
+                                        text: qsTr("新建歌单")
                                         anchors {
                                             left: songsItemImage.right
                                             top: parent.top

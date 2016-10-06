@@ -40,8 +40,8 @@ Item {
             bottomBodyCancel.visible = false;
             bottomBodyFinished.visible = true;
 
-            scanningPageText.text = "扫描完成"
-            bottomBodyFinishedButton.text = "添加歌曲至本地歌曲(" + scanedPaths.length + ")";
+            scanningPageText.text = qsTr("扫描完成")
+            bottomBodyFinishedButton.text = qsTr("添加歌曲至本地歌曲(") + scanedPaths.length + ")";
         }
     }
 
@@ -83,7 +83,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height*2/5
-                    text: "扫描歌曲"
+                    text: qsTr("扫描歌曲")
                 }
 
                 TTKTextButton {
@@ -91,7 +91,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     textColor: ttkTheme.white
-                    text: "关闭"
+                    text: qsTr("关闭")
 
                     onPressed: {
                         ttkOutStackView.pop();
@@ -128,13 +128,13 @@ Item {
                     Layout.alignment: Qt.AlignCenter
                     font.pixelSize: mainMenubar.height*2/5
                     font.bold: true
-                    text: "一键扫描手机内的歌曲文件"
+                    text: qsTr("一键扫描手机内的歌曲文件")
                 }
 
                 CheckBox {
                     Layout.preferredHeight: dpHeight(30)
                     Layout.alignment: Qt.AlignCenter
-                    text: "不扫描060s以下的歌曲"
+                    text: qsTr("不扫描060s以下的歌曲")
                     style: CheckBoxStyle {
                         indicator: Image {
                             width: dpWidth(20)
@@ -148,7 +148,7 @@ Item {
                 CheckBox {
                     Layout.preferredHeight: dpHeight(30)
                     Layout.alignment: Qt.AlignCenter
-                    text: "不扫描100k以下的歌曲"
+                    text: qsTr("不扫描100k以下的歌曲")
                     style: CheckBoxStyle {
                         indicator: Image {
                             width: dpWidth(20)
@@ -170,7 +170,7 @@ Item {
                     textColor: ttkTheme.white
                     color: ttkTheme.topbar_background
                     radius: 10
-                    text: "开始扫描"
+                    text: qsTr("开始扫描")
 
                     onPressed: {
                         rotationAnimation.start();
@@ -237,7 +237,7 @@ Item {
                             Layout.alignment: Qt.AlignCenter
                             font.pixelSize: mainMenubar.height*0.6
                             horizontalAlignment: Qt.AlignHCenter
-                            text: "正在扫描..."
+                            text: qsTr("正在扫描...")
                         }
 
                         Text {
@@ -290,7 +290,7 @@ Item {
                 textColor: ttkTheme.white
                 color: ttkTheme.topbar_background
                 radius: 10
-                text: "取消扫描"
+                text: qsTr("取消扫描")
 
                 onPressed: {
                     rotationAnimation.stop();
@@ -313,7 +313,7 @@ Item {
                 height: bottomBody.height
                 anchors.left: parent.left
                 color: ttkTheme.white
-                text: "自定义扫描"
+                text: qsTr("自定义扫描")
                 border {
                     color: ttkTheme.alphaLv9
                     width: 2
@@ -329,7 +329,7 @@ Item {
                 height: bottomBody.height
                 anchors.right: parent.right
                 color: ttkTheme.white
-                text: "扫描设置"
+                text: qsTr("扫描设置")
                 border {
                     color: ttkTheme.alphaLv9
                     width: 2

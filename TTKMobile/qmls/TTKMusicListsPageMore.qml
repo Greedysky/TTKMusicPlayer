@@ -93,27 +93,27 @@ Rectangle{
         model: ListModel {
             ListElement {
                 imgSource: "qrc:/image/local_music_sorted_by_time_icon"
-                title: "按时间排序"
+                title: qsTr("按时间排序")
             }
             ListElement {
                 imgSource: "qrc:/image/local_music_sorted_by_name_icon"
-                title: "按名称排序"
+                title: qsTr("按名称排序")
             }
             ListElement {
                 imgSource: "qrc:/image/local_music_upgrade_song_quality_icon"
-                title: "升级音质"
+                title: qsTr("升级音质")
             }
             ListElement {
                 imgSource: "qrc:/image/local_music_scan_icon"
-                title: "扫描音乐"
+                title: qsTr("扫描音乐")
             }
             ListElement {
                 imgSource: "qrc:/image/icon_download_lyric"
-                title: "一键下载词图"
+                title: qsTr("一键下载词图")
             }
             ListElement {
                 imgSource: "qrc:/image/local_cloud_music_icon"
-                title: "本地歌曲恢复助手"
+                title: qsTr("本地歌曲恢复助手")
             }
         }
     }

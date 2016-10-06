@@ -46,7 +46,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height*2/5
-                    text: "扫描指定的文件夹"
+                    text: qsTr("扫描指定的文件夹")
                 }
 
                 TTKTextButton {
@@ -54,7 +54,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     textColor: ttkTheme.white
-                    text: "关闭"
+                    text: qsTr("关闭")
 
                     onPressed: {
                         ttkOutStackView.pop();
@@ -227,14 +227,14 @@ Item {
                 textColor: ttkTheme.white
                 color: ttkTheme.topbar_background
                 radius: 10
-                text: "开始扫描"
+                text: qsTr("开始扫描")
 
                 onPressed: {
                     if(scanPaths.length !== 0) {
                         ttkScanFolderPage.pathChanged(scanPaths);
                     }else{
                         ttkFlyInOutBox.color = "red"
-                        ttkFlyInOutBox.text = "请选择扫描的文件夹"
+                        ttkFlyInOutBox.text = qsTr("请选择扫描的文件夹")
                         ttkFlyInOutBox.start();
                     }
                 }

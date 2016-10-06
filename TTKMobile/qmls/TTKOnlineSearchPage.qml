@@ -68,7 +68,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     textColor: ttkTheme.white
-                    text: "搜索"
+                    text: qsTr("搜索")
 
                     onPressed: {
                         TTK_NETWORK.searchSong(searchInput.text);
@@ -103,7 +103,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkOnlineSearchPage.width - iconArea.width - dpHeight(60)
+                            width: ttkOnlineSearchPage.width - iconArea.width - dpHeight(120)
                             anchors {
                                 top: parent.top
                                 topMargin: dpHeight(10)
@@ -139,6 +139,19 @@ Item {
                                 rightMargin: dpHeight(20)
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
+                        }
+
+                        TTKImageButton {
+                            id: addFuncArea
+                            width: parent.height/2
+                            height: parent.height/2
+                            anchors {
+                                top: parent.top
+                                right: moreFuncArea.left
+                                topMargin: dpHeight(20)
+                                rightMargin: dpHeight(5)
+                            }
+                            source: "qrc:/image/ic_playlist_add_normal"
                         }
 
                         Text {

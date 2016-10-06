@@ -24,11 +24,11 @@ Item {
             }
         }
         onCurrentIndexChanged: {
-            if(TTK_PLAYER.state() === 1) {
-                TTK_PLAYER.pause();
-            }else{
-                TTK_PLAYER.play()
-            }
+            TTK_PLAYER.play();
+
+            ttkMusicBar.nameTitle = TTK_APP.mediaName();
+            ttkMusicBar.artistTitle = TTK_APP.mediaArtist();
+            ttkMusicBar.playStateChanged();
         }
     }
 
@@ -82,7 +82,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
-                    text: "本地歌曲"
+                    text: qsTr("本地歌曲")
                 }
 
                 TTKImageButton {

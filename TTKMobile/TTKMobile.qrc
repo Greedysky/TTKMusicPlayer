@@ -51,6 +51,7 @@
         <file alias="scanning_icon_up">images/scanning_icon_up.png</file>
         <file alias="scanning_icon_up_disable">images/scanning_icon_up_disable.png</file>
         <file alias="bannertips_succes_icon">images/bannertips_succes_icon.png</file>
+        <file alias="ic_playlist_add_normal">images/ic_playlist_add_normal.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -63,8 +64,9 @@
         <file>qmls/Core/TTKRadiusImage.qml</file>
         <file>qmls/Core/TTKBlurImage.qml</file>
         <file>qmls/Core/TTKFlyInOutBox.qml</file>
+        <file>qmls/Core/TTKMainFunctionItem.qml</file>
+        <file>qmls/Core/TTKImageFunctionItem.qml</file>
         <file>qmls/TTKMainPage.qml</file>
-        <file>qmls/TTKMainFunctionItem.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>
         <file>qmls/TTKTheme.qml</file>
         <file>qmls/TTKMusicBar.qml</file>

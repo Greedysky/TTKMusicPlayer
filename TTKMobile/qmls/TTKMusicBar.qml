@@ -16,9 +16,12 @@ Rectangle {
     }
     color: ttkTheme.white
     Component.onCompleted: {
-        musicNameTitle.text = TTK_APP.empty() ? "天天酷音" : TTK_APP.mediaName();
-        musicArtistTitle.text = TTK_APP.empty() ? "天天酷音" : TTK_APP.mediaArtist();
+        nameTitle = TTK_APP.empty() ? qsTr("天天酷音") : TTK_APP.mediaName();
+        artistTitle = TTK_APP.empty() ? qsTr("天天酷音") : TTK_APP.mediaArtist();
     }
+
+    property alias nameTitle: musicNameTitle.text
+    property alias artistTitle: musicArtistTitle.text
 
     function playStateChanged() {
         if(TTK_PLAYER.state() === 1) {
@@ -28,15 +31,6 @@ Rectangle {
         }else{
             barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
             musicBarImageAnimation.pause();
-        }
-    }
-
-    Connections {
-        target: TTK_APP
-        onCurrentIndexChanged: {
-            musicNameTitle.text = TTK_APP.mediaName();
-            musicArtistTitle.text = TTK_APP.mediaArtist();
-            playStateChanged();
         }
     }
 
@@ -87,7 +81,6 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
         font.pixelSize: parent.height/4
-        text: "天天酷音"
     }
 
     Text {
@@ -102,7 +95,6 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
         color: "gray"
-        text: "天天酷音"
     }
 
     TTKImageButton {

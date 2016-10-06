@@ -15,15 +15,15 @@ Item {
     function showPlayModeText(value) {
         switch(value) {
             case 2:
-                ttkFlyInOutBox.text = "已切换至随机播放"
+                ttkFlyInOutBox.text = qsTr("已切换至随机播放")
                 playerMode.source = "qrc:/image/player_btn_random_normal";
                 break;
             case 3:
-                ttkFlyInOutBox.text = "已切换至顺序播放"
+                ttkFlyInOutBox.text = qsTr("已切换至顺序播放")
                 playerMode.source = "qrc:/image/player_btn_repeat_normal";
                 break;
             case 4:
-                ttkFlyInOutBox.text = "已切换至单曲播放"
+                ttkFlyInOutBox.text = qsTr("已切换至单曲播放")
                 playerMode.source = "qrc:/image/player_btn_repeatone_normal";
                 break;
         }
@@ -139,7 +139,26 @@ Item {
                 id: musicAlbumShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv13
+                color: ttkTheme.alphaLv14
+
+                Rectangle {
+                    width: ttkMusicPlayerCenter.width
+                    height: 1
+                    color: "gray"
+                }
+
+                TTKImageFunctionItem {
+                    id: mediaArtistArea
+                    source: "qrc:/image/test"
+                    text: qsTr("歌手: ") + TTK_APP.mediaArtist()
+                }
+
+                TTKImageFunctionItem {
+                    id: mediaAlbumtArea
+                    anchors.top: mediaArtistArea.bottom
+                    source: "qrc:/image/test"
+                    text: qsTr("专辑: ") + TTK_APP.mediaArtist()
+                }
             }
 
             Rectangle {
@@ -156,10 +175,11 @@ Item {
                         id: musicPlayerShowArtist
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredHeight: dpHeight(50)
-                        Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(100)
+                        Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(20)
                         color: ttkTheme.white
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
+                        elide: Text.ElideMiddle
                         text: "- " + TTK_APP.mediaArtist() + " -"
                     }
 
@@ -204,7 +224,7 @@ Item {
                 id: musicLrcShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv15
+                color: ttkTheme.alphaLv14
             }
         }
 
@@ -246,11 +266,24 @@ Item {
                             minimumValue: 0
                             value: 0
 
+                            function sliderGeometry() {
+                                return (musicTimeSlider.value - musicTimeSlider.minimumValue) /
+                                       (musicTimeSlider.maximumValue - musicTimeSlider.minimumValue);
+                            }
+
                             style: SliderStyle{
-                                groove: Rectangle{
-                                    implicitWidth: musicTimeSlider.width
-                                    implicitHeight: dpHeight(3)
-                                    color: ttkTheme.topbar_background
+                                groove: Row {
+                                    Rectangle{
+                                        implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry();
+                                        implicitHeight: dpHeight(3)
+                                        color: ttkTheme.topbar_background
+                                    }
+
+                                    Rectangle{
+                                        implicitWidth: musicTimeSlider.width*(1 - musicTimeSlider.sliderGeometry());
+                                        implicitHeight: dpHeight(3)
+                                        color: "gray"
+                                    }
                                 }
 
                                 handle: Rectangle{
@@ -316,7 +349,7 @@ Item {
                                     artistImageAnimation.resume();
                                     artistImageAnimation.start();
                                 }
-                                //ttkMusicBar.playStateChanged();
+                                ttkMusicBar.playStateChanged();
                             }
                         }
 

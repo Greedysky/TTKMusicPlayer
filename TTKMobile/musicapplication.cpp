@@ -188,16 +188,17 @@ void MusicApplication::writeXMLConfigToText()
 {
     TTKMusicConfigManager xml;
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, playbackMode());
-    QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    if(lastPlayIndexChoiced.isEmpty())
+    QStringList keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    if(keyList.isEmpty())
     {
-        lastPlayIndexChoiced << "0" << "0" << "-1";
+        keyList << "0" << "0" << "-1";
     }
     else
     {
-        lastPlayIndexChoiced[1] = QString::number(m_songsSummarizied->getCurrentIndex());
-        lastPlayIndexChoiced[2] = QString::number(m_ttkPlaylist->currentIndex());
+        keyList[1] = QString::number(m_songsSummarizied->getCurrentIndex());
+        keyList[2] = QString::number(m_ttkPlaylist->currentIndex());
     }
+    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, keyList);
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig(m_songsSummarizied->getMusicLists(), MUSICPATH_FULL);
 }
