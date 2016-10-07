@@ -220,11 +220,25 @@ Item {
                 }
             }
 
-            Rectangle {
+            TTKMusicLyricPage {
                 id: musicLrcShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
                 color: ttkTheme.alphaLv14
+
+                ListModel {
+                   id: ddplaylistModel
+               }
+                Component.onCompleted: {
+                    m_model = ddplaylistModel;
+                    for(var i=0; i<10; ++i) {
+                        var info = {
+                            textLine: "dfgfdgdfgdfg"
+                        };
+                        ddplaylistModel.append(info);
+                    }
+                    musicLrcShow.m_currentIndex = 3;
+                }
             }
         }
 
@@ -274,13 +288,13 @@ Item {
                             style: SliderStyle{
                                 groove: Row {
                                     Rectangle{
-                                        implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry();
+                                        implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry()
                                         implicitHeight: dpHeight(3)
                                         color: ttkTheme.topbar_background
                                     }
 
                                     Rectangle{
-                                        implicitWidth: musicTimeSlider.width*(1 - musicTimeSlider.sliderGeometry());
+                                        implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
                                         implicitHeight: dpHeight(3)
                                         color: "gray"
                                     }

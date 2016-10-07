@@ -49,8 +49,8 @@ Item {
         spacing: 0
         anchors.fill: parent
 
-        TTKMusicListsPageMore {
-            id: ttkMusicListsPageMore
+        TTKMusicListsMorePage {
+            id: ttkMusicListsMorePage
         }
 
         ///top bar
@@ -91,7 +91,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
-                        ttkMusicListsPageMore.visible = true;
+                        ttkMusicListsMorePage.visible = true;
                     }
                 }
             }

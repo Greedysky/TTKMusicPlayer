@@ -72,8 +72,9 @@
         <file>qmls/TTKMusicBar.qml</file>
         <file>qmls/TTKMusicPlayerCenterPage.qml</file>
         <file>qmls/TTKMusicListsPage.qml</file>
-        <file>qmls/TTKMusicListsPageMore.qml</file>
+        <file>qmls/TTKMusicListsMorePage.qml</file>
         <file>qmls/TTKMusicListsScanPage.qml</file>
         <file>qmls/TTKScanFolderPage.qml</file>
+        <file>qmls/TTKMusicLyricPage.qml</file>
     </qresource>
 </RCC>

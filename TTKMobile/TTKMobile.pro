@@ -97,7 +97,8 @@ HEADERS += \
     core/ttkmusicconfigmanager.h \
     core/ttkmusicsongssummarizied.h \
     musicapplication.h \
-    core/ttknetworkhelper.h
+    core/ttknetworkhelper.h \
+    core/ttkmusiclyricmodel.h
 
 
 SOURCES += \
@@ -120,7 +121,8 @@ SOURCES += \
     core/ttkmusicconfigmanager.cpp \
     core/ttkmusicsongssummarizied.cpp \
     musicapplication.cpp \
-    core/ttknetworkhelper.cpp
+    core/ttknetworkhelper.cpp \
+    core/ttkmusiclyricmodel.cpp
 
 include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 

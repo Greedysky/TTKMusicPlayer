@@ -13,6 +13,8 @@
 #include "musicglobaldefine.h"
 
 const QString BIG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
+const QString BIG_ART_URL2 = "http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url"
+                             "&content=list&&name=%1&from=pc&json=1&width=1024&height=768";
 
 /*! @brief The class of downloading art background image.
  * @author Greedysky <greedysky@163.com>

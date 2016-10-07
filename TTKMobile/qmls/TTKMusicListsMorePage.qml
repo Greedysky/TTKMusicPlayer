@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Rectangle{
-    id: ttkMusicListsPageMore
+    id: ttkMusicListsMorePage
 
     visible: false
     anchors.fill: parent
@@ -14,7 +14,7 @@ Rectangle{
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            ttkMusicListsPageMore.visible = false;
+            ttkMusicListsMorePage.visible = false;
         }
     }
 
@@ -76,7 +76,7 @@ Rectangle{
                             case 2:
                                 break;
                             case 3:
-                                ttkMusicListsPageMore.visible = false;
+                                ttkMusicListsMorePage.visible = false;
                                 ttkOutStackView.push("qrc:/qmls/TTKMusicListsScanPage.qml");
                                 break;
                             case 4:
@@ -120,11 +120,11 @@ Rectangle{
 
     Component.onCompleted:
     {
-        var docRoot = ttkMusicListsPageMore.parent;
+        var docRoot = ttkMusicListsMorePage.parent;
         while(docRoot.parent)
         {
             docRoot = docRoot.parent;
         }
-        ttkMusicListsPageMore.parent = docRoot;
+        ttkMusicListsMorePage.parent = docRoot;
     }
 }

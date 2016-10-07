@@ -56,8 +56,8 @@ Item {
         spacing: 0
         anchors.fill: parent
 
-        TTKMusicListsPageMore {
-            id: ttkMusicListsPageMore
+        TTKMusicListsMorePage {
+            id: ttkMusicListsMorePage
         }
 
         ///top bar
