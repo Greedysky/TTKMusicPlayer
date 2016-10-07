@@ -79,6 +79,6 @@ void MusicTextDownLoadThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged("Lrc");
+    emit downLoadDataChanged( transferData() );
     deleteAll();
 }

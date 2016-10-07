@@ -34,6 +34,29 @@ Rectangle {
         }
     }
 
+    Connections {
+        target: TTK_PLAYER
+        onDurationChanged: {
+            TTK_APP.musicLoadCurrentSongLrc();
+        }
+    }
+
+    Connections {
+        target: TTK_APP
+        onCurrentIndexChanged: {
+            musicBarImage.foreground = TTK_APP.artistImagePath() ? "qrc:/image/landscape_check_album_normal"
+                                                                 : TTK_APP.artistImagePath();
+            TTK_PLAYER.play();
+            ttkMusicBar.nameTitle = TTK_APP.mediaName();
+            ttkMusicBar.artistTitle = TTK_APP.mediaArtist();
+            ttkMusicBar.playStateChanged();
+        }
+        onUpdateCurrentArtist: {
+            musicBarImage.foreground = TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
+                                                                       : TTK_APP.artistImagePath();
+        }
+    }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -54,7 +77,8 @@ Rectangle {
             leftMargin: dpHeight(10)
         }
         color: ttkTheme.alphaLv0
-        foreground: "qrc:/image/landscape_check_album_normal"
+        foreground: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
+                                                    : TTK_APP.artistImagePath()
         background: "qrc:/image/radius_mask"
 
         RotationAnimation {
@@ -64,7 +88,7 @@ Rectangle {
             from: 0
             to: 360
             direction: RotationAnimation.Clockwise
-            duration: 4000
+            duration: 8000
             loops: Animation.Infinite
         }
     }

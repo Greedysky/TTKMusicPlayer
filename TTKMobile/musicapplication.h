@@ -8,7 +8,9 @@ class TTKMusicUtils;
 class TTKMusicPlaylist;
 class TTKMusicPlayer;
 class TTKNetworkHelper;
+class TTKMusicLyricModel;
 class TTKMusicSongsSummarizied;
+class MusicDownloadStatusLabel;
 
 class MusicApplication : public QObject
 {
@@ -44,6 +46,7 @@ public:
     /*!
      * Get play music media artist.
      */
+    Q_INVOKABLE QString artistImagePath() const;
 
     Q_INVOKABLE int playbackMode() const;
     /*!
@@ -72,11 +75,17 @@ public:
      * Set current play index.
      */
 
+    bool checkMusicListCurrentIndex() const;
+    QString getCurrentFileName() const;
+    Q_INVOKABLE void musicLoadCurrentSongLrc();
+
 signals:
+    void updateCurrentArtist();
     void importSongFinished();
     void currentIndexChanged(int index);
 
 public slots:
+    void currentMusicSongChanged(int index);
 
 protected:
     void readXMLConfigFromText();
@@ -92,7 +101,9 @@ protected:
     TTKMusicPlaylist *m_ttkPlaylist;
     TTKMusicPlayer *m_ttkPlayer;
     TTKNetworkHelper *m_networkHelper;
+    TTKMusicLyricModel *m_ttkLrcModel;
     TTKMusicSongsSummarizied *m_songsSummarizied;
+    MusicDownloadStatusLabel *m_downloadStatus;
 
 };
 

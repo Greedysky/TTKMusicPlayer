@@ -1,7 +1,5 @@
 #include "musicdatadownloadthread.h"
-#ifndef MUSIC_MOBILE
 #include "musicconnectionpool.h"
-#endif
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)
@@ -58,9 +56,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     /// only download music data can that show progress
     if(m_downloadType == Download_Music && !m_redirection)
     {
-#ifndef MUSIC_MOBILE
         M_CONNECTION_PTR->connectMusicDownload(this);
-#endif
         m_createItemTime = QDateTime::currentMSecsSinceEpoch();
         emit createDownloadItem(m_savePathName, m_createItemTime);
     }
@@ -93,7 +89,7 @@ void MusicDataDownloadThread::downLoadFinished()
     }
     else
     {
-        emit downLoadDataChanged("Data");
+        emit downLoadDataChanged( transferData() );
         M_LOGGER_INFO("data download has finished!");
     }
     deleteAll();

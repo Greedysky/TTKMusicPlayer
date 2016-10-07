@@ -33,9 +33,8 @@ public slots:
     void searchDataDwonloadFinished();
 
 protected:
-    MusicDownLoadQueryMultipleThread *m_queryThread;
-
     int m_currentIndex;
+    MusicDownLoadQueryMultipleThread *m_queryThread;
 
 };
 

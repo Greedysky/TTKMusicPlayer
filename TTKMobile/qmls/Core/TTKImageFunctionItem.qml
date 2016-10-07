@@ -32,7 +32,6 @@ Rectangle {
             id: text
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: ttkImageFunctionItem.width - dpHeight(120)
-            horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignHCenter
             font.pixelSize: ttkImageFunctionItem.height/3
             anchors {

@@ -3,7 +3,9 @@
 #include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
+#ifndef MUSIC_MOBILE
 #include "musictopareawidget.h"
+#endif
 
 MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
                                            QObject *parent)
@@ -56,7 +58,9 @@ void MusicBackgroundDownload::bgDownLoadFinished()
     if( ++m_index >= m_counter)
     {
         M_BACKGROUND_PTR->setArtName( m_artName );
+#ifndef MUSIC_MOBILE
         MusicTopAreaWidget::instance()->musicBgThemeDownloadFinished();
+#endif
         deleteLater();
     }
 }

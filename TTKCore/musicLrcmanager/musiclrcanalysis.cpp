@@ -1,5 +1,7 @@
 #include "musiclrcanalysis.h"
+#ifndef MUSIC_MOBILE
 #include "musiclrcfromkrc.h"
+#endif
 #include "musictime.h"
 #include "musictranslationthread.h"
 
@@ -100,6 +102,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
 
 MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
 {
+#ifndef MUSIC_MOBILE
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
@@ -145,6 +148,10 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
     }
 
     return OpenFileSuccess;
+#else
+    Q_UNUSED(krcFileName);
+    return OpenFileFail;
+#endif
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
@@ -348,7 +355,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap,
 qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
 {
     QList<qint64> keys(m_lrcContainer.keys());
-    qint64 beforeTime;
+    qint64 beforeTime = 0;
     if(!keys.isEmpty())
     {
         beforeTime = keys[0];

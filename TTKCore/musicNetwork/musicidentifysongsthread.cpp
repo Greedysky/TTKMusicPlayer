@@ -3,6 +3,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
+#include <QFile>
 #include <QEventLoop>
 #include <QCryptographicHash>
 

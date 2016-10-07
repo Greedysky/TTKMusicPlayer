@@ -74,6 +74,11 @@ public Q_SLOTS:
      */
 
 protected:
+    QString transferData() const;
+    /*!
+     * Transfer the enum type to string.
+     */
+
     QFile *m_file;
     QString m_url, m_savePathName;
     Download_Type m_downloadType;

@@ -1,5 +1,8 @@
 #include "musicapplication.h"
 #include "musicsettingmanager.h"
+#include "musicdownloadstatuslabel.h"
+#include "musiccoreutils.h"
+#include "musicnetworkthread.h"
 #include <QQuickWindow>
 #include <QQmlContext>
 
@@ -10,27 +13,32 @@
 #include "core/ttkmusicconfigmanager.h"
 #include "core/ttknetworkhelper.h"
 #include "core/ttkfilesearchcore.h"
+#include "core/ttkmusiclyricmodel.h"
 #include <QDebug>
 
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)
 {
+    M_NETWORK_PTR->start();
     qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
     ///////////////////////////////////////////////////////////////////////////////////
     m_ttkUtils =  new TTKMusicUtils(this);
     m_ttkPlaylist = new TTKMusicPlaylist(this);
     m_ttkPlayer = new TTKMusicPlayer(this);
     m_networkHelper = new TTKNetworkHelper(this);
+    m_ttkLrcModel = new TTKMusicLyricModel(this);
     m_ttkPlayer->setPlaylist(m_ttkPlaylist);
 
     m_songsSummarizied = new TTKMusicSongsSummarizied(this);
+    m_downloadStatus = new MusicDownloadStatusLabel(this);
 
     parent->setContextProperty("TTK_APP", this);
     parent->setContextProperty("TTK_UTILS", m_ttkUtils);
     parent->setContextProperty("TTK_PLAYER", m_ttkPlayer);
     parent->setContextProperty("TTK_NETWORK", m_networkHelper);
+    parent->setContextProperty("TTK_LRC", m_ttkLrcModel);
 
-    connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SIGNAL(currentIndexChanged(int)));
+    connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentMusicSongChanged(int)));
     readXMLConfigFromText();
 }
 
@@ -41,6 +49,7 @@ MusicApplication::~MusicApplication()
     delete m_ttkUtils;
     delete m_ttkPlaylist;
     delete m_ttkPlayer;
+    delete m_ttkLrcModel;
     delete m_songsSummarizied;
 }
 
@@ -113,6 +122,13 @@ QStringList MusicApplication::mediaArtists(int index) const
     return list;
 }
 
+QString MusicApplication::artistImagePath() const
+{
+    QString name = MusicUtils::Core::artistName( getCurrentFileName() );
+    name = ART_DIR_FULL + name + SKN_FILE;
+    return QFile::exists(name) ? "file:///" + name : QString();
+}
+
 int MusicApplication::MusicApplication::playbackMode() const
 {
     return m_ttkPlaylist->playbackMode();
@@ -151,10 +167,44 @@ void MusicApplication::setCurrentIndex(int index)
     m_ttkPlaylist->setCurrentIndex(index);
 }
 
+bool MusicApplication::checkMusicListCurrentIndex() const
+{
+    return (m_ttkPlaylist->currentIndex() == -1);
+}
+
+QString MusicApplication::getCurrentFileName() const
+{
+    if(m_ttkPlaylist->currentIndex() < 0)
+    {
+        return QString();
+    }
+
+    QStringList nanmes = m_songsSummarizied->getMusicSongsFileName(m_songsSummarizied->getCurrentIndex());
+    return (nanmes.count() > m_ttkPlaylist->currentIndex()) ? nanmes[m_ttkPlaylist->currentIndex()].trimmed() : QString();
+}
+
+void MusicApplication::musicLoadCurrentSongLrc()
+{
+    //Loading the current song lrc
+    if(m_ttkPlaylist->currentIndex() == -1)
+    {
+        return;
+    }
+
+    QString filename = getCurrentFileName();
+    QString path = MusicUtils::Core::lrcPrefix() + filename + LRC_FILE;
+    m_ttkLrcModel->loadCurrentSongLrc(path);
+}
+
+void MusicApplication::currentMusicSongChanged(int index)
+{
+    m_downloadStatus->musicCheckHasLrcAlready();
+    emit currentIndexChanged(index);
+}
+
 void MusicApplication::readXMLConfigFromText()
 {
     TTKMusicConfigManager xml;
-//    int value = -1;
 
     MusicSongItems songs;
     if(xml.readMusicXMLConfig(MUSICPATH_FULL))
@@ -167,6 +217,11 @@ void MusicApplication::readXMLConfigFromText()
     {
         return;
     }
+
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, 1);
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, 1);
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, 1);
 
     setPlaybackMode(xml.readMusicPlayModeConfig());
     //Configuration from next time also stopped at the last record.
@@ -181,7 +236,6 @@ void MusicApplication::readXMLConfigFromText()
         m_songsSummarizied->setCurrentIndex(keyList[1].toInt());
         m_ttkPlaylist->setCurrentIndex(keyList[2].toInt());
     }
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, 0);
 }
 
 void MusicApplication::writeXMLConfigToText()

@@ -6,7 +6,6 @@ Rectangle {
     id: ttkMusicLyricPage
 
     property alias m_currentIndex: lyricView.currentIndex
-    property alias m_model: lyricView.model
 
     ListView {
         id: lyricView
@@ -15,7 +14,7 @@ Rectangle {
         clip: true
         spacing: 15
 
-        model: lyricModelId
+        model: TTK_LRC
 
         highlight: Rectangle {
             color: "#00000000"

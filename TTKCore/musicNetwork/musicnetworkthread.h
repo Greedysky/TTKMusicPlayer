@@ -9,12 +9,10 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QTimer>
 #include "musicsingleton.h"
 
-#include <QTimer>
-
 #define M_NETWORK_PTR (MusicSingleton<MusicNetworkThread>::createInstance())
-
 #define NETWORK_DETECT_INTERVAL 5000             // second
 #define NETWORK_REQUEST_ADDRESS "www.baidu.com"  // ip
 

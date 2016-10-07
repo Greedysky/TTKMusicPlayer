@@ -84,6 +84,6 @@ void MusicWYTextDownLoadThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged("Lrc");
+    emit downLoadDataChanged( transferData() );
     deleteAll();
 }

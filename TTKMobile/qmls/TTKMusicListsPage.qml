@@ -23,13 +23,6 @@ Item {
                 playlistModel.append(info);
             }
         }
-        onCurrentIndexChanged: {
-            TTK_PLAYER.play();
-
-            ttkMusicBar.nameTitle = TTK_APP.mediaName();
-            ttkMusicBar.artistTitle = TTK_APP.mediaArtist();
-            ttkMusicBar.playStateChanged();
-        }
     }
 
     Component.onCompleted: {
