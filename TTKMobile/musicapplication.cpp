@@ -198,6 +198,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
 
 void MusicApplication::currentMusicSongChanged(int index)
 {
+    m_ttkLrcModel->clear();
     m_downloadStatus->musicCheckHasLrcAlready();
     emit currentIndexChanged(index);
 }

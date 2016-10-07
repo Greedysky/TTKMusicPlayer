@@ -1,10 +1,12 @@
 #include "ttkmusiclyricmodel.h"
 #include "musiclrcanalysis.h"
-#include<QDebug>
+#include "musicnumberdefine.h"
+
 TTKMusicLyricModel::TTKMusicLyricModel(QObject *parent)
     : QAbstractListModel(parent)
 {
     m_lrcAnalysis = new MusicLrcAnalysis(this);
+    clear();
 }
 
 TTKMusicLyricModel::~TTKMusicLyricModel()
@@ -48,4 +50,26 @@ void TTKMusicLyricModel::loadCurrentSongLrc(const QString &path)
     {
         m_datas = m_lrcAnalysis->getAllLrcs().split("\n");
     }
+}
+
+void TTKMusicLyricModel::findText(qint64 position)
+{
+    if(m_lrcAnalysis->isEmpty())
+    {
+        return;
+    }
+
+    int index = m_lrcAnalysis->getCurrentIndex();
+    qint64 time = m_lrcAnalysis->findTime(index);
+    if(time < position && time != -1)
+    {
+        m_lrcAnalysis->setCurrentIndex(++index);
+        emit currentIndexChanged(index);
+    }
+}
+
+void TTKMusicLyricModel::clear()
+{
+    m_datas.clear();
+    m_datas << tr("No Lrc Found");
 }

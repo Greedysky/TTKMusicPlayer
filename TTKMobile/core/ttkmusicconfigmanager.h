@@ -1,13 +1,28 @@
 #ifndef TTKMUSICCONFIGMANAGER_H
 #define TTKMUSICCONFIGMANAGER_H
 
-#include "musicabstractxml.h"
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 
-class TTKMusicConfigManager : public MusicAbstractXml
+#include "musicabstractxml.h"
+#include "musicmobileglobaldefine.h"
+
+/*! @brief The class of the config manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_MOBILE_EXPORT TTKMusicConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
     explicit TTKMusicConfigManager(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     inline bool readXMLConfig(const QString &path) { return readConfig(path); }
     /*!

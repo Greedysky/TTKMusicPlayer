@@ -1,13 +1,28 @@
 #ifndef TTKMUSICSONGSSUMMARIZIED_H
 #define TTKMUSICSONGSSUMMARIZIED_H
 
-#include "musicsong.h"
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 
-class TTKMusicSongsSummarizied : public QObject
+#include "musicsong.h"
+#include "musicmobileglobaldefine.h"
+
+/*! @brief The class of the music songs summarizied.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_MOBILE_EXPORT TTKMusicSongsSummarizied : public QObject
 {
     Q_OBJECT
 public:
     explicit TTKMusicSongsSummarizied(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
 
     void addMusicLists(const MusicSongItems &names);
     /*!
@@ -39,13 +54,21 @@ public:
      */
 
     inline void setToolBoxIndex(int index) { m_currentToolIndex = index; }
+    /*!
+     * Set current selected tool box index.
+     */
     inline int getToolBoxIndex() const { return m_currentToolIndex; }
-
+    /*!
+     * Get current selected tool box index.
+     */
     inline void setCurrentIndex(int index) { m_currentPlayIndex = index; }
+    /*!
+     * Set current played tool box index.
+     */
     inline int getCurrentIndex() const { return m_currentPlayIndex; }
-
-signals:
-public slots:
+    /*!
+     * Get current played tool box index.
+     */
 
 protected:
     int m_currentPlayIndex, m_currentToolIndex;

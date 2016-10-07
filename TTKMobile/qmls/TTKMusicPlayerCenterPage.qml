@@ -1,3 +1,11 @@
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
@@ -49,30 +57,37 @@ Item {
             durationLabel.text = TTK_UTILS.normalizeTime(duration, "mm:ss");
         }
         onPositionChanged: {
+            TTK_LRC.findText(position);
             musicTimeSlider.maximumValue = TTK_PLAYER.duration();
             musicTimeSlider.value = position;
             durationLabel.text = TTK_UTILS.normalizeTime(TTK_PLAYER.duration(), "mm:ss");
             positionLabel.text = TTK_UTILS.normalizeTime(position, "mm:ss");
         }
     }
+    Connections {
+        target: TTK_LRC
+        onCurrentIndexChanged: {
+            musicLrcShow.currentIndex = index;
+        }
+    }
 
     Connections {
         target: TTK_APP
         onCurrentIndexChanged: {
-            artistImage.foreground = TTK_APP.artistImagePath().empty ? "qrc:/image/widget_default_album_middle"
-                                                                     : TTK_APP.artistImagePath();
-            mediaArtistArea.source = TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
-                                                                     : TTK_APP.artistImagePath();
+            artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
+                                                                            : TTK_APP.artistImagePath();
+            mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
+                                                                            : TTK_APP.artistImagePath();
             mediaAlbumtArea.source = mediaArtistArea.source;
 
             musicPlayerShowTitle.text = TTK_APP.mediaName(index);
             musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist(index) + " -";
         }
         onUpdateCurrentArtist: {
-            artistImage.foreground = TTK_APP.artistImagePath().empty ? "qrc:/image/widget_default_album_middle"
-                                                                     : TTK_APP.artistImagePath();
-            mediaArtistArea.source = TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
-                                                                     : TTK_APP.artistImagePath();
+            artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
+                                                                            : TTK_APP.artistImagePath();
+            mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
+                                                                            : TTK_APP.artistImagePath();
             mediaAlbumtArea.source = mediaArtistArea.source;
 
         }
@@ -244,7 +259,7 @@ Item {
                 color: ttkTheme.alphaLv14
 
                 Component.onCompleted: {
-                    musicLrcShow.m_currentIndex = 0;
+                    musicLrcShow.currentIndex = -1;
                 }
             }
         }

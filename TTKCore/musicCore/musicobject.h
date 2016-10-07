@@ -189,7 +189,7 @@ namespace MusicObject
         {
             QDir().mkpath(path);
         }
-        return mediaPath.toString();
+        return path;
 #else
         return QApplication::applicationDirPath() + "/";
 #endif
