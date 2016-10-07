@@ -95,6 +95,7 @@ const MusicSongIdentifys& MusicIdentifySongsThread::getIdentifySongs() const
 
 void MusicIdentifySongsThread::downLoadFinished()
 {
+    m_songIdentifys.clear();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
