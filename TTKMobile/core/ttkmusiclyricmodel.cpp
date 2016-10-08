@@ -1,6 +1,7 @@
 #include "ttkmusiclyricmodel.h"
 #include "musiclrcanalysis.h"
 #include "musicnumberdefine.h"
+#include <QDebug>
 
 TTKMusicLyricModel::TTKMusicLyricModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -48,7 +49,10 @@ void TTKMusicLyricModel::loadCurrentSongLrc(const QString &path)
 {
     if(m_lrcAnalysis->transLrcFileToTime(path) == MusicLrcAnalysis::OpenFileSuccess)
     {
-        m_datas = m_lrcAnalysis->getAllLrcs().split("\n");
+        QStringList d = m_lrcAnalysis->getAllLrcs().split("\n");
+        beginInsertRows(QModelIndex(), 0, d.count());
+        m_datas << d;
+        endInsertRows();
     }
 }
 
@@ -66,6 +70,12 @@ void TTKMusicLyricModel::findText(qint64 position)
         m_lrcAnalysis->setCurrentIndex(++index);
         emit currentIndexChanged(index);
     }
+}
+
+void TTKMusicLyricModel::setSongSpeedAndSlow(qint64 position)
+{
+    m_lrcAnalysis->setSongSpeedAndSlow(position);
+    emit currentIndexChanged(m_lrcAnalysis->getCurrentIndex());
 }
 
 void TTKMusicLyricModel::clear()

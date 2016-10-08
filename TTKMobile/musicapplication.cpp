@@ -3,6 +3,7 @@
 #include "musicdownloadstatuslabel.h"
 #include "musiccoreutils.h"
 #include "musicnetworkthread.h"
+#include "musicbackgroundmanager.h"
 #include <QQuickWindow>
 #include <QQmlContext>
 
@@ -38,6 +39,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     parent->setContextProperty("TTK_NETWORK", m_networkHelper);
     parent->setContextProperty("TTK_LRC", m_ttkLrcModel);
 
+    connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SIGNAL(updateCurrentBgArtist()));
     connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentMusicSongChanged(int)));
     readXMLConfigFromText();
 }
@@ -129,6 +131,11 @@ QString MusicApplication::artistImagePath() const
     return QFile::exists(name) ? "file:///" + name : QString();
 }
 
+QString MusicApplication::artistBgImagePath() const
+{
+    return "file:///" + M_BACKGROUND_PTR->getMBackground();
+}
+
 int MusicApplication::MusicApplication::playbackMode() const
 {
     return m_ttkPlaylist->playbackMode();
@@ -200,6 +207,8 @@ void MusicApplication::currentMusicSongChanged(int index)
 {
     m_ttkLrcModel->clear();
     m_downloadStatus->musicCheckHasLrcAlready();
+    QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(mediaArtist()).arg(0).arg(SKN_FILE);
+    M_BACKGROUND_PTR->setMBackground(path);
     emit currentIndexChanged(index);
 }
 

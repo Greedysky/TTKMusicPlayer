@@ -38,11 +38,15 @@ Item {
         return value;
     }
 
+    function changedPlayState() {
+        playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
+        artistImageAnimation.resume();
+        artistImageAnimation.start();
+    }
+
     function playStateChanged() {
         if(TTK_PLAYER.state() === 1) {
-            playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
-            artistImageAnimation.resume();
-            artistImageAnimation.start();
+            changedPlayState();
         }else{
             playerPlayButton.source = "qrc:/image/player_btn_play_normal";
             artistImageAnimation.pause();
@@ -79,6 +83,7 @@ Item {
             mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
                                                                             : TTK_APP.artistImagePath();
             mediaAlbumtArea.source = mediaArtistArea.source;
+            playBackgroundImage.source = TTK_APP.artistBgImagePath();
 
             musicPlayerShowTitle.text = TTK_APP.mediaName(index);
             musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist(index) + " -";
@@ -89,7 +94,9 @@ Item {
             mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
                                                                             : TTK_APP.artistImagePath();
             mediaAlbumtArea.source = mediaArtistArea.source;
-
+        }
+        onUpdateCurrentBgArtist: {
+            playBackgroundImage.source = TTK_APP.artistBgImagePath();
         }
     }
 
@@ -98,7 +105,7 @@ Item {
         Image {
             id: playBackgroundImage
             anchors.fill: parent
-            source: "qrc:/image/test"
+            source: TTK_APP.artistBgImagePath()
         }
 
         TTKBlurImage {
@@ -116,7 +123,7 @@ Item {
             id: mainMenubar
             Layout.fillWidth: true
             height: dpHeight(ttkTheme.topbar_height)
-            color: ttkTheme.alphaLv14
+            color: ttkTheme.alphaLv12
 
             RowLayout {
                 id: mainMenubarLayout
@@ -168,7 +175,7 @@ Item {
                 id: musicAlbumShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv14
+                color: ttkTheme.alphaLv12
 
                 Rectangle {
                     width: ttkMusicPlayerCenter.width
@@ -196,7 +203,7 @@ Item {
                 id: musicPlayerShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv14
+                color: ttkTheme.alphaLv12
 
                 ColumnLayout {
                     spacing: 0
@@ -256,7 +263,7 @@ Item {
                 id: musicLrcShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv14
+                color: ttkTheme.alphaLv12
 
                 Component.onCompleted: {
                     musicLrcShow.currentIndex = -1;
@@ -269,7 +276,7 @@ Item {
             id: playerComponent
             Layout.fillWidth: true
             height: dpHeight(230)
-            color: ttkTheme.alphaLv14
+            color: ttkTheme.alphaLv12
 
             ColumnLayout {
                 spacing: 0
@@ -330,6 +337,17 @@ Item {
                                     radius: dpWidth(10)
                                 }
                             }
+
+                            MouseArea {
+                                id: musicTimeSliderArea
+                                anchors.fill: parent
+                                onPressed: {
+                                    var value = TTK_PLAYER.duration()/musicTimeSlider.width*mouse.x;
+                                    musicTimeSlider.value = value;
+                                    TTK_PLAYER.setPosition(value);
+                                    TTK_LRC.setSongSpeedAndSlow(value);
+                                }
+                            }
                         }
 
                         Text {
@@ -366,6 +384,9 @@ Item {
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 TTK_APP.playPrevious();
+                                if(TTK_PLAYER.state() === 1) {
+                                    changedPlayState();
+                                }
                             }
                         }
                         TTKImageButton {
@@ -397,6 +418,9 @@ Item {
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 TTK_APP.playNext();
+                                if(TTK_PLAYER.state() === 1) {
+                                    changedPlayState();
+                                }
                             }
                         }
 

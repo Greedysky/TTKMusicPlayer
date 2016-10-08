@@ -48,6 +48,10 @@ public:
     /*!
      * Find current lrc index by pos time.
      */
+    Q_INVOKABLE void setSongSpeedAndSlow(qint64 position);
+    /*!
+     * Set song speed and slow by given time, return new time.
+     */
 
 Q_SIGNALS:
     void currentIndexChanged(int index);

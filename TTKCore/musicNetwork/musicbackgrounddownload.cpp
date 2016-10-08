@@ -33,23 +33,27 @@ void MusicBackgroundDownload::downLoadFinished(const QByteArray &bytes)
 {
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
-    if(ok)
+
+    if(bytes != "NO_PIC")
     {
-        QVariantMap dataMap = data.toMap();
-        QVariantList datas = dataMap["array"].toList();
-        foreach(const QVariant &value, datas)
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            dataMap = value.toMap();
-            if(m_counter < 5 && !dataMap.isEmpty())
+            QVariantMap dataMap = data.toMap();
+            QVariantList datas = dataMap["array"].toList();
+            foreach(const QVariant &value, datas)
             {
-                QString url = dataMap.values().first().toString();
-                M_LOGGER_ERROR(url);
-                MusicDataDownloadThread *down = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
-                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
-                                        MusicDownLoadThreadAbstract::Download_BigBG, this);
-                connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
-                down->startToDownload();
+                dataMap = value.toMap();
+                if(m_counter < 5 && !dataMap.isEmpty())
+                {
+                    QString url = dataMap.values().first().toString();
+                    M_LOGGER_ERROR(url);
+                    MusicDataDownloadThread *down = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
+                                            .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
+                                            MusicDownLoadThreadAbstract::Download_BigBG, this);
+                    connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
+                    down->startToDownload();
+                }
             }
         }
     }
@@ -62,6 +66,10 @@ void MusicBackgroundDownload::bgDownLoadFinished()
         M_BACKGROUND_PTR->setArtName( m_artName );
 #ifndef MUSIC_MOBILE
         MusicTopAreaWidget::instance()->musicBgThemeDownloadFinished();
+#else
+        QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
+        M_BACKGROUND_PTR->setMBackground(path);
+        emit M_BACKGROUND_PTR->artHasChanged();
 #endif
         deleteLater();
     }

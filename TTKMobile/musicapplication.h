@@ -67,6 +67,10 @@ public:
     /*!
      * Get play music artist image's path.
      */
+    Q_INVOKABLE QString artistBgImagePath() const;
+    /*!
+     * Get play music artist image's path.
+     */
 
     Q_INVOKABLE int playbackMode() const;
     /*!
@@ -111,7 +115,11 @@ public:
 signals:
     void updateCurrentArtist();
     /*!
-     * Download current artist iamge finished emit.
+     * Download current artist image finished emit.
+     */
+    void updateCurrentBgArtist();
+    /*!
+     * Download current bg artist image finished emit.
      */
     void importSongFinished();
     /*!
