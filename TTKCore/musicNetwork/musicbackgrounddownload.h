@@ -12,9 +12,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-const QString BIG_ART_URL = "http://www.kuwo.cn/mingxing/%1/pic.htm";
-const QString BIG_ART_URL2 = "http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url"
-                             "&content=list&&name=%1&from=pc&json=1&width=1024&height=768";
+const QString BIG_ART_URL = "http://artistpicserver.kuwo.cn/pic.web?type=big_artist_pic&pictype=url"
+                            "&content=list&&name=%1&from=pc&json=1&width=1024&height=768";
 
 /*! @brief The class of downloading art background image.
  * @author Greedysky <greedysky@163.com>
@@ -24,7 +23,7 @@ class MUSIC_NETWORK_EXPORT MusicBackgroundDownload : public QObject
     Q_OBJECT
 public:
     MusicBackgroundDownload(const QString &name, const QString &save,
-                         QObject *parent = 0);
+                            QObject *parent = 0);
     /*!
      * Object contsructor provide artist name and save local path.
      */
@@ -45,7 +44,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
     /*!
      * Download data from kuwo net finished.
      */

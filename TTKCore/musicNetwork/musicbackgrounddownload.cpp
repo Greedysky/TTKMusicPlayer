@@ -4,6 +4,8 @@
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
 #include "musictopareawidget.h"
+#///QJson import
+#include "qjson/parser.h"
 
 MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
                                            QObject *parent)
@@ -25,29 +27,29 @@ void MusicBackgroundDownload::startToDownload()
     download->startToDownload(BIG_ART_URL.arg(m_artName));
 }
 
-void MusicBackgroundDownload::downLoadFinished(const QByteArray &data)
+void MusicBackgroundDownload::downLoadFinished(const QByteArray &bytes)
 {
-    QTextStream in(MConst_cast(QByteArray*, &data));
-    QString line = in.readLine();
-
-    while(!line.isNull())
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
     {
-        ///On line reading, and reading effectively 5 times
-        if(line.contains("<dd>") && m_counter < 5)
+        QVariantMap dataMap = data.toMap();
+        QVariantList datas = dataMap["array"].toList();
+        foreach(const QVariant &value, datas)
         {
-            line = line.split("lazy_src=").back().split(" ").front();
-            line.remove(0, 1);
-            line.remove(line.length() - 1, 1);
-            line = line.remove("sp");
-
-            M_LOGGER_ERROR(line);
-            MusicDataDownloadThread *down = new MusicDataDownloadThread(line, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
-                                    .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
-                                    MusicDownLoadThreadAbstract::Download_BigBG, this);
-            connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
-            down->startToDownload();
+            dataMap = value.toMap();
+            if(m_counter < 5 && !dataMap.isEmpty())
+            {
+                QString url = dataMap.values().first().toString();
+                M_LOGGER_ERROR(url);
+                MusicDataDownloadThread *down = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
+                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
+                                        MusicDownLoadThreadAbstract::Download_BigBG, this);
+                connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
+                down->startToDownload();
+            }
         }
-        line = in.readLine();
     }
 }
 
