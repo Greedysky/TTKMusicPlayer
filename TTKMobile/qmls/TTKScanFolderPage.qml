@@ -1,3 +1,11 @@
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
@@ -124,7 +132,7 @@ Item {
                     id: folderModel
                     showFiles: false
                     showHidden: true
-                    folder: "file://" + TTK_UTILS.getRoot() + "/"
+                    folder: TTK_UTILS.getRootPath()
                 }
 
                 model: folderModel

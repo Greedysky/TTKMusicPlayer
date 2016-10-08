@@ -1,3 +1,11 @@
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
@@ -49,18 +57,39 @@ Item {
             durationLabel.text = TTK_UTILS.normalizeTime(duration, "mm:ss");
         }
         onPositionChanged: {
+            TTK_LRC.findText(position);
             musicTimeSlider.maximumValue = TTK_PLAYER.duration();
             musicTimeSlider.value = position;
             durationLabel.text = TTK_UTILS.normalizeTime(TTK_PLAYER.duration(), "mm:ss");
             positionLabel.text = TTK_UTILS.normalizeTime(position, "mm:ss");
         }
     }
+    Connections {
+        target: TTK_LRC
+        onCurrentIndexChanged: {
+            musicLrcShow.currentIndex = index;
+        }
+    }
 
     Connections {
         target: TTK_APP
         onCurrentIndexChanged: {
+            artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
+                                                                            : TTK_APP.artistImagePath();
+            mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
+                                                                            : TTK_APP.artistImagePath();
+            mediaAlbumtArea.source = mediaArtistArea.source;
+
             musicPlayerShowTitle.text = TTK_APP.mediaName(index);
             musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist(index) + " -";
+        }
+        onUpdateCurrentArtist: {
+            artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
+                                                                            : TTK_APP.artistImagePath();
+            mediaArtistArea.source = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
+                                                                            : TTK_APP.artistImagePath();
+            mediaAlbumtArea.source = mediaArtistArea.source;
+
         }
     }
 
@@ -149,14 +178,16 @@ Item {
 
                 TTKImageFunctionItem {
                     id: mediaArtistArea
-                    source: "qrc:/image/test"
+                    source: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
+                                                            : TTK_APP.artistImagePath()
                     text: qsTr("歌手: ") + TTK_APP.mediaArtist()
                 }
 
                 TTKImageFunctionItem {
                     id: mediaAlbumtArea
                     anchors.top: mediaArtistArea.bottom
-                    source: "qrc:/image/test"
+                    source: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
+                                                            : TTK_APP.artistImagePath()
                     text: qsTr("专辑: ") + TTK_APP.mediaArtist()
                 }
             }
@@ -195,7 +226,8 @@ Item {
                             width: parent.height
                             height: parent.height
                             color: ttkTheme.alphaLv0
-                            foreground: "qrc:/image/widget_default_album_middle"
+                            foreground: TTK_APP.artistImagePath().empty ? "qrc:/image/widget_default_album_middle"
+                                                                        : TTK_APP.artistImagePath()
                             background: "qrc:/image/radius_big_mask"
 
                             RotationAnimation {
@@ -205,7 +237,7 @@ Item {
                                 from: 0
                                 to: 360
                                 direction: RotationAnimation.Clockwise
-                                duration: 8000
+                                duration: 16000
                                 loops: Animation.Infinite
                             }
                         }
@@ -226,18 +258,8 @@ Item {
                 height: playCenterPageView.height
                 color: ttkTheme.alphaLv14
 
-                ListModel {
-                   id: ddplaylistModel
-               }
                 Component.onCompleted: {
-                    m_model = ddplaylistModel;
-                    for(var i=0; i<10; ++i) {
-                        var info = {
-                            textLine: "dfgfdgdfgdfg"
-                        };
-                        ddplaylistModel.append(info);
-                    }
-                    musicLrcShow.m_currentIndex = 3;
+                    musicLrcShow.currentIndex = -1;
                 }
             }
         }

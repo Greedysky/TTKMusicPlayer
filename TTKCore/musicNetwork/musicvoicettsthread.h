@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QObject>
 #include "musicglobaldefine.h"
 
 const QString VOICETTS_URL = "http://tts.baidu.com/text2audio?lan=%1&ie=UTF-8&text=%2&spd=%3&pit=%4&vol=%5&per=%6";

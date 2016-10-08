@@ -1,3 +1,11 @@
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 
@@ -32,7 +40,6 @@ Rectangle {
             id: text
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: ttkImageFunctionItem.width - dpHeight(120)
-            horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignHCenter
             font.pixelSize: ttkImageFunctionItem.height/3
             anchors {

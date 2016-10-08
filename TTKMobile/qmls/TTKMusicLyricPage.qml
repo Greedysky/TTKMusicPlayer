@@ -1,3 +1,11 @@
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 1.2
@@ -5,8 +13,7 @@ import QtQuick.Controls 1.2
 Rectangle {
     id: ttkMusicLyricPage
 
-    property alias m_currentIndex: lyricView.currentIndex
-    property alias m_model: lyricView.model
+    property alias currentIndex: lyricView.currentIndex
 
     ListView {
         id: lyricView
@@ -15,7 +22,7 @@ Rectangle {
         clip: true
         spacing: 15
 
-        model: lyricModelId
+        model: TTK_LRC
 
         highlight: Rectangle {
             color: "#00000000"

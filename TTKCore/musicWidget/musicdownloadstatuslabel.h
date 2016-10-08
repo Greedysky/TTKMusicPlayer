@@ -21,7 +21,7 @@ class MUSIC_WIDGET_EXPORT MusicDownloadStatusLabel : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadStatusLabel(QWidget *w);
+    explicit MusicDownloadStatusLabel(QObject *w);
     /*!
      * Object contsructor.
      */

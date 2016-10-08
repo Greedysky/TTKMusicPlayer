@@ -1,16 +1,18 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicapplication.h"
+#ifndef MUSIC_MOBILE
 #include "musicbottomareawidget.h"
+#include "musicsongsearchonlinewidget.h"
+#endif
 #include "musicbackgrounddownload.h"
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnetworkthread.h"
-#include "musicsongsearchonlinewidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musiccoreutils.h"
 
-MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
+MusicDownloadStatusLabel::MusicDownloadStatusLabel(QObject *w)
     : QObject(w)
 {
     m_previousState = true;
@@ -18,7 +20,9 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QWidget *w)
     m_downloadLrcThread = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
+#ifndef MUSIC_MOBILE
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
+#endif
     M_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
@@ -60,22 +64,27 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType typ
 void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display
-    if(type == "Lrc")
+    if(type == "Download_Lrc")
     {
         m_parentWidget->musicLoadCurrentSongLrc();
     }
-    m_parentWidget->updateCurrentArtist();
+    else if(type == "Download_SmlBG")
+    {
+        m_parentWidget->updateCurrentArtist();
+    }
 }
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
     if(m_previousState != state)
     {
+#ifndef MUSIC_MOBILE
         MusicBottomAreaWidget *w = MusicBottomAreaWidget::instance();
         m_previousState ? w->showMessage(tr("TTKMusicPlayer"),
                                          tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
                         : w->showMessage(tr("TTKMusicPlayer"),
                                          tr("Network Connection Has Been Restored."));
+#endif
     }
     m_previousState = state;
     showDownLoadInfoFor(state ? MusicObject::DW_Null : MusicObject::DW_DisConnection);

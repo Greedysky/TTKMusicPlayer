@@ -1,20 +1,37 @@
 #ifndef MUSICAPPLICATION_H
 #define MUSICAPPLICATION_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2014 - 2016 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QObject>
+#include "musicmobileglobaldefine.h"
 
 class QQmlContext;
 class TTKMusicUtils;
 class TTKMusicPlaylist;
 class TTKMusicPlayer;
 class TTKNetworkHelper;
+class TTKMusicLyricModel;
 class TTKMusicSongsSummarizied;
+class MusicDownloadStatusLabel;
 
-class MusicApplication : public QObject
+/*! @brief The class of the music application.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_MOBILE_EXPORT MusicApplication : public QObject
 {
     Q_OBJECT
 public:
     explicit MusicApplication(QQmlContext *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~MusicApplication();
 
     Q_INVOKABLE void importOtherMusicSongs(const QStringList &filelist);
@@ -23,7 +40,9 @@ public:
      */
 
     Q_INVOKABLE bool empty() const;
-
+    /*!
+     * Check current playlist is empty or not.
+     */
     Q_INVOKABLE int mediaCount(int index) const;
     /*!
      * Get current medias count.
@@ -43,6 +62,10 @@ public:
     Q_INVOKABLE QStringList mediaArtists(int index) const;
     /*!
      * Get play music media artist.
+     */
+    Q_INVOKABLE QString artistImagePath() const;
+    /*!
+     * Get play music artist image's path.
      */
 
     Q_INVOKABLE int playbackMode() const;
@@ -72,11 +95,38 @@ public:
      * Set current play index.
      */
 
+    bool checkMusicListCurrentIndex() const;
+    /*!
+     * Check current list index is -1 or not.
+     */
+    QString getCurrentFileName() const;
+    /*!
+     * Get current file name.
+     */
+    Q_INVOKABLE void musicLoadCurrentSongLrc();
+    /*!
+     * Load current song lrc.
+     */
+
 signals:
+    void updateCurrentArtist();
+    /*!
+     * Download current artist iamge finished emit.
+     */
     void importSongFinished();
+    /*!
+     * Imported music datas into container finished emit.
+     */
     void currentIndexChanged(int index);
+    /*!
+     * Current play index changed emit.
+     */
 
 public slots:
+    void currentMusicSongChanged(int index);
+    /*!
+     * Current play index changed.
+     */
 
 protected:
     void readXMLConfigFromText();
@@ -92,7 +142,9 @@ protected:
     TTKMusicPlaylist *m_ttkPlaylist;
     TTKMusicPlayer *m_ttkPlayer;
     TTKNetworkHelper *m_networkHelper;
+    TTKMusicLyricModel *m_ttkLrcModel;
     TTKMusicSongsSummarizied *m_songsSummarizied;
+    MusicDownloadStatusLabel *m_downloadStatus;
 
 };
 

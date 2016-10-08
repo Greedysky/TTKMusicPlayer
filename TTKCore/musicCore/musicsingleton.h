@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QMutex>
+#include <QObject>
 #include <QScopedPointer>
 #include "musicglobaldefine.h"
 

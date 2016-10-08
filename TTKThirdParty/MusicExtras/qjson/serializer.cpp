@@ -268,14 +268,14 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
       str += escapeString( v.toString() );
     } else if (( type == QVariant::Double) || ((QMetaType::Type)type == QMetaType::Float)) { // a double or a float?
       const double value = v.toDouble();
-  #if defined _WIN32 && !defined(Q_OS_SYMBIAN)
-//      const bool special = _isnan(value) || !_finite(value);
+//  #if defined _WIN32 && !defined(Q_OS_SYMBIAN)
+////      const bool special = _isnan(value) || !_finite(value);
+//      const bool special = std::isnan(value) || std::isinf(value);
+//  #elif defined(Q_OS_SYMBIAN) || defined(Q_OS_ANDROID) || defined(Q_OS_BLACKBERRY) || defined(Q_OS_SOLARIS)
+//      const bool special = isnan(value) || isinf(value);
+//  #else
       const bool special = std::isnan(value) || std::isinf(value);
-  #elif defined(Q_OS_SYMBIAN) || defined(Q_OS_ANDROID) || defined(Q_OS_BLACKBERRY) || defined(Q_OS_SOLARIS)
-      const bool special = isnan(value) || isinf(value);
-  #else
-      const bool special = std::isnan(value) || std::isinf(value);
-  #endif
+//  #endif
       if (special) {
         if (specialNumbersAllowed) {
   #if defined _WIN32 && !defined(Q_OS_SYMBIAN)

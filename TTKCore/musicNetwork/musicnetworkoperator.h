@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QObject>
 #include "musicglobaldefine.h"
 
 /*! @brief The class of music network operator.

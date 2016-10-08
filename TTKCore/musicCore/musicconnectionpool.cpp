@@ -2,6 +2,8 @@
 #include "musicobject.h"
 #include "musicsong.h"
 #include "musicdownloadstatuslabel.h"
+#include "musicnetworkthread.h"
+#ifndef MUSIC_MOBILE
 #include "musicmydownloadrecordwidget.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
@@ -18,6 +20,7 @@
 #include "musicconnecttransferwidget.h"
 #include "musicalbumfoundwidget.h"
 #include "musicsoundeffectswidget.h"
+#endif
 
 MusicConnectionPool::MusicConnectionPool()
     : QObject(nullptr)
@@ -43,6 +46,7 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 
 void MusicConnectionPool::connectMusicDownload(QObject *object)
 {
+#ifndef MUSIC_MOBILE
     QObject *to = m_para.value( MusicMyDownloadRecordWidget::getClassName() );
     if(to != nullptr && object)
     {
@@ -51,6 +55,9 @@ void MusicConnectionPool::connectMusicDownload(QObject *object)
         QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to,
                                  SLOT(createDownloadItem(QString, qint64)));
     }
+#else
+    Q_UNUSED(object);
+#endif
 }
 
 void MusicConnectionPool::removeNetworkMultiValue(QObject *object)
@@ -71,7 +78,13 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         return;
     }
 
-    if(from == MusicPlayer::getClassName() && to == MusicLrcMakerWidget::getClassName() )
+    if(from == MusicNetworkThread::getClassName() && to == MusicDownloadStatusLabel::getClassName() )
+    {
+        QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
+                                SLOT(networkConnectionStateChanged(bool)));
+    }
+#ifndef MUSIC_MOBILE
+    else if(from == MusicPlayer::getClassName() && to == MusicLrcMakerWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second,
                                 SLOT(positionChanged(qint64)));
@@ -115,11 +128,6 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }
-    else if(from == MusicNetworkThread::getClassName() && to == MusicDownloadStatusLabel::getClassName() )
-    {
-        QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second,
-                                SLOT(networkConnectionStateChanged(bool)));
-    }
     else if(from == MusicLrcLocalLinkWidget::getClassName() && to == MusicDownloadStatusLabel::getClassName() )
     {
         QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second,
@@ -135,6 +143,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second,
                                 SLOT(getMusicLists(MusicSongItems&)));
     }
+#endif
 }
 
 void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)

@@ -92,6 +92,6 @@ void MusicTTTextDownLoadThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged("Lrc");
+    emit downLoadDataChanged( transferData() );
     deleteAll();
 }
