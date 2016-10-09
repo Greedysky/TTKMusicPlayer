@@ -49,7 +49,6 @@ ApplicationWindow {
                 height: ttkMainWindow.height - ttkMusicBar.height
                 focus: true
                 initialItem: TTKMainPage {
-
                 }
             }
 

@@ -52,6 +52,19 @@
         <file alias="scanning_icon_up_disable">images/scanning_icon_up_disable.png</file>
         <file alias="bannertips_succes_icon">images/bannertips_succes_icon.png</file>
         <file alias="ic_playlist_add_normal">images/ic_playlist_add_normal.png</file>
+        <file alias="action_add_to_list_normal">images/action_add_to_list_normal.png</file>
+        <file alias="action_share_normal">images/action_share_normal.png</file>
+        <file alias="action_download_normal">images/action_download_normal.png</file>
+        <file alias="action_delete_normal">images/action_delete_normal.png</file>
+        <file alias="action_comment_normal">images/action_comment_normal.png</file>
+        <file alias="action_sing_this_song_normal">images/action_sing_this_song_normal.png</file>
+        <file alias="action_check_album_normal">images/action_check_album_normal.png</file>
+        <file alias="action_create_radio_normal">images/action_create_radio_normal.png</file>
+        <file alias="action_icon_qzone">images/action_icon_qzone.png</file>
+        <file alias="action_lyric_poster_normal">images/action_lyric_poster_normal.png</file>
+        <file alias="action_ring_normal">images/action_ring_normal.png</file>
+        <file alias="action_check_singer_normal">images/action_check_singer_normal.png</file>
+        <file alias="actionsheet_pplayer_normal">images/actionsheet_pplayer_normal.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -71,6 +84,7 @@
         <file>qmls/TTKTheme.qml</file>
         <file>qmls/TTKMusicBar.qml</file>
         <file>qmls/TTKMusicPlayerCenterPage.qml</file>
+        <file>qmls/TTKMusicPlayerCenterSettingPage.qml</file>
         <file>qmls/TTKMusicListsPage.qml</file>
         <file>qmls/TTKMusicListsMorePage.qml</file>
         <file>qmls/TTKMusicListsScanPage.qml</file>

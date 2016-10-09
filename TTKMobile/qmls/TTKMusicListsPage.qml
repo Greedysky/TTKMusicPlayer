@@ -105,6 +105,7 @@ Item {
             color: ttkTheme.white
 
             ListView {
+                id: itemListView
                 anchors.fill: parent
                 clip: true
 
@@ -119,6 +120,16 @@ Item {
                             width: ttkMainWindow.width
                             height: 1
                             color: ttkTheme.alphaLv9
+                        }
+
+                        Rectangle {
+                            width: dpHeight(5)
+                            height: parent.height*2/3
+                            anchors {
+                                top: parent.top
+                                topMargin: parent.height/3/2
+                            }
+                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
                         }
 
                         Text {
@@ -181,6 +192,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
+                                itemListView.currentIndex = index;
                                 TTK_APP.setCurrentIndex(index);
                             }
                         }

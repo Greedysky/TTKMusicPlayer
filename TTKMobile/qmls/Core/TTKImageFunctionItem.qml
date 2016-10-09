@@ -62,7 +62,7 @@ Rectangle {
     }
 
     Rectangle {
-        width: ttkImageFunctionItem.width - image.width
+        width: ttkImageFunctionItem.width - image.width - dpHeight(5)
         height: 1
         anchors {
             left: parent.left

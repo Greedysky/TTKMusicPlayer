@@ -85,8 +85,9 @@ Item {
             mediaAlbumtArea.source = mediaArtistArea.source;
             playBackgroundImage.source = TTK_APP.artistBgImagePath();
 
-            musicPlayerShowTitle.text = TTK_APP.mediaName(index);
-            musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist(index) + " -";
+            musicPlayerShowTitle.text = TTK_APP.mediaName();
+            musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist() + " -";
+            ttkMusicPlayerCenterSettingPage.text = musicPlayerShowTitle.text;
         }
         onUpdateCurrentArtist: {
             artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
@@ -98,6 +99,11 @@ Item {
         onUpdateCurrentBgArtist: {
             playBackgroundImage.source = TTK_APP.artistBgImagePath();
         }
+    }
+
+    TTKMusicPlayerCenterSettingPage {
+        id: ttkMusicPlayerCenterSettingPage
+        text: TTK_APP.mediaName( TTK_APP.mediaName() );
     }
 
     Rectangle {
@@ -158,7 +164,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
-
+                        ttkMusicPlayerCenterSettingPage.visible = true;
                     }
                 }
             }
