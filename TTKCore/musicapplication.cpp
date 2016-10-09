@@ -916,10 +916,14 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
     //Configure playback mode
     ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, xml.readEqualizerEnable());
+    value = xml.readEqualizerEnable();
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
-    m_musicPlayer->setEqInformation();
+    if(value == 1)
+    {
+        m_musicPlayer->setEqInformation();
+    }
 
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, xml.readEnhancedBalance());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, xml.readEnhancedFadeEnable());

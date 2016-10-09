@@ -9,9 +9,9 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2016.08.20
-#define TTKMUSIC_VERSION_STR    "2.4.0.0"
-#define TTKMUSIC_VER_TIME_STR   "(2016/8/20)"
+//update time 2016.10.09
+#define TTKMUSIC_VERSION_STR    "2.4.1.0"
+#define TTKMUSIC_VER_TIME_STR   "(2016/10/09)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
 #define TTKMUSIC_MIDLE_VERSION 4

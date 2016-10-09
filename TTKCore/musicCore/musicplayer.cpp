@@ -7,7 +7,7 @@
 #include "soundcore.h"
 ///
 #include <qmath.h>
-
+#include <QDebug>
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
@@ -238,6 +238,7 @@ void MusicPlayer::setEqEffect(const MusicObject::MIntList &hz)
         return;
     }
 
+    qDebug() << hz;
     EqSettings eq = m_music->eqSettings();
     eq.setPreamp(15 + hz[0]);
     eq.setEnabled(true);
@@ -252,6 +253,7 @@ void MusicPlayer::setEnaleEffect(bool enable)
 {
     if(enable == false)
     {
+        qDebug() << "setEnaleEffect";
         setEqEffect(MusicObject::MIntList()<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0);
     }
 }
