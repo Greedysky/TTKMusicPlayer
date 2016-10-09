@@ -65,6 +65,8 @@
         <file alias="action_ring_normal">images/action_ring_normal.png</file>
         <file alias="action_check_singer_normal">images/action_check_singer_normal.png</file>
         <file alias="actionsheet_pplayer_normal">images/actionsheet_pplayer_normal.png</file>
+        <file alias="playing_volumn_slide_icon">images/playing_volumn_slide_icon.png</file>
+        <file alias="playing_volumn_slide_nosound_icon">images/playing_volumn_slide_nosound_icon.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>

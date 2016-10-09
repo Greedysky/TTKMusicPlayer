@@ -32,7 +32,7 @@ Rectangle{
     Rectangle {
         width: parent.width
         height: parent.height*0.7
-        color: "#EEEEEE"
+        color: "#F0F0F0"
         anchors {
             bottom: parent.bottom
             left: parent.left
@@ -61,7 +61,7 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: "black"
+                color: ttkTheme.alphaLv10
             }
 
             ListView {
@@ -137,7 +137,7 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: "black"
+                color: ttkTheme.alphaLv10
             }
 
             ListView {
@@ -217,44 +217,66 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: "black"
+                color: ttkTheme.alphaLv10
             }
 
-            Slider {
-                id: musicTimeSlider
+            Rectangle {
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: ttkMusicPlayerCenterSettingPage.width - dpWidth(100)
+                Layout.fillWidth: true
                 Layout.preferredHeight: dpHeight(30)
-                height: 30
-                minimumValue: 0
-                value: 0
+                color: ttkTheme.alphaLv0
 
-                function sliderGeometry() {
-                    return (musicTimeSlider.value - musicTimeSlider.minimumValue) /
-                           (musicTimeSlider.maximumValue - musicTimeSlider.minimumValue);
-                }
+                RowLayout{
+                    anchors.fill: parent
 
-                style: SliderStyle{
-                    groove: Row {
-                        Rectangle{
-                            implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry()
-                            implicitHeight: dpHeight(3)
-                            color: ttkTheme.topbar_background
+                    TTKImageButton {
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(30)
                         }
-
-                        Rectangle{
-                            implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
-                            implicitHeight: dpHeight(3)
-                            color: "gray"
-                        }
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.preferredWidth: dpWidth(30)
+                        Layout.preferredHeight: dpHeight(30)
+                        source: "qrc:/image/playing_volumn_slide_icon"
                     }
 
-                    handle: Rectangle{
-                        anchors.centerIn: parent;
-                        color: ttkTheme.topbar_background
-                        width: dpWidth(20)
-                        height: dpHeight(20)
-                        radius: dpWidth(10)
+                    Slider {
+                        id: musicTimeSlider
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.preferredWidth: ttkMusicPlayerCenterSettingPage.width - dpWidth(100)
+                        Layout.preferredHeight: dpHeight(30)
+                        height: 30
+                        minimumValue: 0
+                        value: 0
+
+                        function sliderGeometry() {
+                            return (musicTimeSlider.value - musicTimeSlider.minimumValue) /
+                                   (musicTimeSlider.maximumValue - musicTimeSlider.minimumValue);
+                        }
+
+                        style: SliderStyle{
+                            groove: Row {
+                                Rectangle{
+                                    implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry()
+                                    implicitHeight: dpHeight(3)
+                                    color: ttkTheme.topbar_background
+                                }
+
+                                Rectangle{
+                                    implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
+                                    implicitHeight: dpHeight(3)
+                                    color: "gray"
+                                }
+                            }
+
+                            handle: Rectangle{
+                                anchors.centerIn: parent;
+                                color: ttkTheme.topbar_background
+                                width: dpWidth(20)
+                                height: dpHeight(20)
+                                radius: dpWidth(10)
+                            }
+                        }
                     }
                 }
             }
@@ -262,7 +284,7 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: "black"
+                color: ttkTheme.alphaLv10
             }
 
             Text {
