@@ -67,7 +67,7 @@ Rectangle {
         anchors {
             left: parent.left
             top: parent.bottom
-            leftMargin: dpHeight(20 + image.width)
+            leftMargin: dpWidth(50)
         }
         color: "gray"
     }

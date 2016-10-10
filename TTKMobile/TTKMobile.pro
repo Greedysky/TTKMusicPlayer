@@ -160,7 +160,7 @@ DISTFILES += \
     ANDROID_EXTRA_LIBS = \
         bin/libplugin_input_aac.so \
         bin/libplugin_input_cue.so \
-        bin/libplugin_input_ffmpeg.so \
+#        bin/libplugin_input_ffmpeg.so \
         bin/libplugin_input_flac.so \
         bin/libplugin_input_gme.so \
         bin/libplugin_input_mad.so \
@@ -173,12 +173,14 @@ DISTFILES += \
         bin/libplugin_output_qtmultimedia.so \
         bin/libqmmp.so \
         bin/libtag.so \
-        bin/libavcodec.so \
-        bin/libavformat.so \
-        bin/libavutil.so
+#        bin/libavcodec.so \
+#        bin/libavformat.so \
+#        bin/libavutil.so
 }
 
-RESOURCES += TTKMobile.qrc
+RESOURCES += \
+    TTKMobile.qrc \
+    extra\TTKExtra.qrc
 
 win32{
     RC_FILE = TTKMobile.rc

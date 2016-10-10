@@ -31,7 +31,7 @@ Rectangle{
 
     Rectangle {
         width: parent.width
-        height: parent.height*0.7
+        height: parent.height*0.75
         color: "#F0F0F0"
         anchors {
             bottom: parent.bottom
@@ -72,7 +72,7 @@ Rectangle{
                     rightMargin: dpHeight(30)
                 }
                 Layout.fillWidth: true
-                Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/10
+                Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/8
                 orientation: ListView.Horizontal
                 spacing: dpHeight(30)
 
@@ -148,7 +148,7 @@ Rectangle{
                     rightMargin: dpHeight(30)
                 }
                 Layout.fillWidth: true
-                Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/10
+                Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/8
                 orientation: ListView.Horizontal
                 spacing: dpHeight(30)
 

@@ -37,6 +37,10 @@ public:
      * Transfer integer time to string by format.
      */
 
+    void copyFile();
+    void dirIsExist(const QString &name);
+    void checkTheDirectoryExist();
+
 };
 
 #endif // TTKMUSICUTILS_H

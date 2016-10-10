@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TTKMusicPlayer>
+    <music>
+        <playMode value="2"/>
+        <playVolume value="100"/>
+        <lastPlayIndex value="1">0,-1</lastPlayIndex>
+    </music>
+    <equalizer>
+        <enhancedMusic value="1"/>
+        <equalizerEnable value="1"/>
+        <equalizerIndex value="0"/>
+        <equalizerValue value="0,-12,-12,-9,-6,-3,-12,-9,-6,-3,-12"/>
+    </equalizer>
+</TTKMusicPlayer>

@@ -5,6 +5,8 @@
 ///qmmp incldue
 #include "soundcore.h"
 
+#include <QDebug>
+
 TTKMusicPlayer::TTKMusicPlayer(QObject *parent)
     : QObject(parent)
 {
@@ -104,9 +106,24 @@ int TTKMusicPlayer::getMusicEnhanced() const
     return MStatic_cast(int, m_musicEnhanced);
 }
 
+void TTKMusicPlayer::setEqEffectEnable(int enable)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, enable);
+}
+
 int TTKMusicPlayer::getEqEffectEnable()
 {
     return M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+}
+
+void TTKMusicPlayer::setEqEffectIndex(int index)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, index);
+}
+
+int TTKMusicPlayer::getEqEffectIndex()
+{
+    return M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
 }
 
 QStringList TTKMusicPlayer::getEqEffectValue()
@@ -115,16 +132,31 @@ QStringList TTKMusicPlayer::getEqEffectValue()
     return value.split(",");
 }
 
-int TTKMusicPlayer::getEqEffectIndex()
-{
-    return M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
-}
-
 void TTKMusicPlayer::getEqEffectSettings()
 {
-//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
-//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
-//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
+    EqSettings eq = m_music->eqSettings();
+    QString value("0,");
+    for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
+    {
+        value.append(QString("%1,").arg(eq.gain(i)));
+    }
+
+    value.chop(1);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, value);
+}
+
+void TTKMusicPlayer::setEqInformation()
+{
+    QStringList eqValue(getEqEffectValue());
+    if(eqValue.count() == 11)
+    {
+        MusicObject::MIntList hz;
+        hz << eqValue[0].toInt() << eqValue[1].toInt() << eqValue[2].toInt()
+           << eqValue[3].toInt() << eqValue[4].toInt() << eqValue[5].toInt()
+           << eqValue[6].toInt() << eqValue[7].toInt() << eqValue[8].toInt()
+           << eqValue[9].toInt() << eqValue[10].toInt();
+        setEqEffect(hz);
+    }
 }
 
 QStringList TTKMusicPlayer::supportFormatsString()

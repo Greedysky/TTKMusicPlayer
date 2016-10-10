@@ -4,6 +4,7 @@
 #include <QQmlApplicationEngine>
 
 #include "musicapplication.h"
+#include "core/ttkmusicutils.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("TTKMusicPlayer");
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
+
+    TTKMusicUtils().copyFile();
 
     QTranslator translator;
     translator.load("MLanguage/TTKMobile.ln");

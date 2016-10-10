@@ -75,7 +75,7 @@ int MusicApplication::mediaCount(int index) const
     MusicSongItems items(m_songsSummarizied->getMusicLists());
     if(index < 0 || index >= items.count())
     {
-        return -1;
+        return 0;
     }
     return items[index].m_songs.count();
 }
@@ -227,6 +227,7 @@ void MusicApplication::readXMLConfigFromText()
     {
         xml.readMusicSongsConfig(songs);
     }
+
     m_songsSummarizied->addMusicLists(songs);
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig(COFIGPATH_FULL))
@@ -248,10 +249,10 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
-//    if(value == 1)
-//    {
-//        m_musicPlayer->setEqInformation();
-//    }
+    if(value == 1)
+    {
+        m_ttkPlayer->setEqInformation();
+    }
 
     setPlaybackMode(xml.readMusicPlayModeConfig());
     //Configuration from next time also stopped at the last record.
@@ -272,6 +273,7 @@ void MusicApplication::writeXMLConfigToText()
 {
     TTKMusicConfigManager xml;
 
+    m_ttkPlayer->getEqEffectSettings();
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, m_ttkPlayer->volume());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, playbackMode());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_ttkPlayer->getMusicEnhanced());

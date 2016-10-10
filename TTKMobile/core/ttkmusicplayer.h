@@ -95,17 +95,34 @@ public:
      */
 
     Q_INVOKABLE void setEqEffectEnable(int enable);
+    /*!
+     * Set eq effect enable.
+     */
     Q_INVOKABLE int getEqEffectEnable();
-
-    Q_INVOKABLE void SetEqEffectIndex(int index);
+    /*!
+     * Get eq effect enable.
+     */
+    Q_INVOKABLE void setEqEffectIndex(int index);
+    /*!
+     * Set eq effect index.
+     */
     Q_INVOKABLE int getEqEffectIndex();
-
+    /*!
+     * Get eq effect index.
+     */
     Q_INVOKABLE QStringList getEqEffectValue();
-
+    /*!
+     * Get eq effect index.
+     */
     Q_INVOKABLE void getEqEffectSettings();
     /*!
-     * Get current equalizer effect.
+     * Get eq effect dettings.
      */
+    Q_INVOKABLE void setEqInformation();
+    /*!
+     * Set eq information.
+     */
+
     static QStringList supportFormatsString();
     /*!
      * Get player supported formats.

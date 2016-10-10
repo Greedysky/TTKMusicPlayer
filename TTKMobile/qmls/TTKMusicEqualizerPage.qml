@@ -18,64 +18,65 @@ Rectangle {
     width: parent.width
     color: "#262C3B"
 
-    property variant eqParas: []
+    property variant eqParas: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                             , 0, 0, 0, 0, 0, 0,-4,-4,-4,-6
+                             , 0, 0, 5, 3, 3, 3, 2, 0, 0, 0
+                             , 6, 4, 1, 0, 0,-3,-4,-4, 0, 0
+                             ,-6, 6, 6, 3, 2,-2,-5,-6,-8,-8
+                             ,-6,-6,-6,-2, 1, 7,10,10,10,10
+                             , 4, 3, 0,-4,-3, 1, 5, 7, 7, 7
+                             , 3, 7, 3,-2,-1, 1, 3, 6, 8, 9
+                             , 6, 6, 3, 3, 0,-3,-3,-3, 0, 0
+                             ,-3, 0, 2, 3, 3, 3, 2, 1, 1, 1
+                             ,-1, 3, 4, 5, 3, 0,-1,-1,-1,-1
+                             , 0, 0, 0,-3, 0, 4, 3, 0, 0, 0
+                             , 4, 4, 0, 0, 0, 0, 0, 0, 4, 4
+                             , 5, 3,-3,-5,-2, 2, 5, 7, 7, 7
+                             ,-2,-3,-2, 0, 2, 3, 5, 6, 7, 6
+                             , 3, 1, 0,-1, 0, 2, 5, 6, 7, 7
+                             , 2, 2, 1, 0,-2,-3,-2, 0, 2, 5
+                             , 5, 3, 0,-3,-3, 0, 5, 6, 6, 5]
+    property variant presetEQ: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     property variant eqTypes: ["80", "120", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"];
-    Component.onCompleted: {
-        eqParas.push(0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-                   , 0, 0, 0, 0, 0, 0,-4,-4,-4,-6
-                   , 0, 0, 5, 3, 3, 3, 2, 0, 0, 0
-                   , 6, 4, 1, 0, 0,-3,-4,-4, 0, 0
-                   ,-6, 6, 6, 3, 2,-2,-5,-6,-8,-8
-                   ,-6,-6,-6,-2, 1, 7,10,10,10,10
-                   , 4, 3, 0,-4,-3, 1, 5, 7, 7, 7
-                   , 3, 7, 3,-2,-1, 1, 3, 6, 8, 9
-                   , 6, 6, 3, 3, 0,-3,-3,-3, 0, 0
-                   ,-3, 0, 2, 3, 3, 3, 2, 1, 1, 1
-                   ,-1, 3, 4, 5, 3, 0,-1,-1,-1,-1
-                   , 0, 0, 0,-3, 0, 4, 3, 0, 0, 0
-                   , 4, 4, 0, 0, 0, 0, 0, 0, 4, 4
-                   , 5, 3,-3,-5,-2, 2, 5, 7, 7, 7
-                   ,-2,-3,-2, 0, 2, 3, 5, 6, 7, 6
-                   , 3, 1, 0,-1, 0, 2, 5, 6, 7, 7
-                   , 2, 2, 1, 0,-2,-3,-2, 0, 2, 5
-                   , 5, 3, 0,-3,-3, 0, 5, 6, 6, 5);
 
-        if(TTK_PLAYER.getEqEffectEnable() === 1) {
-            var index = TTK_PLAYER.getEqEffectIndex();
-            currentEQTypeChanged(index);
-        }
+    function changedEQValue(index, value) {
+        presetEQ[index + 1] = parseInt(value);
+        TTK_PLAYER.setEqEffect(presetEQ);
     }
 
     function currentEQTypeChanged(index) {
+        eqTypeSliderListModel.clear();
         if(index === 1 ) {
-            return;
-        }
-
-        var values = new Array;
-        values.push(0);
-        eqTypeSliderListModel.clear()
-        if(index === 0) {
             for(var i=0; i<eqTypes.length; ++i) {
-                values.push(0);
-                var info = {
+                var info0 = {
                     title: eqTypes[i],
-                    sliderValue: eqParas[i],
-                    sliderEnable: false
+                    sliderValue: presetEQ[i + 1].toString(),
+                    sliderEnable: true
                 };
-                eqTypeSliderListModel.append(info);
+                eqTypeSliderListModel.append(info0);
             }
-        }else {
+        }else if(index === 0) {
             for(var j=0; j<eqTypes.length; ++j) {
-                values.push(eqParas[(index-2)*10 + j]);
+                presetEQ[j + 1] = 0;
                 var info1 = {
                     title: eqTypes[j],
-                    sliderValue: eqParas[(index-2)*10 + j],
-                    sliderEnable: true
+                    sliderValue: presetEQ[j + 1].toString(),
+                    sliderEnable: false
                 };
                 eqTypeSliderListModel.append(info1);
             }
+        }else {
+            for(var k=0; k<eqTypes.length; ++k) {
+                presetEQ[k + 1] = eqParas[(index-2)*10 + k];
+                var info2 = {
+                    title: eqTypes[k],
+                    sliderValue: presetEQ[k + 1].toString(),
+                    sliderEnable: true
+                };
+                eqTypeSliderListModel.append(info2);
+            }
         }
-        TTK_PLAYER.setEqEffect(values);
+        TTK_PLAYER.setEqEffect(presetEQ);
     }
 
     ColumnLayout {
@@ -146,6 +147,7 @@ Rectangle {
                         MouseArea {
                             anchors.fill: parent
                             onPressed: {
+                                TTK_PLAYER.setEqEffectIndex(index);
                                 eqTypeListView.currentIndex = index;
                                 currentEQTypeChanged(index);
                             }
@@ -216,7 +218,17 @@ Rectangle {
                     }
 
                     Component.onCompleted: {
-                        eqTypeListView.currentIndex = 0;
+                        if(TTK_PLAYER.getEqEffectEnable() === 1) {
+                            var index = TTK_PLAYER.getEqEffectIndex();
+                            eqTypeListView.currentIndex = index;
+                            if(index === 1) {
+                                var strValues = TTK_PLAYER.getEqEffectValue();
+                                for(var i=0; i<strValues.length; ++i) {
+                                    presetEQ[i + 1] = strValues[i];
+                                }
+                            }
+                            currentEQTypeChanged(index);
+                        }
                     }
                 }
 
@@ -228,7 +240,7 @@ Rectangle {
                     }
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillHeight: true
-                    Layout.preferredWidth: ttkMusicEqualizerPage.width - eqTypeListView.width - dpWidth(10)
+                    Layout.preferredWidth: dpWidth(ttkMusicEqualizerPage.width) - dpWidth(10 + 100)
                     orientation: ListView.Vertical
                     boundsBehavior: Flickable.StopAtBounds
                     clip: true
@@ -236,7 +248,7 @@ Rectangle {
 
                     delegate: Rectangle {
                         id: wrapper
-                        width: dpWidth(ttkMusicEqualizerPage.width - eqTypeListView.width) - dpWidth(10)
+                        width: dpWidth(50*8)
                         height: dpHeight(55)
                         color: ttkTheme.alphaLv0
 
@@ -245,7 +257,7 @@ Rectangle {
                             verticalAlignment: Qt.AlignVCenter
                             horizontalAlignment: Qt.AlignLeft
                             color: ttkTheme.alphaLv6
-                            width: parent.width/6
+                            width: dpWidth(50)
                             text: title
                             wrapMode: Text.WordWrap
                         }
@@ -256,7 +268,7 @@ Rectangle {
                                 left: sliderText.right
                                 leftMargin: dpWidth(5)
                             }
-                            width: parent.width*0.9
+                            width: wrapper.width*0.5
                             height: sliderText.height
                             minimumValue: -16
                             maximumValue: 16
@@ -289,6 +301,29 @@ Rectangle {
                                     width: dpWidth(20)
                                     height: dpHeight(20)
                                     radius: dpWidth(10)
+                                }
+
+                                panel: Rectangle{
+                                    anchors.fill: parent;
+                                    color: ttkTheme.alphaLv0
+
+                                    Loader{
+                                        id: grooveLoader
+                                        anchors.centerIn: parent
+                                        sourceComponent: groove
+                                    }
+
+                                    Loader{
+                                        id: handleLoader
+                                        anchors.verticalCenter: grooveLoader.verticalCenter;
+                                        x: Math.min(grooveLoader.x + ((control.value + 16)*grooveLoader.width)/(control.maximumValue - control.minimumValue) - item.width/2,
+                                                    grooveLoader.width)
+                                        sourceComponent: handle
+                                        onXChanged: {
+                                            var value = 32/parent.width*x - 14.5;
+                                            changedEQValue(index, value);
+                                        }
+                                    }
                                 }
                             }
                         }

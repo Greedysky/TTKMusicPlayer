@@ -4,8 +4,8 @@
 TTKMusicSongsSummarizied::TTKMusicSongsSummarizied(QObject *parent)
     : QObject(parent)
 {
-    m_currentPlayIndex = -1;
-    m_currentToolIndex = -1;
+    m_currentPlayIndex = 0;
+    m_currentToolIndex = 0;
 }
 
 void TTKMusicSongsSummarizied::addMusicLists(const MusicSongItems &names)
@@ -52,6 +52,11 @@ void TTKMusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist
 QStringList TTKMusicSongsSummarizied::getMusicSongsFileName(int index) const
 {
     QStringList list;
+    if(index < 0 || index >= m_songItems.count())
+    {
+        return list;
+    }
+
     foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicName();
@@ -62,6 +67,11 @@ QStringList TTKMusicSongsSummarizied::getMusicSongsFileName(int index) const
 QStringList TTKMusicSongsSummarizied::getMusicSongsFilePath(int index) const
 {
     QStringList list;
+    if(index < 0 || index >= m_songItems.count())
+    {
+        return list;
+    }
+
     foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicPath();

@@ -117,25 +117,25 @@ Rectangle {
                             id: itemListView
                             anchors {
                                 left: parent.left
-                                leftMargin: dpHeight(30)
+                                leftMargin: dpHeight(25)
                             }
                             Layout.fillWidth: true
                             Layout.preferredHeight: dpHeight(150)
                             orientation: ListView.Horizontal
                             boundsBehavior: Flickable.StopAtBounds
                             clip: true
-                            spacing: dpHeight(20)
+                            spacing: dpHeight(3)
 
                             delegate: Rectangle {
                                 id: wrapper1
-                                width: dpHeight(120)
+                                width: dpWidth(120)
                                 height: dpHeight(120)
                                 color: ttkTheme.alphaLv0
 
                                 Rectangle {
-                                    width: parent.width
-                                    height: parent.height
-                                    color: ttkTheme.white
+                                    width: parent.width*0.9
+                                    height: parent.height*0.9
+                                    color: ttkTheme.alphaLv0
                                     radius: 6
 
                                     Image {
@@ -150,8 +150,8 @@ Rectangle {
 
                                         Image {
                                             Layout.alignment: Qt.AlignCenter
-                                            Layout.preferredHeight: parent.height*0.7
-                                            Layout.preferredWidth: parent.width*0.7
+                                            Layout.preferredHeight: wrapper1.height*0.6
+                                            Layout.preferredWidth: wrapper1.width*0.6
                                             source: imgSource
                                         }
 
@@ -225,6 +225,9 @@ Rectangle {
                         anchors.fill: parent
                         onPressed: {
                             ttkOutStackView.push("qrc:/qmls/TTKMusicEqualizerPage.qml");
+                            TTK_PLAYER.setMusicEnhanced(0);
+                            itemListView.currentIndex = -1;
+                            dtsEffectButton.source = "qrc:/image/dts_switch_off";
                         }
                     }
                 }

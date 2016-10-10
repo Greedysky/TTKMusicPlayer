@@ -276,7 +276,7 @@ Item {
                         id: musicPlayerShowLrc
                         Layout.fillWidth: true
                         Layout.preferredHeight: dpHeight(80)
-                        color: "red"
+                        color: ttkTheme.alphaLv0
                     }
                 }
             }
