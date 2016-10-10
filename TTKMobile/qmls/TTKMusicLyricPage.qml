@@ -55,16 +55,4 @@ Rectangle {
             }
         }
     }
-
-//    OpacityMask {
-//        id: lyricMask
-//        visible: ttkMusicLyricPage.visible
-//        anchors.fill: lyricView
-//        source: lyricView
-//        maskSource: Rectangle {
-//            anchors.top: parent.top
-//            anchors.horizontalCenter: parent.horizontalCenter
-//            color: "#ff0000"
-//        }
-//    }
 }

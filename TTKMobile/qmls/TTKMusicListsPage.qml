@@ -44,6 +44,7 @@ Item {
             }
             playlistModel.append(info);
         }
+        itemListView.currentIndex = TTK_APP.setCurrentIndex();
     }
 
     ColumnLayout {

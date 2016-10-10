@@ -98,6 +98,10 @@ public:
     /*!
      * Set current play index.
      */
+    Q_INVOKABLE int setCurrentIndex();
+    /*!
+     * Get current play index.
+     */
 
     bool checkMusicListCurrentIndex() const;
     /*!

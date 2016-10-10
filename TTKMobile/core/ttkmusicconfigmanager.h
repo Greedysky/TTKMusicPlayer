@@ -45,6 +45,11 @@ public:
     /*!
      * Read music datas into xml file.
      */
+    inline int readMusicPlayVolumeConfig() const
+    { return readXmlAttributeByTagNameValue("playVolume").toInt(); }
+    /*!
+     * Read Music Play Volume Config.
+     */
     inline int readMusicPlayModeConfig() const
     { return readXmlAttributeByTagNameValue("playMode").toInt(); }
     /*!

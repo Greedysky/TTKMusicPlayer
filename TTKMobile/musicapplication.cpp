@@ -174,6 +174,11 @@ void MusicApplication::setCurrentIndex(int index)
     m_ttkPlaylist->setCurrentIndex(index);
 }
 
+int MusicApplication::setCurrentIndex()
+{
+    return m_ttkPlaylist->currentIndex();
+}
+
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
     return (m_ttkPlaylist->currentIndex() == -1);
@@ -215,6 +220,7 @@ void MusicApplication::currentMusicSongChanged(int index)
 void MusicApplication::readXMLConfigFromText()
 {
     TTKMusicConfigManager xml;
+    int value = -1;
 
     MusicSongItems songs;
     if(xml.readMusicXMLConfig(MUSICPATH_FULL))
@@ -232,6 +238,11 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, 1);
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, 1);
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, 1);
+
+    //////////////////////////////////////////////////////////////
+    //The size of the volume of the allocation of songs
+    value = xml.readMusicPlayVolumeConfig();
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
 
     setPlaybackMode(xml.readMusicPlayModeConfig());
     //Configuration from next time also stopped at the last record.
@@ -251,6 +262,8 @@ void MusicApplication::readXMLConfigFromText()
 void MusicApplication::writeXMLConfigToText()
 {
     TTKMusicConfigManager xml;
+
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, m_ttkPlayer->volume());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, playbackMode());
     QStringList keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     if(keyList.isEmpty())

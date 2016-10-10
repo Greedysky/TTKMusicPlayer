@@ -230,6 +230,7 @@ Rectangle{
                     anchors.fill: parent
 
                     TTKImageButton {
+                        id: musicVolumeLabel
                         anchors {
                             left: parent.left
                             leftMargin: dpWidth(30)
@@ -238,32 +239,45 @@ Rectangle{
                         Layout.preferredWidth: dpWidth(30)
                         Layout.preferredHeight: dpHeight(30)
                         source: "qrc:/image/playing_volumn_slide_icon"
+
+                        onPressed: {
+                            if(TTK_PLAYER.volume() !== 0) {
+                                source = "qrc:/image/playing_volumn_slide_nosound_icon";
+                                TTK_PLAYER.setMuted(true);
+                                musicVolumeSlider.value = 0;
+                            }else{
+                                source = "qrc:/image/playing_volumn_slide_icon";
+                                TTK_PLAYER.setMuted(false);
+                                musicVolumeSlider.value = TTK_PLAYER.volume();
+                            }
+                        }
                     }
 
                     Slider {
-                        id: musicTimeSlider
+                        id: musicVolumeSlider
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredWidth: ttkMusicPlayerCenterSettingPage.width - dpWidth(100)
                         Layout.preferredHeight: dpHeight(30)
                         height: 30
                         minimumValue: 0
-                        value: 0
+                        maximumValue: 100
+                        value: TTK_PLAYER.volume()
 
                         function sliderGeometry() {
-                            return (musicTimeSlider.value - musicTimeSlider.minimumValue) /
-                                   (musicTimeSlider.maximumValue - musicTimeSlider.minimumValue);
+                            return (musicVolumeSlider.value - musicVolumeSlider.minimumValue) /
+                                   (musicVolumeSlider.maximumValue - musicVolumeSlider.minimumValue);
                         }
 
                         style: SliderStyle{
                             groove: Row {
                                 Rectangle{
-                                    implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry()
+                                    implicitWidth: musicVolumeSlider.width*musicVolumeSlider.sliderGeometry()
                                     implicitHeight: dpHeight(3)
                                     color: ttkTheme.topbar_background
                                 }
 
                                 Rectangle{
-                                    implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
+                                    implicitWidth: musicVolumeSlider.width*(1-musicVolumeSlider.sliderGeometry())
                                     implicitHeight: dpHeight(3)
                                     color: "gray"
                                 }
@@ -275,6 +289,17 @@ Rectangle{
                                 width: dpWidth(20)
                                 height: dpHeight(20)
                                 radius: dpWidth(10)
+                            }
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onPressed: {
+                                var value = 100/parent.width*mouse.x;
+                                parent.value = value;
+                                TTK_PLAYER.setVolume(value);
+                                TTK_PLAYER.volume() === 0 ? musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_nosound_icon"
+                                                          : musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_icon";
                             }
                         }
                     }
@@ -293,6 +318,13 @@ Rectangle{
                 horizontalAlignment: Qt.AlignHCenter
                 font.pixelSize: ttkMusicPlayerCenterSettingPage.height/25
                 text: "取消"
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        ttkMusicPlayerCenterSettingPage.visible = false;
+                    }
+                }
             }
         }
     }

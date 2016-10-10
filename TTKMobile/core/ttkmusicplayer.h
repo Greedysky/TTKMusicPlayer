@@ -60,6 +60,23 @@ public:
      * Set current play pos.
      */
 
+    Q_INVOKABLE int volume() const;
+    /*!
+     * Get current player volume.
+     */
+    Q_INVOKABLE void setVolume(int volume);
+    /*!
+     * Set current player volume.
+     */
+    Q_INVOKABLE bool isMuted() const;
+    /*!
+     * Get current player mute state.
+     */
+    Q_INVOKABLE void setMuted(bool muted);
+    /*!
+     * Set current player mute or not.
+     */
+
     static QStringList supportFormatsString();
     /*!
      * Get player supported formats.

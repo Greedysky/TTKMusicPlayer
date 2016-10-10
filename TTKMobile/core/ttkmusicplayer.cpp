@@ -1,6 +1,7 @@
 #include "ttkmusicplayer.h"
 #include "ttkmusicplaylist.h"
 #include "musicnumberdefine.h"
+#include "musicsettingmanager.h"
 ///qmmp incldue
 #include "soundcore.h"
 
@@ -52,6 +53,26 @@ qint64 TTKMusicPlayer::position() const
 void TTKMusicPlayer::setPosition(qint64 position)
 {
     m_music->seek(position);
+}
+
+int TTKMusicPlayer::volume() const
+{
+    return isMuted() ? 0 : m_music->volume();
+}
+
+void TTKMusicPlayer::setVolume(int volume)
+{
+    m_music->setVolume(volume);
+}
+
+bool TTKMusicPlayer::isMuted() const
+{
+    return m_music->isMuted();
+}
+
+void TTKMusicPlayer::setMuted(bool muted)
+{
+    m_music->setMuted(muted);
 }
 
 QStringList TTKMusicPlayer::supportFormatsString()
@@ -126,6 +147,14 @@ void TTKMusicPlayer::play()
     ///Every second emits a signal change information
     emit positionChanged(0);
     getCurrentDuration();
+
+    ////////////////////////////////////////////////
+    ///Read the configuration settings for the sound
+    int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
+    if(volume != -1)
+    {
+        setVolume(volume);
+    }
 }
 
 void TTKMusicPlayer::pause()
