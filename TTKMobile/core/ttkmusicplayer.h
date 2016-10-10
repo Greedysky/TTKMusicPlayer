@@ -28,6 +28,14 @@ public:
         PlayingState,       ///*play state*/
         PausedState         ///*pause state*/
     };
+
+    enum Enhanced
+    {
+        EnhancedOff,        ///*enhanced off, no any effect*/
+        MusicNICAM,         ///*nicam music effect*/
+        MusicSubwoofer,     ///*subwoofer music effect*/
+        MusicVocal          ///*vocal music effect*/
+    };
     explicit TTKMusicPlayer(QObject *parent = 0);
     /*!
      * Object contsructor.
@@ -77,6 +85,27 @@ public:
      * Set current player mute or not.
      */
 
+    Q_INVOKABLE void setMusicEnhanced(int type);
+    /*!
+     * Set current music enhanced effect.
+     */
+    Q_INVOKABLE int getMusicEnhanced() const;
+    /*!
+     * Get current music enhanced effect.
+     */
+
+    Q_INVOKABLE void setEqEffectEnable(int enable);
+    Q_INVOKABLE int getEqEffectEnable();
+
+    Q_INVOKABLE void SetEqEffectIndex(int index);
+    Q_INVOKABLE int getEqEffectIndex();
+
+    Q_INVOKABLE QStringList getEqEffectValue();
+
+    Q_INVOKABLE void getEqEffectSettings();
+    /*!
+     * Get current equalizer effect.
+     */
     static QStringList supportFormatsString();
     /*!
      * Get player supported formats.
@@ -103,6 +132,10 @@ Q_SIGNALS:
     /*!
      * Current position changed.
      */
+    void musicEnhanceChanged(int type);
+    /*!
+     * Current music enhanced effect changed.
+     */
 
 public Q_SLOTS:
     void play();
@@ -116,6 +149,10 @@ public Q_SLOTS:
     void stop();
     /*!
      * Player to stop.
+     */
+    void setEqEffect(const QList<int> &hz);
+    /*!
+     * Set current equalizer effect.
      */
 
 private Q_SLOTS:
@@ -131,6 +168,7 @@ private Q_SLOTS:
 private:
     TTKMusicPlaylist *m_playlist;
     State m_state;
+    Enhanced m_musicEnhanced;
     SoundCore *m_music;
     QTimer m_timer;
     QString m_currentMedia;

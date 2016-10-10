@@ -10,7 +10,6 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
-
 import "Core"
 
 Item {
@@ -67,7 +66,12 @@ Item {
             durationLabel.text = TTK_UTILS.normalizeTime(TTK_PLAYER.duration(), "mm:ss");
             positionLabel.text = TTK_UTILS.normalizeTime(position, "mm:ss");
         }
+        onMusicEnhanceChanged: {
+            dtsEffectButton.source = TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/player_btn_dts_off"
+                                                                         : "qrc:/image/player_btn_dts_on"
+        }
     }
+
     Connections {
         target: TTK_LRC
         onCurrentIndexChanged: {
@@ -227,6 +231,18 @@ Item {
                         text: "- " + TTK_APP.mediaArtist() + " -"
                     }
 
+                    TTKImageButton {
+                        id: dtsEffectButton
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.preferredWidth: dpWidth(50)
+                        Layout.preferredHeight: dpHeight(30)
+                        source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/player_btn_dts_off"
+                                                                    : "qrc:/image/player_btn_dts_on"
+                        onPressed: {
+                            ttkOutStackView.push("qrc:/qmls/TTKMusicDTSEffectPage.qml");
+                        }
+                    }
+
                     Rectangle {
                         id: musicPlayerShowCenter
                         Layout.fillWidth: true
@@ -260,7 +276,7 @@ Item {
                         id: musicPlayerShowLrc
                         Layout.fillWidth: true
                         Layout.preferredHeight: dpHeight(80)
-                        color: ttkTheme.alphaLv0
+                        color: "red"
                     }
                 }
             }

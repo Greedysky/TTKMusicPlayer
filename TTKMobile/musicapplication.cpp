@@ -243,6 +243,15 @@ void MusicApplication::readXMLConfigFromText()
     //The size of the volume of the allocation of songs
     value = xml.readMusicPlayVolumeConfig();
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
+    m_ttkPlayer->setMusicEnhanced(xml.readEnhancedMusicConfig());
+    value = xml.readEqualizerEnable();
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
+//    if(value == 1)
+//    {
+//        m_musicPlayer->setEqInformation();
+//    }
 
     setPlaybackMode(xml.readMusicPlayModeConfig());
     //Configuration from next time also stopped at the last record.
@@ -265,6 +274,7 @@ void MusicApplication::writeXMLConfigToText()
 
     M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, m_ttkPlayer->volume());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, playbackMode());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_ttkPlayer->getMusicEnhanced());
     QStringList keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
     if(keyList.isEmpty())
     {

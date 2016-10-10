@@ -9,7 +9,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
-
 import "Core"
 
 Item {
@@ -124,7 +123,7 @@ Item {
                         }
 
                         Rectangle {
-                            width: dpHeight(5)
+                            width: dpWidth(5)
                             height: parent.height*2/3
                             anchors {
                                 top: parent.top

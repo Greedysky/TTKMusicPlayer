@@ -12,6 +12,7 @@ TTKMusicPlayer::TTKMusicPlayer(QObject *parent)
 
     m_playlist = nullptr;
     m_state = StoppedState;
+    m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
     m_duration = 0;
     m_tryTimes = 0;
@@ -26,7 +27,7 @@ TTKMusicPlayer::~TTKMusicPlayer()
 
 int TTKMusicPlayer::state() const
 {
-    return static_cast<int>(m_state);
+    return MStatic_cast(int, m_state);
 }
 
 void TTKMusicPlayer::setPlaylist(TTKMusicPlaylist *playlist)
@@ -73,6 +74,57 @@ bool TTKMusicPlayer::isMuted() const
 void TTKMusicPlayer::setMuted(bool muted)
 {
     m_music->setMuted(muted);
+}
+
+void TTKMusicPlayer::setMusicEnhanced(int type)
+{
+    m_musicEnhanced = MStatic_cast(Enhanced, type);
+    switch(m_musicEnhanced)
+    {
+        case EnhancedOff:
+            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
+            break;
+        case MusicVocal:
+            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
+            break;
+        case MusicNICAM:
+            setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
+            break;
+        case MusicSubwoofer:
+            setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
+            break;
+        default:
+            break;
+    }
+    emit musicEnhanceChanged(type);
+}
+
+int TTKMusicPlayer::getMusicEnhanced() const
+{
+    return MStatic_cast(int, m_musicEnhanced);
+}
+
+int TTKMusicPlayer::getEqEffectEnable()
+{
+    return M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+}
+
+QStringList TTKMusicPlayer::getEqEffectValue()
+{
+    QString value = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString();
+    return value.split(",");
+}
+
+int TTKMusicPlayer::getEqEffectIndex()
+{
+    return M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
+}
+
+void TTKMusicPlayer::getEqEffectSettings()
+{
+//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
+//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
+//    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
 }
 
 QStringList TTKMusicPlayer::supportFormatsString()
@@ -167,6 +219,23 @@ void TTKMusicPlayer::stop()
 {
     m_state = StoppedState;
     m_music->stop();
+}
+
+void TTKMusicPlayer::setEqEffect(const QList<int> &hz)
+{
+    if(hz.count() != 11)
+    {
+        return;
+    }
+
+    EqSettings eq = m_music->eqSettings();
+    eq.setPreamp(15 + hz[0]);
+    eq.setEnabled(true);
+    for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
+    {
+        eq.setGain(i, hz[i + 1]);
+    }
+    m_music->setEqSettings(eq);
 }
 
 void TTKMusicPlayer::update()

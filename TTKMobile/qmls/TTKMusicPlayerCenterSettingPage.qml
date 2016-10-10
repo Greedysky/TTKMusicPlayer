@@ -10,7 +10,6 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.4
-
 import "Core"
 
 Rectangle{
@@ -21,6 +20,7 @@ Rectangle{
     color: ttkTheme.alphaLv12
 
     property alias text: musicSongTitle.text
+    property int muteVolume: TTK_PLAYER.volume()
 
     MouseArea {
         anchors.fill: parent
@@ -243,12 +243,14 @@ Rectangle{
                         onPressed: {
                             if(TTK_PLAYER.volume() !== 0) {
                                 source = "qrc:/image/playing_volumn_slide_nosound_icon";
+                                muteVolume = TTK_PLAYER.volume();
                                 TTK_PLAYER.setMuted(true);
                                 musicVolumeSlider.value = 0;
-                            }else{
+                            }else {
                                 source = "qrc:/image/playing_volumn_slide_icon";
                                 TTK_PLAYER.setMuted(false);
-                                musicVolumeSlider.value = TTK_PLAYER.volume();
+                                TTK_PLAYER.setVolume(muteVolume);
+                                musicVolumeSlider.value = muteVolume;
                             }
                         }
                     }
@@ -284,22 +286,36 @@ Rectangle{
                             }
 
                             handle: Rectangle{
-                                anchors.centerIn: parent;
+                                anchors.centerIn: parent
                                 color: ttkTheme.topbar_background
                                 width: dpWidth(20)
                                 height: dpHeight(20)
                                 radius: dpWidth(10)
                             }
-                        }
 
-                        MouseArea {
-                            anchors.fill: parent
-                            onPressed: {
-                                var value = 100/parent.width*mouse.x;
-                                parent.value = value;
-                                TTK_PLAYER.setVolume(value);
-                                TTK_PLAYER.volume() === 0 ? musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_nosound_icon"
-                                                          : musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_icon";
+                            panel: Rectangle{
+                                anchors.fill: parent;
+                                color: ttkTheme.alphaLv0
+
+                                Loader{
+                                    id: grooveLoader
+                                    anchors.centerIn: parent
+                                    sourceComponent: groove
+                                }
+
+                                Loader{
+                                    id: handleLoader
+                                    anchors.verticalCenter: grooveLoader.verticalCenter;
+                                    x: Math.min(grooveLoader.x + (control.value*grooveLoader.width)/(control.maximumValue - control.minimumValue) - item.width/2,
+                                                grooveLoader.width)
+                                    sourceComponent: handle
+                                    onXChanged: {
+                                        var value = 100/parent.width*x + 2.9;
+                                        TTK_PLAYER.setVolume(value);
+                                        TTK_PLAYER.volume() === 0 ? musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_nosound_icon"
+                                                                  : musicVolumeLabel.source = "qrc:/image/playing_volumn_slide_icon";
+                                    }
+                                }
                             }
                         }
                     }

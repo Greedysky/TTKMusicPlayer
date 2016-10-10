@@ -55,6 +55,26 @@ public:
     /*!
      * Read Music Play Mode Config.
      */
+    inline int readEnhancedMusicConfig() const
+    { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
+    /*!
+     * Read Enhanced Music Config.
+     */
+    inline int readEqualizerIndex() const
+    { return readXmlAttributeByTagNameValue("equalizerIndex").toInt(); }
+    /*!
+     * Read Equalizer Index Config.
+     */
+    inline int readEqualizerEnable() const
+    { return readXmlAttributeByTagNameValue("equalizerEnable").toInt(); }
+    /*!
+     * Read Equalizer Enale Config.
+     */
+    inline QString readEqualizerValue() const
+    { return readXmlAttributeByTagNameValue("equalizerValue"); }
+    /*!
+     * Read Equalizer Value Config.
+     */
 
     void readSystemLastPlayIndexConfig(QStringList &key) const;
    /*!

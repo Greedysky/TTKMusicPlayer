@@ -14,6 +14,12 @@ void TTKMusicConfigManager::writeXMLConfig()
     QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
 
     ///////////////////////////////////////////////////////////////////////////
+    int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    int equalizerEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+    QString equalizerValueChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString();
+    int equalizerIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
+
+    ///////////////////////////////////////////////////////////////////////////
     //Open wirte file
     if( !writeConfig(COFIGPATH_FULL) )
     {
@@ -24,6 +30,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     //Class A
     QDomElement music = writeDom(musicPlayer, "music");
+    QDomElement equalizer = writeDom(musicPlayer, "equalizer");
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
@@ -31,7 +38,12 @@ void TTKMusicConfigManager::writeXMLConfig()
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
     ///////////////////////////////////////////////////////////////////////////
+    writeDomElement(equalizer, "enhancedMusic", "value", enhancedMusicChoiced);
+    writeDomElement(equalizer, "equalizerEnable", "value", equalizerEnableChoiced);
+    writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
+    writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
 
+    ///////////////////////////////////////////////////////////////////////////
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out, 4);

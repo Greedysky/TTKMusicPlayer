@@ -67,6 +67,16 @@
         <file alias="actionsheet_pplayer_normal">images/actionsheet_pplayer_normal.png</file>
         <file alias="playing_volumn_slide_icon">images/playing_volumn_slide_icon.png</file>
         <file alias="playing_volumn_slide_nosound_icon">images/playing_volumn_slide_nosound_icon.png</file>
+        <file alias="player_btn_dts_off">images/player_btn_dts_off.png</file>
+        <file alias="player_btn_dts_on">images/player_btn_dts_on.png</file>
+        <file alias="dts_big_logo">images/dts_big_logo.png</file>
+        <file alias="dts_switch_off">images/dts_switch_off.png</file>
+        <file alias="dts_switch_on">images/dts_switch_on.png</file>
+        <file alias="dts_preset_mode_front_chosen">images/dts_preset_mode_front_chosen.png</file>
+        <file alias="dts_preset_mode_near_chosen">images/dts_preset_mode_near_chosen.png</file>
+        <file alias="dts_preset_mode_wide_chosen">images/dts_preset_mode_wide_chosen.png</file>
+        <file alias="dts_tag_item_normal">images/dts_tag_item_normal.png</file>
+        <file alias="dts_tag_item_selected">images/dts_tag_item_selected.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -92,5 +102,7 @@
         <file>qmls/TTKMusicListsScanPage.qml</file>
         <file>qmls/TTKScanFolderPage.qml</file>
         <file>qmls/TTKMusicLyricPage.qml</file>
+        <file>qmls/TTKMusicDTSEffectPage.qml</file>
+        <file>qmls/TTKMusicEqualizerPage.qml</file>
     </qresource>
 </RCC>
