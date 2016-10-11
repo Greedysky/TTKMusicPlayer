@@ -63,7 +63,7 @@ Rectangle {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: dpHeight(51)
-                    color: "gray"
+                    color: ttkTheme.gray
 
                     RowLayout {
                         anchors.fill: parent
@@ -197,7 +197,7 @@ Rectangle {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: dpHeight(51)
-                    color: "gray"
+                    color: ttkTheme.gray
 
                     RowLayout {
                         anchors.fill: parent

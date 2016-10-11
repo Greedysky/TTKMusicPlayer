@@ -29,7 +29,7 @@ QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
     return MusicTime(time, MusicTime::All_Msec).toString(format);
 }
 
-void TTKMusicUtils::copyFile()
+void TTKMusicUtils::checkTheFileNeededExist()
 {
     checkTheDirectoryExist();
     if(!QFile::exists(COFIGPATH_FULL))
@@ -44,11 +44,8 @@ void TTKMusicUtils::copyFile()
         QFile::setPermissions(MUSICPATH_FULL, QFile::WriteOwner | QFile::ReadOwner);
     }
 
-    if(!QFile::exists(LANGUAGE_DIR_FULL + "TTKMobile.ln"))
-    {
-        QFile(":/extra/TTKMobile").copy(LANGUAGE_DIR_FULL + "TTKMobile.ln");
-        QFile::setPermissions(LANGUAGE_DIR_FULL + "TTKMobile.ln", QFile::WriteOwner | QFile::ReadOwner);
-    }
+    QFile(":/extra/TTKMobile").copy(LANGUAGE_DIR_FULL + "TTKMobile.ln");
+    QFile::setPermissions(LANGUAGE_DIR_FULL + "TTKMobile.ln", QFile::WriteOwner | QFile::ReadOwner);
 }
 
 void TTKMusicUtils::dirIsExist(const QString &name)

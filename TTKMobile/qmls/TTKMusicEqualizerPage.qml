@@ -291,7 +291,7 @@ Rectangle {
                                     Rectangle{
                                         implicitWidth: eqValueSlider.width*(1-eqValueSlider.sliderGeometry())
                                         implicitHeight: dpHeight(3)
-                                        color: "gray"
+                                        color: ttkTheme.gray
                                     }
                                 }
 

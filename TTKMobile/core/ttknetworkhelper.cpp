@@ -3,8 +3,6 @@
 #include "musiccryptographichash.h"
 #include "musicdatadownloadthread.h"
 
-#include <QDebug>
-
 TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     : QObject(parent)
 {

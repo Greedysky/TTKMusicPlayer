@@ -174,7 +174,7 @@ Item {
                             elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
-                            color: "gray"
+                            color: ttkTheme.gray
                         }
 
                         MouseArea {

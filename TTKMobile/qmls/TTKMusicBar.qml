@@ -125,7 +125,7 @@ Rectangle {
         }
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
-        color: "gray"
+        color: ttkTheme.gray
     }
 
     TTKImageButton {

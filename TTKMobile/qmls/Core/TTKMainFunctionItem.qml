@@ -56,7 +56,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "gray"
+            color: ttkTheme.gray
         }
     }
 }

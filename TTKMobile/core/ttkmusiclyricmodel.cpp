@@ -1,7 +1,6 @@
 #include "ttkmusiclyricmodel.h"
 #include "musiclrcanalysis.h"
 #include "musicnumberdefine.h"
-#include <QDebug>
 
 TTKMusicLyricModel::TTKMusicLyricModel(QObject *parent)
     : QAbstractListModel(parent)

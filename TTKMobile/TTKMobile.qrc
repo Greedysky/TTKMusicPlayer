@@ -77,9 +77,24 @@
         <file alias="dts_preset_mode_wide_chosen">images/dts_preset_mode_wide_chosen.png</file>
         <file alias="dts_tag_item_normal">images/dts_tag_item_normal.png</file>
         <file alias="dts_tag_item_selected">images/dts_tag_item_selected.png</file>
+        <file alias="more_icon_notificationcenter">images/more_icon_notificationcenter.png</file>
+        <file alias="more_icon_myvip_normal">images/more_icon_myvip_normal.png</file>
+        <file alias="more_icon_personal_center">images/more_icon_personal_center.png</file>
+        <file alias="simple_mode_icon">images/simple_mode_icon.png</file>
+        <file alias="more_icon_settings">images/more_icon_settings.png</file>
+        <file alias="more_icon_timer">images/more_icon_timer.png</file>
+        <file alias="more_icon_wifionly">images/more_icon_wifionly.png</file>
+        <file alias="player_btn_qplayon_normal">images/player_btn_qplayon_normal.png</file>
+        <file alias="more_icon_chinaunicom">images/more_icon_chinaunicom.png</file>
+        <file alias="more_icon_cleancache">images/more_icon_cleancache.png</file>
+        <file alias="pc2device_icon">images/pc2device_icon.png</file>
+        <file alias="more_icon_about">images/more_icon_about.png</file>
+        <file alias="switch_on_normal">images/switch_on_normal.png</file>
+        <file alias="switching_off">images/switching_off.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
+        <file>qmls/Core/TTKTheme.qml</file>
         <file>qmls/Core/TTKMessageBox.qml</file>
         <file>qmls/Core/TTKImageButton.qml</file>
         <file>qmls/Core/TTKTextButton.qml</file>
@@ -92,8 +107,8 @@
         <file>qmls/Core/TTKMainFunctionItem.qml</file>
         <file>qmls/Core/TTKImageFunctionItem.qml</file>
         <file>qmls/TTKMainPage.qml</file>
+        <file>qmls/TTKMainSettingPage.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>
-        <file>qmls/TTKTheme.qml</file>
         <file>qmls/TTKMusicBar.qml</file>
         <file>qmls/TTKMusicPlayerCenterPage.qml</file>
         <file>qmls/TTKMusicPlayerCenterSettingPage.qml</file>

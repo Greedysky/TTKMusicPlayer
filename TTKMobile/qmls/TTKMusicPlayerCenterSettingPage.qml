@@ -281,7 +281,7 @@ Rectangle{
                                 Rectangle{
                                     implicitWidth: musicVolumeSlider.width*(1-musicVolumeSlider.sliderGeometry())
                                     implicitHeight: dpHeight(3)
-                                    color: "gray"
+                                    color: ttkTheme.gray
                                 }
                             }
 

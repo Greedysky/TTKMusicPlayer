@@ -190,7 +190,7 @@ Item {
                 Rectangle {
                     width: ttkMusicPlayerCenter.width
                     height: 1
-                    color: "gray"
+                    color: ttkTheme.gray
                 }
 
                 TTKImageFunctionItem {
@@ -347,7 +347,7 @@ Item {
                                     Rectangle{
                                         implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
                                         implicitHeight: dpHeight(3)
-                                        color: "gray"
+                                        color: ttkTheme.gray
                                     }
                                 }
 

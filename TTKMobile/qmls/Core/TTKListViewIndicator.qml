@@ -19,7 +19,7 @@ Row {
             width: dpWidth(10)
             height: dpHeight(10)
             radius: dpWidth(6)
-            color: target.currentIndex == index ? "white" : "grey"
+            color: target.currentIndex == index ? ttkTheme.white : ttkTheme.gray
             MouseArea {
                 width: dpWidth(20)
                 height: dpHeight(20)

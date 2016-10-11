@@ -15,7 +15,6 @@
 #include "core/ttknetworkhelper.h"
 #include "core/ttkfilesearchcore.h"
 #include "core/ttkmusiclyricmodel.h"
-#include <QDebug>
 
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)

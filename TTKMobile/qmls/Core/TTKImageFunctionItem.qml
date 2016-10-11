@@ -15,8 +15,10 @@ Rectangle {
     width: parent.width
     color: ttkTheme.alphaLv0
 
+    property alias color: text.color
     property alias text: text.text
     property alias source: image.foreground
+    property alias subSource: subImage.source
 
     RowLayout {
         spacing: 2
@@ -46,18 +48,16 @@ Rectangle {
                 left: image.right
                 leftMargin: dpHeight(10)
             }
-            color: ttkTheme.white
             elide: Text.ElideRight
+            color: ttkTheme.white
         }
 
         TTKImageButton {
+            id: subImage
             source: "qrc:/image/ic_toolbar_advance"
-            Layout.preferredWidth: dpWidth(50)
-            Layout.preferredHeight: dpHeight(50)
+            width: dpWidth(50)
+            height: dpHeight(50)
             anchors.right: parent.right
-            onPressed: {
-
-            }
         }
     }
 
@@ -69,6 +69,6 @@ Rectangle {
             top: parent.bottom
             leftMargin: dpWidth(50)
         }
-        color: "gray"
+        color: ttkTheme.gray
     }
 }

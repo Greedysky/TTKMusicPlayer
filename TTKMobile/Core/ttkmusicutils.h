@@ -37,9 +37,18 @@ public:
      * Transfer integer time to string by format.
      */
 
-    void copyFile();
+    void checkTheFileNeededExist();
+    /*!
+     * Check the related file is exist.
+     */
     void dirIsExist(const QString &name);
+    /*!
+     * Check current dir is exist, no, just create it.
+     */
     void checkTheDirectoryExist();
+    /*!
+     * Check the related dir is exist.
+     */
 
 };
 

@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
 
-    TTKMusicUtils().copyFile();
+    TTKMusicUtils().checkTheFileNeededExist();
 
     QTranslator translator;
     translator.load("MLanguage/TTKMobile.ln");

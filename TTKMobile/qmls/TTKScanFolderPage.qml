@@ -110,7 +110,7 @@ Item {
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: functionArea.height/3
                     elide: Text.ElideLeft
-                    color: "gray"
+                    color: ttkTheme.gray
                 }
             }
         }

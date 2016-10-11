@@ -45,7 +45,7 @@ Item {
                     Layout.preferredHeight: dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
-                        console.log("asdasd");
+                        ttkMainStackView.push("qrc:/qmls/TTKMainSettingPage.qml");
                     }
                 }
 
@@ -127,7 +127,7 @@ Item {
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            color: "gray"
+                            color: ttkTheme.gray
                             text: qsTr("偶遇身边好音乐")
                         }
                     }
@@ -165,7 +165,7 @@ Item {
                         }
 
                         TTKMainFunctionItem {
-                            id: func_recent
+                            id: funcRecent
                             anchors {
                                 left: funcDownload.right
                                 top: parent.top
@@ -256,7 +256,7 @@ Item {
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            color: "gray"
+                            color: ttkTheme.gray
                             text: qsTr("偶遇身边好音乐")
                         }
                     }

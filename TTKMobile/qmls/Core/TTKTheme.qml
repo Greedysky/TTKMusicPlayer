@@ -14,6 +14,8 @@ QtObject {
     property int   topbar_height: 50
 
     property color white: "#FFFFFF"
+    property color black: "#000000"
+    property color gray: "gray"
 
     property color alphaLv0:  '#00FFFFFF'
     property color alphaLv1:  '#11FFFFFF'

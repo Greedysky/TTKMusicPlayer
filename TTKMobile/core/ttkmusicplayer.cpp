@@ -5,8 +5,6 @@
 ///qmmp incldue
 #include "soundcore.h"
 
-#include <QDebug>
-
 TTKMusicPlayer::TTKMusicPlayer(QObject *parent)
     : QObject(parent)
 {

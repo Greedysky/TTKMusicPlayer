@@ -21,19 +21,10 @@ greaterThan(QT_MAJOR_VERSION, 4){
 }
 
 TRANSLATIONS += TTKMobile.ts
-!android{
-    ##update translation
-    unix:exists($$[QT_INSTALL_BINS]/lrelease){
-        LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease
-    }
+##update translation
+win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
+    LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease.exe
 
-    unix:exists($$[QT_INSTALL_BINS]/lrelease-qt5){
-        LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease-qt5
-    }
-
-    win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
-        LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease.exe
-    }
     isEmpty(LRELEASE_EXECUTABLE){
         error(Could not find lrelease executable)
     }
@@ -41,23 +32,14 @@ TRANSLATIONS += TTKMobile.ts
         message(Found lrelease executable: $$LRELEASE_EXECUTABLE)
     }
 
-    unix:{
-        output = $$OUT_PWD/lib/$$TTKMusicPlayer/MLanguage
-        !exists($$output):system(mkdir $$output)
+    output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
+    output = $$replace(output, /, \\)
+    !exists($$output):system(md $$output)
 
-        system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
-        system(find . -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
-        system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
-    }
-    win32:{
-        output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
-        output = $$replace(output, /, \\)
-        !exists($$output):system(md $$output)
-
-        system(for /r %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
-        system(for /r %i in (*.qm) do ren %i *.ln)
-        system(for /r %i in (*.ln) do move /y %i $$output)
-    }
+    system(for /r %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
+    system(for /r %i in (*.qm) do ren %i *.ln)
+    system(for /r %i in (*.ln) do copy /y %i $$output)
+    system(for /r %i in (*.ln) do move /y %i $$PWD/extra)
 }
 
 TEMPLATE = app
@@ -134,11 +116,10 @@ CONFIG += TTK_BUILD_LIB
 include(../TTKCore/musicNetwork/MusicNetwork.pri)
 include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 
-contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.
 include(deployment.pri)
 QT += androidextras
-#    ANDROID_EXTRA_LIBS = \
 
 LIBS += -Lbin/ -lqmmp
 
