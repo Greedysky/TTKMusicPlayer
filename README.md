@@ -5,7 +5,7 @@
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
+### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Mobile](https://github.com/Greedysky/TTKMusicplayer#mobile)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
 
 Usage
 ----
@@ -80,6 +80,17 @@ Screenshots.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
+
+Mobile
+----
+*Follow the QQ music UI to achieve most of the features.*
+
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/1.png?raw=true)
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/2.png?raw=true)
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/3.png?raw=true)
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/4.png?raw=true)
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/5.png?raw=true)
+![](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/6.png?raw=true)
 
 Screenshots
 ----
