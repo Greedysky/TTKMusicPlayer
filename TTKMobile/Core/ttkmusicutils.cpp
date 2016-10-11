@@ -3,6 +3,7 @@
 #include "musictime.h"
 
 #include <QDir>
+#include <QFontMetrics>
 
 TTKMusicUtils::TTKMusicUtils(QObject *parent)
     : QObject(parent)
@@ -27,6 +28,11 @@ QString TTKMusicUtils::getRootPath() const
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 {
     return MusicTime(time, MusicTime::All_Msec).toString(format);
+}
+
+int TTKMusicUtils::stringFontWidth(const QFont &font, const QString &str)
+{
+    return QFontMetrics(font).width(str);
 }
 
 void TTKMusicUtils::checkTheFileNeededExist()

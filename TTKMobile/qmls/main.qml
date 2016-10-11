@@ -17,7 +17,7 @@ ApplicationWindow {
     visible: true
     width: Qt.platform.os === "android" ? Screen.desktopAvailableWidth : 320
     height: Qt.platform.os === "android" ? Screen.desktopAvailableHeight : 480
-   
+
     property bool exitApp: false
     property real pixelDensity: 4.46
     property real multiplierHeight: ttkMainWindow.height/480

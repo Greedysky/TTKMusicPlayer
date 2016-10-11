@@ -173,7 +173,7 @@ void MusicApplication::setCurrentIndex(int index)
     m_ttkPlaylist->setCurrentIndex(index);
 }
 
-int MusicApplication::setCurrentIndex()
+int MusicApplication::getCurrentIndex()
 {
     return m_ttkPlaylist->currentIndex();
 }

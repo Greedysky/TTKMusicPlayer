@@ -36,7 +36,7 @@ Rectangle {
                              , 3, 1, 0,-1, 0, 2, 5, 6, 7, 7
                              , 2, 2, 1, 0,-2,-3,-2, 0, 2, 5
                              , 5, 3, 0,-3,-3, 0, 5, 6, 6, 5]
-    property variant presetEQ: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    property variant presetEQ: [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     property variant eqTypes: ["80", "120", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"];
 
     function changedEQValue(index, value) {

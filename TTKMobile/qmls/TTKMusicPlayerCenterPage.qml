@@ -197,7 +197,9 @@ Item {
                     id: mediaArtistArea
                     source: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
                                                             : TTK_APP.artistImagePath()
+                    subSource: "qrc:/image/icon_folder_action_sheet"
                     text: qsTr("歌手: ") + TTK_APP.mediaArtist()
+
                 }
 
                 TTKImageFunctionItem {
@@ -205,6 +207,7 @@ Item {
                     anchors.top: mediaArtistArea.bottom
                     source: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
                                                             : TTK_APP.artistImagePath()
+                    subSource: "qrc:/image/icon_folder_action_sheet"
                     text: qsTr("专辑: ") + TTK_APP.mediaArtist()
                 }
             }
@@ -272,23 +275,34 @@ Item {
                         }
                     }
 
-                    Rectangle {
+                    Text {
                         id: musicPlayerShowLrc
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignCenter
                         Layout.preferredHeight: dpHeight(80)
-                        color: ttkTheme.alphaLv0
+                        horizontalAlignment: Qt.AlignHCenter
+                        color: "#00ff00"
+                        font.pixelSize: dpHeight(22)
+                        text: TTK_LRC.value(musicLrcShow.currentIndex)
                     }
                 }
             }
 
-            TTKMusicLyricPage {
-                id: musicLrcShow
+            Rectangle {
                 width: playCenterPageView.width
                 height: playCenterPageView.height
                 color: ttkTheme.alphaLv12
 
-                Component.onCompleted: {
-                    musicLrcShow.currentIndex = -1;
+                TTKMusicLyricPage {
+                    id: musicLrcShow
+                    anchors.centerIn: parent
+                    width: parent.width
+                    height: parent.height - dpHeight(40)
+                    color: ttkTheme.alphaLv0
+
+                    Component.onCompleted: {
+                        musicLrcShow.currentIndex = -1;
+                    }
                 }
             }
         }

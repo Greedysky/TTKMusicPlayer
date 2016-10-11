@@ -37,6 +37,9 @@ public:
      * Transfer integer time to string by format.
      */
 
+    Q_INVOKABLE int stringFontWidth(const QFont &font, const QString &str);
+
+
     void checkTheFileNeededExist();
     /*!
      * Check the related file is exist.

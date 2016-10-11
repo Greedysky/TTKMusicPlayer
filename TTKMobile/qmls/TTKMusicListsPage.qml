@@ -30,6 +30,9 @@ Item {
                 playlistModel.append(info);
             }
         }
+        onCurrentIndexChanged: {
+            itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        }
     }
 
     Component.onCompleted: {
@@ -43,7 +46,7 @@ Item {
             }
             playlistModel.append(info);
         }
-        itemListView.currentIndex = TTK_APP.setCurrentIndex();
+        itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
     ColumnLayout {

@@ -58,7 +58,7 @@ Item {
         ///main body
         ScrollView {
             Layout.preferredWidth: ttkMainWindow.width
-            Layout.preferredHeight: ttkMainStackView.height - ttkMusicBar.height
+            Layout.preferredHeight: ttkMainStackView.height
             horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             verticalScrollBarPolicy: Qt.ScrollBarAlwaysOff
 
@@ -68,7 +68,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: dpHeight(1150)
+                height: dpHeight(1200)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -121,6 +121,7 @@ Item {
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(243)
+                        boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
@@ -133,7 +134,7 @@ Item {
                                 source: imageSource
                                 subSource: imageSubSource
                                 text: title
-                                color: ttkTheme.black
+                                textColor: ttkTheme.black
                             }
                         }
 
@@ -163,6 +164,7 @@ Item {
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(304)
+                        boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
@@ -174,7 +176,7 @@ Item {
                             TTKImageFunctionItem {
                                 source: imageSource
                                 text: title
-                                color: ttkTheme.black
+                                textColor: ttkTheme.black
                             }
                         }
 
@@ -205,6 +207,7 @@ Item {
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(243)
+                        boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
@@ -216,7 +219,7 @@ Item {
                             TTKImageFunctionItem {
                                 source: imageSource
                                 text: title
-                                color: ttkTheme.black
+                                textColor: ttkTheme.black
                             }
                         }
 
@@ -246,6 +249,7 @@ Item {
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(61)
+                        boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
@@ -257,7 +261,7 @@ Item {
                             TTKImageFunctionItem {
                                 source: imageSource
                                 text: title
-                                color: ttkTheme.black
+                                textColor: ttkTheme.black
                             }
                         }
 
@@ -273,6 +277,20 @@ Item {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(60)
                         color: ttkTheme.white
+
+                        Text {
+                            anchors.fill: parent
+                            verticalAlignment: Qt.AlignVCenter
+                            horizontalAlignment: Qt.AlignHCenter
+                            color: "red"
+                            text: qsTr("退出")
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.preferredWidth: ttkMainWindow.width
+                        Layout.preferredHeight: dpHeight(60)
+                        color: ttkTheme.alphaLv0
                     }
                 }
             }

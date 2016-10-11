@@ -34,7 +34,7 @@ Rectangle {
         delegate: Rectangle {
             id: lyricDelegateId
             width: parent.width
-            height: 20
+            height: dpHeight(35)
             color: "#00000000"
 
             Text {
@@ -42,7 +42,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 text: textLine
                 color: parent.ListView.isCurrentItem ? "#00ff00" : "#4C4C4C"
-                font.pixelSize: parent.ListView.isCurrentItem ? dpHeight(30) : dpHeight(26)
+                font.pixelSize: parent.ListView.isCurrentItem ? dpHeight(26) : dpHeight(22)
                 font.bold: parent.ListView.isCurrentItem
                 font.family: qsTr("楷体")
             }

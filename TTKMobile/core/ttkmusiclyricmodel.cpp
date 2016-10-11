@@ -44,14 +44,21 @@ QHash<int, QByteArray> TTKMusicLyricModel::roleNames() const
     return data;
 }
 
+QVariant TTKMusicLyricModel::value(int row) const
+{
+    return data( index(row) );
+}
+
 void TTKMusicLyricModel::loadCurrentSongLrc(const QString &path)
 {
     if(m_lrcAnalysis->transLrcFileToTime(path) == MusicLrcAnalysis::OpenFileSuccess)
     {
         QStringList d = m_lrcAnalysis->getAllLrcs().split("\n");
         beginInsertRows(QModelIndex(), 0, d.count());
-        m_datas << d;
+        m_datas.clear();
+        m_datas << "" << d;
         endInsertRows();
+        m_lrcAnalysis->setCurrentIndex(0);
     }
 }
 

@@ -3,6 +3,7 @@
 #include <QTranslator>
 #include <QQmlApplicationEngine>
 
+#include "musicobject.h"
 #include "musicapplication.h"
 #include "core/ttkmusicutils.h"
 
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
     TTKMusicUtils().checkTheFileNeededExist();
 
     QTranslator translator;
-    translator.load("MLanguage/TTKMobile.ln");
+    translator.load(LANGUAGE_DIR_FULL + "TTKMobile.ln");
     app.installTranslator(&translator);
     //////////////////////////////////////////////////////////////
     QQmlApplicationEngine engine;

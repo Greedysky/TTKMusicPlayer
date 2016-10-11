@@ -98,7 +98,7 @@ public:
     /*!
      * Set current play index.
      */
-    Q_INVOKABLE int setCurrentIndex();
+    Q_INVOKABLE int getCurrentIndex();
     /*!
      * Get current play index.
      */

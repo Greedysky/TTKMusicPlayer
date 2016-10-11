@@ -40,6 +40,10 @@ public:
      * Get current row names.
      */
 
+    Q_INVOKABLE QVariant value(int row) const;
+   /*!
+    * Get current row data.
+    */
     Q_INVOKABLE void loadCurrentSongLrc(const QString &path);
     /*!
      * Load local lrc file to analysis.

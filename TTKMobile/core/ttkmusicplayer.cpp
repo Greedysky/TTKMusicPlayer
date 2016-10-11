@@ -82,16 +82,16 @@ void TTKMusicPlayer::setMusicEnhanced(int type)
     switch(m_musicEnhanced)
     {
         case EnhancedOff:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
+            setEqEffect(MusicObject::MIntList()<<  10<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
             break;
         case MusicVocal:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
+            setEqEffect(MusicObject::MIntList()<<  10<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
             break;
         case MusicNICAM:
-            setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
+            setEqEffect(MusicObject::MIntList()<<  16<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
             break;
         case MusicSubwoofer:
-            setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
+            setEqEffect(MusicObject::MIntList()<<  16<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
             break;
         default:
             break;

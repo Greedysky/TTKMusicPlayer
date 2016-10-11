@@ -15,7 +15,7 @@ Rectangle {
     width: parent.width
     color: ttkTheme.alphaLv0
 
-    property alias color: text.color
+    property alias textColor: text.color
     property alias text: text.text
     property alias source: image.foreground
     property alias subSource: subImage.source

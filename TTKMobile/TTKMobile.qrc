@@ -91,6 +91,7 @@
         <file alias="more_icon_about">images/more_icon_about.png</file>
         <file alias="switch_on_normal">images/switch_on_normal.png</file>
         <file alias="switching_off">images/switching_off.png</file>
+        <file alias="icon_folder_action_sheet">images/icon_folder_action_sheet.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -106,6 +107,7 @@
         <file>qmls/Core/TTKFlyInOutBox.qml</file>
         <file>qmls/Core/TTKMainFunctionItem.qml</file>
         <file>qmls/Core/TTKImageFunctionItem.qml</file>
+        <file>qmls/Core/TTKTextMarquee.qml</file>
         <file>qmls/TTKMainPage.qml</file>
         <file>qmls/TTKMainSettingPage.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>
