@@ -159,7 +159,28 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
         return;
     }
 
-    QStringList files(items);
+    QStringList files(items), sfx = MusicPlayer::supportFormatsString();
+    QString suffix;
+    int failedCount = 0;
+
+    foreach(const QString &path, items)
+    {
+        suffix = QFileInfo(path).suffix();
+        if( !sfx.contains(suffix.toLower()) )
+        {
+            ++failedCount;
+            files.removeOne(path);
+        }
+    }
+
+    if(failedCount != 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("not supported count %1").arg(failedCount));
+        message.exec();
+        return;
+    }
+
     m_musicSongTree->importOtherMusicSongs(files);
     if(m_currentMusicSongTreeIndex == MUSIC_NORMAL_LIST)
     {
@@ -845,22 +866,10 @@ void MusicApplication::dropEvent(QDropEvent *event)
     MusicAbstractMoveResizeWidget::dropEvent(event);
     const QMimeData *data = event->mimeData();
     QStringList fileList;
-    QString suffix;
-    QStringList sfx = MusicPlayer::supportFormatsString();
 
     foreach(QUrl url, data->urls())
     {
-        suffix = QFileInfo(url.toLocalFile()).suffix();
-        if( sfx.contains(suffix.toLower()) )
-        {
-            fileList << url.toLocalFile();
-        }
-        else
-        {
-            MusicMessageBox message;
-            message.setText(url.toString().split('/').back() + tr("not supported"));
-            message.exec();
-        }
+        fileList << url.toLocalFile();
     }
     musicImportSongsSettingPath(fileList);
 }
