@@ -43,8 +43,8 @@ unix:{
     output = $$OUT_PWD/lib/$$TTKMusicPlayer/MLanguage
     !exists($$output):system(mkdir $$output)
 
-    system(find . -name *.ts | xargs $$LRELEASE_EXECUTABLE)
-    system(find . -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
+    system(find TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
+    system(find TTKLanguage -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
     system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
 win32:{
@@ -52,7 +52,7 @@ win32:{
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)
 
-    system(for /r %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
-    system(for /r %i in (*.qm) do ren %i *.ln)
-    system(for /r %i in (*.ln) do move /y %i $$output)
+    system(for /r TTKLanguage %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
+    system(for /r TTKLanguage %i in (*.qm) do ren %i *.ln)
+    system(for /r TTKLanguage %i in (*.ln) do move /y %i $$output)
 }

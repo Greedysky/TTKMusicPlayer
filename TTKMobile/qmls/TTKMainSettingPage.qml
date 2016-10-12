@@ -68,7 +68,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: dpHeight(1200)
+                height: dpHeight(955)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -206,48 +206,6 @@ Item {
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(243)
-                        boundsBehavior: Flickable.StopAtBounds
-                        clip: true
-                        spacing: 1
-
-                        delegate: Rectangle {
-                            width: ttkMainWindow.width
-                            height: dpHeight(60)
-                            color: ttkTheme.white
-
-                            TTKImageFunctionItem {
-                                source: imageSource
-                                text: title
-                                textColor: ttkTheme.black
-                            }
-                        }
-
-                        model: ListModel{
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_settings"
-                                title: qsTr("设置")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_wifionly"
-                                subSource: "qrc:/image/switching_off"
-                                title: qsTr("仅Wi-Fi联网")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/simple_mode_icon"
-                                subSource: "qrc:/image/switching_off"
-                                title: qsTr("简洁模式")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_timer"
-                                subSource: "qrc:/image/switching_off"
-                                title: qsTr("定时关闭")
-                            }
-                        }
-                    }
-
-                    ListView {
-                        Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(61)
                         boundsBehavior: Flickable.StopAtBounds
                         clip: true
@@ -273,17 +231,14 @@ Item {
                         }
                     }
 
-                    Rectangle {
+                    TTKTextButton {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: dpHeight(60)
                         color: ttkTheme.white
-
-                        Text {
-                            anchors.fill: parent
-                            verticalAlignment: Qt.AlignVCenter
-                            horizontalAlignment: Qt.AlignHCenter
-                            color: "red"
-                            text: qsTr("退出")
+                        textColor: "red"
+                        text: qsTr("退出")
+                        onPressed: {
+                            Qt.quit();
                         }
                     }
 

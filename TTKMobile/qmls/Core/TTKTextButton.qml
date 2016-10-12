@@ -10,6 +10,7 @@ import QtQuick 2.5
 
 Rectangle {
     id: ttkTextButton
+    color: ttkTheme.alphaLv0
 
     property alias text: textArea.text
     property alias textColor: textArea.color
@@ -30,5 +31,4 @@ Rectangle {
             ttkTextButton.pressed();
         }
     }
-    color: ttkTheme.alphaLv0
 }
