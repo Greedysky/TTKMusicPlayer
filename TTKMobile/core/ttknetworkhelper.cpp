@@ -57,5 +57,5 @@ void TTKNetworkHelper::searchDataDwonloadFinished()
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
-    emit downloadFinished( downloadName );
+    emit downloadFinished( musicEnSong, downloadName );
 }

@@ -12,33 +12,14 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Item {
-    id: ttkMusicListsPage
+    id: ttkMusicRecentListsPage
     width: parent.width
     height: parent.height
 
-    Connections {
-        target: TTK_APP
-        onImportSongFinished: {
-            playlistModel.clear();
-            var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-            var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
-            for(var i=0; i<names.length; ++i) {
-                var info = {
-                    title: names[i],
-                    artist: artists[i]
-                };
-                playlistModel.append(info);
-            }
-        }
-        onCurrentIndexChanged: {
-            itemListView.currentIndex = TTK_APP.getCurrentIndex();
-        }
-    }
-
     Component.onCompleted: {
         playlistModel.clear();
-        var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-        var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
+        var names = TTK_APP.mediaNames(ttkTheme.music_recent_list);
+        var artists = TTK_APP.mediaArtists(ttkTheme.music_recent_list);
         for(var i=0; i<names.length; ++i) {
             var info = {
                 title: names[i],
@@ -52,10 +33,6 @@ Item {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
-
-        TTKMusicListsMorePage {
-            id: ttkMusicListsMorePage
-        }
 
         ///top bar
         Rectangle {
@@ -80,23 +57,20 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(ttkMusicListsPage.width)
+                    Layout.preferredWidth: dpWidth(ttkMusicRecentListsPage.width)
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
-                    text: qsTr("本地歌曲")
+                    text: qsTr("最近播放")
                 }
 
                 TTKImageButton {
-                    source: "qrc:/image/player_btn_more_normal"
+                    source: "qrc:/image/more_icon_settings_white"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
-                    onPressed: {
-                        ttkMusicListsMorePage.visible = true;
-                    }
                 }
             }
         }
@@ -138,7 +112,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicListsPage.width - iconArea.width - dpHeight(60)
+                            width: ttkMusicRecentListsPage.width - iconArea.width - dpHeight(60)
                             anchors {
                                 top: parent.top
                                 topMargin: dpHeight(10)
@@ -196,7 +170,7 @@ Item {
                             anchors.fill: parent
                             onClicked: {
                                 itemListView.currentIndex = index;
-                                TTK_APP.setCurrentIndex(ttkTheme.music_normal_list, index);
+                                TTK_APP.setCurrentIndex(ttkTheme.music_recent_list, index);
                             }
                         }
                     }

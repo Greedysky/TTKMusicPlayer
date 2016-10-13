@@ -1,11 +1,11 @@
 #include "ttkmusicsongssummarizied.h"
-#include "musicsongtag.h"
+#include "musiccryptographichash.h"
 
 TTKMusicSongsSummarizied::TTKMusicSongsSummarizied(QObject *parent)
     : QObject(parent)
 {
-    m_currentPlayIndex = 0;
-    m_currentToolIndex = 0;
+    m_currentPlayIndex = MUSIC_NORMAL_LIST;
+    m_currentToolIndex = MUSIC_NORMAL_LIST;
 }
 
 void TTKMusicSongsSummarizied::addMusicLists(const MusicSongItems &names)
@@ -20,7 +20,7 @@ void TTKMusicSongsSummarizied::appendMusicLists(const MusicSongItems &names)
 
 MusicSongItem TTKMusicSongsSummarizied::getMusicList(int index)
 {
-    if(index < 0 || index >= m_songItems.count())
+    if(index < MUSIC_NORMAL_LIST || index >= m_songItems.count())
     {
         return MusicSongItem();
     }
@@ -29,30 +29,59 @@ MusicSongItem TTKMusicSongsSummarizied::getMusicList(int index)
 
 void TTKMusicSongsSummarizied::importOtherMusicSongs(const QStringList &filelist)
 {
-    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_songItems.count())
+    if(m_songItems.isEmpty())
     {
         return;
     }
 
     QStringList l(filelist);
-    MusicSongTag tag;
-    MusicSongItem *item = &m_songItems[m_currentPlayIndex];
+    MusicSongItem *item = &m_songItems[MUSIC_NORMAL_LIST];
     foreach(const QString &path, l)
     {
-        if(item->m_songs.contains(MusicSong(path)))
+        MusicSong music(path);
+        if(item->m_songs.contains(music))
         {
-            l.removeAll(path);
             continue;
         }
-        QString time = tag.readFile(path) ? tag.getLengthString() : "-";
-        item->m_songs << MusicSong(path, 0, time, QString());
+        item->m_songs << music;
+    }
+}
+
+void TTKMusicSongsSummarizied::importRecentMusicSongs(int index)
+{
+    if(m_currentPlayIndex < MUSIC_NORMAL_LIST || m_currentPlayIndex >= m_songItems.count())
+    {
+        return;
+    }
+    MusicSongs songs(m_songItems[m_currentPlayIndex].m_songs);
+    if(index < MUSIC_NORMAL_LIST || index >= songs.count())
+    {
+        return;
+    }
+
+    MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
+    MusicSong music( songs[index].getMusicPath() );
+    if(!item->m_songs.contains(music))
+    {
+        item->m_songs << music;
+    }
+}
+
+void TTKMusicSongsSummarizied::importNetworkMusicSongs(const QString &key, const QString &path)
+{
+    QString musicSong = MusicCryptographicHash().decrypt(key, DOWNLOAD_KEY);
+    MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
+    MusicSong music(path, 0, QString(), musicSong);
+    if(!item->m_songs.contains(music))
+    {
+        item->m_songs << music;
     }
 }
 
 QStringList TTKMusicSongsSummarizied::getMusicSongsFileName(int index) const
 {
     QStringList list;
-    if(index < 0 || index >= m_songItems.count())
+    if(index < MUSIC_NORMAL_LIST || index >= m_songItems.count())
     {
         return list;
     }
@@ -67,7 +96,7 @@ QStringList TTKMusicSongsSummarizied::getMusicSongsFileName(int index) const
 QStringList TTKMusicSongsSummarizied::getMusicSongsFilePath(int index) const
 {
     QStringList list;
-    if(index < 0 || index >= m_songItems.count())
+    if(index < MUSIC_NORMAL_LIST || index >= m_songItems.count())
     {
         return list;
     }

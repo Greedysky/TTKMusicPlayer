@@ -45,7 +45,7 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name\ artist name and time.
      */
-    void downloadFinished(const QString &path);
+    void downloadFinished(const QString &key, const QString &path);
     /*!
      * Download (cached) song finished.
      */

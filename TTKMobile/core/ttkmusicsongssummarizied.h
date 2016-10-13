@@ -44,6 +44,15 @@ public:
     /*!
      * Input orther imported music datas into container.
      */
+    void importRecentMusicSongs(int index);
+    /*!
+     * Input network imported music datas into container.
+     */
+    void importNetworkMusicSongs(const QString &key, const QString &path);
+    /*!
+     * Input network imported music datas into container.
+     */
+
     QStringList getMusicSongsFileName(int index) const;
     /*!
      * Get music songs file name by index.

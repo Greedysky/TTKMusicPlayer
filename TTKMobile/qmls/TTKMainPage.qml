@@ -19,7 +19,11 @@ Item {
     Connections {
         target: TTK_APP
         onImportSongFinished: {
-            funcLocalMusic.subTitle = TTK_APP.mediaCount(0);
+            funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
+        }
+        onCurrentIndexChanged: {
+            funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
+            funcRecent.subTitle = TTK_APP.mediaCount(ttkTheme.music_recent_list);
         }
     }
 
@@ -148,8 +152,9 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_allsongs_highlight"
                             mainTitle: qsTr("本地歌曲")
-                            subTitle: TTK_APP.mediaCount(0)
+                            subTitle: TTK_APP.mediaCount(ttkTheme.music_normal_list)
                             onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_normal_list);
                                 ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml");
                             }
                         }
@@ -172,7 +177,11 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_history_highlight"
                             mainTitle: qsTr("最近播放")
-                            subTitle: TTK_APP.mediaCount(2)
+                            subTitle: TTK_APP.mediaCount(ttkTheme.music_recent_list)
+                            onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_recent_list);
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicRecentListsPage.qml");
+                            }
                         }
 
                         TTKMainFunctionItem {

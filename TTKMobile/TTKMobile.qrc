@@ -92,6 +92,7 @@
         <file alias="switch_on_normal">images/switch_on_normal.png</file>
         <file alias="switching_off">images/switching_off.png</file>
         <file alias="icon_folder_action_sheet">images/icon_folder_action_sheet.png</file>
+        <file alias="more_icon_settings_white">images/more_icon_settings_white.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -117,6 +118,7 @@
         <file>qmls/TTKMusicListsPage.qml</file>
         <file>qmls/TTKMusicListsMorePage.qml</file>
         <file>qmls/TTKMusicListsScanPage.qml</file>
+        <file>qmls/TTKMusicRecentListsPage.qml</file>
         <file>qmls/TTKScanFolderPage.qml</file>
         <file>qmls/TTKMusicLyricPage.qml</file>
         <file>qmls/TTKMusicDTSEffectPage.qml</file>

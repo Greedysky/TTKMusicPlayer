@@ -57,16 +57,25 @@ MusicApplication::~MusicApplication()
 void MusicApplication::importOtherMusicSongs(const QStringList &filelist)
 {
     m_songsSummarizied->importOtherMusicSongs(filelist);
-    if(m_songsSummarizied->getCurrentIndex() == 0)
+    if(m_songsSummarizied->getCurrentIndex() == MUSIC_NORMAL_LIST)
     {
         m_ttkPlaylist->appendMedia(filelist);
-        emit importSongFinished();
     }
+    emit importSongFinished();
+}
+
+void MusicApplication::importNetworkMusicSongs(const QString &key, const QString &path)
+{
+    m_songsSummarizied->importNetworkMusicSongs(key, path);
+    m_songsSummarizied->setCurrentIndex(MUSIC_RECENT_LIST);
+    m_songsSummarizied->setToolBoxIndex(MUSIC_RECENT_LIST);
+    m_ttkPlaylist->addMedia( m_songsSummarizied->getMusicSongsFilePath(MUSIC_RECENT_LIST) );
+    m_ttkPlaylist->setCurrentIndex( m_ttkPlaylist->mediaCount() - 1);
 }
 
 bool MusicApplication::empty() const
 {
-    return m_ttkPlaylist->currentIndex() < 0;
+    return m_ttkPlaylist->currentIndex() < MUSIC_NORMAL_LIST;
 }
 
 int MusicApplication::mediaCount(int index) const
@@ -160,13 +169,16 @@ void MusicApplication::setToolBoxIndex(int index)
     m_songsSummarizied->setToolBoxIndex(index);
 }
 
-void MusicApplication::setCurrentIndex(int index)
+void MusicApplication::setCurrentIndex(int id, int index)
 {
-    if(m_songsSummarizied->getToolBoxIndex() != m_songsSummarizied->getCurrentIndex())
+    int preId = m_songsSummarizied->getCurrentIndex();
+    if(preId != id)
     {
-        m_songsSummarizied->setCurrentIndex(m_songsSummarizied->getToolBoxIndex());
+        m_ttkPlaylist->addMedia(m_songsSummarizied->getMusicSongsFilePath(id));
     }
-    if(index < 0 || index >= m_ttkPlaylist->mediaCount())
+
+    m_songsSummarizied->setCurrentIndex(id);
+    if(index < MUSIC_NORMAL_LIST || index >= m_ttkPlaylist->mediaCount())
     {
         return;
     }
@@ -175,7 +187,8 @@ void MusicApplication::setCurrentIndex(int index)
 
 int MusicApplication::getCurrentIndex()
 {
-    return m_ttkPlaylist->currentIndex();
+    return m_songsSummarizied->getCurrentIndex() == m_songsSummarizied->getToolBoxIndex() ?
+           m_ttkPlaylist->currentIndex() : -1;
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const
@@ -213,6 +226,7 @@ void MusicApplication::currentMusicSongChanged(int index)
     m_downloadStatus->musicCheckHasLrcAlready();
     QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(mediaArtist()).arg(0).arg(SKN_FILE);
     M_BACKGROUND_PTR->setMBackground(path);
+    m_songsSummarizied->importRecentMusicSongs(index);
     emit currentIndexChanged(index);
 }
 

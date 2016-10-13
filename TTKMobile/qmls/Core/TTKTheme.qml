@@ -10,6 +10,14 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 
 QtObject {
+    property int music_normal_list:   0
+    property int music_download_list: 1
+    property int music_recent_list:   2
+    property int music_lovest_list:   3
+    property int music_downmv_list:   4
+    property int music_musicrg_list:  5
+
+    /////////////////////////////////////////////////////
     property color topbar_background: "#31C27B"
     property int   topbar_height: 50
 

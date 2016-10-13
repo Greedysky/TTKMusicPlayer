@@ -31,8 +31,7 @@ Item {
         }
 
         onDownloadFinished: {
-            TTK_APP.importOtherMusicSongs(path);
-            TTK_APP.setCurrentIndex( TTK_APP.mediaCount(0) - 1);
+            TTK_APP.importNetworkMusicSongs(key, path);
         }
     }
 
@@ -78,7 +77,8 @@ Item {
                     text: qsTr("搜索")
 
                     onPressed: {
-                        TTK_NETWORK.searchSong(searchInput.text);
+                        TTK_NETWORK.searchSong(searchInput.text.length === 0 ? searchInput.hint
+                                                                             : searchInput.text);
                     }
                 }
             }

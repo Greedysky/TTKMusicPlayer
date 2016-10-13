@@ -38,6 +38,10 @@ public:
     /*!
      * Input orther imported music datas into container.
      */
+    Q_INVOKABLE void importNetworkMusicSongs(const QString &key, const QString &path);
+    /*!
+     * Input network imported music datas into container.
+     */
 
     Q_INVOKABLE bool empty() const;
     /*!
@@ -94,7 +98,7 @@ public:
     /*!
      * Set current tool box index.
      */
-    Q_INVOKABLE void setCurrentIndex(int index);
+    Q_INVOKABLE void setCurrentIndex(int id, int index);
     /*!
      * Set current play index.
      */

@@ -64,6 +64,7 @@ int TTKMusicPlayer::volume() const
 void TTKMusicPlayer::setVolume(int volume)
 {
     m_music->setVolume(volume);
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, volume);
 }
 
 bool TTKMusicPlayer::isMuted() const
