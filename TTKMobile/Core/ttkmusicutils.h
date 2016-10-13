@@ -38,7 +38,9 @@ public:
      */
 
     Q_INVOKABLE int stringFontWidth(const QFont &font, const QString &str);
-
+    /*!
+     * Get string width by font.
+     */
 
     void checkTheFileNeededExist();
     /*!

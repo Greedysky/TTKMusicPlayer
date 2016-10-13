@@ -105,6 +105,12 @@ Item {
         }
     }
 
+    onXChanged: {
+        ttkMusicPlayerCenterSettingPage.visible = false;
+        ttkMusicSongDownloadPage.visible = false;
+        ttkMusicSongSharedPage.visible = false;
+    }
+
     TTKMusicPlayerCenterSettingPage {
         id: ttkMusicPlayerCenterSettingPage
         text: TTK_APP.mediaName( TTK_APP.mediaName() );
@@ -113,6 +119,10 @@ Item {
     TTKMusicSongDownloadPage {
         id: ttkMusicSongDownloadPage
         text: TTK_APP.mediaName( TTK_APP.mediaName() );
+    }
+
+    TTKMusicSongSharedPage {
+        id: ttkMusicSongSharedPage
     }
 
     Rectangle {
@@ -487,7 +497,7 @@ Item {
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+
                             }
                         }
 
@@ -524,7 +534,7 @@ Item {
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                ttkMusicSongSharedPage.visible = true;
                             }
                         }
 
@@ -534,7 +544,7 @@ Item {
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+
                             }
                         }
                     }

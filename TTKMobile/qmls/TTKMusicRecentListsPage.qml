@@ -57,7 +57,7 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(ttkMusicRecentListsPage.width)
+                    Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter

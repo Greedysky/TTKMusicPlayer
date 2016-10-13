@@ -56,7 +56,9 @@ Q_SIGNALS:
      * Create the current items by song name\ artist name and time.
      */
     void createDownloadSongQuality(int bitrate);
-
+    /*!
+     * Create searched downlaod song by bitrate.
+     */
     void downloadFinished(const QString &key, const QString &path);
     /*!
      * Download (cached) song finished.
@@ -74,9 +76,18 @@ public slots:
 
 protected:
     void dataForDownloadSong();
+    /*!
+     * Query for download song.
+     */
 
     void downForSearchSong(int index);
+    /*!
+     * Download for search song.
+     */
     void downForDownloadSong(int bitrate);
+    /*!
+     * Download for download song.
+     */
 
     int m_currentIndex;
     Type m_queryType;

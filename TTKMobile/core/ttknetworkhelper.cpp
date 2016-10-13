@@ -3,6 +3,7 @@
 #include "musiccryptographichash.h"
 #include "musicdatadownloadthread.h"
 #include "musicnetworkthread.h"
+#include "musiccoreutils.h"
 
 TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     : QObject(parent)
@@ -129,20 +130,19 @@ void TTKNetworkHelper::downForDownloadSong(int bitrate)
         return;
     }
 
-    QString downloadUrl;
     MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos.first());
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
         if(bitrate == musicAttr.m_bitrate)
         {
-            downloadUrl = musicAttr.m_url;
+            QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
+            musicSong = QString("%1%2.%3").arg(MusicUtils::Core::musicPrefix()).arg(musicSong).arg(musicAttr.m_format);
+            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, musicSong,
+                                                    MusicDownLoadThreadAbstract::Download_Music, this);
+//            connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
+            downSong->startToDownload();
+            return;
         }
     }
-
-    qDebug() << downloadUrl;
-//    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( downloadUrl, downloadName,
-//                                                                     MusicDownLoadThreadAbstract::Download_Music, this);
-//    connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
-//    downSong->startToDownload();
 }

@@ -57,13 +57,17 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(ttkMusicIdentifyListsPage.width)
+                    Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
-                    text: qsTr("已下载")
+                    text: qsTr("已识别")
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: dpWidth(50)
                 }
             }
         }

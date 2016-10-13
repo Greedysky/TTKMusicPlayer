@@ -12,10 +12,13 @@ import "Core"
 Rectangle {
     id: ttkMusicSongDownloadPage
     visible: false
-    anchors.fill: parent
+    width: parent.width
+    height: parent.height
     color: ttkTheme.alphaLv12
 
+    property int songBitrate: -1
     property string text
+
     function clearData() {
         itemListModel.clear();
         itemListView.currentIndex = -1;
@@ -29,6 +32,7 @@ Rectangle {
 
         onCreateDownloadSongQuality: {
             downloadButton.enabled = true;
+            itemListView.currentIndex = -1;
             var bitrateString;
 
             switch(bitrate)
@@ -42,7 +46,7 @@ Rectangle {
             }
 
             if(bitrateString.length !== 0) {
-                itemListModel.append({title: bitrateString});
+                itemListModel.append({title: bitrateString, bit: bitrate});
             }
         }
     }
@@ -92,8 +96,7 @@ Rectangle {
                 }
 
                 Image {
-//                    source: parent.ListView.isCurrentItem ? "qrc:/image/ic_playlist_normal" : ""
-                    source: ss
+                    source: parent.ListView.isCurrentItem ? "qrc:/image/ic_playlist_normal" : ""
                     width: dpWidth(30)
                     height: dpHeight(30)
                     anchors {
@@ -110,8 +113,7 @@ Rectangle {
                     anchors.fill: parent
                     onPressed: {
                         itemListView.currentIndex = index;
-
-                        console.log(itemListModel.data(index))
+                        songBitrate = bit;
                     }
                 }
             }
@@ -119,6 +121,16 @@ Rectangle {
             model: ListModel {
                 id: itemListModel
             }
+        }
+
+        Rectangle {
+            anchors {
+                top: itemListView.bottom
+                left: parent.left
+            }
+            width: parent.width
+            height: 1
+            color: ttkTheme.alphaLv10
         }
 
         TTKTextButton {
@@ -131,17 +143,33 @@ Rectangle {
             height: dpHeight(60)
             textColor: "black"
             text: qsTr("下载")
+            textSize: ttkMusicSongDownloadPage.height/25
             enabled: false
             onPressed: {
-                console.log(itemListModel.data(itemListView.currentIndex));
+                if(songBitrate > 0) {
+                    TTK_NETWORK.setCurrentIndex(-1, songBitrate);
+                    ttkMusicSongDownloadPage.visible = false;
+                    ttkFlyInOutBox.text = qsTr("已加入下载列表");
+                    ttkFlyInOutBox.start();
+                }
             }
         }
     }
 
+    NumberAnimation {
+        id: verticalYAnimation
+        property: "y"
+        target: ttkMusicSongDownloadPage
+        from: ttkMusicSongDownloadPage.height
+        to: 0
+        duration: 200
+    }
+
     onVisibleChanged: {
         clearData();
-        itemListModel.append({title: qsTr("正在获取数据当中...")});
+        itemListModel.append({title: qsTr("正在获取数据当中..."), bit: -1});
         if(visible === true) {
+            verticalYAnimation.start();
             TTK_NETWORK.downloadSong(text);
         }
     }

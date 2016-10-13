@@ -94,6 +94,12 @@
         <file alias="icon_folder_action_sheet">images/icon_folder_action_sheet.png</file>
         <file alias="more_icon_settings_white">images/more_icon_settings_white.png</file>
         <file alias="local_music_cloud_nonum_icon_normal">images/local_music_cloud_nonum_icon_normal.png</file>
+        <file alias="share_item_qq">images/share_item_qq.png</file>
+        <file alias="share_item_qzone">images/share_item_qzone.png</file>
+        <file alias="share_item_sina_weibo">images/share_item_sina_weibo.png</file>
+        <file alias="share_item_tencent_weibo">images/share_item_tencent_weibo.png</file>
+        <file alias="share_item_wx_friend">images/share_item_wx_friend.png</file>
+        <file alias="share_item_wx_timeline">images/share_item_wx_timeline.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -129,5 +135,6 @@
         <file>qmls/TTKMusicDTSEffectPage.qml</file>
         <file>qmls/TTKMusicEqualizerPage.qml</file>
         <file>qmls/TTKMusicSongDownloadPage.qml</file>
+        <file>qmls/TTKMusicSongSharedPage.qml</file>
     </qresource>
 </RCC>

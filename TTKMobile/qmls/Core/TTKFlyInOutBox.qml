@@ -53,7 +53,7 @@ Rectangle {
         target: ttkFlyInOutBox
         property: "y"
         from: -ttkFlyInOutBox.height
-        to: ttkFlyInOutBox.height
+        to: 0
         duration: 400
         easing.type: Easing.InOutQuad
 
@@ -70,7 +70,7 @@ Rectangle {
         id: flyOutAnimation
         target: ttkFlyInOutBox
         property: "y"
-        from: ttkFlyInOutBox.height
+        from: 0
         to: -ttkFlyInOutBox.height
         duration: 400
         easing.type: Easing.InOutQuad

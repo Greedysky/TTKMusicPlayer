@@ -15,7 +15,8 @@ import "Core"
 Rectangle{
     id: ttkMusicPlayerCenterSettingPage
     visible: false
-    anchors.fill: parent
+    width: parent.width
+    height: parent.height
     color: ttkTheme.alphaLv12
 
     property alias text: musicSongTitle.text
@@ -341,6 +342,21 @@ Rectangle{
                     }
                 }
             }
+        }
+    }
+
+    NumberAnimation {
+        id: verticalYAnimation
+        property: "y"
+        target: ttkMusicPlayerCenterSettingPage
+        from: ttkMusicPlayerCenterSettingPage.height
+        to: 0
+        duration: 200
+    }
+
+    onVisibleChanged: {
+        if(visible === true) {
+            verticalYAnimation.start();
         }
     }
 

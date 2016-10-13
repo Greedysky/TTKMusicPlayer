@@ -49,13 +49,19 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    onXChanged: {
+        ttkMusicListsMorePage.visible = false;
+    }
+
+    TTKMusicListsMorePage {
+        id: ttkMusicListsMorePage
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
 
-        TTKMusicListsMorePage {
-            id: ttkMusicListsMorePage
-        }
+
 
         ///top bar
         Rectangle {
@@ -80,7 +86,7 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: dpWidth(ttkMusicListsPage.width)
+                    Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: ttkTheme.white
                     horizontalAlignment: Qt.AlignHCenter
