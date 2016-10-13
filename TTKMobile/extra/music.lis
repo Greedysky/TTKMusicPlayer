@@ -3,4 +3,7 @@
     <musicList index="0" name="本地歌曲" count="0"/>
     <musicList index="0" name="下载歌曲" count="0"/>
     <musicList index="0" name="最近播放" count="0"/>
+    <musicList index="0" name="我喜欢" count="0"/>
+    <musicList index="0" name="下载MV" count="0"/>
+    <musicList index="0" name="听歌识曲" count="0"/>
 </TTKMusicPlayer>

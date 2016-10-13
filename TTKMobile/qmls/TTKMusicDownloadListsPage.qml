@@ -12,27 +12,22 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Item {
-    id: ttkOnlineSearchPage
+    id: ttkMusicDownloadListsPage
     width: parent.width
     height: parent.height
 
-    Connections {
-        target: TTK_NETWORK
-        onClearAllItems: {
-            playlistModel.clear();
-        }
-
-        onCreateSearchedItems: {
+    Component.onCompleted: {
+        playlistModel.clear();
+        var names = TTK_APP.mediaNames(ttkTheme.music_download_list);
+        var artists = TTK_APP.mediaArtists(ttkTheme.music_download_list);
+        for(var i=0; i<names.length; ++i) {
             var info = {
-                title: songname,
-                artist: artistname
-            };
+                title: names[i],
+                artist: artists[i]
+            }
             playlistModel.append(info);
         }
-
-        onDownloadFinished: {
-            TTK_APP.importNetworkMusicSongs(key, path);
-        }
+        itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
     ColumnLayout {
@@ -47,7 +42,6 @@ Item {
             color: ttkTheme.topbar_background
 
             RowLayout {
-                id: mainMenubarLayout
                 spacing: 2
                 anchors.fill: parent
 
@@ -61,25 +55,22 @@ Item {
                     }
                 }
 
-                TTKLineInput {
-                    id: searchInput
-                    Layout.preferredWidth: dpWidth(ttkMainWindow.width)
-                    Layout.preferredHeight: dpHeight(33)
-                    hint: "Big Bang"
-                    fontSize: parent.height/3
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: dpWidth(ttkMusicDownloadListsPage.width)
+                    Layout.fillHeight: true
+                    color: ttkTheme.white
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    font.pixelSize: mainMenubar.height/2
+                    text: qsTr("已下载")
                 }
 
-                TTKTextButton {
+                TTKImageButton {
+                    source: "qrc:/image/local_music_cloud_nonum_icon_normal"
                     Layout.preferredWidth: dpWidth(50)
                     Layout.preferredHeight: dpHeight(50)
                     anchors.right: parent.right
-                    textColor: ttkTheme.white
-                    text: qsTr("搜索")
-
-                    onPressed: {
-                        TTK_NETWORK.searchSong(searchInput.text.length === 0 ? searchInput.hint
-                                                                             : searchInput.text);
-                    }
                 }
             }
         }
@@ -91,7 +82,7 @@ Item {
             color: ttkTheme.white
 
             ListView {
-                id: searedSongList
+                id: itemListView
                 anchors.fill: parent
                 clip: true
 
@@ -121,7 +112,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkOnlineSearchPage.width - iconArea.width - dpHeight(120)
+                            width: ttkMusicDownloadListsPage.width - iconArea.width - dpHeight(60)
                             anchors {
                                 top: parent.top
                                 topMargin: dpHeight(10)
@@ -159,19 +150,6 @@ Item {
                             source: "qrc:/image/ic_playlist_more_normal"
                         }
 
-                        TTKImageButton {
-                            id: addFuncArea
-                            width: parent.height/2
-                            height: parent.height/2
-                            anchors {
-                                top: parent.top
-                                right: moreFuncArea.left
-                                topMargin: dpHeight(20)
-                                rightMargin: dpHeight(5)
-                            }
-                            source: "qrc:/image/ic_playlist_add_normal"
-                        }
-
                         Text {
                             id: artistArea
                             text: artist
@@ -191,8 +169,8 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                searedSongList.currentIndex = index;
-                                TTK_NETWORK.setCurrentIndex(index);
+                                itemListView.currentIndex = index;
+                                TTK_APP.setCurrentIndex(ttkTheme.music_download_list, index);
                             }
                         }
                     }
@@ -200,10 +178,6 @@ Item {
 
                 model: ListModel {
                     id: playlistModel
-                }
-
-                Component.onCompleted: {
-                    currentIndex = -1;
                 }
             }
         }

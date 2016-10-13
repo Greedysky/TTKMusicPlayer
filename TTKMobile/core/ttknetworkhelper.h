@@ -21,6 +21,12 @@ class MUSIC_MOBILE_EXPORT TTKNetworkHelper : public QObject
 {
     Q_OBJECT
 public:
+    enum Type {
+        T_Null,             ///*null*/
+        T_SearcSong,        ///*searc song*/
+        T_DownloadSong      ///*download song*/
+    };
+
     explicit TTKNetworkHelper(QObject *parent = 0);
     /*!
      * Object contsructor.
@@ -31,7 +37,11 @@ public:
     /*!
      * Search the song online by given name.
      */
-    Q_INVOKABLE void setCurrentIndex(int index);
+    Q_INVOKABLE void downloadSong(const QString &text);
+    /*!
+     * Download the song online by given name.
+     */
+    Q_INVOKABLE void setCurrentIndex(int index, const QVariant &data = QVariant());
     /*!
      * Set current play index.
      */
@@ -45,19 +55,31 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name\ artist name and time.
      */
+    void createDownloadSongQuality(int bitrate);
+
     void downloadFinished(const QString &key, const QString &path);
     /*!
      * Download (cached) song finished.
      */
 
 public slots:
+    void downLoadDataChanged();
+    /*!
+     * Send download data from net.
+     */
     void searchDataDwonloadFinished();
     /*!
      * Search data dwonload finished.
      */
 
 protected:
+    void dataForDownloadSong();
+
+    void downForSearchSong(int index);
+    void downForDownloadSong(int bitrate);
+
     int m_currentIndex;
+    Type m_queryType;
     MusicDownLoadQueryMultipleThread *m_queryThread;
 
 };

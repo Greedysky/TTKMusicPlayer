@@ -167,6 +167,10 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_download_normal"
                             mainTitle: qsTr("下载歌曲")
+                            onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_download_list);
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicDownloadListsPage.qml");
+                            }
                         }
 
                         TTKMainFunctionItem {
@@ -192,6 +196,10 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_favorite_normal"
                             mainTitle: qsTr("我喜欢")
+                            onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_lovest_list);
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicLovestListsPage.qml");
+                            }
                         }
 
                         TTKMainFunctionItem {
@@ -202,6 +210,10 @@ Item {
                             }
                             source: "qrc:/image/mymusic_icon_mv_highlight"
                             mainTitle: qsTr("下载MV")
+                            onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_downmv_list);
+                                ttkMainStackView.push("qrc:/qmls/TTKMVDownloadListsPage.qml");
+                            }
                         }
 
                         TTKMainFunctionItem {
@@ -213,6 +225,10 @@ Item {
                             source: "qrc:/image/mymusic_icon_recognizer_normal"
                             mainTitle: qsTr("听歌识曲")
                             subTitle: qsTr("[绿旋风]")
+                            onPressed: {
+                                TTK_APP.setToolBoxIndex(ttkTheme.music_musicrg_list);
+                                ttkMainStackView.push("qrc:/qmls/TTKMusicIdentifyListsPage.qml");
+                            }
                         }
                     }
 

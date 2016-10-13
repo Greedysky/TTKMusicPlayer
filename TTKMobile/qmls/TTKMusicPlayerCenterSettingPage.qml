@@ -14,7 +14,6 @@ import "Core"
 
 Rectangle{
     id: ttkMusicPlayerCenterSettingPage
-
     visible: false
     anchors.fill: parent
     color: ttkTheme.alphaLv12

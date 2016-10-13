@@ -110,6 +110,11 @@ Item {
         text: TTK_APP.mediaName( TTK_APP.mediaName() );
     }
 
+    TTKMusicSongDownloadPage {
+        id: ttkMusicSongDownloadPage
+        text: TTK_APP.mediaName( TTK_APP.mediaName() );
+    }
+
     Rectangle {
         anchors.fill: parent
         Image {
@@ -509,7 +514,7 @@ Item {
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-                                ttkOutStackView.pop();
+                                ttkMusicSongDownloadPage.visible = true;
                             }
                         }
 
