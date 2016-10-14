@@ -61,11 +61,19 @@ public:
      */
     Q_INVOKABLE QStringList mediaNames(int index) const;
     /*!
-     * Get play music media name.
+     * Get play music media names.
      */
     Q_INVOKABLE QStringList mediaArtists(int index) const;
     /*!
-     * Get play music media artist.
+     * Get play music media artists.
+     */
+    Q_INVOKABLE QStringList mediaPaths(int index) const;
+    /*!
+     * Get play music media paths.
+     */
+    Q_INVOKABLE QString mediaPath(int tool, int index) const;
+    /*!
+     * Get play music media path.
      */
     Q_INVOKABLE QString artistImagePath() const;
     /*!

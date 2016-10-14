@@ -108,7 +108,7 @@ Rectangle {
             TTKTextButton {
                 width: parent.width
                 height: dpHeight(60)
-                textColor: "black"
+                textColor: ttkTheme.black
                 text: qsTr("取消")
                 textSize: ttkMusicSongSharedPage.height/25
                 onPressed: {

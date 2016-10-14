@@ -1,6 +1,8 @@
 #include "ttkmusicutils.h"
 #include "musicobject.h"
 #include "musictime.h"
+#include "musicsongtag.h"
+#include "musicnumberutils.h"
 
 #include <QDir>
 #include <QFontMetrics>
@@ -8,7 +10,12 @@
 TTKMusicUtils::TTKMusicUtils(QObject *parent)
     : QObject(parent)
 {
+    m_songTag = nullptr;
+}
 
+TTKMusicUtils::~TTKMusicUtils()
+{
+    delete m_songTag;
 }
 
 QString TTKMusicUtils::getRoot() const
@@ -33,6 +40,36 @@ QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 int TTKMusicUtils::stringFontWidth(const QFont &font, const QString &str)
 {
     return QFontMetrics(font).width(str);
+}
+
+bool TTKMusicUtils::readTagFromFile(const QString &path)
+{
+    delete m_songTag;
+    m_songTag = new MusicSongTag;
+    return m_songTag->readFile(path);
+}
+
+QString TTKMusicUtils::getTag(int index)
+{
+    QString value;
+    switch(index)
+    {
+        case 0: value = m_songTag->getAlbum(); break;
+        case 1: value = QFileInfo(m_songTag->getFilePath()).suffix(); break;
+        case 2: value = m_songTag->getBitrate(); break;
+        case 3: value = m_songTag->getSamplingRate(); break;
+        case 4: value = m_songTag->getYear(); break;
+        case 5: value = MusicUtils::Number::size2Label(QFileInfo(m_songTag->getFilePath()).size()); break;
+        case 6: value = m_songTag->getLengthString(); break;
+        case 7: value = m_songTag->getFilePath(); break;
+    }
+    return value.isEmpty() ? "--" : value;
+}
+
+void TTKMusicUtils::closeTagFromFile()
+{
+    delete m_songTag;
+    m_songTag = nullptr;
 }
 
 void TTKMusicUtils::checkTheFileNeededExist()

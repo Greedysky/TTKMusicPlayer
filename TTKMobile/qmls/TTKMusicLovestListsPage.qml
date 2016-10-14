@@ -30,6 +30,10 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    TTKMusicSongSettingPage {
+        id: ttkMusicSongSettingPage
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -93,6 +97,14 @@ Item {
                         height: dpHeight(70)
                         color: ttkTheme.white
 
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                itemListView.currentIndex = index;
+                                TTK_APP.setCurrentIndex(ttkTheme.music_lovest_list, index);
+                            }
+                        }
+
                         Rectangle {
                             width: ttkMainWindow.width
                             height: 1
@@ -148,6 +160,12 @@ Item {
                                 rightMargin: dpHeight(20)
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
+                            onPressed: {
+                                ttkMusicSongSettingPage.songName = title;
+                                ttkMusicSongSettingPage.singerName = artist;
+                                ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_lovest_list, index);
+                                ttkMusicSongSettingPage.visible = true;
+                            }
                         }
 
                         Text {
@@ -164,14 +182,6 @@ Item {
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
                             color: ttkTheme.gray
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                itemListView.currentIndex = index;
-                                TTK_APP.setCurrentIndex(ttkTheme.music_lovest_list, index);
-                            }
                         }
                     }
                 }

@@ -32,6 +32,10 @@ public:
     /*!
      * Read music file to anaylsis.
      */
+    QString getFilePath() const;
+    /*!
+     * Read music file path.
+     */
     /////////////////////////////////////////////
     QString getArtist() const;
     /*!
@@ -139,6 +143,7 @@ protected:
      * Get not supported plugin path.
      */
 
+    QString m_filePath;
     TagReadAndWrite *m_tag;
     QMap<TagReadAndWrite::MusicTag, QString> m_parameters;
 

@@ -12,6 +12,8 @@
 #include <QObject>
 #include "musicmobileglobaldefine.h"
 
+class MusicSongTag;
+
 /*! @brief The class of the music utils.
  * @author Greedysky <greedysky@163.com>
  */
@@ -23,6 +25,7 @@ public:
     /*!
      * Object contsructor.
      */
+    ~TTKMusicUtils();
 
     Q_INVOKABLE QString getRoot() const;
     /*!
@@ -42,6 +45,10 @@ public:
      * Get string width by font.
      */
 
+    Q_INVOKABLE bool readTagFromFile(const QString &path);
+    Q_INVOKABLE QString getTag(int index);
+    Q_INVOKABLE void closeTagFromFile();
+
     void checkTheFileNeededExist();
     /*!
      * Check the related file is exist.
@@ -54,6 +61,9 @@ public:
     /*!
      * Check the related dir is exist.
      */
+
+protected:
+    MusicSongTag *m_songTag;
 
 };
 

@@ -100,6 +100,7 @@
         <file alias="share_item_tencent_weibo">images/share_item_tencent_weibo.png</file>
         <file alias="share_item_wx_friend">images/share_item_wx_friend.png</file>
         <file alias="share_item_wx_timeline">images/share_item_wx_timeline.png</file>
+        <file alias="action_icon_info">images/action_icon_info.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -116,6 +117,7 @@
         <file>qmls/Core/TTKMainFunctionItem.qml</file>
         <file>qmls/Core/TTKImageFunctionItem.qml</file>
         <file>qmls/Core/TTKTextMarquee.qml</file>
+        <file>qmls/Core/TTKTextPair.qml</file>
         <file>qmls/TTKMainPage.qml</file>
         <file>qmls/TTKMainSettingPage.qml</file>
         <file>qmls/TTKOnlineSearchPage.qml</file>
@@ -136,5 +138,7 @@
         <file>qmls/TTKMusicEqualizerPage.qml</file>
         <file>qmls/TTKMusicSongDownloadPage.qml</file>
         <file>qmls/TTKMusicSongSharedPage.qml</file>
+        <file>qmls/TTKMusicSongSettingPage.qml</file>
+        <file>qmls/TTKMusicSongInfoPage.qml</file>
     </qresource>
 </RCC>

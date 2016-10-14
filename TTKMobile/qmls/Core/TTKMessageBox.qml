@@ -42,10 +42,8 @@ Rectangle {
         radius: 10
         width: 0.7*parent.width
         height: 0.3*parent.height
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
+        anchors.centerIn: parent
+
         Rectangle {
             anchors.fill: parent
             color: ttkTheme.alphaLv4
@@ -81,7 +79,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.WordWrap
                 text: content
-                color: "black"
+                color: ttkTheme.black
             }
         }
 

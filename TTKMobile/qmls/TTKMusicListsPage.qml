@@ -51,6 +51,18 @@ Item {
 
     onXChanged: {
         ttkMusicListsMorePage.visible = false;
+        ttkMusicSongSettingPage.visible = false;
+    }
+
+//    Keys.onReleased: {
+//        if(event.key === Qt.Key_Back) {
+//            ttkMusicListsMorePage.visible = false;
+//            ttkMusicSongSettingPage.visible = false;
+//        }
+//    }
+
+    TTKMusicSongSettingPage {
+        id: ttkMusicSongSettingPage
     }
 
     TTKMusicListsMorePage {
@@ -125,6 +137,14 @@ Item {
                         height: dpHeight(70)
                         color: ttkTheme.white
 
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                itemListView.currentIndex = index;
+                                TTK_APP.setCurrentIndex(ttkTheme.music_normal_list, index);
+                            }
+                        }
+
                         Rectangle {
                             width: ttkMainWindow.width
                             height: 1
@@ -180,6 +200,12 @@ Item {
                                 rightMargin: dpHeight(20)
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
+                            onPressed: {
+                                ttkMusicSongSettingPage.songName = title;
+                                ttkMusicSongSettingPage.singerName = artist;
+                                ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_normal_list, index);
+                                ttkMusicSongSettingPage.visible = true;
+                            }
                         }
 
                         Text {
@@ -196,14 +222,6 @@ Item {
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
                             color: ttkTheme.gray
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                itemListView.currentIndex = index;
-                                TTK_APP.setCurrentIndex(ttkTheme.music_normal_list, index);
-                            }
                         }
                     }
                 }

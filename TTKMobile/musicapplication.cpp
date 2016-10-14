@@ -113,6 +113,11 @@ QString MusicApplication::mediaArtist() const
 QStringList MusicApplication::mediaNames(int index) const
 {
     MusicSongItems items(m_songsSummarizied->getMusicLists());
+    if(index < 0 || index >= items.count())
+    {
+        return QStringList();
+    }
+
     QStringList list;
     foreach(const MusicSong &song, items[index].m_songs)
     {
@@ -124,12 +129,39 @@ QStringList MusicApplication::mediaNames(int index) const
 QStringList MusicApplication::mediaArtists(int index) const
 {
     MusicSongItems items(m_songsSummarizied->getMusicLists());
+    if(index < 0 || index >= items.count())
+    {
+        return QStringList();
+    }
+
     QStringList list;
     foreach(const MusicSong &song, items[index].m_songs)
     {
         list.append(song.getMusicArtistFront());
     }
     return list;
+}
+
+QStringList MusicApplication::mediaPaths(int index) const
+{
+    MusicSongItems items(m_songsSummarizied->getMusicLists());
+    if(index < 0 || index >= items.count())
+    {
+        return QStringList();
+    }
+
+    QStringList list;
+    foreach(const MusicSong &song, items[index].m_songs)
+    {
+        list.append(song.getMusicPath());
+    }
+    return list;
+}
+
+QString MusicApplication::mediaPath(int tool, int index) const
+{
+    QStringList paths( mediaPaths(tool) );
+    return (index < 0 || index >= paths.count()) ? QString() : paths[index];
 }
 
 QString MusicApplication::artistImagePath() const

@@ -9,7 +9,6 @@
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 #include "decoder.h"
-///
 
 MusicSongTag::MusicSongTag()
 {
@@ -30,6 +29,7 @@ bool MusicSongTag::readFile(const QString &file)
 {
     delete m_tag;
     m_tag = new TagReadAndWrite(file);
+    m_filePath = file;
     if(!m_tag->readFile())
     {
         return readOtherTaglibNotSupport(file);
@@ -37,6 +37,11 @@ bool MusicSongTag::readFile(const QString &file)
 
     m_parameters = m_tag->getMusicTags();
     return true;
+}
+
+QString MusicSongTag::getFilePath() const
+{
+    return m_filePath;
 }
 
 bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)

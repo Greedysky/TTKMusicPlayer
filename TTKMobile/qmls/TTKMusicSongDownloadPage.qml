@@ -141,7 +141,7 @@ Rectangle {
             }
             width: parent.width
             height: dpHeight(60)
-            textColor: "black"
+            textColor: ttkTheme.black
             text: qsTr("下载")
             textSize: ttkMusicSongDownloadPage.height/25
             enabled: false
