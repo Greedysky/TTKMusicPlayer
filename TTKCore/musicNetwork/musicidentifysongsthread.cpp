@@ -7,8 +7,8 @@
 #include <QEventLoop>
 #include <QCryptographicHash>
 
-#define QUERY_URL     "http://ap-southeast-1.api.acrcloud.com/v1/identify"
-#define ACRUA_URL     "http://7xpa0g.com1.z0.glb.clouddn.com/acrcloud"
+#define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
+#define ACRUA_URL     "0NDS2dzQVpNM3V3aGhtZmVOdW83d2VielBHdTcxTEk4QmpTSUxvQ2ZsdWVSaE1wWW5EOG8wMm83bitKVlJnZHZ1dlBSUT09"
 
 MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
     : MusicNetworkAbstract(parent)
@@ -33,7 +33,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(ACRUA_URL);
+    download->startToDownload(MusicCryptographicHash().decrypt(ACRUA_URL, URL_KEY));
 
     loop.exec();
 
@@ -78,7 +78,7 @@ void MusicIdentifySongsThread::query(const QString &path)
     content.append(endBoundary);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(QUERY_URL));
+    request.setUrl(QUrl(MusicCryptographicHash().decrypt(QUERY_URL, URL_KEY)));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

@@ -77,7 +77,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     if(!down->getMusicSongInfos().isEmpty())
     {
         MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
-        downLoadDataChanged(WEB_PLAYER + info.m_songId, info.m_smallPicUrl);
+        downLoadDataChanged(MusicCryptographicHash().decrypt(WEB_PLAYER, URL_KEY) + info.m_songId, info.m_smallPicUrl);
     }
     else
     {
@@ -97,25 +97,25 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     QString url;
     if(ui->qqButton->isChecked())
     {
-        url = QString(QQ_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl)
+        url = QString(MusicCryptographicHash().decrypt(QQ_SHARE, URL_KEY)).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl)
                                .arg(ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(ui->renrenButton->isChecked())
     {
-        url = QString(RENREN_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicCryptographicHash().decrypt(RENREN_SHARE, URL_KEY)).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->qqspaceButton->isChecked())
     {
-        url = QString(QQ_SPACE_SHARE).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
+        url = QString(MusicCryptographicHash().decrypt(QQ_SPACE_SHARE, URL_KEY)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
                                      .arg(ui->textEdit->toPlainText());
     }
     else if(ui->qqblogButton->isChecked())
     {
-        url = QString(QQ_MICBG_SHARE).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicCryptographicHash().decrypt(QQ_MICBG_SHARE, URL_KEY)).arg(playUrl).arg(ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(ui->sinaButton->isChecked())
     {
-        url = QString(SINA_SHARE).arg(playUrl).arg(imageUrl).arg(ui->textEdit->toPlainText());
+        url = QString(MusicCryptographicHash().decrypt(SINA_SHARE, URL_KEY)).arg(playUrl).arg(imageUrl).arg(ui->textEdit->toPlainText());
     }
     else if(ui->weixingButton->isChecked())
     {

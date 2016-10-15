@@ -12,9 +12,9 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-const QString channelUrl = "http://fm.baidu.com/dev/api/?tn=channellist";
-const QString playListUrl = "http://fm.baidu.com/dev/api/?tn=playlist&format=json&id=";
-const QString songsUrl = "http://music.baidu.com/data/music/fmlink?type=mp3&rate=320&songIds=";
+const QString channelUrl = "bkNHdDVjMFdFMllITEJKTXBSSEsyNXhHWGJ2d0RjdUtJV0hwVk0yMzVUNy9wOTBxSXBkWFQ2MDBlcmtVcHoxeg==";
+const QString playListUrl = "RzAwMGlXbFVFTC9NY29YUUo5ZlR3VjNMZmpicFkybkpZVGRtL2FIMDhaeGpmbmN3Q0h5QmhQRCtnVm5xTkRENVN4TTQ0WS9QT0Nvc1haUEY=";
+const QString songsUrl = "Z1pzMFpFZytLQnAzaG95SHR4SkYwOUk0Z3BBTm1wVkZYTUczK1hwT0REM0tXd0hueGVFeVpVMVRmdXhVbDMrMm9KRzBleGRmMnZIN3RCWmpwOU9YWUcrQlgvMG4yWHJC";
 
 /*! @brief The class of music radio thread base.
  * @author Greedysky <greedysky@163.com>

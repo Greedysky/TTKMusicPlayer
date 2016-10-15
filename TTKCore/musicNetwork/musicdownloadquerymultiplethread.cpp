@@ -50,19 +50,19 @@ QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  return MUSIC_REQUERY_WY;
-        case 1:  return MUSIC_REQUERY_DX;
-        case 2:  return MUSIC_REQUERY_QQ;
-        case 3:  return MUSIC_REQUERY_XM;
-        case 4:  return MUSIC_REQUERY_TT;
-        case 5:  return MUSIC_REQUERY_BD;
-        case 6:  return MUSIC_REQUERY_KW;
-        case 7:  return MUSIC_REQUERY_KG;
-        case 8:  return MUSIC_REQUERY_DM;
-        case 9:  return MUSIC_REQUERY_MG;
-        case 10: return MUSIC_REQUERY_MU;
-        case 11: return MUSIC_REQUERY_EC;
-        case 12: return MUSIC_REQUERY_YY;
+        case 0:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_WY, URL_KEY);
+        case 1:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_DX, URL_KEY);
+        case 2:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_QQ, URL_KEY);
+        case 3:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_XM, URL_KEY);
+        case 4:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_TT, URL_KEY);
+        case 5:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_BD, URL_KEY);
+        case 6:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_KW, URL_KEY);
+        case 7:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_KG, URL_KEY);
+        case 8:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_DM, URL_KEY);
+        case 9:  return MusicCryptographicHash().decrypt(MUSIC_REQUERY_MG, URL_KEY);
+        case 10: return MusicCryptographicHash().decrypt(MUSIC_REQUERY_MU, URL_KEY);
+        case 11: return MusicCryptographicHash().decrypt(MUSIC_REQUERY_EC, URL_KEY);
+        case 12: return MusicCryptographicHash().decrypt(MUSIC_REQUERY_YY, URL_KEY);
     }
     return QString();
 }

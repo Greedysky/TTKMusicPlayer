@@ -13,6 +13,7 @@
 #include "musicglobaldefine.h"
 
 #define DOWNLOAD_KEY "5024FRSDF40"
+#define URL_KEY      "GREEDYSKY"
 
 #ifdef Q_CC_GNU
     #pragma GCC diagnostic ignored "-Wparentheses"

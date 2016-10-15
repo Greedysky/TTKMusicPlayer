@@ -11,8 +11,8 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-const QString TT_SONG_SINGER_URL   = "http://api.dongting.com/song/singer/%1/songs?page=1&size=50";
-const QString TT_SONG_ALBUM_URL    = "http://api.dongting.com/song/album/%1/songs?page=1&size=50";
+const QString TT_SONG_SINGER_URL   = "aFozbkdtREt1Z3VLaU9MS2hEVDlxMUpCU1cxOExpZUpOelo4QmpMakdwWWxaTGIyWVlpMGpubU11QmgxNE5IaEUrbVJjazZ2TzVJVHRYeGNXaGx0cXc9PQ==";
+const QString TT_SONG_ALBUM_URL    = "bEc2U0x6dUkxSUE3MkJMdzBUN1l2aFowMDFGUFV1Y2F3MVA3SDdDdzlIY2JxMCtsZ3BXZkpGSWhSY1JsanVGM2F4NldrQlQrRytkMXphT2JmNnIxWEE9PQ==";
 
 /*! @brief The class to ttpod query album download data from net.
  * @author Greedysky <greedysky@163.com>

@@ -11,7 +11,7 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-const QString WY_SONG_ALBUM_URL    = "http://music.163.com/api/album/%1";
+const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
 
 /*! @brief The class to wangyi query album download data from net.
  * @author Greedysky <greedysky@163.com>

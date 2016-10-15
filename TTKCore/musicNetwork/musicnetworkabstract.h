@@ -11,7 +11,7 @@
 
 #include <QNetworkReply>
 #include <QSslConfiguration>
-#include "musicglobaldefine.h"
+#include "musiccryptographichash.h"
 
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>

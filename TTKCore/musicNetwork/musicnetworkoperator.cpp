@@ -4,7 +4,7 @@
 
 #include <QStringList>
 
-const QString IP_CHECK_URL = "http://1212.ip138.com/ic.asp";
+const QString IP_CHECK_URL = "eEw0OUdIU0pDSWJnODRGZndnWjZNQmRneGxjb1hEWERLVXI0U0RMdWdIaz0=";
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
@@ -27,7 +27,7 @@ void MusicNetworkOperator::startToOperator()
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(IP_CHECK_URL);
+    download->startToDownload(MusicCryptographicHash().decrypt(IP_CHECK_URL, URL_KEY));
 }
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)

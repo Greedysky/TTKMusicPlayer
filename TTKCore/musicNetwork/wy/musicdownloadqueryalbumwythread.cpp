@@ -26,7 +26,7 @@ void MusicDownLoadQueryAlbumWYThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryAlbumWYThread::startSearchSong(const QString &album)
 {
-    QUrl musicUrl = WY_SONG_ALBUM_URL.arg(album);
+    QUrl musicUrl = MusicCryptographicHash().decrypt(WY_SONG_ALBUM_URL, URL_KEY).arg(album);
 
     if(m_reply)
     {
@@ -37,8 +37,8 @@ void MusicDownLoadQueryAlbumWYThread::startSearchSong(const QString &album)
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", WY_BASE_URL);
-    request.setRawHeader("Referer", WY_BASE_URL);
+    request.setRawHeader("Origin", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -91,7 +91,7 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
                     MusicObject::MusicSongInfomation info;
                     info.m_songName = value["name"].toString();
                     info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    info.m_lrcUrl = WY_SONG_LRC_URL.arg(value["id"].toInt());
+                    info.m_lrcUrl = MusicCryptographicHash().decrypt(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
 
                     QVariantMap albumObject = value["album"].toMap();
                     info.m_smallPicUrl = albumObject["picUrl"].toString();
@@ -156,7 +156,7 @@ void MusicDownLoadQueryAlbumWYThread::readFromMusicSongAttribute(MusicObject::Mu
     attr.m_bitrate = bitrate;
     attr.m_format = key.value("extension").toString();
     attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-    attr.m_url = WY_SONG_PATH_URL.arg(encryptedId(dfsId)).arg(dfsId);
+    attr.m_url = MusicCryptographicHash().decrypt(WY_SONG_PATH_URL, URL_KEY).arg(encryptedId(dfsId)).arg(dfsId);
     info->m_songAttrs.append(attr);
 }
 

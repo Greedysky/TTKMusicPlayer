@@ -19,8 +19,7 @@ class MusicNetworkTestThread;
 class MusicDataDownloadThread;
 class MusicNetworkSuspensionWidget;
 
-const QString testUrl = "http://mirrors.ustc.edu.cn/qtproject/archive/qt/5.5/5.5.1/"
-                        "qt-opensource-windows-x86-mingw492-5.5.1.exe";
+const QString testUrl = "Mnk5YVlmSkd3VzB3WTYvMkFlNVZpa0pycmFaSEFyWTJuSDNNV1pvOXBWUWluVVduL0cveENGSHM1OGJnL0MxWmV2MlQ2ZEx5ak5sUDlWREtnSC9tSmxQOXRtY0N1ZHBXeWlzRmtaNXBMWUUzM09HOFYrYkJJdTZ6R3dUbDVyQmRpMERmYy9VVmVCeHUvdFhL";
 const QString testName = "tempCache.tt";
 
 namespace Ui {

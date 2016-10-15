@@ -116,7 +116,7 @@ void MusicNetworkTestWidget::networkTestStart()
     ui->testButton->setEnabled(false);
     m_testTimer.stop();
     delete m_testDownload;
-    m_testDownload = new MusicDataDownloadThread(testUrl, testName,
+    m_testDownload = new MusicDataDownloadThread(MusicCryptographicHash().decrypt(testUrl, URL_KEY), testName,
                              MusicDownLoadThreadAbstract::Download_BigBG, this);
     m_testDownload->startToDownload();
     m_testTimer.start();

@@ -24,7 +24,7 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
     m_searchText = text.trimmed();
     m_currentType = type;
 
-    QUrl musicUrl = TT_SEARCH_URL.arg(text);
+    QUrl musicUrl = MusicCryptographicHash().decrypt(TT_SEARCH_URL, URL_KEY).arg(text);
 
     if(m_reply)
     {
@@ -150,7 +150,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
 
                         musicInfo.m_songId = songId;
                         musicInfo.m_albumId = QString::number(value["albumId"].toULongLong());
-                        musicInfo.m_lrcUrl = TT_SONG_LRC_URL.arg(singerName).arg(songName).arg(songId);
+                        musicInfo.m_lrcUrl = MusicCryptographicHash().decrypt(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;

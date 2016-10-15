@@ -12,7 +12,7 @@
 #include <QObject>
 #include "musicglobaldefine.h"
 
-const QString VOICETTS_URL = "http://tts.baidu.com/text2audio?lan=%1&ie=UTF-8&text=%2&spd=%3&pit=%4&vol=%5&per=%6";
+const QString VOICETTS_URL = "a0h4b0NBMmlrcjJGeFNDc200UnZUUGEzTm5BZENRUUZBckFUcGpmNlQ5aE5FY1p1M3h0anpFdFM5SDV2UW5Ba1pENHRVeGFGa0RNbHRzK25SZ0RkQk95anNZcmhLYnRHTlJpSi9nRFF3Mi9hVXlvajZ4SGhVZz09";
 
 class MusicSourceDownloadThread;
 

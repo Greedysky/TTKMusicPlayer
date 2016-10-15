@@ -6,8 +6,6 @@
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
 
-#define LRC_PREFIX "http://musicdata.baidu.com"
-
 MusicRadioSongsThread::MusicRadioSongsThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
 {
@@ -29,7 +27,7 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(songsUrl + id));
+    request.setUrl(QUrl(MusicCryptographicHash().decrypt(songsUrl, URL_KEY) + id));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -88,7 +86,7 @@ void MusicRadioSongsThread::downLoadFinished()
                 m_songInfo.m_artistName = value["artistName"].toString();
                 m_songInfo.m_songPicUrl = value["songPicRadio"].toString();
                 m_songInfo.m_albumName = value["albumName"].toString();
-                m_songInfo.m_lrcUrl = "http://musicdata.baidu.com" + value["lrcLink"].toString();
+                m_songInfo.m_lrcUrl = MusicCryptographicHash().decrypt("NmdYZm9tYkZjdHJOc1ZNNjIxSFdsc0NZc0xWa1RsM0dhMCtSaTdveGZPaz0=", URL_KEY) + value["lrcLink"].toString();
             }
         }
     }

@@ -11,18 +11,13 @@
 
 #include "musicabstractmovedialog.h"
 
-#define WEB_PLAYER     "http://music.daoapp.io/player?song="
+#define WEB_PLAYER     "d0FpN1NXRzF1Tk11TGFjTk5YYlpzcTduKzkxRDlzb01FVVlKU3gybDh4dGtOeHZVV1hyZGp3PT0="
 
-#define QQ_SHARE       "http://connect.qq.com/widget/shareqq/index.html?" \
-                       "url=%1&desc=%2&pics=%3&title=%4&summary=%5"
-#define RENREN_SHARE   "http://widget.renren.com/dialog/share?link=%1" \
-                       "&title=%2&image_src=%3"
-#define QQ_SPACE_SHARE "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?" \
-                       "url=%1&title=%2&pics=%3&summary=%4"
-#define QQ_MICBG_SHARE "http://share.v.t.qq.com/index.php?c=share&a=index" \
-                       "&site=%1&title=%2&pic=%3"
-#define SINA_SHARE     "http://service.weibo.com/share/share.php?" \
-                       "url=%1&pic=%2&title=%3"
+#define QQ_SHARE       "UlBic0d5OXhCUThoTWlLU3NGZlRUby9MVGhzdmZ2WGdva3ZzT3FzYXRpWXRjaS9MaXpiaG1GTmd6RzFTMG1BNlRaU3JNTEkySkJmd08vYVJ3c3hlNFczT2xUUnAvTWVrbE8yMzA4SkxGdFgvWUNqUUtWWXJydk9Jb1gyTUVYMDI="
+#define RENREN_SHARE   "MXNzTTYvK3FOUGExUVBMdi9BOS9tMDlWNUJxSW9pbHpBQW9ucisxUWtNZG51UjhPSXBWa3R6Z3VsSXNaNjZ3TmVydml1NmpEanBuam1nTTlGWHh4NnNlZEFHQmtrUFRT"
+#define QQ_SPACE_SHARE "WlA2UFBRQVJ2djExYlBwaTFzUVV6MlBLUDJxR0k0TzRudWZWbWdpb3pPL0JCb0dOdXRYcktvUVlFMFVmYnpCT3RVZVZ2VDZiSUNNKzMzYlpBVnZ0UEQxalc0S1ZlV2hjZFZONHVmczN2bmtVZFBuTXUxWXhDQzdveXFuSVByWFpDc1hyZEE9PQ=="
+#define QQ_MICBG_SHARE "bVIzdk1WZ3ZaWEFFQW1QcXhhUU8rNHNjcGpGTkRGc0dITytJVUs4a0dnRFNBQkV6Y1NleUgwM3pCbkxtcitxM2ZvREVrSTBWSytISjMxb09QdmRyeHJVRHlmb0ExcVFyUXRnWmswN1dUemc9"
+#define SINA_SHARE     "cGoxY3doN0ljQWRHZGR1Y1ZzZUhzci83S3NZSk95SG00RXFhdmFyQ1NGODVIa2FKT2UyYWIybGtWbTlnYW5qT3RCOGZNMTNuVGtUZnlOeVl2RWUzdFV5UXRHWT0="
 
 class QRCodeQWidget;
 

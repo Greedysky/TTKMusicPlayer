@@ -11,15 +11,15 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-const QString WY_SEARCH_URL        = "http://music.163.com/api/search/get";
-const QString WY_SEARCH_QUERY_URL  = "s=%1&type=1&limit=40&offset=%2";
-const QString WY_SONG_URL          = "http://music.163.com/api/song/detail?ids=[%1]";
-const QString WY_SONG_MV_URL       = "http://music.163.com/api/mv/detail?id=%1&type=mp4";
-const QString WY_SONG_PATH_URL     = "http://m1.music.126.net/%1/%2.mp3";
-const QString WY_SONG_PIC_URL      = "http://p4.music.126.net/%1/%2.jpg";
-const QString WY_SONG_LRC_URL      = "http://music.163.com/api/song/lyric?lv=-1&id=%1";
+const QString WY_SEARCH_URL        = "SFIwVWhHbEpXckhQT0VZUG5tUnBaYUNva2lUZXhSQnNuSkNBOGFMYlBhL2Z2YllBNXBWajFnPT0=";
+const QString WY_SEARCH_QUERY_URL  = "UUs1NUMwUk9yeExmUFVCakUrS29NNm5OQ05lYUV3ZzJPS3NLVW9lZXhNaGwrd2Za";
+const QString WY_SONG_URL          = "SkRzeTdTcHMvUVpaa01hcWdveklVK2FHbXRlRmRiTXYvYzRHdS9Hc01ZMllBaFlKNlp4RFBodHV0eERPd2haMEM3MjAzQT09";
+const QString WY_SONG_MV_URL       = "cmVKem5MSmhzNk1KeUFRcXJFU2xrcHU3cnhwWHo2TVBNOFIwOC8rSldoSThUbmhQRVd0NEhTSnZGMytkVlFENUZTZ1lDekFLUkJvPQ==";
+const QString WY_SONG_PATH_URL     = "bHp1OWliOUVIRS9sOWIvTDROc2ltMXJyaElUS1FUNS9kamhPUDB1Y2JPS3BqU1lJL3BiVlRBPT0=";
+const QString WY_SONG_PIC_URL      = "eEZpOHNEanlmUmxITG9PRHI4aElxcDRqY1F5VjE1SmtMYm9lV3Z0eVpuakpBWFV4aFNZbDF3PT0=";
+const QString WY_SONG_LRC_URL      = "TjNjL2ttNVR4cGluaEpwU1B2VzNucFhEWUdkRERkempFcThjWEIvMzMzMzVjaWVoR3ZNYXN5MHZsOE9sMTQ1TG1yeDNVQT09";
 
-const QByteArray WY_BASE_URL       = "http://music.163.com";
+const QByteArray WY_BASE_URL       = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
 const QByteArray WY_ENCRYPT_STRING = "3go8&$8*3*3h0k(2)2";
 
 /*! @brief The class to wangyi query download data from net.

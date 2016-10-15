@@ -23,8 +23,8 @@
 #include <QPushButton>
 
 #define QN_BUCKET       "music"
-#define QN_PRFIX        "http://o9zmxm4rh.bkt.clouddn.com"
-#define QN_UA_URL       "http://7xpa0g.com1.z0.glb.clouddn.com/cloud"
+#define QN_PRFIX        "bkdIdE5FTXFpalU3MmxKMG5OOFVLS0lWZ0tCdDRzOGtQemJ6QnN3TlN2VUc3SGp4"
+#define QN_UA_URL       "VlQxWWhUSjJzWjFTSkZRRFFqdnlPK3FJZ0JxbmlrcFoydjVCRlZ2a3hRdlBuRFhmOUZObW1STmxqNVVEWUJsdA=="
 
 MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -71,7 +71,7 @@ bool MusicCloudSharedSongTableWidget::getKey()
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(QN_UA_URL);
+    download->startToDownload(MusicCryptographicHash().decrypt(QN_UA_URL, URL_KEY));
 
     loop.exec();
     updateListToServer();
@@ -241,7 +241,7 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
         return;
     }
 
-    QString url = m_qnUploadData->getDownloadUrl(QN_PRFIX, it->toolTip());
+    QString url = m_qnUploadData->getDownloadUrl(MusicCryptographicHash().decrypt(QN_PRFIX, URL_KEY), it->toolTip());
     (new MusicDataDownloadThread( url, MusicUtils::Core::musicPrefix() + it->toolTip(),
          MusicDownLoadThreadAbstract::Download_Music, this))->startToDownload();
 }

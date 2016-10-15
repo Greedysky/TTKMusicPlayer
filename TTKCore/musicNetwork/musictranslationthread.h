@@ -11,7 +11,7 @@
 
 #include "musicnetworkabstract.h"
 
-const QString TRANSLATION_URL = "http://fanyi.baidu.com/v2transapi?from=%1&query=%2&to=%3";
+const QString TRANSLATION_URL = "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU=";
 
 /*! @brief The class of translation words thread.
  * @author Greedysky <greedysky@163.com>
