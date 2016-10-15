@@ -27,7 +27,7 @@ void MusicRadioChannelThread::startToDownload(const QString &)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash().decrypt(channelUrl, URL_KEY)));
+    request.setUrl(QUrl(MusicCryptographicHash::decryptData(channelUrl, URL_KEY)));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));

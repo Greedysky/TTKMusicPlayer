@@ -63,13 +63,13 @@ void MusicWYCommentsThread::startSearchSong(int index)
     }
 
     m_count = 0;
-    QUrl musicUrl = MusicCryptographicHash().decrypt(WY_SONG_COMMIT_URL, URL_KEY).arg(m_songID).arg(COMMIT_PAGE_SIZE*index);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY).arg(m_songID).arg(COMMIT_PAGE_SIZE*index);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

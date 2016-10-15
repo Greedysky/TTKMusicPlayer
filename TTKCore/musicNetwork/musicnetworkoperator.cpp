@@ -27,7 +27,7 @@ void MusicNetworkOperator::startToOperator()
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash().decrypt(IP_CHECK_URL, URL_KEY));
+    download->startToDownload(MusicCryptographicHash::decryptData(IP_CHECK_URL, URL_KEY));
 }
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)

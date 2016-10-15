@@ -33,7 +33,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash().decrypt(ACRUA_URL, URL_KEY));
+    download->startToDownload(MusicCryptographicHash::decryptData(ACRUA_URL, URL_KEY));
 
     loop.exec();
 
@@ -78,7 +78,7 @@ void MusicIdentifySongsThread::query(const QString &path)
     content.append(endBoundary);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash().decrypt(QUERY_URL, URL_KEY)));
+    request.setUrl(QUrl(MusicCryptographicHash::decryptData(QUERY_URL, URL_KEY)));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

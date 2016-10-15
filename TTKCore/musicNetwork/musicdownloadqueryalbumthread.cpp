@@ -115,19 +115,19 @@ QString MusicDownLoadQueryAlbumThread::getCurrentURL() const
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_WY, URL_KEY);
-        case 1:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_DX, URL_KEY);
-        case 2:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_QQ, URL_KEY);
-        case 3:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_XM, URL_KEY);
-        case 4:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_TT, URL_KEY);
-        case 5:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_BD, URL_KEY);
-        case 6:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_KW, URL_KEY);
-        case 7:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_KG, URL_KEY);
-        case 8:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_DM, URL_KEY);
-        case 9:  return MusicCryptographicHash().decrypt(MUSIC_ALBUM_MG, URL_KEY);
-        case 10: return MusicCryptographicHash().decrypt(MUSIC_ALBUM_MU, URL_KEY);
-        case 11: return MusicCryptographicHash().decrypt(MUSIC_ALBUM_EC, URL_KEY);
-        case 12: return MusicCryptographicHash().decrypt(MUSIC_ALBUM_YY, URL_KEY);
+        case 0:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_WY, URL_KEY);
+        case 1:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_DX, URL_KEY);
+        case 2:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_QQ, URL_KEY);
+        case 3:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_XM, URL_KEY);
+        case 4:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_TT, URL_KEY);
+        case 5:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_BD, URL_KEY);
+        case 6:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_KW, URL_KEY);
+        case 7:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_KG, URL_KEY);
+        case 8:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_DM, URL_KEY);
+        case 9:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MG, URL_KEY);
+        case 10: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MU, URL_KEY);
+        case 11: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_EC, URL_KEY);
+        case 12: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_YY, URL_KEY);
     }
     return QString();
 }

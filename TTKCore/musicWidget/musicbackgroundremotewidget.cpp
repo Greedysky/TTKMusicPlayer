@@ -113,7 +113,7 @@ void MusicBackgroundRemoteWidget::itemUserClicked(QListWidgetItem *item)
 
 void MusicBackgroundRemoteWidget::createUrls()
 {
-    QString prefix = MusicCryptographicHash().decrypt("NlNWQVlSdWFRcjZmdkN6UXdVRGprK2NMaTg5U3g3S0M2b3RDWE9mV0I3NGswa2NUSlZySzFONURtYk1hY2VveUpQL2w1Zz09", URL_KEY);
+    QString prefix = MusicCryptographicHash::decryptData("NlNWQVlSdWFRcjZmdkN6UXdVRGprK2NMaTg5U3g3S0M2b3RDWE9mV0I3NGswa2NUSlZySzFONURtYk1hY2VveUpQL2w1Zz09", URL_KEY);
     ////////////////////1
     m_urls << (QStringList()
            << prefix + "1392706532786_0.jpg" << prefix + "1392706533257_0.jpg"

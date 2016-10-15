@@ -24,7 +24,7 @@ void MusicDownLoadQueryAlbumTTThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryAlbumTTThread::startSearchSong(const QString &album)
 {
-    QUrl musicUrl = MusicCryptographicHash().decrypt(TT_SONG_ALBUM_URL, URL_KEY).arg(album);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_ALBUM_URL, URL_KEY).arg(album);
 
     if(m_reply)
     {
@@ -151,7 +151,7 @@ void MusicDownLoadQueryAlbumTTThread::downLoadFinished()
                                               QString::number(value["lang"].toInt()) + "<>" +
                                               value["company"].toString() + "<>" +
                                               QString::number(value["releaseYear"].toInt());
-                        musicInfo.m_lrcUrl = MusicCryptographicHash().decrypt(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
+                        musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
                         musicInfo.m_singerName = singerName;
                         musicInfo.m_songName = songName;

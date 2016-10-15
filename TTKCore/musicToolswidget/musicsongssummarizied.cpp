@@ -392,7 +392,7 @@ void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
 void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QString &time,
                                                   const QString &format, bool play)
 {
-    QString musicSong = MusicCryptographicHash().decrypt(name, DOWNLOAD_KEY);
+    QString musicSong = MusicCryptographicHash::decryptData(name, DOWNLOAD_KEY);
     const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     item->m_songs << MusicSong(path, 0, time, musicSong);

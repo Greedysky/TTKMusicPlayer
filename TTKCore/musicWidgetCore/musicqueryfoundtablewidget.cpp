@@ -178,7 +178,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
     {
         if(attr.m_bitrate == findMinTag.first())
         {
-            QString musicEnSong = MusicCryptographicHash().encrypt(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
+            QString musicEnSong = MusicCryptographicHash::encryptData(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
             QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
             QEventLoop loop(this);

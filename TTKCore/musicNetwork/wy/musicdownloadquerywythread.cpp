@@ -31,16 +31,16 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash().decrypt(WY_SEARCH_URL, URL_KEY)));
+    request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SEARCH_URL, URL_KEY)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash().decrypt(WY_SEARCH_QUERY_URL, URL_KEY).arg(text).arg(0).toUtf8());
+    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(WY_SEARCH_QUERY_URL, URL_KEY).arg(text).arg(0).toUtf8());
     connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -125,7 +125,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     info.m_songName = value["name"].toString();
                     info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     info.m_songId = QString::number(value["id"].toInt());
-                    info.m_lrcUrl = MusicCryptographicHash().decrypt(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
+                    info.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
 
                     QVariantMap albumObject = value["album"].toMap();
                     info.m_smallPicUrl = albumObject["picUrl"].toString();
@@ -275,10 +275,10 @@ void MusicDownLoadQueryWYThread::startSongListQuery()
     foreach(const QString &id, m_songIds)
     {
         QNetworkRequest request;
-        request.setUrl(QUrl(MusicCryptographicHash().decrypt(WY_SONG_URL, URL_KEY).arg(id)));
+        request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_URL, URL_KEY).arg(id)));
         request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.setRawHeader("Origin", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
-        request.setRawHeader("Referer", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
+        request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+        request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
     #ifndef QT_NO_SSL
         QSslConfiguration sslConfig = request.sslConfiguration();
         sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -295,10 +295,10 @@ void MusicDownLoadQueryWYThread::startMVListQuery()
     foreach(const QString &id, m_songIds)
     {
         QNetworkRequest request;
-        request.setUrl(QUrl(MusicCryptographicHash().decrypt(WY_SONG_MV_URL, URL_KEY).arg(id)));
+        request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_MV_URL, URL_KEY).arg(id)));
         request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.setRawHeader("Origin", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
-        request.setRawHeader("Referer", MusicCryptographicHash().decrypt(WY_BASE_URL, URL_KEY).toUtf8());
+        request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+        request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
     #ifndef QT_NO_SSL
         QSslConfiguration sslConfig = request.sslConfiguration();
         sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -318,7 +318,7 @@ void MusicDownLoadQueryWYThread::readFromMusicSongAttribute(MusicObject::MusicSo
     attr.m_bitrate = bitrate;
     attr.m_format = key.value("extension").toString();
     attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-    attr.m_url = MusicCryptographicHash().decrypt(WY_SONG_PATH_URL, URL_KEY).arg(encryptedId(dfsId)).arg(dfsId);
+    attr.m_url = MusicCryptographicHash::decryptData(WY_SONG_PATH_URL, URL_KEY).arg(encryptedId(dfsId)).arg(dfsId);
     info->m_songAttrs.append(attr);
 }
 
