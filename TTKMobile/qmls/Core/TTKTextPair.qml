@@ -7,7 +7,6 @@
    =================================================*/
 
 import QtQuick 2.5
-import QtQuick.Layouts 1.1
 
 Rectangle {
     id: ttkTextPair
@@ -19,18 +18,17 @@ Rectangle {
     property alias textSizeFirst: firstTextArea.text
     property alias textSizeSecond: secondTextArea.text
 
-    ColumnLayout {
-        anchors.fill: parent
-        spacing: 0
+    Text {
+        id: firstTextArea
+        color: ttkTheme.gray
+    }
 
-        Text {
-            id: firstTextArea
-            color: ttkTheme.gray
+    Text {
+        anchors {
+            top: firstTextArea.bottom
+            topMargin: dpWidth(20)
         }
-
-        Text {
-            id: secondTextArea
-            color: ttkTheme.black
-        }
+        id: secondTextArea
+        color: ttkTheme.black
     }
 }

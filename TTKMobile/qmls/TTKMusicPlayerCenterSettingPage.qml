@@ -80,7 +80,7 @@ Rectangle{
                     id: wrapper1
                     width: dpWidth(60)
                     height: dpHeight(60)
-                    radius: 6
+                    radius: 10
 
                     Rectangle {
                         id: imageArea1
@@ -157,7 +157,7 @@ Rectangle{
                     id: wrapper2
                     width: dpWidth(60)
                     height: dpHeight(60)
-                    radius: 6
+                    radius: 10
 
                     Rectangle {
                         id: imageArea2

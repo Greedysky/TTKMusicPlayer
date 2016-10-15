@@ -46,8 +46,17 @@ public:
      */
 
     Q_INVOKABLE bool readTagFromFile(const QString &path);
+    /*!
+     * Open tag reader object by file path.
+     */
     Q_INVOKABLE QString getTag(int index);
+    /*!
+     * Get music song tag.
+     */
     Q_INVOKABLE void closeTagFromFile();
+    /*!
+     * Close tag reader object.
+     */
 
     void checkTheFileNeededExist();
     /*!
