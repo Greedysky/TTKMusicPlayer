@@ -12,20 +12,19 @@
 #include "musicdownloadquerythreadabstract.h"
 
 //mulity query
-const QString MUSIC_ALBUM_WY = "http://itwusun.com/search/wy/album_%1.html?f=json&sign=itwusun";     //wangyiMusic
-const QString MUSIC_ALBUM_DX = "http://itwusun.com/search/dx/album_%1.html?f=json&sign=itwusun";     //dianxinMusic
-const QString MUSIC_ALBUM_QQ = "http://itwusun.com/search/aa/album_%1.html?f=json&sign=itwusun";     //qqMusic
-const QString MUSIC_ALBUM_XM = "http://itwusun.com/search/xm/album_%1.html?f=json&sign=itwusun";     //xiamiMusic
-const QString MUSIC_ALBUM_TT = "http://itwusun.com/search/tt/album_%1.html?f=json&sign=itwusun";     //ttpodMusic
-const QString MUSIC_ALBUM_BD = "http://itwusun.com/search/bd/album_%1.html?f=json&sign=itwusun";     //baiduMusic
-const QString MUSIC_ALBUM_KW = "http://itwusun.com/search/kw/album_%1.html?f=json&sign=itwusun";     //kuwoMusic
-const QString MUSIC_ALBUM_KG = "http://itwusun.com/search/kg/album_%1.html?f=json&sign=itwusun";     //kuhouMusic
-const QString MUSIC_ALBUM_DM = "http://itwusun.com/search/dm/album_%1.html?f=json&sign=itwusun";     //duomiMusic
-const QString MUSIC_ALBUM_MG = "http://itwusun.com/search/mg/album_%1.html?f=json&sign=itwusun";     //miguMusic
-const QString MUSIC_ALBUM_MU = "http://itwusun.com/search/miui/album_%1.html?f=json&sign=itwusun";   //dingdongMusic
-const QString MUSIC_ALBUM_EC = "http://itwusun.com/search/echo/album_%1.html?f=json&sign=itwusun";   //echoMusic
-const QString MUSIC_ALBUM_YY = "http://itwusun.com/search/yyt/album_%1.html?f=json&sign=itwusun";    //yinyuetaiMusic
-
+const QString MUSIC_ALBUM_WY = "http://api.itwusun.com/music/album/wy/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //wangyiMusic
+const QString MUSIC_ALBUM_DX = "http://api.itwusun.com/music/album/dx/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //dianxinMusic
+const QString MUSIC_ALBUM_QQ = "http://api.itwusun.com/music/album/qq/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //qqMusic
+const QString MUSIC_ALBUM_XM = "http://api.itwusun.com/music/album/xm/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //xiamiMusic
+const QString MUSIC_ALBUM_TT = "http://api.itwusun.com/music/album/tt/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //ttpodMusic
+const QString MUSIC_ALBUM_BD = "http://api.itwusun.com/music/album/bd/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //baiduMusic
+const QString MUSIC_ALBUM_KW = "http://api.itwusun.com/music/album/kw/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //kuwoMusic
+const QString MUSIC_ALBUM_KG = "http://api.itwusun.com/music/album/kg/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //kuhouMusic
+const QString MUSIC_ALBUM_DM = "http://api.itwusun.com/music/album/dm/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //duomiMusic
+const QString MUSIC_ALBUM_MG = "http://api.itwusun.com/music/album/mg/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";     //miguMusic
+const QString MUSIC_ALBUM_MU = "http://api.itwusun.com/music/album/miui/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";   //dingdongMusic
+const QString MUSIC_ALBUM_EC = "http://api.itwusun.com/music/album/echo/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";   //echoMusic
+const QString MUSIC_ALBUM_YY = "http://api.itwusun.com/music/album/yyt/%1?format=json&sign=a5cc0a8797539d3a1a4f7aeca5b695b9";    //yinyuetaiMusic
 
 /*! @brief The class to multiple query album download data from net.
  * @author Greedysky <greedysky@163.com>
