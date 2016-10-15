@@ -88,6 +88,22 @@ QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QRect &rect,
     return image;
 }
 
+QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size)
+{
+    if(src.isNull())
+    {
+        return QPixmap();
+    }
+
+    QPixmap image(mask);
+    QPainter painter(&image);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.drawPixmap(0, 0, src.scaled(size));
+    painter.end();
+
+    return image;
+}
+
 QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());

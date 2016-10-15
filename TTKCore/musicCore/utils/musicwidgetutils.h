@@ -59,6 +59,10 @@ namespace MusicUtils
         /*!
          * Set pixmap to round by ratio.
          */
+        MUSIC_CORE_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size);
+        /*!
+         * Set pixmap to round by ratio.
+         */
         MUSIC_CORE_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
         /*!
          * Get bitmap mask from rect.

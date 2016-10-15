@@ -600,6 +600,7 @@
         <file alias="btn_down_arrow">../TTKResource/usermanager/btn_down_arrow.png</file>
         <file alias="btn_up_arrow">../TTKResource/usermanager/btn_up_arrow.png</file>
         <file alias="btn_setting">../TTKResource/usermanager/btn_setting.png</file>
+        <file alias="lb_mask">../TTKResource/usermanager/lb_mask.png</file>
     </qresource>
     <qresource prefix="/emoji">
         <file alias="db">../TTKResource/emoji/db</file>
