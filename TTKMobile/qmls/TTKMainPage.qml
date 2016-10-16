@@ -19,7 +19,9 @@ Item {
     Connections {
         target: TTK_APP
         onImportSongFinished: {
-            funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
+            if(index === ttkTheme.music_normal_list) {
+                funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
+            }
         }
         onCurrentIndexChanged: {
             funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);

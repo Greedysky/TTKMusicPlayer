@@ -30,6 +30,28 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    Connections {
+        target: TTK_APP
+        onImportSongFinished: {
+            if(index === ttkTheme.music_download_list) {
+                playlistModel.clear();
+                var names = TTK_APP.mediaNames(ttkTheme.music_download_list);
+                var artists = TTK_APP.mediaArtists(ttkTheme.music_download_list);
+                for(var i=0; i<names.length; ++i) {
+                    var info = {
+                        title: names[i],
+                        artist: artists[i]
+                    }
+                    playlistModel.append(info);
+                }
+                itemListView.currentIndex = TTK_APP.getCurrentIndex();
+            }
+        }
+        onCurrentIndexChanged: {
+            itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        }
+    }
+
     TTKMusicSongSettingPage {
         id: ttkMusicSongSettingPage
     }

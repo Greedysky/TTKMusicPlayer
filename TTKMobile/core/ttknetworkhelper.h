@@ -59,12 +59,16 @@ Q_SIGNALS:
     /*!
      * Create searched downlaod song by bitrate.
      */
-    void downloadFinished(const QString &key, const QString &path);
+    void downForSearchSongFinished(const QString &key, const QString &path);
     /*!
      * Download (cached) song finished.
      */
+    void downForDownloadSongFinished(const QString &path);
+    /*!
+     * Download (download) song finished.
+     */
 
-public slots:
+private slots:
     void downLoadDataChanged();
     /*!
      * Send download data from net.

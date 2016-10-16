@@ -30,6 +30,13 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    Connections {
+        target: TTK_APP
+        onCurrentIndexChanged: {
+            itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        }
+    }
+
     TTKMusicSongSettingPage {
         id: ttkMusicSongSettingPage
     }

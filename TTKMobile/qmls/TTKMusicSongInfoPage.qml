@@ -35,194 +35,195 @@ Rectangle {
             return dpHeight(80);
         }
 
-            TTKTextPair {
-                id: topTitleArea
-                height: mainArea.getFixedHeight()
-                anchors {
-                    left: parent.left
-                    leftMargin: dpWidth(20)
-                }
-                textFirst: qsTr("歌曲信息")
-                textSecond: qsTr("暂时不支持修改歌曲信息")
+        TTKTextPair {
+            id: topTitleArea
+            height: mainArea.getFixedHeight()
+            anchors {
+                left: parent.left
+                leftMargin: dpWidth(20)
+            }
+            textFirst: qsTr("歌曲信息")
+            textSecond: qsTr("暂时不支持修改歌曲信息")
+        }
+
+        ScrollView {
+            width: mainArea.width
+            height: mainArea.height - mainArea.getFixedHeight() - dpHeight(20);
+            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+            verticalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+            clip: true
+            anchors {
+                top: topTitleArea.bottom
+                left: parent.left
             }
 
-            ScrollView {
-                width: mainArea.width
-                height: mainArea.height - mainArea.getFixedHeight() - dpHeight(20);
-                horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                verticalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                clip: true
+            Rectangle {
                 anchors {
-                    top: topTitleArea.bottom
-                    left: parent.left
+                    right: parent.right
+                    top: parent.top
                 }
+                width: parent.width
+                height: mainArea.getFixedHeight()*9
 
-                Rectangle {
-                    anchors {
-                        right: parent.right
-                        top: parent.top
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 0
+
+                    TTKTextPair {
+                        id: songNameArea
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+                        textFirst: qsTr("歌名")
+                        textSecond: ttkMusicSongSettingPage.songName
                     }
-                    width: parent.width
-                    height: mainArea.getFixedHeight()*9
 
-                    ColumnLayout {
-                        anchors.fill: parent
-                        spacing: 0
+                    TTKTextPair {
+                        id: singerNameArea
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+                        textFirst: qsTr("歌手")
+                        textSecond: ttkMusicSongSettingPage.singerName
+                    }
 
-                        TTKTextPair {
-                            id: songNameArea
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-                            textFirst: qsTr("歌名")
-                            textSecond: ttkMusicSongSettingPage.songName
+                    TTKTextPair {
+                        id: albumNameArea
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+                        textFirst: qsTr("专辑")
+                    }
+
+                    Rectangle {
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
                         }
 
-                        TTKTextPair {
-                            id: singerNameArea
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-                            textFirst: qsTr("歌手")
-                            textSecond: ttkMusicSongSettingPage.singerName
-                        }
+                        RowLayout {
+                            spacing: 0
+                            anchors.fill: parent
 
-                        TTKTextPair {
-                            id: albumNameArea
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-                            textFirst: qsTr("专辑")
-                        }
-
-                        Rectangle {
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
+                            TTKTextPair {
+                                id: formatArea
+                                textFirst: qsTr("格式")
                             }
 
-                            RowLayout {
-                                spacing: 0
-                                anchors.fill: parent
-
-                                TTKTextPair {
-                                    id: formatArea
-                                    textFirst: qsTr("格式")
+                            TTKTextPair {
+                                id: bitrateArea
+                                anchors {
+                                    left: parent.right
+                                    leftMargin: mainArea.width/2
                                 }
-
-                                TTKTextPair {
-                                    id: bitrateArea
-                                    anchors {
-                                        left: parent.right
-                                        leftMargin: mainArea.width/2
-                                    }
-                                    textFirst: qsTr("比特率")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-
-                            RowLayout {
-                                spacing: 0
-                                anchors.fill: parent
-
-                                TTKTextPair {
-                                    id: sampleArea
-                                    textFirst: qsTr("采样率")
-                                }
-
-                                TTKTextPair {
-                                    id: yearArea
-                                    anchors {
-                                        left: parent.right
-                                        leftMargin: mainArea.width/2
-                                    }
-                                    textFirst: qsTr("年份")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            Layout.preferredWidth: parent.width
-                            Layout.preferredHeight: mainArea.getFixedHeight()
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-
-                            RowLayout {
-                                spacing: 0
-                                anchors.fill: parent
-
-                                TTKTextPair {
-                                    id: fileSizeArea
-                                    textFirst: qsTr("文件大小")
-                                }
-
-                                TTKTextPair {
-                                    id: durationArea
-                                    anchors {
-                                        left: parent.right
-                                        leftMargin: mainArea.width/2
-                                    }
-                                    textFirst: qsTr("时长")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: parent.width - dpWidth(20)
-                            Layout.preferredHeight: mainArea.getFixedHeight()*2
-                            anchors {
-                                left: parent.left
-                                leftMargin: dpWidth(20)
-                            }
-
-                            ColumnLayout {
-                                anchors.fill: parent
-                                spacing: 0
-
-                                Text {
-                                    id: firstTextArea
-                                    color: ttkTheme.gray
-                                    text: qsTr("文件路径")
-                                }
-
-                                TextArea {
-                                    id: filePathArea
-                                    enabled: false
-                                    Layout.preferredWidth: mainArea.width - dpWidth(20)
-                                    Layout.preferredHeight: mainArea.getFixedHeight()*2
-                                    anchors {
-                                        left: parent.left
-                                        leftMargin: dpWidth(-5)
-                                    }
-                                    textColor: ttkTheme.black
-                                }
+                                textFirst: qsTr("比特率")
                             }
                         }
                     }
+
+                    Rectangle {
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+
+                        RowLayout {
+                            spacing: 0
+                            anchors.fill: parent
+
+                            TTKTextPair {
+                                id: sampleArea
+                                textFirst: qsTr("采样率")
+                            }
+
+                            TTKTextPair {
+                                id: yearArea
+                                anchors {
+                                    left: parent.right
+                                    leftMargin: mainArea.width/2
+                                }
+                                textFirst: qsTr("年份")
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: mainArea.getFixedHeight()
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+
+                        RowLayout {
+                            spacing: 0
+                            anchors.fill: parent
+
+                            TTKTextPair {
+                                id: fileSizeArea
+                                textFirst: qsTr("文件大小")
+                            }
+
+                            TTKTextPair {
+                                id: durationArea
+                                anchors {
+                                    left: parent.right
+                                    leftMargin: mainArea.width/2
+                                }
+                                textFirst: qsTr("时长")
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: parent.width - dpWidth(20)
+                        Layout.preferredHeight: mainArea.getFixedHeight()*2
+                        anchors {
+                            left: parent.left
+                            leftMargin: dpWidth(20)
+                        }
+
+                        ColumnLayout {
+                            anchors.fill: parent
+                            spacing: 0
+
+                            Text {
+                                id: firstTextArea
+                                color: ttkTheme.gray
+                                text: qsTr("文件路径")
+                            }
+
+                            TextArea {
+                                id: filePathArea
+                                enabled: false
+                                Layout.preferredWidth: mainArea.width - dpWidth(20)
+                                Layout.preferredHeight: mainArea.getFixedHeight()*2
+                                wrapMode: Text.WrapAnywhere
+                                anchors {
+                                    left: parent.left
+                                    leftMargin: dpWidth(-5)
+                                }
+                                textColor: ttkTheme.black
+                            }
+                        }
+                    }
                 }
             }
+        }
     }
 
     onVisibleChanged: {

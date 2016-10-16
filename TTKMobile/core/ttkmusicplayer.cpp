@@ -5,6 +5,8 @@
 ///qmmp incldue
 #include "soundcore.h"
 
+#define NORMAL_PREAMP   15
+
 TTKMusicPlayer::TTKMusicPlayer(QObject *parent)
     : QObject(parent)
 {
@@ -134,13 +136,11 @@ QStringList TTKMusicPlayer::getEqEffectValue()
 void TTKMusicPlayer::getEqEffectSettings()
 {
     EqSettings eq = m_music->eqSettings();
-    QString value("0,");
+    QString value = QString::number(eq.preamp() - NORMAL_PREAMP);
     for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
     {
-        value.append(QString("%1,").arg(eq.gain(i)));
+        value.append(QString(",%1").arg(eq.gain(i)));
     }
-
-    value.chop(1);
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, value);
 }
 
@@ -260,7 +260,7 @@ void TTKMusicPlayer::setEqEffect(const QList<int> &hz)
     }
 
     EqSettings eq = m_music->eqSettings();
-    eq.setPreamp(15 + hz[0]);
+    eq.setPreamp(NORMAL_PREAMP + hz[0]);
     eq.setEnabled(true);
     for(int i=0; i<EqSettings::EQ_BANDS_10; ++i)
     {

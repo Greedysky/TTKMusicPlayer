@@ -56,12 +56,40 @@ MusicApplication::~MusicApplication()
 
 void MusicApplication::importOtherMusicSongs(const QStringList &filelist)
 {
-    m_songsSummarizied->importOtherMusicSongs(filelist);
+    m_songsSummarizied->importOtherMusicSongs(MUSIC_NORMAL_LIST, filelist);
     if(m_songsSummarizied->getCurrentIndex() == MUSIC_NORMAL_LIST)
     {
         m_ttkPlaylist->appendMedia(filelist);
     }
-    emit importSongFinished();
+    emit importSongFinished(MUSIC_NORMAL_LIST);
+}
+
+void MusicApplication::importLovestMusicSongs()
+{
+    QString filePath = m_ttkPlaylist->currentMediaString();
+    if(!checkLovestMusicSong())
+    {
+        m_songsSummarizied->importOtherMusicSongs(MUSIC_LOVEST_LIST, QStringList(filePath));
+        if(m_songsSummarizied->getCurrentIndex() == MUSIC_LOVEST_LIST)
+        {
+            m_ttkPlaylist->appendMedia(filePath);
+        }
+    }
+    else
+    {
+        m_songsSummarizied->removeMusicSongs(MUSIC_LOVEST_LIST, filePath);
+    }
+    emit importSongFinished(MUSIC_LOVEST_LIST);
+}
+
+void MusicApplication::importDownloadMusicSongs(const QString &path)
+{
+    m_songsSummarizied->importOtherMusicSongs(MUSIC_DOWNLOAD_LIST, QStringList(path));
+    if(m_songsSummarizied->getCurrentIndex() == MUSIC_DOWNLOAD_LIST)
+    {
+        m_ttkPlaylist->appendMedia(path);
+    }
+    emit importSongFinished(MUSIC_DOWNLOAD_LIST);
 }
 
 void MusicApplication::importNetworkMusicSongs(const QString &key, const QString &path)
@@ -71,6 +99,11 @@ void MusicApplication::importNetworkMusicSongs(const QString &key, const QString
     m_songsSummarizied->setToolBoxIndex(MUSIC_RECENT_LIST);
     m_ttkPlaylist->addMedia( m_songsSummarizied->getMusicSongsFilePath(MUSIC_RECENT_LIST) );
     m_ttkPlaylist->setCurrentIndex( m_ttkPlaylist->mediaCount() - 1);
+}
+
+bool MusicApplication::checkLovestMusicSong()
+{
+    return m_songsSummarizied->getMusicSongsFilePath(MUSIC_LOVEST_LIST).contains(m_ttkPlaylist->currentMediaString());
 }
 
 bool MusicApplication::empty() const
@@ -258,7 +291,7 @@ void MusicApplication::currentMusicSongChanged(int index)
     m_downloadStatus->musicCheckHasLrcAlready();
     QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(mediaArtist()).arg(0).arg(SKN_FILE);
     M_BACKGROUND_PTR->setMBackground(path);
-    m_songsSummarizied->importRecentMusicSongs(index);
+    m_songsSummarizied->setRecentMusicSongs(index);
     emit currentIndexChanged(index);
 }
 

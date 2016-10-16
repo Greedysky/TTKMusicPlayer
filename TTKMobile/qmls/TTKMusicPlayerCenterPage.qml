@@ -92,6 +92,8 @@ Item {
             musicPlayerShowTitle.text = TTK_APP.mediaName();
             musicPlayerShowArtist.text = "- " + TTK_APP.mediaArtist() + " -";
             ttkMusicPlayerCenterSettingPage.text = musicPlayerShowTitle.text;
+            lovestMode.source = TTK_APP.checkLovestMusicSong() ? "qrc:/image/player_btn_favorited_normal"
+                                                               : "qrc:/image/player_btn_favorite_normal"
         }
         onUpdateCurrentArtist: {
             artistImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/widget_default_album_middle"
@@ -492,12 +494,22 @@ Item {
                         anchors.fill: parent
 
                         TTKImageButton {
-                            source: "qrc:/image/player_btn_favorite_normal"
+                            id: lovestMode
+                            source: TTK_APP.checkLovestMusicSong() ? "qrc:/image/player_btn_favorited_normal"
+                                                                   : "qrc:/image/player_btn_favorite_normal"
                             Layout.preferredWidth: dpWidth(70)
                             Layout.preferredHeight: dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
-
+                                TTK_APP.importLovestMusicSongs();
+                                ttkFlyInOutBox.start();
+                                if(TTK_APP.checkLovestMusicSong()) {
+                                    source = "qrc:/image/player_btn_favorited_normal";
+                                    ttkFlyInOutBox.text = qsTr("已加入到我的最爱")
+                                }else{
+                                    source = "qrc:/image/player_btn_favorite_normal";
+                                    ttkFlyInOutBox.text = qsTr("已从我的最爱中移除")
+                                }
                             }
                         }
 

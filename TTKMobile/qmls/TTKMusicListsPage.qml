@@ -19,15 +19,17 @@ Item {
     Connections {
         target: TTK_APP
         onImportSongFinished: {
-            playlistModel.clear();
-            var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-            var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
-            for(var i=0; i<names.length; ++i) {
-                var info = {
-                    title: names[i],
-                    artist: artists[i]
-                };
-                playlistModel.append(info);
+            if(index === ttkTheme.music_normal_list) {
+                playlistModel.clear();
+                var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
+                var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
+                for(var i=0; i<names.length; ++i) {
+                    var info = {
+                        title: names[i],
+                        artist: artists[i]
+                    };
+                    playlistModel.append(info);
+                }
             }
         }
         onCurrentIndexChanged: {
@@ -53,13 +55,6 @@ Item {
         ttkMusicListsMorePage.visible = false;
         ttkMusicSongSettingPage.visible = false;
     }
-
-//    Keys.onReleased: {
-//        if(event.key === Qt.Key_Back) {
-//            ttkMusicListsMorePage.visible = false;
-//            ttkMusicSongSettingPage.visible = false;
-//        }
-//    }
 
     TTKMusicSongSettingPage {
         id: ttkMusicSongSettingPage

@@ -80,7 +80,7 @@ void TTKNetworkHelper::searchDataDwonloadFinished()
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
-    emit downloadFinished( musicEnSong, downloadName );
+    emit downForSearchSongFinished( musicEnSong, downloadName );
 }
 
 void TTKNetworkHelper::dataForDownloadSong()
@@ -138,10 +138,16 @@ void TTKNetworkHelper::downForDownloadSong(int bitrate)
         {
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             musicSong = QString("%1%2.%3").arg(MusicUtils::Core::musicPrefix()).arg(musicSong).arg(musicAttr.m_format);
-            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, musicSong,
-                                                    MusicDownLoadThreadAbstract::Download_Music, this);
-//            connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
-            downSong->startToDownload();
+            if(!QFile::exists(musicSong))
+            {
+                MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, musicSong,
+                                                        MusicDownLoadThreadAbstract::Download_Music, this);
+                QEventLoop loop(this);
+                connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+                downSong->startToDownload();
+                loop.exec();
+                emit downForDownloadSongFinished(musicSong);
+            }
             return;
         }
     }

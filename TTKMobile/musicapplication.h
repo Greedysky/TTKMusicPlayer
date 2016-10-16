@@ -38,9 +38,22 @@ public:
     /*!
      * Input orther imported music datas into container.
      */
+    Q_INVOKABLE void importLovestMusicSongs();
+    /*!
+     * Input lovest imported music datas into container.
+     */
+    Q_INVOKABLE void importDownloadMusicSongs(const QString &path);
+    /*!
+     * Input network download imported music datas into container.
+     */
     Q_INVOKABLE void importNetworkMusicSongs(const QString &key, const QString &path);
     /*!
-     * Input network imported music datas into container.
+     * Input network cached imported music datas into container.
+     */
+
+    Q_INVOKABLE bool checkLovestMusicSong();
+    /*!
+     * Check current song is in the lovest container or not.
      */
 
     Q_INVOKABLE bool empty() const;
@@ -51,6 +64,7 @@ public:
     /*!
      * Get current medias count.
      */
+
     Q_INVOKABLE QString mediaName() const;
     /*!
      * Get play music media name.
@@ -137,7 +151,7 @@ signals:
     /*!
      * Download current bg artist image finished emit.
      */
-    void importSongFinished();
+    void importSongFinished(int index);
     /*!
      * Imported music datas into container finished emit.
      */

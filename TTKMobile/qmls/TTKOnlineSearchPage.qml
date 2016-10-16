@@ -30,9 +30,13 @@ Item {
             playlistModel.append(info);
         }
 
-        onDownloadFinished: {
+        onDownForSearchSongFinished: {
             TTK_APP.importNetworkMusicSongs(key, path);
         }
+    }
+
+    TTKMusicSongSettingPage {
+        id: ttkMusicSongSettingPage
     }
 
     ColumnLayout {
@@ -63,7 +67,7 @@ Item {
 
                 TTKLineInput {
                     id: searchInput
-                    Layout.preferredWidth: dpWidth(ttkMainWindow.width)
+                    Layout.preferredWidth: ttkOnlineSearchPage.width - dpWidth(100)
                     Layout.preferredHeight: dpHeight(33)
                     hint: "Big Bang"
                     fontSize: parent.height/3
@@ -101,6 +105,14 @@ Item {
                         width: ttkMainWindow.width
                         height: dpHeight(70)
                         color: ttkTheme.white
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                searedSongList.currentIndex = index;
+                                TTK_NETWORK.setCurrentIndex(index);
+                            }
+                        }
 
                         Rectangle {
                             width: ttkMainWindow.width
@@ -170,6 +182,11 @@ Item {
                                 rightMargin: dpHeight(5)
                             }
                             source: "qrc:/image/ic_playlist_add_normal"
+                            onPressed: {
+                                ttkMusicSongSettingPage.songName = title;
+                                ttkMusicSongSettingPage.singerName = artist;
+                                ttkMusicSongSettingPage.visible = true;
+                            }
                         }
 
                         Text {
@@ -186,14 +203,6 @@ Item {
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
                             color: ttkTheme.gray
-                        }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                searedSongList.currentIndex = index;
-                                TTK_NETWORK.setCurrentIndex(index);
-                            }
                         }
                     }
                 }

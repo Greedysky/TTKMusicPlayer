@@ -49,6 +49,11 @@ Rectangle {
                 itemListModel.append({title: bitrateString, bit: bitrate});
             }
         }
+        onDownForDownloadSongFinished: {
+            if(path.length !== 0) {
+                TTK_APP.importDownloadMusicSongs(path);
+            }
+        }
     }
 
     MouseArea {
@@ -147,8 +152,9 @@ Rectangle {
             enabled: false
             onPressed: {
                 if(songBitrate > 0) {
-                    TTK_NETWORK.setCurrentIndex(-1, songBitrate);
                     ttkMusicSongDownloadPage.visible = false;
+                    TTK_NETWORK.setCurrentIndex(-1, songBitrate);
+
                     ttkFlyInOutBox.text = qsTr("已加入下载列表");
                     ttkFlyInOutBox.start();
                 }

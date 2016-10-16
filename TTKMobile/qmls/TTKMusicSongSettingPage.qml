@@ -27,6 +27,15 @@ Rectangle{
         id: ttkMusicSongInfoPage
     }
 
+    TTKMusicSongSharedPage {
+        id: ttkMusicSongSharedPage
+    }
+
+    TTKMusicSongDownloadPage {
+        id: ttkMusicSongDownloadPage
+        text: singerName + "-" + songName;
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -109,6 +118,28 @@ Rectangle{
                         horizontalAlignment: Qt.AlignHCenter
                         width: parent.width
                         text: title
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressed: {
+                            switch(index)
+                            {
+                                case 0: break;
+                                case 1:
+                                    ttkMusicSongSettingPage.visible = false;
+                                    ttkMusicSongDownloadPage.visible = true;
+                                    break;
+                                case 2:
+                                    ttkMusicSongSettingPage.visible = false;
+                                    ttkMusicSongSharedPage.visible = true;
+                                    break;
+                                case 3: break;
+                                case 4: break;
+                                case 5: break;
+                                case 6: break;
+                            }
+                        }
                     }
                 }
 
@@ -279,6 +310,8 @@ Rectangle{
 
     onXChanged: {
         ttkMusicSongInfoPage.visible = false;
+        ttkMusicSongSharedPage.visible = false;
+        ttkMusicSongDownloadPage.visible = false;
     }
 
     onVisibleChanged: {

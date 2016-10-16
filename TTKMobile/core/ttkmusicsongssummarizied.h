@@ -36,21 +36,31 @@ public:
     /*!
      * Get music data from container.
      */
+
     inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
     /*!
      * Get music datas from container.
      */
-    void importOtherMusicSongs(const QStringList &filelist);
+    void importOtherMusicSongs(int index, const QStringList &filelist);
     /*!
      * Input orther imported music datas into container.
-     */
-    void importRecentMusicSongs(int index);
-    /*!
-     * Input network imported music datas into container.
      */
     void importNetworkMusicSongs(const QString &key, const QString &path);
     /*!
      * Input network imported music datas into container.
+     */
+    void setRecentMusicSongs(int index);
+    /*!
+     * Input recent imported music datas into container.
+     */
+
+    void removeMusicSongs(int tool, int index);
+    /*!
+     * Remove music data from container.
+     */
+    void removeMusicSongs(int tool, const QString &path);
+    /*!
+     * Remove music data from container.
      */
 
     QStringList getMusicSongsFileName(int index) const;
