@@ -30,6 +30,38 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    property int functionClickedIndex: -1
+
+    function removeItemFromList() {
+        playlistModel.remove(functionClickedIndex);
+        TTK_APP.removeMusicSongs(functionClickedIndex);
+    }
+
+    Connections {
+        target: TTK_APP
+        onImportSongFinished: {
+            if(index === ttkTheme.music_lovest_list) {
+                playlistModel.clear();
+                var names = TTK_APP.mediaNames(ttkTheme.music_lovest_list);
+                var artists = TTK_APP.mediaArtists(ttkTheme.music_lovest_list);
+                for(var i=0; i<names.length; ++i) {
+                    var info = {
+                        title: names[i],
+                        artist: artists[i]
+                    }
+                    playlistModel.append(info);
+                }
+                itemListView.currentIndex = TTK_APP.getCurrentIndex();
+            }
+        }
+        onCurrentIndexChanged: {
+            itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        }
+        onRemoveItemFromPlayerCenter: {
+            playlistModel.remove(index);
+        }
+    }
+
     TTKMusicSongSettingPage {
         id: ttkMusicSongSettingPage
     }
@@ -161,6 +193,7 @@ Item {
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onPressed: {
+                                functionClickedIndex = index;
                                 ttkMusicSongSettingPage.songName = title;
                                 ttkMusicSongSettingPage.singerName = artist;
                                 ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_lovest_list, index);

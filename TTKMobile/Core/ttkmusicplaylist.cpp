@@ -30,6 +30,20 @@ void TTKMusicPlaylist::addMedia(const QStringList &items)
     appendMedia(items);
 }
 
+void TTKMusicPlaylist::removeMedia(const QString &content)
+{
+    m_mediaList.removeOne(content);
+}
+
+void TTKMusicPlaylist::removeMedia(int index)
+{
+    if(index < 0 || index >= m_mediaList.count())
+    {
+        return;
+    }
+    m_mediaList.removeAt(index);
+}
+
 QString TTKMusicPlaylist::currentMediaString() const
 {
     if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())

@@ -50,6 +50,14 @@ public:
     /*!
      * Input network cached imported music datas into container.
      */
+    Q_INVOKABLE void removeMusicSongs();
+    /*!
+     * Remove music data from container.
+     */
+    Q_INVOKABLE void removeMusicSongs(int index);
+    /*!
+     * Remove music data from container by index.
+     */
 
     Q_INVOKABLE bool checkLovestMusicSong();
     /*!
@@ -159,6 +167,18 @@ signals:
     /*!
      * Current play index changed emit.
      */
+    void updateItemShowCount();
+    /*!
+     * Update item show count.
+     */
+    void removeItemFromPlayerCenter(int index);
+    /*!
+     * Remove item from player center.
+     */
+    void emptyPlayerCenter(bool state);
+    /*!
+     * Empty the current player center.
+     */
 
 public slots:
     void currentMusicSongChanged(int index);
@@ -167,6 +187,10 @@ public slots:
      */
 
 protected:
+    void removeMusicSongs(int tool, int current, int index);
+    /*!
+     * Remove music data from container by index.
+     */
     void readXMLConfigFromText();
     /*!
      * Read XML config from text.

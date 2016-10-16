@@ -16,6 +16,32 @@ Item {
     width: parent.width
     height: parent.height
 
+    Component.onCompleted: {
+        playlistModel.clear();
+        var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
+        var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
+        for(var i=0; i<names.length; ++i) {
+            var info = {
+                title: names[i],
+                artist: artists[i]
+            }
+            playlistModel.append(info);
+        }
+        itemListView.currentIndex = TTK_APP.getCurrentIndex();
+    }
+
+    onXChanged: {
+        ttkMusicListsMorePage.visible = false;
+        ttkMusicSongSettingPage.visible = false;
+    }
+
+    property int functionClickedIndex: -1
+
+    function removeItemFromList() {
+        playlistModel.remove(functionClickedIndex);
+        TTK_APP.removeMusicSongs(functionClickedIndex);
+    }
+
     Connections {
         target: TTK_APP
         onImportSongFinished: {
@@ -35,25 +61,9 @@ Item {
         onCurrentIndexChanged: {
             itemListView.currentIndex = TTK_APP.getCurrentIndex();
         }
-    }
-
-    Component.onCompleted: {
-        playlistModel.clear();
-        var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-        var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
-        for(var i=0; i<names.length; ++i) {
-            var info = {
-                title: names[i],
-                artist: artists[i]
-            }
-            playlistModel.append(info);
+        onRemoveItemFromPlayerCenter: {
+            playlistModel.remove(index);
         }
-        itemListView.currentIndex = TTK_APP.getCurrentIndex();
-    }
-
-    onXChanged: {
-        ttkMusicListsMorePage.visible = false;
-        ttkMusicSongSettingPage.visible = false;
     }
 
     TTKMusicSongSettingPage {
@@ -196,6 +206,7 @@ Item {
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onPressed: {
+                                functionClickedIndex = index;
                                 ttkMusicSongSettingPage.songName = title;
                                 ttkMusicSongSettingPage.singerName = artist;
                                 ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_normal_list, index);

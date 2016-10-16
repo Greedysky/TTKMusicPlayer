@@ -30,6 +30,13 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    property int functionClickedIndex: -1
+
+    function removeItemFromList() {
+        playlistModel.remove(functionClickedIndex);
+        TTK_APP.removeMusicSongs(functionClickedIndex);
+    }
+
     TTKMusicSongSettingPage {
         id: ttkMusicSongSettingPage
     }
@@ -158,6 +165,7 @@ Item {
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onPressed: {
+                                functionClickedIndex = index;
                                 ttkMusicSongSettingPage.songName = title;
                                 ttkMusicSongSettingPage.singerName = artist;
                                 ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_musicrg_list, index);

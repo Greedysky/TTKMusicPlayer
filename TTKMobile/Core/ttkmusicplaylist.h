@@ -41,6 +41,14 @@ public:
     /*!
      * Add music media list, not append remember.
      */
+    void removeMedia(const QString &content);
+    /*!
+     * Remove music media by value.
+     */
+    void removeMedia(int index);
+    /*!
+     * Remove music media by index.
+     */
 
     QString currentMediaString() const;
     /*!

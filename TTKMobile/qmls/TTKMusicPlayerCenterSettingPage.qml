@@ -105,6 +105,31 @@ Rectangle{
                         width: parent.width
                         text: title
                     }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressed: {
+                            switch(index)
+                            {
+                                case 0: break;
+                                case 1:
+                                    ttkMusicPlayerCenterSettingPage.visible = false;
+                                    ttkMusicSongDownloadPage.visible = true;
+                                    break;
+                                case 2:
+                                    ttkMusicPlayerCenterSettingPage.visible = false;
+                                    ttkMusicSongSharedPage.visible = true;
+                                    break;
+                                case 3:
+                                    ttkMusicPlayerCenterSettingPage.visible = false;
+                                    TTK_APP.removeMusicSongs();
+                                    break;
+                                case 4: break;
+                                case 5: break;
+                                case 6: break;
+                            }
+                        }
+                    }
                 }
 
                 model: ListModel {
@@ -181,6 +206,23 @@ Rectangle{
                         horizontalAlignment: Qt.AlignHCenter
                         width: parent.width
                         text: title
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onPressed: {
+                            switch(index)
+                            {
+                                case 0: break;
+                                case 1: break;
+                                case 2: break;
+                                case 3: break;
+                                case 4: break;
+                                case 5: break;
+                                case 6: break;
+                                case 7: break;
+                            }
+                        }
                     }
                 }
 

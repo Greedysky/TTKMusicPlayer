@@ -77,6 +77,10 @@ void MusicApplication::importLovestMusicSongs()
     }
     else
     {
+        if(m_songsSummarizied->getCurrentIndex() == MUSIC_LOVEST_LIST)
+        {
+            m_ttkPlaylist->removeMedia(filePath);
+        }
         m_songsSummarizied->removeMusicSongs(MUSIC_LOVEST_LIST, filePath);
     }
     emit importSongFinished(MUSIC_LOVEST_LIST);
@@ -99,6 +103,37 @@ void MusicApplication::importNetworkMusicSongs(const QString &key, const QString
     m_songsSummarizied->setToolBoxIndex(MUSIC_RECENT_LIST);
     m_ttkPlaylist->addMedia( m_songsSummarizied->getMusicSongsFilePath(MUSIC_RECENT_LIST) );
     m_ttkPlaylist->setCurrentIndex( m_ttkPlaylist->mediaCount() - 1);
+}
+
+void MusicApplication::removeMusicSongs()
+{
+    if(m_ttkPlaylist->isEmpty())
+    {
+        return;
+    }
+
+    int index = m_ttkPlaylist->currentIndex();
+    removeMusicSongs(m_songsSummarizied->getCurrentIndex(), m_songsSummarizied->getCurrentIndex(), index);
+
+    emit removeItemFromPlayerCenter(index);
+    if(m_ttkPlaylist->isEmpty())
+    {
+        emit emptyPlayerCenter(true);
+    }
+}
+
+void MusicApplication::removeMusicSongs(int index)
+{
+    if(m_ttkPlaylist->isEmpty())
+    {
+        return;
+    }
+
+    removeMusicSongs(m_songsSummarizied->getToolBoxIndex(), m_songsSummarizied->getCurrentIndex(), index);
+    if(m_ttkPlaylist->isEmpty())
+    {
+        emit emptyPlayerCenter(false);
+    }
 }
 
 bool MusicApplication::checkLovestMusicSong()
@@ -293,6 +328,33 @@ void MusicApplication::currentMusicSongChanged(int index)
     M_BACKGROUND_PTR->setMBackground(path);
     m_songsSummarizied->setRecentMusicSongs(index);
     emit currentIndexChanged(index);
+}
+
+void MusicApplication::removeMusicSongs(int tool, int current, int index)
+{
+    m_songsSummarizied->removeMusicSongs(tool, index);
+    if(tool == current)
+    {
+        m_ttkPlaylist->removeMedia(index);
+        if(m_ttkPlaylist->currentIndex() == index)
+        {
+            m_ttkPlaylist->playNext();
+        }
+        else if(index < m_ttkPlaylist->currentIndex())
+        {
+            index = m_ttkPlaylist->currentIndex() - 1;
+            m_ttkPlaylist->blockSignals(true);
+            m_ttkPlaylist->setCurrentIndex(index < 0 ? 0 : index);
+            m_ttkPlaylist->blockSignals(false);
+        }
+
+        if(m_ttkPlaylist->isEmpty())
+        {
+            m_ttkPlaylist->setCurrentIndex(-1);
+            m_ttkPlayer->pause();
+        }
+    }
+    emit updateItemShowCount();
 }
 
 void MusicApplication::readXMLConfigFromText()

@@ -16,6 +16,11 @@ Item {
     width: parent.width
     height: parent.height
 
+    function updateItemShowCount() {
+        funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
+        funcRecent.subTitle = TTK_APP.mediaCount(ttkTheme.music_recent_list);
+    }
+
     Connections {
         target: TTK_APP
         onImportSongFinished: {
@@ -24,8 +29,10 @@ Item {
             }
         }
         onCurrentIndexChanged: {
-            funcLocalMusic.subTitle = TTK_APP.mediaCount(ttkTheme.music_normal_list);
-            funcRecent.subTitle = TTK_APP.mediaCount(ttkTheme.music_recent_list);
+            updateItemShowCount();
+        }
+        onUpdateItemShowCount: {
+            updateItemShowCount();
         }
     }
 

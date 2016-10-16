@@ -62,6 +62,10 @@ Rectangle {
             musicBarImage.foreground = TTK_APP.artistImagePath().length === 0 ? "qrc:/image/landscape_check_album_normal"
                                                                               : TTK_APP.artistImagePath();
         }
+        onEmptyPlayerCenter: {
+            nameTitle = qsTr("天天酷音");
+            artistTitle = qsTr("天天酷音");
+        }
     }
 
     MouseArea {

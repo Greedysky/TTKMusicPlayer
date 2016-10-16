@@ -105,6 +105,11 @@ Item {
         onUpdateCurrentBgArtist: {
             playBackgroundImage.source = TTK_APP.artistBgImagePath();
         }
+        onEmptyPlayerCenter: {
+            if(state) {
+                ttkOutStackView.pop();
+            }
+        }
     }
 
     onXChanged: {

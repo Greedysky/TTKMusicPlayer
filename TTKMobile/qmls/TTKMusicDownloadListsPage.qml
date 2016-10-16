@@ -30,6 +30,13 @@ Item {
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
+    property int functionClickedIndex: -1
+
+    function removeItemFromList() {
+        playlistModel.remove(functionClickedIndex);
+        TTK_APP.removeMusicSongs(functionClickedIndex);
+    }
+
     Connections {
         target: TTK_APP
         onImportSongFinished: {
@@ -49,6 +56,9 @@ Item {
         }
         onCurrentIndexChanged: {
             itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        }
+        onRemoveItemFromPlayerCenter: {
+            playlistModel.remove(index);
         }
     }
 
@@ -183,6 +193,7 @@ Item {
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onPressed: {
+                                functionClickedIndex = index;
                                 ttkMusicSongSettingPage.songName = title;
                                 ttkMusicSongSettingPage.singerName = artist;
                                 ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_download_list, index);

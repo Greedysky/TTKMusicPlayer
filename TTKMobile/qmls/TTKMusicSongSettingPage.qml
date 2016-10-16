@@ -134,7 +134,10 @@ Rectangle{
                                     ttkMusicSongSettingPage.visible = false;
                                     ttkMusicSongSharedPage.visible = true;
                                     break;
-                                case 3: break;
+                                case 3:
+                                    removeItemFromList();
+                                    ttkMusicSongSettingPage.visible = false;
+                                    break;
                                 case 4: break;
                                 case 5: break;
                                 case 6: break;
