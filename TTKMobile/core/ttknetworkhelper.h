@@ -73,6 +73,10 @@ Q_SIGNALS:
     /*!
      * Download (cached) song finished.
      */
+    void downForSearchMovieFinished(const QString &url);
+    /*!
+     * Download (search) movie finished.
+     */
     void downForDownloadSongFinished(const QString &path);
     /*!
      * Download (download) song finished.
@@ -97,6 +101,10 @@ protected:
     void downForSearchSong(int index);
     /*!
      * Download for search song.
+     */
+    void downForSearchMovie(int index);
+    /*!
+     * Download for search movie.
      */
     void downForDownloadSong(int bitrate);
     /*!

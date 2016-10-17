@@ -27,7 +27,6 @@ Item {
             searedMVListModel.clear();
             searedLrcListModel.clear();
         }
-
         onCreateSearchedItems: {
             var info = { title: songname, artist: artistname };
             switch( functionList.currentIndex )
@@ -37,9 +36,12 @@ Item {
                 case 2: searedLrcListModel.append(info); break;
             }
         }
-
         onDownForSearchSongFinished: {
             TTK_APP.importNetworkMusicSongs(key, path);
+        }
+        onDownForSearchMovieFinished: {
+            console.log(url);
+//            ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
         }
     }
 
@@ -278,8 +280,7 @@ Item {
                                 anchors.fill: parent
                                 onClicked: {
                                     searedMVList.currentIndex = index;
-//                                    TTK_NETWORK.setCurrentIndex(index);
-                                    ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
+                                    TTK_NETWORK.setCurrentIndex(index);
                                 }
                             }
 

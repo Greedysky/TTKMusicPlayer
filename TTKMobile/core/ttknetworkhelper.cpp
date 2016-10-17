@@ -25,13 +25,13 @@ TTKNetworkHelper::~TTKNetworkHelper()
 void TTKNetworkHelper::searchSong(const QString &text)
 {
     m_queryType = T_SearcSong;
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void TTKNetworkHelper::searchMovie(const QString &text)
 {
     m_queryType = T_SearcMovie;
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
 void TTKNetworkHelper::searchLrc(const QString &text)
@@ -56,8 +56,11 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
                         downForSearchSong(index);
                         break;
                     }
-
-        case T_SearcMovie: break;
+        case T_SearcMovie:
+                    {
+                        downForSearchMovie(index);
+                        break;
+                    }
         case T_SearcLrc: break;
         case T_DownloadSong:
                     {
@@ -137,6 +140,24 @@ void TTKNetworkHelper::downForSearchSong(int index)
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
     m_currentIndex = index;
+}
+
+void TTKNetworkHelper::downForSearchMovie(int index)
+{
+    m_currentIndex = -1;
+    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    if(index < 0 || index >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
+    foreach(const MusicObject::MusicSongAttribute &musicAttr, musicSongInfo.m_songAttrs)
+    {
+        emit downForSearchMovieFinished(musicAttr.m_url);
+        return;
+    }
+    emit downForSearchMovieFinished( QString() );
 }
 
 void TTKNetworkHelper::downForDownloadSong(int bitrate)

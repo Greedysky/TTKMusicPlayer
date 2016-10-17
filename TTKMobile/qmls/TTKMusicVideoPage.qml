@@ -49,21 +49,21 @@ Rectangle{
                 anchors.left: parent.left
 
                 TTKImageButton {
-                    width: dpWidth(30)
-                    height: dpHeight(30)
+                    width: height*1.2
+                    height: dpHeight(40)
                     anchors.verticalCenter: parent.verticalCenter
-                    source: "qrc:/image/test"
+                    source: "qrc:/image/landscape_player_btn_pause_normal"
 
                     property int status: 1
                     onPressed: {
                         if(status === 1) {
                             videoPlayer.pause();
                             status = 0;
-                            source = "qrc:/image/test";
+                            source = "qrc:/image/landscape_player_btn_play_normal";
                         }else{
                             videoPlayer.play();
                             status = 1;
-                            source = "qrc:/image/test";
+                            source = "qrc:/image/landscape_player_btn_pause_normal";
                         }
                     }
                 }
@@ -80,7 +80,7 @@ Rectangle{
 
                 Slider {
                     id: videoTimeSlider
-                    width: ttkMusicVideoPage.width - dpWidth(30)*6
+                    width: ttkMusicVideoPage.width - dpWidth(30)*7
                     height: dpHeight(30)
                     minimumValue: 0
                     maximumValue: videoPlayer.duration <= 0 ? 1 : videoPlayer.duration
