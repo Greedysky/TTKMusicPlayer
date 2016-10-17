@@ -8,7 +8,7 @@
 #include <QCryptographicHash>
 
 #define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
-#define ACRUA_URL     "0NDS2dzQVpNM3V3aGhtZmVOdW83d2VielBHdTcxTEk4QmpTSUxvQ2ZsdWVSaE1wWW5EOG8wMm83bitKVlJnZHZ1dlBSUT09"
+#define ACRUA_URL     "U0NDS2dzQVpNM3V3aGhtZmVOdW83d2VielBHdTcxTEk4QmpTSUxvQ2ZsdWVSaE1wWW5EOG8wMm83bitKVlJnZHZ1dlBSUT09"
 
 MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
     : MusicNetworkAbstract(parent)
