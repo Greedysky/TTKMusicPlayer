@@ -25,7 +25,19 @@ TTKNetworkHelper::~TTKNetworkHelper()
 void TTKNetworkHelper::searchSong(const QString &text)
 {
     m_queryType = T_SearcSong;
+    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+}
+
+void TTKNetworkHelper::searchMovie(const QString &text)
+{
+    m_queryType = T_SearcMovie;
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+}
+
+void TTKNetworkHelper::searchLrc(const QString &text)
+{
+    m_queryType = T_SearcLrc;
+    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
 void TTKNetworkHelper::downloadSong(const QString &text)
@@ -44,6 +56,9 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
                         downForSearchSong(index);
                         break;
                     }
+
+        case T_SearcMovie: break;
+        case T_SearcLrc: break;
         case T_DownloadSong:
                     {
                         downForDownloadSong(data.toInt());
@@ -58,6 +73,8 @@ void TTKNetworkHelper::downLoadDataChanged()
     switch(m_queryType)
     {
         case T_SearcSong: break;
+        case T_SearcMovie: break;
+        case T_SearcLrc: break;
         case T_DownloadSong:
                     {
                         dataForDownloadSong();

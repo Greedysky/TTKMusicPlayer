@@ -16,27 +16,31 @@ Item {
     width: parent.width
     height: parent.height
 
+    function getSearchedText() {
+        return searchInput.text.length === 0 ? searchInput.hint : searchInput.text;
+    }
+
     Connections {
         target: TTK_NETWORK
         onClearAllItems: {
-            playlistModel.clear();
+            searedSongListModel.clear();
+            searedMVListModel.clear();
+            searedLrcListModel.clear();
         }
 
         onCreateSearchedItems: {
-            var info = {
-                title: songname,
-                artist: artistname
-            };
-            playlistModel.append(info);
+            var info = { title: songname, artist: artistname };
+            switch( functionList.currentIndex )
+            {
+                case 0: searedSongListModel.append(info); break;
+                case 1: searedMVListModel.append(info); break;
+                case 2: searedLrcListModel.append(info); break;
+            }
         }
 
         onDownForSearchSongFinished: {
             TTK_APP.importNetworkMusicSongs(key, path);
         }
-    }
-
-    TTKMusicSongSettingPage {
-        id: ttkMusicSongSettingPage
     }
 
     ColumnLayout {
@@ -51,7 +55,6 @@ Item {
             color: ttkTheme.topbar_background
 
             RowLayout {
-                id: mainMenubarLayout
                 spacing: 2
                 anchors.fill: parent
 
@@ -79,11 +82,72 @@ Item {
                     anchors.right: parent.right
                     textColor: ttkTheme.white
                     text: qsTr("搜索")
-
                     onPressed: {
-                        TTK_NETWORK.searchSong(searchInput.text.length === 0 ? searchInput.hint
-                                                                             : searchInput.text);
+                        switch( functionList.currentIndex )
+                        {
+                            case 0: TTK_NETWORK.searchSong(getSearchedText()); break;
+                            case 1: TTK_NETWORK.searchMovie(getSearchedText()); break;
+                            case 2: TTK_NETWORK.searchLrc(getSearchedText()); break;
+                        }
                     }
+                }
+            }
+        }
+
+        ///function bar
+        Rectangle {
+            id: searchTypeArea
+            Layout.fillWidth: true
+            height: dpHeight(ttkTheme.topbar_height)
+            color: ttkTheme.white
+
+            ListView {
+                id: functionList
+                anchors.fill: parent
+                orientation: ListView.Horizontal
+                boundsBehavior: Flickable.StopAtBounds
+                spacing: 35
+                clip: true
+
+                delegate: Component {
+                    TTKTextButton {
+                        width: dpWidth(50)
+                        height: dpHeight(50)
+                        textColor: ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.gray
+                        text: title
+                        onPressed: {
+                            switch( functionList.currentIndex = index )
+                            {
+                                case 0:
+                                    searedSongStackView.push(searedSongList);
+                                    TTK_NETWORK.searchSong(getSearchedText())
+                                    break;
+                                case 1:
+                                    searedSongStackView.push(searedMVList);
+                                    TTK_NETWORK.searchMovie(getSearchedText());
+                                    break;
+                                case 2:
+                                    searedSongStackView.push(searedLrcList);
+                                    TTK_NETWORK.searchLrc(getSearchedText());
+                                    break;
+                            }
+                        }
+
+                        Rectangle {
+                            width: parent.width
+                            height: dpHeight(5)
+                            anchors.bottom: parent.bottom
+                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                        }
+                    }
+                }
+
+                model: ListModel {
+                    ListElement { title: qsTr("单曲")}
+                    ListElement { title: qsTr("MV")}
+                    ListElement { title: qsTr("歌词")}
+                    ListElement { title: qsTr("专辑")}
+                    ListElement { title: qsTr("歌单")}
                 }
             }
         }
@@ -91,129 +155,292 @@ Item {
         ///main body
         Rectangle {
             width: ttkMainWindow.width
-            height: ttkMainStackView.height - mainMenubar.height
+            height: ttkMainStackView.height - mainMenubar.height - searchTypeArea.height
             color: ttkTheme.white
 
-            ListView {
-                id: searedSongList
-                anchors.fill: parent
-                clip: true
+            StackView {
+                id: searedSongStackView
+                width: parent.width
+                height: parent.height
+                focus: true
+                initialItem: searedSongList
 
-                delegate: Component {
-                    Rectangle {
-                        id: wrapper
-                        width: ttkMainWindow.width
-                        height: dpHeight(70)
-                        color: ttkTheme.white
+                ///seared song list
+                ListView {
+                    id: searedSongList
+                    width: parent.width
+                    height: parent.height
+                    clip: true
 
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                searedSongList.currentIndex = index;
-                                TTK_NETWORK.setCurrentIndex(index);
-                            }
-                        }
-
+                    delegate: Component {
                         Rectangle {
+                            id: wrapperSong
                             width: ttkMainWindow.width
-                            height: 1
-                            color: ttkTheme.alphaLv9
-                        }
+                            height: dpHeight(70)
+                            color: ttkTheme.white
 
-                        Rectangle {
-                            width: dpWidth(5)
-                            height: parent.height*2/3
-                            anchors {
-                                top: parent.top
-                                topMargin: parent.height/3/2
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    searedSongList.currentIndex = index;
+                                    TTK_NETWORK.setCurrentIndex(index);
+                                }
                             }
-                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
-                        }
 
-                        Text {
-                            id: titleArea
-                            text: title
-                            width: ttkOnlineSearchPage.width - iconArea.width - dpHeight(120)
-                            anchors {
-                                top: parent.top
-                                topMargin: dpHeight(10)
-                                left: parent.left
-                                leftMargin: dpHeight(20)
+                            Rectangle {
+                                width: ttkMainWindow.width
+                                height: 1
+                                color: ttkTheme.alphaLv9
                             }
-                            elide: Text.ElideRight
-                            verticalAlignment: Qt.AlignVCenter
-                            font.pixelSize: parent.height*3/10
-                        }
 
-                        Image {
-                            id: iconArea
-                            width: parent.height/3
-                            height: parent.height/3
-                            anchors {
-                                top: titleArea.bottom
-                                topMargin: dpHeight(5)
-                                left: parent.left
-                                leftMargin: dpHeight(20)
+                            Rectangle {
+                                width: dpWidth(5)
+                                height: parent.height*2/3
+                                anchors {
+                                    top: parent.top
+                                    topMargin: parent.height/3/2
+                                }
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
                             }
-                            source: "qrc:/image/ic_playlist_normal"
-                        }
 
-                        TTKImageButton {
-                            id: moreFuncArea
-                            width: parent.height/2
-                            height: parent.height/2
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                topMargin: dpHeight(20)
-                                rightMargin: dpHeight(20)
+                            Text {
+                                id: titleAreaSong
+                                text: title
+                                width: ttkOnlineSearchPage.width - iconAreaSong.width - dpHeight(120)
+                                anchors {
+                                    top: parent.top
+                                    topMargin: dpHeight(10)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height*3/10
                             }
-                            source: "qrc:/image/ic_playlist_more_normal"
-                        }
 
-                        TTKImageButton {
-                            id: addFuncArea
-                            width: parent.height/2
-                            height: parent.height/2
-                            anchors {
-                                top: parent.top
-                                right: moreFuncArea.left
-                                topMargin: dpHeight(20)
-                                rightMargin: dpHeight(5)
+                            Image {
+                                id: iconAreaSong
+                                width: parent.height/3
+                                height: parent.height/3
+                                anchors {
+                                    top: titleAreaSong.bottom
+                                    topMargin: dpHeight(5)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                source: "qrc:/image/ic_playlist_normal"
                             }
-                            source: "qrc:/image/ic_playlist_add_normal"
-                            onPressed: {
-                                ttkMusicSongSettingPage.songName = title;
-                                ttkMusicSongSettingPage.singerName = artist;
-                                ttkMusicSongSettingPage.visible = true;
-                            }
-                        }
 
-                        Text {
-                            id: artistArea
-                            text: artist
-                            width: titleArea.width - iconArea.width
-                            anchors {
-                                top: titleArea.bottom
-                                topMargin: dpHeight(10)
-                                left: iconArea.right
-                                leftMargin: dpHeight(10)
+                            Text {
+                                text: artist
+                                width: titleAreaSong.width - iconAreaSong.width
+                                anchors {
+                                    top: titleAreaSong.bottom
+                                    topMargin: dpHeight(10)
+                                    left: iconAreaSong.right
+                                    leftMargin: dpHeight(10)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height/4
+                                color: ttkTheme.gray
                             }
-                            elide: Text.ElideRight
-                            verticalAlignment: Qt.AlignVCenter
-                            font.pixelSize: parent.height/4
-                            color: ttkTheme.gray
                         }
+                    }
+
+                    model: ListModel {
+                        id: searedSongListModel
+                    }
+
+                    Component.onCompleted: {
+                        currentIndex = -1;
                     }
                 }
 
-                model: ListModel {
-                    id: playlistModel
+                ///seared mv list
+                ListView {
+                    id: searedMVList
+                    width: parent.width
+                    height: parent.height
+                    clip: true
+
+                    delegate: Component {
+                        Rectangle {
+                            id: wrapperMV
+                            width: ttkMainWindow.width
+                            height: dpHeight(70)
+                            color: ttkTheme.white
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    searedMVList.currentIndex = index;
+                                    TTK_NETWORK.setCurrentIndex(index);
+                                }
+                            }
+
+                            Rectangle {
+                                width: ttkMainWindow.width
+                                height: 1
+                                color: ttkTheme.alphaLv9
+                            }
+
+                            Rectangle {
+                                width: dpWidth(5)
+                                height: parent.height*2/3
+                                anchors {
+                                    top: parent.top
+                                    topMargin: parent.height/3/2
+                                }
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                            }
+
+                            Text {
+                                id: titleAreaMV
+                                text: title
+                                width: ttkOnlineSearchPage.width - iconAreaMV.width - dpHeight(120)
+                                anchors {
+                                    top: parent.top
+                                    topMargin: dpHeight(10)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height*3/10
+                            }
+
+                            Image {
+                                id: iconAreaMV
+                                width: parent.height/3
+                                height: parent.height/3
+                                anchors {
+                                    top: titleAreaMV.bottom
+                                    topMargin: dpHeight(5)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                source: "qrc:/image/ic_playlist_normal"
+                            }
+
+                            Text {
+                                text: artist
+                                width: titleAreaMV.width - iconAreaMV.width
+                                anchors {
+                                    top: titleAreaMV.bottom
+                                    topMargin: dpHeight(10)
+                                    left: iconAreaMV.right
+                                    leftMargin: dpHeight(10)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height/4
+                                color: ttkTheme.gray
+                            }
+                        }
+                    }
+
+                    model: ListModel {
+                        id: searedMVListModel
+                    }
+
+                    Component.onCompleted: {
+                        currentIndex = -1;
+                    }
                 }
 
-                Component.onCompleted: {
-                    currentIndex = -1;
+                ///seared lrc list
+                ListView {
+                    id: searedLrcList
+                    width: parent.width
+                    height: parent.height
+                    clip: true
+
+                    delegate: Component {
+                        Rectangle {
+                            id: wrapperLrc
+                            width: ttkMainWindow.width
+                            height: dpHeight(70)
+                            color: ttkTheme.white
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    searedLrcList.currentIndex = index;
+                                    TTK_NETWORK.setCurrentIndex(index);
+                                }
+                            }
+
+                            Rectangle {
+                                width: ttkMainWindow.width
+                                height: 1
+                                color: ttkTheme.alphaLv9
+                            }
+
+                            Rectangle {
+                                width: dpWidth(5)
+                                height: parent.height*2/3
+                                anchors {
+                                    top: parent.top
+                                    topMargin: parent.height/3/2
+                                }
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                            }
+
+                            Text {
+                                id: titleAreaLrc
+                                text: title
+                                width: ttkOnlineSearchPage.width - iconAreaLrc.width - dpHeight(120)
+                                anchors {
+                                    top: parent.top
+                                    topMargin: dpHeight(10)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height*3/10
+                            }
+
+                            Image {
+                                id: iconAreaLrc
+                                width: parent.height/3
+                                height: parent.height/3
+                                anchors {
+                                    top: titleAreaLrc.bottom
+                                    topMargin: dpHeight(5)
+                                    left: parent.left
+                                    leftMargin: dpHeight(20)
+                                }
+                                source: "qrc:/image/ic_playlist_normal"
+                            }
+
+                            Text {
+                                text: artist
+                                width: titleAreaLrc.width - iconAreaLrc.width
+                                anchors {
+                                    top: titleAreaLrc.bottom
+                                    topMargin: dpHeight(10)
+                                    left: iconAreaLrc.right
+                                    leftMargin: dpHeight(10)
+                                }
+                                elide: Text.ElideRight
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height/4
+                                color: ttkTheme.gray
+                            }
+                        }
+                    }
+
+                    model: ListModel {
+                        id: searedLrcListModel
+                    }
+
+                    Component.onCompleted: {
+                        currentIndex = -1;
+                    }
                 }
+
             }
         }
     }

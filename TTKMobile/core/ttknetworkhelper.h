@@ -23,7 +23,9 @@ class MUSIC_MOBILE_EXPORT TTKNetworkHelper : public QObject
 public:
     enum Type {
         T_Null,             ///*null*/
-        T_SearcSong,        ///*searc song*/
+        T_SearcSong,        ///*search song*/
+        T_SearcMovie,       ///*search mv*/
+        T_SearcLrc,         ///*search lrc*/
         T_DownloadSong      ///*download song*/
     };
 
@@ -36,6 +38,14 @@ public:
     Q_INVOKABLE void searchSong(const QString &text);
     /*!
      * Search the song online by given name.
+     */
+    Q_INVOKABLE void searchMovie(const QString &text);
+    /*!
+     * Search the mv online by given name.
+     */
+    Q_INVOKABLE void searchLrc(const QString &text);
+    /*!
+     * Search the lrc online by given name.
      */
     Q_INVOKABLE void downloadSong(const QString &text);
     /*!
