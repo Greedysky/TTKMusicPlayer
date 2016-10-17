@@ -106,16 +106,17 @@ Item {
                 anchors.fill: parent
                 orientation: ListView.Horizontal
                 boundsBehavior: Flickable.StopAtBounds
-                spacing: 35
+                spacing: 0
                 clip: true
 
                 delegate: Component {
                     TTKTextButton {
-                        width: dpWidth(50)
+                        width: ttkMainWindow.width/5
                         height: dpHeight(50)
                         textColor: ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.gray
                         text: title
                         onPressed: {
+                            searedSongStackView.pop();
                             switch( functionList.currentIndex = index )
                             {
                                 case 0:
@@ -170,6 +171,7 @@ Item {
                     id: searedSongList
                     width: parent.width
                     height: parent.height
+                    visible: false
                     clip: true
 
                     delegate: Component {
@@ -262,6 +264,7 @@ Item {
                     id: searedMVList
                     width: parent.width
                     height: parent.height
+                    visible: false
                     clip: true
 
                     delegate: Component {
@@ -275,7 +278,8 @@ Item {
                                 anchors.fill: parent
                                 onClicked: {
                                     searedMVList.currentIndex = index;
-                                    TTK_NETWORK.setCurrentIndex(index);
+//                                    TTK_NETWORK.setCurrentIndex(index);
+                                    ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
                                 }
                             }
 
@@ -354,6 +358,7 @@ Item {
                     id: searedLrcList
                     width: parent.width
                     height: parent.height
+                    visible: false
                     clip: true
 
                     delegate: Component {

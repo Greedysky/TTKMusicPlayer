@@ -140,5 +140,6 @@
         <file>qmls/TTKMusicSongSharedPage.qml</file>
         <file>qmls/TTKMusicSongSettingPage.qml</file>
         <file>qmls/TTKMusicSongInfoPage.qml</file>
+        <file>qmls/TTKMusicVideoPage.qml</file>
     </qresource>
 </RCC>
