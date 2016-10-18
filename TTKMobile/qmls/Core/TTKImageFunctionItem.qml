@@ -11,9 +11,9 @@ import QtQuick.Layouts 1.1
 
 Rectangle {
     id: ttkImageFunctionItem
-    height: dpHeight(60)
+    height: ttkGlobal.dpHeight(60)
     width: parent.width
-    color: ttkTheme.alphaLv0
+    color: ttkTheme.color_alpha_lv0
 
     property alias textColor: text.color
     property alias text: text.text
@@ -27,13 +27,13 @@ Rectangle {
         TTKRadiusImage {
             id: image
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: dpWidth(50)
-            Layout.preferredHeight: dpHeight(50)
+            Layout.preferredWidth: ttkGlobal.dpWidth(50)
+            Layout.preferredHeight: ttkGlobal.dpHeight(50)
             anchors {
                 left: parent.left
-                leftMargin: dpHeight(10)
+                leftMargin: ttkGlobal.dpHeight(10)
             }
-            color: ttkTheme.alphaLv0
+            color: ttkTheme.color_alpha_lv0
             foreground: "qrc:/image/test"
             background: "qrc:/image/radius_mask"
         }
@@ -41,34 +41,34 @@ Rectangle {
         Text {
             id: text
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: ttkImageFunctionItem.width - dpHeight(120)
+            Layout.preferredWidth: ttkImageFunctionItem.width - ttkGlobal.dpHeight(120)
             verticalAlignment: Qt.AlignHCenter
             font.pixelSize: ttkImageFunctionItem.height/3
             anchors {
                 left: image.right
-                leftMargin: dpHeight(10)
+                leftMargin: ttkGlobal.dpHeight(10)
             }
             elide: Text.ElideRight
-            color: ttkTheme.white
+            color: ttkTheme.color_white
         }
 
         TTKImageButton {
             id: subImage
             source: "qrc:/image/ic_toolbar_advance"
-            width: dpWidth(50)
-            height: dpHeight(50)
+            width: ttkGlobal.dpWidth(50)
+            height: ttkGlobal.dpHeight(50)
             anchors.right: parent.right
         }
     }
 
     Rectangle {
-        width: ttkImageFunctionItem.width - image.width - dpHeight(5)
+        width: ttkImageFunctionItem.width - image.width - ttkGlobal.dpHeight(5)
         height: 1
         anchors {
             left: parent.left
             top: parent.bottom
-            leftMargin: dpWidth(50)
+            leftMargin: ttkGlobal.dpWidth(50)
         }
-        color: ttkTheme.gray
+        color: ttkTheme.color_gray
     }
 }

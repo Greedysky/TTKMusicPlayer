@@ -15,23 +15,17 @@ import "Core"
 ApplicationWindow {
     id: ttkMainWindow
     visible: true
-    width: Qt.platform.os === "android" ? Screen.desktopAvailableWidth : 320
-    height: Qt.platform.os === "android" ? Screen.desktopAvailableHeight : 480
+    width: ttkGlobal.window_width
+    height: ttkGlobal.window_height
 
     property bool exitApp: false
-    property real pixelDensity: 4.46
-    property real multiplierHeight: ttkMainWindow.height/480
-    property real multiplierWidth: ttkMainWindow.width/320
-
-    function dpHeight(numbers) {
-        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
-    }
-    function dpWidth(numbers) {
-        return Math.round(numbers*((pixelDensity*25.4)/160)*multiplierHeight);
-    }
 
     TTKTheme {
         id: ttkTheme
+    }
+
+    TTKGlobal {
+        id: ttkGlobal
     }
 
     StackView {

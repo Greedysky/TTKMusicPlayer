@@ -154,8 +154,8 @@ Item {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
-            color: ttkTheme.alphaLv12
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
+            color: ttkTheme.color_alpha_lv12
 
             RowLayout {
                 id: mainMenubarLayout
@@ -164,8 +164,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/player_btn_close_normal"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkOutStackView.pop();
@@ -175,19 +175,19 @@ Item {
                 Text {
                     id: musicPlayerShowTitle
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(100)
+                    Layout.preferredWidth: ttkMusicPlayerCenter.width - ttkGlobal.dpHeight(100)
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignHCenter
                     font.pixelSize: mainMenubar.height/2
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                     elide: Text.ElideRight
                     text: TTK_APP.mediaName()
                 }
 
                 TTKImageButton {
                     source: "qrc:/image/player_btn_more_normal"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
                         ttkMusicPlayerCenterSettingPage.visible = true;
@@ -207,12 +207,12 @@ Item {
                 id: musicAlbumShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv12
+                color: ttkTheme.color_alpha_lv12
 
                 Rectangle {
                     width: ttkMusicPlayerCenter.width
                     height: 1
-                    color: ttkTheme.gray
+                    color: ttkTheme.color_gray
                 }
 
                 TTKImageFunctionItem {
@@ -238,7 +238,7 @@ Item {
                 id: musicPlayerShow
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv12
+                color: ttkTheme.color_alpha_lv12
 
                 ColumnLayout {
                     spacing: 0
@@ -247,9 +247,9 @@ Item {
                     Text {
                         id: musicPlayerShowArtist
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredHeight: dpHeight(50)
-                        Layout.preferredWidth: ttkMusicPlayerCenter.width - dpHeight(20)
-                        color: ttkTheme.white
+                        Layout.preferredHeight: ttkGlobal.dpHeight(50)
+                        Layout.preferredWidth: ttkMusicPlayerCenter.width - ttkGlobal.dpHeight(20)
+                        color: ttkTheme.color_white
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
                         elide: Text.ElideMiddle
@@ -259,8 +259,8 @@ Item {
                     TTKImageButton {
                         id: dtsEffectButton
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: dpWidth(50)
-                        Layout.preferredHeight: dpHeight(30)
+                        Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(30)
                         source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/player_btn_dts_off"
                                                                     : "qrc:/image/player_btn_dts_on"
                         onPressed: {
@@ -271,15 +271,15 @@ Item {
                     Rectangle {
                         id: musicPlayerShowCenter
                         Layout.fillWidth: true
-                        Layout.preferredHeight: dpHeight(270)
-                        color: ttkTheme.alphaLv0
+                        Layout.preferredHeight: ttkGlobal.dpHeight(270)
+                        color: ttkTheme.color_alpha_lv0
 
                         TTKRadiusImage {
                             id: artistImage
                             anchors.centerIn: parent;
                             width: parent.height
                             height: parent.height
-                            color: ttkTheme.alphaLv0
+                            color: ttkTheme.color_alpha_lv0
                             foreground: TTK_APP.artistImagePath().empty ? "qrc:/image/widget_default_album_middle"
                                                                         : TTK_APP.artistImagePath()
                             background: "qrc:/image/radius_big_mask"
@@ -301,10 +301,10 @@ Item {
                         id: musicPlayerShowLrc
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredHeight: dpHeight(80)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(80)
                         horizontalAlignment: Qt.AlignHCenter
                         color: "#00ff00"
-                        font.pixelSize: dpHeight(22)
+                        font.pixelSize: ttkGlobal.dpHeight(22)
                         text: TTK_LRC.value(musicLrcShow.currentIndex)
                     }
                 }
@@ -313,14 +313,14 @@ Item {
             Rectangle {
                 width: playCenterPageView.width
                 height: playCenterPageView.height
-                color: ttkTheme.alphaLv12
+                color: ttkTheme.color_alpha_lv12
 
                 TTKMusicLyricPage {
                     id: musicLrcShow
                     anchors.centerIn: parent
                     width: parent.width
-                    height: parent.height - dpHeight(40)
-                    color: ttkTheme.alphaLv0
+                    height: parent.height - ttkGlobal.dpHeight(40)
+                    color: ttkTheme.color_alpha_lv0
 
                     Component.onCompleted: {
                         musicLrcShow.currentIndex = -1;
@@ -333,8 +333,8 @@ Item {
         Rectangle {
             id: playerComponent
             Layout.fillWidth: true
-            height: dpHeight(230)
-            color: ttkTheme.alphaLv12
+            height: ttkGlobal.dpHeight(230)
+            color: ttkTheme.color_alpha_lv12
 
             ColumnLayout {
                 spacing: 0
@@ -343,21 +343,21 @@ Item {
                 ///timer component
                 Rectangle {
                     Layout.fillWidth: true
-                    height: dpHeight(50)
-                    color: ttkTheme.alphaLv0
+                    height: ttkGlobal.dpHeight(50)
+                    color: ttkTheme.color_alpha_lv0
 
                     RowLayout {
                         spacing: 10
                         anchors.fill: parent
 
                         Rectangle {
-                            Layout.preferredWidth: dpWidth(5)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(5)
                         }
 
                         Text {
                             id: positionLabel
                             text: "00:00"
-                            color: ttkTheme.white
+                            color: ttkTheme.color_white
                         }
 
                         Slider {
@@ -376,23 +376,23 @@ Item {
                                 groove: Row {
                                     Rectangle{
                                         implicitWidth: musicTimeSlider.width*musicTimeSlider.sliderGeometry()
-                                        implicitHeight: dpHeight(3)
+                                        implicitHeight: ttkGlobal.dpHeight(3)
                                         color: ttkTheme.topbar_background
                                     }
 
                                     Rectangle{
                                         implicitWidth: musicTimeSlider.width*(1-musicTimeSlider.sliderGeometry())
-                                        implicitHeight: dpHeight(3)
-                                        color: ttkTheme.gray
+                                        implicitHeight: ttkGlobal.dpHeight(3)
+                                        color: ttkTheme.color_gray
                                     }
                                 }
 
                                 handle: Rectangle{
                                     anchors.centerIn: parent;
                                     color: ttkTheme.topbar_background
-                                    width: dpWidth(20)
-                                    height: dpHeight(20)
-                                    radius: dpWidth(10)
+                                    width: ttkGlobal.dpWidth(20)
+                                    height: ttkGlobal.dpHeight(20)
+                                    radius: ttkGlobal.dpWidth(10)
                                 }
                             }
 
@@ -411,11 +411,11 @@ Item {
                         Text {
                             id: durationLabel
                             text: "00:00"
-                            color: ttkTheme.white
+                            color: ttkTheme.color_white
                         }
 
                         Rectangle {
-                            Layout.preferredWidth: dpWidth(5)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(5)
                         }
                     }
                 }
@@ -423,22 +423,22 @@ Item {
                 ///control component
                 Rectangle {
                     Layout.fillWidth: true
-                    height: dpHeight(100)
-                    color: ttkTheme.alphaLv0
+                    height: ttkGlobal.dpHeight(100)
+                    color: ttkTheme.color_alpha_lv0
 
                     RowLayout {
                         spacing: 0
                         anchors.fill: parent
 
                         Rectangle {
-                            Layout.preferredWidth: dpWidth(20)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(20)
                         }
 
                         TTKImageButton {
                             id: playerPreButton
                             source: "qrc:/image/player_btn_pre_normal"
-                            Layout.preferredWidth: dpWidth(120)
-                            Layout.preferredHeight: dpHeight(100)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(120)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 TTK_APP.playPrevious();
@@ -450,8 +450,8 @@ Item {
                         TTKImageButton {
                             id: playerPlayButton
                             source: playStateChanged()
-                            Layout.preferredWidth: dpWidth(120)
-                            Layout.preferredHeight: dpHeight(100)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(120)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 if(TTK_PLAYER.state() === 1) {
@@ -471,8 +471,8 @@ Item {
                         TTKImageButton {
                             id: playerNextButton
                             source: "qrc:/image/player_btn_next_normal"
-                            Layout.preferredWidth: dpWidth(120)
-                            Layout.preferredHeight: dpHeight(100)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(120)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 TTK_APP.playNext();
@@ -483,7 +483,7 @@ Item {
                         }
 
                         Rectangle {
-                            Layout.preferredWidth: dpWidth(20)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(20)
                         }
                     }
                 }
@@ -491,8 +491,8 @@ Item {
                 ///other function component
                 Rectangle {
                     Layout.fillWidth: true
-                    height: dpHeight(80)
-                    color: ttkTheme.alphaLv0
+                    height: ttkGlobal.dpHeight(80)
+                    color: ttkTheme.color_alpha_lv0
 
                     RowLayout {
                         spacing: 0
@@ -502,8 +502,8 @@ Item {
                             id: lovestMode
                             source: TTK_APP.checkLovestMusicSong() ? "qrc:/image/player_btn_favorited_normal"
                                                                    : "qrc:/image/player_btn_favorite_normal"
-                            Layout.preferredWidth: dpWidth(70)
-                            Layout.preferredHeight: dpHeight(70)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(70)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 TTK_APP.importLovestMusicSongs();
@@ -521,8 +521,8 @@ Item {
                         TTKImageButton {
                             id: playerMode
                             source: "qrc:/image/player_btn_random_normal"
-                            Layout.preferredWidth: dpWidth(70)
-                            Layout.preferredHeight: dpHeight(70)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(70)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 ttkFlyInOutBox.start();
@@ -537,8 +537,8 @@ Item {
 
                         TTKImageButton {
                             source: "qrc:/image/player_btn_download_normal"
-                            Layout.preferredWidth: dpWidth(70)
-                            Layout.preferredHeight: dpHeight(70)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(70)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 ttkMusicSongDownloadPage.visible = true;
@@ -547,8 +547,8 @@ Item {
 
                         TTKImageButton {
                             source: "qrc:/image/player_btn_share_normal"
-                            Layout.preferredWidth: dpWidth(70)
-                            Layout.preferredHeight: dpHeight(70)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(70)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
                                 ttkMusicSongSharedPage.visible = true;
@@ -557,8 +557,8 @@ Item {
 
                         TTKImageButton {
                             source: "qrc:/image/player_btn_playlist_normal"
-                            Layout.preferredWidth: dpWidth(70)
-                            Layout.preferredHeight: dpHeight(70)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(70)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
                             onPressed: {
 

@@ -10,7 +10,7 @@ import QtQuick 2.5
 
 Rectangle {
     id: ttkTextButton
-    color: ttkTheme.alphaLv0
+    color: ttkTheme.color_alpha_lv0
 
     property alias text: textArea.text
     property alias textColor: textArea.color

@@ -27,7 +27,7 @@ Rectangle {
 
     visible: false
     anchors.fill: parent
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     MouseArea {
         anchors.fill: parent
@@ -46,7 +46,7 @@ Rectangle {
 
         Rectangle {
             anchors.fill: parent
-            color: ttkTheme.alphaLv4
+            color: ttkTheme.color_alpha_lv4
             radius: 10
         }
 
@@ -59,7 +59,7 @@ Rectangle {
                 color: ttkTheme.topbar_background
                 Rectangle {
                     anchors.fill: parent
-                    color: ttkTheme.alphaLv3
+                    color: ttkTheme.color_alpha_lv3
                     radius: 10
                 }
 
@@ -79,7 +79,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.WordWrap
                 text: content
-                color: ttkTheme.black
+                color: ttkTheme.color_black
             }
         }
 
@@ -91,8 +91,8 @@ Rectangle {
                 anchors {
                     left: parent.left
                     bottom: parent.bottom
-                    leftMargin: dpWidth(width/7)
-                    bottomMargin: dpWidth(height/6)
+                    leftMargin: ttkGlobal.dpWidth(width/7)
+                    bottomMargin: ttkGlobal.dpWidth(height/6)
                 }
                 color: ttkTheme.topbar_background
                 Text {
@@ -117,8 +117,8 @@ Rectangle {
                 anchors {
                     right: parent.right
                     bottom: parent.bottom
-                    rightMargin: dpWidth(width/7)
-                    bottomMargin: dpWidth(height/6)
+                    rightMargin: ttkGlobal.dpWidth(width/7)
+                    bottomMargin: ttkGlobal.dpWidth(height/6)
                 }
                 color: ttkTheme.topbar_background
                 Text {

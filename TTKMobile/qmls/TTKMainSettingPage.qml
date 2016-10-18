@@ -24,7 +24,7 @@ Item {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -34,8 +34,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/title_bar_back"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkMainStackView.pop();
@@ -46,7 +46,7 @@ Item {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height*2/5
@@ -68,7 +68,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: dpHeight(955)
+                height: ttkGlobal.dpHeight(955)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -78,9 +78,9 @@ Item {
                     Rectangle {
                         id: functionWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(150)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(150)
                         anchors.left: parent.left
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
 
                         TTKMainFunctionItem {
                             id: vipItemArea
@@ -120,21 +120,21 @@ Item {
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(243)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(243)
                         boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
                         delegate: Rectangle {
                             width: ttkMainWindow.width
-                            height: dpHeight(60)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(60)
+                            color: ttkTheme.color_white
 
                             TTKImageFunctionItem {
                                 source: imageSource
                                 subSource: imageSubSource
                                 text: title
-                                textColor: ttkTheme.black
+                                textColor: ttkTheme.color_black
                             }
                         }
 
@@ -163,20 +163,20 @@ Item {
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(304)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(304)
                         boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
                         delegate: Rectangle {
                             width: ttkMainWindow.width
-                            height: dpHeight(60)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(60)
+                            color: ttkTheme.color_white
 
                             TTKImageFunctionItem {
                                 source: imageSource
                                 text: title
-                                textColor: ttkTheme.black
+                                textColor: ttkTheme.color_black
                             }
                         }
 
@@ -206,20 +206,20 @@ Item {
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(61)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(61)
                         boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
 
                         delegate: Rectangle {
                             width: ttkMainWindow.width
-                            height: dpHeight(60)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(60)
+                            color: ttkTheme.color_white
 
                             TTKImageFunctionItem {
                                 source: imageSource
                                 text: title
-                                textColor: ttkTheme.black
+                                textColor: ttkTheme.color_black
                             }
                         }
 
@@ -233,8 +233,8 @@ Item {
 
                     TTKTextButton {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(60)
-                        color: ttkTheme.white
+                        Layout.preferredHeight: ttkGlobal.dpHeight(60)
+                        color: ttkTheme.color_white
                         textColor: "red"
                         text: qsTr("退出")
                         onPressed: {
@@ -244,8 +244,8 @@ Item {
 
                     Rectangle {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(60)
-                        color: ttkTheme.alphaLv0
+                        Layout.preferredHeight: ttkGlobal.dpHeight(60)
+                        color: ttkTheme.color_alpha_lv0
                     }
                 }
             }

@@ -17,7 +17,7 @@ Rectangle{
     visible: false
     width: parent.width
     height: parent.height
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     property alias text: musicSongTitle.text
     property int muteVolume: TTK_PLAYER.volume()
@@ -46,14 +46,14 @@ Rectangle{
                 id: musicSongTitle
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(10)
+                    leftMargin: ttkGlobal.dpHeight(10)
                 }
             }
 
             Text {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(10)
+                    leftMargin: ttkGlobal.dpHeight(10)
                 }
                 text: qsTr("该歌曲信息为智能匹配结果")
             }
@@ -61,32 +61,32 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             ListView {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(30)
+                    leftMargin: ttkGlobal.dpHeight(30)
                     right: parent.right
-                    rightMargin: dpHeight(30)
+                    rightMargin: ttkGlobal.dpHeight(30)
                 }
                 Layout.fillWidth: true
                 Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/8
                 orientation: ListView.Horizontal
-                spacing: dpHeight(30)
+                spacing: ttkGlobal.dpHeight(30)
 
                 delegate: Rectangle {
                     id: wrapper1
-                    width: dpWidth(60)
-                    height: dpHeight(60)
+                    width: ttkGlobal.dpWidth(60)
+                    height: ttkGlobal.dpHeight(60)
                     radius: 10
 
                     Rectangle {
                         id: imageArea1
                         width: parent.width
                         height: parent.height
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
                         radius: parent.radius
 
                         Image {
@@ -98,7 +98,7 @@ Rectangle{
                     Text {
                         anchors {
                             top: imageArea1.bottom
-                            topMargin: dpHeight(20)
+                            topMargin: ttkGlobal.dpHeight(20)
                         }
                         verticalAlignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
@@ -163,32 +163,32 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             ListView {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(30)
+                    leftMargin: ttkGlobal.dpHeight(30)
                     right: parent.right
-                    rightMargin: dpHeight(30)
+                    rightMargin: ttkGlobal.dpHeight(30)
                 }
                 Layout.fillWidth: true
                 Layout.preferredHeight: ttkMusicPlayerCenterSettingPage.height/8
                 orientation: ListView.Horizontal
-                spacing: dpHeight(30)
+                spacing: ttkGlobal.dpHeight(30)
 
                 delegate: Rectangle {
                     id: wrapper2
-                    width: dpWidth(60)
-                    height: dpHeight(60)
+                    width: ttkGlobal.dpWidth(60)
+                    height: ttkGlobal.dpHeight(60)
                     radius: 10
 
                     Rectangle {
                         id: imageArea2
                         width: parent.width
                         height: parent.height
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
                         radius: parent.radius
 
                         Image {
@@ -200,7 +200,7 @@ Rectangle{
                     Text {
                         anchors {
                             top: imageArea2.bottom
-                            topMargin: dpHeight(20)
+                            topMargin: ttkGlobal.dpHeight(20)
                         }
                         verticalAlignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
@@ -261,14 +261,14 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                Layout.preferredHeight: dpHeight(30)
-                color: ttkTheme.alphaLv0
+                Layout.preferredHeight: ttkGlobal.dpHeight(30)
+                color: ttkTheme.color_alpha_lv0
 
                 RowLayout{
                     anchors.fill: parent
@@ -277,11 +277,11 @@ Rectangle{
                         id: musicVolumeLabel
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(30)
+                            leftMargin: ttkGlobal.dpWidth(30)
                         }
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: dpWidth(30)
-                        Layout.preferredHeight: dpHeight(30)
+                        Layout.preferredWidth: ttkGlobal.dpWidth(30)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(30)
                         source: "qrc:/image/playing_volumn_slide_icon"
 
                         onPressed: {
@@ -302,8 +302,8 @@ Rectangle{
                     Slider {
                         id: musicVolumeSlider
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: ttkMusicPlayerCenterSettingPage.width - dpWidth(100)
-                        Layout.preferredHeight: dpHeight(30)
+                        Layout.preferredWidth: ttkMusicPlayerCenterSettingPage.width - ttkGlobal.dpWidth(100)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(30)
                         height: 30
                         minimumValue: 0
                         maximumValue: 100
@@ -318,28 +318,28 @@ Rectangle{
                             groove: Row {
                                 Rectangle{
                                     implicitWidth: musicVolumeSlider.width*musicVolumeSlider.sliderGeometry()
-                                    implicitHeight: dpHeight(3)
+                                    implicitHeight: ttkGlobal.dpHeight(3)
                                     color: ttkTheme.topbar_background
                                 }
 
                                 Rectangle{
                                     implicitWidth: musicVolumeSlider.width*(1-musicVolumeSlider.sliderGeometry())
-                                    implicitHeight: dpHeight(3)
-                                    color: ttkTheme.gray
+                                    implicitHeight: ttkGlobal.dpHeight(3)
+                                    color: ttkTheme.color_gray
                                 }
                             }
 
                             handle: Rectangle{
                                 anchors.centerIn: parent
                                 color: ttkTheme.topbar_background
-                                width: dpWidth(20)
-                                height: dpHeight(20)
-                                radius: dpWidth(10)
+                                width: ttkGlobal.dpWidth(20)
+                                height: ttkGlobal.dpHeight(20)
+                                radius: ttkGlobal.dpWidth(10)
                             }
 
                             panel: Rectangle{
                                 anchors.fill: parent;
-                                color: ttkTheme.alphaLv0
+                                color: ttkTheme.color_alpha_lv0
 
                                 Loader{
                                     id: grooveLoader
@@ -369,7 +369,7 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             Text {

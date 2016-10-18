@@ -16,13 +16,13 @@ Row {
         opacity: 0.8
         model: target.model.count
         Rectangle {
-            width: dpWidth(10)
-            height: dpHeight(10)
-            radius: dpWidth(6)
-            color: target.currentIndex == index ? ttkTheme.white : ttkTheme.gray
+            width: ttkGlobal.dpWidth(10)
+            height: ttkGlobal.dpHeight(10)
+            radius: ttkGlobal.dpWidth(6)
+            color: target.currentIndex == index ? ttkTheme.color_white : ttkTheme.color_gray
             MouseArea {
-                width: dpWidth(20)
-                height: dpHeight(20)
+                width: ttkGlobal.dpWidth(20)
+                height: ttkGlobal.dpHeight(20)
                 anchors.centerIn: parent
                 onClicked: target.currentIndex = index
             }

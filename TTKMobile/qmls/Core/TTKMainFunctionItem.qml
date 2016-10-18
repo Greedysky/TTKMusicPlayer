@@ -32,10 +32,10 @@ Rectangle {
         anchors.fill: parent
 
         Rectangle {
-            Layout.preferredWidth: dpWidth(60)
-            Layout.preferredHeight: dpHeight(60)
+            Layout.preferredWidth: ttkGlobal.dpWidth(60)
+            Layout.preferredHeight: ttkGlobal.dpHeight(60)
             Layout.alignment: Qt.AlignCenter
-            color: ttkTheme.alphaLv0
+            color: ttkTheme.color_alpha_lv0
 
             Image {
                 id: image
@@ -56,7 +56,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: ttkTheme.gray
+            color: ttkTheme.color_gray
         }
     }
 }

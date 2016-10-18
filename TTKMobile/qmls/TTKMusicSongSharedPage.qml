@@ -15,7 +15,7 @@ Rectangle {
     visible: false
     width: parent.width
     height: parent.height
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     MouseArea {
         anchors.fill: parent
@@ -102,13 +102,13 @@ Rectangle {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             TTKTextButton {
                 width: parent.width
-                height: dpHeight(60)
-                textColor: ttkTheme.black
+                height: ttkGlobal.dpHeight(60)
+                textColor: ttkTheme.color_black
                 text: qsTr("取消")
                 textSize: ttkMusicSongSharedPage.height/25
                 onPressed: {

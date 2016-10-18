@@ -59,7 +59,7 @@ Item {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -68,8 +68,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/title_bar_back"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkMainStackView.pop();
@@ -80,7 +80,7 @@ Item {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
@@ -89,8 +89,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/more_icon_settings_white"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
                 }
             }
@@ -100,7 +100,7 @@ Item {
         Rectangle {
             width: ttkMainWindow.width
             height: ttkMainStackView.height - mainMenubar.height
-            color: ttkTheme.white
+            color: ttkTheme.color_white
 
             ListView {
                 id: itemListView
@@ -111,8 +111,8 @@ Item {
                     Rectangle {
                         id: wrapper
                         width: ttkMainWindow.width
-                        height: dpHeight(70)
-                        color: ttkTheme.white
+                        height: ttkGlobal.dpHeight(70)
+                        color: ttkTheme.color_white
 
                         MouseArea {
                             anchors.fill: parent
@@ -125,28 +125,28 @@ Item {
                         Rectangle {
                             width: ttkMainWindow.width
                             height: 1
-                            color: ttkTheme.alphaLv9
+                            color: ttkTheme.color_alpha_lv9
                         }
 
                         Rectangle {
-                            width: dpWidth(5)
+                            width: ttkGlobal.dpWidth(5)
                             height: parent.height*2/3
                             anchors {
                                 top: parent.top
                                 topMargin: parent.height/3/2
                             }
-                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
                         }
 
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicRecentListsPage.width - iconArea.width - dpHeight(60)
+                            width: ttkMusicRecentListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
                             anchors {
                                 top: parent.top
-                                topMargin: dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                                 left: parent.left
-                                leftMargin: dpHeight(20)
+                                leftMargin: ttkGlobal.dpHeight(20)
                             }
                             elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
@@ -159,9 +159,9 @@ Item {
                             height: parent.height/3
                             anchors {
                                 top: titleArea.bottom
-                                topMargin: dpHeight(5)
+                                topMargin: ttkGlobal.dpHeight(5)
                                 left: parent.left
-                                leftMargin: dpHeight(20)
+                                leftMargin: ttkGlobal.dpHeight(20)
                             }
                             source: "qrc:/image/ic_playlist_normal"
                         }
@@ -173,8 +173,8 @@ Item {
                             anchors {
                                 top: parent.top
                                 right: parent.right
-                                topMargin: dpHeight(20)
-                                rightMargin: dpHeight(20)
+                                topMargin: ttkGlobal.dpHeight(20)
+                                rightMargin: ttkGlobal.dpHeight(20)
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onPressed: {
@@ -192,14 +192,14 @@ Item {
                             width: titleArea.width - iconArea.width
                             anchors {
                                 top: titleArea.bottom
-                                topMargin: dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                                 left: iconArea.right
-                                leftMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
                             }
                             elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: parent.height/4
-                            color: ttkTheme.gray
+                            color: ttkTheme.color_gray
                         }
                     }
                 }

@@ -14,7 +14,7 @@ Rectangle {
     visible: false
     width: parent.width
     height: parent.height
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     property int songBitrate: -1
     property string text
@@ -65,7 +65,7 @@ Rectangle {
 
     Rectangle {
         width: parent.width
-        height: dpHeight(60) + itemListView.height
+        height: ttkGlobal.dpHeight(60) + itemListView.height
         color: "#F0F0F0"
         anchors {
             bottom: parent.bottom
@@ -75,19 +75,19 @@ Rectangle {
         ListView {
             id: itemListView
             width: parent.width
-            height: dpHeight(60)*itemListView.count
+            height: ttkGlobal.dpHeight(60)*itemListView.count
             spacing: 0
             clip: true
             boundsBehavior: Flickable.StopAtBounds
 
             delegate: Rectangle {
                 width: itemListView.width
-                height: dpHeight(60)
+                height: ttkGlobal.dpHeight(60)
                 Text {
                     anchors {
                         fill: parent
                         left: parent.left
-                        leftMargin: dpHeight(20)
+                        leftMargin: ttkGlobal.dpHeight(20)
                     }
                     verticalAlignment: Qt.AlignVCenter
                     width: parent.width
@@ -97,20 +97,20 @@ Rectangle {
                 Rectangle {
                     width: parent.width
                     height: 1
-                    color: ttkTheme.alphaLv9
+                    color: ttkTheme.color_alpha_lv9
                 }
 
                 Image {
                     source: parent.ListView.isCurrentItem ? "qrc:/image/ic_playlist_normal" : ""
-                    width: dpWidth(30)
-                    height: dpHeight(30)
+                    width: ttkGlobal.dpWidth(30)
+                    height: ttkGlobal.dpHeight(30)
                     anchors {
                         right: parent.right
-                        rightMargin: dpHeight(20)
+                        rightMargin: ttkGlobal.dpHeight(20)
                         top: parent.top
-                        topMargin: dpHeight(15)
+                        topMargin: ttkGlobal.dpHeight(15)
                         bottom: parent.bottom
-                        bottomMargin: dpHeight(15)
+                        bottomMargin: ttkGlobal.dpHeight(15)
                     }
                 }
 
@@ -135,7 +135,7 @@ Rectangle {
             }
             width: parent.width
             height: 1
-            color: ttkTheme.alphaLv10
+            color: ttkTheme.color_alpha_lv10
         }
 
         TTKTextButton {
@@ -145,8 +145,8 @@ Rectangle {
                 left: parent.left
             }
             width: parent.width
-            height: dpHeight(60)
-            textColor: ttkTheme.black
+            height: ttkGlobal.dpHeight(60)
+            textColor: ttkTheme.color_black
             text: qsTr("下载")
             textSize: ttkMusicSongDownloadPage.height/25
             enabled: false

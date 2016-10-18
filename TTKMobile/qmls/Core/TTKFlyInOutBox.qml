@@ -12,7 +12,7 @@ import QtQuick.Layouts 1.1
 Rectangle {
     id: ttkFlyInOutBox
     width: parent.width
-    height: dpHeight(ttkTheme.topbar_height)
+    height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
     color: ttkTheme.topbar_background
     y: -height
     visible: true
@@ -33,17 +33,17 @@ Rectangle {
             source: "qrc:/image/bannertips_succes_icon"
             anchors {
                 left: parent.left
-                leftMargin: dpHeight(20)
+                leftMargin: ttkGlobal.dpHeight(20)
             }
         }
 
         Text {
             id: textLabel
-            color: ttkTheme.white
+            color: ttkTheme.color_white
             font.pixelSize: ttkFlyInOutBox.height/3
             anchors {
                 left: imageLabel.right
-                leftMargin: dpHeight(10)
+                leftMargin: ttkGlobal.dpHeight(10)
             }
         }
     }

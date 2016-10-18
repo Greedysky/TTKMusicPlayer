@@ -44,7 +44,7 @@ Item {
         Rectangle {
             id: ttkMainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -54,8 +54,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/top_tab_more_selected"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkMainStackView.push("qrc:/qmls/TTKMainSettingPage.qml");
@@ -64,8 +64,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/top_tab_search_selected"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
                         ttkMainStackView.push("qrc:/qmls/TTKOnlineSearchPage.qml");
@@ -87,7 +87,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: dpHeight(800)
+                height: ttkGlobal.dpHeight(800)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -98,9 +98,9 @@ Item {
                     Rectangle {
                         id: userWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(80)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(80)
                         anchors.left: parent.left
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
 
                         TTKRadiusImage {
                             id: userImage
@@ -109,9 +109,9 @@ Item {
                             anchors {
                                 left: parent.left
                                 top: parent.top
-                                leftMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
                             }
-                            color: ttkTheme.alphaLv0
+                            color: ttkTheme.color_alpha_lv0
                             foreground: "qrc:/image/test"
                             background: "qrc:/image/radius_mask"
                         }
@@ -121,8 +121,8 @@ Item {
                             anchors {
                                 left: userImage.right
                                 top: parent.top
-                                leftMargin: dpHeight(10)
-                                topMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
@@ -135,12 +135,12 @@ Item {
                             anchors {
                                 left: userImage.right
                                 top: userMainTitle.bottom
-                                leftMargin: dpHeight(10)
-                                topMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            color: ttkTheme.gray
+                            color: ttkTheme.color_gray
                             text: qsTr("偶遇身边好音乐")
                         }
                     }
@@ -149,9 +149,9 @@ Item {
                     Rectangle {
                         id: functionWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(310)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(310)
                         anchors.left: parent.left
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
 
                         TTKMainFunctionItem {
                             id: funcLocalMusic
@@ -245,9 +245,9 @@ Item {
                     Rectangle {
                         id: radioWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(70)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(70)
                         anchors.left: parent.left
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
 
                         Rectangle {
                             id: radioImage
@@ -256,9 +256,9 @@ Item {
                             anchors {
                                 left: parent.left
                                 top: parent.top
-                                leftMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
                             }
-                            color: ttkTheme.alphaLv0
+                            color: ttkTheme.color_alpha_lv0
 
                             Image {
                                 anchors.fill: parent
@@ -271,8 +271,8 @@ Item {
                             anchors {
                                 left: radioImage.right
                                 top: parent.top
-                                leftMargin: dpHeight(10)
-                                topMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
@@ -285,12 +285,12 @@ Item {
                             anchors {
                                 left: radioImage.right
                                 top: radioMainTitle.bottom
-                                leftMargin: dpHeight(10)
-                                topMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
+                                topMargin: ttkGlobal.dpHeight(10)
                             }
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
-                            color: ttkTheme.gray
+                            color: ttkTheme.color_gray
                             text: qsTr("偶遇身边好音乐")
                         }
                     }
@@ -299,7 +299,7 @@ Item {
                     Rectangle {
                         id: songsWidget
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: dpHeight(300)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(300)
 
                         ColumnLayout {
                             spacing: 0
@@ -307,7 +307,7 @@ Item {
 
                             Rectangle {
                                 Layout.fillWidth: true
-                                height: dpHeight(50)
+                                height: ttkGlobal.dpHeight(50)
                                 Layout.alignment: Qt.AlignCenter
 
                                 Text {
@@ -329,24 +329,24 @@ Item {
 
                             Rectangle {
                                 Layout.fillWidth: true
-                                color: ttkTheme.alphaLv10
+                                color: ttkTheme.color_alpha_lv10
                                 height: 1
                             }
 
                             Rectangle {
                                 Layout.fillWidth: true
-                                Layout.preferredHeight: dpHeight(150)
+                                Layout.preferredHeight: ttkGlobal.dpHeight(150)
 
                                 Rectangle {
                                     id: songsItemWidget
-                                    height: dpHeight(70)
-                                    width: dpWidth(70)
-                                    color: ttkTheme.alphaLv11
+                                    height: ttkGlobal.dpHeight(70)
+                                    width: ttkGlobal.dpWidth(70)
+                                    color: ttkTheme.color_alpha_lv11
                                     anchors {
                                         left: parent.left
                                         top: parent.top
-                                        leftMargin: dpHeight(10)
-                                        topMargin: dpHeight(10)
+                                        leftMargin: ttkGlobal.dpHeight(10)
+                                        topMargin: ttkGlobal.dpHeight(10)
                                     }
 
                                     Image {
@@ -360,7 +360,7 @@ Item {
                                         anchors {
                                             left: songsItemImage.right
                                             top: parent.top
-                                            leftMargin: dpHeight(10)
+                                            leftMargin: ttkGlobal.dpHeight(10)
                                         }
                                         horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter

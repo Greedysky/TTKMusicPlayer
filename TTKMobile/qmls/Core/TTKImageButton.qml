@@ -27,5 +27,5 @@ Rectangle {
             ttkImageButton.pressed();
         }
     }
-    color: ttkTheme.alphaLv0
+    color: ttkTheme.color_alpha_lv0
 }

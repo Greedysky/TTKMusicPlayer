@@ -17,7 +17,7 @@ Rectangle{
     visible: false
     width: parent.width
     height: parent.height
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     property string songName
     property string singerName;
@@ -59,7 +59,7 @@ Rectangle{
             Text {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(10)
+                    leftMargin: ttkGlobal.dpHeight(10)
                 }
                 text: songName
             }
@@ -67,7 +67,7 @@ Rectangle{
             Text {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(10)
+                    leftMargin: ttkGlobal.dpHeight(10)
                 }
                 text: qsTr("该歌曲信息为智能匹配结果")
             }
@@ -75,32 +75,32 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             ListView {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(30)
+                    leftMargin: ttkGlobal.dpHeight(30)
                     right: parent.right
-                    rightMargin: dpHeight(30)
+                    rightMargin: ttkGlobal.dpHeight(30)
                 }
                 Layout.fillWidth: true
                 Layout.preferredHeight: ttkMusicSongSettingPage.height/8
                 orientation: ListView.Horizontal
-                spacing: dpHeight(30)
+                spacing: ttkGlobal.dpHeight(30)
 
                 delegate: Rectangle {
                     id: wrapper1
-                    width: dpWidth(60)
-                    height: dpHeight(60)
+                    width: ttkGlobal.dpWidth(60)
+                    height: ttkGlobal.dpHeight(60)
                     radius: 10
 
                     Rectangle {
                         id: imageArea1
                         width: parent.width
                         height: parent.height
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
                         radius: parent.radius
 
                         Image {
@@ -112,7 +112,7 @@ Rectangle{
                     Text {
                         anchors {
                             top: imageArea1.bottom
-                            topMargin: dpHeight(20)
+                            topMargin: ttkGlobal.dpHeight(20)
                         }
                         verticalAlignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
@@ -177,32 +177,32 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             ListView {
                 anchors {
                     left: parent.left
-                    leftMargin: dpHeight(30)
+                    leftMargin: ttkGlobal.dpHeight(30)
                     right: parent.right
-                    rightMargin: dpHeight(30)
+                    rightMargin: ttkGlobal.dpHeight(30)
                 }
                 Layout.fillWidth: true
                 Layout.preferredHeight: ttkMusicSongSettingPage.height/8
                 orientation: ListView.Horizontal
-                spacing: dpHeight(30)
+                spacing: ttkGlobal.dpHeight(30)
 
                 delegate: Rectangle {
                     id: wrapper2
-                    width: dpWidth(60)
-                    height: dpHeight(60)
+                    width: ttkGlobal.dpWidth(60)
+                    height: ttkGlobal.dpHeight(60)
                     radius: 10
 
                     Rectangle {
                         id: imageArea2
                         width: parent.width
                         height: parent.height
-                        color: ttkTheme.white
+                        color: ttkTheme.color_white
                         radius: parent.radius
 
                         Image {
@@ -214,7 +214,7 @@ Rectangle{
                     Text {
                         anchors {
                             top: imageArea2.bottom
-                            topMargin: dpHeight(20)
+                            topMargin: ttkGlobal.dpHeight(20)
                         }
                         verticalAlignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
@@ -282,7 +282,7 @@ Rectangle{
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 1
-                color: ttkTheme.alphaLv10
+                color: ttkTheme.color_alpha_lv10
             }
 
             Text {

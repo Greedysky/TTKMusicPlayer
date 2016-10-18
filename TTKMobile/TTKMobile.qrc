@@ -104,6 +104,7 @@
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
+        <file>qmls/Core/TTKGlobal.qml</file>
         <file>qmls/Core/TTKTheme.qml</file>
         <file>qmls/Core/TTKMessageBox.qml</file>
         <file>qmls/Core/TTKImageButton.qml</file>

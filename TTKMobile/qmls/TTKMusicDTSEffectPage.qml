@@ -25,16 +25,16 @@ Rectangle {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
-            color: ttkTheme.alphaLv0
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
+            color: ttkTheme.color_alpha_lv0
 
             RowLayout {
                 anchors.fill: parent
 
                 TTKImageButton {
                     source: "qrc:/image/title_bar_back"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkOutStackView.pop();
@@ -47,7 +47,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             height: ttkMusicDTSEffectPage.height - mainMenubar.height
-            color: ttkTheme.alphaLv0
+            color: ttkTheme.color_alpha_lv0
 
             ColumnLayout {
                 spacing: 0
@@ -55,24 +55,24 @@ Rectangle {
 
                 Image {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredHeight: dpHeight(25)
-                    Layout.preferredWidth: dpWidth(104)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(25)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(104)
                     source: "qrc:/image/dts_big_logo"
                 }
 
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: dpHeight(51)
-                    color: ttkTheme.gray
+                    Layout.preferredHeight: ttkGlobal.dpHeight(51)
+                    color: ttkTheme.color_gray
 
                     RowLayout {
                         anchors.fill: parent
                         Text {
                             text: qsTr("DTS 音效")
-                            color: ttkTheme.alphaLv6
+                            color: ttkTheme.color_alpha_lv6
                             anchors {
                                 left: parent.left
-                                leftMargin: dpWidth(15)
+                                leftMargin: ttkGlobal.dpWidth(15)
                             }
                         }
 
@@ -80,10 +80,10 @@ Rectangle {
                             id: dtsEffectButton
                             anchors {
                                 right: parent.right
-                                rightMargin: dpWidth(15)
+                                rightMargin: ttkGlobal.dpWidth(15)
                             }
-                            Layout.preferredHeight: dpHeight(29)
-                            Layout.preferredWidth: dpWidth(65)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(29)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(65)
                             source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/dts_switch_off"
                                                                         : "qrc:/image/dts_switch_on"
                             onPressed: {
@@ -97,8 +97,8 @@ Rectangle {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: dpHeight(200)
-                    color: ttkTheme.alphaLv0
+                    Layout.preferredHeight: ttkGlobal.dpHeight(200)
+                    color: ttkTheme.color_alpha_lv0
 
                     ColumnLayout {
                         spacing: 0
@@ -106,10 +106,10 @@ Rectangle {
 
                         Text {
                             text: qsTr("选择音效模式")
-                            color: ttkTheme.alphaLv4
+                            color: ttkTheme.color_alpha_lv4
                             anchors {
                                 left: parent.left
-                                leftMargin: dpWidth(15)
+                                leftMargin: ttkGlobal.dpWidth(15)
                             }
                         }
 
@@ -117,25 +117,25 @@ Rectangle {
                             id: itemListView
                             anchors {
                                 left: parent.left
-                                leftMargin: dpHeight(25)
+                                leftMargin: ttkGlobal.dpHeight(25)
                             }
                             Layout.fillWidth: true
-                            Layout.preferredHeight: dpHeight(150)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(150)
                             orientation: ListView.Horizontal
                             boundsBehavior: Flickable.StopAtBounds
                             clip: true
-                            spacing: dpHeight(3)
+                            spacing: ttkGlobal.dpHeight(3)
 
                             delegate: Rectangle {
                                 id: wrapper1
-                                width: dpWidth(120)
-                                height: dpHeight(120)
-                                color: ttkTheme.alphaLv0
+                                width: ttkGlobal.dpWidth(120)
+                                height: ttkGlobal.dpHeight(120)
+                                color: ttkTheme.color_alpha_lv0
 
                                 Rectangle {
                                     width: parent.width*0.9
                                     height: parent.height*0.9
-                                    color: ttkTheme.alphaLv0
+                                    color: ttkTheme.color_alpha_lv0
                                     radius: 6
 
                                     Image {
@@ -159,7 +159,7 @@ Rectangle {
                                             Layout.alignment: Qt.AlignCenter
                                             verticalAlignment: Qt.AlignTop
                                             horizontalAlignment: Qt.AlignHCenter
-                                            color: ttkTheme.alphaLv6
+                                            color: ttkTheme.color_alpha_lv6
                                             width: parent.width
                                             text: title
                                         }
@@ -196,27 +196,27 @@ Rectangle {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: dpHeight(51)
-                    color: ttkTheme.gray
+                    Layout.preferredHeight: ttkGlobal.dpHeight(51)
+                    color: ttkTheme.color_gray
 
                     RowLayout {
                         anchors.fill: parent
                         Text {
                             text: qsTr("均衡器")
-                            color: ttkTheme.alphaLv6
+                            color: ttkTheme.color_alpha_lv6
                             anchors {
                                 left: parent.left
-                                leftMargin: dpWidth(15)
+                                leftMargin: ttkGlobal.dpWidth(15)
                             }
                         }
 
                         TTKImageButton {
                             anchors {
                                 right: parent.right
-                                rightMargin: dpWidth(15)
+                                rightMargin: ttkGlobal.dpWidth(15)
                             }
-                            Layout.preferredHeight: dpHeight(29)
-                            Layout.preferredWidth: dpWidth(29)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(29)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(29)
                             source: "qrc:/image/ic_toolbar_advance"
                         }
                     }
@@ -234,8 +234,8 @@ Rectangle {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: dpHeight(200)
-                    color: ttkTheme.alphaLv0
+                    Layout.preferredHeight: ttkGlobal.dpHeight(200)
+                    color: ttkTheme.color_alpha_lv0
                 }
             }
         }

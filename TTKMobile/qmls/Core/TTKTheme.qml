@@ -7,7 +7,6 @@
    =================================================*/
 
 import QtQuick 2.5
-import QtQuick.Controls 1.4
 
 QtObject {
     property int music_normal_list:   0
@@ -21,25 +20,27 @@ QtObject {
     property color topbar_background: "#31C27B"
     property int   topbar_height: 50
 
-    property color white: "#FFFFFF"
-    property color black: "#000000"
-    property color gray: "gray"
+    /////////////////////////////////////////////////////
+    property color color_white: "#FFFFFF"
+    property color color_black: "#000000"
+    property color color_gray:  "gray"
 
-    property color alphaLv0:  '#00FFFFFF'
-    property color alphaLv1:  '#11FFFFFF'
-    property color alphaLv2:  '#33FFFFFF'
-    property color alphaLv3:  '#55FFFFFF'
-    property color alphaLv4:  '#77FFFFFF'
-    property color alphaLv5:  '#99FFFFFF'
-    property color alphaLv6:  '#BBFFFFFF'
-    property color alphaLv7:  '#DDFFFFFF'
+    property color color_alpha_lv0:  '#00FFFFFF'
+    property color color_alpha_lv1:  '#11FFFFFF'
+    property color color_alpha_lv2:  '#33FFFFFF'
+    property color color_alpha_lv3:  '#55FFFFFF'
+    property color color_alpha_lv4:  '#77FFFFFF'
+    property color color_alpha_lv5:  '#99FFFFFF'
+    property color color_alpha_lv6:  '#BBFFFFFF'
+    property color color_alpha_lv7:  '#DDFFFFFF'
+    property color color_alpha_lv8:  '#00000000'
+    property color color_alpha_lv9:  '#11000000'
+    property color color_alpha_lv10: '#33000000'
+    property color color_alpha_lv11: '#55000000'
+    property color color_alpha_lv12: '#77000000'
+    property color color_alpha_lv13: '#99000000'
+    property color color_alpha_lv14: '#BB000000'
+    property color color_alpha_lv15: '#DD000000'
+    /////////////////////////////////////////////////////
 
-    property color alphaLv8:  '#00000000'
-    property color alphaLv9:  '#11000000'
-    property color alphaLv10: '#33000000'
-    property color alphaLv11: '#55000000'
-    property color alphaLv12: '#77000000'
-    property color alphaLv13: '#99000000'
-    property color alphaLv14: '#BB000000'
-    property color alphaLv15: '#DD000000'
 }

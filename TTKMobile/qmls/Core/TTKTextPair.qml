@@ -20,15 +20,15 @@ Rectangle {
 
     Text {
         id: firstTextArea
-        color: ttkTheme.gray
+        color: ttkTheme.color_gray
     }
 
     Text {
         anchors {
             top: firstTextArea.bottom
-            topMargin: dpWidth(20)
+            topMargin: ttkGlobal.dpWidth(20)
         }
         id: secondTextArea
-        color: ttkTheme.black
+        color: ttkTheme.color_black
     }
 }

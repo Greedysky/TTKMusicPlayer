@@ -87,16 +87,16 @@ Rectangle {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
-            color: ttkTheme.alphaLv0
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
+            color: ttkTheme.color_alpha_lv0
 
             RowLayout {
                 anchors.fill: parent
 
                 TTKImageButton {
                     source: "qrc:/image/title_bar_back"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkOutStackView.pop();
@@ -109,7 +109,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             height: ttkMusicEqualizerPage.height - mainMenubar.height
-            color: ttkTheme.alphaLv0
+            color: ttkTheme.color_alpha_lv0
 
             RowLayout {
                 spacing: 0
@@ -119,20 +119,20 @@ Rectangle {
                     id: eqTypeListView
                     anchors {
                         left: parent.left
-                        leftMargin: dpHeight(10)
+                        leftMargin: ttkGlobal.dpHeight(10)
                     }
                     Layout.fillHeight: true
-                    Layout.preferredWidth: dpWidth(100)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(100)
                     orientation: ListView.Vertical
                     boundsBehavior: Flickable.StopAtBounds
                     clip: true
-                    spacing: dpHeight(5)
+                    spacing: ttkGlobal.dpHeight(5)
 
                     delegate: Rectangle {
                         id: wrapper1
-                        width: dpWidth(100)
-                        height: dpHeight(60)
-                        color: ttkTheme.alphaLv0
+                        width: ttkGlobal.dpWidth(100)
+                        height: ttkGlobal.dpHeight(60)
+                        color: ttkTheme.color_alpha_lv0
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
@@ -140,7 +140,7 @@ Rectangle {
                             width: parent.width
                             text: title
                             wrapMode: Text.WordWrap
-                            color: parent.ListView.isCurrentItem ? "#00ff00" : ttkTheme.alphaLv6
+                            color: parent.ListView.isCurrentItem ? "#00ff00" : ttkTheme.color_alpha_lv6
                             font.bold: parent.ListView.isCurrentItem
                         }
 
@@ -236,28 +236,28 @@ Rectangle {
                     id: eqTypeSliderListView
                     anchors {
                         left: eqTypeListView.right
-                        leftMargin: dpWidth(10)
+                        leftMargin: ttkGlobal.dpWidth(10)
                     }
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillHeight: true
-                    Layout.preferredWidth: dpWidth(ttkMusicEqualizerPage.width) - dpWidth(10 + 100)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(ttkMusicEqualizerPage.width) - ttkGlobal.dpWidth(10 + 100)
                     orientation: ListView.Vertical
                     boundsBehavior: Flickable.StopAtBounds
                     clip: true
-                    spacing: dpHeight(5)
+                    spacing: ttkGlobal.dpHeight(5)
 
                     delegate: Rectangle {
                         id: wrapper
-                        width: dpWidth(50*8)
-                        height: dpHeight(55)
-                        color: ttkTheme.alphaLv0
+                        width: ttkGlobal.dpWidth(50*8)
+                        height: ttkGlobal.dpHeight(55)
+                        color: ttkTheme.color_alpha_lv0
 
                         Text {
                             id: sliderText
                             verticalAlignment: Qt.AlignVCenter
                             horizontalAlignment: Qt.AlignLeft
-                            color: ttkTheme.alphaLv6
-                            width: dpWidth(50)
+                            color: ttkTheme.color_alpha_lv6
+                            width: ttkGlobal.dpWidth(50)
                             text: title
                             wrapMode: Text.WordWrap
                         }
@@ -266,7 +266,7 @@ Rectangle {
                             id: eqValueSlider
                             anchors {
                                 left: sliderText.right
-                                leftMargin: dpWidth(5)
+                                leftMargin: ttkGlobal.dpWidth(5)
                             }
                             width: wrapper.width*0.5
                             height: sliderText.height
@@ -284,28 +284,28 @@ Rectangle {
                                 groove: Row {
                                     Rectangle{
                                         implicitWidth: eqValueSlider.width*eqValueSlider.sliderGeometry()
-                                        implicitHeight: dpHeight(3)
+                                        implicitHeight: ttkGlobal.dpHeight(3)
                                         color: ttkTheme.topbar_background
                                     }
 
                                     Rectangle{
                                         implicitWidth: eqValueSlider.width*(1-eqValueSlider.sliderGeometry())
-                                        implicitHeight: dpHeight(3)
-                                        color: ttkTheme.gray
+                                        implicitHeight: ttkGlobal.dpHeight(3)
+                                        color: ttkTheme.color_gray
                                     }
                                 }
 
                                 handle: Rectangle{
                                     anchors.centerIn: parent;
                                     color: ttkTheme.topbar_background
-                                    width: dpWidth(20)
-                                    height: dpHeight(20)
-                                    radius: dpWidth(10)
+                                    width: ttkGlobal.dpWidth(20)
+                                    height: ttkGlobal.dpHeight(20)
+                                    radius: ttkGlobal.dpWidth(10)
                                 }
 
                                 panel: Rectangle{
                                     anchors.fill: parent;
-                                    color: ttkTheme.alphaLv0
+                                    color: ttkTheme.color_alpha_lv0
 
                                     Loader{
                                         id: grooveLoader

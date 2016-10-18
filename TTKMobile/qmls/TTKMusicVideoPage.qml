@@ -22,11 +22,12 @@ Rectangle{
         Rectangle{
             color: "black"
             width: ttkMusicVideoPage.width
-            height: ttkMusicVideoPage.height - dpHeight(50)
+            height: ttkMusicVideoPage.height - ttkGlobal.dpHeight(50)
 
             MediaPlayer{
                 id: videoPlayer
-                source: "http://112.25.9.182/hd.yinyuetai.com/uploads/videos/common/F871015476463CE20C9F9BA645A05880.flv?sc=c5de1f9541cb51f7&br=1095&rd=Android"
+                source: ttkGlobal.video_url
+//                source: "http://112.25.9.182/hd.yinyuetai.com/uploads/videos/common/F871015476463CE20C9F9BA645A05880.flv?sc=c5de1f9541cb51f7&br=1095&rd=Android"
                 autoPlay: true
                 volume: 1
             }
@@ -38,19 +39,19 @@ Rectangle{
         }
 
         Rectangle {
-            color: ttkTheme.alphaLv15
+            color: ttkTheme.color_alpha_lv15
             width: ttkMusicVideoPage.width
-            height: dpHeight(50)
+            height: ttkGlobal.dpHeight(50)
 
             Row {
                 spacing: 10
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.leftMargin: dpWidth(10)
+                anchors.leftMargin: ttkGlobal.dpWidth(10)
                 anchors.left: parent.left
 
                 TTKImageButton {
                     width: height*1.2
-                    height: dpHeight(40)
+                    height: ttkGlobal.dpHeight(40)
                     anchors.verticalCenter: parent.verticalCenter
                     source: "qrc:/image/landscape_player_btn_pause_normal"
 
@@ -69,10 +70,10 @@ Rectangle{
                 }
 
                 Text {
-                    width: dpWidth(60)
+                    width: ttkGlobal.dpWidth(60)
                     id: positionLabel
                     text: TTK_UTILS.normalizeTime(videoPlayer.position, "mm:ss");
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                     anchors.verticalCenter: parent.verticalCenter
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignHCenter
@@ -80,8 +81,8 @@ Rectangle{
 
                 Slider {
                     id: videoTimeSlider
-                    width: ttkMusicVideoPage.width - dpWidth(30)*7
-                    height: dpHeight(30)
+                    width: ttkMusicVideoPage.width - ttkGlobal.dpWidth(30)*8
+                    height: ttkGlobal.dpHeight(30)
                     minimumValue: 0
                     maximumValue: videoPlayer.duration <= 0 ? 1 : videoPlayer.duration
                     anchors.verticalCenter: parent.verticalCenter
@@ -96,23 +97,23 @@ Rectangle{
                         groove: Row {
                             Rectangle{
                                 implicitWidth: videoTimeSlider.width*videoTimeSlider.sliderGeometry()
-                                implicitHeight: dpHeight(3)
+                                implicitHeight: ttkGlobal.dpHeight(3)
                                 color: ttkTheme.topbar_background
                             }
 
                             Rectangle{
                                 implicitWidth: videoTimeSlider.width*(1-videoTimeSlider.sliderGeometry())
-                                implicitHeight: dpHeight(3)
-                                color: ttkTheme.gray
+                                implicitHeight: ttkGlobal.dpHeight(3)
+                                color: ttkTheme.color_gray
                             }
                         }
 
                         handle: Rectangle{
                             anchors.centerIn: parent;
                             color: ttkTheme.topbar_background
-                            width: dpWidth(20)
-                            height: dpHeight(20)
-                            radius: dpWidth(10)
+                            width: ttkGlobal.dpWidth(20)
+                            height: ttkGlobal.dpHeight(20)
+                            radius: ttkGlobal.dpWidth(10)
                         }
                     }
 
@@ -133,10 +134,10 @@ Rectangle{
                     anchors.verticalCenter: parent.verticalCenter
                     verticalAlignment: Qt.AlignVCenter
                     horizontalAlignment: Qt.AlignHCenter
-                    width: dpWidth(60)
+                    width: ttkGlobal.dpWidth(60)
                     id: durationLabel
                     text: TTK_UTILS.normalizeTime(videoPlayer.duration, "mm:ss");
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                 }
             }
         }

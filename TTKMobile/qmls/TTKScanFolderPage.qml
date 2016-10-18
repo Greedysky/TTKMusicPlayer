@@ -34,7 +34,7 @@ Item {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -42,14 +42,14 @@ Item {
                 anchors.fill: parent
 
                 Rectangle {
-                    Layout.preferredWidth: dpWidth(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
                 }
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: ttkTheme.white
+                    color: ttkTheme.color_white
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height*2/5
@@ -57,10 +57,10 @@ Item {
                 }
 
                 TTKTextButton {
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
-                    textColor: ttkTheme.white
+                    textColor: ttkTheme.color_white
                     text: qsTr("关闭")
 
                     onPressed: {
@@ -74,8 +74,8 @@ Item {
         Rectangle {
             id: functionArea
             Layout.fillWidth: true
-            height: dpHeight(60)
-            color: ttkTheme.white
+            height: ttkGlobal.dpHeight(60)
+            color: ttkTheme.color_white
 
             RowLayout {
                 spacing: 0
@@ -83,11 +83,11 @@ Item {
 
                 TTKImageButton {
                     id: goBackButton
-                    Layout.preferredWidth: dpWidth(40)
-                    Layout.preferredHeight: dpHeight(40)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(40)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(40)
                     anchors {
                         left: parent.left
-                        leftMargin: dpHeight(5)
+                        leftMargin: ttkGlobal.dpHeight(5)
                     }
                     source: folderModel.parentFolder !== "" ? "qrc:/image/scanning_icon_up"
                                                             : "qrc:/image/scanning_icon_up_disable"
@@ -101,16 +101,16 @@ Item {
                 Text {
                     id: filePathArea
                     text: folderModel.folder;
-                    Layout.preferredWidth: ttkScanFolderPage.width - dpWidth(80)
+                    Layout.preferredWidth: ttkScanFolderPage.width - ttkGlobal.dpWidth(80)
                     Layout.fillHeight: true
                     anchors {
                         left: goBackButton.right
-                        leftMargin: dpWidth(5)
+                        leftMargin: ttkGlobal.dpWidth(5)
                     }
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: functionArea.height/3
                     elide: Text.ElideLeft
-                    color: ttkTheme.gray
+                    color: ttkTheme.color_gray
                 }
             }
         }
@@ -120,7 +120,7 @@ Item {
             id: mainBody
             Layout.fillWidth: true
             height: ttkScanFolderPage.height - mainMenubar.height - functionArea.height - bottomArea.height
-            color: ttkTheme.alphaLv9
+            color: ttkTheme.color_alpha_lv9
 
             ListView {
                 id: listView
@@ -138,8 +138,8 @@ Item {
                 delegate: Rectangle {
                     id: wrapper
                     width: listView.width
-                    height: dpHeight(60)
-                    color: ttkTheme.alphaLv0
+                    height: ttkGlobal.dpHeight(60)
+                    color: ttkTheme.color_alpha_lv0
 
                     RowLayout {
                         spacing: 0
@@ -147,16 +147,16 @@ Item {
 
                         CheckBox {
                             id: checkBoxArea
-                            Layout.preferredHeight: dpHeight(30)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(30)
                             Layout.alignment: Qt.AlignCenter
                             anchors {
                                 left: parent.left
-                                leftMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
                             }
                             style: CheckBoxStyle {
                                 indicator: Image {
-                                    width: dpWidth(30)
-                                    height: dpHeight(30)
+                                    width: ttkGlobal.dpWidth(30)
+                                    height: ttkGlobal.dpHeight(30)
                                     source: control.checked ? "qrc:/image/ic_lyric_poster_lyric_select"
                                                             : "qrc:/image/ic_lyric_poster_lyric_unselect"
                                 }
@@ -172,12 +172,12 @@ Item {
 
                         Image {
                             id: iconArea
-                            Layout.preferredWidth: dpWidth(40)
-                            Layout.preferredHeight: dpHeight(40)
+                            Layout.preferredWidth: ttkGlobal.dpWidth(40)
+                            Layout.preferredHeight: ttkGlobal.dpHeight(40)
                             Layout.alignment: Qt.AlignCenter
                             anchors {
                                 left: checkBoxArea.right
-                                leftMargin: dpHeight(10)
+                                leftMargin: ttkGlobal.dpHeight(10)
                             }
                             source: "qrc:/image/custom_file_type_dir"
                         }
@@ -185,11 +185,11 @@ Item {
                         Text {
                             id: titleArea
                             text: fileName
-                            Layout.preferredWidth: ttkScanFolderPage.width - dpHeight(140)
+                            Layout.preferredWidth: ttkScanFolderPage.width - ttkGlobal.dpHeight(140)
                             Layout.fillHeight: true
                             anchors {
                                 left: iconArea.right
-                                leftMargin: dpWidth(10)
+                                leftMargin: ttkGlobal.dpWidth(10)
                             }
                             verticalAlignment: Qt.AlignVCenter
                             font.pixelSize: wrapper.height/3
@@ -211,10 +211,10 @@ Item {
                         height: 1
                         anchors {
                             left: parent.left
-                            leftMargin: checkBoxArea.width + dpWidth(15)
+                            leftMargin: checkBoxArea.width + ttkGlobal.dpWidth(15)
                             bottom: parent.bottom
                         }
-                        color: ttkTheme.alphaLv9
+                        color: ttkTheme.color_alpha_lv9
                     }
                 }
             }
@@ -224,14 +224,14 @@ Item {
         Rectangle {
             id: bottomArea
             Layout.fillWidth: true
-            height: dpHeight(60)
-            color: ttkTheme.white
+            height: ttkGlobal.dpHeight(60)
+            color: ttkTheme.color_white
 
             TTKTextButton {
                 anchors.centerIn: parent
-                width: dpWidth(180)
-                height: dpHeight(40)
-                textColor: ttkTheme.white
+                width: ttkGlobal.dpWidth(180)
+                height: ttkGlobal.dpHeight(40)
+                textColor: ttkTheme.color_white
                 color: ttkTheme.topbar_background
                 radius: 10
                 text: qsTr("开始扫描")

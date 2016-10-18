@@ -16,12 +16,12 @@ Rectangle {
     anchors.right: ttkMainWindow.right
     anchors.bottom: ttkMainWindow.bottom
     width: ttkMainWindow.width
-    height: dpHeight(70)
+    height: ttkGlobal.dpHeight(70)
     border {
-        color: ttkTheme.alphaLv9
+        color: ttkTheme.color_alpha_lv9
         width: 1
     }
-    color: ttkTheme.white
+    color: ttkTheme.color_white
     Component.onCompleted: {
         nameTitle = TTK_APP.empty() ? qsTr("天天酷音") : TTK_APP.mediaName();
         artistTitle = TTK_APP.empty() ? qsTr("天天酷音") : TTK_APP.mediaArtist();
@@ -85,9 +85,9 @@ Rectangle {
         anchors {
             left: parent.left
             top: parent.top
-            leftMargin: dpHeight(10)
+            leftMargin: ttkGlobal.dpHeight(10)
         }
-        color: ttkTheme.alphaLv0
+        color: ttkTheme.color_alpha_lv0
         foreground: TTK_APP.artistImagePath().empty ? "qrc:/image/landscape_check_album_normal"
                                                     : TTK_APP.artistImagePath()
         background: "qrc:/image/radius_mask"
@@ -106,12 +106,12 @@ Rectangle {
 
     Text {
         id: musicNameTitle
-        width: ttkMusicBar.width - barPlayButton.width - barPlayListButton.width - musicBarImage.width - dpHeight(30)
+        width: ttkMusicBar.width - barPlayButton.width - barPlayListButton.width - musicBarImage.width - ttkGlobal.dpHeight(30)
         anchors {
             left: musicBarImage.right
             top: parent.top
-            leftMargin: dpHeight(5)
-            topMargin: dpHeight(10)
+            leftMargin: ttkGlobal.dpHeight(5)
+            topMargin: ttkGlobal.dpHeight(10)
         }
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -124,12 +124,12 @@ Rectangle {
         anchors {
             left: musicBarImage.right
             top: musicNameTitle.bottom
-            leftMargin: dpHeight(5)
-            topMargin: dpHeight(10)
+            leftMargin: ttkGlobal.dpHeight(5)
+            topMargin: ttkGlobal.dpHeight(10)
         }
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
-        color: ttkTheme.gray
+        color: ttkTheme.color_gray
     }
 
     TTKImageButton {
@@ -139,10 +139,10 @@ Rectangle {
             right: parent.right
             top: parent.top
             topMargin: (parent.height - height)/2
-            rightMargin: dpHeight(10)
+            rightMargin: ttkGlobal.dpHeight(10)
         }
         width: height
-        height: dpHeight(60)
+        height: ttkGlobal.dpHeight(60)
     }
 
     TTKImageButton {
@@ -152,10 +152,10 @@ Rectangle {
             right: barPlayListButton.left
             top: parent.top
             topMargin: (parent.height - height)/2
-            rightMargin: dpHeight(10)
+            rightMargin: ttkGlobal.dpHeight(10)
         }
         width: height*1.2
-        height: dpHeight(50)
+        height: ttkGlobal.dpHeight(50)
         onPressed: {
             if(TTK_APP.empty()) {
                 return;

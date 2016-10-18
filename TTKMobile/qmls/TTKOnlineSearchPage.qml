@@ -40,8 +40,8 @@ Item {
             TTK_APP.importNetworkMusicSongs(key, path);
         }
         onDownForSearchMovieFinished: {
-            console.log(url);
-//            ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
+            ttkGlobal.video_url = url;
+            ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
         }
     }
 
@@ -53,7 +53,7 @@ Item {
         Rectangle {
             id: mainMenubar
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -62,8 +62,8 @@ Item {
 
                 TTKImageButton {
                     source: "qrc:/image/title_bar_back"
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
                         ttkMainStackView.pop();
@@ -72,17 +72,17 @@ Item {
 
                 TTKLineInput {
                     id: searchInput
-                    Layout.preferredWidth: ttkOnlineSearchPage.width - dpWidth(100)
-                    Layout.preferredHeight: dpHeight(33)
+                    Layout.preferredWidth: ttkOnlineSearchPage.width - ttkGlobal.dpWidth(100)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(33)
                     hint: "Big Bang"
                     fontSize: parent.height/3
                 }
 
                 TTKTextButton {
-                    Layout.preferredWidth: dpWidth(50)
-                    Layout.preferredHeight: dpHeight(50)
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                    Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
-                    textColor: ttkTheme.white
+                    textColor: ttkTheme.color_white
                     text: qsTr("搜索")
                     onPressed: {
                         switch( functionList.currentIndex )
@@ -100,8 +100,8 @@ Item {
         Rectangle {
             id: searchTypeArea
             Layout.fillWidth: true
-            height: dpHeight(ttkTheme.topbar_height)
-            color: ttkTheme.white
+            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
+            color: ttkTheme.color_white
 
             ListView {
                 id: functionList
@@ -114,8 +114,8 @@ Item {
                 delegate: Component {
                     TTKTextButton {
                         width: ttkMainWindow.width/5
-                        height: dpHeight(50)
-                        textColor: ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.gray
+                        height: ttkGlobal.dpHeight(50)
+                        textColor: ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_gray
                         text: title
                         onPressed: {
                             searedSongStackView.pop();
@@ -138,9 +138,9 @@ Item {
 
                         Rectangle {
                             width: parent.width
-                            height: dpHeight(5)
+                            height: ttkGlobal.dpHeight(5)
                             anchors.bottom: parent.bottom
-                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
                         }
                     }
                 }
@@ -159,7 +159,7 @@ Item {
         Rectangle {
             width: ttkMainWindow.width
             height: ttkMainStackView.height - mainMenubar.height - searchTypeArea.height
-            color: ttkTheme.white
+            color: ttkTheme.color_white
 
             StackView {
                 id: searedSongStackView
@@ -180,8 +180,8 @@ Item {
                         Rectangle {
                             id: wrapperSong
                             width: ttkMainWindow.width
-                            height: dpHeight(70)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(70)
+                            color: ttkTheme.color_white
 
                             MouseArea {
                                 anchors.fill: parent
@@ -194,28 +194,28 @@ Item {
                             Rectangle {
                                 width: ttkMainWindow.width
                                 height: 1
-                                color: ttkTheme.alphaLv9
+                                color: ttkTheme.color_alpha_lv9
                             }
 
                             Rectangle {
-                                width: dpWidth(5)
+                                width: ttkGlobal.dpWidth(5)
                                 height: parent.height*2/3
                                 anchors {
                                     top: parent.top
                                     topMargin: parent.height/3/2
                                 }
-                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
                             }
 
                             Text {
                                 id: titleAreaSong
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaSong.width - dpHeight(120)
+                                width: ttkOnlineSearchPage.width - iconAreaSong.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
@@ -228,9 +228,9 @@ Item {
                                 height: parent.height/3
                                 anchors {
                                     top: titleAreaSong.bottom
-                                    topMargin: dpHeight(5)
+                                    topMargin: ttkGlobal.dpHeight(5)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 source: "qrc:/image/ic_playlist_normal"
                             }
@@ -240,14 +240,14 @@ Item {
                                 width: titleAreaSong.width - iconAreaSong.width
                                 anchors {
                                     top: titleAreaSong.bottom
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: iconAreaSong.right
-                                    leftMargin: dpHeight(10)
+                                    leftMargin: ttkGlobal.dpHeight(10)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
                                 font.pixelSize: parent.height/4
-                                color: ttkTheme.gray
+                                color: ttkTheme.color_gray
                             }
                         }
                     }
@@ -273,8 +273,8 @@ Item {
                         Rectangle {
                             id: wrapperMV
                             width: ttkMainWindow.width
-                            height: dpHeight(70)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(70)
+                            color: ttkTheme.color_white
 
                             MouseArea {
                                 anchors.fill: parent
@@ -287,28 +287,28 @@ Item {
                             Rectangle {
                                 width: ttkMainWindow.width
                                 height: 1
-                                color: ttkTheme.alphaLv9
+                                color: ttkTheme.color_alpha_lv9
                             }
 
                             Rectangle {
-                                width: dpWidth(5)
+                                width: ttkGlobal.dpWidth(5)
                                 height: parent.height*2/3
                                 anchors {
                                     top: parent.top
                                     topMargin: parent.height/3/2
                                 }
-                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
                             }
 
                             Text {
                                 id: titleAreaMV
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaMV.width - dpHeight(120)
+                                width: ttkOnlineSearchPage.width - iconAreaMV.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
@@ -321,9 +321,9 @@ Item {
                                 height: parent.height/3
                                 anchors {
                                     top: titleAreaMV.bottom
-                                    topMargin: dpHeight(5)
+                                    topMargin: ttkGlobal.dpHeight(5)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 source: "qrc:/image/ic_playlist_normal"
                             }
@@ -333,14 +333,14 @@ Item {
                                 width: titleAreaMV.width - iconAreaMV.width
                                 anchors {
                                     top: titleAreaMV.bottom
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: iconAreaMV.right
-                                    leftMargin: dpHeight(10)
+                                    leftMargin: ttkGlobal.dpHeight(10)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
                                 font.pixelSize: parent.height/4
-                                color: ttkTheme.gray
+                                color: ttkTheme.color_gray
                             }
                         }
                     }
@@ -366,8 +366,8 @@ Item {
                         Rectangle {
                             id: wrapperLrc
                             width: ttkMainWindow.width
-                            height: dpHeight(70)
-                            color: ttkTheme.white
+                            height: ttkGlobal.dpHeight(70)
+                            color: ttkTheme.color_white
 
                             MouseArea {
                                 anchors.fill: parent
@@ -380,28 +380,28 @@ Item {
                             Rectangle {
                                 width: ttkMainWindow.width
                                 height: 1
-                                color: ttkTheme.alphaLv9
+                                color: ttkTheme.color_alpha_lv9
                             }
 
                             Rectangle {
-                                width: dpWidth(5)
+                                width: ttkGlobal.dpWidth(5)
                                 height: parent.height*2/3
                                 anchors {
                                     top: parent.top
                                     topMargin: parent.height/3/2
                                 }
-                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.white
+                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
                             }
 
                             Text {
                                 id: titleAreaLrc
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaLrc.width - dpHeight(120)
+                                width: ttkOnlineSearchPage.width - iconAreaLrc.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
@@ -414,9 +414,9 @@ Item {
                                 height: parent.height/3
                                 anchors {
                                     top: titleAreaLrc.bottom
-                                    topMargin: dpHeight(5)
+                                    topMargin: ttkGlobal.dpHeight(5)
                                     left: parent.left
-                                    leftMargin: dpHeight(20)
+                                    leftMargin: ttkGlobal.dpHeight(20)
                                 }
                                 source: "qrc:/image/ic_playlist_normal"
                             }
@@ -426,14 +426,14 @@ Item {
                                 width: titleAreaLrc.width - iconAreaLrc.width
                                 anchors {
                                     top: titleAreaLrc.bottom
-                                    topMargin: dpHeight(10)
+                                    topMargin: ttkGlobal.dpHeight(10)
                                     left: iconAreaLrc.right
-                                    leftMargin: dpHeight(10)
+                                    leftMargin: ttkGlobal.dpHeight(10)
                                 }
                                 elide: Text.ElideRight
                                 verticalAlignment: Qt.AlignVCenter
                                 font.pixelSize: parent.height/4
-                                color: ttkTheme.gray
+                                color: ttkTheme.color_gray
                             }
                         }
                     }

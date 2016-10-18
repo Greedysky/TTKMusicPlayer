@@ -20,7 +20,7 @@ FocusScope {
 
     Rectangle {
         anchors.fill: parent
-        color: ttkTheme.alphaLv10
+        color: ttkTheme.color_alpha_lv10
         radius: 1
 
         Text {
@@ -31,7 +31,7 @@ FocusScope {
             }
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: ttkLineInput.fontSize
-            color: ttkTheme.white
+            color: ttkTheme.color_white
             opacity: input.length ? 0 : 1
         }
 
@@ -44,7 +44,7 @@ FocusScope {
             }
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: ttkLineInput.fontSize
-            color: ttkTheme.white
+            color: ttkTheme.color_white
             opacity: !hint.opacity
         }
 
@@ -59,7 +59,7 @@ FocusScope {
             }
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: ttkLineInput.fontSize
-            color: ttkTheme.white
+            color: ttkTheme.color_white
             onAccepted: {
                 ttkLineInput.accepted();
             }

@@ -15,7 +15,7 @@ Rectangle {
     id: ttkMusicSongInfoPage
     visible: false
     anchors.fill: parent
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     MouseArea {
         anchors.fill: parent
@@ -29,10 +29,10 @@ Rectangle {
         width: parent.width*0.85
         height: parent.height*0.85
         anchors.centerIn: parent
-        color: ttkTheme.white
+        color: ttkTheme.color_white
 
         function getFixedHeight(){
-            return dpHeight(80);
+            return ttkGlobal.dpHeight(80);
         }
 
         TTKTextPair {
@@ -40,7 +40,7 @@ Rectangle {
             height: mainArea.getFixedHeight()
             anchors {
                 left: parent.left
-                leftMargin: dpWidth(20)
+                leftMargin: ttkGlobal.dpWidth(20)
             }
             textFirst: qsTr("歌曲信息")
             textSecond: qsTr("暂时不支持修改歌曲信息")
@@ -48,7 +48,7 @@ Rectangle {
 
         ScrollView {
             width: mainArea.width
-            height: mainArea.height - mainArea.getFixedHeight() - dpHeight(20);
+            height: mainArea.height - mainArea.getFixedHeight() - ttkGlobal.dpHeight(20);
             horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             verticalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             clip: true
@@ -75,7 +75,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
                         textFirst: qsTr("歌名")
                         textSecond: ttkMusicSongSettingPage.songName
@@ -87,7 +87,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
                         textFirst: qsTr("歌手")
                         textSecond: ttkMusicSongSettingPage.singerName
@@ -99,7 +99,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
                         textFirst: qsTr("专辑")
                     }
@@ -109,7 +109,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
 
                         RowLayout {
@@ -137,7 +137,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
 
                         RowLayout {
@@ -165,7 +165,7 @@ Rectangle {
                         Layout.preferredHeight: mainArea.getFixedHeight()
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
 
                         RowLayout {
@@ -190,11 +190,11 @@ Rectangle {
 
                     Rectangle {
                         Layout.fillWidth: true
-                        Layout.preferredWidth: parent.width - dpWidth(20)
+                        Layout.preferredWidth: parent.width - ttkGlobal.dpWidth(20)
                         Layout.preferredHeight: mainArea.getFixedHeight()*2
                         anchors {
                             left: parent.left
-                            leftMargin: dpWidth(20)
+                            leftMargin: ttkGlobal.dpWidth(20)
                         }
 
                         ColumnLayout {
@@ -203,21 +203,21 @@ Rectangle {
 
                             Text {
                                 id: firstTextArea
-                                color: ttkTheme.gray
+                                color: ttkTheme.color_gray
                                 text: qsTr("文件路径")
                             }
 
                             TextArea {
                                 id: filePathArea
                                 enabled: false
-                                Layout.preferredWidth: mainArea.width - dpWidth(20)
+                                Layout.preferredWidth: mainArea.width - ttkGlobal.dpWidth(20)
                                 Layout.preferredHeight: mainArea.getFixedHeight()*2
                                 wrapMode: Text.WrapAnywhere
                                 anchors {
                                     left: parent.left
-                                    leftMargin: dpWidth(-5)
+                                    leftMargin: ttkGlobal.dpWidth(-5)
                                 }
-                                textColor: ttkTheme.black
+                                textColor: ttkTheme.color_black
                             }
                         }
                     }

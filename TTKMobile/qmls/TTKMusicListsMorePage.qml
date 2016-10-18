@@ -16,7 +16,7 @@ Rectangle{
 
     visible: false
     anchors.fill: parent
-    color: ttkTheme.alphaLv12
+    color: ttkTheme.color_alpha_lv12
 
     MouseArea {
         anchors.fill: parent
@@ -28,23 +28,23 @@ Rectangle{
     ListView {
         id: listView
         anchors.top: parent.top
-        anchors.topMargin: dpHeight(ttkTheme.topbar_height)
+        anchors.topMargin: ttkGlobal.dpHeight(ttkTheme.topbar_height)
         anchors.right: parent.right
-        width: dpWidth(240)
-        height: dpHeight(60)*6
+        width: ttkGlobal.dpWidth(240)
+        height: ttkGlobal.dpHeight(60)*6
         clip: true
         boundsBehavior: Flickable.StopAtBounds
 
         delegate: Rectangle {
                 id: wrapper
                 width: listView.width
-                height: dpHeight(60)
-                color: ttkTheme.white
+                height: ttkGlobal.dpHeight(60)
+                color: ttkTheme.color_white
 
                 Rectangle {
                     width: ttkMainWindow.width
                     height: 1
-                    color: ttkTheme.alphaLv9
+                    color: ttkTheme.color_alpha_lv9
                 }
 
                 Image {
@@ -54,7 +54,7 @@ Rectangle{
                     anchors {
                         top: parent.top
                         left: parent.left
-                        leftMargin: dpHeight(5)
+                        leftMargin: ttkGlobal.dpHeight(5)
                     }
                     source: imgSource
                 }
@@ -64,7 +64,7 @@ Rectangle{
                     text: title
                     anchors {
                         left: iconArea.right
-                        leftMargin: dpHeight(5)
+                        leftMargin: ttkGlobal.dpHeight(5)
                     }
                     height: wrapper.height
                     horizontalAlignment: Qt.AlignHCenter
