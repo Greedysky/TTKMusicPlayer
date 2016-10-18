@@ -32,6 +32,19 @@ QString TTKMusicUtils::getRootPath() const
     return "file://" + path;
 }
 
+void TTKMusicUtils::showMessageBox(const QString &text, const QString &title, QWidget *parent)
+{
+#if defined Q_OS_WIN
+    QMessageBox::information(parent, title, text);
+#elif defined (Q_OS_ANDROID)
+    Q_UNUSED(title);
+    Q_UNUSED(parent);
+    QAndroidJniObject t = QAndroidJniObject::fromString(text);
+    QAndroidJniObject::callStaticMethod<void>(APP_PKG_NAME, "showMessageBox", "(Ljava/lang/String;)V",
+                                              t.object<jstring>());
+#endif
+}
+
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 {
     return MusicTime(time, MusicTime::All_Msec).toString(format);

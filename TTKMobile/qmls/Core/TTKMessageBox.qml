@@ -9,6 +9,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: ttkMessageBox
@@ -37,7 +38,19 @@ Rectangle {
         }
     }
 
+    DropShadow {
+        anchors.fill: opImage;
+        source: opImage;
+        horizontalOffset: 10
+        verticalOffset: 10
+        radius: 10
+        samples: 17
+        spread: 0.0
+        color: ttkTheme.color_alpha_lv13
+    }
+
     Rectangle {
+        id: opImage
         color: ttkTheme.topbar_background
         radius: 10
         width: 0.7*parent.width

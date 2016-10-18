@@ -22,7 +22,7 @@ QtObject {
         return Math.round(numbers*((pixel_density*25.4)/160)*multiplier_height);
     }
     function dpWidth(numbers) {
-        return Math.round(numbers*((pixel_density*25.4)/160)*multiplier_width);
+        return Math.round(numbers*((pixel_density*25.4)/160)*multiplier_height);
     }
     ////////////////////////////////////////////
     property string video_url;

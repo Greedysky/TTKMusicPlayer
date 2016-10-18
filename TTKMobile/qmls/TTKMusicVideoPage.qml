@@ -27,7 +27,6 @@ Rectangle{
             MediaPlayer{
                 id: videoPlayer
                 source: ttkGlobal.video_url
-//                source: "http://112.25.9.182/hd.yinyuetai.com/uploads/videos/common/F871015476463CE20C9F9BA645A05880.flv?sc=c5de1f9541cb51f7&br=1095&rd=Android"
                 autoPlay: true
                 volume: 1
             }

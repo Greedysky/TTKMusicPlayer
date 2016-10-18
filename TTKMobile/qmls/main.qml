@@ -18,7 +18,7 @@ ApplicationWindow {
     width: ttkGlobal.window_width
     height: ttkGlobal.window_height
 
-    property bool exitApp: false
+    property variant preQuitTime: 0
 
     TTKTheme {
         id: ttkTheme
@@ -51,36 +51,28 @@ ApplicationWindow {
         }
     }
 
-    TTKMessageBox {
-        id: ttkMessageBox
-        title: qsTr("提示")
-        content: qsTr("是否继续退出")
-        okText: qsTr("退出")
-        cancelText: qsTr("取消")
-        onResult: {
-            if(val === 1) {
-                ttkMainWindow.exitApp = true;
-                ttkMainWindow.close();
-                Qt.quit();
-            }
-        }
-    }
-
     onClosing: {
         if(ttkOutStackView.depth > 1) {
             ttkOutStackView.pop();
             close.accepted = false;
-        }else
-        {
+        }else{
             if(ttkMainStackView.depth > 1) {
                 ttkMainStackView.pop();
                 close.accepted = false;
-            }
-            else {
-                close.accepted = ttkMainWindow.exitApp;
-                if(!close.accepted) {
-                    ttkMessageBox.visible = true;
+            }else {
+                var nowQuitTime = Date.parse(new Date);
+                if(preQuitTime === 0) {
+                    preQuitTime = nowQuitTime;
+                    close.accepted = false;
+                }else{
+                    if(nowQuitTime - preQuitTime <= 1200) {
+                        close.accepted = true;
+                    }else{
+                        preQuitTime = nowQuitTime;
+                        close.accepted = false;
+                    }
                 }
+                TTK_UTILS.showMessageBox(qsTr("再按一次退出"));
             }
         }
     }

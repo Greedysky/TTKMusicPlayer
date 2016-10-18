@@ -12,6 +12,8 @@
 #include <QObject>
 #include "musicmobileglobaldefine.h"
 
+#define APP_PKG_NAME    "org/greedysky/ttkmobile/TTKMobile"
+
 class MusicSongTag;
 
 /*! @brief The class of the music utils.
@@ -35,6 +37,12 @@ public:
     /*!
      * Get root path.
      */
+
+    Q_INVOKABLE void showMessageBox(const QString &text, const QString &title = 0, QWidget *parent = 0);
+    /*!
+     * Show message box.
+     */
+
     Q_INVOKABLE QString normalizeTime(qint64 time, const QString &format);
     /*!
      * Transfer integer time to string by format.
