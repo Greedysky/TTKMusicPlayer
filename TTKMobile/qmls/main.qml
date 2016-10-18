@@ -60,19 +60,23 @@ ApplicationWindow {
                 ttkMainStackView.pop();
                 close.accepted = false;
             }else {
-                var nowQuitTime = Date.parse(new Date);
-                if(preQuitTime === 0) {
-                    preQuitTime = nowQuitTime;
-                    close.accepted = false;
-                }else{
-                    if(nowQuitTime - preQuitTime <= 1200) {
-                        close.accepted = true;
-                    }else{
+                if(ttkGlobal.isAndroid()) {
+                    var nowQuitTime = Date.parse(new Date);
+                    if(preQuitTime === 0) {
                         preQuitTime = nowQuitTime;
                         close.accepted = false;
+                    }else{
+                        if(nowQuitTime - preQuitTime <= 1200) {
+                            close.accepted = true;
+                        }else{
+                            preQuitTime = nowQuitTime;
+                            close.accepted = false;
+                        }
                     }
+                    TTK_UTILS.showMessageBox(qsTr("再按一次退出"));
+                }else{
+                    close.accepted = true;
                 }
-                TTK_UTILS.showMessageBox(qsTr("再按一次退出"));
             }
         }
     }

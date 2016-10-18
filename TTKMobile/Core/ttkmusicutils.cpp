@@ -6,6 +6,7 @@
 
 #include <QDir>
 #include <QFontMetrics>
+#include <QMessageBox>
 
 TTKMusicUtils::TTKMusicUtils(QObject *parent)
     : QObject(parent)

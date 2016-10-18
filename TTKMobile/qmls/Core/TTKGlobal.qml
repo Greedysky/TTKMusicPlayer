@@ -11,13 +11,16 @@ import QtQuick.Window 2.0
 
 QtObject {
     ////////////////////////////////////////////
-    property int window_width: Qt.platform.os === "android" ? Screen.desktopAvailableWidth : 320
-    property int window_height: Qt.platform.os === "android" ? Screen.desktopAvailableHeight : 480
+    property int window_width: isAndroid() ? Screen.desktopAvailableWidth : 320
+    property int window_height: isAndroid() ? Screen.desktopAvailableHeight : 480
 
     property real pixel_density: 4.46
     property real multiplier_height: window_height/480
     property real multiplier_width: window_width/320
 
+    function isAndroid() {
+        return Qt.platform.os === "android";
+    }
     function dpHeight(numbers) {
         return Math.round(numbers*((pixel_density*25.4)/160)*multiplier_height);
     }

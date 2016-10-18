@@ -39,8 +39,8 @@ Rectangle {
     }
 
     DropShadow {
-        anchors.fill: opImage;
-        source: opImage;
+        anchors.fill: shadowRectangle
+        source: shadowRectangle
         horizontalOffset: 10
         verticalOffset: 10
         radius: 10
@@ -50,7 +50,7 @@ Rectangle {
     }
 
     Rectangle {
-        id: opImage
+        id: shadowRectangle
         color: ttkTheme.topbar_background
         radius: 10
         width: 0.7*parent.width
