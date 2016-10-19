@@ -121,10 +121,10 @@ Rectangle{
                         anchors.fill: parent
                         onPressed: {
                             if(videoPlayer.seekable) {
-                                var pos = videoPlayer.duration * mouse.x / parent.width
+                                var pos = videoPlayer.duration * mouse.x / parent.width;
                             }
-                            videoPlayer.seek(pos)
-                            videoTimeSlider.value = pos;
+                            videoPlayer.seek(pos);
+                            videoTimeSlider.value = videoPlayer.position;
                         }
                     }
                 }

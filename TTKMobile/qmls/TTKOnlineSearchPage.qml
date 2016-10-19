@@ -23,6 +23,10 @@ Item {
     Connections {
         target: TTK_NETWORK
         onClearAllItems: {
+            searedSongList.currentIndex = -1;
+            searedMVList.currentIndex = -1;
+            searedLrcList.currentIndex = -1;
+
             searedSongListModel.clear();
             searedMVListModel.clear();
             searedLrcListModel.clear();
@@ -255,10 +259,6 @@ Item {
                     model: ListModel {
                         id: searedSongListModel
                     }
-
-                    Component.onCompleted: {
-                        currentIndex = -1;
-                    }
                 }
 
                 ///seared mv list
@@ -348,10 +348,6 @@ Item {
                     model: ListModel {
                         id: searedMVListModel
                     }
-
-                    Component.onCompleted: {
-                        currentIndex = -1;
-                    }
                 }
 
                 ///seared lrc list
@@ -440,10 +436,6 @@ Item {
 
                     model: ListModel {
                         id: searedLrcListModel
-                    }
-
-                    Component.onCompleted: {
-                        currentIndex = -1;
                     }
                 }
 
