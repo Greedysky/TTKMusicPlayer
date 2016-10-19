@@ -221,6 +221,13 @@ Item {
                                 text: title
                                 textColor: ttkTheme.color_black
                             }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onPressed: {
+                                    ttkMusicAboutPage.visible = true;
+                                }
+                            }
                         }
 
                         model: ListModel{
@@ -251,4 +258,9 @@ Item {
             }
         }
     }
+
+    TTKMusicAboutPage {
+        id: ttkMusicAboutPage
+    }
+
 }
