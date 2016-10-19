@@ -35,6 +35,10 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
     ////////////////////////////////////////////////
     ui->setupUi(this);
+    QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    setMaximumSize(size.width(), size.height());
+    ////////////////////////////////////////////////
 
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);

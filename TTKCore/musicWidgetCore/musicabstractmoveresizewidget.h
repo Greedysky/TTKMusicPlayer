@@ -13,8 +13,18 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+struct MUSIC_WIDGET_EXPORT MoveResizeStruct
+{
+    bool m_mouseLeftPress;
+    bool m_isPressBorder;
+    QPoint m_mousePos;
+    QPoint m_windowPos;
+    QSize m_pressedSize;
+};
+
 /*! @brief The class of the moving resize widget base.
  * @author Greedysky <greedysky@163.com>
+ *         Lverson   <what951006@163.com>
  */
 class MUSIC_WIDGET_EXPORT MusicAbstractMoveResizeWidget : public QWidget
 {
@@ -36,7 +46,6 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicAbstractMoveResizeWidget();
 
     static QString getClassName();
     /*!
@@ -53,22 +62,21 @@ protected:
      * Override the widget event.
      */
 
-    void sizeCursor(int direction);
-    /*!
-     * Set current widget cursor by direction.
-     */
-    int sizeDirection(int x, int y);
+    void sizeDirection();
     /*!
      * Size direction detected.
+     */
+    void moveDirection();
+    /*!
+     * Move direction to be.
      */
     QObjectList foreachWidget(QObject *object);
     /*!
      * Get all inside widgets.
      */
 
-    QPoint m_pressAt;
-    bool m_mouseLeftPress;
-    int m_direction;
+    MoveResizeStruct m_struct;
+    Direction m_direction;
 
 };
 
