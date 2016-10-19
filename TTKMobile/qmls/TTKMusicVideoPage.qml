@@ -29,6 +29,10 @@ Rectangle{
                 source: ttkGlobal.video_url
                 autoPlay: true
                 volume: 1
+
+                onPositionChanged: {
+                    videoTimeSlider.value = position;
+                }
             }
 
             VideoOutput {
@@ -85,7 +89,6 @@ Rectangle{
                     minimumValue: 0
                     maximumValue: videoPlayer.duration <= 0 ? 1 : videoPlayer.duration
                     anchors.verticalCenter: parent.verticalCenter
-                    value: videoPlayer.position
 
                     function sliderGeometry() {
                         return (videoTimeSlider.value - videoTimeSlider.minimumValue) /
@@ -124,7 +127,6 @@ Rectangle{
                                 var pos = videoPlayer.duration * mouse.x / parent.width;
                             }
                             videoPlayer.seek(pos);
-                            videoTimeSlider.value = videoPlayer.position;
                         }
                     }
                 }

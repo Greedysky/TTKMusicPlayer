@@ -37,7 +37,7 @@ Rectangle{
             anchors.centerIn: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: parent.height/9
+            font.pixelSize: parent.height/11
             text: qsTr("TTK Music Player") + "\n\n" +
                   qsTr("Directed By Greedysky") +
                   ("\nCopyright© 2014-2016") +
