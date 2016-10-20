@@ -178,6 +178,21 @@ Item {
                                 text: title
                                 textColor: ttkTheme.color_black
                             }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onPressed: {
+                                    switch(index) {
+                                        case 0: break;
+                                        case 1: break;
+                                        case 2: break;
+                                        case 3:
+                                            ttkOutStackView.push("qrc:/qmls/TTKMusicCleanCachedPage.qml");
+                                            break;
+                                        case 4: break;
+                                    }
+                                }
+                            }
                         }
 
                         model: ListModel{

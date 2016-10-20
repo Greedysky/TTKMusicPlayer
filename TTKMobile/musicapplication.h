@@ -59,7 +59,7 @@ public:
      * Remove music data from container by index.
      */
 
-    Q_INVOKABLE bool checkLovestMusicSong();
+    Q_INVOKABLE bool checkLovestMusicSong() const;
     /*!
      * Check current song is in the lovest container or not.
      */

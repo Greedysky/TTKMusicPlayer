@@ -101,6 +101,8 @@
         <file alias="share_item_wx_friend">images/share_item_wx_friend.png</file>
         <file alias="share_item_wx_timeline">images/share_item_wx_timeline.png</file>
         <file alias="action_icon_info">images/action_icon_info.png</file>
+        <file alias="cached_scan_normal">images/cached_scan_normal.png</file>
+        <file alias="cached_scan_down_normal">images/cached_scan_down_normal.png</file>
     </qresource>
     <qresource prefix="/">
         <file>qmls/main.qml</file>
@@ -143,5 +145,6 @@
         <file>qmls/TTKMusicSongInfoPage.qml</file>
         <file>qmls/TTKMusicVideoPage.qml</file>
         <file>qmls/TTKMusicAboutPage.qml</file>
+        <file>qmls/TTKMusicCleanCachedPage.qml</file>
     </qresource>
 </RCC>

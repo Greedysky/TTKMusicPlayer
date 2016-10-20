@@ -136,7 +136,7 @@ void MusicApplication::removeMusicSongs(int index)
     }
 }
 
-bool MusicApplication::checkLovestMusicSong()
+bool MusicApplication::checkLovestMusicSong() const
 {
     return m_songsSummarizied->getMusicSongsFilePath(MUSIC_LOVEST_LIST).contains(m_ttkPlaylist->currentMediaString());
 }
