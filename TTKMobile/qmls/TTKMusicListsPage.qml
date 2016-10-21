@@ -28,6 +28,8 @@ Item {
             playlistModel.append(info);
         }
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
+
+        TTK_MODEL.sourceModel(playlistModel);
     }
 
     onXChanged: {
@@ -40,6 +42,10 @@ Item {
     function removeItemFromList() {
         playlistModel.remove(functionClickedIndex);
         TTK_APP.removeMusicSongs(functionClickedIndex);
+    }
+
+    ListModel {
+        id: playlistModel
     }
 
     Connections {
@@ -77,8 +83,6 @@ Item {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
-
-
 
         ///top bar
         Rectangle {
@@ -232,9 +236,7 @@ Item {
                     }
                 }
 
-                model: ListModel {
-                    id: playlistModel
-                }
+                model: TTK_MODEL
             }
         }
     }

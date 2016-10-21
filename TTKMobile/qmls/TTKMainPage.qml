@@ -71,6 +71,10 @@ Item {
                         ttkMainStackView.push("qrc:/qmls/TTKOnlineSearchPage.qml");
                     }
                 }
+
+                Rectangle {
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                }
             }
         }
 

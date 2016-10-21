@@ -18,6 +18,7 @@ class TTKMusicPlaylist;
 class TTKMusicPlayer;
 class TTKNetworkHelper;
 class TTKMusicLyricModel;
+class TTKFilterProxyModel;
 class TTKMusicSongsSummarizied;
 class MusicDownloadStatusLabel;
 
@@ -205,6 +206,7 @@ protected:
     TTKMusicPlayer *m_ttkPlayer;
     TTKNetworkHelper *m_networkHelper;
     TTKMusicLyricModel *m_ttkLrcModel;
+    TTKFilterProxyModel *m_filterProxyModel;
     TTKMusicSongsSummarizied *m_songsSummarizied;
     MusicDownloadStatusLabel *m_downloadStatus;
 

@@ -48,7 +48,7 @@ Rectangle {
             color: ttkTheme.topbar_background
 
             RowLayout {
-                spacing: 2
+                spacing: 0
                 anchors.fill: parent
 
                 TTKImageButton {
@@ -70,6 +70,10 @@ Rectangle {
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
                     text: qsTr("清理占用空间")
+                }
+
+                Rectangle {
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
                 }
             }
         }

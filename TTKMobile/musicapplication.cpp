@@ -4,6 +4,7 @@
 #include "musiccoreutils.h"
 #include "musicnetworkthread.h"
 #include "musicbackgroundmanager.h"
+
 #include <QQuickWindow>
 #include <QQmlContext>
 
@@ -15,11 +16,13 @@
 #include "core/ttknetworkhelper.h"
 #include "core/ttkfilesearchcore.h"
 #include "core/ttkmusiclyricmodel.h"
+#include "core/ttkfilterproxymodel.h"
 
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)
 {
     M_NETWORK_PTR->start();
+    ///////////////////////////////////////////////////////////////////////////////////
     qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
     ///////////////////////////////////////////////////////////////////////////////////
     m_ttkUtils =  new TTKMusicUtils(this);
@@ -29,6 +32,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     m_ttkLrcModel = new TTKMusicLyricModel(this);
     m_ttkPlayer->setPlaylist(m_ttkPlaylist);
 
+    m_filterProxyModel = new TTKFilterProxyModel(this);
     m_songsSummarizied = new TTKMusicSongsSummarizied(this);
     m_downloadStatus = new MusicDownloadStatusLabel(this);
 
@@ -37,6 +41,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     parent->setContextProperty("TTK_PLAYER", m_ttkPlayer);
     parent->setContextProperty("TTK_NETWORK", m_networkHelper);
     parent->setContextProperty("TTK_LRC", m_ttkLrcModel);
+    parent->setContextProperty("TTK_MODEL", m_filterProxyModel);
 
     connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SIGNAL(updateCurrentBgArtist()));
     connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentMusicSongChanged(int)));
@@ -51,6 +56,7 @@ MusicApplication::~MusicApplication()
     delete m_ttkPlaylist;
     delete m_ttkPlayer;
     delete m_ttkLrcModel;
+    delete m_filterProxyModel;
     delete m_songsSummarizied;
 }
 

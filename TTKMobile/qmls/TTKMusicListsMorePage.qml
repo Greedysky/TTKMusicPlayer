@@ -75,15 +75,17 @@ Rectangle{
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+                        ttkMusicListsMorePage.visible = false;
                         switch(index) {
                             case 0:
+                                TTK_MODEL.sortColumn(0, -1);
                                 break;
                             case 1:
+                                TTK_MODEL.sortColumn(1, -1);
                                 break;
                             case 2:
                                 break;
                             case 3:
-                                ttkMusicListsMorePage.visible = false;
                                 ttkOutStackView.push("qrc:/qmls/TTKMusicListsScanPage.qml");
                                 break;
                             case 4:
@@ -100,11 +102,11 @@ Rectangle{
         model: ListModel {
             ListElement {
                 imgSource: "qrc:/image/local_music_sorted_by_time_icon"
-                title: qsTr("按时间排序")
+                title: qsTr("按名称排序")
             }
             ListElement {
                 imgSource: "qrc:/image/local_music_sorted_by_name_icon"
-                title: qsTr("按名称排序")
+                title: qsTr("按艺术家排序")
             }
             ListElement {
                 imgSource: "qrc:/image/local_music_upgrade_song_quality_icon"

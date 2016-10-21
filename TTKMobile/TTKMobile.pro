@@ -85,7 +85,8 @@ HEADERS += \
     core/ttkmusicconfigmanager.h \
     core/ttkmusicsongssummarizied.h \
     core/ttknetworkhelper.h \
-    core/ttkmusiclyricmodel.h
+    core/ttkmusiclyricmodel.h \
+    core/ttkfilterproxymodel.h
 
 
 SOURCES += \
@@ -109,7 +110,8 @@ SOURCES += \
     core/ttkmusicconfigmanager.cpp \
     core/ttkmusicsongssummarizied.cpp \
     core/ttknetworkhelper.cpp \
-    core/ttkmusiclyricmodel.cpp
+    core/ttkmusiclyricmodel.cpp \
+    core/ttkfilterproxymodel.cpp
 
 
 CONFIG += TTK_BUILD_LIB
