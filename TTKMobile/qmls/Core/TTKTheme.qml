@@ -24,6 +24,7 @@ QtObject {
     property color color_white: "#FFFFFF"
     property color color_black: "#000000"
     property color color_gray:  "gray"
+    property color color_red:   "red"
 
     property color color_alpha_lv0:  '#00FFFFFF'
     property color color_alpha_lv1:  '#11FFFFFF'

@@ -166,9 +166,14 @@ Rectangle {
                                 width: 1
                             }
                             onPressed: {
-                                var state = TTK_UTILS.removeDir(TTK_UTILS.getCachedPath());
+                                if( TTK_UTILS.removeDir(TTK_UTILS.getCachedPath()) ) {
+                                    ttkFlyInOutBox.color = ttkTheme.topbar_background
+                                    ttkFlyInOutBox.text = qsTr("清理成功！");
+                                }else{
+                                    ttkFlyInOutBox.color = ttkTheme.color_red
+                                    ttkFlyInOutBox.text = qsTr("清理失败！");
+                                }
                                 ttkFlyInOutBox.start();
-                                ttkFlyInOutBox.text = state ? qsTr("清理成功！") : qsTr("清理失败！");
                             }
                         }
                     }

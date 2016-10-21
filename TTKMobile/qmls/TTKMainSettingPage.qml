@@ -257,7 +257,7 @@ Item {
                         Layout.preferredWidth: ttkMainWindow.width
                         Layout.preferredHeight: ttkGlobal.dpHeight(60)
                         color: ttkTheme.color_white
-                        textColor: "red"
+                        textColor: ttkTheme.color_red
                         text: qsTr("退出")
                         onPressed: {
                             Qt.quit();
