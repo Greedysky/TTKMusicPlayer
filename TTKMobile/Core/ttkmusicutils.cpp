@@ -5,8 +5,8 @@
 #include "musicnumberutils.h"
 
 #include <QDir>
-#include <QFontMetrics>
 #include <QMessageBox>
+#include <QFontMetrics>
 
 TTKMusicUtils::TTKMusicUtils(QObject *parent)
     : QObject(parent)
@@ -33,6 +33,11 @@ QString TTKMusicUtils::getRootPath() const
     return "file://" + path;
 }
 
+QString TTKMusicUtils::getCachedPath() const
+{
+    return CACHE_DIR_FULL;
+}
+
 void TTKMusicUtils::showMessageBox(const QString &text, const QString &title, QWidget *parent)
 {
 #if defined Q_OS_WIN
@@ -49,6 +54,11 @@ void TTKMusicUtils::showMessageBox(const QString &text, const QString &title, QW
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 {
     return MusicTime(time, MusicTime::All_Msec).toString(format);
+}
+
+QString TTKMusicUtils::size2Label(qint64 size)
+{
+    return MusicUtils::Number::size2Label(size);
 }
 
 int TTKMusicUtils::stringFontWidth(const QFont &font, const QString &str)
@@ -73,7 +83,7 @@ QString TTKMusicUtils::getTag(int index)
         case 2: value = m_songTag->getBitrate(); break;
         case 3: value = m_songTag->getSamplingRate(); break;
         case 4: value = m_songTag->getYear(); break;
-        case 5: value = MusicUtils::Number::size2Label(QFileInfo(m_songTag->getFilePath()).size()); break;
+        case 5: value = size2Label(QFileInfo(m_songTag->getFilePath()).size()); break;
         case 6: value = m_songTag->getLengthString(); break;
         case 7: value = m_songTag->getFilePath(); break;
     }
@@ -84,6 +94,17 @@ void TTKMusicUtils::closeTagFromFile()
 {
     delete m_songTag;
     m_songTag = nullptr;
+}
+
+bool TTKMusicUtils::removeDir(const QString &dir)
+{
+    QDir d(dir);
+    if(d.exists() && d.removeRecursively())
+    {
+        d.mkpath(CACHE_DIR_FULL);
+        return true;
+    }
+    return false;
 }
 
 void TTKMusicUtils::checkTheFileNeededExist()

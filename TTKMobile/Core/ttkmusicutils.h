@@ -37,6 +37,10 @@ public:
     /*!
      * Get root path.
      */
+    Q_INVOKABLE QString getCachedPath() const;
+    /*!
+     * Get cached path.
+     */
 
     Q_INVOKABLE void showMessageBox(const QString &text, const QString &title = 0, QWidget *parent = 0);
     /*!
@@ -46,6 +50,10 @@ public:
     Q_INVOKABLE QString normalizeTime(qint64 time, const QString &format);
     /*!
      * Transfer integer time to string by format.
+     */
+    Q_INVOKABLE QString size2Label(qint64 size);
+    /*!
+     * Transform value to cp value.
      */
 
     Q_INVOKABLE int stringFontWidth(const QFont &font, const QString &str);
@@ -66,6 +74,10 @@ public:
      * Close tag reader object.
      */
 
+    Q_INVOKABLE bool removeDir(const QString &dir);
+    /*!
+     * Remove dir in ecursive.
+     */
     void checkTheFileNeededExist();
     /*!
      * Check the related file is exist.

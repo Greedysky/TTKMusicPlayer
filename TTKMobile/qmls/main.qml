@@ -18,7 +18,7 @@ ApplicationWindow {
     width: ttkGlobal.window_width
     height: ttkGlobal.window_height
 
-    property variant preQuitTime: 0
+    property double preQuitTime: 0
 
     TTKTheme {
         id: ttkTheme

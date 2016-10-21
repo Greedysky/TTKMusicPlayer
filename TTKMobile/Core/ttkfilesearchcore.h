@@ -20,6 +20,12 @@ class MUSIC_MOBILE_EXPORT TTKFileSearchCore : public QThread
 {
     Q_OBJECT
 public:
+    enum Type {
+        Null_Type,
+        Search_Type,
+        Size_Type
+    };
+
     explicit TTKFileSearchCore(QObject *parent = 0);
     /*!
      * Object contsructor.
@@ -34,11 +40,19 @@ public:
     /*!
      * Search local item.
      */
+    Q_INVOKABLE void filesSize(const QString &dir);
+    /*!
+     * Search local item size.
+     */
 
 Q_SIGNALS:
-    void finished(const QStringList &path);
+    void searchFinished(const QStringList &path);
     /*!
      * Search local item finished.
+     */
+    void sizeFinished(qint64 size);
+    /*!
+     * Search local item size finished.
      */
     void findFilePath(const QString &path);
     /*!
@@ -64,8 +78,10 @@ private:
     /*!
      * To find file by dir path.
      */
+    quint64 dirSize(const QString &dirName);
 
     bool m_run;
+    Type m_type;
     QStringList m_path;
 
 };

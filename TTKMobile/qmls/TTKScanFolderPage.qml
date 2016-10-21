@@ -11,7 +11,6 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import Qt.labs.folderlistmodel 2.1
-import TTKFileSearchCore 1.0
 import "Core"
 
 Item {
@@ -21,10 +20,6 @@ Item {
 
     property variant scanPaths: []
     signal pathChanged(variant scanPath)
-
-    TTKFileSearchCore {
-        id: searchCore
-    }
 
     ColumnLayout {
         spacing: 0

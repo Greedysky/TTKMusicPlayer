@@ -41,7 +41,7 @@ Item {
 
     Connections {
         target: searchCore
-        onFinished: {
+        onSearchFinished: {
             scanedPaths = path;
             rotationAnimation.stop();
             bottomBodyCancel.visible = false;

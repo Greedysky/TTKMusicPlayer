@@ -9,12 +9,32 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import TTKFileSearchCore 1.0
 import "Core"
 
 Rectangle {
     id: ttkMusicCleanCachedPage
     width: parent.width
     height: parent.height
+
+    Component.onCompleted: {
+        scanFileSizeImage.source = "qrc:/image/cached_scan_normal";
+        scanFileSizeImageAnimation.start();
+        searchCore.filesSize(TTK_UTILS.getCachedPath());
+    }
+
+    Connections {
+        target: searchCore
+        onSizeFinished: {
+            scanFileSizeImageAnimation.stop();
+            scanFileSizeImage.source = "qrc:/image/cached_scan_down_normal";
+            cachedSizeArea.text = TTK_UTILS.size2Label(size);
+        }
+    }
+
+    TTKFileSearchCore {
+        id: searchCore
+    }
 
     ColumnLayout {
         spacing: 0
@@ -70,33 +90,58 @@ Rectangle {
                     height: functionBar.height/2
                     color: ttkTheme.topbar_background
 
-                    Image {
+                    Rectangle {
                         anchors.centerIn: parent
-                        height: parent.height*2/3
                         width: height
-                        source: "qrc:/image/cached_scan_down_normal"
+                        height: parent.height*2/3
+                        color: ttkTheme.color_alpha_lv0
+
+                        Image {
+                            id: scanFileSizeImage
+                            height: parent.height
+                            width: parent.width
+                            anchors.centerIn: parent
+                            source: "qrc:/image/cached_scan_normal";
+                        }
+
+                        Rectangle {
+                            height: parent.height
+                            width: parent.width
+                            anchors.centerIn: parent
+                            color: ttkTheme.color_alpha_lv0
 
                         ColumnLayout {
                             spacing: 0
                             anchors.fill: parent
 
-                            Text {
-                                anchors {
-                                    horizontalCenter: parent.horizontalCenter
-                                    bottom: cachedSizeArea.top
+                                Text {
+                                    anchors {
+                                        horizontalCenter: parent.horizontalCenter
+                                        bottom: cachedSizeArea.top
+                                    }
+                                    color: ttkTheme.color_white
+                                    text: qsTr("QQ音乐缓存")
                                 }
-                                color: ttkTheme.color_white
-                                text: qsTr("QQ音乐缓存")
-                            }
 
-                            Text {
-                                id: cachedSizeArea
-                                anchors.centerIn: parent
-                                color: ttkTheme.color_white
-                                font.pixelSize: parent.height/7
-                                text: "666.4MB"
+                                Text {
+                                    id: cachedSizeArea
+                                    anchors.centerIn: parent
+                                    color: ttkTheme.color_white
+                                    font.pixelSize: parent.height/7
+                                }
                             }
                         }
+                    }
+
+                    RotationAnimation {
+                        id: scanFileSizeImageAnimation
+                        target: scanFileSizeImage
+                        property: "rotation"
+                        from: 0
+                        to: 360
+                        direction: RotationAnimation.Clockwise
+                        duration: 3000
+                        loops: Animation.Infinite
                     }
                 }
 
@@ -111,7 +156,7 @@ Rectangle {
 
                         TTKTextButton {
                             Layout.alignment: Qt.AlignCenter
-                            width: ttkGlobal.dpWidth(140)
+                            width: ttkGlobal.dpWidth(120)
                             height: width/2
                             textColor: ttkTheme.topbar_background
                             text: qsTr("清理缓存")
@@ -120,10 +165,19 @@ Rectangle {
                                 color: ttkTheme.topbar_background
                                 width: 1
                             }
+                            onPressed: {
+                                var state = TTK_UTILS.removeDir(TTK_UTILS.getCachedPath());
+                                ttkFlyInOutBox.start();
+                                ttkFlyInOutBox.text = state ? qsTr("清理成功！") : qsTr("清理失败！");
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
     }
 }
