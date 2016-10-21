@@ -23,7 +23,7 @@ QString MusicUtils::Number::size2Number(qint64 size)
     }
     else
     {
-        return QString();
+        return QString("%1").arg((qint64)(size*1.0/MH_TB2B*100)/100.0);
     }
 }
 
@@ -54,11 +54,11 @@ QString MusicUtils::Number::size2Label(qint64 size)
     }
     else if( MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString("%1T").arg(label);
+        return QString("%1G").arg(label);
     }
     else
     {
-        return QString();
+        return QString("%1T").arg(label);
     }
 }
 
@@ -103,10 +103,10 @@ QString MusicUtils::Number::speed2LabelFromLabel(qint64 size, const QString &lab
     }
     else if( MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString("%1T/s").arg(label);
+        return QString("%1G/s").arg(label);
     }
     else
     {
-        return QString();
+        return QString("%1T/s").arg(label);
     }
 }
