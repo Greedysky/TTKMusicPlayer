@@ -78,10 +78,8 @@ Rectangle{
                         ttkMusicListsMorePage.visible = false;
                         switch(index) {
                             case 0:
-                                TTK_MODEL.sortColumn(0, -1);
                                 break;
                             case 1:
-                                TTK_MODEL.sortColumn(1, -1);
                                 break;
                             case 2:
                                 break;
