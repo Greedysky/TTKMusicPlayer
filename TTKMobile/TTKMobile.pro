@@ -115,12 +115,16 @@ SOURCES += \
 
 
 CONFIG += TTK_BUILD_LIB
+
 include(../TTKCore/musicNetwork/MusicNetwork.pri)
 include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.
 include(deployment.pri)
+include(QZXing/QZXing/QZXing.pri)
+RESOURCES += QZXing/QZXing.qrc
+
 QT += androidextras
 
 LIBS += -Lbin/ -lqmmp

@@ -16,6 +16,9 @@
 #include "core/ttknetworkhelper.h"
 #include "core/ttkfilesearchcore.h"
 #include "core/ttkmusiclyricmodel.h"
+#if defined (Q_OS_ANDROID)
+#include "QZXing.h"
+#endif
 
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)
@@ -23,6 +26,9 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     M_NETWORK_PTR->start();
     ///////////////////////////////////////////////////////////////////////////////////
     qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
+#if defined (Q_OS_ANDROID)
+    QZXing::registerQMLTypes();
+#endif
     ///////////////////////////////////////////////////////////////////////////////////
     m_ttkUtils =  new TTKMusicUtils(this);
     m_ttkPlaylist = new TTKMusicPlaylist(this);

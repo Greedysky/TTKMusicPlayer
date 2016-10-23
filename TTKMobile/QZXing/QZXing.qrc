@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/QZXing">
+        <file alias="frame">image/frame.png</file>
+        <file alias="lightNeedle">image/lightNeedle.png</file>
+    </qresource>
+    <qresource prefix="/qmls">
+        <file>QRCodeReader.qml</file>
+    </qresource>
+</RCC>

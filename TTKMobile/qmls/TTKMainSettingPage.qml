@@ -184,7 +184,9 @@ Item {
                                 onPressed: {
                                     switch(index) {
                                         case 0: break;
-                                        case 1: break;
+                                        case 1:
+                                            ttkOutStackView.push("qrc:/qmls/QRCodeReader.qml");
+                                            break;
                                         case 2: break;
                                         case 3:
                                             ttkOutStackView.push("qrc:/qmls/TTKMusicCleanCachedPage.qml");
