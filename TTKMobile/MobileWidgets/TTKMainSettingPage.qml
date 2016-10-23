@@ -185,11 +185,13 @@ Item {
                                     switch(index) {
                                         case 0: break;
                                         case 1:
-                                            ttkOutStackView.push("qrc:/qmls/QRCodeReader.qml");
+                                            if(ttkGlobal.isAndroid()) {
+                                                ttkOutStackView.push("qrc:/MobileWidgets/QRCodeReader.qml");
+                                            }
                                             break;
                                         case 2: break;
                                         case 3:
-                                            ttkOutStackView.push("qrc:/qmls/TTKMusicCleanCachedPage.qml");
+                                            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicCleanCachedPage.qml");
                                             break;
                                         case 4: break;
                                     }

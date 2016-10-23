@@ -52,6 +52,7 @@ DEFINES += \
     MUSIC_MOBILE
 
 INCLUDEPATH += \
+    MobileCore \
     ../ \
     ../TTKCore/musicCore \
     ../TTKCore/musicCore/utils \
@@ -78,15 +79,15 @@ HEADERS += \
     ../TTKCore/musicLrcmanager/musiclrcanalysis.h \
     ../TTKCore/musicToolsetswidget/core/musicsongtag.h \
     ../TTKCore/musicWidget/musicdownloadstatuslabel.h \
-    core/ttkfilesearchcore.h \
-    core/ttkmusicplaylist.h \
-    core/ttkmusicplayer.h \
-    core/ttkmusicutils.h \
-    core/ttkmusicconfigmanager.h \
-    core/ttkmusicsongssummarizied.h \
-    core/ttknetworkhelper.h \
-    core/ttkmusiclyricmodel.h \
-    core/ttkfilterproxymodel.h
+    MobileCore/ttkfilesearchcore.h \
+    MobileCore/ttkmusicplaylist.h \
+    MobileCore/ttkmusicplayer.h \
+    MobileCore/ttkmusicutils.h \
+    MobileCore/ttkmusicconfigmanager.h \
+    MobileCore/ttkmusicsongssummarizied.h \
+    MobileCore/ttknetworkhelper.h \
+    MobileCore/ttkmusiclyricmodel.h \
+    MobileCore/ttkfilterproxymodel.h
 
 
 SOURCES += \
@@ -103,15 +104,15 @@ SOURCES += \
     ../TTKCore/musicLrcmanager/musiclrcanalysis.cpp \
     ../TTKCore/musicToolsetswidget/core/musicsongtag.cpp \
     ../TTKCore/musicWidget/musicdownloadstatuslabel.cpp \
-    core/ttkfilesearchcore.cpp \
-    core/ttkmusicplaylist.cpp \
-    core/ttkmusicplayer.cpp \
-    core/ttkmusicutils.cpp \
-    core/ttkmusicconfigmanager.cpp \
-    core/ttkmusicsongssummarizied.cpp \
-    core/ttknetworkhelper.cpp \
-    core/ttkmusiclyricmodel.cpp \
-    core/ttkfilterproxymodel.cpp
+    MobileCore/ttkfilesearchcore.cpp \
+    MobileCore/ttkmusicplaylist.cpp \
+    MobileCore/ttkmusicplayer.cpp \
+    MobileCore/ttkmusicutils.cpp \
+    MobileCore/ttkmusicconfigmanager.cpp \
+    MobileCore/ttkmusicsongssummarizied.cpp \
+    MobileCore/ttknetworkhelper.cpp \
+    MobileCore/ttkmusiclyricmodel.cpp \
+    MobileCore/ttkfilterproxymodel.cpp
 
 
 CONFIG += TTK_BUILD_LIB
@@ -122,8 +123,8 @@ include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.
 include(deployment.pri)
-include(QZXing/QZXing/QZXing.pri)
-RESOURCES += QZXing/QZXing.qrc
+include(MobileExtra/QZXing/QZXing/QZXing.pri)
+RESOURCES += MobileExtra/QZXing/QZXing.qrc
 
 QT += androidextras
 

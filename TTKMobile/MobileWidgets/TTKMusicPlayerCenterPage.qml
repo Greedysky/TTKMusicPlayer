@@ -264,7 +264,7 @@ Item {
                         source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/player_btn_dts_off"
                                                                     : "qrc:/image/player_btn_dts_on"
                         onPressed: {
-                            ttkOutStackView.push("qrc:/qmls/TTKMusicDTSEffectPage.qml");
+                            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicDTSEffectPage.qml");
                         }
                     }
 

@@ -45,7 +45,7 @@ Item {
         }
         onDownForSearchMovieFinished: {
             ttkGlobal.video_url = url;
-            ttkOutStackView.push("qrc:/qmls/TTKMusicVideoPage.qml");
+            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicVideoPage.qml");
         }
     }
 

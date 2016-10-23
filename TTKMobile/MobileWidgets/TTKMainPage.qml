@@ -58,7 +58,7 @@ Item {
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onPressed: {
-                        ttkMainStackView.push("qrc:/qmls/TTKMainSettingPage.qml");
+                        ttkMainStackView.push("qrc:/MobileWidgets/TTKMainSettingPage.qml");
                     }
                 }
 
@@ -68,7 +68,7 @@ Item {
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
                     onPressed: {
-                        ttkMainStackView.push("qrc:/qmls/TTKOnlineSearchPage.qml");
+                        ttkMainStackView.push("qrc:/MobileWidgets/TTKOnlineSearchPage.qml");
                     }
                 }
 
@@ -168,7 +168,7 @@ Item {
                             subTitle: TTK_APP.mediaCount(ttkTheme.music_normal_list)
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_normal_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicListsPage.qml");
                             }
                         }
 
@@ -182,7 +182,7 @@ Item {
                             mainTitle: qsTr("下载歌曲")
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_download_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicDownloadListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicDownloadListsPage.qml");
                             }
                         }
 
@@ -197,7 +197,7 @@ Item {
                             subTitle: TTK_APP.mediaCount(ttkTheme.music_recent_list)
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_recent_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicRecentListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicRecentListsPage.qml");
                             }
                         }
 
@@ -211,7 +211,7 @@ Item {
                             mainTitle: qsTr("我喜欢")
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_lovest_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicLovestListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicLovestListsPage.qml");
                             }
                         }
 
@@ -225,7 +225,7 @@ Item {
                             mainTitle: qsTr("下载MV")
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_downmv_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMVDownloadListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMVDownloadListsPage.qml");
                             }
                         }
 
@@ -240,7 +240,7 @@ Item {
                             subTitle: qsTr("[绿旋风]")
                             onPressed: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_musicrg_list);
-                                ttkMainStackView.push("qrc:/qmls/TTKMusicIdentifyListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicIdentifyListsPage.qml");
                             }
                         }
                     }

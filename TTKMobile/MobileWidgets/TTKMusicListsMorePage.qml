@@ -84,7 +84,7 @@ Rectangle{
                             case 2:
                                 break;
                             case 3:
-                                ttkOutStackView.push("qrc:/qmls/TTKMusicListsScanPage.qml");
+                                ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicListsScanPage.qml");
                                 break;
                             case 4:
                                 break;

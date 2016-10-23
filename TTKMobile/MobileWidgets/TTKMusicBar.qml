@@ -73,7 +73,7 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             if(!TTK_APP.empty()) {
-                ttkOutStackView.push("qrc:/qmls/TTKMusicPlayerCenterPage.qml");
+                ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicPlayerCenterPage.qml");
             }
         }
     }

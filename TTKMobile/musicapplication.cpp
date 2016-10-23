@@ -8,14 +8,14 @@
 #include <QQuickWindow>
 #include <QQmlContext>
 
-#include "core/ttkmusicsongssummarizied.h"
-#include "core/ttkmusicplaylist.h"
-#include "core/ttkmusicplayer.h"
-#include "core/ttkmusicutils.h"
-#include "core/ttkmusicconfigmanager.h"
-#include "core/ttknetworkhelper.h"
-#include "core/ttkfilesearchcore.h"
-#include "core/ttkmusiclyricmodel.h"
+#include "ttkmusicsongssummarizied.h"
+#include "ttkmusicplaylist.h"
+#include "ttkmusicplayer.h"
+#include "ttkmusicutils.h"
+#include "ttkmusicconfigmanager.h"
+#include "ttknetworkhelper.h"
+#include "ttkfilesearchcore.h"
+#include "ttkmusiclyricmodel.h"
 #if defined (Q_OS_ANDROID)
 #include "QZXing.h"
 #endif

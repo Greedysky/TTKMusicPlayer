@@ -5,7 +5,7 @@
 
 #include "musicobject.h"
 #include "musicapplication.h"
-#include "core/ttkmusicutils.h"
+#include "ttkmusicutils.h"
 
 int main(int argc, char *argv[])
 {
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         new MusicApplication(qmlContext);
     }
 
-    engine.load(QUrl("qrc:/qmls/main.qml"));
+    engine.load(QUrl("qrc:/MobileWidgets/main.qml"));
     if(engine.rootObjects().isEmpty())
     {
         return -1;

@@ -224,7 +224,7 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onPressed: {
-                            ttkOutStackView.push("qrc:/qmls/TTKMusicEqualizerPage.qml");
+                            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicEqualizerPage.qml");
                             TTK_PLAYER.setMusicEnhanced(0);
                             itemListView.currentIndex = -1;
                             dtsEffectButton.source = "qrc:/image/dts_switch_off";

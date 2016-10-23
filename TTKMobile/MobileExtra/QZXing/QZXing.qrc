@@ -3,7 +3,7 @@
         <file alias="frame">image/frame.png</file>
         <file alias="lightNeedle">image/lightNeedle.png</file>
     </qresource>
-    <qresource prefix="/qmls">
+    <qresource prefix="/MobileWidgets">
         <file>QRCodeReader.qml</file>
     </qresource>
 </RCC>
