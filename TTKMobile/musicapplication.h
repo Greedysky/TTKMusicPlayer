@@ -42,7 +42,7 @@ public:
     /*!
      * Input lovest imported music datas into container.
      */
-    Q_INVOKABLE void importDownloadMusicSongs(const QString &path);
+    Q_INVOKABLE void importDownloadMusicSongs(int type, const QString &path);
     /*!
      * Input network download imported music datas into container.
      */

@@ -49,6 +49,11 @@ Item {
         }
     }
 
+    TTKMusicSongDownloadPage {
+        id: ttkMusicSongDownloadPage
+        autoDownloadFlag: false
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -253,6 +258,24 @@ Item {
                                 font.pixelSize: parent.height/4
                                 color: ttkTheme.color_gray
                             }
+
+                            TTKImageButton {
+                                width: parent.height/2
+                                height: parent.height/2
+                                anchors {
+                                    top: parent.top
+                                    right: parent.right
+                                    topMargin: ttkGlobal.dpHeight(20)
+                                    rightMargin: ttkGlobal.dpHeight(20)
+                                }
+                                source: "qrc:/image/ic_playlist_more_normal"
+                                onPressed: {
+                                    ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_song_index;
+                                    ttkMusicSongDownloadPage.songIndex = index;
+                                    ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);
+                                    ttkMusicSongDownloadPage.visible = true;
+                                }
+                            }
                         }
                     }
 
@@ -341,6 +364,24 @@ Item {
                                 verticalAlignment: Qt.AlignVCenter
                                 font.pixelSize: parent.height/4
                                 color: ttkTheme.color_gray
+                            }
+
+                            TTKImageButton {
+                                width: parent.height/2
+                                height: parent.height/2
+                                anchors {
+                                    top: parent.top
+                                    right: parent.right
+                                    topMargin: ttkGlobal.dpHeight(20)
+                                    rightMargin: ttkGlobal.dpHeight(20)
+                                }
+                                source: "qrc:/image/ic_playlist_more_normal"
+                                onPressed: {
+                                    ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_mv_index;
+                                    ttkMusicSongDownloadPage.songIndex = index;
+                                    ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);
+                                    ttkMusicSongDownloadPage.visible = true;
+                                }
                             }
                         }
                     }
@@ -441,5 +482,9 @@ Item {
 
             }
         }
+    }
+
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
     }
 }

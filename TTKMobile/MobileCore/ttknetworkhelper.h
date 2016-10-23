@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QObject>
+#include "musicobject.h"
 #include "musicmobileglobaldefine.h"
 
 class MusicDownLoadQueryMultipleThread;
@@ -22,11 +23,13 @@ class MUSIC_MOBILE_EXPORT TTKNetworkHelper : public QObject
     Q_OBJECT
 public:
     enum Type {
-        T_Null,             ///*null*/
-        T_SearcSong,        ///*search song*/
-        T_SearcMovie,       ///*search mv*/
-        T_SearcLrc,         ///*search lrc*/
-        T_DownloadSong      ///*download song*/
+        T_Null,              ///*null*/
+        T_SearcSong,         ///*search song*/
+        T_SearcMovie,        ///*search mv*/
+        T_SearcLrc,          ///*search lrc*/
+        T_DownloadSong,      ///*download song*/
+        T_DownloadSongIndex, ///*download index song*/
+        T_DownloadMVIndex    ///*download index mv*/
     };
 
     explicit TTKNetworkHelper(QObject *parent = 0);
@@ -34,6 +37,9 @@ public:
      * Object contsructor.
      */
     ~TTKNetworkHelper();
+
+    Q_INVOKABLE void setQueryType(int type);
+
 
     Q_INVOKABLE void searchSong(const QString &text);
     /*!
@@ -55,6 +61,9 @@ public:
     /*!
      * Set current play index.
      */
+
+    Q_INVOKABLE QString getSearchedAttributes(int index);
+
 
 Q_SIGNALS:
     void clearAllItems();
@@ -80,6 +89,10 @@ Q_SIGNALS:
     void downForDownloadSongFinished(const QString &path);
     /*!
      * Download (download) song finished.
+     */
+    void downForDownloadMovieFinished(const QString &path);
+    /*!
+     * Download (download) movie finished.
      */
 
 private slots:
@@ -109,6 +122,14 @@ protected:
     void downForDownloadSong(int bitrate);
     /*!
      * Download for download song.
+     */
+    void downForDownloadSong(int index, int bitrate);
+    /*!
+     * Download for download song.
+     */
+    void downForDownloadMovie(int index, int bitrate);
+    /*!
+     * Download for download movie.
      */
 
     int m_currentIndex;

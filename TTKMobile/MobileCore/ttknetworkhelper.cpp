@@ -4,6 +4,8 @@
 #include "musicdatadownloadthread.h"
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
+#///QJson import
+#include "qjson/serializer.h"
 
 TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     : QObject(parent)
@@ -22,15 +24,22 @@ TTKNetworkHelper::~TTKNetworkHelper()
     delete m_queryThread;
 }
 
+void TTKNetworkHelper::setQueryType(int type)
+{
+    m_queryType = MStatic_cast(Type, type);
+}
+
 void TTKNetworkHelper::searchSong(const QString &text)
 {
     m_queryType = T_SearcSong;
+    m_queryThread->setQueryAllRecords(true);
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void TTKNetworkHelper::searchMovie(const QString &text)
 {
     m_queryType = T_SearcMovie;
+    m_queryThread->setQueryAllRecords(true);
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
@@ -67,8 +76,44 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
                         downForDownloadSong(data.toInt());
                         break;
                     }
+        case T_DownloadSongIndex:
+                    {
+                        downForDownloadSong(index, data.toInt());
+                        break;
+                    }
+        case T_DownloadMVIndex:
+                    {
+                        downForDownloadMovie(index, data.toInt());
+                        break;
+                    }
         default: break;
     }
+}
+
+QString TTKNetworkHelper::getSearchedAttributes(int index)
+{
+    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    if(index < 0 || index >= musicSongInfos.count())
+    {
+        return QString();
+    }
+
+    QList<QVariant> jsonList;
+    foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[index].m_songAttrs)
+    {
+        QVariantMap jsonMap;
+        jsonMap["bitrate"] = attr.m_bitrate;
+        jsonMap["format"] = attr.m_format;
+        jsonMap["url"] = attr.m_url;
+        jsonMap["size"] = attr.m_size;
+
+        jsonList << jsonMap;
+    }
+
+    QJson::Serializer serializer;
+    bool ok;
+    QByteArray data(serializer.serialize(jsonList, &ok));
+    return ok ? QString(data) : QString();
 }
 
 void TTKNetworkHelper::downLoadDataChanged()
@@ -162,13 +207,19 @@ void TTKNetworkHelper::downForSearchMovie(int index)
 
 void TTKNetworkHelper::downForDownloadSong(int bitrate)
 {
+    downForDownloadSong(0, bitrate);
+}
+
+void TTKNetworkHelper::downForDownloadSong(int index, int bitrate)
+{
+    m_currentIndex = -1;
     MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
-    if(musicSongInfos.isEmpty())
+    if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos.first());
+    MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos[index]);
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
@@ -185,6 +236,38 @@ void TTKNetworkHelper::downForDownloadSong(int bitrate)
                 downSong->startToDownload();
                 loop.exec();
                 emit downForDownloadSongFinished(musicSong);
+            }
+            return;
+        }
+    }
+}
+
+void TTKNetworkHelper::downForDownloadMovie(int index, int bitrate)
+{
+    m_currentIndex = -1;
+    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    if(index < 0 || index >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos[index]);
+    MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
+    foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
+    {
+        if(bitrate == musicAttr.m_bitrate)
+        {
+            QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
+            musicSong = QString("%1%2.%3").arg(MOVIE_DIR_FULL).arg(musicSong).arg(musicAttr.m_format);
+            if(!QFile::exists(musicSong))
+            {
+                MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, musicSong,
+                                                        MusicDownLoadThreadAbstract::Download_Video, this);
+                QEventLoop loop(this);
+                connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+                downSong->startToDownload();
+                loop.exec();
+                emit downForDownloadMovieFinished(musicSong);
             }
             return;
         }

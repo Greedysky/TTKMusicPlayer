@@ -15,7 +15,14 @@ QtObject {
     property int music_lovest_list:   3
     property int music_downmv_list:   4
     property int music_musicrg_list:  5
-
+    /////////////////////////////////////////////////////
+    property int search_type_null:                  0
+    property int search_type_song:                  1
+    property int search_type_movie:                 2
+    property int search_type_lrc:                   3
+    property int search_type_download_song:         4
+    property int search_type_download_song_index:   5
+    property int search_type_download_mv_index:     6
     /////////////////////////////////////////////////////
     property color topbar_background: "#31C27B"
     property int   topbar_height: 50

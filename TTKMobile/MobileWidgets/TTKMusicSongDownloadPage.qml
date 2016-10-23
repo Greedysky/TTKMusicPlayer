@@ -16,25 +16,24 @@ Rectangle {
     height: parent.height
     color: ttkTheme.color_alpha_lv12
 
+    property bool autoDownloadFlag: true
     property int songBitrate: -1
+    property int songIndex: -1
+    property int queryType: 0
     property string text
+    property string jsonAtrrString
 
     function clearData() {
         itemListModel.clear();
         itemListView.currentIndex = -1;
     }
 
-    Connections {
-        target: TTK_NETWORK
-        onClearAllItems: {
-            clearData();
-        }
+    function createData(bitrate) {
+        downloadButton.enabled = true;
+        itemListView.currentIndex = -1;
+        var bitrateString;
 
-        onCreateDownloadSongQuality: {
-            downloadButton.enabled = true;
-            itemListView.currentIndex = -1;
-            var bitrateString;
-
+        if(queryType !== ttkTheme.search_type_download_mv_index) {
             switch(bitrate)
             {
                 case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
@@ -44,14 +43,37 @@ Rectangle {
                 case 1000:bitrateString = qsTr("无损品质"); break;
                 default: break;
             }
-
-            if(bitrateString.length !== 0) {
-                itemListModel.append({title: bitrateString, bit: bitrate});
+        }else{
+            switch(bitrate)
+            {
+                case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
+                case 500: bitrateString = qsTr("高清品质"); break;
+                case 750: bitrateString = qsTr("超清品质"); break;
+                default: break;
             }
+        }
+
+        if(bitrateString.length !== 0) {
+            itemListModel.append({title: bitrateString, bit: bitrate});
+        }
+    }
+
+    Connections {
+        target: TTK_NETWORK
+        onClearAllItems: {
+            clearData();
+        }
+        onCreateDownloadSongQuality: {
+            createData(bitrate)
         }
         onDownForDownloadSongFinished: {
             if(path.length !== 0) {
-                TTK_APP.importDownloadMusicSongs(path);
+                TTK_APP.importDownloadMusicSongs(ttkTheme.music_download_list, path);
+            }
+        }
+        onDownForDownloadMovieFinished: {
+            if(path.length !== 0) {
+                TTK_APP.importDownloadMusicSongs(ttkTheme.music_downmv_list, path);
             }
         }
     }
@@ -153,7 +175,7 @@ Rectangle {
             onPressed: {
                 if(songBitrate > 0) {
                     ttkMusicSongDownloadPage.visible = false;
-                    TTK_NETWORK.setCurrentIndex(-1, songBitrate);
+                    TTK_NETWORK.setCurrentIndex(songIndex, songBitrate);
 
                     ttkFlyInOutBox.text = qsTr("已加入下载列表");
                     ttkFlyInOutBox.start();
@@ -176,7 +198,18 @@ Rectangle {
         itemListModel.append({title: qsTr("正在获取数据当中..."), bit: -1});
         if(visible === true) {
             verticalYAnimation.start();
-            TTK_NETWORK.downloadSong(text);
+            if(autoDownloadFlag) {
+                TTK_NETWORK.downloadSong(text);
+            }else{
+                TTK_NETWORK.setQueryType(queryType);
+                var json = JSON.parse(jsonAtrrString);
+                if(json.length !== 0) {
+                    clearData();
+                }
+                for(var i=0; i<json.length; ++i) {
+                    createData( json[i].bitrate );
+                }
+            }
         }
     }
 

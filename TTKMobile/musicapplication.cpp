@@ -94,14 +94,14 @@ void MusicApplication::importLovestMusicSongs()
     emit importSongFinished(MUSIC_LOVEST_LIST);
 }
 
-void MusicApplication::importDownloadMusicSongs(const QString &path)
+void MusicApplication::importDownloadMusicSongs(int type, const QString &path)
 {
-    m_songsSummarizied->importOtherMusicSongs(MUSIC_DOWNLOAD_LIST, QStringList(path));
-    if(m_songsSummarizied->getCurrentIndex() == MUSIC_DOWNLOAD_LIST)
+    m_songsSummarizied->importOtherMusicSongs(type, QStringList(path));
+    if(m_songsSummarizied->getCurrentIndex() == type)
     {
         m_ttkPlaylist->appendMedia(path);
     }
-    emit importSongFinished(MUSIC_DOWNLOAD_LIST);
+    emit importSongFinished(type);
 }
 
 void MusicApplication::importNetworkMusicSongs(const QString &key, const QString &path)
