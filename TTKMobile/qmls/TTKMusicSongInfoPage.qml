@@ -39,6 +39,8 @@ Rectangle {
             id: topTitleArea
             height: mainArea.getFixedHeight()
             anchors {
+                top: parent.top
+                topMargin: ttkGlobal.dpHeight(10)
                 left: parent.left
                 leftMargin: ttkGlobal.dpWidth(20)
             }
@@ -48,7 +50,7 @@ Rectangle {
 
         ScrollView {
             width: mainArea.width
-            height: mainArea.height - mainArea.getFixedHeight() - ttkGlobal.dpHeight(20);
+            height: mainArea.height - mainArea.getFixedHeight() - ttkGlobal.dpHeight(30);
             horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             verticalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             clip: true
@@ -63,7 +65,7 @@ Rectangle {
                     top: parent.top
                 }
                 width: parent.width
-                height: mainArea.getFixedHeight()*9
+                height: mainArea.getFixedHeight()*10
 
                 ColumnLayout {
                     anchors.fill: parent

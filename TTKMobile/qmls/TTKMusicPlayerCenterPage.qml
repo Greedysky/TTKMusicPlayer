@@ -172,16 +172,16 @@ Item {
                     }
                 }
 
-                Text {
+                TTKMarquee {
                     id: musicPlayerShowTitle
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: ttkMusicPlayerCenter.width - ttkGlobal.dpHeight(100)
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignHCenter
-                    font.pixelSize: mainMenubar.height/2
-                    color: ttkTheme.color_white
-                    elide: Text.ElideRight
+                    height: ttkGlobal.dpHeight(50)
+                    width: ttkMusicPlayerCenter.width - ttkGlobal.dpHeight(100)
+                    padding: 2
+                    anchors.centerIn: parent
                     text: TTK_APP.mediaName()
+                    color: ttkTheme.color_alpha_lv0
+                    textColor: ttkTheme.color_white
+                    fontSize: mainMenubar.height/2
                 }
 
                 TTKImageButton {
@@ -297,14 +297,14 @@ Item {
                         }
                     }
 
-                    Text {
+                    TTKMarquee {
                         id: musicPlayerShowLrc
-                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredHeight: ttkGlobal.dpHeight(80)
-                        horizontalAlignment: Qt.AlignHCenter
-                        color: "#00ff00"
-                        font.pixelSize: ttkGlobal.dpHeight(22)
+                        width: ttkMusicPlayerCenter.width
+                        height: ttkGlobal.dpHeight(40)
+                        textColor: "#00ff00"
+                        color: ttkTheme.color_alpha_lv0
+                        fontSize: ttkGlobal.dpHeight(22)
                         text: TTK_LRC.value(musicLrcShow.currentIndex)
                     }
                 }
@@ -324,6 +324,19 @@ Item {
 
                     Component.onCompleted: {
                         musicLrcShow.currentIndex = -1;
+                    }
+                }
+
+                TTKImageButton {
+                    anchors {
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+                    width: ttkGlobal.dpWidth(40)
+                    height: ttkGlobal.dpHeight(40)
+                    source: "qrc:/image/player_btn_lrc"
+                    onPressed: {
+                        console.log("clicked");
                     }
                 }
             }

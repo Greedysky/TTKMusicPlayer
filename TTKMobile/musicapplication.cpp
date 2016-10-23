@@ -46,7 +46,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     parent->setContextProperty("TTK_NETWORK", m_networkHelper);
     parent->setContextProperty("TTK_LRC", m_ttkLrcModel);
 
-    connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SIGNAL(updateCurrentBgArtist()));
+    connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SIGNAL(updateCurrentBgArtist()));
     connect(m_ttkPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentMusicSongChanged(int)));
     readXMLConfigFromText();
 }

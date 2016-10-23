@@ -23,7 +23,7 @@ Rectangle {
         model: TTK_LRC
 
         highlight: Rectangle {
-            color: "#00000000"
+            color: ttkTheme.color_alpha_lv0
             Behavior on y {
                 SmoothedAnimation {
                     duration: 300
@@ -32,19 +32,21 @@ Rectangle {
         }
 
         delegate: Rectangle {
-            id: lyricDelegateId
             width: parent.width
-            height: ttkGlobal.dpHeight(35)
-            color: "#00000000"
+            height: ttkGlobal.dpHeight(35)*(Math.ceil(TTK_UTILS.stringFontWidth(textArea.font, textLine)*1.0/parent.width))
+            color: ttkTheme.color_alpha_lv0
 
             Text {
+                id: textArea
                 anchors.centerIn: parent
+                width: lyricView.width
                 horizontalAlignment: Text.AlignHCenter
-                text: textLine
+                wrapMode: Text.WordWrap
                 color: parent.ListView.isCurrentItem ? "#00ff00" : "#4C4C4C"
                 font.pixelSize: parent.ListView.isCurrentItem ? ttkGlobal.dpHeight(26) : ttkGlobal.dpHeight(22)
                 font.bold: parent.ListView.isCurrentItem
                 font.family: qsTr("楷体")
+                text: textLine
             }
 
             MouseArea {
