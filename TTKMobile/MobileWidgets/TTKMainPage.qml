@@ -259,10 +259,6 @@ Item {
                             onPicDownloadFinished: {
                                 radioImageArea.source = path;
                             }
-
-                            Component.onCompleted: {
-                                ttkRaioHelper.init();
-                            }
                         }
 
                         Rectangle {
@@ -286,6 +282,7 @@ Item {
                                 anchors.fill: parent
                                 source: "qrc:/image/radio_play_play"
                                 onPressed: {
+                                    ttkRaioHelper.init();
                                     if(ttkRaioHelper.isPlaying()) {
                                         source = "qrc:/image/radio_play_play";
                                         ttkRaioHelper.pause();
