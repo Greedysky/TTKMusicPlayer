@@ -35,7 +35,7 @@ Rectangle {
             barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
             musicBarImageAnimation.resume();
             musicBarImageAnimation.start();
-        }else{
+        }else {
             barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
             musicBarImageAnimation.pause();
         }
@@ -164,7 +164,7 @@ Rectangle {
                 barPlayButton.source = "qrc:/image/landscape_player_btn_play_normal";
                 TTK_PLAYER.pause();
                 musicBarImageAnimation.pause();
-            }else{
+            }else {
                 barPlayButton.source = "qrc:/image/landscape_player_btn_pause_normal";
                 TTK_PLAYER.play();
                 musicBarImageAnimation.resume();

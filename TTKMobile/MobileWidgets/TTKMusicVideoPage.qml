@@ -64,7 +64,7 @@ Rectangle{
                             videoPlayer.pause();
                             status = 0;
                             source = "qrc:/image/landscape_player_btn_play_normal";
-                        }else{
+                        }else {
                             videoPlayer.play();
                             status = 1;
                             source = "qrc:/image/landscape_player_btn_pause_normal";

@@ -55,7 +55,7 @@ ApplicationWindow {
         if(ttkOutStackView.depth > 1) {
             ttkOutStackView.pop();
             close.accepted = false;
-        }else{
+        }else {
             if(ttkMainStackView.depth > 1) {
                 ttkMainStackView.pop();
                 close.accepted = false;
@@ -65,16 +65,16 @@ ApplicationWindow {
                     if(preQuitTime === 0) {
                         preQuitTime = nowQuitTime;
                         close.accepted = false;
-                    }else{
+                    }else {
                         if(nowQuitTime - preQuitTime <= 1200) {
                             close.accepted = true;
-                        }else{
+                        }else {
                             preQuitTime = nowQuitTime;
                             close.accepted = false;
                         }
                     }
                     TTK_UTILS.showMessageBox(qsTr("再按一次退出"));
-                }else{
+                }else {
                     close.accepted = true;
                 }
             }

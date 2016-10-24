@@ -43,7 +43,7 @@ Rectangle {
                 case 1000:bitrateString = qsTr("无损品质"); break;
                 default: break;
             }
-        }else{
+        }else {
             switch(bitrate)
             {
                 case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
@@ -200,7 +200,7 @@ Rectangle {
             verticalYAnimation.start();
             if(autoDownloadFlag) {
                 TTK_NETWORK.downloadSong(text);
-            }else{
+            }else {
                 TTK_NETWORK.setQueryType(queryType);
                 var json = JSON.parse(jsonAtrrString);
                 if(json.length !== 0) {

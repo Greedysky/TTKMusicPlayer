@@ -150,7 +150,7 @@ public:
      * Load current song lrc.
      */
 
-signals:
+Q_SIGNALS:
     void updateCurrentArtist();
     /*!
      * Download current artist image finished emit.
@@ -180,7 +180,7 @@ signals:
      * Empty the current player center.
      */
 
-public slots:
+public Q_SLOTS:
     void currentMusicSongChanged(int index);
     /*!
      * Current play index changed.

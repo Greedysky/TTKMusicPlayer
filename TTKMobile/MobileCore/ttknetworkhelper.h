@@ -101,7 +101,7 @@ Q_SIGNALS:
      * Download (download) movie finished.
      */
 
-private slots:
+private Q_SLOTS:
     void downLoadDataChanged();
     /*!
      * Send download data from net.

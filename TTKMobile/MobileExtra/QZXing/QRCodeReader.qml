@@ -30,7 +30,7 @@ Rectangle {
     onVisibleChanged: {
         if(visible) {
             camera.start();
-        }else{
+        }else {
             timer.stop();
             camera.stop();
         }

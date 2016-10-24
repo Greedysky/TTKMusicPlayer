@@ -104,6 +104,8 @@
         <file alias="cached_scan_normal">MobileImages/cached_scan_normal.png</file>
         <file alias="cached_scan_down_normal">MobileImages/cached_scan_down_normal.png</file>
         <file alias="player_btn_lrc">MobileImages/player_btn_lrc.png</file>
+        <file alias="radio_play_pause">MobileImages/radio_play_pause.png</file>
+        <file alias="radio_play_play">MobileImages/radio_play_play.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>

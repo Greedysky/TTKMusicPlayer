@@ -46,7 +46,7 @@ Item {
     function playStateChanged() {
         if(TTK_PLAYER.state() === 1) {
             changedPlayState();
-        }else{
+        }else {
             playerPlayButton.source = "qrc:/image/player_btn_play_normal";
             artistImageAnimation.pause();
         }
@@ -471,7 +471,7 @@ Item {
                                     playerPlayButton.source = "qrc:/image/player_btn_play_normal";
                                     TTK_PLAYER.pause();
                                     artistImageAnimation.pause();
-                                }else{
+                                }else {
                                     playerPlayButton.source = "qrc:/image/player_btn_pause_normal";
                                     TTK_PLAYER.play();
                                     artistImageAnimation.resume();
@@ -524,7 +524,7 @@ Item {
                                 if(TTK_APP.checkLovestMusicSong()) {
                                     source = "qrc:/image/player_btn_favorited_normal";
                                     ttkFlyInOutBox.text = qsTr("已加入到我的最爱")
-                                }else{
+                                }else {
                                     source = "qrc:/image/player_btn_favorite_normal";
                                     ttkFlyInOutBox.text = qsTr("已从我的最爱中移除")
                                 }

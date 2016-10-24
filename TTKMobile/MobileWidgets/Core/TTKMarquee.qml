@@ -26,7 +26,7 @@ Rectangle {
             if(delta < 0) {
                 timer.start();
                 marqueeText.x = 0;
-            }else{
+            }else {
                 timer.stop();
                 marqueeText.x = delta/2;
             }

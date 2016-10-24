@@ -256,6 +256,10 @@ Item {
 
                         TTKRadioHelper {
                             id: ttkRaioHelper
+                            onPicDownloadFinished: {
+                                radioImageArea.source = path;
+                            }
+
                             Component.onCompleted: {
                                 ttkRaioHelper.init();
                             }
@@ -273,8 +277,23 @@ Item {
                             color: ttkTheme.color_alpha_lv0
 
                             Image {
+                                id: radioImageArea
                                 anchors.fill: parent
                                 source: "qrc:/image/test"
+                            }
+
+                            TTKImageButton {
+                                anchors.fill: parent
+                                source: "qrc:/image/radio_play_play"
+                                onPressed: {
+                                    if(ttkRaioHelper.isPlaying()) {
+                                        source = "qrc:/image/radio_play_play";
+                                        ttkRaioHelper.pause();
+                                    }else {
+                                        source = "qrc:/image/radio_play_pause";
+                                        ttkRaioHelper.play();
+                                    }
+                                }
                             }
                         }
 

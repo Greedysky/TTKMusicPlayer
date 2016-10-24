@@ -173,7 +173,7 @@ Rectangle {
                                 if( TTK_UTILS.removeDir(TTK_UTILS.getCachedPath()) ) {
                                     ttkFlyInOutBox.color = ttkTheme.topbar_background
                                     ttkFlyInOutBox.text = qsTr("清理成功！");
-                                }else{
+                                }else {
                                     ttkFlyInOutBox.color = ttkTheme.color_red
                                     ttkFlyInOutBox.text = qsTr("清理失败！");
                                 }

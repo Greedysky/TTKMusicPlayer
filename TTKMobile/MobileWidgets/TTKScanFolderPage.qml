@@ -159,7 +159,7 @@ Item {
                             onClicked: {
                                 if(checkBoxArea.checked) {
                                     scanPaths.push(fileURL);
-                                }else{
+                                }else {
                                     scanPaths.pop(fileURL);
                                 }
                             }
@@ -234,7 +234,7 @@ Item {
                 onPressed: {
                     if(scanPaths.length !== 0) {
                         ttkScanFolderPage.pathChanged(scanPaths);
-                    }else{
+                    }else {
                         ttkFlyInOutBox.color = ttkTheme.color_red
                         ttkFlyInOutBox.text = qsTr("请选择扫描的文件夹")
                         ttkFlyInOutBox.start();

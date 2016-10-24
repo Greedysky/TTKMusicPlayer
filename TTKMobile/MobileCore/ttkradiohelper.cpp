@@ -2,18 +2,22 @@
 #include "musicradiochannelthread.h"
 #include "musicradioplaylistthread.h"
 #include "musicradiosongsthread.h"
+#include "musicdatadownloadthread.h"
+#include "musictime.h"
 
-//#include <QMediaPlayer>
+#include <QMediaPlayer>
 #include <QNetworkCookieJar>
 
 TTKRadioHelper::TTKRadioHelper(QObject *parent)
     : QObject(parent)
 {
+    MusicTime::timeSRand();
     m_cookJar = new QNetworkCookieJar(this);
     m_getChannelThread = nullptr;
     m_playListThread = nullptr;
     m_songsThread = nullptr;
-//    m_player = new QMediaPlayer(this);
+    m_player = new QMediaPlayer(this);
+    connect(m_player, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(playStateChanged()));
 }
 
 TTKRadioHelper::~TTKRadioHelper()
@@ -22,7 +26,7 @@ TTKRadioHelper::~TTKRadioHelper()
     delete m_playListThread;
     delete m_songsThread;
     delete m_cookJar;
-//    delete m_player;
+    delete m_player;
 }
 
 void TTKRadioHelper::init()
@@ -30,6 +34,30 @@ void TTKRadioHelper::init()
     m_getChannelThread = new MusicRadioChannelThread(this, m_cookJar);
     connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getChannelFinished()));
     m_getChannelThread->startToDownload(QString());
+}
+
+bool TTKRadioHelper::isPlaying() const
+{
+    return m_player->state() == QMediaPlayer::PlayingState;
+}
+
+void TTKRadioHelper::play()
+{
+    m_player->play();
+}
+
+void TTKRadioHelper::pause()
+{
+    m_player->pause();
+}
+
+void TTKRadioHelper::playStateChanged()
+{
+    if(m_player->state() == QMediaPlayer::StoppedState)
+    {
+        getPlayListFinished();
+        play();
+    }
 }
 
 void TTKRadioHelper::getChannelFinished()
@@ -54,7 +82,8 @@ void TTKRadioHelper::getPlayListFinished()
     m_playListIds = m_playListThread->getMusicPlayList();
     if(m_songsThread && !m_playListIds.isEmpty())
     {
-        m_songsThread->startToDownload(m_playListIds.first());
+        int index = qrand() % m_playListIds.count();
+        m_songsThread->startToDownload( m_playListIds[index] );
     }
 }
 
@@ -71,6 +100,34 @@ void TTKRadioHelper::getSongInfoFinished()
         return;
     }
 
-//    m_player->setMedia(QUrl(info.m_songUrl));
-//    m_player->play();
+    m_player->setMedia(QUrl(info.m_songUrl));
+
+    QString name = ART_DIR_FULL + info.m_artistName + SKN_FILE;
+    if(!QFile::exists(name))
+    {
+        MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_songPicUrl, name,
+                                 MusicDownLoadThreadAbstract::Download_SmlBG, this);
+        connect(picDwonload, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
+        picDwonload->startToDownload();
+    }
+    else
+    {
+        picDownloadStateChanged();
+    }
+}
+
+void TTKRadioHelper::picDownloadStateChanged()
+{
+    SongRadioInfo info;
+    if(m_songsThread)
+    {
+        info = m_songsThread->getMusicSongInfo();
+    }
+
+    if(info.m_songUrl.isEmpty())
+    {
+        return;
+    }
+
+    emit picDownloadFinished( "file:///" + ART_DIR_FULL + info.m_artistName + SKN_FILE );
 }

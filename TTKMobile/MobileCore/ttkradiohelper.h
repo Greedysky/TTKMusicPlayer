@@ -26,14 +26,41 @@ class MUSIC_MOBILE_EXPORT TTKRadioHelper : public QObject
     Q_OBJECT
 public:
     explicit TTKRadioHelper(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     ~TTKRadioHelper();
 
     Q_INVOKABLE void init();
     /*!
      * Init the radio network.
      */
+    Q_INVOKABLE bool isPlaying() const;
+    /*!
+     * Get current player is running or not.
+     */
 
-public slots:
+Q_SIGNALS:
+    void picDownloadFinished(const QString &path);
+    /*!
+     * Artist small pic download finished.
+     */
+
+public Q_SLOTS:
+    void play();
+    /*!
+     * Set current player play.
+     */
+    void pause();
+    /*!
+     * Set current player pause.
+     */
+
+private Q_SLOTS:
+    void playStateChanged();
+    /*!
+     * Current play state changed.
+     */
     void getChannelFinished();
     /*!
      * Get channel finished.
@@ -45,6 +72,10 @@ public slots:
     void getSongInfoFinished();
     /*!
      * Get song information finished.
+     */
+    void picDownloadStateChanged();
+    /*!
+     * Artist small pic download changed.
      */
 
 protected:
