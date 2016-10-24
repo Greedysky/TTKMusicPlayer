@@ -182,6 +182,14 @@ void TTKNetworkHelper::downForSearchSong(int index)
 
     MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
+    foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfo.m_songAttrs)
+    {
+        if(musicSongAttr.m_bitrate > attr.m_bitrate)
+        {
+            musicSongAttr = attr;
+        }
+    }
+
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
