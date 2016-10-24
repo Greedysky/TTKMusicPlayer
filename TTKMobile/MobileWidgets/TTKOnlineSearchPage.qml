@@ -411,6 +411,8 @@ Item {
                                 onClicked: {
                                     searedLrcList.currentIndex = index;
                                     TTK_NETWORK.setCurrentIndex(index);
+                                    ttkFlyInOutBox.text = qsTr("已加入下载列表");
+                                    ttkFlyInOutBox.start();
                                 }
                             }
 

@@ -105,7 +105,8 @@ Item {
                             anchors.fill: parent
                             onClicked: {
                                 itemListView.currentIndex = index;
-                                TTK_APP.setCurrentIndex(ttkTheme.music_downmv_list, index);
+                                ttkGlobal.video_url = TTK_APP.mediaPath(ttkTheme.music_downmv_list, index);
+                                ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicVideoPage.qml");
                             }
                         }
 

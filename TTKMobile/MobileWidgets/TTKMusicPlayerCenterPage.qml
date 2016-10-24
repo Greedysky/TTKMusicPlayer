@@ -247,7 +247,7 @@ Item {
                     Text {
                         id: musicPlayerShowArtist
                         Layout.alignment: Qt.AlignCenter
-                        Layout.preferredHeight: ttkGlobal.dpHeight(50)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(40)
                         Layout.preferredWidth: ttkMusicPlayerCenter.width - ttkGlobal.dpHeight(20)
                         color: ttkTheme.color_white
                         horizontalAlignment: Qt.AlignHCenter
@@ -271,7 +271,7 @@ Item {
                     Rectangle {
                         id: musicPlayerShowCenter
                         Layout.fillWidth: true
-                        Layout.preferredHeight: ttkGlobal.dpHeight(270)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(250)
                         color: ttkTheme.color_alpha_lv0
 
                         TTKRadiusImage {
@@ -301,8 +301,8 @@ Item {
                         id: musicPlayerShowLrc
                         Layout.alignment: Qt.AlignCenter
                         width: ttkMusicPlayerCenter.width
-                        height: ttkGlobal.dpHeight(40)
-                        textColor: "#00ff00"
+                        height: ttkGlobal.dpHeight(70)
+                        textColor: ttkTheme.color_green
                         color: ttkTheme.color_alpha_lv0
                         fontSize: ttkGlobal.dpHeight(22)
                         text: TTK_LRC.value(musicLrcShow.currentIndex)

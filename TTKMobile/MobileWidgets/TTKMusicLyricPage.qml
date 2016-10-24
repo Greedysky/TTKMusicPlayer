@@ -42,7 +42,7 @@ Rectangle {
                 width: lyricView.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
-                color: parent.ListView.isCurrentItem ? "#00ff00" : "#4C4C4C"
+                color: parent.ListView.isCurrentItem ? ttkTheme.color_green : ttkTheme.color_alpha_lv6
                 font.pixelSize: parent.ListView.isCurrentItem ? ttkGlobal.dpHeight(26) : ttkGlobal.dpHeight(22)
                 font.bold: parent.ListView.isCurrentItem
                 font.family: qsTr("楷体")

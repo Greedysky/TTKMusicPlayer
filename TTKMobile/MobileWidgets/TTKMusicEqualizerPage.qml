@@ -140,7 +140,7 @@ Rectangle {
                             width: parent.width
                             text: title
                             wrapMode: Text.WordWrap
-                            color: parent.ListView.isCurrentItem ? "#00ff00" : ttkTheme.color_alpha_lv6
+                            color: parent.ListView.isCurrentItem ? ttkTheme.color_green : ttkTheme.color_alpha_lv6
                             font.bold: parent.ListView.isCurrentItem
                         }
 

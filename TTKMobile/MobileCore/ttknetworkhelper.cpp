@@ -2,6 +2,7 @@
 #include "musicdownloadquerymultiplethread.h"
 #include "musiccryptographichash.h"
 #include "musicdatadownloadthread.h"
+#include "musictextdownloadthread.h"
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
 #///QJson import
@@ -70,7 +71,11 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
                         downForSearchMovie(index);
                         break;
                     }
-        case T_SearcLrc: break;
+        case T_SearcLrc:
+                    {
+                        downForSearchLrc(index);
+                        break;
+                    }
         case T_DownloadSong:
                     {
                         downForDownloadSong(data.toInt());
@@ -203,6 +208,29 @@ void TTKNetworkHelper::downForSearchMovie(int index)
         return;
     }
     emit downForSearchMovieFinished( QString() );
+}
+
+void TTKNetworkHelper::downForSearchLrc(int index)
+{
+    m_currentIndex = -1;
+    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    if(index < 0 || index >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
+    QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
+    musicSong = QString("%1%2.%3").arg(MusicUtils::Core::lrcPrefix()).arg(musicSong).arg(LRC_FILE);
+
+    MusicTextDownLoadThread *downSong = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, musicSong,
+                                            MusicDownLoadThreadAbstract::Download_Lrc, this);
+    QEventLoop loop(this);
+    connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    downSong->startToDownload();
+    loop.exec();
+
+    emit downForSearchLrcFinished(musicSong);
 }
 
 void TTKNetworkHelper::downForDownloadSong(int bitrate)
