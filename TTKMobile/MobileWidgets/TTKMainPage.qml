@@ -9,6 +9,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import TTKRadioHelper 1.0
 import "Core"
 
 Item {
@@ -252,6 +253,13 @@ Item {
                         Layout.preferredHeight: ttkGlobal.dpHeight(70)
                         anchors.left: parent.left
                         color: ttkTheme.color_white
+
+                        TTKRadioHelper {
+                            id: ttkRaioHelper
+                            Component.onCompleted: {
+                                ttkRaioHelper.init();
+                            }
+                        }
 
                         Rectangle {
                             id: radioImage

@@ -16,6 +16,7 @@
 #include "ttknetworkhelper.h"
 #include "ttkfilesearchcore.h"
 #include "ttkmusiclyricmodel.h"
+#include "ttkradiohelper.h"
 #if defined (Q_OS_ANDROID)
 #include "QZXing.h"
 #endif
@@ -25,6 +26,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
 {
     M_NETWORK_PTR->start();
     ///////////////////////////////////////////////////////////////////////////////////
+    qmlRegisterType<TTKRadioHelper>("TTKRadioHelper", 1, 0, "TTKRadioHelper");
     qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");
 #if defined (Q_OS_ANDROID)
     QZXing::registerQMLTypes();

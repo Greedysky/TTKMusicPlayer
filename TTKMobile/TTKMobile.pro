@@ -87,7 +87,8 @@ HEADERS += \
     MobileCore/ttkmusicsongssummarizied.h \
     MobileCore/ttknetworkhelper.h \
     MobileCore/ttkmusiclyricmodel.h \
-    MobileCore/ttkfilterproxymodel.h
+    MobileCore/ttkfilterproxymodel.h \
+    MobileCore/ttkradiohelper.h
 
 
 SOURCES += \
@@ -112,7 +113,8 @@ SOURCES += \
     MobileCore/ttkmusicsongssummarizied.cpp \
     MobileCore/ttknetworkhelper.cpp \
     MobileCore/ttkmusiclyricmodel.cpp \
-    MobileCore/ttkfilterproxymodel.cpp
+    MobileCore/ttkfilterproxymodel.cpp \
+    MobileCore/ttkradiohelper.cpp
 
 
 CONFIG += TTK_BUILD_LIB

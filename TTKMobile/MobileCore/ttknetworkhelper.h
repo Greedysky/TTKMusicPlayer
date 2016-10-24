@@ -39,8 +39,9 @@ public:
     ~TTKNetworkHelper();
 
     Q_INVOKABLE void setQueryType(int type);
-
-
+    /*!
+     * Set network query type.
+     */
     Q_INVOKABLE void searchSong(const QString &text);
     /*!
      * Search the song online by given name.
@@ -61,9 +62,10 @@ public:
     /*!
      * Set current play index.
      */
-
     Q_INVOKABLE QString getSearchedAttributes(int index);
-
+    /*!
+     * Get searched information attributes.
+     */
 
 Q_SIGNALS:
     void clearAllItems();
