@@ -51,6 +51,14 @@ void TTKMusicUtils::showMessageBox(const QString &text, const QString &title, QW
 #endif
 }
 
+bool TTKMusicUtils::currentNetIsWifi()
+{
+#if defined (Q_OS_ANDROID)
+    int wifi = QAndroidJniObject::callStaticMethod<jint>(APP_PKG_NAME, "currentNetIsWifi", "()I");
+    return (wifi == 0);
+#endif
+}
+
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 {
     return MusicTime(time, MusicTime::All_Msec).toString(format);

@@ -46,6 +46,10 @@ public:
     /*!
      * Show message box.
      */
+    Q_INVOKABLE bool currentNetIsWifi();
+    /*!
+     * Show message box.
+     */
 
     Q_INVOKABLE QString normalizeTime(qint64 time, const QString &format);
     /*!

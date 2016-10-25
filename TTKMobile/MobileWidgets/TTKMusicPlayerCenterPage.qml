@@ -329,6 +329,16 @@ Item {
 
                 TTKImageButton {
                     anchors {
+                        left: parent.left
+                        bottom: parent.bottom
+                    }
+                    width: ttkGlobal.dpWidth(40)
+                    height: ttkGlobal.dpHeight(40)
+                    source: "qrc:/image/player_btn_tan"
+                }
+
+                TTKImageButton {
+                    anchors {
                         right: parent.right
                         bottom: parent.bottom
                     }
