@@ -12,6 +12,7 @@
 #include <QObject>
 #include "musicmobileglobaldefine.h"
 
+class QTimer;
 class QQmlContext;
 class TTKMusicUtils;
 class TTKMusicPlaylist;
@@ -137,11 +138,11 @@ public:
      * Get current play index.
      */
 
-    bool checkMusicListCurrentIndex() const;
+    Q_INVOKABLE bool checkMusicListCurrentIndex() const;
     /*!
      * Check current list index is -1 or not.
      */
-    QString getCurrentFileName() const;
+    Q_INVOKABLE QString getCurrentFileName() const;
     /*!
      * Get current file name.
      */
@@ -149,6 +150,17 @@ public:
     /*!
      * Load current song lrc.
      */
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    Q_INVOKABLE bool timeToQuitAppIsSet() const;
+    /*!
+     * Check time to quit app is be set or not.
+     */
+    Q_INVOKABLE void setTimeToQuitApp(int time) const;
+    /*!
+     * Set time to quit app.
+     */
+
 
 Q_SIGNALS:
     void updateCurrentArtist();
@@ -199,6 +211,8 @@ protected:
     /*!
      * Write XML config to text.
      */
+
+    QTimer *m_timeToQuitTimer;
 
     TTKMusicUtils *m_ttkUtils;
     TTKMusicPlaylist *m_ttkPlaylist;

@@ -12,6 +12,7 @@ FocusScope {
     id: ttkLineInput
 
     property alias text: input.text
+    property alias validator: input.validator
     property alias hint: hint.text
     property alias prefix: prefix.text
     property int fontSize: 15
@@ -39,7 +40,7 @@ FocusScope {
             id: prefix
             anchors {
                 left: parent.left
-                leftMargin: 14;
+                leftMargin: 14
                 verticalCenter: parent.verticalCenter
             }
             verticalAlignment: Text.AlignVCenter
@@ -51,9 +52,11 @@ FocusScope {
         TextInput {
             id: input
             focus: true
+            clip: true
             anchors {
                 left: prefix.right
                 right: parent.right
+                rightMargin: 14
                 top: parent.top
                 bottom: parent.bottom
             }

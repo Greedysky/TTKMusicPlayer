@@ -126,6 +126,7 @@
         <file>MobileWidgets/Core/TTKTextMarquee.qml</file>
         <file>MobileWidgets/Core/TTKTextPair.qml</file>
         <file>MobileWidgets/Core/TTKMarquee.qml</file>
+        <file>MobileWidgets/TTKTimeSettingPage.qml</file>
         <file>MobileWidgets/TTKMainPage.qml</file>
         <file>MobileWidgets/TTKMainSettingPage.qml</file>
         <file>MobileWidgets/TTKOnlineSearchPage.qml</file>

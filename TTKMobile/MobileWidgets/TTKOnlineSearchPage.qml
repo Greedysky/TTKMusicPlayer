@@ -33,8 +33,7 @@ Item {
         }
         onCreateSearchedItems: {
             var info = { title: songname, artist: artistname };
-            switch( functionList.currentIndex )
-            {
+            switch( functionList.currentIndex ) {
                 case 0: searedSongListModel.append(info); break;
                 case 1: searedMVListModel.append(info); break;
                 case 2: searedLrcListModel.append(info); break;
@@ -94,8 +93,7 @@ Item {
                     textColor: ttkTheme.color_white
                     text: qsTr("搜索")
                     onPressed: {
-                        switch( functionList.currentIndex )
-                        {
+                        switch( functionList.currentIndex ) {
                             case 0: TTK_NETWORK.searchSong(getSearchedText()); break;
                             case 1: TTK_NETWORK.searchMovie(getSearchedText()); break;
                             case 2: TTK_NETWORK.searchLrc(getSearchedText()); break;
@@ -128,8 +126,7 @@ Item {
                         text: title
                         onPressed: {
                             searedSongStackView.pop();
-                            switch( functionList.currentIndex = index )
-                            {
+                            switch( functionList.currentIndex = index ) {
                                 case 0:
                                     searedSongStackView.push(searedSongList);
                                     TTK_NETWORK.searchSong(getSearchedText())

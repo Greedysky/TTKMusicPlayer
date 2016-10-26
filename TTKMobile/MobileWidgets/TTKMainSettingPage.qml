@@ -16,6 +16,18 @@ Item {
     width: parent.width
     height: parent.height
 
+    function timeToQuitApp(time) {
+        firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
+                                imageSubSource: "qrc:/image/switch_on_normal",
+                                title: qsTr("定时关闭")});
+        var beforeTime = Date.parse(new Date);
+        var afterTime = new Date(beforeTime + time*1000*60);
+        ttkFlyInOutBox.text = qsTr("设置成功，") + afterTime.getHours().toString() + ":" +
+                              afterTime.getMinutes().toString() + qsTr("后退出");
+        ttkFlyInOutBox.start();
+        TTK_APP.setTimeToQuitApp(time*1000*60);
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -130,15 +142,41 @@ Item {
                             height: ttkGlobal.dpHeight(60)
                             color: ttkTheme.color_white
 
+                            MouseArea {
+                                anchors.fill: parent
+                                onPressed: {
+                                    switch(index) {
+                                        case 0: break;
+                                    }
+                                }
+                            }
+
                             TTKImageFunctionItem {
                                 source: imageSource
                                 subSource: imageSubSource
                                 text: title
                                 textColor: ttkTheme.color_black
+                                onImageButtonPressed: {
+                                    switch(index) {
+                                        case 1: break
+                                        case 2: break;
+                                        case 3:
+                                            if(TTK_APP.timeToQuitAppIsSet()) {
+                                                firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
+                                                                            imageSubSource: "qrc:/image/switching_off",
+                                                                            title: qsTr("定时关闭") });
+                                                TTK_APP.setTimeToQuitApp(-1);
+                                            }else {
+                                                ttkTimeSettingPage.visible = true;
+                                            }
+                                            break;
+                                    }
+                                }
                             }
                         }
 
                         model: ListModel{
+                            id: firstListModel
                             ListElement {
                                 imageSource: "qrc:/image/more_icon_settings"
                                 title: qsTr("设置")
@@ -155,8 +193,16 @@ Item {
                             }
                             ListElement {
                                 imageSource: "qrc:/image/more_icon_timer"
-                                imageSubSource: "qrc:/image/switching_off"
+                                imageSubSource: "qrc:/image/switching_off";
                                 title: qsTr("定时关闭")
+                            }
+                        }
+
+                        Component.onCompleted: {
+                            if(TTK_APP.timeToQuitAppIsSet()) {
+                                firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
+                                                        imageSubSource: "qrc:/image/switch_on_normal",
+                                                        title: qsTr("定时关闭")});
                             }
                         }
                     }
@@ -278,8 +324,15 @@ Item {
         }
     }
 
+    TTKTimeSettingPage {
+        id: ttkTimeSettingPage
+    }
+
     TTKMusicAboutPage {
         id: ttkMusicAboutPage
     }
 
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
+    }
 }

@@ -20,6 +20,8 @@ Rectangle {
     property alias source: image.foreground
     property alias subSource: subImage.source
 
+    signal imageButtonPressed
+
     RowLayout {
         spacing: 2
         anchors.fill: parent
@@ -58,6 +60,9 @@ Rectangle {
             width: ttkGlobal.dpWidth(50)
             height: ttkGlobal.dpHeight(50)
             anchors.right: parent.right
+            onPressed: {
+                ttkImageFunctionItem.imageButtonPressed();
+            }
         }
     }
 

@@ -130,7 +130,7 @@ RESOURCES += MobileExtra/QZXing/QZXing.qrc
 
 QT += androidextras
 
-LIBS += -Lbin/ -lqmmp
+LIBS += -Lbin/$$TTKMusicPlayer -lqmmp
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
@@ -148,24 +148,24 @@ DISTFILES += \
     android/gradlew.bat
 
     ANDROID_EXTRA_LIBS = \
-        bin/libplugin_input_aac.so \
-        bin/libplugin_input_cue.so \
-#        bin/libplugin_input_ffmpeg.so \
-        bin/libplugin_input_flac.so \
-        bin/libplugin_input_gme.so \
-        bin/libplugin_input_mad.so \
-        bin/libplugin_input_modplug.so \
-        bin/libplugin_input_mpc.so \
-        bin/libplugin_input_opus.so \
-        bin/libplugin_input_sndfile.so \
-        bin/libplugin_input_vorbis.so \
-        bin/libplugin_input_wavpack.so \
-        bin/libplugin_output_qtmultimedia.so \
-        bin/libqmmp.so \
-        bin/libtag.so \
-#        bin/libavcodec.so \
-#        bin/libavformat.so \
-#        bin/libavutil.so
+        bin/$$TTKMusicPlayer/libplugin_input_aac.so \
+        bin/$$TTKMusicPlayer/libplugin_input_cue.so \
+#        bin/$$TTKMusicPlayer/libplugin_input_ffmpeg.so \
+        bin/$$TTKMusicPlayer/libplugin_input_flac.so \
+        bin/$$TTKMusicPlayer/libplugin_input_gme.so \
+        bin/$$TTKMusicPlayer/libplugin_input_mad.so \
+        bin/$$TTKMusicPlayer/libplugin_input_modplug.so \
+        bin/$$TTKMusicPlayer/libplugin_input_mpc.so \
+        bin/$$TTKMusicPlayer/libplugin_input_opus.so \
+        bin/$$TTKMusicPlayer/libplugin_input_sndfile.so \
+        bin/$$TTKMusicPlayer/libplugin_input_vorbis.so \
+        bin/$$TTKMusicPlayer/libplugin_input_wavpack.so \
+        bin/$$TTKMusicPlayer/libplugin_output_qtmultimedia.so \
+        bin/$$TTKMusicPlayer/libqmmp.so \
+        bin/$$TTKMusicPlayer/libtag.so \
+#        bin/$$TTKMusicPlayer/libavcodec.so \
+#        bin/$$TTKMusicPlayer/libavformat.so \
+#        bin/$$TTKMusicPlayer/libavutil.so
 }
 
 RESOURCES += \

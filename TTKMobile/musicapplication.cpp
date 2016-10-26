@@ -5,6 +5,7 @@
 #include "musicnetworkthread.h"
 #include "musicbackgroundmanager.h"
 
+#include <QTimer>
 #include <QQuickWindow>
 #include <QQmlContext>
 
@@ -42,6 +43,10 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     m_songsSummarizied = new TTKMusicSongsSummarizied(this);
     m_downloadStatus = new MusicDownloadStatusLabel(this);
 
+    m_timeToQuitTimer = new QTimer(this);
+    m_timeToQuitTimer->setInterval(-1);
+    connect(m_timeToQuitTimer, SIGNAL(timeout()), qApp, SLOT(quit()));
+
     parent->setContextProperty("TTK_APP", this);
     parent->setContextProperty("TTK_UTILS", m_ttkUtils);
     parent->setContextProperty("TTK_PLAYER", m_ttkPlayer);
@@ -62,6 +67,7 @@ MusicApplication::~MusicApplication()
     delete m_ttkPlayer;
     delete m_ttkLrcModel;
     delete m_songsSummarizied;
+    delete m_timeToQuitTimer;
 }
 
 void MusicApplication::importOtherMusicSongs(const QStringList &filelist)
@@ -328,6 +334,25 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QString filename = getCurrentFileName();
     QString path = MusicUtils::Core::lrcPrefix() + filename + LRC_FILE;
     m_ttkLrcModel->loadCurrentSongLrc(path);
+}
+
+bool MusicApplication::timeToQuitAppIsSet() const
+{
+    return m_timeToQuitTimer->interval() != -1;
+}
+
+void MusicApplication::setTimeToQuitApp(int time) const
+{
+    m_timeToQuitTimer->stop();
+    if(time > -1)
+    {
+        m_timeToQuitTimer->setInterval(time);
+        m_timeToQuitTimer->start();
+    }
+    else
+    {
+        m_timeToQuitTimer->setInterval(-1);
+    }
 }
 
 void MusicApplication::currentMusicSongChanged(int index)

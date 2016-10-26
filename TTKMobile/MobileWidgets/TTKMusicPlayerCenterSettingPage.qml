@@ -109,8 +109,7 @@ Rectangle{
                     MouseArea {
                         anchors.fill: parent
                         onPressed: {
-                            switch(index)
-                            {
+                            switch(index) {
                                 case 0: break;
                                 case 1:
                                     ttkMusicPlayerCenterSettingPage.visible = false;
@@ -211,8 +210,7 @@ Rectangle{
                     MouseArea {
                         anchors.fill: parent
                         onPressed: {
-                            switch(index)
-                            {
+                            switch(index) {
                                 case 0: break;
                                 case 1: break;
                                 case 2: break;

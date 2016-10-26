@@ -34,8 +34,7 @@ Rectangle {
         var bitrateString;
 
         if(queryType !== ttkTheme.search_type_download_mv_index) {
-            switch(bitrate)
-            {
+            switch(bitrate) {
                 case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
                 case 128: bitrateString = qsTr("标准品质"); break;
                 case 192: bitrateString = qsTr("高品质"); break;
@@ -44,8 +43,7 @@ Rectangle {
                 default: break;
             }
         }else {
-            switch(bitrate)
-            {
+            switch(bitrate) {
                 case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
                 case 500: bitrateString = qsTr("高清品质"); break;
                 case 750: bitrateString = qsTr("超清品质"); break;
