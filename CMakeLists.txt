@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DMUSIC_LIBRARY)
 
-set(TTK_VERSION "2.4.0.0")
+set(TTK_VERSION "2.4.1.0")
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -19,14 +19,6 @@ if(TTK_BUILD_SHARED)
   message(STATUS "Message TTK build by shared link")
 else()
   message(STATUS "Message TTK build by static link")
-endif()
-
-option(TTK_USE_MULTIPLE_QUERY "TTK BUILD US EMULTIPLE QUERY" ON)
-if(TTK_USE_MULTIPLE_QUERY)
-  message(STATUS "Message Expected value for TTK use multiple query")
-  add_definitions(-DUSE_MULTIPLE_QUERY)
-else()
-  message(STATUS "Message Unexpected value for TTK use multiple query")
 endif()
 
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
