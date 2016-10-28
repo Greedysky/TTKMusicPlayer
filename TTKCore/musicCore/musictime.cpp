@@ -65,6 +65,19 @@ bool MusicTime::isValid() const
     return !isNull();
 }
 
+MusicTime MusicTime::fromMSecsSinceEpoch(qint64 msecs)
+{
+    MusicTime time;
+    QDateTime dt(QDateTime::fromMSecsSinceEpoch(msecs));
+    QTime t(dt.time());
+    time.setDay(dt.date().day());
+    time.setHour(t.hour());
+    time.setSecond(t.second());
+    time.setMinute(t.minute());
+    time.setMillionSecond(t.msec());
+    return time;
+}
+
 MusicTime MusicTime::fromString(const QString &s, const QString &format)
 {
     MusicTime time;
