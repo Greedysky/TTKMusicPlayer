@@ -55,6 +55,10 @@ public:
     /*!
      * Transfer integer time to string by format.
      */
+    Q_INVOKABLE QString fromMSecsSinceEpoch(qint64 msecs, const QString &format);
+    /*!
+     * Transform ms time from utc since epoch by format.
+     */
     Q_INVOKABLE QString size2Label(qint64 size);
     /*!
      * Transform value to cp value.

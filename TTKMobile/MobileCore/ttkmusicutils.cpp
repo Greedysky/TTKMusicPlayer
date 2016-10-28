@@ -57,11 +57,17 @@ bool TTKMusicUtils::currentNetIsWifi()
     int wifi = QAndroidJniObject::callStaticMethod<jint>(APP_PKG_NAME, "currentNetIsWifi", "()I");
     return (wifi == 0);
 #endif
+    return false;
 }
 
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 {
     return MusicTime(time, MusicTime::All_Msec).toString(format);
+}
+
+QString TTKMusicUtils::fromMSecsSinceEpoch(qint64 msecs, const QString &format)
+{
+    return MusicTime::fromMSecsSinceEpoch(msecs).toString(format);
 }
 
 QString TTKMusicUtils::size2Label(qint64 size)

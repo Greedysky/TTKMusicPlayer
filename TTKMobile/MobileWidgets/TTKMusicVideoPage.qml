@@ -18,13 +18,13 @@ Rectangle{
     width: parent.width
     height: parent.height
 
-    Column{
-        Rectangle{
+    Column {
+        Rectangle {
             color: "black"
             width: ttkMusicVideoPage.width
             height: ttkMusicVideoPage.height - ttkGlobal.dpHeight(50)
 
-            MediaPlayer{
+            MediaPlayer {
                 id: videoPlayer
                 source: ttkGlobal.video_url
                 autoPlay: true

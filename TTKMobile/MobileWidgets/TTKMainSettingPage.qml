@@ -22,8 +22,9 @@ Item {
                                 title: qsTr("定时关闭")});
         var beforeTime = Date.parse(new Date);
         var afterTime = new Date(beforeTime + time*1000*60);
-        ttkFlyInOutBox.text = qsTr("设置成功，") + afterTime.getHours().toString() + ":" +
-                              afterTime.getMinutes().toString() + qsTr("后退出");
+        ttkFlyInOutBox.text = qsTr("设置成功，") +
+                              TTK_UTILS.fromMSecsSinceEpoch(afterTime*1, "hh:mm") +
+                              qsTr("后退出");
         ttkFlyInOutBox.start();
         TTK_APP.setTimeToQuitApp(time*1000*60);
     }
