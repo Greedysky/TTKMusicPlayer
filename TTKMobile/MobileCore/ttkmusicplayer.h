@@ -24,7 +24,7 @@ class MUSIC_MOBILE_EXPORT TTKMusicPlayer : public QObject
 public:
     enum State
     {
-        StoppedState = 0,   ///*stop state*/
+        StoppedState,       ///*stop state*/
         PlayingState,       ///*play state*/
         PausedState         ///*pause state*/
     };

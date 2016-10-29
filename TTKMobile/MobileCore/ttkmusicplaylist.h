@@ -102,8 +102,8 @@ public Q_SLOTS:
 
 protected:
     int m_currentIndex;
-    QStringList m_mediaList;
     int m_playbackMode;
+    QStringList m_mediaList;
 
 };
 

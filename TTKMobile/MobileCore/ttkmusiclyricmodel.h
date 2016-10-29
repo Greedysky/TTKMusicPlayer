@@ -27,11 +27,11 @@ public:
      */
     ~TTKMusicLyricModel();
 
-    virtual int rowCount(const QModelIndex & parent = QModelIndex()) const override;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     /*!
      * Get current rowcount.
      */
-    virtual QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const override;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     /*!
      * Get current row data.
      */

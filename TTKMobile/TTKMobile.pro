@@ -147,22 +147,22 @@ DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.properties \
     android/gradlew.bat
 
-    ANDROID_EXTRA_LIBS = \
-        bin/$$TTKMusicPlayer/libplugin_input_aac.so \
-        bin/$$TTKMusicPlayer/libplugin_input_cue.so \
+ANDROID_EXTRA_LIBS = \
+    bin/$$TTKMusicPlayer/libplugin_input_aac.so \
+    bin/$$TTKMusicPlayer/libplugin_input_cue.so \
 #        bin/$$TTKMusicPlayer/libplugin_input_ffmpeg.so \
-        bin/$$TTKMusicPlayer/libplugin_input_flac.so \
-        bin/$$TTKMusicPlayer/libplugin_input_gme.so \
-        bin/$$TTKMusicPlayer/libplugin_input_mad.so \
-        bin/$$TTKMusicPlayer/libplugin_input_modplug.so \
-        bin/$$TTKMusicPlayer/libplugin_input_mpc.so \
-        bin/$$TTKMusicPlayer/libplugin_input_opus.so \
-        bin/$$TTKMusicPlayer/libplugin_input_sndfile.so \
-        bin/$$TTKMusicPlayer/libplugin_input_vorbis.so \
-        bin/$$TTKMusicPlayer/libplugin_input_wavpack.so \
-        bin/$$TTKMusicPlayer/libplugin_output_qtmultimedia.so \
-        bin/$$TTKMusicPlayer/libqmmp.so \
-        bin/$$TTKMusicPlayer/libtag.so \
+    bin/$$TTKMusicPlayer/libplugin_input_flac.so \
+    bin/$$TTKMusicPlayer/libplugin_input_gme.so \
+    bin/$$TTKMusicPlayer/libplugin_input_mad.so \
+    bin/$$TTKMusicPlayer/libplugin_input_modplug.so \
+    bin/$$TTKMusicPlayer/libplugin_input_mpc.so \
+    bin/$$TTKMusicPlayer/libplugin_input_opus.so \
+    bin/$$TTKMusicPlayer/libplugin_input_sndfile.so \
+    bin/$$TTKMusicPlayer/libplugin_input_vorbis.so \
+    bin/$$TTKMusicPlayer/libplugin_input_wavpack.so \
+    bin/$$TTKMusicPlayer/libplugin_output_qtmultimedia.so \
+    bin/$$TTKMusicPlayer/libqmmp.so \
+    bin/$$TTKMusicPlayer/libtag.so \
 #        bin/$$TTKMusicPlayer/libavcodec.so \
 #        bin/$$TTKMusicPlayer/libavformat.so \
 #        bin/$$TTKMusicPlayer/libavutil.so

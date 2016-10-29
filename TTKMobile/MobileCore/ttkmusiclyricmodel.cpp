@@ -14,7 +14,7 @@ TTKMusicLyricModel::~TTKMusicLyricModel()
     delete m_lrcAnalysis;
 }
 
-int TTKMusicLyricModel::rowCount(const QModelIndex & parent) const
+int TTKMusicLyricModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_datas.count();
@@ -56,7 +56,7 @@ void TTKMusicLyricModel::loadCurrentSongLrc(const QString &path)
         QStringList d = m_lrcAnalysis->getAllLrcs().split("\n");
         beginInsertRows(QModelIndex(), 0, d.count());
         m_datas.clear();
-        m_datas << "" << d;
+        m_datas << QString() << d;
         endInsertRows();
         m_lrcAnalysis->setCurrentIndex(0);
     }
