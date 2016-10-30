@@ -162,6 +162,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
 
                     musicInfo.m_songId = value["SongId"].toString();
                     musicInfo.m_albumId = value["AlbumId"].toString();
+                    musicInfo.m_artistId = value["ArtistSubTitle"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
@@ -187,6 +188,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
 
                     musicInfo.m_songId = value["SongId"].toString();
                     musicInfo.m_albumId = value["AlbumId"].toString();
+                    musicInfo.m_artistId = value["ArtistSubTitle"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;

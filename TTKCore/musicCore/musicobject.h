@@ -139,6 +139,7 @@ namespace MusicObject
         MusicSongAttributes m_songAttrs;
         QString m_songId;
         QString m_albumId;
+        QString m_artistId;
         QString m_lrcUrl;
         QString m_smallPicUrl;
         QString m_singerName;

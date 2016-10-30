@@ -13,6 +13,7 @@
 INCLUDEPATH += $$PWD \
                $$PWD/tt \
                $$PWD/wy \
+               $$PWD/vip \
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
@@ -24,6 +25,9 @@ HEADERS  += \
     $$PWD/wy/musicwytextdownloadthread.h \
     $$PWD/wy/musicdownloadqueryalbumwythread.h \
     $$PWD/wy/musicwycommentsthread.h \
+    $$PWD/vip/musicdownloadquerymultiplevipthread.h \
+    $$PWD/vip/musicdownloadqueryalbumvipthread.h \
+    $$PWD/vip/musicdownloadqueryartistvipthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicdatadownloadthread.h \
@@ -37,9 +41,8 @@ HEADERS  += \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadquerythreadabstract.h \
     $$PWD/musicdownloadquerymultiplethread.h \
-    $$PWD/musicdownloadquerymultiplevipthread.h \
     $$PWD/musicdownloadqueryalbumthread.h \
-    $$PWD/musicdownloadqueryalbumvipthread.h \
+    $$PWD/musicdownloadqueryartistthread.h \
     $$PWD/musicradiochannelthread.h \
     $$PWD/musicradioplaylistthread.h \
     $$PWD/musicradiosongsthread.h \
@@ -60,6 +63,9 @@ SOURCES += \
     $$PWD/wy/musicwytextdownloadthread.cpp \
     $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
+    $$PWD/vip/musicdownloadquerymultiplevipthread.cpp \
+    $$PWD/vip/musicdownloadqueryalbumvipthread.cpp \
+    $$PWD/vip/musicdownloadqueryartistvipthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicdatadownloadthread.cpp \
@@ -73,9 +79,8 @@ SOURCES += \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadquerythreadabstract.cpp \
     $$PWD/musicdownloadquerymultiplethread.cpp \
-    $$PWD/musicdownloadquerymultiplevipthread.cpp \
     $$PWD/musicdownloadqueryalbumthread.cpp \
-    $$PWD/musicdownloadqueryalbumvipthread.cpp \
+    $$PWD/musicdownloadqueryartistthread.cpp \
     $$PWD/musicradiochannelthread.cpp \
     $$PWD/musicradioplaylistthread.cpp \
     $$PWD/musicradiosongsthread.cpp \
