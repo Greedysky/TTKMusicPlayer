@@ -50,19 +50,19 @@ QString MusicDownLoadQueryMultipleThread::getCurrentURL() const
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_WY, URL_KEY);
-        case 1:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_DX, URL_KEY);
-        case 2:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_QQ, URL_KEY);
-        case 3:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_XM, URL_KEY);
-        case 4:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_TT, URL_KEY);
-        case 5:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_BD, URL_KEY);
-        case 6:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_KW, URL_KEY);
-        case 7:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_KG, URL_KEY);
-        case 8:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_DM, URL_KEY);
-        case 9:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MG, URL_KEY);
-        case 10: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MU, URL_KEY);
-        case 11: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_EC, URL_KEY);
-        case 12: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_YY, URL_KEY);
+        case 0:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_WY, URL_KEY);
+        case 1:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_DX, URL_KEY);
+        case 2:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_QQ, URL_KEY);
+        case 3:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_XM, URL_KEY);
+        case 4:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_TT, URL_KEY);
+        case 5:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_BD, URL_KEY);
+        case 6:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_KW, URL_KEY);
+        case 7:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_KG, URL_KEY);
+        case 8:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_DM, URL_KEY);
+        case 9:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_MG, URL_KEY);
+        case 10: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_MU, URL_KEY);
+        case 11: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_EC, URL_KEY);
+        case 12: return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_YY, URL_KEY);
     }
     return QString();
 }

@@ -1,27 +1,28 @@
-#include "musicdownloadqueryalbumthread.h"
+#include "musicdownloadqueryalbumvipthread.h"
 #include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
+#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryAlbumThread::MusicDownLoadQueryAlbumThread(QObject *parent)
+MusicDownLoadQueryAlbumVipThread::MusicDownLoadQueryAlbumVipThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
 
 }
 
-QString MusicDownLoadQueryAlbumThread::getClassName()
+QString MusicDownLoadQueryAlbumVipThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryAlbumThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryAlbumVipThread::startSearchSong(QueryType type, const QString &text)
 {
     Q_UNUSED(type);
     startSearchSong(text);
 }
 
-void MusicDownLoadQueryAlbumThread::startSearchSong(const QString &album)
+void MusicDownLoadQueryAlbumVipThread::startSearchSong(const QString &album)
 {
     QUrl musicUrl = QString(getCurrentURL()).arg(album);
     ///This is a multiple music API
@@ -45,7 +46,7 @@ void MusicDownLoadQueryAlbumThread::startSearchSong(const QString &album)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryAlbumThread::downLoadFinished()
+void MusicDownLoadQueryAlbumVipThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -76,12 +77,13 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
                 QVariantMap value = var.toMap();
                 MusicObject::MusicSongInfomation musicInfo;
                 QString songName = value["SongName"].toString();
-                QString singerName = value["Artist"].toString();
-                QString duration = value["Length"].toString();
+                QString singerName = value["ArtistName"].toString();
+                QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
                 QString size = value["Size"].toString();
 
                 readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
                 readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
+                readFromMusicSongAttribute(musicInfo, size, MB_1000, value["WavUrl"].toString());
                 readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
                 readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
                 readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
@@ -92,7 +94,7 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
                 }
                 emit createSearchedItems(songName, singerName, duration);
 
-                musicInfo.m_albumId = value["Album"].toString() + "<>" +
+                musicInfo.m_albumId = value["AlbumName"].toString() + "<>" +
                                       value["Language"].toString() + "<>" +
                                       value["Company"].toString() + "<>" +
                                       value["Year"].toString();
@@ -110,29 +112,23 @@ void MusicDownLoadQueryAlbumThread::downLoadFinished()
     deleteAll();
 }
 
-QString MusicDownLoadQueryAlbumThread::getCurrentURL() const
+QString MusicDownLoadQueryAlbumVipThread::getCurrentURL() const
 {
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_WY, URL_KEY);
-        case 1:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_DX, URL_KEY);
-        case 2:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_QQ, URL_KEY);
-        case 3:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_XM, URL_KEY);
-        case 4:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_TT, URL_KEY);
-        case 5:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_BD, URL_KEY);
-        case 6:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_KW, URL_KEY);
-        case 7:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_KG, URL_KEY);
-        case 8:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_DM, URL_KEY);
-        case 9:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_MG, URL_KEY);
-        case 10: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_MU, URL_KEY);
-        case 11: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_EC, URL_KEY);
-        case 12: return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_YY, URL_KEY);
+        case 0:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_WY, URL_KEY);
+        case 2:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_QQ, URL_KEY);
+        case 3:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_XM, URL_KEY);
+        case 4:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_TT, URL_KEY);
+        case 5:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_BD, URL_KEY);
+        case 6:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_KW, URL_KEY);
+        case 7:  return MusicCryptographicHash::decryptData(MUSIC_ALBUM_MULTI_VIP_KG, URL_KEY);
     }
     return QString();
 }
 
-void MusicDownLoadQueryAlbumThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info,
+void MusicDownLoadQueryAlbumVipThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation &info,
                                           const QString &size, int bit, const QString &url)
 {
     if(!url.isEmpty())

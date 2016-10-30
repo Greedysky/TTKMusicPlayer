@@ -1,6 +1,7 @@
 #include "musicdownloadquerymultiplevipthread.h"
 #include "musicdownloadthreadabstract.h"
 #include "musicsettingmanager.h"
+#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -50,13 +51,13 @@ QString MusicDownLoadQueryMultipleVipThread::getCurrentURL() const
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_WY, URL_KEY);
-        case 2:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_QQ, URL_KEY);
-        case 3:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_XM, URL_KEY);
-        case 4:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_TT, URL_KEY);
-        case 5:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_BD, URL_KEY);
-        case 6:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_KW, URL_KEY);
-        case 7:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_KG, URL_KEY);
+        case 0:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_WY, URL_KEY);
+        case 2:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_QQ, URL_KEY);
+        case 3:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_XM, URL_KEY);
+        case 4:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_TT, URL_KEY);
+        case 5:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_BD, URL_KEY);
+        case 6:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_KW, URL_KEY);
+        case 7:  return MusicCryptographicHash::decryptData(MUSIC_REQUERY_MULTI_VIP_KG, URL_KEY);
     }
     return QString();
 }
@@ -96,5 +97,115 @@ void MusicDownLoadQueryMultipleVipThread::readFromMusicSongAttribute(MusicObject
 
 void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
 {
+    if(m_reply == nullptr)
+    {
+        deleteAll();
+        return;
+    }
 
+    emit clearAllItems();      ///Clear origin items
+    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+
+    if(m_reply->error() == QNetworkReply::NoError)
+    {
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        if(ok)
+        {
+            QVariantList datas = data.toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                QVariantMap value = var.toMap();
+                MusicObject::MusicSongInfomation musicInfo;
+                if(m_currentType != MovieQuery)
+                {
+                    QString songName = value["SongName"].toString();
+                    QString singerName = value["ArtistName"].toString();
+                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                    QString size = value["Size"].toString();
+
+                    if(m_queryAllRecords)
+                    {
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["WavUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
+                    }
+                    else
+                    {
+                        if(m_searchQuality == tr("SD"))
+                            readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
+                        else if(m_searchQuality == tr("HD"))
+                            readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
+                        else if(m_searchQuality == tr("SQ"))
+                            readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
+                        else if(m_searchQuality == tr("CD"))
+                        {
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["WavUrl"].toString());
+                        }
+                    }
+                    if(musicInfo.m_songAttrs.isEmpty())
+                    {
+                        continue;
+                    }
+                    emit createSearchedItems(songName, singerName, duration);
+
+                    musicInfo.m_songId = value["SongId"].toString();
+                    musicInfo.m_albumId = value["AlbumId"].toString();
+                    musicInfo.m_songName = songName;
+                    musicInfo.m_singerName = singerName;
+                    musicInfo.m_timeLength = duration;
+                    musicInfo.m_lrcUrl = value["LrcUrl"].toString();
+                    musicInfo.m_smallPicUrl = value["PicUrl"].toString();
+                    m_musicSongInfos << musicInfo;
+                }
+                else
+                {
+                    QString songName = value["SongName"].toString();
+                    QString singerName = value["ArtistName"].toString();
+                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                    QString size = value["Size"].toString();
+
+                    readFromMusicSongAttribute(musicInfo, size, MB_750, value["MvHdUrl"].toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_500, value["MvLdUrl"].toString());
+
+                    if(musicInfo.m_songAttrs.isEmpty())
+                    {
+                        continue;
+                    }
+                    emit createSearchedItems(songName, singerName, duration);
+
+                    musicInfo.m_songId = value["SongId"].toString();
+                    musicInfo.m_albumId = value["AlbumId"].toString();
+                    musicInfo.m_songName = songName;
+                    musicInfo.m_singerName = singerName;
+                    musicInfo.m_timeLength = duration;
+                    m_musicSongInfos << musicInfo;
+                }
+            }
+        }
+        ///If there is no search to song_id, is repeated several times in the search
+        ///If more than 5 times or no results give up
+        static int counter = 5;
+        if(m_musicSongInfos.isEmpty() && counter-- > 0)
+        {
+            startSearchSong(m_currentType, m_searchText);
+        }
+        else
+        {
+            M_LOGGER_ERROR("not find the song");
+        }
+    }
+    emit downLoadDataChanged(QString());
+    deleteAll();
 }

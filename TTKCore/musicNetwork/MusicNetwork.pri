@@ -39,6 +39,7 @@ HEADERS  += \
     $$PWD/musicdownloadquerymultiplethread.h \
     $$PWD/musicdownloadquerymultiplevipthread.h \
     $$PWD/musicdownloadqueryalbumthread.h \
+    $$PWD/musicdownloadqueryalbumvipthread.h \
     $$PWD/musicradiochannelthread.h \
     $$PWD/musicradioplaylistthread.h \
     $$PWD/musicradiosongsthread.h \
@@ -74,6 +75,7 @@ SOURCES += \
     $$PWD/musicdownloadquerymultiplethread.cpp \
     $$PWD/musicdownloadquerymultiplevipthread.cpp \
     $$PWD/musicdownloadqueryalbumthread.cpp \
+    $$PWD/musicdownloadqueryalbumvipthread.cpp \
     $$PWD/musicradiochannelthread.cpp \
     $$PWD/musicradioplaylistthread.cpp \
     $$PWD/musicradiosongsthread.cpp \
