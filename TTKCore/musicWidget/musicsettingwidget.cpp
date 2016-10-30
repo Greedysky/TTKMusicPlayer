@@ -268,6 +268,13 @@ void MusicSettingWidget::initDownloadWidget()
 
     ui->downloadServerMultiple->setChecked(false);
     ui->downloadServerMultiple->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    ui->downloadServerMultipleVip->setChecked(false);
+    ui->downloadServerMultipleVip->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    QButtonGroup *serverButtonGroup = new QButtonGroup(this);
+    serverButtonGroup->setExclusive(false);
+    serverButtonGroup->addButton(ui->downloadServerMultiple, 0);
+    serverButtonGroup->addButton(ui->downloadServerMultipleVip, 1);
+    connect(serverButtonGroup, SIGNAL(buttonClicked(int)), SLOT(downloadGroupServer(int)));
 
     ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("wangyiMusic"));
     ui->downloadServerComboBox->addItem(QIcon(":/server/lb_aiyinyue"), tr("dianxinMusic"));
@@ -429,7 +436,17 @@ void MusicSettingWidget::initControllerParameter()
     MusicUtils::Widget::setComboboxText(ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      ui->downloadFullRadioBox->click() : ui->downloadLimitRadioBox->click();
-    ui->downloadServerMultiple->setChecked(!(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt() == 0));
+    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt())
+    {
+        case 1: ui->downloadServerMultiple->setChecked(true);
+                ui->downloadServerMultipleVip->setChecked(false);
+                break;
+        case 2: ui->downloadServerMultiple->setChecked(false);
+                ui->downloadServerMultipleVip->setChecked(true);
+                break;
+        default: ui->downloadServerMultiple->setChecked(false);
+                 ui->downloadServerMultipleVip->setChecked(false);
+    }
     ///////////////////////////////////////////////////////////////////////////
     ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
     ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
@@ -507,9 +524,12 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced, ui->downloadSpinBox->value());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, ui->downloadFullRadioBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, ui->downloadServerComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, ui->downloadServerMultiple->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, ui->uploadLimitSpeedComboBox->currentText());
+    int value = 0;
+    if(ui->downloadServerMultiple->isChecked()) value = 1;
+    else if(ui->downloadServerMultipleVip->isChecked()) value = 2;
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, value);
 
     M_HOTKEY_PTR->setHotKey(0, ui->item_S2->text());
     M_HOTKEY_PTR->setHotKey(1, ui->item_S4->text());
@@ -714,6 +734,18 @@ void MusicSettingWidget::clearFunctionTableSelection()
     ui->normalFunTableWidget->clearSelection();
     ui->lrcFunTableWidget->clearSelection();
     ui->supperFunTableWidget->clearSelection();
+}
+
+void MusicSettingWidget::downloadGroupServer(int index)
+{
+    if(index == 0)
+    {
+        ui->downloadServerMultipleVip->setChecked(false);
+    }
+    else
+    {
+        ui->downloadServerMultiple->setChecked(false);
+    }
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)

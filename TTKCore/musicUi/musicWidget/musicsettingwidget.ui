@@ -926,7 +926,7 @@ font-weight:bold;</string>
       <rect>
        <x>150</x>
        <y>212</y>
-       <width>225</width>
+       <width>150</width>
        <height>22</height>
       </rect>
      </property>
@@ -934,14 +934,27 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="downloadServerMultiple">
      <property name="geometry">
       <rect>
-       <x>265</x>
-       <y>245</y>
-       <width>130</width>
+       <x>310</x>
+       <y>213</y>
+       <width>100</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
       <string>混合查询</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="downloadServerMultipleVip">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>243</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>VIP查询</string>
      </property>
     </widget>
    </widget>
