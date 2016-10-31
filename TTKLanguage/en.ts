@@ -396,6 +396,44 @@
     </message>
 </context>
 <context>
+    <name>MusicArtistFoundWidget</name>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="82"/>
+        <source>Loading Now ... </source>
+        <translation>Loading Now ... </translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="174"/>
+        <source>&lt;font color=#169AF3&gt; Artist &gt; %1 &lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="208"/>
+        <source>Score:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="241"/>
+        <source>all</source>
+        <translation>All</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="242"/>
+        <source>play</source>
+        <translation>Play</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="247"/>
+        <source>add</source>
+        <translation>Add</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicartistfoundwidget.cpp" line="250"/>
+        <source>download</source>
+        <translation>Download</translation>
+    </message>
+</context>
+<context>
     <name>MusicAudioRecorderWidget</name>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicaudiorecorderwidget.ui" line="14"/>
@@ -1018,22 +1056,22 @@
 <context>
     <name>MusicDownLoadQueryMultipleVipThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/musicdownloadquerymultiplevipthread.cpp" line="144"/>
+        <location filename="../TTKCore/musicNetwork/vip/musicdownloadquerymultiplevipthread.cpp" line="144"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/musicdownloadquerymultiplevipthread.cpp" line="146"/>
+        <location filename="../TTKCore/musicNetwork/vip/musicdownloadquerymultiplevipthread.cpp" line="146"/>
         <source>HD</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/musicdownloadquerymultiplevipthread.cpp" line="148"/>
+        <location filename="../TTKCore/musicNetwork/vip/musicdownloadquerymultiplevipthread.cpp" line="148"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/musicdownloadquerymultiplevipthread.cpp" line="150"/>
+        <location filename="../TTKCore/musicNetwork/vip/musicdownloadquerymultiplevipthread.cpp" line="150"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -2854,27 +2892,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicMoreFunctionsPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="67"/>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="72"/>
         <source>message</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="68"/>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="73"/>
         <source>similar</source>
         <translation>Similar</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="69"/>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="74"/>
         <source>ablum</source>
         <translation>Ablum</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="70"/>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="75"/>
+        <source>artist</source>
+        <translation>Artist</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="76"/>
         <source>share</source>
         <translation>Share</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="71"/>
+        <location filename="../TTKCore/musicWidget/musicmorefunctionspopwidget.cpp" line="77"/>
         <source>showMv</source>
         <translation>Movie</translation>
     </message>
@@ -3219,17 +3262,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="173"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="174"/>
         <source>unFoundLrc</source>
         <translation> --- No Lrc File Found！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="303"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="304"/>
         <source>please input search text</source>
         <translation>Please Input Search Words!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicrightareawidget.cpp" line="310"/>
+        <location filename="../TTKCore/musicrightareawidget.cpp" line="311"/>
         <source>enter input search text first</source>
         <translation>Please Enter Input Search Text First!</translation>
     </message>

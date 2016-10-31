@@ -33,7 +33,6 @@ void MusicDownLoadQueryArtistVipThread::startSearchSong(const QString &album)
         m_reply = nullptr;
     }
 
-    qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
 #ifndef QT_NO_SSL
