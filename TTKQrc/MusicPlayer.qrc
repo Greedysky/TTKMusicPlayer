@@ -3,6 +3,7 @@
         <file alias="lb_warning">../TTKResource/lb_warning.png</file>
         <file alias="lb_defaultArt">../TTKResource/lb_default_art.jpg</file>
         <file alias="lb_noAlbum">../TTKResource/lb_no_album_found.png</file>
+        <file alias="lb_noArtist">../TTKResource/lb_no_artist_found.png</file>
         <file alias="lb_noSimilar">../TTKResource/lb_no_similar_found.png</file>
         <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
         <file alias="lb_slider">../TTKResource/lb_slider.png</file>
@@ -511,6 +512,8 @@
         <file alias="btn_queue_hover">../TTKResource/functions/btn_queue_hover.png</file>
         <file alias="btn_reset_window_normal">../TTKResource/functions/btn_reset_window_normal.png</file>
         <file alias="btn_reset_window_hover">../TTKResource/functions/btn_reset_window_hover.png</file>
+                <file alias="btn_artist_hover">../TTKResource/functions/btn_artist_hover.png</file>
+        <file alias="btn_artist_normal">../TTKResource/functions/btn_artist_normal.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>

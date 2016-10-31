@@ -29,16 +29,17 @@ class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 public:
     enum MusicFunction{
         KugGouSongWidget = 0,   ///*insert kugou song widget*/
-        KugGouRadioWidget,  ///*insert kugou radio widget*/
-        kugouListWidget,    ///*insert kugou list widget*/
-        VideoWidget,        ///*insert video widget*/
-        kugouLiveWidget,    ///*insert kugou live widget*/
-        LrcWidget,          ///*insert lrc display widget*/
-        SearchWidget,       ///*insert search display widget*/
-        SimilarWidget,      ///*insert similar found widget*/
-        AlbumWidget,        ///*insert album found widget*/
-        IndentifyWidget,    ///*insert indentify songs widget*/
-        KuiSheWidget        ///*insert kugou kuishe widget*/
+        KugGouRadioWidget,      ///*insert kugou radio widget*/
+        kugouListWidget,        ///*insert kugou list widget*/
+        VideoWidget,            ///*insert video widget*/
+        kugouLiveWidget,        ///*insert kugou live widget*/
+        LrcWidget,              ///*insert lrc display widget*/
+        SearchWidget,           ///*insert search display widget*/
+        SimilarWidget,          ///*insert similar found widget*/
+        AlbumWidget,            ///*insert album found widget*/
+        ArtistWidget,           ///*insert artist found widget*/
+        IndentifyWidget,        ///*insert indentify songs widget*/
+        KuiSheWidget            ///*insert kugou kuishe widget*/
     };
 
     explicit MusicRightAreaWidget(QWidget *parent = 0);
@@ -151,6 +152,10 @@ public Q_SLOTS:
     void musicAlbumFound(const QString &text);
     /*!
      * Music album function that by string.
+     */
+    void musicArtistFound(const QString &text);
+    /*!
+     * Music artist function that by string.
      */
     void musicLoadSongIndexWidget();
     /*!

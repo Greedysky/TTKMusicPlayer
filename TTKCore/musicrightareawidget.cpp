@@ -8,6 +8,7 @@
 #include "musicsettingwidget.h"
 #include "musicmessagebox.h"
 #include "musicalbumfoundwidget.h"
+#include "musicartistfoundwidget.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicidentifysongswidget.h"
@@ -330,6 +331,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case ArtistWidget: //insert artist found widget
+            {
+                MusicArtistFoundWidget *artistFoundWidget = new MusicArtistFoundWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(artistFoundWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(artistFoundWidget);
+                m_stackedFuncWidget = artistFoundWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
         case IndentifyWidget: //insert indentify songs widget
             {
                 MusicIdentifySongsWidget *songsIdentifyWidget = new MusicIdentifySongsWidget(this);
@@ -373,6 +383,12 @@ void MusicRightAreaWidget::musicAlbumFound(const QString &text)
 {
     musicFunctionClicked(MusicRightAreaWidget::AlbumWidget);
     MStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+}
+
+void MusicRightAreaWidget::musicArtistFound(const QString &text)
+{
+    musicFunctionClicked(MusicRightAreaWidget::ArtistWidget);
+    MStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()

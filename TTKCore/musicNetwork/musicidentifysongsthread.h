@@ -53,7 +53,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    virtual void downLoadFinished();
+    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */

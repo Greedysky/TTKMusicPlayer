@@ -11,6 +11,9 @@
 #include "musicdownloadqueryalbumttthread.h"
 #include "musicdownloadqueryalbumwythread.h"
 
+#include "musicdownloadqueryartistthread.h"
+#include "musicdownloadqueryartistvipthread.h"
+
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
 
@@ -61,6 +64,17 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
     }
 
     return (new MusicDownLoadQueryAlbumThread(parent));
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QObject *parent)
+{
+    int type = M_SETTING_PTR->value(MusicSettingManager::DownloadServerMultipleChoiced).toInt();
+    if(type == 2)
+    {
+        return (new MusicDownLoadQueryArtistVipThread(parent));
+    }
+
+    return (new MusicDownLoadQueryArtistThread(parent));
 }
 
 MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(const QString &url, const QString &save,
