@@ -1,6 +1,8 @@
 #include "musicartistfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicsourcedownloadthread.h"
+#include "musicsongssummarizied.h"
+#include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musiccoreutils.h"
 #include "musicuiobject.h"
@@ -23,10 +25,14 @@ MusicArtistFoundTableWidget::MusicArtistFoundTableWidget(QWidget *parent)
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
 }
 
 MusicArtistFoundTableWidget::~MusicArtistFoundTableWidget()
 {
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 
@@ -76,7 +82,6 @@ MusicArtistFoundWidget::MusicArtistFoundWidget(QWidget *parent)
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
     m_iconLabel = nullptr;
-    m_artistLabel = nullptr;
 
     QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
@@ -94,7 +99,6 @@ MusicArtistFoundWidget::~MusicArtistFoundWidget()
     delete m_downloadThread;
     delete m_statusLabel;
     delete m_iconLabel;
-    delete m_artistLabel;
     delete m_mainWindow;
 }
 
@@ -182,18 +186,6 @@ void MusicArtistFoundWidget::queryArtistFinished()
         download->startToDownload(currentInfo.m_smallPicUrl);
         ////////////////////////////////////////////////////////////////////////////
 
-        QWidget *topLineWidget = new QWidget(topFuncWidget);
-        QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
-        topLineLayout->setContentsMargins(10, 5, 5, 0);
-        m_artistLabel = new QLabel(topLineWidget);
-        m_artistLabel->setStyleSheet(MusicUIObject::MFontStyle01 + MusicUIObject::MFontStyle05);
-        m_artistLabel->setText(MusicUtils::Widget::elidedText(m_artistLabel->font(), currentInfo.m_singerName, Qt::ElideRight, 220));
-        m_artistLabel->setToolTip(currentInfo.m_singerName);
-
-        topLineLayout->addWidget(m_artistLabel);
-        topLineWidget->setLayout(topLineLayout);
-
-        ////////////////////////////////////////////////////////////////////////////
         QWidget *topRightWidget = new QWidget(topFuncWidget);
         QGridLayout *topRightLayout = new QGridLayout(topRightWidget);
         topRightLayout->setContentsMargins(0, 0, 0, 0);
@@ -214,6 +206,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
         }
 
         QLabel *numberTextLabel = new QLabel(tr("Score:"), topRightWidget);
+        numberTextLabel->setAlignment(Qt::AlignCenter);
         topRightLayout->addWidget(numberTextLabel, 1, 0);
         for(int i=1; i<=5; ++i)
         {
@@ -234,7 +227,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
         topRightLayout->addWidget(code, 3, 2, 1, 6);
 
         topFuncLayout->addWidget(m_iconLabel);
-        topFuncLayout->addWidget(topLineWidget);
+        topFuncLayout->addStretch(1);
         topFuncLayout->addWidget(topRightWidget);
         topFuncWidget->setLayout(topFuncLayout);
         grid->addWidget(topFuncWidget);
@@ -309,17 +302,6 @@ void MusicArtistFoundWidget::addButtonClicked()
 void MusicArtistFoundWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
-}
-
-void MusicArtistFoundWidget::resizeEvent(QResizeEvent *event)
-{
-    QWidget::resizeEvent(event);
-    if(m_artistLabel)
-    {
-        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        width = width - WINDOW_WIDTH_MIN;
-        m_artistLabel->setText(MusicUtils::Widget::elidedText(m_artistLabel->font(), m_artistLabel->toolTip(), Qt::ElideRight, 220 + width));
-    }
 }
 
 void MusicArtistFoundWidget::createNoArtistLabel()

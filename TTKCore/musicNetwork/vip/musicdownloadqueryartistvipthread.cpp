@@ -33,6 +33,7 @@ void MusicDownLoadQueryArtistVipThread::startSearchSong(const QString &album)
         m_reply = nullptr;
     }
 
+    qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
 #ifndef QT_NO_SSL
@@ -78,7 +79,7 @@ void MusicDownLoadQueryArtistVipThread::downLoadFinished()
                 MusicObject::MusicSongInfomation musicInfo;
                 QString songName = value["SongName"].toString();
                 QString singerName = value["ArtistName"].toString();
-                QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
                 QString size = value["Size"].toString();
 
                 readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());

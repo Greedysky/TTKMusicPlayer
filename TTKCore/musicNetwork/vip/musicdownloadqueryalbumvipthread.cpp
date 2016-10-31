@@ -78,7 +78,7 @@ void MusicDownLoadQueryAlbumVipThread::downLoadFinished()
                 MusicObject::MusicSongInfomation musicInfo;
                 QString songName = value["SongName"].toString();
                 QString singerName = value["ArtistName"].toString();
-                QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
                 QString size = value["Size"].toString();
 
                 readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());

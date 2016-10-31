@@ -127,7 +127,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
                 {
                     QString songName = value["SongName"].toString();
                     QString singerName = value["ArtistName"].toString();
-                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
                     QString size = value["Size"].toString();
 
                     if(m_queryAllRecords)
@@ -162,7 +162,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
 
                     musicInfo.m_songId = value["SongId"].toString();
                     musicInfo.m_albumId = value["AlbumId"].toString();
-                    musicInfo.m_artistId = value["ArtistSubTitle"].toString();
+                    musicInfo.m_artistId = value["ArtistId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
@@ -174,7 +174,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
                 {
                     QString songName = value["SongName"].toString();
                     QString singerName = value["ArtistName"].toString();
-                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt());
+                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
                     QString size = value["Size"].toString();
 
                     readFromMusicSongAttribute(musicInfo, size, MB_750, value["MvHdUrl"].toString());
@@ -188,7 +188,7 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
 
                     musicInfo.m_songId = value["SongId"].toString();
                     musicInfo.m_albumId = value["AlbumId"].toString();
-                    musicInfo.m_artistId = value["ArtistSubTitle"].toString();
+                    musicInfo.m_artistId = value["ArtistId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;

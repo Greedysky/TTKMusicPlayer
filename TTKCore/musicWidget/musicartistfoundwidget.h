@@ -94,7 +94,6 @@ public Q_SLOTS:
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
@@ -105,7 +104,7 @@ protected:
 
     QString m_songNameFull;
     QWidget *m_mainWindow;
-    QLabel *m_statusLabel, *m_iconLabel, *m_artistLabel;
+    QLabel *m_statusLabel, *m_iconLabel;
     MusicArtistFoundTableWidget *m_artistTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
