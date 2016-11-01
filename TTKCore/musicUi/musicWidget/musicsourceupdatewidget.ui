@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>450</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>360</width>
-     <height>260</height>
+     <width>410</width>
+     <height>310</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>358</x>
+     <x>408</x>
      <y>22</y>
      <width>20</width>
      <height>20</height>
@@ -66,8 +66,8 @@
     <rect>
      <x>20</x>
      <y>45</y>
-     <width>360</width>
-     <height>235</height>
+     <width>410</width>
+     <height>285</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -79,7 +79,7 @@
       <x>10</x>
       <y>10</y>
       <width>110</width>
-      <height>215</height>
+      <height>265</height>
      </rect>
     </property>
     <property name="text">
@@ -97,8 +97,8 @@
      <rect>
       <x>119</x>
       <y>10</y>
-      <width>231</width>
-      <height>215</height>
+      <width>281</width>
+      <height>265</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -110,8 +110,8 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>220</width>
-        <height>175</height>
+        <width>270</width>
+        <height>215</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -128,7 +128,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>170</y>
+        <y>220</y>
         <width>40</width>
         <height>40</height>
        </rect>
@@ -143,8 +143,8 @@
      <widget class="QPushButton" name="upgradeButton">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>180</y>
+        <x>200</x>
+        <y>230</y>
         <width>75</width>
         <height>25</height>
        </rect>
@@ -163,7 +163,7 @@
       <property name="geometry">
        <rect>
         <x>45</x>
-        <y>183</y>
+        <y>233</y>
         <width>75</width>
         <height>20</height>
        </rect>
@@ -192,8 +192,8 @@ QProgressBar::chunk {
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>221</width>
-        <height>111</height>
+        <width>271</width>
+        <height>130</height>
        </rect>
       </property>
       <property name="title">
@@ -203,8 +203,8 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>75</y>
-         <width>200</width>
+         <y>90</y>
+         <width>250</width>
          <height>25</height>
         </rect>
        </property>
@@ -219,7 +219,7 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>25</y>
+         <y>22</y>
          <width>201</width>
          <height>16</height>
         </rect>
@@ -232,7 +232,7 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>44</y>
          <width>201</width>
          <height>16</height>
         </rect>
@@ -245,7 +245,7 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>55</y>
+         <y>66</y>
          <width>201</width>
          <height>16</height>
         </rect>
@@ -259,9 +259,9 @@ QProgressBar::chunk {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
-        <width>221</width>
-        <height>81</height>
+        <y>150</y>
+        <width>271</width>
+        <height>106</height>
        </rect>
       </property>
       <property name="title">
@@ -271,8 +271,8 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>45</y>
-         <width>200</width>
+         <y>60</y>
+         <width>250</width>
          <height>25</height>
         </rect>
        </property>
@@ -287,7 +287,7 @@ QProgressBar::chunk {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>22</y>
+         <y>30</y>
          <width>201</width>
          <height>16</height>
         </rect>

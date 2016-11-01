@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-#ifndef TTK_DEBUG
+#if !defined TTK_DEBUG && !defined Q_OS_UNIX
     if(argc <= 1 || QString(argv[1]) != APPNAME)
     {
         return -1;
@@ -22,12 +22,12 @@ int main(int argc, char *argv[])
 #ifndef MUSIC_GREATER_NEW
     MusicUtils::Core::setLocalCodec();
 #endif
+    ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
     QFont font;
     font.setPixelSize(13);
     qApp->setFont(font);
 #endif
-
     ///////////////////////////////////////////////////////
     M_LOGGER_INFO("MusicApplication Begin");
     QCoreApplication::setOrganizationName("TTKMusicPlayer");
