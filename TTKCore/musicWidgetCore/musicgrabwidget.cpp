@@ -1,4 +1,5 @@
 #include "musicgrabwidget.h"
+#include "musicobject.h"
 
 #include <QScreen>
 #include <QPainter>
@@ -81,8 +82,13 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
     {
         int width = m_ptEnd.x() - m_ptStart.x();
         int height = m_ptEnd.y() - m_ptStart.y();
+#ifndef MUSIC_GREATER_NEW
+        QPixmap pixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
+                                             m_ptStart.x(), m_ptStart.y(), width, height);
+#else
         QPixmap pixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
                                               m_ptStart.x(), m_ptStart.y(), width, height);
+#endif
         QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
         pixmap.save(filename, 0, 100);
         deleteLater();

@@ -93,7 +93,7 @@ void MusicRunObject::finished(int code)
      }
      else
      {
-         qDebug() << "Application exit error!";
+         qDebug() << "Application run error, please run TTKService instead!";
      }
 
      qApp->quit();
