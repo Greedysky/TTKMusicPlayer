@@ -1,5 +1,6 @@
 #include "musicgrabwidget.h"
 
+#include <QScreen>
 #include <QPainter>
 #include <QMouseEvent>
 #include <QApplication>
@@ -13,11 +14,6 @@ MusicGrabWidget::MusicGrabWidget(QWidget *parent)
     resize(QApplication::desktop()->width(), QApplication::desktop()->height());
     setCursor(Qt::CrossCursor);
     m_isDrawing = false;
-}
-
-MusicGrabWidget::~MusicGrabWidget()
-{
-
 }
 
 QString MusicGrabWidget::getClassName()
@@ -37,7 +33,7 @@ void MusicGrabWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    painter.setPen(Qt::black);
+    painter.setPen(QPen(Qt::black, 5));
 
     int width, height;
     if(m_isDrawing)
@@ -81,14 +77,13 @@ void MusicGrabWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
 {
     QWidget::keyPressEvent(event);
-    if(event->key() == Qt::Key_Enter)
+    if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
     {
         int width = m_ptEnd.x() - m_ptStart.x();
         int height = m_ptEnd.y() - m_ptStart.y();
-        QPixmap pixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
-                                             m_ptStart.x(), m_ptStart.y(), width, height);
-        QDateTime dt = QDateTime::currentDateTime();
-        QString filename = dt.toString("yyyyMMddhhmmss") + ".jpg";
+        QPixmap pixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
+                                              m_ptStart.x(), m_ptStart.y(), width, height);
+        QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
         pixmap.save(filename, 0, 100);
         deleteLater();
     }

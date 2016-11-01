@@ -23,7 +23,6 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicGrabWidget();
 
     static QString getClassName();
     /*!
@@ -40,8 +39,8 @@ protected:
      * Override the widget event.
      */
 
-    QPoint m_ptCursor, m_ptStart, m_ptEnd;
     bool m_isDrawing;
+    QPoint m_ptCursor, m_ptStart, m_ptEnd;
 
 };
 

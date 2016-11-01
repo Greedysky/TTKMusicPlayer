@@ -9,6 +9,7 @@
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
 #include "musicsongringtonemakerwidget.h"
+#include "musicgrabwidget.h"
 #include "musicmessagebox.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
@@ -108,6 +109,10 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("soundtouch"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow")
+                                                ,tr("grabwindow"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
@@ -178,6 +183,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 11:
             {
                 MusicSoundTouchWidget(this).exec();
+                break;
+            }
+        case 12:
+            {
+                (new MusicGrabWidget)->show();
                 break;
             }
         default:

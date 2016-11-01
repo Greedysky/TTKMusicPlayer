@@ -103,6 +103,7 @@
         <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
         <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
         <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
+        <file alias="lb_grabwindow">../TTKResource/tools/lb_grabwindow.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -512,7 +513,7 @@
         <file alias="btn_queue_hover">../TTKResource/functions/btn_queue_hover.png</file>
         <file alias="btn_reset_window_normal">../TTKResource/functions/btn_reset_window_normal.png</file>
         <file alias="btn_reset_window_hover">../TTKResource/functions/btn_reset_window_hover.png</file>
-                <file alias="btn_artist_hover">../TTKResource/functions/btn_artist_hover.png</file>
+        <file alias="btn_artist_hover">../TTKResource/functions/btn_artist_hover.png</file>
         <file alias="btn_artist_normal">../TTKResource/functions/btn_artist_normal.png</file>
     </qresource>
     <qresource prefix="/video">
