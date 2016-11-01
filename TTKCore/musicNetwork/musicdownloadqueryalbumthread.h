@@ -48,7 +48,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSong(const QString &album);
+    void startSearchSong(const QString &artist);
     /*!
      * Start to Search data from name and type.
      */

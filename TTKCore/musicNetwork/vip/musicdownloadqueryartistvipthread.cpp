@@ -22,9 +22,9 @@ void MusicDownLoadQueryArtistVipThread::startSearchSong(QueryType type, const QS
     startSearchSong(text);
 }
 
-void MusicDownLoadQueryArtistVipThread::startSearchSong(const QString &album)
+void MusicDownLoadQueryArtistVipThread::startSearchSong(const QString &artist)
 {
-    QUrl musicUrl = QString(getCurrentURL()).arg(album);
+    QUrl musicUrl = QString(getCurrentURL()).arg(artist);
     ///This is a multiple music API
 
     if(m_reply)

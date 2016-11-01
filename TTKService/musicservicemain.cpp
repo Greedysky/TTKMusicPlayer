@@ -13,11 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 #ifndef TTK_DEBUG
-    if(argc <= 1)
-    {
-        return -1;
-    }
-    else if(QString(argv[1]) != APPNAME)
+    if(argc <= 1 || QString(argv[1]) != APPNAME)
     {
         return -1;
     }

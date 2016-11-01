@@ -21,9 +21,9 @@ void MusicDownLoadQueryAlbumThread::startSearchSong(QueryType type, const QStrin
     startSearchSong(text);
 }
 
-void MusicDownLoadQueryAlbumThread::startSearchSong(const QString &album)
+void MusicDownLoadQueryAlbumThread::startSearchSong(const QString &artist)
 {
-    QUrl musicUrl = QString(getCurrentURL()).arg(album);
+    QUrl musicUrl = QString(getCurrentURL()).arg(artist);
     ///This is a multiple music API
 
     if(m_reply)
