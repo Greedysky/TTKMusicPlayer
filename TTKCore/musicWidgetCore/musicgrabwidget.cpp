@@ -87,7 +87,7 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
                                              m_ptStart.x(), m_ptStart.y(), width, height);
 #else
         QPixmap pixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
-                                              m_ptStart.x(), m_ptStart.y(), width, height);
+                                             m_ptStart.x(), m_ptStart.y(), width, height);
 #endif
         QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
         pixmap.save(filename, 0, 100);
