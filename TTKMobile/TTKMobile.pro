@@ -10,7 +10,7 @@
 # * works are strictly forbiden.
 # =================================================
 
-TTKMusicPlayer = 2.4.1.0
+include(../TTKVersion.pri)
 
 QT       += core gui xml qml quick multimedia
 
