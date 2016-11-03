@@ -93,4 +93,8 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
         pixmap.save(filename, 0, 100);
         deleteLater();
     }
+    else if(event->key() == Qt::Key_Escape)
+    {
+        deleteLater();
+    }
 }
