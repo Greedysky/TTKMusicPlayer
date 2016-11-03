@@ -35,6 +35,7 @@ void MusicDownLoadQueryMultipleVipThread::startSearchSong(QueryType type, const 
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
+    request.setRawHeader("Token", "f389fc507e71499ba5d34bce00f43461");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -125,33 +126,33 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
                 MusicObject::MusicSongInfomation musicInfo;
                 if(m_currentType != MovieQuery)
                 {
-                    QString songName = value["SongName"].toString();
-                    QString singerName = value["ArtistName"].toString();
-                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
-                    QString size = value["Size"].toString();
+                    QString songName = value["songName"].toString();
+                    QString singerName = value["artistName"].toString();
+                    QString duration = MusicTime::msecTime2LabelJustified(value["length"].toInt()*1000);
+                    QString size = value["size"].toString();
 
                     if(m_queryAllRecords)
                     {
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["WavUrl"].toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
-                        readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["flacUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["apeUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_1000, value["wavUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_320, value["sqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_192, value["hqUrl"].toString());
+                        readFromMusicSongAttribute(musicInfo, size, MB_128, value["lqUrl"].toString());
                     }
                     else
                     {
                         if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_128, value["LqUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_128, value["lqUrl"].toString());
                         else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_192, value["HqUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_192, value["hqUrl"].toString());
                         else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(musicInfo, size, MB_320, value["SqUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_320, value["sqUrl"].toString());
                         else if(m_searchQuality == tr("CD"))
                         {
-                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["FlacUrl"].toString());
-                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["AacUrl"].toString());
-                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["WavUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["flacUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["apeUrl"].toString());
+                            readFromMusicSongAttribute(musicInfo, size, MB_1000, value["wavUrl"].toString());
                         }
                     }
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -160,25 +161,25 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
-                    musicInfo.m_songId = value["SongId"].toString();
-                    musicInfo.m_albumId = value["AlbumId"].toString();
-                    musicInfo.m_artistId = value["ArtistId"].toString();
+                    musicInfo.m_songId = value["songId"].toString();
+                    musicInfo.m_albumId = value["albumId"].toString();
+                    musicInfo.m_artistId = value["artistId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
-                    musicInfo.m_lrcUrl = value["LrcUrl"].toString();
-                    musicInfo.m_smallPicUrl = value["PicUrl"].toString();
+                    musicInfo.m_lrcUrl = value["lrcUrl"].toString();
+                    musicInfo.m_smallPicUrl = value["picUrl"].toString();
                     m_musicSongInfos << musicInfo;
                 }
                 else
                 {
-                    QString songName = value["SongName"].toString();
-                    QString singerName = value["ArtistName"].toString();
-                    QString duration = MusicTime::msecTime2LabelJustified(value["Length"].toInt()*1000);
-                    QString size = value["Size"].toString();
+                    QString songName = value["songName"].toString();
+                    QString singerName = value["artistName"].toString();
+                    QString duration = MusicTime::msecTime2LabelJustified(value["length"].toInt()*1000);
+                    QString size = value["size"].toString();
 
-                    readFromMusicSongAttribute(musicInfo, size, MB_750, value["MvHdUrl"].toString());
-                    readFromMusicSongAttribute(musicInfo, size, MB_500, value["MvLdUrl"].toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_750, value["mvHdUrl"].toString());
+                    readFromMusicSongAttribute(musicInfo, size, MB_500, value["mvLdUrl"].toString());
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -186,9 +187,9 @@ void MusicDownLoadQueryMultipleVipThread::downLoadFinished()
                     }
                     emit createSearchedItems(songName, singerName, duration);
 
-                    musicInfo.m_songId = value["SongId"].toString();
-                    musicInfo.m_albumId = value["AlbumId"].toString();
-                    musicInfo.m_artistId = value["ArtistId"].toString();
+                    musicInfo.m_songId = value["songId"].toString();
+                    musicInfo.m_albumId = value["albumId"].toString();
+                    musicInfo.m_artistId = value["artistId"].toString();
                     musicInfo.m_songName = songName;
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_timeLength = duration;
