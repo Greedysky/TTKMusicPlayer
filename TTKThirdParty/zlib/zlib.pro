@@ -12,8 +12,7 @@
 
 TEMPLATE = lib
 
-TTKMusicPlayer = 2.4.1.0
-#unix:VERSION += $$TTKMusicPlayer
+include(../../TTKVersion.pri)
 
 win32:TARGET = ../../../bin/$$TTKMusicPlayer/zlib
 unix:TARGET = ../../lib/$$TTKMusicPlayer/zlib

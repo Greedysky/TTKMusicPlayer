@@ -13,7 +13,7 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TTKMusicPlayer = 2.4.1.0
+include(../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32{

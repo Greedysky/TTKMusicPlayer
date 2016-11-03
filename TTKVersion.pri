@@ -10,14 +10,5 @@
 # * works are strictly forbiden.
 # =================================================
 
-TEMPLATE = lib
-
-include(../TTKVersion.pri)
-unix:VERSION += $$TTKMusicPlayer
-
-win32:TARGET = ../../bin/$$TTKMusicPlayer/MusicUi
-unix:TARGET = ../lib/$$TTKMusicPlayer/MusicUi
-
-RESOURCES += \
-    MusicPlayer.qrc \
-    MusicThirdParty.qrc
+# update time 2016.10.09
+TTKMusicPlayer = 2.4.1.0

@@ -34,7 +34,7 @@ QT_VER_MAJOR = $$member(QT_VER_STRING, 0)
 QT_VER_MINOR = $$member(QT_VER_STRING, 1)
 QT_VER_PATCH = $$member(QT_VER_STRING, 2)
 
-TTKMusicPlayer = 2.4.1.0
+include(TTKVersion.pri)
 
 win32{
     LIBS += -lIphlpapi -luser32
