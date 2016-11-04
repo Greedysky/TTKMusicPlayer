@@ -41,9 +41,9 @@ HEADERS  += \
     ../../musicglobal.h \
     ../../musicprivate.h
 
-include(hz2py/Hz2Py.pri)
-include(kugou/KuGou.pri)
+include(qhz2py/QHz2Py.pri)
 include(qiniu/QiNiu.pri)
 include(qjson/QJson.pri)
+include(qkugou/QKuGou.pri)
 include(qrencode/QRencode.pri)
-include(shortcut/ShortCut.pri)
+include(qshortcut/QShortCut.pri)

@@ -66,15 +66,15 @@ endif()
 
 set(MUSIC_HEADERS
     musicextrasglobaldefine.h
-    hz2py/pinyinresource.h
-    hz2py/chinesehelper.h
-    hz2py/pinyinhelper.h
-    shortcut/qxtglobal.h
-    shortcut/qxtglobalshortcut.h
-    shortcut/qxtglobalshortcut_p.h
-    kugou/kugouurl.h
-    kugou/kugouwindow.h
-    kugou/kugouuiobject.h
+    qhz2py/pinyinresource.h
+    qhz2py/chinesehelper.h
+    qhz2py/pinyinhelper.h
+    qshortcut/qxtglobal.h
+    qshortcut/qxtglobalshortcut.h
+    qshortcut/qxtglobalshortcut_p.h
+    qkugou/kugouurl.h
+    qkugou/kugouwindow.h
+    qkugou/kugouuiobject.h
     qrencode/bitstream.h
     qrencode/config.h
     qrencode/mask.h
@@ -106,12 +106,12 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
-    shortcut/qxtglobalshortcut.cpp
-    hz2py/pinyinresource.cpp
-    hz2py/chinesehelper.cpp
-    hz2py/pinyinhelper.cpp
-    kugou/kugouurl.cpp
-    kugou/kugouwindow.cpp
+    qshortcut/qxtglobalshortcut.cpp
+    qhz2py/pinyinresource.cpp
+    qhz2py/chinesehelper.cpp
+    qhz2py/pinyinhelper.cpp
+    qkugou/kugouurl.cpp
+    qkugou/kugouwindow.cpp
     qrencode/bitstream.c
     qrencode/mask.c
     qrencode/mmask.c
@@ -143,9 +143,9 @@ set(MUSIC_SOURCES
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES shortcut/qxtglobalshortcut_win.cpp)
+    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp)
 else(UNIX)
-    list(APPEND MUSIC_SOURCES shortcut/qxtglobalshortcut_x11.cpp)
+    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_x11.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
