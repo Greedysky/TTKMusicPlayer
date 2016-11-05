@@ -32,11 +32,11 @@ class MUSIC_WIDGET_EXPORT MusicAbstractMoveResizeWidget : public QWidget
 public:
     enum Direction
     {
-        Direction_No = 0,       ///*no direction*/
-        Direction_Left = 1,     ///*left direction*/
-        Direction_Top = 2,      ///*top direction*/
-        Direction_Right = 4,    ///*right direction*/
-        Direction_Bottom = 8,   ///*bottom direction*/
+        Direction_No = 0,                                           ///*no direction*/
+        Direction_Left = 1,                                         ///*left direction*/
+        Direction_Top = 2,                                          ///*top direction*/
+        Direction_Right = 4,                                        ///*right direction*/
+        Direction_Bottom = 8,                                       ///*bottom direction*/
         Direction_LeftTop = Direction_Left + Direction_Top,         ///*left top direction*/
         Direction_LeftBottom = Direction_Left + Direction_Bottom,   ///*left bottom direction*/
         Direction_RightTop = Direction_Right + Direction_Top,       ///*right top direction*/

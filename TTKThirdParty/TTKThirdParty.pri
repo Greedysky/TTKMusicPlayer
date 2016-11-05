@@ -13,9 +13,9 @@
 INCLUDEPATH += \
         $$PWD/zlib \
         $$PWD/MusicExtras \
-        $$PWD/MusicExtras/hz2py \
-        $$PWD/MusicExtras/kugou \
+        $$PWD/MusicExtras/qhz2py \
+        $$PWD/MusicExtras/qkugou \
         $$PWD/MusicExtras/qiniu \
         $$PWD/MusicExtras/qjson \
         $$PWD/MusicExtras/qrencode \
-        $$PWD/MusicExtras/shortcut
+        $$PWD/MusicExtras/qshortcut
