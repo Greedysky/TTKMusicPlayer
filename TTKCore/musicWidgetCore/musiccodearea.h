@@ -22,7 +22,6 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicCodeArea();
 
     static QString getClassName();
     /*!

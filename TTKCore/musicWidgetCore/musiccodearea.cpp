@@ -13,10 +13,10 @@ MusicCodeArea::MusicCodeArea(QWidget *parent)
     : MusicClickedLabel(parent)
 {
     MusicTime::timeSRand();
-    m_slCodeRange << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9"
-       "a" << "b" << "c" << "d" << "e" << "f" << "g" << "h" << "i" << "j" << "k" << "l" << "m" << "n"
-       "o" << "p" << "q" << "r" << "s" << "t" << "u" << "v" << "w" << "x" << "y" << "z"
-       "A" << "B" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N"
+    m_slCodeRange << "0" << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" <<
+       "a" << "b" << "c" << "d" << "e" << "f" << "g" << "h" << "i" << "j" << "k" << "l" << "m" << "n" <<
+       "o" << "p" << "q" << "r" << "s" << "t" << "u" << "v" << "w" << "x" << "y" << "z" <<
+       "A" << "B" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N" <<
        "O" << "P" << "Q" << "R" << "S" << "T" << "U" << "V" << "W" << "X" << "Y" << "Z";
 
     m_lCodeColor << Qt::darkRed << Qt::darkGreen << Qt::darkBlue << Qt::darkCyan
@@ -26,11 +26,6 @@ MusicCodeArea::MusicCodeArea(QWidget *parent)
     m_nConverseRotate = DEF_CONVERSEROTATE;
     m_nConverseScale = DEF_CONVERSESCALE;
     m_nCodeCount = DEF_CODECOUNT;
-}
-
-MusicCodeArea::~MusicCodeArea()
-{
-
 }
 
 QString MusicCodeArea::getClassName()

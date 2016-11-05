@@ -46,7 +46,7 @@ public:
      * Add widget to container.
      */
 
-private slots:
+private Q_SLOTS:
     void valueChanged(const QVariant &value);
     /*!
      * Animation value changed.

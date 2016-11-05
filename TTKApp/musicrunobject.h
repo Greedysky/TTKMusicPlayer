@@ -37,7 +37,7 @@ public:
     /*!
      * To run main window.
      */
-private slots:
+private Q_SLOTS:
     void finished(int code);
     /*!
      * Run finished.

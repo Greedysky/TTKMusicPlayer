@@ -12,8 +12,9 @@
 #include <QMenu>
 #include <QTimer>
 #include "musicsong.h"
-#include "musicabstracttablewidget.h"
+#include "musicslowmovingtablewidget.h"
 
+class QPropertyAnimation;
 class MusicOpenFileWidget;
 class MusicSongsListPlayWidget;
 class MusicSongsListItemInfoWidget;
@@ -22,7 +23,7 @@ class MusicSongsListFunctionWidget;
 /*! @brief The class of the songs list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListWidget : public MusicSlowMovingTableWidget
 {
     Q_OBJECT
 public:

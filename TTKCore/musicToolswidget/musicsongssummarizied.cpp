@@ -580,6 +580,7 @@ void MusicSongsSummarizied::addNewRowItem(const QString &name)
 void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
 {
     MusicSongsListWidget *w = new MusicSongsListWidget(-1, this);
+    w->setMovedScrollBar(m_scrollArea->verticalScrollBar());
     item->m_itemObject = w;
     item->m_itemIndex = m_itemIndexRaise;
     addItem(w, item->m_itemName);

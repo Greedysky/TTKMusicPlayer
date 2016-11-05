@@ -24,7 +24,7 @@
 #define ROW_HIGHT   30
 
 MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_parentToolIndex(index), m_uploadFileWidget(nullptr),
+    : MusicSlowMovingTableWidget(parent), m_parentToolIndex(index), m_uploadFileWidget(nullptr),
       m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr), m_floatWidget(nullptr)
 {
     m_deleteItemWithFile = false;
@@ -111,7 +111,7 @@ void MusicSongsListWidget::clearAllItems()
 
     m_playRowIndex = 0;
     //Remove all the original item
-    MusicAbstractTableWidget::clear();
+    MusicSlowMovingTableWidget::clear();
     setColumnCount(3);
 }
 
@@ -289,7 +289,7 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
             it->setIcon(QIcon());
         }
     }
-    MusicAbstractTableWidget::listCellEntered(row, column);
+    MusicSlowMovingTableWidget::listCellEntered(row, column);
 
     //To show music Songs Item information
     if(m_musicSongsInfoWidget == nullptr)
@@ -567,7 +567,7 @@ void MusicSongsListWidget::deleteFloatWidget()
 
 void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
 {
-    MusicAbstractTableWidget::mousePressEvent(event);
+    MusicSlowMovingTableWidget::mousePressEvent(event);
     //just close the rename edittext;
     if(m_renameActived)
     {
@@ -593,7 +593,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
 
 void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    MusicAbstractTableWidget::mouseMoveEvent(event);
+    MusicSlowMovingTableWidget::mouseMoveEvent(event);
     if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
     {
         m_mouseMoved = true;
@@ -604,7 +604,7 @@ void MusicSongsListWidget::mouseMoveEvent(QMouseEvent *event)
 
 void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    MusicAbstractTableWidget::mouseReleaseEvent(event);
+    MusicSlowMovingTableWidget::mouseReleaseEvent(event);
     startToDrag();
 
     m_leftButtonPressed = false;
@@ -615,7 +615,7 @@ void MusicSongsListWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicSongsListWidget::leaveEvent(QEvent *event)
 {
-    MusicAbstractTableWidget::leaveEvent(event);
+    MusicSlowMovingTableWidget::leaveEvent(event);
     listCellEntered(-1, -1);
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;
@@ -635,12 +635,12 @@ void MusicSongsListWidget::paintEvent(QPaintEvent *event)
     painter.fillRect(w->rect(), QColor(255, 255, 255, m_transparent));
     painter.end();
 
-    MusicAbstractTableWidget::paintEvent(event);
+    MusicSlowMovingTableWidget::paintEvent(event);
 }
 
 void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
 {
-    MusicAbstractTableWidget::wheelEvent(event);
+    MusicSlowMovingTableWidget::wheelEvent(event);
     if(m_renameActived && m_renameItem)
     {
         closePersistentEditor(m_renameItem);
@@ -663,7 +663,7 @@ void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
 
 void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractTableWidget::contextMenuEvent(event);
+    MusicSlowMovingTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 

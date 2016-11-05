@@ -20,6 +20,9 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadqueryalbumwythread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.h
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadquerymultiplevipthread.h
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadqueryalbumvipthread.h
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadqueryartistvipthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
     ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.h
@@ -34,6 +37,7 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadquerymultiplethread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryalbumthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryartistthread.h
     ${MUSIC_NETWORK_DIR}/musicradiochannelthread.h
     ${MUSIC_NETWORK_DIR}/musicradioplaylistthread.h
     ${MUSIC_NETWORK_DIR}/musicradiosongsthread.h
@@ -49,7 +53,6 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
     ${MUSIC_CORE_DIR}/musicglobalhotkey.h
-    ${MUSIC_CORE_DIR}/musicversion.h
     ${MUSIC_CORE_DIR}/musictime.h
     ${MUSIC_CORE_DIR}/musicxmlconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplayer.h
@@ -159,6 +162,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicqueryfoundtablewidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicslowmovingtablewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicitemdelegate.h
     ${MUSIC_WIDGETCORE_DIR}/musicmarqueewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicpreviewlabel.h
@@ -211,6 +215,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.h
     ${MUSIC_LIB_DIR}/musicapplication.h
     ${MUSIC_LIB_DIR}/musicleftareawidget.h
     ${MUSIC_LIB_DIR}/musictopareawidget.h
@@ -242,6 +247,9 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadqueryalbumwythread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadquerymultiplevipthread.cpp
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadqueryalbumvipthread.cpp
+    ${MUSIC_NETWORK_DIR}/vip/musicdownloadqueryartistvipthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdatadownloadthread.cpp
@@ -256,6 +264,7 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadquerymultiplethread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryalbumthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadqueryartistthread.cpp
     ${MUSIC_NETWORK_DIR}/musicradiochannelthread.cpp
     ${MUSIC_NETWORK_DIR}/musicradioplaylistthread.cpp
     ${MUSIC_NETWORK_DIR}/musicradiosongsthread.cpp
@@ -376,6 +385,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musicfillitemtablewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicqueryfoundtablewidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicslowmovingtablewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicitemdelegate.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicmarqueewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicpreviewlabel.cpp
@@ -428,6 +438,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
