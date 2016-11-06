@@ -9,13 +9,13 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2016.10.09
-#define TTKMUSIC_VERSION_STR    "2.4.1.0"
-#define TTKMUSIC_VER_TIME_STR   "(2016/10/09)"
+//update time 2016.11.06
+#define TTKMUSIC_VERSION_STR    "2.4.2.0"
+#define TTKMUSIC_VER_TIME_STR   "(2016/11/06)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
 #define TTKMUSIC_MIDLE_VERSION 4
-#define TTKMUSIC_MINOR_VERSION 1
+#define TTKMUSIC_MINOR_VERSION 2
 #define TTKMUSIC_PATCH_VERSION 0
 
 #define TTKMUSIC_VERSION 0x02400

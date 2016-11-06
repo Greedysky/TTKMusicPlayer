@@ -13,7 +13,7 @@
 include(TTKVersion.pri)
 
 TEMPLATE = subdirs
-SUBDIRS = TTKQrc TTKThirdParty TTKCore TTKApp TTKService TTKTest
+SUBDIRS = TTKQrc TTKThirdParty TTKCore TTKService TTKApp TTKTest
 
 TRANSLATIONS += TTKLanguage/cn.ts \
                 TTKLanguage/cn_c.ts \
