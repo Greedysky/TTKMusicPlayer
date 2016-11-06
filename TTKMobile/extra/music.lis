@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<TTKMusicPlayer>
-    <musicList index="0" name="本地歌曲" count="0"/>
-    <musicList index="1" name="下载歌曲" count="0"/>
-    <musicList index="2" name="最近播放" count="0"/>
-    <musicList index="3" name="我喜欢" count="0"/>
-    <musicList index="4" name="下载MV" count="0"/>
-    <musicList index="5" name="听歌识曲" count="0"/>
-</TTKMusicPlayer>
