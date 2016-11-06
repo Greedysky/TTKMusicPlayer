@@ -18,7 +18,7 @@
 #define TTKMUSIC_MINOR_VERSION 2
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02400
+#define TTKMUSIC_VERSION 0x02420
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
