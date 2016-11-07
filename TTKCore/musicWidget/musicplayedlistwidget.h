@@ -12,6 +12,7 @@
 #include "musictoolmenuwidget.h"
 
 class QLabel;
+class MusicSongsPlayedListWidget;
 
 /*! @brief The class of the played list widget.
  * @author Greedysky <greedysky@163.com>
@@ -32,6 +33,15 @@ public:
      */
 
     void setPlayListCount(int count);
+    /*!
+     * Set play list count.
+     */
+
+public Q_SLOTS:
+    void popupMenu();
+    /*!
+     * To popup menu.
+     */
 
 protected:
     void initWidget();
@@ -40,6 +50,7 @@ protected:
      */
 
     QList<QLabel*> m_labels;
+    MusicSongsPlayedListWidget *m_musicPlayedListWidget;
 
 };
 

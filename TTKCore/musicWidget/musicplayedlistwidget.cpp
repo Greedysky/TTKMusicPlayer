@@ -1,5 +1,6 @@
 #include "musicplayedlistwidget.h"
 #include "musicfunctionuiobject.h"
+#include "musicsongsplayedlistwidget.h"
 #include "musicuiobject.h"
 
 #include <QLabel>
@@ -13,11 +14,15 @@ MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
     setToolTip(tr("playedList"));
     setStyleSheet(MusicUIObject::MKGBtnPlayedList);
 
+    disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
+    connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
+
     initWidget();
 }
 
 MusicPlayedListWidget::~MusicPlayedListWidget()
 {
+    delete m_musicPlayedListWidget;
     while(!m_labels.isEmpty())
     {
         delete m_labels.takeLast();
@@ -36,6 +41,23 @@ void MusicPlayedListWidget::setPlayListCount(int count)
         m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
         count = count/10;
     }
+
+    if(count > 1000)
+    {
+        for(int i=MAX_SIZE-1; i>=0; --i)
+        {
+            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(9)));
+        }
+    }
+}
+
+void MusicPlayedListWidget::popupMenu()
+{
+    QPoint pos = mapToGlobal(QPoint(0, 0));
+    pos.setY(pos.y() - m_containWidget->height() - 10);
+    pos.setX(pos.x() - (m_containWidget->width() - width() - 3));
+
+    m_menu->exec(pos);
 }
 
 void MusicPlayedListWidget::initWidget()
@@ -56,4 +78,10 @@ void MusicPlayedListWidget::initWidget()
     layout->addStretch(1);
 
     setLayout(layout);
+
+    m_containWidget->setFixedSize(300, 400);
+    QHBoxLayout *containLayout = new QHBoxLayout(m_containWidget);
+    m_musicPlayedListWidget = new MusicSongsPlayedListWidget(m_containWidget);
+    containLayout->addWidget(m_musicPlayedListWidget);
+    m_containWidget->setLayout(containLayout);
 }
