@@ -13,8 +13,8 @@
 #include "musicsingleton.h"
 
 #define M_NETWORK_PTR (MusicSingleton<MusicNetworkThread>::createInstance())
-#define NETWORK_DETECT_INTERVAL 5000             // second
-#define NETWORK_REQUEST_ADDRESS "www.baidu.com"  // ip
+#define NETWORK_DETECT_INTERVAL     5000             // second
+#define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
 
 /*! @brief The class of thread to check current network.
  * @author Greedysky <greedysky@163.com>
@@ -35,7 +35,11 @@ public:
     /*!
      * Set flag wheather to block current network.
      */
-    inline bool isOnline() const {return m_networkState;}
+    inline void setNetWorkState(bool state) { m_networkState = state; }
+    /*!
+     * Set current network state.
+     */
+    inline bool isOnline() const { return m_networkState; }
     /*!
      * Check current network is on.
      */
@@ -54,14 +58,14 @@ public Q_SLOTS:
      */
 
 private:
-    QTimer m_timer;
-    bool m_networkState;
-
     MusicNetworkThread();
     /*!
      * Object contsructor.
      */
     ~MusicNetworkThread();
+
+    QTimer m_timer;
+    bool m_networkState;
 
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 };

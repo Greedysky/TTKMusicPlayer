@@ -76,6 +76,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
 
 void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
 {
+    M_NETWORK_PTR->setNetWorkState(state);
     if(m_previousState != state)
     {
 #ifndef MUSIC_MOBILE
