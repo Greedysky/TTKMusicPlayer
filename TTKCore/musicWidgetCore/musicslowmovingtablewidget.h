@@ -37,6 +37,10 @@ public:
      */
 
 public Q_SLOTS:
+    void timeToAnimation();
+    /*!
+     * Time out to start animation.
+     */
     void valueChanged(int value);
     /*!
      * Current scroll bar value changed.
@@ -48,8 +52,10 @@ protected:
      * Override the widget event.
      */
 
-    int m_priviousValue;
+    bool m_isFirstInit;
+    int m_priviousValue, m_deltaValue;
     QScrollBar *m_scrollBar;
+    QTimer *m_animationTimer;
     QPropertyAnimation *m_slowAnimation;
 
 };
