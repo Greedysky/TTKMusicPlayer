@@ -197,7 +197,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
                 yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
                 hValue = maximumHeight();
             }
-            if(wValue <= minimumHeight())
+            if(hValue <= minimumHeight())
             {
                 yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
                 hValue = minimumHeight();
