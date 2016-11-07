@@ -36,6 +36,10 @@ TTKMusicPlayer is free software licensed under the term of [Licence GPL v2](http
 
 Download
 ---
+Github: **<u>https://github.com/Greedysky/TTKMusicplayer</u>**
+
+Oschina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
+
 Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
 
 Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
