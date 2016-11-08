@@ -9,10 +9,11 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsong.h"
 #include "musictoolmenuwidget.h"
 
 class QLabel;
-class MusicSongsPlayedContainWidget;
+class MusicSongsPlayedListWidget;
 
 /*! @brief The class of the played list widget.
  * @author Greedysky <greedysky@163.com>
@@ -31,11 +32,16 @@ public:
     /*!
      * Get class object name.
      */
-
-    void setPlayListCount(int count);
+    static MusicPlayedListWidget *instance();
     /*!
-     * Set play list count.
+     * Get class object instance.
      */
+
+    void remove(const QString &path);
+    void remove(const QStringList &paths);
+
+    void append(const MusicSong &song);
+    void append(const MusicSongs &songs);
 
     void resizeWindow();
     /*!
@@ -53,10 +59,17 @@ protected:
     /*!
      * Create all widget in layout.
      */
+    QWidget *createContainerWidget();
+    void setPlayListCount(int count);
+    /*!
+     * Set play list count.
+     */
 
+    MusicSongs m_songLists;
     QList<QLabel*> m_labels;
-    MusicSongsPlayedContainWidget *m_musicPlayedContainWidget;
+    MusicSongsPlayedListWidget *m_playedListWidget;
 
+    static MusicPlayedListWidget *m_instance;
 };
 
 #endif // MUSICPLAYEDLISTWIDGET_H

@@ -1,17 +1,23 @@
 #include "musicplayedlistwidget.h"
 #include "musicfunctionuiobject.h"
-#include "musicsongsplayedcontainwidget.h"
+#include "musicsongsplayedlistwidget.h"
 #include "musicsettingmanager.h"
+#include "musictinyuiobject.h"
 #include "musicuiobject.h"
 
 #include <QLabel>
 #include <QBoxLayout>
+#include <QPushButton>
+#include <QToolButton>
 
 #define MAX_SIZE    3
+
+MusicPlayedListWidget *MusicPlayedListWidget::m_instance = nullptr;
 
 MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
+    m_instance = this;
     setToolTip(tr("playedList"));
     setStyleSheet(MusicUIObject::MKGBtnPlayedList);
 
@@ -23,7 +29,7 @@ MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
 
 MusicPlayedListWidget::~MusicPlayedListWidget()
 {
-    delete m_musicPlayedContainWidget;
+    delete m_playedListWidget;
     while(!m_labels.isEmpty())
     {
         delete m_labels.takeLast();
@@ -35,21 +41,33 @@ QString MusicPlayedListWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlayedListWidget::setPlayListCount(int count)
+MusicPlayedListWidget *MusicPlayedListWidget::instance()
 {
-    for(int i=MAX_SIZE-1; i>=0; --i)
-    {
-        m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
-        count = count/10;
-    }
+    return m_instance;
+}
 
-    if(count > 1000)
-    {
-        for(int i=MAX_SIZE-1; i>=0; --i)
-        {
-            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(9)));
-        }
-    }
+void MusicPlayedListWidget::remove(const QString &path)
+{
+
+}
+
+void MusicPlayedListWidget::remove(const QStringList &paths)
+{
+
+}
+
+void MusicPlayedListWidget::append(const MusicSong &song)
+{
+    m_songLists << song;
+    setPlayListCount(m_songLists.count());
+    m_playedListWidget->updateSongsFileName(m_songLists);
+}
+
+void MusicPlayedListWidget::append(const MusicSongs &songs)
+{
+    m_songLists << songs;
+    setPlayListCount(m_songLists.count());
+    m_playedListWidget->updateSongsFileName(m_songLists);
 }
 
 void MusicPlayedListWidget::resizeWindow()
@@ -90,7 +108,75 @@ void MusicPlayedListWidget::initWidget()
     QHBoxLayout *containLayout = new QHBoxLayout(m_containWidget);
     containLayout->setContentsMargins(0, 0, 0, 0);
     containLayout->setSpacing(0);
-    m_musicPlayedContainWidget = new MusicSongsPlayedContainWidget(m_menu);
-    containLayout->addWidget(m_musicPlayedContainWidget);
+    containLayout->addWidget( createContainerWidget() );
     m_containWidget->setLayout(containLayout);
+}
+
+QWidget *MusicPlayedListWidget::createContainerWidget()
+{
+    QWidget *containWidget = new QWidget(this);
+    QVBoxLayout *layout = new QVBoxLayout(containWidget);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+
+    QWidget *topWidget = new QWidget(this);
+    topWidget->setFixedHeight(35);
+    topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle20);
+
+    QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
+    topWidgetLayout->setSpacing(15);
+    QLabel *label = new QLabel(tr("playedList"), topWidget);
+    label->setStyleSheet(MusicUIObject::MColorStyle02 + MusicUIObject::MFontStyle01 +
+                         MusicUIObject::MFontStyle03);
+
+    QPushButton *shareButton = new QPushButton(this);
+    shareButton->setFixedSize(16, 16);
+    shareButton->setToolTip(tr("shareList"));
+    shareButton->setCursor(QCursor(Qt::PointingHandCursor));
+    shareButton->setStyleSheet(MusicUIObject::MKGTinyBtnShare);
+
+    QPushButton *deleteButton = new QPushButton(this);
+    deleteButton->setFixedSize(16, 16);
+    deleteButton->setToolTip(tr("clearList"));
+    deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
+    deleteButton->setStyleSheet(MusicUIObject::MKGTinyBtnDelete);
+
+    QToolButton *closeButton = new QToolButton(this);
+    closeButton->setFixedSize(16, 16);
+    closeButton->setToolTip(tr("closeList"));
+    closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    closeButton->setStyleSheet(MusicUIObject::MKGTinyBtnClose);
+    connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));
+
+    topWidgetLayout->addWidget(label);
+    topWidgetLayout->addStretch(1);
+    topWidgetLayout->addWidget(shareButton);
+    topWidgetLayout->addWidget(deleteButton);
+    topWidgetLayout->addWidget(closeButton);
+    topWidget->setLayout(topWidgetLayout);
+
+    m_playedListWidget = new MusicSongsPlayedListWidget(this);
+    m_playedListWidget->setSongsFileName(&m_songLists);
+    layout->addWidget(topWidget);
+    layout->addWidget(m_playedListWidget);
+
+    containWidget->setLayout(layout);
+    return containWidget;
+}
+
+void MusicPlayedListWidget::setPlayListCount(int count)
+{
+    for(int i=MAX_SIZE-1; i>=0; --i)
+    {
+        m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
+        count = count/10;
+    }
+
+    if(count > 1000)
+    {
+        for(int i=MAX_SIZE-1; i>=0; --i)
+        {
+            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(9)));
+        }
+    }
 }

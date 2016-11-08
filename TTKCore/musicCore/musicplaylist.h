@@ -47,6 +47,10 @@ public:
     /*!
      * Get current play music media path.
      */
+    QStringList mediaList() const;
+    /*!
+     * Get all music media path.
+     */
     int mediaCount() const;
     /*!
      * Get current medias count.

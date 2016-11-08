@@ -26,7 +26,6 @@ HEADERS  += \
     $$PWD/musicsongstoolitemrenamedwidget.h \
     $$PWD/musicsongslistplaywidget.h \
     $$PWD/musicsongslistfunctionwidget.h \
-    $$PWD/musicsongsplayedcontainwidget.h \
     $$PWD/musicsongsplayedlistwidget.h \
     $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundremotewidget.h \
@@ -64,7 +63,6 @@ SOURCES += \
     $$PWD/musicsongstoolitemrenamedwidget.cpp \
     $$PWD/musicsongslistplaywidget.cpp \
     $$PWD/musicsongslistfunctionwidget.cpp \
-    $$PWD/musicsongsplayedcontainwidget.cpp \
     $$PWD/musicsongsplayedlistwidget.cpp \
     $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundremotewidget.cpp \

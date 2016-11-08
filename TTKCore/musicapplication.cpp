@@ -897,10 +897,6 @@ void MusicApplication::readXMLConfigFromText()
         xml.readMusicSongsConfig(songs);
     }
     m_musicSongTree->addMusicLists(songs);
-    if(songs.count() > 0)
-    {
-        ui->musicPlayedList->setPlayListCount(songs.first().m_songs.count());
-    }
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig())//open file
     {
@@ -974,6 +970,7 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, keyList);
     //add new music file to playlist
     m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(keyList[1].toInt()));
+    ui->musicPlayedList->append(songs[keyList[1].toInt()].m_songs);
     if(keyList[0] == "1")
     {
         QTimer::singleShot(MT_MS, m_musicSongTree, SLOT(setCurrentIndex()));

@@ -83,13 +83,11 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
-        //To get the song name
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 232));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
-        //add a delete icon
                           item = new QTableWidgetItem(songs[i].getMusicTime());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);

@@ -24,29 +24,6 @@ MusicSongsPlayedListWidget::MusicSongsPlayedListWidget(QWidget *parent)
 
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
     setMovedScrollBar( verticalScrollBar() );
-
-    setRowCount(200);    //reset row count
-    for(int i=0; i<200; i++)
-    {
-        QTableWidgetItem *item = new QTableWidgetItem;
-        setItem(i, 0, item);
-        //To get the song name
-                          item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), QString::number(i), Qt::ElideRight, 232));
-        item->setTextColor(QColor(50, 50, 50));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        setItem(i, 1, item);
-
-                          item = new QTableWidgetItem;
-        setItem(i, 2, item);
-
-                          item = new QTableWidgetItem;
-        setItem(i, 3, item);
-        //add a delete icon
-                          item = new QTableWidgetItem("00:00");
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        setItem(i, 4, item);
-    }
 }
 
 MusicSongsPlayedListWidget::~MusicSongsPlayedListWidget()
@@ -57,6 +34,36 @@ MusicSongsPlayedListWidget::~MusicSongsPlayedListWidget()
 QString MusicSongsPlayedListWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSongsPlayedListWidget::setSongsFileName(MusicSongs *songs)
+{
+    m_songLists = songs;
+    updateSongsFileName(*m_songLists);
+}
+
+void MusicSongsPlayedListWidget::updateSongsFileName(const MusicSongs &songs)
+{
+    int count = rowCount();
+    setRowCount(songs.count());    //reset row count
+    for(int i=count; i<songs.count(); i++)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem;
+        setItem(i, 0, item);
+                          item = new QTableWidgetItem;
+        item->setToolTip(songs[i].getMusicName());
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 182));
+        item->setTextColor(QColor(50, 50, 50));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 1, item);
+                          item = new QTableWidgetItem;
+        setItem(i, 2, item);
+                          item = new QTableWidgetItem;
+        setItem(i, 3, item);
+                          item = new QTableWidgetItem(songs[i].getMusicTime());
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 4, item);
+    }
 }
 
 void MusicSongsPlayedListWidget::listCellEntered(int row, int column)
@@ -76,7 +83,7 @@ void MusicSongsPlayedListWidget::listCellEntered(int row, int column)
     if(it != nullptr)
     {
         it->setIcon(QIcon());
-        it->setText("00:00");
+        it->setText((*m_songLists)[m_previousColorRow].getMusicTime());
     }
 
     ///draw new table item state

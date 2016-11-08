@@ -39,6 +39,11 @@ QString MusicPlaylist::currentMediaString() const
                                  : m_mediaList[m_currentIndex];
 }
 
+QStringList MusicPlaylist::mediaList() const
+{
+    return m_mediaList;
+}
+
 int MusicPlaylist::mediaCount() const
 {
     return m_mediaList.count();

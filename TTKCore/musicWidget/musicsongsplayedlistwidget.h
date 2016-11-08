@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsong.h"
 #include "musicslowmovingtablewidget.h"
 
 /*! @brief The class of the songs list widget.
@@ -27,6 +28,15 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void setSongsFileName(MusicSongs *songs);
+    /*!
+     * Set songs file names.
+     */
+    void updateSongsFileName(const MusicSongs &songs);
+    /*!
+     * Update songs file names in table.
      */
 
 Q_SIGNALS:
@@ -90,6 +100,8 @@ protected:
     /*!
      * Create more menu information.
      */
+
+    MusicSongs *m_songLists;
 
 };
 
