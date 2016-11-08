@@ -144,7 +144,7 @@ protected:
     QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
-    MusicOpenFileWidget *m_uploadFileWidget;
+    MusicOpenFileWidget *m_openFileWidget;
     MusicCloudFileManagerDialog *m_fileDialog;
 
 };

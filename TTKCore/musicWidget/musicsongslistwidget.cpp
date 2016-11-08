@@ -24,7 +24,7 @@
 #define ROW_HIGHT   30
 
 MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
-    : MusicSlowMovingTableWidget(parent), m_parentToolIndex(index), m_uploadFileWidget(nullptr),
+    : MusicSlowMovingTableWidget(parent), m_parentToolIndex(index), m_openFileWidget(nullptr),
       m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr), m_floatWidget(nullptr)
 {
     m_deleteItemWithFile = false;
@@ -52,7 +52,7 @@ MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
 MusicSongsListWidget::~MusicSongsListWidget()
 {
     clearAllItems();
-    delete m_uploadFileWidget;
+    delete m_openFileWidget;
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
     delete m_floatWidget;
@@ -221,21 +221,21 @@ bool MusicSongsListWidget::createUploadFileWidget()
                                   m_parentToolIndex != MUSIC_NETWORK_LIST )
     {
         setFixedSize(320, 100);
-        if(m_uploadFileWidget == nullptr)
+        if(m_openFileWidget == nullptr)
         {
-            m_uploadFileWidget = new MusicOpenFileWidget(this);
-            connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SIGNAL(musicAddNewFiles()));
-            connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SIGNAL(musicAddNewDir()));
-            m_uploadFileWidget->adjustRect(width(), height());
+            m_openFileWidget = new MusicOpenFileWidget(this);
+            connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SIGNAL(musicAddNewFiles()));
+            connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SIGNAL(musicAddNewDir()));
+            m_openFileWidget->adjustRect(width(), height());
         }
-        m_uploadFileWidget->raise();
-        m_uploadFileWidget->show();
+        m_openFileWidget->raise();
+        m_openFileWidget->show();
         return true;
     }
     else
     {
-        delete m_uploadFileWidget;
-        m_uploadFileWidget = nullptr;
+        delete m_openFileWidget;
+        m_openFileWidget = nullptr;
     }
     return false;
 }
@@ -310,6 +310,7 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
     {
         return;
     }
+
     switch(column)
     {
         case 2:

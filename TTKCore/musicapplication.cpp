@@ -831,6 +831,7 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
     m_topAreaWidget->musicBgThemeChangedByResize();
     m_bottomAreaWidget->resizeWindow();
+    ui->musicPlayedList->resizeWindow();
     MusicAbstractMoveResizeWidget::resizeEvent(event);
 }
 

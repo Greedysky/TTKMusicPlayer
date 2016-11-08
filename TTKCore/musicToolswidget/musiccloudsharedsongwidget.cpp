@@ -36,7 +36,7 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     headerview->resizeSection(2, 35);
 
     m_uploading = false;
-    m_uploadFileWidget = nullptr;
+    m_openFileWidget = nullptr;
     m_currentUploadIndex = 0;
 
     m_fileDialog = new MusicCloudFileManagerDialog(this);
@@ -52,7 +52,7 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
 MusicCloudSharedSongTableWidget::~MusicCloudSharedSongTableWidget()
 {
     delete m_fileDialog;
-    delete m_uploadFileWidget;
+    delete m_openFileWidget;
     delete m_qnListData;
     delete m_qnDeleteData;
     delete m_qnUploadData;
@@ -110,8 +110,8 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         return;
     }
 
-    delete m_uploadFileWidget;
-    m_uploadFileWidget = nullptr;
+    delete m_openFileWidget;
+    m_openFileWidget = nullptr;
 
     setRowCount(count);
     for(int i=0; i<count; ++i)
@@ -355,15 +355,15 @@ void MusicCloudSharedSongTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicCloudSharedSongTableWidget::createUploadFileWidget()
 {
-    if(m_uploadFileWidget == nullptr)
+    if(m_openFileWidget == nullptr)
     {
-        m_uploadFileWidget = new MusicOpenFileWidget(this);
-        connect(m_uploadFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFileToServer()));
-        connect(m_uploadFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFilesToServer()));
-        m_uploadFileWidget->adjustRect(width(), height());
+        m_openFileWidget = new MusicOpenFileWidget(this);
+        connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFileToServer()));
+        connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFilesToServer()));
+        m_openFileWidget->adjustRect(width(), height());
     }
-    m_uploadFileWidget->raise();
-    m_uploadFileWidget->show();
+    m_openFileWidget->raise();
+    m_openFileWidget->show();
 }
 
 void MusicCloudSharedSongTableWidget::startToUploadFile()

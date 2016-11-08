@@ -287,7 +287,7 @@ protected:
 
     QTimer m_timerShow, m_timerStay;
     MusicSongs *m_musicSongs;
-    MusicOpenFileWidget *m_uploadFileWidget;
+    MusicOpenFileWidget *m_openFileWidget;
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
     MusicSongsListFunctionWidget *m_floatWidget;

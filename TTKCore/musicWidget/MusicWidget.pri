@@ -26,6 +26,8 @@ HEADERS  += \
     $$PWD/musicsongstoolitemrenamedwidget.h \
     $$PWD/musicsongslistplaywidget.h \
     $$PWD/musicsongslistfunctionwidget.h \
+    $$PWD/musicsongsplayedcontainwidget.h \
+    $$PWD/musicsongsplayedlistwidget.h \
     $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
@@ -44,8 +46,7 @@ HEADERS  += \
     $$PWD/musicplayedlistwidget.h \
     $$PWD/musicalbumfoundwidget.h \
     $$PWD/musicartistfoundwidget.h \
-    $$PWD/musicsoundeffectswidget.h \
-    $$PWD/musicsongsplayedlistwidget.h
+    $$PWD/musicsoundeffectswidget.h
 
 }
 
@@ -63,6 +64,8 @@ SOURCES += \
     $$PWD/musicsongstoolitemrenamedwidget.cpp \
     $$PWD/musicsongslistplaywidget.cpp \
     $$PWD/musicsongslistfunctionwidget.cpp \
+    $$PWD/musicsongsplayedcontainwidget.cpp \
+    $$PWD/musicsongsplayedlistwidget.cpp \
     $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
@@ -81,7 +84,6 @@ SOURCES += \
     $$PWD/musicplayedlistwidget.cpp \
     $$PWD/musicalbumfoundwidget.cpp \
     $$PWD/musicartistfoundwidget.cpp \
-    $$PWD/musicsoundeffectswidget.cpp \
-    $$PWD/musicsongsplayedlistwidget.cpp
+    $$PWD/musicsoundeffectswidget.cpp
 
 }
