@@ -15,6 +15,7 @@
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
 #include "musicopenfilewidget.h"
+#include "musicplayedlistwidget.h"
 
 #include <QUrl>
 #include <QAction>
@@ -367,7 +368,9 @@ void MusicSongsListWidget::setDeleteItemAt()
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
-        removeRow(deleteList[i]); //Delete the current row
+        int index = deleteList[i];
+        removeRow(index);           //Delete the current row
+        MusicPlayedListWidget::instance()->remove(m_parentToolIndex, (*m_musicSongs)[index]);
         progress.setValue(deleteList.count()*2 - i);
     }
 
@@ -553,6 +556,26 @@ void MusicSongsListWidget::musicSearchQuery(QAction *action)
     }
 }
 
+void MusicSongsListWidget::musicAddToPlayLater()
+{
+    int row = currentRow();
+    if(rowCount() == 0 || row < 0 )
+    {
+        return;
+    }
+    MusicPlayedListWidget::instance()->insert(m_parentToolIndex, (*m_musicSongs)[row]);
+}
+
+void MusicSongsListWidget::musicAddToPlayedList()
+{
+    int row = currentRow();
+    if(rowCount() == 0 || row < 0 )
+    {
+        return;
+    }
+    MusicPlayedListWidget::instance()->append(m_parentToolIndex, (*m_musicSongs)[row]);
+}
+
 void MusicSongsListWidget::setItemRenameFinished(const QString &name)
 {
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
@@ -668,8 +691,8 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
-    rightClickMenu.addAction(tr("playLater"));
-    rightClickMenu.addAction(tr("addToPlayList"));
+    rightClickMenu.addAction(tr("playLater"), this, SLOT(musicAddToPlayLater()));
+    rightClickMenu.addAction(tr("addToPlayList"), this, SLOT(musicAddToPlayedList()));
     rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 

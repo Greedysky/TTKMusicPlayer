@@ -30,13 +30,22 @@ public:
      * Get class object name.
      */
 
-    void setSongsFileName(MusicSongs *songs);
+    void setSongsFileName(MusicPlayedSongs *songs);
     /*!
      * Set songs file names.
      */
-    void updateSongsFileName(const MusicSongs &songs);
+    void updateSongsFileName(const MusicPlayedSongs &songs);
     /*!
      * Update songs file names in table.
+     */
+
+    void selectRow(int index);
+    /*!
+     * Select the current play row.
+     */
+    inline int getPlayRowIndex() const { return m_playRowIndex; }
+    /*!
+     * Get the current play row.
      */
 
 Q_SIGNALS:
@@ -101,7 +110,8 @@ protected:
      * Create more menu information.
      */
 
-    MusicSongs *m_songLists;
+    int m_playRowIndex;
+    MusicPlayedSongs *m_songLists;
 
 };
 

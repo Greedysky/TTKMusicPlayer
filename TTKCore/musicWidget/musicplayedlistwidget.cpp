@@ -46,28 +46,91 @@ MusicPlayedListWidget *MusicPlayedListWidget::instance()
     return m_instance;
 }
 
-void MusicPlayedListWidget::remove(const QString &path)
+void MusicPlayedListWidget::clear()
 {
-
+    m_songLists.clear();
+    m_playedListWidget->clear();
+    setPlayListCount(0);
 }
 
-void MusicPlayedListWidget::remove(const QStringList &paths)
+void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
 {
-
+    for(int i=0; i<m_songLists.count(); ++i)
+    {
+        MusicPlayedSong playedSong = m_songLists[i];
+        if(playedSong.m_toolIndex == toolIndex && playedSong.m_song == song)
+        {
+            m_songLists.removeAt(i);
+        }
+    }
+    m_playedListWidget->clear();
+    updateSongsFileName();
 }
 
-void MusicPlayedListWidget::append(const MusicSong &song)
+void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
 {
-    m_songLists << song;
-    setPlayListCount(m_songLists.count());
-    m_playedListWidget->updateSongsFileName(m_songLists);
+    for(int i=0; i<m_songLists.count(); ++i)
+    {
+        MusicPlayedSong playedSong = m_songLists[i];
+        if(playedSong.m_toolIndex == toolIndex)
+        {
+            foreach(const MusicSong &song, songs)
+            {
+                if(playedSong.m_song == song)
+                {
+                    m_songLists.removeAt(i);
+                }
+            }
+        }
+    }
+    m_playedListWidget->clear();
+    updateSongsFileName();
 }
 
-void MusicPlayedListWidget::append(const MusicSongs &songs)
+void MusicPlayedListWidget::append(int toolIndex, const MusicSong &song)
 {
-    m_songLists << songs;
-    setPlayListCount(m_songLists.count());
-    m_playedListWidget->updateSongsFileName(m_songLists);
+    m_songLists << MusicPlayedSong{toolIndex, song};
+    updateSongsFileName();
+}
+
+void MusicPlayedListWidget::append(int toolIndex, const MusicSongs &songs)
+{
+    foreach(const MusicSong &song, songs)
+    {
+        m_songLists << MusicPlayedSong{toolIndex, song};
+    }
+    updateSongsFileName();
+}
+
+void MusicPlayedListWidget::insert(int toolIndex, const MusicSong &song)
+{
+    insert(toolIndex, m_playedListWidget->getPlayRowIndex(), song);
+}
+
+void MusicPlayedListWidget::insert(int toolIndex, int index, const MusicSong &song)
+{
+    if(index < 0 || index >= m_songLists.count())
+    {
+        return;
+    }
+
+    m_songLists.insert(index, MusicPlayedSong{toolIndex, song});
+    m_playedListWidget->clear();
+    updateSongsFileName();
+}
+
+void MusicPlayedListWidget::setCurrentIndex(const QString &path)
+{
+    int index = -1;
+    for(int i=0; i<m_songLists.count(); ++i)
+    {
+        if(m_songLists[i].m_song.getMusicPath() == path)
+        {
+            index = i;
+            break;
+        }
+    }
+    m_playedListWidget->selectRow(index);
 }
 
 void MusicPlayedListWidget::resizeWindow()
@@ -162,6 +225,12 @@ QWidget *MusicPlayedListWidget::createContainerWidget()
 
     containWidget->setLayout(layout);
     return containWidget;
+}
+
+void MusicPlayedListWidget::updateSongsFileName()
+{
+    setPlayListCount(m_songLists.count());
+    m_playedListWidget->updateSongsFileName(m_songLists);
 }
 
 void MusicPlayedListWidget::setPlayListCount(int count)

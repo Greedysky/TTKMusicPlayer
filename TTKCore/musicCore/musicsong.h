@@ -133,8 +133,17 @@ protected:
     int m_musicPlayCount;
 
 };
-
 TTK_DECLARE_LISTS(MusicSong)
+
+////////////////////////////////////////////////////////
+typedef struct MUSIC_CORE_EXPORT MusicPlayedSong
+{
+    int m_toolIndex;
+    MusicSong m_song;
+}MusicPlayedSong;
+TTK_DECLARE_LISTS(MusicPlayedSong)
+
+////////////////////////////////////////////////////////
 class MusicSongsListWidget;
 
 typedef struct MUSIC_CORE_EXPORT MusicSongItem

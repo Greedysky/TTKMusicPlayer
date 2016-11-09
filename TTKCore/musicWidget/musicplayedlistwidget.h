@@ -37,12 +37,39 @@ public:
      * Get class object instance.
      */
 
-    void remove(const QString &path);
-    void remove(const QStringList &paths);
+    void clear();
+    /*!
+     * Clear music data list.
+     */
+    void remove(int toolIndex, const MusicSong &song);
+    /*!
+     * Remove music from data list.
+     */
+    void remove(int toolIndex, const MusicSongs &songs);
+    /*!
+     * Remove given music list from data list.
+     */
+    void append(int toolIndex, const MusicSong &song);
+    /*!
+     * Append music to data list.
+     */
+    void append(int toolIndex, const MusicSongs &songs);
+    /*!
+     * Append music list to data list.
+     */
+    void insert(int toolIndex, const MusicSong &song);
+    /*!
+     * Insert music after played music index.
+     */
+    void insert(int toolIndex, int index, const MusicSong &song);
+    /*!
+     * Insert music by given index.
+     */
 
-    void append(const MusicSong &song);
-    void append(const MusicSongs &songs);
-
+    void setCurrentIndex(const QString &path);
+    /*!
+     * Set current select played music index.
+     */
     void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
@@ -60,12 +87,19 @@ protected:
      * Create all widget in layout.
      */
     QWidget *createContainerWidget();
+    /*!
+     * Create container widget.
+     */
+    void updateSongsFileName();
+    /*!
+     * Update songs file names.
+     */
     void setPlayListCount(int count);
     /*!
      * Set play list count.
      */
 
-    MusicSongs m_songLists;
+    MusicPlayedSongs m_songLists;
     QList<QLabel*> m_labels;
     MusicSongsPlayedListWidget *m_playedListWidget;
 

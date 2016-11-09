@@ -311,12 +311,6 @@ void MusicApplication::showCurrentSong(int index)
     m_topAreaWidget->musicBgThemeDownloadFinished();
 }
 
-void MusicApplication::musicStopPlay()
-{
-    m_musicPlayer->stop();
-    musicPlayIndex(-1);
-}
-
 void MusicApplication::musicStatePlay()
 {
     if(m_musicList->isEmpty())
@@ -521,27 +515,33 @@ void MusicApplication::musicExportSongsItemList(int index)
 void MusicApplication::musicPlayIndex(int row)
 {
     m_musicPlayer->stop();
-
-    m_musicList->clear();
-    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
-    m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
-    m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
-
-    if(row != -999)
-    {
-        m_musicList->setCurrentIndex(row);
-    }
+    setMusicPlayIndex();
+    m_musicList->setCurrentIndex(row);
 }
 
 void MusicApplication::musicPlayIndex(int row, int)
 {
-    musicPlayIndex(-999); //just invalid
+    m_musicPlayer->stop();
+
+    if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex())
+    {
+        setMusicPlayIndex();
+        ui->musicPlayedList->clear();
+        MusicSongItems items(m_musicSongTree->getMusicLists());
+        int index = m_musicSongTree->currentIndex();
+        if(0 <= index && index < items.count())
+        {
+            ui->musicPlayedList->append(index, items[index].m_songs);
+        }
+    }
     if(!m_musicSongTree->searchFileListEmpty())
     {
         row = m_musicSongTree->getSearchFileListIndexAndClear(row);
     }
 
     m_musicList->setCurrentIndex(row);
+    ui->musicPlayedList->setCurrentIndex(m_musicList->currentMediaString());
+
     m_playControl = true;
     musicStatePlay();
     m_playControl = false;
@@ -885,6 +885,14 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicCreateRightMenu();
 }
 
+void MusicApplication::setMusicPlayIndex()
+{
+    m_musicList->clear();
+    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_musicSongTree->currentIndex()));
+    m_currentMusicSongTreeIndex = m_musicSongTree->currentIndex();
+    m_musicSongTree->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
+}
+
 void MusicApplication::readXMLConfigFromText()
 {
     MusicXMLConfigManager xml;
@@ -969,15 +977,17 @@ void MusicApplication::readXMLConfigFromText()
     xml.readSystemLastPlayIndexConfig(keyList);
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, keyList);
     //add new music file to playlist
-    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(keyList[1].toInt()));
-    ui->musicPlayedList->append(songs[keyList[1].toInt()].m_songs);
+    value = keyList[1].toInt();
+    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(value));
+    ui->musicPlayedList->append(value, songs[value].m_songs);
     if(keyList[0] == "1")
     {
         QTimer::singleShot(MT_MS, m_musicSongTree, SLOT(setCurrentIndex()));
-        m_currentMusicSongTreeIndex = keyList[1].toInt();
+        m_currentMusicSongTreeIndex = value;
         m_musicList->blockSignals(true);
         m_musicList->setCurrentIndex(keyList[2].toInt());
         m_musicList->blockSignals(false);
+        ui->musicPlayedList->setCurrentIndex(m_musicList->currentMediaString());
     }
     //////////////////////////////////////////////////////////////
     //Configure automatic playback

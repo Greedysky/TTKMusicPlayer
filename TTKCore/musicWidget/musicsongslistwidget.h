@@ -235,6 +235,14 @@ public Q_SLOTS:
     /*!
      * Open music song search query.
      */
+    void musicAddToPlayLater();
+    /*!
+     * Add music to played list and play later.
+     */
+    void musicAddToPlayedList();
+    /*!
+     * Add music to played list.
+     */
     void setItemRenameFinished(const QString &name);
     /*!
      * Rename item artist label is finised.

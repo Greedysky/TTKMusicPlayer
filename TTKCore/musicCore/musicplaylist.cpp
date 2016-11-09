@@ -35,8 +35,7 @@ QString MusicPlaylist::currentMediaString() const
     {
         return QString();
     }
-    return m_mediaList.isEmpty() ? QString()
-                                 : m_mediaList[m_currentIndex];
+    return m_mediaList.isEmpty() ? QString() : m_mediaList[m_currentIndex];
 }
 
 QStringList MusicPlaylist::mediaList() const
