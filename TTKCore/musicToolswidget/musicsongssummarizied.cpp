@@ -22,9 +22,6 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     m_currentDeleteIndex = -1;
     m_toolDeleteChanged = false;
 
-    connect(this, SIGNAL(musicPlayIndex(int)), parent, SLOT(musicPlayIndex(int)));
-    connect(this, SIGNAL(musicPlayIndex(int,int)), parent, SLOT(musicPlayIndex(int,int)));
-
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
 }
@@ -240,7 +237,7 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
         m_itemList.first().m_widgetItem->setItemExpand(false);
-        emit musicPlayIndex(-1);
+        MusicApplication::instance()->musicPlayIndex(-1);
     }
     else if(m_currentPlayToolIndex > id)
     {
@@ -264,7 +261,7 @@ void MusicSongsSummarizied::deleteRowItems()
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
         m_itemList.first().m_widgetItem->setItemExpand(false);
-        emit musicPlayIndex(-1);
+        MusicApplication::instance()->musicPlayIndex(-1);
     }
 
     for(int i = m_songItems.count() - 1; i>2; --i)
@@ -295,7 +292,7 @@ void MusicSongsSummarizied::deleteRowItemAll(int index)
 
     if(m_songItems[id].m_songs.isEmpty() && m_currentPlayToolIndex == id)
     {
-        emit musicPlayIndex(-1);
+        MusicApplication::instance()->musicPlayIndex(-1);
     }
 }
 
@@ -407,7 +404,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     {
         ///when download finished just play it at once
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NETWORK_LIST);
-        emit musicPlayIndex(item->m_songs.count() - 1, 0);
+        MusicApplication::instance()->musicPlayIndex(item->m_songs.count() - 1, 0);
     }
 }
 
@@ -429,7 +426,7 @@ void MusicSongsSummarizied::addSongToPlayList(const QStringList &items)
     }
     /// just play it at once
     MusicSongsToolBoxWidget::setCurrentIndex(0);
-    emit musicPlayIndex(m_songItems[MUSIC_NORMAL_LIST].m_songs.count() - 1, 0);
+    MusicApplication::instance()->musicPlayIndex(m_songItems[MUSIC_NORMAL_LIST].m_songs.count() - 1, 0);
 }
 
 void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
@@ -586,7 +583,7 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     addItem(w, item->m_itemName);
     w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
-    connect(w, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndex(int,int)));
+    connect(w, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
     connect(w, SIGNAL(musicPlayOrder()), MusicApplication::instance(), SLOT(musicPlayOrder()));
     connect(w, SIGNAL(musicPlayRandom()), MusicApplication::instance(), SLOT(musicPlayRandom()));
     connect(w, SIGNAL(musicPlayListLoop()), MusicApplication::instance(), SLOT(musicPlayListLoop()));

@@ -134,7 +134,7 @@ void MusicSongsPlayedListWidget::listCellClicked(int row, int column)
 
     switch(column)
     {
-        case 2:
+        case 3:
             setDeleteItemAt();
             break;
         case 4:
@@ -152,7 +152,13 @@ void MusicSongsPlayedListWidget::musicPlayClicked()
 
 void MusicSongsPlayedListWidget::setDeleteItemAt()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
 
+    removeRow( currentRow() );
+    m_songLists->removeAt( currentRow() );
 }
 
 void MusicSongsPlayedListWidget::musicOpenFileDir()

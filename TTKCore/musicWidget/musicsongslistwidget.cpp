@@ -312,6 +312,9 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
 
     switch(column)
     {
+        case 0:
+            musicAddToPlayLater();
+            break;
         case 2:
             setDeleteItemAt();
             break;

@@ -166,6 +166,10 @@ public Q_SLOTS:
     /*!
      * Set current row index music to play.
      */
+    void musicPlayIndexClicked(int row, int col);
+    /*!
+     * Set current row index music to play.
+     */
     void musicPlayAnyTimeAt(int posValue);
     /*!
      * Set song speed and slow by given pos.

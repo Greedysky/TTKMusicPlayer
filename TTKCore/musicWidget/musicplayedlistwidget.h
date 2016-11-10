@@ -80,6 +80,14 @@ public Q_SLOTS:
     /*!
      * To popup menu.
      */
+    void setDeleteItemAt();
+    /*!
+     * Delete item from list at current row.
+     */
+    void setDeleteItemAll();
+    /*!
+     * Delete all items from list.
+     */
 
 protected:
     void initWidget();
@@ -99,8 +107,8 @@ protected:
      * Set play list count.
      */
 
-    MusicPlayedSongs m_songLists;
     QList<QLabel*> m_labels;
+    MusicPlayedSongs m_songLists;
     MusicSongsPlayedListWidget *m_playedListWidget;
 
     static MusicPlayedListWidget *m_instance;

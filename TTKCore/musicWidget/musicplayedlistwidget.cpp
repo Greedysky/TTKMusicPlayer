@@ -4,12 +4,13 @@
 #include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
+#include "musicapplication.h"
 
 #include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QToolButton>
-
+#include <QDebug>
 #define MAX_SIZE    3
 
 MusicPlayedListWidget *MusicPlayedListWidget::m_instance = nullptr;
@@ -55,20 +56,30 @@ void MusicPlayedListWidget::clear()
 
 void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
 {
+    MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
     {
         MusicPlayedSong playedSong = m_songLists[i];
         if(playedSong.m_toolIndex == toolIndex && playedSong.m_song == song)
         {
-            m_songLists.removeAt(i);
+            deletedRow << i;
         }
     }
-    m_playedListWidget->clear();
+    MusicObject::MIntList deleteList = deletedRow.toList();
+    qSort(deleteList);
+    for(int i=deleteList.count() - 1; i>=0; --i)
+    {
+        int index = deleteList[i];
+        m_songLists.removeAt(index);
+        m_playedListWidget->removeRow(index);
+    }
+
     updateSongsFileName();
 }
 
 void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
 {
+    MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
     {
         MusicPlayedSong playedSong = m_songLists[i];
@@ -78,12 +89,20 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
             {
                 if(playedSong.m_song == song)
                 {
-                    m_songLists.removeAt(i);
+                    deletedRow << i;
                 }
             }
         }
     }
-    m_playedListWidget->clear();
+    MusicObject::MIntList deleteList = deletedRow.toList();
+    qSort(deleteList);
+    for(int i=deleteList.count() - 1; i>=0; --i)
+    {
+        int index = deleteList[i];
+        m_songLists.removeAt(index);
+        m_playedListWidget->removeRow(index);
+    }
+
     updateSongsFileName();
 }
 
@@ -148,6 +167,28 @@ void MusicPlayedListWidget::popupMenu()
     m_menu->exec(pos);
 }
 
+void MusicPlayedListWidget::setDeleteItemAt()
+{
+
+}
+
+void MusicPlayedListWidget::setDeleteItemAll()
+{
+    if(m_songLists.isEmpty())
+    {
+        return;
+    }
+
+    int count = m_playedListWidget->rowCount();
+    for(int i=0; i<count; ++i)
+    {
+        m_playedListWidget->removeRow(0);
+    }
+    m_songLists.clear();
+    setPlayListCount(0);
+    MusicApplication::instance()->musicPlayIndex(-1);
+}
+
 void MusicPlayedListWidget::initWidget()
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -203,6 +244,7 @@ QWidget *MusicPlayedListWidget::createContainerWidget()
     deleteButton->setToolTip(tr("clearList"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     deleteButton->setStyleSheet(MusicUIObject::MKGTinyBtnDelete);
+    connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
 
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);

@@ -547,6 +547,21 @@ void MusicApplication::musicPlayIndex(int row, int)
     m_playControl = false;
 }
 
+void MusicApplication::musicPlayIndexClicked(int row, int col)
+{
+    musicPlayIndex(row, col);
+    if(m_currentMusicSongTreeIndex == m_musicSongTree->currentIndex())
+    {
+        ui->musicPlayedList->clear();
+        MusicSongItems items(m_musicSongTree->getMusicLists());
+        int index = m_musicSongTree->currentIndex();
+        if(0 <= index && index < items.count())
+        {
+            ui->musicPlayedList->append(index, items[index].m_songs);
+        }
+    }
+}
+
 void MusicApplication::musicPlayAnyTimeAt(int posValue)
 {
     //Drag the progress indicator to rewind or fast-forward through the current song
