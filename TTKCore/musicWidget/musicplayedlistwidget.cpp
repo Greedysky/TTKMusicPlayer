@@ -169,7 +169,7 @@ void MusicPlayedListWidget::popupMenu()
 
 void MusicPlayedListWidget::setDeleteItemAt()
 {
-
+    setPlayListCount(m_songLists.count());
 }
 
 void MusicPlayedListWidget::setDeleteItemAll()
@@ -219,6 +219,7 @@ void MusicPlayedListWidget::initWidget()
 QWidget *MusicPlayedListWidget::createContainerWidget()
 {
     QWidget *containWidget = new QWidget(this);
+    containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
     QVBoxLayout *layout = new QVBoxLayout(containWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -262,6 +263,8 @@ QWidget *MusicPlayedListWidget::createContainerWidget()
 
     m_playedListWidget = new MusicSongsPlayedListWidget(this);
     m_playedListWidget->setSongsFileName(&m_songLists);
+    connect(m_playedListWidget, SIGNAL(updateCountLabel()), SLOT(setDeleteItemAt()));
+
     layout->addWidget(topWidget);
     layout->addWidget(m_playedListWidget);
 

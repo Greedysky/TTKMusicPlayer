@@ -49,6 +49,10 @@ public:
      */
 
 Q_SIGNALS:
+    void updateCountLabel();
+    /*!
+     * Update count label.
+     */
 
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;

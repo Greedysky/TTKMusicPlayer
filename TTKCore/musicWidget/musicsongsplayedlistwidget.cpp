@@ -18,10 +18,7 @@ MusicSongsPlayedListWidget::MusicSongsPlayedListWidget(QWidget *parent)
     headerview->resizeSection(3, 25);
     headerview->resizeSection(4, 45);
 
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MLineEditStyle01 + \
-                  MusicUIObject::MTableWidgetStyle04);
-
+    setStyleSheet(MusicUIObject::MTableWidgetStyle01);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
     setMovedScrollBar( verticalScrollBar() );
 
@@ -152,13 +149,15 @@ void MusicSongsPlayedListWidget::musicPlayClicked()
 
 void MusicSongsPlayedListWidget::setDeleteItemAt()
 {
+    int index = currentRow();
     if(rowCount() == 0 || currentRow() < 0)
     {
         return;
     }
 
-    removeRow( currentRow() );
-    m_songLists->removeAt( currentRow() );
+    removeRow( index );
+    m_songLists->removeAt( index );
+    emit updateCountLabel();
 }
 
 void MusicSongsPlayedListWidget::musicOpenFileDir()

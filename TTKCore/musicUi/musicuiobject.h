@@ -103,7 +103,7 @@ namespace MusicUIObject
             background:rgba(0, 0, 0, 175);";
 
     const QString MBackgroundStyle20 = " \
-            background:#EDF8FE;";
+            background:#E1F5F5;";
 
 
 ///border
@@ -263,7 +263,7 @@ namespace MusicUIObject
 //////////////////////////////////////////////////////
     const QString MScrollBarStyle01 = " \
             QScrollBar{ background:#F0F0F0; width:8px; padding-top:0px; padding-bottom:0px;} \
-            QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF;} \
+            QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF; min-height: 30px;} \
             QScrollBar::handle:vertical::disabled{ background:#DBDBDB;} \
             QScrollBar::handle:vertical:hover{ background:#BBBBBB;} \
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;} \
