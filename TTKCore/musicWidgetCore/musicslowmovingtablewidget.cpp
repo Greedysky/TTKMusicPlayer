@@ -43,9 +43,11 @@ void MusicSlowMovingTableWidget::timeToAnimation()
     m_isFirstInit = true;
     m_animationTimer->stop();
 
-    m_deltaValue = (m_deltaValue/480.0)*(m_deltaValue < 0 ? m_deltaValue : -m_deltaValue + 120);
+    float delta = (rowCount() > 0) ? (height()*1.0/rowCount()) : 0;
+    m_deltaValue = (m_deltaValue/480.0)*(m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
+
     m_slowAnimation->setStartValue(m_priviousValue);
-    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue);
+    m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue*delta/30);
     m_slowAnimation->start();
 }
 
