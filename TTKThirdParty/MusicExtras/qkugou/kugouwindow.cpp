@@ -87,6 +87,8 @@ void KugouWindow::setUrl(const QString &url)
     {
         w->setUrl(url);
     }
+#else
+    Q_UNUSED(url);
 #endif
 }
 
@@ -118,6 +120,8 @@ void KugouWindow::kugouSongIndexChanged(int index)
     }
 #ifdef MUSIC_WEBKIT
     MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+#else
+    Q_UNUSED(d);
 #endif
 }
 
@@ -135,6 +139,8 @@ void KugouWindow::kugouRadioIndexChanged(int index)
     }
 #ifdef MUSIC_WEBKIT
     MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+#else
+    Q_UNUSED(d);
 #endif
 }
 
@@ -152,6 +158,8 @@ void KugouWindow::kugouMVIndexChanged(int index)
     }
 #ifdef MUSIC_WEBKIT
     MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+#else
+    Q_UNUSED(d);
 #endif
 }
 
@@ -208,6 +216,7 @@ void KugouWindow::createKugouSongWidget()
 
     kugouSongIndexChanged(0);
 #else
+    Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/lb_no_webkit_song"));
     layout->addWidget(pix);
@@ -260,6 +269,7 @@ void KugouWindow::createKugouRadioWidget()
 
     kugouRadioIndexChanged(0);
 #else
+    Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/lb_no_webkit_radio"));
     layout->addWidget(pix);
@@ -280,6 +290,7 @@ void KugouWindow::createKugouListWidget()
     view->setUrl(QUrl( KugouUrl::getListUrl() ));
     layout->addWidget(d->m_webView = view);
 #else
+    Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/lb_no_webkit_list"));
     layout->addWidget(pix);
@@ -332,6 +343,7 @@ void KugouWindow::createKugouMVWidget()
 
     kugouMVIndexChanged(0);
 #else
+    Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setPixmap(QPixmap(":/image/lb_no_webkit_mv"));
     layout->addWidget(pix);
@@ -351,6 +363,7 @@ void KugouWindow::createKugouSingleWidget()
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     layout->addWidget(d->m_webView = view);
 #else
+    Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
     pix->setStyleSheet("background:white;");
     layout->addWidget(pix);
