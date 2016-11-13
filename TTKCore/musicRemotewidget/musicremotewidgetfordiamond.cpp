@@ -41,6 +41,6 @@ void MusicRemoteWidgetForDiamond::paintEvent(QPaintEvent* event)
     pts.setPoints(4, 8, 80 , 80, 8, 154, 81, 80, 154);
     QPainterPath path;
     path.addPolygon(pts);
-    painter.fillPath(path,QBrush(QColor(0, 0, 0, 50)));
+    painter.fillPath(path, QBrush(QColor(0, 0, 0, 50)));
     painter.end();
 }

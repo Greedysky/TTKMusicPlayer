@@ -8,6 +8,7 @@
 #include "musicprogresswidget.h"
 #include "musiccryptographichash.h"
 #include "musicsongsearchonlinewidget.h"
+#include "musicplayedlistwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
 
@@ -247,6 +248,10 @@ void MusicSongsSummarizied::deleteRowItem(int index)
     MusicSongItem item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
+    foreach(const MusicSong &song, item.m_songs)
+    {
+        MusicPlayedListWidget::instance()->remove(item.m_itemIndex, song);
+    }
 
     foreach(const MusicSongItem &item, m_songItems)
     {

@@ -10,7 +10,7 @@
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QToolButton>
-#include <QDebug>
+
 #define MAX_SIZE    3
 
 MusicPlayedListWidget *MusicPlayedListWidget::m_instance = nullptr;
@@ -54,6 +54,16 @@ void MusicPlayedListWidget::clear()
     setPlayListCount(0);
 }
 
+QStringList MusicPlayedListWidget::getPlayedList() const
+{
+    QStringList lists;
+    foreach(const MusicPlayedSong &song, m_songLists)
+    {
+        lists << song.m_song.getMusicPath();
+    }
+    return lists;
+}
+
 void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
 {
     MusicObject::MIntSet deletedRow;
@@ -67,7 +77,7 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
     }
     MusicObject::MIntList deleteList = deletedRow.toList();
     qSort(deleteList);
-    for(int i=deleteList.count() - 1; i>=0; --i)
+    for(int i=deleteList.count()-1; i>=0; --i)
     {
         int index = deleteList[i];
         m_songLists.removeAt(index);
@@ -123,7 +133,7 @@ void MusicPlayedListWidget::append(int toolIndex, const MusicSongs &songs)
 
 void MusicPlayedListWidget::insert(int toolIndex, const MusicSong &song)
 {
-    insert(toolIndex, m_playedListWidget->getPlayRowIndex(), song);
+    insert(toolIndex, m_playedListWidget->getPlayRowIndex() + 1, song);
 }
 
 void MusicPlayedListWidget::insert(int toolIndex, int index, const MusicSong &song)
@@ -164,6 +174,7 @@ void MusicPlayedListWidget::popupMenu()
     pos.setY(pos.y() - m_containWidget->height() - 10);
     pos.setX(pos.x() - (m_containWidget->width() - width() - 3));
 
+    m_playedListWidget->selectPlayedRow();
     m_menu->exec(pos);
 }
 
@@ -219,7 +230,9 @@ void MusicPlayedListWidget::initWidget()
 QWidget *MusicPlayedListWidget::createContainerWidget()
 {
     QWidget *containWidget = new QWidget(this);
-    containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    containWidget->setObjectName("containWidget");
+    containWidget->setStyleSheet(QString("#%1{%2}").arg(containWidget->objectName())
+                                 .arg(MusicUIObject::MBackgroundStyle17));
     QVBoxLayout *layout = new QVBoxLayout(containWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);

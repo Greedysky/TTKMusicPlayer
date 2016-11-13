@@ -41,7 +41,11 @@ public:
 
     void selectRow(int index);
     /*!
-     * Select the current play row.
+     * Select the current play row by given index.
+     */
+    void selectPlayedRow();
+    /*!
+     * Select the current played row.
      */
     inline int getPlayRowIndex() const { return m_playRowIndex; }
     /*!
@@ -113,9 +117,25 @@ protected:
     /*!
      * Create more menu information.
      */
+    QString getCurrentSongPath() const;
+    /*!
+     * Get current song path.
+     */
+    QString getSongPath(int index) const;
+    /*!
+     * Get song path.
+     */
+    QString getCurrentSongName() const;
+    /*!
+     * Get current song name.
+     */
+    QString getSongName(int index) const;
+    /*!
+     * Get song name.
+     */
 
     int m_playRowIndex;
-    MusicPlayedSongs *m_songLists;
+    MusicPlayedSongs *m_musicSongs;
 
 };
 
