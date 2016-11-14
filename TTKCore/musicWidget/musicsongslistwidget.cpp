@@ -458,16 +458,31 @@ void MusicSongsListWidget::musicOpenFileDir()
 
 void MusicSongsListWidget::musicMakeRingWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicSongRingtoneMaker(this).exec();
 }
 
 void MusicSongsListWidget::musicTransformWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicTransformWidget(this).exec();
 }
 
 void MusicSongsListWidget::musicFileInformation()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicFileInformationWidget file(this);
     file.setFileInformation( getCurrentSongPath() );
     file.exec();
@@ -475,31 +490,61 @@ void MusicSongsListWidget::musicFileInformation()
 
 void MusicSongsListWidget::musicSongMovieFound()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
 }
 
 void MusicSongsListWidget::musicSongMovieFoundPy()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicVideoButtonSearched( getSongName(m_playRowIndex) );
 }
 
 void MusicSongsListWidget::musicAlbumFoundWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName() );
 }
 
 void MusicSongsListWidget::musicSimilarFoundWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );
 }
 
 void MusicSongsListWidget::musicSimilarFoundWidgetPy()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicSimilarFound( getSongName(m_playRowIndex) );
 }
 
 void MusicSongsListWidget::musicSongSharedWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicSongSharingWidget shareWidget(this);
     shareWidget.setSongName( getCurrentSongName() );
     shareWidget.exec();
@@ -507,6 +552,11 @@ void MusicSongsListWidget::musicSongSharedWidget()
 
 void MusicSongsListWidget::musicSongSharedWidgetPy()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicSongSharingWidget shareWidget(this);
     shareWidget.setSongName( getSongName(m_playRowIndex) );
     shareWidget.exec();
@@ -514,6 +564,11 @@ void MusicSongsListWidget::musicSongSharedWidgetPy()
 
 void MusicSongsListWidget::musicSongTransferWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicConnectTransferWidget transferWidget(this);
     transferWidget.redirectToCurrentSong(m_parentToolIndex, currentRow());
     transferWidget.exec();
@@ -521,6 +576,11 @@ void MusicSongsListWidget::musicSongTransferWidget()
 
 void MusicSongsListWidget::musicSongDownload()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(getCurrentSongName(), MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
@@ -566,6 +626,7 @@ void MusicSongsListWidget::musicAddToPlayLater()
     {
         return;
     }
+
     MusicPlayedListWidget::instance()->insert(m_parentToolIndex, (*m_musicSongs)[row]);
 }
 
@@ -576,6 +637,7 @@ void MusicSongsListWidget::musicAddToPlayedList()
     {
         return;
     }
+
     MusicPlayedListWidget::instance()->append(m_parentToolIndex, (*m_musicSongs)[row]);
 }
 

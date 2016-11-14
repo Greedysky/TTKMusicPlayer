@@ -54,6 +54,22 @@ void MusicPlayedListWidget::clear()
     setPlayListCount(0);
 }
 
+void MusicPlayedListWidget::resetToolIndex(const QList< std::pair<int, int> > &indexs)
+{
+    for(int i=indexs.count()-1; i>=0; --i)
+    {
+        std::pair<int, int> index = indexs[i];
+        for(int s=0; s<m_songLists.count(); ++s)
+        {
+            MusicPlayedSong *song = &m_songLists[s];
+            if(song->m_toolIndex == index.first)
+            {
+                song->m_toolIndex = index.second;
+            }
+        }
+    }
+}
+
 QStringList MusicPlayedListWidget::getPlayedList() const
 {
     QStringList lists;

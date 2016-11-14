@@ -41,14 +41,16 @@ public:
     /*!
      * Clear music data list.
      */
+    void resetToolIndex(const QList< std::pair<int, int> > &indexs);
+    /*!
+     * Get current played list.
+     */
+
     QStringList getPlayedList() const;
     /*!
      * Get current played list.
      */
-//    void resetToolIndex(int before, int after);
-//    /*!
-//     * Get current played list.
-//     */
+
     void remove(int toolIndex, const MusicSong &song);
     /*!
      * Remove music from data list.

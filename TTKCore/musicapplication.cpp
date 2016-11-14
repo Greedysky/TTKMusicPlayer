@@ -75,7 +75,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(stateChanged(MusicPlayer::State)), SLOT(stateChanged()));
     connect(m_musicList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
-    connect(m_musicList, SIGNAL(currentIndexChanged(int)), m_musicSongTree, SLOT(setMusicPlayCount(int)));
 
     connect(m_musicSongTree, SIGNAL(clearSearchText()), m_bottomAreaWidget, SLOT(clearSearchedText()));
     connect(m_musicSongTree, SIGNAL(updatePlayLists(QString)), m_musicList, SLOT(appendMedia(QString)));
@@ -258,7 +257,7 @@ void MusicApplication::stateChanged()
 void MusicApplication::showCurrentSong(int index)
 {
     QString name;
-    if( index > -1 ) //The list to end
+    if(index > -1) //The list to end
     {
         QStringList songsFileNames = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->getCurrentPlayToolIndex());
         if(songsFileNames.count() > index)
@@ -299,6 +298,7 @@ void MusicApplication::showCurrentSong(int index)
         positionChanged(0);
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
+    m_musicSongTree->setMusicPlayCount(index);
     ui->showCurrentSong->setText(name);
     ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
@@ -557,7 +557,9 @@ void MusicApplication::musicPlayIndexClicked(int row, int col)
         int index = m_musicSongTree->currentIndex();
         if(0 <= index && index < items.count())
         {
-            ui->musicPlayedList->append(index, items[index].m_songs);
+            MusicSongs songs(items[index].m_songs);
+            ui->musicPlayedList->append(index, songs);
+            ui->musicPlayedList->setCurrentIndex(songs[row].getMusicPath());
         }
     }
 }

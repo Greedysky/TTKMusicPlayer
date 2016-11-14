@@ -253,10 +253,14 @@ void MusicSongsSummarizied::deleteRowItem(int index)
         MusicPlayedListWidget::instance()->remove(item.m_itemIndex, song);
     }
 
+    QList< std::pair<int, int> > pairs;
     foreach(const MusicSongItem &item, m_songItems)
     {
-        item.m_itemObject->setParentToolIndex( foundMappingIndex(item.m_itemIndex) );
+        int mappedIndex = foundMappingIndex(item.m_itemIndex);
+        item.m_itemObject->setParentToolIndex(mappedIndex);
+        pairs << std::pair<int, int>(item.m_itemIndex, mappedIndex);
     }
+    MusicPlayedListWidget::instance()->resetToolIndex(pairs);
 }
 
 void MusicSongsSummarizied::deleteRowItems()
@@ -527,6 +531,7 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
     {
         return;
     }
+
     MusicSongs *songs = &m_songItems[m_currentPlayToolIndex].m_songs;
     if(!songs->isEmpty() && index < songs->count())
     {

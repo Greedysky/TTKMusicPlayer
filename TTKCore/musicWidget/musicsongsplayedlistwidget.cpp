@@ -7,6 +7,7 @@
 #include "musiccoreutils.h"
 #include "musicmessagebox.h"
 
+#include <qmath.h>
 #include <QMenu>
 #include <QScrollBar>
 #include <QContextMenuEvent>
@@ -74,7 +75,7 @@ void MusicSongsPlayedListWidget::updateSongsFileName(const MusicPlayedSongs &son
 
 void MusicSongsPlayedListWidget::selectRow(int index)
 {
-    if(index < 0)
+    if(index < 0 || rowCount() < 0)
     {
         return;
     }
@@ -86,12 +87,14 @@ void MusicSongsPlayedListWidget::selectRow(int index)
 
     QTableWidget::selectRow(index);
     m_playRowIndex = index;
+    verticalScrollBar()->setSliderPosition( ceil(height()*1.0/rowCount())*index );
+
     item(m_playRowIndex, 1)->setForeground(QColor(0, 191, 255));
 }
 
 void MusicSongsPlayedListWidget::selectPlayedRow()
 {
-    QTableWidget::selectRow(m_playRowIndex);
+    selectRow(m_playRowIndex);
 }
 
 void MusicSongsPlayedListWidget::listCellEntered(int row, int column)
@@ -117,16 +120,16 @@ void MusicSongsPlayedListWidget::listCellEntered(int row, int column)
     ///draw new table item state
     if((it = item(row, 2)) != nullptr)
     {
-        it->setIcon(QIcon(":/tiny/btn_unloved_hover"));
+        it->setIcon(QIcon(":/contextMenu/btn_download"));
     }
     if((it = item(row, 3)) != nullptr)
     {
-        it->setIcon(QIcon(":/tiny/btn_delete_hover"));
+        it->setIcon(QIcon(":/tiny/btn_delete_normal"));
     }
     if((it = item(row, 4)) != nullptr)
     {
         it->setText(QString());
-        it->setIcon(QIcon(":/tiny/btn_more_hover"));
+        it->setIcon(QIcon(":/tiny/btn_more_normal"));
     }
 
     if(column == 2 || column == 3 || column == 4)
@@ -145,6 +148,9 @@ void MusicSongsPlayedListWidget::listCellClicked(int row, int column)
     Q_UNUSED(row);
     switch(column)
     {
+        case 2:
+            musicSongDownload();
+            break;
         case 3:
             setDeleteItemAt();
             break;
@@ -192,6 +198,11 @@ void MusicSongsPlayedListWidget::musicOpenFileDir()
 
 void MusicSongsPlayedListWidget::musicFileInformation()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicFileInformationWidget file;
     file.setFileInformation( getCurrentSongPath() );
     file.exec();
@@ -199,21 +210,41 @@ void MusicSongsPlayedListWidget::musicFileInformation()
 
 void MusicSongsPlayedListWidget::musicSongMovieFound()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
 }
 
 void MusicSongsPlayedListWidget::musicAlbumFoundWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName() );
 }
 
 void MusicSongsPlayedListWidget::musicSimilarFoundWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );
 }
 
 void MusicSongsPlayedListWidget::musicSongSharedWidget()
 {
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
     MusicSongSharingWidget shareWidget;
     shareWidget.setSongName( getCurrentSongName() );
     shareWidget.exec();
@@ -233,7 +264,12 @@ void MusicSongsPlayedListWidget::musicSongTransferWidget()
 
 void MusicSongsPlayedListWidget::musicSongDownload()
 {
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget;
     download->setSongName(getCurrentSongName(), MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }
