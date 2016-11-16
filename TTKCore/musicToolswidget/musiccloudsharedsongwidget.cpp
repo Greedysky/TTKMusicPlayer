@@ -15,10 +15,11 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QPainter>
-#include <QBoxLayout>
-#include <QTimer>
 #include <QMenu>
+#include <QTimer>
+#include <QPainter>
+#include <QScrollBar>
+#include <QBoxLayout>
 #include <QFileDialog>
 #include <QPushButton>
 
@@ -38,6 +39,8 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     m_uploading = false;
     m_openFileWidget = nullptr;
     m_currentUploadIndex = 0;
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
 
     m_fileDialog = new MusicCloudFileManagerDialog(this);
     m_networkManager = new QNetworkAccessManager(this);

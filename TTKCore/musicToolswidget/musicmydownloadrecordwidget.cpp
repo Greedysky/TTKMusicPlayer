@@ -6,6 +6,7 @@
 #include "musiccoreutils.h"
 
 #include <QMenu>
+#include <QScrollBar>
 #include <QContextMenuEvent>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
@@ -17,6 +18,8 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     headerview->resizeSection(1, 170);
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
 
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);

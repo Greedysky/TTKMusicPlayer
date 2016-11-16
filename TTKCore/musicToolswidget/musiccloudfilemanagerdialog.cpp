@@ -3,6 +3,8 @@
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
 
+#include <QScrollBar>
+
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -12,6 +14,8 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     headerview->resizeSection(1, 300);
     headerview->resizeSection(2, 111);
     headerview->resizeSection(3, 50);
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
 
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_progressBarDelegate);

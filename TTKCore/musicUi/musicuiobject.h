@@ -272,6 +272,9 @@ namespace MusicUIObject
     const QString MScrollBarStyle02 = MScrollBarStyle01 + " \
             QScrollBar{ background:transparent;}";
 
+    const QString MScrollBarStyle03 = " \
+            QScrollBar{ background:rgba(255, 255, 255, %1);}";
+
 
 ///Label
 //////////////////////////////////////////////////////
