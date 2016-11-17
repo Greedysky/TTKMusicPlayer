@@ -1,18 +1,18 @@
-#include "musicnetworktestwidget.h"
-#include "ui_musicnetworktestwidget.h"
+#include "musicnetworkspeedtestwidget.h"
+#include "ui_musicnetworkspeedtestwidget.h"
 #include "musicuiobject.h"
-#include "musicnetworktestthread.h"
+#include "musicnetworkspeedtestthread.h"
 #include "musicnumberutils.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
-#include "musicnetworksuspensionwidget.h"
+#include "musicnetworkspeedsuspensionwidget.h"
 
 #include <QMenu>
 #include <QActionGroup>
 
-MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
+MusicNetworkSpeedTestWidget::MusicNetworkSpeedTestWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicNetworkTestWidget), m_thread(nullptr), m_testDownload(nullptr),
+      ui(new Ui::MusicNetworkSpeedTestWidget), m_thread(nullptr), m_testDownload(nullptr),
       m_suspension(nullptr)
 {
     ui->setupUi(this);
@@ -41,7 +41,7 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     connect(ui->suspensionButton, SIGNAL(clicked()), SLOT(suspensionOpen()));
     connect(ui->testButton, SIGNAL(clicked()), SLOT(networkTestStart()));
 
-    m_thread = new MusicNetworkTestThread(this);
+    m_thread = new MusicNetworkSpeedTestThread(this);
     connect(m_thread, SIGNAL(networkData(ulong,ulong)), SLOT(networkData(ulong,ulong)));
     m_thread->start();
 
@@ -51,7 +51,7 @@ MusicNetworkTestWidget::MusicNetworkTestWidget(QWidget *parent)
     connect(&m_testTimer, SIGNAL(timeout()), SLOT(networkTestStop()));
 }
 
-MusicNetworkTestWidget::~MusicNetworkTestWidget()
+MusicNetworkSpeedTestWidget::~MusicNetworkSpeedTestWidget()
 {
     delete m_actionGroup;
     m_testTimer.stop();
@@ -60,12 +60,12 @@ MusicNetworkTestWidget::~MusicNetworkTestWidget()
     delete ui;
 }
 
-QString MusicNetworkTestWidget::getClassName()
+QString MusicNetworkSpeedTestWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicNetworkTestWidget::settingButton()
+void MusicNetworkSpeedTestWidget::settingButton()
 {
     m_actionGroup = new QActionGroup(this);
     QMenu *menu = new QMenu(this);
@@ -81,7 +81,7 @@ void MusicNetworkTestWidget::settingButton()
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionTriggered(QAction*)));
 }
 
-void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
+void MusicNetworkSpeedTestWidget::networkData(ulong upload, ulong download)
 {
     m_totalUp += upload;
     m_totalDown += download;
@@ -103,15 +103,15 @@ void MusicNetworkTestWidget::networkData(ulong upload, ulong download)
     }
 }
 
-void MusicNetworkTestWidget::suspensionOpen()
+void MusicNetworkSpeedTestWidget::suspensionOpen()
 {
     delete m_suspension;
-    m_suspension = new MusicNetworkSuspensionWidget;
+    m_suspension = new MusicNetworkSpeedSuspensionWidget;
     m_suspension->setAvailableNewtworkNames(m_thread->getAvailableNewtworkNames());
     m_suspension->show();
 }
 
-void MusicNetworkTestWidget::networkTestStart()
+void MusicNetworkSpeedTestWidget::networkTestStart()
 {
     ui->testButton->setEnabled(false);
     m_testTimer.stop();
@@ -122,7 +122,7 @@ void MusicNetworkTestWidget::networkTestStart()
     m_testTimer.start();
 }
 
-void MusicNetworkTestWidget::actionTriggered(QAction *action)
+void MusicNetworkSpeedTestWidget::actionTriggered(QAction *action)
 {
     if(action->icon().isNull())
     {
@@ -156,7 +156,7 @@ void MusicNetworkTestWidget::actionTriggered(QAction *action)
     }
 }
 
-void MusicNetworkTestWidget::networkTestStop()
+void MusicNetworkSpeedTestWidget::networkTestStop()
 {
     delete m_testDownload;
     m_testDownload = nullptr;
@@ -171,7 +171,7 @@ void MusicNetworkTestWidget::networkTestStop()
     m_testAverage = 0;
 }
 
-void MusicNetworkTestWidget::show()
+void MusicNetworkSpeedTestWidget::show()
 {
     setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveWidget::show();

@@ -1,5 +1,5 @@
-#ifndef MUSICNETWORKTESTWIDGET_H
-#define MUSICNETWORKTESTWIDGET_H
+#ifndef MUSICNETWORKTESTSPEEDWIDGET_H
+#define MUSICNETWORKTESTSPEEDWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,29 +15,29 @@
 #include <QTimer>
 
 class QActionGroup;
-class MusicNetworkTestThread;
 class MusicDataDownloadThread;
-class MusicNetworkSuspensionWidget;
+class MusicNetworkSpeedTestThread;
+class MusicNetworkSpeedSuspensionWidget;
 
 const QString testUrl = "Mnk5YVlmSkd3VzB3WTYvMkFlNVZpa0pycmFaSEFyWTJuSDNNV1pvOXBWUWluVVduL0cveENGSHM1OGJnL0MxWmV2MlQ2ZEx5ak5sUDlWREtnSC9tSmxQOXRtY0N1ZHBXeWlzRmtaNXBMWUUzM09HOFYrYkJJdTZ6R3dUbDVyQmRpMERmYy9VVmVCeHUvdFhL";
 const QString testName = "tempCache.tt";
 
 namespace Ui {
-class MusicNetworkTestWidget;
+class MusicNetworkSpeedTestWidget;
 }
 
-/*! @brief The class of the network test widget.
+/*! @brief The class of the network speed test widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkTestWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkTestWidget(QWidget *parent = 0);
+    explicit MusicNetworkSpeedTestWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicNetworkTestWidget();
+    ~MusicNetworkSpeedTestWidget();
 
     static QString getClassName();
     /*!
@@ -78,14 +78,14 @@ protected:
      * Set button popup menu.
      */
 
-    Ui::MusicNetworkTestWidget *ui;
+    Ui::MusicNetworkSpeedTestWidget *ui;
     QTimer m_testTimer;
     ulong m_testAverage, m_totalUp, m_totalDown;
-    MusicNetworkTestThread *m_thread;
+    MusicNetworkSpeedTestThread *m_thread;
     MusicDataDownloadThread *m_testDownload;
-    MusicNetworkSuspensionWidget *m_suspension;
+    MusicNetworkSpeedSuspensionWidget *m_suspension;
     QActionGroup *m_actionGroup;
 
 };
 
-#endif // MUSICNETWORKTESTWIDGET_H
+#endif // MUSICNETWORKTESTSPEEDWIDGET_H

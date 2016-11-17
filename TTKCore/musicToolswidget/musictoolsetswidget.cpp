@@ -4,7 +4,7 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
-#include "musicnetworktestwidget.h"
+#include "musicnetworkspeedtestwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
@@ -168,7 +168,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                (new MusicNetworkTestWidget(this))->show();
+                (new MusicNetworkSpeedTestWidget(this))->show();
                 break;
             }
         case 9:

@@ -1,4 +1,4 @@
-#include "musicnetworktestthread.h"
+#include "musicnetworkspeedtestthread.h"
 #include "musicobject.h"
 
 #include <QProcess>
@@ -14,7 +14,7 @@
 # include <arpa/inet.h>
 #endif
 
-MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
+MusicNetworkSpeedTestThread::MusicNetworkSpeedTestThread(QObject *parent)
     : QThread(parent)
 {
     m_run = false;
@@ -24,7 +24,7 @@ MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
 #endif
 }
 
-MusicNetworkTestThread::~MusicNetworkTestThread()
+MusicNetworkSpeedTestThread::~MusicNetworkSpeedTestThread()
 {
     if(m_process)
     {
@@ -34,12 +34,12 @@ MusicNetworkTestThread::~MusicNetworkTestThread()
     stopAndQuitThread();
 }
 
-QString MusicNetworkTestThread::getClassName()
+QString MusicNetworkSpeedTestThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicNetworkTestThread::stopAndQuitThread()
+void MusicNetworkSpeedTestThread::stopAndQuitThread()
 {
     if(isRunning())
     {
@@ -49,7 +49,7 @@ void MusicNetworkTestThread::stopAndQuitThread()
     quit();
 }
 
-void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
+void MusicNetworkSpeedTestThread::setAvailableNewtworkNames(const QStringList &names)
 {
     m_names = names;
 #ifdef Q_OS_UNIX
@@ -68,12 +68,12 @@ void MusicNetworkTestThread::setAvailableNewtworkNames(const QStringList &names)
 #endif
 }
 
-QStringList MusicNetworkTestThread::getAvailableNewtworkNames() const
+QStringList MusicNetworkSpeedTestThread::getAvailableNewtworkNames() const
 {
     return m_names;
 }
 
-QStringList MusicNetworkTestThread::getNewtworkNames() const
+QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
 {
     QStringList names;
 #ifdef Q_OS_WIN
@@ -121,7 +121,7 @@ QStringList MusicNetworkTestThread::getNewtworkNames() const
     return names;
 }
 
-void MusicNetworkTestThread::outputRecieved()
+void MusicNetworkSpeedTestThread::outputRecieved()
 {
     while(m_process->canReadLine())
     {
@@ -138,13 +138,13 @@ void MusicNetworkTestThread::outputRecieved()
     }
 }
 
-void MusicNetworkTestThread::start()
+void MusicNetworkSpeedTestThread::start()
 {
     m_run = true;
     QThread::start();
 }
 
-void MusicNetworkTestThread::run()
+void MusicNetworkSpeedTestThread::run()
 {
 #ifdef Q_OS_WIN
     PMIB_IFTABLE m_pTable = nullptr;

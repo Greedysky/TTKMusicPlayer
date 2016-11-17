@@ -1,5 +1,5 @@
-#include "musicnetworksuspensionwidget.h"
-#include "musicnetworktestthread.h"
+#include "musicnetworkspeedsuspensionwidget.h"
+#include "musicnetworkspeedtestthread.h"
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
 
@@ -9,7 +9,7 @@
 #include <QActionGroup>
 #include <QPainter>
 
-MusicNetworkSuspensionWidget::MusicNetworkSuspensionWidget(QWidget *parent)
+MusicNetworkSpeedSuspensionWidget::MusicNetworkSpeedSuspensionWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_thread(nullptr)
 {
     resize(200, 25);
@@ -31,24 +31,24 @@ MusicNetworkSuspensionWidget::MusicNetworkSuspensionWidget(QWidget *parent)
     m_actionGroup = new QActionGroup(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionTriggered(QAction*)));
 
-    m_thread = new MusicNetworkTestThread(this);
+    m_thread = new MusicNetworkSpeedTestThread(this);
     connect(m_thread, SIGNAL(networkData(ulong,ulong)), SLOT(networkData(ulong,ulong)));
     m_thread->start();
 
 }
 
-MusicNetworkSuspensionWidget::~MusicNetworkSuspensionWidget()
+MusicNetworkSpeedSuspensionWidget::~MusicNetworkSpeedSuspensionWidget()
 {
     delete m_actionGroup;
     delete m_thread;
 }
 
-QString MusicNetworkSuspensionWidget::getClassName()
+QString MusicNetworkSpeedSuspensionWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicNetworkSpeedSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractMoveWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
@@ -73,7 +73,7 @@ void MusicNetworkSuspensionWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicNetworkSuspensionWidget::paintEvent(QPaintEvent *event)
+void MusicNetworkSpeedSuspensionWidget::paintEvent(QPaintEvent *event)
 {
     MusicAbstractMoveWidget::paintEvent(event);
 
@@ -106,19 +106,19 @@ void MusicNetworkSuspensionWidget::paintEvent(QPaintEvent *event)
     painter.drawText(100 + 20 + 5, 0, upWidth2, height(), Qt::AlignCenter, m_download);
 }
 
-void MusicNetworkSuspensionWidget::setAvailableNewtworkNames(const QStringList &names)
+void MusicNetworkSpeedSuspensionWidget::setAvailableNewtworkNames(const QStringList &names)
 {
     m_thread->setAvailableNewtworkNames(names);
 }
 
-void MusicNetworkSuspensionWidget::networkData(ulong upload, ulong download)
+void MusicNetworkSpeedSuspensionWidget::networkData(ulong upload, ulong download)
 {
     m_upload = MusicUtils::Number::speed2Label(upload);
     m_download = MusicUtils::Number::speed2Label(download);
     update();
 }
 
-void MusicNetworkSuspensionWidget::actionTriggered(QAction *action)
+void MusicNetworkSpeedSuspensionWidget::actionTriggered(QAction *action)
 {
     if(action->icon().isNull())
     {

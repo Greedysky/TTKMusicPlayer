@@ -1,5 +1,5 @@
-#ifndef MUSICNETWORKTESTTHREAD_H
-#define MUSICNETWORKTESTTHREAD_H
+#ifndef MUSICNETWORKSPEEDTESTTHREAD_H
+#define MUSICNETWORKSPEEDTESTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,18 +15,18 @@
 
 class QProcess;
 
-/*! @brief The class of the network test thread.
+/*! @brief The class of the network speed test thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkTestThread(QObject *parent = 0);
+    explicit MusicNetworkSpeedTestThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicNetworkTestThread();
+    ~MusicNetworkSpeedTestThread();
 
     static QString getClassName();
     /*!
@@ -78,4 +78,4 @@ protected:
 
 };
 
-#endif // MUSICNETWORKTESTTHREAD_H
+#endif // MUSICNETWORKSPEEDTESTTHREAD_H

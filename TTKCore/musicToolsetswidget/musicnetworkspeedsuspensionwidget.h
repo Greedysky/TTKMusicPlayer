@@ -1,5 +1,5 @@
-#ifndef MUSICNETWORKSUSPENSIONWIDGET_H
-#define MUSICNETWORKSUSPENSIONWIDGET_H
+#ifndef MUSICNETWORKSPEEDSUSPENSIONWIDGET_H
+#define MUSICNETWORKSPEEDSUSPENSIONWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,20 +12,20 @@
 #include "musicabstractmovewidget.h"
 
 class QActionGroup;
-class MusicNetworkTestThread;
+class MusicNetworkSpeedTestThread;
 
-/*! @brief The class of the network suspension widget.
+/*! @brief The class of the network speed suspension widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkSuspensionWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedSuspensionWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkSuspensionWidget(QWidget *parent = 0);
+    explicit MusicNetworkSpeedSuspensionWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicNetworkSuspensionWidget();
+    ~MusicNetworkSpeedSuspensionWidget();
 
     static QString getClassName();
     /*!
@@ -53,10 +53,10 @@ protected:
      * Override the widget event.
      */
 
-    MusicNetworkTestThread *m_thread;
+    MusicNetworkSpeedTestThread *m_thread;
     QString m_upload, m_download;
     QActionGroup *m_actionGroup;
 
 };
 
-#endif // MUSICNETWORKSUSPENSIONWIDGET_H
+#endif // MUSICNETWORKSPEEDSUSPENSIONWIDGET_H
