@@ -56,7 +56,6 @@ INCLUDEPATH += \
     ../ \
     ../TTKCore/musicCore \
     ../TTKCore/musicCore/utils \
-    ../TTKCore/musicCore/utils \
     ../TTKCore/musicLrcmanager \
     ../TTKCore/musicNetwork \
     ../TTKCore/musicToolsetswidget/core \
