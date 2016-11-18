@@ -28,8 +28,10 @@ public:
         Gif_Rice_Font_Black,        ///gif rice font black
         Gif_Rice_Font_Black_Big,    ///gif rice font black big
         Gif_Hourglass_White,        ///gif hourglass white
-        Gif_Radio_Blue              ///gif radio blue
+        Gif_Radio_Blue,             ///gif radio blue
+        Gif_Check_Blue              ///gif check blue
     };
+
     explicit MusicGifLabelWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
@@ -66,6 +68,10 @@ public:
     /*!
      * Stop the gif.
      */
+    inline bool isRunning() const { return m_isRunning; }
+    /*!
+     * Get current running state.
+     */
 
 public Q_SLOTS:
     void timeout();
@@ -77,6 +83,7 @@ protected:
     int m_index;
     Type m_type;
     QTimer *m_timer;
+    bool m_isRunning;
 
 };
 
