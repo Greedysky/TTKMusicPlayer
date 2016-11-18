@@ -40,7 +40,7 @@ namespace MusicUIObject
             color:rgb(160, 99, 11);";
 
     const QString MColorStyle08 = " \
-            color:rgb(255, 0, 0);";
+            color:#80B7F1;";
 
 
 ///Background

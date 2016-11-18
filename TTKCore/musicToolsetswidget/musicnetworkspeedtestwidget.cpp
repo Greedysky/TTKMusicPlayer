@@ -5,6 +5,7 @@
 #include "musicnumberutils.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
+#include "musicnetworkthread.h"
 #include "musicnetworkspeedsuspensionwidget.h"
 
 #include <QMenu>
@@ -117,8 +118,11 @@ void MusicNetworkSpeedTestWidget::networkTestStart()
     m_testTimer.stop();
     delete m_testDownload;
     m_testDownload = new MusicDataDownloadThread(MusicCryptographicHash::decryptData(testUrl, URL_KEY), testName,
-                             MusicDownLoadThreadAbstract::Download_BigBG, this);
-    m_testDownload->startToDownload();
+                         MusicDownLoadThreadAbstract::Download_BigBG, this);
+    if(M_NETWORK_PTR->isOnline())
+    {
+        m_testDownload->startToDownload();
+    }
     m_testTimer.start();
 }
 

@@ -258,7 +258,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         MusicTime::timeSRand();
         QLabel *numberLabel = new QLabel(topRightWidget);
         numberLabel->setAlignment(Qt::AlignCenter);
-        numberLabel->setStyleSheet(MusicUIObject::MFontStyle06 + MusicUIObject::MColorStyle08);
+        numberLabel->setStyleSheet(MusicUIObject::MFontStyle06 + MusicUIObject::MColorStyle05);
         int number = qrand()%10;
         numberLabel->setText(QString("%1.%2").arg(number).arg(qrand()%10));
         topRightLayout->addWidget(numberLabel, 0, 0);

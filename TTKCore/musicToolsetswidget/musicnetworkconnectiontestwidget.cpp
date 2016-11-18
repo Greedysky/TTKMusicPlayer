@@ -9,26 +9,57 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *iconLabel = new QLabel(this);
-    QLabel *nameText = new QLabel(this);
-    QLabel *stateText = new QLabel(this);
+    m_iconLabel = new QLabel(this);
+    m_nameText = new QLabel(this);
+    m_stateText = new QLabel(this);
 
-    iconLabel->setFixedWidth(32);
-    iconLabel->setPixmap(QPixmap(":/tiny/lb_question"));
-    nameText->setFixedWidth(340);
-    nameText->setText("fffff");
-    stateText->setText("dfgdfg");
+    m_iconLabel->setFixedWidth(32);
+    m_nameText->setFixedWidth(340);
 
-    layout->addWidget(iconLabel);
-    layout->addWidget(nameText);
-    layout->addWidget(stateText);
+    layout->addWidget(m_iconLabel);
+    layout->addWidget(m_nameText);
+    layout->addWidget(m_stateText);
+
+    stop();
 
     setLayout(layout);
 }
 
+QString MusicNetworkConnectionItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicNetworkConnectionItem::setText(const QString &text)
+{
+    m_nameText->setText(text);
+}
+
+void MusicNetworkConnectionItem::start()
+{
+    m_stateText->setText(tr("Detecting"));
+    m_stateText->setStyleSheet(MusicUIObject::MColorStyle08);
+}
+
+void MusicNetworkConnectionItem::stop()
+{
+    m_iconLabel->setPixmap(QPixmap(":/tiny/lb_question"));
+
+    m_stateText->setText(tr("Not Detected"));
+    m_stateText->setStyleSheet(MusicUIObject::MColorStyle03);
+}
+
+void MusicNetworkConnectionItem::testFinshed()
+{
+    m_stateText->setText(tr("Detected"));
+    m_stateText->setStyleSheet(MusicUIObject::MColorStyle07);
+}
+
 MusicNetworkConnectionItem::~MusicNetworkConnectionItem()
 {
-
+    delete m_iconLabel;
+    delete m_nameText;
+    delete m_stateText;
 }
 
 
@@ -47,6 +78,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    ui->iconLabel->setType(MusicGifLabelWidget::Gif_Check_Blue);
     ui->textLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
@@ -55,20 +87,30 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 
     MusicNetworkConnectionItem *item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    ui->verticalLayout->addWidget(item);
-    item = new MusicNetworkConnectionItem(this);
-    m_connectionItems << item;
-    ui->verticalLayout->addWidget(item);
-    item = new MusicNetworkConnectionItem(this);
-    m_connectionItems << item;
-    ui->verticalLayout->addWidget(item);
-    item = new MusicNetworkConnectionItem(this);
-    m_connectionItems << item;
-    ui->verticalLayout->addWidget(item);
-    item = new MusicNetworkConnectionItem(this);
-    m_connectionItems << item;
+    item->setText(tr("11111"));
     ui->verticalLayout->addWidget(item);
 
+    item = new MusicNetworkConnectionItem(this);
+    m_connectionItems << item;
+    item->setText(tr("22222"));
+    ui->verticalLayout->addWidget(item);
+
+    item = new MusicNetworkConnectionItem(this);
+    m_connectionItems << item;
+    item->setText(tr("33333"));
+    ui->verticalLayout->addWidget(item);
+
+    item = new MusicNetworkConnectionItem(this);
+    m_connectionItems << item;
+    item->setText(tr("44444"));
+    ui->verticalLayout->addWidget(item);
+
+    item = new MusicNetworkConnectionItem(this);
+    m_connectionItems << item;
+    item->setText(tr("55555"));
+    ui->verticalLayout->addWidget(item);
+
+    connect(ui->startButton, SIGNAL(clicked()), SLOT(buttonStateChanged()));
 }
 
 MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
@@ -87,6 +129,29 @@ QString MusicNetworkConnectionTestWidget::getClassName()
 
 void MusicNetworkConnectionTestWidget::show()
 {
+    ui->iconLabel->timeout();
     setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveWidget::show();
+}
+
+void MusicNetworkConnectionTestWidget::buttonStateChanged()
+{
+    if(!ui->iconLabel->isRunning())
+    {
+        ui->iconLabel->start();
+        ui->startButton->setText(tr("stopTest"));
+        foreach(MusicNetworkConnectionItem *item, m_connectionItems)
+        {
+            item->start();
+        }
+    }
+    else
+    {
+        ui->iconLabel->stop();
+        ui->startButton->setText(tr("startTest"));
+        foreach(MusicNetworkConnectionItem *item, m_connectionItems)
+        {
+            item->stop();
+        }
+    }
 }

@@ -24,6 +24,34 @@ public:
      */
     ~MusicNetworkConnectionItem();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void setText(const QString &text);
+    /*!
+     * Set label text name.
+     */
+
+    void start();
+    /*!
+     * Start to test network.
+     */
+    void stop();
+    /*!
+     * Stop to test network.
+     */
+
+private Q_SLOTS:
+    void testFinshed();
+    /*!
+     * Test network finished.
+     */
+
+protected:
+    QLabel *m_iconLabel, *m_nameText, *m_stateText;
+
 };
 
 
@@ -53,6 +81,10 @@ public Q_SLOTS:
     void show();
     /*!
      * Override show function.
+     */
+    void buttonStateChanged();
+    /*!
+     * Button state changed.
      */
 
 protected:
