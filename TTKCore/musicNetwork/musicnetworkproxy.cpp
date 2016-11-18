@@ -86,10 +86,25 @@ void MusicNetworkProxy::applyProxy()
 {
     QNetworkProxy proxy;
     proxy.setType(MStatic_cast(QNetworkProxy::ProxyType, m_type));
-    if(!m_hostName.isEmpty()) proxy.setHostName(m_hostName);
-    if( m_port != -1) proxy.setPort(m_port);
-    if(!m_user.isEmpty()) proxy.setUser(m_user);
-    if(!m_pwd.isEmpty()) proxy.setPassword(m_pwd);
+    if(!m_hostName.isEmpty())
+    {
+        proxy.setHostName(m_hostName);
+    }
+
+    if( m_port != -1)
+    {
+        proxy.setPort(m_port);
+    }
+
+    if(!m_user.isEmpty())
+    {
+        proxy.setUser(m_user);
+    }
+
+    if(!m_pwd.isEmpty())
+    {
+        proxy.setPassword(m_pwd);
+    }
     QNetworkProxy::setApplicationProxy(proxy);
 }
 

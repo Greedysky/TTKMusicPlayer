@@ -11,6 +11,8 @@
 
 #include "musicabstractmovewidget.h"
 
+class MusicNetworkTestThread;
+
 /*! @brief The class of the network connection item Widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -33,6 +35,10 @@ public:
     /*!
      * Set label text name.
      */
+    void setUrl(const QString &url);
+    /*!
+     * Set current test url.
+     */
 
     void start();
     /*!
@@ -43,13 +49,20 @@ public:
      * Stop to test network.
      */
 
+Q_SIGNALS:
+    void networkConnectionTestChanged();
+    /*!
+     * Network connection test changed.
+     */
+
 private Q_SLOTS:
-    void testFinshed();
+    void testFinshed(bool state);
     /*!
      * Test network finished.
      */
 
 protected:
+    MusicNetworkTestThread *m_testThread;
     QLabel *m_iconLabel, *m_nameText, *m_stateText;
 
 };
@@ -86,8 +99,13 @@ public Q_SLOTS:
     /*!
      * Button state changed.
      */
+    void testFinshed();
+    /*!
+     * Test network finished.
+     */
 
 protected:
+    int m_countIndex;
     Ui::MusicNetworkConnectionTestWidget *ui;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
 
