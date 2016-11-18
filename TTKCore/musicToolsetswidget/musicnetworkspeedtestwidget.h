@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicglobaldefine.h"
 #include "musicabstractmovewidget.h"
 
 #include <QTimer>
@@ -37,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicNetworkSpeedTestWidget();
+    virtual ~MusicNetworkSpeedTestWidget();
 
     static QString getClassName();
     /*!

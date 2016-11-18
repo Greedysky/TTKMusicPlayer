@@ -104,6 +104,7 @@
         <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
         <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
         <file alias="lb_grabwindow">../TTKResource/tools/lb_grabwindow.png</file>
+        <file alias="lb_connections">../TTKResource/tools/lb_connections.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -446,6 +447,7 @@
         <file alias="btn_effect_on">../TTKResource/tiny/btn_effect_on.png</file>
         <file alias="btn_share_hover">../TTKResource/tiny/btn_share_hover.png</file>
         <file alias="btn_share_normal">../TTKResource/tiny/btn_share_normal.png</file>
+        <file alias="lb_question">../TTKResource/tiny/lb_question.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>

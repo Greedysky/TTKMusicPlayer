@@ -5,6 +5,7 @@
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
 #include "musicnetworkspeedtestwidget.h"
+#include "musicnetworkconnectiontestwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
@@ -98,6 +99,10 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("speed"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_connections")
+                                                ,tr("connections"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
                      item = new QListWidgetItem(QIcon(":/tools/lb_gain")
                                                 ,tr("gain"), this);
     item->setSizeHint(QSize(80, 90));
@@ -173,20 +178,25 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 9:
             {
-                MusicVolumeGainWidget(this).exec();
+                (new MusicNetworkConnectionTestWidget(this))->show();
                 break;
             }
         case 10:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
+                MusicVolumeGainWidget(this).exec();
                 break;
             }
         case 11:
             {
-                MusicSoundTouchWidget(this).exec();
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
         case 12:
+            {
+                MusicSoundTouchWidget(this).exec();
+                break;
+            }
+        case 13:
             {
                 (new MusicGrabWidget)->show();
                 break;

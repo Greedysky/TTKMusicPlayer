@@ -25,7 +25,7 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicNetworkSpeedSuspensionWidget();
+    virtual ~MusicNetworkSpeedSuspensionWidget();
 
     static QString getClassName();
     /*!

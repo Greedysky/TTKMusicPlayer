@@ -36,7 +36,8 @@ HEADERS  += \
     $$PWD/musicsongringtonemakerwidget.h \
     $$PWD/musicidentifysongswidget.h \
     $$PWD/musicnetworkspeedtestwidget.h \
-    $$PWD/musicnetworkspeedsuspensionwidget.h
+    $$PWD/musicnetworkspeedsuspensionwidget.h \
+    $$PWD/musicnetworkconnectiontestwidget.h
 
 }
 
@@ -63,6 +64,7 @@ SOURCES += \
     $$PWD/musicsongringtonemakerwidget.cpp \
     $$PWD/musicidentifysongswidget.cpp \
     $$PWD/musicnetworkspeedsuspensionwidget.cpp \
-    $$PWD/musicnetworkspeedtestwidget.cpp
+    $$PWD/musicnetworkspeedtestwidget.cpp \
+    $$PWD/musicnetworkconnectiontestwidget.cpp
 
 }
