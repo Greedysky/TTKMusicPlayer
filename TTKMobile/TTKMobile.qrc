@@ -107,6 +107,7 @@
         <file alias="player_btn_tan">MobileImages/player_btn_tan.png</file>
         <file alias="radio_play_pause">MobileImages/radio_play_pause.png</file>
         <file alias="radio_play_play">MobileImages/radio_play_play.png</file>
+        <file alias="anchor_in_cell_point">MobileImages/anchor_in_cell_point.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>

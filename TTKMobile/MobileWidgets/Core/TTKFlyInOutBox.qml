@@ -75,10 +75,11 @@ Rectangle {
         duration: 400
         easing.type: Easing.InOutQuad
     }
-    Timer{
-        id: timer;
-        interval: 800;
-        repeat: false;
+
+    Timer {
+        id: timer
+        interval: 800
+        repeat: false
 
         onTriggered: {
             flyOutAnimation.start();

@@ -133,6 +133,12 @@ Item {
                 anchors.fill: parent
                 clip: true
 
+                onFlickingVerticallyChanged: {
+                    locationButton.visible = true;
+                    timer.stop();
+                    timer.start();
+                }
+
                 delegate: Component {
                     Rectangle {
                         id: wrapper
@@ -232,6 +238,49 @@ Item {
 
                 model: ListModel {
                     id: playlistModel
+                }
+            }
+        }
+
+        Timer {
+            id: timer
+            interval: 3000
+            repeat: false
+
+            onTriggered: {
+                disappearAnimation.start();
+            }
+        }
+
+        PropertyAnimation {
+            id: disappearAnimation
+            target: locationButton
+            property: "opacity"
+            duration: 1000
+            from: 1
+            to: 0
+            onStopped: {
+                locationButton.visible = false;
+                locationButton.opacity = 1;
+            }
+        }
+
+        TTKImageButton {
+            id: locationButton
+            visible: false
+            source: "qrc:/image/anchor_in_cell_point"
+            Layout.preferredWidth: ttkGlobal.dpWidth(50)
+            Layout.preferredHeight: ttkGlobal.dpHeight(50)
+            anchors {
+                right: parent.right
+                rightMargin: ttkGlobal.dpWidth(50)
+                bottom: parent.bottom
+                bottomMargin: ttkGlobal.dpHeight(10)
+            }
+            onPressed: {
+                var delta = ttkGlobal.dpHeight(70)*itemListView.currentIndex;
+                if(delta >= 0) {
+                    itemListView.contentY = delta;
                 }
             }
         }

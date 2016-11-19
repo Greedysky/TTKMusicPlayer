@@ -70,6 +70,7 @@ HEADERS += \
     ../TTKCore/musicCore/utils/musicnumberutils.h \
     ../TTKCore/musicCore/musicsong.h \
     ../TTKCore/musicCore/musictime.h \
+    ../TTKCore/musicCore/musicformats.h \
     ../TTKCore/musicCore/musicsettingmanager.h \
     ../TTKCore/musicCore/musicabstractxml.h \
     ../TTKCore/musicCore/musiccryptographichash.h \
@@ -97,6 +98,7 @@ SOURCES += \
     ../TTKCore/musicCore/utils/musicnumberutils.cpp \
     ../TTKCore/musicCore/musicsong.cpp \
     ../TTKCore/musicCore/musictime.cpp \
+    ../TTKCore/musicCore/musicformats.cpp \
     ../TTKCore/musicCore/musicabstractxml.cpp \
     ../TTKCore/musicCore/musiccryptographichash.cpp \
     ../TTKCore/musicCore/musicconnectionpool.cpp \
