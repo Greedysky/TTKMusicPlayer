@@ -1,5 +1,5 @@
 #include "musiclocalsongsmanagerthread.h"
-#include "musicplayer.h"
+#include "musicformats.h"
 #include "musiccoreutils.h"
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
@@ -25,7 +25,7 @@ void MusicLocalSongsManagerThread::run()
     {
         if(m_run)
         {
-            list << MusicUtils::Core::findFile(path, MusicPlayer::supportFormatsFilterString());
+            list << MusicUtils::Core::findFile(path, MusicFormats::supportFormatsFilterString());
         }
     }
     ///The name and path search ended when sending the corresponding

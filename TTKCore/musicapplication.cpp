@@ -4,6 +4,7 @@
 #include "musicsongssummarizied.h"
 #include "musicxmlconfigmanager.h"
 #include "musicplayer.h"
+#include "musicformats.h"
 #include "musicplaylist.h"
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
@@ -162,7 +163,7 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
         return;
     }
 
-    QStringList files(items), sfx = MusicPlayer::supportFormatsString();
+    QStringList files(items), sfx = MusicFormats::supportFormatsString();
     QString suffix;
     int failedCount = 0;
 
@@ -447,7 +448,7 @@ void MusicApplication::musicImportSongsOnlyFile()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters( MusicPlayer::supportFormatsFilterDialogString() );
+    dialog.setNameFilters( MusicFormats::supportFormatsFilterDialogString() );
 
     if(dialog.exec())
     {
@@ -466,7 +467,7 @@ void MusicApplication::musicImportSongsOnlyDir()
         QStringList fileList;
         foreach(const QFileInfo &info, file)
         {
-            if( MusicPlayer::supportFormatsString().contains(info.suffix().toLower()) )
+            if( MusicFormats::supportFormatsString().contains(info.suffix().toLower()) )
             {
                fileList << info.absoluteFilePath();
             }

@@ -1,5 +1,5 @@
 #include "musicregeditmanager.h"
-#include "musicplayer.h"
+#include "musicformats.h"
 
 #include <QSettings>
 #include <QStringList>
@@ -36,7 +36,7 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
-    QStringList types = MusicPlayer::supportFormatsString();
+    QStringList types = MusicFormats::supportFormatsString();
     for(int i=0; i<types.count(); ++i)
     {
         if(!currentNodeHasExist(types[i]))

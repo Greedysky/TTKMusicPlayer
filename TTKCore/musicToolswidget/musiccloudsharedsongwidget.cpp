@@ -6,7 +6,7 @@
 #include "musicnumberdefine.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
-#include "musicplayer.h"
+#include "musicformats.h"
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 #include "musictoastlabel.h"
@@ -282,7 +282,7 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicPlayer::supportFormatsFilterString()))
+        foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicFormats::supportFormatsFilterString()))
         {
             UploadData data;
             data.m_path = file.absoluteFilePath().trimmed();

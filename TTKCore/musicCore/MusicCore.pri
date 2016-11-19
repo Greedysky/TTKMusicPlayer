@@ -21,6 +21,7 @@ HEADERS  += \
     $$PWD/utils/musicstringutils.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
+    $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
     $$PWD/musicglobalhotkey.h \
@@ -47,6 +48,7 @@ SOURCES += \
     $$PWD/utils/musicwidgetutils.cpp \
     $$PWD/utils/musicnumberutils.cpp \
     $$PWD/utils/musicstringutils.cpp \
+    $$PWD/musicformats.cpp \
     $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \

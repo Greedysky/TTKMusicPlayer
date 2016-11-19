@@ -1,6 +1,6 @@
 #include "musicsongtag.h"
 #include "musictime.h"
-#include "musicobject.h"
+#include "musicformats.h"
 
 #include <QStringList>
 #include <QPluginLoader>
@@ -49,20 +49,15 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     QPluginLoader loader;
     QString suffix = QFileInfo(path).suffix().toLower();
 
-    if(suffix == "aac")
+    MusicObject::MStringsListMap formats(MusicFormats::supportFormatsStringMap());
+    foreach(const QString &key, formats.keys())
     {
-        QString path = getNotSupportedPluginPath("aac");
-        loader.setFileName(path);
-    }
-    else if(suffix == "mid")
-    {
-        QString path = getNotSupportedPluginPath("wildmidi");
-        loader.setFileName(path);
-    }
-    else if(suffix == "mp2")
-    {
-        QString path = getNotSupportedPluginPath("ffmpeg");
-        loader.setFileName(path);
+        if(formats.value(key).contains(suffix))
+        {
+            QString path = getNotSupportedPluginPath(key);
+            loader.setFileName(path);
+            break;
+        }
     }
 
     QObject *obj = loader.instance();

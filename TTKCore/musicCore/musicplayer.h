@@ -114,19 +114,6 @@ public:
      * Get current music enhanced effect.
      */
 
-    static QStringList supportFormatsString();
-    /*!
-     * Get player supported formats.
-     */
-    static QStringList supportFormatsFilterString();
-    /*!
-     * Get player supported formats filter.
-     */
-    static QStringList supportFormatsFilterDialogString();
-    /*!
-     * Get player supported formats filter dialog.
-     */
-
 Q_SIGNALS:
     void stateChanged(MusicPlayer::State newState);
     /*!
