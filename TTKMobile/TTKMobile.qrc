@@ -108,6 +108,7 @@
         <file alias="radio_play_pause">MobileImages/radio_play_pause.png</file>
         <file alias="radio_play_play">MobileImages/radio_play_play.png</file>
         <file alias="anchor_in_cell_point">MobileImages/anchor_in_cell_point.png</file>
+        <file alias="ic_start_recognize_bottom">MobileImages/ic_start_recognize_bottom.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>
@@ -138,6 +139,7 @@
         <file>MobileWidgets/TTKMusicListsMorePage.qml</file>
         <file>MobileWidgets/TTKMusicListsScanPage.qml</file>
         <file>MobileWidgets/TTKMusicDownloadListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicDownloadYunListsPage.qml</file>
         <file>MobileWidgets/TTKMusicRecentListsPage.qml</file>
         <file>MobileWidgets/TTKMusicLovestListsPage.qml</file>
         <file>MobileWidgets/TTKMusicIdentifyListsPage.qml</file>

@@ -1,5 +1,5 @@
 #include "ttkfilesearchcore.h"
-#include "ttkmusicplayer.h"
+#include "musicformats.h"
 
 #include <QDir>
 #if defined (Q_OS_ANDROID)
@@ -64,7 +64,7 @@ void TTKFileSearchCore::run()
             {
                 if(m_run)
                 {
-                    list << findFile(path, TTKMusicPlayer::supportFormatsFilterString());
+                    list << findFile(path, MusicFormats::supportFormatsFilterString());
                 }
             }
             ///The name and path search ended when sending the corresponding

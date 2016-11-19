@@ -28,6 +28,7 @@ Item {
             playlistModel.append(info);
         }
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
+        updateItemListView();
     }
 
     onXChanged: {
@@ -40,6 +41,17 @@ Item {
     function removeItemFromList() {
         playlistModel.remove(functionClickedIndex);
         TTK_APP.removeMusicSongs(functionClickedIndex);
+        updateItemListView();
+    }
+
+    function updateItemListView() {
+        if(playlistModel.count === 0) {
+            noCreateItem.visible = true;
+            itemListView.visible = false;
+        }else {
+            noCreateItem.visible = false;
+            itemListView.visible = true;
+        }
     }
 
     Connections {
@@ -56,6 +68,8 @@ Item {
                     };
                     playlistModel.append(info);
                 }
+                itemListView.currentIndex = TTK_APP.getCurrentIndex();
+                updateItemListView();
             }
         }
         onCurrentIndexChanged: {
@@ -63,6 +77,7 @@ Item {
         }
         onRemoveItemFromPlayerCenter: {
             playlistModel.remove(index);
+            updateItemListView();
         }
     }
 
@@ -127,6 +142,16 @@ Item {
             width: ttkMainWindow.width
             height: ttkMainStackView.height - mainMenubar.height
             color: ttkTheme.color_white
+
+            TTKMainFunctionItem {
+                id: noCreateItem
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: "qrc:/image/ic_start_recognize_bottom"
+                mainTitle: qsTr("空空如也")
+                subTitle: qsTr("试试去搜索更多的歌曲吧")
+                mainTitleSize: ttkGlobal.dpHeight(150)/8
+            }
 
             ListView {
                 id: itemListView

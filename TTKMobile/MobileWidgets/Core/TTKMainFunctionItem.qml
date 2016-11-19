@@ -17,6 +17,7 @@ Rectangle {
     property alias source: image.source
     property alias mainTitle: mainTitle.text
     property alias subTitle: subTitle.text
+    property int mainTitleSize: height/8
 
     signal pressed
 
@@ -48,7 +49,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: parent.height/8
+            font.pixelSize: mainTitleSize
         }
 
         Text {
