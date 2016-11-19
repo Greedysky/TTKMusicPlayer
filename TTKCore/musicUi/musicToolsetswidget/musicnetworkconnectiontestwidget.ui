@@ -73,11 +73,14 @@
       <x>120</x>
       <y>15</y>
       <width>325</width>
-      <height>31</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
      <string>如果遇到无法搜索,下载等不能正常试用的情况下, 建议您进行网络检测定位问题。</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
     <property name="wordWrap">
      <bool>true</bool>

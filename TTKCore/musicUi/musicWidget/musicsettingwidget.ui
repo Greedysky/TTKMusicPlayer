@@ -1989,6 +1989,19 @@ font-weight:bold;</string>
       <string>测试</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="netCheckTypeButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>240</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>连接测试</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QWidget" name="functionArea" native="true">

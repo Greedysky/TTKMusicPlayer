@@ -199,6 +199,10 @@ public Q_SLOTS:
     /*!
      * Test current network connection available.
      */
+    void checkNetworkConnection();
+    /*!
+     * Check current network connection available.
+     */
     void testNetworkConnectionStateChanged(const QString &name);
     /*!
      * Test current network connection available changed.

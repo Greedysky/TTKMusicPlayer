@@ -4,6 +4,7 @@
 #include "musicstringutils.h"
 #include "musicnetworkproxy.h"
 #include "musicnetworkoperator.h"
+#include "musicnetworkconnectiontestwidget.h"
 #include "musicmessagebox.h"
 #include "musicglobalhotkey.h"
 #include "musicapplicationobject.h"
@@ -357,12 +358,15 @@ void MusicSettingWidget::initNetworkWidget()
     ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     ui->netConnectionTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->netCheckTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    ui->netCheckTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") <<
                  tr("NoProxy") << tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
 
     connect(ui->proxyTypeTestButton, SIGNAL(clicked()), SLOT(testNetworkProxy()));
     connect(ui->netConnectionTypeButton, SIGNAL(clicked()), SLOT(testNetworkConnection()));
+    connect(ui->netCheckTypeButton, SIGNAL(clicked()), SLOT(checkNetworkConnection()));
     connect(ui->proxyTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(setNetworkProxyControl(int)));
     setNetworkProxyControl(2);
     ui->proxyTypeComboBox->setCurrentIndex(2);
@@ -847,6 +851,12 @@ void MusicSettingWidget::testNetworkConnection()
     MusicNetworkOperator *netOpr = new MusicNetworkOperator(this);
     connect(netOpr, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
     netOpr->startToOperator();
+}
+
+void MusicSettingWidget::checkNetworkConnection()
+{
+    MusicNetworkConnectionTestWidget *w = new MusicNetworkConnectionTestWidget(this);
+    w->show();
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
