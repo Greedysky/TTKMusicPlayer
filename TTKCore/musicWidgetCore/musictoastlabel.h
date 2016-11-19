@@ -64,6 +64,11 @@ public:
      * Get context font bold.
      */
 
+    void popup(QWidget *parent);
+    /*!
+     * Popup the toast widget in parent widget.
+     */
+
 public Q_SLOTS:
     void setText(const QString &text);
     /*!

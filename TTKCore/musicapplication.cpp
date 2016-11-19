@@ -629,9 +629,7 @@ void MusicApplication::musicAddSongToLovestListAt()
     toast->setFontSize(25);
     toast->setFontMargin(20, 20);
     toast->setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
-    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
-    toast->move(globalPoint.x() + (width() - toast->width())/2, globalPoint.y() + (height() - toast->height())/2);
-    toast->show();
+    toast->popup(this);
 }
 
 void MusicApplication::musicWindowConciseChanged()

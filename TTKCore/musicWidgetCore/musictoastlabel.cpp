@@ -63,15 +63,23 @@ int MusicToastLabel::getFontSize() const
     return m_font.pointSize();
 }
 
+void MusicToastLabel::setBold(bool bold)
+{
+    m_font.setBold(bold);
+    setFont(m_font);
+}
+
 bool MusicToastLabel::bold() const
 {
     return m_font.bold();
 }
 
-void MusicToastLabel::setBold(bool bold)
+void MusicToastLabel::popup(QWidget *parent)
 {
-    m_font.setBold(bold);
-    setFont(m_font);
+    QPoint globalPoint = parent->mapToGlobal(QPoint(0, 0));
+    move( globalPoint.x() + (parent->width() - width())/2,
+          globalPoint.y() + (parent->height() - height())/2);
+    show();
 }
 
 void MusicToastLabel::setText(const QString &text)

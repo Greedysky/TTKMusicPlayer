@@ -102,11 +102,7 @@ void MusicSongsSummarizied::importOtherMusicSongs(QStringList &filelist)
     toast->setFontSize(15);
     toast->setFontMargin(20, 20);
     toast->setText(tr("Import Music Songs Done!"));
-
-    QPoint globalPoint = mapToGlobal(QPoint(0, 0));
-    toast->move(globalPoint.x() + (width() - toast->width())/2,
-                globalPoint.y() + (height() - toast->height())/2);
-    toast->show();
+    toast->popup(this);
 }
 
 QStringList MusicSongsSummarizied::getMusicSongsFileName(int index) const

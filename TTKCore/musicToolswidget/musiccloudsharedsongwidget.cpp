@@ -458,11 +458,7 @@ void MusicCloudSharedSongWidget::getKey()
         toast->setFontSize(15);
         toast->setFontMargin(20, 20);
         toast->setText(tr("Init Error!"));
-
-        QPoint globalPoint = mapToGlobal(QPoint(0, 0));
-        toast->move(globalPoint.x() + (width() - toast->width())/2,
-                    globalPoint.y() + (height() - toast->height())/2);
-        toast->show();
+        toast->popup(this);
     }
 }
 

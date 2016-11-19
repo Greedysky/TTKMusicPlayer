@@ -585,7 +585,7 @@ font-weight:bold;</string>
       <rect>
        <x>30</x>
        <y>280</y>
-       <width>130</width>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -1636,7 +1636,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="sizeTipLabel">
      <property name="geometry">
       <rect>
-       <x>175</x>
+       <x>177</x>
        <y>220</y>
        <width>40</width>
        <height>20</height>
@@ -1649,7 +1649,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeInSpinBox">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>72</x>
        <y>218</y>
        <width>101</width>
        <height>22</height>
@@ -1672,7 +1672,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeOutSpinBox">
      <property name="geometry">
       <rect>
-       <x>255</x>
+       <x>257</x>
        <y>218</y>
        <width>101</width>
        <height>22</height>
@@ -1695,7 +1695,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="sizeTipLabel2">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>362</x>
        <y>220</y>
        <width>40</width>
        <height>20</height>
