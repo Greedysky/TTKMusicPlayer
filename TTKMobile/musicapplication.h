@@ -98,6 +98,10 @@ public:
     /*!
      * Get play music media path.
      */
+    Q_INVOKABLE int mediaPlayCount(int index) const;
+    /*!
+     * Get play music counts.
+     */
     Q_INVOKABLE QString artistImagePath() const;
     /*!
      * Get play music artist image's path.

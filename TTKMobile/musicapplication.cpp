@@ -248,6 +248,18 @@ QString MusicApplication::mediaPath(int tool, int index) const
     return (index < 0 || index >= paths.count()) ? QString() : paths[index];
 }
 
+int MusicApplication::mediaPlayCount(int index) const
+{
+    MusicSongItems items(m_songsSummarizied->getMusicLists());
+    MusicSongs songs(items[MUSIC_RECENT_LIST].m_songs);
+    if(index < 0 || index >= songs.count())
+    {
+        return 1;
+    }
+
+    return songs[index].getMusicPlayCount();
+}
+
 QString MusicApplication::artistImagePath() const
 {
     QString name = MusicUtils::Core::artistName( getCurrentFileName() );

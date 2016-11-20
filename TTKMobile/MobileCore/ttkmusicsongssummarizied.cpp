@@ -70,10 +70,21 @@ void TTKMusicSongsSummarizied::setRecentMusicSongs(int index)
     }
 
     MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
-    MusicSong music( songs[index].getMusicPath() );
+    MusicSong music( songs[index] );
     if(!item->m_songs.contains(music))
     {
         item->m_songs << music;
+    }
+
+    MusicSongs *musics = &item->m_songs;
+    for(int i=0; i<musics->count(); ++i)
+    {
+        MusicSong *m = &(*musics)[i];
+        if(music == *m)
+        {
+            m->setMusicPlayCount(m->getMusicPlayCount() + 1);
+            break;
+        }
     }
 }
 

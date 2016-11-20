@@ -23,9 +23,11 @@ Item {
         for(var i=0; i<names.length; ++i) {
             var info = {
                 title: names[i],
-                artist: artists[i]
+                artist: artists[i],
+                playCount: TTK_APP.mediaPlayCount(i)
             }
             playlistModel.append(info);
+
         }
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
         updateItemListView();
@@ -170,7 +172,8 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicRecentListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
+                            width: ttkMusicRecentListsPage.width - iconArea.width - ttkGlobal.dpHeight(60) -
+                                   playCountArea.width - playCountTextArea.width
                             anchors {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
@@ -190,9 +193,43 @@ Item {
                                 top: titleArea.bottom
                                 topMargin: ttkGlobal.dpHeight(5)
                                 left: parent.left
-                                leftMargin: ttkGlobal.dpHeight(20)
+                                leftMargin: ttkGlobal.dpWidth(20)
                             }
                             source: "qrc:/image/ic_playlist_normal"
+                        }
+
+                        Rectangle {
+                            height: wrapper.height
+                            width: playCountArea.width
+                            anchors {
+                                top: parent.top
+                                topMargin: ttkGlobal.dpHeight(10)
+                                right: moreFuncArea.left
+                                rightMargin: ttkGlobal.dpWidth(10) + ttkGlobal.dpWidth(playCountTextArea.width)
+                            }
+
+                            Image {
+                                id: playCountArea
+                                width: parent.height*2/3
+                                height: parent.height*2/3
+                                anchors {
+                                    top: parent.top
+                                    topMargin: ttkGlobal.dpHeight(5)
+                                }
+                                source: "qrc:/image/icon_headphone_small_light"
+                            }
+
+                            Text {
+                                id: playCountTextArea
+                                anchors {
+                                    left: playCountArea.right
+                                    top: parent.top
+                                    topMargin: ttkGlobal.dpHeight(20)
+                                }
+                                verticalAlignment: Qt.AlignVCenter
+                                color: ttkTheme.color_gray
+                                text: playCount
+                            }
                         }
 
                         TTKImageButton {
