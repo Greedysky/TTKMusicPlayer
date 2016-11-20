@@ -110,6 +110,12 @@
         <file alias="anchor_in_cell_point">MobileImages/anchor_in_cell_point.png</file>
         <file alias="ic_start_recognize_bottom">MobileImages/ic_start_recognize_bottom.png</file>
         <file alias="icon_headphone_small_light">MobileImages/icon_headphone_small_light.png</file>
+        <file alias="action_lyric_adjust_normal">MobileImages/action_lyric_adjust_normal.png</file>
+        <file alias="action_lyric_search_normal">MobileImages/action_lyric_search_normal.png</file>
+        <file alias="action_lyric_report_normal">MobileImages/action_lyric_report_normal.png</file>
+        <file alias="action_lyric_desktop_normal">MobileImages/action_lyric_desktop_normal.png</file>
+        <file alias="action_lyric_fontsize_normal">MobileImages/action_lyric_fontsize_normal.png</file>
+        <file alias="action_icon_submit">MobileImages/action_icon_submit.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>
@@ -135,6 +141,7 @@
         <file>MobileWidgets/TTKOnlineSearchPage.qml</file>
         <file>MobileWidgets/TTKMusicBar.qml</file>
         <file>MobileWidgets/TTKMusicPlayerCenterPage.qml</file>
+        <file>MobileWidgets/TTKMusicPlayerCenterLrcPage.qml</file>
         <file>MobileWidgets/TTKMusicPlayerCenterSettingPage.qml</file>
         <file>MobileWidgets/TTKMusicListsPage.qml</file>
         <file>MobileWidgets/TTKMusicListsMorePage.qml</file>
@@ -147,6 +154,7 @@
         <file>MobileWidgets/TTKMVDownloadListsPage.qml</file>
         <file>MobileWidgets/TTKScanFolderPage.qml</file>
         <file>MobileWidgets/TTKMusicLyricPage.qml</file>
+        <file>MobileWidgets/TTKMusicLyricStylePage.qml</file>
         <file>MobileWidgets/TTKMusicDTSEffectPage.qml</file>
         <file>MobileWidgets/TTKMusicEqualizerPage.qml</file>
         <file>MobileWidgets/TTKMusicSongDownloadPage.qml</file>

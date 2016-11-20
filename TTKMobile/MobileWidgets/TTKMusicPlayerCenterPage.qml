@@ -123,6 +123,10 @@ Item {
         text: TTK_APP.mediaName( TTK_APP.mediaName() );
     }
 
+    TTKMusicPlayerCenterLrcPage {
+        id: ttkMusicPlayerCenterLrcPage
+    }
+
     TTKMusicSongDownloadPage {
         id: ttkMusicSongDownloadPage
         text: TTK_APP.mediaName( TTK_APP.mediaName() );
@@ -346,7 +350,7 @@ Item {
                     height: ttkGlobal.dpHeight(40)
                     source: "qrc:/image/player_btn_lrc"
                     onPressed: {
-                        console.log("clicked");
+                        ttkMusicPlayerCenterLrcPage.visible = true;
                     }
                 }
             }
