@@ -1,6 +1,11 @@
 #include "ttkmusiclyricmodel.h"
 #include "musiclrcanalysis.h"
 #include "musicnumberdefine.h"
+#include "musicstringutils.h"
+#include "musicsettingmanager.h"
+
+#include <QColor>
+#include <QDebug>
 
 TTKMusicLyricModel::TTKMusicLyricModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -82,6 +87,34 @@ void TTKMusicLyricModel::setSongSpeedAndSlow(qint64 position)
 {
     m_lrcAnalysis->setSongSpeedAndSlow(position);
     emit currentIndexChanged(m_lrcAnalysis->getCurrentIndex());
+}
+
+void TTKMusicLyricModel::setCenterColor(int index, const QString &color)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, index);
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced,
+                            MusicUtils::String::writeColorConfig(QColor(color)));
+    initParameter();
+}
+
+void TTKMusicLyricModel::setCenterSize(int index, int size)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, index);
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, size);
+    initParameter();
+}
+
+void TTKMusicLyricModel::initParameter()
+{
+    QString colorStr = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
+    QColor color = MusicUtils::String::readColorConfig(colorStr).first();
+    int size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+
+    int cIndex = M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt();
+    int sIndex = M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt();
+
+    emit currentParameterIndexChanged(cIndex, sIndex);
+    emit currentParameterChanged(color, size);
 }
 
 void TTKMusicLyricModel::clear()

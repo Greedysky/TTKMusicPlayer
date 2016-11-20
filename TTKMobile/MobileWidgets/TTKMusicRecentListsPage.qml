@@ -205,7 +205,7 @@ Item {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
                                 right: moreFuncArea.left
-                                rightMargin: ttkGlobal.dpWidth(10) + ttkGlobal.dpWidth(playCountTextArea.width)
+                                rightMargin: ttkGlobal.dpWidth(playCountTextArea.width)
                             }
 
                             Image {

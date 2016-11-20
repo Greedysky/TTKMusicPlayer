@@ -20,6 +20,12 @@ void TTKMusicConfigManager::writeXMLConfig()
     int equalizerIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
+    int lrcColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt();
+    int lrcSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    int lrcTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt();
+    QString lrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
+
+    ///////////////////////////////////////////////////////////////////////////
     //Open wirte file
     if( !writeConfig(COFIGPATH_FULL) )
     {
@@ -31,6 +37,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     //Class A
     QDomElement music = writeDom(musicPlayer, "music");
     QDomElement equalizer = writeDom(musicPlayer, "equalizer");
+    QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
     //Class B
     writeDomElement(music, "playMode", "value", playModeChoiced);
     writeDomElement(music, "playVolume", "value", volumeChoiced);
@@ -42,6 +49,12 @@ void TTKMusicConfigManager::writeXMLConfig()
     writeDomElement(equalizer, "equalizerEnable", "value", equalizerEnableChoiced);
     writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
     writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
+
+    ///////////////////////////////////////////////////////////////////////////
+    writeDomElement(showLrc, "lrcColor", "value", lrcColorChoiced);
+    writeDomElement(showLrc, "lrcSize", "value", lrcSizeChoiced);
+    writeDomElement(showLrc, "lrcType", "value", lrcTypeChoiced);
+    writeDomElement(showLrc, "lrcFgColor", "value", lrcFgColorChoiced);
 
     ///////////////////////////////////////////////////////////////////////////
     //Write to file

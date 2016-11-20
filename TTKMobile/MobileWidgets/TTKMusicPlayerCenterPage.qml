@@ -114,6 +114,7 @@ Item {
 
     onXChanged: {
         ttkMusicPlayerCenterSettingPage.visible = false;
+        ttkMusicPlayerCenterLrcPage.visible = false;
         ttkMusicSongDownloadPage.visible = false;
         ttkMusicSongSharedPage.visible = false;
     }

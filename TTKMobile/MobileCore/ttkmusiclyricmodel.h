@@ -57,10 +57,31 @@ public:
      * Set song speed and slow by given time, return new time.
      */
 
+    Q_INVOKABLE void setCenterColor(int index, const QString &color);
+    /*!
+     * Set center color.
+     */
+    Q_INVOKABLE void setCenterSize(int index, int size);
+    /*!
+     * Set center size.
+     */
+    Q_INVOKABLE void initParameter();
+    /*!
+     * Init the first setting parameter from configure.
+     */
+
 Q_SIGNALS:
     void currentIndexChanged(int index);
     /*!
      * Current play index changed emit.
+     */
+    void currentParameterChanged(const QColor &color, int size);
+    /*!
+     * Current setting parameter data changed.
+     */
+    void currentParameterIndexChanged(int cIndex, int sIndex);
+    /*!
+     * Current setting parameter index changed.
      */
 
 public Q_SLOTS:

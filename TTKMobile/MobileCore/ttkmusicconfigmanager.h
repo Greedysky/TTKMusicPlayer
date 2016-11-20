@@ -76,6 +76,27 @@ public:
      * Read Equalizer Value Config.
      */
 
+    inline int readShowLrcColor() const
+    { return readXmlAttributeByTagNameValue("lrcColor").toInt(); }
+    /*!
+     * Read Show Lrc Color Config.
+     */
+    inline int readShowLrcSize() const
+    { return readXmlAttributeByTagNameValue("lrcSize").toInt(); }
+    /*!
+     * Read Show Lrc Size Config.
+     */
+    inline int readShowLrcType() const
+    { return readXmlAttributeByTagNameValue("lrcType").toInt(); }
+    /*!
+     * Read Show Lrc Type Config.
+     */
+    inline QString readShowLrcFgColor() const
+    { return readXmlAttributeByTagNameValue("lrcFgColor");}
+    /*!
+     * Read Show Lrc Fg Color Config.
+     */
+
     void readSystemLastPlayIndexConfig(QStringList &key) const;
    /*!
     * Read System Last Play Index Config.

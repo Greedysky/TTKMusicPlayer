@@ -11,4 +11,10 @@
         <equalizerIndex value="0"/>
         <equalizerValue value="0,-12,-12,-9,-6,-3,-12,-9,-6,-3,-12"/>
     </equalizer>
+    <inlineLrc>
+        <lrcColor value="2"/>
+        <lrcSize value="32"/>
+        <lrcType value="4"/>
+        <lrcFgColor value="255,255,0"/>
+    </inlineLrc>
 </TTKMusicPlayer>

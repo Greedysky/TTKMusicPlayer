@@ -68,6 +68,7 @@ HEADERS += \
     musicmobileglobaldefine.h \
     ../TTKCore/musicCore/utils/musiccoreutils.h \
     ../TTKCore/musicCore/utils/musicnumberutils.h \
+    ../TTKCore/musicCore/utils/musicstringutils.h \
     ../TTKCore/musicCore/musicsong.h \
     ../TTKCore/musicCore/musictime.h \
     ../TTKCore/musicCore/musicformats.h \
@@ -96,6 +97,7 @@ SOURCES += \
     musicapplication.cpp \
     ../TTKCore/musicCore/utils/musiccoreutils.cpp \
     ../TTKCore/musicCore/utils/musicnumberutils.cpp \
+    ../TTKCore/musicCore/utils/musicstringutils.cpp \
     ../TTKCore/musicCore/musicsong.cpp \
     ../TTKCore/musicCore/musictime.cpp \
     ../TTKCore/musicCore/musicformats.cpp \

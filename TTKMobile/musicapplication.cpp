@@ -422,6 +422,11 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
 
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, xml.readShowLrcColor());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced, xml.readShowLrcFgColor());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, xml.readShowLrcType());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, xml.readShowLrcSize());
+
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, 0);
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, 1);
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, 1);

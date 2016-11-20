@@ -19,6 +19,14 @@ Rectangle {
     height: parent.height
     color: ttkTheme.color_alpha_lv12
 
+    Connections {
+        target: TTK_LRC
+        onCurrentParameterIndexChanged: {
+            sizeListView.currentIndex = sIndex;
+            colorListView.currentIndex = cIndex;
+        }
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -59,13 +67,14 @@ Rectangle {
                     Layout.preferredWidth: ttkMusicLyricStylePage.width - sizeLabelArea.width
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     orientation: ListView.Horizontal
-                    spacing: ttkGlobal.dpHeight(20)
+                    spacing: ttkGlobal.dpHeight(5)
                     clip: true
                     boundsBehavior: Flickable.StopAtBounds
 
                     delegate: Rectangle {
                         width: ttkGlobal.dpWidth(50)
-                        height: ttkGlobal.dpHeight(30)
+                        height: ttkGlobal.dpHeight(50)
+                        color: ttkTheme.color_alpha_lv8
 
                         Text {
                             width: parent.width
@@ -73,7 +82,7 @@ Rectangle {
                             verticalAlignment: Qt.AlignVCenter
                             horizontalAlignment: Qt.AlignHCenter
                             text: "A"
-                            font.pixelSize: itemSize
+                            font.pixelSize: ttkGlobal.dpHeight( itemSize )
                             color: parent.ListView.isCurrentItem ? ttkTheme.color_green : ttkTheme.color_black
                         }
 
@@ -88,6 +97,7 @@ Rectangle {
                                     case 4:
                                     case 5:
                                         sizeListView.currentIndex = index;
+                                        TTK_LRC.setCenterSize(index, itemSize);
                                         break;
                                     default: break;
                                 }
@@ -140,7 +150,7 @@ Rectangle {
                     Layout.preferredWidth: ttkMusicLyricStylePage.width - colorLabelArea.width
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     orientation: ListView.Horizontal
-                    spacing: ttkGlobal.dpHeight(30)
+                    spacing: ttkGlobal.dpHeight(17)
                     clip: true
                     boundsBehavior: Flickable.StopAtBounds
 
@@ -148,7 +158,7 @@ Rectangle {
                         id: wrapper
                         width: ttkGlobal.dpWidth(40)
                         height: ttkGlobal.dpHeight(40)
-                        radius: 20
+                        radius: ttkGlobal.dpHeight(20)
 
                         Rectangle {
                             width: parent.width
@@ -173,6 +183,7 @@ Rectangle {
                                     case 4:
                                     case 5:
                                         colorListView.currentIndex = index;
+                                        TTK_LRC.setCenterColor(index, itemColor);
                                         break;
                                     default: break;
                                 }
