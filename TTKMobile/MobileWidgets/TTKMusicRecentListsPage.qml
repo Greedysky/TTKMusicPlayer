@@ -54,7 +54,15 @@ Item {
     Connections {
         target: TTK_APP
         onCurrentIndexChanged: {
-            itemListView.currentIndex = TTK_APP.getCurrentIndex();
+            var index = TTK_APP.getCurrentIndex();
+            itemListView.currentIndex = index;
+            if(index !== -1) {
+                playlistModel.set(index, {
+                    title: TTK_APP.mediaNames(ttkTheme.music_recent_list)[index],
+                    artist: TTK_APP.mediaArtists(ttkTheme.music_recent_list)[index],
+                    playCount: TTK_APP.mediaPlayCount(index)
+                });
+            }
         }
         onRemoveItemFromPlayerCenter: {
             playlistModel.remove(index);

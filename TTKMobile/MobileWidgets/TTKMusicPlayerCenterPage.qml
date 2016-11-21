@@ -296,7 +296,7 @@ Item {
                                 from: 0
                                 to: 360
                                 direction: RotationAnimation.Clockwise
-                                duration: 16000
+                                duration: 40000
                                 loops: Animation.Infinite
                             }
                         }
@@ -323,7 +323,7 @@ Item {
                 TTKMusicLyricPage {
                     id: musicLrcShow
                     anchors.centerIn: parent
-                    width: parent.width
+                    width: parent.width - ttkGlobal.dpHeight(50)
                     height: parent.height - ttkGlobal.dpHeight(40)
                     color: ttkTheme.color_alpha_lv0
 

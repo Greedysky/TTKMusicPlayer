@@ -5,7 +5,6 @@
 #include "musicsettingmanager.h"
 
 #include <QColor>
-#include <QDebug>
 
 TTKMusicLyricModel::TTKMusicLyricModel(QObject *parent)
     : QAbstractListModel(parent)

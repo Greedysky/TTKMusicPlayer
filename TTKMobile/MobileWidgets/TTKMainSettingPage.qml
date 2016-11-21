@@ -17,9 +17,11 @@ Item {
     height: parent.height
 
     function timeToQuitApp(time) {
-        firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
-                                imageSubSource: "qrc:/image/switch_on_normal",
-                                title: qsTr("定时关闭")});
+        firstListModel.set(3, {
+            imageSource: "qrc:/image/more_icon_timer",
+            imageSubSource: "qrc:/image/switch_on_normal",
+            title: qsTr("定时关闭")
+        });
         var beforeTime = Date.parse(new Date);
         var afterTime = new Date(beforeTime + time*1000*60);
         ttkFlyInOutBox.text = qsTr("设置成功，") +
@@ -163,9 +165,11 @@ Item {
                                         case 2: break;
                                         case 3:
                                             if(TTK_APP.timeToQuitAppIsSet()) {
-                                                firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
-                                                                            imageSubSource: "qrc:/image/switching_off",
-                                                                            title: qsTr("定时关闭") });
+                                                firstListModel.set(3, {
+                                                    imageSource: "qrc:/image/more_icon_timer",
+                                                    imageSubSource: "qrc:/image/switching_off",
+                                                    title: qsTr("定时关闭")
+                                                });
                                                 TTK_APP.setTimeToQuitApp(-1);
                                             }else {
                                                 ttkTimeSettingPage.visible = true;
@@ -201,9 +205,11 @@ Item {
 
                         Component.onCompleted: {
                             if(TTK_APP.timeToQuitAppIsSet()) {
-                                firstListModel.set(3, { imageSource: "qrc:/image/more_icon_timer",
-                                                        imageSubSource: "qrc:/image/switch_on_normal",
-                                                        title: qsTr("定时关闭")});
+                                firstListModel.set(3, {
+                                    imageSource: "qrc:/image/more_icon_timer",
+                                    imageSubSource: "qrc:/image/switch_on_normal",
+                                    title: qsTr("定时关闭")
+                                });
                             }
                         }
                     }

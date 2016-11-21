@@ -99,7 +99,7 @@ Rectangle {
             from: 0
             to: 360
             direction: RotationAnimation.Clockwise
-            duration: 8000
+            duration: 30000
             loops: Animation.Infinite
         }
     }

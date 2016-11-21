@@ -3,7 +3,7 @@
 #include <QImage>
 #include <QPainter>
 #include <QStyleOptionGraphicsItem>
-#include <QDebug>
+
 #include <QQuickItem>
 #include <QQuickWindow>
 
