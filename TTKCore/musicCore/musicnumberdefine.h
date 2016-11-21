@@ -28,8 +28,8 @@
 #define MT_D            24
 #define MT_D2H          MT_D
 #define MT_D2M          (MT_D2H*MT_H2M)
-#define MT_D2S          (MT_D2M*MT_M2S)
-#define MT_D2MS         (MT_D2S*MT_S2MS)
+#define MT_D2S          qint64(MT_D2M*MT_M2S)
+#define MT_D2MS         qint64(MT_D2S*MT_S2MS)
 ////////////////////////////////////////////////////
 
 #define MH_BS           1
@@ -55,9 +55,9 @@
 #define MH_TB           1024
 #define MH_TB2GB        MH_TB
 #define MH_TB2MB        (MH_TB2GB*MH_GB2MB)
-#define MH_TB2KB        (MH_TB2MB*MH_MB2KB)
-#define MH_TB2B         (qint64(MH_TB2KB)*qint64(MH_KB2B))
-#define MH_TB2BS        (qint64(MH_TB2B)*qint64(MH_B2BS))
+#define MH_TB2KB        qint64(MH_TB2MB*MH_MB2KB)
+#define MH_TB2B         qint64(MH_TB2KB*MH_KB2B)
+#define MH_TB2BS        qint64(MH_TB2B*MH_B2BS)
 ////////////////////////////////////////////////////
 
 #define MA_30           30

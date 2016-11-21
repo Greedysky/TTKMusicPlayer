@@ -81,7 +81,7 @@ QString MusicSingleton<T>::getClassName()
 
 ////Class that will implement the singleton mode,
 ////must use the macro in it's delare file
-#define DECLARE_SINGLETON_CLASS( Class )                        \
+#define DECLARE_SINGLETON_CLASS( Class )             \
     friend class MusicSingleton<Class>;              \
     friend struct QScopedPointerDeleter<Class>;
 

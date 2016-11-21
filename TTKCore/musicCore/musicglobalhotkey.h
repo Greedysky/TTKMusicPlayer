@@ -63,12 +63,6 @@ public:
      */
 
 protected:
-    MusicGlobalHotKey(){}
-    /*!
-     * Object contsructor.
-     */
-    ~MusicGlobalHotKey(){}
-
     void setDefaultKey();
     /*!
      * Set default key.

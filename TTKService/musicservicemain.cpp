@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
 
     MusicUtils::Core::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
-                                      xml->readDownloadCacheLimit(),
+                                     xml->readDownloadCacheLimit(),
     M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
     delete xml;
