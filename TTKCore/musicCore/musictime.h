@@ -113,6 +113,11 @@ public:
     /*!
      * Transform ms time from utc since epoch.
      */
+    qint64 toMSecsSinceEpoch() const;
+    /*!
+     * Transform utc since epoch to ms.
+     */
+
     static MusicTime fromString(const QString &s, const QString &format);
     /*!
      * Transform time from string by time format.
@@ -138,6 +143,7 @@ public:
 //    AP or A	use AM/PM display. A/AP will be replaced by either "AM" or "PM".
 //    ap or a	use am/pm display. a/ap will be replaced by either "am" or "pm".
 //    t	the timezone (for example "CEST")
+    //////////////////////////////////////////////
     qint64 getTimeStamp(Type type) const;
     /*!
      * Get all time value by type.

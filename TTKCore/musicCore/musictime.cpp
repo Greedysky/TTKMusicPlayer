@@ -78,6 +78,14 @@ MusicTime MusicTime::fromMSecsSinceEpoch(qint64 msecs)
     return time;
 }
 
+qint64 MusicTime::toMSecsSinceEpoch() const
+{
+    QDateTime dt;
+    dt = dt.addDays(m_day);
+    dt = dt.addMSecs(m_hour*MT_H2MS + m_min*MT_M2MS + m_sec*MT_S2MS + m_msec);
+    return dt.toMSecsSinceEpoch();
+}
+
 MusicTime MusicTime::fromString(const QString &s, const QString &format)
 {
     MusicTime time;
