@@ -106,7 +106,12 @@ void TTKMusicLyricModel::setCenterSize(int index, int size)
 void TTKMusicLyricModel::initParameter()
 {
     QString colorStr = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
-    QColor color = MusicUtils::String::readColorConfig(colorStr).first();
+    QList<QColor> colors(MusicUtils::String::readColorConfig(colorStr));
+    QColor color("#00FF00");
+    if(!colors.isEmpty())
+    {
+        color = colors.first();
+    }
     int size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
 
     int cIndex = M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt();

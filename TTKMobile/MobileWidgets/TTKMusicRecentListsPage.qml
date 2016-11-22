@@ -131,7 +131,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: "qrc:/image/ic_start_recognize_bottom"
                 mainTitle: qsTr("空空如也")
-                subTitle: qsTr("试试去搜索更多的歌曲吧")
+                subTitle: qsTr("搜索更多的歌曲吧")
                 mainTitleSize: ttkGlobal.dpHeight(150)/8
             }
 

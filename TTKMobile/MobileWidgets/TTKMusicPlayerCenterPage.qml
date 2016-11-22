@@ -305,7 +305,7 @@ Item {
                     TTKMarquee {
                         id: musicPlayerShowLrc
                         Layout.alignment: Qt.AlignCenter
-                        width: ttkMusicPlayerCenter.width
+                        width: ttkMusicPlayerCenter.width - ttkGlobal.dpWidth(50)
                         height: ttkGlobal.dpHeight(70)
                         textColor: ttkTheme.color_green
                         color: ttkTheme.color_alpha_lv0
