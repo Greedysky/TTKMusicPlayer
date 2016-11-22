@@ -3,7 +3,7 @@
 MusicFloatAbstractWidget::MusicFloatAbstractWidget(QWidget *parent)
     : QLabel(parent)
 {
-    m_animation = new QPropertyAnimation(this, "geometry");
+    m_animation = new QPropertyAnimation(this, "geometry", this);
     m_animation->setDuration(500);
     m_blockAnimation = false;
 }

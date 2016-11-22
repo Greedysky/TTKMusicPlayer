@@ -32,13 +32,14 @@ HEADERS  += \
     $$PWD/musicmovinglabelslider.h \
     $$PWD/musictoastlabel.h \
     $$PWD/musicroundanimationlabel.h \
+    $$PWD/musicanimationstackedwidget.h \
+    $$PWD/musiclayoutanimation.h \
+    $$PWD/musictransitionanimationlabel.h \
     $$PWD/musiccodearea.h \
     $$PWD/musicgrabwidget.h \
     $$PWD/musicfloatabstractwidget.h \
     $$PWD/musictimersliderwidget.h \
     $$PWD/musiccutsliderwidget.h \
-    $$PWD/musicanimationstackedwidget.h \
-    $$PWD/musiclayoutanimation.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
     $$PWD/musicemojilabelwidget.h \
@@ -67,13 +68,14 @@ SOURCES += \
     $$PWD/musicmovinglabelslider.cpp \
     $$PWD/musictoastlabel.cpp \
     $$PWD/musicroundanimationlabel.cpp \
+    $$PWD/musicanimationstackedwidget.cpp \
+    $$PWD/musiclayoutanimation.cpp \
+    $$PWD/musictransitionanimationlabel.cpp \
     $$PWD/musiccodearea.cpp \
     $$PWD/musicgrabwidget.cpp \
     $$PWD/musicfloatabstractwidget.cpp \
     $$PWD/musictimersliderwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
-    $$PWD/musicanimationstackedwidget.cpp \
-    $$PWD/musiclayoutanimation.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
     $$PWD/musicemojilabelwidget.cpp \

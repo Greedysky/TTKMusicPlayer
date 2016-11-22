@@ -77,7 +77,7 @@ void MusicApplicationObject::getParameterSetting()
 
 void MusicApplicationObject::windowStartAnimationOpacity()
 {
-    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity");
+    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
     m_animation->setDuration(MT_S2MS);
     m_animation->setStartValue(0);
     m_animation->setEndValue(1);

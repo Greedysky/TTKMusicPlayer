@@ -91,7 +91,7 @@ void MusicToastLabel::setText(const QString &text)
 
 void MusicToastLabel::closeAnimation()
 {
-    QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
+    QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity", this);
     animation->setDuration(MT_S2MS);
     animation->setStartValue(1);
     animation->setEndValue(0);

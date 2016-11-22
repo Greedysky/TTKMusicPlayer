@@ -21,6 +21,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_musicUserWindow = new MusicUserWindow(this);
+    m_pictureCarouselTimer.setInterval(10*MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
@@ -203,7 +204,7 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();
-        m_pictureCarouselTimer.start(5*MT_S2MS);
+        m_pictureCarouselTimer.start();
     }
     else
     {
@@ -219,7 +220,7 @@ void MusicTopAreaWidget::musicBgThemeChangedByResize()
         m_pictureCarouselTimer.stop();
         QString art_path = M_BACKGROUND_PTR->getArtPhotoPathByIndex();
         !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
-        m_pictureCarouselTimer.start(5*MT_S2MS);
+        m_pictureCarouselTimer.start();
     }
     else
     {

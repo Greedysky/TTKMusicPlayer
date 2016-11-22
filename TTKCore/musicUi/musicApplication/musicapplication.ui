@@ -40,7 +40,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QLabel" name="background">
+    <widget class="MusicTransitionAnimationLabel" name="background">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
        <number>0</number>
@@ -1526,6 +1526,11 @@
    <extends>QWidget</extends>
    <header>musicplayedlistwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
   </customwidget>
  </customwidgets>
  <resources>

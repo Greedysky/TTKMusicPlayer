@@ -35,7 +35,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     m_timer.setInterval(3*MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 
-    m_animation = new QPropertyAnimation(this, "windowOpacity");
+    m_animation = new QPropertyAnimation(this, "windowOpacity", this);
     m_animation->setDuration(MT_S2MS);
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 

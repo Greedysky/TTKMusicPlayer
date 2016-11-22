@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>皮肤与窗口调整</string>
   </property>
-  <widget class="QLabel" name="background">
+  <widget class="MusicTransitionAnimationLabel" name="background">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -255,6 +255,17 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MusicAnimationStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>musicanimationstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
+  </customwidget>
+  <customwidget>
    <class>MusicBackgroundListWidget</class>
    <extends>QListWidget</extends>
    <header>musicbackgroundlistwidget.h</header>
@@ -270,12 +281,6 @@
    <class>MusicBackgroundPopWidget</class>
    <extends>QWidget</extends>
    <header>musicbackgroundpopwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicAnimationStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>musicanimationstackedwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
