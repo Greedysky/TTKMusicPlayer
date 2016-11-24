@@ -80,6 +80,9 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
     for(int col=0; col<columnCount(); col++)
     {
         QTableWidgetItem *it = item(row, col);
-        it->setBackgroundColor(color);
+        if(it != nullptr)
+        {
+            it->setBackgroundColor(color);
+        }
     }
 }

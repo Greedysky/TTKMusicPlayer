@@ -12,89 +12,70 @@
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
 
-MusicSongsEnterPlayWidget::MusicSongsEnterPlayWidget(int index, QWidget *parent)
-    : QWidget(parent), m_currentPlayIndex(index)
+MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
+    : QWidget(parent), m_renameLine(nullptr)
 {
     QPalette pal = palette();
     pal.setBrush(QPalette::Base,QBrush(QColor(0, 0, 0, 40)));
     setPalette(pal);
     setAutoFillBackground(true);
-}
 
-QString MusicSongsEnterPlayWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
-void MusicSongsEnterPlayWidget::enterEvent(QEvent *event)
-{
-    QWidget::enterEvent(event);
-    emit enterChanged(m_currentPlayIndex, -1);
-}
-
-
-MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
-    : MusicSongsEnterPlayWidget(index, parent), m_renameLine(nullptr)
-{
+    m_currentPlayIndex = index;
     m_totalTime = "/00:00";
+
+    QPushButton *addButton = new QPushButton(this);
+    addButton->setGeometry(2, 25, 16, 16);
+    addButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlayLater);
+    addButton->setCursor(QCursor(Qt::PointingHandCursor));
+    addButton->setToolTip(tr("playLater"));
 
     m_artPictureLabel = new QLabel(this);
     m_artPictureLabel->setFixedSize(60, 60);
     m_artPictureLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_artPictureLabel->setGeometry(0, 0, 60, 60);
+    m_artPictureLabel->setGeometry(20, 0, 60, 60);
 
     m_songNameLabel = new MusicSplitItemClickedLabel(this);
-    m_songNameLabel->setFixedSize(202, 25);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
     m_songNameLabel->setStyleSheet(MusicUIObject::MColorStyle01);
-    m_songNameLabel->setGeometry(65, 5, 182, 25);
+    m_songNameLabel->setGeometry(85, 5, 200, 25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
     m_timeLabel->setStyleSheet(MusicUIObject::MColorStyle01);
-    m_timeLabel->setGeometry(65, 37, 100, 20);
+    m_timeLabel->setGeometry(85, 37, 100, 20);
 
-    m_columnOne = new MusicSongsEnterPlayWidget(index, this);
-    m_columnThree = new MusicSongsEnterPlayWidget(index, this);
+    m_downloadButton = new QPushButton(this);
+    m_downloadButton->setGeometry(175, 40, 16, 16);
+    m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_downloadButton->setToolTip(tr("songDownload"));
+    currentDownloadStateClicked();
+
+    m_showMVButton = new QPushButton(this);
+    m_showMVButton->setGeometry(211, 39, 16, 16);
+    m_showMVButton->setStyleSheet(MusicUIObject::MKGTinyBtnMV);
+    m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_showMVButton->setToolTip(tr("showMV"));
 
     m_loveButton = new QPushButton(this);
-    m_loveButton->setGeometry(204, 40, 16, 16);
+    m_loveButton->setGeometry(231, 40, 16, 16);
     m_loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_loveButton->setToolTip(tr("bestlove"));
     currentLoveStateClicked();
 
     m_deleteButton = new QPushButton(this);
-    m_deleteButton->setGeometry(225, 40, 16, 16);
+    m_deleteButton->setGeometry(251, 40, 16, 16);
     m_deleteButton->setStyleSheet(MusicUIObject::MKGTinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_deleteButton->setToolTip(tr("deleteMusic"));
 
-    m_downloadButton = new QPushButton(this);
-    m_downloadButton->setGeometry(180, 40, 16, 16);
-    m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_downloadButton->setToolTip(tr("songDownload"));
-    currentDownloadStateClicked();
-
-    QPushButton *addButton = new QPushButton(m_columnOne);
-    addButton->setGeometry(2, 20, 16, 16);
-    addButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlayLater);
-    addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    addButton->setToolTip(tr("playLater"));
-
-    m_showMVButton = new QPushButton(m_columnThree);
-    m_showMVButton->setGeometry(0, 39, 16, 16);
-    m_showMVButton->setStyleSheet(MusicUIObject::MKGTinyBtnMV);
-    m_showMVButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_showMVButton->setToolTip(tr("showMV"));
-
-    m_moreButton = new QPushButton(m_columnThree);
-    m_moreButton->setGeometry(23, 39, 16, 16);
+    m_moreButton = new QPushButton(this);
+    m_moreButton->setGeometry(271, 39, 16, 16);
     m_moreButton->setStyleSheet(MusicUIObject::MPushButtonStyle13 + MusicUIObject::MKGTinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("moreFunction"));
 
-    QMenu *menu = new QMenu(m_columnThree);
+    QMenu *menu = new QMenu(this);
     createMoreMenu(menu);
     m_moreButton->setMenu(menu);
 
@@ -103,8 +84,6 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     connect(m_deleteButton, SIGNAL(clicked()), parent, SLOT(setDeleteItemAt()));
     connect(this, SIGNAL(renameFinished(QString)), parent, SLOT(setItemRenameFinished(QString)));
     connect(this, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_columnOne, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
-    connect(m_columnThree, SIGNAL(enterChanged(int,int)), parent, SLOT(listCellEntered(int,int)));
     connect(m_showMVButton, SIGNAL(clicked()), parent, SLOT(musicSongMovieFoundPy()));
     connect(addButton, SIGNAL(clicked()), parent, SLOT(musicAddToPlayLater()));
 
@@ -123,19 +102,11 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_showMVButton;
     delete m_downloadButton;
     delete m_moreButton;
-    delete m_columnOne;
-    delete m_columnThree;
 }
 
 QString MusicSongsListPlayWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicSongsListPlayWidget::getWidget(QWidget *&one, QWidget *&two) const
-{
-    one = m_columnOne;
-    two = m_columnThree;
 }
 
 void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
@@ -151,6 +122,12 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
+}
+
+void MusicSongsListPlayWidget::enterEvent(QEvent *event)
+{
+    QWidget::enterEvent(event);
+    emit enterChanged(m_currentPlayIndex, -1);
 }
 
 void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
@@ -185,7 +162,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     {
         m_totalTime = "/" + tag.getLengthString();
     }
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 180));
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
@@ -200,8 +177,7 @@ void MusicSongsListPlayWidget::setItemRename()
 {
     m_renameLine = new MusicSongsToolItemRenamedWidget(m_songNameLabel->toolTip(), this);
     connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
-    m_renameLine->setFixedSize(182, 25);
-    m_renameLine->setGeometry(65, 5, 182, 25);
+    m_renameLine->setGeometry(85, 5, 200, 25);
     m_renameLine->show();
 }
 
@@ -213,7 +189,7 @@ void MusicSongsListPlayWidget::deleteRenameItem()
 
 void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 180));
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     emit renameFinished(name);
     QTimer::singleShot(MT_MS, this, SLOT(deleteRenameItem()));

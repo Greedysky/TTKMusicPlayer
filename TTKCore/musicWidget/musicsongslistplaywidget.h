@@ -9,61 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
+#include <QLabel>
 #include <QPushButton>
 #include <QToolButton>
-#include <QLabel>
 #include "musicglobaldefine.h"
 
 class MusicSplitItemClickedLabel;
 class MusicSongsToolItemRenamedWidget;
 
-/*! @brief The class of the song enter item widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_WIDGET_EXPORT MusicSongsEnterPlayWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit MusicSongsEnterPlayWidget(int index, QWidget *parent = 0);
-    /*!
-     * Object contsructor by index.
-     */
-
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
-    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
-    /*!
-     * Set current play index.
-     */
-    inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
-    /*!
-     * Get current play index.
-     */
-
-Q_SIGNALS:
-    void enterChanged(int row, int column);
-    /*!
-     * Mouse is the item geometry, emit row and column.
-     */
-
-protected:
-    virtual void enterEvent(QEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
-
-    int m_currentPlayIndex;
-
-};
-
-
 /*! @brief The class of the song list play widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public MusicSongsEnterPlayWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -77,10 +34,7 @@ public:
     /*!
      * Get class object name.
      */
-    void getWidget(QWidget *&one, QWidget *&two) const;
-    /*!
-     * Get item left and right function widget.
-     */
+
     void insertTimerLabel(const QString &t) const;
     /*!
      * Update item time label time.
@@ -102,10 +56,23 @@ public:
      * Get rename item artist label state.
      */
 
+    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
+    /*!
+     * Set current play index.
+     */
+    inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
+    /*!
+     * Get current play index.
+     */
+
 Q_SIGNALS:
     void renameFinished(const QString &text);
     /*!
      * Rename item artist label is finised it emit.
+     */
+    void enterChanged(int row, int column);
+    /*!
+     * Mouse is the item geometry, emit row and column.
      */
 
 public Q_SLOTS:
@@ -127,6 +94,10 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void enterEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createMoreMenu(QMenu *menu);
     /*!
      * Create more menu information.
@@ -137,9 +108,9 @@ protected:
      */
 
     QString m_totalTime;
+    int m_currentPlayIndex;
     QLabel *m_artPictureLabel, *m_timeLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
-    MusicSongsEnterPlayWidget *m_columnOne, *m_columnThree;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;
     MusicSongsToolItemRenamedWidget *m_renameLine;

@@ -1,9 +1,9 @@
 #include "musicsplititemclickedlabel.h"
 #include "musicrightareawidget.h"
 
-#include <QFontMetrics>
-#include <QMouseEvent>
 #include <QPainter>
+#include <QMouseEvent>
+#include <QFontMetrics>
 
 MusicSplitItemClickedLabel::MusicSplitItemClickedLabel(QWidget *parent)
     : QLabel(parent)
