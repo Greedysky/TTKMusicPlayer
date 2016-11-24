@@ -7,6 +7,7 @@
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
 
+#include <QHBoxLayout>
 #include <QToolButton>
 #include <QPropertyAnimation>
 
@@ -14,20 +15,27 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     : QLabel(parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
-    setObjectName("MainWidget");
-    setStyleSheet(QString("#MainWidget{%1}").arg(MusicUIObject::MBackgroundStyle12));
+    setAttribute(Qt::WA_TranslucentBackground);
+
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    m_mainWidget = new QWidget(this);
+    m_mainWidget->setObjectName("mainWidget");
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal);}");
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+    layout->addWidget(m_mainWidget);
+    setLayout(layout);
 
     resize(55, 26);
-    MusicUtils::Widget::widgetToRound(this, 10, 10);
 
-    QToolButton *locationButton = new QToolButton(this);
-    QToolButton *searchButton = new QToolButton(this);
+    QToolButton *locationButton = new QToolButton(m_mainWidget);
+    QToolButton *searchButton = new QToolButton(m_mainWidget);
     locationButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
-    locationButton->setGeometry(0, 1, 24, 24);
+    locationButton->setGeometry(1, 1, 24, 24);
     searchButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    searchButton->setGeometry(30, 1, 24, 24);
+    searchButton->setGeometry(29, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
     connect(searchButton, SIGNAL(clicked()), MusicBottomAreaWidget::instance(), SLOT(musicSearch()));
 
@@ -44,6 +52,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
 
 MusicSongsListFunctionWidget::~MusicSongsListFunctionWidget()
 {
+    delete m_mainWidget;
     delete m_animation;
 }
 
@@ -102,10 +111,12 @@ void MusicSongsListFunctionWidget::enterEvent(QEvent *event)
     {
         start(false, 1);
     }
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_hover);}");
 }
 
 void MusicSongsListFunctionWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     start(true, 0);
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal);}");
 }

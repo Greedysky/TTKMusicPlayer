@@ -78,6 +78,7 @@ protected:
      */
 
     QTimer m_timer;
+    QWidget *m_mainWidget;
     QPropertyAnimation *m_animation;
     float m_currentAnimationValue;
 
