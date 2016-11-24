@@ -288,6 +288,10 @@ public Q_SLOTS:
     /*!
      * Current top widget is pressed.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -303,6 +307,7 @@ protected:
     int m_currentIndex, m_itemIndexRaise;
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
+    QWidget *m_contentsWidget;
     QList<MusicToolBoxWidgetItem> m_itemList;
 
 };

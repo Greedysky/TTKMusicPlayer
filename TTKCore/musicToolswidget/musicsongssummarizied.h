@@ -195,10 +195,6 @@ public Q_SLOTS:
     /*!
      * Check current list is searched or not.
      */
-    void setTransparent(int alpha);
-    /*!
-     * Set background transparent.
-     */
     void setMusicPlayCount(int index);
     /*!
      * Set current music song play count by given song index.

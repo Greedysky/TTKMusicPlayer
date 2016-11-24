@@ -276,23 +276,20 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
 
-    QWidget *contentsWidget = new QWidget(this);
-    m_layout = new QVBoxLayout(contentsWidget);
+    m_contentsWidget = new QWidget(this);
+    m_contentsWidget->setObjectName("contentsWidget");
+    m_contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
+
+    m_layout = new QVBoxLayout(m_contentsWidget);
     m_layout->setContentsMargins(0, 0, 0 ,0);
     m_layout->setSpacing(0);
-    contentsWidget->setLayout(m_layout);
+    m_contentsWidget->setLayout(m_layout);
 
     m_scrollArea = new QScrollArea(this);
     m_scrollArea->setWidgetResizable(true);
     m_scrollArea->setFrameShape(QFrame::NoFrame);
     m_scrollArea->setAlignment(Qt::AlignLeft);
-    m_scrollArea->setWidget(contentsWidget);
-
-    contentsWidget->setObjectName("contentsWidget");
-    contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MBackgroundStyle09));
-    QWidget *view = m_scrollArea->viewport();
-    view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(MusicUIObject::MBackgroundStyle09));
+    m_scrollArea->setWidget(m_contentsWidget);
 
     mainLayout->addWidget(m_scrollArea);
     setLayout(mainLayout);
@@ -311,44 +308,6 @@ MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
 QString MusicSongsToolBoxWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicSongsToolBoxWidget::setCurrentIndex(int index)
-{
-    m_currentIndex = index;
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        m_itemList[i].m_widgetItem->setItemExpand( i == index );
-    }
-}
-
-void MusicSongsToolBoxWidget::mousePressAt(int index)
-{
-    m_currentIndex = foundMappingIndex(index);
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
-        m_itemList[i].m_widgetItem->setItemExpand(hide);
-    }
-}
-
-void MusicSongsToolBoxWidget::resizeScrollIndex(int index) const
-{
-    QScrollBar *bar = m_scrollArea->verticalScrollBar();
-    if(bar)
-    {
-        bar->setSliderPosition(index);
-    }
-}
-
-int MusicSongsToolBoxWidget::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-int MusicSongsToolBoxWidget::count() const
-{
-    return m_itemList.count();
 }
 
 void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)
@@ -429,6 +388,58 @@ QString MusicSongsToolBoxWidget::getTitle(QWidget *item) const
         }
     }
     return QString();
+}
+
+void MusicSongsToolBoxWidget::resizeScrollIndex(int index) const
+{
+    QScrollBar *bar = m_scrollArea->verticalScrollBar();
+    if(bar)
+    {
+        bar->setSliderPosition(index);
+    }
+}
+
+int MusicSongsToolBoxWidget::currentIndex() const
+{
+    return m_currentIndex;
+}
+
+int MusicSongsToolBoxWidget::count() const
+{
+    return m_itemList.count();
+}
+
+
+void MusicSongsToolBoxWidget::setCurrentIndex(int index)
+{
+    m_currentIndex = index;
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        m_itemList[i].m_widgetItem->setItemExpand( i == index );
+    }
+}
+
+void MusicSongsToolBoxWidget::mousePressAt(int index)
+{
+    m_currentIndex = foundMappingIndex(index);
+    for(int i=0; i<m_itemList.count(); ++i)
+    {
+        bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
+        m_itemList[i].m_widgetItem->setItemExpand(hide);
+    }
+}
+
+void MusicSongsToolBoxWidget::setTransparent(int alpha)
+{
+    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(2.55*alpha);
+    QWidget *view = m_scrollArea->viewport();
+    view->setObjectName("viewport");
+    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
+
+    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01 +
+                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha*2.55) + "\
+                                QScrollBar::handle:vertical{ background:#888888;} \
+                                QScrollBar::handle:vertical:hover{ background:#666666;}");
 }
 
 void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)

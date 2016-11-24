@@ -508,19 +508,6 @@ void MusicSongsSummarizied::isSearchFileListEmpty(bool &empty)
     empty = searchFileListEmpty();
 }
 
-void MusicSongsSummarizied::setTransparent(int alpha)
-{
-    foreach(const MusicSongItem &item, m_songItems)
-    {
-        item.m_itemObject->setTransparent(alpha*2.55);
-        item.m_itemObject->update();
-    }
-    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01 +
-                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(50 + alpha*2.05) + "\
-                                QScrollBar::handle:vertical{ background:#888888;} \
-                                QScrollBar::handle:vertical:hover{ background:#666666;}");
-}
-
 void MusicSongsSummarizied::setMusicPlayCount(int index)
 {
     if(index < 0)
