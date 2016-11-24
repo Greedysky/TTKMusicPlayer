@@ -271,6 +271,11 @@ protected:
     /*!
      * Create context menu.
      */
+    void createMoreMenu(QMenu *menu);
+    /*!
+     * Create more menu information.
+     */
+
     QString getCurrentSongPath() const;
     /*!
      * Get current song path.

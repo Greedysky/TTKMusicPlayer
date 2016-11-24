@@ -352,26 +352,35 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
 void MusicSongsListWidget::listCellClicked(int row, int column)
 {
-    //the playing widget allow deleting
-    if(row == m_playRowIndex)
-    {
-        return;
-    }
-
+    Q_UNUSED(row);
     switch(column)
     {
         case 0:
-            musicAddToPlayLater();
-            break;
+            {
+                musicAddToPlayLater();
+                break;
+            }
         case 2:
-            break;
+            {
+                musicSongMovieFound();
+                break;
+            }
         case 3:
-            break;
+            {
+                break;
+            }
         case 4:
-            setDeleteItemAt();
-            break;
+            {
+                setDeleteItemAt();
+                break;
+            }
         case 5:
-            break;
+            {
+                QMenu menu(this);
+                createMoreMenu(&menu);
+                menu.exec(QCursor::pos());
+                break;
+            }
         default:
             break;
     }
@@ -924,6 +933,20 @@ void MusicSongsListWidget::createContextMenu(QMenu &menu)
         menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i);
     }
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
+}
+
+void MusicSongsListWidget::createMoreMenu(QMenu *menu)
+{
+    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
+    addMenu->addAction(tr("musicCloud"));
+
+    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), this, SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), this, SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), this, SLOT(musicSimilarFoundWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(musicSongSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
 }
 
 QString MusicSongsListWidget::getCurrentSongPath() const
