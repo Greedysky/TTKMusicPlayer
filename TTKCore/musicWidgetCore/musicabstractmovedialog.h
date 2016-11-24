@@ -9,9 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define WIDTH  20
-#define HEIGHT 20
-
 #include <QLabel>
 #include <QDialog>
 #include "musicglobaldefine.h"

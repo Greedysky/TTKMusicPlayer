@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>435</height>
+    <width>582</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>575</width>
      <height>395</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>71</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>573</x>
-     <y>22</y>
+     <x>557</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QLabel" name="songNameLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>62</y>
+     <x>24</x>
+     <y>46</y>
      <width>54</width>
      <height>20</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QPushButton" name="lrcSearchButton">
    <property name="geometry">
     <rect>
-     <x>424</x>
-     <y>60</y>
+     <x>408</x>
+     <y>44</y>
      <width>51</width>
      <height>23</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QLineEdit" name="songSearchEdit">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>62</y>
+     <x>84</x>
+     <y>46</y>
      <width>311</width>
      <height>20</height>
     </rect>
@@ -94,8 +94,8 @@
   <widget class="MusicLrcSearchTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>155</y>
+     <x>24</x>
+     <y>139</y>
      <width>535</width>
      <height>210</height>
     </rect>
@@ -104,8 +104,8 @@
   <widget class="QLabel" name="stateLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>375</y>
+     <x>24</x>
+     <y>359</y>
      <width>221</width>
      <height>21</height>
     </rect>
@@ -117,8 +117,8 @@
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>375</y>
+     <x>454</x>
+     <y>359</y>
      <width>75</width>
      <height>25</height>
     </rect>
@@ -130,8 +130,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>575</width>
      <height>370</height>
     </rect>
@@ -143,8 +143,8 @@
   <widget class="QLabel" name="functionTopLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>100</y>
+     <x>24</x>
+     <y>84</y>
      <width>535</width>
      <height>23</height>
     </rect>
@@ -159,8 +159,8 @@
   <widget class="QLabel" name="functionBottomLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>123</y>
+     <x>24</x>
+     <y>107</y>
      <width>535</width>
      <height>32</height>
     </rect>
@@ -172,8 +172,8 @@
   <widget class="QLabel" name="label_song">
    <property name="geometry">
     <rect>
-     <x>161</x>
-     <y>130</y>
+     <x>145</x>
+     <y>114</y>
      <width>41</width>
      <height>20</height>
     </rect>
@@ -188,8 +188,8 @@
   <widget class="QLabel" name="label_art">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>130</y>
+     <x>354</x>
+     <y>114</y>
      <width>41</width>
      <height>20</height>
     </rect>
@@ -204,8 +204,8 @@
   <widget class="QLabel" name="label_time">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>130</y>
+     <x>484</x>
+     <y>114</y>
      <width>31</width>
      <height>20</height>
     </rect>
@@ -220,8 +220,8 @@
   <widget class="QCheckBox" name="label_checkBox">
    <property name="geometry">
     <rect>
-     <x>47</x>
-     <y>132</y>
+     <x>31</x>
+     <y>116</y>
      <width>21</width>
      <height>16</height>
     </rect>
@@ -233,8 +233,8 @@
   <widget class="QPushButton" name="lrcSearchDownload">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>375</y>
+     <x>354</x>
+     <y>359</y>
      <width>75</width>
      <height>25</height>
     </rect>

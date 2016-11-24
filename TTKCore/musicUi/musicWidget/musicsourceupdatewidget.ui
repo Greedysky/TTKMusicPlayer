@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>350</height>
+    <width>418</width>
+    <height>318</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>410</width>
      <height>310</height>
     </rect>
@@ -35,8 +35,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>231</width>
      <height>25</height>
     </rect>
@@ -51,8 +51,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>408</x>
-     <y>22</y>
+     <x>392</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -64,8 +64,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>410</width>
      <height>285</height>
     </rect>
@@ -310,6 +310,7 @@ QProgressBar::chunk {
    <class>MusicClickedLabel</class>
    <extends>QLabel</extends>
    <header>musicclickedlabel.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

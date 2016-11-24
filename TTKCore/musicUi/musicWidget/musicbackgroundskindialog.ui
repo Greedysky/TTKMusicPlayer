@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>445</height>
+    <width>628</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="MusicTransitionAnimationLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>620</width>
      <height>405</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>6</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -48,8 +48,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>615</x>
-     <y>22</y>
+     <x>599</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +61,8 @@
   <widget class="MusicClickedLabel" name="mySkin">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>48</y>
+     <x>24</x>
+     <y>32</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -80,8 +80,8 @@
   <widget class="MusicClickedLabel" name="netSkin">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>48</y>
+     <x>109</x>
+     <y>32</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -99,8 +99,8 @@
   <widget class="MusicAnimationStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>37</x>
-     <y>77</y>
+     <x>21</x>
+     <y>61</y>
      <width>585</width>
      <height>300</height>
     </rect>
@@ -114,8 +114,8 @@
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>385</y>
+     <x>534</x>
+     <y>369</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -130,8 +130,8 @@
   <widget class="QPushButton" name="paletteButton">
    <property name="geometry">
     <rect>
-     <x>465</x>
-     <y>385</y>
+     <x>449</x>
+     <y>369</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -146,8 +146,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>620</width>
      <height>380</height>
     </rect>
@@ -159,8 +159,8 @@
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
    <property name="geometry">
     <rect>
-     <x>265</x>
-     <y>385</y>
+     <x>249</x>
+     <y>369</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -172,8 +172,8 @@
   <widget class="QLabel" name="listTransparentLabel">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>385</y>
+     <x>184</x>
+     <y>369</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -185,8 +185,8 @@
   <widget class="QLabel" name="skinTransparentLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>385</y>
+     <x>24</x>
+     <y>369</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -198,8 +198,8 @@
   <widget class="MusicBackgroundPopWidget" name="skinTransparentButton" native="true">
    <property name="geometry">
     <rect>
-     <x>105</x>
-     <y>385</y>
+     <x>89</x>
+     <y>369</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -214,8 +214,8 @@
   <widget class="QLabel" name="arrowLabel">
    <property name="geometry">
     <rect>
-     <x>75</x>
-     <y>70</y>
+     <x>59</x>
+     <y>54</y>
      <width>9</width>
      <height>7</height>
     </rect>
@@ -224,8 +224,8 @@
   <widget class="QPushButton" name="resetWindowButton">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>55</y>
+     <x>484</x>
+     <y>39</y>
      <width>118</width>
      <height>13</height>
     </rect>
@@ -255,15 +255,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
+  </customwidget>
+  <customwidget>
    <class>MusicAnimationStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>musicanimationstackedwidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicTransitionAnimationLabel</class>
-   <extends>QLabel</extends>
-   <header>musictransitionanimationlabel.h</header>
   </customwidget>
   <customwidget>
    <class>MusicBackgroundListWidget</class>

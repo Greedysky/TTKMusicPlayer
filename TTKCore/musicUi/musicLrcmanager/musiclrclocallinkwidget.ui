@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>305</height>
+    <width>468</width>
+    <height>273</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>460</width>
      <height>265</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>110</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>458</x>
-     <y>22</y>
+     <x>442</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>460</width>
      <height>240</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>58</y>
+     <x>19</x>
+     <y>42</y>
      <width>60</width>
      <height>15</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QLineEdit" name="titleEdit">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>55</y>
+     <x>84</x>
+     <y>39</y>
      <width>270</width>
      <height>20</height>
     </rect>
@@ -94,8 +94,8 @@
   <widget class="MusicLrcLocalLinkTableWidget" name="searchedTable">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>110</y>
+     <x>19</x>
+     <y>94</y>
      <width>340</width>
      <height>150</height>
     </rect>
@@ -107,8 +107,8 @@
   <widget class="QPushButton" name="localSearchButton">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>110</y>
+     <x>370</x>
+     <y>94</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -123,8 +123,8 @@
   <widget class="QPushButton" name="previewButton">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>140</y>
+     <x>370</x>
+     <y>124</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -139,8 +139,8 @@
   <widget class="QPushButton" name="commitButton">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>235</y>
+     <x>370</x>
+     <y>219</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -155,8 +155,8 @@
   <widget class="QCheckBox" name="fuzzyButton">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>56</y>
+     <x>370</x>
+     <y>40</y>
      <width>75</width>
      <height>16</height>
     </rect>
@@ -168,8 +168,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>88</y>
+     <x>19</x>
+     <y>72</y>
      <width>221</width>
      <height>16</height>
     </rect>
@@ -181,8 +181,8 @@
   <widget class="QLabel" name="functionBottomLabel">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>110</y>
+     <x>19</x>
+     <y>94</y>
      <width>340</width>
      <height>150</height>
     </rect>
@@ -194,8 +194,8 @@
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>170</y>
+     <x>370</x>
+     <y>154</y>
      <width>75</width>
      <height>23</height>
     </rect>

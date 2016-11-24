@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>360</height>
+    <width>483</width>
+    <height>328</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>475</width>
      <height>320</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>111</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>473</x>
-     <y>22</y>
+     <x>457</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>161</y>
+     <x>14</x>
+     <y>145</y>
      <width>455</width>
      <height>161</height>
     </rect>
@@ -68,8 +68,8 @@
   <widget class="QLabel" name="movieLabel">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>55</y>
+     <x>14</x>
+     <y>39</y>
      <width>455</width>
      <height>60</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>122</y>
+     <x>14</x>
+     <y>106</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="MusicClickedSlider" name="volumeSlider">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>130</y>
+     <x>254</x>
+     <y>114</y>
      <width>211</width>
      <height>20</height>
     </rect>
@@ -110,8 +110,8 @@
   <widget class="QPushButton" name="stopButton">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>122</y>
+     <x>64</x>
+     <y>106</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -123,8 +123,8 @@
   <widget class="QPushButton" name="colletButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>122</y>
+     <x>114</x>
+     <y>106</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -136,8 +136,8 @@
   <widget class="QPushButton" name="discolletButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>122</y>
+     <x>164</x>
+     <y>106</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -149,8 +149,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>235</x>
-     <y>130</y>
+     <x>219</x>
+     <y>114</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -162,8 +162,8 @@
   <widget class="QLabel" name="stateLabel">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>60</y>
+     <x>19</x>
+     <y>44</y>
      <width>141</width>
      <height>16</height>
     </rect>
@@ -175,8 +175,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>475</width>
      <height>295</height>
     </rect>

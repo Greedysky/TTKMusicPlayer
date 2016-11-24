@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>360</height>
+    <width>468</width>
+    <height>328</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>460</width>
      <height>320</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>91</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>458</x>
-     <y>22</y>
+     <x>442</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QLabel" name="artNameLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>62</y>
+     <x>24</x>
+     <y>46</y>
      <width>31</width>
      <height>20</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QLineEdit" name="artSearchEdit">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>62</y>
+     <x>64</x>
+     <y>46</y>
      <width>170</width>
      <height>20</height>
     </rect>
@@ -81,8 +81,8 @@
   <widget class="QLabel" name="stateLabel">
    <property name="geometry">
     <rect>
-     <x>22</x>
-     <y>305</y>
+     <x>6</x>
+     <y>289</y>
      <width>456</width>
      <height>30</height>
     </rect>
@@ -100,8 +100,8 @@
   <widget class="QPushButton" name="uploadButton">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>300</y>
+     <x>124</x>
+     <y>284</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -113,8 +113,8 @@
   <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>300</y>
+     <x>264</x>
+     <y>284</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -126,8 +126,8 @@
   <widget class="MusicLrcArtPhotoLabel" name="imageLabel" native="true">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>100</y>
+     <x>44</x>
+     <y>84</y>
      <width>385</width>
      <height>191</height>
     </rect>
@@ -136,8 +136,8 @@
   <widget class="QPushButton" name="selectButton">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>160</y>
+     <x>184</x>
+     <y>144</y>
      <width>121</width>
      <height>23</height>
     </rect>
@@ -149,8 +149,8 @@
   <widget class="QLabel" name="introduceLabel">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>190</y>
+     <x>144</x>
+     <y>174</y>
      <width>191</width>
      <height>20</height>
     </rect>
@@ -165,8 +165,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>460</width>
      <height>295</height>
     </rect>

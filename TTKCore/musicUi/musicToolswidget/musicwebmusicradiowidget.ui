@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>375</height>
+    <width>483</width>
+    <height>343</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>475</width>
      <height>335</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>121</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>473</x>
-     <y>22</y>
+     <x>457</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>108</x>
-     <y>245</y>
+     <x>92</x>
+     <y>229</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="MusicClickedSlider" name="volumeSlider">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>287</y>
+     <x>64</x>
+     <y>271</y>
      <width>120</width>
      <height>20</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>290</y>
+     <x>34</x>
+     <y>274</y>
      <width>31</width>
      <height>16</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>475</width>
      <height>310</height>
     </rect>
@@ -106,12 +106,13 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <zorder>lrcLabel</zorder>
   </widget>
   <widget class="QLabel" name="lrcLabel">
    <property name="geometry">
     <rect>
-     <x>209</x>
-     <y>50</y>
+     <x>193</x>
+     <y>34</y>
      <width>270</width>
      <height>290</height>
     </rect>
@@ -120,8 +121,8 @@
   <widget class="MusicRoundAnimationLabel" name="artistLabel" native="true">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>85</y>
+     <x>34</x>
+     <y>69</y>
      <width>150</width>
      <height>150</height>
     </rect>
@@ -130,8 +131,8 @@
   <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
-     <x>65</x>
-     <y>245</y>
+     <x>49</x>
+     <y>229</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -143,8 +144,8 @@
   <widget class="QPushButton" name="nextButton">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>245</y>
+     <x>134</x>
+     <y>229</y>
      <width>31</width>
      <height>31</height>
     </rect>
@@ -156,8 +157,8 @@
   <widget class="QLabel" name="positionLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>310</y>
+     <x>34</x>
+     <y>294</y>
      <width>75</width>
      <height>30</height>
     </rect>
@@ -172,8 +173,8 @@
   <widget class="QLabel" name="durationLabel">
    <property name="geometry">
     <rect>
-     <x>125</x>
-     <y>310</y>
+     <x>109</x>
+     <y>294</y>
      <width>75</width>
      <height>30</height>
     </rect>
@@ -185,8 +186,8 @@
   <widget class="MusicMarqueeWidget" name="titleWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>50</y>
+     <x>34</x>
+     <y>34</y>
      <width>150</width>
      <height>25</height>
     </rect>

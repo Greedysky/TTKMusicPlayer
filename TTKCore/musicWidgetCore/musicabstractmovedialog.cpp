@@ -4,6 +4,9 @@
 #include <QMouseEvent>
 #include <QPainter>
 
+#define WIDTH  4
+#define HEIGHT 4
+
 MusicAbstractMoveDialog::MusicAbstractMoveDialog(QWidget *parent)
     : QDialog(parent)
 {

@@ -3,6 +3,9 @@
 
 #include <QPainter>
 
+#define WIDTH  4
+#define HEIGHT 4
+
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
     : QWidget(parent)
 {

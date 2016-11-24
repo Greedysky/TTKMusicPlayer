@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>230</height>
+    <width>338</width>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>330</width>
      <height>190</height>
     </rect>
@@ -35,8 +35,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>221</width>
      <height>25</height>
     </rect>
@@ -51,8 +51,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>328</x>
-     <y>22</y>
+     <x>312</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -64,8 +64,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>330</width>
      <height>165</height>
     </rect>
@@ -77,8 +77,8 @@
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>160</y>
+     <x>124</x>
+     <y>144</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -90,8 +90,8 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>160</y>
+     <x>234</x>
+     <y>144</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -103,8 +103,8 @@
   <widget class="QLabel" name="textLabel">
    <property name="geometry">
     <rect>
-     <x>65</x>
-     <y>55</y>
+     <x>49</x>
+     <y>39</y>
      <width>240</width>
      <height>95</height>
     </rect>
@@ -122,8 +122,8 @@
   <widget class="QLabel" name="iconLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>55</y>
+     <x>4</x>
+     <y>39</y>
      <width>100</width>
      <height>100</height>
     </rect>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>345</height>
+    <width>408</width>
+    <height>313</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>400</width>
      <height>305</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>91</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>398</x>
-     <y>22</y>
+     <x>382</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>400</width>
      <height>280</height>
     </rect>
@@ -71,8 +71,8 @@
   <widget class="QRadioButton" name="radioButton1">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>70</y>
+     <x>24</x>
+     <y>54</y>
      <width>200</width>
      <height>16</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QRadioButton" name="radioButton2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>95</y>
+     <x>24</x>
+     <y>79</y>
      <width>200</width>
      <height>16</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="QRadioButton" name="radioButton3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>120</y>
+     <x>24</x>
+     <y>104</y>
      <width>200</width>
      <height>16</height>
     </rect>
@@ -110,8 +110,8 @@
   <widget class="QRadioButton" name="radioButton4">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>145</y>
+     <x>24</x>
+     <y>129</y>
      <width>200</width>
      <height>16</height>
     </rect>
@@ -123,8 +123,8 @@
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>170</y>
+     <x>24</x>
+     <y>154</y>
      <width>360</width>
      <height>100</height>
     </rect>
@@ -140,8 +140,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>285</y>
+     <x>264</x>
+     <y>269</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -153,7 +153,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>34</x>
      <y>285</y>
      <width>181</width>
      <height>20</height>

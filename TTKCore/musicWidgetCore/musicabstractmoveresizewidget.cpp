@@ -1,10 +1,11 @@
 #include "musicabstractmoveresizewidget.h"
 #include "musicsettingmanager.h"
 
+#include <QPainter>
 #include <QMouseEvent>
 #include <QApplication>
 
-#define DISTANCE    5
+#define DISTANCE  5
 
 MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
     : QWidget(parent)

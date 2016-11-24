@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>660</height>
+    <width>718</width>
+    <height>628</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>711</width>
      <height>621</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>21</y>
+     <x>14</x>
+     <y>5</y>
      <width>71</width>
      <height>25</height>
     </rect>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>707</x>
-     <y>27</y>
+     <x>691</x>
+     <y>11</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,9 +58,9 @@
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>710</width>
+     <x>4</x>
+     <y>35</y>
+     <width>711</width>
      <height>590</height>
     </rect>
    </property>

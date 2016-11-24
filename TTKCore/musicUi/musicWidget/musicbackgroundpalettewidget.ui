@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>365</height>
+    <width>518</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="MusicTransitionAnimationLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>510</width>
      <height>325</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
+     <x>14</x>
+     <y>4</y>
      <width>100</width>
      <height>25</height>
     </rect>
@@ -48,8 +48,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>505</x>
-     <y>22</y>
+     <x>489</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -61,8 +61,8 @@
   <widget class="QPushButton" name="paletteButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>300</y>
+     <x>14</x>
+     <y>284</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -77,8 +77,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>510</width>
      <height>300</height>
     </rect>
@@ -90,8 +90,8 @@
   <widget class="QWidget" name="mutliWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>55</y>
+     <x>14</x>
+     <y>39</y>
      <width>491</width>
      <height>230</height>
     </rect>
@@ -100,8 +100,8 @@
   <widget class="QLabel" name="colorLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>300</y>
+     <x>114</x>
+     <y>284</y>
      <width>70</width>
      <height>25</height>
     </rect>
@@ -110,8 +110,8 @@
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>300</y>
+     <x>434</x>
+     <y>286</y>
      <width>70</width>
      <height>25</height>
     </rect>

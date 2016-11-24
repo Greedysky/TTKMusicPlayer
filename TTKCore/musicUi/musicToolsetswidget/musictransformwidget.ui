@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>404</height>
+    <width>483</width>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
+     <x>4</x>
+     <y>4</y>
      <width>475</width>
      <height>364</height>
     </rect>
@@ -29,9 +29,9 @@
   <widget class="QLabel" name="topTitleName">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>61</width>
+     <x>14</x>
+     <y>4</y>
+     <width>180</width>
      <height>25</height>
     </rect>
    </property>
@@ -45,8 +45,8 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>473</x>
-     <y>22</y>
+     <x>456</x>
+     <y>6</y>
      <width>20</width>
      <height>20</height>
     </rect>
@@ -58,8 +58,8 @@
   <widget class="QLineEdit" name="inputLineEdit">
    <property name="geometry">
     <rect>
-     <x>104</x>
-     <y>65</y>
+     <x>88</x>
+     <y>49</y>
      <width>331</width>
      <height>20</height>
     </rect>
@@ -68,8 +68,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>65</y>
+     <x>34</x>
+     <y>49</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -81,8 +81,8 @@
   <widget class="QLineEdit" name="outputLineEdit">
    <property name="geometry">
     <rect>
-     <x>104</x>
-     <y>95</y>
+     <x>88</x>
+     <y>79</y>
      <width>331</width>
      <height>20</height>
     </rect>
@@ -91,8 +91,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>95</y>
+     <x>34</x>
+     <y>79</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -104,8 +104,8 @@
   <widget class="QPushButton" name="inputButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>65</y>
+     <x>424</x>
+     <y>49</y>
      <width>31</width>
      <height>20</height>
     </rect>
@@ -117,8 +117,8 @@
   <widget class="QPushButton" name="outputButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>95</y>
+     <x>424</x>
+     <y>79</y>
      <width>31</width>
      <height>20</height>
     </rect>
@@ -130,8 +130,8 @@
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>250</y>
+     <x>204</x>
+     <y>234</y>
      <width>58</width>
      <height>58</height>
     </rect>
@@ -143,8 +143,8 @@
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>220</y>
+     <x>34</x>
+     <y>204</y>
      <width>420</width>
      <height>111</height>
     </rect>
@@ -153,8 +153,8 @@
   <widget class="QWidget" name="backgroundMask" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>45</y>
+     <x>4</x>
+     <y>29</y>
      <width>475</width>
      <height>339</height>
     </rect>
@@ -166,8 +166,8 @@
   <widget class="QComboBox" name="formatCombo">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>150</y>
+     <x>114</x>
+     <y>134</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -176,8 +176,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>175</y>
+     <x>34</x>
+     <y>159</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -189,8 +189,8 @@
   <widget class="QComboBox" name="hzCombo">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>150</y>
+     <x>334</x>
+     <y>134</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -199,8 +199,8 @@
   <widget class="QComboBox" name="kbpsCombo">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>175</y>
+     <x>114</x>
+     <y>159</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -209,8 +209,8 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>150</y>
+     <x>274</x>
+     <y>134</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -222,8 +222,8 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>175</y>
+     <x>244</x>
+     <y>159</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -235,8 +235,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>150</y>
+     <x>54</x>
+     <y>134</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -248,8 +248,8 @@
   <widget class="QComboBox" name="msCombo">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>175</y>
+     <x>334</x>
+     <y>159</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -258,8 +258,8 @@
   <widget class="QPushButton" name="transformButton">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>340</y>
+     <x>314</x>
+     <y>324</y>
      <width>141</width>
      <height>31</height>
     </rect>
@@ -271,8 +271,8 @@
   <widget class="QCheckBox" name="folderBox">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>120</y>
+     <x>34</x>
+     <y>104</y>
      <width>200</width>
      <height>20</height>
     </rect>
@@ -285,7 +285,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>120</y>
+     <y>104</y>
      <width>170</width>
      <height>20</height>
     </rect>
