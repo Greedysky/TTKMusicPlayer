@@ -26,6 +26,8 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
+    addAction(tr("showMainWindow"), parent, SLOT(showNormal()));
+    addSeparator();
     addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addSeparator();
     addAction(QIcon(":/contextMenu/btn_login"), tr("logout"));
@@ -66,8 +68,7 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
-    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay :
-                                         MusicUIObject::MKGContextPause);
+    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay : MusicUIObject::MKGContextPause);
 }
 
 void MusicSystemTrayMenu::setVolumeValue(int value) const
