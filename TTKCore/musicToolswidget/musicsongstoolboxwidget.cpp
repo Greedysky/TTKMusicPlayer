@@ -2,6 +2,7 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
+#include "musictinyuiobject.h"
 #include "musicsong.h"
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
@@ -11,6 +12,7 @@
 #include <QScrollBar>
 #include <QScrollArea>
 #include <QMouseEvent>
+#include <QPushButton>
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
@@ -28,10 +30,25 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_labelText->setText(text);
     MusicUtils::Widget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
 
-    MusicClickedLabel *menuLabel = new MusicClickedLabel(this);
-    connect(menuLabel, SIGNAL(clicked()), SLOT(showMenu()));
-    menuLabel->setPixmap(QPixmap(":/tiny/btn_list_menu"));
-    menuLabel->setGeometry(290, 10, 16, 16);
+    QPushButton *enhanceButton = new QPushButton(this);
+    enhanceButton->setToolTip(tr("enhanceLossless"));
+    enhanceButton->setStyleSheet(MusicUIObject::MKGTinyBtnEnhanceLossless);
+    enhanceButton->setCursor(QCursor(Qt::PointingHandCursor));
+    enhanceButton->setGeometry(240, 10, 16, 16);
+
+    QPushButton *shareListButton = new QPushButton(this);
+    shareListButton->setToolTip(tr("shareList"));
+    shareListButton->setStyleSheet(MusicUIObject::MKGTinyBtnShare);
+    shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
+    shareListButton->setGeometry(265, 10, 16, 16);
+
+    QPushButton *menuButton = new QPushButton(this);
+    menuButton->setToolTip(tr("listMenu"));
+    menuButton->setStyleSheet(MusicUIObject::MKGTinyBtnListMenu);
+    menuButton->setCursor(QCursor(Qt::PointingHandCursor));
+    menuButton->setGeometry(290, 10, 16, 16);
+    connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
+
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);
     topLayout->addStretch(1);

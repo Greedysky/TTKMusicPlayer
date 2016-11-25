@@ -433,7 +433,8 @@
         <file alias="btn_sound">../TTKResource/tiny/btn_sound.png</file>
         <file alias="btn_open_file">../TTKResource/tiny/btn_open_file.png</file>
         <file alias="btn_open_files">../TTKResource/tiny/btn_open_files.png</file>
-        <file alias="btn_list_menu">../TTKResource/tiny/btn_list_menu.png</file>
+        <file alias="btn_list_menu_normal">../TTKResource/tiny/btn_list_menu_normal.png</file>
+        <file alias="btn_list_menu_hover">../TTKResource/tiny/btn_list_menu_hover.png</file>
         <file alias="lb_number0">../TTKResource/tiny/lb_number0.png</file>
         <file alias="lb_number1">../TTKResource/tiny/lb_number1.png</file>
         <file alias="lb_number2">../TTKResource/tiny/lb_number2.png</file>
@@ -451,6 +452,8 @@
         <file alias="lb_question">../TTKResource/tiny/lb_question.png</file>
         <file alias="lb_function_hover">../TTKResource/tiny/lb_function_hover.png</file>
         <file alias="lb_function_normal">../TTKResource/tiny/lb_function_normal.png</file>
+        <file alias="btn_enhance_lossless_normal">../TTKResource/tiny/btn_enhance_lossless_normal.png</file>
+        <file alias="btn_enhance_lossless_hover">../TTKResource/tiny/btn_enhance_lossless_hover.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>
