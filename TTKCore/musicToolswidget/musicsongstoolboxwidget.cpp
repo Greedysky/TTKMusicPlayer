@@ -6,7 +6,9 @@
 #include "musicsong.h"
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
+#include "musictopareawidget.h"
 
+#include <QDebug>
 #include <QMenu>
 #include <QPainter>
 #include <QScrollBar>
@@ -140,7 +142,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    menu.addAction(tr("addNewItem"), parent(), SIGNAL(addNewRowItem()));
+    menu.addAction(tr("addNewItem"), this, SIGNAL(addNewRowItem()));
     menu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
@@ -177,13 +179,52 @@ void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+    painter.drawLine(0, 0, width(), 0);
     painter.drawLine(0, height(), width(), height());
 }
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget::contextMenuEvent(event);
+//    QWidget::contextMenuEvent(event);
+    Q_UNUSED(event);
     showMenu();
+}
+
+
+
+MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
+    : MusicSongsToolBoxTopWidget(-1, QString(), parent)
+{
+    move(0, 0);
+    setFixedWidth(320);
+
+    hide();
+}
+
+QString MusicSongsToolBoxMaskWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+
+    QLinearGradient gradient;
+    gradient.setStart(0, 32);
+    gradient.setFinalStop(0, height());
+    gradient.setColorAt(0.1, QColor(150, 150, 150, 150));
+    gradient.setColorAt(0.9, QColor(180, 180, 180, 50));
+
+    painter.setPen(Qt::transparent);
+    painter.setBrush(gradient);
+    painter.drawRect(0, 32, width(), height());
+
+    QPixmap pix(MusicTopAreaWidget::instance()->getBgSkinPixmap());
+    painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(50, 50, width(), height() - 3));
+    painter.fillRect(QRect(0, 0, width(), height() - 3),
+                     QColor(255, 255, 255, 2.55*MusicTopAreaWidget::instance()->getListBgSkinAlpha()));
 }
 
 
@@ -192,6 +233,7 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
 {
     m_topWidget = new MusicSongsToolBoxTopWidget(index, text, this);
     connect(m_topWidget, SIGNAL(mousePressAt(int)), parent, SLOT(mousePressAt(int)));
+    connect(m_topWidget, SIGNAL(addNewRowItem()), SIGNAL(addNewRowItem()));
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
     connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
     connect(m_topWidget, SIGNAL(renameFinished(int,QString)), SIGNAL(changRowItemName(int,QString)));
@@ -305,6 +347,7 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     m_scrollArea = new QScrollArea(this);
     m_scrollArea->setWidgetResizable(true);
     m_scrollArea->setFrameShape(QFrame::NoFrame);
+    m_scrollArea->setFrameShadow(QFrame::Plain);
     m_scrollArea->setAlignment(Qt::AlignLeft);
     m_scrollArea->setWidget(m_contentsWidget);
 

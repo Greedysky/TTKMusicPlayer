@@ -12,6 +12,7 @@
 #include "musicapplication.h"
 #include "musictoastlabel.h"
 
+#include <QScrollBar>
 #include <QScrollArea>
 
 MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
@@ -23,12 +24,23 @@ MusicSongsSummarizied::MusicSongsSummarizied(QWidget *parent)
     m_currentDeleteIndex = -1;
     m_toolDeleteChanged = false;
 
+    m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
+    connect(m_listMaskWidget, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
+    connect(m_listMaskWidget, SIGNAL(mousePressAt(int)), SLOT(mousePressAt(int)));
+    connect(m_listMaskWidget, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
+    connect(m_listMaskWidget, SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
+    connect(m_listMaskWidget, SIGNAL(renameFinished(int,QString)), SLOT(changRowItemName(int,QString)));
+    connect(m_listMaskWidget, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
+    connect(m_listMaskWidget, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
 }
 
 MusicSongsSummarizied::~MusicSongsSummarizied()
 {
+    delete m_listMaskWidget;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
@@ -309,7 +321,9 @@ void MusicSongsSummarizied::changRowItemName(int index, const QString &name)
         return;
     }
 
-    m_songItems[id].m_itemName = name;
+    MusicSongItem *item = &m_songItems[id];
+    item->m_itemName = name;
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(name).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummarizied::addNewFiles(int index)
@@ -531,6 +545,24 @@ void MusicSongsSummarizied::getMusicLists(MusicSongItems &songs)
 void MusicSongsSummarizied::updateCurrentArtist()
 {
     m_songItems[m_currentPlayToolIndex].m_itemObject->updateCurrentArtist();
+}
+
+void MusicSongsSummarizied::sliderValueChanaged(int value)
+{
+    if(value >= 35*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
+    {
+        const MusicSongItem songItem = m_songItems[m_currentIndex];
+        m_listMaskWidget->setItemIndex(songItem.m_itemIndex);
+        m_listMaskWidget->setTitle(QString("%1[%2]").arg(songItem.m_itemName).arg(songItem.m_songs.count()));
+        m_listMaskWidget->setItemExpand(true);
+        m_listMaskWidget->raise();
+        m_listMaskWidget->show();
+        m_listMaskWidget->repaint();
+    }
+    else
+    {
+        m_listMaskWidget->hide();
+    }
 }
 
 void MusicSongsSummarizied::checkCurrentNameExist(QString &name)

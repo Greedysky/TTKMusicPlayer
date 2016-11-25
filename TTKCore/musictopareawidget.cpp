@@ -95,6 +95,11 @@ void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alpha
     musicBgTransparentChanged(m_alpha = alpha);
 }
 
+QPixmap MusicTopAreaWidget::getBgSkinPixmap() const
+{
+    return *m_ui->background->pixmap();
+}
+
 int MusicTopAreaWidget::getListBgSkinAlpha()
 {
     if(m_musicbgskin)

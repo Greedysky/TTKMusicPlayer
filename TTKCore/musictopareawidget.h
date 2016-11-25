@@ -51,11 +51,17 @@ public:
     /*!
      * Set background skin and alpha and list alpha parameter.
      */
-    QString getBgSkin() const {return m_currentBgSkin;}
+
+    inline QString getBgSkin() const { return m_currentBgSkin; }
     /*!
      * Get background skin name.
      */
-    int getBgSkinAlpha() const {return m_alpha;}
+    QPixmap getBgSkinPixmap() const;
+    /*!
+     * Get background skin pixmap.
+     */
+
+    inline int getBgSkinAlpha() const { return m_alpha; }
     /*!
      * Get background skin alpha.
      */

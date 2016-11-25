@@ -208,6 +208,12 @@ public Q_SLOTS:
      * Update current artist when it download finished.
      */
 
+private Q_SLOTS:
+    void sliderValueChanaged(int value);
+    /*!
+     * Current vertical slider value chanaged.
+     */
+
 protected:
     void checkCurrentNameExist(QString &name);
     /*!
@@ -234,6 +240,7 @@ protected:
     int m_currentImportIndex, m_currentDeleteIndex;
     bool m_toolDeleteChanged;
     MusicSongItems m_songItems;
+    MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicObject::MIntsListMap m_searchfileListCache;
 
 };
