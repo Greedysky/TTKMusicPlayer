@@ -31,6 +31,16 @@ int MusicBackgroundPopWidget::value() const
     return m_slider->value();
 }
 
+void MusicBackgroundPopWidget::sliderPressed()
+{
+    emit sliderStateChanged(true);
+}
+
+void MusicBackgroundPopWidget::sliderReleased()
+{
+    emit sliderStateChanged(false);
+}
+
 void MusicBackgroundPopWidget::initWidget()
 {
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle02);
@@ -48,6 +58,8 @@ void MusicBackgroundPopWidget::initWidget()
     m_slider = new MusicClickedSlider(Qt::Vertical, m_containWidget);
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle03);
     connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
+    connect(m_slider, SIGNAL(sliderPressed()), SLOT(sliderPressed()));
+    connect(m_slider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));
 
     m_slider->setRange(0, 100);
     m_slider->setValue(100);

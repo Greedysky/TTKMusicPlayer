@@ -131,6 +131,10 @@ public Q_SLOTS:
     /*!
      * Changed current background skin.
      */
+    void musicBackgroundSliderStateChanged(bool state);
+    /*!
+     * Current slider state changed.
+     */
     void musicBgThemeDownloadFinished();
     /*!
      * Current background skin download is finished.

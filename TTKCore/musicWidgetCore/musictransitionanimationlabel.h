@@ -32,6 +32,15 @@ public:
      * Get class object name.
      */
 
+    inline void setNoAnimation(bool on) { m_noAnimationSet = on; }
+    /*!
+     * Set no animation to start.
+     */
+    inline bool getNoAnimation() const { return m_noAnimationSet; }
+    /*!
+     * Get no animation state.
+     */
+
 public Q_SLOTS:
     void setPixmap(const QPixmap &pix);
     /*!
@@ -56,6 +65,7 @@ protected:
 
     bool m_isAnimating;
     int m_currentValue;
+    bool m_noAnimationSet;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
 

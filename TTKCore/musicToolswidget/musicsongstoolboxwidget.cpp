@@ -8,7 +8,6 @@
 #include "musicapplication.h"
 #include "musictopareawidget.h"
 
-#include <QDebug>
 #include <QMenu>
 #include <QPainter>
 #include <QScrollBar>
@@ -222,7 +221,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(0, 32, width(), height());
 
     QPixmap pix(MusicTopAreaWidget::instance()->getBgSkinPixmap());
-    painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(50, 50, width(), height() - 3));
+    painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(51, 51, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3),
                      QColor(255, 255, 255, 2.55*MusicTopAreaWidget::instance()->getListBgSkinAlpha()));
 }

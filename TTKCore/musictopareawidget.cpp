@@ -49,7 +49,9 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    ui->background->setNoAnimation(true);
     ui->userWindow->addWidget(m_musicUserWindow);
+
     ui->musicSongSearchLine->initWidget(MusicApplication::instance());
     ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
     ui->musicSongSearchLine->setText(tr("please input search text"));
@@ -201,6 +203,11 @@ void MusicTopAreaWidget::musicBackgroundChanged()
 {
     QString art_path = M_BACKGROUND_PTR->getArtPhotoPath();
     !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
+}
+
+void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
+{
+    m_ui->background->setNoAnimation(state);
 }
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()

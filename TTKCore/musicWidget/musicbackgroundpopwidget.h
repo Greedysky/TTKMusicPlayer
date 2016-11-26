@@ -45,6 +45,20 @@ Q_SIGNALS:
     /*!
      * Current play transparent changed.
      */
+    void sliderStateChanged(bool state);
+    /*!
+     * Current slider state changed.
+     */
+
+private Q_SLOTS:
+    void sliderPressed();
+    /*!
+     * Current slider pressed changed.
+     */
+    void sliderReleased();
+    /*!
+     * Current slider released changed.
+     */
 
 protected:
     void initWidget();

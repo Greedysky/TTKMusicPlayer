@@ -34,6 +34,8 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     connect(ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicBgTransparentChanged(int)));
+    connect(ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), parent,
+                                       SLOT(musicBackgroundSliderStateChanged(bool)));
     connect(ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicPlayListTransparent(int)));
     connect(ui->themeListWidget, SIGNAL(itemClicked(QListWidgetItem*)),

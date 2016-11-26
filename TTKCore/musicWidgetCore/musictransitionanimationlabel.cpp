@@ -8,6 +8,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
 {
     m_isAnimating = false;
     m_currentValue = 0;
+    m_noAnimationSet = false;
 
     m_animation = new QPropertyAnimation(this, QByteArray());
     m_animation->setDuration(200);
@@ -35,7 +36,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 //        return;
 //    }
 
-    if(!pixmap())
+    if(m_noAnimationSet || !pixmap())
     {
         QLabel::setPixmap(pix);
         return;
