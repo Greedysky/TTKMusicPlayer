@@ -49,7 +49,6 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    ui->background->setNoAnimation(true);
     ui->userWindow->addWidget(m_musicUserWindow);
 
     ui->musicSongSearchLine->initWidget(MusicApplication::instance());
@@ -99,7 +98,7 @@ void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int alpha
 
 QPixmap MusicTopAreaWidget::getBgSkinPixmap() const
 {
-    return *m_ui->background->pixmap();
+    return m_ui->background->getRendererPixmap();
 }
 
 int MusicTopAreaWidget::getListBgSkinAlpha()

@@ -40,6 +40,10 @@ public:
     /*!
      * Get no animation state.
      */
+    inline QPixmap getRendererPixmap() const { return m_rendererPixmap; }
+    /*!
+     * Get renderer pixmap image.
+     */
 
 public Q_SLOTS:
     void setPixmap(const QPixmap &pix);
@@ -66,6 +70,7 @@ protected:
     bool m_isAnimating;
     int m_currentValue;
     bool m_noAnimationSet;
+    QPixmap m_rendererPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
 

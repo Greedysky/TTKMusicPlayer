@@ -77,6 +77,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
         paint.drawPixmap(rect(), m_currentPixmap);
         paint.end();
 
+        m_rendererPixmap = pixed;
         painter.drawPixmap(rect(), pixed);
     }
     else
