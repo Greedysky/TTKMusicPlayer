@@ -31,7 +31,7 @@ QString MusicTransitionAnimationLabel::getClassName()
 
 QPixmap MusicTransitionAnimationLabel::getRendererPixmap() const
 {
-    return m_previousPixmap.isNull() ? *pixmap() : m_rendererPixmap;
+    return m_rendererPixmap;
 }
 
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
@@ -43,6 +43,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 
     if(m_noAnimationSet || !pixmap())
     {
+        m_rendererPixmap = pix;
         QLabel::setPixmap(pix);
         return;
     }
