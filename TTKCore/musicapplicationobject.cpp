@@ -16,6 +16,7 @@
 #include "musicsoundeffectswidget.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
+#include "musictopareawidget.h"
 
 #include <QPropertyAnimation>
 #include <QApplication>
@@ -82,6 +83,9 @@ void MusicApplicationObject::windowStartAnimationOpacity()
     m_animation->setStartValue(0);
     m_animation->setEndValue(1);
     m_animation->start();
+    QTimer::singleShot(MT_S2MS, this, [](){
+        MusicTopAreaWidget::instance()->musicBackgroundSliderStateChanged(false);
+    });
 }
 
 void MusicApplicationObject::windowCloseAnimationOpacity()
