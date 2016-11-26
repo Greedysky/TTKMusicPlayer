@@ -29,6 +29,11 @@ QString MusicTransitionAnimationLabel::getClassName()
     return staticMetaObject.className();
 }
 
+QPixmap MusicTransitionAnimationLabel::getRendererPixmap() const
+{
+    return m_previousPixmap.isNull() ? *pixmap() : m_rendererPixmap;
+}
+
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 {
 //    if(m_isAnimating)

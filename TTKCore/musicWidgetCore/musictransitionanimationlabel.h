@@ -40,7 +40,7 @@ public:
     /*!
      * Get no animation state.
      */
-    inline QPixmap getRendererPixmap() const { return m_rendererPixmap; }
+    QPixmap getRendererPixmap() const;
     /*!
      * Get renderer pixmap image.
      */
