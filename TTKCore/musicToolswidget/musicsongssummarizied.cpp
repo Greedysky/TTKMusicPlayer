@@ -107,7 +107,8 @@ void MusicSongsSummarizied::importOtherMusicSongs(QStringList &filelist)
         progress.setValue(++i);
     }
     item->m_itemObject->updateSongsFileName(item->m_songs);
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setItemTitle(item);
+
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentImportIndex);
 
     MusicToastLabel *toast = new MusicToastLabel(MusicApplication::instance());
@@ -323,7 +324,7 @@ void MusicSongsSummarizied::changRowItemName(int index, const QString &name)
 
     MusicSongItem *item = &m_songItems[id];
     item->m_itemName = name;
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(name).arg(item->m_songs.count()));
+    setItemTitle(item);
 }
 
 void MusicSongsSummarizied::addNewFiles(int index)
@@ -390,7 +391,7 @@ void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
     {
         emit updatePlayLists(song.getMusicPath());
     }
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setItemTitle(item);
 }
 
 void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
@@ -401,7 +402,7 @@ void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
     {
         item->m_itemObject->clearAllItems();
         item->m_itemObject->updateSongsFileName(item->m_songs);
-        setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        setItemTitle(item);
     }
 }
 
@@ -417,7 +418,7 @@ void MusicSongsSummarizied::addNetMusicSongToList(const QString &name, const QSt
     {
         emit updatePlayLists(path);
     }
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setItemTitle(item);
 
     if(play)
     {
@@ -481,7 +482,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
     {
         MusicApplication::instance()->setDeleteItemAt(index, fileRemove);
     }
-    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setItemTitle(item);
 
     //create upload file widget if current items is all been deleted
     item->m_itemObject->createUploadFileWidget();
@@ -557,7 +558,6 @@ void MusicSongsSummarizied::sliderValueChanaged(int value)
         m_listMaskWidget->setItemExpand(true);
         m_listMaskWidget->raise();
         m_listMaskWidget->show();
-        m_listMaskWidget->repaint();
     }
     else
     {
@@ -640,6 +640,16 @@ void MusicSongsSummarizied::clearAllLists()
         MusicSongsListWidget *w = m_songItems.takeLast().m_itemObject;
         delete w;
         w = nullptr;
+    }
+}
+
+void MusicSongsSummarizied::setItemTitle(MusicSongItem *item)
+{
+    QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setTitle(item->m_itemObject, title);
+    if(m_listMaskWidget->isVisible())
+    {
+        m_listMaskWidget->setTitle(title);
     }
 }
 

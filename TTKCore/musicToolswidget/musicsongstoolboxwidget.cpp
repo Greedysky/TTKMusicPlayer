@@ -190,7 +190,6 @@ void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 }
 
 
-
 MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     : MusicSongsToolBoxTopWidget(-1, QString(), parent)
 {

@@ -131,8 +131,7 @@ protected:
 };
 
 
-
-/*! @brief The class of the tool box top widget.
+/*! @brief The class of the tool box mask widget.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_TOOL_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTopWidget

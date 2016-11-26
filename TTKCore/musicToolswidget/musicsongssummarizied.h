@@ -231,6 +231,10 @@ protected:
     /*!
      * Delete all objects.
      */
+    void setItemTitle(MusicSongItem *item);
+    /*!
+     * Set item title.
+     */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
