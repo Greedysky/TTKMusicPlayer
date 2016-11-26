@@ -9,17 +9,72 @@
  * works are strictly forbiden.
    =================================================*/
 
-#define MUSIC_BG_ROLE       Qt::UserRole + 1
-#define MUSIC_FILEHASH_ROLE Qt::UserRole + 2
-
-#include <QListWidget>
+#include <QLabel>
+#include <QGridLayout>
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
+
+/*! @brief The class of the background list item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicBackgroundListItem : public QLabel
+{
+    Q_OBJECT
+public:
+    explicit MusicBackgroundListItem(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    inline void setFileName(const QString &name) { m_name = name; }
+    /*!
+     * Set item file name.
+     */
+    inline QString getFileName() const { return m_name; }
+    /*!
+     * Get item file name.
+     */
+
+    void select(bool select);
+    /*!
+     * Select the current item.
+     */
+    inline bool isSelect() const { return m_isSelected; }
+    /*!
+     * Get current selected item state.
+     */
+
+Q_SIGNALS:
+    void itemClicked(MusicBackgroundListItem *item);
+    /*!
+     * Current item clicked.
+     */
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    bool m_printMask;
+    bool m_isSelected;
+    QString m_name;
+
+};
+
 
 /*! @brief The class of the background list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QListWidget
+class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -33,6 +88,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void setCurrentItemName(const QString &name);
     /*!
      * Select current item by name when the widget show.
@@ -41,44 +97,37 @@ public:
     /*!
      * Clear All Items.
      */
-
     void createItem(const QString &name, const QString &path);
     /*!
      * Create item by name and path.
      */
-    void createItem(const QString &name, const QIcon &icon);
+
+    void updateLastedItem();
     /*!
-     * Create item by name and icon.
+     * Update lasted item state.
      */
 
-    bool contains(const QString &name);
+    inline int count() const { return m_items.count(); }
     /*!
-     * List contains the item by given name, yes retuen true.
-     */
-    bool contains(QListWidgetItem *item);
-    /*!
-     * List contains the item, yes retuen true.
+     * Item count.
      */
 
-    int indexOf(const QString &name);
+Q_SIGNALS:
+    void itemClicked(const QString &name);
     /*!
-     * Get index of item in list by given name.
-     */
-    int indexOf(QListWidgetItem *item);
-    /*!
-     * Get index of item in list by given item.
+     * Current item clicked.
      */
 
-    QString fileHash(const QString &name);
+private Q_SLOTS:
+    void itemHasClicked(MusicBackgroundListItem *item);
     /*!
-     * Get file md5 hash.
+     * Current item has clicked.
      */
 
-public Q_SLOTS:
-    void reCreateItem(const QString &name);
-    /*!
-     * ReCreate item when background download finished.
-     */
+protected:
+    QGridLayout *m_layout;
+    MusicBackgroundListItem *m_currentItem;
+    QList<MusicBackgroundListItem*> m_items;
 
 };
 

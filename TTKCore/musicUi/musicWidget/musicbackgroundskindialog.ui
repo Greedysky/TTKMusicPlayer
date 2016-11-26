@@ -62,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>24</x>
-     <y>32</y>
+     <y>40</y>
      <width>80</width>
      <height>30</height>
     </rect>
@@ -71,45 +71,11 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
-    <string>我的</string>
+    <string>皮肤</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
-  </widget>
-  <widget class="MusicClickedLabel" name="netSkin">
-   <property name="geometry">
-    <rect>
-     <x>109</x>
-     <y>32</y>
-     <width>80</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>推荐</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="MusicAnimationStackedWidget" name="stackedWidget">
-   <property name="geometry">
-    <rect>
-     <x>21</x>
-     <y>61</y>
-     <width>585</width>
-     <height>300</height>
-    </rect>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="MusicBackgroundListWidget" name="themeListWidget"/>
-   <widget class="MusicBackgroundRemoteWidget" name="remoteWidget"/>
   </widget>
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
@@ -155,6 +121,19 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>585</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
    <property name="geometry">
@@ -211,21 +190,11 @@
     <string notr="true"/>
    </property>
   </widget>
-  <widget class="QLabel" name="arrowLabel">
-   <property name="geometry">
-    <rect>
-     <x>59</x>
-     <y>54</y>
-     <width>9</width>
-     <height>7</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="resetWindowButton">
    <property name="geometry">
     <rect>
      <x>484</x>
-     <y>39</y>
+     <y>47</y>
      <width>118</width>
      <height>13</height>
     </rect>
@@ -242,51 +211,30 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>mySkin</zorder>
-  <zorder>netSkin</zorder>
-  <zorder>stackedWidget</zorder>
   <zorder>customSkin</zorder>
   <zorder>paletteButton</zorder>
   <zorder>listTransparentLabel</zorder>
   <zorder>skinTransparentLabel</zorder>
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
-  <zorder>arrowLabel</zorder>
   <zorder>resetWindowButton</zorder>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MusicTransitionAnimationLabel</class>
    <extends>QLabel</extends>
    <header>musictransitionanimationlabel.h</header>
   </customwidget>
   <customwidget>
-   <class>MusicAnimationStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>musicanimationstackedwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicBackgroundListWidget</class>
-   <extends>QListWidget</extends>
-   <header>musicbackgroundlistwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicBackgroundRemoteWidget</class>
-   <extends>QWidget</extends>
-   <header>musicbackgroundremotewidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MusicBackgroundPopWidget</class>
    <extends>QWidget</extends>
    <header>musicbackgroundpopwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

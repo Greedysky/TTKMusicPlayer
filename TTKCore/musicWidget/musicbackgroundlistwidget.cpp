@@ -1,21 +1,86 @@
 #include "musicbackgroundlistwidget.h"
-#include "musicuiobject.h"
 
-#include <QCryptographicHash>
-#include <QFile>
+#include <QPainter>
+
+MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
+    : QLabel(parent)
+{
+    setFixedSize(137, 100);
+    setCursor(Qt::PointingHandCursor);
+
+    m_printMask = false;
+    m_isSelected = false;
+}
+
+QString MusicBackgroundListItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicBackgroundListItem::select(bool select)
+{
+    m_isSelected = select;
+    update();
+}
+
+void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
+{
+    QLabel::mousePressEvent(event);
+    emit itemClicked(this);
+}
+
+void MusicBackgroundListItem::leaveEvent(QEvent *event)
+{
+    QLabel::leaveEvent(event);
+    m_printMask = false;
+    update();
+}
+
+void MusicBackgroundListItem::enterEvent(QEvent *event)
+{
+    QLabel::enterEvent(event);
+    m_printMask = true;
+    update();
+}
+
+void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
+{
+    QLabel::paintEvent(event);
+
+    if(m_isSelected)
+    {
+        QPainter painter(this);
+        painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
+    }
+
+    if(m_printMask)
+    {
+        QPainter painter(this);
+        painter.setBrush(QColor(0, 0, 0, 155));
+        painter.drawRect(rect());
+
+
+        QFont f = painter.font();
+        f.setPixelSize(15);
+        painter.setFont(f);
+        QFontMetrics metric(painter.font());
+
+        painter.setPen(Qt::white);
+        painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
+        painter.drawText((width() - metric.width(tr("Used By 88888")))/2, 50, tr("Used By 88888"));
+        painter.drawText((width() - metric.width(tr("Au: Greedysky")))/2, 68, tr("Au: Greedysky"));
+    }
+}
+
 
 MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
-    : QListWidget(parent)
+    : QWidget(parent)
 {
-    setFrameShape(QFrame::NoFrame); //Set No Border
-    setStyleSheet(MusicUIObject::MScrollBarStyle01);
-#ifdef Q_OS_WIN
-    setIconSize(QSize(100, 80));
-#else
-    setIconSize(QSize(89, 80));
-#endif
-    setViewMode(QListView::IconMode);
-    setMovement(QListView::Static);
+    m_layout = new QGridLayout(this);
+    m_layout->setContentsMargins(7, 7, 7, 7);
+    setLayout(m_layout);
+
+    m_currentItem = nullptr;
 }
 
 MusicBackgroundListWidget::~MusicBackgroundListWidget()
@@ -31,12 +96,12 @@ QString MusicBackgroundListWidget::getClassName()
 void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 {
     //Set the current theme index
-    for(int i=0; i<count(); ++i)
+    foreach(MusicBackgroundListItem *item, m_items)
     {
-        QListWidgetItem *it = item(i);
-        if(it && it->data(MUSIC_BG_ROLE) == name )
+        if(item->getFileName() == name)
         {
-            setCurrentItem(it);
+            item->select(true);
+            m_currentItem = item;
             break;
         }
     }
@@ -44,106 +109,39 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 
 void MusicBackgroundListWidget::clearAllItems()
 {
-    clear();
-}
-
-void MusicBackgroundListWidget::createItem(const QString &name, const QIcon &icon)
-{
-    QListWidgetItem *it = new QListWidgetItem(this);
-    it->setIcon( icon );
-    it->setData(MUSIC_BG_ROLE, name);
-    it->setData(MUSIC_FILEHASH_ROLE, fileHash(name));
-    it->setToolTip(name);
-    addItem(it);
+    while(!m_items.isEmpty())
+    {
+        delete m_items.takeLast();
+    }
 }
 
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path)
 {
-    QListWidgetItem *it = new QListWidgetItem(this);
-    it->setIcon( QIcon(QPixmap(path).scaled(90, 70)) );
-    it->setData(MUSIC_BG_ROLE, name);
-    it->setData(MUSIC_FILEHASH_ROLE, fileHash(path));
-    it->setToolTip(name);
-    addItem(it);
+    MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
+    item->setFileName(name);
+    item->setPixmap( QPixmap(path).scaled(item->size()) );
+    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)),
+                  SLOT(itemHasClicked(MusicBackgroundListItem*)));
+    m_layout->addWidget(item, m_items.count()/4, m_items.count()%4);
+    m_items << item;
 }
 
-bool MusicBackgroundListWidget::contains(const QString &name)
+void MusicBackgroundListWidget::updateLastedItem()
 {
-    QListWidgetItem *it = nullptr;
-    for(int i=0; i<count(); ++i)
+    if(!m_items.isEmpty())
     {
-        if((it = item(i)) &&
-            it->data(MUSIC_FILEHASH_ROLE).toString() == fileHash(name))
-        {
-            return true;
-        }
+        itemHasClicked(m_items.last());
     }
-    return false;
 }
 
-bool MusicBackgroundListWidget::contains(QListWidgetItem *item)
+void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
 {
-    QListWidgetItem *it = nullptr;
-    for(int i=0; i<count(); ++i)
+    if(m_currentItem)
     {
-        if((it = this->item(i)) && it == item)
-        {
-            return true;
-        }
+        m_currentItem->select(false);
     }
-    return false;
-}
 
-int MusicBackgroundListWidget::indexOf(const QString &name)
-{
-    QListWidgetItem *it = nullptr;
-    for(int i=0; i<count(); ++i)
-    {
-        if((it = item(i)) &&
-            it->data(MUSIC_FILEHASH_ROLE).toString() == fileHash(name))
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-int MusicBackgroundListWidget::indexOf(QListWidgetItem *item)
-{
-    QListWidgetItem *it = nullptr;
-    for(int i=0; i<count(); ++i)
-    {
-        if((it = this->item(i)) && it == item)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-QString MusicBackgroundListWidget::fileHash(const QString &name)
-{
-    QFile file(name);
-    if( !file.open(QIODevice::ReadOnly | QIODevice::Text) )
-    {
-        return QString();
-    }
-    QByteArray data = file.readAll();
-    file.close();
-    return QCryptographicHash::hash(data, QCryptographicHash::Md5);
-}
-
-void MusicBackgroundListWidget::reCreateItem(const QString &name)
-{
-    QListWidgetItem *it = nullptr;
-    for(int i=0; i<count(); ++i)
-    {
-        if((it = item(i))->data(MUSIC_BG_ROLE).toString().isEmpty())
-        {
-            break;
-        }
-    }
-    it->setIcon(QIcon(QPixmap(name).scaled(90, 70)));
-    it->setData(MUSIC_BG_ROLE, name);
-    it->setToolTip(name);
+    m_currentItem = item;
+    m_currentItem->select(true);
+    emit itemClicked(item->getFileName());
 }

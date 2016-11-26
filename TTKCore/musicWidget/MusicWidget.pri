@@ -28,7 +28,6 @@ HEADERS  += \
     $$PWD/musicsongslistfunctionwidget.h \
     $$PWD/musicsongsplayedlistwidget.h \
     $$PWD/musicqualitychoicewidget.h \
-    $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
     $$PWD/musicbackgroundpopwidget.h \
@@ -65,7 +64,6 @@ SOURCES += \
     $$PWD/musicsongslistfunctionwidget.cpp \
     $$PWD/musicsongsplayedlistwidget.cpp \
     $$PWD/musicqualitychoicewidget.cpp \
-    $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \
     $$PWD/musicbackgroundpopwidget.cpp \

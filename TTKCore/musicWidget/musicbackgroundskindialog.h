@@ -15,7 +15,7 @@ namespace Ui {
 class MusicBackgroundSkinDialog;
 }
 
-class QListWidgetItem;
+class MusicBackgroundListWidget;
 
 /*! @brief The class of the local background widget.
  * @author Greedysky <greedysky@163.com>
@@ -34,6 +34,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
@@ -67,14 +68,6 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void changeToMySkin();
-    /*!
-     * Change index to my skin.
-     */
-    void changeToNetSkin();
-    /*!
-     * Change index to remote skin.
-     */
     void showPaletteDialog();
     /*!
      * Change index to palette dialog.
@@ -86,14 +79,6 @@ public Q_SLOTS:
     void showCustomSkinDialog();
     /*!
      * Change index to custom skin dialog.
-     */
-    void showCustomSkin(const QString &path);
-    /*!
-     * Set current bg when user click the remote bg update.
-     */
-    void itemUserClicked(QListWidgetItem *item);
-    /*!
-     * User click the current local item.
      */
     virtual int exec();
     /*!
@@ -111,6 +96,7 @@ protected:
      */
 
     Ui::MusicBackgroundSkinDialog *ui;
+    MusicBackgroundListWidget *m_backgroundList;
 
 };
 

@@ -454,6 +454,7 @@
         <file alias="lb_function_normal">../TTKResource/tiny/lb_function_normal.png</file>
         <file alias="btn_enhance_lossless_normal">../TTKResource/tiny/btn_enhance_lossless_normal.png</file>
         <file alias="btn_enhance_lossless_hover">../TTKResource/tiny/btn_enhance_lossless_hover.png</file>
+        <file alias="lb_selected">../TTKResource/tiny/lb_selected.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>
