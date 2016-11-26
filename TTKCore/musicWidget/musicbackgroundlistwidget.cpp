@@ -61,7 +61,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 
 
         QFont f = painter.font();
-        f.setPixelSize(15);
+        f.setPixelSize(13);
         painter.setFont(f);
         QFontMetrics metric(painter.font());
 
