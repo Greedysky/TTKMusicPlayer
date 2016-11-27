@@ -95,7 +95,7 @@ void MusicSongsListWidget::updateSongsFileName(const MusicSongs &songs)
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 182));
+        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -204,7 +204,7 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
-    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 182));
+    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 180));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);
@@ -727,7 +727,7 @@ void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
     if(m_renameActived)
     {
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 182));
+        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 180));
         m_renameActived = false;
         m_renameItem = nullptr;
     }

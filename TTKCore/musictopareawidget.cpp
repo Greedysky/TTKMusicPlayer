@@ -49,6 +49,7 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    ui->background->setNoAnimation(true);
     ui->userWindow->addWidget(m_musicUserWindow);
 
     ui->musicSongSearchLine->initWidget(MusicApplication::instance());
