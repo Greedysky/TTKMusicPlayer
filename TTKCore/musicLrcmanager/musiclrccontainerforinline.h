@@ -94,6 +94,10 @@ public:
     /*!
      * Get current lrc size.
      */
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
 
 Q_SIGNALS:
     void updateCurrentTime(qint64 time);

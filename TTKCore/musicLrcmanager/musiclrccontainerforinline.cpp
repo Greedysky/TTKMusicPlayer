@@ -185,6 +185,18 @@ int MusicLrcContainerForInline::getLrcSize() const
     return M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
 }
 
+void MusicLrcContainerForInline::resizeWindow()
+{
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+
+    if(m_lrcDisplayAll)
+    {
+        width += 320;
+    }
+    resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+}
+
 void MusicLrcContainerForInline::lrcSizeChanged(QAction *action) const
 {
     switch(action->data().toInt())
@@ -404,14 +416,7 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *)
 void MusicLrcContainerForInline::resizeEvent(QResizeEvent *event)
 {
     MusicLrcContainer::resizeEvent(event);
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-
-    if(m_lrcDisplayAll)
-    {
-        width += 320;
-    }
-    resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+    resizeWindow();
 }
 
 void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)

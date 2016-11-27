@@ -192,6 +192,29 @@ void MusicRightAreaWidget::showSettingWidget() const
     m_setting->exec();
 }
 
+void MusicRightAreaWidget::resizeWindow()
+{
+    m_ui->songSearchWidget->resizeWindow();
+    m_ui->musiclrccontainerforinline->resizeWindow();
+
+    if(MObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
+    else if(MObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
+    else if(MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
+    else if(MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
+}
+
 void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();

@@ -51,9 +51,8 @@ void MusicAlbumFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract 
     }
 }
 
-void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
+void MusicAlbumFoundTableWidget::resizeWindow()
 {
-    MusicQueryFoundTableWidget::resizeEvent(event);
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 449);
@@ -64,6 +63,12 @@ void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     }
+}
+
+void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryFoundTableWidget::resizeEvent(event);
+    resizeWindow();
 }
 
 
@@ -114,6 +119,11 @@ void MusicAlbumFoundWidget::setSongName(const QString &name)
     m_downloadThread->setQueryAllRecords(false);
     m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery,
                                       MusicUtils::Core::artistName(name));
+}
+
+void MusicAlbumFoundWidget::resizeWindow()
+{
+    m_albumTableWidget->resizeWindow();
 }
 
 void MusicAlbumFoundWidget::queryAllFinished()

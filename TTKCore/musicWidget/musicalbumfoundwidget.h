@@ -35,6 +35,11 @@ public:
      * Set network query input.
      */
 
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     /*!
@@ -64,6 +69,11 @@ public:
     void setSongName(const QString &name);
     /*!
      * Set current name to search founds.
+     */
+
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
      */
 
 public Q_SLOTS:

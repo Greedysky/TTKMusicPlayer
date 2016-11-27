@@ -48,6 +48,20 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
     }
 }
 
+void MusicSimilarFoundTableWidget::resizeWindow()
+{
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 460);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
+
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    }
+}
+
 void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
                                                        const QString &time)
 {
@@ -61,16 +75,7 @@ void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, 
 void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryFoundTableWidget::resizeEvent(event);
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 460);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
-
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
-    }
+    resizeWindow();
 }
 
 
@@ -118,6 +123,11 @@ void MusicSimilarFoundWidget::setSongName(const QString &name)
     m_songNameFull = name;
     m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
     m_similarTableWidget->startSearchQuery(MusicUtils::Core::songName(name));
+}
+
+void MusicSimilarFoundWidget::resizeWindow()
+{
+    m_similarTableWidget->resizeWindow();
 }
 
 void MusicSimilarFoundWidget::queryAllFinished()

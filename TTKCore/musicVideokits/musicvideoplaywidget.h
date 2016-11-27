@@ -41,6 +41,10 @@ public:
     /*!
      * Get the window is popup or not.
      */
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
     void resizeWindow(bool resize);
     /*!
      * Resize widget size or not.

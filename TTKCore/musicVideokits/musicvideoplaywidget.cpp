@@ -141,6 +141,16 @@ bool MusicVideoPlayWidget::isPopup() const
     return m_windowPopup;
 }
 
+void MusicVideoPlayWidget::resizeWindow()
+{
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    if(!isFullScreen())
+    {
+        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+    }
+}
+
 void MusicVideoPlayWidget::resizeWindow(bool resize)
 {
     if(resize)
@@ -277,12 +287,7 @@ void MusicVideoPlayWidget::shareButtonClicked()
 void MusicVideoPlayWidget::resizeEvent(QResizeEvent *event)
 {
     MusicAbstractMoveWidget::resizeEvent(event);
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-    if(!isFullScreen())
-    {
-        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
-    }
+    resizeWindow();
 }
 
 void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -77,6 +77,11 @@ public:
      * Set search data quality.
      */
 
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+
 Q_SIGNALS:
     void auditionIsPlaying(bool play);
     /*!
@@ -159,6 +164,10 @@ public:
     void researchQueryByQuality(const QString &name, const QString &quality);
     /*!
      * Research query by quality it changed.
+     */
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
      */
 
 public Q_SLOTS:

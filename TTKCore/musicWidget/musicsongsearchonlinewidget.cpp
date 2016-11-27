@@ -135,6 +135,24 @@ void MusicSongSearchOnlineTableWidget::setSearchQuality(const QString &quality)
     m_downLoadManager->setSearchQuality(quality);
 }
 
+void MusicSongSearchOnlineTableWidget::resizeWindow()
+{
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 315);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 195);
+    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 60);
+
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 300));
+
+        it = item(i, 2);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 180));
+    }
+}
+
 void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryItemTableWidget::listCellEntered(row, column);
@@ -243,21 +261,8 @@ void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
 
 void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
 {
-    QWidget::resizeEvent(event);
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 315);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 195);
-    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 60);
-
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 300));
-
-        it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 180));
-    }
+    MusicQueryItemTableWidget::resizeEvent(event);
+    resizeWindow();
 }
 
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -362,6 +367,12 @@ void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, co
 {
     m_searchTableWidget->setSearchQuality(quality);
     startSearchQuery(name);
+}
+
+void MusicSongSearchOnlineWidget::resizeWindow()
+{
+    setResizeLabelText( m_textLabel->toolTip() );
+    m_searchTableWidget->resizeWindow();
 }
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)

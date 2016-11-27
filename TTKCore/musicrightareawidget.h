@@ -118,6 +118,11 @@ public:
      * Show setting widget.
      */
 
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+
 Q_SIGNALS:
     void updateBgThemeDownload();
     /*!
