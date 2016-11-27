@@ -95,6 +95,11 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 
 void MusicQueryItemTableWidget::createFinishedItem()
 {
+    if(rowCount() <= 0)
+    {
+        setRowCount(1);
+    }
+
     int count = rowCount() - 1;
     setSpan(count, 0, 1, columnCount());
 
