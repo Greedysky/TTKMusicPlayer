@@ -118,6 +118,10 @@ public Q_SLOTS:
     /*!
      * Show set sound effect widget.
      */
+    void musicBackgroundSliderStateChanged();
+    /*!
+     * Current slider state changed.
+     */
 
 protected:
     bool closeCurrentEqualizer();
