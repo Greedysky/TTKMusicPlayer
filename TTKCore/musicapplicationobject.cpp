@@ -83,9 +83,7 @@ void MusicApplicationObject::windowStartAnimationOpacity()
     m_animation->setStartValue(0);
     m_animation->setEndValue(1);
     m_animation->start();
-    QTimer::singleShot(MT_S2MS, this, [](){
-        MusicTopAreaWidget::instance()->musicBackgroundSliderStateChanged(false);
-    });
+    QTimer::singleShot(MT_S2MS, this, SLOT(musicBackgroundSliderStateChanged()));
 }
 
 void MusicApplicationObject::windowCloseAnimationOpacity()
@@ -243,6 +241,11 @@ void MusicApplicationObject::musicSetSoundEffect()
     MusicSoundEffectsWidget sound;
     sound.setParentConnect(this);
     sound.exec();
+}
+
+void MusicApplicationObject::musicBackgroundSliderStateChanged()
+{
+    MusicTopAreaWidget::instance()->musicBackgroundSliderStateChanged(false);
 }
 
 bool MusicApplicationObject::closeCurrentEqualizer()
