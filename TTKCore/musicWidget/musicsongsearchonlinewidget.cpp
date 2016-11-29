@@ -11,10 +11,10 @@
 #include "musicdatadownloadthread.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
+#include "musicgiflabelwidget.h"
 
 #include <QDateTime>
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QPushButton>
 #include <QCheckBox>
 #include <QButtonGroup>
@@ -71,6 +71,8 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     {
         MusicQueryItemTableWidget::startSearchQuery(text);
     }
+    m_loadingLabel->show();
+    m_loadingLabel->start();
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 

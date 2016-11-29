@@ -15,6 +15,8 @@
 #include "musicfillitemtablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
+class MusicGifLabelWidget;
+
 /*! @brief The class of the query table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -135,7 +137,12 @@ protected:
     /*!
      * Create context menu.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
+    MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;
     MusicLabelDelegate *m_labelDelegate;
 

@@ -2,6 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicgiflabelwidget.h"
 #include "musiccoreutils.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
@@ -35,6 +36,8 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     }
     MusicQueryItemTableWidget::startSearchQuery(text);
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
+    m_loadingLabel->show();
+    m_loadingLabel->start();
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 

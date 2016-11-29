@@ -3,6 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
+#include "musicgiflabelwidget.h"
 #include "musictime.h"
 
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
@@ -34,6 +35,8 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
         return;
     }
     MusicQueryItemTableWidget::startSearchQuery(text);
+    m_loadingLabel->show();
+    m_loadingLabel->start();
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 

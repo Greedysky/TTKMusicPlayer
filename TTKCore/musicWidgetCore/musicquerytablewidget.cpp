@@ -1,6 +1,7 @@
 #include "musicquerytablewidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicitemdelegate.h"
+#include "musicgiflabelwidget.h"
 
 #include <QActionGroup>
 
@@ -39,6 +40,7 @@ void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
 {
+    m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Gif_Cicle_Blue, this);
     m_actionGroup = new QActionGroup(this);
     m_labelDelegate = new MusicLabelDelegate(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
@@ -47,6 +49,7 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
 
 MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
 {
+    delete m_loadingLabel;
     delete m_actionGroup;
     delete m_labelDelegate;
 }
@@ -95,6 +98,9 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 
 void MusicQueryItemTableWidget::createFinishedItem()
 {
+    m_loadingLabel->hide();
+    m_loadingLabel->stop();
+
     if(rowCount() <= 0)
     {
         setRowCount(1);
@@ -130,4 +136,10 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)))->setData(1);
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)))->setData(2);
     m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)))->setData(3);
+}
+
+void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryTableWidget::resizeEvent(event);
+    m_loadingLabel->move((width() - m_loadingLabel->width())/2, (height() - m_loadingLabel->height())/2);
 }
