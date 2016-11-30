@@ -225,8 +225,8 @@ void MusicSongsListWidget::replacePlayWidgetRow()
 
 bool MusicSongsListWidget::createUploadFileWidget()
 {
-    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST &&
-                                  m_parentToolIndex != MUSIC_NETWORK_LIST )
+    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST
+                               && m_parentToolIndex != MUSIC_RECENT_LIST)
     {
         setFixedSize(320, 100);
         if(m_openFileWidget == nullptr)

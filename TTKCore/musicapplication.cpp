@@ -299,6 +299,7 @@ void MusicApplication::showCurrentSong(int index)
         positionChanged(0);
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
+    m_musicSongTree->setRecentMusicSongs(index);
     m_musicSongTree->setMusicPlayCount(index);
     ui->showCurrentSong->setText(name);
     ui->musicMoreFunction->setCurrentSongName(name);

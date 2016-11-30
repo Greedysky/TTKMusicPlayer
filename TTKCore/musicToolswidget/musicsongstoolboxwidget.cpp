@@ -145,17 +145,18 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
-    menu.addMenu(&musicAddNewFiles)->setEnabled(m_index != MUSIC_LOVEST_LIST && m_index != MUSIC_NETWORK_LIST);
+    bool disable = !(m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST || m_index == MUSIC_RECENT_LIST);
+    menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
     menu.addAction(tr("playLater"));
     menu.addAction(tr("addToPlayList"));
     menu.addAction(tr("collectAll"));
-    menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()))
-                   ->setEnabled(m_index != MUSIC_LOVEST_LIST && m_index != MUSIC_NETWORK_LIST);
+    menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();
 
-    bool disable = !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST);
+    disable = !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST ||
+                m_index == MUSIC_RECENT_LIST);
     menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);

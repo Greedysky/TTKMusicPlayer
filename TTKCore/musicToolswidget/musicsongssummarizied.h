@@ -199,6 +199,10 @@ public Q_SLOTS:
     /*!
      * Set current music song play count by given song index.
      */
+    void setRecentMusicSongs(int index);
+    /*!
+     * Input recent imported music datas into container.
+     */
     void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.

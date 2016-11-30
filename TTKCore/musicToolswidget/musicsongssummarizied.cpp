@@ -58,6 +58,7 @@ void MusicSongsSummarizied::addMusicLists(const MusicSongItems &names)
         addNewRowItem( tr("myDefaultPlayItem") );
         addNewRowItem( tr("myLoveSongItem") );
         addNewRowItem( tr("myNetSongItem") );
+        addNewRowItem( tr("myRecentSongItem") );
     }
     else
     {
@@ -227,7 +228,7 @@ void MusicSongsSummarizied::setPlaybackMode(MusicObject::SongPlayType mode) cons
 
 void MusicSongsSummarizied::addNewRowItem()
 {
-    if(m_songItems.count() < ITEM_MAX_COUNT)
+    if(m_songItems.count() <= ITEM_MAX_COUNT)
     {
         QString name = tr("defaultItem");
         checkCurrentNameExist(name);
@@ -274,15 +275,15 @@ void MusicSongsSummarizied::deleteRowItem(int index)
 
 void MusicSongsSummarizied::deleteRowItems()
 {
-    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_NETWORK_LIST &&
-       m_currentPlayToolIndex != MUSIC_NETWORK_LIST )
+    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_LOVEST_LIST &&
+       m_currentPlayToolIndex != MUSIC_NETWORK_LIST && m_currentPlayToolIndex != MUSIC_RECENT_LIST)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
         m_itemList.first().m_widgetItem->setItemExpand(false);
         MusicApplication::instance()->musicPlayIndex(-1);
     }
 
-    for(int i = m_songItems.count() - 1; i>2; --i)
+    for(int i = m_songItems.count() - 1; i>3; --i)
     {
         MusicSongItem item = m_songItems.takeLast();
         removeItem(item.m_itemObject);
@@ -535,6 +536,44 @@ void MusicSongsSummarizied::setMusicPlayCount(int index)
     {
         MusicSong *song = &(*songs)[index];
         song->setMusicPlayCount( song->getMusicPlayCount() + 1);
+    }
+}
+
+void MusicSongsSummarizied::setRecentMusicSongs(int index)
+{
+    if(index < 0 || m_currentPlayToolIndex == MUSIC_RECENT_LIST)
+    {
+        return;
+    }
+
+    MusicSongs *songs = &m_songItems[m_currentPlayToolIndex].m_songs;
+    if(songs->isEmpty() || index >= songs->count())
+    {
+        return;
+    }
+
+    MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
+    MusicSong music( (*songs)[index] );
+    if(!item->m_songs.contains(music))
+    {
+        music.setMusicPlayCount(music.getMusicPlayCount() + 1);
+        item->m_songs << music;
+        item->m_itemObject->updateSongsFileName(item->m_songs);
+        QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        setTitle(item->m_itemObject, title);
+    }
+    else
+    {
+        MusicSongs *musics = &item->m_songs;
+        for(int i=0; i<musics->count(); ++i)
+        {
+            MusicSong *m = &(*musics)[i];
+            if(music == *m)
+            {
+                m->setMusicPlayCount(m->getMusicPlayCount() + 1);
+                break;
+            }
+        }
     }
 }
 
