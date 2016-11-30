@@ -470,7 +470,7 @@ void MusicSongsSummarizied::setDeleteItemAt(const MusicObject::MIntList &index, 
             {
                 if(songs[playIndex].getMusicPath() == song.getMusicPath())
                 {
-                    MusicApplication::instance()->musicAddSongToLovestListAt();
+                    MusicApplication::instance()->musicAddSongToLovestListAt(false);
                 }
             }
         }

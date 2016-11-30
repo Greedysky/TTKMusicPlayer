@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicdatabaseobject.h"
 
 #include <QTimer>
 

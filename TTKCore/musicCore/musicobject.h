@@ -63,10 +63,6 @@
 #define BARRAGEPATH             "musicbarrage.ttk"
 #define SOUNDPATH               "sound.wav"
 
-#define SQLITE_DATABASE         "QSQLITE"
-#define MYSQL_DATABASE          "QMYSQL"
-#define OCI_DATABASE            "QOCI"
-
 ///////////////////////////////////////
 #if defined (Q_OS_ANDROID)
 #  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
@@ -108,14 +104,15 @@
 #endif
 
 ///////////////////////////////////////
-#define USERID             20
-#define PASSWD             100
-#define EMAIL              20
-#define USERNAME           20
-#define LOGINTIME          20
+#define WINDOW_WIDTH_MIN        1033
+#define WINDOW_HEIGHT_MIN       660
 ///////////////////////////////////////
-#define WINDOW_WIDTH_MIN    1033
-#define WINDOW_HEIGHT_MIN   660
+#define DEFAULT_INDEX_LEVEL0    -1
+#define DEFAULT_INDEX_LEVEL1    -999
+#define DEFAULT_INDEX_LEVEL2    -888
+#define DEFAULT_INDEX_LEVEL3    -777
+#define DEFAULT_INDEX_LEVEL4    -666
+#define DEFAULT_INDEX_LEVEL5    -555
 ///////////////////////////////////////
 
 /*! @brief The namespace of the application object.

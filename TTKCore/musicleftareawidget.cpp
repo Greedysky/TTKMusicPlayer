@@ -105,11 +105,9 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicButton_mobile->setToolTip(tr("musicMobile"));
 }
 
-void MusicLeftAreaWidget::musictLoveStateClicked()
+void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
-    bool state = !M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
     m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
-    M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, state);
     emit currentLoveStateChanged();
 }
 

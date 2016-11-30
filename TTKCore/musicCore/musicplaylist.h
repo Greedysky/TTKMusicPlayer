@@ -100,7 +100,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void setCurrentIndex(int index = -2);
+    void setCurrentIndex(int index = DEFAULT_INDEX_LEVEL1);
     /*!
      * Set current play index.
      */

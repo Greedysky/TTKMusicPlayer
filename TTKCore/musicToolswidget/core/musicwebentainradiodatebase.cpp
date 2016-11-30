@@ -1,4 +1,5 @@
 #include "musicwebentainradiodatebase.h"
+#include "musicdatabaseobject.h"
 
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>

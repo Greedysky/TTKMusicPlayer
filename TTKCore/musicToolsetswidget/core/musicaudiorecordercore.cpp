@@ -1,6 +1,11 @@
 #include "musicaudiorecordercore.h"
 #include "musiccoreutils.h"
 
+#define OPEN_FILE_ERROR     -1
+#define SAVE_FILE_ERROR     -2
+#define WRITE_FILE_ERROR    -3
+#define REWRITE_FILE_ERROR  -4
+
 MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     : QObject(parent)
 {
@@ -88,19 +93,19 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     fp_s = fopen(MusicUtils::Core::toLocal8Bit(m_mpOutputFile->fileName()), "rb");
     if (fp_s == nullptr)
     {
-        return -1;
+        return OPEN_FILE_ERROR;
     }
     fp_d = fopen(filename, "wb+");
     if (fp_d == nullptr)
     {
-        return -2;
+        return SAVE_FILE_ERROR;
     }
     int nWrite = fwrite(&DestionFileHeader, 1, nSize, fp_d);
     if (nWrite != nSize)
     {
         fclose(fp_s);
         fclose(fp_d);
-        return -3;
+        return WRITE_FILE_ERROR;
     }
     while( !feof(fp_s))
     {
@@ -121,7 +126,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     {
         fclose(fp_s);
         fclose(fp_d);
-        return -4;
+        return REWRITE_FILE_ERROR;
     }
     fclose(fp_s);
     fclose(fp_d);

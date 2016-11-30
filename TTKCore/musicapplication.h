@@ -48,6 +48,7 @@ public:
     /*!
      * Get class object instance.
      */
+
     QString getCurrentFileName() const;
     /*!
      * Get current file name.
@@ -63,6 +64,14 @@ public:
     void musicImportSongsSettingPath(const QStringList &path);
     /*!
      * Import music datas into container.
+     */
+    bool musicLovestContains() const;
+    /*!
+     * Get music current song lovest contains.
+     */
+    bool musicListLovestContains(int index) const;
+    /*!
+     * Get music list current song lovest contains.
      */
     void updateCurrentArtist();
     /*!
@@ -191,6 +200,10 @@ public Q_SLOTS:
      * Show current play index.
      */
     void musicAddSongToLovestListAt();
+    /*!
+     * Add music song to lovest list by row.
+     */
+    void musicAddSongToLovestListAt(bool state);
     /*!
      * Add music song to lovest list by row.
      */

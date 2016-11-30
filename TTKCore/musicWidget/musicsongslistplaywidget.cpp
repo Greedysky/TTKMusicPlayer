@@ -197,14 +197,12 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
-    bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    m_loveButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnLove :
-                                        MusicUIObject::MKGTinyBtnUnLove);
+    bool state = MusicApplication::instance()->musicLovestContains();
+    m_loveButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnLove : MusicUIObject::MKGTinyBtnUnLove);
 }
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
     bool state = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
-    m_downloadButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnDownload :
-                                            MusicUIObject::MKGTinyBtnUnDownload);
+    m_downloadButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnDownload : MusicUIObject::MKGTinyBtnUnDownload);
 }

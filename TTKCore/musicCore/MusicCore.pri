@@ -21,6 +21,7 @@ HEADERS  += \
     $$PWD/utils/musicstringutils.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
+    $$PWD/musicdatabaseobject.h \
     $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \

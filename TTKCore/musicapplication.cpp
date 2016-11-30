@@ -196,6 +196,39 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
     }
 }
 
+bool MusicApplication::musicLovestContains() const
+{
+    if(m_musicSongTree->getCurrentPlayToolIndex() != -1)
+    {
+        int index = m_musicList->currentIndex();
+        MusicSongItems items(m_musicSongTree->getMusicLists());
+        if(index > -1 && m_musicSongTree->getCurrentPlayToolIndex() < items.count())
+        {
+            MusicSongItems items(m_musicSongTree->getMusicLists());
+            MusicSongs currentSongs = items[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
+            MusicSongs loveSongs = items[MUSIC_LOVEST_LIST].m_songs;
+            return loveSongs.contains(currentSongs[index]);
+        }
+    }
+    return false;
+}
+
+bool MusicApplication::musicListLovestContains(int index) const
+{
+    if(m_musicSongTree->currentIndex() != -1 && index > -1)
+    {
+        MusicSongItems items(m_musicSongTree->getMusicLists());
+        if(m_musicSongTree->currentIndex() < items.count())
+        {
+            MusicSongItems items(m_musicSongTree->getMusicLists());
+            MusicSongs currentSongs = items[m_musicSongTree->currentIndex()].m_songs;
+            MusicSongs loveSongs = items[MUSIC_LOVEST_LIST].m_songs;
+            return loveSongs.contains(currentSongs[index]);
+        }
+    }
+    return false;
+}
+
 void MusicApplication::updateCurrentArtist()
 {
     m_musicSongTree->updateCurrentArtist();
@@ -273,9 +306,7 @@ void MusicApplication::showCurrentSong(int index)
             M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, exist);
             ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
             //////////////////////////////////////////
-            MusicSongs loveSongs = m_musicSongTree->getMusicLists()[MUSIC_LOVEST_LIST].m_songs;
-            exist = loveSongs.contains(currentSongs[index]);
-            M_SETTING_PTR->setValue(MusicSettingManager::MuiscSongLovedChoiced, exist);
+            exist = musicLovestContains();
             ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
             //////////////////////////////////////////
             m_musicSongTree->selectRow(index);
@@ -612,25 +643,47 @@ void MusicApplication::musicCurrentPlayLocation()
 
 void MusicApplication::musicAddSongToLovestListAt()
 {
+    musicAddSongToLovestListAt(true);
+}
+
+void MusicApplication::musicAddSongToLovestListAt(bool state)
+{
     int index = m_musicList->currentIndex();
     if(m_musicList->isEmpty() || index < 0)
     {
         return;
     }
 
-    m_leftAreaWidget->musictLoveStateClicked();
-    bool state = M_SETTING_PTR->value(MusicSettingManager::MuiscSongLovedChoiced).toBool();
-    state ? m_musicSongTree->addMusicSongToLovestListAt(index) : m_musicSongTree->removeMusicSongToLovestListAt(index);
-
-    if(m_currentMusicSongTreeIndex == MUSIC_LOVEST_LIST)
+    bool contains = true;
+    if(state)
     {
-        setDeleteItemAt(MusicObject::MIntList() << index, false);
+        contains = musicLovestContains();
+        if(contains)
+        {
+            m_musicSongTree->removeMusicSongToLovestListAt(index);
+            m_leftAreaWidget->musictLoveStateClicked(false);
+        }
+        else
+        {
+            m_musicSongTree->addMusicSongToLovestListAt(index);
+            m_leftAreaWidget->musictLoveStateClicked(true);
+        }
+
+        if(m_currentMusicSongTreeIndex == MUSIC_LOVEST_LIST)
+        {
+            setDeleteItemAt(MusicObject::MIntList() << index, false);
+        }
+    }
+    else
+    {
+        m_musicSongTree->removeMusicSongToLovestListAt(index);
+        m_leftAreaWidget->musictLoveStateClicked(false);
     }
 
     MusicToastLabel *toast = new MusicToastLabel(this);
     toast->setFontSize(25);
     toast->setFontMargin(20, 20);
-    toast->setText(state ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
+    toast->setText(!contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
     toast->popup(this);
 }
 

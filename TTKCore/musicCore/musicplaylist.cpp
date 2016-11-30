@@ -133,7 +133,7 @@ bool MusicPlaylist::removeMedia(int start, int end)
 
 void MusicPlaylist::setCurrentIndex(int index)
 {
-    if(index == -2)
+    if(index == DEFAULT_INDEX_LEVEL1)
     {
         switch(m_playbackMode)
         {

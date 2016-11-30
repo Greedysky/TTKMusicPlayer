@@ -44,7 +44,7 @@ public:
     /*!
      * Set up app ui.
      */
-    void musictLoveStateClicked();
+    void musictLoveStateClicked(bool state);
     /*!
      * Reset current music love icon state.
      */

@@ -16,6 +16,7 @@
 #include "musicdownloadwidget.h"
 #include "musicopenfilewidget.h"
 #include "musicplayedlistwidget.h"
+#include "musicapplication.h"
 
 #include <QUrl>
 #include <QAction>
@@ -289,7 +290,8 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
     }
     if((it = item(row, 3)) != nullptr)
     {
-        it->setIcon(QIcon(":/tiny/btn_unloved_normal"));
+        bool contains = MusicApplication::instance()->musicListLovestContains(row);
+        it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
     if((it = item(row, 4)) != nullptr)
     {
