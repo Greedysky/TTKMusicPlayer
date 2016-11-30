@@ -36,7 +36,7 @@ Rectangle {
                 leftMargin: ttkGlobal.dpHeight(10)
             }
             color: ttkTheme.color_alpha_lv0
-            foreground: "qrc:/image/test"
+            foreground: "qrc:/image/default_background"
             background: "qrc:/image/radius_mask"
         }
 

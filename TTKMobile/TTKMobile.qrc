@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/image">
-        <file alias="test">MobileImages/test.jpg</file>
+        <file alias="default_background">MobileImages/default_background.jpg</file>
+        <file alias="main_background">MobileImages/main_background.jpg</file>
         <file alias="top_tab_more_selected">MobileImages/top_tab_more_selected.png</file>
         <file alias="top_tab_search_selected">MobileImages/top_tab_search_selected.png</file>
         <file alias="title_bar_back">MobileImages/title_bar_back.png</file>

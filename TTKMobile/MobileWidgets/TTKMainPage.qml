@@ -117,7 +117,7 @@ Item {
                                 leftMargin: ttkGlobal.dpHeight(10)
                             }
                             color: ttkTheme.color_alpha_lv0
-                            foreground: "qrc:/image/test"
+                            foreground: "qrc:/image/main_background"
                             background: "qrc:/image/radius_mask"
                         }
 
@@ -132,7 +132,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.pixelSize: parent.height/4
-                            text: qsTr("个性电台")
+                            text: qsTr("天天酷音")
                         }
 
                         Text {
@@ -146,7 +146,7 @@ Item {
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             color: ttkTheme.color_gray
-                            text: qsTr("偶遇身边好音乐")
+                            text: qsTr("畅想无限音乐")
                         }
                     }
 
@@ -275,7 +275,7 @@ Item {
                             Image {
                                 id: radioImageArea
                                 anchors.fill: parent
-                                source: "qrc:/image/test"
+                                source: "qrc:/image/default_background"
                             }
 
                             TTKImageButton {
