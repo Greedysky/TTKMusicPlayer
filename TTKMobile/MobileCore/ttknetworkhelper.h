@@ -100,6 +100,10 @@ Q_SIGNALS:
     /*!
      * Download (download) movie finished.
      */
+    void downLoadDataHasFinished(bool empty);
+    /*!
+     * Download data just has finished.
+     */
 
 private Q_SLOTS:
     void downLoadDataChanged();

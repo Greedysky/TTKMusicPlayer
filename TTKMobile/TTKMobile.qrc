@@ -116,6 +116,7 @@
         <file alias="action_lyric_desktop_normal">MobileImages/action_lyric_desktop_normal.png</file>
         <file alias="action_lyric_fontsize_normal">MobileImages/action_lyric_fontsize_normal.png</file>
         <file alias="action_icon_submit">MobileImages/action_icon_submit.png</file>
+        <file alias="data_searching">MobileImages/data_searching.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>

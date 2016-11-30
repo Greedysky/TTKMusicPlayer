@@ -39,6 +39,12 @@ Item {
                 case 2: searedLrcListModel.append(info); break;
             }
         }
+        onDownLoadDataHasFinished: {
+            loadingImageAnimation.stopLoading();
+            if(empty) {
+                noMusicFoundItem.visible = true;
+            }
+        }
         onDownForSearchSongFinished: {
             TTK_APP.importNetworkMusicSongs(key, path);
         }
@@ -93,6 +99,7 @@ Item {
                     textColor: ttkTheme.color_white
                     text: qsTr("搜索")
                     onPressed: {
+                        loadingImageAnimation.startLoading();
                         switch( functionList.currentIndex ) {
                             case 0: TTK_NETWORK.searchSong(getSearchedText()); break;
                             case 1: TTK_NETWORK.searchMovie(getSearchedText()); break;
@@ -130,14 +137,17 @@ Item {
                                 case 0:
                                     searedSongStackView.push(searedSongList);
                                     TTK_NETWORK.searchSong(getSearchedText())
+                                    loadingImageAnimation.startLoading();
                                     break;
                                 case 1:
                                     searedSongStackView.push(searedMVList);
                                     TTK_NETWORK.searchMovie(getSearchedText());
+                                    loadingImageAnimation.startLoading();
                                     break;
                                 case 2:
                                     searedSongStackView.push(searedLrcList);
                                     TTK_NETWORK.searchLrc(getSearchedText());
+                                    loadingImageAnimation.startLoading();
                                     break;
                             }
                         }
@@ -479,6 +489,46 @@ Item {
                     }
                 }
 
+            }
+
+            RotationAnimation {
+                id: loadingImageAnimation
+                target: loadingImage
+                property: "rotation"
+                from: 0
+                to: 360
+                direction: RotationAnimation.Clockwise
+                duration: 2000
+                loops: Animation.Infinite
+
+                function startLoading() {
+                    noMusicFoundItem.visible = false;
+                    loadingImage.visible = true;
+                    loadingImageAnimation.start();
+                }
+
+                function stopLoading() {
+                    noMusicFoundItem.visible = false;
+                    loadingImage.visible = false;
+                    loadingImageAnimation.stop();
+                }
+            }
+
+            Image {
+                id: loadingImage
+                visible: false
+                source: "qrc:/image/data_searching"
+                anchors.centerIn: parent
+            }
+
+            TTKMainFunctionItem {
+                id: noMusicFoundItem
+                visible: false
+                anchors.centerIn: parent
+                source: "qrc:/image/ic_start_recognize_bottom"
+                mainTitle: qsTr("空空如也")
+                subTitle: qsTr("未搜索到相关歌曲")
+                mainTitleSize: ttkGlobal.dpHeight(150)/8
             }
         }
     }

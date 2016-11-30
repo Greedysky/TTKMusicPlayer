@@ -13,6 +13,7 @@ TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
 {
     m_currentIndex = -1;
     m_queryType = T_Null;
+
     m_queryThread = new MusicDownLoadQueryMultipleThread(this);
     connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
     connect(m_queryThread, SIGNAL(createSearchedItems(QString,QString,QString)),
@@ -123,6 +124,7 @@ QString TTKNetworkHelper::getSearchedAttributes(int index)
 
 void TTKNetworkHelper::downLoadDataChanged()
 {
+    emit downLoadDataHasFinished( m_queryThread->getMusicSongInfos().isEmpty() );
     switch(m_queryType)
     {
         case T_SearcSong: break;
