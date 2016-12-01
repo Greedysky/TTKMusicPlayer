@@ -141,6 +141,10 @@ Q_SIGNALS:
     /*!
      * Swap the current play index when user drag and drop.
      */
+    void musicListSongToLovestListAt(bool oper, int row);
+    /*!
+     * Add or remove music list song to lovest list by row.
+     */
 
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
