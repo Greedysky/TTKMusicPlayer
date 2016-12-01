@@ -70,6 +70,11 @@ public:
     /*!
      * Import music datas into container.
      */
+
+    QString musicDownloadContains(bool &contains) const;
+    /*!
+     * Get music current song download contains.
+     */
     bool musicLovestContains() const;
     /*!
      * Get music current song lovest contains.
@@ -78,6 +83,7 @@ public:
     /*!
      * Get music list current song lovest contains.
      */
+
     void updateCurrentArtist();
     /*!
      * Update current artist when it download finished.

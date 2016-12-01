@@ -139,13 +139,10 @@ void MusicLeftAreaWidget::musicDownloadSongToLocal()
 
 void MusicLeftAreaWidget::musicDownloadSongFinished()
 {
-    bool state = !M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
-    if(state)
-    {
-        m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
-        M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicExistChoiced, state);
-        emit currentDownloadStateChanged();
-    }
+    bool state = false;
+    MusicApplication::instance()->musicDownloadContains(state);
+    m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
+    emit currentDownloadStateChanged();
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()

@@ -203,6 +203,7 @@ void MusicSongsListPlayWidget::currentLoveStateClicked()
 
 void MusicSongsListPlayWidget::currentDownloadStateClicked()
 {
-    bool state = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicExistChoiced).toBool();
+    bool state = false;
+    MusicApplication::instance()->musicDownloadContains(state);
     m_downloadButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnDownload : MusicUIObject::MKGTinyBtnUnDownload);
 }
