@@ -36,6 +36,10 @@ public:
     /*!
      * Set Item index.
      */
+    inline int getItemIndex() const { return m_index; }
+    /*!
+     * Get Item index.
+     */
 
     void setItemExpand(bool expand);
     /*!
