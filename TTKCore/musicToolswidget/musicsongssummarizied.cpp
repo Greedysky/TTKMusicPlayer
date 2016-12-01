@@ -382,28 +382,71 @@ void MusicSongsSummarizied::setCurrentIndex()
     MusicApplication::instance()->showCurrentSong(index);
 }
 
-void MusicSongsSummarizied::addMusicSongToLovestListAt(int row)
+void MusicSongsSummarizied::musicListSongToLovestListAt(bool oper, int row)
 {
-    MusicSong song = m_songItems[m_currentPlayToolIndex].m_songs[row];
-    MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
-    item->m_songs << song;
-    item->m_itemObject->updateSongsFileName(item->m_songs);
-    if(m_currentPlayToolIndex == MUSIC_LOVEST_LIST)
+    if(m_currentIndex < 0 || m_currentIndex >= m_songItems.count())
     {
-        emit updatePlayLists(song.getMusicPath());
+        return;
     }
-    setItemTitle(item);
+
+    MusicSong song = m_songItems[m_currentIndex].m_songs[row];
+    MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
+
+    ///if current play list contains, call main add and remove function
+    if(MusicSong(MusicApplication::instance()->getCurrentFilePath()) == song)
+    {
+        MusicApplication::instance()->musicAddSongToLovestListAt(oper);
+        return;
+    }
+
+    if(oper)    ///Add to lovest list
+    {
+        item->m_songs << song;
+        item->m_itemObject->updateSongsFileName(item->m_songs);
+        if(m_currentIndex == MUSIC_LOVEST_LIST)
+        {
+            emit updatePlayLists(song.getMusicPath());
+        }
+        setItemTitle(item);
+    }
+    else        ///Remove to lovest list
+    {
+        if(item->m_songs.removeOne(song))
+        {
+            item->m_itemObject->clearAllItems();
+            item->m_itemObject->updateSongsFileName(item->m_songs);
+            setItemTitle(item);
+        }
+    }
 }
 
-void MusicSongsSummarizied::removeMusicSongToLovestListAt(int row)
+void MusicSongsSummarizied::musicSongToLovestListAt(bool oper, int row)
 {
+    if(m_currentPlayToolIndex < 0 || m_currentPlayToolIndex >= m_songItems.count())
+    {
+        return;
+    }
+
     MusicSong song = m_songItems[m_currentPlayToolIndex].m_songs[row];
     MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
-    if(item->m_songs.removeOne(song))
+    if(oper)    ///Add to lovest list
     {
-        item->m_itemObject->clearAllItems();
+        item->m_songs << song;
         item->m_itemObject->updateSongsFileName(item->m_songs);
+        if(m_currentPlayToolIndex == MUSIC_LOVEST_LIST)
+        {
+            emit updatePlayLists(song.getMusicPath());
+        }
         setItemTitle(item);
+    }
+    else        ///Remove to lovest list
+    {
+        if(item->m_songs.removeOne(song))
+        {
+            item->m_itemObject->clearAllItems();
+            item->m_itemObject->updateSongsFileName(item->m_songs);
+            setItemTitle(item);
+        }
     }
 }
 
@@ -658,8 +701,9 @@ void MusicSongsSummarizied::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
     connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
-    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)),
-               SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)), SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+    connect(w, SIGNAL(musicListSongToLovestListAt(bool,int)), SLOT(musicListSongToLovestListAt(bool,int)));
+
     ///connect to items
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
     connect(m_itemList.last().m_widgetItem, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));

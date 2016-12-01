@@ -162,13 +162,13 @@ public Q_SLOTS:
     /*!
      * Set current play index from config file.
      */
-    void addMusicSongToLovestListAt(int row);
+    void musicListSongToLovestListAt(bool oper, int row);
     /*!
-     * Add music song to lovest list by row.
+     * Add or remove music list song to lovest list by row.
      */
-    void removeMusicSongToLovestListAt(int row);
+    void musicSongToLovestListAt(bool oper, int row);
     /*!
-     * Remove music song to lovest list by row.
+     * Add or remove music song to lovest list by row.
      */
     void addNetMusicSongToList(const QString &name, const QString &time,
                                const QString &format, bool play);

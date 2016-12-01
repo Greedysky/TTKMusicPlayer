@@ -53,6 +53,11 @@ public:
     /*!
      * Get current file name.
      */
+    QString getCurrentFilePath() const;
+    /*!
+     * Get current file path.
+     */
+
     bool checkMusicListCurrentIndex() const;
     /*!
      * Check current list index is -1 or not.

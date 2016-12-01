@@ -354,7 +354,6 @@ void MusicSongsListWidget::listCellEntered(int row, int column)
 
 void MusicSongsListWidget::listCellClicked(int row, int column)
 {
-    Q_UNUSED(row);
     switch(column)
     {
         case 0:
@@ -369,6 +368,13 @@ void MusicSongsListWidget::listCellClicked(int row, int column)
             }
         case 3:
             {
+                bool contains = !MusicApplication::instance()->musicListLovestContains(row);
+                QTableWidgetItem *it = item(row, 3);
+                if(it != nullptr)
+                {
+                    it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
+                }
+                emit musicListSongToLovestListAt(contains, row);
                 break;
             }
         case 4:

@@ -135,6 +135,17 @@ QString MusicApplication::getCurrentFileName() const
     return (nanmes.count() > m_musicList->currentIndex()) ? nanmes[m_musicList->currentIndex()].trimmed() : QString();
 }
 
+QString MusicApplication::getCurrentFilePath() const
+{
+    if(m_musicList->currentIndex() < 0 || m_currentMusicSongTreeIndex < 0)
+    {
+        return QString();
+    }
+
+    QStringList paths = m_musicSongTree->getMusicSongsFilePath(m_currentMusicSongTreeIndex);
+    return (paths.count() > m_musicList->currentIndex()) ? paths[m_musicList->currentIndex()].trimmed() : QString();
+}
+
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
     return (m_musicList->currentIndex() == -1);
@@ -660,12 +671,12 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
         contains = musicLovestContains();
         if(contains)
         {
-            m_musicSongTree->removeMusicSongToLovestListAt(index);
+            m_musicSongTree->musicSongToLovestListAt(false, index);
             m_leftAreaWidget->musictLoveStateClicked(false);
         }
         else
         {
-            m_musicSongTree->addMusicSongToLovestListAt(index);
+            m_musicSongTree->musicSongToLovestListAt(true, index);
             m_leftAreaWidget->musictLoveStateClicked(true);
         }
 
@@ -676,7 +687,7 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
     }
     else
     {
-        m_musicSongTree->removeMusicSongToLovestListAt(index);
+        m_musicSongTree->musicSongToLovestListAt(false, index);
         m_leftAreaWidget->musictLoveStateClicked(false);
     }
 
