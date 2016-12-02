@@ -744,7 +744,7 @@ void MusicSongsSummarizied::setItemTitle(MusicSongItem *item)
 {
     QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     setTitle(item->m_itemObject, title);
-    if(m_listMaskWidget->isVisible())
+    if(m_listMaskWidget->isVisible() && m_listMaskWidget->getItemIndex() == item->m_itemIndex)
     {
         m_listMaskWidget->setTitle(title);
     }
