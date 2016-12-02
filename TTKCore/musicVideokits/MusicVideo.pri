@@ -19,7 +19,7 @@ HEADERS  += \
     $$PWD/core/musicbarragewidget.h \
     $$PWD/musicvideoqualitypopwidget.h \
     $$PWD/musicvideobarragestylepopwidget.h \
-    $$PWD/musicvideocontrol.h \
+    $$PWD/musicvideocontrolwidget.h \
     $$PWD/musicvideoview.h \
     $$PWD/musicvideotablewidget.h \
     $$PWD/musicvideoplaywidget.h \
@@ -33,7 +33,7 @@ SOURCES += \
     $$PWD/core/musicbarragewidget.cpp \
     $$PWD/musicvideoqualitypopwidget.cpp \
     $$PWD/musicvideobarragestylepopwidget.cpp \
-    $$PWD/musicvideocontrol.cpp \
+    $$PWD/musicvideocontrolwidget.cpp \
     $$PWD/musicvideoview.cpp \
     $$PWD/musicvideotablewidget.cpp \
     $$PWD/musicvideoplaywidget.cpp \

@@ -11,7 +11,7 @@
 
 #include <QGraphicsView>
 #include "musicglobaldefine.h"
-#include "musicvideocontrol.h"
+#include "musicvideocontrolwidget.h"
 
 class MusicCoreMPlayer;
 class MusicBarrageWidget;
@@ -136,7 +136,7 @@ protected:
     bool m_positionChanged;
     MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicVideoControl *m_videoControl;
+    MusicVideoControlWidget *m_videoControl;
     MusicBarrageWidget *m_barrageCore;
 
 };

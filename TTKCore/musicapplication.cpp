@@ -1,7 +1,7 @@
 #include "musicapplication.h"
 #include "ui_musicapplication.h"
 #include "musicsongsearchonlinewidget.h"
-#include "musicsongssummarizied.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicxmlconfigmanager.h"
 #include "musicplayer.h"
 #include "musicformats.h"
@@ -43,7 +43,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     m_musicPlayer = new MusicPlayer(this);
     m_musicList = new MusicPlaylist(this);
-    m_musicSongTree = new MusicSongsSummarizied(this);
+    m_musicSongTree = new MusicSongsSummariziedWidget(this);
     ui->songsContainer->addWidget(m_musicSongTree);
 
     m_bottomAreaWidget->setupUi(ui);

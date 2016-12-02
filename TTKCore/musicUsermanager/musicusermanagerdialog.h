@@ -1,5 +1,5 @@
-#ifndef MUSICUSERMANAGER_H
-#define MUSICUSERMANAGER_H
+#ifndef MUSICUSERMANAGERDIALOG_H
+#define MUSICUSERMANAGERDIALOG_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -16,21 +16,21 @@
 class MusicUserModel;
 
 namespace Ui {
-class MusicUserManager;
+class MusicUserManagerDialog;
 }
 
 /*! @brief The class of the user manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserManager : public QDialog
+class MUSIC_USER_EXPORT MusicUserManagerDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MusicUserManager(QWidget *parent = 0);
+    explicit MusicUserManagerDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicUserManager();
+    ~MusicUserManagerDialog();
 
     static QString getClassName();
     /*!
@@ -79,7 +79,7 @@ protected:
      * Create functions menu popup initialized.
      */
 
-    Ui::MusicUserManager *ui;
+    Ui::MusicUserManagerDialog *ui;
     MusicUserModel* m_userModel;
     QString m_currentUserUID;
     QTime m_time;
@@ -88,4 +88,4 @@ protected:
 
 };
 
-#endif // MUSICUSERMANAGER_H
+#endif // MUSICUSERMANAGERDIALOG_H

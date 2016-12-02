@@ -5,7 +5,7 @@
 #include "musicsettingmanager.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
-#include "musicsongssummarizied.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicfilesenderserver.h"
 
 #include <QFile>
@@ -60,7 +60,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()

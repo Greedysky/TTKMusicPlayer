@@ -1,14 +1,14 @@
-#include "musiclrcartphotoupload.h"
-#include "ui_musiclrcartphotoupload.h"
+#include "musiclrcartphotouploadwidget.h"
+#include "ui_musiclrcartphotouploadwidget.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicmessagebox.h"
 
 #include <QFileDialog>
 
-MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
+MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicLrcArtPhotoUpload)
+      ui(new Ui::MusicLrcArtPhotoUploadWidget)
 {
     ui->setupUi(this);
     
@@ -39,17 +39,17 @@ MusicLrcArtPhotoUpload::MusicLrcArtPhotoUpload(QWidget *parent)
     connect(ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
 }
 
-MusicLrcArtPhotoUpload::~MusicLrcArtPhotoUpload()
+MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
 {
     delete ui;
 }
 
-QString MusicLrcArtPhotoUpload::getClassName()
+QString MusicLrcArtPhotoUploadWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLrcArtPhotoUpload::selectButtonClicked()
+void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
     QString picPath = QFileDialog::getOpenFileName(
                       this, QString(), "./", "Images (*.png *.bmp *.jpg)");
@@ -76,7 +76,7 @@ void MusicLrcArtPhotoUpload::selectButtonClicked()
     }
 }
 
-void  MusicLrcArtPhotoUpload::uploadButtonClicked()
+void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 {
     QDir bgDir(BACKGROUND_DIR_FULL);
     int count = 0;
@@ -103,7 +103,7 @@ void  MusicLrcArtPhotoUpload::uploadButtonClicked()
     close();
 }
 
-int MusicLrcArtPhotoUpload::exec()
+int MusicLrcArtPhotoUploadWidget::exec()
 {
     setBackgroundPixmap(ui->background, size());
     return MusicAbstractMoveDialog::exec();

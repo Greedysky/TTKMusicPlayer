@@ -1,6 +1,6 @@
-#include "musicusermanager.h"
+#include "musicUsermanagerdialog.h"
+#include "ui_musicusermanagerdialog.h"
 #include "musicuiobject.h"
-#include "ui_musicusermanager.h"
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
 #include "musicuserrecordwidget.h"
@@ -8,9 +8,9 @@
 
 #include <QMenu>
 
-MusicUserManager::MusicUserManager(QWidget *parent)
+MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
      : QDialog(parent),
-       ui(new Ui::MusicUserManager)
+       ui(new Ui::MusicUserManagerDialog)
 {
     ui->setupUi(this);
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
@@ -24,7 +24,7 @@ MusicUserManager::MusicUserManager(QWidget *parent)
     connect(ui->username, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
 }
 
-MusicUserManager::~MusicUserManager()
+MusicUserManagerDialog::~MusicUserManagerDialog()
 {
     if(!m_currentUserUID.isEmpty())
     {
@@ -36,12 +36,12 @@ MusicUserManager::~MusicUserManager()
     delete ui;
 }
 
-QString MusicUserManager::getClassName()
+QString MusicUserManagerDialog::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicUserManager::setUserUID(const QString &uid)
+void MusicUserManagerDialog::setUserUID(const QString &uid)
 {
     m_currentUserUID = uid;
     ui->username->setText(m_userModel->getUserName(uid));
@@ -50,13 +50,13 @@ void MusicUserManager::setUserUID(const QString &uid)
     m_time.start();
 }
 
-void MusicUserManager::createUserTime() const
+void MusicUserManagerDialog::createUserTime() const
 {
     qlonglong time = m_userModel->getUserLogTime(m_currentUserUID).toLongLong();
     ui->totalTimeLabel->setText(QString::number(time));
 }
 
-void MusicUserManager::createButtonPopMenu()
+void MusicUserManagerDialog::createButtonPopMenu()
 {
     m_popMenu.addAction(tr("Modifies"), this, SLOT(popupUserRecordWidget()));
     m_popMenu.addAction(tr("Switches"), this, SLOT(musicUserLogoff()));
@@ -65,7 +65,7 @@ void MusicUserManager::createButtonPopMenu()
     ui->musicSettingButton->setMenu(&m_popMenu);
 }
 
-void MusicUserManager::musicUserLogoff()
+void MusicUserManagerDialog::musicUserLogoff()
 {
     m_userModel->updateUser(m_currentUserUID, QString(), QString(), ui->username->text(),
                             QString::number(m_userModel->getUserLogTime(m_currentUserUID)
@@ -98,7 +98,7 @@ void MusicUserManager::musicUserLogoff()
     close();
 }
 
-int MusicUserManager::exec()
+int MusicUserManagerDialog::exec()
 {
     QWidget *pa = MStatic_cast(QWidget*, parent());
     QPoint point = pa->mapToGlobal(QPoint(0, 0));
@@ -106,13 +106,13 @@ int MusicUserManager::exec()
     return QDialog::exec();
 }
 
-void MusicUserManager::leaveEvent(QEvent *event)
+void MusicUserManagerDialog::leaveEvent(QEvent *event)
 {
     QDialog::leaveEvent(event);
     close();
 }
 
-void MusicUserManager::popupUserRecordWidget()
+void MusicUserManagerDialog::popupUserRecordWidget()
 {
 #ifndef MUSIC_GREATER_NEW
     close();
@@ -125,7 +125,7 @@ void MusicUserManager::popupUserRecordWidget()
     record.exec();
 }
 
-void MusicUserManager::resetUserName(const QString &name)
+void MusicUserManagerDialog::resetUserName(const QString &name)
 {
     ui->username->setText(name);
 }

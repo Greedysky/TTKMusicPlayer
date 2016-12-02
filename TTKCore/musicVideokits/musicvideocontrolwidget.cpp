@@ -1,4 +1,4 @@
-#include "musicvideocontrol.h"
+#include "musicvideocontrolwidget.h"
 #include "musicdownloadwidget.h"
 #include "musicmovinglabelslider.h"
 #include "musicvideouiobject.h"
@@ -12,7 +12,7 @@
 #include <QPushButton>
 #include <QBoxLayout>
 
-MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
+MusicVideoControlWidget::MusicVideoControlWidget(bool popup, QWidget *parent)
     : QWidget(parent), m_widgetPopup(popup)
 {
     setStyleSheet(MusicUIObject::MBackgroundStyle06);
@@ -65,7 +65,7 @@ MusicVideoControl::MusicVideoControl(bool popup, QWidget *parent)
     connect(m_qualityButton, SIGNAL(mvURLChanged(QString)), SIGNAL(mvURLChanged(QString)));
 }
 
-MusicVideoControl::~MusicVideoControl()
+MusicVideoControlWidget::~MusicVideoControlWidget()
 {
     delete m_timeLabel;
     delete m_timeSlider;
@@ -79,47 +79,47 @@ MusicVideoControl::~MusicVideoControl()
     delete m_lineEditBarrage;
 }
 
-QString MusicVideoControl::getClassName()
+QString MusicVideoControlWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicVideoControl::setValue(qint64 position) const
+void MusicVideoControlWidget::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position*MT_S2MS);
     m_timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
                                          .arg(MusicTime::msecTime2LabelJustified(m_timeSlider->maximum())));
 }
 
-void MusicVideoControl::durationChanged(qint64 duration) const
+void MusicVideoControlWidget::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration*MT_S2MS);
     m_timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
-void MusicVideoControl::setButtonStyle(bool style) const
+void MusicVideoControlWidget::setButtonStyle(bool style) const
 {
     m_playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay :
                                         MusicUIObject::MKGVideoBtnPause);
 }
 
-void MusicVideoControl::mediaChanged(const QString &url)
+void MusicVideoControlWidget::mediaChanged(const QString &url)
 {
     m_qualityButton->setQualityText(url);
 }
 
-void MusicVideoControl::setFixedSize(int w, int h)
+void MusicVideoControlWidget::setFixedSize(int w, int h)
 {
     QWidget::setFixedSize(w, h);
     m_timeSlider->setFixedWidth(w);
 }
 
-void MusicVideoControl::setQualityActionState()
+void MusicVideoControlWidget::setQualityActionState()
 {
     m_qualityButton->setQualityActionState();
 }
 
-void MusicVideoControl::pushBarrageClicked()
+void MusicVideoControlWidget::pushBarrageClicked()
 {
     m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MKGVideoBtnBarrageOn :
                                                    MusicUIObject::MKGVideoBtnBarrageOff);
@@ -131,7 +131,7 @@ void MusicVideoControl::pushBarrageClicked()
     m_pushBarrageOn = !m_pushBarrageOn;
 }
 
-void MusicVideoControl::sendBarrageClicked()
+void MusicVideoControlWidget::sendBarrageClicked()
 {
     if(m_lineEditBarrage->text() == tr("just one barrage!"))
     {
@@ -145,7 +145,7 @@ void MusicVideoControl::sendBarrageClicked()
     emit addBarrageChanged( record );
 }
 
-QWidget *MusicVideoControl::createVideoBarrageWidget()
+QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
 {
     m_pushBarrageOn = false;
     QWidget *barrageWidget = new QWidget(this);

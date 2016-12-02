@@ -1,5 +1,5 @@
-#ifndef MUSICLRCARTPHOTOUPLOAD_H
-#define MUSICLRCARTPHOTOUPLOAD_H
+#ifndef MUSICLRCARTPHOTOUPLOADWIDGET_H
+#define MUSICLRCARTPHOTOUPLOADWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,21 +12,21 @@
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
-class MusicLrcArtPhotoUpload;
+class MusicLrcArtPhotoUploadWidget;
 }
 
 /*! @brief The class of the lrc art photo upload.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcArtPhotoUpload : public MusicAbstractMoveDialog
+class MUSIC_LRC_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcArtPhotoUpload(QWidget *parent = 0);
+    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLrcArtPhotoUpload();
+    virtual ~MusicLrcArtPhotoUploadWidget();
 
     static QString getClassName();
     /*!
@@ -48,8 +48,8 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicLrcArtPhotoUpload *ui;
+    Ui::MusicLrcArtPhotoUploadWidget *ui;
 
 };
 
-#endif // MUSICLRCARTPHOTOUPLOAD_H
+#endif // MUSICLRCARTPHOTOUPLOADWIDGET_H

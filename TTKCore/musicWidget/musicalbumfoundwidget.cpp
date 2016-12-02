@@ -1,7 +1,7 @@
 #include "musicalbumfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicsourcedownloadthread.h"
-#include "musicsongssummarizied.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
@@ -28,7 +28,7 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
     headerview->resizeSection(5, 26);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicAlbumFoundTableWidget::~MusicAlbumFoundTableWidget()

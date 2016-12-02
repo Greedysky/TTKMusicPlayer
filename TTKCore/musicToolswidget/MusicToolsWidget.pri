@@ -20,7 +20,7 @@ HEADERS  += \
     $$PWD/core/musicfilesenderserver.h \
     $$PWD/core/musicfilereceiveserver.h \
     $$PWD/musicsongstoolboxwidget.h \
-    $$PWD/musicsongssummarizied.h \
+    $$PWD/musicsongssummariziedwidget.h \
     $$PWD/musictoolsetswidget.h \
     $$PWD/musicmydownloadrecordwidget.h \
     $$PWD/musicconnectmobilewidget.h \
@@ -43,7 +43,7 @@ SOURCES += \
     $$PWD/core/musicfilesenderserver.cpp \
     $$PWD/core/musicfilereceiveserver.cpp \
     $$PWD/musicsongstoolboxwidget.cpp \
-    $$PWD/musicsongssummarizied.cpp \
+    $$PWD/musicsongssummariziedwidget.cpp \
     $$PWD/musictoolsetswidget.cpp \
     $$PWD/musicmydownloadrecordwidget.cpp \
     $$PWD/musicconnectmobilewidget.cpp \

@@ -22,8 +22,8 @@ HEADERS  += \
     $$PWD/musiclrccontainerforinline.h \
     $$PWD/musiclrcsearchwidget.h \
     $$PWD/musiclrcsearchtablewidget.h \
-    $$PWD/musiclrcartphotoupload.h \
     $$PWD/musiclrcartphotolabel.h \
+    $$PWD/musiclrcartphotouploadwidget.h \
     $$PWD/musiclrcfloatwidget.h \
     $$PWD/musiclrcfloatsettingwidget.h \
     $$PWD/musiclrcfloatphotowidget.h \
@@ -48,8 +48,8 @@ SOURCES += \
     $$PWD/musiclrccontainerforinline.cpp \
     $$PWD/musiclrcsearchwidget.cpp \
     $$PWD/musiclrcsearchtablewidget.cpp \
-    $$PWD/musiclrcartphotoupload.cpp \
     $$PWD/musiclrcartphotolabel.cpp \
+    $$PWD/musiclrcartphotouploadwidget.cpp \
     $$PWD/musiclrcfloatwidget.cpp \
     $$PWD/musiclrcfloatsettingwidget.cpp \
     $$PWD/musiclrcfloatphotowidget.cpp \

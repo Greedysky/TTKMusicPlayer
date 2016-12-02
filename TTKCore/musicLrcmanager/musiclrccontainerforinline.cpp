@@ -1,6 +1,6 @@
 #include "musiclrccontainerforinline.h"
 #include "musiclrcmanagerforinline.h"
-#include "musiclrcartphotoupload.h"
+#include "musiclrcartphotouploadwidget.h"
 #include "musiclrcfloatwidget.h"
 #include "musiclrclocallinkwidget.h"
 #include "musicuiobject.h"
@@ -252,7 +252,7 @@ void MusicLrcContainerForInline::theArtBgChanged()
 
 void MusicLrcContainerForInline::theArtBgUploaded()
 {
-    MusicLrcArtPhotoUpload(this).exec();
+    MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtBackground = true;
     emit theArtBgHasChanged();
 }

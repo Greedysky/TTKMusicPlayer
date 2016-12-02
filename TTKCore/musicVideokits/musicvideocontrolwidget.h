@@ -1,5 +1,5 @@
-#ifndef MUSICVIDEOCONTROL_H
-#define MUSICVIDEOCONTROL_H
+#ifndef MUSICVIDEOCONTROLWIDGET_H
+#define MUSICVIDEOCONTROLWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -24,15 +24,15 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the video controller.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoControl : public QWidget
+class MUSIC_VIDEO_EXPORT MusicVideoControlWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoControl(bool popup, QWidget *parent = 0);
+    explicit MusicVideoControlWidget(bool popup, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicVideoControl();
+    ~MusicVideoControlWidget();
 
     static QString getClassName();
     /*!
@@ -116,4 +116,4 @@ protected:
 
 };
 
-#endif // MUSICVIDEOCONTROL_H
+#endif // MUSICVIDEOCONTROLWIDGET_H

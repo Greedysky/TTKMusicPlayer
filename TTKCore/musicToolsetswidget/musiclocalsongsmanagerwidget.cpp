@@ -6,7 +6,7 @@
 #include "musicconnectionpool.h"
 #include "musicwidgetutils.h"
 #include "musicnumberutils.h"
-#include "musicsongssummarizied.h"
+#include "musicsongssummariziedwidget.h"
 
 #include <QDateTime>
 #include <QFileDialog>
@@ -84,7 +84,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
                       SLOT(setSongNamePath(QFileInfoList)));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()

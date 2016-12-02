@@ -17,9 +17,9 @@ INCLUDEPATH += $$PWD \
 HEADERS  += \
     $$PWD/core/musicusermodel.h \
     $$PWD/core/musicuserconfigmanager.h \
-    $$PWD/musicusermanager.h \
     $$PWD/musicuserdialog.h \
     $$PWD/musicuserlineedit.h \
+    $$PWD/musicusermanagerdialog.h \
     $$PWD/musicuserwindow.h \
     $$PWD/musicuserrecordwidget.h
     
@@ -29,9 +29,9 @@ contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/core/musicusermodel.cpp \
     $$PWD/core/musicuserconfigmanager.cpp \
-    $$PWD/musicusermanager.cpp \
     $$PWD/musicuserdialog.cpp \
     $$PWD/musicuserlineedit.cpp \
+    $$PWD/musicusermanagerdialog.cpp \
     $$PWD/musicuserwindow.cpp \
     $$PWD/musicuserrecordwidget.cpp
 

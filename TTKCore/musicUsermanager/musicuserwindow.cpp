@@ -2,7 +2,7 @@
 #include "ui_musicuserwindow.h"
 #include "musicuserdialog.h"
 #include "musicusermodel.h"
-#include "musicusermanager.h"
+#include "musicusermanagerdialog.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
@@ -21,7 +21,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
 
     connectDatabase();
 
-    m_userManager = new MusicUserManager(this);
+    m_userManager = new MusicUserManagerDialog(this);
     connect(ui->userIconU, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(ui->userIconL, SIGNAL(clicked()), m_userManager, SLOT(exec()));

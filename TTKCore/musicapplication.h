@@ -16,7 +16,7 @@
 
 class MusicPlayer;
 class MusicPlaylist;
-class MusicSongsSummarizied;
+class MusicSongsSummariziedWidget;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
@@ -247,7 +247,7 @@ public Q_SLOTS:
      * Get settings parameters.
      */
     /////////////////////////////////////////////
-    ///This is a slot by MusicSongsSummarizied's signal emit
+    ///This is a slot by MusicSongsSummariziedWidget's signal emit
     void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);
     /*!
      * Delete items from indexs.
@@ -316,7 +316,7 @@ private:
 
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicList;
-    MusicSongsSummarizied *m_musicSongTree;
+    MusicSongsSummariziedWidget *m_musicSongTree;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;

@@ -13,7 +13,7 @@
 #include "musicglobaldefine.h"
 
 class MusicUserDialog;
-class MusicUserManager;
+class MusicUserManagerDialog;
 
 namespace Ui {
 class MusicUserWindow;
@@ -70,7 +70,7 @@ protected:
      */
 
     Ui::MusicUserWindow *ui;
-    MusicUserManager *m_userManager;
+    MusicUserManagerDialog *m_userManager;
 
 };
 

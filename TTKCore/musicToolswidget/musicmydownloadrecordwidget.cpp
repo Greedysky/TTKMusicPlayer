@@ -2,7 +2,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
-#include "musicsongssummarizied.h"
+#include "musicsongssummariziedwidget.h"
 #include "musiccoreutils.h"
 
 #include <QMenu>
@@ -29,7 +29,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     musicSongsFileName();
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummarizied::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()

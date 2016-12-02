@@ -1,5 +1,5 @@
-#ifndef MUSICSONGSSUMMARIZIED_H
-#define MUSICSONGSSUMMARIZIED_H
+#ifndef MUSICSONGSSUMMARIZIEDWIDGET_H
+#define MUSICSONGSSUMMARIZIEDWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -13,23 +13,21 @@
 #include "musicobject.h"
 #include "musicsongstoolboxwidget.h"
 
-#define  ITEM_MAX_COUNT     10
-
 class QTableWidgetItem;
 class MusicSongsListWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsSummarizied : public MusicSongsToolBoxWidget
+class MUSIC_TOOL_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsSummarizied(QWidget *parent = 0);
+    explicit MusicSongsSummariziedWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongsSummarizied();
+    virtual ~MusicSongsSummariziedWidget();
 
     static QString getClassName();
     /*!
@@ -253,4 +251,4 @@ protected:
 
 };
 
-#endif // MUSICSONGSSUMMARIZIED_H
+#endif // MUSICSONGSSUMMARIZIEDWIDGET_H

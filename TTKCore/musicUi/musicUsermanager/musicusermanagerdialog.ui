@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicUserManager</class>
- <widget class="QWidget" name="MusicUserManager">
+ <class>MusicUserManagerDialog</class>
+ <widget class="QWidget" name="MusicUserManagerDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MusicUserManager</string>
+   <string>MusicUserManagerDialog</string>
   </property>
   <property name="styleSheet">
    <string notr="true">color:#666666</string>

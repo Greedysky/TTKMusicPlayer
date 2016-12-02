@@ -32,7 +32,7 @@ HEADERS  += \
 
 FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
-    $$PWD/musicLrcmanager/musiclrcartphotoupload.ui \
+    $$PWD/musicLrcmanager/musiclrcartphotouploadwidget.ui \
     $$PWD/musicLrcmanager/musiclrcmakerwidget.ui \
     $$PWD/musicLrcmanager/musiclrcerrorwidget.ui \
     $$PWD/musicLrcmanager/musiclrcsearchwidget.ui \
@@ -54,7 +54,7 @@ FORMS    += \
     $$PWD/musicToolswidget/musicconnecttransferwidget.ui \
     $$PWD/musicToolswidget/musiccloudfilemanagerdialog.ui \
     $$PWD/musicUsermanager/musicuserdialog.ui \
-    $$PWD/musicUsermanager/musicusermanager.ui \
+    $$PWD/musicUsermanager/musicusermanagerdialog.ui \
     $$PWD/musicUsermanager/musicuserrecordwidget.ui \
     $$PWD/musicUsermanager/musicuserwindow.ui \
     $$PWD/musicWidget/musicbackgroundskindialog.ui \
