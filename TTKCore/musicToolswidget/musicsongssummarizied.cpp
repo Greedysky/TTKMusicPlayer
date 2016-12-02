@@ -244,6 +244,13 @@ void MusicSongsSummarizied::deleteRowItem(int index)
         return;
     }
 
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to delete?"));
+    if(message.exec())
+    {
+        return;
+    }
+
     if(m_currentPlayToolIndex == id)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(0);
@@ -275,6 +282,13 @@ void MusicSongsSummarizied::deleteRowItem(int index)
 
 void MusicSongsSummarizied::deleteRowItems()
 {
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to delete?"));
+    if(message.exec())
+    {
+        return;
+    }
+
     if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_LOVEST_LIST &&
        m_currentPlayToolIndex != MUSIC_NETWORK_LIST && m_currentPlayToolIndex != MUSIC_RECENT_LIST)
     {
@@ -744,6 +758,6 @@ void MusicSongsSummarizied::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
     menu.addAction(tr("musicTest"));
-    menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > 3);
+    menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > 4);
     menu.exec(QCursor::pos());
 }
