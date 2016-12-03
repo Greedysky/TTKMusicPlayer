@@ -45,12 +45,14 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/musictranslationthread.h
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.h
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.h
+    ${MUSIC_NETWORK_DIR}/musicnetworktestthread.h
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
     ${MUSIC_CORE_DIR}/utils/musicwidgetutils.h
     ${MUSIC_CORE_DIR}/utils/musicnumberutils.h
     ${MUSIC_CORE_DIR}/utils/musicstringutils.h
     ${MUSIC_CORE_DIR}/musicobject.h
+    ${MUSIC_CORE_DIR}/musicformats.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
     ${MUSIC_CORE_DIR}/musicglobalhotkey.h
     ${MUSIC_CORE_DIR}/musictime.h
@@ -80,7 +82,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforinline.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
-    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotoupload.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotolabel.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
@@ -104,11 +106,12 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.h
-    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
-    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.h
-    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedsuspensionwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedtestwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeterwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.h
@@ -126,7 +129,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
@@ -141,14 +144,14 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
     ${MUSIC_USERMANAGER_DIR}/core/musicusermodel.h
     ${MUSIC_USERMANAGER_DIR}/core/musicuserconfigmanager.h
-    ${MUSIC_USERMANAGER_DIR}/musicusermanager.h
+    ${MUSIC_USERMANAGER_DIR}/musicusermanagerdialog.h
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.h
     ${MUSIC_USERMANAGER_DIR}/musicuserlineedit.h
     ${MUSIC_USERMANAGER_DIR}/musicuserwindow.h
     ${MUSIC_USERMANAGER_DIR}/musicuserrecordwidget.h
     ${MUSIC_VIDEOKITS_DIR}/core/musicbarragerecordconfigmanager.h
     ${MUSIC_VIDEOKITS_DIR}/core/musicbarragewidget.h
-    ${MUSIC_VIDEOKITS_DIR}/musicvideocontrol.h
+    ${MUSIC_VIDEOKITS_DIR}/musicvideocontrolwidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideoview.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideotablewidget.h
     ${MUSIC_VIDEOKITS_DIR}/musicvideoplaywidget.h
@@ -185,6 +188,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.h
     ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.h
@@ -197,8 +201,8 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongsplayedlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.h
-    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.h
@@ -272,12 +276,14 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/musictranslationthread.cpp
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicnetworktestthread.cpp
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicwidgetutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicnumberutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicstringutils.cpp
     ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
+    ${MUSIC_CORE_DIR}/musicformats.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
     ${MUSIC_CORE_DIR}/musicplaylist.cpp
@@ -303,7 +309,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforinline.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
-    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotoupload.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotolabel.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
@@ -327,7 +333,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.cpp
-    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicaudiorecorderwidget.cpp
@@ -337,8 +343,9 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
-    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworksuspensionwidget.cpp
-    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworktestwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedsuspensionwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedtestwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicspeedmeterwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.cpp
@@ -357,7 +364,7 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummarizied.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.cpp
@@ -365,13 +372,13 @@ set(MUSIC_SOURCES
     ${MUSIC_USERMANAGER_DIR}/core/musicusermodel.cpp
     ${MUSIC_USERMANAGER_DIR}/core/musicuserconfigmanager.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserrecordwidget.cpp
-    ${MUSIC_USERMANAGER_DIR}/musicusermanager.cpp
+    ${MUSIC_USERMANAGER_DIR}/musicusermanagerdialog.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserdialog.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserlineedit.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserwindow.cpp
     ${MUSIC_VIDEOKITS_DIR}/core/musicbarragerecordconfigmanager.cpp
     ${MUSIC_VIDEOKITS_DIR}/core/musicbarragewidget.cpp
-    ${MUSIC_VIDEOKITS_DIR}/musicvideocontrol.cpp
+    ${MUSIC_VIDEOKITS_DIR}/musicvideocontrolwidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideoview.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideotablewidget.cpp
     ${MUSIC_VIDEOKITS_DIR}/musicvideoplaywidget.cpp
@@ -408,6 +415,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.cpp
@@ -415,13 +423,13 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.cpp
     ${MUSIC_WIDGET_DIR}/musicwindowextras.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongsplayedlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.cpp
@@ -449,7 +457,7 @@ set(MUSIC_SOURCES
 
 SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicApplication/musicapplication.ui
-    ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcartphotoupload.ui
+    ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcartphotouploadwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcmakerwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcsearchwidget.ui
     ${MUSIC_UI_DIR}/musicLrcmanager/musiclrcerrorwidget.ui
@@ -459,7 +467,8 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicdesktopwallpaperwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicfileinformationwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musiclocalsongsmanagerwidget.ui
-    ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworktestwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworkspeedtestwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicnetworkconnectiontestwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictimerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musictransformwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicvolumegainwidget.ui
@@ -470,7 +479,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebentainradiowidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebmusicradiowidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserdialog.ui
-    ${MUSIC_UI_DIR}/musicUsermanager/musicusermanager.ui
+    ${MUSIC_UI_DIR}/musicUsermanager/musicusermanagerdialog.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserrecordwidget.ui
     ${MUSIC_UI_DIR}/musicUsermanager/musicuserwindow.ui
     ${MUSIC_UI_DIR}/musicWidget/musicbackgroundskindialog.ui
