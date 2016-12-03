@@ -1,4 +1,4 @@
-#include "musicUsermanagerdialog.h"
+#include "musicusermanagerdialog.h"
 #include "ui_musicusermanagerdialog.h"
 #include "musicuiobject.h"
 #include "musicusermodel.h"

@@ -106,7 +106,6 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <zorder>lrcLabel</zorder>
   </widget>
   <widget class="QLabel" name="lrcLabel">
    <property name="geometry">
@@ -200,13 +199,13 @@
   <zorder>playButton</zorder>
   <zorder>volumeSlider</zorder>
   <zorder>label_2</zorder>
-  <zorder>lrcLabel</zorder>
   <zorder>artistLabel</zorder>
   <zorder>previousButton</zorder>
   <zorder>nextButton</zorder>
   <zorder>positionLabel</zorder>
   <zorder>durationLabel</zorder>
   <zorder>titleWidget</zorder>
+  <zorder>lrcLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
