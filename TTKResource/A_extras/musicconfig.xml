@@ -3,7 +3,6 @@
     <music>
         <playMode value="2"/>
         <playVolume value="100"/>
-        <enhancedMusic value="3"/>
         <lastPlayIndex value="1">0,-1</lastPlayIndex>
     </music>
     <settings>
@@ -38,13 +37,24 @@
         <lrcDTransparent value="99"/>
         <lrcDFgColor value="255,79,147"/>
         <lrcDBgColor value="14,179,255"/>
+        <lrcDWindowType value="1"/>
         <lrcDLocked value="0"/>
         <lrcDGeometry value="178,415"/>
     </desktopLrc>
     <equalizer>
+        <enhancedMusic value="3"/>
         <equalizerEnale value="0"/>
         <equalizerIndex value="5"/>
         <equalizerValue value="0,-6,6,6,3,2,-2,-5,-6,-8,-8"/>
+        <enhancedBalance value="-3"/>
+        <enhancedFadeEnable value="0"/>
+        <enhancedFadeInValue value="1000"/>
+        <enhancedFadeOutValue value="1000"/>
+        <enhancedBS2B value="0"/>
+        <enhancedCrossfade value="0"/>
+        <enhancedStereo value="0"/>
+        <enhancedLADSPA value="0"/>
+        <enhancedSOX value="0"/>
     </equalizer>
     <timeSettings>
         <timeAutoIndex value="2"/>
@@ -70,6 +80,7 @@
         <downloadCacheSize value="1024"/>
         <downloadLimit value="1"/>
         <downloadServer value="0"/>
+        <downloadServerMultiple value="1"/>
         <downloadDLoadLimit value="100"/>
         <downloadULoadLimit value="100"/>
     </downloads>
