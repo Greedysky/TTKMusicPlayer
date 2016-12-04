@@ -118,6 +118,10 @@ public Q_SLOTS:
     /*!
      * Show menu items.
      */
+    void showShareListDialog();
+    /*!
+     * Show share list dialog.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;

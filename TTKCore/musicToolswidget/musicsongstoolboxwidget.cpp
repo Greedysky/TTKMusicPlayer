@@ -1,5 +1,6 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicsonglistsharingwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
@@ -42,6 +43,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     shareListButton->setStyleSheet(MusicUIObject::MKGTinyBtnShare);
     shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareListButton->setGeometry(265, 10, 16, 16);
+    connect(shareListButton, SIGNAL(clicked()), SLOT(showShareListDialog()));
 
     QPushButton *menuButton = new QPushButton(this);
     menuButton->setToolTip(tr("listMenu"));
@@ -162,6 +164,11 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
 
     menu.exec(QCursor::pos());
+}
+
+void MusicSongsToolBoxTopWidget::showShareListDialog()
+{
+    MusicSongListSharingWidget(this).exec();
 }
 
 void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
