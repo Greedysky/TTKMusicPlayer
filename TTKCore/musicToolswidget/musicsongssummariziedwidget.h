@@ -15,6 +15,7 @@
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
+class MusicSongCheckToolsWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -155,6 +156,10 @@ public Q_SLOTS:
     /*!
      * Import music songs by dir.
      */
+    void musicSongsCheckTestTools();
+    /*!
+     * Open music songs check test tools.
+     */
 
     void setCurrentIndex();
     /*!
@@ -248,6 +253,7 @@ protected:
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicObject::MIntsListMap m_searchfileListCache;
+    MusicSongCheckToolsWidget *m_songCheckToolsWidget;
 
 };
 

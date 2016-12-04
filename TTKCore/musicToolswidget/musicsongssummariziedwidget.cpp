@@ -8,6 +8,7 @@
 #include "musicprogresswidget.h"
 #include "musiccryptographichash.h"
 #include "musicsongsearchonlinewidget.h"
+#include "musicsongchecktoolswidget.h"
 #include "musicplayedlistwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
@@ -37,6 +38,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_listMaskWidget, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
+    m_songCheckToolsWidget = nullptr;
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
 }
@@ -44,6 +46,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 {
     delete m_listMaskWidget;
+    delete m_songCheckToolsWidget;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
@@ -383,6 +386,13 @@ void MusicSongsSummariziedWidget::musicImportSongsOnlyDir()
     m_currentImportIndex = m_currentIndex;
     MusicApplication::instance()->musicImportSongsOnlyDir();
     m_currentImportIndex = MUSIC_NORMAL_LIST;
+}
+
+void MusicSongsSummariziedWidget::musicSongsCheckTestTools()
+{
+    delete m_songCheckToolsWidget;
+    m_songCheckToolsWidget = new MusicSongCheckToolsWidget(this);
+    m_songCheckToolsWidget->show();
 }
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
@@ -760,7 +770,7 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
-    menu.addAction(tr("musicTest"));
+    menu.addAction(tr("musicTest"), this, SLOT(musicSongsCheckTestTools()));
     menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > ITEM_MIN_COUNT);
     menu.exec(QCursor::pos());
 }

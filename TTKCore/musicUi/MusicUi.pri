@@ -48,6 +48,7 @@ FORMS    += \
     $$PWD/musicToolsetswidget/musicnetworkconnectiontestwidget.ui \
     $$PWD/musicToolsetswidget/musicvolumegainwidget.ui \
     $$PWD/musicToolsetswidget/musicsoundtouchwidget.ui \
+    $$PWD/musicToolsetswidget/musicsongchecktoolswidget.ui \
     $$PWD/musicToolsetswidget/musicsongringtonemakerwidget.ui \
     $$PWD/musicToolswidget/musicwebentainradiowidget.ui \
     $$PWD/musicToolswidget/musicwebmusicradiowidget.ui \
