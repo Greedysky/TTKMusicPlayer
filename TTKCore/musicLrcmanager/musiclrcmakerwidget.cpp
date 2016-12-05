@@ -152,7 +152,6 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setAttribute(Qt::WA_TranslucentBackground, true);
     setAttribute(Qt::WA_DeleteOnClose, true);
 
     ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);

@@ -17,7 +17,6 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
       m_songsThread(nullptr)
 {
     ui->setupUi(this);
-    setAttribute(Qt::WA_TranslucentBackground, true);
 
     m_currentPlayListIndex = 0;
     m_isPlaying = false;

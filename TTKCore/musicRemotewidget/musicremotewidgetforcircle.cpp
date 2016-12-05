@@ -1,14 +1,10 @@
 #include "musicremotewidgetforcircle.h"
-#include "musicsettingmanager.h"
 
 MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 100, 100);
-    setAttribute(Qt::WA_TranslucentBackground);
-
-    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    move( windowSize.width() - width() - 150, height() + 70);
+    adjustPostion(this);
 
     QGridLayout* grid = new QGridLayout(this);
     m_mainWidget->setFixedSize(70, 70);

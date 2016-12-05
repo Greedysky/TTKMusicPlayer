@@ -133,7 +133,6 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     setAttribute(Qt::WA_DeleteOnClose);
-    setAttribute(Qt::WA_TranslucentBackground);
 
     ui->downloadPathEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     ui->pathChangedButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);

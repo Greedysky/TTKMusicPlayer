@@ -1,15 +1,11 @@
 #include "musicremotewidgetforcomplexstyle.h"
-#include "musicsettingmanager.h"
 #include "musiccoreutils.h"
 
 MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 320, 110);
-    setAttribute(Qt::WA_TranslucentBackground);
-
-    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    move( windowSize.width() - width() - 150, height() + 70);
+    adjustPostion(this);
 
     m_iconLabel = new QLabel(this);
     m_songName = new QLabel(this);

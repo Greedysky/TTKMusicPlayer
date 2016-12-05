@@ -21,14 +21,15 @@
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     : QListWidget(parent)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    setFrameShape(QFrame::NoFrame);//Set No Border
+    setAttribute(Qt::WA_TranslucentBackground);
+    setFrameShape(QFrame::NoFrame);
     setStyleSheet(MusicUIObject::MScrollBarStyle02 + \
                   MusicUIObject::MScrollBarStyle03.arg(50));
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
 
+    m_containItem = nullptr;
 #ifdef Q_OS_WIN
     setSpacing(17);
     addListWidgetItem();
@@ -43,6 +44,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
+    delete m_containItem;
     clearAllItems();
 }
 
@@ -162,7 +164,10 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 6:
             {
 #ifdef Q_OS_WIN
-                (new MusicDesktopWallpaperWidget(this))->show();
+                delete m_containItem;
+                MusicDesktopWallpaperWidget *w = new MusicDesktopWallpaperWidget(this);
+                m_containItem = w;
+                w->show();
 #endif
                 break;
             }
@@ -173,12 +178,18 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                (new MusicNetworkSpeedTestWidget(this))->show();
+                delete m_containItem;
+                MusicNetworkSpeedTestWidget *w = new MusicNetworkSpeedTestWidget(this);
+                m_containItem = w;
+                w->show();
                 break;
             }
         case 9:
             {
-                (new MusicNetworkConnectionTestWidget(this))->show();
+                delete m_containItem;
+                MusicNetworkConnectionTestWidget *w = new MusicNetworkConnectionTestWidget(this);
+                m_containItem = w;
+                w->show();
                 break;
             }
         case 10:

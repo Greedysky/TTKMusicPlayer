@@ -13,7 +13,8 @@ MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     setModal(true);
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setWindowModality(Qt::ApplicationModal);
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_TranslucentBackground);
+
     setCancelButton(nullptr);
     setLabel(nullptr);
     setFixedSize(400, 155);

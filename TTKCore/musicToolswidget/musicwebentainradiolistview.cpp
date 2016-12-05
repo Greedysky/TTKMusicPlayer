@@ -7,7 +7,7 @@
 MusicWebEntainRadioListView::MusicWebEntainRadioListView(QWidget *parent)
     : QListWidget(parent), m_radioDialog(nullptr)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_TranslucentBackground);
     setFrameShape(QFrame::NoFrame);//Set No Border
     setStyleSheet(MusicUIObject::MScrollBarStyle01);
     setIconSize(QSize(60, 60));

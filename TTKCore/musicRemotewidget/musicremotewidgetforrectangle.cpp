@@ -1,5 +1,4 @@
 #include "musicremotewidgetforrectangle.h"
-#include "musicsettingmanager.h"
 #include "musicmarqueewidget.h"
 #include "musicwidgetutils.h"
 
@@ -7,11 +6,8 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 230, 70);
-    setAttribute(Qt::WA_TranslucentBackground);
+    adjustPostion(this);
 
-    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    move( windowSize.width() - width() - 150, height() + 70);
-    
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5, 5, 5, 2);
     vbox->setSpacing(0);

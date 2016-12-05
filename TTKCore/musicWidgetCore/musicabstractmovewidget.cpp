@@ -11,6 +11,7 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
 {
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setAttribute(Qt::WA_TranslucentBackground);
 
     m_moveOption = false;
     m_leftButtonPress = false;

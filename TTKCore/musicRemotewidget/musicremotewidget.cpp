@@ -7,13 +7,14 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
+#include "musicsettingmanager.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
 {
     setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint);
-    drawWindowShadow(false);
 
+    drawWindowShadow(false);
     setMouseTracking(true);
 
     m_showMainWindow = new QPushButton(this);
@@ -95,35 +96,6 @@ QString MusicRemoteWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    QWidget::contextMenuEvent(event);
-    QMenu menu(this);
-    menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
-    menu.setAttribute(Qt::WA_TranslucentBackground);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
-    menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
-    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
-    menu.addSeparator();
-
-    menu.addAction(tr("CircleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForCircle*, this));
-    menu.addAction(tr("SquareRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForSquare*, this));
-    menu.addAction(tr("RectangleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForRectangle*, this));
-    menu.addAction(tr("SimpleStyleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
-    menu.addAction(tr("ComplexStyleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
-    menu.addAction(tr("DiamondRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForDiamond*, this));
-    menu.addAction(tr("quit"), this, SLOT(close()));
-    connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
-
-    menu.exec(QCursor::pos());
-}
-
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
     m_PlayButton->setStyleSheet(status ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGTinyBtnPause);
@@ -159,4 +131,39 @@ void MusicRemoteWidget::musicVolumeChanged(int value)
         style += "QToolButton{ margin-left:-64px; }";
     }
     m_volumeButton->setStyleSheet(style);
+}
+
+void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    QWidget::contextMenuEvent(event);
+    QMenu menu(this);
+    menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
+    menu.setAttribute(Qt::WA_TranslucentBackground);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
+    menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
+    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
+    menu.addSeparator();
+
+    menu.addAction(tr("CircleRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForCircle*, this));
+    menu.addAction(tr("SquareRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForSquare*, this));
+    menu.addAction(tr("RectangleRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForRectangle*, this));
+    menu.addAction(tr("SimpleStyleRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
+    menu.addAction(tr("ComplexStyleRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
+    menu.addAction(tr("DiamondRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForDiamond*, this));
+    menu.addAction(tr("quit"), this, SLOT(close()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
+
+    menu.exec(QCursor::pos());
+}
+
+void MusicRemoteWidget::adjustPostion(QWidget *w)
+{
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    w->move( windowSize.width() - w->width() - 150, w->height() + 70);
 }

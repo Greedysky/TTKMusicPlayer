@@ -10,7 +10,6 @@ MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
       ui(new Ui::MusicWebEntainRadioWidget), m_radio(nullptr)
 {
     ui->setupUi(this);
-    setAttribute(Qt::WA_TranslucentBackground, true);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);

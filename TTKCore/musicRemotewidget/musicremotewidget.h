@@ -91,6 +91,10 @@ protected:
     /*!
      * Override the widget event.
      */
+    void adjustPostion(QWidget *w);
+    /*!
+     * Adjust the widget postion.
+     */
 
     QPushButton *m_showMainWindow, *m_PreSongButton;
     QPushButton *m_NextSongButton, *m_PlayButton;

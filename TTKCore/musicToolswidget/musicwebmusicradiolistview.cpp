@@ -9,7 +9,7 @@
 MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
     : QListWidget(parent), m_getChannelThread(nullptr), m_musicRadio(nullptr)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_TranslucentBackground);
     setFrameShape(QFrame::NoFrame);//Set No Border
     setStyleSheet(MusicUIObject::MScrollBarStyle02 + \
                   MusicUIObject::MScrollBarStyle03.arg(50));

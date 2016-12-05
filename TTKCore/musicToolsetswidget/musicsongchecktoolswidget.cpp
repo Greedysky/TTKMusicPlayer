@@ -7,7 +7,6 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
       ui(new Ui::MusicSongCheckToolsWidget)
 {
     ui->setupUi(this);
-    setAttribute(Qt::WA_TranslucentBackground);
 
     ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);

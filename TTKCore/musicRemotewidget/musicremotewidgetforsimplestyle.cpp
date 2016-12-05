@@ -1,5 +1,4 @@
 #include "musicremotewidgetforsimplestyle.h"
-#include "musicsettingmanager.h"
 #include "musicmarqueewidget.h"
 #include "musicwidgetutils.h"
 
@@ -7,10 +6,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 300, 40);
-    setAttribute(Qt::WA_TranslucentBackground);
-
-    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    move( windowSize.width() - width() - 150, height() + 70);
+    adjustPostion(this);
 
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5, 5, 5, 2);

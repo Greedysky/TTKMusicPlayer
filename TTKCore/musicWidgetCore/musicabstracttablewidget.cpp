@@ -3,7 +3,7 @@
 MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    setAttribute(Qt::WA_TranslucentBackground);
     setFont(QFont("Helvetica"));
     setColumnCount(3);
     setRowCount(0);

@@ -51,6 +51,8 @@ protected:
      * Override the widget event.
      */
 
+    QWidget *m_containItem;
+
 };
 
 #endif // MUSICTOOLSETSWIDGET_H
