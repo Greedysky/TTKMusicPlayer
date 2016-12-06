@@ -34,12 +34,29 @@ public:
      */
 
 public Q_SLOTS:
+    void renameButtonClicked();
+    /*!
+     * Rename button clicked.
+     */
+    void qualityButtonClicked();
+    /*!
+     * Quality button clicked.
+     */
+    void duplicateButtonClicked();
+    /*!
+     * Duplicate button clicked.
+     */
     void show();
     /*!
      * Override show function.
      */
 
 protected:
+    void switchToSelectedItemStyle(int index);
+    /*!
+     * Switch to selected item style.
+     */
+
     Ui::MusicSongCheckToolsWidget *ui;
 
 };

@@ -48,10 +48,6 @@ public:
     /*!
      * Reset current music love icon state.
      */
-    void switchToSelectedItemStyle(int index);
-    /*!
-     * Switch to selected item style.
-     */
 
 Q_SIGNALS:
     void currentLoveStateChanged();
@@ -110,6 +106,11 @@ public Q_SLOTS:
      */
 
 protected:
+    void switchToSelectedItemStyle(int index);
+    /*!
+     * Switch to selected item style.
+     */
+
     Ui::MusicApplication *m_ui;
 
     int m_currentIndex;
