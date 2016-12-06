@@ -69,7 +69,7 @@ protected:
      * Disconnect to database.
      */
 
-    Ui::MusicUserWindow *ui;
+    Ui::MusicUserWindow *m_ui;
     MusicUserManagerDialog *m_userManager;
 
 };

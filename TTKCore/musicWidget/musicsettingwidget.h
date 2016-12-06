@@ -268,7 +268,7 @@ protected:
      * Set network proxy by type.
      */
 
-    Ui::MusicSettingWidget *ui;
+    Ui::MusicSettingWidget *m_ui;
     QList<QColor> m_lrcSelectedFg, m_lrcSelectedBg;
     QList<QColor> m_DlrcSelectedFg, m_DlrcSelectedBg;
 

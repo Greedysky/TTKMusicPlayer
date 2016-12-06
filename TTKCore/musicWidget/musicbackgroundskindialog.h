@@ -95,7 +95,7 @@ protected:
      * Copy custom file to local themes dir path.
      */
 
-    Ui::MusicBackgroundSkinDialog *ui;
+    Ui::MusicBackgroundSkinDialog *m_ui;
     MusicBackgroundListWidget *m_backgroundList;
 
 };

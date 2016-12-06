@@ -10,50 +10,50 @@
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicTransformWidget)
+      m_ui(new Ui::MusicTransformWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     
     m_process = new QProcess(this);
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->formatCombo->setItemDelegate(new QStyledItemDelegate(ui->formatCombo));
-    ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->kbpsCombo->setItemDelegate(new QStyledItemDelegate(ui->kbpsCombo));
-    ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->hzCombo->setItemDelegate(new QStyledItemDelegate(ui->hzCombo));
-    ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->msCombo->setItemDelegate(new QStyledItemDelegate(ui->msCombo));
-    ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->formatCombo->setItemDelegate(new QStyledItemDelegate(m_ui->formatCombo));
+    m_ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->kbpsCombo->setItemDelegate(new QStyledItemDelegate(m_ui->kbpsCombo));
+    m_ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->hzCombo->setItemDelegate(new QStyledItemDelegate(m_ui->hzCombo));
+    m_ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->msCombo->setItemDelegate(new QStyledItemDelegate(m_ui->msCombo));
+    m_ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->inputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->outputLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
-    ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->inputButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->outputButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->transformButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(ui->inputButton, SIGNAL(clicked()), SLOT(initInputPath()));
-    connect(ui->outputButton, SIGNAL(clicked()), SLOT(initOutputPath()));
-    connect(ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
+    connect(m_ui->inputButton, SIGNAL(clicked()), SLOT(initInputPath()));
+    connect(m_ui->outputButton, SIGNAL(clicked()), SLOT(initOutputPath()));
+    connect(m_ui->transformButton, SIGNAL(clicked()), SLOT(startTransform()));
     connect(m_process, SIGNAL(finished(int)), SLOT(transformFinish()));
 
-    ui->folderBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    connect(ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
-    ui->krc2lrcBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    connect(ui->krc2lrcBox, SIGNAL(clicked(bool)), SLOT(krc2lrcBoxChecked(bool)));
+    m_ui->folderBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    connect(m_ui->folderBox, SIGNAL(clicked(bool)), SLOT(folderBoxChecked()));
+    m_ui->krc2lrcBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    connect(m_ui->krc2lrcBox, SIGNAL(clicked(bool)), SLOT(krc2lrcBoxChecked(bool)));
 
-    ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_currentType = Music;
     initControlParameter();
 }
@@ -62,7 +62,7 @@ MusicTransformWidget::~MusicTransformWidget()
 {
     m_process->kill();
     delete m_process;
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicTransformWidget::getClassName()
@@ -72,16 +72,16 @@ QString MusicTransformWidget::getClassName()
 
 void MusicTransformWidget::initControlParameter() const
 {
-    ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA"
+    m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA"
                                    << "OGG" << "FLAC" << "AC3" << "AAC");
-    ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
+    m_ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
                      << "96" << "112" << "128" << "192" << "224" << "256" << "320");
-    ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
+    m_ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
                             << "24000" << "32000" << "44100" << "48000");
-    ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");
+    m_ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");
 
-    ui->kbpsCombo->setCurrentIndex(7);
-    ui->hzCombo->setCurrentIndex(6);
+    m_ui->kbpsCombo->setCurrentIndex(7);
+    m_ui->hzCombo->setCurrentIndex(6);
 }
 
 void MusicTransformWidget::initInputPath()
@@ -90,7 +90,7 @@ void MusicTransformWidget::initInputPath()
     QStringList supportedFormat;
     (m_currentType == Music) ? supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac"
                              : supportedFormat << "krc";
-    if(!ui->folderBox->isChecked())
+    if(!m_ui->folderBox->isChecked())
     {
         QString filter = "Files (";
         for(int i=0; i<supportedFormat.count(); ++i)
@@ -105,8 +105,8 @@ void MusicTransformWidget::initInputPath()
             return;
         }
 
-        ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
-        ui->listWidget->setToolTip(path);
+        m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+        m_ui->listWidget->setToolTip(path);
         m_path << path;
     }
     else
@@ -122,8 +122,8 @@ void MusicTransformWidget::initInputPath()
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {
                     m_path << var.absoluteFilePath();
-                    ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
-                    ui->listWidget->setToolTip(m_path.last());
+                    m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), m_path.last(), Qt::ElideLeft, LINE_WIDTH));
+                    m_ui->listWidget->setToolTip(m_path.last());
                 }
             }
         }
@@ -131,7 +131,7 @@ void MusicTransformWidget::initInputPath()
 
     if(!path.isEmpty())
     {
-        ui->inputLineEdit->setText(path);
+        m_ui->inputLineEdit->setText(path);
     }
 }
 
@@ -154,7 +154,7 @@ void MusicTransformWidget::initOutputPath()
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        ui->outputLineEdit->setText(path);
+        m_ui->outputLineEdit->setText(path);
     }
 }
 
@@ -171,14 +171,14 @@ void MusicTransformWidget::transformFinish()
 {
     QSound::play(SOUNDPATH_FULL);
     m_path.removeAt(0);
-    ui->listWidget->clear();
+    m_ui->listWidget->clear();
 
     if(!m_path.isEmpty())
     {
         foreach(const QString &path, m_path)
         {
-            ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
-            ui->listWidget->setToolTip(path);
+            m_ui->listWidget->addItem(MusicUtils::Widget::elidedText(font(), path, Qt::ElideLeft, LINE_WIDTH));
+            m_ui->listWidget->setToolTip(path);
         }
         if(!processTransform((m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL))
         {
@@ -192,9 +192,9 @@ void MusicTransformWidget::transformFinish()
         {
             setMusicCheckedControl(false);
         }
-        ui->inputLineEdit->clear();
-        ui->loadingLabel->hide();
-        ui->loadingLabel->stop();
+        m_ui->inputLineEdit->clear();
+        m_ui->loadingLabel->hide();
+        m_ui->loadingLabel->stop();
     }
 }
 
@@ -209,7 +209,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
     }
 
     QString in = m_path[0].trimmed();
-    QString out = ui->outputLineEdit->text().trimmed();
+    QString out = m_ui->outputLineEdit->text().trimmed();
 
     if(in.isEmpty() || out.isEmpty() )
     {
@@ -221,22 +221,22 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
     if(m_currentType == Music)
     {
-        if(ui->formatCombo->currentText() == "OGG")
+        if(m_ui->formatCombo->currentText() == "OGG")
         {
-            ui->msCombo->setCurrentIndex(1);
+            m_ui->msCombo->setCurrentIndex(1);
         }
 
-        M_LOGGER_INFO(QString("%1%2%3%4").arg(ui->formatCombo->currentText())
-                                         .arg(ui->kbpsCombo->currentText())
-                                         .arg(ui->hzCombo->currentText())
-                                         .arg(ui->msCombo->currentIndex() + 1));
+        M_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText())
+                                         .arg(m_ui->kbpsCombo->currentText())
+                                         .arg(m_ui->hzCombo->currentText())
+                                         .arg(m_ui->msCombo->currentIndex() + 1));
 
         m_process->start(para, QStringList() << "-i" << in << "-y"
-                         << "-ab" << ui->kbpsCombo->currentText() + "k"
-                         << "-ar" << ui->hzCombo->currentText()
-                         << "-ac" << QString::number(ui->msCombo->currentIndex() + 1)
+                         << "-ab" << m_ui->kbpsCombo->currentText() + "k"
+                         << "-ar" << m_ui->hzCombo->currentText()
+                         << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
                          << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
-                            .arg(ui->formatCombo->currentText().toLower()) );
+                            .arg(m_ui->formatCombo->currentText().toLower()) );
     }
     else
     {
@@ -256,15 +256,15 @@ void MusicTransformWidget::startTransform()
         return;
     }
     ///////////////////////////////////////////////////////////
-    ui->loadingLabel->show();
-    ui->loadingLabel->start();
+    m_ui->loadingLabel->show();
+    m_ui->loadingLabel->start();
     setCheckedControl(false);
 }
 
 void MusicTransformWidget::folderBoxChecked()
 {
-    ui->inputLineEdit->clear();
-    ui->listWidget->clear();
+    m_ui->inputLineEdit->clear();
+    m_ui->listWidget->clear();
     m_path.clear();
 }
 
@@ -277,22 +277,22 @@ void MusicTransformWidget::krc2lrcBoxChecked(bool check)
 
 void MusicTransformWidget::setMusicCheckedControl(bool enable)
 {
-    ui->formatCombo->setEnabled(enable);
-    ui->kbpsCombo->setEnabled(enable);
-    ui->hzCombo->setEnabled(enable);
-    ui->msCombo->setEnabled(enable);
+    m_ui->formatCombo->setEnabled(enable);
+    m_ui->kbpsCombo->setEnabled(enable);
+    m_ui->hzCombo->setEnabled(enable);
+    m_ui->msCombo->setEnabled(enable);
 }
 
 void MusicTransformWidget::setCheckedControl(bool enable)
 {
     setMusicCheckedControl(enable);
-    ui->inputButton->setEnabled(enable);
-    ui->inputLineEdit->setEnabled(enable);
-    ui->outputButton->setEnabled(enable);
-    ui->outputLineEdit->setEnabled(enable);
-    ui->folderBox->setEnabled(enable);
-    ui->krc2lrcBox->setEnabled(enable);
-    ui->transformButton->setEnabled(enable);
+    m_ui->inputButton->setEnabled(enable);
+    m_ui->inputLineEdit->setEnabled(enable);
+    m_ui->outputButton->setEnabled(enable);
+    m_ui->outputLineEdit->setEnabled(enable);
+    m_ui->folderBox->setEnabled(enable);
+    m_ui->krc2lrcBox->setEnabled(enable);
+    m_ui->transformButton->setEnabled(enable);
 }
 
 int MusicTransformWidget::exec()
@@ -305,6 +305,6 @@ int MusicTransformWidget::exec()
         return -1;
     }
 
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

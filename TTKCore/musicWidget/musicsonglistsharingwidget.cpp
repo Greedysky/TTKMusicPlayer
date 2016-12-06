@@ -4,27 +4,27 @@
 
 MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicSongListSharingWidget)
+      m_ui(new Ui::MusicSongListSharingWidget)
 {
-    ui->setupUi(this);
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->setupUi(this);
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->label->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MFontStyle05 + \
+    m_ui->label->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MFontStyle05 + \
                              MusicUIObject::MFontStyle01 + MusicUIObject::MColorStyle03);
-    ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->outputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->inputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
-    ui->outputButton->setIcon(QIcon(":/toolSets/btn_kukou_output"));
-    ui->inputButton->setIcon(QIcon(":/toolSets/btn_kukou_input"));
+    m_ui->outputButton->setIcon(QIcon(":/toolSets/btn_kukou_output"));
+    m_ui->inputButton->setIcon(QIcon(":/toolSets/btn_kukou_input"));
 }
 
 MusicSongListSharingWidget::~MusicSongListSharingWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicSongListSharingWidget::getClassName()
@@ -34,6 +34,6 @@ QString MusicSongListSharingWidget::getClassName()
 
 int MusicSongListSharingWidget::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

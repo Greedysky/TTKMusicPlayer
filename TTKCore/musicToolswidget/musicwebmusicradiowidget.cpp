@@ -13,10 +13,10 @@
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicWebMusicRadioWidget), m_radio(nullptr), m_playListThread(nullptr),
+      m_ui(new Ui::MusicWebMusicRadioWidget), m_radio(nullptr), m_playListThread(nullptr),
       m_songsThread(nullptr)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     m_currentPlayListIndex = 0;
     m_isPlaying = false;
@@ -25,39 +25,39 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
 
     m_autoNextTimer.setInterval(3*MT_S2MS);
     connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
-    connect(ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
-    connect(ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
+    connect(m_ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
+    connect(m_ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
-    ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
+    m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+    m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
+    m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
 
-    ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
 
-    ui->playButton->setIconSize(QSize(31, 31));
-    ui->previousButton->setIconSize(QSize(31, 31));
-    ui->nextButton->setIconSize(QSize(31, 31));
+    m_ui->playButton->setIconSize(QSize(31, 31));
+    m_ui->previousButton->setIconSize(QSize(31, 31));
+    m_ui->nextButton->setIconSize(QSize(31, 31));
 
-    ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->volumeSlider->setRange(0, 100);
-    ui->volumeSlider->setValue(100);
+    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->volumeSlider->setRange(0, 100);
+    m_ui->volumeSlider->setValue(100);
 
-    connect(ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
-    connect(ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
-    connect(ui->nextButton, SIGNAL(clicked()), SLOT(radioNext()));
-    connect(ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
+    connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
+    connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(radioNext()));
+    connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
 }
 
 MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
@@ -67,6 +67,7 @@ MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
     delete m_radio;
     delete m_songsThread;
     delete m_playListThread;
+    delete m_ui;
 }
 
 QString MusicWebMusicRadioWidget::getClassName()
@@ -105,11 +106,11 @@ void MusicWebMusicRadioWidget::radioPlay()
     m_isPlaying = !m_isPlaying;
     if(m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
     else
     {
-        ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+        m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
         m_radio->stop();
         return;
     }
@@ -137,7 +138,7 @@ void MusicWebMusicRadioWidget::radioPrevious()
 
     if(!m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
 }
 
@@ -161,7 +162,7 @@ void MusicWebMusicRadioWidget::radioNext()
 
     if(!m_isPlaying)
     {
-        ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     }
 }
 
@@ -208,9 +209,9 @@ void MusicWebMusicRadioWidget::startToPlay()
     m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl);
 
     /// fix current play volume temporary
-    int v = ui->volumeSlider->value();
-    ui->volumeSlider->setValue(0);
-    ui->volumeSlider->setValue(v);
+    int v = m_ui->volumeSlider->value();
+    m_ui->volumeSlider->setValue(0);
+    m_ui->volumeSlider->setValue(v);
 
     QString name = MusicUtils::Core::lrcPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
@@ -253,7 +254,7 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
 
     QString name = info.m_artistName + " - " + info.m_songName;
     name = name.trimmed();
-    ui->titleWidget->setText(name);
+    m_ui->titleWidget->setText(name);
     m_analysis->transLrcFileToTime(MusicUtils::Core::lrcPrefix() + name + LRC_FILE);
 }
 
@@ -276,8 +277,8 @@ void MusicWebMusicRadioWidget::picDownloadStateChanged()
         pix.load(":/image/lb_defaultArt");
     }
     pix = MusicUtils::Widget::pixmapToRound(pix, QSize(150, 150), 100, 100);
-    ui->artistLabel->setPixmap(pix);
-    ui->artistLabel->start();
+    m_ui->artistLabel->setPixmap(pix);
+    m_ui->artistLabel->start();
 }
 
 void MusicWebMusicRadioWidget::positionChanged(qint64 position)
@@ -289,12 +290,12 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
 
     m_autoNextTimer.stop();
     m_autoNextTimer.start();
-    ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS)));
+    m_ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS)));
 
     if(m_analysis->isEmpty())
     {
         QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
-        ui->lrcLabel->setText(lrc);
+        m_ui->lrcLabel->setText(lrc);
         return;
     }
     int index = m_analysis->getCurrentIndex();
@@ -315,7 +316,7 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
             lrc += m_analysis->getText(i);
             lrc += QString("</p>");
         }
-        ui->lrcLabel->setText(lrc);
+        m_ui->lrcLabel->setText(lrc);
         m_analysis->setCurrentIndex(++index);
     }
 }
@@ -326,11 +327,11 @@ void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
     {
         return;
     }
-    ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
+    m_ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
 void MusicWebMusicRadioWidget::show()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
 }

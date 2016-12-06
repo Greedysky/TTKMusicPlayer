@@ -60,9 +60,9 @@ void MusicBackgroundPalette::mousePressEvent(QMouseEvent *event)
 
 MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicBackgroundPaletteWidget)
+      m_ui(new Ui::MusicBackgroundPaletteWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     m_confirmButtonClicked = false;
 
     QList<QColor> colors;
@@ -132,7 +132,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     colors << QColor(37, 13, 0);
     colors << QColor(22, 22, 14);
     /////////////////////////////////////////
-    QGridLayout *layout = new QGridLayout(ui->mutliWidget);
+    QGridLayout *layout = new QGridLayout(m_ui->mutliWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     for(int i=0; i<6; ++i)
         for(int j=0; j<10; ++j)
@@ -149,19 +149,19 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
             connect(label, SIGNAL(currentColorToMemoryChanged(QString)),
                            SLOT(currentColorToMemory(QString)));
         }
-    ui->mutliWidget->setLayout(layout);
+    m_ui->mutliWidget->setLayout(layout);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
-    connect(ui->confirmButton, SIGNAL(clicked()), SLOT(paletteColorClicked()));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(paletteColorClicked()));
 }
 
 MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
@@ -175,7 +175,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
     {
         delete m_widgets.takeLast();
     }
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicBackgroundPaletteWidget::getClassName()
@@ -186,7 +186,7 @@ QString MusicBackgroundPaletteWidget::getClassName()
 void MusicBackgroundPaletteWidget::updateBackground(const QString &text)
 {
     QPixmap pix(text);
-    ui->background->setPixmap(pix.scaled( size() ));
+    m_ui->background->setPixmap(pix.scaled( size() ));
 }
 
 void MusicBackgroundPaletteWidget::paletteColorClicked()
@@ -218,7 +218,7 @@ void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 {
     QPixmap pixmap(90, 30);
     pixmap.fill(color);
-    ui->colorLabel->setPixmap(pixmap);
+    m_ui->colorLabel->setPixmap(pixmap);
 
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(m_currentColor = color);

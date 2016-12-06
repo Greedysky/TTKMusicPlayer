@@ -103,7 +103,7 @@ protected:
      * Get removable drive name.
      */
 
-    Ui::MusicConnectTransferWidget *ui;
+    Ui::MusicConnectTransferWidget *m_ui;
     int m_currentIndex;
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;

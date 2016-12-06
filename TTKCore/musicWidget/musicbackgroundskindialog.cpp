@@ -12,53 +12,53 @@
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicBackgroundSkinDialog)
+      m_ui(new Ui::MusicBackgroundSkinDialog)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
-    ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->mySkin->setStyleSheet(MusicUIObject::MLabelStyle02 + MusicUIObject::MLabelStyle03);
+    m_ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     m_backgroundList = new MusicBackgroundListWidget(this);
-    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->scrollArea->setWidgetResizable(true);
-    ui->scrollArea->setFrameShape(QFrame::NoFrame);
-    ui->scrollArea->setFrameShadow(QFrame::Plain);
-    ui->scrollArea->setAlignment(Qt::AlignLeft);
-    ui->scrollArea->setWidget(m_backgroundList);
-    ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
+    m_ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_ui->scrollArea->setWidgetResizable(true);
+    m_ui->scrollArea->setFrameShape(QFrame::NoFrame);
+    m_ui->scrollArea->setFrameShadow(QFrame::Plain);
+    m_ui->scrollArea->setAlignment(Qt::AlignLeft);
+    m_ui->scrollArea->setWidget(m_backgroundList);
+    m_ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
 
     addThemeListWidgetItem();
 
-    ui->resetWindowButton->setStyleSheet(MusicUIObject::MKGBtnResetWindow);
-    ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
-    ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_ui->resetWindowButton->setStyleSheet(MusicUIObject::MKGBtnResetWindow);
+    m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
+    m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle05);
 
-    connect(ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
+    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicBgTransparentChanged(int)));
-    connect(ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), parent,
+    connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), parent,
                                        SLOT(musicBackgroundSliderStateChanged(bool)));
-    connect(ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
+    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicPlayListTransparent(int)));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
-    connect(ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
+    connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(m_backgroundList, SIGNAL(itemClicked(QString)), parent,
                   SLOT(musicBackgroundSkinChanged(QString)));
     connect(this, SIGNAL(currentColorChanged(QString)), parent,
                   SLOT(musicBgTransparentChanged(QString)));
-    connect(ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationObject::instance(),
+    connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationObject::instance(),
                                    SLOT(musicResetWindow()));
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicBackgroundSkinDialog::getClassName()
@@ -82,8 +82,8 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
 {
     m_backgroundList->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
-    ui->skinTransparentButton->setValue(alpha);
-    ui->listTransparentButton->setValue(listAlpha);
+    m_ui->skinTransparentButton->setValue(alpha);
+    m_ui->listTransparentButton->setValue(listAlpha);
     setSkinTransToolText(alpha);
     setListTransToolText(listAlpha);
 }
@@ -91,22 +91,22 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
 void MusicBackgroundSkinDialog::updateBackground(const QString &text)
 {
     QPixmap pix(text);
-    ui->background->setPixmap(pix.scaled( size() ));
+    m_ui->background->setPixmap(pix.scaled( size() ));
 }
 
 int MusicBackgroundSkinDialog::getListBgSkinAlpha() const
 {
-    return ui->listTransparentButton->value();
+    return m_ui->listTransparentButton->value();
 }
 
 void MusicBackgroundSkinDialog::setSkinTransToolText(int value)
 {
-    ui->skinTransparentButton->setText(QString("%1%").arg(value));
+    m_ui->skinTransparentButton->setText(QString("%1%").arg(value));
 }
 
 void MusicBackgroundSkinDialog::setListTransToolText(int value)
 {
-    ui->listTransparentButton->setText(QString("%1%").arg(value));
+    m_ui->listTransparentButton->setText(QString("%1%").arg(value));
 }
 
 void MusicBackgroundSkinDialog::showPaletteDialog()

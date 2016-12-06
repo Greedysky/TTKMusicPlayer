@@ -57,7 +57,7 @@ protected:
      * Switch to selected item style.
      */
 
-    Ui::MusicSongCheckToolsWidget *ui;
+    Ui::MusicSongCheckToolsWidget *m_ui;
 
 };
 

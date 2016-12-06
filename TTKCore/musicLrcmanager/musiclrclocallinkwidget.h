@@ -113,7 +113,7 @@ protected:
      * Search local lrc in MLrc dir.
      */
 
-    Ui::MusicLrcLocalLinkWidget *ui;
+    Ui::MusicLrcLocalLinkWidget *m_ui;
 
 };
 

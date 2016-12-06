@@ -41,7 +41,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicSongListSharingWidget *ui;
+    Ui::MusicSongListSharingWidget *m_ui;
 
 };
 

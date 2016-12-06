@@ -60,7 +60,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicLrcSearchWidget *ui;
+    Ui::MusicLrcSearchWidget *m_ui;
 
 };
 

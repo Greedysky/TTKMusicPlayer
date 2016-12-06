@@ -123,7 +123,7 @@ protected:
      * Get icon by data state.
      */
 
-    Ui::MusicCloudFileManagerDialog *ui;
+    Ui::MusicCloudFileManagerDialog *m_ui;
 
 };
 

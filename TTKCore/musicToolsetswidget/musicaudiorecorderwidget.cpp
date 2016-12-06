@@ -10,57 +10,57 @@
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicAudioRecorderWidget), m_mBuffer(BufferSize, 0)
+      m_ui(new Ui::MusicAudioRecorderWidget), m_mBuffer(BufferSize, 0)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->startButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->startButton->setToolTip(tr("startAudio"));
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->stopButton->setToolTip(tr("stopAudio"));
-    ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->playButton->setToolTip(tr("playAudio"));
-    ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->saveButton->setToolTip(tr("saveButton"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->startButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->startButton->setToolTip(tr("startAudio"));
+    m_ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->stopButton->setToolTip(tr("stopAudio"));
+    m_ui->playButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->playButton->setToolTip(tr("playAudio"));
+    m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->saveButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->saveButton->setToolTip(tr("saveButton"));
 
-    connect(ui->startButton, SIGNAL(clicked()), SLOT(onRecordStart()));
-    connect(ui->stopButton, SIGNAL(clicked()), SLOT(onRecordStop()));
-    connect(ui->playButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
-    connect(ui->saveButton, SIGNAL(clicked()), SLOT(onRecordSave()));
+    connect(m_ui->startButton, SIGNAL(clicked()), SLOT(onRecordStart()));
+    connect(m_ui->stopButton, SIGNAL(clicked()), SLOT(onRecordStop()));
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
+    connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(onRecordSave()));
 
-    ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_4->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox_5->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->checkBox->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox_2->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox_4->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->checkBox_5->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->checkBox_2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->checkBox_3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->checkBox_4->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->checkBox_5->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->checkBox->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->checkBox_2->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->checkBox_4->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->checkBox_5->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->progress->setStyleSheet(MusicUIObject::MProgressBar02);
-    ui->horizontalSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->progress->setStyleSheet(MusicUIObject::MProgressBar02);
+    m_ui->horizontalSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(onTimerout()));
-    ui->stopButton->setEnabled(false);
-    ui->playButton->setEnabled(false);
-    ui->saveButton->setEnabled(false);
+    m_ui->stopButton->setEnabled(false);
+    m_ui->playButton->setEnabled(false);
+    m_ui->saveButton->setEnabled(false);
     m_movie = nullptr;
     m_time = 0;
 
     m_miMaxValue = 0;
-    ui->horizontalSlider->setValue(100);
+    m_ui->horizontalSlider->setValue(100);
     m_miVolume = 100;
 
     m_mpAudioInputSound = nullptr;
@@ -82,7 +82,7 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
     delete m_mpInputDevSound;
     delete m_mpOutputDevSound;
     delete m_movie;
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicAudioRecorderWidget::getClassName()
@@ -93,7 +93,7 @@ QString MusicAudioRecorderWidget::getClassName()
 void MusicAudioRecorderWidget::onTimerout()
 {
     QString text = MusicTime::normalTime2Label( ++m_time );
-    ui->timer->setText( text );
+    m_ui->timer->setText( text );
 }
 
 void MusicAudioRecorderWidget::initMonitor()
@@ -123,24 +123,24 @@ void MusicAudioRecorderWidget::initMonitor()
     m_mpOutputDevSound = m_mpAudioOutputSound->start();
     m_mpInputDevSound = m_mpAudioInputSound->start();
     connect(m_mpInputDevSound, SIGNAL(readyRead()), SLOT(onReadMore()));
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), SLOT(onSliderValueChanged(int)));
+    connect(m_ui->horizontalSlider, SIGNAL(valueChanged(int)), SLOT(onSliderValueChanged(int)));
 }
 
 void MusicAudioRecorderWidget::onRecordStart()
 {
     m_recordCore->onRecordStart();
 
-    ui->stopButton->setEnabled(true);
-    ui->startButton->setEnabled(false);
-    ui->playButton->setEnabled(false);
-    ui->saveButton->setEnabled(false);
+    m_ui->stopButton->setEnabled(true);
+    m_ui->startButton->setEnabled(false);
+    m_ui->playButton->setEnabled(false);
+    m_ui->saveButton->setEnabled(false);
     m_timer.start(MT_S2MS);
 
     if(m_movie == nullptr)
     {
         m_movie = new QMovie(":/toolSets/lb_rate", QByteArray(), this);
     }
-    ui->timer_2->setMovie(m_movie);
+    m_ui->timer_2->setMovie(m_movie);
     m_movie->start();
 }
 
@@ -157,10 +157,10 @@ void MusicAudioRecorderWidget::onRecordStop()
     m_timer.stop();
     m_movie->stop();
     m_time = 0;
-    ui->playButton->setEnabled(true);
-    ui->startButton->setEnabled(true);
-    ui->stopButton->setEnabled(false);
-    ui->saveButton->setEnabled(true);
+    m_ui->playButton->setEnabled(true);
+    m_ui->startButton->setEnabled(true);
+    m_ui->stopButton->setEnabled(false);
+    m_ui->saveButton->setEnabled(true);
 }
 
 void MusicAudioRecorderWidget::onRecordSave()
@@ -256,11 +256,11 @@ void MusicAudioRecorderWidget::onReadMore()
 
 void MusicAudioRecorderWidget::onTimeOut()
 {
-    ui->progress->setValue(m_miMaxValue);
+    m_ui->progress->setValue(m_miMaxValue);
 }
 
 int MusicAudioRecorderWidget::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

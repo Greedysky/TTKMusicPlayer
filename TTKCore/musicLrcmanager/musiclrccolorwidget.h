@@ -68,7 +68,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicLrcColorWidget *ui;
+    Ui::MusicLrcColorWidget *m_ui;
 
 };
 

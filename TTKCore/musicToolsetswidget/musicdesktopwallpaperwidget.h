@@ -87,7 +87,7 @@ protected:
      * Set auto thread to show wallpaper.
      */
 
-    Ui::MusicDesktopWallpaperWidget *ui;
+    Ui::MusicDesktopWallpaperWidget *m_ui;
     int m_currentMode;
     QStringList m_path;
     MusicDesktopWallpaperThread *m_wallThread;

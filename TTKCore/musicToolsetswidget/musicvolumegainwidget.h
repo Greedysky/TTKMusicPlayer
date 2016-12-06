@@ -114,7 +114,7 @@ protected:
      * Enable or disable control state.
      */
 
-    Ui::MusicVolumeGainWidget *ui;
+    Ui::MusicVolumeGainWidget *m_ui;
     QProcess *m_process;
     QStringList m_paths;
     int m_currentIndex;

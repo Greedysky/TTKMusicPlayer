@@ -12,20 +12,20 @@
 
 MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent),
-     ui(new Ui::MusicUserWindow)
+     m_ui(new Ui::MusicUserWindow)
 {
-    ui->setupUi(this);
-    ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->setupUi(this);
+    m_ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
 
     connectDatabase();
 
     m_userManager = new MusicUserManagerDialog(this);
-    connect(ui->userIconU, SIGNAL(clicked()), SLOT(musicUserLogin()));
-    connect(ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
-    connect(ui->userIconL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
-    connect(ui->userNameL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
+    connect(m_ui->userIconU, SIGNAL(clicked()), SLOT(musicUserLogin()));
+    connect(m_ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
+    connect(m_ui->userIconL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
+    connect(m_ui->userNameL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
     connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
                            SLOT(userStateChanged(QString,QString)));
 
@@ -35,7 +35,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
 MusicUserWindow::~MusicUserWindow()
 {
     delete m_userManager;
-    delete ui;
+    delete m_ui;
     disConnectDatabase();
 }
 
@@ -117,20 +117,20 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 {
     if(uid.isEmpty())
     {
-        ui->userIconU->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_player_logo"),
+        m_ui->userIconU->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_player_logo"),
                                                                    QPixmap(":/usermanager/lb_mask"),
-                                                                   ui->userIconU->size()));
-        ui->userNameU->setText(tr("L|R"));
+                                                                   m_ui->userIconU->size()));
+        m_ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(0);
     }
     else
     {
         m_userManager->setUserUID(uid);
-        ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon),
+        m_ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon),
                                                                    QPixmap(":/usermanager/lb_mask"),
-                                                                   ui->userIconL->size()));
-        ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), uid, Qt::ElideRight, 44));
-        ui->userNameL->setToolTip(uid);
+                                                                   m_ui->userIconL->size()));
+        m_ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), uid, Qt::ElideRight, 44));
+        m_ui->userNameL->setToolTip(uid);
         setCurrentIndex(1);
     }
 }

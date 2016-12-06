@@ -77,7 +77,7 @@ protected:
      * Set button popup menu.
      */
 
-    Ui::MusicNetworkSpeedTestWidget *ui;
+    Ui::MusicNetworkSpeedTestWidget *m_ui;
     QTimer m_testTimer;
     ulong m_testAverage, m_totalUp, m_totalDown;
     MusicNetworkSpeedTestThread *m_thread;

@@ -229,7 +229,7 @@ protected:
      * Set per lrc line style sheet.
      */
 
-    Ui::MusicLrcMakerWidget *ui;
+    Ui::MusicLrcMakerWidget *m_ui;
     QStringList m_plainText;
     QMap<int, qint64> m_times;
 

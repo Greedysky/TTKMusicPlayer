@@ -13,29 +13,29 @@
 
 MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicDesktopWallpaperWidget)
+      m_ui(new Ui::MusicDesktopWallpaperWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     initWidgetStyle();
     initParameters();
 
-    connect(ui->netRadioButton, SIGNAL(clicked()), SLOT(netRadioButtonPressed()));
-    connect(ui->localRadioButton, SIGNAL(clicked()), SLOT(localRadioButtonPressed()));
-    connect(ui->playRadioButton, SIGNAL(clicked()), SLOT(playRadioButtonPressed()));
+    connect(m_ui->netRadioButton, SIGNAL(clicked()), SLOT(netRadioButtonPressed()));
+    connect(m_ui->localRadioButton, SIGNAL(clicked()), SLOT(localRadioButtonPressed()));
+    connect(m_ui->playRadioButton, SIGNAL(clicked()), SLOT(playRadioButtonPressed()));
 
-    connect(ui->viewButton, SIGNAL(clicked()), SLOT(viewButtonPressed()));
-    connect(ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonPressed()));
-    connect(ui->stopButton, SIGNAL(clicked()), SLOT(stopButtonPressed()));
-    connect(ui->cancelButton, SIGNAL(clicked()), SLOT(cancelButtonPressed()));
+    connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(viewButtonPressed()));
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonPressed()));
+    connect(m_ui->stopButton, SIGNAL(clicked()), SLOT(stopButtonPressed()));
+    connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(cancelButtonPressed()));
 
-    ui->localRadioButton->setChecked(true);
+    m_ui->localRadioButton->setChecked(true);
     localRadioButtonPressed();
 
     m_wallThread = new MusicDesktopWallpaperThread(this);
@@ -50,7 +50,7 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
     }
     m_wallThread->stopAndQuitThread();
     delete m_wallThread;
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicDesktopWallpaperWidget::getClassName()
@@ -60,46 +60,46 @@ QString MusicDesktopWallpaperWidget::getClassName()
 
 void MusicDesktopWallpaperWidget::initWidgetStyle() const
 {
-    ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->localRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->playRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->pictureEffect->setItemDelegate(new QStyledItemDelegate(ui->pictureEffect));
-    ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->pictureFunc->setItemDelegate(new QStyledItemDelegate(ui->pictureFunc));
-    ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->pictureType->setItemDelegate(new QStyledItemDelegate(ui->pictureType));
-    ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->pictureType->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeH->setItemDelegate(new QStyledItemDelegate(ui->timeH));
-    ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->timeH->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeM->setItemDelegate(new QStyledItemDelegate(ui->timeM));
-    ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->timeM->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->timeS->setItemDelegate(new QStyledItemDelegate(ui->timeS));
-    ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    ui->timeS->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    ui->openWithstart->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    ui->recoveryWallpaper->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->localRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->playRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->pictureEffect->setItemDelegate(new QStyledItemDelegate(m_ui->pictureEffect));
+    m_ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->pictureFunc->setItemDelegate(new QStyledItemDelegate(m_ui->pictureFunc));
+    m_ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->pictureType->setItemDelegate(new QStyledItemDelegate(m_ui->pictureType));
+    m_ui->pictureType->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->pictureType->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeH->setItemDelegate(new QStyledItemDelegate(m_ui->timeH));
+    m_ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->timeH->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeM->setItemDelegate(new QStyledItemDelegate(m_ui->timeM));
+    m_ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->timeM->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeS->setItemDelegate(new QStyledItemDelegate(m_ui->timeS));
+    m_ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->timeS->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->openWithstart->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->recoveryWallpaper->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 void MusicDesktopWallpaperWidget::initParameters() const
 {
-    ui->pictureEffect->addItems(QStringList()<<tr("none"));
-    ui->pictureType->addItems(QStringList()<<tr("center")<<tr("tile")<<tr("drawing"));
-    ui->pictureFunc->addItems(QStringList()<<tr("order")<<tr("random"));
+    m_ui->pictureEffect->addItems(QStringList()<<tr("none"));
+    m_ui->pictureType->addItems(QStringList()<<tr("center")<<tr("tile")<<tr("drawing"));
+    m_ui->pictureFunc->addItems(QStringList()<<tr("order")<<tr("random"));
     QStringList h,m,s;
     for(int i=0; i<MT_D; ++i)
     {
@@ -110,9 +110,9 @@ void MusicDesktopWallpaperWidget::initParameters() const
         m << tr("%1M").arg(i);
         s << tr("%1S").arg(i);
     }
-    ui->timeH->addItems(h);
-    ui->timeM->addItems(m);
-    ui->timeS->addItems(s);
+    m_ui->timeH->addItems(h);
+    m_ui->timeM->addItems(m);
+    m_ui->timeS->addItems(s);
 }
 
 void MusicDesktopWallpaperWidget::viewButtonPressed()
@@ -120,7 +120,7 @@ void MusicDesktopWallpaperWidget::viewButtonPressed()
     QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        ui->urlLineEdit->setText(path);
+        m_ui->urlLineEdit->setText(path);
     }
 
     QStringList filters;
@@ -133,32 +133,32 @@ void MusicDesktopWallpaperWidget::viewButtonPressed()
 
 void MusicDesktopWallpaperWidget::netRadioButtonPressed()
 {
-    ui->urlLineEdit->setEnabled(true);
-    ui->viewButton->setEnabled(false);
+    m_ui->urlLineEdit->setEnabled(true);
+    m_ui->viewButton->setEnabled(false);
     m_currentMode = 0;
     m_path.clear();
 }
 
 void MusicDesktopWallpaperWidget::localRadioButtonPressed()
 {
-    ui->urlLineEdit->setEnabled(false);
-    ui->viewButton->setEnabled(true);
+    m_ui->urlLineEdit->setEnabled(false);
+    m_ui->viewButton->setEnabled(true);
     m_currentMode = 1;
     m_path.clear();
 }
 
 void MusicDesktopWallpaperWidget::playRadioButtonPressed()
 {
-    ui->urlLineEdit->setEnabled(false);
-    ui->viewButton->setEnabled(false);
+    m_ui->urlLineEdit->setEnabled(false);
+    m_ui->viewButton->setEnabled(false);
     m_currentMode = 2;
     m_path.clear();
-    ui->urlLineEdit->setText(".");
+    m_ui->urlLineEdit->setText(".");
 }
 
 void MusicDesktopWallpaperWidget::confirmButtonPressed()
 {
-    if(ui->urlLineEdit->text().trimmed().isEmpty())
+    if(m_ui->urlLineEdit->text().trimmed().isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("url is now empty!"));
@@ -170,7 +170,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         case 0:
         {
             m_path << QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE);
-            MusicDataDownloadThread *background = new MusicDataDownloadThread(ui->urlLineEdit->text().trimmed(),
+            MusicDataDownloadThread *background = new MusicDataDownloadThread(m_ui->urlLineEdit->text().trimmed(),
                                                       m_path[0], MusicDownLoadThreadAbstract::Download_BigBG, this);
             connect(background, SIGNAL(downLoadDataChanged(QString)), SLOT(parameterFinished()));
             background->startToDownload();
@@ -190,16 +190,16 @@ void MusicDesktopWallpaperWidget::parameterFinished()
     MusicObject::MStriantMap para;
     para.insert("Mode", m_currentMode);
     para.insert("Path", m_path);
-    para.insert("Effect", ui->pictureEffect->currentIndex());
-    para.insert("Type", ui->pictureType->currentIndex());
-    para.insert("Func", ui->pictureFunc->currentIndex());
-    para.insert("Time", ui->timeH->currentIndex()*MT_H2S +
-                        ui->timeM->currentIndex()*MT_M2S +
-                        ui->timeS->currentIndex() );
-    para.insert("Close", ui->recoveryWallpaper->isChecked());
+    para.insert("Effect", m_ui->pictureEffect->currentIndex());
+    para.insert("Type", m_ui->pictureType->currentIndex());
+    para.insert("Func", m_ui->pictureFunc->currentIndex());
+    para.insert("Time", m_ui->timeH->currentIndex()*MT_H2S +
+                        m_ui->timeM->currentIndex()*MT_M2S +
+                        m_ui->timeS->currentIndex() );
+    para.insert("Close", m_ui->recoveryWallpaper->isChecked());
     m_wallThread->setParamters(para);
     m_wallThread->start();
-    setAutoStart(ui->openWithstart->isChecked());
+    setAutoStart(m_ui->openWithstart->isChecked());
     hide();
 }
 
@@ -224,6 +224,6 @@ void MusicDesktopWallpaperWidget::setAutoStart(bool autoStart) const
 
 void MusicDesktopWallpaperWidget::show()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
 }

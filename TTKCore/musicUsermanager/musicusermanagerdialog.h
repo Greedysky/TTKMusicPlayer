@@ -79,7 +79,7 @@ protected:
      * Create functions menu popup initialized.
      */
 
-    Ui::MusicUserManagerDialog *ui;
+    Ui::MusicUserManagerDialog *m_ui;
     MusicUserModel* m_userModel;
     QString m_currentUserUID;
     QTime m_time;

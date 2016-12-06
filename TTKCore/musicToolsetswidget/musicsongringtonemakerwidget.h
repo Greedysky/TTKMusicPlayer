@@ -83,7 +83,7 @@ protected:
      * Play button state changed.
      */
 
-    Ui::MusicSongRingtoneMaker *ui;
+    Ui::MusicSongRingtoneMaker *m_ui;
     bool m_playRingtone;
     QString m_inputFilePath;
     MusicCoreMPlayer *m_player;

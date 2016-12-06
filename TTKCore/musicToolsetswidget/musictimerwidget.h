@@ -103,7 +103,7 @@ protected:
      * Init widget interface parameter.
      */
 
-    Ui::MusicTimerWidget *ui;
+    Ui::MusicTimerWidget *m_ui;
     QStringList m_hour;
     QStringList m_second;
     QStringList m_repeat;

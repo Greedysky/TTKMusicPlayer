@@ -131,7 +131,7 @@ protected:
      * Reset window rect by diff index and geometry.
      */
 
-    Ui::MusicUserDialog *ui;
+    Ui::MusicUserDialog *m_ui;
     MusicUserModel *m_userModel;
     MusicUserRecords m_records;
     QString m_userName;

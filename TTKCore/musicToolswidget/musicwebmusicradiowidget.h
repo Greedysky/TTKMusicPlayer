@@ -104,7 +104,7 @@ protected:
      * Start to play music radio.
      */
 
-    Ui::MusicWebMusicRadioWidget *ui;
+    Ui::MusicWebMusicRadioWidget *m_ui;
     int m_currentPlayListIndex;
     bool m_isPlaying;
     QTimer m_autoNextTimer;

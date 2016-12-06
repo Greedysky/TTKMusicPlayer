@@ -94,7 +94,7 @@ protected:
      * init third security widget.
      */
 
-    Ui::MusicUserRecordWidget *ui;
+    Ui::MusicUserRecordWidget *m_ui;
     MusicUserModel *m_userModel;
 
 };

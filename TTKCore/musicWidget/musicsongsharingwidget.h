@@ -74,7 +74,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicSongSharingWidget *ui;
+    Ui::MusicSongSharingWidget *m_ui;
     QRCodeQWidget *m_qrCodeWidget;
 
 };

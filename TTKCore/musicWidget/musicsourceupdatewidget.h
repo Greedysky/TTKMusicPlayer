@@ -66,7 +66,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicSourceUpdateWidget *ui;
+    Ui::MusicSourceUpdateWidget *m_ui;
     QString m_newVersionStr;
 
 };

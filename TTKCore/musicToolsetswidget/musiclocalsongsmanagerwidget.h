@@ -119,7 +119,7 @@ protected:
      * Current custom dir path changed.
      */
 
-    Ui::MusicLocalSongsManagerWidget *ui;
+    Ui::MusicLocalSongsManagerWidget *m_ui;
     int m_currentIndex;
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;

@@ -119,7 +119,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicBackgroundPaletteWidget *ui;
+    Ui::MusicBackgroundPaletteWidget *m_ui;
     QList<QWidget*> m_widgets;
     QColor m_currentColor;
     bool m_confirmButtonClicked;

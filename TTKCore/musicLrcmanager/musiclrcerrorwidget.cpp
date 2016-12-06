@@ -9,42 +9,42 @@
 
 MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicLrcErrorWidget)
+      m_ui(new Ui::MusicLrcErrorWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->radioButton1->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->radioButton2->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->radioButton3->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    ui->radioButton4->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->radioButton1->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->radioButton2->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->radioButton3->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->radioButton4->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
 
-    ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
-    ui->textEdit->setEnabled(false);
-    ui->radioButton1->setChecked(true);
-    connect(ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
+    m_ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
+    m_ui->textEdit->setEnabled(false);
+    m_ui->radioButton1->setChecked(true);
+    connect(m_ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
 
-    ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(ui->pushButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    m_ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->pushButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->pushButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(ui->radioButton1, 0);
-    buttonGroup->addButton(ui->radioButton2, 1);
-    buttonGroup->addButton(ui->radioButton3, 2);
-    buttonGroup->addButton(ui->radioButton4, 3);
+    buttonGroup->addButton(m_ui->radioButton1, 0);
+    buttonGroup->addButton(m_ui->radioButton2, 1);
+    buttonGroup->addButton(m_ui->radioButton3, 2);
+    buttonGroup->addButton(m_ui->radioButton4, 3);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 
 }
 
 MusicLrcErrorWidget::~MusicLrcErrorWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicLrcErrorWidget::getClassName()
@@ -56,23 +56,23 @@ void MusicLrcErrorWidget::buttonClicked(int index)
 {
     if(index == 3)
     {
-        ui->textEdit->setEnabled(true);
-        ui->textEdit->setText( QString() );
+        m_ui->textEdit->setEnabled(true);
+        m_ui->textEdit->setText( QString() );
     }
 }
 
 void MusicLrcErrorWidget::textAreaChanged()
 {
-    QString text = ui->textEdit->toPlainText();
+    QString text = m_ui->textEdit->toPlainText();
     int length = text.count();
     if(length > MAX_LEGNTH)
     {
-        QTextCursor textCursor = ui->textEdit->textCursor();
+        QTextCursor textCursor = m_ui->textEdit->textCursor();
         int position = textCursor.position();
         text.remove(position - (length - MAX_LEGNTH), length - MAX_LEGNTH);
-        ui->textEdit->setText(text);
+        m_ui->textEdit->setText(text);
         textCursor.setPosition(position - (length - MAX_LEGNTH));
-        ui->textEdit->setTextCursor(textCursor);
+        m_ui->textEdit->setTextCursor(textCursor);
     }
     else
     {
@@ -80,7 +80,7 @@ void MusicLrcErrorWidget::textAreaChanged()
              "</span><span style=' font-size:10pt; color:#ff0000;'> %2 "
              "</span><span style=' font-size:10pt;'>%3</span></p></body></html>")
              .arg(tr("you can now input")).arg(MAX_LEGNTH - length).arg(tr("word"));
-        ui->label->setText(style);
+        m_ui->label->setText(style);
     }
 }
 
@@ -95,6 +95,6 @@ void MusicLrcErrorWidget::confirmButtonClicked()
 
 int MusicLrcErrorWidget::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

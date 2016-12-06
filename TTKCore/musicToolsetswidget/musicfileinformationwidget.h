@@ -96,7 +96,7 @@ protected:
      * Save modify data to local file.
      */
 
-    Ui::MusicFileInformationWidget *ui;
+    Ui::MusicFileInformationWidget *m_ui;
     QString m_path;
 
 };

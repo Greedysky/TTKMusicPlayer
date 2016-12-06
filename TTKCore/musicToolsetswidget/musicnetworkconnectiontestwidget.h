@@ -106,7 +106,7 @@ public Q_SLOTS:
 
 protected:
     int m_countIndex;
-    Ui::MusicNetworkConnectionTestWidget *ui;
+    Ui::MusicNetworkConnectionTestWidget *m_ui;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
 
 };

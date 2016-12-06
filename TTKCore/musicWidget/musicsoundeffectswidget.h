@@ -153,7 +153,7 @@ protected:
      * Write sound effect function.
      */
 
-    Ui::MusicSoundEffectsWidget *ui;
+    Ui::MusicSoundEffectsWidget *m_ui;
 
 };
 

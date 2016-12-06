@@ -104,7 +104,7 @@ protected:
      * Create audio output.
      */
 
-    Ui::MusicAudioRecorderWidget *ui;
+    Ui::MusicAudioRecorderWidget *m_ui;
     QTimer m_timer;
     qint64 m_time;
     QMovie *m_movie;

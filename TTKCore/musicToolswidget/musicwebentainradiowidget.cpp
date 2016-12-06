@@ -7,61 +7,61 @@
 
 MusicWebEntainRadioWidget::MusicWebEntainRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicWebEntainRadioWidget), m_radio(nullptr)
+      m_ui(new Ui::MusicWebEntainRadioWidget), m_radio(nullptr)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_database = new MusicWebEntainRadioDatabase;
     m_database->connectDatabase();
 
-    ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
-    ui->stopButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    ui->colletButton->setIcon(QIcon(":/tiny/lb_star"));
-    ui->discolletButton->setIcon(QIcon(":/tiny/lb_unstar"));
+    m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
+    m_ui->stopButton->setIcon(QIcon(":/functions/btn_pause_hover"));
+    m_ui->colletButton->setIcon(QIcon(":/tiny/lb_star"));
+    m_ui->discolletButton->setIcon(QIcon(":/tiny/lb_unstar"));
 
-    ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->stopButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->colletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->discolletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->stopButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->colletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->discolletButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
 
-    ui->playButton->setIconSize(QSize(31, 31));
-    ui->stopButton->setIconSize(QSize(31, 31));
-    ui->colletButton->setIconSize(QSize(31, 31));
-    ui->discolletButton->setIconSize(QSize(31, 31));
+    m_ui->playButton->setIconSize(QSize(31, 31));
+    m_ui->stopButton->setIconSize(QSize(31, 31));
+    m_ui->colletButton->setIconSize(QSize(31, 31));
+    m_ui->discolletButton->setIconSize(QSize(31, 31));
 
-    ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->colletButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->discolletButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->colletButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->discolletButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->playButton->setToolTip(tr("Play"));
-    ui->stopButton->setToolTip(tr("Stop"));
-    ui->colletButton->setToolTip(tr("Colletion"));
-    ui->discolletButton->setToolTip(tr("Discolletion"));
+    m_ui->playButton->setToolTip(tr("Play"));
+    m_ui->stopButton->setToolTip(tr("Stop"));
+    m_ui->colletButton->setToolTip(tr("Colletion"));
+    m_ui->discolletButton->setToolTip(tr("Discolletion"));
 
-    ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    ui->volumeSlider->setRange(0, 100);
-    ui->volumeSlider->setValue(100);
+    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->volumeSlider->setRange(0, 100);
+    m_ui->volumeSlider->setValue(100);
 
-    connect(ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
-    connect(ui->stopButton, SIGNAL(clicked()), SLOT(radioStop()));
-    connect(ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
-    connect(ui->colletButton, SIGNAL(clicked()), SLOT(radioColletButton()));
-    connect(ui->discolletButton, SIGNAL(clicked()), SLOT(radioDiscolletButton()));
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
+    connect(m_ui->stopButton, SIGNAL(clicked()), SLOT(radioStop()));
+    connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
+    connect(m_ui->colletButton, SIGNAL(clicked()), SLOT(radioColletButton()));
+    connect(m_ui->discolletButton, SIGNAL(clicked()), SLOT(radioDiscolletButton()));
 
-    ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng1").scaled(455, 60));
+    m_ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng1").scaled(455, 60));
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
     m_timerCount = 1;
     m_collecticon = new QIcon(":/tiny/lb_star");
     m_discollecticon = new QIcon(":/tiny/lb_unstar");
 
-    connect(ui->listWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
+    connect(m_ui->listWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
                             SLOT(itemHasDoubleClicked(QListWidgetItem*)));
 
 }
@@ -75,7 +75,7 @@ MusicWebEntainRadioWidget::~MusicWebEntainRadioWidget()
     delete m_discollecticon;
     delete m_radio;
     delete m_database;
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicWebEntainRadioWidget::getClassName()
@@ -94,7 +94,7 @@ void MusicWebEntainRadioWidget::closeEvent(QCloseEvent *event)
 void MusicWebEntainRadioWidget::timeout()
 {
     ++m_timerCount;
-    ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng" +
+    m_ui->movieLabel->setPixmap(QPixmap(":/radio/lb_radiopng" +
                               QString::number(m_timerCount)).scaled(455, 60));
     if(m_timerCount >= 4)
     {
@@ -113,9 +113,9 @@ void MusicWebEntainRadioWidget::radioPlay()
     m_radio = new MusicCoreMPlayer(this);
     connect(m_radio, SIGNAL(radioChanged()), SLOT(radioStandardOutput()));
     m_radio->setMedia(MusicCoreMPlayer::RadioCategory, m_radioUrl);
-    m_radio->setVolume(ui->volumeSlider->value());
+    m_radio->setVolume(m_ui->volumeSlider->value());
 
-    ui->stateLabel->setText(tr("Connecting..."));
+    m_ui->stateLabel->setText(tr("Connecting..."));
     m_timer.start(100);
 }
 
@@ -138,18 +138,18 @@ void MusicWebEntainRadioWidget::radioVolume(int num)
 
 void MusicWebEntainRadioWidget::clearAllItems()
 {
-    ui->listWidget->clear();
+    m_ui->listWidget->clear();
 }
 
 void MusicWebEntainRadioWidget::updateRadioList(const QString &category)
 {
     clearAllItems();
-    ui->listWidget->clear();
+    m_ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRadioNames(category);
     foreach(const QString &name, rnames)
     {
-        ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
+        m_ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
                                                     ? *m_collecticon
                                                     : *m_discollecticon, name));
     }
@@ -158,12 +158,12 @@ void MusicWebEntainRadioWidget::updateRadioList(const QString &category)
 void MusicWebEntainRadioWidget::updateRecentList()
 {
     clearAllItems();
-    ui->listWidget->clear();
+    m_ui->listWidget->clear();
     QStringList fnames = m_database->getFavouriteNames();
     QStringList rnames = m_database->getRecentNames();
     foreach(const QString &name, rnames)
     {
-        ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
+        m_ui->listWidget->addItem(new QListWidgetItem(fnames.contains(name)
                                                     ? *m_collecticon
                                                     : *m_discollecticon, name));
     }
@@ -172,10 +172,10 @@ void MusicWebEntainRadioWidget::updateRecentList()
 void MusicWebEntainRadioWidget::updateFavouriteList()
 {
     clearAllItems();
-    ui->listWidget->clear();
+    m_ui->listWidget->clear();
     foreach(const QString &name, m_database->getFavouriteNames())
     {
-        ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, name));
+        m_ui->listWidget->addItem(new QListWidgetItem(*m_collecticon, name));
     }
 }
 
@@ -187,13 +187,13 @@ void MusicWebEntainRadioWidget::itemHasDoubleClicked(QListWidgetItem *item)
 
 void MusicWebEntainRadioWidget::radioStandardOutput()
 {
-    ui->stateLabel->setText(m_currentRadioName);
+    m_ui->stateLabel->setText(m_currentRadioName);
     m_database->radioRecentPlay(m_currentRadioName);
 }
 
 void MusicWebEntainRadioWidget::radioColletButton()
 {
-    QListWidgetItem* lItem = ui->listWidget->currentItem();
+    QListWidgetItem* lItem = m_ui->listWidget->currentItem();
     if(!lItem)
     {
         return;
@@ -204,7 +204,7 @@ void MusicWebEntainRadioWidget::radioColletButton()
 
 void MusicWebEntainRadioWidget::radioDiscolletButton()
 {
-    QListWidgetItem* lItem = ui->listWidget->currentItem();
+    QListWidgetItem* lItem = m_ui->listWidget->currentItem();
     if(!lItem)
     {
         return;
@@ -215,6 +215,6 @@ void MusicWebEntainRadioWidget::radioDiscolletButton()
 
 void MusicWebEntainRadioWidget::show()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
 }

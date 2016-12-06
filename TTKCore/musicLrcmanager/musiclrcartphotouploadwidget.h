@@ -48,7 +48,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicLrcArtPhotoUploadWidget *ui;
+    Ui::MusicLrcArtPhotoUploadWidget *m_ui;
 
 };
 

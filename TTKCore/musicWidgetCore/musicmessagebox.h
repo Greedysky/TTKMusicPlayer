@@ -74,7 +74,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicMessageBox *ui;
+    Ui::MusicMessageBox *m_ui;
     int m_status;
 
 };

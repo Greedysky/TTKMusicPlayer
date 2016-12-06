@@ -7,31 +7,31 @@
 
 MusicMessageBox::MusicMessageBox(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicMessageBox)
+      m_ui(new Ui::MusicMessageBox)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     m_status = 0;
     ////////////////////////////////////////////////
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     QFont f = font();
     f.setFamily("Times New Roman");
     setFont(f);
-    ui->textLabel->setFont(f);
+    m_ui->textLabel->setFont(f);
 
     QButtonGroup *groupButton = new QButtonGroup(this);
-    groupButton->addButton(ui->topTitleCloseButton, 0);
-    groupButton->addButton(ui->confirmButton, 1);
-    groupButton->addButton(ui->cancelButton, 2);
+    groupButton->addButton(m_ui->topTitleCloseButton, 0);
+    groupButton->addButton(m_ui->confirmButton, 1);
+    groupButton->addButton(m_ui->cancelButton, 2);
     connect(groupButton, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
 
 }
@@ -51,7 +51,7 @@ MusicMessageBox::MusicMessageBox(const QString &title, const QString &text,
 
 MusicMessageBox::~MusicMessageBox()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicMessageBox::getClassName()
@@ -61,22 +61,22 @@ QString MusicMessageBox::getClassName()
 
 void MusicMessageBox::setTitle(const QString &text) const
 {
-    ui->topTitleName->setText(text);
+    m_ui->topTitleName->setText(text);
 }
 
 QString MusicMessageBox::title() const
 {
-    return ui->topTitleName->text();
+    return m_ui->topTitleName->text();
 }
 
 void MusicMessageBox::setText(const QString &text) const
 {
-    ui->textLabel->setText(text);
+    m_ui->textLabel->setText(text);
 }
 
 QString MusicMessageBox::text() const
 {
-    return ui->textLabel->text();
+    return m_ui->textLabel->text();
 }
 
 void MusicMessageBox::buttonClicked(int index)
@@ -92,13 +92,13 @@ void MusicMessageBox::buttonClicked(int index)
 
 int MusicMessageBox::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveDialog::exec();
     return m_status;
 }
 
 void MusicMessageBox::show()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveDialog::show();
 }

@@ -45,7 +45,7 @@ protected:
      * Show artist small picture, if no exsit there is default pic.
      */
 
-    Ui::MusicSongsListItemInfoWidget *ui;
+    Ui::MusicSongsListItemInfoWidget *m_ui;
 
 };
 

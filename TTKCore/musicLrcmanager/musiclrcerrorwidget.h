@@ -52,7 +52,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicLrcErrorWidget *ui;
+    Ui::MusicLrcErrorWidget *m_ui;
 
 };
 

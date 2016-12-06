@@ -90,7 +90,7 @@ protected:
      * Set label text.
      */
 
-    Ui::MusicSoundTouchWidget *ui;
+    Ui::MusicSoundTouchWidget *m_ui;
     QProcess *m_process;
     MusicAudioRecorderCore *m_recordCore;
 

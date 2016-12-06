@@ -100,7 +100,7 @@ protected:
      * Set control enable false when it begin.
      */
 
-    Ui::MusicTransformWidget *ui;
+    Ui::MusicTransformWidget *m_ui;
     QProcess *m_process;
     QStringList m_path;
     TransformType m_currentType;

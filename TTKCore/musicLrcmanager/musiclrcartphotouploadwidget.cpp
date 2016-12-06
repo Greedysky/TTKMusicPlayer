@@ -8,40 +8,40 @@
 
 MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicLrcArtPhotoUploadWidget)
+      m_ui(new Ui::MusicLrcArtPhotoUploadWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
-    ui->uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->selectButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->uploadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->selectButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    ui->stateLabel->setStyleSheet(MusicUIObject::MBackgroundStyle05 +
+    m_ui->stateLabel->setStyleSheet(MusicUIObject::MBackgroundStyle05 +
                                   MusicUIObject::MColorStyle07);
 
-    ui->uploadButton->hide();
-    ui->closeButton->hide();
-    ui->stateLabel->hide();
+    m_ui->uploadButton->hide();
+    m_ui->closeButton->hide();
+    m_ui->stateLabel->hide();
 
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->selectButton, SIGNAL(clicked()), SLOT(selectButtonClicked()));
-    connect(ui->closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->selectButton, SIGNAL(clicked()), SLOT(selectButtonClicked()));
+    connect(m_ui->closeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
 }
 
 MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicLrcArtPhotoUploadWidget::getClassName()
@@ -61,18 +61,18 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
     QPixmap pix(picPath);
     if(pix.width() < WINDOW_WIDTH_MIN || pix.height() < WINDOW_HEIGHT_MIN)
     {
-        ui->stateLabel->show();
-        ui->uploadButton->hide();
-        ui->closeButton->hide();
+        m_ui->stateLabel->show();
+        m_ui->uploadButton->hide();
+        m_ui->closeButton->hide();
     }
     else
     {
-        ui->stateLabel->hide();
-        ui->uploadButton->show();
-        ui->closeButton->show();
-        ui->introduceLabel->hide();
-        ui->selectButton->hide();
-        ui->imageLabel->setImagePath(picPath);
+        m_ui->stateLabel->hide();
+        m_ui->uploadButton->show();
+        m_ui->closeButton->show();
+        m_ui->introduceLabel->hide();
+        m_ui->selectButton->hide();
+        m_ui->imageLabel->setImagePath(picPath);
     }
 }
 
@@ -80,7 +80,7 @@ void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 {
     QDir bgDir(BACKGROUND_DIR_FULL);
     int count = 0;
-    QString name = ui->artSearchEdit->text().trimmed();
+    QString name = m_ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
     {
         MusicMessageBox message;
@@ -98,13 +98,13 @@ void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
     }
 
     QString fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
-    ui->imageLabel->saveImagePath(fileName + JPG_FILE);
+    m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
     close();
 }
 
 int MusicLrcArtPhotoUploadWidget::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

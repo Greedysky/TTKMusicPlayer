@@ -101,7 +101,7 @@ protected:
      * Emit current equalizer parameters value.
      */
 
-    Ui::MusicEqualizerDialog *ui;
+    Ui::MusicEqualizerDialog *m_ui;
     bool m_eable;
     bool m_eqChoiceSelected;
     MusicObject::MIntList m_equalizeValue;

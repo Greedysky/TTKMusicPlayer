@@ -101,7 +101,7 @@ protected:
      * Clear All Items.
      */
 
-    Ui::MusicWebEntainRadioWidget *ui;
+    Ui::MusicWebEntainRadioWidget *m_ui;
     int m_timerCount;
     MusicCoreMPlayer *m_radio;
     QTimer m_timer;

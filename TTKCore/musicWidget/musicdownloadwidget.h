@@ -209,7 +209,7 @@ protected:
      * Strat to download movie.
      */
 
-    Ui::MusicDownloadWidget *ui;
+    Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;

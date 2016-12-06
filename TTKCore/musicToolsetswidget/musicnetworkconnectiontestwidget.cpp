@@ -94,61 +94,61 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
 
 MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicNetworkConnectionTestWidget)
+      m_ui(new Ui::MusicNetworkConnectionTestWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ui->iconLabel->setType(MusicGifLabelWidget::Gif_Check_Blue);
-    ui->textLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->iconLabel->setType(MusicGifLabelWidget::Gif_Check_Blue);
+    m_ui->textLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->startButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
-    ui->verticalLayout->setSpacing(3);
-    ui->verticalLayout->setContentsMargins(0, 0, 0, 0);
+    m_ui->verticalLayout->setSpacing(3);
+    m_ui->verticalLayout->setContentsMargins(0, 0, 0, 0);
 
     MusicNetworkConnectionItem *item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check www Visit"));
     item->setUrl(CHECK_WWW_VISIT);
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
-    ui->verticalLayout->addWidget(item);
+    m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check Normal Visit"));
     item->setUrl(CHECK_NORMAL_VISIT);
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
-    ui->verticalLayout->addWidget(item);
+    m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check Vip Visit"));
     item->setUrl(CHECK_VIP_VISIT);
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
-    ui->verticalLayout->addWidget(item);
+    m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check Download Visit"));
     item->setUrl(CHECK_DOWNLOAD_VISIT);
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
-    ui->verticalLayout->addWidget(item);
+    m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
     item->setText(tr("Check Server Visit"));
     item->setUrl(CHECK_SERVER_VISIT);
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
-    ui->verticalLayout->addWidget(item);
+    m_ui->verticalLayout->addWidget(item);
 
     m_countIndex = 0;
 
-    connect(ui->startButton, SIGNAL(clicked()), SLOT(buttonStateChanged()));
+    connect(m_ui->startButton, SIGNAL(clicked()), SLOT(buttonStateChanged()));
 }
 
 MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
@@ -157,7 +157,7 @@ MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
     {
         delete m_connectionItems.takeLast();
     }
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicNetworkConnectionTestWidget::getClassName()
@@ -167,18 +167,18 @@ QString MusicNetworkConnectionTestWidget::getClassName()
 
 void MusicNetworkConnectionTestWidget::show()
 {
-    ui->iconLabel->timeout();
-    setBackgroundPixmap(ui->background, size());
+    m_ui->iconLabel->timeout();
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveWidget::show();
 }
 
 void MusicNetworkConnectionTestWidget::buttonStateChanged()
 {
     m_countIndex = 0;
-    if(!ui->iconLabel->isRunning())
+    if(!m_ui->iconLabel->isRunning())
     {
-        ui->iconLabel->start();
-        ui->startButton->setText(tr("stopTest"));
+        m_ui->iconLabel->start();
+        m_ui->startButton->setText(tr("stopTest"));
         foreach(MusicNetworkConnectionItem *item, m_connectionItems)
         {
             item->start();
@@ -186,8 +186,8 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     }
     else
     {
-        ui->iconLabel->stop();
-        ui->startButton->setText(tr("startTest"));
+        m_ui->iconLabel->stop();
+        m_ui->startButton->setText(tr("startTest"));
         foreach(MusicNetworkConnectionItem *item, m_connectionItems)
         {
             item->stop();
@@ -199,7 +199,7 @@ void MusicNetworkConnectionTestWidget::testFinshed()
 {
     if(++m_countIndex == 5)
     {
-        ui->iconLabel->stop();
-        ui->startButton->setText(tr("startTest"));
+        m_ui->iconLabel->stop();
+        m_ui->startButton->setText(tr("startTest"));
     }
 }

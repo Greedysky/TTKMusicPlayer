@@ -310,7 +310,7 @@ protected:
      */
 
 private:
-    Ui::MusicApplication *ui;
+    Ui::MusicApplication *m_ui;
     bool m_playControl;
     int m_currentMusicSongTreeIndex;
 

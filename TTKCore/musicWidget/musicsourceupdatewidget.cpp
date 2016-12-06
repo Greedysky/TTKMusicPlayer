@@ -13,23 +13,23 @@
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      ui(new Ui::MusicSourceUpdateWidget)
+      m_ui(new Ui::MusicSourceUpdateWidget)
 {
-    ui->setupUi(this);
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    ui->upgradeButton->setEnabled(false);
+    m_ui->setupUi(this);
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    m_ui->upgradeButton->setEnabled(false);
 
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(ui->upgradeFailedLabel, SIGNAL(clicked()), SLOT(upgradeFailedClicked()));
-    connect(ui->upgradeButton, SIGNAL(clicked()), SLOT(upgradeButtonClicked()));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->upgradeFailedLabel, SIGNAL(clicked()), SLOT(upgradeFailedClicked()));
+    connect(m_ui->upgradeButton, SIGNAL(clicked()), SLOT(upgradeButtonClicked()));
 }
 
 MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicSourceUpdateWidget::getClassName()
@@ -39,7 +39,7 @@ QString MusicSourceUpdateWidget::getClassName()
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    m_ui->stackedWidget->setCurrentIndex(1);
     QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicCryptographicHash::decryptData(DOWNLOAD_URL, URL_KEY)).arg(localDwonload),
                                                                     MusicObject::getAppDir() + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
@@ -72,22 +72,22 @@ void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
         text.append(m_newVersionStr);
         text.append("\r\n");
         text.append(value["data"].toString());
-        ui->upgradeButton->setEnabled(true);
-        ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+        m_ui->upgradeButton->setEnabled(true);
+        m_ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }
     else
     {
         text.append(tr("Current version is updated!"));
-        ui->titleLable_F->setAlignment(Qt::AlignCenter);
+        m_ui->titleLable_F->setAlignment(Qt::AlignCenter);
     }
-    ui->titleLable_F->setText( text );
+    m_ui->titleLable_F->setText( text );
 }
 
 void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total)
 {
-    ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
-    ui->downProgressBar->setValue(percent);
-    ui->downProgressBarAL->setValue(percent);
+    m_ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
+    m_ui->downProgressBar->setValue(percent);
+    m_ui->downProgressBarAL->setValue(percent);
 }
 
 void MusicSourceUpdateWidget::downloadProgressFinished()
@@ -104,7 +104,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
 
 int MusicSourceUpdateWidget::exec()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
