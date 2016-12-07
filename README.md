@@ -46,6 +46,8 @@ Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
 
+Android Executable Download URL: **<u>http://pan.baidu.com/s/1eS9imHW</u>**
+
 KuGou Resource Download URL: **<u>https://github.com/Greedysky/KugouResource</u>**
 
 Features
