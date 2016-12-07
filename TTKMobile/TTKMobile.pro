@@ -14,6 +14,11 @@ include(../TTKVersion.pri)
 
 QT       += core gui xml qml quick multimedia
 
+UI_DIR = ./.build/ui/
+MOC_DIR = ./.build/moc/
+OBJECTS_DIR = ./.build/obj
+RCC_DIR = ./.build/rcc
+
 greaterThan(QT_MAJOR_VERSION, 4){
     QT += widgets
     include(../TTKExtra/Qt5/qmmp.pri)
@@ -40,6 +45,10 @@ win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
     system(for /r %i in (*.qm) do ren %i *.ln)
     system(for /r %i in (*.ln) do copy /y %i $$output)
     system(for /r %i in (*.ln) do move /y %i $$PWD/extra)
+}else{
+    output = $$OUT_PWD/bin/$$TTKMusicPlayer
+    output = $$replace(output, /, \\)
+    !exists($$output):system(md $$output)
 }
 
 TEMPLATE = app
