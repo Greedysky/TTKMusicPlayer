@@ -14,8 +14,8 @@ include(../TTKVersion.pri)
 
 QT       += core gui xml qml quick multimedia
 
-UI_DIR = ./.build/ui/
-MOC_DIR = ./.build/moc/
+UI_DIR = ./.build/ui
+MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 

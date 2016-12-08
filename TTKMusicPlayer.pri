@@ -22,8 +22,8 @@ QT       += widgets multimediawidgets
 include(TTKExtra/Qt5/qmmp.pri)
 }
 
-UI_DIR = ./.build/ui/
-MOC_DIR = ./.build/moc/
+UI_DIR = ./.build/ui
+MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
