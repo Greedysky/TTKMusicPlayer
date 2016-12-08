@@ -48,7 +48,11 @@ PinyinHelperPrivate::PinyinHelperPrivate()
     m_pinyinTable = PinyinResource::getPinyinResource();
     m_mutliPinyinTable = PinyinResource::getMutilPinyinResource();
     m_pinyinSeparator = ",";
+#ifdef Q_CC_MSVC
+    m_chineseLing = '\xa9\x96';
+#else
     m_chineseLing = L'〇';
+#endif
     m_allUnmarkedVowel = "aeiouv";
     m_allMarkedVowel = "āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ";
 }

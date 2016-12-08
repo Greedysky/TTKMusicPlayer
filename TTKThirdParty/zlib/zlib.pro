@@ -20,6 +20,10 @@ unix:TARGET = ../../lib/$$TTKMusicPlayer/zlib
 CONFIG       += warn_off
 unix:VERSION += 1.2.8
 
+DEFINES += \
+    ZLIB_DLL \
+    ZLIB_INTERNAL
+
 HEADERS  += \
     $$PWD/zconf.h \
     $$PWD/zlib.h \

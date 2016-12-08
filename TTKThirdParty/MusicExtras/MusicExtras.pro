@@ -25,7 +25,11 @@ win32{
 unix:TARGET = ../../lib/$$TTKMusicPlayer/MusicExtras
 TEMPLATE = lib
 
+win32:msvc{
+CONFIG +=c++11
+}else{
 QMAKE_CXXFLAGS += -std=c++11
+}
 
 INCLUDEPATH += ../../
 

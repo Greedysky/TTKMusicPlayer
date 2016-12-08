@@ -60,7 +60,11 @@ QString MusicUtils::Core::artistName(const QString &value, bool all)
     if(!all)
     {
         QStringList splits;
+#ifdef Q_CC_MSVC
+        splits << "\xa1\xa2" << "&" << "_" << "#";
+#else
         splits << "、" << "&" << "_" << "#";
+#endif
         foreach(const QString &var, splits)
         {
             QStringList vs = v.split(var);
