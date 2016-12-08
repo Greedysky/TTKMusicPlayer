@@ -28,6 +28,11 @@ public:
      */
     ~MusicLayoutAnimation();
 
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
     void start();
     /*!
      * Start to anmiation.
