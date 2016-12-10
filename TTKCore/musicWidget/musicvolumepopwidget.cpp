@@ -83,10 +83,7 @@ void MusicVolumePopWidget::timeToResetFlag()
 
 void MusicVolumePopWidget::initWidget()
 {
-    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
-    m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
-
+    setTranslucentBackground();
     m_containWidget->setFixedSize(20, 100);
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 9, 0, 9);

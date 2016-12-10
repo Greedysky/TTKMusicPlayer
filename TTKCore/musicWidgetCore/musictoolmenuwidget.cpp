@@ -1,4 +1,5 @@
 #include "musictoolmenuwidget.h"
+#include "musicuiobject.h"
 
 #include <QWidgetAction>
 
@@ -50,6 +51,13 @@ MusicToolMenuWidget::~MusicToolMenuWidget()
 QString MusicToolMenuWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicToolMenuWidget::setTranslucentBackground()
+{
+    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
+    m_menu->setAttribute(Qt::WA_TranslucentBackground);
+    m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
 }
 
 void MusicToolMenuWidget::popupMenu()

@@ -184,8 +184,7 @@ void MusicEnhancedWidget::helpButtonClicked()
 
 void MusicEnhancedWidget::initWidget()
 {
-    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
-    m_menu->setAttribute(Qt::WA_TranslucentBackground);
+    setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle05);
 
     m_containWidget->setFixedSize(272, 370);

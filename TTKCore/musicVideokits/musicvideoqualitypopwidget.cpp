@@ -68,10 +68,7 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
 
 void MusicVideoQualityPopWidget::initWidget()
 {
-    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
-    m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
-
+    setTranslucentBackground();
     m_actionGroup = new QActionGroup(this);
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(movieQualityChoiced(QAction*)));
 

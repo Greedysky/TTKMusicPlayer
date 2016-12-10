@@ -64,6 +64,11 @@ public:
      * Get class object name.
      */
 
+    void setTranslucentBackground();
+    /*!
+     * Set background translucent.
+     */
+
 public Q_SLOTS:
     void popupMenu();
     /*!

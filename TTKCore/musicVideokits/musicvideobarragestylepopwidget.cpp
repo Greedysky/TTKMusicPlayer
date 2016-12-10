@@ -92,10 +92,7 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
 
 void MusicVideoBarrageStylePopWidget::initWidget()
 {
-    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
-    m_menu->setAttribute(Qt::WA_TranslucentBackground);
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle03);
-
+    setTranslucentBackground();
     m_containWidget->setFixedSize(200, 85);
     QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
     //////////////////////////////////////////////////////////////

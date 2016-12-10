@@ -159,8 +159,7 @@ QString MusicQualityChoiceWidget::getClassName()
 
 void MusicQualityChoiceWidget::initWidget()
 {
-    m_menu->setWindowFlags(m_menu->windowFlags() | Qt::FramelessWindowHint);
-    m_menu->setAttribute(Qt::WA_TranslucentBackground);
+    setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle04);
 
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
