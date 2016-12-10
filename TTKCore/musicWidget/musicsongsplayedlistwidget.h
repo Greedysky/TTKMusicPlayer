@@ -47,6 +47,10 @@ public:
     /*!
      * Select the current played row.
      */
+    inline void setPlayRowIndex(int index) { m_playRowIndex = index; }
+    /*!
+     * Get the current play row.
+     */
     inline int getPlayRowIndex() const { return m_playRowIndex; }
     /*!
      * Get the current play row.

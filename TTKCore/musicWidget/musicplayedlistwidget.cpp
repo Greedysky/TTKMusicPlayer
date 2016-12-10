@@ -211,8 +211,11 @@ void MusicPlayedListWidget::setDeleteItemAll()
     {
         m_playedListWidget->removeRow(0);
     }
+
+    m_playedListWidget->setPlayRowIndex(-1);
     m_songLists.clear();
     setPlayListCount(0);
+
     MusicApplication::instance()->musicPlayIndex(-1);
 }
 
