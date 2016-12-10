@@ -160,7 +160,7 @@ void MusicApplicationObject::musicAboutUs()
     MusicMessageBox message;
     message.setText(tr("TTK Music Player") + QString("\n\n") +
                     tr("Directed By Greedysky") +
-                    QString("\nCopyright© 2014-2016") +
+                    QString("\nCopyright© 2015-2017") +
                     QString("\nMail:Greedysky@163.com"));
     message.exec();
 }
