@@ -10,6 +10,7 @@ MusicLayoutAnimation::MusicLayoutAnimation(QWidget *parent)
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
+
     m_mainWidget = new QWidget(this);
     mainLayout->addWidget(m_mainWidget);
     setLayout(mainLayout);
@@ -34,28 +35,13 @@ MusicLayoutAnimation::MusicLayoutAnimation(QWidget *parent)
 MusicLayoutAnimation::~MusicLayoutAnimation()
 {
     delete m_widgetLayout;
+    delete m_mainWidget;
     delete m_animation;
 }
 
-void MusicLayoutAnimation::paintEvent(QPaintEvent * event)
+QString MusicLayoutAnimation::getClassName()
 {
-    if(m_isAnimating)
-    {
-        QPainter painter(this);
-        QPixmap pixmap( size() );
-        pixmap.fill(Qt::transparent);
-        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, true);
-        m_mainWidget->render(&pixmap);
-        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, false);
-
-        painter.translate(0, m_currentValue);
-        painter.drawPixmap(0, 0, pixmap);
-        painter.drawPixmap(0, height(), pixmap);
-    }
-    else
-    {
-        QWidget::paintEvent(event);
-    }
+    return staticMetaObject.className();
 }
 
 void MusicLayoutAnimation::start()
@@ -101,4 +87,25 @@ void MusicLayoutAnimation::animationFinished()
     m_currentValue = 0;
     m_isAnimating = false;
     m_mainWidget->show();
+}
+
+void MusicLayoutAnimation::paintEvent(QPaintEvent * event)
+{
+    if(m_isAnimating)
+    {
+        QPainter painter(this);
+        QPixmap pixmap( size() );
+        pixmap.fill(Qt::transparent);
+        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, true);
+        m_mainWidget->render(&pixmap);
+        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, false);
+
+        painter.translate(0, m_currentValue);
+        painter.drawPixmap(0, 0, pixmap);
+        painter.drawPixmap(0, height(), pixmap);
+    }
+    else
+    {
+        QWidget::paintEvent(event);
+    }
 }

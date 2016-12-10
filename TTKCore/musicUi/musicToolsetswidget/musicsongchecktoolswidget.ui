@@ -83,7 +83,7 @@
    <widget class="QToolButton" name="duplicateButton">
     <property name="geometry">
      <rect>
-      <x>88</x>
+      <x>90</x>
       <y>20</y>
       <width>88</width>
       <height>54</height>
@@ -96,7 +96,7 @@
    <widget class="QToolButton" name="qualityButton">
     <property name="geometry">
      <rect>
-      <x>176</x>
+      <x>180</x>
       <y>20</y>
       <width>88</width>
       <height>54</height>
@@ -127,6 +127,9 @@
         <width>80</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
        <string>开始检查</string>
@@ -174,6 +177,9 @@
         <width>80</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
        <string>开始检查</string>
@@ -254,6 +260,9 @@
         <height>30</height>
        </rect>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
        <string>开始检查</string>
       </property>
@@ -274,6 +283,89 @@
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>88</x>
+      <y>20</y>
+      <width>2</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>178</x>
+      <y>20</y>
+      <width>2</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>35</y>
+      <width>70</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold; color:#464646</string>
+    </property>
+    <property name="text">
+     <string>扫描范围:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>35</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#9F9F9F</string>
+    </property>
+    <property name="text">
+     <string>全部列表</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>35</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#2F93E1</string>
+    </property>
+    <property name="text">
+     <string>更改</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
