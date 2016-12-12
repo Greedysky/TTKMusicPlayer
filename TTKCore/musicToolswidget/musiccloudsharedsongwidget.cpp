@@ -33,8 +33,8 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 266);
-    headerview->resizeSection(2, 35);
+    headerview->resizeSection(1, 256);
+    headerview->resizeSection(2, 45);
 
     m_uploading = false;
     m_openFileWidget = nullptr;
@@ -124,15 +124,15 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), dataItem.m_name, Qt::ElideRight, 260));
+        item->setText(MusicUtils::Widget::elidedText(font(), dataItem.m_name, Qt::ElideRight, 250));
         item->setToolTip(dataItem.m_name);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Number(dataItem.m_size),
-                                                              Qt::ElideRight, 30));
-        item->setToolTip(MusicUtils::Number::size2Label(dataItem.m_size));
+        item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Label(dataItem.m_size),
+                                                              Qt::ElideRight, 40));
+        item->setToolTip(item->text());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
