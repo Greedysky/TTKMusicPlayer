@@ -22,6 +22,13 @@ greaterThan(QT_MAJOR_VERSION, 4){
 }
 
 TRANSLATIONS += TTKMobile.ts
+#lupdate_only
+#{
+#    SOURCES +=  \
+#        MobileWidgets/* \
+#        MobileWidgets/Core/*
+#}
+
 ##update translation
 win32:exists($$[QT_INSTALL_BINS]/lrelease.exe){
     LRELEASE_EXECUTABLE = $$[QT_INSTALL_BINS]/lrelease.exe
