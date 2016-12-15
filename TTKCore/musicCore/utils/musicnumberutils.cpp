@@ -7,23 +7,23 @@ QString MusicUtils::Number::size2Number(qint64 size)
 {
     if( size < MH_KB2B)
     {
-        return QString("%1").arg(size);
+        return QString::number(size*1.0, 'f', 2);
     }
     else if( MH_KB2B <= size && size < MH_MB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/MH_KB2B*100)/100.0);
+        return QString::number(size*1.0/MH_KB2B, 'f', 2);
     }
     else if( MH_MB2B <= size && size < MH_GB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/MH_MB2B*100)/100.0);
+        return QString::number(size*1.0/MH_MB2B, 'f', 2);
     }
     else if( MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString("%1").arg((qint64)(size*1.0/MH_GB2B*100)/100.0);
+        return QString::number(size*1.0/MH_GB2B, 'f', 2);
     }
     else
     {
-        return QString("%1").arg((qint64)(size*1.0/MH_TB2B*100)/100.0);
+        return QString::number(size*1.0/MH_TB2B, 'f', 2);
     }
 }
 
