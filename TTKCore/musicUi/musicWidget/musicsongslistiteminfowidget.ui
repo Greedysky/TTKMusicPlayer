@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{background:#FDFDFD;}
-QLabel{background:#EEEEEE;}</string>
+</string>
   </property>
   <widget class="QLabel" name="songNameValue">
    <property name="geometry">
