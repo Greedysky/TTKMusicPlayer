@@ -814,6 +814,7 @@ void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
     }
     else
     {
+        m_floatWidget->setGeometry();
         m_floatWidget->active();
     }
 }
