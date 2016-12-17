@@ -5,7 +5,6 @@
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
-#include "musicapplication.h"
 
 #include <QHBoxLayout>
 #include <QToolButton>

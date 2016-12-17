@@ -16,6 +16,7 @@
 class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongCheckToolsWidget;
+class MusicSongsListFunctionWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -214,11 +215,19 @@ public Q_SLOTS:
     /*!
      * Update current artist when it download finished.
      */
+    void showFloatWidget();
+    /*!
+     * Show the float function widget.
+     */
 
 private Q_SLOTS:
     void sliderValueChanaged(int value);
     /*!
      * Current vertical slider value chanaged.
+     */
+    void deleteFloatWidget();
+    /*!
+     * Delete the float function widget.
      */
 
 protected:
@@ -242,6 +251,7 @@ protected:
     /*!
      * Set item title.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
@@ -254,6 +264,7 @@ protected:
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicObject::MIntsListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
+    MusicSongsListFunctionWidget *m_floatWidget;
 
 };
 

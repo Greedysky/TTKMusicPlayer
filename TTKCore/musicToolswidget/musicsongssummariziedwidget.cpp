@@ -1,4 +1,5 @@
 #include "musicsongssummariziedwidget.h"
+#include "musicsongslistfunctionwidget.h"
 #include "musicsongslistwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
@@ -39,6 +40,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
     m_songCheckToolsWidget = nullptr;
+    m_floatWidget = nullptr;
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
 }
@@ -47,6 +50,7 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 {
     delete m_listMaskWidget;
     delete m_songCheckToolsWidget;
+    delete m_floatWidget;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
@@ -657,6 +661,22 @@ void MusicSongsSummariziedWidget::updateCurrentArtist()
     m_songItems[m_currentPlayToolIndex].m_itemObject->updateCurrentArtist();
 }
 
+void MusicSongsSummariziedWidget::showFloatWidget()
+{
+    if(m_floatWidget == nullptr)
+    {
+        m_floatWidget = new MusicSongsListFunctionWidget(this);
+        connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
+        m_floatWidget->setGeometry();
+        m_floatWidget->show();
+    }
+    else
+    {
+        m_floatWidget->setGeometry();
+        m_floatWidget->active();
+    }
+}
+
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 {
     if(value >= 35*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
@@ -672,6 +692,12 @@ void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
     {
         m_listMaskWidget->hide();
     }
+}
+
+void MusicSongsSummariziedWidget::deleteFloatWidget()
+{
+    delete m_floatWidget;
+    m_floatWidget = nullptr;
 }
 
 void MusicSongsSummariziedWidget::checkCurrentNameExist(QString &name)
@@ -730,6 +756,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
     connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)), SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
     connect(w, SIGNAL(musicListSongToLovestListAt(bool,int)), SLOT(musicListSongToLovestListAt(bool,int)));
+    connect(w, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
 
     ///connect to items
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
@@ -760,6 +787,15 @@ void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)
     if(m_listMaskWidget->isVisible() && m_listMaskWidget->getItemIndex() == item->m_itemIndex)
     {
         m_listMaskWidget->setTitle(title);
+    }
+}
+
+void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicSongsToolBoxWidget::resizeEvent(event);
+    if(m_floatWidget)
+    {
+        m_floatWidget->setGeometry();
     }
 }
 

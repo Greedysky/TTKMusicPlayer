@@ -4,7 +4,6 @@
 #include "musictransformwidget.h"
 #include "musicfileinformationwidget.h"
 #include "musicsongringtonemakerwidget.h"
-#include "musicsongslistfunctionwidget.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 #include "musiccoreutils.h"
@@ -27,7 +26,7 @@
 
 MusicSongsListWidget::MusicSongsListWidget(int index, QWidget *parent)
     : MusicSlowMovingTableWidget(parent), m_parentToolIndex(index), m_openFileWidget(nullptr),
-      m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr), m_floatWidget(nullptr)
+      m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
     m_renameActived = false;
@@ -67,7 +66,6 @@ MusicSongsListWidget::~MusicSongsListWidget()
     delete m_openFileWidget;
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
-    delete m_floatWidget;
 }
 
 QString MusicSongsListWidget::getClassName()
@@ -716,12 +714,6 @@ void MusicSongsListWidget::setItemRenameFinished(const QString &name)
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
 }
 
-void MusicSongsListWidget::deleteFloatWidget()
-{
-    delete m_floatWidget;
-    m_floatWidget = nullptr;
-}
-
 void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
 {
     MusicSlowMovingTableWidget::mousePressEvent(event);
@@ -805,18 +797,7 @@ void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
         m_renameItem = nullptr;
     }
 
-    if(m_floatWidget == nullptr)
-    {
-        m_floatWidget = new MusicSongsListFunctionWidget(this);
-        connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
-        m_floatWidget->setGeometry();
-        m_floatWidget->show();
-    }
-    else
-    {
-        m_floatWidget->setGeometry();
-        m_floatWidget->active();
-    }
+    emit showFloatWidget();
 }
 
 void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
