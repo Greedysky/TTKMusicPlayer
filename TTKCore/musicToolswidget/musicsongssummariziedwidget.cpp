@@ -17,8 +17,9 @@
 #include <QScrollBar>
 #include <QScrollArea>
 
-#define  ITEM_MIN_COUNT     4
-#define  ITEM_MAX_COUNT     10
+#define  ITEM_MIN_COUNT             4
+#define  ITEM_MAX_COUNT             10
+#define  RECENT_ITEM_MAX_COUNT      50
 
 MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     : MusicSongsToolBoxWidget(parent)
@@ -628,17 +629,23 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
 
     MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
     MusicSong music( (*songs)[index] );
-    if(!item->m_songs.contains(music))
+    MusicSongs *musics = &item->m_songs;
+    if(!musics->contains(music))
     {
+        if(musics->count() >= RECENT_ITEM_MAX_COUNT)
+        {
+            musics->takeFirst();
+            item->m_itemObject->clearAllItems();
+        }
+
         music.setMusicPlayCount(music.getMusicPlayCount() + 1);
-        item->m_songs << music;
-        item->m_itemObject->updateSongsFileName(item->m_songs);
-        QString title(QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        musics->append(music);
+        item->m_itemObject->updateSongsFileName(*musics);
+        QString title(QString("%1[%2]").arg(item->m_itemName).arg(musics->count()));
         setTitle(item->m_itemObject, title);
     }
     else
     {
-        MusicSongs *musics = &item->m_songs;
         for(int i=0; i<musics->count(); ++i)
         {
             MusicSong *m = &(*musics)[i];
