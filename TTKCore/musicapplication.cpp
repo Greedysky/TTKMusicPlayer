@@ -22,6 +22,9 @@
 #include "musictoastlabel.h"
 #include "musiccoreutils.h"
 
+#include <QMimeData>
+#include <QFileDialog>
+
 MusicApplication *MusicApplication::m_instance = nullptr;
 
 MusicApplication::MusicApplication(QWidget *parent)
